@@ -1,0 +1,1 @@
+Error fetching from LobeHub API: HTTP Error 404: Not Found

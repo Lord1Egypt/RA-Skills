@@ -28,7 +28,7 @@ def main():
     args = get_args()
     
     query = args.query
-    if query is None:
+    if query is None and not args.source and not args.category:
         print("=== RA-Skills Registry Interactive Search ===")
         print(f"Total skills available: {data.get('total', len(skills))}")
         print("  - Built-in: " + str(data.get("built_in", 0)))

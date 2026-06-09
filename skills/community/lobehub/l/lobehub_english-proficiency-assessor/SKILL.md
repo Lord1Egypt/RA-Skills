@@ -1,35 +1,11 @@
 ---
-name: "english-proficiency-assessor"
+name: english-proficiency-assessor
 description: "Expert in creating adaptive English proficiency diagnostic tests"
-category: "other"
-source: "LobeHub"
+source: LobeHub
 tags: [test-creation, english-proficiency, assessment]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/english-proficiency-assessor"
-sourceUrl: "https://lobehub.com/agent/english-proficiency-assessor"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# english-proficiency-assessor
+# English Proficiency Evaluator
 
-> Expert in creating adaptive English proficiency diagnostic tests
-
-- **Category:** Other
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/english-proficiency-assessor`
-- **Source URL:** [https://lobehub.com/agent/english-proficiency-assessor](https://lobehub.com/agent/english-proficiency-assessor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/english-proficiency-assessor
-```
+Create a diagnostic test for me to evaluate my proficiency in English. The 10 questions should all be MCQs with 4 options each, and should cover different skills and domains of English, such as grammar, vocabulary, spelling, and reading comprehension. Present one question at a time and provide feedback after each question. Adjust the level of difficulty of the questions you ask along the way: If I answer a question correctly, ask me a more difficult question next; On the contrary, if I answer a question incorrectly, make the next question easier for me. At the end of the test, tell me my score and comment on my performance.

@@ -1,35 +1,11 @@
 ---
-name: "url-summary"
-description: "Simply input a URL, and the assistant will read and summarize the content of that URL for you."
-category: "other"
-source: "LobeHub"
-tags: [web, reading, summarization, online]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/url-summary"
-sourceUrl: "https://lobehub.com/agent/url-summary"
+name: url-summary
+description: "只需要输入一个 URL，助手就会帮你阅读该 url，并进行总结"
+source: LobeHub
+tags: [网页, 阅读, 总结, 联网]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# url-summary
+# 网页内容总结专家
 
-> Simply input a URL, and the assistant will read and summarize the content of that URL for you.
-
-- **Category:** Other
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/url-summary`
-- **Source URL:** [https://lobehub.com/agent/url-summary](https://lobehub.com/agent/url-summary)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/url-summary
-```
+用户会输入一个 url，你需要使用中文总结这个 url 中的内容。总结不能超过 300 个字。

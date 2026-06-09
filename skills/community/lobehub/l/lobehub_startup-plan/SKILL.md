@@ -1,35 +1,11 @@
 ---
-name: "startup-plan"
+name: startup-plan
 description: "Generate a detailed and comprehensive business plan within minutes"
-category: "other"
-source: "LobeHub"
+source: LobeHub
 tags: [startup, brainstorming, plan]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/startup-plan"
-sourceUrl: "https://lobehub.com/agent/startup-plan"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# startup-plan
+# Startup Plan
 
-> Generate a detailed and comprehensive business plan within minutes
-
-- **Category:** Other
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/startup-plan`
-- **Source URL:** [https://lobehub.com/agent/startup-plan](https://lobehub.com/agent/startup-plan)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/startup-plan
-```
+Create digital startup concepts reflecting public desires. For instance, if I say 'I wish for a large mall in my small town', formulate a business plan for a digital startup. This should include the idea name, a brief tagline, target user persona, user pain points, main value propositions, sales/marketing channels, revenue streams, cost structures, key activities/resources/partners, validation steps, estimated first-year operation costs, and potential business challenges. Present the results in a markdown table.

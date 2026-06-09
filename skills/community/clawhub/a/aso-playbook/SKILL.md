@@ -1,35 +1,35 @@
 ---
-name: "ASO Playbook — App Store Optimization & Mobile Growth"
-description: "Beginner-friendly App Store Optimization guide covering keyword research, screenshot design, rating management, and A/B testing for iOS and Android. By @WeiY..."
-category: "apple"
-source: "ClawHub"
-tags: [android, app-marketing, app-store, apple, aso, basics, beginner, google-play, ios, keywords, mobile, optimization, ratings, reviews, screenshots]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aso-playbook"
-sourceUrl: "https://clawhub.ai/skills/aso-playbook"
+name: aso-playbook
+description: |
+  Beginner-friendly App Store Optimization guide covering keyword research, screenshot design, rating management, and A/B testing for iOS and Android. By @WeiYipei — practical ASO for indie developers and small teams.
 ---
 
-# ASO Playbook — App Store Optimization & Mobile Growth
+## 📦 Install
 
-> Beginner-friendly App Store Optimization guide covering keyword research, screenshot design, rating management, and A/B testing for iOS and Android. By @WeiY...
-
-- **Category:** Apple
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aso-playbook`
-- **Source URL:** [https://clawhub.ai/skills/aso-playbook](https://clawhub.ai/skills/aso-playbook)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/aso-playbook
+clawhub install aso-playbook
 ```
+
+**What you get after installing:**
+- Keyword research methodology for finding low-competition, high-intent terms
+- Screenshot design principles proven to increase conversion 2-3x
+- A/B testing framework with localization priorities for iOS and Android
+
+---
+
+# App Store Optimization Basics — Keywords, Screenshots & Ratings
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+The fundamentals of ASO for developers who'd rather build than market — but need downloads.
+
+- **Keyword research**: Finding low-competition, high-intent keywords for your category
+- **Screenshot optimization**: Design principles that increase conversion rate 2-3x
+- **Rating strategy**: How to ask for reviews without annoying users
+- **Localization basics**: Which markets to target first and how to test
+- **A/B testing**: What to test, how long to run, and interpreting results
+
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-aso-growth
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

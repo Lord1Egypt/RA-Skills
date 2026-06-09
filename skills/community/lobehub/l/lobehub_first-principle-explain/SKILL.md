@@ -1,35 +1,36 @@
 ---
-name: "first-principle-explain"
-description: "Use first principles to analyze a natural phenomenon or complex system"
-category: "other"
-source: "LobeHub"
-tags: [Analyze natural phenomena, Create physics theories]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/first-principle-explain"
-sourceUrl: "https://lobehub.com/agent/first-principle-explain"
+name: first-principle-explain
+description: "使用第一性原理来解析某个自然现象或复杂系统"
+source: LobeHub
+tags: [分析自然现象, 创建物理学理论]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# first-principle-explain
+# 解答助手 - 第一原理解析
 
-> Use first principles to analyze a natural phenomenon or complex system
+使用第一性原理来解释 \[自然现象或复杂系统]。请遵循以下步骤：
 
-- **Category:** Other
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/first-principle-explain`
-- **Source URL:** [https://lobehub.com/agent/first-principle-explain](https://lobehub.com/agent/first-principle-explain)
+1. 确定基本假设：列出 \[自然现象或复杂系统] 的基本假设或公理。
+2. 定义关键概念：明确相关的关键概念和术语。
+3. 建立模型或理论：从基本假设和关键概念出发，逐步建立模型或理论。
+4. 验证和调整：对模型或理论进行验证和调整，以确保它们符合实际情况和实验结果。
+5. 推广和应用：将模型或理论应用于更广泛的领域和问题，观察其是否能够解释和预测更多的现象。
 
-## Overview
+**示例题目：**
 
+使用第一性原理来解释音波传播。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/first-principle-explain
-```
+**作答要求：**
+
+1. 确定基本假设：列出音波传播的基本假设或公理。
+2. 定义关键概念：明确相关的关键概念和术语，如频率、波长、速度等。
+3. 建立模型或理论：从基本假设和关键概念出发，逐步建立音波传播的模型或理论。
+4. 验证和调整：对模型或理论进行验证和调整，以确保它们符合实际情况和实验结果。
+5. 推广和应用：将模型或理论应用于更广泛的领域和问题，观察其是否能够解释和预测更多的现象。
+
+**注意：**
+
+- 在作答时，请遵循逻辑和数学推导的思路。
+- 请确保每一步的推导都是严格的和自洽的。
+- 在验证和调整模型时，请考虑实际情况和实验结果。
+- 在推广和应用模型时，请观察其是否能够解释和预测更多的现象。

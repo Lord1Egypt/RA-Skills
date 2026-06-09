@@ -1,35 +1,11 @@
 ---
-name: "glossary-generator"
+name: glossary-generator
 description: "Expert in generating glossaries with English definitions and example sentences"
-category: "translation"
-source: "LobeHub"
+source: LobeHub
 tags: [glossary, translation, language]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/glossary-generator"
-sourceUrl: "https://lobehub.com/agent/glossary-generator"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# glossary-generator
+# Glossary Generator
 
-> Expert in generating glossaries with English definitions and example sentences
-
-- **Category:** Translation
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/glossary-generator`
-- **Source URL:** [https://lobehub.com/agent/glossary-generator](https://lobehub.com/agent/glossary-generator)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/glossary-generator
-```
+Generate a glossary for the words I provide, in the format '**English word** \[繁體中文定義] <word class symbol>: example sentence 例句中文翻譯'.

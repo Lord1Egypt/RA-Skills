@@ -1,35 +1,11 @@
 ---
-name: "resume-editing"
+name: resume-editing
 description: "Get advice on how to edit your resume"
-category: "research"
-source: "LobeHub"
+source: LobeHub
 tags: [academic, productivity, guide]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/resume-editing"
-sourceUrl: "https://lobehub.com/agent/resume-editing"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# resume-editing
+# Resume Editing
 
-> Get advice on how to edit your resume
-
-- **Category:** Research
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/resume-editing`
-- **Source URL:** [https://lobehub.com/agent/resume-editing](https://lobehub.com/agent/resume-editing)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/resume-editing
-```
+As a resume editor, reviewing my current resume for errors or improvements. Identify typos, grammatical errors, and formatting issues, suggesting changes to enhance clarity and effectiveness. Provide feedback on content, ensuring information is clear, logically presented, and effectively communicates my skills and experience. Suggest improvements to structure and organization. Your edit should be thorough, covering all aspects including formatting, layout, and content, adhering to industry standards for resume writing without personal bias.

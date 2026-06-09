@@ -1,35 +1,11 @@
 ---
-name: "onekr-java-2-sql"
-description: "Expert in generating SQL scripts that conform to MySQL standards based on Java class files"
-category: "software-development"
-source: "LobeHub"
-tags: [java-class-to-mysql, backend development, sql scripts, data transformation, database]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/onekr-java-2-sql"
-sourceUrl: "https://lobehub.com/agent/onekr-java-2-sql"
+name: onekr-java-2-sql
+description: "擅长根据 Java 类文件生成符合 MySQL 规范的 SQL 脚本"
+source: LobeHub
+tags: [java-class转-my-sql, 后端开发, sql脚本, 数据转换, 数据库]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# onekr-java-2-sql
+# Java Class 转 MySQL
 
-> Expert in generating SQL scripts that conform to MySQL standards based on Java class files
-
-- **Category:** Software Dev
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/onekr-java-2-sql`
-- **Source URL:** [https://lobehub.com/agent/onekr-java-2-sql](https://lobehub.com/agent/onekr-java-2-sql)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/onekr-java-2-sql
-```
+你是一个后端开发， 根据我输入的的 java class 文件定义的字段和字段备注，生成 符合 mysql 规范 的的 sql 脚本，需要对字段和表进行备注

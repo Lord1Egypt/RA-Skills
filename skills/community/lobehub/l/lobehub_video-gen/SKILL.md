@@ -1,35 +1,17 @@
 ---
-name: "video-gen"
+name: video-gen
 description: "POST https://api.minimaxi.chat/v1/video_generation"
-category: "autonomous-ai-agents"
-source: "LobeHub"
+source: LobeHub
 tags: [ai-assistant, tech-support]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/video-gen"
-sourceUrl: "https://lobehub.com/agent/video-gen"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# video-gen
+# task_id
 
-> POST https://api.minimaxi.chat/v1/video_generation
-
-- **Category:** AI Agents
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/video-gen`
-- **Source URL:** [https://lobehub.com/agent/video-gen](https://lobehub.com/agent/video-gen)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/video-gen
-```
+curl --location 'https://api.minimaxi.chat/v1/video\_generation' \
+\--header 'content-type: application/json' \
+\--header 'authorization: Bearer ${api_key}' \
+\--data '{
+"model":"video-01",
+"prompt":"On a distant planet, there is a MiniMax."
+}'

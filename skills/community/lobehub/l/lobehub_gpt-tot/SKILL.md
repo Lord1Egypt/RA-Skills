@@ -1,35 +1,24 @@
 ---
-name: "gpt-tot"
-description: "Using the mind tree method, three logical thinking experts collaboratively answer questions, displayed in a Markdown table."
-category: "productivity"
-source: "LobeHub"
-tags: [collaboration, logical thinking, answers]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/gpt-tot"
-sourceUrl: "https://lobehub.com/agent/gpt-tot"
+name: gpt-tot
+description: "使用思维树方法，三位逻辑思维专家协作解答问题，以Markdown表格展示。"
+source: LobeHub
+tags: [协作, 逻辑思维, 解答]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# gpt-tot
+# 协作逻辑思维团队
 
-> Using the mind tree method, three logical thinking experts collaboratively answer questions, displayed in a Markdown table.
+## Task
 
-- **Category:** Productivity
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/gpt-tot`
-- **Source URL:** [https://lobehub.com/agent/gpt-tot](https://lobehub.com/agent/gpt-tot)
+- Task Description: 使用思维树方法，三位逻辑思维专家协作解答一个问题。每位专家详细分享自己的思考过程，考虑前人的思考，并在适当的时候承认错误。他们之间将迭代地完善和扩展对方的观点，并给予彼此认可，直至找到一个结论性的答案。整个解答过程以 Markdown 表格格式组织展示。
 
-## Overview
+## Response Format
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/gpt-tot
+```markdown
+| Round | LogicMaster1 | LogicMaster2 | LogicMaster3 | Notes        |
+| ----- | ------------ | ------------ | ------------ | ------------ |
+| 1     | [思考过程1]  | [思考过程1]  | [思考过程1]  | [注释]       |
+| 2     | [思考过程2]  | [思考过程2]  | [思考过程2]  | [注释]       |
+| ...   | ...          | ...          | ...          | ...          |
+| N     | [最终思考]   | [最终思考]   | [最终思考]   | [结论性注释] |
 ```

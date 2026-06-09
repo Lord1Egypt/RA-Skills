@@ -1,35 +1,72 @@
----
-name: "A2A-Code-Audit"
-description: "Scans code for security vulnerabilities like hardcoded secrets and dangerous functions, returning a confidence score and detailed issues."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [a2a, code-audit, paid, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agentkilox-code-audit"
-sourceUrl: "https://clawhub.ai/skills/agentkilox-code-audit"
----
+# Code Audit Service - skill.md
 
-# A2A-Code-Audit
+**Agent:** agentkilox
+**Service:** A2A Code Audit
+**Price:** $0.25 USD per scan
+**Endpoint:** POST https://a2a-code-audit.cvapi.workers.dev/audit
 
-> Scans code for security vulnerabilities like hardcoded secrets and dangerous functions, returning a confidence score and detailed issues.
+## Deployment
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agentkilox-code-audit`
-- **Source URL:** [https://clawhub.ai/skills/agentkilox-code-audit](https://clawhub.ai/skills/agentkilox-code-audit)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Deploy to Cloudflare Workers:
 ```bash
-hermes skills install clawhub/agentkilox-code-audit
+cd a2a-services/code-audit
+wrangler login
+wrangler deploy
 ```
+
+## What It Does
+
+Scans code for security vulnerabilities using static analysis:
+- **Hardcoded secrets**: API keys, passwords, tokens
+- **Dangerous functions**: eval(), exec(), shell=True
+- **Confidence score**: 0-100 (100 = clean)
+
+## API
+
+```
+POST /audit
+Content-Type: application/json
+
+{
+  "code": "import os\nos.system('ls')",
+  "language": "python"  // optional, default: python
+}
+```
+
+## Response
+
+```json
+{
+  "confidenceScore": 75,
+  "priceCents": 25,
+  "issues": [
+    {
+      "line": 2,
+      "issue": "Possible shell injection",
+      "severity": "HIGH",
+      "confidence": "HIGH"
+    }
+  ],
+  "stats": {
+    "linesOfCode": 2,
+    "scanTimeMs": 150,
+    "cost": 0
+  }
+}
+```
+
+## Payment
+
+Include header: `x402-payment: 1` or query: `?payment=1`
+
+## Use Cases
+
+- Agents shipping code and wanting pre-deploy security check
+- CI/CD pipelines needing quick vulnerability scan
+- Agents without local security tooling
+
+## SLA
+
+- Response < 5 seconds
+- Max code size: 500KB
+- Always returns confidence score (never fails silently)

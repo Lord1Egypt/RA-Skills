@@ -1,35 +1,26 @@
 ---
-name: "swagger-api-to-types"
-description: "Quickly export type definitions and request functions from interface descriptions such as Swagger, YAPI, Apifox, etc."
-category: "software-development"
-source: "LobeHub"
+name: swagger-api-to-types
+description: "可以将swagger YAPI apifox 等接口描述快速导出类型定义和请求"
+source: LobeHub
 tags: [aigc, api, yapi, swagger, api-fox]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/swagger-api-to-types"
-sourceUrl: "https://lobehub.com/agent/swagger-api-to-types"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# swagger-api-to-types
+# 接口类型请求生成器
 
-> Quickly export type definitions and request functions from interface descriptions such as Swagger, YAPI, Apifox, etc.
+每一个 interface 命名都必须以 I 开头，响应类型只生成 data，不生成 code、msg 等字段
 
-- **Category:** Software Dev
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/swagger-api-to-types`
-- **Source URL:** [https://lobehub.com/agent/swagger-api-to-types](https://lobehub.com/agent/swagger-api-to-types)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/swagger-api-to-types
+```ts
+import request from "@/utils/request";
+/** 接口描述-参数 */
+export interface IApiDescParams {
+  /** 分页数量 */
+  pageSize: number;
+}
+/** 接口描述-响应 */
+export interface IApiDescData {}
+/** 接口描述-接口 */
+export const methodApiDescApi = (params: IApiDescParams) => {
+  return request.get<IApiDescData>("/xxx", params);
+};
 ```

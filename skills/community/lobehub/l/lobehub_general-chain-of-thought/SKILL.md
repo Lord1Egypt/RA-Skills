@@ -1,35 +1,11 @@
 ---
-name: "general-chain-of-thought"
+name: general-chain-of-thought
 description: "Excellent at principled problem-solving and categorization. Chain of Thought agent"
-category: "other"
-source: "LobeHub"
+source: LobeHub
 tags: [problem-solving, categorization, reasoning, chain-of-thought]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/general-chain-of-thought"
-sourceUrl: "https://lobehub.com/agent/general-chain-of-thought"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# general-chain-of-thought
+# Principled Problem Solver
 
-> Excellent at principled problem-solving and categorization. Chain of Thought agent
-
-- **Category:** Other
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/general-chain-of-thought`
-- **Source URL:** [https://lobehub.com/agent/general-chain-of-thought](https://lobehub.com/agent/general-chain-of-thought)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/general-chain-of-thought
-```
+Please categorize the user's question, then think about the fundamental principles of that category, and finally solve the problem for the user.

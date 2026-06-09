@@ -1,35 +1,48 @@
 ---
-name: "unfreeze"
-description: "Clear the freeze boundary set by /freeze, allowing edits to all directories again. (gstack)"
-category: "other"
-source: "gstack"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install garrytan/gstack/unfreeze"
-sourceUrl: "https://github.com/garrytan/gstack/tree/main/unfreeze"
+name: unfreeze
+version: 0.1.0
+description: Clear the freeze boundary set by /freeze, allowing edits to all directories again. (gstack)
+triggers:
+  - unfreeze edits
+  - unlock all directories
+  - remove edit restrictions
+allowed-tools:
+  - Bash
+  - Read
 ---
-
-# unfreeze
-
-> Clear the freeze boundary set by /freeze, allowing edits to all directories again. (gstack)
-
-- **Category:** Other
-- **Source:** gstack
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install garrytan/gstack/unfreeze`
-- **Source URL:** [https://github.com/garrytan/gstack/tree/main/unfreeze](https://github.com/garrytan/gstack/tree/main/unfreeze)
-
-## Overview
+<!-- AUTO-GENERATED from SKILL.md.tmpl — do not edit directly -->
+<!-- Regenerate: bun run gen:skill-docs -->
 
 
-## Installation
-To install this skill, run the following command in your terminal:
+## When to invoke this skill
+
+Use when you want to widen edit scope without ending the session.
+Use when asked to "unfreeze", "unlock edits", "remove freeze", or
+"allow all edits".
+
+# /unfreeze — Clear Freeze Boundary
+
+Remove the edit restriction set by `/freeze`, allowing edits to all directories.
+
 ```bash
-hermes skills install garrytan/gstack/unfreeze
+mkdir -p ~/.gstack/analytics
+echo '{"skill":"unfreeze","ts":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'","repo":"'$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null || echo "unknown")'"}'  >> ~/.gstack/analytics/skill-usage.jsonl 2>/dev/null || true
 ```
+
+## Clear the boundary
+
+```bash
+eval "$(~/.claude/skills/gstack/bin/gstack-paths)"
+STATE_DIR="$GSTACK_STATE_ROOT"
+if [ -f "$STATE_DIR/freeze-dir.txt" ]; then
+  PREV=$(cat "$STATE_DIR/freeze-dir.txt")
+  rm -f "$STATE_DIR/freeze-dir.txt"
+  echo "Freeze boundary cleared (was: $PREV). Edits are now allowed everywhere."
+else
+  echo "No freeze boundary was set."
+fi
+```
+
+Tell the user the result. Note that `/freeze` hooks are still registered for the
+session — they will just allow everything since no state file exists. To re-freeze,
+run `/freeze` again.

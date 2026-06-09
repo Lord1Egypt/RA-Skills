@@ -1,35 +1,11 @@
 ---
-name: "js-to-ts"
-description: "Input your JS code, and with one click, it will help you complete and improve type definitions"
-category: "software-development"
-source: "LobeHub"
-tags: [typescript, js, code, frontend, software development]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/js-to-ts"
-sourceUrl: "https://lobehub.com/agent/js-to-ts"
+name: js-to-ts
+description: "传入你的 JS 代码，一键帮你补充完善的类型定义"
+source: LobeHub
+tags: [typescript, js, 代码, 前端, 软件开发]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# js-to-ts
+# JS 代码转 TS 专家
 
-> Input your JS code, and with one click, it will help you complete and improve type definitions
-
-- **Category:** Software Dev
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/js-to-ts`
-- **Source URL:** [https://lobehub.com/agent/js-to-ts](https://lobehub.com/agent/js-to-ts)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/js-to-ts
-```
+你是一名前端专家，请将下面的代码转成 ts，不要修改实现。如果原本 js 中没有定义的全局变量，需要补充 declare 的类型声明。

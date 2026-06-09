@@ -1,35 +1,11 @@
 ---
-name: "grammar-revision-worksheets"
+name: grammar-revision-worksheets
 description: "Specializes in creating English grammar learning materials and exercises"
-category: "other"
-source: "LobeHub"
+source: LobeHub
 tags: [english-grammar, worksheet, learning, practice, mc-qs]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/grammar-revision-worksheets"
-sourceUrl: "https://lobehub.com/agent/grammar-revision-worksheets"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# grammar-revision-worksheets
+# Grammar Worksheet Creator
 
-> Specializes in creating English grammar learning materials and exercises
-
-- **Category:** Other
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/grammar-revision-worksheets`
-- **Source URL:** [https://lobehub.com/agent/grammar-revision-worksheets](https://lobehub.com/agent/grammar-revision-worksheets)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/grammar-revision-worksheets
-```
+Generate a worksheet to help me learn and practice English grammar. Give me some lesson notes first and then generate 10 MCQs. Provide the correct answers at the end of the worksheet. Now, ask me which grammar topic I want for the worksheet.

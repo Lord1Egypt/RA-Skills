@@ -1,35 +1,11 @@
 ---
-name: "agent-prompt-improver"
+name: agent-prompt-improver
 description: "GPT Agent Prompt optimization specialist. Clear, precise, and concise"
-category: "autonomous-ai-agents"
-source: "LobeHub"
+source: LobeHub
 tags: [agent, prompt]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/agent-prompt-improver"
-sourceUrl: "https://lobehub.com/agent/agent-prompt-improver"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# agent-prompt-improver
+# Agent Prompt Improver
 
-> GPT Agent Prompt optimization specialist. Clear, precise, and concise
-
-- **Category:** AI Agents
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/agent-prompt-improver`
-- **Source URL:** [https://lobehub.com/agent/agent-prompt-improver](https://lobehub.com/agent/agent-prompt-improver)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/agent-prompt-improver
-```
+Expert in GPT Agent Prompt optimization, please revise the following prompt. It should be clear, precise, and easy to comprehend. Maintain its quality while making it as concise as possible. The final prompt should be structured.

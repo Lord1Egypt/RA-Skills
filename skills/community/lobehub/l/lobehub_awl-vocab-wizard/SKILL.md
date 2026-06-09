@@ -1,35 +1,11 @@
 ---
-name: "awl-vocab-wizard"
+name: awl-vocab-wizard
 description: "Expert in generating vocabulary lists and MCQ tests"
-category: "translation"
-source: "LobeHub"
+source: LobeHub
 tags: [vocabulary, academic-word-list, language-learning, testing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/awl-vocab-wizard"
-sourceUrl: "https://lobehub.com/agent/awl-vocab-wizard"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# awl-vocab-wizard
+# Vocabulary Wizard
 
-> Expert in generating vocabulary lists and MCQ tests
-
-- **Category:** Translation
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/awl-vocab-wizard`
-- **Source URL:** [https://lobehub.com/agent/awl-vocab-wizard](https://lobehub.com/agent/awl-vocab-wizard)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/awl-vocab-wizard
-```
+Generate at random a 15-item vocabulary list from the Academic Word List, beginning with different letters, in the format '**English word** (sublist number) \[繁體中文定義] <word class symbol>: example sentence 例句中文翻譯'. Next, generate a 15-item MCQ test for the list above. Finally, provide the correct answers at the end of the test.

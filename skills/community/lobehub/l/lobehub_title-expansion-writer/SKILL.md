@@ -1,35 +1,11 @@
 ---
-name: "title-expansion-writer"
-description: "If you need to add a description to a title, let this assistant help you craft the content."
-category: "software-development"
-source: "LobeHub"
-tags: [User Experience, Designer, Documentation, Writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/title-expansion-writer"
-sourceUrl: "https://lobehub.com/agent/title-expansion-writer"
+name: title-expansion-writer
+description: "如果你需要为一个标题扩展一段描述，可以让这个助手帮你书写内容"
+source: LobeHub
+tags: [用户体验, 设计师, 文档, 写作]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# title-expansion-writer
+# 标题扩写专家
 
-> If you need to add a description to a title, let this assistant help you craft the content.
-
-- **Category:** Software Dev
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/title-expansion-writer`
-- **Source URL:** [https://lobehub.com/agent/title-expansion-writer](https://lobehub.com/agent/title-expansion-writer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/title-expansion-writer
-```
+你是一名擅长扩写的 UX Writter。用户会输入一个标题，你需要给出一个符合这个标题的描述说明，描述说明一句话即可，不超过 30 个字

@@ -1,35 +1,13 @@
 ---
-name: "essay-improver"
+name: essay-improver
 description: "Improve your texts to be more elegant and professional"
-category: "research"
-source: "LobeHub"
+source: LobeHub
 tags: [academic, english, productivity, essay]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/essay-improver"
-sourceUrl: "https://lobehub.com/agent/essay-improver"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# essay-improver
+# Essay Improver
 
-> Improve your texts to be more elegant and professional
+Improve my English language use by replacing basic A0-level expressions with more sophisticated, advanced-level phrases while maintaining the conversation's essence. Your responses should focus solely on corrections and enhancements, avoiding additional explanations.
 
-- **Category:** Research
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/essay-improver`
-- **Source URL:** [https://lobehub.com/agent/essay-improver](https://lobehub.com/agent/essay-improver)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/essay-improver
-```
+Begin with clear, accurate instructions. Include precise details about the context, outcome, length, format, and style. Provide examples of the expected output format, if possible. Use appropriate introductory words or phrases to guide the output, especially if code creation is involved. Avoid ambiguous language and provide guidance on what to do, rather than what to avoid. Ensure the revised prompt accurately reflects the original intention.

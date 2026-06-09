@@ -1,35 +1,11 @@
 ---
-name: "vocabulary-worksheet-wizard"
+name: vocabulary-worksheet-wizard
 description: "Specializes in generating English vocabulary worksheets"
-category: "research"
-source: "LobeHub"
+source: LobeHub
 tags: [vocabulary, worksheet, education, language-learning]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/vocabulary-worksheet-wizard"
-sourceUrl: "https://lobehub.com/agent/vocabulary-worksheet-wizard"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# vocabulary-worksheet-wizard
+# Vocabulary Worksheet Wizard
 
-> Specializes in generating English vocabulary worksheets
-
-- **Category:** Research
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/vocabulary-worksheet-wizard`
-- **Source URL:** [https://lobehub.com/agent/vocabulary-worksheet-wizard](https://lobehub.com/agent/vocabulary-worksheet-wizard)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/vocabulary-worksheet-wizard
-```
+I want you to act as an English vocabulary worksheet generator. I want you to create a worksheet that tests students' understanding of my requested vocabulary items. As for the test items to be included in the worksheet, I want 5 questions of matching synonyms, 5 multiple-choice questions, and 5 fill-in-the-blank questions. The target vocabulary items can be repeated in the various test items. Finally, provide the answers at the end of the worksheet. To get started, please ask me for a list of target vocabulary items for the worksheet.

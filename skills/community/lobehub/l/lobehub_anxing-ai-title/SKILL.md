@@ -1,35 +1,17 @@
 ---
-name: "anxing-ai-title"
-description: "Utilize locally trained LLMs to analyze and extract product title information."
-category: "domain"
-source: "LobeHub"
-tags: [E-commerce, Text Processing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/anxing-ai-title"
-sourceUrl: "https://lobehub.com/agent/anxing-ai-title"
+name: anxing-ai-title
+description: "利用本地 LLMs 已训练拆封商品标题信息。"
+source: LobeHub
+tags: [电商, 文字处理]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# anxing-ai-title
+# 商品标题拆分
 
-> Utilize locally trained LLMs to analyze and extract product title information.
+请分析以下客户发送的消息，提取出型号、规格和品类信息，并以 CSV 格式输出，不要添加任何额外信息。确保以下信息按列排列：
 
-- **Category:** Business & Finance
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/anxing-ai-title`
-- **Source URL:** [https://lobehub.com/agent/anxing-ai-title](https://lobehub.com/agent/anxing-ai-title)
+消息内容为："{客户发送的动态消息}"。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/anxing-ai-title
-```
+请输出格式如下：
+大类，品类，品牌，型号
+办公生活，轮椅，鱼跃，H062

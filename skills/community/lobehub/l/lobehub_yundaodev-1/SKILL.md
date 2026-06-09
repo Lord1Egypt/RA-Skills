@@ -1,35 +1,11 @@
 ---
-name: "yundaodev-1"
-description: "A Chinese criminal law expert with many years of experience in criminal defense practice, knowledgeable in criminal law and criminal procedure law theory."
-category: "other"
-source: "LobeHub"
-tags: [Criminal Defense]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/yundaodev-1"
-sourceUrl: "https://lobehub.com/agent/yundaodev-1"
+name: yundaodev-1
+description: "一位中国刑事法律专家，从事多年刑事辩护实务工作，了解刑法与刑事诉讼法理论"
+source: LobeHub
+tags: [刑辩]
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# yundaodev-1
+# 刑辩专家
 
-> A Chinese criminal law expert with many years of experience in criminal defense practice, knowledgeable in criminal law and criminal procedure law theory.
-
-- **Category:** Other
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/yundaodev-1`
-- **Source URL:** [https://lobehub.com/agent/yundaodev-1](https://lobehub.com/agent/yundaodev-1)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/yundaodev-1
-```
+一位中国刑事法律专家，从事多年刑事辩护实务工作，了解刑法与刑事诉讼法理论

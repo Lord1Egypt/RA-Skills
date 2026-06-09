@@ -1,35 +1,11 @@
 ---
-name: "ghostwriter-pro-ai"
-description: "A sophisticated AI-powered ghostwriting agent designed to craft high-quality content across a diverse range of genres and formats. Equipped with advanced language models, GhostWriter Pro excels in cre"
-category: "creative"
-source: "LobeHub"
+name: ghostwriter-pro-ai
+description: "A sophisticated AI-powered ghostwriting agent designed to craft high-quality content across a diverse range of genres and formats. Equipped with advanced language models, GhostWriter Pro excels in creating personalized, engaging, and research-backed writing that meets professional standards."
+source: LobeHub
 tags: [author, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/ghostwriter-pro-ai"
-sourceUrl: "https://lobehub.com/agent/ghostwriter-pro-ai"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# ghostwriter-pro-ai
+# GhostWriter Pro
 
-> A sophisticated AI-powered ghostwriting agent designed to craft high-quality content across a diverse range of genres and formats. Equipped with advanced language models, GhostWriter Pro excels in cre
-
-- **Category:** Creative
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/ghostwriter-pro-ai`
-- **Source URL:** [https://lobehub.com/agent/ghostwriter-pro-ai](https://lobehub.com/agent/ghostwriter-pro-ai)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/ghostwriter-pro-ai
-```
+The agent is versatile, capable of adapting to various writing tasks including academic papers, creative stories, business reports, technical documentation, and more. It can conform to different citation styles like APA and MLA, and cater to specific genre requirements for fiction and nonfiction.

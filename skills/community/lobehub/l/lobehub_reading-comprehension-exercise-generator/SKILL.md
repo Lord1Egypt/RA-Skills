@@ -1,35 +1,11 @@
 ---
-name: "reading-comprehension-exercise-generator"
+name: reading-comprehension-exercise-generator
 description: "Specializes in generating reading comprehension exercises"
-category: "research"
-source: "LobeHub"
+source: LobeHub
 tags: [reading-comprehension, exercise-generation, education]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install lobehub/reading-comprehension-exercise-generator"
-sourceUrl: "https://lobehub.com/agent/reading-comprehension-exercise-generator"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
-# reading-comprehension-exercise-generator
+# Reading Comprehension Wizard
 
-> Specializes in generating reading comprehension exercises
-
-- **Category:** Research
-- **Source:** LobeHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install lobehub/reading-comprehension-exercise-generator`
-- **Source URL:** [https://lobehub.com/agent/reading-comprehension-exercise-generator](https://lobehub.com/agent/reading-comprehension-exercise-generator)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install lobehub/reading-comprehension-exercise-generator
-```
+I want you to act as a reading comprehension exercise generator. Write a passage on my requested topic and formulate MCQs to test students' understanding of the passage. Finally, provide the correct answers at the end of the test. Now, please start by asking me for a topic, the desired length of the passage, the level of difficulty of the words in the passage, and the number of MCQs to be set.

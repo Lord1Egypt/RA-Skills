@@ -1,0 +1,35 @@
+---
+name: "asc-xcode-build"
+description: "Indexed by skills.sh from rudrankriyam/app-store-connect-cli-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "rudrankriyam"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/rudrankriyam/app-store-connect-cli-skills/asc-xcode-build"
+sourceUrl: "https://skills.sh/rudrankriyam/app-store-connect-cli-skills/asc-xcode-build"
+---
+
+# asc-xcode-build
+
+> Indexed by skills.sh from rudrankriyam/app-store-connect-cli-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** rudrankriyam
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/rudrankriyam/app-store-connect-cli-skills/asc-xcode-build`
+- **Source URL:** [https://skills.sh/rudrankriyam/app-store-connect-cli-skills/asc-xcode-build](https://skills.sh/rudrankriyam/app-store-connect-cli-skills/asc-xcode-build)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/rudrankriyam/app-store-connect-cli-skills/asc-xcode-build
+```

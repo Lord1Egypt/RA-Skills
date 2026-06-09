@@ -1,0 +1,35 @@
+---
+name: "multi-stage-dockerfile"
+description: "Indexed by skills.sh from github/awesome-copilot"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "github"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/github/awesome-copilot/multi-stage-dockerfile"
+sourceUrl: "https://skills.sh/github/awesome-copilot/multi-stage-dockerfile"
+---
+
+# multi-stage-dockerfile
+
+> Indexed by skills.sh from github/awesome-copilot
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** github
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/multi-stage-dockerfile`
+- **Source URL:** [https://skills.sh/github/awesome-copilot/multi-stage-dockerfile](https://skills.sh/github/awesome-copilot/multi-stage-dockerfile)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/github/awesome-copilot/multi-stage-dockerfile
+```

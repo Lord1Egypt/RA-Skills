@@ -1,0 +1,35 @@
+---
+name: "frame-data-chart-nyt"
+description: "Indexed by skills.sh from nexu-io/open-design"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "nexu-io"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/nexu-io/open-design/frame-data-chart-nyt"
+sourceUrl: "https://skills.sh/nexu-io/open-design/frame-data-chart-nyt"
+---
+
+# frame-data-chart-nyt
+
+> Indexed by skills.sh from nexu-io/open-design
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** nexu-io
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/nexu-io/open-design/frame-data-chart-nyt`
+- **Source URL:** [https://skills.sh/nexu-io/open-design/frame-data-chart-nyt](https://skills.sh/nexu-io/open-design/frame-data-chart-nyt)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/nexu-io/open-design/frame-data-chart-nyt
+```

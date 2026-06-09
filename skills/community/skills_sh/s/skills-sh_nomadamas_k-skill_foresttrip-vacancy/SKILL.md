@@ -1,0 +1,35 @@
+---
+name: "foresttrip-vacancy"
+description: "Indexed by skills.sh from nomadamas/k-skill"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "nomadamas"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/nomadamas/k-skill/foresttrip-vacancy"
+sourceUrl: "https://skills.sh/nomadamas/k-skill/foresttrip-vacancy"
+---
+
+# foresttrip-vacancy
+
+> Indexed by skills.sh from nomadamas/k-skill
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** nomadamas
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/nomadamas/k-skill/foresttrip-vacancy`
+- **Source URL:** [https://skills.sh/nomadamas/k-skill/foresttrip-vacancy](https://skills.sh/nomadamas/k-skill/foresttrip-vacancy)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/nomadamas/k-skill/foresttrip-vacancy
+```

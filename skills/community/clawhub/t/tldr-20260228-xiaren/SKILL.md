@@ -1,0 +1,35 @@
+---
+name: "tldr"
+description: "Simplified man pages from tldr-pages. Use this to quickly understand CLI tools."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/tldr-20260228-xiaren"
+sourceUrl: "https://clawhub.ai/skills/tldr-20260228-xiaren"
+---
+
+# tldr
+
+> Simplified man pages from tldr-pages. Use this to quickly understand CLI tools.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/tldr-20260228-xiaren`
+- **Source URL:** [https://clawhub.ai/skills/tldr-20260228-xiaren](https://clawhub.ai/skills/tldr-20260228-xiaren)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/tldr-20260228-xiaren
+```

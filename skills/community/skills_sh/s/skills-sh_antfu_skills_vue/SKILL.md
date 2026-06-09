@@ -1,0 +1,35 @@
+---
+name: "vue"
+description: "Indexed by skills.sh from antfu/skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "antfu"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/antfu/skills/vue"
+sourceUrl: "https://skills.sh/antfu/skills/vue"
+---
+
+# vue
+
+> Indexed by skills.sh from antfu/skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** antfu
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/antfu/skills/vue`
+- **Source URL:** [https://skills.sh/antfu/skills/vue](https://skills.sh/antfu/skills/vue)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/antfu/skills/vue
+```

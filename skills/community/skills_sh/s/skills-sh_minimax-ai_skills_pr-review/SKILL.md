@@ -1,0 +1,35 @@
+---
+name: "pr-review"
+description: "Indexed by skills.sh from minimax-ai/skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "minimax-ai"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/minimax-ai/skills/pr-review"
+sourceUrl: "https://skills.sh/minimax-ai/skills/pr-review"
+---
+
+# pr-review
+
+> Indexed by skills.sh from minimax-ai/skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** minimax-ai
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/minimax-ai/skills/pr-review`
+- **Source URL:** [https://skills.sh/minimax-ai/skills/pr-review](https://skills.sh/minimax-ai/skills/pr-review)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/minimax-ai/skills/pr-review
+```

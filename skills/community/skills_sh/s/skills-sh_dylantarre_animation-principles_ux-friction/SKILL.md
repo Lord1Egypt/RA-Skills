@@ -1,0 +1,35 @@
+---
+name: "ux-friction"
+description: "Indexed by skills.sh from dylantarre/animation-principles"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "dylantarre"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/dylantarre/animation-principles/ux-friction"
+sourceUrl: "https://skills.sh/dylantarre/animation-principles/ux-friction"
+---
+
+# ux-friction
+
+> Indexed by skills.sh from dylantarre/animation-principles
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** dylantarre
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/dylantarre/animation-principles/ux-friction`
+- **Source URL:** [https://skills.sh/dylantarre/animation-principles/ux-friction](https://skills.sh/dylantarre/animation-principles/ux-friction)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/dylantarre/animation-principles/ux-friction
+```

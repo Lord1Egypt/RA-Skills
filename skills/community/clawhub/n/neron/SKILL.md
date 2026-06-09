@@ -1,0 +1,35 @@
+---
+name: "Neron"
+description: "Personal knowledge graph. Record notes, track moods, manage tasks, spot patterns in someone's life."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/neron"
+sourceUrl: "https://clawhub.ai/skills/neron"
+---
+
+# Neron
+
+> Personal knowledge graph. Record notes, track moods, manage tasks, spot patterns in someone's life.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/neron`
+- **Source URL:** [https://clawhub.ai/skills/neron](https://clawhub.ai/skills/neron)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/neron
+```

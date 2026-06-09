@@ -1,0 +1,35 @@
+---
+name: "Analyse Data"
+description: "Use this skill when the user wants to create visualizations (charts, dashboards, diagrams, Gantt, PPT), analyze data (Excel/CSV upload, cross-file analysis,..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/analyse-data"
+sourceUrl: "https://clawhub.ai/skills/analyse-data"
+---
+
+# Analyse Data
+
+> Use this skill when the user wants to create visualizations (charts, dashboards, diagrams, Gantt, PPT), analyze data (Excel/CSV upload, cross-file analysis,...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/analyse-data`
+- **Source URL:** [https://clawhub.ai/skills/analyse-data](https://clawhub.ai/skills/analyse-data)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/analyse-data
+```

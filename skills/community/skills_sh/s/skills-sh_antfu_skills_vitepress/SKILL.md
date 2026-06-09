@@ -1,0 +1,35 @@
+---
+name: "vitepress"
+description: "Indexed by skills.sh from antfu/skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "antfu"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/antfu/skills/vitepress"
+sourceUrl: "https://skills.sh/antfu/skills/vitepress"
+---
+
+# vitepress
+
+> Indexed by skills.sh from antfu/skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** antfu
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/antfu/skills/vitepress`
+- **Source URL:** [https://skills.sh/antfu/skills/vitepress](https://skills.sh/antfu/skills/vitepress)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/antfu/skills/vitepress
+```

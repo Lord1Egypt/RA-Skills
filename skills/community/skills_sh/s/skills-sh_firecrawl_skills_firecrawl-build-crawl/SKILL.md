@@ -1,0 +1,35 @@
+---
+name: "firecrawl-build-crawl"
+description: "Indexed by skills.sh from firecrawl/skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "firecrawl"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/firecrawl/skills/firecrawl-build-crawl"
+sourceUrl: "https://skills.sh/firecrawl/skills/firecrawl-build-crawl"
+---
+
+# firecrawl-build-crawl
+
+> Indexed by skills.sh from firecrawl/skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** firecrawl
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/firecrawl/skills/firecrawl-build-crawl`
+- **Source URL:** [https://skills.sh/firecrawl/skills/firecrawl-build-crawl](https://skills.sh/firecrawl/skills/firecrawl-build-crawl)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/firecrawl/skills/firecrawl-build-crawl
+```

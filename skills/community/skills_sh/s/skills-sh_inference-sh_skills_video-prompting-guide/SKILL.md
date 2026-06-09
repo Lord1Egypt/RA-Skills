@@ -1,0 +1,35 @@
+---
+name: "video-prompting-guide"
+description: "Indexed by skills.sh from inference-sh/skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "inference-sh"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/inference-sh/skills/video-prompting-guide"
+sourceUrl: "https://skills.sh/inference-sh/skills/video-prompting-guide"
+---
+
+# video-prompting-guide
+
+> Indexed by skills.sh from inference-sh/skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** inference-sh
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/inference-sh/skills/video-prompting-guide`
+- **Source URL:** [https://skills.sh/inference-sh/skills/video-prompting-guide](https://skills.sh/inference-sh/skills/video-prompting-guide)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/inference-sh/skills/video-prompting-guide
+```

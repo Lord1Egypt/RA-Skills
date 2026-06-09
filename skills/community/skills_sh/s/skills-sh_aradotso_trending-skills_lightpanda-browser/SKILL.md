@@ -1,0 +1,35 @@
+---
+name: "lightpanda-browser"
+description: "Indexed by skills.sh from aradotso/trending-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "aradotso"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/aradotso/trending-skills/lightpanda-browser"
+sourceUrl: "https://skills.sh/aradotso/trending-skills/lightpanda-browser"
+---
+
+# lightpanda-browser
+
+> Indexed by skills.sh from aradotso/trending-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** aradotso
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/aradotso/trending-skills/lightpanda-browser`
+- **Source URL:** [https://skills.sh/aradotso/trending-skills/lightpanda-browser](https://skills.sh/aradotso/trending-skills/lightpanda-browser)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/aradotso/trending-skills/lightpanda-browser
+```

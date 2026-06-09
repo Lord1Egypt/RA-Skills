@@ -1,0 +1,35 @@
+---
+name: "game-development"
+description: "Indexed by skills.sh from dylantarre/animation-principles"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "dylantarre"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/dylantarre/animation-principles/game-development"
+sourceUrl: "https://skills.sh/dylantarre/animation-principles/game-development"
+---
+
+# game-development
+
+> Indexed by skills.sh from dylantarre/animation-principles
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** dylantarre
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/dylantarre/animation-principles/game-development`
+- **Source URL:** [https://skills.sh/dylantarre/animation-principles/game-development](https://skills.sh/dylantarre/animation-principles/game-development)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/dylantarre/animation-principles/game-development
+```

@@ -1,0 +1,35 @@
+---
+name: "social-scraping"
+description: "Indexed by skills.sh from merit-systems/agentcash-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "merit-systems"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/merit-systems/agentcash-skills/social-scraping"
+sourceUrl: "https://skills.sh/merit-systems/agentcash-skills/social-scraping"
+---
+
+# social-scraping
+
+> Indexed by skills.sh from merit-systems/agentcash-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** merit-systems
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/merit-systems/agentcash-skills/social-scraping`
+- **Source URL:** [https://skills.sh/merit-systems/agentcash-skills/social-scraping](https://skills.sh/merit-systems/agentcash-skills/social-scraping)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/merit-systems/agentcash-skills/social-scraping
+```

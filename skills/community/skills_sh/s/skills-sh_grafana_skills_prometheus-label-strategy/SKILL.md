@@ -1,0 +1,35 @@
+---
+name: "prometheus-label-strategy"
+description: "Indexed by skills.sh from grafana/skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "grafana"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/grafana/skills/prometheus-label-strategy"
+sourceUrl: "https://skills.sh/grafana/skills/prometheus-label-strategy"
+---
+
+# prometheus-label-strategy
+
+> Indexed by skills.sh from grafana/skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** grafana
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/grafana/skills/prometheus-label-strategy`
+- **Source URL:** [https://skills.sh/grafana/skills/prometheus-label-strategy](https://skills.sh/grafana/skills/prometheus-label-strategy)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/grafana/skills/prometheus-label-strategy
+```

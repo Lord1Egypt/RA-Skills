@@ -1,0 +1,35 @@
+---
+name: "user-story-splitting"
+description: "Indexed by skills.sh from deanpeters/product-manager-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "deanpeters"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/deanpeters/product-manager-skills/user-story-splitting"
+sourceUrl: "https://skills.sh/deanpeters/product-manager-skills/user-story-splitting"
+---
+
+# user-story-splitting
+
+> Indexed by skills.sh from deanpeters/product-manager-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** deanpeters
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/deanpeters/product-manager-skills/user-story-splitting`
+- **Source URL:** [https://skills.sh/deanpeters/product-manager-skills/user-story-splitting](https://skills.sh/deanpeters/product-manager-skills/user-story-splitting)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/deanpeters/product-manager-skills/user-story-splitting
+```

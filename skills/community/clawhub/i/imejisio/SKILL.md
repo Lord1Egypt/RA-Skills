@@ -1,0 +1,35 @@
+---
+name: "Imejisio"
+description: "Imejis.io integration. Manage Images, Users, Projects. Use when the user wants to interact with Imejis.io data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/imejisio"
+sourceUrl: "https://clawhub.ai/skills/imejisio"
+---
+
+# Imejisio
+
+> Imejis.io integration. Manage Images, Users, Projects. Use when the user wants to interact with Imejis.io data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/imejisio`
+- **Source URL:** [https://clawhub.ai/skills/imejisio](https://clawhub.ai/skills/imejisio)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/imejisio
+```

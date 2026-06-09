@@ -1,0 +1,35 @@
+---
+name: "Research"
+description: "Credit line service for AI agents to access x402 services without upfront payment. Use when (1) you need to call x402-enabled APIs or services but lack crypt..."
+category: "other"
+source: "ClawHub"
+tags: [Fun]
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/t54-agent"
+sourceUrl: "https://clawhub.ai/skills/t54-agent"
+---
+
+# Research
+
+> Credit line service for AI agents to access x402 services without upfront payment. Use when (1) you need to call x402-enabled APIs or services but lack crypt...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/t54-agent`
+- **Source URL:** [https://clawhub.ai/skills/t54-agent](https://clawhub.ai/skills/t54-agent)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/t54-agent
+```

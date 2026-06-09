@@ -1,0 +1,35 @@
+---
+name: "TikTok全球数据采集"
+description: "TikTok 数据查询与工具助手。覆盖视频详情、用户数据、搜索、广告、创作者工具、电商等模块。含部分交互触发和协议工具接口（已标注）。"
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/tiktok-aggregate-scraper"
+sourceUrl: "https://clawhub.ai/skills/tiktok-aggregate-scraper"
+---
+
+# TikTok全球数据采集
+
+> TikTok 数据查询与工具助手。覆盖视频详情、用户数据、搜索、广告、创作者工具、电商等模块。含部分交互触发和协议工具接口（已标注）。
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/tiktok-aggregate-scraper`
+- **Source URL:** [https://clawhub.ai/skills/tiktok-aggregate-scraper](https://clawhub.ai/skills/tiktok-aggregate-scraper)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/tiktok-aggregate-scraper
+```

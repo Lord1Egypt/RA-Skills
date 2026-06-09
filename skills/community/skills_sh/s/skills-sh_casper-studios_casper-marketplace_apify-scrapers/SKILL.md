@@ -1,0 +1,35 @@
+---
+name: "apify-scrapers"
+description: "Indexed by skills.sh from casper-studios/casper-marketplace"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "casper-studios"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/casper-studios/casper-marketplace/apify-scrapers"
+sourceUrl: "https://skills.sh/casper-studios/casper-marketplace/apify-scrapers"
+---
+
+# apify-scrapers
+
+> Indexed by skills.sh from casper-studios/casper-marketplace
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** casper-studios
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/casper-studios/casper-marketplace/apify-scrapers`
+- **Source URL:** [https://skills.sh/casper-studios/casper-marketplace/apify-scrapers](https://skills.sh/casper-studios/casper-marketplace/apify-scrapers)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/casper-studios/casper-marketplace/apify-scrapers
+```

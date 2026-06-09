@@ -1,0 +1,35 @@
+---
+name: "setup-python-tools"
+description: "Indexed by skills.sh from cognitedata/dune-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "cognitedata"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/cognitedata/dune-skills/setup-python-tools"
+sourceUrl: "https://skills.sh/cognitedata/dune-skills/setup-python-tools"
+---
+
+# setup-python-tools
+
+> Indexed by skills.sh from cognitedata/dune-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** cognitedata
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/cognitedata/dune-skills/setup-python-tools`
+- **Source URL:** [https://skills.sh/cognitedata/dune-skills/setup-python-tools](https://skills.sh/cognitedata/dune-skills/setup-python-tools)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/cognitedata/dune-skills/setup-python-tools
+```

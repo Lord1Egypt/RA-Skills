@@ -1,0 +1,35 @@
+---
+name: "javascript-typescript"
+description: "Indexed by skills.sh from skillcreatorai/ai-agent-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "skillcreatorai"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/skillcreatorai/ai-agent-skills/javascript-typescript"
+sourceUrl: "https://skills.sh/skillcreatorai/ai-agent-skills/javascript-typescript"
+---
+
+# javascript-typescript
+
+> Indexed by skills.sh from skillcreatorai/ai-agent-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** skillcreatorai
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/skillcreatorai/ai-agent-skills/javascript-typescript`
+- **Source URL:** [https://skills.sh/skillcreatorai/ai-agent-skills/javascript-typescript](https://skills.sh/skillcreatorai/ai-agent-skills/javascript-typescript)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/skillcreatorai/ai-agent-skills/javascript-typescript
+```

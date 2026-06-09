@@ -1,0 +1,35 @@
+---
+name: "pr-review-canvas"
+description: "Indexed by skills.sh from cursor/plugins"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "cursor"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/cursor/plugins/pr-review-canvas"
+sourceUrl: "https://skills.sh/cursor/plugins/pr-review-canvas"
+---
+
+# pr-review-canvas
+
+> Indexed by skills.sh from cursor/plugins
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** cursor
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/cursor/plugins/pr-review-canvas`
+- **Source URL:** [https://skills.sh/cursor/plugins/pr-review-canvas](https://skills.sh/cursor/plugins/pr-review-canvas)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/cursor/plugins/pr-review-canvas
+```

@@ -1,0 +1,35 @@
+---
+name: "Mobivate"
+description: "Mobivate integration. Manage Persons, Organizations, Deals, Leads, Projects, Activities and more. Use when the user wants to interact with Mobivate data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/mobivate"
+sourceUrl: "https://clawhub.ai/skills/mobivate"
+---
+
+# Mobivate
+
+> Mobivate integration. Manage Persons, Organizations, Deals, Leads, Projects, Activities and more. Use when the user wants to interact with Mobivate data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/mobivate`
+- **Source URL:** [https://clawhub.ai/skills/mobivate](https://clawhub.ai/skills/mobivate)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/mobivate
+```

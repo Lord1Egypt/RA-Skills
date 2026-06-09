@@ -1,0 +1,35 @@
+---
+name: "飞书媒体发送"
+description: "飞书媒体文件发送技能。适用于：发送文件、图片、URL图片、视频、音频、语音消息，以及打包压缩后发送。当用户要求在飞书中发送任何类型的媒体文件时激活此技能。"
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/feishu-media"
+sourceUrl: "https://clawhub.ai/skills/feishu-media"
+---
+
+# 飞书媒体发送
+
+> 飞书媒体文件发送技能。适用于：发送文件、图片、URL图片、视频、音频、语音消息，以及打包压缩后发送。当用户要求在飞书中发送任何类型的媒体文件时激活此技能。
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/feishu-media`
+- **Source URL:** [https://clawhub.ai/skills/feishu-media](https://clawhub.ai/skills/feishu-media)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/feishu-media
+```

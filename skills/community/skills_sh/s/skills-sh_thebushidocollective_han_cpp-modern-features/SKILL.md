@@ -1,0 +1,35 @@
+---
+name: "cpp-modern-features"
+description: "Indexed by skills.sh from thebushidocollective/han"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "thebushidocollective"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/thebushidocollective/han/cpp-modern-features"
+sourceUrl: "https://skills.sh/thebushidocollective/han/cpp-modern-features"
+---
+
+# cpp-modern-features
+
+> Indexed by skills.sh from thebushidocollective/han
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** thebushidocollective
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/thebushidocollective/han/cpp-modern-features`
+- **Source URL:** [https://skills.sh/thebushidocollective/han/cpp-modern-features](https://skills.sh/thebushidocollective/han/cpp-modern-features)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/thebushidocollective/han/cpp-modern-features
+```

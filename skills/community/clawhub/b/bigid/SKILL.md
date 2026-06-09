@@ -1,0 +1,35 @@
+---
+name: "Bigid"
+description: "BigID integration. Manage data, records, and automate workflows. Use when the user wants to interact with BigID data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/bigid"
+sourceUrl: "https://clawhub.ai/skills/bigid"
+---
+
+# Bigid
+
+> BigID integration. Manage data, records, and automate workflows. Use when the user wants to interact with BigID data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/bigid`
+- **Source URL:** [https://clawhub.ai/skills/bigid](https://clawhub.ai/skills/bigid)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/bigid
+```

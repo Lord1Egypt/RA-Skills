@@ -1,0 +1,35 @@
+---
+name: "Proxyclick"
+description: "Proxyclick integration. Manage data, records, and automate workflows. Use when the user wants to interact with Proxyclick data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/proxyclick"
+sourceUrl: "https://clawhub.ai/skills/proxyclick"
+---
+
+# Proxyclick
+
+> Proxyclick integration. Manage data, records, and automate workflows. Use when the user wants to interact with Proxyclick data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/proxyclick`
+- **Source URL:** [https://clawhub.ai/skills/proxyclick](https://clawhub.ai/skills/proxyclick)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/proxyclick
+```

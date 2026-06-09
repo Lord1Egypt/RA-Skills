@@ -1,0 +1,35 @@
+---
+name: "Generate Immigration Law Firm Client Education Handout"
+description: "Create a clear, polished immigration law firm handout with visuals, FAQs, and next steps to educate clients effectively."
+category: "productivity"
+source: "ClawHub"
+tags: [automation, skillboss]
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/toby-generate-immigration-law-firm-client-education-handout"
+sourceUrl: "https://clawhub.ai/skills/toby-generate-immigration-law-firm-client-education-handout"
+---
+
+# Generate Immigration Law Firm Client Education Handout
+
+> Create a clear, polished immigration law firm handout with visuals, FAQs, and next steps to educate clients effectively.
+
+- **Category:** Productivity
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/toby-generate-immigration-law-firm-client-education-handout`
+- **Source URL:** [https://clawhub.ai/skills/toby-generate-immigration-law-firm-client-education-handout](https://clawhub.ai/skills/toby-generate-immigration-law-firm-client-education-handout)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/toby-generate-immigration-law-firm-client-education-handout
+```

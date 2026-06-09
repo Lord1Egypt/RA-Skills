@@ -1,0 +1,35 @@
+---
+name: "wordpress-content"
+description: "Indexed by skills.sh from jezweb/claude-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "jezweb"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/jezweb/claude-skills/wordpress-content"
+sourceUrl: "https://skills.sh/jezweb/claude-skills/wordpress-content"
+---
+
+# wordpress-content
+
+> Indexed by skills.sh from jezweb/claude-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** jezweb
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/jezweb/claude-skills/wordpress-content`
+- **Source URL:** [https://skills.sh/jezweb/claude-skills/wordpress-content](https://skills.sh/jezweb/claude-skills/wordpress-content)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/jezweb/claude-skills/wordpress-content
+```

@@ -1,0 +1,35 @@
+---
+name: "Praesidia"
+description: "Verify AI agents, check trust scores (0-100), fetch A2A agent cards, discover marketplace agents, apply guardrails for security and compliance. Use when user mentions agent verification, trust scores, agent discovery, A2A protocol, agent identity, agent marketplace, guardrails…"
+category: "autonomous-ai-agents"
+source: "ClawHub"
+tags: [a2a, agent-communication, authentication, messaging, oauth, praesidia, protocol, security, trust]
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/praesidia-a2a"
+sourceUrl: "https://clawhub.ai/skills/praesidia-a2a"
+---
+
+# Praesidia
+
+> Verify AI agents, check trust scores (0-100), fetch A2A agent cards, discover marketplace agents, apply guardrails for security and compliance. Use when user mentions agent verification, trust scores, agent discovery, A2A protocol, agent identity, agent marketplace, guardrails…
+
+- **Category:** AI Agents
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/praesidia-a2a`
+- **Source URL:** [https://clawhub.ai/skills/praesidia-a2a](https://clawhub.ai/skills/praesidia-a2a)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/praesidia-a2a
+```

@@ -1,0 +1,35 @@
+---
+name: "ant"
+description: "Indexed by skills.sh from bergside/awesome-design-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "bergside"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/bergside/awesome-design-skills/ant"
+sourceUrl: "https://skills.sh/bergside/awesome-design-skills/ant"
+---
+
+# ant
+
+> Indexed by skills.sh from bergside/awesome-design-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** bergside
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/bergside/awesome-design-skills/ant`
+- **Source URL:** [https://skills.sh/bergside/awesome-design-skills/ant](https://skills.sh/bergside/awesome-design-skills/ant)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/bergside/awesome-design-skills/ant
+```

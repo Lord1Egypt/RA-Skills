@@ -1,0 +1,35 @@
+---
+name: "Rydoo"
+description: "Rydoo integration. Manage data, records, and automate workflows. Use when the user wants to interact with Rydoo data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/rydoo"
+sourceUrl: "https://clawhub.ai/skills/rydoo"
+---
+
+# Rydoo
+
+> Rydoo integration. Manage data, records, and automate workflows. Use when the user wants to interact with Rydoo data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/rydoo`
+- **Source URL:** [https://clawhub.ai/skills/rydoo](https://clawhub.ai/skills/rydoo)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/rydoo
+```

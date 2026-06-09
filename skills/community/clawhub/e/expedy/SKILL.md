@@ -1,0 +1,35 @@
+---
+name: "Expedy"
+description: "Expedy integration. Manage Organizations, Pipelines, Users, Filters. Use when the user wants to interact with Expedy data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/expedy"
+sourceUrl: "https://clawhub.ai/skills/expedy"
+---
+
+# Expedy
+
+> Expedy integration. Manage Organizations, Pipelines, Users, Filters. Use when the user wants to interact with Expedy data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/expedy`
+- **Source URL:** [https://clawhub.ai/skills/expedy](https://clawhub.ai/skills/expedy)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/expedy
+```

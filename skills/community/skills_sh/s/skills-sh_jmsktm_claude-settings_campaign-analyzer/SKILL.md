@@ -1,0 +1,35 @@
+---
+name: "campaign-analyzer"
+description: "Indexed by skills.sh from jmsktm/claude-settings"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "jmsktm"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/jmsktm/claude-settings/campaign-analyzer"
+sourceUrl: "https://skills.sh/jmsktm/claude-settings/campaign-analyzer"
+---
+
+# campaign-analyzer
+
+> Indexed by skills.sh from jmsktm/claude-settings
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** jmsktm
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/jmsktm/claude-settings/campaign-analyzer`
+- **Source URL:** [https://skills.sh/jmsktm/claude-settings/campaign-analyzer](https://skills.sh/jmsktm/claude-settings/campaign-analyzer)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/jmsktm/claude-settings/campaign-analyzer
+```

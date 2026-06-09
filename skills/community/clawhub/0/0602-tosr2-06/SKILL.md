@@ -1,0 +1,35 @@
+---
+name: "0602-tosr2-06"
+description: "Analyze stocks and cryptocurrencies using Yahoo Finance data. Supports portfolio management, watchlists with alerts, dividend analysis, 8-dimension stock sco..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/0602-tosr2-06"
+sourceUrl: "https://clawhub.ai/skills/0602-tosr2-06"
+---
+
+# 0602-tosr2-06
+
+> Analyze stocks and cryptocurrencies using Yahoo Finance data. Supports portfolio management, watchlists with alerts, dividend analysis, 8-dimension stock sco...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/0602-tosr2-06`
+- **Source URL:** [https://clawhub.ai/skills/0602-tosr2-06](https://clawhub.ai/skills/0602-tosr2-06)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/0602-tosr2-06
+```

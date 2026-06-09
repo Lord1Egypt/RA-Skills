@@ -1,0 +1,35 @@
+---
+name: "Recursive maths animator"
+description: "Recursive maths animator — Manim-based technical animations with optional voiceover (manim-voiceover), git scene versioning, pinned requirements, asset folde..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/recursive-maths-animator"
+sourceUrl: "https://clawhub.ai/skills/recursive-maths-animator"
+---
+
+# Recursive maths animator
+
+> Recursive maths animator — Manim-based technical animations with optional voiceover (manim-voiceover), git scene versioning, pinned requirements, asset folde...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/recursive-maths-animator`
+- **Source URL:** [https://clawhub.ai/skills/recursive-maths-animator](https://clawhub.ai/skills/recursive-maths-animator)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/recursive-maths-animator
+```

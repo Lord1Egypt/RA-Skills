@@ -1,0 +1,35 @@
+---
+name: "deployment"
+description: "Indexed by skills.sh from railwayapp/railway-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "railwayapp"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/railwayapp/railway-skills/deployment"
+sourceUrl: "https://skills.sh/railwayapp/railway-skills/deployment"
+---
+
+# deployment
+
+> Indexed by skills.sh from railwayapp/railway-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** railwayapp
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/railwayapp/railway-skills/deployment`
+- **Source URL:** [https://skills.sh/railwayapp/railway-skills/deployment](https://skills.sh/railwayapp/railway-skills/deployment)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/railwayapp/railway-skills/deployment
+```

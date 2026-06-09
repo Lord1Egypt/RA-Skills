@@ -1,0 +1,35 @@
+---
+name: "os-use"
+description: "Indexed by skills.sh from zrong/skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "zrong"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/zrong/skills/os-use"
+sourceUrl: "https://skills.sh/zrong/skills/os-use"
+---
+
+# os-use
+
+> Indexed by skills.sh from zrong/skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** zrong
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/zrong/skills/os-use`
+- **Source URL:** [https://skills.sh/zrong/skills/os-use](https://skills.sh/zrong/skills/os-use)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/zrong/skills/os-use
+```

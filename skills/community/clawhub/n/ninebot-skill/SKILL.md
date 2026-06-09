@@ -1,0 +1,35 @@
+---
+name: "ninebot-skill"
+description: "九号电动车/平衡车集成技能 - 用于与 Ninebot 设备交互、诊断、配置和故障排除"
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/ninebot-skill"
+sourceUrl: "https://clawhub.ai/skills/ninebot-skill"
+---
+
+# ninebot-skill
+
+> 九号电动车/平衡车集成技能 - 用于与 Ninebot 设备交互、诊断、配置和故障排除
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/ninebot-skill`
+- **Source URL:** [https://clawhub.ai/skills/ninebot-skill](https://clawhub.ai/skills/ninebot-skill)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/ninebot-skill
+```

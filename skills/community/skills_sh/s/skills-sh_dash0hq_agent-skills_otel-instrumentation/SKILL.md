@@ -1,0 +1,35 @@
+---
+name: "otel-instrumentation"
+description: "Indexed by skills.sh from dash0hq/agent-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "dash0hq"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/dash0hq/agent-skills/otel-instrumentation"
+sourceUrl: "https://skills.sh/dash0hq/agent-skills/otel-instrumentation"
+---
+
+# otel-instrumentation
+
+> Indexed by skills.sh from dash0hq/agent-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** dash0hq
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/dash0hq/agent-skills/otel-instrumentation`
+- **Source URL:** [https://skills.sh/dash0hq/agent-skills/otel-instrumentation](https://skills.sh/dash0hq/agent-skills/otel-instrumentation)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/dash0hq/agent-skills/otel-instrumentation
+```

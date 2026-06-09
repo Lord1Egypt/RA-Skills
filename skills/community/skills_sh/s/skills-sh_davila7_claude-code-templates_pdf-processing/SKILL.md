@@ -1,0 +1,35 @@
+---
+name: "pdf-processing"
+description: "Indexed by skills.sh from davila7/claude-code-templates"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "davila7"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/pdf-processing"
+sourceUrl: "https://skills.sh/davila7/claude-code-templates/pdf-processing"
+---
+
+# pdf-processing
+
+> Indexed by skills.sh from davila7/claude-code-templates
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** davila7
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/pdf-processing`
+- **Source URL:** [https://skills.sh/davila7/claude-code-templates/pdf-processing](https://skills.sh/davila7/claude-code-templates/pdf-processing)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/davila7/claude-code-templates/pdf-processing
+```

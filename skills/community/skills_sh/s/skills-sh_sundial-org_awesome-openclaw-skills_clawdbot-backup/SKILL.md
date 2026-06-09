@@ -1,0 +1,35 @@
+---
+name: "clawdbot-backup"
+description: "Indexed by skills.sh from sundial-org/awesome-openclaw-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "sundial-org"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/clawdbot-backup"
+sourceUrl: "https://skills.sh/sundial-org/awesome-openclaw-skills/clawdbot-backup"
+---
+
+# clawdbot-backup
+
+> Indexed by skills.sh from sundial-org/awesome-openclaw-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** sundial-org
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/clawdbot-backup`
+- **Source URL:** [https://skills.sh/sundial-org/awesome-openclaw-skills/clawdbot-backup](https://skills.sh/sundial-org/awesome-openclaw-skills/clawdbot-backup)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/clawdbot-backup
+```

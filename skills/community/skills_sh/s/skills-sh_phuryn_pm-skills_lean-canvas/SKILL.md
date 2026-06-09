@@ -1,0 +1,35 @@
+---
+name: "lean-canvas"
+description: "Indexed by skills.sh from phuryn/pm-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "phuryn"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/phuryn/pm-skills/lean-canvas"
+sourceUrl: "https://skills.sh/phuryn/pm-skills/lean-canvas"
+---
+
+# lean-canvas
+
+> Indexed by skills.sh from phuryn/pm-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** phuryn
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/phuryn/pm-skills/lean-canvas`
+- **Source URL:** [https://skills.sh/phuryn/pm-skills/lean-canvas](https://skills.sh/phuryn/pm-skills/lean-canvas)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/phuryn/pm-skills/lean-canvas
+```

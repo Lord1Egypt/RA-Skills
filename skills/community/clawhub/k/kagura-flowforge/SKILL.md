@@ -1,0 +1,35 @@
+---
+name: "FlowForge"
+description: "Run structured multi-step workflows via FlowForge engine. Use when user requests step-by-step execution, structured workflows, or when a task needs enforced..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/kagura-flowforge"
+sourceUrl: "https://clawhub.ai/skills/kagura-flowforge"
+---
+
+# FlowForge
+
+> Run structured multi-step workflows via FlowForge engine. Use when user requests step-by-step execution, structured workflows, or when a task needs enforced...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/kagura-flowforge`
+- **Source URL:** [https://clawhub.ai/skills/kagura-flowforge](https://clawhub.ai/skills/kagura-flowforge)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/kagura-flowforge
+```

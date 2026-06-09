@@ -1,0 +1,35 @@
+---
+name: "Gravity Forms"
+description: "Gravity Forms integration. Manage Forms. Use when the user wants to interact with Gravity Forms data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/gravity-forms-integration"
+sourceUrl: "https://clawhub.ai/skills/gravity-forms-integration"
+---
+
+# Gravity Forms
+
+> Gravity Forms integration. Manage Forms. Use when the user wants to interact with Gravity Forms data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/gravity-forms-integration`
+- **Source URL:** [https://clawhub.ai/skills/gravity-forms-integration](https://clawhub.ai/skills/gravity-forms-integration)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/gravity-forms-integration
+```

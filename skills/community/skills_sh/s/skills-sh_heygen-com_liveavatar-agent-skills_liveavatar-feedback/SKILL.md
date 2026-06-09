@@ -1,0 +1,35 @@
+---
+name: "liveavatar-feedback"
+description: "Indexed by skills.sh from heygen-com/liveavatar-agent-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "heygen-com"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/heygen-com/liveavatar-agent-skills/liveavatar-feedback"
+sourceUrl: "https://skills.sh/heygen-com/liveavatar-agent-skills/liveavatar-feedback"
+---
+
+# liveavatar-feedback
+
+> Indexed by skills.sh from heygen-com/liveavatar-agent-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** heygen-com
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/heygen-com/liveavatar-agent-skills/liveavatar-feedback`
+- **Source URL:** [https://skills.sh/heygen-com/liveavatar-agent-skills/liveavatar-feedback](https://skills.sh/heygen-com/liveavatar-agent-skills/liveavatar-feedback)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/heygen-com/liveavatar-agent-skills/liveavatar-feedback
+```

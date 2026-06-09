@@ -1,0 +1,35 @@
+---
+name: "Team Role Launchkit"
+description: "Launch clone-like multi-agent workflows using explicit role prompts (researcher, builder, editor), strict handoff contracts, and shared behavior files for co..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/team-role-launchkit"
+sourceUrl: "https://clawhub.ai/skills/team-role-launchkit"
+---
+
+# Team Role Launchkit
+
+> Launch clone-like multi-agent workflows using explicit role prompts (researcher, builder, editor), strict handoff contracts, and shared behavior files for co...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/team-role-launchkit`
+- **Source URL:** [https://clawhub.ai/skills/team-role-launchkit](https://clawhub.ai/skills/team-role-launchkit)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/team-role-launchkit
+```

@@ -1,0 +1,35 @@
+---
+name: "Citadel Id"
+description: "Citadel ID integration. Manage data, records, and automate workflows. Use when the user wants to interact with Citadel ID data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/citadel-id"
+sourceUrl: "https://clawhub.ai/skills/citadel-id"
+---
+
+# Citadel Id
+
+> Citadel ID integration. Manage data, records, and automate workflows. Use when the user wants to interact with Citadel ID data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/citadel-id`
+- **Source URL:** [https://clawhub.ai/skills/citadel-id](https://clawhub.ai/skills/citadel-id)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/citadel-id
+```

@@ -1,0 +1,35 @@
+---
+name: "全息人生实验场"
+description: "人生全息实验场（life-mirror）：基于人类关系实验的智能生命觉知助手——以关系为核心场景、以自我认知为成长路径，融合学者/智者/密友三角色与「本我·实我·平行我·真我」四层觉知框架，支持亲友、友情、爱情、职场等社会关系中的冲突梳理与选择；通过多平台个人数据自动同步、历史记忆存储、每日画像更新实现精准认知，..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/life-mirror"
+sourceUrl: "https://clawhub.ai/skills/life-mirror"
+---
+
+# 全息人生实验场
+
+> 人生全息实验场（life-mirror）：基于人类关系实验的智能生命觉知助手——以关系为核心场景、以自我认知为成长路径，融合学者/智者/密友三角色与「本我·实我·平行我·真我」四层觉知框架，支持亲友、友情、爱情、职场等社会关系中的冲突梳理与选择；通过多平台个人数据自动同步、历史记忆存储、每日画像更新实现精准认知，...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/life-mirror`
+- **Source URL:** [https://clawhub.ai/skills/life-mirror](https://clawhub.ai/skills/life-mirror)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/life-mirror
+```

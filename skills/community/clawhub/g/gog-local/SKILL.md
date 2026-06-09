@@ -1,0 +1,35 @@
+---
+name: "Gog Local"
+description: "Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/gog-local"
+sourceUrl: "https://clawhub.ai/skills/gog-local"
+---
+
+# Gog Local
+
+> Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/gog-local`
+- **Source URL:** [https://clawhub.ai/skills/gog-local](https://clawhub.ai/skills/gog-local)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/gog-local
+```

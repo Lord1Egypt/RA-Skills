@@ -1,0 +1,35 @@
+---
+name: "Western Blot Quantifier"
+description: "Automatically identify Western Blot gel bands, perform densitometric analysis, and calculate normalized values relative to loading controls."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/western-blot-quantifier-1"
+sourceUrl: "https://clawhub.ai/skills/western-blot-quantifier-1"
+---
+
+# Western Blot Quantifier
+
+> Automatically identify Western Blot gel bands, perform densitometric analysis, and calculate normalized values relative to loading controls.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/western-blot-quantifier-1`
+- **Source URL:** [https://clawhub.ai/skills/western-blot-quantifier-1](https://clawhub.ai/skills/western-blot-quantifier-1)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/western-blot-quantifier-1
+```

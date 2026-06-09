@@ -1,0 +1,35 @@
+---
+name: "wecomcli-manage-doc"
+description: "Indexed by skills.sh from wecomteam/wecom-cli"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "wecomteam"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/wecomteam/wecom-cli/wecomcli-manage-doc"
+sourceUrl: "https://skills.sh/wecomteam/wecom-cli/wecomcli-manage-doc"
+---
+
+# wecomcli-manage-doc
+
+> Indexed by skills.sh from wecomteam/wecom-cli
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** wecomteam
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/wecomteam/wecom-cli/wecomcli-manage-doc`
+- **Source URL:** [https://skills.sh/wecomteam/wecom-cli/wecomcli-manage-doc](https://skills.sh/wecomteam/wecom-cli/wecomcli-manage-doc)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/wecomteam/wecom-cli/wecomcli-manage-doc
+```

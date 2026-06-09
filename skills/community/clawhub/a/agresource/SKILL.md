@@ -1,0 +1,35 @@
+---
+name: "Agresource"
+description: "Scrapes and summarizes AgResource grain newsletters with daily sales advice, price-impact sentiment analysis, trend tracking, and Telegram alerts on updates."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/agresource"
+sourceUrl: "https://clawhub.ai/skills/agresource"
+---
+
+# Agresource
+
+> Scrapes and summarizes AgResource grain newsletters with daily sales advice, price-impact sentiment analysis, trend tracking, and Telegram alerts on updates.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/agresource`
+- **Source URL:** [https://clawhub.ai/skills/agresource](https://clawhub.ai/skills/agresource)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/agresource
+```

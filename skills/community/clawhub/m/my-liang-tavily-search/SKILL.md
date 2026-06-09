@@ -1,0 +1,35 @@
+---
+name: "My Liang Tavily Search"
+description: "Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/my-liang-tavily-search"
+sourceUrl: "https://clawhub.ai/skills/my-liang-tavily-search"
+---
+
+# My Liang Tavily Search
+
+> Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/my-liang-tavily-search`
+- **Source URL:** [https://clawhub.ai/skills/my-liang-tavily-search](https://clawhub.ai/skills/my-liang-tavily-search)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/my-liang-tavily-search
+```

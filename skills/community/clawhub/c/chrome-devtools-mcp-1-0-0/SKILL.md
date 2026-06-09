@@ -1,0 +1,35 @@
+---
+name: "Chrome Devtools Mcp 1.0.0"
+description: "Chrome DevTools MCP — Google's official browser automation and testing server. Control Chrome via Puppeteer through MCP protocol: click, fill forms, navigate..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/chrome-devtools-mcp-1-0-0"
+sourceUrl: "https://clawhub.ai/skills/chrome-devtools-mcp-1-0-0"
+---
+
+# Chrome Devtools Mcp 1.0.0
+
+> Chrome DevTools MCP — Google's official browser automation and testing server. Control Chrome via Puppeteer through MCP protocol: click, fill forms, navigate...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/chrome-devtools-mcp-1-0-0`
+- **Source URL:** [https://clawhub.ai/skills/chrome-devtools-mcp-1-0-0](https://clawhub.ai/skills/chrome-devtools-mcp-1-0-0)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/chrome-devtools-mcp-1-0-0
+```

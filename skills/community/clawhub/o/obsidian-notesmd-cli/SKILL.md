@@ -1,0 +1,35 @@
+---
+name: "Obsidian via notesmd-cli (obsidian-cli)"
+description: "Work with Obsidian vaults (plain Markdown notes) and automate via notesmd-cli."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/obsidian-notesmd-cli"
+sourceUrl: "https://clawhub.ai/skills/obsidian-notesmd-cli"
+---
+
+# Obsidian via notesmd-cli (obsidian-cli)
+
+> Work with Obsidian vaults (plain Markdown notes) and automate via notesmd-cli.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/obsidian-notesmd-cli`
+- **Source URL:** [https://clawhub.ai/skills/obsidian-notesmd-cli](https://clawhub.ai/skills/obsidian-notesmd-cli)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/obsidian-notesmd-cli
+```

@@ -1,0 +1,35 @@
+---
+name: "Alumni Career Tracker"
+description: "Analyze laboratory alumni career trajectories and outcomes to provide data-driven career guidance for current students and postdocs. Tracks industry vs acade..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/alumni-career-tracker-1"
+sourceUrl: "https://clawhub.ai/skills/alumni-career-tracker-1"
+---
+
+# Alumni Career Tracker
+
+> Analyze laboratory alumni career trajectories and outcomes to provide data-driven career guidance for current students and postdocs. Tracks industry vs acade...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/alumni-career-tracker-1`
+- **Source URL:** [https://clawhub.ai/skills/alumni-career-tracker-1](https://clawhub.ai/skills/alumni-career-tracker-1)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/alumni-career-tracker-1
+```

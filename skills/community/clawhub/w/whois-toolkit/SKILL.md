@@ -1,0 +1,35 @@
+---
+name: "Whois Toolkit"
+description: "Domain WHOIS lookup toolkit for querying registrar, creation/expiry dates, nameservers, status, and registrant info. Use when looking up domain ownership, ch..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/whois-toolkit"
+sourceUrl: "https://clawhub.ai/skills/whois-toolkit"
+---
+
+# Whois Toolkit
+
+> Domain WHOIS lookup toolkit for querying registrar, creation/expiry dates, nameservers, status, and registrant info. Use when looking up domain ownership, ch...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/whois-toolkit`
+- **Source URL:** [https://clawhub.ai/skills/whois-toolkit](https://clawhub.ai/skills/whois-toolkit)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/whois-toolkit
+```

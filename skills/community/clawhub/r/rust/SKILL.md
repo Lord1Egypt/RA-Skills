@@ -1,0 +1,35 @@
+---
+name: "Rust"
+description: "Write idiomatic Rust avoiding ownership pitfalls, lifetime confusion, and common borrow checker battles."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/rust"
+sourceUrl: "https://clawhub.ai/skills/rust"
+---
+
+# Rust
+
+> Write idiomatic Rust avoiding ownership pitfalls, lifetime confusion, and common borrow checker battles.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/rust`
+- **Source URL:** [https://clawhub.ai/skills/rust](https://clawhub.ai/skills/rust)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/rust
+```

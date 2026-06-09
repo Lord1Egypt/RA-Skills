@@ -1,0 +1,35 @@
+---
+name: "Container Analyzer"
+description: "Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Container Analyzer concepts, best practices, and implementation p..."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/container-analyzer"
+sourceUrl: "https://clawhub.ai/skills/container-analyzer"
+---
+
+# Container Analyzer
+
+> Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Container Analyzer concepts, best practices, and implementation p...
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/container-analyzer`
+- **Source URL:** [https://clawhub.ai/skills/container-analyzer](https://clawhub.ai/skills/container-analyzer)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/container-analyzer
+```

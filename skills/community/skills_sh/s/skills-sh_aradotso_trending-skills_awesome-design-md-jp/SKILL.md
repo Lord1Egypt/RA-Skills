@@ -1,0 +1,35 @@
+---
+name: "awesome-design-md-jp"
+description: "Indexed by skills.sh from aradotso/trending-skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "aradotso"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/aradotso/trending-skills/awesome-design-md-jp"
+sourceUrl: "https://skills.sh/aradotso/trending-skills/awesome-design-md-jp"
+---
+
+# awesome-design-md-jp
+
+> Indexed by skills.sh from aradotso/trending-skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** aradotso
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/aradotso/trending-skills/awesome-design-md-jp`
+- **Source URL:** [https://skills.sh/aradotso/trending-skills/awesome-design-md-jp](https://skills.sh/aradotso/trending-skills/awesome-design-md-jp)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/aradotso/trending-skills/awesome-design-md-jp
+```

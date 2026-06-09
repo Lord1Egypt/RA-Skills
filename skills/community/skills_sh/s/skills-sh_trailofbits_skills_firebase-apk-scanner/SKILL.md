@@ -1,0 +1,35 @@
+---
+name: "firebase-apk-scanner"
+description: "Indexed by skills.sh from trailofbits/skills"
+category: "other"
+source: "skills.sh"
+tags: []
+platforms: []
+author: "trailofbits"
+version: ""
+license: ""
+installCmd: "hermes skills install skills-sh/trailofbits/skills/firebase-apk-scanner"
+sourceUrl: "https://skills.sh/trailofbits/skills/firebase-apk-scanner"
+---
+
+# firebase-apk-scanner
+
+> Indexed by skills.sh from trailofbits/skills
+
+- **Category:** Other
+- **Source:** skills.sh
+- **Author:** trailofbits
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install skills-sh/trailofbits/skills/firebase-apk-scanner`
+- **Source URL:** [https://skills.sh/trailofbits/skills/firebase-apk-scanner](https://skills.sh/trailofbits/skills/firebase-apk-scanner)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install skills-sh/trailofbits/skills/firebase-apk-scanner
+```

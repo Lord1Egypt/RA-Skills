@@ -1,0 +1,35 @@
+---
+name: "Gleap"
+description: "Gleap integration. Manage data, records, and automate workflows. Use when the user wants to interact with Gleap data."
+category: "other"
+source: "ClawHub"
+tags: []
+platforms: []
+author: ""
+version: ""
+license: ""
+installCmd: "hermes skills install clawhub/gleap"
+sourceUrl: "https://clawhub.ai/skills/gleap"
+---
+
+# Gleap
+
+> Gleap integration. Manage data, records, and automate workflows. Use when the user wants to interact with Gleap data.
+
+- **Category:** Other
+- **Source:** ClawHub
+- **Author:** 
+- **Version:** 
+- **License:** 
+- **Platforms:** All
+- **Install Command:** `hermes skills install clawhub/gleap`
+- **Source URL:** [https://clawhub.ai/skills/gleap](https://clawhub.ai/skills/gleap)
+
+## Overview
+
+
+## Installation
+To install this skill, run the following command in your terminal:
+```bash
+hermes skills install clawhub/gleap
+```

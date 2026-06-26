@@ -3,10 +3,27 @@
 > A comprehensive, high-performance offline-compatible registry of **90,896** Hermes Agent skills across 7 registries, including official built-in, optional, and community skills.
 
 [![Total Skills](https://img.shields.io/badge/Total%20Skills-90,896-blue.svg)](#)
+[![Offline Folders](https://img.shields.io/badge/Offline%20Folders-79,455%20(88%25)-success.svg)](#-offline-content--downloading)
 [![Built-in Skills](https://img.shields.io/badge/Built--in-75-green.svg)](#)
 [![Optional Skills](https://img.shields.io/badge/Optional-95-yellow.svg)](#)
 [![Community Skills](https://img.shields.io/badge/Community-90,726-orange.svg)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+
+---
+
+## 📦 Works fully offline — no API keys, no network
+
+**79,455 of 90,726 community skills (88%) ship as complete, ready-to-run folders right here in the repo** — not metadata stubs. Clone it once and every bundled skill is on your disk:
+
+```
+skills/community/clawhub/a/aso-playbook/
+├── SKILL.md          # the real skill prompt
+├── skill-card.md     # summary card
+├── _meta.json        # source metadata
+└── references/       # docs, scripts & assets bundled with the skill
+```
+
+That's the full `SKILL.md` **plus** its bundled `scripts/`, `references/`, and assets for ClawHub, skills.sh, LobeHub, and gstack — usable on a plane, in an air-gapped box, or wherever you have no connection. See [offline coverage](#offline-coverage) for the per-source breakdown.
 
 ---
 
@@ -63,12 +80,12 @@ Tokens: `CLAWHUB_TOKEN` authenticates the ClawHub API; `GITHUB_TOKEN` raises Git
 
 | Source | Full folders | Total | % |
 |--------|-------------:|------:|--:|
-| ClawHub | 61,934 | 69,842 | 89% |
-| skills.sh | 16,952 | 19,938 | 85% |
+| ClawHub | 61,945 | 69,842 | 89% |
+| skills.sh | 16,969 | 19,938 | 85% |
 | LobeHub | 476 | 505 | 94% |
-| gstack | 51 | 52 | 98% |
+| gstack | 52 | 52 | 100% |
 | browse.sh | 13 | 389 | 3% ¹ |
-| **Total** | **79,426** | **90,726** | **88%** |
+| **Total** | **79,455** | **90,726** | **88%** |
 
 ¹ The upstream `browserbase/browse.sh` repository was removed from GitHub, so most browse.sh skills are no longer fetchable.
 

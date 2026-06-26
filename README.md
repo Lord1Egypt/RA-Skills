@@ -71,6 +71,9 @@ That's the full `SKILL.md` **plus** its bundled `scripts/`, `references/`, and a
   - **`tools/search.py`**: Find any skill in milliseconds.
   - **`tools/fetch_content.py`**: Fetch a single skill's content on-demand (for the ~12% not yet bundled, or to refresh).
   - **`tools/bulk_download.py`**: Bulk-download **full skill folders** for every community source (resumable).
+  - **`tools/update_registry.py`**: Discover **new** community skills and add them to `registry.json`.
+
+> 🔄 **Auto-updating:** a [GitHub Actions workflow](.github/workflows/update-registry.yml) runs every ~48 hours to discover newly-published skills, add them to `registry.json`, download their full folders, and commit the changes — so the registry stays fresh on its own.
 
 ---
 

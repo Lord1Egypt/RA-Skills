@@ -1,35 +1,40 @@
 ---
-name: "risk-assessment"
-description: "Indexed by skills.sh from anthropics/knowledge-work-plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "anthropics"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/anthropics/knowledge-work-plugins/risk-assessment"
-sourceUrl: "https://skills.sh/anthropics/knowledge-work-plugins/risk-assessment"
+name: risk-assessment
+description: Identify, assess, and mitigate operational risks. Trigger with "what are the risks", "risk assessment", "risk register", "what could go wrong", or when the user is evaluating risks associated with a project, vendor, process, or decision.
 ---
 
-# risk-assessment
+# Risk Assessment
 
-> Indexed by skills.sh from anthropics/knowledge-work-plugins
+Systematically identify, assess, and plan mitigations for operational risks.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** anthropics
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/anthropics/knowledge-work-plugins/risk-assessment`
-- **Source URL:** [https://skills.sh/anthropics/knowledge-work-plugins/risk-assessment](https://skills.sh/anthropics/knowledge-work-plugins/risk-assessment)
+## Risk Assessment Matrix
 
-## Overview
+| | Low Impact | Medium Impact | High Impact |
+|---|-----------|---------------|-------------|
+| **High Likelihood** | Medium | High | Critical |
+| **Medium Likelihood** | Low | Medium | High |
+| **Low Likelihood** | Low | Low | Medium |
 
+## Risk Categories
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/anthropics/knowledge-work-plugins/risk-assessment
-```
+- **Operational**: Process failures, staffing gaps, system outages
+- **Financial**: Budget overruns, vendor cost increases, revenue impact
+- **Compliance**: Regulatory violations, audit findings, policy breaches
+- **Strategic**: Market changes, competitive threats, technology shifts
+- **Reputational**: Customer impact, public perception, partner relationships
+- **Security**: Data breaches, access control failures, third-party vulnerabilities
+
+## Risk Register Format
+
+For each risk, document:
+- **Description**: What could happen
+- **Likelihood**: High / Medium / Low
+- **Impact**: High / Medium / Low
+- **Risk Level**: Critical / High / Medium / Low
+- **Mitigation**: What we're doing to reduce likelihood or impact
+- **Owner**: Who is responsible for managing this risk
+- **Status**: Open / Mitigated / Accepted / Closed
+
+## Output
+
+Produce a prioritized risk register with specific, actionable mitigations. Focus on risks that are controllable and material.

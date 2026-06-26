@@ -1,35 +1,30 @@
 ---
-name: "紫微斗数技能"
-description: "紫微斗数排盘技能。支持十四主星、十二宫位、四化飞星排盘，提供命运、性格、事业、婚姻、财运等分析。"
-category: "other"
-source: "ClawHub"
-tags: [astrology, chinese-culture, divination]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ziwei-skill"
-sourceUrl: "https://clawhub.ai/skills/ziwei-skill"
+name: ziwei-skill
+description: 紫微斗数排盘技能。支持十四主星、十二宫位、四化飞星排盘，提供命运、性格、事业、婚姻、财运等分析。
+version: 2.0.0
+author: 天工长老
 ---
 
-# 紫微斗数技能
+# 紫微斗数排盘技能 v2.0.0
 
-> 紫微斗数排盘技能。支持十四主星、十二宫位、四化飞星排盘，提供命运、性格、事业、婚姻、财运等分析。
+> "紫微斗数，星命之宗。"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ziwei-skill`
-- **Source URL:** [https://clawhub.ai/skills/ziwei-skill](https://clawhub.ai/skills/ziwei-skill)
+## 功能
 
-## Overview
+- ✅ 十四主星排布（紫微/天机/太阳等）
+- ✅ 十二宫位定位（命宫/夫妻/财帛等）
+- ✅ 四化飞星推算（化禄/化权/化科/化忌）
+- ✅ 五行局计算（水二局/木三局等）
+- ✅ 大限流年推算
+- ✅ 命盘分析（性格/事业/婚姻/财运）
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ziwei-skill
+python3 scripts/ziwei_pan.py --date "1990-05-15" --hour 8
+python3 scripts/ziwei_pan.py --date "1990-05-15" --hour 8 --gender 女
 ```
+
+## 变更
+
+v2.0.0: 四化飞星、大限流年、命盘分析规则

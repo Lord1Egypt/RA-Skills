@@ -1,35 +1,21 @@
 ---
-name: "system-info"
-description: "Indexed by skills.sh from agno-agi/agno"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "agno-agi"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/agno-agi/agno/system-info"
-sourceUrl: "https://skills.sh/agno-agi/agno/system-info"
+name: system-info
+description: Get system information using executable scripts
+license: MIT
+metadata:
+  version: "1.0.0"
+  author: agno
 ---
+# System Info Skill
 
-# system-info
+This skill provides scripts to gather system information.
 
-> Indexed by skills.sh from agno-agi/agno
+## Available Scripts
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** agno-agi
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/agno-agi/agno/system-info`
-- **Source URL:** [https://skills.sh/agno-agi/agno/system-info](https://skills.sh/agno-agi/agno/system-info)
+- `get_system_info.py` - Returns basic system information (OS, Python version, current time)
+- `list_directory.py` - Lists files in a specified directory
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/agno-agi/agno/system-info
-```
+1. Use `run_skill_script("system-info", "get_system_info.py")` to get system information
+2. Use `run_skill_script("system-info", "list_directory.py", args=["path"])` to list a directory

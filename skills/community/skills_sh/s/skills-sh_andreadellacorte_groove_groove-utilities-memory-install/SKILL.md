@@ -1,35 +1,31 @@
 ---
-name: "groove-utilities-memory-install"
-description: "Indexed by skills.sh from andreadellacorte/groove"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "andreadellacorte"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-memory-install"
-sourceUrl: "https://skills.sh/andreadellacorte/groove/groove-utilities-memory-install"
+name: groove-utilities-memory-install
+description: "Set up memory backend and configuration."
+license: MIT
+allowed-tools: Read Write Edit Glob Grep Bash(git:*) AskUserQuestion
+metadata:
+  author: andreadellacorte
 ---
 
 # groove-utilities-memory-install
 
-> Indexed by skills.sh from andreadellacorte/groove
+## Outcome
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** andreadellacorte
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-memory-install`
-- **Source URL:** [https://skills.sh/andreadellacorte/groove/groove-utilities-memory-install](https://skills.sh/andreadellacorte/groove/groove-utilities-memory-install)
+Memory directories are created and ready for use.
 
-## Overview
+## Acceptance Criteria
 
+- `.groove/memory/daily/`, `.groove/memory/weekly/`, `.groove/memory/monthly/`, `.groove/memory/git/` exist
+- `.groove/memory/specs/` directory exists (outcome specs; used by `/groove-work-spec`)
+- `.groove/memory/learned/` directory exists
+- `.groove/memory/docs/` directory exists (reference docs; used by `/groove-work-doc`)
+- User is shown the initialized paths
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-memory-install
-```
+## Constraints
+
+- Memory path is always `.groove/memory/`
+- Create directories if they do not exist:
+  ```bash
+  mkdir -p .groove/memory/daily .groove/memory/weekly .groove/memory/monthly .groove/memory/git .groove/memory/specs .groove/memory/learned .groove/memory/docs
+  ```
+- Report the initialized paths to user

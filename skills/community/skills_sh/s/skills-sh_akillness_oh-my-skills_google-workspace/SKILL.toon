@@ -1,0 +1,24 @@
+N:google-workspace
+D:Plan and execute Google Workspace operations across Docs, Sheets, Slides, Drive, Gmail, Calendar, Forms, Chat, and Admin SDK by choosing the right surface first: Apps Script, direct REST API, or admin-only APIs. Use when the user needs Workspace automation, spreadsheet/document/file workflows, Gmail sending, calendar scheduling, Forms pipelines, Drive sharing, or domain user/admin changes.
+G:google-workspace google-docs google-sheets google-slides google-drive gmail google-calendar google-chat google-forms admin-sdk apps-script spreadsheet document shared-drive send-email approval-flow domain-user
+F:Claude|Gemini|Codex|OpenCode
+T:Bash|Read|Write|Edit|Glob|Grep
+
+U[5]:
+  Route work across Docs, Sheets, Slides, Drive, Gmail, Calendar, Forms, Chat, and Admin SDK
+  Choose Apps Script vs direct REST API vs admin-only APIs before coding
+  Pick the auth model: OAuth, service account, domain-wide delegation, or Apps Script auth
+  Design cross-service workflows like Form→Sheet→Gmail/Calendar or approval queues
+  Review quota/runtime risk and route-outs before implementation
+
+S[4]{n,action,details}:
+  1,Classify Request,Identify products operation actor execution home and trigger cadence
+  2,Choose Surface,Pick Apps Script direct REST API or Admin SDK based on workflow ownership and limits
+  3,Choose Auth,Match OAuth service account or delegated admin access to the task
+  4,Execute Packet,Return the service bundle scopes IDs sequence verification and risks
+
+R[4]:
+  Start with surface choice and auth model instead of jumping to snippets
+  Separate admin operations from ordinary content editing workflows
+  Prefer batch operations and watch Apps Script quota/runtime limits on heavy jobs
+  Route no-code cross-app orchestration requests out instead of turning this into a Zapier or n8n tutorial

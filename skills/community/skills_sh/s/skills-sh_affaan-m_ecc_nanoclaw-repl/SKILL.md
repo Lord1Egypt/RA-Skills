@@ -1,35 +1,34 @@
 ---
-name: "nanoclaw-repl"
-description: "Indexed by skills.sh from affaan-m/ecc"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "affaan-m"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/affaan-m/ecc/nanoclaw-repl"
-sourceUrl: "https://skills.sh/affaan-m/ecc/nanoclaw-repl"
+name: nanoclaw-repl
+description: Operate and extend NanoClaw v2, ECC's zero-dependency session-aware REPL built on claude -p.
+metadata:
+  origin: ECC
 ---
 
-# nanoclaw-repl
+# NanoClaw REPL
 
-> Indexed by skills.sh from affaan-m/ecc
+Use this skill when running or extending `scripts/claw.js`.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** affaan-m
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/affaan-m/ecc/nanoclaw-repl`
-- **Source URL:** [https://skills.sh/affaan-m/ecc/nanoclaw-repl](https://skills.sh/affaan-m/ecc/nanoclaw-repl)
+## Capabilities
 
-## Overview
+- persistent markdown-backed sessions
+- model switching with `/model`
+- dynamic skill loading with `/load`
+- session branching with `/branch`
+- cross-session search with `/search`
+- history compaction with `/compact`
+- export to md/json/txt with `/export`
+- session metrics with `/metrics`
 
+## Operating Guidance
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/affaan-m/ecc/nanoclaw-repl
-```
+1. Keep sessions task-focused.
+2. Branch before high-risk changes.
+3. Compact after major milestones.
+4. Export before sharing or archival.
+
+## Extension Rules
+
+- keep zero external runtime dependencies
+- preserve markdown-as-database compatibility
+- keep command handlers deterministic and local

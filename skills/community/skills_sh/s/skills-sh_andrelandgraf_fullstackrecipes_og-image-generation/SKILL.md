@@ -1,35 +1,12 @@
 ---
-name: "og-image-generation"
-description: "Indexed by skills.sh from andrelandgraf/fullstackrecipes"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "andrelandgraf"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/andrelandgraf/fullstackrecipes/og-image-generation"
-sourceUrl: "https://skills.sh/andrelandgraf/fullstackrecipes/og-image-generation"
+name: og-image-generation
+description: Generate dynamic social preview images using Next.js file conventions and the next/og library. Server-rendered JSX images cached at build time.
 ---
 
-# og-image-generation
+# OG Image Generation
 
-> Indexed by skills.sh from andrelandgraf/fullstackrecipes
+Generate dynamic social preview images using Next.js file conventions and the next/og library. Server-rendered JSX images cached at build time.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** andrelandgraf
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/andrelandgraf/fullstackrecipes/og-image-generation`
-- **Source URL:** [https://skills.sh/andrelandgraf/fullstackrecipes/og-image-generation](https://skills.sh/andrelandgraf/fullstackrecipes/og-image-generation)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/andrelandgraf/fullstackrecipes/og-image-generation
+curl https://fullstackrecipes.com/recipes/og-image-generation.md
 ```

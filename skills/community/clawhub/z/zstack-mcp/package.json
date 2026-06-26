@@ -1,0 +1,7 @@
+{
+  "name": "zstack-mcp",
+  "version": "1.0.0.0",
+  "description": "ZStack Cloud MCP Server integration for OpenClaw",
+  "author": "ZStack Team",
+  "license": "MIT"
+}

@@ -1,0 +1,20 @@
+{
+  "itemType": "journalArticle",
+  "title": "Practical Alignment Evaluation for LLM Agents",
+  "creators": [
+    "Alice Smith",
+    "Bob Lee"
+  ],
+  "abstractNote": "We propose practical benchmark design and robust alignment evaluation methods.",
+  "date": "2026-03-08",
+  "url": "https://arxiv.org/abs/2503.00001",
+  "DOI": "",
+  "archive": "arXiv",
+  "archiveLocation": "2503.00001",
+  "extra": "arXiv: 2503.00001",
+  "tags": [
+    "alignment",
+    "llm",
+    "cs.AI"
+  ]
+}

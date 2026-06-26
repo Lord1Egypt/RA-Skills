@@ -1,35 +1,99 @@
 ---
-name: "中考短文填空识别与格式化"
-description: "中考短文填空识别与格式化技能。当用户上传中考短文填空题目图片（和答案图片）并要求识别、格式化、输出Word或推送飞书时触发。适用场景：(1) 上传题目图片+答案图片 (2) 要求识别并格式化短文填空 (3) 要求输出Word文档（答案置于题目下方）(4) 要求存入飞书多维表格（答案置于右侧列）(5) 要求推送至飞书"
-category: "research"
-source: "ClawHub"
-tags: [chinese, cloze, education, feishu, zk]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zk-cloze-format"
-sourceUrl: "https://clawhub.ai/skills/zk-cloze-format"
+name: zk-cloze-format
+description: 中考短文填空识别与格式化技能。当用户上传中考短文填空题目图片（和答案图片）并要求识别、格式化、输出Word或推送飞书时触发。适用场景：(1) 上传题目图片+答案图片 (2) 要求识别并格式化短文填空 (3) 要求输出Word文档（答案置于题目下方）(4) 要求存入飞书多维表格（答案置于右侧列）(5) 要求推送至飞书
 ---
 
 # 中考短文填空识别与格式化
 
-> 中考短文填空识别与格式化技能。当用户上传中考短文填空题目图片（和答案图片）并要求识别、格式化、输出Word或推送飞书时触发。适用场景：(1) 上传题目图片+答案图片 (2) 要求识别并格式化短文填空 (3) 要求输出Word文档（答案置于题目下方）(4) 要求存入飞书多维表格（答案置于右侧列）(5) 要求推送至飞书
+## 核心流程
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zk-cloze-format`
-- **Source URL:** [https://clawhub.ai/skills/zk-cloze-format](https://clawhub.ai/skills/zk-cloze-format)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zk-cloze-format
 ```
+题目图片 ──OCR识别──▶ 标准化题目
+答案图片 ──OCR识别──▶ 答案列表
+         ↓
+    按渠道输出
+    ├── Word：答案置于题目下方
+    └── 飞书多维表格：答案置于右侧列
+```
+
+## 执行步骤
+
+### Step 1：识别题目图片
+
+使用 `images_understand` 工具：
+
+```
+prompt: 请准确识别这张图片中所有文字，保持原有段落结构、数字序号（36. 37. 38. 等）、下划线、空格和标点符号。特别注意：题目编号、方框内的备选词、原文段落都要完整保留。
+```
+
+### Step 2：识别答案图片（如有）
+
+**若用户同时上传了答案图片**，立即用同一工具识别：
+
+```
+prompt: 请准确识别这张图片中的所有答案内容，提取每个填空编号对应的答案单词，例如：36.find, 37.camera...。如果答案图片中包含题目正文中的单词，请逐个列出编号和对应答案。
+```
+
+### Step 3：格式还原规则
+
+**备选词格式转换：**
+- 原始（空格分隔）：`by camera clearly delicious find future great offer rush way`
+- 目标（顿号分隔）：`by、camera、clearly、delicious、find、future、great、offer、rush、way`
+
+**段落结构：**
+- 保留原文所有换行、段落结构
+- 保留题目编号：36.～45.
+- 保留所有下划线 `____`
+- 保留原文标点、大小写、括号注释
+
+### Step 4A：输出 Word（答案置于题目下方）
+
+创建 DOCX，结构如下：
+
+```
+【标题】中考短文填空-标准化题目
+
+【备选词】
+by、camera、clearly、delicious、find、future、great、offer、rush、way
+
+【短文正文】
+[还原后正文]
+
+【答案】（如有）
+36.find  37.camera  38.________  39.________  40.________
+41.________  42.________  43.________  44.________  45.________
+```
+
+### Step 4B：输出飞书多维表格（答案置于右侧列）
+
+**新建表格**，字段顺序：
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| 科目 | 文本 | |
+| 短文正文 | 文本 | |
+| 备选词 | 文本 | |
+| 填空编号 | 文本 | |
+| 答案 | 文本 | 右侧列，存放每题答案 |
+| 文档链接 | URL | Word文档链接 |
+
+**答案格式：** `36.find 37.camera 38.________ ...`
+
+### Step 5：推送飞书
+
+- 文档推送：用 `message` 工具发送 DOCX 文件到用户飞书
+- 表格推送：发送多维表格链接
+
+## 注意事项
+
+- OCR 题目时务必保持原文段落格式，不要合并段落
+- 备选词统一转换为中文顿号（、）分隔
+- 下划线数量必须与原图一致
+- 括号注释（如 canteen(食堂)）必须完整保留
+- **答案优于填空位置**：若图片中同时有答案，优先提取答案单词
+
+## 触发示例
+
+- "识别这张短文填空图片，答案在第二张"
+- "上传了题目和答案，推送到飞书多维表格"
+- "帮我识别并输出Word，答案在图片里"

@@ -1,35 +1,17 @@
----
-name: "zoho-support-claw"
-description: "Integrates Zoho Desk with OpenClaw to ingest tickets, generate local embeddings, analyze open tickets, and propose draft replies using OpenAI."
-category: "other"
-source: "ClawHub"
-tags: [local]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zoho-support-claw"
-sourceUrl: "https://clawhub.ai/skills/zoho-support-claw"
----
+# zoho-support
 
-# zoho-support-claw
+Skill: zoho-support
 
-> Integrates Zoho Desk with OpenClaw to ingest tickets, generate local embeddings, analyze open tickets, and propose draft replies using OpenAI.
+Description: Integrates Zoho Desk with OpenClaw to ingest historical tickets, store local embeddings, analyse open tickets and propose draft replies.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zoho-support-claw`
-- **Source URL:** [https://clawhub.ai/skills/zoho-support-claw](https://clawhub.ai/skills/zoho-support-claw)
+Usage:
+- Install via clawhub/publish or copy to workspace skills.
+- Configure .env with ZOHO_TOKEN and OPENAI_API_KEY
 
-## Overview
+Commands:
+- ingest: Run historical ingest (npm run ingest)
+- analyse: Analyse open tickets and generate drafts (npm run analyse)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zoho-support-claw
-```
+Notes:
+- CommonJS project. No TypeScript.
+- Keep credentials in .env (don't commit).

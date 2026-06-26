@@ -1,35 +1,42 @@
 ---
-name: "system-design"
-description: "Indexed by skills.sh from anthropics/knowledge-work-plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "anthropics"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/anthropics/knowledge-work-plugins/system-design"
-sourceUrl: "https://skills.sh/anthropics/knowledge-work-plugins/system-design"
+name: system-design
+description: Design systems, services, and architectures. Trigger with "design a system for", "how should we architect", "system design for", "what's the right architecture for", or when the user needs help with API design, data modeling, or service boundaries.
 ---
 
-# system-design
+# System Design
 
-> Indexed by skills.sh from anthropics/knowledge-work-plugins
+Help design systems and evaluate architectural decisions.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** anthropics
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/anthropics/knowledge-work-plugins/system-design`
-- **Source URL:** [https://skills.sh/anthropics/knowledge-work-plugins/system-design](https://skills.sh/anthropics/knowledge-work-plugins/system-design)
+## Framework
 
-## Overview
+### 1. Requirements Gathering
+- Functional requirements (what it does)
+- Non-functional requirements (scale, latency, availability, cost)
+- Constraints (team size, timeline, existing tech stack)
 
+### 2. High-Level Design
+- Component diagram
+- Data flow
+- API contracts
+- Storage choices
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/anthropics/knowledge-work-plugins/system-design
-```
+### 3. Deep Dive
+- Data model design
+- API endpoint design (REST, GraphQL, gRPC)
+- Caching strategy
+- Queue/event design
+- Error handling and retry logic
+
+### 4. Scale and Reliability
+- Load estimation
+- Horizontal vs. vertical scaling
+- Failover and redundancy
+- Monitoring and alerting
+
+### 5. Trade-off Analysis
+- Every decision has trade-offs. Make them explicit.
+- Consider: complexity, cost, team familiarity, time to market, maintainability
+
+## Output
+
+Produce clear, structured design documents with diagrams (ASCII or described), explicit assumptions, and trade-off analysis. Always identify what you'd revisit as the system grows.

@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+
+# Local runtime files
+*.local.json
+tmp*.json
+config.json
+

@@ -1,0 +1,49 @@
+N:survey
+D:Run a bounded cross-platform landscape scan before planning or implementation. Use when the real job is researching what exists, how people work around it, which solutions repeat, or how platform patterns map before deciding what to build. Produce reusable .survey/{slug}/ artifacts, validate the artifact contract, and route planning or execution outward only after the survey is done.
+G:survey landscape-scan research discovery groundwork omc omx ohmg claude codex gemini hooks rules settings
+U[12]:
+  Produce reusable .survey/{slug}/ artifacts before planning or implementation
+  Compare solutions workarounds and repeated complaints without drifting into coding
+  Normalize platform topics into settings rules hooks and platform gaps
+  Use a cheap-first evidence recovery ladder when search or extract tooling is weak
+  Run the mandatory five-keyword sweep for recurring repo-maintenance loops with lane-specific recovery templates and deterministic stage-2 escalation when a lane remains raw_count==0 or noisy-kept_count==0 after stage-1
+  Apply recommendation-grade freshness and signal-floor gating while preserving broad discovery evidence
+  Treat generic personal catch-all repos (especially */skills) as low-fit by default unless workflow docs + traction are explicit
+  Apply negation-aware intent gating so token overlap inside phrases like no cli or without cli is treated as low-fit unless an exception is justified
+  Emit lane-level status vocabulary (pass|degraded) and degraded-cause taxonomy for sparse/noisy lanes
+  Include compact lane-health metrics (kept_count raw_count median_stars_raw zero_star_raw) and apply a zero-star saturation guard before marking a lane pass
+  Detect cross-lane recommendation concentration with recommended_lane_count and single_lane_concentration flags
+  Deduplicate recommendation-grade repositories across lanes before final ranking while preserving raw evidence
+  Validate the artifact contract before handing off to planning or execution
+S[12]{n,action,details}:
+  1,Classify mode,Choose one primary survey mode and decide whether platform-map.md is required
+  2,Freeze evidence rules,Set the source quality floor labels and recovery order before searching
+  3,Triage and reuse,Extract what who why and check whether an existing .survey/{slug} should be reused
+  4,Run 4 lanes,Research context solutions actual behavior and alternatives-or-platform-map in parallel
+  5,Keyword sweep (hourly loops),For recurring repo-maintenance runs execute all five keyword families, run lane recovery templates when needed, and escalate once with a documented stage-2 query if a lane still has raw_count==0
+  6,Mark lane status,After relevance gate add lane_status(pass|degraded) and degraded_causes(license|stale|low-fit|archived|low-signal|no-results) in markdown summaries (use no-results when raw_count stays 0 after documented recovery)
+  7,Record lane metrics,Alongside lane_status include kept_count raw_count median_stars_raw zero_star_raw so reviewers can detect quality drift
+  8,Check cross-lane concentration,Compute recommended_lane_count and set single_lane_concentration when recommendation-grade keeps cluster in one lane, then report a deduplicated recommendation set keyed by repository identity
+  9,Synthesize,Write triage.md context.md solutions.md and platform-map.md with the required headings
+  10,Validate,Run the survey artifact validator with platform-topic and provenance flags when needed
+  11,Summarize,Return a short factual survey summary and route planning or implementation outward
+R[15]:
+  Never write implementation code in survey mode
+  Search broadly in English unless the user requires another language
+  Keep claims source-backed and label downgraded evidence clearly using validator-supported labels (map gh-search listings to indexed snippet and repo/API detail fetches to direct page retrieval); for gh search repos JSON output prefer fullName or owner+name over unsupported nameWithOwner and persist stderr before retrying
+  For hourly loops, start with a recency-first window (default pushed within last 24h~7d) and widen only via documented recovery stages
+  Drop assessment/homework-only and unknown-license noise unless exception rationale is explicit; when license is null on first pass or arrives as an empty object payload, retry once via gh api repos/<owner>/<repo> before classifying unknown
+  Treat generic personal catch-all repos (especially */skills) as low-fit unless workflow docs + traction are explicit
+  Treat lane-token hits inside explicit negation phrases (for example no cli, without cli, not a cli, non-cli) as low-fit unless a documented exception rationale exists
+  Apply a recommendation-grade freshness floor (drop stale pushed_at over 24 months unless exception rationale + risk note)
+  Apply a recommendation-grade signal floor (require traction signal such as stars>=3 or explicit adoption rationale)
+  Preserve the same artifact filenames and headings across platforms
+  Preserve lane-level threshold reporting (>=1 keep per lane where feasible; CLI lane target 3+) and run one documented stage-2 lane recovery when stage-1 still yields raw_count==0
+  Use lane_status(pass|degraded) and degraded_causes(license|stale|low-fit|archived|low-signal|no-results) for under-threshold lanes (no-results required when raw_count stays 0 after documented recovery)
+  Include lane metrics (kept_count raw_count median_stars_raw zero_star_raw) whenever lane_status is reported
+  Include cross-lane concentration signals (recommended_lane_count and single_lane_concentration) before claiming healthy recommendation coverage
+  Deduplicate recommendation-grade repositories across lanes before final ranking and report both raw and deduplicated coverage metrics
+  Use settings rules hooks as the common layer for Claude Codex Gemini comparisons
+E[2]{desc,in,out}:
+  "Repo maintenance","survey which existing skill in this repo is the best bounded maintenance target next","Creates triage context and solutions artifacts, then validates the output folder before any skill rewrite starts"
+  "Platform comparison","survey how Claude Code Codex and Gemini CLI differ for hooks approvals and research-worker setup","Creates platform-map.md using settings rules hooks, validates with the platform-topic contract, and records portability gaps"

@@ -1,35 +1,20 @@
 ---
-name: "crypto-report"
-description: "Indexed by skills.sh from aahl/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aahl"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aahl/skills/crypto-report"
-sourceUrl: "https://skills.sh/aahl/skills/crypto-report"
+name: crypto-report
+description: Get cryptocurrency market data. Get Binance AI analysis report. Get blockchain news updates.
 ---
 
-# crypto-report
+# Cryptocurrency Report
+Executing Shell commands.
 
-> Indexed by skills.sh from aahl/skills
+## Get Binance AI analysis report
+```shell
+bash scripts/binance-ai-report.sh BTC
+bash scripts/binance-ai-report.sh ETH
+bash scripts/binance-ai-report.sh SOL
+```
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aahl
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aahl/skills/crypto-report`
-- **Source URL:** [https://skills.sh/aahl/skills/crypto-report](https://skills.sh/aahl/skills/crypto-report)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/aahl/skills/crypto-report
+## Get blockchain news updates
+```shell
+bash scripts/theblockbeats-news.sh
+bash scripts/theblockbeats-news.sh 2 # Specify page number
 ```

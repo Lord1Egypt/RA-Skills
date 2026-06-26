@@ -1,0 +1,437 @@
+openapi: 3.0.3
+info:
+  title: 最美证件照 API
+  description: |
+    AI 图像处理能力：
+
+    - **一键证件照**：完整证件照制作流程
+    - **智能抠图**：人像分割，生成透明 PNG
+    - **换背景色**：替换背景颜色，支持渐变
+    - **人脸增强**：修复模糊、提升清晰度
+    - **排版照**：生成打印排版照
+    - **图片编辑**：尺寸调整、格式转换
+
+    ## 认证方式
+
+    所有 API 使用 v2 签名认证，请求头：
+    - X-API-Key: API Key ID
+    - X-Timestamp: Unix 时间戳
+    - X-Nonce: 随机字符串
+    - X-Signature: HMAC-SHA256 签名
+    - X-Content-SHA256: 请求内容摘要
+    - X-Sign-Version: "v2"
+  version: 1.0.0
+  contact:
+    name: 最美证件照团队
+
+servers:
+  - url: https://idphoto.huipai.vip
+    description: 生产环境
+
+tags:
+  - name: photo
+    description: 照片处理
+  - name: segment
+    description: 人像分割
+
+paths:
+  /api/v1/photo/id-photo:
+    post:
+      tags: [photo]
+      summary: 一键证件照
+      description: 完整证件照制作流程，人脸检测→人像分割→智能裁剪→美颜（可选）→换底色
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: 图片文件
+                image_base64:
+                  type: string
+                  description: Base64 编码图片
+                width:
+                  type: integer
+                  default: 295
+                  description: 目标宽度
+                height:
+                  type: integer
+                  default: 413
+                  description: 目标高度
+                background_color:
+                  type: string
+                  default: "#FFFFFF"
+                  description: 背景颜色，支持纯色、渐变、多色
+                dpi:
+                  type: integer
+                  default: 300
+                max_size_kb:
+                  type: integer
+                return_hd_transparent:
+                  type: boolean
+                  default: false
+                  description: 是否返回高清透明 PNG
+                beautify_flag:
+                  type: boolean
+                  default: false
+                  description: 是否美颜
+                verify:
+                  type: boolean
+                  default: false
+                  description: 是否完整校验
+                subject_mode:
+                  type: string
+                  default: single
+                  enum: [single, couple]
+                output_format:
+                  type: string
+                  default: jpeg
+                  enum: [jpeg, png, webp]
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdPhotoResponse'
+
+  /api/v1/segment/portrait:
+    post:
+      tags: [segment]
+      summary: 智能抠图
+      description: 将图片中的人像抠出，生成透明背景 PNG
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                image_base64:
+                  type: string
+                quality:
+                  type: string
+                  default: hd-pro
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentPortraitResponse'
+
+  /api/v1/segment/background:
+    post:
+      tags: [segment]
+      summary: 换背景色
+      description: 替换背景颜色，支持纯色和渐变
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                image_base64:
+                  type: string
+                background_color:
+                  type: string
+                  default: "#FFFFFF"
+                quality:
+                  type: string
+                dpi:
+                  type: integer
+                  default: 300
+                max_size_kb:
+                  type: integer
+                output_format:
+                  type: string
+                  default: jpeg
+                  enum: [jpeg, png, webp]
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentBackgroundResponse'
+
+  /api/v1/photo/enhance:
+    post:
+      tags: [photo]
+      summary: 人脸增强
+      description: AI 人脸增强、去模糊、修复，可选超分辨率
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                image_base64:
+                  type: string
+                fidelity:
+                  type: number
+                  default: 0.3
+                  description: 保真度 0.0-1.0
+                use_sr:
+                  type: boolean
+                  default: false
+                  description: 是否超分辨率
+                sr_scale:
+                  type: integer
+                  default: 2
+                  enum: [2, 4]
+                restore_size:
+                  type: boolean
+                  default: true
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnhanceResponse'
+
+  /api/v1/photo/layout:
+    post:
+      tags: [photo]
+      summary: 排版照
+      description: 将证件照排列打印
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                image_base64:
+                  type: string
+                crop_line:
+                  type: boolean
+                  default: false
+                layout_type:
+                  type: string
+                  default: 6inch
+                  enum: [6inch, 5inch, A4, 3R, 4R]
+                watermark:
+                  type: string
+                  maxLength: 6
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LayoutResponse'
+
+  /api/v1/photo/edit:
+    post:
+      tags: [photo]
+      summary: 图片编辑
+      description: 尺寸调整、DPI 设置、格式转换
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                image_base64:
+                  type: string
+                width:
+                  type: integer
+                height:
+                  type: integer
+                dpi:
+                  type: integer
+                  default: 300
+                max_size_kb:
+                  type: integer
+                output_format:
+                  type: string
+                  default: jpeg
+                  enum: [jpeg, png, webp]
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditResponse'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+  schemas:
+    ApiResponse:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+
+    IdPhotoResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                image_url:
+                  type: string
+                  format: uri
+                hd_transparent_url:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+                dpi:
+                  type: integer
+                size_kb:
+                  type: integer
+                output_format:
+                  type: string
+
+    SegmentPortraitResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                image_url:
+                  type: string
+                  format: uri
+
+    SegmentBackgroundResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                image_url:
+                  type: string
+                  format: uri
+                images:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      background_color:
+                        type: string
+                      image_url:
+                        type: string
+                        format: uri
+                dpi:
+                  type: integer
+                output_format:
+                  type: string
+
+    EnhanceResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                original_url:
+                  type: string
+                  format: uri
+                enhanced_url:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+                enhance_time:
+                  type: number
+                face_count:
+                  type: integer
+
+    LayoutResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                image_url:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+                photo_count:
+                  type: integer
+                layout_type:
+                  type: string
+
+    EditResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                image_url:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+                size_kb:
+                  type: integer
+                output_format:
+                  type: string

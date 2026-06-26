@@ -1,35 +1,158 @@
----
-name: "ZLQA-GMT-API-Test"
-description: "支持ZLQA游戏GM工具接口自动化测试，包括用例管理、执行和测试报告查看，需初始化项目路径绑定接口。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zlqa-gmt-api"
-sourceUrl: "https://clawhub.ai/skills/zlqa-gmt-api"
----
+# zlqa-gmt-api
 
-# ZLQA-GMT-API-Test
+GM工具 API 接口自动化测试技能。支持多接口测试用例管理、执行和报告生成。
 
-> 支持ZLQA游戏GM工具接口自动化测试，包括用例管理、执行和测试报告查看，需初始化项目路径绑定接口。
+## 适用场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zlqa-gmt-api`
-- **Source URL:** [https://clawhub.ai/skills/zlqa-gmt-api](https://clawhub.ai/skills/zlqa-gmt-api)
+- 游戏 GM 工具接口的自动化测试
+- 需要配合 ZLQA 项目仓库使用（内部团队通过 git 获取）
 
-## Overview
+## 安装与初始化
 
+### 第一步：克隆项目仓库
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/zlqa-gmt-api
+git clone https://codeup.aliyun.com/6364d32c1d6d547e3e84d9fc/ZLQA.git
 ```
+
+### 第二步：初始化 Skill
+
+安装完 Skill 后，告诉 AI 项目路径：
+
+```
+初始化 C:\Users\你的用户名\ZLQA
+```
+
+AI 会自动扫描 `api/gmt/` 目录，发现所有接口并完成绑定。
+
+### 第三步：填写测试配置
+
+进入对应接口目录，填写 `{接口名}_config.md` 中的测试数据：
+- 服务器地址（url）
+- 签名密钥（appsecret）
+- 测试用的账号、角色等数据
+
+---
+
+## 触发条件
+
+当用户提到以下内容时触发本 Skill：
+- "初始化 <路径>" / "绑定项目 <路径>"
+- "执行 xxx 用例" / "跑一下 xxx 测试"
+- "执行 TC001" / "执行 TC001 TC002"
+- "执行全部用例" / "执行正向用例"
+- "查看测试报告" / "打开报告"
+- "有哪些接口" / "接口列表"
+
+---
+
+## 使用示例
+
+```
+# 初始化（首次使用必须）
+初始化 C:\Users\admin\ZLQA
+
+# 查看支持的接口
+有哪些接口
+
+# 执行测试
+执行 getroleinfo 全部用例
+执行 getroleinfo TC001
+执行 getroleinfo TC001 TC002 TC003
+执行 getroleinfo 正向用例
+执行 getroleinfo 异常用例
+
+# 查看报告
+查看 getroleinfo 测试报告
+```
+
+---
+
+## 用例分类关键词
+
+| 关键词 | 用例范围 | 说明 |
+|--------|----------|------|
+| 正向 | TC001-TC003 | 正常查询 |
+| 优先级 | TC004-TC005 | 参数优先级 |
+| 参数校验 | TC006-TC008 | 缺少参数、签名错误 |
+| 异常 | TC009-TC012 | 不存在数据、参数全空 |
+| 字段验证 | TC013-TC014 | 完整性、数据类型 |
+| 状态验证 | TC015-TC018 | 在线、禁言、封禁状态 |
+| 性能 | TC019-TC022 | 多角色、响应时间、一致性 |
+| 全部 | TC001-TC022 | 全部用例 |
+
+---
+
+## AI 执行指令
+
+当本 Skill 被触发时，按以下步骤执行：
+
+### Step 1：解析意图
+
+识别用户输入中的：
+- **动作**：初始化 / 执行测试 / 查看报告 / 查看接口列表
+- **接口名**：从已配置的接口中匹配
+- **用例范围**：TC编号 / 分类关键词 / 全部
+
+### Step 2：调用 runner.py
+
+```powershell
+python "{skill_root_dir}\zlqa-gmt-api\scripts\runner.py" "<用户输入>"
+```
+
+### Step 3：展示结果
+
+执行完成后，按以下格式展示：
+
+```
+==================================================
+[接口] getroleinfo
+[用例] 全部
+==================================================
+
+[统计]
+  通过: 15  失败: 7  错误: 0  总计: 22
+
+==================================================
+[!!! FAIL 用例 - 需关注 !!!]
+==================================================
+  [FAIL] TC015-用户在线状态验证
+  [FAIL] TC016-用户离线状态验证
+  ...
+
+[报告] getroleinfo_report_20260326_104327.html
+==================================================
+```
+
+### Step 4：自动打开报告
+
+runner.py 会自动调用 `os.startfile()` 打开 HTML 报告。
+
+---
+
+## 项目目录结构
+
+```
+ZLQA/
+└── api/
+    └── gmt/
+        └── {接口名}/
+            ├── run_tests.py              # 测试执行脚本（必须）
+            ├── {接口名}_config.md         # 测试数据配置（需填写）
+            ├── {接口名}_sign.md           # 签名算法说明
+            ├── {接口名}_testcases.md      # 测试用例文档
+            └── *_report_*.html           # 生成的测试报告
+```
+
+## 新增接口
+
+只需在 `ZLQA/api/gmt/` 下创建新接口目录并放入 `run_tests.py`，
+重新执行初始化命令，Skill 会自动发现新接口。
+
+---
+
+## 依赖
+
+- Python 3.6+
+- requests 库（`pip install requests`）
+- Git（用于克隆项目仓库）

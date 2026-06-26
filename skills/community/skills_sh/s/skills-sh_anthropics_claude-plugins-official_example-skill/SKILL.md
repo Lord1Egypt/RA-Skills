@@ -1,35 +1,84 @@
 ---
-name: "example-skill"
-description: "Indexed by skills.sh from anthropics/claude-plugins-official"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "anthropics"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/anthropics/claude-plugins-official/example-skill"
-sourceUrl: "https://skills.sh/anthropics/claude-plugins-official/example-skill"
+name: example-skill
+description: This skill should be used when the user asks to "demonstrate skills", "show skill format", "create a skill template", or discusses skill development patterns. Provides a reference template for creating Claude Code plugin skills.
+version: 1.0.0
 ---
 
-# example-skill
+# Example Skill
 
-> Indexed by skills.sh from anthropics/claude-plugins-official
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** anthropics
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/anthropics/claude-plugins-official/example-skill`
-- **Source URL:** [https://skills.sh/anthropics/claude-plugins-official/example-skill](https://skills.sh/anthropics/claude-plugins-official/example-skill)
+This skill demonstrates the structure and format for Claude Code plugin skills.
 
 ## Overview
 
+Skills are model-invoked capabilities that Claude autonomously uses based on task context. Unlike commands (user-invoked) or agents (spawned by Claude), skills provide contextual guidance that Claude incorporates into its responses.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/anthropics/claude-plugins-official/example-skill
+## When This Skill Applies
+
+This skill activates when the user's request involves:
+- Creating or understanding plugin skills
+- Skill template or reference needs
+- Skill development patterns
+
+## Skill Structure
+
+### Required Files
+
 ```
+skills/
+└── skill-name/
+    └── SKILL.md          # Main skill definition (required)
+```
+
+### Optional Supporting Files
+
+```
+skills/
+└── skill-name/
+    ├── SKILL.md          # Main skill definition
+    ├── README.md         # Additional documentation
+    ├── references/       # Reference materials
+    │   └── patterns.md
+    ├── examples/         # Example files
+    │   └── sample.md
+    └── scripts/          # Helper scripts
+        └── helper.sh
+```
+
+## Frontmatter Options
+
+Skills support these frontmatter fields:
+
+- **name** (required): Skill identifier
+- **description** (required): Trigger conditions - describe when Claude should use this skill
+- **version** (optional): Semantic version number
+- **license** (optional): License information or reference
+
+## Writing Effective Descriptions
+
+The description field is crucial - it tells Claude when to invoke the skill.
+
+**Good description patterns:**
+```yaml
+description: This skill should be used when the user asks to "specific phrase", "another phrase", mentions "keyword", or discusses topic-area.
+```
+
+**Include:**
+- Specific trigger phrases users might say
+- Keywords that indicate relevance
+- Topic areas the skill covers
+
+## Skill Content Guidelines
+
+1. **Clear purpose**: State what the skill helps with
+2. **When to use**: Define activation conditions
+3. **Structured guidance**: Organize information logically
+4. **Actionable instructions**: Provide concrete steps
+5. **Examples**: Include practical examples when helpful
+
+## Best Practices
+
+- Keep skills focused on a single domain
+- Write descriptions that clearly indicate when to activate
+- Include reference materials in subdirectories for complex skills
+- Test that the skill activates for expected queries
+- Avoid overlap with other skills' trigger conditions

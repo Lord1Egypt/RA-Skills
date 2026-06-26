@@ -1,0 +1,27 @@
+{
+  "name": "zizo",
+  "version": "1.0.4",
+  "description": "Search images and boards in zizo library",
+  "main": "index.js",
+  "bin": {
+    "zizo": "./index.js"
+  },
+  "scripts": {
+    "build": "ncc build index.js -o dist",
+    "test": "node index.js version"
+  },
+  "keywords": [
+    "zizo",
+    "image-search",
+    "cli",
+    "mcp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

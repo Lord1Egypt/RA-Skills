@@ -1,0 +1,19 @@
+{
+  "name": "openclaw-plugin-zopaf",
+  "version": "1.0.0",
+  "description": "Zopaf Negotiation Engine — Pareto frontiers, iso-utility counteroffers, and MILP-based preference inference for any negotiation.",
+  "type": "module",
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.4.2",
+      "pluginSdkVersion": "2026.3.24-beta.2"
+    }
+  },
+  "license": "MIT",
+  "author": "Ramon Andino (@rjandino)"
+}

@@ -1,35 +1,14 @@
 ---
-name: "edgeone"
-description: "Indexed by skills.sh from aahl/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aahl"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aahl/skills/edgeone"
-sourceUrl: "https://skills.sh/aahl/skills/edgeone"
+name: edgeone
+description: Deploy HTML content to EdgeOne Pages, return the public URL.
 ---
 
-# edgeone
+# EdgeOne
+Deploy HTML content to EdgeOne Pages, return the public URL. No login required, no API key required.
 
-> Indexed by skills.sh from aahl/skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aahl
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aahl/skills/edgeone`
-- **Source URL:** [https://skills.sh/aahl/skills/edgeone](https://skills.sh/aahl/skills/edgeone)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/aahl/skills/edgeone
+## Deploy HTML
+HTML or text content to deploy. Provide complete HTML or text content you want to publish, and the system will return a public URL where your content can be accessed.
+```shell
+npx -y mcporter call mcp-on-edge.edgeone.app/mcp-server.deploy-html value="<html>Content</html>"
+npx -y mcporter call mcp-on-edge.edgeone.app/mcp-server.deploy-html value="$(cat index.html)"
 ```

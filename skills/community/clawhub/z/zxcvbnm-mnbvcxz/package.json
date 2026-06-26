@@ -1,0 +1,12 @@
+{
+  "name": "aivideo-api-executor",
+  "version": "1.0.12",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "workflow": "node scripts/run-workflow.mjs"
+  }
+}

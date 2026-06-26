@@ -1,35 +1,51 @@
 ---
-name: "Astrology Foreteller"
-description: "星座配对 + 塔罗牌占卜占位版本。妮妮开发的占位版本，待2.0版本更新。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zodiac-tarot-master"
-sourceUrl: "https://clawhub.ai/skills/zodiac-tarot-master"
+name: 星座塔罗占卜师
+description: 星座配对 + 塔罗牌占卜占位版本。妮妮开发的占位版本，待2.0版本更新。
 ---
 
-# Astrology Foreteller
+## 占位说明
 
-> 星座配对 + 塔罗牌占卜占位版本。妮妮开发的占位版本，待2.0版本更新。
+**这是妮妮开发的星座塔罗占卜师技能的占位版本。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zodiac-tarot-master`
-- **Source URL:** [https://clawhub.ai/skills/zodiac-tarot-master](https://clawhub.ai/skills/zodiac-tarot-master)
+目前正在开发完整的星座塔罗占卜师2.0版本，包含：
 
-## Overview
+### 星座配对功能 💕
+- 12星座完整匹配度计算
+- 基于星座元素（火土风水）分析
+- 性格特点描述
+- 配对评语和建议
 
+### 塔罗牌占卜功能 🎴
+- 78张塔罗牌完整数据库
+- 精美ASCII艺术图案
+- 多种牌阵解读
+- 深度心理学分析
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zodiac-tarot-master
-```
+### 精美输出设计 🌸
+- 可爱emoji装饰
+- 温暖积极的语言风格
+- 神秘娱乐性体验
+- 女性友好的设计
+
+## 预期发布日期
+
+**预计2026年3月30日发布2.0版本**
+
+### 2.0版本功能亮点
+1. **专业星座配对算法**
+2. **78张完整塔罗牌库**
+3. **多种牌阵解读模式**
+4. **精美ASCII艺术设计**
+5. **温暖用户体验设计**
+
+## 当前占位状态
+
+这个占位版本是为了防止其他开发者占用`zodiac-tarot-master`这个优秀名称。
+
+我们正在积极开发2.0版本，完成后会直接更新覆盖这个占位版本。
+
+---
+
+**作者**: Agent2 Team  
+**版本**: 1.0.0 (占位版)  
+**预计更新**: 2026-03-30

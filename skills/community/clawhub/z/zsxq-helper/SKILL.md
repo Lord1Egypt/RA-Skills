@@ -1,35 +1,98 @@
 ---
-name: "知识星球助手"
-description: "知识星球助手 - 登录、发帖、管理知识星球。当用户需要操作知识星球（登录、发帖、查看内容）时使用此技能。触发词：知识星球、zsxq、发帖、星球登录。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zsxq-helper"
-sourceUrl: "https://clawhub.ai/skills/zsxq-helper"
+name: zsxq-helper
+description: |
+  知识星球助手 - 登录、发帖、管理知识星球。当用户需要操作知识星球（登录、发帖、查看内容）时使用此技能。触发词：知识星球、zsxq、发帖、星球登录。
 ---
 
 # 知识星球助手
 
-> 知识星球助手 - 登录、发帖、管理知识星球。当用户需要操作知识星球（登录、发帖、查看内容）时使用此技能。触发词：知识星球、zsxq、发帖、星球登录。
+帮助用户自动化操作知识星球（zsxq.com）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zsxq-helper`
-- **Source URL:** [https://clawhub.ai/skills/zsxq-helper](https://clawhub.ai/skills/zsxq-helper)
+## 功能
 
-## Overview
+- 🔐 登录知识星球（获取二维码，等待扫码）**需要截图发送**
+- 📝 发布帖子 **不需要截图发送**
+- 👀 查看星球内容
+- 📱 操作反馈
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zsxq-helper
+### 1. 登录知识星球
+
+当用户需要登录知识星球时：
+
+1. 使用 browser 工具打开登录页面：
+   ```
+   browser action=open url=https://wx.zsxq.com/login
+   ```
+
+2. 点击"获取登录二维码"按钮
+
+3. **截图发送给用户**，让用户微信扫码：
+   ```
+   browser action=screenshot
+   message action=send media=<截图路径>
+   ```
+
+4. 点击同意协议按钮（如有）
+
+5. **再次截图发送**，等待用户扫码确认
+
+6. 等待用户确认登录成功
+
+**重要**：登录流程中每一步都需要截图发送给用户！
+
+### 2. 进入星球
+
+使用 browser 工具导航到星球：
 ```
+browser action=navigate url=https://wx.zsxq.com/group/<group_id>
+```
+
+### 3. 发布帖子
+
+1. 点击"发表主题"输入框
+2. 输入帖子内容
+3. 点击发布
+
+**重要**：发帖子流程中**不需要截图发送**，直接完成发布即可！
+
+### 4. 查看内容
+
+```
+browser action=snapshot  # 获取页面内容
+```
+
+## URL 格式
+
+知识星球的URL格式：
+- 登录页：`https://wx.zsxq.com/login`
+- 星球主页：`https://wx.zsxq.com/group/<group_id>`
+
+## 常用星球
+
+| 星球名称 | group_id |
+|---------|----------|
+| Jacob和他的朋友们 | 51112818881544 |
+
+## 注意事项
+
+1. **登录流程**：每一步都需要截图发送给用户
+2. **发帖流程**：不需要截图，直接完成
+3. 登录需要微信扫码，有效期约30分钟
+4. 长时间未操作可能需要重新登录
+5. 发布内容需遵守星球规则
+
+## 截图规则总结
+
+| 操作 | 是否截图发送 |
+|-----|-------------|
+| 登录 - 打开页面 | ✅ 需要 |
+| 登录 - 获取二维码 | ✅ 需要 |
+| 登录 - 同意协议后 | ✅ 需要 |
+| 发帖 - 输入内容 | ❌ 不需要 |
+| 发帖 - 发布 | ❌ 不需要 |
+
+---
+
+*版本: 1.1.0*

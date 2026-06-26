@@ -1,0 +1,12 @@
+{
+  "zotero": {
+    "url": "https://www.zotero.org/groups/123456/your-group/library",
+    "libraryType": "",
+    "libraryId": "",
+    "apiKeyEnv": "ZOTERO_API_KEY",
+    "apiKeyPath": "",
+    "apiKey": "",
+    "timeoutSec": 30,
+    "allowPdfUpload": true
+  }
+}

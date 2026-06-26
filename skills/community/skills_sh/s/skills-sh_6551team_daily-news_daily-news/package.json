@@ -1,0 +1,6 @@
+{
+  "name": "daily-news",
+  "version": "0.1.0",
+  "description": "Daily news and hot topics skill for 6551 API",
+  "main": "SKILL.md"
+}

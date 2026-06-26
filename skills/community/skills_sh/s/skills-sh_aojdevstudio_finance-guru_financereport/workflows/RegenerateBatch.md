@@ -1,0 +1,129 @@
+# RegenerateBatch Workflow
+
+Regenerate reports for multiple tickers using parallel subagents.
+
+## Trigger Phrases
+- "regenerate batch 1"
+- "redo all reports"
+- "regenerate watchlist reports"
+
+## Prerequisites
+- List of tickers to regenerate
+- Subagent capability available
+- Existing reports to replace
+
+## Workflow Steps
+
+### Step 1: Identify Tickers
+
+**Batch 1 (Original 8):**
+- CRWD, BRK.B, APLD, IREN, GOOG, MSFT, SOFI, VTV
+
+**Batch 2 (Added 9):**
+- VGT, NVDA, AVGO, PLTR, META, VRT, AMZN, FTNT, ARM
+
+### Step 2: Launch Parallel Subagents
+
+Use the Task tool to launch one subagent per ticker:
+
+```python
+# Launch 8 subagents in parallel (single message, multiple tool calls)
+for ticker in ["CRWD", "BRKB", "APLD", "IREN", "GOOG", "MSFT", "SOFI", "VTV"]:
+    Task(
+        description=f"Generate {ticker} 2026 report",
+        prompt=f"""
+        Execute the FullResearchWorkflow for {ticker}:
+
+        1. MARKET RESEARCH
+           - Use Perplexity MCP to research company overview
+           - Find 2026 catalysts and risks
+           - Get analyst ratings
+
+        2. QUANT ANALYSIS
+           - Run: uv run python src/analysis/risk_metrics_cli.py {ticker} --days 252
+           - Run: uv run python src/utils/momentum_cli.py {ticker} --days 90
+           - Run: uv run python src/utils/volatility_cli.py {ticker} --days 90
+
+        3. STRATEGY
+           - Determine buy/hold/sell recommendation
+           - Calculate position sizing for $250k portfolio
+           - Define entry strategy
+
+        4. GENERATE PDF
+           - Build comprehensive 8-10 page report
+           - Use VGT-style header
+           - Include all quant data
+           - Save to fin-guru-private/fin-guru/analysis/reports/{ticker}-analysis-2025-12-18.pdf
+
+        Follow the FinanceReport skill workflows.
+        Replace existing PDF if present.
+        """,
+        subagent_type="general-purpose",
+        model="sonnet"
+    )
+```
+
+### Step 3: Monitor Completion
+
+Each subagent will:
+1. Complete full research workflow
+2. Generate PDF report
+3. Report back with summary
+
+### Step 4: Validate All Reports
+
+After all subagents complete:
+
+```bash
+# Check all reports exist
+ls -la fin-guru-private/fin-guru/analysis/reports/*.pdf
+
+# Verify file sizes
+for f in fin-guru-private/fin-guru/analysis/reports/*.pdf; do
+    echo "$f: $(stat -f%z "$f") bytes"
+done
+```
+
+### Step 5: Update Watchlist Document (Optional)
+
+Update `fin-guru-private/fin-guru/analysis/2026-watchlist-2025-12-18.md` with:
+- Verdict summaries for each ticker
+- Links to PDF reports
+- Consolidated recommendations
+
+## Batch Definitions
+
+### Batch 1: Original Watchlist
+```python
+BATCH_1 = ["CRWD", "BRKB", "APLD", "IREN", "GOOG", "MSFT", "SOFI", "VTV"]
+```
+
+### Batch 2: Extended Watchlist
+```python
+BATCH_2 = ["VGT", "NVDA", "AVGO", "PLTR", "META", "VRT", "AMZN", "FTNT", "ARM"]
+```
+
+### Full Watchlist
+```python
+ALL_TICKERS = BATCH_1 + BATCH_2  # 17 total
+```
+
+## Performance Notes
+
+- Each subagent takes ~3-5 minutes
+- Parallel execution: 8 agents = same time as 1
+- Total batch time: ~5 minutes for 8 tickers
+- Full watchlist (17 tickers): ~10 minutes (2 batches)
+
+## Error Handling
+
+| Error | Resolution |
+|-------|------------|
+| Subagent timeout | Retry individual ticker |
+| API rate limit | Add delay between batches |
+| Report validation fails | Check logs, regenerate |
+
+## Output
+
+All PDFs saved to: `fin-guru-private/fin-guru/analysis/reports/`
+File pattern: `{TICKER}-analysis-{YYYY-MM-DD}.pdf`

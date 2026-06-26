@@ -1,35 +1,101 @@
 ---
-name: "cloud-security-configuration"
-description: "Indexed by skills.sh from aj-geddes/useful-ai-prompts"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aj-geddes"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aj-geddes/useful-ai-prompts/cloud-security-configuration"
-sourceUrl: "https://skills.sh/aj-geddes/useful-ai-prompts/cloud-security-configuration"
+name: cloud-security-configuration
+description: >
+  Implement comprehensive cloud security across AWS, Azure, and GCP with IAM,
+  encryption, network security, compliance, and threat detection.
 ---
 
-# cloud-security-configuration
+# Cloud Security Configuration
 
-> Indexed by skills.sh from aj-geddes/useful-ai-prompts
+## Table of Contents
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aj-geddes
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aj-geddes/useful-ai-prompts/cloud-security-configuration`
-- **Source URL:** [https://skills.sh/aj-geddes/useful-ai-prompts/cloud-security-configuration](https://skills.sh/aj-geddes/useful-ai-prompts/cloud-security-configuration)
+- [Overview](#overview)
+- [When to Use](#when-to-use)
+- [Quick Start](#quick-start)
+- [Reference Guides](#reference-guides)
+- [Best Practices](#best-practices)
 
 ## Overview
 
+Cloud security requires comprehensive strategies spanning identity management, encryption, network controls, compliance, and threat detection. Implement defense-in-depth with multiple layers of protection and continuous monitoring.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## When to Use
+
+- Protecting sensitive data in cloud
+- Compliance with regulations (GDPR, HIPAA, PCI-DSS)
+- Implementing zero-trust security
+- Securing multi-cloud environments
+- Threat detection and response
+- Identity and access management
+- Network isolation and segmentation
+- Encryption and key management
+
+## Quick Start
+
+Minimal working example:
+
 ```bash
-hermes skills install skills-sh/aj-geddes/useful-ai-prompts/cloud-security-configuration
+# Enable GuardDuty (threat detection)
+aws guardduty create-detector \
+  --enable \
+  --finding-publishing-frequency FIFTEEN_MINUTES
+
+# Enable CloudTrail (audit logging)
+aws cloudtrail create-trail \
+  --name organization-trail \
+  --s3-bucket-name audit-bucket \
+  --is-multi-region-trail
+
+# Enable S3 bucket encryption by default
+aws s3api put-bucket-encryption \
+  --bucket my-bucket \
+  --server-side-encryption-configuration '{
+    "Rules": [{
+      "ApplyServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "aws:kms",
+        "KMSMasterKeyID": "arn:aws:kms:region:account:key/key-id"
+      },
+      "BucketKeyEnabled": true
+    }]
+  }'
+
+# Enable VPC Flow Logs
+// ... (see reference guides for full implementation)
 ```
+
+## Reference Guides
+
+Detailed implementations in the `references/` directory:
+
+| Guide | Contents |
+|---|---|
+| [AWS Security Configuration](references/aws-security-configuration.md) | AWS Security Configuration |
+| [Terraform Security Configuration](references/terraform-security-configuration.md) | Terraform Security Configuration |
+| [Azure Security Configuration](references/azure-security-configuration.md) | Azure Security Configuration |
+| [GCP Security Configuration](references/gcp-security-configuration.md) | GCP Security Configuration |
+
+## Best Practices
+
+### ✅ DO
+
+- Implement least privilege access
+- Enable MFA everywhere
+- Use service accounts for applications
+- Encrypt data at rest and in transit
+- Enable comprehensive logging
+- Implement network segmentation
+- Use secrets management
+- Enable threat detection
+- Regular security assessments
+- Keep systems patched
+
+### ❌ DON'T
+
+- Use root/default credentials
+- Store secrets in code
+- Over-permissive security groups
+- Disable encryption
+- Ignore logs and monitoring
+- Share credentials
+- Skip compliance requirements
+- Trust unverified data sources

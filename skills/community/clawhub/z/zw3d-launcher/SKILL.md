@@ -1,35 +1,33 @@
 ---
-name: "ZW3D Launcher"
-description: "Launch ZW3D CAD software. Use when the user wants to open, start, or launch ZW3D CAD application. Handles finding the ZW3D executable and launching it with o..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zw3d-launcher"
-sourceUrl: "https://clawhub.ai/skills/zw3d-launcher"
+name: zw3d-launcher
+description: Launch ZW3D CAD software. Use when the user wants to open, start, or launch ZW3D CAD application. Handles finding the ZW3D executable and launching it with optional file opening.
 ---
 
 # ZW3D Launcher
 
-> Launch ZW3D CAD software. Use when the user wants to open, start, or launch ZW3D CAD application. Handles finding the ZW3D executable and launching it with o...
+Launch ZW3D CAD software on Windows systems.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zw3d-launcher`
-- **Source URL:** [https://clawhub.ai/skills/zw3d-launcher](https://clawhub.ai/skills/zw3d-launcher)
+## Usage
 
-## Overview
+When the user asks to open ZW3D:
 
+1. Run the launch script: `python scripts/launch_zw3d.py`
+2. If the user wants to open a specific file, pass the file path as argument: `python scripts/launch_zw3d.py "path/to/file.z3"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zw3d-launcher
-```
+## How It Works
+
+The script will:
+1. Search common installation paths for ZW3D executable
+2. Launch the application
+3. Optionally open a specified file
+
+## Common Installation Paths Checked
+
+- `C:\Program Files\ZWSoft\ZW3D\*\zw3d.exe`
+- `C:\Program Files (x86)\ZWSoft\ZW3D\*\zw3d.exe`
+- Custom paths can be added to the script
+
+## Notes
+
+- ZW3D may take a few seconds to fully load
+- If ZW3D is already running, a new instance may be launched depending on ZW3D's settings

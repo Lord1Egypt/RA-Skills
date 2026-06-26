@@ -1,0 +1,62 @@
+{
+  "name": "zouroboros-autoloop",
+  "version": "1.0.0",
+  "description": "Autonomous single-metric optimization loop inspired by Andrej Karpathy's autoresearch: edit, experiment, measure, keep or revert",
+  "license": "MIT",
+  "author": "AlaricHQ <https://github.com/AlaricHQ>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlaricHQ/zouroboros-openclaw",
+    "directory": "packages/autoloop"
+  },
+  "homepage": "https://github.com/AlaricHQ/zouroboros-openclaw/tree/main/packages/autoloop",
+  "keywords": [
+    "ai",
+    "optimization",
+    "autoloop",
+    "autonomous",
+    "metric",
+    "backtesting",
+    "prompt-tuning",
+    "openclaw",
+    "zouroboros"
+  ],
+  "type": "module",
+  "main": "./dist/autoloop.js",
+  "types": "./dist/autoloop.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/autoloop.js",
+      "types": "./dist/autoloop.d.ts"
+    },
+    "./mcp": {
+      "import": "./dist/mcp-server.js"
+    }
+  },
+  "bin": {
+    "autoloop": "./dist/autoloop.js",
+    "autoloop-mcp": "./dist/mcp-server.js"
+  },
+  "files": [
+    "dist",
+    "assets",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

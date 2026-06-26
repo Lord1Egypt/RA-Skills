@@ -1,0 +1,13 @@
+{
+  "name": "zuimei-zjz-api",
+  "version": "1.0.0",
+  "description": "最美证件照 - AI 图像处理 API，证件照制作、智能抠图、人脸增强、换背景色",
+  "author": "最美证件照团队",
+  "license": "MIT",
+  "keywords": ["证件照", "抠图", "人脸增强", "换背景", "图像处理", "API"],
+  "category": "API集成",
+  "openclaw": {
+    "minVersion": "1.0.0"
+  },
+  "repository": "https://github.com/flaravel/zuimei-zjz-api"
+}

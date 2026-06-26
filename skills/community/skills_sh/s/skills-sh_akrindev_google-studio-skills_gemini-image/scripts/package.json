@@ -1,0 +1,9 @@
+{
+  "name": "gemini-image-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^1.44.0",
+    "dotenv": "^17.3.1"
+  }
+}

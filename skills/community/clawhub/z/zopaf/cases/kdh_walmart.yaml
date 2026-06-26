@@ -1,0 +1,122 @@
+# KDH-Walmart Supplier Negotiation
+# Inspired by HBS Case: Bill Nichol Negotiates with Walmart (910-043/044)
+#
+# Scenario: Kentucky Derby Hosiery (KDH), a sock manufacturer, faces
+# Walmart's decision to drop the Little Ones Products (LOP) branded infant
+# sox line. KDH must negotiate to preserve volume and manage obligations.
+# Multiple issues are on the table with different value to each side.
+
+title: "KDH-Walmart Supplier Renegotiation"
+description: >
+  Kentucky Derby Hosiery (KDH) has been supplying LOP-branded infant sox
+  to Walmart for six years with strong performance. Walmart has decided to
+  drop the LOP brand in favor of house brands. KDH and Walmart must now
+  negotiate the terms of their ongoing relationship across multiple issues:
+  branding strategy, production volume guarantees, pricing structure,
+  sustainability initiatives, and contract duration.
+
+max_rounds: 8
+
+party_a:
+  name: "Bill Nichol (KDH)"
+  role: "Chairman and CEO of Kentucky Derby Hosiery, a leading U.S. sock manufacturer"
+  background: >
+    KDH has 7 manufacturing plants and $150M in annual revenue. Walmart accounts
+    for 35% of your sales. The LOP-branded infant sox line accounts for 20% of
+    total revenue with margins roughly double your other products. You have 25%
+    of your production machinery dedicated to this line, secured by long-term
+    J.P. Morgan loans. You have 3 years of forward financial obligations to LOP.
+    Your BATNA is losing the LOP volume entirely, which would be near-catastrophic
+    but survivable given your debt-equity ratio of 1:1. You desperately need to
+    maintain VOLUME even if the branding changes. You've started offshore
+    production (Ghana, China, Korea) and can offer sustainability/organic cotton
+    products as a differentiator.
+  batna_score: 15
+
+party_b:
+  name: "Walmart Buyer"
+  role: "Senior buyer and category manager for hosiery at Walmart"
+  background: >
+    Walmart is shifting to fewer, stronger house brands under sole corporate
+    control. Corporate has decided the LOP brand is valuable for hard goods but
+    unproven for soft goods like sox. A competitor has pitched that unbranded
+    infant sox (not part of matched branded sets) would be superior. You want to
+    reduce brand fragmentation and increase margins through house brands. However,
+    corporate values long-term reliable suppliers and does NOT want to cause
+    supplier bankruptcy. You also have a major sustainability initiative launching
+    and need supplier partners for it. KDH has a virtually perfect supplier
+    scorecard. You care most about branding control and margin improvement.
+  batna_score: 25
+
+issues:
+  - name: "Branding"
+    options:
+      "Keep LOP brand":
+        party_a: 40
+        party_b: 0
+      "Walmart house brand":
+        party_a: 10
+        party_b: 35
+      "Walmart house brand with organic cotton":
+        party_a: 25
+        party_b: 40
+      "Co-branded (Walmart + KDH)":
+        party_a: 30
+        party_b: 15
+
+  - name: "Volume Guarantee"
+    options:
+      "100% of current volume":
+        party_a: 40
+        party_b: 10
+      "80% of current volume":
+        party_a: 25
+        party_b: 20
+      "60% of current volume":
+        party_a: 10
+        party_b: 30
+      "No volume guarantee":
+        party_a: 0
+        party_b: 40
+
+  - name: "Pricing"
+    options:
+      "Current pricing maintained":
+        party_a: 30
+        party_b: 5
+      "5% price reduction":
+        party_a: 15
+        party_b: 20
+      "10% price reduction":
+        party_a: 5
+        party_b: 30
+      "Performance-based pricing":
+        party_a: 20
+        party_b: 25
+
+  - name: "Sustainability Commitment"
+    options:
+      "No sustainability requirements":
+        party_a: 10
+        party_b: 5
+      "Organic cotton line":
+        party_a: 25
+        party_b: 30
+      "Full sustainability program":
+        party_a: 15
+        party_b: 35
+
+  - name: "Contract Duration"
+    options:
+      "1 year (standard)":
+        party_a: 5
+        party_b: 25
+      "2 years":
+        party_a: 15
+        party_b: 15
+      "3 years":
+        party_a: 25
+        party_b: 10
+      "5 years":
+        party_a: 35
+        party_b: 5

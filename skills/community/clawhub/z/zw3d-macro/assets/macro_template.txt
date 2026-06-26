@@ -1,0 +1,35 @@
+# Author -ZW3D Assistant
+# Date - Thu Jan 01 00:00:00 2026
+# Version - 28
+# Description - 示例宏模板
+
+MACRO main
+[QaBlVersion,1]
+
+[vxBuildDate,01/01/2026]
+[vxConfigDefault,2800]
+
+# ===== 宏主体开始 =====
+# 在此处添加你的宏语句
+
+# 示例1: 新建文件
+[vxSend,"$CdFileNew"]
+[vxFormInitGlbl,UiFileNew,"89,1"]
+[vxSendEvt,"UiFileNew",1,1,7,"PartA"]
+[vxSendEvt,"UiFileNew",-1,0,0]
+
+# 示例2: 创建方块
+[vxInitCmd,FtAllBox,<14,0><8,0>]
+[vxSend,"!FtAllBox"]
+[vxSendEvtOpt,-1,0,1,2]
+
+# 示例3: 使用BUFFER批量执行
+BUFFER
+[vxSend,"!CdFileOpen2"]
+[vxSend,"PartA.Z3PRT"]
+ENDBUFFER
+
+# ===== 宏主体结束 =====
+
+[vxConfigRestore]
+ENDMACRO

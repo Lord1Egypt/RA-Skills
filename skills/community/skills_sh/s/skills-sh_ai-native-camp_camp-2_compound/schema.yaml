@@ -1,0 +1,128 @@
+# Compound — Insight Documentation Schema
+
+required_fields:
+  domain:
+    type: enum
+    values: [work, learning, project, tool, personal]
+    description: "인사이트가 속하는 영역"
+
+  date:
+    type: string
+    pattern: '^\d{4}-\d{2}-\d{2}$'
+    description: "인사이트가 도출된 날짜 (YYYY-MM-DD)"
+
+  insight_type:
+    type: enum
+    values:
+      - workflow_pattern        # 효율적인 작업 흐름 발견
+      - problem_solving         # 문제 해결 과정에서의 교훈
+      - tool_discovery          # 도구/기능 활용법 발견
+      - automation_pattern      # 자동화/효율화 패턴
+      - communication_pattern   # 소통/협업에서의 교훈
+      - decision_learning       # 의사결정에서의 교훈
+      - debugging_insight       # 디버깅/트러블슈팅 교훈
+      - design_pattern          # 설계/구조 패턴
+      - learning_method         # 효과적인 학습법 발견
+      - productivity_hack       # 생산성 향상 방법
+      - mistake_lesson          # 실수에서 배운 교훈
+      - best_practice           # 검증된 모범 사례
+    description: "인사이트의 유형"
+
+  component:
+    type: enum
+    values:
+      # work
+      - process
+      - collaboration
+      - meeting
+      - documentation
+      - planning
+      # learning
+      - skill-building
+      - knowledge-management
+      - study-method
+      - mentoring
+      # project
+      - architecture
+      - implementation
+      - testing
+      - deployment
+      - code-review
+      # tool
+      - claude-code
+      - mcp
+      - ide
+      - cli
+      - automation
+      # personal
+      - habit
+      - focus
+      - time-management
+      - reflection
+    description: "영역 내 하위 컴포넌트"
+
+  context:
+    type: string
+    min_length: 20
+    max_length: 300
+    description: "어떤 상황에서 이 인사이트가 나왔는지 (1-3문장)"
+
+  key_learning:
+    type: string
+    min_length: 10
+    max_length: 200
+    description: "핵심 교훈 한 문장"
+
+  impact:
+    type: enum
+    values: [critical, high, medium, low]
+    description: "인사이트의 영향 범위와 중요도"
+
+  tags:
+    type: array[string]
+    min_items: 1
+    max_items: 8
+    description: "검색용 키워드 (lowercase, hyphen-separated)"
+
+optional_fields:
+  related_components:
+    type: array[string]
+    description: "'domain/component' 형식"
+  evidence:
+    type: array[string]
+  status:
+    type: enum
+    values: [validated, hypothesis, superseded, archived]
+    default: validated
+  source_event:
+    type: string
+  action_items:
+    type: array[string]
+
+domain_component_mapping:
+  work: [process, collaboration, meeting, documentation, planning]
+  learning: [skill-building, knowledge-management, study-method, mentoring]
+  project: [architecture, implementation, testing, deployment, code-review]
+  tool: [claude-code, mcp, ide, cli, automation]
+  personal: [habit, focus, time-management, reflection]
+
+category_mapping:
+  workflow_pattern: "knowledge/workflow-patterns/"
+  problem_solving: "knowledge/problem-solving/"
+  tool_discovery: "knowledge/tool-discoveries/"
+  automation_pattern: "knowledge/tool-discoveries/"
+  communication_pattern: "knowledge/communication/"
+  decision_learning: "knowledge/decisions/"
+  debugging_insight: "knowledge/problem-solving/"
+  design_pattern: "knowledge/design-patterns/"
+  learning_method: "knowledge/learning-methods/"
+  productivity_hack: "knowledge/workflow-patterns/"
+  mistake_lesson: "knowledge/problem-solving/"
+  best_practice: "knowledge/best-practices/"
+
+validation_rules:
+  - "date는 YYYY-MM-DD 형식"
+  - "tags는 lowercase, hyphen-separated"
+  - "domain-component 매핑이 유효해야 함"
+  - "context는 구체적 상황 서술 (모호한 표현 금지)"
+  - "key_learning은 다른 상황에도 적용 가능한 일반화된 교훈"

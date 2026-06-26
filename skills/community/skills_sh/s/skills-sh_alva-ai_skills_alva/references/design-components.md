@@ -1,0 +1,1846 @@
+# Base Component Templates
+
+> ⚠️ **The ```css blocks in this file are the source of truth for
+> [css/design-system.css](css/design-system.css) (published to CDN).**
+> When you edit any ```css block, commit the matching regenerated
+> `design-system.css` alongside your `.md` edit. CI doc-sync catches drift.
+
+## Table of Contents
+
+- [Dropdown](#dropdown)
+- [Markdown](#markdown)
+- [Button](#button)
+- [Tag](#tag)
+- [Switch](#switch)
+- [Modal](#modal)
+- [Select](#select)
+- [Input](#input)
+- [Tab](#tab)
+- [Tooltip](#tooltip)
+
+---
+
+## Dropdown
+
+### Specification
+
+- No check icon — selection is conveyed by the rounded tinted pill alone.
+- Selected/hover background is a `--radius-ct-s` (4px) pill on `.list-item`.
+- Two sizes: **M** (default) and **S** (add `.size-s` to `.dropdown`). Width
+  follows the associated Select in both.
+
+### CSS
+
+```css
+.dropdown {
+  background-color: var(--b0-container);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xxs);
+  position: relative;
+  border-radius: var(--radius-pop-dropdown);
+  width: 100%;
+  box-shadow: var(--shadow-s);
+}
+
+.dropdown-border {
+  position: absolute;
+  border: 0.5px solid var(--line-l2);
+  border-radius: var(--radius-pop-dropdown);
+  inset: 0;
+  pointer-events: none;
+}
+
+.list-item {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  border-radius: var(--radius-ct-s);
+  transition: background-color 0.12s ease;
+}
+
+.list-item:hover,
+.list-item.selected {
+  background-color: rgba(73,163,166,0.08);
+}
+
+.list-item.selected .list-item-text {
+  color: var(--main-m1);
+}
+
+.list-item-inner {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-s);
+  gap: var(--spacing-xs);
+}
+
+.list-item-text {
+  flex: 1 0 0;
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text-n9);
+  letter-spacing: 0.14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Size S — width follows the Select trigger; only typography shrinks */
+.dropdown.size-s .list-item-text {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+```
+
+### HTML Structure
+
+```html
+<div class="dropdown">
+  <div class="dropdown-border"></div>
+
+  <div class="list-item" data-value="item-1">
+    <div class="list-item-inner">
+      <span class="list-item-text">Item - Normal</span>
+    </div>
+  </div>
+
+  <div class="list-item selected" data-value="item-2">
+    <div class="list-item-inner">
+      <span class="list-item-text">Item - Selected</span>
+    </div>
+  </div>
+</div>
+```
+
+### JS Interaction
+
+```js
+document.querySelectorAll(".list-item").forEach((item) => {
+  item.addEventListener("click", () => {
+    item
+      .closest(".dropdown")
+      .querySelectorAll(".list-item")
+      .forEach((i) => i.classList.remove("selected"));
+    item.classList.add("selected");
+  });
+});
+```
+
+## Markdown
+
+> For font specification, see
+> [design.md - Typography & Font](./design.md#typography--font).
+> Headings and body text use Delight with `-apple-system`, `BlinkMacSystemFont`,
+> `sans-serif` fallbacks; code uses JetBrains Mono.
+
+Uses
+[markdown-it](https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js)
+for automatic rendering. Write raw markdown inside
+`<script type="text/markdown">`, the init script parses it into standard HTML
+tags, and scoped CSS maps them to the Alva design spec.
+
+### Usage
+
+```html
+<!-- 1. Container with optional size modifier -->
+<div class="markdown-container">
+  <script type="text/markdown">
+    # Heading 1
+
+    Paragraph with `inline code`.
+
+    - Bullet item
+    - Another item
+
+    1. Ordered item
+    2. Another item
+
+    | Col A | Col B |
+    | ----- | ----- |
+    | Cell  | Cell  |
+  </script>
+</div>
+
+<!-- Default size is Medium. Modifiers: markdown-container--l (Large), markdown-container--s (Small) -->
+```
+
+### Required JS (add once at page bottom)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+<script>
+  const md = window.markdownit();
+  const defaultRender =
+    md.renderer.rules.link_open ||
+    function (tokens, idx, options, env, self) {
+      return self.renderToken(tokens, idx, options);
+    };
+  md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    tokens[idx].attrSet("target", "_blank");
+    tokens[idx].attrSet("rel", "noopener noreferrer");
+    return defaultRender(tokens, idx, options, env, self);
+  };
+  document.querySelectorAll('script[type="text/markdown"]').forEach((el) => {
+    const container = el.parentElement;
+    el.remove();
+    container.insertAdjacentHTML("beforeend", md.render(el.textContent));
+  });
+</script>
+```
+
+### CSS
+
+```css
+/* ── Container ── */
+.markdown-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+.markdown-container * {
+  box-sizing: border-box;
+}
+
+/* ── Headings ── */
+.markdown-container h1,
+.markdown-container h2,
+.markdown-container h3,
+.markdown-container h4,
+.markdown-container h5,
+.markdown-container h6 {
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--text-n9);
+  margin: 0;
+  width: 100%;
+}
+.markdown-container h1 {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.18px;
+  padding-top: var(--spacing-xxxs);
+}
+.markdown-container h2 {
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+  padding-top: var(--spacing-xxxs);
+}
+.markdown-container h3 {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  padding-top: 0;
+}
+.markdown-container h4,
+.markdown-container h5,
+.markdown-container h6 {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+}
+
+/* ── Paragraph ── */
+.markdown-container p {
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  color: var(--text-n9);
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* ── Lists ── */
+.markdown-container ul,
+.markdown-container ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.markdown-container li {
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  color: var(--text-n9);
+  position: relative;
+  padding-left: var(--spacing-l);
+}
+.markdown-container ul > li::before {
+  content: "";
+  position: absolute;
+  left: 7.5px;
+  top: 8.5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-n9);
+}
+.markdown-container ol {
+  counter-reset: md-ol;
+}
+.markdown-container ol > li {
+  counter-increment: md-ol;
+}
+.markdown-container ol > li::before {
+  content: counter(md-ol) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text-n9);
+}
+
+/* ── Code ── */
+.markdown-container code,
+.markdown-container pre {
+  background: var(--b-r02);
+  border-radius: var(--radius-ct-min);
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text-n7);
+}
+.markdown-container code {
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: inset 0 0 0 0.5px var(--line-l12);
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+  padding: 1px var(--spacing-xs);
+  margin: 0 var(--spacing-xxs);
+}
+.markdown-container pre {
+  border: 0.5px solid var(--line-l12);
+  border-radius: var(--radius-ct-s);
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+  padding: var(--spacing-s) var(--spacing-m);
+  margin: 0;
+  overflow-x: auto;
+}
+.markdown-container pre code {
+  display: inline;
+  vertical-align: baseline;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+/* ── Divider ── */
+.markdown-container hr {
+  height: 0.5px;
+  background: var(--line-l12);
+  border: none;
+  margin: var(--spacing-xxs) 0;
+}
+
+/* ── Table ── follows Table Card rules (design-widgets.md) */
+.markdown-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+.markdown-container th,
+.markdown-container td {
+  padding: 10px var(--spacing-xs);
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  color: var(--text-n9);
+  text-align: left;
+  min-height: 176px;
+}
+.markdown-container tr {
+  border-bottom: 0.5px solid var(--line-l12);
+}
+.markdown-container tr:last-child {
+  border-bottom: none;
+}
+.markdown-container th {
+  color: var(--text-n7);
+  padding-top: 0;
+  padding-bottom: 10px;
+}
+.markdown-container th:first-child,
+.markdown-container td:first-child {
+  padding-left: 0;
+}
+.markdown-container th:last-child,
+.markdown-container td:last-child {
+  padding-right: 0;
+}
+.markdown-container td code {
+  margin: 0;
+}
+
+/* ── Link ── */
+.markdown-container a {
+  color: var(--text-n7);
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--text-n5);
+  text-decoration-thickness: 8%;
+  text-underline-offset: 35%;
+  text-decoration-skip-ink: none;
+  transition: color 0.15s ease;
+}
+.markdown-container a:hover {
+  color: var(--main-m1);
+  text-decoration-color: var(--main-m1);
+}
+.markdown-container a::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  mask: url("https://alva-ai-static.b-cdn.net/icons/go-l.svg") center / contain
+    no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--spacing-xxs);
+  flex-shrink: 0;
+}
+
+/* ── Large ── */
+.markdown-container--l {
+  gap: var(--spacing-m);
+}
+.markdown-container--l h1,
+.markdown-container--l h2 {
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.2px;
+  padding-top: var(--spacing-xs);
+}
+.markdown-container--l h3 {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.18px;
+  padding-top: var(--spacing-xxs);
+}
+.markdown-container--l h4,
+.markdown-container--l h5,
+.markdown-container--l h6 {
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+}
+.markdown-container--l p,
+.markdown-container--l li {
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+}
+.markdown-container--l li {
+  padding-left: var(--spacing-xl);
+}
+.markdown-container--l ul > li::before {
+  left: 9.5px;
+  top: 10.5px;
+}
+.markdown-container--l ol > li::before {
+  font-size: 16px;
+  line-height: 26px;
+  width: 24px;
+}
+.markdown-container--l ul,
+.markdown-container--l ol {
+  gap: var(--spacing-xs);
+}
+.markdown-container--l th,
+.markdown-container--l td {
+  padding: var(--spacing-s) var(--spacing-xs);
+  min-height: auto;
+  max-height: 180px;
+}
+.markdown-container--l code {
+  padding: var(--spacing-xxxs) var(--spacing-xs);
+}
+.markdown-container--l pre {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+}
+.markdown-container--l a::after {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Small ── */
+.markdown-container--s {
+  gap: var(--spacing-xxs);
+}
+.markdown-container--s h1 {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  padding-top: var(--spacing-xxxs);
+}
+.markdown-container--s h2 {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+  padding-top: 0;
+}
+.markdown-container--s h3 {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+  padding-top: 0;
+}
+.markdown-container--s h4,
+.markdown-container--s h5,
+.markdown-container--s h6 {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+.markdown-container--s p,
+.markdown-container--s li {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+.markdown-container--s a::after {
+  width: 12px;
+  height: 12px;
+}
+.markdown-container--s li {
+  padding-left: var(--spacing-l);
+}
+.markdown-container--s ul > li::before {
+  left: 7.5px;
+  top: 7.5px;
+}
+.markdown-container--s ol > li::before {
+  font-size: 12px;
+  line-height: 20px;
+  width: 20px;
+}
+.markdown-container--s ul,
+.markdown-container--s ol {
+  gap: var(--spacing-xxs);
+}
+.markdown-container--s code {
+  font-size: 10px;
+  line-height: 16px;
+  padding: var(--spacing-xxxs) 6px;
+}
+.markdown-container--s pre {
+  font-size: 10px;
+  line-height: 16px;
+  padding: var(--spacing-xs) var(--spacing-s);
+}
+.markdown-container--s th,
+.markdown-container--s td {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+  padding: var(--spacing-xs);
+  min-height: 176px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .markdown-container {
+    max-width: 100%;
+    padding: 0 var(--spacing-m);
+  }
+  .markdown-container table {
+    overflow-x: scroll;
+  }
+}
+```
+
+## Button
+
+### 1. Overview
+
+The button component system contains **2 types** x **4 sizes** x **4 states** =
+32 combinations
+
+- **Primary Button**: for primary actions (submit, confirm, save)
+- **Secondary Button**: for secondary actions (cancel, back, view)
+
+---
+
+### 2. HTML Class Name Convention
+
+#### Basic Structure
+
+```html
+<button class="btn [type] [size] [state]">Button Text</button>
+```
+
+#### Class Name Combination Table
+
+| Combination      | Class Name        | Example                            |
+| ---------------- | ----------------- | ---------------------------------- |
+| Base Class       | `btn`             | Required                           |
+| Primary Button   | `btn-primary`     | `btn btn-primary btn-large`        |
+| Secondary Button | `btn-secondary`   | `btn btn-secondary btn-medium`     |
+| Large Size       | `btn-large`       | height/type per CSS                |
+| Medium Size      | `btn-medium`      | height/type per CSS                |
+| Small Size       | `btn-small`       | height/type per CSS                |
+| Extra Small Size | `btn-extra-small` | height/type per CSS                |
+| Disabled State   | `btn-disabled`    | Must also add `disabled` attribute |
+| Loading State    | `btn-loading`     | Shows spinning animation           |
+
+---
+
+### 3. Complete CSS Code
+
+```css
+/* Base Button Styles */
+.btn {
+  border: none;
+  outline: none;
+  background: none;
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: var(--main-m1);
+  color: var(--b-common-white);
+}
+
+.btn-primary:hover:not(.btn-disabled) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+}
+
+.btn-primary:active:not(.btn-disabled) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+}
+
+.btn-primary.btn-disabled {
+  background-color: var(--b0-container);
+  color: var(--text-n2);
+  cursor: not-allowed;
+  border: 0.5px solid var(--line-l3);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-n9);
+  border: 0.5px solid var(--line-l3);
+}
+
+.btn-secondary:hover:not(.btn-disabled) {
+  border-color: var(--line-l9);
+}
+
+.btn-secondary:active:not(.btn-disabled) {
+  border-color: var(--line-l3);
+  background-color: var(--b-r02);
+}
+
+.btn-secondary.btn-disabled {
+  color: var(--text-n2);
+  border-color: var(--line-l3);
+  cursor: not-allowed;
+}
+
+/* Size - Large */
+.btn-large {
+  height: 48px;
+  padding: 11px var(--spacing-l);
+  gap: var(--spacing-xs);
+  border-radius: var(--radius-btn-m);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+}
+
+/* Size - Medium */
+.btn-medium {
+  height: 40px;
+  padding: 9px var(--spacing-l);
+  gap: var(--spacing-xs);
+  border-radius: var(--radius-btn-m);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+}
+
+/* Size - Small */
+.btn-small {
+  height: 32px;
+  padding: 6px var(--spacing-m);
+  gap: 6px;
+  border-radius: var(--radius-btn-s);
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+
+/* Size - Extra Small */
+.btn-extra-small {
+  height: 28px;
+  padding: var(--spacing-xxs) var(--spacing-s);
+  gap: var(--spacing-xxs);
+  border-radius: var(--radius-btn-s);
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+
+/* Disabled State */
+.btn-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading State */
+.btn-loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 50%;
+  left: 50%;
+  margin-left: -7px;
+  margin-top: -7px;
+  border: 1px solid var(--b-common-white);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+.btn-secondary.btn-loading::after {
+  border-color: var(--line-l9);
+  border-top-color: transparent;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Focus State */
+.btn:focus-visible {
+  outline: 2px solid var(--main-m1);
+  outline-offset: 2px;
+}
+```
+
+---
+
+## Tag
+
+### 1. Overview
+
+Tags are compact labels used to display status, category, or classification.
+They come in **4 sizes** and **2 style modes**. Colors are not predefined — the
+agent picks the appropriate `--main-mX` color token based on semantic context
+(m1 Theme, m2 Link, m3 Bullish, m4 Bearish, m5 Alert, m6 Emphasize). Every
+`--main-mX` has a matching `--main-mX-10` (10 % opacity) variant for the tinted
+style.
+
+### 2. CSS
+
+```css
+/* Base (default size) */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  white-space: nowrap;
+  border-radius: var(--radius-ct-s);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 22px;
+  padding: 1px 6px;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+  /* Default color (no semantic meaning) */
+  background-color: var(--b-r05);
+  color: var(--text-n9);
+}
+
+/* Size — Medium */
+.tag-md {
+  height: 26px;
+  padding: var(--spacing-xxxs) var(--spacing-xs);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+}
+
+/* Size — Small */
+.tag-sm {
+  height: 20px;
+  padding: 1px 4px;
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: 0.11px;
+  border-radius: var(--radius-ct-min);
+}
+
+/* Size — Extra Small */
+.tag-xs {
+  height: 18px;
+  padding: 1px 4px;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.1px;
+  border-radius: var(--radius-ct-min);
+}
+
+/*
+ * Style — Tinted
+ * Light transparent background + colored text.
+ *   background-color: var(--main-mX-10);
+ *   color: var(--main-mX);
+ *
+ * Style — Solid
+ * Full-color background + white text.
+ *   background-color: var(--main-mX);
+ *   color: var(--b-common-white);
+ */
+```
+
+### 3. HTML
+
+```html
+<!-- Tinted — agent chooses color by meaning -->
+<span class="tag" style="background:var(--main-m3-10);color:var(--main-m3)"
+  >BULLISH</span
+>
+<span class="tag" style="background:var(--main-m4-10);color:var(--main-m4)"
+  >BEARISH</span
+>
+<span class="tag" style="background:var(--main-m5-10);color:var(--main-m5)"
+  >MODERATE</span
+>
+<span class="tag">Label</span>
+
+<!-- Solid -->
+<span class="tag" style="background:var(--main-m3);color:var(--b-common-white)"
+  >LONG</span
+>
+<span class="tag" style="background:var(--main-m4);color:var(--b-common-white)"
+  >SHORT</span
+>
+
+<!-- Sizes -->
+<span
+  class="tag tag-md"
+  style="background:var(--main-m3-10);color:var(--main-m3)"
+  >BULLISH</span
+>
+<span
+  class="tag tag-sm"
+  style="background:var(--main-m5-10);color:var(--main-m5)"
+  >MODERATE</span
+>
+<span
+  class="tag tag-xs"
+  style="background:var(--main-m4-10);color:var(--main-m4)"
+  >BEARISH</span
+>
+```
+
+---
+
+## Switch
+
+Sliding toggle for boolean state (on/off). **3 sizes** × **4 states** = 12
+combinations. Ratio rule: thumb diameter = track height × 2/3, thumb spacing =
+track height × 1/6.
+
+### CSS
+
+```css
+.switch {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+/* Track — Off */
+.switch {
+  background-color: var(--b-r1);
+}
+
+/* Track — On */
+.switch.on {
+  background-color: var(--main-m1);
+}
+
+/* Thumb */
+.switch-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--b-common-white);
+  border-radius: 50%;
+  transition: left 0.2s ease;
+}
+
+/* Disabled */
+.switch.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.switch.disabled:not(.on) {
+  opacity: 0.4;
+}
+.switch.disabled.on {
+  opacity: 0.3;
+}
+
+/* Size — Medium (default) */
+.switch {
+  width: 32px;
+  height: 16px;
+  border-radius: 1000px;
+}
+.switch .switch-thumb {
+  width: 10.67px;
+  height: 10.67px;
+  left: 2.67px;
+}
+.switch.on .switch-thumb {
+  left: calc(100% - 10.67px - 2.67px);
+}
+
+/* Size — Small */
+.switch-sm {
+  width: 24px;
+  height: 12px;
+  border-radius: 100px;
+}
+.switch-sm .switch-thumb {
+  width: 8px;
+  height: 8px;
+  left: 2px;
+}
+.switch-sm.on .switch-thumb {
+  left: calc(100% - 8px - 2px);
+}
+
+/* Size — Large */
+.switch-lg {
+  width: 40px;
+  height: 20px;
+  border-radius: 166.67px;
+}
+.switch-lg .switch-thumb {
+  width: 13.33px;
+  height: 13.33px;
+  left: 3.33px;
+}
+.switch-lg.on .switch-thumb {
+  left: calc(100% - 13.33px - 3.33px);
+}
+```
+
+### HTML
+
+```html
+<!-- Medium (default), off -->
+<div class="switch" role="switch" aria-checked="false">
+  <div class="switch-thumb"></div>
+</div>
+
+<!-- Medium, on -->
+<div class="switch on" role="switch" aria-checked="true">
+  <div class="switch-thumb"></div>
+</div>
+
+<!-- Small, disabled -->
+<div
+  class="switch switch-sm disabled"
+  role="switch"
+  aria-checked="false"
+  aria-disabled="true"
+>
+  <div class="switch-thumb"></div>
+</div>
+```
+
+### JS Interaction
+
+```js
+document.querySelectorAll(".switch:not(.disabled)").forEach(function (sw) {
+  sw.addEventListener("click", function () {
+    var isOn = sw.classList.toggle("on");
+    sw.setAttribute("aria-checked", isOn);
+  });
+});
+```
+
+---
+
+## Modal
+
+### Structure
+
+```
+Modal                        ← Overlay
+ └─ Action Sheet             ← Content panel
+     ├─ Modal Title          ← Title + close button
+     └─ Placeholder          ← Content slot area
+```
+
+### Overlay
+
+| Property   | Value                                       |
+| ---------- | ------------------------------------------- |
+| Background | `var(--main-m7)`                            |
+| Padding X  | `var(--spacing-m)` / `16px`                 |
+| Padding Y  | `var(--spacing-xxxxxl)` / `48px`            |
+| Layout     | `flex` / `column` / `center` / `center`     |
+| Sizing     | `100%` width & height (full-screen overlay) |
+
+### Action Sheet (Content Panel)
+
+| Property      | Value                              |
+| ------------- | ---------------------------------- |
+| Background    | `var(--b0-container)`              |
+| Max Width     | `960px`                            |
+| Width         | `100%` (constrained by max-width)  |
+| Flex          | `1 0 0` (fills available height)   |
+| Border Radius | `var(--radius-pop-dialog)` / `12px`|
+| Border        | `0.5px solid var(--line-l2)`       |
+| Padding       | `var(--spacing-xxl)` / `28px` (all sides)|
+| Gap           | `var(--spacing-m)` / `16px` (between title and content) |
+
+### Modal Title
+
+| Property       | Value                                   |
+| -------------- | --------------------------------------- |
+| Layout         | `flex` / `row` / `space-between`        |
+| Gap            | `var(--spacing-s)` / `12px` (between title and close button) |
+| Font Family    | `Delight`                               |
+| Font Weight    | `500`                                   |
+| Font Size      | `18px`                                  |
+| Line Height    | `28px`                                  |
+| Letter Spacing | `0.18px`                                |
+| Text Color     | `var(--text-n9)`                        |
+
+### Close Icon
+
+**CSS**
+
+```css
+.modal-close {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+  background-color: var(--text-n9);
+  -webkit-mask: url("https://alva-ai-static.b-cdn.net/icons/close-l1.svg")
+    center / contain no-repeat;
+  mask: url("https://alva-ai-static.b-cdn.net/icons/close-l1.svg") center /
+    contain no-repeat;
+  transition: opacity 0.15s ease;
+}
+
+.modal-close:hover {
+  opacity: 0.6;
+}
+```
+
+**HTML**
+
+```html
+<div class="modal-close"></div>
+```
+
+### Placeholder (Content Slot)
+
+| Property | Value                           |
+| -------- | ------------------------------- |
+| Flex     | `1 0 0` (fills remaining space) |
+| Width    | `100%`                          |
+
+> Placeholder is a reserved area; replace with actual business content (forms,
+> lists, confirmation messages, etc.) when used.
+
+### Interaction
+
+- Clicking the overlay can close the modal (configurable)
+- Clicking the close icon (x) in the top-right corner closes the modal
+- When the modal is open, background content is not scrollable
+- When modal content exceeds available height, the content area scrolls
+  internally
+- Responsive: `16px` safe margin horizontally, `48px` safe margin vertically
+
+### Responsive
+
+| Screen   | Panel Width           | Behavior                                              |
+| -------- | --------------------- | ----------------------------------------------------- |
+| >= 992px | max `960px`, centered | Horizontally centered, equal whitespace on both sides |
+| < 992px  | `100% - 32px`         | Adaptive width, `16px` margin on left and right       |
+
+## Select
+
+Clicking the Select container triggers the associated [Dropdown](#dropdown).
+Dropdown width defaults to the same width as the Select. Dropdown list item text
+size follows the Select size. Clicking again or clicking outside closes the
+Dropdown. Arrow icon always points down and does not rotate.
+
+### CSS
+
+```css
+.select {
+  display: flex;
+  align-items: center;
+  background-color: var(--b0-container);
+  cursor: pointer;
+  position: relative;
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  transition: border-color 0.12s ease;
+}
+
+.select-border {
+  position: absolute;
+  inset: 0;
+  border: 0.5px solid var(--line-l3);
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color 0.12s ease;
+}
+
+/* Activated (dropdown open) — color + 1px border. Hover does not change color. */
+.select.open .select-border {
+  border-color: var(--line-l9);
+  border-width: 1px;
+}
+
+.select-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-n3);
+}
+
+/* Filled state — has a selected value */
+.select.filled .select-text {
+  color: var(--text-n9);
+}
+
+.select.open .select-text {
+  color: var(--text-n9);
+}
+
+.select.filled .select-icon {
+  opacity: 0.2;
+}
+
+/* Size — Large */
+.select-lg {
+  height: 48px;
+  padding: 11px var(--spacing-m);
+  gap: var(--spacing-xs);
+  border-radius: var(--radius-btn-m);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+}
+
+/* Size — Medium (default) */
+.select {
+  height: 40px;
+  padding: var(--spacing-xs) var(--spacing-s);
+  gap: var(--spacing-xs);
+  border-radius: var(--radius-btn-m);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+}
+
+/* Size — Small */
+.select-sm {
+  height: 32px;
+  padding: 6px var(--spacing-s);
+  gap: var(--spacing-xxs);
+  border-radius: var(--radius-btn-s);
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+
+/* Size — Extra Small */
+.select-xs {
+  height: 28px;
+  padding: var(--spacing-xxs) var(--spacing-xs);
+  gap: var(--spacing-xxs);
+  border-radius: var(--radius-btn-s);
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+
+/* Arrow Icon — 14px for L/M, 12px for S/XS */
+.select-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  opacity: 0.22;
+  transition: opacity 0.12s ease;
+}
+
+.select-sm .select-icon,
+.select-xs .select-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.select.open .select-icon {
+  opacity: 1;
+}
+
+.select-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+```
+
+### HTML Template
+
+```html
+<!-- Medium Select (default, placeholder state) -->
+<div class="select" data-select="demo">
+  <div class="select-border"></div>
+  <span class="select-text">Select option</span>
+  <div class="select-icon" style="width:14px;height:14px;">
+    <img
+      src="https://alva-ai-static.b-cdn.net/icons/arrow-down-f2.svg"
+      alt=""
+    />
+  </div>
+</div>
+
+<!-- Medium Select (filled state) -->
+<div class="select filled" data-select="demo">
+  <div class="select-border"></div>
+  <span class="select-text">Selected Value</span>
+  <div class="select-icon" style="width:14px;height:14px;">
+    <img
+      src="https://alva-ai-static.b-cdn.net/icons/arrow-down-f2.svg"
+      alt=""
+    />
+  </div>
+</div>
+
+<!-- Associated Dropdown (hidden by default, shown on click) -->
+<div class="dropdown" style="display:none;" data-dropdown="demo">
+  <div class="dropdown-border"></div>
+  <div class="list-item" data-value="opt1">
+    <div class="list-item-inner">
+      <span class="list-item-text">Option 1</span>
+    </div>
+  </div>
+  <div class="list-item" data-value="opt2">
+    <div class="list-item-inner">
+      <span class="list-item-text">Option 2</span>
+    </div>
+  </div>
+</div>
+```
+
+### JS Interaction
+
+```js
+// Select + Dropdown toggle
+document.querySelectorAll("[data-select]").forEach(function (sel) {
+  var name = sel.dataset.select;
+  var dd = document.querySelector('[data-dropdown="' + name + '"]');
+  if (!dd) return;
+
+  sel.addEventListener("click", function (e) {
+    e.stopPropagation();
+    var isOpen = dd.style.display !== "none";
+    dd.style.display = isOpen ? "none" : "";
+    sel.classList.toggle("open", !isOpen);
+  });
+
+  dd.querySelectorAll(".list-item").forEach(function (item) {
+    item.addEventListener("click", function () {
+      dd.querySelectorAll(".list-item").forEach(function (i) {
+        i.classList.remove("selected");
+      });
+      item.classList.add("selected");
+      var text = item.querySelector(".list-item-text").textContent;
+      sel.querySelector(".select-text").textContent = text;
+      sel.classList.add("filled");
+      dd.style.display = "none";
+      sel.classList.remove("open");
+    });
+  });
+});
+
+// Close on outside click
+document.addEventListener("click", function () {
+  document.querySelectorAll("[data-dropdown]").forEach(function (dd) {
+    dd.style.display = "none";
+  });
+  document.querySelectorAll("[data-select]").forEach(function (sel) {
+    sel.classList.remove("open");
+  });
+});
+```
+
+---
+
+## Input
+
+Same container style and sizes as [Select](#select), without the arrow icon.
+Uses a native `<input>` element. Placeholder color matches Select's placeholder
+state; typed text matches the filled state.
+
+### CSS
+
+```css
+.input {
+  display: flex;
+  align-items: center;
+  background-color: var(--b0-container);
+  position: relative;
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 400;
+  transition: border-color 0.12s ease;
+}
+
+.input-border {
+  position: absolute;
+  inset: 0;
+  border: 0.5px solid var(--line-l3);
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color 0.12s ease;
+}
+
+/* Activated (focused/typing) — color + 1px border. Hover does not change color. */
+.input:focus-within .input-border {
+  border-color: var(--line-l9);
+  border-width: 1px;
+}
+
+.input-field {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  font: inherit;
+  color: var(--text-n9);
+}
+
+.input-field::placeholder {
+  color: var(--text-n3);
+}
+
+/* Size — Large */
+.input-lg {
+  height: 48px;
+  padding: 11px var(--spacing-m);
+  border-radius: var(--radius-btn-m);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+}
+
+/* Size — Medium (default) */
+.input {
+  height: 40px;
+  padding: var(--spacing-xs) var(--spacing-s);
+  border-radius: var(--radius-btn-m);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+}
+
+/* Size — Small */
+.input-sm {
+  height: 32px;
+  padding: 6px var(--spacing-s);
+  border-radius: var(--radius-btn-s);
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+
+/* Size — Extra Small */
+.input-xs {
+  height: 28px;
+  padding: var(--spacing-xxs) var(--spacing-xs);
+  border-radius: var(--radius-btn-s);
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+```
+
+### HTML Template
+
+```html
+<!-- Medium Input (default) -->
+<div class="input">
+  <div class="input-border"></div>
+  <input type="text" class="input-field" placeholder="Enter value" />
+</div>
+
+<!-- Large Input -->
+<div class="input input-lg">
+  <div class="input-border"></div>
+  <input type="text" class="input-field" placeholder="Enter value" />
+</div>
+
+<!-- Small Input -->
+<div class="input input-sm">
+  <div class="input-border"></div>
+  <input type="text" class="input-field" placeholder="Enter value" />
+</div>
+```
+
+---
+
+## Tab
+
+3 styles (Underline, Segmented, Pill). Underline ships 4 sizes (XL/L/M/S); Segmented and Pill ship 3 sizes (L/M/S). 10 variants total.
+
+- **Underline**: tab bar fills the container; items are content-width, packed from the left; thin bottom divider; active item has a bottom bar in `--main-m1`. Active text is Medium.
+- **Segmented**: items share a tinted rounded container (`--b-r05`); active item is a contrasting white tile. Active text is Medium.
+- **Pill**: capsule-shaped items, each with its own subtle background (`--b-r03`); active item is a dark capsule (`rgba(0,0,0,0.7)`) with white text. **Active text stays Regular** (no weight change).
+- **Overflow**: tab item text never wraps. When items exceed container width — Underline scrolls horizontally (scrollbar hidden); Pill wraps to the next row.
+
+### CSS
+
+```css
+/* Shared */
+.tab {
+  display: flex;
+  align-items: center;
+}
+.tab-item {
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+/* Reserve Medium-weight width to prevent layout shift when active state flips.
+   Only applied where active state changes weight (Underline + Segmented). */
+.tab-underline .tab-item::after,
+.tab-segmented .tab-item::after {
+  content: attr(data-text);
+  font-weight: 500;
+  visibility: hidden;
+  height: 0;
+  display: block;
+  overflow: hidden;
+}
+
+/* ── Underline ── divider + active bar are bottom-anchored overlays (both bottom:0,
+   so bottoms align); bar covers divider via z-index. Do not refactor to a border. */
+.tab-underline {
+  position: relative;
+  width: 100%;
+  align-items: flex-end;
+  gap: var(--spacing-m);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+.tab-underline::-webkit-scrollbar {
+  display: none;
+}
+.tab-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.5px;
+  background: var(--line-l12);
+  z-index: 0;
+}
+.tab-underline .tab-item {
+  padding-bottom: var(--spacing-xxs);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  color: var(--text-n7);
+}
+.tab-underline .tab-item.active {
+  position: relative;
+  z-index: 1;
+  color: var(--text-n9);
+  font-weight: 500;
+}
+.tab-underline .tab-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--main-m1);
+}
+
+/* Underline — Size L */
+.tab-underline.tab-l {
+  gap: var(--spacing-l);
+}
+.tab-underline.tab-l .tab-item {
+  padding-bottom: 6px;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+}
+
+/* Underline — Size S */
+.tab-underline.tab-s {
+  gap: var(--spacing-s);
+}
+.tab-underline.tab-s .tab-item {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+
+/* Underline — Size XL */
+.tab-underline.tab-xl {
+  gap: var(--spacing-l);
+}
+.tab-underline.tab-xl .tab-item {
+  padding-top: var(--spacing-s);
+  padding-bottom: 10px;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.18px;
+}
+
+/* ── Segmented ── */
+.tab-segmented {
+  gap: 0;
+  background: var(--b-r05);
+  padding: var(--spacing-xxxs);
+  border-radius: var(--radius-ct-m);
+}
+.tab-segmented .tab-item {
+  padding: 6px var(--spacing-s);
+  border-radius: var(--radius-ct-s); /* 4px */
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  color: var(--text-n7);
+  background: transparent;
+}
+.tab-segmented .tab-item.active {
+  background: var(--b0-container);
+  color: var(--text-n9);
+  font-weight: 500;
+}
+
+/* Segmented — Size L */
+.tab-segmented.tab-l {
+  padding: var(--spacing-xxs);
+}
+.tab-segmented.tab-l .tab-item {
+  padding: 6px var(--spacing-m);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+}
+
+/* Segmented — Size S */
+.tab-segmented.tab-s {
+  border-radius: var(--radius-ct-s); /* 4px */
+}
+.tab-segmented.tab-s .tab-item {
+  padding: var(--spacing-xxs) 10px;
+  border-radius: var(--radius-ct-min); /* 2px */
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+
+/* ── Pill (capsule) ── */
+.tab-pill {
+  gap: var(--spacing-s);
+  flex-wrap: wrap;
+}
+.tab-pill .tab-item {
+  padding: 6px var(--spacing-s);
+  border-radius: var(--radius-ct-max); /* capsule */
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  background: var(--b-r03);
+  color: var(--text-n7);
+}
+.tab-pill .tab-item.active {
+  /* Fixed dark bg + white text; intentionally not flipped in dark mode */
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Pill — Size L */
+.tab-pill.tab-l .tab-item {
+  padding: var(--spacing-xs) var(--spacing-m);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+}
+
+/* Pill — Size S */
+.tab-pill.tab-s {
+  gap: var(--spacing-xs);
+}
+.tab-pill.tab-s .tab-item {
+  padding: var(--spacing-xxs) 10px;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}
+```
+
+### HTML
+
+```html
+<!-- Underline M -->
+<div class="tab tab-underline" data-tab-group="demo">
+  <div class="tab-item active" data-tab="tab1" data-text="Tab 1">Tab 1</div>
+  <div class="tab-item" data-tab="tab2" data-text="Tab 2">Tab 2</div>
+  <div class="tab-item" data-tab="tab3" data-text="Tab 3">Tab 3</div>
+</div>
+
+<!-- Tab panels — data-tab-panel value must match data-tab on the trigger -->
+<div data-tab-panel="tab1" data-tab-group="demo">Panel 1</div>
+<div data-tab-panel="tab2" data-tab-group="demo" style="display:none;">
+  Panel 2
+</div>
+<div data-tab-panel="tab3" data-tab-group="demo" style="display:none;">
+  Panel 3
+</div>
+```
+
+### JS Interaction
+
+```js
+// Tab switching — handles active state, panel visibility, and ECharts resize.
+// Include once per page. Works for all .tab groups via data-tab-group.
+document.querySelectorAll(".tab").forEach(function (tab) {
+  tab.addEventListener("click", function (e) {
+    var item = e.target.closest(".tab-item");
+    if (!item || item.classList.contains("active")) return;
+
+    var group = tab.dataset.tabGroup;
+
+    // Update active tab
+    tab.querySelectorAll(".tab-item").forEach(function (i) {
+      i.classList.remove("active");
+    });
+    item.classList.add("active");
+
+    // Switch panels
+    var panels = group
+      ? document.querySelectorAll(
+          '[data-tab-panel][data-tab-group="' + group + '"]',
+        )
+      : [];
+    panels.forEach(function (p) {
+      p.style.display = p.dataset.tabPanel === item.dataset.tab ? "" : "none";
+    });
+
+    // Resize ECharts instances inside the newly visible panel
+    // (hidden containers report 0×0, so charts need a resize after show)
+    var active = group
+      ? document.querySelector(
+          '[data-tab-panel="' +
+            item.dataset.tab +
+            '"][data-tab-group="' +
+            group +
+            '"]',
+        )
+      : null;
+    if (active) {
+      active.querySelectorAll("[_echarts_instance_]").forEach(function (el) {
+        var inst = echarts.getInstanceByDom(el);
+        if (inst) inst.resize();
+      });
+      active.querySelectorAll(".table-card").forEach(function (el) {
+        if (typeof initTableAlignment === "function") initTableAlignment(el);
+      });
+    }
+  });
+});
+```
+
+---
+
+## Tooltip
+
+2 variants: **Simple** (text only) and **Rich** (title + description).
+
+### CSS
+
+```css
+.tooltip {
+  background-color: var(--b0-container);
+  position: absolute;
+  border-radius: var(--radius-pop-tips);
+  box-shadow: var(--shadow-s);
+  padding: var(--spacing-m);
+  width: fit-content;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxxs);
+}
+
+.tooltip-border {
+  position: absolute;
+  border: 0.5px solid var(--line-l2);
+  border-radius: var(--radius-pop-tips);
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Simple — text only */
+.tooltip-text {
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.14px;
+  color: var(--text-n9);
+  font-weight: 400;
+}
+
+/* Rich — title */
+.tooltip-title {
+  font-family:
+    "Delight",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.16px;
+  color: var(--text-n9);
+  font-weight: 500;
+}
+
+/* Rich — description reuses .tooltip-text */
+```
+
+### HTML
+
+```html
+<!-- Simple Tooltip -->
+<div class="tooltip">
+  <div class="tooltip-border"></div>
+  <div class="tooltip-text">Tooltip description text</div>
+</div>
+
+<!-- Rich Tooltip -->
+<div class="tooltip">
+  <div class="tooltip-border"></div>
+  <div class="tooltip-title">Title</div>
+  <div class="tooltip-text">Tooltip description text</div>
+</div>
+```

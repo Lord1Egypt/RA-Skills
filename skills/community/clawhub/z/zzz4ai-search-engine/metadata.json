@@ -1,0 +1,8 @@
+{
+  "name": "zzz4ai-search-engine",
+  "version": "1.0.6",
+  "description": "国内搜索聚合引擎，6个可用搜索源（综合+学术+视频）。支持高级搜索语法、意图识别。无需API密钥。已被反爬拦截的8个引擎已移除。",
+  "engines": 6,
+  "region": "cn",
+  "requires_api_key": false
+}

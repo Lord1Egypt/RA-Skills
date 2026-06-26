@@ -1,0 +1,17 @@
+{
+  "id": "zopaf",
+  "name": "Zopaf Negotiation Engine",
+  "description": "Negotiation math engine — Pareto frontiers, iso-utility counteroffers, and preference inference via MILP optimization. Zero LLM tokens.",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "mcpUrl": {
+        "type": "string",
+        "description": "Zopaf MCP server URL",
+        "default": "https://zopaf-mcp-production.up.railway.app/mcp"
+      }
+    },
+    "additionalProperties": false
+  }
+}

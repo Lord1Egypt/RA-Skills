@@ -1,35 +1,95 @@
 ---
-name: "grpc-service-development"
-description: "Indexed by skills.sh from aj-geddes/useful-ai-prompts"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aj-geddes"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aj-geddes/useful-ai-prompts/grpc-service-development"
-sourceUrl: "https://skills.sh/aj-geddes/useful-ai-prompts/grpc-service-development"
+name: grpc-service-development
+description: >
+  Build high-performance gRPC services with Protocol Buffers, bidirectional
+  streaming, and microservice communication. Use when building gRPC servers,
+  defining service contracts, or implementing inter-service communication.
 ---
 
-# grpc-service-development
+# gRPC Service Development
 
-> Indexed by skills.sh from aj-geddes/useful-ai-prompts
+## Table of Contents
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aj-geddes
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aj-geddes/useful-ai-prompts/grpc-service-development`
-- **Source URL:** [https://skills.sh/aj-geddes/useful-ai-prompts/grpc-service-development](https://skills.sh/aj-geddes/useful-ai-prompts/grpc-service-development)
+- [Overview](#overview)
+- [When to Use](#when-to-use)
+- [Quick Start](#quick-start)
+- [Reference Guides](#reference-guides)
+- [Best Practices](#best-practices)
 
 ## Overview
 
+Develop efficient gRPC services using Protocol Buffers for service definition, with support for unary calls, client streaming, server streaming, and bidirectional streaming patterns.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/aj-geddes/useful-ai-prompts/grpc-service-development
+## When to Use
+
+- Building microservices that require high performance
+- Defining service contracts with Protocol Buffers
+- Implementing real-time bidirectional communication
+- Creating internal service-to-service APIs
+- Optimizing bandwidth-constrained environments
+- Building polyglot service architectures
+
+## Quick Start
+
+Minimal working example:
+
+```protobuf
+syntax = "proto3";
+
+package user.service;
+
+message User {
+  string id = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string role = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+}
+
+message CreateUserRequest {
+  string email = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string role = 4;
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  string email = 2;
+  string first_name = 3;
+// ... (see reference guides for full implementation)
 ```
+
+## Reference Guides
+
+Detailed implementations in the `references/` directory:
+
+| Guide | Contents |
+|---|---|
+| [Protocol Buffer Service Definition](references/protocol-buffer-service-definition.md) | Protocol Buffer Service Definition |
+| [Node.js gRPC Server Implementation](references/nodejs-grpc-server-implementation.md) | Node.js gRPC Server Implementation |
+| [Python gRPC Server (grpcio)](references/python-grpc-server-grpcio.md) | Python gRPC Server (grpcio) |
+| [Client Implementation](references/client-implementation.md) | Client Implementation |
+
+## Best Practices
+
+### ✅ DO
+
+- Use clear message and service naming
+- Implement proper error handling with gRPC status codes
+- Add metadata for logging and tracing
+- Version your protobuf definitions
+- Use streaming for large datasets
+- Implement timeouts and deadlines
+- Monitor gRPC metrics
+
+### ❌ DON'T
+
+- Use gRPC for browser-based clients (use gRPC-Web)
+- Expose sensitive data in proto definitions
+- Create deeply nested messages
+- Ignore error status codes
+- Send uncompressed large payloads
+- Skip security with TLS in production

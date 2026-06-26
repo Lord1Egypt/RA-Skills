@@ -1,0 +1,22 @@
+{
+  "name": "zl-clawpay",
+  "version": "1.0.9",
+  "description": "ZL-ClawPay Node.js — SM2/SM3/SM4 加密支付技能",
+  "main": "scripts/skill.js",
+  "bin": {
+    "zl-clawpay": "scripts/skill.js"
+  },
+  "scripts": {
+    "start": "node scripts/skill.js",
+    "test": "node tests/run-cli-tests.js"
+  },
+  "dependencies": {
+    "axios": "^1.16.0",
+    "dotenv": "^16.6.1",
+    "sm-crypto": "^0.3.14"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

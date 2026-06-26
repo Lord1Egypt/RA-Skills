@@ -1,35 +1,42 @@
 ---
-name: "debug-zoom-integration"
-description: "Indexed by skills.sh from anthropics/knowledge-work-plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "anthropics"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/anthropics/knowledge-work-plugins/debug-zoom-integration"
-sourceUrl: "https://skills.sh/anthropics/knowledge-work-plugins/debug-zoom-integration"
+name: debug-zoom-integration
+description: Debug broken Zoom implementations quickly. Use when auth, webhooks, SDK joins, MCP transport, or real-time media workflows are failing and you need to isolate the layer before proposing a fix.
+user-invocable: false
 ---
 
-# debug-zoom-integration
+# Debug Zoom Integration
 
-> Indexed by skills.sh from anthropics/knowledge-work-plugins
+Use this skill when the user already built something and it is failing.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** anthropics
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/anthropics/knowledge-work-plugins/debug-zoom-integration`
-- **Source URL:** [https://skills.sh/anthropics/knowledge-work-plugins/debug-zoom-integration](https://skills.sh/anthropics/knowledge-work-plugins/debug-zoom-integration)
+## Triage Order
 
-## Overview
+1. Auth and app configuration
+2. Request construction or event verification
+3. SDK initialization or platform mismatch
+4. Media/session behavior
+5. MCP transport and capability assumptions
 
+## Evidence To Request
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/anthropics/knowledge-work-plugins/debug-zoom-integration
-```
+- Exact error text
+- Platform and SDK/runtime
+- Relevant request or payload sample
+- What worked versus what failed
+- Whether the issue is reproducible or intermittent
+
+## Reference Routing
+
+- [oauth](../oauth/SKILL.md)
+- [rest-api](../rest-api/SKILL.md)
+- [webhooks](../webhooks/SKILL.md)
+- [meeting-sdk](../meeting-sdk/SKILL.md)
+- [video-sdk](../video-sdk/SKILL.md)
+- [rtms](../rtms/SKILL.md)
+- [zoom-mcp](../zoom-mcp/SKILL.md)
+
+## Output
+
+- Most likely failing layer
+- Ranked hypotheses
+- Short fix plan
+- Verification steps

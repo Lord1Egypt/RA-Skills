@@ -1,0 +1,37 @@
+{
+  "name": "@0xrikt/crypto-trading-advisor",
+  "version": "1.0.0",
+  "description": "A Claude Skill for cryptocurrency trading analysis. Provides high-value data sources, trading principles, and professional output formatting.",
+  "bin": {
+    "crypto-trading-advisor": "./bin/index.js"
+  },
+  "keywords": [
+    "claude",
+    "skill",
+    "crypto",
+    "trading",
+    "bitcoin",
+    "ethereum",
+    "defi",
+    "ai"
+  ],
+  "author": "0xrikt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xrikt/crypto-skills.git"
+  },
+  "homepage": "https://github.com/0xrikt/crypto-skills/tree/main/crypto-trading-advisor",
+  "bugs": {
+    "url": "https://github.com/0xrikt/crypto-skills/issues"
+  },
+  "files": [
+    "bin",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14"
+  }
+}

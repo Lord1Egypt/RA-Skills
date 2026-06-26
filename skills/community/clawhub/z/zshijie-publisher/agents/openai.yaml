@@ -1,0 +1,4 @@
+interface:
+  display_name: "Z视介 Publisher"
+  short_description: "Scan a QR code, then publish or edit Z视介 articles and videos"
+  default_prompt: "Use $zshijie-publisher to log in to Z视介 by QR code and publish or edit 图文、短视频内容."

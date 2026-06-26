@@ -1,35 +1,32 @@
----
-name: "zpw-mianfei-web"
-description: "Use a local free search engine to find information on the web by fetching results with specified keywords."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zpw-mianfei-web"
-sourceUrl: "https://clawhub.ai/skills/zpw-mianfei-web"
----
+markdown
 
-# zpw-mianfei-web
+\---
 
-> Use a local free search engine to find information on the web by fetching results with specified keywords.
+name: zpw-mianfei-web
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zpw-mianfei-web`
-- **Source URL:** [https://clawhub.ai/skills/zpw-mianfei-web](https://clawhub.ai/skills/zpw-mianfei-web)
+description: 使用本地免费搜索引擎搜索网络
 
-## Overview
+\---
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zpw-mianfei-web
-```
+
+\# 免费搜索技能
+
+
+
+\## When to Run
+
+\- 用户说“搜索”、“查一下”、“找找”
+
+
+
+\## Workflow
+
+1\. 提取搜索关键词
+
+2\. 执行命令：
+
+&#x20;  ```bash
+
+&#x20;  curl -s 'http://192.168.199.100:8080/search?q={{query}}\&format=json'
+

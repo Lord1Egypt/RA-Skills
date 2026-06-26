@@ -1,35 +1,144 @@
 ---
-name: "Zvukogram"
-description: "Text-to-Speech via Zvukogram API with SSML support. Use when you need to generate speech from text, create podcasts, voice notifications, or work with audio...."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zvukogram"
-sourceUrl: "https://clawhub.ai/skills/zvukogram"
+name: zvukogram
+description: Text-to-Speech via Zvukogram API with SSML support. Use when you need to generate speech from text, create podcasts, voice notifications, or work with audio. Supports speed control, stress marks, English word transcription, audio fragment merging, rich SSML references, and podcast-oriented TTS patterns.
+metadata:
+  openclaw:
+    requires:
+      env: [ZVUKOGRAM_TOKEN, ZVUKOGRAM_EMAIL]
+      credentials: [zvukogram_api]
 ---
 
-# Zvukogram
+# Zvukogram TTS
 
-> Text-to-Speech via Zvukogram API with SSML support. Use when you need to generate speech from text, create podcasts, voice notifications, or work with audio....
+Speech generation via Zvukogram API with SSML markup support.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zvukogram`
-- **Source URL:** [https://clawhub.ai/skills/zvukogram](https://clawhub.ai/skills/zvukogram)
+## Requirements
 
-## Overview
+To use this skill, you need:
+- **Zvukogram API token** — get it at https://zvukogram.com/
+- **Zvukogram account email**
 
+### Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
+Create file `~/.config/zvukogram/config.json`:
 ```bash
-hermes skills install clawhub/zvukogram
+mkdir -p ~/.config/zvukogram
 ```
+
+```json
+{
+  "token": "your_api_token_here",
+  "email": "your_email@example.com"
+}
+```
+
+Or use environment variables:
+```bash
+export ZVUKOGRAM_TOKEN=your_api_token_here
+export ZVUKOGRAM_EMAIL=your_email@example.com
+```
+
+## Quick Start
+
+```bash
+# Simple TTS
+python3 scripts/tts.py --text "Hello, world!" --voice Алена --output hello.mp3
+
+# With +20% speed
+python3 scripts/tts.py --text "Fast text" --voice Алена --speed 1.2 --output fast.mp3
+
+# Check balance
+python3 scripts/balance.py
+```
+
+## Features
+
+- **TTS generation** — text to speech
+- **SSML support** — stress marks, pauses, speed
+- **Audio merging** — combine fragments via ffmpeg
+- **Transcription** — proper pronunciation of English words
+
+## SSML Markup
+
+### Stress Marks
+Use `+` before stressed vowel:
+```
+З+амок — stress on "a"
+зам+ок — stress on "o"
+```
+
+### Aliases (Transcription)
+```xml
+<sub alias="Оупен Эй Ай">OpenAI</sub>
+<sub alias="Самсунг">Samsung</sub>
+<sub alias="Ал+ьтман">Альтман</sub>
+```
+
+### Speed
+```xml
+<prosody rate="1.2">20% faster</prosody>
+<prosody rate="fast">Fast text</prosody>
+```
+
+### Pauses
+```xml
+<break time="500ms"/>
+```
+
+## Available Voices
+
+- **Алена** — female, neutral (recommended)
+- **Андрей** — male, neutral (recommended)
+- **Александра** — female, soft
+- **Антон** — male, business
+
+Full list: see [references/VOICES.md](references/VOICES.md)
+
+## Examples
+
+See [references/EXAMPLES.md](references/EXAMPLES.md) for:
+- Dialogs and podcasts
+- News voiceover
+- Voice notifications
+- Long texts
+
+## Transcription
+
+See [references/TRANSCRIPTION.md](references/TRANSCRIPTION.md) for proper pronunciation:
+- OpenAI → Оупен Эй Ай
+- GPT → Джи Пи Ти
+- Samsung → Самсунг
+- Altman → Ал+ьтман
+
+## SSML Reference
+
+- Full, agent-readable reference (recommended): [references/SSML.md](references/SSML.md)
+- `say-as` modes with extra patterns: [references/say-as.md](references/say-as.md)
+- Pronunciation & transcription patterns (`+`, `<sub>`, `<phoneme>`): [references/pronunciation-patterns.md](references/pronunciation-patterns.md)
+- Podcast-oriented SSML patterns: [references/podcast-examples.md](references/podcast-examples.md)
+- Quick lookup: [references/SSML_CHEATSHEET.md](references/SSML_CHEATSHEET.md)
+- Official Zvukogram SSML docs: https://zvukogram.com/node/ssml/
+
+## Troubleshooting
+
+See [references/TROUBLESHOOTING.md](references/TROUBLESHOOTING.md) for:
+- API errors
+- Audio issues
+- Diagnostics
+
+## API Reference
+
+- API contract (endpoints, parameters, responses): [references/API.md](references/API.md)
+- Choosing `/text` vs `/longtext` vs chunking: [references/chunking-and-method-choice.md](references/chunking-and-method-choice.md)
+
+## API Limits / gotchas
+
+- `/text`: max **1000 characters** per request
+- `/longtext` and `/subs`: up to **1,000,000 characters**
+- Multi-voice in API: generate and merge fragments (one request per voice). Do not rely on `<voice>` wrappers.
+
+## Links
+
+- API docs: https://zvukogram.com/node/api/
+- Voice rating: https://zvukogram.com/rating/
+- Support: https://t.me/zvukogram

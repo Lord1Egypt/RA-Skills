@@ -1,35 +1,100 @@
 ---
-name: "executive-briefing"
-description: "Indexed by skills.sh from anthropics/claude-agent-sdk-demos"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "anthropics"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/anthropics/claude-agent-sdk-demos/executive-briefing"
-sourceUrl: "https://skills.sh/anthropics/claude-agent-sdk-demos/executive-briefing"
+name: executive-briefing
+description: "Transforms research findings into executive-ready briefings. Automatically activated when user mentions 'executive', 'briefing', 'C-suite', 'board', 'leadership', or 'presentation'."
 ---
 
-# executive-briefing
+# Executive Briefing Skill
 
-> Indexed by skills.sh from anthropics/claude-agent-sdk-demos
+## Activation Triggers
+This skill activates when the conversation mentions:
+- "executive summary", "executive briefing"
+- "C-suite", "board presentation", "leadership team"
+- "stakeholder update", "management report"
+- "one-pager", "key takeaways"
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** anthropics
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/anthropics/claude-agent-sdk-demos/executive-briefing`
-- **Source URL:** [https://skills.sh/anthropics/claude-agent-sdk-demos/executive-briefing](https://skills.sh/anthropics/claude-agent-sdk-demos/executive-briefing)
+## Briefing Format
 
-## Overview
+When creating executive briefings, always follow this structure:
 
+### The BLUF Principle (Bottom Line Up Front)
+Start with the conclusion. Executives are busy - lead with what matters.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/anthropics/claude-agent-sdk-demos/executive-briefing
+### One-Page Format
 ```
+═══════════════════════════════════════════════════════════
+EXECUTIVE BRIEFING: [Topic]
+Date: [Date] | Prepared for: [Audience]
+═══════════════════════════════════════════════════════════
+
+BOTTOM LINE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[2-3 sentences: What they need to know and what to do about it]
+
+KEY FINDINGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• [Finding 1 - with data point if available]
+• [Finding 2 - with data point if available]
+• [Finding 3 - with data point if available]
+
+IMPLICATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+What this means for [Company/Team]:
+• [Implication 1]
+• [Implication 2]
+
+RECOMMENDED ACTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. [Action] - [Owner] - [Timeline]
+2. [Action] - [Owner] - [Timeline]
+3. [Action] - [Owner] - [Timeline]
+
+RISKS & CONSIDERATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• [Risk/Consideration 1]
+• [Risk/Consideration 2]
+
+═══════════════════════════════════════════════════════════
+Sources: [Brief citation list]
+Contact: [Who to reach out to for questions]
+═══════════════════════════════════════════════════════════
+```
+
+## Style Guidelines
+
+### Do:
+- Use numbers and metrics where possible
+- Keep sentences short and direct
+- Use bullet points liberally
+- Highlight decisions that need to be made
+- Include clear next steps with owners
+
+### Don't:
+- Use jargon or technical terms without explanation
+- Include lengthy background (link to appendix instead)
+- Bury the recommendation
+- Use passive voice
+- Include information that doesn't drive a decision
+
+## Data Presentation
+
+When including data:
+- Round numbers for readability (say "$2.3M" not "$2,347,892")
+- Compare to benchmarks or previous periods
+- Highlight deltas and trends
+- Use comparisons that resonate ("10x faster" not "900% improvement")
+
+## Confidence Indicators
+
+Always indicate confidence level:
+- **HIGH CONFIDENCE**: Multiple reliable sources, verified data
+- **MEDIUM CONFIDENCE**: Good sources but some gaps
+- **LOW CONFIDENCE**: Limited data, emerging information
+
+## Appendix Guidelines
+
+For detailed information, create a separate appendix file with:
+- Full methodology
+- Complete data tables
+- Source documentation
+- Technical details
+- Extended analysis

@@ -1,35 +1,20 @@
 ---
-name: "groove-utilities-prime"
-description: "Indexed by skills.sh from andreadellacorte/groove"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "andreadellacorte"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-prime"
-sourceUrl: "https://skills.sh/andreadellacorte/groove/groove-utilities-prime"
+name: groove-utilities-prime
+description: "Load groove workflow context into the conversation. Run at the start of every session."
+license: MIT
+allowed-tools: Read Write Edit Glob Grep Bash(git:*) Bash(beans:*) Bash(gh:*) Bash(linear:*) Bash(npx:*) Bash(mkdir:*) AskUserQuestion
+metadata:
+  author: andreadellacorte
 ---
+
+<!-- groove:managed — do not edit; changes will be overwritten by groove update -->
 
 # groove-utilities-prime
 
-> Indexed by skills.sh from andreadellacorte/groove
+Run the prime shell script and output its result to the conversation:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** andreadellacorte
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-prime`
-- **Source URL:** [https://skills.sh/andreadellacorte/groove/groove-utilities-prime](https://skills.sh/andreadellacorte/groove/groove-utilities-prime)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/andreadellacorte/groove/groove-utilities-prime
+bash .agents/skills/groove-utilities-prime/scripts/groove-utilities-prime.sh
 ```
+
+Do not write to any file (the script handles its own cache updates). Output the script's stdout verbatim.

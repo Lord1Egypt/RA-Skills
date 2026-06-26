@@ -1,0 +1,13 @@
+N:file-organization
+D:Choose the right repo structure boundary: feature, shared layer, route segment, or workspace package. Use for folder-structure refactors, project-layout decisions, naming/import conventions, and staged migrations when a repo feels scattered or a team needs to know where code should live.
+G:file-organization project-structure folder-structure feature-folders shared-vs-feature apps-packages naming-conventions
+U[3]:
+  Starter-tree cleanup before a small app calcifies into scattered technical folders
+  Feature/shared/route/package boundary decisions for growing repos
+  Migration audits for risky reorganizations, import cleanup, and staged moves
+S[5]{n,action}:
+  1,Classify the structure pressure and choose one primary organization mode
+  2,Pick the smallest boundary unit that solves the problem
+  3,Define naming, import, and public-API guardrails
+  4,Plan a staged migration with verification steps
+  5,Return a file-organization brief with route-outs

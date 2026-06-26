@@ -1,35 +1,16 @@
 ---
-name: "qwen-asr"
-description: "Indexed by skills.sh from aahl/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "aahl"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/aahl/skills/qwen-asr"
-sourceUrl: "https://skills.sh/aahl/skills/qwen-asr"
+name: qwen-asr
+description: Transcribe audio files using Qwen ASR. Use when the user sends voice messages and wants them converted to text.
 ---
 
-# qwen-asr
+# Qwen ASR
+Transcribe an audio file (wav/mp3/ogg...) to text using Qwen ASR. No configuration or API key required.
 
-> Indexed by skills.sh from aahl/skills
+## Usage
+```shell
+uv run scripts/main.py -f audio.wav
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** aahl
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/aahl/skills/qwen-asr`
-- **Source URL:** [https://skills.sh/aahl/skills/qwen-asr](https://skills.sh/aahl/skills/qwen-asr)
+cat audio.mp3 | uv run scripts/main.py > transcript.txt
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/aahl/skills/qwen-asr
+curl https://example.com/audio.ogg | uv run scripts/main.py
 ```

@@ -1,35 +1,112 @@
 ---
-name: "Daily Market Analysis"
-description: "每日市场分析技能。当用户要求"每日市场分析"、"今日市场"、"隔夜行情"、"盘前分析"、"市场早报"、"市场概况"时，必须使用此技能。覆盖美股、港股、A股三大市场的隔夜表现，提取重点新闻，并给出今日投资建议。适用于每天早晨的投资决策参考。Use this skill for any request involvi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zixun"
-sourceUrl: "https://clawhub.ai/skills/zixun"
+name: daily-market-analysis
+version: 1.0.0
+description: 每日市场分析技能。当用户要求"每日市场分析"、"今日市场"、"隔夜行情"、"盘前分析"、"市场早报"、"市场概况"时，必须使用此技能。覆盖美股、港股、A股三大市场的隔夜表现，提取重点新闻，并给出今日投资建议。适用于每天早晨的投资决策参考。Use this skill for any request involving daily market recap, pre-market briefing, overnight market performance, or morning investment guidance.
+metadata:
+  openclaw:
+    emoji: "📊"
+    requires:
+      bins:
+        - curl
 ---
 
-# Daily Market Analysis
+# 每日市场分析 Skill
 
-> 每日市场分析技能。当用户要求"每日市场分析"、"今日市场"、"隔夜行情"、"盘前分析"、"市场早报"、"市场概况"时，必须使用此技能。覆盖美股、港股、A股三大市场的隔夜表现，提取重点新闻，并给出今日投资建议。适用于每天早晨的投资决策参考。Use this skill for any request involvi...
+## 目标
+生成一份简洁、专业的每日市场分析报告，帮助用户快速掌握市场动态并做出今日投资决策。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zixun`
-- **Source URL:** [https://clawhub.ai/skills/zixun](https://clawhub.ai/skills/zixun)
+---
 
-## Overview
+## 执行流程
 
+### 第一步：搜索市场数据（并行搜索）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zixun
+使用 `web_search` 工具，**同时**搜索以下内容（尽量并行，节省时间）：
+
+1. **美股**：`US stock market today S&P500 Nasdaq Dow Jones`
+2. **港股**：`香港恒生指数 今日 港股行情`
+3. **A股**：`A股 沪深300 上证指数 今日行情`
+4. **重点新闻**：`market moving news today financial`
+5. **宏观/政策**：`Fed interest rates economic news today`
+
+搜索时注意获取最新日期的数据。若搜索结果数据较旧（超过2天），在报告中注明。
+
+---
+
+### 第二步：整理数据
+
+从搜索结果中提取：
+
+**市场表现**（每个市场）：
+- 主要指数涨跌幅（%）
+- 成交量是否异常
+- 板块亮点（涨跌最多的1-2个板块）
+
+**新闻筛选标准**（选3-5条）：
+- 优先级：央行/美联储政策 > 重大地缘政治 > 重要经济数据 > 龙头公司财报 > 行业监管动态
+- 排除：娱乐新闻、无关信息、重复内容
+
+---
+
+### 第三步：生成报告
+
+严格按照以下 Markdown 格式输出，**不要添加多余内容**：
+
 ```
+📊 每日市场分析 — [今日日期]
+
+## 一、市场概况
+
+**🇺🇸 美股（昨收）**
+- 标普500：[涨跌幅] | 纳斯达克：[涨跌幅] | 道琼斯：[涨跌幅]
+- 亮点：[1句话总结]
+
+**🇭🇰 港股**
+- 恒生指数：[涨跌幅] | 恒生科技：[涨跌幅]
+- 亮点：[1句话总结]
+
+**🇨🇳 A股**
+- 上证指数：[涨跌幅] | 沪深300：[涨跌幅] | 创业板：[涨跌幅]
+- 亮点：[1句话总结]
+
+---
+
+## 二、重点事件
+
+1. **[标题]** — [2-3句话说明影响]
+2. **[标题]** — [2-3句话说明影响]
+3. **[标题]** — [2-3句话说明影响]
+（4-5条可选）
+
+---
+
+## 三、操作建议
+
+**今日关注**：[1-2个值得关注的机会或风险点]
+
+**短期策略**：
+- 🟢 可适当布局：[具体方向]
+- 🔴 暂时回避：[具体方向]
+- ⚪ 观望为主：[适用情况]
+
+**风险提示**：[今日最大的不确定因素，1句话]
+
+---
+*数据来源：网络搜索整合 | 仅供参考，不构成投资建议*
+```
+
+---
+
+## 输出规范
+
+- **语言**：中文为主，指数/专有名词可保留英文
+- **长度**：总报告控制在400字以内
+- **语气**：客观中性，数据说话，避免过度乐观或悲观
+- **操作建议风格**：平衡中性（既指出机会，也提示风险）
+- **如数据缺失**：用"数据待更新"替代，不编造数字
+
+## 重要提醒
+
+- 永远在报告末尾注明"仅供参考，不构成投资建议"
+- 如果用户没有指定日期，默认分析**今日/最新**市场
+- 如果用户指定了特定市场（如"只看美股"），则聚焦该市场，其他市场简略带过

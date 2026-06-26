@@ -1,0 +1,4 @@
+interface:
+  display_name: "Z视介频道直播"
+  short_description: "按频道名或常用节目别名（如跑男、奔跑吧）快速打开 Z视介 频道直播页"
+  default_prompt: "Use $zshijie-liver to open the correct Z视介 live page by channel name or known program alias. If the user says 跑男, 奔跑吧, 看跑男, or 看奔跑吧, open 浙江卫视 live (cid 101) instead of refusing as on-demand. Return a short Markdown card with channel-specific summary, highlights, common programs, and a clickable Markdown link like [点击这里进入直播](url) instead of exposing the raw URL."

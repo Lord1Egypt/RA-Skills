@@ -1,0 +1,8 @@
+anthropic>=0.40.0
+pyyaml>=6.0
+numpy>=1.24.0
+scipy>=1.10.0
+pulp>=2.7.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+mcp>=1.0.0

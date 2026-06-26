@@ -1,0 +1,190 @@
+# Launcher Configuration Reference — AEM 6.5 LTS
+
+## Node Type: `cq:WorkflowLauncher`
+
+A launcher node stored at `/conf/global/settings/workflow/launcher/config/<name>`, `/apps/settings/workflow/launcher/config/<name>`, or (legacy) `/etc/workflow/launcher/config/<name>` must have `jcr:primaryType="cq:WorkflowLauncher"`.
+
+## Property Reference
+
+### `eventType` (Long, required)
+
+Bit-field combining one or more JCR event types:
+
+| Value | Constant | Meaning |
+|---|---|---|
+| `1` | `Event.NODE_ADDED` | A node was created |
+| `2` | `Event.NODE_MODIFIED` | Node properties or child nodes changed |
+| `4` | `Event.NODE_REMOVED` | A node was deleted |
+| `8` | `Event.PROPERTY_ADDED` | A property was added |
+| `16` | `Event.PROPERTY_CHANGED` | A property value changed |
+| `32` | `Event.PROPERTY_REMOVED` | A property was removed |
+
+Combine with addition: `eventType="{Long}3"` listens for NODE_ADDED (1) + NODE_MODIFIED (2).
+
+### `glob` (String, required)
+
+A glob pattern matched against the **absolute path** of the event node.
+
+Syntax:
+- `*` — matches any sequence of characters except `/`
+- `**` — matches any sequence of characters including `/`
+- `(/.*)?` — suffix meaning "this path or any descendant"
+
+Examples:
+```
+/content/dam(/.*)?           → any path under /content/dam
+/content/dam/.*              → same (regex-style, also accepted)
+/content/dam/*/jcr:content   → jcr:content of any direct child of /content/dam
+/content/my-site/en/.*       → any path under /content/my-site/en
+```
+
+### `nodetype` (String, optional)
+
+JCR node type the event node must match.
+
+Common node types:
+- `dam:AssetContent` — content node of a DAM asset
+- `nt:file` — file node (e.g., rendition files)
+- `cq:Page` — a page
+- `cq:PageContent` — a page's jcr:content
+- `nt:unstructured` — generic node (broad match)
+
+### `conditions` (String[], optional)
+
+Array of conditions. Format per entry:
+```
+property=<property-name>,value=<expected-value>,type=<JCR_TYPE>
+```
+
+`type` defaults to `STRING` if omitted.
+
+Also acceptable: `condition` (singular, single String) when a launcher has exactly one condition expression. Both forms are read at startup. New launchers should default to `conditions` (the plural form scales to multiple conditions without re-authoring).
+
+### `workflow` (String, required)
+
+**Runtime path** of the workflow model.
+
+On 6.5 LTS, valid runtime model paths:
+- `/var/workflow/models/<model-name>` — models stored in conf or overlaid
+- `/etc/workflow/models/<model-name>` — models still stored at the legacy path
+
+Always confirm the actual runtime ID using **Tools → Workflow → Models → select model → Properties**.
+
+### `enabled` (Boolean)
+
+`true` to activate the launcher. `false` to deactivate.
+
+### `description` (String, optional)
+
+Free-text description visible in the Launchers UI.
+
+### `excludeList` (String, optional)
+
+Comma-separated list of entries that suppress the launcher for matching events. Two entry formats can be mixed:
+
+- **Bare JCR property names** (e.g., `jcr:lastModified`, `dc:format`): when a `PROPERTY_CHANGED` event affects only properties in this list, the launcher skips the event.
+- **`event-user-data:<value>`** prefix (e.g., `event-user-data:changedByWorkflowProcess`): skip events whose JCR observation `userData` matches `<value>`. This is the primary loop-prevention mechanism — pair with `setUserData("changedByWorkflowProcess")` in your `WorkflowProcess` (see `condition-patterns.md`).
+
+Example from an OOTB launcher:
+
+```
+excludeList="lastTransferredForTagging,jcr:lastModified,dc:format,event-user-data:changedByWorkflowProcess,event-user-data:changedByPageManagerCopy"
+```
+
+### `runModes` (String[], optional)
+
+Restricts the launcher to specific run modes: `author`, `publish`. Leave empty for all run modes.
+
+> **Note:** `runModes` honoring on `cq:WorkflowLauncher` has known inconsistencies on AEM 6.5 LTS. If reliable run-mode restriction is required, package the launcher's `.content.xml` under a `config.author/` (or `config.publish/`) folder and let Sling's run-mode-aware OSGi config handling drive it, instead of relying solely on this property.
+
+### `transient` (Boolean, optional)
+
+When `true`, the workflow instance started by this launcher runs as transient — no JCR node under `/var/workflow/instances/` is created unless the workflow needs persistence (retry, external process). Use for high-volume short-lived launchers (asset processing, replication side-effects) to prevent repository bloat.
+
+The workflow model itself must also support transient mode (`transient="true"` on the model). See workflow-model-design Architecture Considerations.
+
+### `noProcess` (Boolean, optional)
+
+When `true`, the launcher matches events but does not start the configured workflow. Use to temporarily silence a launcher without removing the node or its history — preserves the configuration for inspection and easy re-enable.
+
+---
+
+## Complete `.content.xml` Templates
+
+> **Run-mode restriction:** these templates intentionally omit `runModes="[author]"` because that property's honoring is unreliable on `cq:WorkflowLauncher` in 6.5 LTS (see the property reference above). For author-only restriction, package the launcher's `.content.xml` under a `config.author/` folder in your content package — Sling's run-mode-aware OSGi config handling will keep it off publish reliably.
+
+### Template 1: DAM Asset Upload
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="cq:WorkflowLauncher"
+    eventType="{Long}1"
+    glob="/content/dam(/.*)?/jcr:content/renditions/original"
+    nodetype="nt:file"
+    workflow="/var/workflow/models/dam/update_asset"
+    enabled="{Boolean}true"
+    description="DAM Update Asset on original rendition upload"/>
+```
+
+### Template 2: Page Content Modification
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="cq:WorkflowLauncher"
+    eventType="{Long}2"
+    glob="/content/my-site(/.*)?/jcr:content"
+    nodetype="cq:PageContent"
+    workflow="/var/workflow/models/my-review-workflow"
+    enabled="{Boolean}true"
+    description="Request review whenever site page content is modified"/>
+```
+
+### Template 3: Legacy `/etc` Launcher (6.5 LTS Only)
+
+For projects that have not migrated to `/conf`:
+```xml
+<!-- Location: /etc/workflow/launcher/config/my-old-launcher/.content.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="cq:WorkflowLauncher"
+    eventType="{Long}1"
+    glob="/content/legacy-site(/.*)?/jcr:content"
+    nodetype="cq:PageContent"
+    workflow="/etc/workflow/models/legacy-approval"
+    enabled="{Boolean}true"/>
+```
+
+### Template 4: Disabled Overlay (suppress OOTB launcher)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="cq:WorkflowLauncher"
+    eventType="{Long}1"
+    glob="/content/dam(/.*)?/jcr:content/renditions/original"
+    nodetype="nt:file"
+    workflow="/var/workflow/models/dam/update_asset"
+    enabled="{Boolean}false"
+    description="OVERLAY: disabled OOTB dam_update_asset_create"/>
+```
+
+## Path Resolution Order (6.5 LTS)
+
+When multiple launcher nodes with the same name exist across paths, the resolution order is:
+
+1. `/conf/global/settings/workflow/launcher/config/`
+2. `/apps/settings/workflow/launcher/config/`
+3. `/libs/settings/workflow/launcher/config/`
+4. `/etc/workflow/launcher/config/` (legacy, lowest priority)
+
+Place your overlay at `/conf/global/` or `/apps/` to override an OOTB launcher from `/libs/`.

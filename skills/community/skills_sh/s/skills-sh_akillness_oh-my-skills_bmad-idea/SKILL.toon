@@ -1,0 +1,22 @@
+N:bmad-idea
+D:Turn raw ideas into one clear pre-planning concept artifact by choosing the right framing mode: problem framing, audience and value framing, concept shaping, game concept framing, or story packaging. Use when the user needs the next artifact before PRDs, sprint plans, launch execution, or game-production routing.
+G:bmad|ideation|concept-design|problem-framing|positioning|storytelling|product-discovery|game-concept|creative-routing
+
+U[5]:
+  Clarify a fuzzy opportunity into a problem brief before planning starts
+  Turn rough offer notes into audience, value, and differentiation framing
+  Shape multiple half-ideas into one tighter concept brief with constraints
+  Define game pillars, player fantasy, and core loop before GDD or milestone planning
+  Package a concept into a narrative or pitch packet for alignment and buy-in
+
+S[5]{n,action,details}:
+  1,Problem framing,Normalize the idea packet → identify strongest unknown → return one problem brief → optionally route to bmad
+  2,Audience/value framing,Clarify audience/JTBD/pains/gains/differentiation → return one positioning brief → optionally route to marketing-automation
+  3,Concept shaping,Tighten scattered notes into one concept brief with scope boundaries and open questions → route to bmad or task-planning when approved
+  4,Game concept framing,Define fantasy/pillars/core loop/audience/first-playable proof → return one game concept packet → route to bmad-gds
+  5,Story packaging,Turn a concept into a clear narrative or pitch packet with promise/proof/ask → route to marketing or stakeholder review workflows
+
+R[3]:
+  Choose exactly one primary mode per run; do not dump multiple creativity frameworks at once.
+  Produce one reusable concept artifact, not a brainstorm transcript or full execution plan.
+  Treat legacy BMAD-CIS commands/personas as compatibility hints, not separate first-class workflows.

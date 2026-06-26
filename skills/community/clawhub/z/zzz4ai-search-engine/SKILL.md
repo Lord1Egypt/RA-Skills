@@ -1,35 +1,190 @@
 ---
-name: "Zzz4ai Search Engine"
-description: "国内搜索聚合引擎，集成6个国内可用搜索源（综合+学术+视频）。支持高级搜索语法、意图识别。无需API密钥。何时用：当需要搜索中文内容、查询B站/头条、检索学术论文或查找视频教程时触发。触发词：搜索、查找、search、找一下、查一下、国内搜索、中文搜索、哪家、哪个、排名、对比、最新、怎么样、好不好、多少、什么、如..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zzz4ai-search-engine"
-sourceUrl: "https://clawhub.ai/skills/zzz4ai-search-engine"
+name: "zzz4ai-search-engine"
+description: "国内搜索聚合引擎，集成6个国内可用搜索源（综合+学术+视频）。支持高级搜索语法、意图识别。无需API密钥。何时用：当需要搜索中文内容、查询B站/头条、检索学术论文或查找视频教程时触发。触发词：搜索、查找、search、找一下、查一下、国内搜索、中文搜索、哪家、哪个、排名、对比、最新、怎么样、好不好、多少、什么、如何、为什么、了解、调查、盘点、推荐、评测、排行榜。"
 ---
 
-# Zzz4ai Search Engine
+# ZZZ4AI 搜索引擎
 
-> 国内搜索聚合引擎，集成6个国内可用搜索源（综合+学术+视频）。支持高级搜索语法、意图识别。无需API密钥。何时用：当需要搜索中文内容、查询B站/头条、检索学术论文或查找视频教程时触发。触发词：搜索、查找、search、找一下、查一下、国内搜索、中文搜索、哪家、哪个、排名、对比、最新、怎么样、好不好、多少、什么、如...
+6个国内可用搜索源，按意图自动选择引擎。覆盖「综合搜索 → 学术 → 视频」全场景。无需API密钥。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zzz4ai-search-engine`
-- **Source URL:** [https://clawhub.ai/skills/zzz4ai-search-engine](https://clawhub.ai/skills/zzz4ai-search-engine)
+> **实测日期**: 2026-05-18 | 6/6可用（已移除8个被拦截引擎）
 
-## Overview
+---
 
+## 快速决策树
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zzz4ai-search-engine
 ```
+用户搜索请求
+  ├── "学术论文/文献" → 必应学术(✅)
+  ├── "视频/教程" → B站(✅)
+  ├── "热议/热点/新闻" → 头条(✅)
+  ├── "英文技术文档" → 必应国际(✅, ensearch=1)
+  └── "综合中文内容" → 必应中国(✅) → 360(✅)
+```
+
+---
+
+## Workflow
+
+### Phase 1: 查询预处理
+1. **读取引擎列表**: 从 `config.json` 读取引擎名称和URL模板
+2. **校验输入**: 如果查询为空或仅含空白符，提示用户提供搜索关键词
+3. **识别意图**: 分析搜索请求，归类为「综合/学术/视频/新闻/中英双语」
+4. **选择引擎**: 根据意图查表选择1-3个首选引擎 + 1个备选引擎
+5. **确认计划** [检查点]: 当搜索涉及「隐私/政治/医疗/金融」关键词时，简要告知用户将搜索的范围，征询是否继续
+6. **构建URL**: 用 `config.json` 中的URL模板，对关键词进行URL编码后替换 `{keyword}`
+
+### Phase 2: 执行搜索
+1. **速率控制**: 每个请求间隔1-2秒，批量请求3-4个引擎为一组
+2. **Cookie处理**: 仅403/429时才获取Cookie——访问引擎首页 → 保存session cookie → 重试搜索
+3. **引擎切换**: 若主引擎失败，自动切换到备选引擎
+4. **超时处理**: 单个请求超时(10s)则跳过该引擎，继续下一个
+
+### Phase 3: 结果过滤与聚合
+1. **收集成功结果**: 从所有成功返回的引擎中提取标题、摘要、URL
+2. **去重**: 相同URL只保留一次，优先保留信息更完整的版本
+3. **排序**: 按相关性和时效性排序
+4. **失败记录**: 如果所有引擎都失败，输出错误提示并建议用户更换关键词或稍后重试
+
+### Phase 4: 输出报告
+按以下模板输出:
+
+```
+## 搜索结果
+> 共查询 {N} 个引擎，{M} 个成功返回
+
+### 1. 标题
+摘要...
+来源: {引擎名}
+链接: {URL}
+
+### 2. 标题
+...
+```
+
+---
+
+## 搜索引擎表
+
+> **实测可用性 (2026-05-18)**: 6/6 可用，0/6 被拦截
+
+### 综合搜索 (3)
+
+| 引擎 | URL模板 | 特点 | 可用性 |
+|------|---------|------|--------|
+| **必应中国** | `https://cn.bing.com/search?q={keyword}&ensearch=0` | 中英文兼顾 | ✅ 可用 |
+| **必应国际** | `https://cn.bing.com/search?q={keyword}&ensearch=1` | 英文结果 | ✅ 可用 |
+| **360** | `https://www.so.com/s?q={keyword}` | 安全搜索 | ✅ 可用 |
+
+### 学术搜索 (1)
+
+| 引擎 | URL模板 | 特点 | 可用性 |
+|------|---------|------|--------|
+| **必应学术** | `https://cn.bing.com/academic/search?q={keyword}` | 国际+中文学术 | ✅ 可用 |
+
+### 内容/视频 (2)
+
+| 引擎 | URL模板 | 特点 | 可用性 |
+|------|---------|------|--------|
+| **头条** | `https://www.toutiao.com/search/?keyword={keyword}` | 新闻资讯 | ✅ 可用 |
+| **B站** | `https://search.bilibili.com/all?keyword={keyword}` | 视频教程 | ✅ 可用 |
+
+---
+
+## 高级搜索语法
+
+### 360/必应通用
+
+| 操作符 | 示例 | 说明 |
+|--------|------|------|
+| `site:` | `site:github.com python` | 站内搜索 |
+| `filetype:` | `filetype:pdf report` | 指定文件类型(360) |
+| `""` | `"机器学习"` | 精确匹配 |
+| `-` | `python -教程` | 排除关键词 |
+
+### 必应切换
+
+| 参数 | 效果 |
+|------|------|
+| `ensearch=0` | 中文结果 |
+| `ensearch=1` | 英文结果 |
+
+### 必应学术筛选
+
+| 参数 | 说明 |
+|------|------|
+| `sort=1` | 按相关度排序 |
+| `filters=journal` | 仅期刊论文 |
+
+### B站筛选
+
+| 参数 | 说明 |
+|------|------|
+| `video` | 仅视频: `https://search.bilibili.com/video?keyword={keyword}` |
+| `article` | 仅专栏: `https://search.bilibili.com/article?keyword={keyword}` |
+
+## 搜索示例
+
+```javascript
+// 综合搜索
+web_fetch({"url": "https://cn.bing.com/search?q=Python教程&ensearch=0"})
+
+// 学术搜索
+web_fetch({"url": "https://cn.bing.com/academic/search?q=深度学习+图像识别"})
+
+// B站教程
+web_fetch({"url": "https://search.bilibili.com/all?keyword=Python爬虫"})
+
+// 站内搜索(必应)
+web_fetch({"url": "https://cn.bing.com/search?q=site:zhihu.com+Python"})
+
+// 精确匹配(必应)
+web_fetch({"url": "https://cn.bing.com/search?q=\"%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0\""})
+```
+
+---
+
+## 异常处理
+
+| 场景 | 处理 |
+|------|------|
+| **空查询** | 返回提示：「请输入搜索关键词」 |
+| **所有引擎失败** | 总结失败原因，建议更换关键词或稍后重试 |
+| **单个引擎失败** | 标记为失败，切换到备选引擎，继续检索 |
+| **403/429限制** | 访问引擎首页获取新session cookie后重试，延迟2秒 |
+| **超时(>10s)** | 跳过该引擎，记录日志，继续下一个 |
+| **返回结果为空** | 尝试放宽搜索条件或换用其他引擎 |
+
+---
+
+## 输出模板
+
+每次搜索完成后，按此格式输出:
+
+```
+## 搜索结果
+
+共查询 {N} 个引擎，{M} 个成功返回
+
+---
+
+### {标题}
+{摘要内容...}
+
+> 来源: {引擎名称} | [链接]({URL})
+```
+
+---
+
+## 安全与隐私
+
+- Cookie仅存储在内存中，请求结束后立即清除
+- 不读写配置文件或磁盘文件（除 Phase 1 读取 `config.json` 引擎列表）
+- 不包含API密钥或认证信息
+- 请求间延迟1-2秒，遵守搜索引擎robots.txt
+
+## References
+
+- `config.json` — 引擎URL列表，Phase 1 读取
+- `metadata.json` — 技能元数据（名称、版本、引擎数、region、requires_api_key）
+- `references/advanced-search.md` — 各引擎详细使用指南和搜索示例

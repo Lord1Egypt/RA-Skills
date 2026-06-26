@@ -1,0 +1,156 @@
+{
+  "name": "zrise-connect",
+  "version": "3.2.0",
+  "description": "Zrise integration skill - Automate tasks with AI workflows",
+  "author": "AI Strategy",
+  "license": "MIT",
+  "repository": "https://github.com/openclaw/zrise-connect",
+  "keywords": [
+    "zrise",
+    "automation",
+    "ai",
+    "workflow",
+    "task-management"
+  ],
+  "scripts": [
+    "scripts/workflow_manager_ui.py",
+    "scripts/workflow_manager.py",
+    "scripts/workflow_registry.py",
+    "scripts/invoke_agent_for_task.py",
+    "scripts/execute_with_lobster.py",
+    "scripts/test_simple_workflow.py",
+    "scripts/test_full_e2e_flow.py",
+    "scripts/test_e2e_with_approval.py",
+    "scripts/post_html_comment.py",
+    "scripts/post_formatted_comment.py",
+    "scripts/configure_openclaw_agent.py",
+    "scripts/analyze_task.py",
+    "scripts/execute_ai_task.py",
+    "scripts/request_clarification.py",
+    "scripts/poll_employee_work.py",
+    "scripts/format_work_item_notification.py",
+    "scripts/writeback_to_zrise.py",
+    "scripts/update_task_stage.py",
+    "scripts/save_conversation_history.py",
+    "scripts/fetch_task_data.py",
+    "scripts/zrise_e2e_test.py",
+    "scripts/zrise_session_e2e_test.py",
+    "scripts/test_clarification_flow.py",
+    "scripts/zrise_utils.py",
+    "scripts/plan_workflow.py",
+    "scripts/send_plan_review.py",
+    "scripts/send_task_review.py",
+    "scripts/send_done_notification.py",
+    "scripts/install_workflow_ui.py"
+  ],
+  "workflows": {
+    "simple": {
+      "file": "workflows/simple.lobster",
+      "description": "Simple execution - Single agent call, agent spawns subagents if needed",
+      "category": "general",
+      "recommended": true
+    },
+    "general": {
+      "file": "workflows/general.lobster",
+      "description": "General task processing with AI (3 phases: plan/execute/approve)",
+      "category": "general",
+      "deprecated": true
+    },
+    "email-draft": {
+      "file": "workflows/email-draft.lobster",
+      "description": "Draft email notifications",
+      "category": "communication"
+    },
+    "requirement-analysis": {
+      "file": "workflows/requirement-analysis.lobster",
+      "description": "Analyze requirements, create user stories",
+      "category": "analysis"
+    },
+    "zrise-execute": {
+      "file": "workflows/zrise-execute.lobster",
+      "description": "Full 8-step flow: analyze → execute → review → writeback",
+      "category": "automation",
+      "deprecated": true
+    },
+    "zrise-poll": {
+      "file": "workflows/zrise-poll.lobster",
+      "description": "Poll tasks and send notifications",
+      "category": "polling"
+    }
+  },
+  "env": {
+    "ZRISE_URL": "https://zrise.app",
+    "ZRISE_DB": "zrise",
+    "ZRISE_USERNAME": "admin",
+    "ZRISE_API_KEY": "",
+    "GEMINI_API_KEY": "",
+    "GEMINI_MODEL": "gemini-2.5-flash"
+  },
+  "capabilities": [
+    "workflow_management",
+    "task_automation",
+    "ai_processing",
+    "zrise_integration",
+    "html_comments",
+    "session_management",
+    "clarification_flow",
+    "e2e_testing"
+  ],
+  "agents": {
+    "zrise-analyst": {
+      "role": "Business Analyst",
+      "model": "zai/glm-4-flash"
+    },
+    "zrise-dev": {
+      "role": "Developer",
+      "model": "zai/glm-4-flash"
+    },
+    "zrise-qa": {
+      "role": "QA Engineer",
+      "model": "zai/glm-4-flash"
+    },
+    "zrise-pm": {
+      "role": "Project Manager",
+      "model": "zai/glm-4-flash"
+    }
+  },
+  "tests": {
+    "total": 48,
+    "passed": 44,
+    "failed": 4,
+    "pass_rate": "91.7%"
+  },
+  "ui": {
+    "workflow_manager": {
+      "port": 8888,
+      "url": "http://localhost:8888"
+    }
+  },
+  "docs": [
+    "README.md",
+    "SKILL.md",
+    "docs/WORKFLOW_TEMPLATES.md",
+    "docs/WORKFLOW_UI_COMPLETE.md",
+    "docs/TELEGRAM_INTEGRATION.md",
+    "docs/TEAM_ONBOARDING.md"
+  ],
+  "dependencies": {
+    "python": ">=3.8",
+    "openclaw": ">=2026.3.0",
+    "lobster": "latest"
+  },
+  "optional_dependencies": {
+    "pyyaml": ">=6.0"
+  },
+  "state_paths": {
+    "sessions": "state/zrise/sessions",
+    "poll_state": "state/zrise/poll-state",
+    "work_items": "state/zrise/work-items",
+    "test_reports": "state/zrise/test-reports",
+    "approvals": "state/zrise/approvals"
+  },
+  "config_paths": {
+    "agent_routing": "config/zrise/agent-routing.json",
+    "telegram_mapping": "config/zrise/telegram-mapping.json"
+  }
+}

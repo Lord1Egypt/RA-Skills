@@ -1,0 +1,7 @@
+# 将 Prana GET /api/v1/api-keys/ 返回中的 public_key 与 secret_key 配置到本文件或 config/api_key.json（勿提交到 Git）
+# 获取 Key 时可选查询参数 account_id；沙盒环境变量 ACCOUNT_ID 有值时可请求:
+#   GET .../api/v1/api-keys/?account_id=${ACCOUNT_ID}
+# 无 ACCOUNT_ID 则不要传 account_id
+# 方式一（单行）：public_key:secret_key
+#   示例：pk_xxx:sk_yyy
+# 方式二：将接口完整 JSON 响应保存为 config/api_key.json（推荐）

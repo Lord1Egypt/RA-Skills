@@ -1,0 +1,114 @@
+# Classic Job Offer Negotiation
+# A multi-issue negotiation between a hiring manager and a job candidate.
+# Each side values the issues differently, creating room for creative trades.
+
+title: "Tech Startup Job Offer Negotiation"
+description: >
+  A promising software engineer has received an offer from a growing tech startup.
+  Both sides want to make a deal, but they have different priorities across
+  salary, equity, remote work, start date, and signing bonus. The candidate
+  values flexibility and equity highly; the company values getting the hire
+  started quickly and controlling cash outlay.
+
+max_rounds: 6
+
+party_a:
+  name: "Jordan (Candidate)"
+  role: "Senior software engineer with 8 years of experience, currently employed"
+  background: >
+    You have a competing offer from a larger company at $185K base salary but
+    limited equity and strict in-office requirements. You're excited about
+    this startup's mission but need the total package to justify the risk.
+    You value remote flexibility very highly (your partner works in another city)
+    and believe strongly in the startup's upside, so equity matters a lot to you.
+    Salary matters but you can be somewhat flexible if other terms are great.
+    You'd prefer a later start date to wrap up your current project gracefully.
+  batna_score: 20
+
+party_b:
+  name: "Alex (Hiring Manager)"
+  role: "VP of Engineering at a Series B startup with 50 engineers"
+  background: >
+    You urgently need this hire — your team is understaffed and a key project
+    launches in 8 weeks. Budget is tight (Series B, watching burn rate), so
+    cash compensation flexibility is limited. However, the board approved a
+    generous equity pool for key hires. You believe in-office collaboration
+    but can be flexible. Getting the candidate started ASAP is your top priority.
+    A signing bonus is easier to justify than higher base salary (one-time vs recurring).
+  batna_score: 15
+
+issues:
+  - name: "Base Salary"
+    options:
+      "$170K":
+        party_a: 5
+        party_b: 35
+      "$180K":
+        party_a: 20
+        party_b: 20
+      "$190K":
+        party_a: 30
+        party_b: 10
+      "$200K":
+        party_a: 35
+        party_b: 0
+
+  - name: "Equity"
+    options:
+      "0.05% (standard)":
+        party_a: 0
+        party_b: 30
+      "0.15%":
+        party_a: 15
+        party_b: 20
+      "0.30%":
+        party_a: 30
+        party_b: 10
+      "0.50% (exceptional)":
+        party_a: 40
+        party_b: 0
+
+  - name: "Remote Work"
+    options:
+      "Fully on-site":
+        party_a: 0
+        party_b: 25
+      "3 days in-office":
+        party_a: 15
+        party_b: 20
+      "2 days in-office":
+        party_a: 25
+        party_b: 10
+      "Fully remote":
+        party_a: 35
+        party_b: 0
+
+  - name: "Start Date"
+    options:
+      "2 weeks":
+        party_a: 0
+        party_b: 35
+      "4 weeks":
+        party_a: 10
+        party_b: 20
+      "6 weeks":
+        party_a: 20
+        party_b: 10
+      "8 weeks":
+        party_a: 25
+        party_b: 5
+
+  - name: "Signing Bonus"
+    options:
+      "No bonus":
+        party_a: 0
+        party_b: 20
+      "$10K":
+        party_a: 10
+        party_b: 15
+      "$20K":
+        party_a: 20
+        party_b: 5
+      "$30K":
+        party_a: 30
+        party_b: 0

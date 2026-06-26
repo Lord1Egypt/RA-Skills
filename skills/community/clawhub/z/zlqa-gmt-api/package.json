@@ -1,0 +1,32 @@
+{
+  "name": "zlqa-gmt-api",
+  "version": "1.0.0",
+  "description": "GM工具 API 接口自动化测试技能。支持多接口测试用例管理、执行和报告生成。",
+  "author": "",
+  "license": "MIT",
+  "keywords": ["api", "test", "gm", "automation", "game"],
+  "homepage": "",
+  "repository": "",
+  "clawhub": {
+    "icon": "",
+    "readme": "SKILL.md",
+    "entry": "scripts/runner.py",
+    "triggers": [
+      "执行",
+      "初始化",
+      "测试报告",
+      "接口列表"
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "references/"
+  ],
+  "exclude": [
+    "skill_config.json",
+    "*.html",
+    "*.pyc",
+    "__pycache__"
+  ]
+}

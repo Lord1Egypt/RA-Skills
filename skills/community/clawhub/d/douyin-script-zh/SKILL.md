@@ -1,35 +1,40 @@
 ---
-name: "Douyin Script Zh"
-description: "专为抖音创作者与短视频团队设计的脚本生成工具，支持口播脚本、剧情脚本、 知识分享脚本等多种形式。自动生成高吸引力的开头钩子（前3秒留存设计）、 节奏紧凑的中段内容分层，以及带互动引导的结尾话术（点赞/关注/评论）。 适用于个人IP打造、品牌宣传、产品种草、情感剧情、职场干货等主流抖音内容 方向。同义词覆盖：抖音脚..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-script-zh"
-sourceUrl: "https://clawhub.ai/skills/douyin-script-zh"
+name: douyin-script-zh
+description: >
+  专为抖音创作者与短视频团队设计的脚本生成工具，支持口播脚本、剧情脚本、
+  知识分享脚本等多种形式。自动生成高吸引力的开头钩子（前3秒留存设计）、
+  节奏紧凑的中段内容分层，以及带互动引导的结尾话术（点赞/关注/评论）。
+  适用于个人IP打造、品牌宣传、产品种草、情感剧情、职场干货等主流抖音内容
+  方向。同义词覆盖：抖音脚本/短视频脚本/口播文案/视频脚本/抖音运营/
+  短视频文案/抖音口播稿/分镜脚本。
+tags: [抖音脚本, 短视频脚本, 口播文案, 视频脚本, 抖音运营, 内容创作, 短视频运营, TikTok]
 ---
 
-# Douyin Script Zh
+# 抖音短视频脚本生成器
 
-> 专为抖音创作者与短视频团队设计的脚本生成工具，支持口播脚本、剧情脚本、 知识分享脚本等多种形式。自动生成高吸引力的开头钩子（前3秒留存设计）、 节奏紧凑的中段内容分层，以及带互动引导的结尾话术（点赞/关注/评论）。 适用于个人IP打造、品牌宣传、产品种草、情感剧情、职场干货等主流抖音内容 方向。同义词覆盖：抖音脚...
+一键生成结构完整、节奏流畅的抖音口播/剧情脚本，含开头钩子、内容分层与互动引导结尾。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-script-zh`
-- **Source URL:** [https://clawhub.ai/skills/douyin-script-zh](https://clawhub.ai/skills/douyin-script-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "帮我写一个关于「职场摸鱼被老板发现」的抖音剧情脚本，时长60秒"
+- "我要做一期护肤品种草视频，帮我生成一份口播文案，突出保湿效果"
+- "写一个抖音知识类口播脚本，主题是'普通人如何快速攒到第一桶金'，需要强钩子开头"
+- "帮我出一条职场干货短视频脚本，讲如何在会议上让领导记住你，要有反转"
 
+## Examples
+输入：主题「月薪5000如何存下2000」，类型：口播干货，时长：45秒
+输出：
+【开头钩子 0-3秒】
+"月薪5000，你真的存不下钱吗？不是钱不够，是这3个动作你没做到！"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/douyin-script-zh
-```
+【内容主体 4-38秒】
+第一步：发工资当天，先转走20%到独立储蓄账户，眼不见心不烦；
+第二步：把信用卡还款日和发薪日绑定，掐断超前消费的冲动；
+第三步：记账不是为了反省，是为了找到你每个月最浪费的那一项，砍掉它。
+
+【结尾引导 39-45秒】
+"就这3步，我朋友坚持6个月存了1.2万。觉得有用的收藏起来，
+评论区告诉我你现在月薪存下了多少？关注我，下期教你把存的钱再翻倍。"

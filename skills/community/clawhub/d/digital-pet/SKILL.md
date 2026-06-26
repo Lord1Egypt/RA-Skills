@@ -1,35 +1,57 @@
 ---
-name: "数字宠物"
-description: "数字宠物 - 一个可爱的 3D 拉布布（Labubu）数字宠物，支持互动喂食、玩耍、抚摸。用于：(1) 桌面宠物陪伴，(2) 3D 互动展示，(3) 宠物养成游戏。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/digital-pet"
-sourceUrl: "https://clawhub.ai/skills/digital-pet"
+name: digital-pet
+description: 数字宠物 - 一个可爱的 3D 拉布布（Labubu）数字宠物，支持互动喂食、玩耍、抚摸。用于：(1) 桌面宠物陪伴，(2) 3D 互动展示，(3) 宠物养成游戏。
 ---
 
-# 数字宠物
+# 🐰 数字宠物 - Digital Pet
 
-> 数字宠物 - 一个可爱的 3D 拉布布（Labubu）数字宠物，支持互动喂食、玩耍、抚摸。用于：(1) 桌面宠物陪伴，(2) 3D 互动展示，(3) 宠物养成游戏。
+一个可爱的 3D 拉布布（Labubu）数字宠物，可以在网页中互动！
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/digital-pet`
-- **Source URL:** [https://clawhub.ai/skills/digital-pet](https://clawhub.ai/skills/digital-pet)
+## ✨ 功能特性
 
-## Overview
+### 3D 模型
+- 🎨 高精细度 Labubu 模型
+- 🐰 兔耳朵 + 大眼睛 + 尖牙齿
+- 💚 经典棕绿色毛发
+- ⭕ 圆滚滚的梨形身材
 
+### 互动系统
+- 🍎 **喂食** - 增加饱食度
+- 🎾 **玩耍** - 增加心情
+- 👋 **抚摸** - 宠物会开心跳跃
+- 🖱️ **鼠标跟随** - 耳朵跟随鼠标
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 状态系统
+- ❤️ 心情
+- 🍖 饱食度
+- ⚡ 活力
+
+## 🚀 使用方法
+
 ```bash
-hermes skills install clawhub/digital-pet
+python3 scripts/serve.py
+# 访问 http://localhost:8888
 ```
+
+## 🎮 操作指南
+
+- **鼠标移动** - 耳朵跟随
+- **点击宠物** - 抚摸
+- **喂食按钮** - 喂食
+- **玩耍按钮** - 玩耍
+- **抚摸按钮** - 抚摸
+
+## 📝 提示
+
+- 饱食度会随时间下降
+- 玩耍消耗活力
+- 经常互动保持好心情
+
+## 🛠️ 技术栈
+
+- Three.js
+- JavaScript
+- Python
+
+---
+Made with 💚

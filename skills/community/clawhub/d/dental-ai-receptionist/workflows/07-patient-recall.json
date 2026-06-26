@@ -1,0 +1,339 @@
+{
+  "name": "Dental AI — 07 Patient Recall & Re-engagement",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 10 * * 1"
+            }
+          ]
+        }
+      },
+      "name": "Weekly Monday 10AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        400
+      ],
+      "id": "n7-cron"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_PATIENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Patients",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Patient Records",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        400
+      ],
+      "id": "n7-read",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst items = $input.all();\nconst recalls = [];\n\n// Recall intervals by service type (in months)\nconst recallIntervals = {\n  'prophy': 6, 'cleaning': 6, 'prophylaxis': 6,\n  'exam': 12, 'checkup': 12, 'annual_exam': 12,\n  'srp': 3, 'deep_cleaning': 3, 'perio_maintenance': 3,\n  'fluoride': 6, 'sealant': 12,\n  'x-ray': 12, 'panoramic': 36, 'bitewing': 12,\n  'default': 6\n};\n\nfor (const item of items) {\n  const patient = item.json;\n  if (!patient.last_visit_date || !patient.patient_phone) continue;\n  if (patient.recall_opt_out === 'yes' || patient.status === 'inactive') continue;\n\n  const lastVisit = new Date(patient.last_visit_date);\n  if (isNaN(lastVisit.getTime())) continue;\n\n  const lastService = (patient.last_service || 'default').toLowerCase();\n  const intervalMonths = recallIntervals[lastService] || recallIntervals['default'];\n\n  // Calculate when recall is due\n  const recallDue = new Date(lastVisit);\n  recallDue.setMonth(recallDue.getMonth() + intervalMonths);\n\n  // Check if recall is due (within the next 2 weeks or already overdue)\n  const daysUntilDue = (recallDue - now) / (1000 * 60 * 60 * 24);\n  \n  if (daysUntilDue <= 14) {\n    const monthsSinceVisit = Math.floor((now - lastVisit) / (1000 * 60 * 60 * 24 * 30));\n    const isOverdue = daysUntilDue < 0;\n    const overdueMonths = isOverdue ? Math.abs(Math.floor(daysUntilDue / 30)) : 0;\n\n    // Skip if recall already sent within last 30 days\n    if (patient.last_recall_sent) {\n      const lastRecall = new Date(patient.last_recall_sent);\n      const daysSinceRecall = (now - lastRecall) / (1000 * 60 * 60 * 24);\n      if (daysSinceRecall < 30) continue;\n    }\n\n    let smsMsg, voiceMsg;\n    if (isOverdue) {\n      smsMsg = `Hi ${patient.patient_name}! It's been ${monthsSinceVisit} months since your last dental visit. You're overdue for your ${lastService} appointment. Regular dental care is important for your health! Reply BOOK to schedule, or call us anytime.`;\n      voiceMsg = `Hello ${patient.patient_name}, this is a friendly recall from your dental clinic. It has been ${monthsSinceVisit} months since your last visit and you are overdue for your ${lastService} appointment. We recommend scheduling soon to maintain your oral health. Press 1 to book an appointment now, or press 2 to receive a text with our booking information.`;\n    } else {\n      smsMsg = `Hi ${patient.patient_name}! Your ${lastService} appointment is coming due soon. It's been ${monthsSinceVisit} months since your last visit. Reply BOOK to schedule, or call us!`;\n      voiceMsg = `Hello ${patient.patient_name}, this is your dental clinic calling with a friendly reminder. Your ${lastService} appointment is coming due soon. Press 1 to book an appointment, or press 2 to receive scheduling information by text.`;\n    }\n\n    recalls.push({\n      json: {\n        ...patient,\n        recall_type: isOverdue ? 'overdue' : 'upcoming',\n        months_since_visit: monthsSinceVisit,\n        overdue_months: overdueMonths,\n        recall_due_date: recallDue.toISOString(),\n        last_service: lastService,\n        sms_message: smsMsg,\n        voice_message: voiceMsg\n      }\n    });\n  }\n}\n\nif (recalls.length === 0) {\n  return [{ json: { no_recalls: true, count: 0 } }];\n}\n\nreturn recalls;"
+      },
+      "name": "Find Patients Due for Recall",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        400
+      ],
+      "id": "n7-filter"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-recalls",
+              "leftValue": "={{ $json.no_recalls }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Any Recalls?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        920,
+        400
+      ],
+      "id": "n7-if"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{ $json.patient_phone }}",
+        "body": "={{ $json.sms_message }}"
+      },
+      "name": "Send Recall SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        300
+      ],
+      "id": "n7-sms",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.VAPI_API_URL}}/call/phone",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.VAPI_API_KEY}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ assistantId: $env.VAPI_RECALL_ASSISTANT_ID, customer: { number: $json.patient_phone, name: $json.patient_name }, metadata: { recall_type: $json.recall_type, last_service: $json.last_service, months_since_visit: $json.months_since_visit } }) }}",
+        "options": {}
+      },
+      "name": "Make Recall Call (Vapi)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1180,
+        480
+      ],
+      "id": "n7-vapi"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_PATIENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Patients",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "patient_phone": "={{ $json.patient_phone }}",
+            "last_recall_sent": "={{ new Date().toISOString() }}",
+            "recall_count": "={{ (parseInt($json.recall_count) || 0) + 1 }}"
+          },
+          "matchingColumns": [
+            "patient_phone"
+          ],
+          "schema": [
+            {
+              "id": "patient_phone",
+              "displayName": "patient_phone",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Update Recall Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1440,
+        300
+      ],
+      "id": "n7-update",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Recall Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "patient_name": "={{ $json.patient_name }}",
+            "patient_phone": "={{ $json.patient_phone }}",
+            "recall_type": "={{ $json.recall_type }}",
+            "last_service": "={{ $json.last_service }}",
+            "months_since_visit": "={{ $json.months_since_visit }}",
+            "channels": "sms,voice",
+            "sent_at": "={{ new Date().toISOString() }}",
+            "response": ""
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Recall Activity",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1440,
+        480
+      ],
+      "id": "n7-log",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "name": "No Recalls Due",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        660
+      ],
+      "id": "n7-noop"
+    }
+  ],
+  "connections": {
+    "Weekly Monday 10AM": {
+      "main": [
+        [
+          {
+            "node": "Get Patient Records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Patient Records": {
+      "main": [
+        [
+          {
+            "node": "Find Patients Due for Recall",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Patients Due for Recall": {
+      "main": [
+        [
+          {
+            "node": "Any Recalls?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Any Recalls?": {
+      "main": [
+        [
+          {
+            "node": "Send Recall SMS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Make Recall Call (Vapi)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Recalls Due",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Recall SMS": {
+      "main": [
+        [
+          {
+            "node": "Update Recall Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Make Recall Call (Vapi)": {
+      "main": [
+        [
+          {
+            "node": "Log Recall Activity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

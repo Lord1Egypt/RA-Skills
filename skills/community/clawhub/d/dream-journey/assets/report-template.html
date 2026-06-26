@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寻梦之旅 - {{title}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --dream-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+            --reality-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%);
+            --gold-gradient: linear-gradient(135deg, #f5af19 0%, #f12711 50%, #f5af19 100%);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow-glow: 0 8px 32px rgba(102, 126, 234, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* 星空背景动画 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 3s) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+        }
+
+        /* 流星动画 */
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            animation: shoot 3s ease-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateX(-500px) translateY(500px) rotate(-45deg); opacity: 0; }
+        }
+
+        /* 主容器 */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero区域 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #f093fb 50%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 40px rgba(240, 147, 251, 0.5);
+            letter-spacing: 8px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8em;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+        }
+
+        .hero .dream-quote {
+            font-size: 1.3em;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            border-left: 3px solid rgba(240, 147, 251, 0.5);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-20px); }
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 玻璃态卡片 */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: var(--shadow-glow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 48px rgba(102, 126, 234, 0.6);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 章节标题 */
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, #fff 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #f093fb, transparent);
+        }
+
+        .section-title .icon {
+            margin-right: 15px;
+            font-size: 0.9em;
+        }
+
+        /* 梦境卡片 */
+        .dream-card {
+            background: var(--dream-gradient);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(252, 182, 159, 0.4);
+        }
+
+        .dream-card::before {
+            content: '💭';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4em;
+            opacity: 0.3;
+        }
+
+        .dream-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8em;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .dream-card p {
+            color: #fff;
+            font-size: 1.1em;
+            line-height: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* 现实卡片 */
+        .reality-card {
+            background: var(--reality-gradient);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(168, 237, 234, 0.4);
+        }
+
+        .reality-card::before {
+            content: '📍';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4em;
+            opacity: 0.3;
+        }
+
+        .reality-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8em;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .reality-card p {
+            color: #fff;
+            font-size: 1.1em;
+            line-height: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* 对比区域 */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .comparison-item {
+            padding: 35px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .comparison-item:hover {
+            transform: scale(1.05);
+        }
+
+        .comparison-item.dream {
+            background: linear-gradient(135deg, rgba(255, 236, 210, 0.9) 0%, rgba(252, 182, 159, 0.9) 100%);
+            box-shadow: 0 10px 30px rgba(252, 182, 159, 0.5);
+        }
+
+        .comparison-item.reality {
+            background: linear-gradient(135deg, rgba(168, 237, 234, 0.9) 0%, rgba(210, 153, 194, 0.9) 100%);
+            box-shadow: 0 10px 30px rgba(168, 237, 234, 0.5);
+        }
+
+        .comparison-item h4 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comparison-item.dream h4 {
+            color: #f5576c;
+        }
+
+        .comparison-item.reality h4 {
+            color: #667eea;
+        }
+
+        .comparison-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .comparison-item li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .comparison-item li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .comparison-item.dream li::before {
+            color: #f5576c;
+        }
+
+        .comparison-item.reality li::before {
+            color: #667eea;
+        }
+
+        /* 统计数据 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .stat-card:hover::before {
+            opacity: 0.2;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.6);
+        }
+
+        .stat-card .number {
+            font-size: 3.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #f093fb 50%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            padding: 40px 0 40px 60px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #f093fb 0%, #f5576c 50%, #667eea 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(240, 147, 251, 0.5);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding: 35px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -43px;
+            top: 40px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: 4px solid #0a0e27;
+            box-shadow: 0 0 20px rgba(240, 147, 251, 0.8), 0 0 40px rgba(240, 147, 251, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(240, 147, 251, 0.8), 0 0 40px rgba(240, 147, 251, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(240, 147, 251, 1), 0 0 60px rgba(240, 147, 251, 0.6); }
+        }
+
+        .timeline-item h4 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.6em;
+            background: linear-gradient(135deg, #fff 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.9;
+            font-size: 1.05em;
+        }
+
+        /* 照片墙 */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .photo-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .photo-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .photo-item:hover::before {
+            opacity: 1;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 15px 60px rgba(240, 147, 251, 0.6);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+            color: #fff;
+            font-size: 1.1em;
+            z-index: 2;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .photo-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* 引用框 */
+        .quote-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(240, 147, 251, 0.5);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            margin: 60px 0;
+            font-size: 1.5em;
+            line-height: 2;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(240, 147, 251, 0.3);
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-family: 'Noto Serif SC', serif;
+            font-size: 6em;
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.5;
+        }
+
+        .quote-box p {
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            background: linear-gradient(135deg, #fff 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 情感日记 */
+        .diary-entry {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            line-height: 2.2;
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .diary-entry::before {
+            content: '📝';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            font-size: 2.5em;
+            background: #0a0e27;
+            padding: 0 10px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 40px;
+            margin-top: 80px;
+            background: linear-gradient(180deg, transparent 0%, rgba(102, 126, 234, 0.2) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer .slogan {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #f093fb 50%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-style: italic;
+        }
+
+        .footer .meta {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95em;
+        }
+
+        /* 打印按钮 */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(245, 87, 108, 0.6);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .print-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(245, 87, 108, 0.8);
+        }
+
+        .print-button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* 分隔线 */
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #f093fb 50%, transparent 100%);
+            margin: 60px 0;
+            opacity: 0.5;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+                letter-spacing: 4px;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3em;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .glass-card, .dream-card, .reality-card {
+                padding: 25px;
+            }
+
+            .timeline {
+                padding-left: 40px;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item::before {
+                left: -33px;
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        /* 打印样式 */
+        @media print {
+            .print-button, .scroll-indicator, .stars, .shooting-star {
+                display: none !important;
+            }
+
+            body {
+                background: #fff;
+                color: #333;
+            }
+
+            .glass-card, .diary-entry, .quote-box, .stat-card, .timeline-item {
+                background: #f9f9f9;
+                backdrop-filter: none;
+                border: 1px solid #ddd;
+                box-shadow: none;
+                color: #333;
+            }
+
+            .dream-card, .reality-card {
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .comparison-item.dream {
+                background: #ffecd2;
+            }
+
+            .comparison-item.reality {
+                background: #a8edea;
+            }
+
+            .comparison-item li, .timeline-item p, .diary-entry {
+                color: #555;
+            }
+
+            .section-title, .timeline-item h4 {
+                -webkit-background-clip: initial;
+                -webkit-text-fill-color: initial;
+                background: none;
+                color: #764ba2;
+            }
+
+            .stat-card .number {
+                -webkit-background-clip: initial;
+                -webkit-text-fill-color: initial;
+                background: none;
+                color: #f5576c;
+            }
+
+            .stat-card .label {
+                color: #666;
+            }
+
+            .quote-box p {
+                -webkit-background-clip: initial;
+                -webkit-text-fill-color: initial;
+                background: none;
+                color: #764ba2;
+            }
+
+            .footer .slogan {
+                -webkit-background-clip: initial;
+                -webkit-text-fill-color: initial;
+                background: none;
+                color: #764ba2;
+            }
+
+            .footer .meta {
+                color: #999;
+            }
+        }
+
+        /* 滚动动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Hero区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>寻梦之旅</h1>
+            <p class="subtitle">{{title}}</p>
+            <div class="dream-quote">
+                {{dream_quote}}
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <div class="container">
+        <!-- 梦境描述 -->
+        <section class="fade-in">
+            <h2 class="section-title">
+                <span class="icon">💭</span>
+                你的梦境
+            </h2>
+            <div class="dream-card">
+                <h3>梦境描述</h3>
+                <p>{{dream_description}}</p>
+            </div>
+        </section>
+
+        <!-- 梦境高清还原 -->
+        <section class="fade-in">
+            <h2 class="section-title">
+                <span class="icon">✨</span>
+                梦境高清还原
+            </h2>
+            <div class="dream-card">
+                <h3>电影级场景</h3>
+                <p>{{dream_restoration}}</p>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 现实目的地 -->
+        <section class="fade-in">
+            <h2 class="section-title">
+                <span class="icon">📍</span>
+                现实寻梦之地
+            </h2>
+            <div class="reality-card">
+                <h3>{{destination_name}}</h3>
+                <p>{{destination_description}}</p>
+            </div>
+        </section>
+
+        <!-- 梦境 vs 现实对比 -->
+        <section class="fade-in">
+            <h2 class="section-title">
+                <span class="icon">🔄</span>
+                梦境 vs 现实
+            </h2>
+            <div class="comparison">
+                <div class="comparison-item dream">
+                    <h4>💭 梦境元素</h4>
+                    <ul>
+                        {{dream_elements}}
+                    </ul>
+                </div>
+                <div class="comparison-item reality">
+                    <h4>📍 现实对应</h4>
+                    <ul>
+                        {{reality_elements}}
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 统计数据 -->
+        <section class="fade-in">
+            <h2 class="section-title">
+                <span class="icon">📊</span>
+                寻梦数据
+            </h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">{{similarity_score}}%</div>
+                    <div class="label">梦境相似度</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">{{total_cost}}元</div>
+                    <div class="label">总花费</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">{{days}}天</div>
+                    <div class="label">行程天数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">{{destiny_index}}</div>
+                    <div class="label">宿命感指数</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 行程时间线 -->
+        <section class="fade-in">
+            <h2 class="section-title">
+                <span class="icon">🗓️</span>
+                寻梦时间线
+            </h2>
+            <div class="timeline">
+                {{timeline_items}}
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 照片墙 -->
+        <section class="fade-in">
+            <h2 class="section-title">
+                <span class="icon">📸</span>
+                寻梦瞬间
+            </h2>
+            <div class="photo-gallery">
+                {{photo_gallery}}
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- 情感日记 -->
+        <section class="fade-in">
+            <h2 class="section-title">
+                <span class="icon">📝</span>
+                我的梦成真了
+            </h2>
+            <div class="diary-entry">
+                {{emotional_diary}}
+            </div>
+        </section>
+
+        <!-- 金句 -->
+        <section class="fade-in">
+            <div class="quote-box">
+                <p>{{golden_quote}}</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="slogan">"有些地方，我们先在梦里遇见，然后用 Fly.ai 把它寻成真。"</p>
+        <p class="meta">生成时间：{{generate_time}} | 寻梦者 Agent 倾情呈现</p>
+    </footer>
+
+    <button class="print-button" onclick="window.print()">🖨️ 保存报告</button>
+
+    <script>
+        // 生成星空背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+
+            // 添加流星
+            for (let i = 0; i < 3; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = (Math.random() * 50 + 50) + '%';
+                shootingStar.style.top = (Math.random() * 50) + '%';
+                shootingStar.style.animationDelay = (Math.random() * 5 + i * 3) + 's';
+                starsContainer.appendChild(shootingStar);
+            }
+        }
+
+        // 滚动动画
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html>

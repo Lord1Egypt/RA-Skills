@@ -1,0 +1,17 @@
+{                                                                                                               
+   "name": "cuchd-login",                                                                                        
+   "version": "0.1.0",                                                                                           
+   "description": "OpenClaw skill to assist with staff.cuchd.in login actions (automation helper).",             
+   "main": "index.js",                                                                                                                                                                                                   
+   "keywords": [                                                                                                 
+     "openclaw",                                                                                                 
+     "skill",                                                                                                    
+     "cuchd",                                                                                                    
+     "login"                                                                                                     
+   ],                                                                                                            
+   "author": "Your Name you@example.com",                                                                        
+   "license": "MIT",                                                                                             
+   "engines": {                                                                                                  
+     "node": ">=14"                                                                                              
+   }                                                                                                             
+ }    

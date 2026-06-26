@@ -1,35 +1,149 @@
----
-name: "Data Analysis Report"
-description: "自动分析多种格式数据，生成含图表、关键洞察和建议的中文完整报告，支持本地安全处理和批量文件分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-analysis-report"
-sourceUrl: "https://clawhub.ai/skills/data-analysis-report"
----
+# Data Analysis Report Generator (智能数据分析报告生成器)
 
-# Data Analysis Report
+## 概述
+专业的数据分析和报告生成技能，支持CSV、Excel、JSON等多种数据格式，自动生成包含图表、洞察和可执行建议的完整分析报告。
 
-> 自动分析多种格式数据，生成含图表、关键洞察和建议的中文完整报告，支持本地安全处理和批量文件分析。
+## 核心能力
+1. **数据自动分析**：自动识别数据类型、异常值、相关性
+2. **智能可视化**：自动选择合适的图表类型（柱状图、折线图、散点图等）
+3. **中文优化**：对中文数据自动适配，输出中文报告
+4. **安全隐私**：数据本地处理，不上传到第三方服务
+5. **批量处理**：支持大文件处理和自动采样
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-analysis-report`
-- **Source URL:** [https://clawhub.ai/skills/data-analysis-report](https://clawhub.ai/skills/data-analysis-report)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-analysis-report
+## 技术架构
+```python
+核心依赖库：
+- pandas (数据处理和分析)
+- matplotlib (基础图表生成)
+- seaborn (美观统计图表)
+- plotly (交互式图表)
+- jupyter (报告生成环境)
 ```
+
+## 支持的数据格式
+- CSV (.csv)
+- Excel (.xlsx, .xls)
+- JSON (.json)
+- TSV (.tsv)
+- DataFrame对象
+
+## 安装要求
+```bash
+安装Python依赖（已自动处理）：
+pip install pandas matplotlib seaborn plotly jupyter openpyxl
+```
+
+## 使用指令/触发词
+- "分析这个数据"
+- "生成数据报告"
+- "找出关键洞察"
+- "数据可视化分析"
+- "automatically analyze this data"
+- "generate data insights report"
+
+## 详细功能说明
+
+### 数据质量检测
+- 缺失值统计和可视化
+- 异常值检测和报告
+- 数据类型分布分析
+- 数据完整性评估
+
+### 统计分析功能
+- 描述性统计（均值、中位数、标准差等）
+- 相关性分析（热力图显示）
+- 趋势分析（时间序列）
+- 分布分析（直方图、箱线图）
+
+### 报告生成能力
+- **数据概览报告**：整体数据情况和质量评估
+- **关键洞察摘要**：3-5个最重要的发现
+- **详细分析报告**：每个维度的深入分析
+- **可执行建议**：基于分析结果的优化建议
+
+## 应用场景示例
+
+### 1. 销售数据分析
+```
+触发："分析这份销售数据报表"
+输出：
+- 月度/季度/年度趋势分析
+- 畅销产品Top 10
+- 地域分布热力图
+- 销售渠道效果对比
+- 客户购买行为分析
+```
+
+### 2. 工程质量数据分析
+```
+触发："分析这个项目的质量检测记录"
+输出：
+- 合格率趋势分析
+- 主要问题帕累托图
+- 整改完成情况
+- 风险评估矩阵
+```
+
+### 3. 成本分析报告
+```
+触发："分析这份工程造价数据"
+输出：
+- 成本构成饼图
+- 材料价格趋势分析
+- 单项成本对比
+- 超预算预警分析
+```
+
+## 输出格式选项
+- **HTML报告**：交互式网页报告，包含所有图表
+- **PDF报告**：便于打印和分发的版本
+- **Markdown总结**：简洁的文字总结
+- **图表集合**：独立的图表文件集合
+
+## 高级功能
+
+### 自定义模板
+支持用户上传自定义报告模板，包括：
+- 企业品牌LOGO和配色
+- 标准化报告结构
+- 特定KPI计算逻辑
+
+### 批量处理
+- 自动处理多个文件
+- 合并多个数据源
+- 生成统一的综合报告
+
+### 自动化调度
+- 定时执行分析任务
+- 邮件自动发送报告
+- 系统集成API
+
+## 安全性说明
+1. **数据本地处理**：所有数据处理都在您的本地环境完成
+2. **无网络传输**：无需上传数据到云端
+3. **权限控制**：遵循本地文件系统权限
+4. **数据清理**：分析完成后可自动清理临时文件
+
+## 性能优化
+- 大文件自动分块处理
+- 智能内存管理
+- 多线程数据处理
+- 缓存机制加速重复分析
+
+## 兼容性
+- **Python版本**：3.8+
+- **操作系统**：Windows、macOS、Linux
+- **集成平台**：OpenClaw、Claude Desktop、WorkBuddy
+
+## 更新日志
+- 2026-04-03：初始版本发布
+- 支持12种图表类型
+- 优化中文报告输出
+- 增强数据安全保护
+
+## 技术支持
+如有问题或需要定制功能，请联系项目维护团队或查看项目GitHub仓库。
+
+---
+
+**注意**：本技能为开源项目，欢迎贡献代码和提出建议！

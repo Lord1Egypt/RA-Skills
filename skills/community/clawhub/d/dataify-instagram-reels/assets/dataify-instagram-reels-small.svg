@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Dataify Instagram Reels">
+  <defs>
+    <linearGradient id="g" x1="18" y1="110" x2="112" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f58529"/>
+      <stop offset=".45" stop-color="#dd2a7b"/>
+      <stop offset="1" stop-color="#515bd4"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="18" width="92" height="92" rx="24" fill="url(#g)"/>
+  <path d="M43 38h42a13 13 0 0 1 13 13v30a13 13 0 0 1-13 13H43a13 13 0 0 1-13-13V51a13 13 0 0 1 13-13Z" fill="#fff" opacity=".92"/>
+  <path d="M53 51h23l-9-13h10l9 13h12v11H30V51h12l-8-13h10l9 13Z" fill="#221b38"/>
+  <path d="M57 70v17l18-8.5L57 70Z" fill="#221b38"/>
+</svg>

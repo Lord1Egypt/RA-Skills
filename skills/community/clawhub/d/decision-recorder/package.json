@@ -1,0 +1,23 @@
+{
+  "name": "decision-recorder",
+  "version": "1.0.0",
+  "description": "决策记录器 - 记录、追溯和分析决策过程",
+  "main": "index.js",
+  "bin": {
+    "decision-recorder": "./bin/decision-recorder"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "decision",
+    "recorder",
+    "decision-making",
+    "analysis"
+  ],
+  "author": "Pearl",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

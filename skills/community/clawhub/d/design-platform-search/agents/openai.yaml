@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Platform Search"
+  short_description: "Login-free public design search for Dribbble, Pinterest, and Behance"
+  default_prompt: "Use $design-platform-search to run a search-page-first public retrieval workflow on Dribbble, Pinterest, or Behance."

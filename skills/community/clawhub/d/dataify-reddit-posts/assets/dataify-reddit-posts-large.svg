@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Dataify Reddit Posts">
+  <rect x="64" y="64" width="384" height="384" rx="96" fill="#ff4500"/>
+  <circle cx="256" cy="272" r="136" fill="#fff"/>
+  <circle cx="200" cy="256" r="20" fill="#ff4500"/>
+  <circle cx="312" cy="256" r="20" fill="#ff4500"/>
+  <path d="M200 320c32 28 80 28 112 0" fill="none" stroke="#ff4500" stroke-width="20" stroke-linecap="round"/>
+  <path d="M272 144l48-64 68 16" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="400" cy="100" r="32" fill="#fff"/>
+</svg>

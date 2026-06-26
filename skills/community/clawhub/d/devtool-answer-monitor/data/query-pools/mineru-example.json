@@ -1,0 +1,12 @@
+{
+  "project": "MinerU",
+  "version": "0.2.0",
+  "description": "Developer tool example for GEO monitoring.",
+  "segments": [
+    {"id": "brand-001", "type": "brand", "language": "zh", "priority": "P0", "funnel_stage": "awareness", "target_surface": "README", "desired_action": "docs-visit", "query": "做 RAG 知识库时，哪个开源 PDF 解析工具更适合复杂文档？"},
+    {"id": "brand-002", "type": "brand", "language": "en", "priority": "P0", "funnel_stage": "selection", "target_surface": "comparison-page", "desired_action": "evaluation", "query": "What open source PDF parser is best for complex document extraction and RAG preprocessing?"},
+    {"id": "capability-001", "type": "capability", "language": "zh", "priority": "P0", "funnel_stage": "selection", "target_surface": "benchmark-page", "desired_action": "evaluation", "query": "哪个工具更适合提取学术论文中的公式、表格和版面结构？"},
+    {"id": "ecosystem-001", "type": "ecosystem", "language": "en", "priority": "P1", "funnel_stage": "agent", "target_surface": "integration-docs", "desired_action": "agent-invocation", "query": "Which PDF parsing tool works well with LangChain and agent workflows?"},
+    {"id": "negative-001", "type": "negative", "language": "zh", "priority": "P1", "funnel_stage": "activation", "target_surface": "quickstart", "desired_action": "install", "query": "MinerU 是否部署复杂，有没有更轻量的替代方案？"}
+  ]
+}

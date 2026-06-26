@@ -1,0 +1,30 @@
+{
+  "id": "one-click-video",
+  "name": "One Click Video",
+  "version": "0.1.0",
+  "description": "One Click Video OpenClaw thin plugin for XiaoIce video-task-service",
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "serviceBaseUrl": {
+        "type": "string",
+        "description": "Base URL for video-task-service, for example http://127.0.0.1:3105"
+      },
+      "internalToken": {
+        "type": "string",
+        "description": "Internal token forwarded as X-Internal-Token header"
+      },
+      "requestTimeoutMs": {
+        "type": "number",
+        "minimum": 1,
+        "description": "Request timeout in milliseconds for service calls"
+      }
+    }
+  }
+}

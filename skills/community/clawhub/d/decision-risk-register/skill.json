@@ -1,0 +1,43 @@
+{
+  "slug": "decision-risk-register",
+  "name": "Decision Risk Register",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Builds a lightweight risk register for a chosen or leading option with risk statements, likelihood, impact, warning indicators, mitigations, contingencies, owners, and review dates.",
+  "author": "Bell (design)",
+  "license": "MIT-0",
+  "category": "Decision Frameworks and Risk Planning",
+  "target_user": "Managers, founders, project leads, students, household decision-makers, and anyone who wants a lightweight risk register before acting.",
+  "tags": [
+    "decision-making",
+    "risk-register",
+    "risk-management",
+    "mitigation-plan",
+    "contingency-planning",
+    "structured-thinking"
+  ],
+  "trigger_keywords": [
+    "decision risk register template",
+    "what are the risks of this decision",
+    "help me make a risk register",
+    "what could go wrong if I do this",
+    "mitigate this plan",
+    "risk register before committing"
+  ],
+  "use_cases": [
+    "Risk-checking a leading decision option",
+    "Preparing mitigation and contingency plans",
+    "Tracking warning indicators before and after commitment",
+    "Creating review checkpoints for a medium-stakes plan"
+  ],
+  "language": "en",
+  "hasExecutableCode": false,
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

@@ -1,0 +1,74 @@
+=== org.deepin.dde.Power1 /org/deepin/dde/Power1 ===
+node /org/deepin/dde/Power1 {
+  interface org.deepin.dde.Power1 {
+    methods:
+      GetBatteries(out ao batteries);
+      LockCpuFreq(in  s governor,
+                  in  i lockTime);
+      Refresh();
+      RefreshBatteries();
+      RefreshMains();
+      SetCpuBoost(in  b enabled);
+      SetCpuGovernor(in  s governor);
+      SetMode(in  s mode);
+    signals:
+      BatteryDisplayUpdate(x timestamp);
+      BatteryAdded(o path);
+      BatteryRemoved(o path);
+      LidClosed();
+      LidOpened();
+    properties:
+      readonly b OnBattery = false;
+      readonly d BatteryPercentage = 100.0;
+      readwrite s PowerSavingModeBrightnessData = 'null';
+      readonly b CpuBoost = true;
+      readonly s Mode = 'balance';
+      readonly b IsPowerSaveSupported = true;
+      readonly b HasBattery = false;
+      readonly u BatteryStatus = 0;
+      readonly d BatteryCapacity = 0.0;
+      readwrite b PowerSavingModeEnabled = false;
+      readwrite b PowerSavingModeAuto = false;
+      readwrite b PowerSavingModeAutoWhenBatteryLow = true;
+      readonly b IsHighPerformanceSupported = true;
+      readwrite b SupportSwitchPowerMode = false;
+      readonly b IsInBootTime = false;
+      readonly b HasLidSwitch = false;
+      readonly t BatteryTimeToEmpty = 0;
+      readonly t BatteryTimeToFull = 0;
+      readonly b IsBalanceSupported = true;
+      readonly b LidClosed = false;
+      readwrite u PowerSavingModeBrightnessDropPercent = 20;
+      readwrite u PowerSavingModeAutoBatteryPercent = 20;
+      readonly s CpuGovernor = '';
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

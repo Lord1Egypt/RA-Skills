@@ -1,0 +1,24 @@
+﻿name: customer-research
+version: 1.4.0
+description: 瀹㈡埛璋冪爺涓庣珵鍝佹儏鎶ユ妧鑳?- 鑷姩鐢熸垚 Word 璋冪爺鎶ュ憡鍜屽満鏅牬鍐?PPT锛坆efore/after 瀵规瘮锛夈€傛敮鎸佸鎴疯儗鏅皟鐮旓紙4缁村害锛夊拰绔炲搧鎯呮姤/閲囪喘璁板綍鏌ヨ锛堝彲閫夌5缁村害锛夈€?author: Dick Dunkel
+homepage: https://clawhub.ai/skills/customer-research
+license: MIT-0
+tags:
+  - sales
+  - meddic
+  - research
+  - ppt
+  - word
+  - secure
+  - competitor-intel
+category: sales
+dependencies:
+  - word-docx
+  - openclaw-ppt-generator
+entry: SKILL.md
+files:
+  - SKILL.md
+  - README.md
+  - AGENT_INSTRUCTIONS.md
+  - scripts/**
+  - references/**

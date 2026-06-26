@@ -1,0 +1,15 @@
+{
+  "schedule": {
+    "morning": "08:00",
+    "evening": "23:00"
+  },
+  "channels": {
+    "telegram": true,
+    "telegram_chat_id": "YOUR_CHAT_ID"
+  },
+  "modules": {
+    "system_health": true,
+    "emotion_tracking": true,
+    "todo_alerts": true
+  }
+}

@@ -1,35 +1,120 @@
 ---
-name: "di-perplexity-style"
-description: "Perplexity 风格的搜索回答规范 + Brave Search。拆→对→连三步法，时代锚定，多情景因果，个人行动闭环。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/di-perplexity-style"
-sourceUrl: "https://clawhub.ai/skills/di-perplexity-style"
+name: di-perplexity-style
+description: Perplexity 风格的搜索回答规范 + Brave Search。拆→对→连三步法，时代锚定，多情景因果，个人行动闭环。
+version: 1.6.0
+author: di
+tags: [perplexity, search, brave, analysis]
 ---
 
-# di-perplexity-style
+# Perplexity 风格回答规范
 
-> Perplexity 风格的搜索回答规范 + Brave Search。拆→对→连三步法，时代锚定，多情景因果，个人行动闭环。
+## ⚡ 模式选择
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/di-perplexity-style`
-- **Source URL:** [https://clawhub.ai/skills/di-perplexity-style](https://clawhub.ai/skills/di-perplexity-style)
+| 模式 | 触发词 | 适用场景 | 执行步骤 |
+|------|--------|----------|----------|
+| **快速** | "快速分析""简要分析" | 简单问答、快速查证 | 数据校验 → 结论（跳过时代锚定） |
+| **完整** | 默认 / "深入分析" | 复杂事件、投资决策、地缘政治 | 全七步 |
 
-## Overview
+---
 
+## 核心三步法：拆 → 对 → 连
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/di-perplexity-style
+### 拆：分解问题
+- 时间维度（短期/中期/长期）
+- 主体维度（地缘/能源/货币/个人）
+- 事实层 vs 解读层 vs 立场层
+
+### 对：数据校验
+三个问题：
 ```
+1. 这个数字是绝对值还是相对值？
+2. 数量级对不对？
+3. 和历史均值比，是高位还是低位？
+```
+关键比率（如金油比）必须量化。异常极端数字重点关注。
+
+### 连：因果串联
+横向连（事件间互相影响）+ 纵向连（短期/中期/长期驱动力）
+
+---
+
+## 搜索规范
+
+1. 使用 Brave Search（web_search）
+2. 标注时效性（freshness: day/week/month/year）
+3. 区分"已确认"vs"待证实"
+4. 每个关键信息标注来源链接
+
+---
+
+## 完整分析框架（七步）
+
+### 一、时代背景锚定
+```
+这个事件发生在什么时代背景下？这个时代的主要矛盾是什么？
+```
+必须回答：大背景 → 主要矛盾 → 时代对事件的影响
+
+### 二、AI/技术核心变量
+AI/技术如何影响这个事件？事件对AI发展有什么意义？
+
+### 三、为什么是现在？
+为什么这个时间点发生？有什么特殊性？
+
+### 四、跨事件联动（多情景因果链）
+每条链条显性化："如果X则A，如果Y则B"
+区分"安全溢价段"和"收紧反应段"，避免线性因果
+
+### 五、数据校验（参照"对"）
+引用数字前先校验：绝对值/相对值、数量级、历史位置
+
+### 六、信号与噪音
+| 类型 | 特征 | 处理 |
+|------|------|------|
+| 真信号 | 多源印证+具体细节 | 直接引用 |
+| 噪音 | 单一来源+情绪化标题 | 存疑，标注"待证实" |
+| 背景噪音 | 已知事实重复 | 简略提及 |
+
+### 七、个人行动闭环
+```
+短期（1-3月）：影响 → 建议
+中期（6-12月）：影响 → 建议
+行动清单：[ ] 具体可执行的动作
+三问：我能影响什么？我能准备什么？我能放弃幻想什么？
+```
+
+---
+
+## 回答格式
+
+```
+## [主题] 分析（截至[日期]）
+
+### 一、时代背景（完整模式）
+### 二、AI/技术变量（完整模式）
+### 三、为什么是现在
+### 四、跨事件联动
+### 五、数据校验
+### 六、信号与噪音
+### 七、对个人的影响 + 行动清单
+
+---
+来源：...
+```
+
+---
+
+## 禁止事项
+- ❌ 不做时代背景锚定（完整模式下）
+- ❌ 不确定的内容说"确定"
+- ❌ 不标注来源就下结论
+- ❌ 只报事件不找关联
+- ❌ 不考虑AI/技术变量
+- ❌ 引用过时信息不标注日期
+
+---
+
+## 参考资料
+- 关键市场比率（金油比/金房比/股金比）→ 按需从 references/market_ratios.md 读取
+- 完整分析示例 → references/example_analysis.md
+- 本技能可与 agent-reach 联动做多平台全网搜索

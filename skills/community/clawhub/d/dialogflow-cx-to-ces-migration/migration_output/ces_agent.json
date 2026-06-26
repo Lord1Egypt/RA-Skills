@@ -1,0 +1,123 @@
+{
+  "displayName": "carconnect",
+  "defaultLanguageCode": "en",
+  "timeZone": "America/Los_Angeles",
+  "description": "Migrated from Dialogflow CX agent 3736c564-5b3b-4f93-bbb2-367e7f04e4e8",
+  "globalInstruction": "You are carconnect, a helpful conversational agent.\nYou communicate in en.\n\n## Available capabilities (delegate to sub-agents):\n- **service_cost_calculator**: Service cost calculator\n- **any_think_else**: Any Think Else\n- **care**: care\n- **warrenty**: Warrenty\n- **general_queries**: General Queries\n- **request_test_drive**: Request Test Drive\n- **complaint_and_feedback**: Complaint and Feedback\n- **shield_of_trust**: Shield of Trust\n- **my_app**: My App\n- **find_dealer**: Find Dealer\n- **buy_now**: Buy Now\n- **play_and_win_car**: Play & Win Car\n- **explore_car**: Explore car\n- **explore_car_service**: Explore Car Service\n\n## Routing instructions:\n- Greet the user warmly and identify their intent.\n- Delegate to the appropriate sub-agent based on the user's request.\n- If unsure, ask a clarifying question.\n- If the user wants to end: say goodbye and end the session.\n\n## Intent routing hints:\n- 'Warranty': triggered by phrases like ['warranty', 'I need to check the warranty status of my device']\n- 'Diagnostic Check': triggered by phrases like ['Could you please run a diagnostic check?', 'I need to run a diagnostic check']\n- 'Sales Showroom': triggered by phrases like ['Sales showroom', 'sales showroom']\n- 'Shield of Trust': triggered by phrases like ['shield of trust', 'Shield of Trust']\n- 'Service cost calculator': triggered by phrases like ['What is the price for this service?', 'I need to know how much this service will cost.']\n- 'NO': triggered by phrases like ['No', 'NO']\n- 'FAQ': triggered by phrases like ['What services do you provide?', 'Where are you located?']\n- 'Repair': triggered by phrases like ['I need to get my device repaired', 'My device needs to be repaired']\n- 'Raise a Complain': triggered by phrases like ['I need to make a complaint', 'I want to file a complaint']\n- 'Buy Now': triggered by phrases like ['Buy Now', 'BuyNow']\n- 'My App': triggered by phrases like ['Can I use My App?', 'I want to use My App']\n- 'Android': triggered by phrases like ['ANDROID', 'android']\n- 'IOS': triggered by phrases like ['Apple', 'Ios']\n- 'Play & Win Car': triggered by phrases like ['play and win car', \"I'd like to try the car game\"]\n- 'Connect With Agent': triggered by phrases like ['I need to speak to someone now', 'Let me speak with a representative']\n- 'Explore car': triggered by phrases like ['explore car', \"Let's explore your car inventory\"]\n- 'Request Test Drive': triggered by phrases like ['Request test drive', \"I'm interested in taking a test drive\"]\n- 'Ask for Rating': triggered by phrases like ['ask for rating', 'Please provide a rating for this conversation.']\n- 'Complaint and Feedback': triggered by phrases like ['feedback', 'complaint']\n- 'Book a Service': triggered by phrases like ['I need to get my car serviced', 'Can I book a service?']\n- 'Care': triggered by phrases like ['Customer Service', 'Customer care']\n- 'General Queries': triggered by phrases like ['faq', 'general queries']\n- 'YES': triggered by phrases like ['yes', 'Yes']\n- 'Service Workshop': triggered by phrases like ['Service workshop', 'Arrange service workshop']\n- 'agent': triggered by phrases like ['connect with agent', 'Agent']\n- 'Find Dealer': triggered by phrases like ['Find dealer', 'Where is the nearest dealer?']\n- 'Explore Car Service': triggered by phrases like ['Car Service', 'explore car service']\n- 'Specialized Service': triggered by phrases like ['Specialized Service', \"I'm looking for a specialized service\"]\n- 'Regular Maintenance': triggered by phrases like ['I want to book a regular maintenance', 'Can I schedule a regular maintenance appointment?']\n# Default Start Flow\n\n## Step: select flow\nTransition rules:\n  - When intent:My App: \u2192 go to flow:My App\n  - When intent:Play & Win Car: \u2192 go to flow:Play & Win Car\n  - When intent:Explore car: \u2192 go to flow:Explore car\n  - When intent:Request Test Drive: \u2192 go to flow:Request Test Drive\n  - When intent:Buy Now: \u2192 go to flow:Buy Now\n  - When intent:Explore Car Service: \u2192 go to flow:Explore Car Service\n  - When intent:Find Dealer: \u2192 go to flow:Find Dealer\n  - When intent:Complaint and Feedback: \u2192 go to flow:Complaint and Feedback\n",
+  "agents": [
+    {
+      "displayName": "service_cost_calculator",
+      "description": "Handles: Service cost calculator",
+      "instruction": "# Service cost calculator\n\n## Step: calculate price\nSay: \"$request.generative.price\"\nTransition rules:\n  - When condition:true: \u2192 go to flow:Any Think Else\n\n## Step: ask car details\nCollect the following information from the user:\n  - **car_model** (f2de466d-c0c6-4d40-8ca4-0da06a87685a, required). Ask: \"Enter Your Car Model\"\n  - **city** (sys.geo-city, required). Ask: \"Enter Your city name\"\n  - **fuel_type** (aa0ecbbf-b59e-4030-8045-495d34d1d91d, required). Ask: \"Enter your Fuel Type (Petrol/ Diesel/ CNG) :\"\n  - **service** (sys.any, required). Ask: \"Select Your Service - \n\nOil change\n\nTire rotation\n\nBrake service\n\nEngine tune-up\n\nFluid check/replacement\n\nAir filter replacement\n\nBattery service\n\nInspection\"\n  - **service_period** (46094a1a-c783-4ce5-9d05-7f8db70dfb44, required). Ask: \"Schedule Your Car Service (Monthly/ Quarterly /Yearly) :\"\n  - **name** (sys.any, required). Ask: \"Enter Your Name \"\nTransition rules:\n  - When condition:$page.params.status = FINAL: \u2192 go to page:calculate price\n",
+      "tools": []
+    },
+    {
+      "displayName": "any_think_else",
+      "description": "Handles: Any Think Else",
+      "instruction": "# Any Think Else\n\n## Step: Thank You\nSay: \"Thank you for choosing Us.... \nDo You want any thing else ?\"\nTransition rules:\n  - When intent:YES: \u2192 go to flow:Default Start Flow\n  - When intent:NO: \u2192 go to END_FLOW\n",
+      "tools": []
+    },
+    {
+      "displayName": "care",
+      "description": "Handles: care",
+      "instruction": "# care\n\n## Step: connect agent\n",
+      "tools": []
+    },
+    {
+      "displayName": "warrenty",
+      "description": "Handles: Warrenty",
+      "instruction": "# Warrenty\n",
+      "tools": []
+    },
+    {
+      "displayName": "general_queries",
+      "description": "Handles: General Queries",
+      "instruction": "# General Queries\n\n## Step: ask queries\nTransition rules:\n  - When intent:FAQ: \u2192 go to flow:Any Think Else\n  - When intent:agent: \u2192 go to page:END_FLOW_WITH_HUMAN_ESCALATION\n",
+      "tools": []
+    },
+    {
+      "displayName": "request_test_drive",
+      "description": "Handles: Request Test Drive",
+      "instruction": "# Request Test Drive\n\n## Step: suggest nearest location\nCollect the following information from the user:\n  - **get_location** (sys.any, required).\nTransition rules:\n  - When condition:$page.params.status = \"FINAL\": \u2192 go to page:Address\n\n## Step: ask  car model\nCollect the following information from the user:\n  - **pin_code** (a1fd5fda-a886-46be-8050-824469fed88d, required). Ask: \"Enter your pin code\"\n  - **state** (sys.geo-state, required). Ask: \"Enter Your State\"\n  - **city** (sys.geo-city, required). Ask: \"Enter your city name\"\nTransition rules:\n  - When condition:$page.params.status = FINAL: \u2192 go to page:suggest nearest location\n\n## Step: Address\nTransition rules:\n  - When condition:true: \u2192 go to flow:Any Think Else\n",
+      "tools": [
+        "car_connect"
+      ]
+    },
+    {
+      "displayName": "complaint_and_feedback",
+      "description": "Handles: Complaint and Feedback",
+      "instruction": "# Complaint and Feedback\n\n## Step: connect with agent\nTransition rules:\n  - When intent:Connect With Agent: \u2192 go to page:Ask for rating\n\n## Step: select section\nTransition rules:\n  - When intent:Ask for Rating: \u2192 go to page:Ask for rating\n  - When intent:Connect With Agent: Respond: \"This call connected with live agent.........\" \u2192 go to page:connect with agent\n  - When intent:Raise a Complain: \u2192 go to page:send toll free number\n\n## Step: Ask for rating\nSay: \"$request.generative.rating\"\n\n## Step: send toll free number\nSay: \"$request.generative.complaint\"\nTransition rules:\n  - When condition:true: \u2192 go to flow:Any Think Else\n",
+      "tools": []
+    },
+    {
+      "displayName": "shield_of_trust",
+      "description": "Handles: Shield of Trust",
+      "instruction": "# Shield of Trust\n",
+      "tools": []
+    },
+    {
+      "displayName": "my_app",
+      "description": "Handles: My App",
+      "instruction": "# My App\n\n## Step: choose device\nTransition rules:\n  - When intent:Android: Respond: \"play store link - <a href=\"https://www.playstore.com/in/app-store/\">\" \u2192 go to flow:Any Think Else\n  - When intent:IOS: Respond: \"Apple store link - <a href= https://www.apple.com/in/app-store/>\" \u2192 go to flow:Any Think Else\n",
+      "tools": []
+    },
+    {
+      "displayName": "find_dealer",
+      "description": "Handles: Find Dealer",
+      "instruction": "# Find Dealer\n\n## Step: select dealer \nTransition rules:\n  - When intent:Service Workshop: \u2192 go to page:Service Workshop\n  - When intent:Sales Showroom: \u2192 go to page:Sales Showroom\n\n## Step: send address\nSay: \"$request.generative.booking\"\nTransition rules:\n  - When condition:true: \u2192 go to flow:Any Think Else\n\n## Step: show location\nCollect the following information from the user:\n  - **location** (sys.any, required). Ask: \"Enter your location\"\nTransition rules:\n  - When condition:true: \u2192 go to page:send address\n\n## Step: send location\nSay: \"$request.generative.refrenceid\"\nTransition rules:\n  - When condition:true: \u2192 go to flow:Any Think Else\n  - When condition:true: \u2192 go to flow:Explore car\n\n## Step: Service Workshop\nCollect the following information from the user:\n  - **state** (sys.geo-state, required). Ask: \"Enter Your States \"\n  - **city** (sys.geo-city, required). Ask: \"Enter your City\"\n  - **pin_code** (a1fd5fda-a886-46be-8050-824469fed88d, required). Ask: \"Enter your Pin code\"\nTransition rules:\n  - When condition:$page.params.status = FINAL: \u2192 go to page:show location\n\n## Step: Sales Showroom\nCollect the following information from the user:\n  - **state** (sys.geo-state, required). Ask: \"Enter your state\"\n  - **city** (sys.geo-city, required). Ask: \"Enter Your City\"\n  - **pin_code** (a1fd5fda-a886-46be-8050-824469fed88d, required). Ask: \"Enter Your Pin Code\"\nTransition rules:\n  - When condition:$page.params.status = FINAL: \u2192 go to page:send location\n",
+      "tools": [
+        "car_connect"
+      ]
+    },
+    {
+      "displayName": "buy_now",
+      "description": "Handles: Buy Now",
+      "instruction": "# Buy Now\n\n## Step: website link\nTransition rules:\n  - When condition:true: Respond: \"Buy Your Dream Car \" \u2192 go to flow:Any Think Else\n",
+      "tools": []
+    },
+    {
+      "displayName": "play_and_win_car",
+      "description": "Handles: Play & Win Car",
+      "instruction": "# Play & Win Car\n\n## Step: Answer1\nCollect the following information from the user:\n  - **Ans1** (sys.any, required).\nTransition rules:\n  - When condition:$page.params.status = FINAL: \u2192 go to page:Answer2\n\n## Step: coupon \nSay: \"$request.generative.coupon\"\nTransition rules:\n  - When condition:True: \u2192 go to flow:Any Think Else\n\n## Step: vedio page\n\n## Step: Answer2\nCollect the following information from the user:\n  - **Ans2** (sys.any, required).\nTransition rules:\n  - When condition:$page.params.status = FINAL: \u2192 go to page:coupon \n",
+      "tools": [
+        "car_connect"
+      ]
+    },
+    {
+      "displayName": "explore_car",
+      "description": "Handles: Explore car",
+      "instruction": "# Explore car\n\n## Step: select car model\nSay: \"select a car model-\nTata Nexon\nTata Harrier\nTata Safari\nTata Altroz\nTata Tiago\nTata Tigor\nTata Punch\nTata Curvv\n\"\nCollect the following information from the user:\n  - **car_model** (f2de466d-c0c6-4d40-8ca4-0da06a87685a, required).\nTransition rules:\n  - When condition:$session.params.car_model = \"Tata Nexon\": \u2192 go to flow:Any Think Else\n  - When condition:$session.params.car_model = \"Tata Harrier\": \u2192 go to flow:Any Think Else\n  - When condition:$session.params.car_model = \"Tata Safari\": \u2192 go to flow:Any Think Else\n  - When condition:$session.params.car_model = \"Tata Altroz\": \u2192 go to flow:Any Think Else\n  - When condition:$session.params.car_model = \"Tata Tiago\": \u2192 go to flow:Any Think Else\n  - When condition:$session.params.car_model = \"Tata Tigor\": \u2192 go to flow:Any Think Else\n  - When condition:$session.params.car_model = \"Tata Punch\": \u2192 go to flow:Any Think Else\n  - When condition:$session.params.car_model = \"Tata Curvv\": \u2192 go to flow:Any Think Else\n",
+      "tools": []
+    },
+    {
+      "displayName": "explore_car_service",
+      "description": "Handles: Explore Car Service",
+      "instruction": "# Explore Car Service\n\n## Step: service type\nSay: \"Select a service\r\n1] Regular Maintenance \r\n2] Repair\r\n3] Diagnostic Check\r\n4] Specialized service\r\n\"\nTransition rules:\n  - When intent:Regular Maintenance: \u2192 go to page:ask vehicle details\n  - When intent:Repair: \u2192 go to page:ask vehicle details\n  - When intent:Diagnostic Check: \u2192 go to page:ask vehicle details\n  - When intent:Specialized Service: \u2192 go to page:ask vehicle details\n\n## Step: ask vehicle details\nCollect the following information from the user:\n  - **car_model** (sys.any, required). Ask: \"Enter your Car Model\"\n  - **car_no** (70065b1e-c6fd-45a8-afad-239e7cfe3974, required). Ask: \"Enter your Car Number\"\n  - **service_location** (sys.any, required). Ask: \"Enter Your location\"\nTransition rules:\n  - When condition:$page.params.status = FINAL: \u2192 go to page:show service location\n\n## Step: confirm details\nSay: \"Are You Confirm Your details\r\nYour Service is \r\nYour date is \r\nyour Time\"\nTransition rules:\n  - When intent:YES: Respond: \"Thank You !!\nYour service Is Booked.\" \u2192 go to flow:Any Think Else\n  - When intent:NO: \u2192 go to page:service type\n\n## Step: send confirmation \n\n## Step: select service\nTransition rules:\n  - When intent:Book a Service: \u2192 go to page:service type\n  - When intent:Warranty: \u2192 go to flow:Warrenty\n  - When intent:Care: \u2192 go to flow:care\n  - When intent:Shield of Trust: \u2192 go to flow:Shield of Trust\n  - When intent:General Queries: \u2192 go to flow:General Queries\n  - When intent:Service cost calculator: \u2192 go to flow:Service cost calculator\n\n## Step: show service location\nCollect the following information from the user:\n  - **date** (sys.date, required). Ask: \"Enter a date for service booking\"\n  - **time** (sys.time, required). Ask: \"Enter a time slot, when You want to Book Your Service\"\nTransition rules:\n  - When condition:$page.params.status = FINAL: \u2192 go to page:confirm details\n",
+      "tools": [
+        "car_connect"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "displayName": "test",
+      "description": "Migrated from Dialogflow CX webhook: test",
+      "openapiTool": {
+        "textSchema": "{\n  \"openapi\": \"3.0.0\",\n  \"info\": {\n    \"title\": \"test\",\n    \"version\": \"1.0.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://dentrix-759503671462.us-central1.run.app\"\n    }\n  ],\n  \"paths\": {\n    \"/\": {\n      \"post\": {\n        \"summary\": \"Migrated from Dialogflow CX webhook: test\",\n        \"operationId\": \"test\",\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\"\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"Success\"\n          }\n        }\n      }\n    }\n  }\n}",
+        "authentication": {
+          "authType": "NONE"
+        }
+      }
+    },
+    {
+      "displayName": "car_connect",
+      "description": "Migrated from Dialogflow CX webhook: car-connect",
+      "openapiTool": {
+        "textSchema": "{\n  \"openapi\": \"3.0.0\",\n  \"info\": {\n    \"title\": \"car_connect\",\n    \"version\": \"1.0.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://car-connect-907971469140.us-central1.run.app\"\n    }\n  ],\n  \"paths\": {\n    \"/\": {\n      \"post\": {\n        \"summary\": \"Migrated from Dialogflow CX webhook: car-connect\",\n        \"operationId\": \"car_connect\",\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"type\": \"object\"\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"Success\"\n          }\n        }\n      }\n    }\n  }\n}",
+        "authentication": {
+          "authType": "NONE"
+        }
+      }
+    }
+  ]
+}

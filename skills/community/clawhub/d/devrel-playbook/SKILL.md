@@ -1,35 +1,48 @@
 ---
-name: "DevRel Playbook — Developer Relations: Community, Docs & Events SOP"
-description: "Complete Developer Relations playbook — from community building to documentation strategy to event planning. Covers Discord/Slack management, conference spea..."
-category: "communication"
-source: "ClawHub"
-tags: [api-docs, community, community-management, conference, developer-experience, developer-marketing, developer-relations, devrel, discord, docs, dx, events, growth, meetup, open-source]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/devrel-playbook"
-sourceUrl: "https://clawhub.ai/skills/devrel-playbook"
+name: devrel-playbook
+description: |
+  Complete Developer Relations playbook — from community building to documentation strategy to event planning. Covers Discord/Slack management, conference speaking, hackathon sponsorship, and measuring DevRel ROI. By @WeiYipei.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/devrel-playbook
+tags:
+  - developer-relations
+  - devrel
+  - developer-community
+  - technical-content
+  - open-source
+  - documentation
+  - api
+  - sdk
+  - developer-experience
+  - developer-marketing
+  - claude-code
+  - ai-agent-skill
+  - conference
+  - hackathon
+  - latest
 ---
-
 # DevRel Playbook — Developer Relations: Community, Docs & Events SOP
 
-> Complete Developer Relations playbook — from community building to documentation strategy to event planning. Covers Discord/Slack management, conference spea...
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
 
-- **Category:** Communication
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/devrel-playbook`
-- **Source URL:** [https://clawhub.ai/skills/devrel-playbook](https://clawhub.ai/skills/devrel-playbook)
+## 📦 Install
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/devrel-playbook
+clawhub install devrel-playbook
 ```
+
+**What you get after installing:**
+- Community architecture setup (Discord/Slack moderation & engagement loops)
+- Event playbook with ROI tracking (meetups, conferences, hackathons)
+- DevRel metrics & reporting framework (DORA, community health, attribution)
+
+---
+
+- Community architecture (Discord/Slack setup, moderation, engagement loops)
+- Documentation strategy (API docs, tutorials, quickstarts that convert)
+- Event playbook (meetups, conferences, hackathons — ROI tracking)
+- Developer advocacy (content creation, social presence, thought leadership)
+- Metrics & reporting (DORA, community health, attribution to revenue)
+
+## Related Gingiris Skills
+- Full collection: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

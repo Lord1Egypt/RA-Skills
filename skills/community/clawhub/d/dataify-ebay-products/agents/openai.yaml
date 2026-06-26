@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify eBay Products"
+  short_description: "Submit Dataify eBay product tasks by URL, category URL, keyword, or store URL"
+  icon_small: "./assets/dataify-ebay-products-small.svg"
+  icon_large: "./assets/dataify-ebay-products-large.svg"
+  default_prompt: "Use $dataify-ebay-products to submit eBay product Builder tasks by URL, category URL, keyword, or store URL through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

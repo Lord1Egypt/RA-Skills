@@ -1,0 +1,38 @@
+{
+  "name": "deaiify",
+  "version": "3.4.1",
+  "description": "Ban LLM em-dashes and en-dashes before delivery, rewrite via embedded LLM",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prebuild": "rm -rf dist",
+    "test": "vitest run",
+    "stage-package": "node ./scripts/stage-package.mjs"
+  },
+  "peerDependencies": {
+    "@openclaw/plugin-sdk": "*"
+  },
+  "devDependencies": {
+    "@openclaw/plugin-sdk": "file:/opt/homebrew/lib/node_modules/openclaw/dist/plugin-sdk",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "openclaw": {
+    "plugin": true,
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "builtWith": "2026.4.11",
+      "sdk": "2026.4.11",
+      "minGateway": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.4.15",
+      "sdkVersion": "2026.4.11"
+    },
+    "extensions": [
+      "./dist/index.js"
+    ]
+  }
+}

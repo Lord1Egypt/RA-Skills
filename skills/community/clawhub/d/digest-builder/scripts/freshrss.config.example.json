@@ -1,0 +1,10 @@
+{
+  "base_url": "https://your-freshrss.example.com",
+  "username": "your-freshrss-username",
+  "api_password": "replace-with-api-password",
+  "output_json": "digests/raw-freshrss.json",
+  "output_md": "digests/raw-freshrss.md",
+  "limit": 0,
+  "page_size": 1000,
+  "include_read": false
+}

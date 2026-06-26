@@ -1,0 +1,46 @@
+{
+  "name": "dongmi",
+  "version": "1.1.0",
+  "display_name": "上市公司董事会秘书专家系统",
+  "description": "上市公司董事会秘书（董秘）四大职能领域全流程专家技能。覆盖信息披露合规、投资者关系与市值管理、公司治理与三会运作、资本运作全流程管理。已更新2026年《上市公司董事会秘书监管规则》及沪深北交所2026年配套规则。",
+  "author": {
+    "name": "Wang Dong Jie (Jack Wang)",
+    "email": "Wdj_@163.com",
+    "url": "https://wdj.net.cn"
+  },
+  "tags": [
+    "上市公司",
+    "董事会秘书",
+    "信息披露",
+    "公司治理",
+    "投资者关系",
+    "资本运作",
+    "合规",
+    "A股",
+    "三会运作",
+    "市值管理",
+    "2026新规",
+    "董秘监管规则"
+  ],
+  "category": "finance-legal",
+  "language": "zh-CN",
+  "platforms": ["openclaw", "workbuddy", "qclaw"],
+  "skill_file": "SKILL.md",
+  "homepage": "https://github.com/yjkj999999/board-secretary-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yjkj999999/board-secretary-skill.git"
+  },
+  "keywords": [
+    "board-secretary",
+    "listed-company",
+    "information-disclosure",
+    "corporate-governance",
+    "investor-relations",
+    "capital-operations",
+    "compliance",
+    "A-share",
+    "China-securities"
+  ],
+  "license": "MIT"
+}

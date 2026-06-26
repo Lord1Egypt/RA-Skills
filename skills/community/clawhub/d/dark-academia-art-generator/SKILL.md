@@ -1,35 +1,34 @@
 ---
-name: "Dark Academia Art Generator"
-description: "Generates moody dark academia images like candlelit libraries, vintage portraits, classical statues, and autumn campus scenes using Neta AI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dark-academia-art-generator"
-sourceUrl: "https://clawhub.ai/skills/dark-academia-art-generator"
+name: dark-academia-art-generator
+description: Dark academia art generator for moody scholarly aesthetic images: candlelit libraries, vintage tweed portraits, old leather books, classical statues, autumn campus scenes. Perfect for Pinterest boards, Tumblr posts, BookTok content, study aesthetic moodboards, journal covers, study playlist art, cottagecore and gothic academia communities, vintage academic poster designs, and atmospheric backgrounds for writers, students, and aesthetic lovers via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Dark Academia Art Generator
 
-> Generates moody dark academia images like candlelit libraries, vintage portraits, classical statues, and autumn campus scenes using Neta AI.
+Dark academia art generator for moody scholarly aesthetic images: candlelit libraries, vintage tweed portraits, old leather books, classical statues, autumn campus scenes. Perfect for Pinterest boards, Tumblr posts, BookTok content, study aesthetic moodboards, journal covers, study playlist art, cottagecore and gothic academia communities, vintage academic poster designs, and atmospheric backgrounds for writers, students, and aesthetic lovers.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dark-academia-art-generator`
-- **Source URL:** [https://clawhub.ai/skills/dark-academia-art-generator](https://clawhub.ai/skills/dark-academia-art-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dark-academia-art-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create dark academia art generator images.
+
+## Quick start
+```bash
+node darkacademiaartgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/dark-academia-art-generator
 ```

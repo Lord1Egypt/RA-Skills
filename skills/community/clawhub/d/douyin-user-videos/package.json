@@ -1,0 +1,13 @@
+{
+  "name": "douyin-user-videos",
+  "version": "1.0.0",
+  "description": "获取抖音博主的视频列表 - OpenClaw Skill",
+  "main": "src/index.js",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "openclaw": {
+    "skill": "douyin-user-videos",
+    "tools": ["douyin_get_user_videos"]
+  }
+}

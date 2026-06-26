@@ -1,35 +1,344 @@
 ---
-name: "Diary Force"
-description: "每晚 23:00 自动催日记 + 思维模型分析 + 内化记忆。**强制型习惯养成工具**，适合有写日记习惯但经常拖延的人。包含 6 种思维模型深度分析，将日常经历转化为结构化认知。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/diary-force"
-sourceUrl: "https://clawhub.ai/skills/diary-force"
+name: diary-force
+description: 每晚 23:00 自动催日记 + 思维模型分析 + 内化记忆。**强制型习惯养成工具**，适合有写日记习惯但经常拖延的人。包含 6 种思维模型深度分析，将日常经历转化为结构化认知。
+metadata:
+  version: 2.0.0
+  author: 楚泉 & 数字孪生
+  license: 原创技能，可商用
+  tags: [diary, habit, memory, automation, thinking-model, productivity]
+  trigger: "每晚 23:00 cron 触发、手动触发写日记、思维模型分析、记忆内化"
+  commercial:
+    enabled: true
+    platform: SkillPay
+    pricing: $0.0001/次
+    notify_url: 待配置
 ---
 
-# Diary Force
+# Diary Force - 日记催命鬼
 
-> 每晚 23:00 自动催日记 + 思维模型分析 + 内化记忆。**强制型习惯养成工具**，适合有写日记习惯但经常拖延的人。包含 6 种思维模型深度分析，将日常经历转化为结构化认知。
+> **拖延症终结者**：不给你逃避的机会，写完才能睡觉。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/diary-force`
-- **Source URL:** [https://clawhub.ai/skills/diary-force](https://clawhub.ai/skills/diary-force)
+每晚 23:00 自动执行：**日记检测 → 交互式记录 → 思维模型分析 → 记忆内化 → Git 归档**
 
-## Overview
+## 什么时候使用这个技能
 
+**必须使用此技能的情况**：
+- 每晚 23:00 cron 触发时（默认）
+- 用户说"写日记"、"记日记"、"今天还没记日记"
+- 用户提到"思维模型分析"、"内化记忆"
+- 用户想记录当天经历但不知道如何结构化
+- 用户能量低、情绪波动、需要反思时
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/diary-force
+**不要用此技能**：
+- 用户只想简单记录（用普通笔记技能）
+- 用户明确要求不分析
+
+## 核心理念
+
+1. **强制但不暴力** - 催促但提供便捷入口
+2. **结构化思考** - 用思维模型代替流水账
+3. **持续积累** - 每天进步 1%，一年 37 倍
+4. **可追溯** - Git 版本控制，可回顾成长轨迹
+
+---
+
+## 完整工作流
+
 ```
+23:00 cron 触发
+    ↓
+检查日记是否存在 (E:\My-life\daily/YYYY-MM-DD.md)
+    ↓
+┌─ 已写完 ──→ 询问是否需要思维模型分析
+│               ↓ 是
+│           调用 OpenCode (minimax-m2.5-free)
+│               ↓
+│           6 种思维模型分析 → 追加到日记
+│               ↓
+│           记忆内化 → Git push
+│
+└─ 没写完 ──→ 催促用户写日记
+                ↓
+        交互式记录（用户口述，AI 整理）
+                ↓
+        用户确认 → 保存到日记
+                ↓
+        思维模型分析（可选）
+                ↓
+        记忆内化 → Git push
+```
+
+---
+
+## 核心功能详解
+
+### 1. 日记检测
+
+**检测逻辑**：
+```python
+import os
+from datetime import datetime
+
+today = datetime.now().strftime("%Y-%m-%d")
+diary_path = f"E:\\My-life\\daily\\{today}.md"
+
+if os.path.exists(diary_path):
+    # 已写完，询问是否分析
+    ask_analysis()
+else:
+    # 没写完，催促
+    remind_user()
+```
+
+**注意事项**：
+- 路径配置在 `scripts/diary_force.py` 中
+- 可通过环境变量 `DIARY_PATH` 覆盖
+
+---
+
+### 2. 交互式记录
+
+**适用场景**：用户累得不想打字，只想随便说说
+
+**工作流程**：
+1. 用户语音/文字输入（碎片化）
+2. AI 自动提取结构化内容：
+   - 今日事件（3 件重要的事）
+   - 能量评分（1-10 分）
+   - 情绪状态
+   - 关键洞察
+   - 明日计划
+3. 生成 Markdown 格式日记
+4. 用户确认后保存
+
+**示例对话**：
+```
+用户：今天能量 5 分吧，上午开了个会，下午跟 openclaw 死磕，没啥进展
+AI: 好的，我来整理：
+     - 今日事件：上午开会、下午优化 openclaw
+     - 能量：5 分
+     - 情绪：有些沮丧
+     - 洞察：...
+     确认保存吗？
+```
+
+---
+
+### 3. 思维模型分析（核心卖点！）
+
+**调用工具**：OpenCode CLI (`minimax-m2.5-free` 模型)
+
+**6 种思维模型**：
+
+| 模型 | 用途 | 输出示例 |
+|------|------|---------|
+| 1. 第一性原理 | 拆解问题本质 | "openclaw 优化的本质是..." |
+| 2. 逆向思维 | 从反面思考 | "如果不优化会怎样？" |
+| 3. 二阶思维 | 考虑长期影响 | "这个改动一周后的影响是..." |
+| 4. 概率思维 | 评估成功概率 | "成功概率 30%，因为..." |
+| 5. 机会成本 | 考虑放弃的价值 | "花时间优化 openclaw 放弃了..." |
+| 6. 系统思维 | 整体视角 | "从系统看，这是子问题..." |
+
+**分析方法**：
+```python
+# scripts/think.py
+prompt = f"""
+用户输入：{user_input}
+
+请用 6 种思维模型分析：
+1. 第一性原理：...
+2. 逆向思维：...
+3. 二阶思维：...
+4. 概率思维：...
+5. 机会成本：...
+6. 系统思维：...
+
+每个模型 1-2 句话，直击本质。
+"""
+```
+
+**输出格式**：
+```markdown
+## 思维模型分析
+
+### 1. 第一性原理
+openclaw 优化的本质不是代码问题，而是工作流设计问题...
+
+### 2. 逆向思维
+如果不优化，当前系统也能用，但长期会积累技术债...
+
+...（共 6 个模型）
+```
+
+---
+
+### 4. 记忆内化
+
+**内化位置**：`memory/L1_每日/` 或 `memory/L2_长期/`
+
+**内化逻辑**：
+1. 提取日记中的关键洞察
+2. 转换为记忆条目
+3. 写入 `memory/` 目录
+4. Git commit & push
+
+**示例**：
+```
+日记洞察："拖延是因为任务太大"
+→ 内化为记忆："任务分解原则：任何>2 小时的任务都应拆解"
+→ 存入：memory/L2_长期/工作原则.md
+```
+
+---
+
+## 使用方式
+
+### 方式 1：Cron 自动触发（推荐）
+
+**OpenClaw Cron 配置**：
+```yaml
+# .openclaw/state/cron.yaml
+- schedule: "0 23 * * *"  # 每晚 23:00
+  command: "python scripts/diary_force.py auto"
+```
+
+### 方式 2：手动触发 - 完整流程
+
+```bash
+# 开始交互式日记
+python scripts/diary_force.py start
+
+# 完成后内化
+python scripts/diary_force.py done
+```
+
+### 方式 3：仅思维模型分析
+
+```bash
+# 分析指定内容
+python scripts/think.py "今天能量 5 分，尝试优化 openclaw 但效果一般"
+
+# 或直接调用
+python scripts/diary_force.py analyze "用户输入内容"
+```
+
+### 方式 4：查看今日状态
+
+```bash
+python scripts/diary_force.py status
+```
+
+---
+
+## 文件结构
+
+```
+diary-force/
+├── SKILL.md                      # 本文件
+├── scripts/
+│   ├── diary_force.py            # 主脚本（交互式日记）
+│   └── think.py                  # 思维模型分析
+├── evals/
+│   └── evals.json                # 测试案例（待创建）
+└── README.md                     # 商业化说明（待创建）
+```
+
+---
+
+## 测试案例
+
+### 测试 1：日记检测正常
+
+**输入**：`python scripts/diary_force.py auto`（日记已存在）
+
+**预期输出**：
+- 检测到日记存在
+- 询问是否需要思维模型分析
+- 如选择"是"，调用分析并追加
+
+### 测试 2：日记缺失催促
+
+**输入**：`python scripts/diary_force.py auto`（日记不存在）
+
+**预期输出**：
+- 检测到日记缺失
+- 发送催促消息
+- 提供交互式记录入口
+
+### 测试 3：思维模型分析
+
+**输入**：`python scripts/think.py "今天能量 5 分，优化 openclaw 失败"`
+
+**预期输出**：
+- 6 种思维模型分析
+- 每种 1-2 句话
+- 直击本质，不废话
+
+---
+
+## 依赖项
+
+| 依赖 | 版本 | 用途 |
+|------|------|------|
+| Python | 3.10+ | 运行环境 |
+| Git | 任意 | 版本控制 |
+| OpenCode CLI | 最新 | 思维模型分析 |
+| 记忆系统 | 本地 | 内化存储 |
+
+**安装检查**：
+```bash
+python --version  # 应 >= 3.10
+git --version     # 应已安装
+opencode --version  # 应已安装
+```
+
+---
+
+## 商业化说明（SkillPay）
+
+### 定价策略
+
+| 服务 | 定价 | 说明 |
+|------|------|------|
+| 单次调用 | $0.0001/次 | 包含完整流程（日记 + 分析 + 内化） |
+| 思维模型分析 | $0.0002/次 | 单独分析服务 |
+| 包月无限 | $3/月 | 适合高频用户（每天不到$0.1） |
+| 包年 | $30/年 | 最划算（每天$0.08） |
+
+### 目标用户
+
+- **拖延症患者** - 需要外部督促
+- **知识工作者** - 需要结构化思考
+- **习惯养成者** - 想坚持写日记
+- **AI Native 开发者** - 对思维模型感兴趣
+
+### 竞争优势
+
+1. **强制型设计** - 不是"可写可不写"，而是"必须写完"
+2. **思维模型加持** - 不是流水账，而是深度思考
+3. **记忆内化** - 不只是记录，而是转化为认知
+4. **Git 归档** - 可追溯成长轨迹
+
+### 推广文案
+
+> "拖延症患者的噩梦，习惯养成者的福音。"
+> 
+> 每晚 23:00 自动催促 + 6 种思维模型深度分析 + 记忆内化
+> 
+> 不是简单的日记工具，而是**认知升级引擎**。
+> 
+> 定价：$0.0001/次（1 美元 = 10,000 次 = 27 年的成长）
+
+---
+
+## 版本历史
+
+| 版本 | 日期 | 变更 |
+|------|------|------|
+| 2.0.0 | 2026-03-08 | 按照 skill-creator 2.0 重构，增加商业化说明 |
+| 1.1.0 | - | 增加思维模型分析 |
+| 1.0.0 | - | 初始版本 |
+
+---
+
+**座右铭**：拖延症患者的噩梦，习惯养成者的福音。

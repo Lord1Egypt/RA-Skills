@@ -1,0 +1,409 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "cybersecured-questionnaire",
+  "title": "AI智能体 Service Questionnaire",
+  "description": "AI智能体 风险调查问卷。由 AI智能体 根据自身运行环境自动填写，每个字段包含 value（答案值）和 reasoning（推理证据）。",
+  "type": "object",
+  "required": [
+    "section_1_basic_info",
+    "section_2_deployment",
+    "section_3_access_control",
+    "section_4_data_security",
+    "section_5_ai_model_security"
+  ],
+  "properties": {
+    "section_1_basic_info": {
+      "type": "object",
+      "description": "基本信息",
+      "required": [
+        "1_5_usage_purpose"
+      ],
+      "properties": {
+        "1_5_usage_purpose": {
+          "$ref": "#/definitions/questionField",
+          "description": "Agent 主要使用目的",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["软件开发", "数据分析", "系统运维", "内容创作", "客服助手", "其他", null]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "section_2_deployment": {
+      "type": "object",
+      "description": "AI智能体 部署信息",
+      "required": [
+        "2_1_1_agent_name",
+        "2_1_2_agent_type",
+        "2_1_3_deployment_method",
+        "2_1_4_cloud_platform",
+        "2_1_5_hosting_platform",
+        "2_1_6_os",
+        "2_1_7_runtime",
+        "2_1_8_daily_interactions",
+        "2_2_1_underlying_llm",
+        "2_2_2_access_channels",
+        "2_2_3_third_party_relay",
+        "2_2_3_relay_provider",
+        "2_2_4_api_frequency"
+      ],
+      "properties": {
+        "2_1_1_agent_name": {
+          "$ref": "#/definitions/questionField",
+          "description": "AI智能体 名称/型号",
+          "properties": {
+            "value": { "type": ["string", "null"] }
+          }
+        },
+        "2_1_2_agent_type": {
+          "$ref": "#/definitions/questionField",
+          "description": "AI智能体 类型",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["对话型", "任务型", "混合型", "其他", null]
+            }
+          }
+        },
+        "2_1_3_deployment_method": {
+          "$ref": "#/definitions/questionField",
+          "description": "部署方式",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["本地终端", "独立服务器", "云服务器", "云托管平台（含平台预制OpenClaw）", null]
+            }
+          }
+        },
+        "2_1_4_cloud_platform": {
+          "$ref": "#/definitions/questionField",
+          "description": "云平台（仅当部署方式为**云服务器**时填写）",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["阿里云", "腾讯云", "AWS", "Azure", "华为云", "火山引擎", "其他", null]
+            }
+          }
+        },
+        "2_1_5_hosting_platform": {
+          "$ref": "#/definitions/questionField",
+          "description": "托管平台（仅当部署方式为**云托管平台**时填写，多选）",
+          "properties": {
+            "value": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string",
+                "enum": ["Kimi Claw", "GLM-Claw", "MaxClaw", "ArkClaw", "Coze(扣子)", "Dify", "阿里云百炼", "腾讯云 TI 平台", "其他"]
+              }
+            }
+          }
+        },
+        "2_1_6_os": {
+          "$ref": "#/definitions/questionField",
+          "description": "操作系统（仅当部署方式为**本地终端/独立服务器**时填写）",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["Windows", "macOS", "Linux", "其他", null]
+            }
+          }
+        },
+        "2_1_7_runtime": {
+          "$ref": "#/definitions/questionField",
+          "description": "上线运行时间",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["<6个月", "6-12个月", "1-2年", ">2年", null]
+            }
+          }
+        },
+        "2_1_8_daily_interactions": {
+          "$ref": "#/definitions/questionField",
+          "description": "日均交互次数",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["<10", "10-100", "100-1000", ">1000", null]
+            }
+          }
+        },
+        "2_2_1_underlying_llm": {
+          "$ref": "#/definitions/questionField",
+          "description": "底层大模型（多选）",
+          "properties": {
+            "value": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string",
+                "enum": ["GPT系列", "Claude", "Kimi", "DeepSeek", "文心一言", "通义千问", "智谱 GLM", "自研模型", "其他"]
+              }
+            }
+          }
+        },
+        "2_2_2_access_channels": {
+          "$ref": "#/definitions/questionField",
+          "description": "访问 Agent 的渠道（多选）",
+          "properties": {
+            "value": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string",
+                "enum": ["仅本地程序", "聊天应用", "网页", "API 或其他应用集成"]
+              }
+            }
+          }
+        },
+        "2_2_3_third_party_relay": {
+          "$ref": "#/definitions/questionField",
+          "description": "是否使用第三方模型转发服务",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["是", "否", null]
+            }
+          }
+        },
+        "2_2_3_relay_provider": {
+          "$ref": "#/definitions/questionField",
+          "description": "第三方转发服务商（仅当使用第三方转发时填写）",
+          "properties": {
+            "value": { "type": ["string", "null"] }
+          }
+        },
+        "2_2_4_api_frequency": {
+          "$ref": "#/definitions/questionField",
+          "description": "API 调用频率",
+          "properties": {
+            "value": {
+              "type": ["string", "null"],
+              "enum": ["低（<100次/天）", "中（100-10000次/天）", "高（>10000次/天）", null]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "section_3_access_control": {
+      "type": "object",
+      "description": "访问控制与身份认证",
+      "required": [
+        "3_1_external_access",
+        "3_2_auth_method",
+        "3_3_password_policy",
+        "3_4_key_rotation",
+        "3_4_rotation_period",
+        "3_5_permission_revocation",
+        "3_6_access_logging",
+        "3_6_log_retention",
+        "3_7_anomaly_detection",
+        "3_8_session_timeout"
+      ],
+      "properties": {
+        "3_1_external_access": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        },
+        "3_2_auth_method": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string",
+                "enum": ["用户名/密码", "多因素认证(MFA)", "SSO单点登录", "API密钥（含SSH密钥）", "其他"]
+              }
+            }
+          }
+        },
+        "3_3_password_policy": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["强密码策略", "普通密码策略", "无强制要求", null] }
+          }
+        },
+        "3_4_key_rotation": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        },
+        "3_4_rotation_period": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"] }
+          }
+        },
+        "3_5_permission_revocation": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        },
+        "3_6_access_logging": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        },
+        "3_6_log_retention": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"] }
+          }
+        },
+        "3_7_anomaly_detection": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        },
+        "3_8_session_timeout": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["<15分钟", "15-30分钟", "30-60分钟", ">60分钟", "无超时", null] }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "section_4_data_security": {
+      "type": "object",
+      "description": "数据安全与隐私保护",
+      "required": [
+        "4_1_1_data_types",
+        "4_1_2_storage_locations",
+        "4_1_3_cloud_storage_providers",
+        "4_1_4_retention_period",
+        "4_2_1_user_consent"
+      ],
+      "properties": {
+        "4_1_1_data_types": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string",
+                "enum": ["个人身份信息(PII)", "金融数据", "医疗数据", "商业秘密", "公开数据", "其他"]
+              }
+            }
+          }
+        },
+        "4_1_2_storage_locations": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": {
+              "type": ["array", "null"],
+              "items": {
+                "type": "string",
+                "enum": ["本地存储", "移动存储（如U盘、移动硬盘）", "网盘或其他网络存储"]
+              }
+            }
+          }
+        },
+        "4_1_3_cloud_storage_providers": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"] }
+          }
+        },
+        "4_1_4_retention_period": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["<30天", "30-90天", "90天-1年", ">1年", "永久", null] }
+          }
+        },
+        "4_2_1_user_consent": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "section_5_ai_model_security": {
+      "type": "object",
+      "description": "AI 模型安全",
+      "required": [
+        "5_1_installed_plugins",
+        "5_2_malicious_plugins_detected",
+        "5_3_high_risk_config",
+        "5_5_public_access",
+        "5_5_access_url",
+        "5_6_token_payment"
+      ],
+      "properties": {
+        "5_1_installed_plugins": {
+          "$ref": "#/definitions/questionField",
+          "description": "本AI智能体安装了哪些插件、skills，版本是什么",
+          "properties": {
+            "value": { "type": ["string", "null"] }
+          }
+        },
+        "5_2_malicious_plugins_detected": {
+          "$ref": "#/definitions/questionField",
+          "description": "本AI智能体安装的插件和skills，是否存在已被网络安全工具扫描出的恶意程序",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        },
+        "5_3_high_risk_config": {
+          "$ref": "#/definitions/questionField",
+          "description": "本AI智能体通过自带的安全配置检查是否存在高危配置",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        },
+        "5_5_public_access": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["是", "否", null] }
+          }
+        },
+        "5_5_access_url": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"] }
+          }
+        },
+        "5_6_token_payment": {
+          "$ref": "#/definitions/questionField",
+          "properties": {
+            "value": { "type": ["string", "null"], "enum": ["包年/包月", "按量付费", null] }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "definitions": {
+    "questionField": {
+      "type": "object",
+      "description": "问卷字段，包含答案值和推理证据",
+      "required": ["value", "reasoning"],
+      "properties": {
+        "value": {
+          "description": "答案值。类型根据问题不同：单选为字符串，多选为字符串数组，文本为字符串。无法回答时为 null。"
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "推理证据。必须是一段完整的自然语言描述，说明从什么地方发现了什么事实，因此填写了这个值。不得为空字符串。",
+          "minLength": 10
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

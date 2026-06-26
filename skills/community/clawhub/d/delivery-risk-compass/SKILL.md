@@ -1,35 +1,81 @@
 ---
-name: "Delivery Risk Compass"
-description: "项目交付罗盘，按行业、阶段、项目形态和风险信号输出交付健康度、行业风险、卡点预警与救急动作。"
-category: "other"
-source: "ClawHub"
-tags: [delivery, project-management, risk-assessment]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/delivery-risk-compass"
-sourceUrl: "https://clawhub.ai/skills/delivery-risk-compass"
+name: delivery-risk-compass
+version: 2.0.0
+description: 项目交付罗盘，按行业、阶段、项目形态和风险信号输出交付健康度、行业风险、卡点预警与救急动作。
+priority: high
+source: industry-experience-methodology
+workers: PM, Tech
+created: 2026-05-23
+tags: [delivery, project-management, risk-assessment, implementation, industry-playbook]
 ---
 
-# Delivery Risk Compass
+# delivery-risk-compass — 项目交付罗盘
 
-> 项目交付罗盘，按行业、阶段、项目形态和风险信号输出交付健康度、行业风险、卡点预警与救急动作。
+用于企业级项目交付风险判断：输入项目行业、类型、周期、付款、当前阶段和风险信号，输出健康度评分、阶段建议、行业风险重点、交付卡点、沟通策略和救急方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/delivery-risk-compass`
-- **Source URL:** [https://clawhub.ai/skills/delivery-risk-compass](https://clawhub.ai/skills/delivery-risk-compass)
+这个 Skill 的定位是“行业洞察 + 经验打法”：
 
-## Overview
+- 保留行业差异：政府、零售、制造、金融的交付关注点不同。
+- 保留实战经验：强调需求签收、客户依赖、数据接口、上线、验收和运维移交。
+- 去除可追溯信息：不包含真实个人、真实客户、真实厂商、真实项目名称或具体项目数据。
 
+## 适用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 项目启动前做风险体检。
+- 需求调研阶段判断是否可以进入开发。
+- 系统实现阶段识别范围、接口、数据和测试风险。
+- 上线前确认是否具备切换条件。
+- 验收或延期卡住时，快速生成救急动作。
+
+## CLI
+
+交互模式：
+
 ```bash
-hermes skills install clawhub/delivery-risk-compass
+delivery-risk-compass
 ```
+
+快速模式：
+
+```bash
+delivery-risk-compass --quick \
+  --project "某平台升级项目" \
+  --industry "政府/公共服务" \
+  --type "实施+开发" \
+  --cycle "6个月" \
+  --team-size "6人" \
+  --payment "30-40-20-10" \
+  --signals "环境未准备,验收口径变化"
+```
+
+参数：
+
+| 参数 | 说明 |
+| --- | --- |
+| `--project` | 项目代称 |
+| `--industry` | 行业，如政府、零售、制造、金融 |
+| `--type` | 项目类型，如纯开发、实施+开发、纯实施、运维 |
+| `--cycle` | 项目周期 |
+| `--team-size` | 团队人数 |
+| `--payment` | 付款节点 |
+| `--client-location` | 交付方式，如驻场、远程、混合 |
+| `--phase` | 当前阶段 |
+| `--signals` | 风险信号，逗号分隔 |
+
+## 输出内容
+
+- 项目健康度：风险评分与预警。
+- 当前阶段建议：关键动作、交付物、检查点。
+- 行业风险侧重点：不同行业的优先关注事项。
+- 推荐卡点：常见交付陷阱及缓解动作。
+- 沟通策略：管理层、业务、技术、一线用户的沟通节奏。
+- 救急方案：延期、对接人变动、上线风险、验收卡住等场景。
+
+## 经验边界
+
+所有经验来源统一标注为：
+
+- 行业普遍教训
+- 实战经验总结
+
+禁止在规则、示例、测试和文档中出现真实个人、真实客户、真实厂商、真实项目名称或具体项目数据。

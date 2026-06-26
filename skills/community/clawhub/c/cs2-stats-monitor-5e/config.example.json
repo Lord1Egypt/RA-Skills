@@ -1,0 +1,4 @@
+{
+  "default_players": ["player1", "player2", "player3"],
+  "default_interval": 60
+}

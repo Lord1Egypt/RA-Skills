@@ -1,0 +1,88 @@
+Develop the following project:
+
+## Project Overview
+
+**Title**: {title}
+
+**Description**: {description}
+
+**Complexity**: {complexity}
+
+**Source**: {source}
+
+**Reference**: {url}
+
+## Requirements
+
+1. **Project Structure**: Create a well-organized Python project with proper packaging
+2. **Core Functionality**: Implement the main features as described
+3. **Error Handling**: Add comprehensive error handling and logging
+4. **Testing**: Create extensive unit tests with 80%+ coverage
+5. **Documentation**: Include README, docstrings, and usage examples
+
+## Development Steps
+
+### Step 1: Project Setup
+- Create the basic project structure
+- Set up proper Python package layout
+- Create requirements.txt with all dependencies
+
+### Step 2: Core Implementation
+- Implement the main functionality
+- Add type hints to all functions
+- Include proper error handling
+- Add logging for important operations
+
+### Step 3: Testing
+- Create comprehensive test suite in `tests/` directory
+- Test all major functionality
+- Test error conditions
+- Use pytest fixtures for common test data
+- Aim for 80%+ code coverage
+
+### Step 4: Documentation
+- Create comprehensive README.md with:
+  - Project description
+  - Installation instructions
+  - Usage examples
+  - API documentation
+  - Contributing guidelines
+- Add docstrings to all modules, classes, and functions
+- Include inline comments for complex logic
+
+### Step 5: Verification
+- Run all tests and ensure they pass
+- Verify code coverage is at least 80%
+- Check that the code follows PEP 8
+- Test the project in a clean environment
+
+## Technical Guidelines
+
+- Use Python 3.9+ features where appropriate
+- Follow PEP 8 style guide
+- Use type hints for all function signatures
+- Include docstrings for all public APIs
+- Handle all exceptions appropriately
+- Use logging module for logging (not print statements)
+- Keep functions focused and single-purpose
+- Use descriptive variable and function names
+
+## Testing Guidelines
+
+- Place tests in `tests/` directory
+- Use pytest as the testing framework
+- Test both success and failure scenarios
+- Mock external dependencies
+- Use fixtures for common test setup
+- Name test files as `test_*.py`
+- Name test functions as `test_*()`
+
+## Expected Deliverables
+
+1. Complete project structure
+2. Working, tested code
+3. Comprehensive test suite
+4. Full documentation
+5. Example usage in README
+
+Please implement this project completely, ensuring high quality and comprehensive testing.

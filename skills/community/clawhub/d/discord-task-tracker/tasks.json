@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "text": "Test task from CLI",
+    "done": false
+  },
+  {
+    "id": 2,
+    "text": "Test task from CLI",
+    "done": false
+  }
+]

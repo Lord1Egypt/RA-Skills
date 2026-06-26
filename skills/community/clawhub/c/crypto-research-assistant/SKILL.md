@@ -1,35 +1,30 @@
----
-name: "Crypto Research Assistant"
-description: "提供加密貨幣及DeFi項目研究、行情趨勢追蹤、技術分析及風險評估的客觀資訊服務。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-research-assistant"
-sourceUrl: "https://clawhub.ai/skills/crypto-research-assistant"
----
+# Crypto/DeFi Research Assistant
 
-# Crypto Research Assistant
+加密貨幣同DeFi項目分析Skill
 
-> 提供加密貨幣及DeFi項目研究、行情趨勢追蹤、技術分析及風險評估的客觀資訊服務。
+## 功能
+1. **項目研究** - 分析Crypto/DeFi項目既白皮書、tokenomics、團隊
+2. **市場趨勢** - 追蹤最新crypto news同trend
+3. **Price Analysis** - 基本的技術分析
+4. **Risk Assessment** - 評估投資風險
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-research-assistant`
-- **Source URL:** [https://clawhub.ai/skills/crypto-research-assistant](https://clawhub.ai/skills/crypto-research-assistant)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安裝
 ```bash
-hermes skills install clawhub/crypto-research-assistant
+npx clawhub@latest install crypto-research-assistant
 ```
+
+## 使用
+當用戶問關於加密貨幣既問題既時候：
+1. 搵相關既project資訊
+2. 分析基本面同技術面
+3. 提供客觀既分析報告
+
+## 範例
+```
+User: ETH 前景點睇？
+AI: 根據最新發展同技術分析...
+```
+
+## ⚠️ 重要聲明
+呢個係資訊性質既Assistant，唔係理財建議。
+投資涉及風險，用戶需要自己負責。

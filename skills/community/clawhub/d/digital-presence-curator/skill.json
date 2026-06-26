@@ -1,0 +1,24 @@
+{
+  "name": "Digital Presence Curator",
+  "slug": "digital-presence-curator",
+  "version": "1.0.0",
+  "description": "Helps design and maintain a healthy, intentional digital presence across platforms.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "digital-wellbeing",
+    "online-identity",
+    "boundaries",
+    "growth"
+  ],
+  "trigger_keywords": [
+    "digital presence audit",
+    "online identity management",
+    "social media boundaries",
+    "digital wellness",
+    "screen time intention"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "daily-poem",
+  "version": "1.0.0",
+  "description": "Daily Poem — 每日精选诗词推送，中英古典/现代诗交替，含译文赏析朗读节奏，支持按主题/作者按需查诗和周合辑。",
+  "keywords": [
+    "每日诗词", "古诗", "唐诗", "宋词", "现代诗", "英文诗", "诗词推送",
+    "赏析", "朗读", "按需查诗", "周合辑",
+    "daily poem", "poem of the day", "poetry", "classical poetry", "weekly digest"
+  ],
+  "author": "jiajiaoy",
+  "license": "MIT",
+  "scripts": {
+    "morning": "node scripts/morning-push.js",
+    "morning:en": "node scripts/morning-push.js --lang en",
+    "query": "node scripts/query.js",
+    "random": "node scripts/query.js --random",
+    "weekly": "node scripts/weekly-digest.js",
+    "push-on": "node scripts/push-toggle.js on",
+    "push-off": "node scripts/push-toggle.js off",
+    "push-status": "node scripts/push-toggle.js status"
+  }
+}

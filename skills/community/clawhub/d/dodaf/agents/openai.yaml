@@ -1,0 +1,4 @@
+interface:
+  display_name: "DoDAF Architect"
+  short_description: "Create DoDAF 2.0/2.1 architecture models with automatic research, verification, and consolidated PDF/Word report generation"
+  default_prompt: "Use $dodaf to create a DoDAF-compliant architecture description. Guide me through the interview, search for relevant defense standards, generate all required views (AV, OV, SV, CV, DIV, PV, TV) with draw.io diagrams, verify completeness and consistency, and deliver a consolidated report in PDF/Word format."

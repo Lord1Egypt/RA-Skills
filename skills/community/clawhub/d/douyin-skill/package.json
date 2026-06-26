@@ -1,0 +1,34 @@
+{
+  "name": "douyin-skill",
+  "version": "2.2.0",
+  "description": "Douyin (TikTok China) video uploader & automation tool. Upload videos, manage login, automate publishing. 抖音视频上传工具 | 自动化发布 | 创作者平台",
+  "type": "module",
+  "keywords": [
+    "douyin",
+    "tiktok",
+    "tiktok-china",
+    "video-upload",
+    "social-media",
+    "automation",
+    "agent-skill",
+    "openclaw",
+    "puppeteer",
+    "creator-platform",
+    "抖音",
+    "短视频",
+    "自动化上传"
+  ],
+  "bin": {
+    "douyin-login": "./scripts/login.js",
+    "douyin-upload": "./scripts/upload.js",
+    "douyin-manage": "./scripts/manage.js"
+  },
+  "scripts": {
+    "login": "node scripts/login.js",
+    "upload": "node scripts/upload.js",
+    "manage": "node scripts/manage.js"
+  },
+  "dependencies": {
+    "puppeteer": "^23.11.1"
+  }
+}

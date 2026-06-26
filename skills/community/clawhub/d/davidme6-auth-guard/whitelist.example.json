@@ -1,0 +1,42 @@
+{
+  "allowed_operations": [
+    {
+      "service": "google-mail",
+      "action": "messages.get",
+      "max_per_hour": 100,
+      "description": "读取邮件（只读操作）"
+    },
+    {
+      "service": "google-calendar",
+      "action": "events.list",
+      "max_per_hour": 50,
+      "description": "查看日历事件"
+    }
+  ],
+  "blocked_operations": [
+    {
+      "service": "google-mail",
+      "action": "messages.send",
+      "reason": "发送邮件必须人工确认"
+    },
+    {
+      "service": "slack",
+      "action": "chat.postMessage",
+      "reason": "发送 Slack 消息必须人工确认"
+    },
+    {
+      "service": "*",
+      "action": "*.delete",
+      "reason": "删除操作必须人工确认"
+    },
+    {
+      "service": "*",
+      "action": "*.create",
+      "reason": "创建操作必须人工确认"
+    }
+  ],
+  "time_windows": {
+    "google-mail.messages.get": 600,
+    "google-calendar.events.list": 300
+  }
+}

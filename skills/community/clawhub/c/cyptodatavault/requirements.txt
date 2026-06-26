@@ -1,0 +1,14 @@
+# datavault-skill - Requirements
+
+# Core
+requests>=2.31.0
+pyyaml>=6.0
+
+# Data (CCXT for exchange data)
+ccxt>=4.3.0
+
+# Caching (Optional)
+# redis>=5.0.0  # For production
+
+# Testing
+pytest>=7.4.0

@@ -1,0 +1,40 @@
+{
+  "slug": "example-scheduled-job",
+  "cronId": "replace-with-live-cron-id-if-your-tooling-tracks-it",
+  "name": "Example scheduled job",
+  "agentId": "main",
+  "schedule": {
+    "kind": "cron",
+    "expr": "0 8 * * *",
+    "tz": "Australia/Brisbane"
+  },
+  "runtimeMode": "fresh-isolated",
+  "triggerMode": "wake-only",
+  "promptFile": "automation/jobs/example-scheduled-job/prompt.md",
+  "policyFiles": [
+    "automation/policies/default-runtime.json",
+    "automation/jobs/example-scheduled-job/policy.md"
+  ],
+  "delivery": {
+    "channel": "discord",
+    "target": "user:270548320366100480",
+    "accountId": "default",
+    "mode": "runtime-send"
+  },
+  "modelPolicy": {
+    "mode": "inherit-default"
+  },
+  "verify": {
+    "requirePromptPath": true,
+    "requirePolicyPaths": true,
+    "requireDeliveryExact": true,
+    "requireScheduleExact": true,
+    "requireModelExact": false
+  },
+  "notes": [
+    "Set requireModelExact=true only when modelPolicy.mode is pin.",
+    "Do not rely on session metadata for outbound delivery if the provider requires a different target format.",
+    "Every run should load promptFile and policyFiles fresh.",
+    "If your local automation manager tracks live scheduler ids, keep cronId in sync after create/edit operations."
+  ]
+}

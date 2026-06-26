@@ -1,0 +1,52 @@
+{
+  "name": "daily-news-brief",
+  "version": "1.0.0",
+  "description": "每日新闻简报系统 - 每天早上8点自动搜集并发布国际时事、经济形势、科技发展新闻",
+  "main": "news-brief.js",
+  "scripts": {
+    "start": "node news-brief.js",
+    "test": "node news-brief.js --run-now",
+    "setup": "node news-brief.js --setup-cron",
+    "install-deps": "npm install",
+    "update": "git pull && npm install",
+    "clean": "rm -rf node_modules logs/*.log history/*.md"
+  },
+  "keywords": [
+    "news",
+    "brief",
+    "daily",
+    "international",
+    "economic",
+    "technology",
+    "automation"
+  ],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "node-cron": "^3.0.3",
+    "moment": "^2.29.4",
+    "winston": "^3.11.0",
+    "html-to-text": "^9.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/daily-news-brief"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://docs.openclaw.ai/skills/daily-news-brief",
+  "config": {
+    "timezone": "Asia/Shanghai",
+    "schedule": "0 8 * * *"
+  }
+}

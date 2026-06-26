@@ -1,0 +1,40 @@
+{
+  "name": "digital-pet",
+  "version": "1.0.0",
+  "description": "一个可爱的 3D 拉布布数字宠物，支持互动喂食、玩耍、抚摸和声音反馈",
+  "author": "OpenClaw User",
+  "license": "MIT",
+  "keywords": [
+    "pet",
+    "labubu",
+    "3d",
+    "interactive",
+    "threejs",
+    "digital-pet",
+    "virtual-pet"
+  ],
+  "files": [
+    "index.html",
+    "labubu.js",
+    "sound.js",
+    "scene.js",
+    "style.css",
+    "pet_widget.html",
+    "README.md",
+    "SKILL.md",
+    "scripts/",
+    "assets/"
+  ],
+  "scripts": {
+    "start": "python3 scripts/serve.py",
+    "serve": "python3 -m http.server 8888"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/digital-pet"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/digital-pet/issues"
+  },
+  "homepage": "https://github.com/openclaw/digital-pet#readme"
+}

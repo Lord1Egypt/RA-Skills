@@ -1,35 +1,29 @@
+Slug: duanzj-hello-skill
 ---
-name: "Duanzj Hello Skill"
-description: "提供简单问候功能，用于测试和演示自定义技能的运行与响应能力。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/duanzj-hello-skill"
-sourceUrl: "https://clawhub.ai/skills/duanzj-hello-skill"
+name: hello_world 001
+description: 一个简单的问候技能，用于测试和学习
 ---
 
-# Duanzj Hello Skill
+# Hello World Skills
 
-> 提供简单问候功能，用于测试和演示自定义技能的运行与响应能力。
+这是一个示例 Skills，用于演示如何创建自定义 Skills。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/duanzj-hello-skill`
-- **Source URL:** [https://clawhub.ai/skills/duanzj-hello-skill](https://clawhub.ai/skills/duanzj-hello-skill)
+## 什么时候使用
 
-## Overview
+当用户说以下类似的话时使用此技能：
+- "打个招呼"
+- "问个好"
+- "测试一下技能"
+- "运行 hello world"
 
+## 如何响应
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/duanzj-hello-skill
-```
+使用简单的问候语回复用户，例如：
+- "你好！Hello World Skills 运行成功！👋"
+- "嗨！我是你的自定义 Skills，很高兴见到你！"
+
+## 示例
+
+**用户：** 打个招呼
+**助手：** 你好！Hello World Skills 运行成功！👋
+

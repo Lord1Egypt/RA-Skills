@@ -1,0 +1,86 @@
+# OpenAI Codex CLI / Agent compatibility metadata for /depradar
+# Reference: https://platform.openai.com/docs/codex/skills
+
+name: depradar
+version: "1.0.0"
+description: >
+  Scan your project's dependencies for breaking changes, find which files in
+  YOUR codebase will break, and surface community migration reports from GitHub,
+  Stack Overflow, Reddit, and Hacker News.
+
+invocation: /depradar
+
+entry_point: scripts/depradar.py
+skill_file: SKILL.md
+
+runtime:
+  type: python
+  minimum_version: "3.8"
+  dependencies: stdlib_only
+
+capabilities:
+  - dependency_parsing
+  - registry_lookup
+  - codebase_scanning
+  - community_signals
+  - breaking_change_detection
+
+ecosystems:
+  - npm
+  - pypi
+  - cargo
+  - maven
+  - go
+  - rubygems
+
+output_formats:
+  - compact
+  - json
+  - markdown
+  - context
+
+flags:
+  - name: quick
+    type: boolean
+    description: 60s timeout, top 5 packages by severity
+  - name: deep
+    type: boolean
+    description: 300s, exhaustive community search
+  - name: days
+    type: integer
+    default: 30
+    description: Look back N days for new releases
+  - name: refresh
+    type: boolean
+    description: Bypass 6-hour cache
+  - name: emit
+    type: string
+    enum: [compact, json, md, context]
+    default: compact
+  - name: no-scan
+    type: boolean
+    description: Skip codebase impact scan
+  - name: no-community
+    type: boolean
+    description: Skip community signal search
+  - name: mock
+    type: boolean
+    description: Use fixture data, no network calls
+  - name: diagnose
+    type: boolean
+    description: Show API key config status
+
+install:
+  command: bash scripts/sync.sh
+  target: ~/.codex/skills/depradar-skill/
+
+config:
+  env_file: ~/.config/depradar/.env
+  keys:
+    - GITHUB_TOKEN
+    - SCRAPECREATORS_API_KEY
+    - XAI_API_KEY
+    - STACKOVERFLOW_API_KEY
+
+license: MIT
+author: depradar-skill contributors

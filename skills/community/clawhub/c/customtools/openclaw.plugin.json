@@ -1,0 +1,9 @@
+{
+  "id": "custom-tools",
+  "name": "Custom Tools",
+  "description": "Custom tools for OpenClaw: Task, Skill, LSP, and Config management tools",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false
+  }
+}

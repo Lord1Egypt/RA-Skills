@@ -1,35 +1,291 @@
 ---
-name: "dingtalk-daily"
-description: "支持发送和查询钉钉日报/周报，可对工作质量总结与评分。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dingtalk-daily"
-sourceUrl: "https://clawhub.ai/skills/dingtalk-daily"
+name: dingtalk-log
+description: 支持发送和查询钉钉日报/周报，可对工作质量总结与评分。
+dependency:
+  python:
+    - nodejs>=16.0.0
+    - npm>=8.0.0
+  system:
+    - npm install axios
+credentials:
+  - name: COZE_DINGTALK_API_7623630174566891562
+    description: 钉钉企业内部应用凭证，格式为 APP_KEY:APP_SECRET
+    required: true
 ---
 
-# dingtalk-daily
+# 钉钉日志管理
 
-> 支持发送和查询钉钉日报/周报，可对工作质量总结与评分。
+## 任务目标
+- 本 Skill 用于：管理钉钉日志（日报、周报）的创建与查询
+- 能力包含：发送日志、查询日志列表、获取模板信息、生成工作质量总结
+- 触发条件：用户表达"发送日报"、"创建周报"、"查询日志"、"查看我的日报"、"工作总结"等意图
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dingtalk-daily`
-- **Source URL:** [https://clawhub.ai/skills/dingtalk-daily](https://clawhub.ai/skills/dingtalk-daily)
+## 前置准备
+- 依赖说明：脚本使用axios进行HTTP请求
+  ```bash
+  npm install axios
+  ```
+- 凭证配置：需要钉钉企业内部应用的AppKey和AppSecret
+  - 已预置凭证：dingtalk_api
+  - 凭证环境变量：COZE_DINGTALK_API_<skill_id>
 
-## Overview
+## 操作步骤
 
+### 场景一：发送日报/周报
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dingtalk-daily
+**流程说明：**
+1. 智能体确认用户意图（日报或周报）及内容
+2. 调用脚本获取模板信息
+3. 调用脚本创建并发送日志
+
+**详细步骤：**
+
+1. **获取模板信息**
+   - 调用：`node scripts/get-template.js --userid <用户工号> --template-name <日报|周报>`
+   - 返回：模板ID、字段列表及排序信息
+   - 示例：
+     ```bash
+     node scripts/get-template.js --userid 2010100111 --template-name 日报
+     ```
+
+2. **创建并发送日志**
+   - 调用：`node scripts/create-report.js --userid <用户工号> --template-id <模板ID> --contents '<JSON内容>' [--to-userids <接收人ID列表>] [--to-chat true]`
+   - 参数说明：
+     - `--userid`：创建者工号
+     - `--template-id`：模板ID（从步骤1获取）
+     - `--contents`：日志内容，JSON数组格式，每项包含`sort`（字段序号）、`key`（字段名）、`content`（内容，支持Markdown）
+     - `--to-userids`：接收人工号列表，逗号分隔（可选）
+     - `--to-chat`：是否发送消息通知（可选，默认false）
+   - 示例：
+     ```bash
+     node scripts/create-report.js \
+       --userid 2010100111 \
+       --template-id 17956cc992245de234cb79433a8a231 \
+       --contents '[{"sort":0,"key":"今日完成工作","content":"完成钉钉日志Skill开发"},{"sort":1,"key":"未完成工作","content":"优化错误处理"},{"sort":2,"key":"需协调工作","content":"无"}]' \
+       --to-userids user123,user456 \
+       --to-chat true
+     ```
+
+### 场景二：查询日报/周报
+
+**流程说明：**
+1. 智能体确认查询时间范围和模板类型
+2. 调用脚本查询日志列表
+3. 智能体格式化展示结果
+4. **智能体生成工作质量总结**（新增）
+
+**详细步骤：**
+
+1. **查询日志列表**
+   - 调用：`node scripts/query-report.js --userid <用户工号> --template-name <日报|周报> --start-time <开始时间戳> --end-time <结束时间戳> [--cursor 0] [--size 10]`
+   - 参数说明：
+     - `--userid`：查询用户的工号
+     - `--template-name`：模板名称（日报或周报）
+     - `--start-time`：查询开始时间，Unix时间戳（毫秒）
+     - `--end-time`：查询结束时间，Unix时间戳（毫秒）
+     - `--cursor`：分页游标（可选，默认0）
+     - `--size`：每页数量（可选，默认10）
+   - 示例：
+     ```bash
+     node scripts/query-report.js \
+       --userid 2010100111 \
+       --template-name 日报 \
+       --start-time 1774800128000 \
+       --end-time 1774882928000
+     ```
+
+2. **结果处理**
+   - 脚本返回日志列表，包含：创建时间、修改时间、内容、创建者信息等
+   - 智能体以易读格式展示给用户
+
+3. **工作质量总结**（智能体处理）
+   
+   **总结框架：**
+   
+   基于查询到的日报/周报内容，智能体将生成包含以下内容的工作质量总结：
+   
+   **A. 综合评分（满分100分）**
+   
+   智能体根据以下维度进行量化评分：
+   
+   | 评分维度 | 权重 | 评分标准 |
+   |---------|------|----------|
+   | 任务完成度 | 30分 | 已完成任务占比、完成质量 |
+   | 工作效率 | 25分 | 任务推进速度、时间利用率 |
+   | 计划执行 | 20分 | 按计划推进情况、目标达成率 |
+   | 主动性 | 15分 | 主动承担工作、自我驱动表现 |
+   | 协调能力 | 10分 | 跨部门协作、问题解决能力 |
+   
+   **评分等级：**
+   - **优秀（90-100分）**：超出预期，表现卓越
+   - **良好（80-89分）**：符合预期，表现优秀
+   - **合格（70-79分）**：基本达标，有待提升
+   - **待改进（60-69分）**：部分未达标，需重点关注
+   - **不合格（<60分）**：严重未达标，需立即改善
+   
+   **B. 工作亮点（做得好的方面）**
+   - 任务完成度：分析已完成工作的数量和质量
+   - 工作效率：识别快速推进或高效完成的任务
+   - 主动性表现：发现主动承担的额外工作或协调事项
+   - 进度管理：评估任务推进的连贯性和计划性
+   
+   **C. 改善建议（待优化的方面）**
+   - 待办事项追踪：分析未完成工作的积压情况
+   - 时间管理：识别任务延期或长期未完成的项目
+   - 协调需求：发现频繁需要协调的问题点
+   - 工作聚焦：评估任务优先级和专注度
+   
+   **输出格式示例：**
+   ```markdown
+   ## 工作质量总结
+   
+   ### 📊 综合评分：85分（良好）
+   
+   **评分明细：**
+   - 任务完成度：26/30分 - 完成率85%，质量较高
+   - 工作效率：21/25分 - 推进速度良好
+   - 计划执行：17/20分 - 基本按计划推进
+   - 主动性：13/15分 - 主动承担额外工作
+   - 协调能力：8/10分 - 协作顺畅
+   
+   ---
+   
+   ### 一、工作亮点
+   1. **任务完成度高**：本周共完成15项任务，完成率达85%
+   2. **主动推进项目**：主动协调解决了3个跨部门协作问题
+   3. **效率提升**：文档编写工作较上周提前2天完成
+   
+   ### 二、改善建议
+   1. **待办事项管理**：建议对"性能优化"任务进行拆分，设置阶段性目标
+   2. **时间预估**：部分任务实际耗时超出预估，建议预留缓冲时间
+   3. **工作聚焦**：本周涉及5个不同项目，建议优先聚焦核心项目
+   
+   ### 三、整体评价
+   本周工作整体表现良好，任务推进有序。建议下周加强待办事项的时间管理，
+   优先处理积压任务，并提升工作时间的专注度。
+   ```
+   
+   **注意事项：**
+   - 评分应基于客观数据和事实，避免主观臆断
+   - 建议应具体可执行，避免空泛表述
+   - 语气应客观、建设性，以帮助改进为目的
+   - 可根据用户需求调整总结的详细程度
+
+## 资源索引
+- 认证脚本：见 [scripts/auth.js](scripts/auth.js)（获取access_token，内部调用）
+- 获取模板：见 [scripts/get-template.js](scripts/get-template.js)（获取日志模板信息）
+- 创建日志：见 [scripts/create-report.js](scripts/create-report.js)（创建并发送日志）
+- 查询日志：见 [scripts/query-report.js](scripts/query-report.js)（查询日志列表）
+- API规范：见 [references/api-spec.md](references/api-spec.md)（钉钉日志API详细说明）
+
+## 注意事项
+- **时间格式**：所有时间参数均为Unix时间戳，单位为毫秒
+- **内容限制**：日志内容支持Markdown语法，单字段不超过1000字符
+- **时间范围**：查询时间跨度最多180天
+- **权限要求**：应用需要有日志相关接口的调用权限
+- **错误处理**：脚本会返回明确的错误信息，智能体应根据错误引导用户解决
+
+## 使用示例
+
+### 示例1：发送日报
 ```
+用户：帮我发送今天的日报，完成了项目文档编写，明天继续测试
+智能体：
+1. 获取日报模板信息
+2. 构造日志内容：
+   - 今日完成工作：完成项目文档编写
+   - 未完成工作：明天继续测试
+   - 需协调工作：无
+3. 调用脚本发送日志
+4. 返回发送结果
+```
+
+### 示例2：查询本周日报并生成总结
+```
+用户：查看我本周发送的日报，并给出工作总结和评分
+智能体：
+1. 计算本周开始和结束时间戳
+2. 调用脚本查询日志列表
+3. 格式化展示：
+   - 日期：2025-01-15
+     今日完成工作：...
+     未完成工作：...
+   - 日期：2025-01-14
+     ...
+4. 生成工作质量总结：
+   
+   ## 工作质量总结
+   
+   ### 📊 综合评分：82分（良好）
+   
+   **评分明细：**
+   - 任务完成度：24/30分 - 完成率80%
+   - 工作效率：20/25分 - 推进速度良好
+   - 计划执行：18/20分 - 按计划推进
+   - 主动性：12/15分 - 有主动承担
+   - 协调能力：8/10分 - 协作顺畅
+   
+   ---
+   
+   ### 一、工作亮点
+   1. **完成度高**：本周按时完成了所有既定任务
+   2. **主动性强**：主动优化了测试流程，提升效率
+   
+   ### 二、改善建议
+   1. **时间管理**：部分任务存在延期，建议合理评估工作量
+   2. **沟通协调**：需协调事项较多，建议提前沟通
+   
+   ### 三、整体评价
+   本周工作推进顺利，建议下周加强时间规划能力。
+```
+### 场景三：根据姓名搜索工号
+
+**流程说明：**
+1. 智能体确认要搜索的用户姓名
+2. 调用脚本搜索用户
+3. 智能体展示搜索结果（可能有多个匹配）
+
+**详细步骤：**
+
+1. **搜索用户工号**
+   - 调用：`node scripts/search-user.js --query-word <用户姓名> [--offset 0] [--size 10] [--full-match 1]`
+   - 参数说明：
+     - `--query-word`：搜索关键词（用户姓名）
+     - `--offset`：分页偏移量（可选，默认 0）
+     - `--size`：每页数量（可选，默认 10）
+     - `--full-match`：是否完全匹配（可选，1=完全匹配，0=模糊匹配，默认 1）
+   - 返回：工号列表、总数、是否有更多
+   - 示例：
+     ```bash
+     node scripts/search-user.js --query-word "陈亮"
+     ```
+
+2. **结果处理**
+   - 脚本返回匹配的用户工号列表
+   - 智能体展示结果，如有多个匹配需让用户确认
+   - 获取工号后可用于发送/查询日志
+
+**示例输出：**
+```json
+{
+  "list": ["", "", ""],
+  "hasMore": false,
+  "totalCount": 3
+}
+```
+
+## 资源索引
+- 认证脚本：见 [scripts/auth.js](scripts/auth.js)（获取access_token，内部调用）
+- 获取模板：见 [scripts/get-template.js](scripts/get-template.js)（获取日志模板信息）
+- 创建日志：见 [scripts/create-report.js](scripts/create-report.js)（创建并发送日志）
+- 查询日志：见 [scripts/query-report.js](scripts/query-report.js)（查询日志列表）
+- **搜索用户**：见 [scripts/search-user.js](scripts/search-user.js)（根据姓名搜索工号）
+- API规范：见 [references/api-spec.md](references/api-spec.md)（钉钉日志API详细说明）
+
+
+## 异常处理
+- **凭证缺失**：提示用户配置AppKey和AppSecret
+- **权限不足**：提示联系管理员开通相应接口权限
+- **时间范围错误**：提示调整查询时间范围（不超过180天）
+- **模板不存在**：提示检查模板名称（仅支持"日报"和"周报"）
+- **网络错误**：提示检查网络连接或稍后重试

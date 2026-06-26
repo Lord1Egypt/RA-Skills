@@ -1,0 +1,8 @@
+{
+  "chem": "Propose 5-10 novel drug scaffolds (SMILES) and synthesis routes for treating {target} with constraints: {constraints}. Focus on feasible synthesis. Output ONLY valid JSON array: [{{\"smiles\": \"c1ccccc1C(=O)O\", \"route\": \"From benzoic acid via esterification\", \"confidence\": 0.9}}]",
+  "admet": "For SMILES {smiles}, compute: QED, Synthetic Accessibility (SA), logP (XLogP3 or Crippen), TPSA, pKa (approx). Output ONLY JSON: {{\"qed\": 0.7, \"sa\": 3.2, \"logp\": 2.5, \"tpsa\": 37.3, \"pka\": 4.2}}",
+  "tox": "For SMILES {smiles}, check PAINS alerts, Brenk filters, Ames mutagenicity (proxy rules or RDKit). Output ONLY JSON: {{\"pains\": 0, \"brenk\": 0, \"ames\": false, \"tox_score\": 0.85}} (higher better)",
+  "pharm": "Proxy docking score for {target} (e.g. opioid receptor for pain) on SMILES {smiles}. Estimate binding affinity (kcal/mol, more negative better). Output ONLY JSON: {{\"affinity\": -7.8, \"notes\": \"Good fit to pocket\"}}",
+  "synth_notebook": "For synthesis route {route}, optimize yields, check safety hazards, generate visualizations. Output ONLY JSON: {{\"total_yield\": 0.85, \"safety_score\": 0.9, \"images\": [\"step1.png\", \"step2.png\"], \"reagents\": [{\"reagent\": \"acid\", \"quantity\": 10}]}}",
+  "lab_inventory": "Check stock for reagents {reagents} at scale {scale}g. Output ONLY JSON: {{\"available\": true, \"low\": [], \"est_cost\": 50.0}}"
+}

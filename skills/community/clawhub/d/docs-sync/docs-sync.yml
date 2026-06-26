@@ -1,0 +1,40 @@
+# .docs-sync.yml — drop this at the root of any repo
+#
+# Configures the docs-sync skill for this project.
+# All fields are optional — the skill auto-discovers what it can.
+
+# Map your doc files to roles so the skill knows what content belongs where.
+# Role determines how the skill writes updates for each file.
+#
+# Built-in roles: features, architecture, conventions, changelog, readme, api, guide
+# Use role: custom with a description for anything else.
+
+docs:
+  - path: docs/features.md
+    role: features              # user-facing feature list, shortcuts, status
+
+  - path: docs/architecture.md
+    role: architecture          # app structure, data flow, patterns
+
+  - path: CHANGELOG.md
+    role: changelog             # version-based change log
+    # format: keep-a-changelog  # optional: keep-a-changelog | conventional | custom
+
+  # - path: CLAUDE.md
+  #   role: conventions         # dev setup, coding rules, build commands
+
+  # - path: README.md
+  #   role: readme              # project overview, install, quick start
+
+  # - path: docs/api.md
+  #   role: api                 # API reference, endpoints
+
+  # - path: docs/deployment.md
+  #   role: custom
+  #   description: Deployment runbook — hosting, env vars, rollback procedures
+
+# Doc site configuration (optional — auto-detected from mkdocs.yml, etc.)
+# site:
+#   engine: mkdocs              # mkdocs | docusaurus | vitepress
+#   config: mkdocs.yml          # path to site config file
+#   auto_nav: true              # auto-update navigation when docs are added/moved

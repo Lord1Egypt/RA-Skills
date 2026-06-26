@@ -1,0 +1,23 @@
+{
+  "name": "data-query-skill",
+  "version": "1.0.0",
+  "description": "通用自然语言转SQL与可视化页面生成技能",
+  "main": "src/index.js",
+  "scripts": {
+    "verify": "node src/verify/index.js",
+    "generate": "node src/generate/page.js",
+    "scan": "node scripts/scanner.js"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "mysql2": "^3.6.5",
+    "oracledb": "^5.5.0"
+  },
+  "keywords": [
+    "nl2sql",
+    "data-query",
+    "visualization"
+  ],
+  "author": "",
+  "license": "MIT"
+}

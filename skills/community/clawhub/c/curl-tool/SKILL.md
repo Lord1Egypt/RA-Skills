@@ -1,35 +1,34 @@
 ---
-name: "Curl Tool"
-description: "Transfer data using HTTP, HTTPS, FTP protocols. Test APIs and download files."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/curl-tool"
-sourceUrl: "https://clawhub.ai/skills/curl-tool"
+name: curl-tool
+description: Transfer data using HTTP, HTTPS, FTP protocols. Test APIs and download files.
 ---
 
-# Curl Tool
+# Curl Tool - Data Transfer
 
-> Transfer data using HTTP, HTTPS, FTP protocols. Test APIs and download files.
+Transfer data with HTTP/HTTPS/FTP. Supports custom headers and auth.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/curl-tool`
-- **Source URL:** [https://clawhub.ai/skills/curl-tool](https://clawhub.ai/skills/curl-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/curl-tool
+curl-tool https://api.example.com/data
 ```
+
+## Features
+
+- GET and POST requests
+- Custom headers
+- Auth support
+- File downloads
+- Follow redirects
+
+## Examples
+
+```bash
+curl-tool https://api.example.com/users
+curl-tool -X POST -d '{"name":"test"}' https://api.example.com
+curl-tool -o out.txt https://example.com/file
+```
+
+## See Also
+
+- Related documentation: `man curl` (if available)

@@ -1,0 +1,7 @@
+pandas>=1.5.0
+openpyxl>=3.0.0
+mysql-connector-python>=8.0.0
+PyYAML>=6.0
+matplotlib>=3.8.0
+reportlab>=4.0.0
+xhtml2pdf>=0.2.13

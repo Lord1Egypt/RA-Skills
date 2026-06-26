@@ -1,0 +1,15 @@
+{
+  "default": {
+    "阿尔茨海默病": "Alzheimer's disease",
+    "生物钟节律": "circadian rhythm",
+    "睡眠结构": "sleep architecture",
+    "褪黑素": "melatonin"
+  },
+  "en": {
+    "视交叉上核": "suprachiasmatic nucleus",
+    "自主跑轮": "voluntary wheel running"
+  },
+  "ja": {
+    "阿尔茨海默病": "アルツハイマー病"
+  }
+}

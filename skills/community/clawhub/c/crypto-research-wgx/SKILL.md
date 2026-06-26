@@ -1,35 +1,26 @@
 ---
-name: "加密货币投资研究"
-description: "加密货币投资研究 - 当用户询问加密货币价格、行情、趋势、新闻时触发"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-research-wgx"
-sourceUrl: "https://clawhub.ai/skills/crypto-research-wgx"
+name: crypto-research
+description: 加密货币投资研究 - 当用户询问加密货币价格、行情、趋势、新闻时触发
 ---
 
-# 加密货币投资研究
+# 加密货币投资研究 Skill
 
-> 加密货币投资研究 - 当用户询问加密货币价格、行情、趋势、新闻时触发
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-research-wgx`
-- **Source URL:** [https://clawhub.ai/skills/crypto-research-wgx](https://clawhub.ai/skills/crypto-research-wgx)
+1. **实时价格查询** - BTC、ETH等主流币种实时价格
+2. **市场数据** - 市值、24h涨跌幅、成交量
+3. **趋势分析** - 短期走势分析
+4. **新闻追踪** - 加密货币行业新闻
 
-## Overview
+## 使用方式
 
+直接问我，比如：
+- "比特币现在多少钱"
+- "以太坊今天走势"
+- "有哪些热门币种"
+- "加密货币最新新闻"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crypto-research-wgx
-```
+## 数据来源
+
+- CoinGecko API (免费，无需API Key)
+- 实时数据更新

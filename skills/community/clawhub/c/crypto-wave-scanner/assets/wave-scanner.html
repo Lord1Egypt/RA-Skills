@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🌊 Cedars Wave Scanner</title>
+<script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0e1a; color: #e0e6f0; font-family: 'Segoe UI', monospace; }
+
+  header {
+    background: #0d1526;
+    border-bottom: 1px solid #1e3050;
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  header h1 { font-size: 20px; color: #4fc3f7; letter-spacing: 1px; }
+  header .meta { font-size: 12px; color: #607d9b; }
+
+  #controls {
+    padding: 12px 24px;
+    background: #0d1526;
+    border-bottom: 1px solid #1a2d45;
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  }
+  select, button {
+    background: #132030; color: #c0d4e8;
+    border: 1px solid #1e3a5f; border-radius: 6px;
+    padding: 6px 14px; font-size: 13px; cursor: pointer;
+  }
+  button { background: #1565c0; color: #fff; font-weight: bold; border: none; }
+  button:hover { background: #1976d2; }
+  button.danger { background: #c62828; }
+  #status { font-size: 12px; color: #78909c; padding: 6px 0; }
+
+  #summary-bar {
+    display: flex; gap: 12px; padding: 10px 24px;
+    background: #0b1220; border-bottom: 1px solid #1a2d45; flex-wrap: wrap;
+  }
+  .sum-badge {
+    padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: bold;
+  }
+  .badge-fire  { background: #4a1a00; color: #ff6d00; border: 1px solid #e65100; }
+  .badge-ok    { background: #003300; color: #69f0ae; border: 1px solid #00c853; }
+  .badge-warn  { background: #3a2800; color: #ffd740; border: 1px solid #ffab00; }
+  .badge-skip  { background: #1a1a2e; color: #546e7a; border: 1px solid #37474f; }
+
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 16px; padding: 16px 24px;
+  }
+
+  .coin-card {
+    background: #0d1526;
+    border: 1px solid #1e3050;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .coin-card.fire  { border-color: #e65100; }
+  .coin-card.valid { border-color: #00c853; }
+  .coin-card.weak  { border-color: #ffab00; }
+  .coin-card.skip  { border-color: #37474f; opacity: 0.65; }
+
+  .card-header {
+    padding: 10px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid #1a2d45;
+  }
+  .card-header .sym { font-size: 15px; font-weight: bold; color: #e0e6f0; }
+  .card-header .price { font-size: 14px; color: #90caf9; font-family: monospace; }
+  .grade-badge {
+    padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;
+  }
+  .grade-fire  { background:#4a1a00; color:#ff6d00; }
+  .grade-valid { background:#003300; color:#69f0ae; }
+  .grade-weak  { background:#3a2800; color:#ffd740; }
+  .grade-skip  { background:#1a1a2e; color:#546e7a; }
+
+  .chart-wrap { position: relative; height: 200px; }
+  .rsi-wrap   { position: relative; height: 70px; border-top: 1px solid #1a2d45; }
+
+  .signals-row {
+    display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 14px;
+    border-top: 1px solid #1a2d45;
+  }
+  .sig {
+    font-size: 10px; padding: 2px 8px; border-radius: 10px;
+  }
+  .sig.ok   { background: #003300; color: #69f0ae; }
+  .sig.fail { background: #1a0000; color: #ef9a9a; }
+  .sig.warn { background: #3a2800; color: #ffd740; }
+
+  .entry-info {
+    padding: 8px 14px; font-size: 11px; color: #78909c;
+    border-top: 1px solid #1a2d45;
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .entry-info span b { color: #4fc3f7; }
+
+  .score-bar {
+    height: 3px;
+    background: #1a2d45;
+  }
+  .score-fill {
+    height: 3px;
+    transition: width 0.5s;
+  }
+
+  #refresh-timer { color: #546e7a; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌊 Cedars Wave Scanner</h1>
+  <div class="meta">
+    <span id="refresh-timer">Refreshing...</span> &nbsp;|&nbsp;
+    Binance Futures · 15m · <span id="clock"></span>
+  </div>
+</header>
+
+<div id="controls">
+  <select id="sel-interval">
+    <option value="5m">5m</option>
+    <option value="15m" selected>15m</option>
+    <option value="1h">1h</option>
+    <option value="4h">4h</option>
+  </select>
+  <select id="sel-limit">
+    <option value="60" selected>60 candles</option>
+    <option value="100">100 candles</option>
+    <option value="200">200 candles</option>
+  </select>
+  <select id="sel-minscore">
+    <option value="0">Show All</option>
+    <option value="3">Score ≥ 3</option>
+    <option value="4" selected>Score ≥ 4</option>
+    <option value="5">Score ≥ 5 (STRONG only)</option>
+  </select>
+  <button onclick="refresh()">⟳ Refresh Now</button>
+  <span id="status">Loading...</span>
+</div>
+
+<div id="summary-bar"></div>
+<div id="grid"></div>
+
+<script>
+const SYMBOLS = [
+  "BTCUSDT","ETHUSDT","SOLUSDT","XRPUSDT",
+  "BNBUSDT","AVAXUSDT","LINKUSDT","DOGEUSDT",
+  "LTCUSDT","DOTUSDT"
+];
+const BASE = "https://fapi.binance.com"; // real Binance Futures (public data, no auth)
+
+let autoTimer = null;
+let countdown = 60;
+
+function clock() {
+  document.getElementById("clock").textContent = new Date().toLocaleTimeString();
+}
+setInterval(clock, 1000); clock();
+
+function setStatus(msg) { document.getElementById("status").textContent = msg; }
+
+async function fetchKlines(sym, interval, limit) {
+  const url = `${BASE}/fapi/v1/klines?symbol=${sym}&interval=${interval}&limit=${limit}`;
+  const r = await fetch(url);
+  return await r.json();
+}
+
+function calcEMA(data, period) {
+  const k = 2 / (period + 1);
+  let e = data[0];
+  for (let i = 1; i < data.length; i++) e = data[i] * k + e * (1 - k);
+  return e;
+}
+
+function calcEMASeries(data, period) {
+  const k = 2 / (period + 1);
+  const result = [];
+  let e = data[0];
+  result.push(e);
+  for (let i = 1; i < data.length; i++) {
+    e = data[i] * k + e * (1 - k);
+    result.push(e);
+  }
+  return result;
+}
+
+function calcRSI(closes, period = 14) {
+  if (closes.length < period + 1) return 50;
+  let gains = 0, losses = 0;
+  for (let i = closes.length - period; i < closes.length; i++) {
+    const d = closes[i] - closes[i - 1];
+    if (d > 0) gains += d; else losses += Math.abs(d);
+  }
+  if (losses === 0) return 100;
+  const rs = (gains / period) / (losses / period);
+  return parseFloat((100 - 100 / (1 + rs)).toFixed(1));
+}
+
+function calcRSISeries(closes, period = 14) {
+  const result = [];
+  for (let i = period; i < closes.length; i++) {
+    const slice = closes.slice(i - period, i + 1);
+    result.push({ idx: i, rsi: calcRSI(slice, period) });
+  }
+  return result;
+}
+
+function scoreSignal(sym, klines) {
+  const closes = klines.map(k => parseFloat(k[4]));
+  const vols   = klines.map(k => parseFloat(k[5]));
+  const times  = klines.map(k => k[0]);
+
+  const e9  = calcEMA(closes.slice(-20), 9);
+  const e21 = calcEMA(closes.slice(-30), 21);
+  const e50 = calcEMA(closes.slice(-60), 50);
+
+  const rsiNow  = calcRSI(closes.slice(-16));
+  const rsiPrev = calcRSI(closes.slice(-17, -1));
+  const rsiRising = rsiNow > rsiPrev;
+
+  const lastVol = vols[vols.length - 1];
+  const avgVol  = vols.slice(-11, -1).reduce((a, b) => a + b, 0) / 10;
+  const volRatio = (lastVol / avgVol).toFixed(2);
+
+  // 1h EMA trend (approximate from last klines)
+  const e9_1h  = calcEMA(closes.slice(-20), 9);
+  const e21_1h = calcEMA(closes.slice(-30), 21);
+  const trend1h = e9_1h > e21_1h; // same TF here; caller should pass 1h data
+
+  const e12 = calcEMA(closes.slice(-30), 12);
+  const e26 = calcEMA(closes.slice(-40), 26);
+  const macd = e12 - e26;
+
+  let score = 0;
+  const sigs = [];
+
+  // 1. EMA stack
+  if (e9 > e21 && e21 > e50) { score++; sigs.push({ label: "EMA9>21>50", ok: true }); }
+  else sigs.push({ label: "EMA Stack", ok: false });
+
+  // 2. RSI zone
+  if (rsiNow >= 50 && rsiNow <= 80) { score++; sigs.push({ label: `RSI ${rsiNow} ✓`, ok: true }); }
+  else if (rsiNow > 80) sigs.push({ label: `RSI ${rsiNow} ⚠`, ok: "warn" });
+  else sigs.push({ label: `RSI ${rsiNow}`, ok: false });
+
+  // 3. RSI rising
+  if (rsiRising) { score++; sigs.push({ label: "RSI↑ Rising", ok: true }); }
+  else sigs.push({ label: "RSI↓ Falling", ok: false });
+
+  // 4. Volume
+  if (volRatio >= 1.3) { score++; sigs.push({ label: `Vol ${volRatio}×`, ok: true }); }
+  else sigs.push({ label: `Vol ${volRatio}×`, ok: false });
+
+  // 5. Trend (1h approximation — EMA9 > EMA21)
+  if (trend1h) { score++; sigs.push({ label: "Trend BULL", ok: true }); }
+  else sigs.push({ label: "Trend BEAR", ok: false });
+
+  // 6. MACD
+  if (macd > 0) { score++; sigs.push({ label: `MACD+`, ok: true }); }
+  else sigs.push({ label: `MACD-`, ok: false });
+
+  let grade, gradeClass;
+  if (score >= 5)      { grade = "🔥 STRONG"; gradeClass = "fire"; }
+  else if (score >= 4) { grade = "✅ VALID";  gradeClass = "valid"; }
+  else if (score >= 3) { grade = "⚠️ WEAK";  gradeClass = "weak"; }
+  else                 { grade = "❌ SKIP";   gradeClass = "skip"; }
+
+  const price = closes[closes.length - 1];
+  const tp3 = (price * 1.03).toFixed(4);
+  const tp5 = (price * 1.05).toFixed(4);
+  const entryLimit = e9.toFixed(4);
+  const stop = e21.toFixed(4);
+
+  return {
+    sym, score, grade, gradeClass, sigs,
+    price, rsiNow, rsiPrev, rsiRising,
+    e9, e21, e50, macd: macd.toFixed(4), volRatio,
+    entryLimit, tp3, tp5, stop,
+    closes, vols, times, klines
+  };
+}
+
+function buildCard(d) {
+  const cardId = `card-${d.sym}`;
+  const chartId = `chart-${d.sym}`;
+  const rsiId   = `rsi-${d.sym}`;
+
+  const scoreColor = d.gradeClass === 'fire' ? '#ff6d00'
+    : d.gradeClass === 'valid' ? '#69f0ae'
+    : d.gradeClass === 'weak'  ? '#ffd740' : '#546e7a';
+  const scorePct = (d.score / 6 * 100).toFixed(0);
+
+  const sigsHTML = d.sigs.map(s => {
+    const cls = s.ok === true ? 'ok' : s.ok === 'warn' ? 'warn' : 'fail';
+    return `<span class="sig ${cls}">${s.label}</span>`;
+  }).join('');
+
+  return `
+  <div class="coin-card ${d.gradeClass}" id="${cardId}">
+    <div class="score-bar"><div class="score-fill" style="width:${scorePct}%;background:${scoreColor}"></div></div>
+    <div class="card-header">
+      <div>
+        <span class="sym">${d.sym.replace('USDT','')}</span>
+        <span class="grade-badge grade-${d.gradeClass}" style="margin-left:8px">${d.grade} ${d.score}/6</span>
+      </div>
+      <span class="price">$${parseFloat(d.price).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:4})}</span>
+    </div>
+    <div class="chart-wrap" id="${chartId}"></div>
+    <div class="rsi-wrap" id="${rsiId}"></div>
+    <div class="signals-row">${sigsHTML}</div>
+    <div class="entry-info">
+      <span>📍 Limit: <b>$${d.entryLimit}</b></span>
+      <span>🎯 TP3%: <b>$${d.tp3}</b></span>
+      <span>🎯 TP5%: <b>$${d.tp5}</b></span>
+      <span>🛑 Stop: <b>$${d.stop}</b></span>
+      <span>RSI: <b>${d.rsiNow}</b> ${d.rsiRising ? '↑' : '↓'}</span>
+      <span>Vol: <b>${d.volRatio}×</b></span>
+    </div>
+  </div>`;
+}
+
+function renderCharts(d) {
+  const chartEl = document.getElementById(`chart-${d.sym}`);
+  const rsiEl   = document.getElementById(`rsi-${d.sym}`);
+  if (!chartEl || !rsiEl) return;
+
+  // Main chart
+  const chart = LightweightCharts.createChart(chartEl, {
+    width: chartEl.clientWidth, height: 200,
+    layout: { background: { color: '#0d1526' }, textColor: '#607d9b' },
+    grid: { vertLines: { color: '#1a2d45' }, horzLines: { color: '#1a2d45' } },
+    timeScale: { borderColor: '#1a2d45', timeVisible: true },
+    rightPriceScale: { borderColor: '#1a2d45' },
+    crosshair: { mode: 1 },
+    handleScroll: false, handleScale: false,
+  });
+
+  // Candlesticks
+  const candleSeries = chart.addCandlestickSeries({
+    upColor: '#26a69a', downColor: '#ef5350',
+    borderUpColor: '#26a69a', borderDownColor: '#ef5350',
+    wickUpColor: '#26a69a', wickDownColor: '#ef5350',
+  });
+
+  const candles = d.klines.slice(-60).map(k => ({
+    time: Math.floor(k[0] / 1000),
+    open: parseFloat(k[1]), high: parseFloat(k[2]),
+    low: parseFloat(k[3]),  close: parseFloat(k[4]),
+  }));
+  candleSeries.setData(candles);
+
+  // EMA lines
+  const closes = d.klines.slice(-60).map(k => parseFloat(k[4]));
+  const times  = d.klines.slice(-60).map(k => Math.floor(k[0] / 1000));
+
+  const e9series  = calcEMASeries(closes, 9);
+  const e21series = calcEMASeries(closes, 21);
+  const e50series = calcEMASeries(closes, 50);
+
+  const ema9line = chart.addLineSeries({ color: '#ff9800', lineWidth: 1, title: 'EMA9' });
+  const ema21line = chart.addLineSeries({ color: '#2196f3', lineWidth: 1, title: 'EMA21' });
+  const ema50line = chart.addLineSeries({ color: '#9c27b0', lineWidth: 1, title: 'EMA50' });
+
+  ema9line.setData(e9series.map((v, i) => ({ time: times[i], value: v })));
+  ema21line.setData(e21series.map((v, i) => ({ time: times[i], value: v })));
+  ema50line.setData(e50series.map((v, i) => ({ time: times[i], value: v })));
+
+  // Entry zone line (EMA9 level — horizontal)
+  const entryLine = chart.addLineSeries({
+    color: '#ffd740', lineWidth: 1, lineStyle: 2, title: 'Entry'
+  });
+  entryLine.setData(times.slice(-5).map(t => ({ time: t, value: d.e9 })));
+
+  chart.timeScale().fitContent();
+
+  // RSI chart
+  const rsiChart = LightweightCharts.createChart(rsiEl, {
+    width: rsiEl.clientWidth, height: 70,
+    layout: { background: { color: '#0a0e1a' }, textColor: '#546e7a' },
+    grid: { vertLines: { color: '#1a2d45' }, horzLines: { color: '#1a2d45' } },
+    timeScale: { borderColor: '#1a2d45', timeVisible: false, visible: false },
+    rightPriceScale: { borderColor: '#1a2d45', scaleMargins: { top: 0.1, bottom: 0.1 } },
+    handleScroll: false, handleScale: false,
+  });
+
+  const rsiSeries = rsiChart.addLineSeries({ color: '#e040fb', lineWidth: 1, title: 'RSI' });
+  const rsiData = calcRSISeries(closes, 14).map(r => ({ time: times[r.idx], value: r.rsi }));
+  rsiSeries.setData(rsiData);
+
+  // RSI levels
+  const rsi70 = rsiChart.addLineSeries({ color: '#ef5350', lineWidth: 1, lineStyle: 2 });
+  const rsi50 = rsiChart.addLineSeries({ color: '#78909c', lineWidth: 1, lineStyle: 2 });
+  const rsi30 = rsiChart.addLineSeries({ color: '#26a69a', lineWidth: 1, lineStyle: 2 });
+
+  const tRange = times.slice(-20);
+  rsi70.setData(tRange.map(t => ({ time: t, value: 70 })));
+  rsi50.setData(tRange.map(t => ({ time: t, value: 50 })));
+  rsi30.setData(tRange.map(t => ({ time: t, value: 30 })));
+
+  rsiChart.timeScale().fitContent();
+}
+
+async function refresh() {
+  const interval  = document.getElementById("sel-interval").value;
+  const limit     = parseInt(document.getElementById("sel-limit").value);
+  const minScore  = parseInt(document.getElementById("sel-minscore").value);
+
+  setStatus("🔄 Scanning...");
+  document.getElementById("grid").innerHTML = "";
+  document.getElementById("summary-bar").innerHTML = "";
+
+  const results = [];
+
+  for (const sym of SYMBOLS) {
+    try {
+      setStatus(`Fetching ${sym}...`);
+      const klines = await fetchKlines(sym, interval, limit);
+      const d = scoreSignal(sym, klines);
+      results.push(d);
+    } catch (e) {
+      console.error(sym, e);
+    }
+  }
+
+  // Sort by score desc
+  results.sort((a, b) => b.score - a.score);
+
+  // Summary
+  const fire  = results.filter(r => r.score >= 5).length;
+  const valid = results.filter(r => r.score === 4).length;
+  const weak  = results.filter(r => r.score === 3).length;
+  const skip  = results.filter(r => r.score < 3).length;
+
+  document.getElementById("summary-bar").innerHTML = `
+    <span class="sum-badge badge-fire">🔥 STRONG: ${fire}</span>
+    <span class="sum-badge badge-ok">✅ VALID: ${valid}</span>
+    <span class="sum-badge badge-warn">⚠️ WEAK: ${weak}</span>
+    <span class="sum-badge badge-skip">❌ SKIP: ${skip}</span>
+    <span class="sum-badge" style="background:#0d1526;color:#78909c;border:1px solid #1e3050">
+      Best: ${results[0]?.sym.replace('USDT','')} RSI=${results[0]?.rsiNow}
+    </span>
+  `;
+
+  // Render cards
+  const grid = document.getElementById("grid");
+  const filtered = results.filter(r => r.score >= minScore);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div style="padding:40px;color:#546e7a;text-align:center;grid-column:1/-1">
+      No setups found with score ≥ ${minScore}. Lower the minimum score filter.</div>`;
+  }
+
+  for (const d of filtered) {
+    grid.innerHTML += buildCard(d);
+  }
+
+  // Render charts after DOM update
+  setTimeout(() => {
+    for (const d of filtered) {
+      renderCharts(d);
+    }
+  }, 100);
+
+  setStatus(`✅ Done — ${filtered.length} setups shown · ${new Date().toLocaleTimeString()}`);
+
+  // Auto-refresh countdown
+  countdown = 60;
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => {
+    countdown--;
+    document.getElementById("refresh-timer").textContent = `Auto-refresh in ${countdown}s`;
+    if (countdown <= 0) {
+      clearInterval(autoTimer);
+      refresh();
+    }
+  }, 1000);
+}
+
+window.addEventListener("resize", () => {
+  // Re-render on resize
+  document.querySelectorAll('.chart-wrap, .rsi-wrap').forEach(el => {
+    // lightweight-charts auto-resize is handled by the library
+  });
+});
+
+// Auto-start
+refresh();
+</script>
+</body>
+</html>

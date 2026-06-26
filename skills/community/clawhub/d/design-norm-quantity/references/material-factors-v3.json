@@ -1,0 +1,544 @@
+{
+  "version": "3.0",
+  "title": "关键材料因子体系 - '测不准'造价波动引擎",
+  "date": "2026-04-03",
+  "author": "度量衡智库",
+
+  "philosophy": {
+    "core_insight": "工程造价的不确定性，70%以上来自材料价格的波动。从上千种材料中遴选出6个关键因子，就能量化并预测整体造价的波动范围。",
+    "methodology": "帕累托法则(Pareto Principle) + 主成分分析(PCA) + 专家判断"
+  },
+
+  "material_selection": {
+    "selection_criteria": {
+      "value_contribution": "单项材料占建安造价比例 ≥ 3%",
+      "price_volatility": "年价格波动率 ≥ 8%",
+      "representativeness": "能代表某一类材料的价格趋势",
+      "data_availability": "有公开、权威的价格发布渠道"
+    },
+    "selection_process": {
+      "step1": "梳理房屋建筑工程材料清单（约2000+种）",
+      "step2": "按专业分类：结构/建筑/机电/装饰",
+      "step3": "计算各类材料在典型项目中的价值占比",
+      "step4": "筛选出累计贡献度 > 70% 的关键因子",
+      "step5": "专家评审调整，确定6大关键因子"
+    }
+  },
+
+  "six_key_material_factors": {
+
+    "M1_steel_rebar": {
+      "name": "材料因子M1 - 钢筋（螺纹钢/线材）",
+      "code": "M1",
+      "category": "结构材料 - 黑色金属",
+      "hs_code": "7214/7215",
+
+      "engineering_significance": {
+        "cost_share": "占建安造价比例: 12%~18%",
+        "sensitivity_rank": "#1 (最高)",
+        "description": "钢筋是混凝土结构的骨架，几乎所有钢筋混凝土构件都依赖钢筋承力"
+      },
+
+      "price_composition": {
+        "raw_material": "铁矿石 (占比约40%)",
+        "processing": "炼钢+轧制 (占比约25%)",
+        "transport": "物流运输 (占比约10%)",
+        "trading_margin": "贸易商利润 (占比约10%)",
+        "other": "其他/税费 (占比约15%)"
+      },
+
+      "price_indicators": [
+        {"name": "HRB400 螺纹钢", "unit": "元/吨", "typical_range": [3800, 4800], "fluctuation": "±15%/年"},
+        {"name": "HPB300 光圆钢筋", "unit": "元/吨", "typical_range": [3900, 4900], "fluctuation": "±14%/年"},
+        {"name": "HRB500 高强钢筋", "unit": "元/吨", "typical_range": [4200, 5200], "fluctuation": "±13%/年"}
+      ],
+
+      "price_influence_factors": {
+        "upstream": ["铁矿石期货(CFE)", "焦炭价格", "废钢价格"],
+        "policy": ["环保限产", "去产能政策", "出口关税"],
+        "demand": ["房地产开工率", "基建投资", "制造业需求"]
+      },
+
+      "market_data_sources": [
+        "我的钢铁网(mysteel.com)",
+        "兰格钢铁网",
+        "西本新干线",
+        "中国钢铁工业协会"
+      ],
+
+      "correlation_with_project_cost": {
+        "reinforced_concrete_ratio": "140 kg/m³ (典型框架-剪力墙)",
+        "concrete_structure": "钢筋成本 = V_concrete × 140kg/m³ × P_steel",
+        "influence_coefficient": 1.0,
+        "price_elasticity": "钢筋价格每上涨10%，整体建安造价上涨1.2%~1.8%"
+      },
+
+      "price_forecast": {
+        "method": "蒙特卡洛模拟 + 历史价格分布",
+        "distribution": "对数正态分布",
+        "confidence_interval_1y": "±12% (80%置信度)",
+        "confidence_interval_3y": "±25% (80%置信度)"
+      }
+    },
+
+    "M2_concrete": {
+      "name": "材料因子M2 - 混凝土",
+      "code": "M2",
+      "category": "结构材料 - 非金属矿制品",
+      "hs_code": "3824",
+
+      "engineering_significance": {
+        "cost_share": "占建安造价比例: 8%~15%",
+        "sensitivity_rank": "#2 (很高)",
+        "description": "混凝土是建筑的肌肉，占结构体积的绝大部分。混凝土成本由水泥、砂石、掺合料构成"
+      },
+
+      "price_composition": {
+        "水泥_CEM": "占比约25%~35%",
+        "砂石骨料": "占比约35%~45% (近年因环保政策上涨显著)",
+        "粉煤灰/矿粉": "占比约5%~10%",
+        "外加剂": "占比约3%~5%",
+        "生产运输": "占比约15%~20%"
+      },
+
+      "price_indicators": [
+        {"name": "C30商品混凝土(泵送)", "unit": "元/m³", "typical_range": [480, 620], "region_difference": "一线城市+20%~30%"},
+        {"name": "C35商品混凝土", "unit": "元/m³", "typical_range": [520, 680], "fluctuation": "±10%/年"},
+        {"name": "C40商品混凝土", "unit": "元/m³", "typical_range": [560, 720], "fluctuation": "±10%/年"},
+        {"name": "C50高强混凝土", "unit": "元/m³", "typical_range": [620, 850], "fluctuation": "±12%/年"}
+      ],
+
+      "price_influence_factors": {
+        "upstream": ["水泥(煤炭+石灰石)", "河砂(禁采政策)", "碎石(矿山开采)"],
+        "policy": ["环保督查", "河砂禁采", "矿山限采", "运输超载治理"],
+        "seasonal": ["雨季供应紧张", "冬季错峰生产"]
+      },
+
+      "market_data_sources": [
+        "中国水泥网",
+        "数字水泥网",
+        "各地造价站信息价",
+        "混凝土协会"
+      ],
+
+      "regional_price_differences": {
+        "珠三角": {"base_index": 1.0, "note": "基准"},
+        "长三角": {"base_index": 1.05, "note": "略高"},
+        "京津冀": {"base_index": 1.15, "note": "受环保影响大"},
+        "西部地区": {"base_index": 0.85, "note": "相对较低"},
+        "海岛/山区": {"base_index": 1.30, "note": "运输成本高"}
+      },
+
+      "correlation_with_project_cost": {
+        "concrete_content": "0.42 m³/㎡ (典型高层住宅地上)",
+        "full_structure": "混凝土成本 = A_building × 0.42m³/㎡ × P_concrete",
+        "influence_coefficient": 0.85,
+        "price_elasticity": "混凝土价格每上涨10%，整体建安造价上涨0.8%~1.5%"
+      }
+    },
+
+    "M3_copper": {
+      "name": "材料因子M3 - 铜（电线电缆）",
+      "code": "M3",
+      "category": "机电材料 - 有色金属",
+      "hs_code": "7408/7409",
+
+      "engineering_significance": {
+        "cost_share": "占建安造价比例: 4%~8% (纯铜材), 8%~15% (含电线电缆)",
+        "sensitivity_rank": "#3 (高)",
+        "description": "铜是电气系统的血液。电线电缆中的铜导体是主要成本来源，价格与国际铜价高度联动"
+      },
+
+      "price_composition": {
+        "copper_conductor": "铜杆/铜丝 (占比约65%~75%)",
+        "insulation_material": "聚氯乙烯/交联聚乙烯 (占比约10%~15%)",
+        "armor_sheath": "钢带铠装/护套 (占比约5%~10%)",
+        "manufacturing": "加工费 (占比约8%~15%)"
+      },
+
+      "price_indicators": [
+        {"name": "1#电解铜(期货收盘价)", "unit": "元/吨", "typical_range": [55000, 75000], "fluctuation": "±20%/年(国际联动)"},
+        {"name": "T1紫铜板", "unit": "元/吨", "typical_range": [60000, 80000], "fluctuation": "±18%/年"},
+        {"name": "BV电线(2.5mm²)", "unit": "元/百米", "typical_range": [120, 180], "copper_content": "含铜约1.4kg/百米"},
+        {"name": "YJV电缆(4×16mm²)", "unit": "元/米", "typical_range": [35, 60], "copper_content": "含铜约1.8kg/m"}
+      ],
+
+      "price_influence_factors": {
+        "upstream": ["国际铜期货(LME)", "铜矿产量(智利/秘鲁)", "废铜供应"],
+        "policy": ["进口关税", "环保政策", "能耗双控"],
+        "demand": ["电力投资", "新能源汽车", "新能源发电", "房地产竣工面积"]
+      },
+
+      "market_data_sources": [
+        "上海有色金属网(SMM)",
+        "LME伦敦金属交易所",
+        "长江有色金属网",
+        "电缆厂家报价"
+      ],
+
+      "international_correlation": {
+        "LME铜期货": "相关系数 > 0.92",
+        "说明": "铜价90%以上由国际市场定价，国内政策影响有限",
+        "price_lead": "国内价格滞后国际约1~3个工作日"
+      },
+
+      "copper_content_by_system": {
+        "住宅电气": "3.5~4.5 kg/㎡",
+        "办公楼电气": "5.0~8.0 kg/㎡",
+        "商业电气": "6.0~10.0 kg/㎡",
+        "医院": "8.0~12.0 kg/㎡ (医疗设备多)",
+        "数据中心": "50.0~150.0 kg/㎡ (密集母线+电缆)"
+      },
+
+      "correlation_with_project_cost": {
+        "copper_content": "5~8 kg/㎡ (典型办公楼)",
+        "system_cost": "铜缆成本 = A_building × 6kg/㎡ × P_cu / 1000",
+        "influence_coefficient": 0.60,
+        "price_elasticity": "铜价每上涨10%，整体建安造价上涨0.4%~0.8%，机电安装造价上涨3%~6%"
+      },
+
+      "price_forecast": {
+        "method": "国际期货市场 + 国内供需平衡",
+        "distribution": "对数正态分布(右偏)",
+        "confidence_interval_1y": "±18% (80%置信度)",
+        "note": "铜价波动受国际局势影响大，预测难度最高"
+      }
+    },
+
+    "M4_aluminum": {
+      "name": "材料因子M4 - 铝合金（门窗/幕墙）",
+      "code": "M4",
+      "category": "围护材料 - 有色金属",
+      "hs_code": "7604/7606",
+
+      "engineering_significance": {
+        "cost_share": "占建安造价比例: 5%~12%",
+        "sensitivity_rank": "#4 (中高)",
+        "description": "铝合金是建筑的外衣。门窗、幕墙中的铝合金型材是关键成本构成"
+      },
+
+      "price_composition": {
+        "aluminum_ingot": "铝锭(电解铝) (占比约55%~65%)",
+        "alloy_additives": "合金添加剂 (占比约5%~8%)",
+        "extrusion_mold": "模具摊销 (占比约5%~10%)",
+        "surface_treatment": "表面处理(氟碳喷涂/粉末喷涂) (占比约15%~25%)",
+        "manufacturing": "加工费 (占比约10%~15%)"
+      },
+
+      "price_indicators": [
+        {"name": "A00铝锭(现货)", "unit": "元/吨", "typical_range": [17000, 23000], "fluctuation": "±15%/年"},
+        {"name": "铝合金门窗料", "unit": "元/吨", "typical_range": [22000, 30000], "note": "含加工费"},
+        {"name": "氟碳喷涂幕墙铝板", "unit": "元/㎡", "typical_range": [280, 450], "thickness": "3mm厚"},
+        {"name": "粉末喷涂门窗料", "unit": "元/㎡", "typical_range": [180, 320], "note": "普通门窗"}
+      ],
+
+      "price_influence_factors": {
+        "upstream": ["铝土矿(进口依存度60%+)", "氧化铝", "电力成本(电解铝高耗电)"],
+        "policy": ["产能置换政策", "电价政策", "出口配额"],
+        "demand": ["房地产竣工面积", "汽车轻量化", "光伏边框"]
+      },
+
+      "market_data_sources": [
+        "上海有色金属网(SMM)",
+        "长江有色金属网",
+        "中国铝业官网报价",
+        "门窗幕墙协会"
+      ],
+
+      "aluminum_content_by_system": {
+        "铝合金门窗": "6~10 kg/㎡ (门窗面积)",
+        "玻璃幕墙(框架式)": "12~18 kg/㎡ (幕墙面积)",
+        "石材幕墙(铝合金挂件)": "3~5 kg/㎡",
+        "金属吊顶": "4~8 kg/㎡",
+        "铝合金模板": "20~25 kg/㎡ (周转材料,不计入直接费)"
+      },
+
+      "correlation_with_project_cost": {
+        "window_wall_ratio": 0.35,
+        "aluminum_cost": "幕墙成本 ≈ A_curtain × 15kg/㎡ × P_Al + A_glass × P_glass",
+        "influence_coefficient": 0.55,
+        "price_elasticity": "铝价每上涨10%，整体建安造价上涨0.5%~1.2%，外立面造价上涨3%~5%"
+      }
+    },
+
+    "M5_glass": {
+      "name": "材料因子M5 - 玻璃（幕墙/门窗）",
+      "code": "M5",
+      "category": "围护材料 - 硅酸盐制品",
+      "hs_code": "7005",
+
+      "engineering_significance": {
+        "cost_share": "占建安造价比例: 4%~10% (含幕墙玻璃)",
+        "sensitivity_rank": "#5 (中)",
+        "description": "玻璃是建筑的眼睛。在幕墙工程中，玻璃成本可占幕墙总价的30%~50%"
+      },
+
+      "price_composition": {
+        "float_glass_raw": "浮法原片 (占比约40%~50%)",
+        "low_e_coating": "Low-E镀膜 (占比约20%~30%)",
+        "tempering_lamination": "钢化/夹胶/中空加工 (占比约25%~35%)",
+        "transport_packing": "运输包装 (占比约5%~8%)"
+      },
+
+      "price_indicators": [
+        {"name": "5mm浮法白玻原片", "unit": "元/重箱", "typical_range": [80, 120], "fluctuation": "±15%/年"},
+        {"name": "6mmLow-E中空钢化玻璃", "unit": "元/㎡", "typical_range": [180, 280], "note": "幕墙常用配置"},
+        {"name": "双银Low-E中空", "unit": "元/㎡", "typical_range": [250, 400], "note": "高端幕墙"},
+        {"name": "夹胶玻璃(5+1.14PVB+5)", "unit": "元/㎡", "typical_range": [200, 320], "note": "玻璃栏河/采光顶"}
+      ],
+
+      "price_influence_factors": {
+        "upstream": ["纯碱(占比约30%成本)", "石英砂", "芒硝"],
+        "policy": ["产能调控", "环保限产(平板玻璃为重点行业)"],
+        "supply": ["冷修/热修周期", "产能利用率"],
+        "demand": ["房地产新开工", "竣工面积", "汽车玻璃需求"]
+      },
+
+      "market_data_sources": [
+        "中国玻璃信息网",
+        "隆众资讯",
+        "各地造价站信息价",
+        "玻璃厂家报价"
+      ],
+
+      "glass_area_by_system": {
+        "窗墙比35%住宅": "玻璃面积 ≈ A_building × 35%",
+        "窗墙比50%办公": "玻璃面积 ≈ A_building × 50%",
+        "单元式幕墙": "玻璃面积 ≈ A_building × 0.70~0.85",
+        "点式玻璃幕墙": "玻璃面积 ≈ A_building × 0.60~0.75",
+        "全玻幕墙": "玻璃面积 ≈ A_building × 0.90~0.98"
+      },
+
+      "correlation_with_project_cost": {
+        "glass_content": "玻璃幕墙成本 = A_glass × 220元/㎡ (典型配置)",
+        "influence_coefficient": 0.50,
+        "price_elasticity": "玻璃价格每上涨10%，整体建安造价上涨0.4%~1.0%，幕墙造价上涨2%~4%"
+      }
+    },
+
+    "M6_structural_steel": {
+      "name": "材料因子M6 - 结构型钢（钢结构/钢筋网）",
+      "code": "M6",
+      "category": "结构材料 - 黑色金属",
+      "hs_code": "7206/7216/7228",
+
+      "engineering_significance": {
+        "cost_share": "占建安造价比例: 3%~8% (纯钢结构项目可达30%+), 2%~5% (混凝土项目)",
+        "sensitivity_rank": "#6 (中等)",
+        "description": "钢结构工程中的H型钢、钢管柱、工字钢、钢板等，以及混凝土结构中的钢筋网片"
+      },
+
+      "price_composition": {
+        "raw_steel": "钢坯/板坯 (占比约50%~60%)",
+        "rolling": "轧制加工费 (占比约20%~25%)",
+        "surface_treatment": "除锈/防腐 (占比约8%~12%)",
+        "transport": "运输费 (占比约5%~8%)",
+        "other": "其他 (占比约10%~15%)"
+      },
+
+      "price_indicators": [
+        {"name": "Q235B热轧H型钢", "unit": "元/吨", "typical_range": [3800, 4800], "note": "与钢筋价格联动"},
+        {"name": "Q355B热轧H型钢", "unit": "元/吨", "typical_range": [4100, 5100], "fluctuation": "±12%/年"},
+        {"name": "DN100无缝钢管", "unit": "元/吨", "typical_range": [4500, 5800], "note": "脚手架/钢支撑"},
+        {"name": "Q355B钢板(10mm)", "unit": "元/吨", "typical_range": [4000, 5200], "note": "劲性混凝土"},
+        {"name": "CRB550冷轧带肋钢筋网", "unit": "元/㎡", "typical_range": [28, 45], "mesh": "100×100mm"}
+      ],
+
+      "price_influence_factors": {
+        "upstream": ["铁矿石", "焦炭", "废钢"],
+        "policy": ["产能置换", "环保限产", "出口退税"],
+        "demand": ["钢结构住宅推广", "桥梁/场馆建设", "工业厂房"]
+      },
+
+      "market_data_sources": [
+        "我的钢铁网",
+        "兰格钢铁网",
+        "钢结构协会",
+        "各地造价站信息价"
+      ],
+
+      "structural_steel_content": {
+        "钢结构厂房": "60~90 kg/㎡ (低层), 100~150 kg/㎡ (高层)",
+        "钢结构住宅": "30~50 kg/㎡",
+        "钢结构桥梁": "200~400 kg/m³ (混凝土当量)",
+        "劲性混凝土": "H型钢含量 80~150 kg/m³",
+        "钢筋网片(楼板)": "主要用于楼板配筋，约3~5 kg/㎡"
+      },
+
+      "correlation_with_project_cost": {
+        "steel_structure": "钢结构成本 = W_steel × (P_steel + 4000元/吨加工费)",
+        "in_shear_wall": "劲性混凝土增量 ≈ V_concrete × 100kg/m³ × P_steel",
+        "influence_coefficient": 0.45,
+        "price_elasticity": "结构型钢每上涨10%，钢结构项目造价上涨3%~5%，混凝土项目上涨0.3%~0.5%"
+      }
+    }
+  },
+
+  "six_factor_matrix": {
+    "title": "6大关键材料因子汇总矩阵",
+    "columns": ["因子", "材料名称", "造价占比", "年波动率", "价格弹性", "预测难度", "数据来源"],
+    "rows": [
+      ["M1", "钢筋(螺纹钢/线材)", "12%~18%", "±15%", "1.5×", "★★★☆☆", "我的钢铁网"],
+      ["M2", "混凝土(商品砼)", "8%~15%", "±10%", "1.0×", "★★☆☆☆", "数字水泥网"],
+      ["M3", "铜(电线电缆)", "8%~15%", "±20%", "2.0×", "★★★★★", "SMM/LME"],
+      ["M4", "铝合金(门窗/幕墙)", "5%~12%", "±15%", "1.2×", "★★★☆☆", "SMM"],
+      ["M5", "玻璃(幕墙/门窗)", "4%~10%", "±15%", "0.8×", "★★★☆☆", "玻璃信息网"],
+      ["M6", "结构型钢(H型钢/钢管)", "3%~8%", "±12%", "0.8×", "★★☆☆☆", "我的钢铁网"]
+    ],
+
+    "key_insight": {
+      "title": "关键发现",
+      "finding1": "M1+M2+M3三大因子累计贡献度达70%~85%",
+      "finding2": "M3(铜)是价格波动最大的因子，但可通过期货对冲",
+      "finding3": "M2(混凝土)价格受政策影响显著，区域差异大",
+      "finding4": "M4+M5组合决定外立面成本，约占总造价8%~15%"
+    }
+  },
+
+  "uncertainty_propagation_model": {
+    "title": "材料价格不确定性传播模型",
+    "principle": "材料价格波动通过材料用量传递到工程造价",
+
+    "formula": "ΔP_project / P_project = Σ(αᵢ × ΔPᵢ / Pᵢ)",
+
+    "variables": {
+      "ΔP_project / P_project": "项目总造价变动率",
+      "αᵢ": "第i种材料的成本权重 (α₁+α₂+...+α₆ ≈ 0.55~0.70)",
+      "ΔPᵢ / Pᵢ": "第i种材料的单价变动率"
+    },
+
+    "material_weights": {
+      "M1_钢筋": {"typical_value": 0.15, "range": [0.12, 0.18]},
+      "M2_混凝土": {"typical_value": 0.12, "range": [0.08, 0.15]},
+      "M3_铜缆": {"typical_value": 0.08, "range": [0.04, 0.12]},
+      "M4_铝合金": {"typical_value": 0.07, "range": [0.05, 0.12]},
+      "M5_玻璃": {"typical_value": 0.05, "range": [0.04, 0.10]},
+      "M6_结构型钢": {"typical_value": 0.04, "range": [0.02, 0.08]},
+      "其他材料": {"typical_value": 0.49, "range": [0.30, 0.55]}
+    },
+
+    "monte_carlo_simulation": {
+      "description": "对6大因子进行蒙特卡洛模拟，计算项目总造价的不确定性分布",
+
+      "input_distribution": {
+        "M1_钢筋": "N(0, 0.15²) - 正态分布，年波动率15%",
+        "M2_混凝土": "N(0, 0.10²) - 正态分布，年波动率10%",
+        "M3_铜缆": "LN(μ, 0.20²) - 对数正态分布，右偏",
+        "M4_铝合金": "N(0, 0.15²) - 正态分布",
+        "M5_玻璃": "N(0, 0.15²) - 正态分布",
+        "M6_结构型钢": "N(0, 0.12²) - 正态分布"
+      },
+
+      "correlation_matrix": {
+        "M1-M6(结构钢)": 0.85,
+        "M1-M2(混凝土)": 0.30,
+        "M3-M4(有色金属)": 0.65,
+        "M4-M5(立面材料)": 0.40,
+        "M1-M3": 0.20,
+        "M2-M3": 0.15
+      },
+
+      "output": {
+        "distribution_type": "近似正态分布",
+        "P50(中值)": "50%概率总造价",
+        "P80区间": "80%置信区间 (低P10 ~ 高P90)",
+        "P95区间": "95%置信区间 (低P2.5 ~ 高P97.5)"
+      }
+    }
+  },
+
+  "practical_application": {
+    "title": "实战应用指南",
+
+    "scenario_1_price_lookup": {
+      "title": "场景一：查询当前材料价格",
+      "trigger": "用户输入'查一下现在钢筋价格'",
+      "action": "返回M1~M6六大因子的当前市场价格区间",
+      "output": "含数据来源、时间戳、价格趋势图"
+    },
+
+    "scenario_2_cost_impact": {
+      "title": "场景二：评估材料涨价对项目成本的影响",
+      "trigger": "用户输入'铜价涨了20%，对项目影响多大'",
+      "action": "基于铜缆占比(8%~15%)，计算对项目总造价的影响",
+      "formula": "Δ总造价 ≈ 项目造价 × 铜缆占比 × 20%",
+      "example": "10亿项目，铜缆占比10%，铜价涨20% → 影响约200万"
+    },
+
+    "scenario_3_budget_estimate": {
+      "title": "场景三：带价格波动的投资估算",
+      "trigger": "用户输入'帮我估算一下这个项目，考虑材料价格波动'",
+      "action": "输入6大因子当前价格，输出P50/P80/P95三种情形",
+      "output": "乐观/中性/悲观三套造价指标"
+    },
+
+    "scenario_4_price_trend": {
+      "title": "场景四：材料价格趋势预测",
+      "trigger": "用户输入'钢筋未来3年价格走势怎么样'",
+      "action": "基于历史数据+政策分析，给出概率分布区间",
+      "output": "点预测 + 置信区间 + 情景分析(乐观/基准/悲观)"
+    },
+
+    "scenario_5_risk_hedge": {
+      "title": "场景五：价格风险对冲建议",
+      "trigger": "用户输入'怎么对冲材料涨价风险'",
+      "action": "提供锁价策略、期货对冲、集采策略、保险方案",
+      "output": "定制化风险管控方案"
+    }
+  },
+
+  "price_index_system": {
+    "title": "关键材料价格指数体系",
+
+    "composite_index": {
+      "name": "建安材料价格综合指数(CMPI)",
+      "formula": "CMPI = Σ(wᵢ × Pᵢ / Pᵢ₀) × 100",
+      "weights": {
+        "M1_钢筋": 0.22,
+        "M2_混凝土": 0.18,
+        "M3_铜缆": 0.20,
+        "M4_铝合金": 0.15,
+        "M5_玻璃": 0.10,
+        "M6_结构型钢": 0.15
+      },
+      "base_period": "2020年1季度 = 1000"
+    },
+
+    "historical_data_sample": {
+      "title": "近5年CMPI走势(假设数据)",
+      "data": [
+        {"period": "2021Q1", "index": 1080, "note": "疫情后复苏+通胀"},
+        {"period": "2021Q4", "index": 1280, "note": "能耗双控+限产"},
+        {"period": "2022Q2", "index": 1150, "note": "房地产下行"},
+        {"period": "2023Q1", "index": 1050, "note": "需求疲软"},
+        {"period": "2024Q1", "index": 1020, "note": "低位运行"},
+        {"period": "2025Q1", "index": 1080, "note": "稳增长政策"},
+        {"period": "2026Q1", "index": 1150, "note": "当前参考"}
+      ]
+    }
+  },
+
+  "data_sources_directory": {
+    "title": "权威数据来源目录",
+
+    "government": [
+      {"name": "住房和城乡建设部", "data": "工程造价指标、建材指导价"},
+      {"name": "国家统计局", "data": "PPI(工业生产者出厂价格指数)"},
+      {"name": "各地建设工程造价管理站", "data": "信息价(每月发布)"}
+    ],
+
+    "industry_portals": [
+      {"name": "我的钢铁网(mysteel.com)", "data": "钢材价格指数", "frequency": "日更"},
+      {"name": "上海有色金属网(SMM)", "data": "铜/铝价格", "frequency": "日更"},
+      {"name": "数字水泥网", "data": "水泥/混凝土价格", "frequency": "周更"},
+      {"name": "中国玻璃信息网", "data": "平板玻璃价格", "frequency": "周更"},
+      {"name": "兰格钢铁网", "data": "钢材价格", "frequency": "日更"}
+    ],
+
+    "international": [
+      {"name": "LME(伦敦金属交易所)", "data": "铜/铝期货价格", "frequency": "实时"},
+      {"name": "DCE(大连商品交易所)", "data": "铁矿石/焦煤期货", "frequency": "实时"},
+      {"name": "SHFE(上海期货交易所)", "data": "螺纹钢/铜期货", "frequency": "实时"}
+    ]
+  }
+}

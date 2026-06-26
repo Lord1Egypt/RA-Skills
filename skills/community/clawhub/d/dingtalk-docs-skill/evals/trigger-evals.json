@@ -1,0 +1,53 @@
+{
+  "skill_name": "dingtalk-docs-skill",
+  "evals": [
+    {
+      "query": "帮我把这个 markdown 文件推送到钉钉文档",
+      "should_trigger": true
+    },
+    {
+      "query": "更新钉钉上的周报文档，用本地最新版本覆盖",
+      "should_trigger": true
+    },
+    {
+      "query": "列出我的钉钉知识库里有哪些文档",
+      "should_trigger": true
+    },
+    {
+      "query": "在钉钉文档里搜索项目计划",
+      "should_trigger": true
+    },
+    {
+      "query": "初始化钉钉文档 MCP 配置",
+      "should_trigger": true
+    },
+    {
+      "query": "在钉钉知识库里创建一个新文件夹叫「产品设计」",
+      "should_trigger": true
+    },
+    {
+      "query": "把这篇技术文档同步到钉钉知识库",
+      "should_trigger": true
+    },
+    {
+      "query": "帮我把这个文件推送到语雀",
+      "should_trigger": false
+    },
+    {
+      "query": "帮我编辑本地的 README.md，修改第三段",
+      "should_trigger": false
+    },
+    {
+      "query": "给钉钉群里发一条消息通知大家",
+      "should_trigger": false
+    },
+    {
+      "query": "帮我把文档上传到飞书知识库",
+      "should_trigger": false
+    },
+    {
+      "query": "把这个 md 文件格式化一下，不需要上传",
+      "should_trigger": false
+    }
+  ]
+}

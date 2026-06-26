@@ -1,0 +1,66 @@
+[
+  {
+    "query": "Can you critique this dashboard and tell me which chart is misleading?",
+    "should_trigger": true
+  },
+  {
+    "query": "I uploaded a CSV of defect rates; help me choose a plot and make it publication-ready.",
+    "should_trigger": true
+  },
+  {
+    "query": "This bar chart starts at 92\u2014how bad is that?",
+    "should_trigger": true
+  },
+  {
+    "query": "Turn these forecast intervals into a clear figure with uncertainty bands.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make a better visual argument from these numbers for my report.",
+    "should_trigger": true
+  },
+  {
+    "query": "Use Tufte principles to redesign this chart.",
+    "should_trigger": true
+  },
+  {
+    "query": "My boss wants a map of raw case counts by county\u2014is that okay?",
+    "should_trigger": true
+  },
+  {
+    "query": "Generate a quick SVG chart from this CSV.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can you check whether these chart label colors have enough contrast?",
+    "should_trigger": true
+  },
+  {
+    "query": "Make me a decorative hero image for a website landing page.",
+    "should_trigger": false
+  },
+  {
+    "query": "Clean this CSV and upload rows to Postgres.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a Python function to parse dates in this file.",
+    "should_trigger": false
+  },
+  {
+    "query": "Design a logo for my materials science group.",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarize this paper in bullet points.",
+    "should_trigger": false
+  },
+  {
+    "query": "Fix the formulas in my Excel budget spreadsheet.",
+    "should_trigger": false
+  },
+  {
+    "query": "Make my slide deck prettier but don't change any charts.",
+    "should_trigger": false
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "doubao-launch",
+  "name": "Doubao Launch",
+  "version": "1.0.0",
+  "description": "Launch Doubao desktop application and configure real-time translation window.",
+  "tools": [
+    "launch_doubao"
+  ],
+  "entry": "/mnt/h/AI/openclaw_workspace/video_translate/skills/doubao_auto_workflow.py"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "daily-movie",
+  "version": "1.0.4",
+  "description": "Daily movie & TV recommendation — curated by genre, mood, or theme. One great watch per day with synopsis, streaming platform, and audience ratings.",
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

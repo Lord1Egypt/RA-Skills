@@ -1,0 +1,66 @@
+{
+  "name": "data-analysis-partner",
+  "version": "1.0.2",
+  "description": "智能数据分析 Skill：输入 CSV/Excel 文件和分析需求，输出带交互式 ECharts 图表的 HTML 自包含分析报告",
+  "author": "custom",
+  "main": "index.js",
+  "license": "MIT",
+  "permissions": [
+    "files:read",
+    "files:write",
+    "shell:python3"
+  ],
+  "config": {
+    "outputDir": {
+      "type": "string",
+      "required": false,
+      "default": "~/Downloads",
+      "description": "报告输出目录，默认为 ~/Downloads"
+    },
+    "maxCharts": {
+      "type": "number",
+      "required": false,
+      "default": 8,
+      "description": "最大生成图表数量"
+    },
+    "theme": {
+      "type": "string",
+      "required": false,
+      "default": "light",
+      "description": "报告主题：light | dark"
+    }
+  },
+  "tools": [
+    {
+      "name": "analyze_data",
+      "description": "分析 CSV 或 Excel 数据文件，根据用户的自然语言分析需求，自动进行数据概览、统计分析、相关性分析，并生成带交互式 ECharts 图表的 HTML 自包含分析报告（含数据洞察、分析步骤、结论与建议）",
+      "parameters": {
+        "file_path": {
+          "type": "string",
+          "required": true,
+          "description": "CSV 或 Excel 文件的绝对路径（支持 .csv / .xlsx / .xls）"
+        },
+        "requirements": {
+          "type": "string",
+          "required": true,
+          "description": "数据分析需求，自然语言描述，例如：「分析各区域销售额差异，找出增长最快的区域」"
+        },
+        "output_dir": {
+          "type": "string",
+          "required": false,
+          "description": "报告输出目录，不填则使用配置中的默认目录"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "openclaw": {
+      "emoji": "📊",
+      "requires": {
+        "bins": ["python3"],
+        "env": []
+      },
+      "tags": ["data", "analytics", "visualization", "report", "csv", "excel"]
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "routing": [
+    {
+      "pattern": "(debug|code|github|pr|git)",
+      "target": "coder",
+      "priority": 1,
+      "description": "Coding tasks",
+      "enabled": true
+    },
+    {
+      "pattern": "(search|research|study|learn)",
+      "target": "danao",
+      "priority": 2,
+      "description": "Research tasks",
+      "enabled": true
+    },
+    {
+      "pattern": "(write|article|content)",
+      "target": "writer",
+      "priority": 3,
+      "description": "Writing tasks",
+      "enabled": true
+    },
+    {
+      "pattern": "(design|architecture)",
+      "target": "engineer",
+      "priority": 4,
+      "description": "Design tasks",
+      "enabled": true
+    },
+    {
+      "pattern": "(schedule|task|manage)",
+      "target": "manager",
+      "priority": 5,
+      "description": "Management tasks",
+      "enabled": true
+    },
+    {
+      "pattern": ".*",
+      "target": "self",
+      "priority": 99,
+      "description": "Main agent handle",
+      "enabled": true
+    }
+  ],
+  "config": {
+    "max_parallel_tasks": 2,
+    "task_timeout": 300,
+    "retry_attempts": 3,
+    "fallback_to_self": true,
+    "enable_logging": true
+  }
+}

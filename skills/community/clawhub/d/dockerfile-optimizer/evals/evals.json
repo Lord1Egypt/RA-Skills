@@ -1,0 +1,17 @@
+{
+  "skill_name": "dockerfile-optimizer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我看看这个 Dockerfile 怎么优化，感觉体积太大了：\nFROM node:18\nCOPY . .\nRUN npm install\nCMD [\"npm\", \"start\"]",
+      "expected_output": "A Chinese optimization report. The rewritten Dockerfile should use a slim/alpine base image, copy `package.json` first before `npm install` for caching, use a non-root user, and suggest a `.dockerignore` file. The explanation should detail how these changes reduce size and improve build time.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Review this Dockerfile for a Go app:\nFROM golang:1.20\nWORKDIR /app\nCOPY . .\nRUN go build -o myapp\nCMD [\"./myapp\"]",
+      "expected_output": "An English optimization report. The rewritten Dockerfile MUST use a multi-stage build (compiling in a `golang` builder stage, and copying the binary into an `alpine` or `scratch` runtime stage). The explanation should focus on the massive size reduction from dropping the Go toolchain.",
+      "files": []
+    }
+  ]
+}

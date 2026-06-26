@@ -1,35 +1,35 @@
 ---
-name: "Domain Details"
-description: "Look up domain WHOIS/RDAP info and check marketplace listings. Free API, no auth required."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/domaindetails"
-sourceUrl: "https://clawhub.ai/skills/domaindetails"
+name: domaindetails
+description: Look up domain WHOIS/RDAP info and check marketplace listings. Free API, no auth required.
+metadata: {"clawdbot":{"emoji":"🌐","requires":{"bins":["curl"]}}}
 ---
 
-# Domain Details
+# domaindetails
 
-> Look up domain WHOIS/RDAP info and check marketplace listings. Free API, no auth required.
+Domain lookup and marketplace search. Free API, just curl.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/domaindetails`
-- **Source URL:** [https://clawhub.ai/skills/domaindetails](https://clawhub.ai/skills/domaindetails)
+## Domain Lookup
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/domaindetails
+curl -s "https://mcp.domaindetails.com/lookup/example.com" | jq
+```
+
+Returns: registrar, created/expires dates, nameservers, DNSSEC, contacts.
+
+## Marketplace Search
+
+```bash
+curl -s "https://api.domaindetails.com/api/marketplace/search?domain=example.com" | jq
+```
+
+Returns listings from: Sedo, Afternic, Atom, Dynadot, Namecheap, NameSilo, Unstoppable Domains.
+
+## Rate Limits
+
+- 100 requests/minute (no auth needed)
+
+## CLI (Optional)
+
+```bash
+npx domaindetails example.com
 ```

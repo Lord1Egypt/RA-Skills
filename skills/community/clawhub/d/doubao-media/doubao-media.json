@@ -1,0 +1,9 @@
+{
+  "name": "doubao-media",
+  "version": "1.0.0",
+  "description": "Doubao (Volcengine ARK) 文生图、文生视频工具 - 生成后自动发送到对话，无需手动查找文件。Text-to-image and text-to-video with auto-send to chat.",
+  "author": "systiger",
+  "tags": ["image", "video", "doubao", "volcengine", "ark", "multimodal", "ai-generation"],
+  "scripts": ["scripts/doubao_media.py"],
+  "requirements": ["Python 3.8+", "requests", "ARK_API_KEY"]
+}

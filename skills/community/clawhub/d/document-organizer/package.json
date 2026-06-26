@@ -1,0 +1,33 @@
+{
+  "name": "document-organizer",
+  "version": "1.0.4",
+  "description": "批量文档转换技能：将旧版 Office 文档转换为 Markdown",
+  "main": "scripts/batch_convert.py",
+  "bin": {
+    "document-organizer": "./scripts/batch_convert.py"
+  },
+  "scripts": {
+    "test": "python scripts/batch_convert.py --help",
+    "start": "python scripts/batch_convert.py",
+    "convert": "python scripts/batch_convert.py"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "document",
+    "converter",
+    "markdown"
+  ],
+  "author": "byteuser",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.10"
+  },
+  "files": [
+    "scripts/",
+    "README.md",
+    "SKILL.md",
+    "manifest.json"
+  ]
+}

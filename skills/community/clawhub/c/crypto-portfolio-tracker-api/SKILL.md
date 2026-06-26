@@ -1,35 +1,57 @@
 ---
-name: "Crypto Portfolio Tracker API"
-description: "Track crypto portfolios with real-time prices, profit/loss calculations, and allocation analysis for Bitcoin, Ethereum, Solana, and 10,000+ tokens."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-portfolio-tracker-api"
-sourceUrl: "https://clawhub.ai/skills/crypto-portfolio-tracker-api"
+name: crypto-portfolio-tracker-api
+description: Track cryptocurrency portfolios with real-time prices, P&L calculations, and allocation analysis. Query Bitcoin, Ethereum, Solana and 10,000+ token holdings.
 ---
 
 # Crypto Portfolio Tracker API
 
-> Track crypto portfolios with real-time prices, profit/loss calculations, and allocation analysis for Bitcoin, Ethereum, Solana, and 10,000+ tokens.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-portfolio-tracker-api`
-- **Source URL:** [https://clawhub.ai/skills/crypto-portfolio-tracker-api](https://clawhub.ai/skills/crypto-portfolio-tracker-api)
-
-## Overview
-
+Track cryptocurrency portfolios with real-time prices and P&L calculations.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/crypto-portfolio-tracker-api
+npm install crypto-portfolio-tracker-api
 ```
+
+## Usage
+
+```javascript
+const { PortfolioTracker } = require('crypto-portfolio-tracker-api');
+
+const tracker = new PortfolioTracker();
+
+// Get current price
+const btc = await tracker.getPrice('BTC');
+
+// Get multiple prices
+const prices = await tracker.getPrices(['BTC', 'ETH', 'SOL']);
+
+// Track portfolio with P&L
+const portfolio = await tracker.trackPortfolio([
+  { symbol: 'BTC', amount: 0.5, costBasis: 30000 },
+  { symbol: 'ETH', amount: 10, costBasis: 2000 }
+]);
+
+console.log(`Total: $${portfolio.totalValue}`);
+console.log(`P&L: $${portfolio.totalPnL}`);
+```
+
+## CLI
+
+```bash
+# Get price
+npx crypto-portfolio-tracker-api price BTC
+
+# Track portfolio from file
+npx crypto-portfolio-tracker-api track portfolio.json
+```
+
+## API Methods
+
+- `getPrice(symbol)` - Get single token price
+- `getPrices(symbols)` - Get multiple prices
+- `trackPortfolio(holdings)` - Calculate portfolio value and P&L
+
+## Data Source
+
+Powered by [PRISM API](https://prismapi.ai)

@@ -1,35 +1,34 @@
 ---
-name: "东方财富妙想资讯搜索"
+name: dongcai
 description: "本 Skill 基于东方财富妙想搜索能力，基于金融场景进行信源智能筛选，用于获取涉及时效性信息或特定事件信息的任务，包括新闻、公告、研报、政策、交易规则、具体事件、各种影响分析、以及需要检索外部数据的非常识信息等。避免AI在搜索金融场景信息时，参考到非权威、及过时的信息."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dongcai"
-sourceUrl: "https://clawhub.ai/skills/dongcai"
 ---
 
-# 东方财富妙想资讯搜索
+# 妙想资讯搜索skill (dongcai)
 
-> 本 Skill 基于东方财富妙想搜索能力，基于金融场景进行信源智能筛选，用于获取涉及时效性信息或特定事件信息的任务，包括新闻、公告、研报、政策、交易规则、具体事件、各种影响分析、以及需要检索外部数据的非常识信息等。避免AI在搜索金融场景信息时，参考到非权威、及过时的信息.
+根据**用户问句**搜索相关**金融资讯**，获取与问句相关的资讯信息（如研报、新闻、解读等），并返回可读的文本内容，可选保存到工作目录。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dongcai`
-- **Source URL:** [https://clawhub.ai/skills/dongcai](https://clawhub.ai/skills/dongcai)
+## 使用方式
 
-## Overview
+1.  需要用户在妙想Skills页面获取apikey。
+2.  将apikey存到环境变量，命名为MX_APIKEY，检查本地api是否存在，若存在可直接用。
+3.  使用 `scripts/search_news.sh <查询内容>` 进行搜索。
 
+## 问句示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dongcai
-```
+| 类型     | 示例问句                                      |
+| -------- | --------------------------------------------- |
+| 个股资讯 | 格力电器最新研报、贵州茅台机构观点            |
+| 板块/主题 | 商业航天板块近期新闻、新能源政策解读          |
+| 宏观/风险 | A股具备自然对冲优势的公司 汇率风险、美联储加息对A股影响 |
+| 综合解读 | 今日大盘异动原因、北向资金流向解读            |
+
+## 返回说明
+
+| 字段路径         | 简短释义                     |
+| ---------------- | ---------------------------- |
+| `title`          | 信息标题，高度概括核心内容   |
+| `secuList`       | 关联证券列表，含代码、名称、类型等 |
+| `secuList[].secuCode` | 证券代码（如 002475）        |
+| `secuList[].secuName` | 证券名称（如立讯精密）       |
+| `secuList[].secuType` | 证券类型（如股票 / 债券）    |
+| `trunk`          | 信息核心正文 / 结构化数据块，承载具体业务数据 |

@@ -1,0 +1,29 @@
+# DataVault Skill Configuration
+
+# API Configuration
+DATAVAULT_API_KEY=your_api_key_here
+
+# Cache Settings
+CACHE_ENABLED=true
+CACHE_TTL_PRICE=10
+CACHE_TTL_ONCHAIN=60
+CACHE_TTL_DEFI=300
+CACHE_TTL_SENTIMENT=300
+
+# Rate Limiting
+RATE_LIMIT_REQUESTS_PER_MINUTE=100
+RATE_LIMIT_BURST=20
+
+# Log Level (debug/info/warn/error)
+LOG_LEVEL=info
+
+# Data Sources
+BINANCE_ENABLED=true
+BITGET_ENABLED=true
+OKX_ENABLED=true
+BYBIT_ENABLED=true
+
+ETHERSCAN_API_KEY=your_etherscan_key
+BSCSCAN_API_KEY=your_bscscan_key
+POLYGONSCAN_API_KEY=your_polygonscan_key
+ARBITRUMSCAN_API_KEY=your_arbitrumscan_key

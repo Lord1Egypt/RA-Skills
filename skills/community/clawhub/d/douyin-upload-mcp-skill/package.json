@@ -1,0 +1,46 @@
+{
+  "name": "douyin-upload-mcp-skill",
+  "version": "0.1.8",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "bootstrap:openclaw": "node scripts/bootstrap-openclaw.js --apply",
+    "install:openclaw": "node scripts/install-openclaw-skill.js --apply",
+    "export:skill": "node scripts/export-skill-package.js",
+    "preflight": "node scripts/preflight.js",
+    "help:ops": "node scripts/help.js",
+    "agent:ready": "node scripts/agent-ready.js",
+    "openclaw:health": "node scripts/openclaw-douyin-health.js",
+    "schedule:install": "node scripts/douyin-schedule-manager.js install-default",
+    "schedule:status": "node scripts/douyin-schedule-manager.js status",
+    "schedule:auto-reply": "node scripts/douyin-schedule-manager.js tick-auto-reply",
+    "schedule:daily-report": "node scripts/douyin-schedule-manager.js tick-daily-report",
+    "schedule:loop": "node scripts/douyin-schedule-manager.js local-scheduler-loop",
+    "stability:feishu-route": "node scripts/feishu-route-stability.js --rounds 3",
+    "stability:digital-human-training": "node scripts/digital-human-training-stability.js --rounds 3",
+    "stability:marketing-feishu-flow": "node scripts/marketing-feishu-flow-stability.js --rounds 3",
+    "mcp": "node src/mcp-server.js",
+    "daemon": "node src/daemon/server.js",
+    "supervisor": "node scripts/douyin-skill-supervisor.js"
+  },
+  "keywords": [
+    "douyin",
+    "tiktok",
+    "cdp",
+    "puppeteer",
+    "mcp"
+  ],
+  "author": "",
+  "license": "AGPL-3.0",
+  "description": "通过 CDP 操控抖音创作者中心网页进行内容创作与管理",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "agent-browser": "^0.27.0",
+    "puppeteer-core": "^24.39.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}

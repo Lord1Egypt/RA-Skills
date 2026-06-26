@@ -1,0 +1,45 @@
+name: cyberlens
+display_name: "CyberLens Security Scanner"
+version: "1.2.1"
+description: "Scan websites, GitHub repositories, and Claw Hub skills for practical security issues before you ship, install, or trust them."
+author: shadoprizm
+license: Apache-2.0
+tags: [security, github-security, repo-security, website-security, appsec, supply-chain, clawhub, skill-scanning]
+capabilities:
+  - web_scanning
+  - security_analysis
+  - skill_scanning
+  - report_generation
+tools:
+  - connect_account
+  - scan_target
+  - scan_skill
+  - scan_website
+  - scan_repository
+  - get_security_score
+  - generate_report
+  - export_report_pdf
+  - explain_finding
+  - list_scan_rules
+
+config:
+  api_key:
+    type: string
+    default: ""
+    description: "CyberLens API key for cloud scanning (auto-set by connect_account)"
+  api_base_url:
+    type: string
+    default: "https://api.cyberlensai.com/functions/v1/public-api-scan"
+    description: "Official CyberLens cloud scan API endpoint. Browser auth uses cyberlensai.com; scan traffic goes to api.cyberlensai.com."
+  timeout_seconds:
+    type: integer
+    default: 30
+    description: "Request timeout for scan operations"
+  max_redirects:
+    type: integer
+    default: 5
+    description: "Maximum redirects to follow"
+  user_agent:
+    type: string
+    default: "CyberLens-Skill/1.1.1"
+    description: "User agent string for requests"

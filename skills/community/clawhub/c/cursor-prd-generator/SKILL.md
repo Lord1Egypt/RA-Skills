@@ -1,35 +1,162 @@
 ---
-name: "Cursor Prd Generator"
-description: "当用户说"帮我写 PRD"、"生成需求文档"、"我想做一个功能"、"Cursor 用的 spec"、"cursor-prd"、"生成 FEATURE_SPEC"等时，触发此 skill。接收用户1-3句话的小功能需求，引导澄清后生成结构化 PRD 文件（FEATURE_SPEC.md）和 Cursor 规则片段（..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cursor-prd-generator"
-sourceUrl: "https://clawhub.ai/skills/cursor-prd-generator"
+name: cursor-prd-generator
+description: 当用户说"帮我写 PRD"、"生成需求文档"、"我想做一个功能"、"Cursor 用的 spec"、"cursor-prd"、"生成 FEATURE_SPEC"等时，触发此 skill。接收用户1-3句话的小功能需求，引导澄清后生成结构化 PRD 文件（FEATURE_SPEC.md）和 Cursor 规则片段（.cursor/rules），专为粘贴进 Cursor 使用优化。
 ---
 
-# Cursor Prd Generator
+# Cursor PRD Generator
 
-> 当用户说"帮我写 PRD"、"生成需求文档"、"我想做一个功能"、"Cursor 用的 spec"、"cursor-prd"、"生成 FEATURE_SPEC"等时，触发此 skill。接收用户1-3句话的小功能需求，引导澄清后生成结构化 PRD 文件（FEATURE_SPEC.md）和 Cursor 规则片段（...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cursor-prd-generator`
-- **Source URL:** [https://clawhub.ai/skills/cursor-prd-generator](https://clawhub.ai/skills/cursor-prd-generator)
+接收用户描述的小功能需求（1-3句话），通过引导澄清关键信息，生成两个可直接粘贴使用的文件：
 
-## Overview
+- **FEATURE_SPEC.md** — 结构化 PRD
+- **.cursor/rules 片段** — Cursor Agent 行为约束规则
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cursor-prd-generator
+## 工作流程
+
 ```
+1. 接收需求描述
+   ↓
+2. 判断边界（是否过大？）
+   → 过大：引导拆解，跳过生成
+   → 可行：继续
+   ↓
+3. 引导澄清（必须依次问完三个问题）
+   ↓
+4. 生成两个文件
+   ↓
+5. 输出交付
+```
+
+---
+
+## 边界判断
+
+**直接拒绝生成、改为引导拆解的情况：**
+
+- 涉及多个页面/模块（如"做一个电商平台"）
+- 包含多个独立功能点（如"用户系统 + 订单系统 + 支付"）
+- 范围无法在1-3句话内清晰界定
+
+**可以直接处理的情况：**
+
+- 单个小功能，边界清晰
+- 用户已明确说了"只做 xxx"
+
+### 边界判断示例
+
+| 用户描述 | 判断 | 处理 |
+|----------|------|------|
+| "做一个登录功能" | ✅ 可行 | 直接进入澄清步骤 |
+| "做一个用户中心" | ⚠️ 可能过大 | 问清楚具体指哪个小功能 |
+| "做一个抖音" | ❌ 过大 | 引导拆解 |
+
+---
+
+## 澄清步骤（生成前必须问）
+
+依次提出以下三个问题，等用户回复后再问下一个，不要一次全问完：
+
+**问题 1：这个功能的目标用户是谁？**
+> 了解谁会用这个功能，帮助定义行为优先级。
+
+**问题 2：成功的标准是什么？**
+> 用户完成了什么操作，就算这个功能做成功了？
+
+**问题 3：有没有不需要做的边界？**
+> 哪些情况是这个功能**不需要**处理的？（，也可以说"暂时不做"的部分）
+
+---
+
+## 生成模板
+
+收集完澄清信息后，按以下模板生成两个文件，合并在一个 Markdown 里输出，文件之间用 `---` 分隔。
+
+---
+
+### 文件一：FEATURE_SPEC.md
+
+```markdown
+# [功能名称] — 功能规格说明书
+
+## 1. 功能背景
+[用2-3句话说明为什么需要这个功能，解決了什么问题]
+
+## 2. 目标用户
+[明确谁会使用这个功能]
+
+## 3. 用户故事
+- 身为 [角色]，我想 [完成某操作]，以便 [达成某个目标]
+- 身为 [角色]，我期望 [系统行为]，否则 [后果]
+
+## 4. 功能细节
+
+### 核心流程
+[用流程步骤描述用户完成功能的完整路径]
+
+### 交互说明
+[页面展示、按钮、反馈等交互细节]
+
+### 数据处理
+[涉及哪些数据、如何存储、如何展示]
+
+## 5. 边界条件
+| 情况 | 处理方式 |
+|------|----------|
+| [异常/边界情况] | [如何处理] |
+
+## 6. 验收标准
+- [ ] [可检验的具体标准1]
+- [ ] [可检验的具体标准2]
+- [ ] [可检验的具体标准3]
+
+---
+
+*本 SPEC 由 cursor-prd-generator 生成，日期：{日期}*
+```
+
+---
+
+### 文件二：.cursor/rules 片段
+
+```markdown
+## Cursor Agent 行为约束
+
+你是 [系统角色]。在实现 [功能名称] 时：
+
+### 必须遵守
+- 遇到任何需求描述中的**歧义或空白**，必须**先反问用户**，不得自行假设
+- 实现前先通读 FEATURE_SPEC.md，严格按照规格执行
+- 禁止在未确认的情况下擅自扩展功能范围
+- 每个主要步骤完成后，简要向用户确认是否符合预期
+
+### 歧义处理原则
+遇到以下情况必须停下来问用户：
+1. 用户输入与 SPEC 不一致时
+2. 发现原设计有遗漏时
+3. 技术方案需要与原设计背离时
+
+### 反问模板
+> "我想确认一下：关于 [具体歧义点]，您期望的方案是 A 还是 B？"（给出选项）
+> "这个情况 SPEC 里没明确，我想确认：..."
+```
+
+---
+
+## 输出要求
+
+- **语言**：简体中文，简洁直接，无废话
+- **结构**：层级清晰，使用 Markdown 标题层级
+- **验收标准**：必须是可检验的条目，禁止模糊描述（如"体验要好"）
+- **两个文件合并输出**，用 `---` 分隔，文件标题作为分隔标记
+- **最后告知用户**：两个文件可以分别复制到 `FEATURE_SPEC.md` 和 `.cursor/rules` 中使用
+
+---
+
+## 注意事项
+
+- 生成的 SPEC 是**单个小功能**的规格，不是系统级 PRD
+- 如果用户需求跨多个子功能，引导拆成多个小功能后**逐个**生成
+- 始终牢记：澄清 > 生成，宁可多问一句也不要猜着生成

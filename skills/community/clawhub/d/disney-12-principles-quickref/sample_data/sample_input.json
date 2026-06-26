@@ -1,0 +1,35 @@
+{
+  "theme": "熬夜脸救星",
+  "content": "一个经常熬夜的人，皮肤越来越差，后来发现了护肤救星，恢复了好气色",
+  "duration_seconds": 30,
+  "reference_images": [
+    {
+      "id": "图1",
+      "type": "角色",
+      "description": "年轻女性，黑眼圈明显，面容憔悴，穿睡衣"
+    },
+    {
+      "id": "图2",
+      "type": "场景",
+      "description": "昏暗的卧室，床头灯微弱，手机屏幕亮着"
+    },
+    {
+      "id": "图3",
+      "type": "物品",
+      "description": "护肤品瓶子，白色简约包装"
+    },
+    {
+      "id": "图4",
+      "type": "角色",
+      "description": "同一个女性，皮肤焕发光泽，气色红润"
+    },
+    {
+      "id": "图5",
+      "type": "场景",
+      "description": "明亮的阳光卧室，清晨感"
+    }
+  ],
+  "target_platform": "抖音",
+  "style_preference": "自然光、真实质感",
+  "tone": "共情+解决方案"
+}

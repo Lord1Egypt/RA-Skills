@@ -1,0 +1,10 @@
+{
+  "name": "depradar-js-helpers",
+  "version": "1.0.0",
+  "description": "JS/TS AST helper dependencies for /depradar",
+  "private": true,
+  "dependencies": {
+    "acorn": "^8.11.0",
+    "acorn-walk": "^8.3.0"
+  }
+}

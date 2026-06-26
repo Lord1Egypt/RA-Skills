@@ -1,0 +1,13 @@
+{
+  "groups": [
+    {
+      "group_id": "f5d233d1-43ca-4a88-ad12-5fdb4ba5c48b",
+      "group_name": "数智天团",
+      "platforms": ["bilibili", "douyin", "weibo", "toutiao"],
+      "enabled": true,
+      "webhook": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f5d233d1-43ca-4a88-ad12-5fdb4ba5c48b"
+    }
+  ],
+  "push_time": "09:00",
+  "enabled": true
+}

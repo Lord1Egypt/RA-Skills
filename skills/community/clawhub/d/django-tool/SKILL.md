@@ -1,35 +1,19 @@
----
-name: "Django Project Creator"
-description: "Automates Django or Django REST Framework project setup with preconfigured environments, default settings, and best-practice structures for fast, consistent..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/django-tool"
-sourceUrl: "https://clawhub.ai/skills/django-tool"
----
+This project eliminates the time wasted on creating virtual machines and setting up environments from scratch. It automatically provisions a ready-to-use development environment with commonly used default requirements, allowing you to choose between Django or Django REST Framework depending on your project needs.
 
-# Django Project Creator
+The goal is to standardize and accelerate project initialization by providing a consistent, production-ready structure from day one. Instead of manually configuring dependencies, environments, and base settings, developers can instantly bootstrap a fully configured backend setup with best practices already applied.
 
-> Automates Django or Django REST Framework project setup with preconfigured environments, default settings, and best-practice structures for fast, consistent...
+- Key features include:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/django-tool`
-- **Source URL:** [https://clawhub.ai/skills/django-tool](https://clawhub.ai/skills/django-tool)
+- Automated environment provisioning
 
-## Overview
+- Preconfigured project structure following best practices
 
+- Support for both Django and Django REST Framework
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/django-tool
-```
+- Default development and production-ready settings
+
+- Dependency management and isolated environments
+
+- Scalable foundation suitable for small projects or large deployments
+
+This solution is ideal for developers and teams who want to focus on building features rather than repeatedly performing boilerplate setup tasks. It reduces human error, improves consistency across projects, and significantly speeds up the development workflow

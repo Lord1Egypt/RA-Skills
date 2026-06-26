@@ -1,0 +1,62 @@
+{
+  "name": "东莞常平健明眼科医院",
+  "type": "眼科专科医院",
+  "location": {
+    "province": "广东",
+    "city": "东莞",
+    "district": "常平",
+    "address_hint": "常平大道和新城大道交汇处，中仁大厦2至5层"
+  },
+  "contact": {
+    "phone": "0769-82206171",
+    "wechat_public_account": true,
+    "wechat_name": "东莞常平健明眼科医院",
+    "wechat_type": "服务号",
+    "wechat_verified_entity": "东莞市常平健明眼科医院有限公司",
+    "video_channel_name": "东莞常平健明眼科医院"
+  },
+  "alliances": [
+    "中山眼科中心",
+    "东莞光明眼科医院"
+  ],
+  "positioning": [
+    "医疗",
+    "教学",
+    "科研",
+    "防盲",
+    "公益",
+    "现代化眼科专科品牌医院"
+  ],
+  "specialties": [
+    "白内障",
+    "屈光性白内障",
+    "眼底内外科",
+    "眼外伤",
+    "青光眼",
+    "干眼病",
+    "角膜病",
+    "斜弱视",
+    "飞秒激光近视矫治",
+    "青少年近视防控",
+    "验光配镜中心",
+    "泪器病"
+  ],
+  "representative_services": [
+    "白内障超声乳化手术",
+    "全飞秒激光近视治疗",
+    "玻璃体视网膜手术",
+    "复杂眼外伤相关手术"
+  ],
+  "core_directions": [
+    "白内障",
+    "屈光性白内障",
+    "眼底病",
+    "玻璃体视网膜方向",
+    "青少年近视防控",
+    "视光与验光配镜服务"
+  ],
+  "schedule_notes": {
+    "has_regular_pattern": true,
+    "source_of_truth": "医院微信公众号最新发布"
+  }
+}

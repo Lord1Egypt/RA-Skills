@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/discovery-engine/discovery-engine/schemas/extraction.schema.json",
+  "title": "Discovery Engine Extraction Result",
+  "description": "Schema for a single paper/patent extraction result. Produced by running the combined prompt (v_combined.txt) through an LLM.",
+  "type": "object",
+  "required": ["paper_analysis", "entities", "cross_domain"],
+  "additionalProperties": true,
+  "properties": {
+    "paper_analysis": {
+      "type": "object",
+      "required": ["objective", "method", "key_findings", "limitations", "context", "cross_domain_yield"],
+      "properties": {
+        "objective": {
+          "type": "string",
+          "minLength": 20,
+          "description": "What the paper set out to do"
+        },
+        "method": {
+          "type": "string",
+          "minLength": 20,
+          "description": "How they did it"
+        },
+        "key_findings": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 10 },
+          "description": "Main results and conclusions"
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 10 },
+          "description": "What the paper acknowledges as limitations"
+        },
+        "context": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Why this work matters in its field"
+        },
+        "cross_domain_yield": {
+          "type": "string",
+          "enum": ["HIGH", "MEDIUM", "LOW", "NONE"],
+          "description": "Triage: how likely is this paper to produce cross-domain connections?"
+        },
+        "known_analogues": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Known analogies or cross-domain connections the authors mention"
+        }
+      }
+    },
+
+    "entities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "type", "domains"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^E[0-9]+$",
+            "description": "Entity ID (E1, E2, ...)"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "description": "Full name of the entity"
+          },
+          "aliases": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Alternative names, abbreviations"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["material", "device", "process", "organism", "phenomenon", "structure", "compound", "protein", "gene", "disease", "method", "other"],
+            "description": "Entity classification"
+          },
+          "domains": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "items": { "type": "string" },
+            "description": "Broad scientific fields (1-3)"
+          },
+          "source_section": {
+            "type": "string",
+            "description": "Section of the paper where this entity is described"
+          },
+          "source_quote": {
+            "type": "string",
+            "description": "Verbatim quote from the paper defining this entity"
+          }
+        }
+      }
+    },
+
+    "properties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "entity_id", "name", "value"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^P[0-9]+$",
+            "description": "Property ID (P1, P2, ...)"
+          },
+          "entity_id": {
+            "type": "string",
+            "pattern": "^E[0-9]+$",
+            "description": "Which entity this property belongs to"
+          },
+          "name": {
+            "type": "string",
+            "description": "Property name (e.g., 'thermal conductivity', 'tensile strength')"
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Measured or reported value (must include units)"
+          },
+          "conditions": {
+            "type": "string",
+            "description": "Under what conditions this value was measured"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["measured", "derived", "theoretical", "estimated"],
+            "description": "How this value was obtained"
+          },
+          "source_section": { "type": "string" },
+          "source_quote": { "type": "string" }
+        }
+      }
+    },
+
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source_entity", "target_entity", "type", "mechanism"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^R[0-9]+$",
+            "description": "Relation ID (R1, R2, ...)"
+          },
+          "source_entity": {
+            "type": "string",
+            "pattern": "^E[0-9]+$"
+          },
+          "target_entity": {
+            "type": "string",
+            "pattern": "^E[0-9]+$"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["enables", "inhibits", "enhances", "degrades", "transforms", "competes_with", "synergizes_with", "requires"],
+            "description": "Relationship type"
+          },
+          "mechanism": {
+            "type": "string",
+            "minLength": 20,
+            "description": "HOW this relationship works (not just that it exists)"
+          },
+          "strength": {
+            "type": "string",
+            "enum": ["strong", "moderate", "weak", "variable"],
+            "description": "Strength of the relationship"
+          },
+          "bidirectional": {
+            "type": "boolean",
+            "description": "Does this relationship work both ways?"
+          },
+          "source_section": { "type": "string" },
+          "source_quote": { "type": "string" }
+        }
+      }
+    },
+
+    "cross_domain": {
+      "type": "object",
+      "required": ["core_friction", "mechanism", "unsolved_tensions", "bridge_tags", "interface"],
+      "description": "Layer 2: Cross-domain abstraction. Domain-free mechanism description for matching.",
+      "properties": {
+        "core_friction": {
+          "type": "string",
+          "minLength": 30,
+          "description": "The problem described WITHOUT domain-specific nouns"
+        },
+        "mechanism": {
+          "type": "object",
+          "required": ["description", "structural_pattern"],
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 30,
+              "description": "How the solution works using verb phrases"
+            },
+            "structural_pattern": {
+              "type": "string",
+              "description": "Mathematical/logical shape of the mechanism"
+            },
+            "performance": {
+              "type": "string",
+              "description": "Quantitative performance summary"
+            },
+            "conditions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["parameter", "value"],
+                "properties": {
+                  "parameter": { "type": "string" },
+                  "value": { "type": "string" }
+                }
+              }
+            },
+            "failure_modes": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "unsolved_tensions": {
+          "type": "array",
+          "minItems": 1,
+          "description": "NEVER empty. Tradeoffs, assumptions, constraints.",
+          "items": {
+            "type": "object",
+            "required": ["tension", "constraint_class"],
+            "properties": {
+              "tension": {
+                "type": "string",
+                "minLength": 15,
+                "description": "Description of the tradeoff or unresolved tension"
+              },
+              "constraint_class": {
+                "type": "string",
+                "description": "Category enabling cross-field matching (e.g., 'throughput_vs_selectivity')"
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["fundamental", "practical", "minor"]
+              }
+            }
+          }
+        },
+        "bridge_tags": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "Abstract functional descriptors. Must pass '3 fields test' and 'not 10,000 papers' specificity test."
+        },
+        "interface": {
+          "type": "object",
+          "required": ["provides", "requires"],
+          "description": "PRIMARY discovery mechanism. Papers connect when one's provides matches another's requires.",
+          "properties": {
+            "provides": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["operation", "description"],
+                "properties": {
+                  "operation": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$",
+                    "description": "snake_case operation name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 15,
+                    "description": "Verb-focused description of what this paper offers"
+                  }
+                }
+              }
+            },
+            "requires": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["operation", "description"],
+                "properties": {
+                  "operation": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$",
+                    "description": "snake_case operation name"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 15,
+                    "description": "Verb-focused description of what this paper needs"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "mechanism_components": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Concrete domain-specific parts (nouns allowed here)"
+        }
+      }
+    },
+
+    "_meta": {
+      "type": "object",
+      "description": "Extraction metadata (added by CLI, not by LLM)",
+      "properties": {
+        "paper_id": {
+          "type": "string",
+          "description": "Source-prefixed ID (arxiv:2401.12345, pmc:12345678, etc.)"
+        },
+        "source": {
+          "type": "string",
+          "enum": ["arxiv", "pmc", "openalex", "osti", "europepmc", "semanticscholar", "patent_google", "patent_uspto", "patent_epo", "other"]
+        },
+        "text_source": {
+          "type": "string",
+          "enum": ["full_text", "abstract"],
+          "description": "Whether extraction was from full text or abstract only"
+        },
+        "model": {
+          "type": "string",
+          "description": "LLM model used for extraction"
+        },
+        "prompt_version": {
+          "type": "string",
+          "description": "Version of the extraction prompt"
+        },
+        "extracted_by": {
+          "type": "string",
+          "description": "GitHub username of contributor"
+        },
+        "extracted_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp"
+        },
+        "extraction_seconds": {
+          "type": "number",
+          "description": "How long the LLM call took"
+        }
+      }
+    }
+  }
+}

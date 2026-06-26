@@ -1,0 +1,32 @@
+name: daily-briefing
+version: 1.0.0
+description: Generate daily morning briefings with weather, traffic limits, and news
+author: Kimi Claw
+license: MIT
+
+scripts:
+  main: scripts/generate-briefing.mjs
+  data: scripts/data-collector.mjs
+
+commands:
+  - name: briefing
+    description: Generate daily briefing
+    script: scripts/generate-briefing.mjs
+    args:
+      - name: tomorrow
+        flag: --tomorrow
+        description: Generate briefing for tomorrow
+      - name: simple
+        flag: --simple
+        description: Generate simple one-line briefing
+      - name: json
+        flag: --json
+        description: Output as JSON format
+
+dependencies:
+  - node >= 18.0.0
+
+cache:
+  enabled: true
+  ttl: 1800  # 30 minutes
+  directory: .cache

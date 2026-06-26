@@ -1,0 +1,13 @@
+{
+  "api_origin": "https://www.data0086.com",
+  "search_path": "/ms-base/home/getList",
+  "detail_path": "/#/multimodal",
+  "trade_api_base": "",
+  "download_dir": "downloads",
+  "finished_commodity_code": "CommodityType-7bf0aa3057bc",
+  "trusted_media_origins": [
+    "https://www.data0086.com",
+    "https://test.data0086.com",
+    "https://wenzhou.data0086.com:9443"
+  ]
+}

@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+find_repo_root() {
+  local dir
+  dir="${DOUYIN_CLI_ROOT:-${PWD}}"
+  while [[ "$dir" != "/" ]]; do
+    if [[ -x "$dir/bin/douyin-web" ]] || [[ -f "$dir/agent-harness/setup.py" && -d "$dir/agent-harness/cli_anything/douyin_web" ]]; then
+      printf '%s\n' "$dir"
+      return 0
+    fi
+    dir="$(dirname "$dir")"
+  done
+  return 1
+}
+
+if [[ -n "${DOUYIN_WEB_CLI:-}" ]]; then
+  exec "$DOUYIN_WEB_CLI" "$@"
+fi
+
+if repo_root="$(find_repo_root)"; then
+  if [[ -x "$repo_root/bin/douyin-web" ]]; then
+    exec "$repo_root/bin/douyin-web" "$@"
+  fi
+  if [[ -f "$repo_root/agent-harness/setup.py" ]]; then
+    (
+      cd "$repo_root/agent-harness"
+      exec python3 -m cli_anything.douyin_web "$@"
+    )
+  fi
+fi
+
+if command -v douyin-web >/dev/null 2>&1; then
+  exec douyin-web "$@"
+fi
+
+if command -v cli-anything-douyin-web >/dev/null 2>&1; then
+  exec cli-anything-douyin-web "$@"
+fi
+
+cat >&2 <<'EOF'
+Could not find douyin-web.
+
+Set one of:
+  DOUYIN_WEB_CLI=/path/to/douyin-web
+  DOUYIN_CLI_ROOT=/path/to/repo
+
+Or install the harness:
+  python3 -m pip install "git+https://github.com/billwang233/douyin-web-cli.git"
+  python3 -m playwright install chromium
+EOF
+exit 127

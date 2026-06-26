@@ -1,0 +1,82 @@
+{
+  "user_name": "Rain",
+  "assistant_name": "戒指老爷爷",
+  "world_selected": true,
+  "selected_world": "灵境行者",
+  "level": 0,
+  "experience": 10,
+  "happiness": 0,
+  "health": 100,
+  "energy": 100,
+  "morality": 60,
+  "reputation": 0,
+  "title": "新人行者",
+  "currency": {
+    "金币": 0,
+    "灵石": 0
+  },
+  "items": [],
+  "skills": ["基础修道认知"],
+  "factions": [],
+  "keywords": [],
+  "allies": [],
+  "enemies": [],
+  "allies_characters": [],
+  "enemies_characters": [],
+  "knowledge_gained": [],
+  "vehicles": [],
+  "current_quests": [],
+  "quest_log": [],
+  "available_quests": [],
+  "achievements": [],
+  "companions": [],
+  "home_base": null,
+  "recipes": {
+    "雪花酥": {
+      "name": "雪花酥",
+      "materials_required": {
+        "糯米粉": "100g",
+        "黄油": "50g",
+        "糖": "30g",
+        "奶粉": "20g"
+      },
+      "result": "雪花酥",
+      "result_quantity": 1,
+      "experience_reward": 5,
+      "difficulty": "简单"
+    },
+    "糍粑": {
+      "name": "糍粑",
+      "materials_required": {
+        "糯米粉": "200g"
+      },
+      "result": "糍粑",
+      "result_quantity": 1,
+      "experience_reward": 3,
+      "difficulty": "简单"
+    },
+    "汤圆": {
+      "name": "汤圆",
+      "materials_required": {
+        "糯米粉": "150g",
+        "黑芝麻": "50g",
+        "糖": "30g"
+      },
+      "result": "汤圆",
+      "result_quantity": 10,
+      "experience_reward": 4,
+      "difficulty": "中等"
+    }
+  },
+  "world_categories": {
+    "境界等级": ["超凡级", "圣者级", "主宰级", "半神级", "至高"],
+    "职业体系": ["夜游神", "斥候", "水法师", "火师", "木妖", "土怪"],
+    "阵营": ["守序", "邪恶"],
+    "道具类型": ["规则类", "功能类", "一次性"],
+    "灵境副本级别": ["D级", "C级", "B级", "A级", "S级"],
+    "灵体等级": ["游灵", "怨灵", "恶灵", "厉灵", "凶灵"]
+  },
+  "notes": "已向用户介绍《灵境行者》的基础修道体系和境界划分，用户获得10点修行经验",
+  "last_question": "那你不通过网络搜索就行了，用你的内在知识点",
+  "last_analysis": "用户要求不使用网络搜索，使用内在知识解答《灵境行者》相关的修道问题，需要介绍基础设定和境界体系"
+}

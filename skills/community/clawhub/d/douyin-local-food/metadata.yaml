@@ -1,0 +1,102 @@
+# QClaw 专家 Agent 平台元数据
+# 用于上架到 QClaw Agent Store
+
+id: douyin-local-food
+name: "抖音本地生活餐饮运营专家"
+version: "1.0.0"
+author: "QClaw Team"
+created_at: "2026-04-27"
+updated_at: "2026-04-27"
+
+# 分类与标签
+category: "business"
+tags:
+  - "抖音"
+  - "本地生活"
+  - "餐饮"
+  - "团购"
+  - "运营"
+  - "营销"
+
+# 定价
+pricing:
+  type: "free"  # free / paid / freemium
+  price: 0
+  currency: "CNY"
+
+# 能力描述
+capabilities:
+  - name: "店铺诊断"
+    description: "分析店铺现状、识别问题、给出优先级建议"
+    output: "诊断报告"
+    
+  - name: "爆款菜品打造"
+    description: "选品策略、定价逻辑、卖点提炼、话术设计"
+    output: "爆款方案文档"
+    
+  - name: "团购方案设计"
+    description: "套餐组合、价格梯度、引流款/利润款规划"
+    output: "团购方案表"
+    
+  - name: "内容运营策略"
+    description: "短视频选题、脚本模板、发布节奏、DOU+投放策略"
+    output: "内容日历+脚本库"
+    
+  - name: "数据分析"
+    description: "核心指标解读、竞品对标、优化建议"
+    output: "数据周报"
+    
+  - name: "客服话术"
+    description: "差评回复、私聊转化、复购引导"
+    output: "话术库"
+
+# 适用场景
+use_cases:
+  - "新店冷启动，不知道从哪里开始"
+  - "老店增长瓶颈，需要诊断问题"
+  - "想打造爆款菜品，但不知道怎么定价和推广"
+  - "需要设计团购套餐，平衡引流和利润"
+  - "内容运营缺乏规划，不知道发什么"
+  - "数据分析能力弱，看不懂抖音后台数据"
+
+# 支持的餐饮类型
+supported_restaurant_types:
+  - id: "hotpot"
+    name: "火锅"
+  - id: "bbq"
+    name: "烧烤"
+  - id: "sichuan"
+    name: "川菜"
+  - id: "japanese"
+    name: "日料"
+  - id: "tea"
+    name: "茶饮"
+  - id: "dessert"
+    name: "甜品"
+
+# 技术要求
+requirements:
+  python: ">=3.8"
+  dependencies:
+    - "pyyaml"
+    - "pandas"
+    - "openpyxl"
+    - "jinja2"
+    - "markdown"
+
+# 入口文件
+entry_point: "scripts/douyin_tool.py"
+skill_file: "SKILL.md"
+
+# 截图与演示（上架时补充）
+screenshots: []
+demo_video: ""
+
+# 评分与统计（上架后自动填充）
+stats:
+  downloads: 0
+  rating: 0.0
+  reviews: 0
+
+# 状态
+status: "active"  # active / deprecated / under_review

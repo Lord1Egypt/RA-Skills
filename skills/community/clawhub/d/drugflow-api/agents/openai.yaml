@@ -1,0 +1,4 @@
+interface:
+  display_name: "DrugFlow Skills"
+  short_description: "Multi-flow DrugFlow API workflow toolkit"
+  default_prompt: "Use $drugflow-skills for common auth/workspace/balance/jobs APIs and end-to-end DrugFlow flows like virtual screening or docking."

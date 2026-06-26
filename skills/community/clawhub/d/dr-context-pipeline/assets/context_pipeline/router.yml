@@ -1,0 +1,177 @@
+version: "1.0"
+
+# Deterministic router: first match wins.
+# Matching is case-insensitive substring against the user message.
+
+router:
+  - task_type: ops
+    match_any:
+      - "cron"
+      - "schedule"
+      - "job"
+      - "automation"
+      - "reminder"
+      - "didn't receive"
+      - "didnt receive"
+      - "not delivered"
+      - "missed"
+      - "failed"
+      - "error"
+      - "401"
+      - "unauthorized"
+      - "dm not working"
+      - "bot not responding"
+
+  - task_type: doc_review
+    match_any:
+      - "review this"
+      - "proofread"
+      - "customer-facing"
+      - "documentation"
+      - "release notes"
+      - "rewrite"
+      - "tone"
+      - "wording"
+      - "claim"
+      - "accuracy"
+
+  - task_type: debugging
+    match_any:
+      - "bug"
+      - "stack trace"
+      - "exception"
+      - "not working"
+      - "fails when"
+      - "repro"
+      - "logs"
+      - "trace"
+      - "latency"
+      - "timeout"
+
+  - task_type: planning
+    match_any:
+      - "design"
+      - "architecture"
+      - "implement"
+      - "rollout"
+      - "plan"
+      - "proposal"
+      - "what should we do"
+      - "recommend"
+      - "strategy"
+
+  - task_type: qna
+    match_any:
+      - "what is"
+      - "how do"
+      - "why"
+      - "explain"
+      - "difference between"
+
+  # Briefing is a topical fallback. Explicit intent like ops/planning/qna
+  # should win first when a message mentions a briefing.
+  - task_type: briefing
+    match_any:
+      - "daily briefing"
+      - "digest"
+      - "ai briefing"
+      - "briefing"
+
+  - task_type: other
+    match_any: []
+
+# Derived queries are rules-based additions to improve retrieval.
+derived_queries:
+  when_contains:
+    discord:
+      match_any: ["discord", "dm", "channel"]
+      task_types: ["ops", "briefing"]
+      add:
+        - "discord rules DM-only communication policy"
+
+    memory_pipeline:
+      match_any: ["memory", "retrieval", "compression", "context pack", "context pipeline", "always-on"]
+      add:
+        - "always_on topic catalog retrieval compression context pack"
+        - "memory design now open-loops automation topics"
+
+    briefing_delivery:
+      match_any: ["daily briefing", "digest", "briefing", "didn't receive", "not delivered", "missed"]
+      task_types: ["ops", "briefing"]
+      add:
+        - "Daily AI Briefing cron delivery discord"
+        - "openclaw ops discord provider delivery"
+        - "automation registry daily briefing"
+
+    doc_review:
+      match_any: ["doc", "documentation", "customer-facing", "review", "rewrite"]
+      task_types: ["doc_review"]
+      add:
+        - "doc review mode untrusted claims validation questions"
+
+    ikara:
+      match_any: ["ikara"]
+      add:
+        - "ikara platform ops access security controls integrations"
+
+# Retrieval policy: correctness-first defaults.
+retrieval_policy:
+  always_include_paths:
+    - "memory/always_on.md"
+
+  sources_priority:
+    - "memory/topics/*.md"
+    - "memory/now.md"
+    - "memory/open-loops.md"
+    - "memory/automation.md"
+    - "MEMORY.md"
+    - "memory/YYYY-MM-DD.md" # conditional
+
+  caps_by_task_type:
+    ops:
+      top_k_snippets: 14
+      max_lines_per_snippet: 60
+      max_snippets_per_file: 2
+      include_daily_logs: true
+      max_daily_log_snippets: 3
+      daily_log_lookback_days: 7
+
+    briefing:
+      top_k_snippets: 12
+      max_lines_per_snippet: 60
+      max_snippets_per_file: 2
+      include_daily_logs: true
+      max_daily_log_snippets: 1
+      daily_log_lookback_days: 3
+
+    doc_review:
+      top_k_snippets: 10
+      max_lines_per_snippet: 60
+      max_snippets_per_file: 2
+      include_daily_logs: false
+      max_daily_log_snippets: 0
+
+    planning:
+      top_k_snippets: 12
+      max_lines_per_snippet: 60
+      max_snippets_per_file: 2
+      include_daily_logs: false
+      max_daily_log_snippets: 0
+
+    qna:
+      top_k_snippets: 10
+      max_lines_per_snippet: 60
+      max_snippets_per_file: 2
+      include_daily_logs: false
+      max_daily_log_snippets: 0
+
+    other:
+      top_k_snippets: 10
+      max_lines_per_snippet: 60
+      max_snippets_per_file: 2
+      include_daily_logs: false
+      max_daily_log_snippets: 0
+
+# Daily-log switch: only enable daily logs when user asks explicitly about time/recency.
+daily_log_trigger:
+  match_any: ["yesterday", "today", "last time", "previously", "what did we decide", "did we"]

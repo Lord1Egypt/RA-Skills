@@ -1,0 +1,94 @@
+=== org.deepin.linglong.PackageManager1 /org/deepin/linglong/PackageManager1 ===
+node /org/deepin/linglong/PackageManager1 {
+  interface org.deepin.linglong.PackageManager1 {
+    methods:
+      @org.qtproject.QtDBus.QtTypeName.In2("QVariantMap")
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      InstallFromFile(in  h fd,
+                      in  s fileType,
+                      in  a{sv} options,
+                      out a{sv} result);
+      @org.qtproject.QtDBus.QtTypeName.In0("QVariantMap")
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      Install(in  a{sv} parameters,
+              out a{sv} result);
+      @org.qtproject.QtDBus.QtTypeName.In0("QVariantMap")
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      Uninstall(in  a{sv} parameters,
+                out a{sv} result);
+      @org.qtproject.QtDBus.QtTypeName.In0("QVariantMap")
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      Update(in  a{sv} parameters,
+             out a{sv} result);
+      @org.qtproject.QtDBus.QtTypeName.In0("QVariantMap")
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      Search(in  a{sv} parameters,
+             out a{sv} result);
+      @org.freedesktop.DBus.Description("Remove unused base or runtime.")
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      Prune(out a{sv} result);
+      @org.freedesktop.DBus.Description("Generate cache for app if no cache exists.")
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      GenerateCache(in  s reference,
+                    out a{sv} result);
+      @org.freedesktop.DBus.Description("Used by the client to check whether it has permission to call privileged methods")
+      Permissions();
+      @org.qtproject.QtDBus.QtTypeName.In1("QVariantMap")
+      ReplyInteraction(in  o task,
+                       in  a{sv} replies);
+    signals:
+      @org.qtproject.QtDBus.QtTypeName.Out1("QVariantMap")
+      SearchFinished(s taskID,
+                     a{sv} result);
+      @org.qtproject.QtDBus.QtTypeName.Out1("QVariantMap")
+      PruneFinished(s taskID,
+                    a{sv} result);
+      GenerateCacheFinished(s taskID,
+                            b status);
+      TaskAdded(o task);
+      TaskRemoved(o task,
+                  i state,
+                  i subState,
+                  s message,
+                  d percentage,
+                  i code);
+      @org.qtproject.QtDBus.QtTypeName.Out2("QVariantMap")
+      RequestInteraction(o task,
+                         i messageID,
+                         a{sv} additionalMessage);
+    properties:
+      @org.qtproject.QtDBus.QtTypeName("QVariantMap")
+      readwrite a{sv} Configuration = {'defaultRepo': <'stable'>, 'repos': <[<{'name': <'stable'>, 'priority': <int64 0>, 'url': <'https://mirror-repo-linglong.uniontech.com'>}>]>, 'version': <int64 2>};
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface_name,
+          in  s property_name,
+          out v value);
+      Set(in  s interface_name,
+          in  s property_name,
+          in  v value);
+      @org.qtproject.QtDBus.QtTypeName.Out0("QVariantMap")
+      GetAll(in  s interface_name,
+             out a{sv} values);
+    signals:
+      @org.qtproject.QtDBus.QtTypeName.Out1("QVariantMap")
+      PropertiesChanged(s interface_name,
+                        a{sv} changed_properties,
+                        as invalidated_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s xml_data);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

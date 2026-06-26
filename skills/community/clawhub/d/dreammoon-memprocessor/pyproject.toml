@@ -1,0 +1,102 @@
+[tool]
+poetry = "poetry>=1.7.0"
+
+[project]
+name = "dreammoon-memory-processor"
+version = "1.0.0"
+description = "DreamMoon Memory Processor - 四级记忆存储架构 (Python/FastAPI)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "DreamMoon", email = "zfanmy@qq.com"}
+]
+keywords = ["memory", "ai", "fastapi", "cache", "vector-search"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    # Web框架
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    
+    # 数据验证
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    
+    # 数据库
+    "sqlalchemy>=2.0.25",
+    "aiosqlite>=0.19.0",
+    "redis>=5.0.0",
+    
+    # 向量检索
+    "faiss-cpu>=1.7.4",
+    "sentence-transformers>=2.2.2",
+    "numpy>=1.26.0",
+    
+    # 任务调度
+    "apscheduler>=3.10.0",
+    "celery>=5.3.0",
+    
+    # 工具
+    "python-multipart>=0.0.6",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "pyyaml>=6.0.1",
+    "aiofiles>=23.2.0",
+    "httpx>=0.26.0",
+    "structlog>=24.1.0",
+    "prometheus-client>=0.19.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "black>=24.1.0",
+    "isort>=5.13.0",
+    "mypy>=1.8.0",
+    "ruff>=0.2.0",
+    "httpx>=0.26.0",
+]
+
+[project.scripts]
+dm-memory = "app.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

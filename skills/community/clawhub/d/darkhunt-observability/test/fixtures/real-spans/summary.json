@@ -1,0 +1,25 @@
+{
+  "total_spans": 95,
+  "traces": 7,
+  "span_types": {
+    "event": 82,
+    "tool": 6,
+    "agent": 4,
+    "generation": 3
+  },
+  "span_names": {
+    "transcript.update": 36,
+    "runtime.lifecycle.end": 12,
+    "memory_search": 4,
+    "agent darkhunt-docs": 3,
+    "generation claude-sonnet-4-6": 3,
+    "conversation.assistant": 9,
+    "session_start": 1,
+    "conversation.system": 2,
+    "conversation.user": 2,
+    "conversation.toolResult": 4,
+    "runtime.tool.start": 16,
+    "agent darkhunt-support": 1,
+    "read": 2
+  }
+}

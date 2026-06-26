@@ -1,35 +1,143 @@
+# Skill: Deep Research Pro (v2.1 - Enforced Depth)
+
+> 版本：2.1.0
+> 描述：世界领先的深度研究技能，强制来源卡片化、禁止跳过中间步骤
+
+## 核心原则
+**没有来源卡片，就没有报告**
+
+## 触发命令
+/research <主题> [--depth deep]
+
 ---
-name: "Deep Research Pro v2.1"
-description: "Conducts stepwise in-depth research by generating detailed source cards with data, quotes, quality scores, cross-analyzing findings, and producing fully cite..."
-category: "research"
-source: "ClawHub"
-tags: [deep, enforced, research, study]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deep-research-v21"
-sourceUrl: "https://clawhub.ai/skills/deep-research-v21"
+
+## 🔴 强制执行流程（不可跳过）
+
+### Step 1: 研究规划 (必须输出文件)
+- 生成 `research/plan.md`
+- 列出至少 5 个具体检索查询式 (Query Strings)
+- **用户确认后才能继续**
+
+### Step 2: 来源检索与卡片化 (核心深度环节)
+- **禁止直接写报告**
+- 每找到 1 个有效来源，必须立即生成 `sources/card-{{001..020}}.md`
+- **最低数量要求**：deep 模式至少 15 个有效卡片
+- 每个卡片必须包含：
+  - 完整标题、作者、年份、URL/DOI
+  - **核心数据提取**：具体数值、样本量、P值、置信区间
+  - **原文引用**：至少 1 段直接引用原文 (Quote)
+  - **质量评分**：使用 scripts/quality-score.py 计算
+
+### Step 3: 交叉分析 (必须输出文件)
+- 生成 `analysis/synthesis.md`
+- **强制对比**：至少找出 3 组相互矛盾或差异的数据
+- **强制归因**：解释差异原因 (样本？方法？地域？)
+- 每个观点必须标注来源卡片编号 (如 [card-003])
+
+### Step 4: 报告生成 (最后一步)
+- 生成 `reports/final-report.md`
+- **引用检查**：每个数据点后必须标注 `[[card-xxx]]`
+- **完整性检查**：如果来源卡片 < 15 个，拒绝生成报告并报错
+
 ---
 
-# Deep Research Pro v2.1
+## 🔴 质量门禁 (Quality Gates)
 
-> Conducts stepwise in-depth research by generating detailed source cards with data, quotes, quality scores, cross-analyzing findings, and producing fully cite...
+### 自检脚本使用方法
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deep-research-v21`
-- **Source URL:** [https://clawhub.ai/skills/deep-research-v21](https://clawhub.ai/skills/deep-research-v21)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/deep-research-v21
+# 检查来源卡片数量
+COUNT=$(ls sources/card-*.md 2>/dev/null | wc -l)
+if [ $COUNT -lt 15 ]; then
+ echo "❌ 错误：来源卡片不足 15 个，当前 $COUNT 个。请继续检索。"
+ exit 1
+fi
+
+# 检查引用链接
+if ! grep -q "\[\[card-" reports/final-report.md; then
+ echo "❌ 错误：报告未包含来源卡片引用。"
+ exit 1
+fi
+
+# 运行质量评分
+for card in sources/card-*.md; do
+ python3 scripts/quality-score.py "$card"
+done
 ```
+
+---
+
+## 📋 分步执行命令
+
+### Step 1: 规划
+```
+生成研究计划：创建 research/plan.md
+列出检索式：至少 5 个具体查询
+用户确认：等待用户确认后再继续
+```
+
+### Step 2: 检索与卡片化（循环执行）
+```
+使用 OpenAlex API 检索学术论文
+使用网页浏览工具获取行业报告
+每找到一个有效来源，立即生成卡片：
+ - sources/card-001.md
+ - sources/card-002.md
+ ...
+直到卡片数量 >= 15
+```
+
+### Step 3: 分析与报告
+```
+生成 analysis/synthesis.md（交叉分析）
+生成 reports/final-report.md（最终报告）
+每个数据点必须标注 [[card-xxx]]
+```
+
+---
+
+## 📄 来源卡片模板
+
+详细模板见：`templates/source-card.md`
+
+关键字段：
+- `source_id`: card-001 格式
+- `core_data`: 具体数值（样本量、结果、p值）
+- `quote`: 原文引用（至少50字）
+- `quality_score`: 0-10分
+
+---
+
+## 🔧 工具依赖
+
+| 工具 | 用途 | 状态 |
+|------|------|------|
+| OpenAlex API | 学术论文检索 | ✅ 可用 |
+| 网页浏览工具 | 行业报告获取 | ✅ 可用 |
+| quality-score.py | 质量评分 | ✅ 已部署 |
+| 文件系统 | 读写权限 | ✅ 可用 |
+
+---
+
+## ⚠️ 异常处理
+
+- 如果无法获取最新数据 (2024-2026)，必须在报告首页标注"数据截止于模型训练时间"
+- 如果来源质量评分普遍 < 6 分，必须停止并告知用户"缺乏高质量证据"
+- 如果用户中断流程，已生成的卡片文件保留供下次使用
+
+---
+
+## 📊 与v2.0对比
+
+| 维度 | v2.0 | v2.1 |
+|------|------|------|
+| 卡片化 | 无 | **强制** |
+| 数据提取 | 无 | **必须具体数值** |
+| 原文引用 | 无 | **必须50字+** |
+| 分步执行 | 建议 | **强制** |
+| 引用标注 | 无 | **必须[[card-xxx]]** |
+| 质量门禁 | 建议 | **强制检查** |
+
+---
+
+*Skill版本：2.1.0 | 最后更新：2026-03-19*

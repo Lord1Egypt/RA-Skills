@@ -1,35 +1,33 @@
 ---
-name: "Docker Analyzer"
-description: "A tool for exploring each layer in a docker image Based on wagoodman/dive (53,557+ GitHub stars). docker analyzer, go, cli, docker, docker-image, explorer, i..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/docker-analyzer"
-sourceUrl: "https://clawhub.ai/skills/docker-analyzer"
+name: Docker Analyzer
+description: "A tool for exploring each layer in a docker image Based on wagoodman/dive (53,557+ GitHub stars). docker analyzer, go, cli, docker, docker-image, explorer, inspector"
+version: 1.0.0
+license: MIT
+runtime: python3
 ---
 
 # Docker Analyzer
 
-> A tool for exploring each layer in a docker image Based on wagoodman/dive (53,557+ GitHub stars). docker analyzer, go, cli, docker, docker-image, explorer, i...
+A tool for exploring each layer in a docker image
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/docker-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/docker-analyzer](https://clawhub.ai/skills/docker-analyzer)
+Inspired by [wagoodman/dive](https://github.com/wagoodman/dive) (53,557+ GitHub stars).
 
-## Overview
+## Commands
 
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/docker-analyzer
-```
+## Features
+
+- Core functionality from wagoodman/dive
+
+## Usage
+
+Run any command: `docker-analyzer <command> [args]`
+
+---
+> **Disclaimer**: This skill is an independent, original implementation. It is not affiliated with, endorsed by, or derived from the referenced open-source project. No code was copied. The reference is for context only.
+
+Powered by BytesAgain | bytesagain.com | hello@bytesagain.com

@@ -1,0 +1,346 @@
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    padding: 20px; 
+    max-width: 1200px; 
+    margin: auto; 
+    background-color: #f9f9fb;
+    color: #333;
+}
+
+h1 { text-align: center; color: #222; }
+
+/* --- Grid Layout --- */
+.main-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+/* --- Examples Section --- */
+.examples-container {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.examples-label { font-size: 14px; font-weight: bold; color: #555; }
+
+.example-btn {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: 1px solid #c7d2fe;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.example-btn:hover { background: #c7d2fe; }
+
+/* --- Main Input & Controls --- */
+.prompt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.attached-files-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.file-pill {
+    background: #e2e8f0;
+    color: #334155;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+.file-pill .remove-file {
+    cursor: pointer;
+    font-weight: bold;
+    color: #ef4444;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.file-pill .remove-file:hover {
+    color: #b91c1c;
+}
+
+textarea { 
+    width: 100%; 
+    height: 80px; 
+    margin-bottom: 15px; 
+    padding: 12px; 
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.controls, .save-controls { 
+    margin-bottom: 15px; 
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 10px; 
+    align-items: center;
+}
+
+.save-controls {
+    background: #f1f5f9;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button { 
+    padding: 10px 15px; 
+    cursor: pointer; 
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+button:hover { background: #f0f0f0; }
+
+.primary-btn {
+    background: #4f46e5;
+    color: white;
+    border: none;
+}
+
+.primary-btn:hover { background: #4338ca; }
+
+/* --- Status & Output --- */
+#statusMessage {
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    color: #2e7d32;
+    border-radius: 4px;
+    display: none; 
+}
+
+#output { 
+    border: 1px solid #ddd; 
+    padding: 20px; 
+    min-height: 500px; 
+    background: white; 
+    text-align: center; 
+    border-radius: 8px;
+    overflow-x: auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Sidebar / File Browser --- */
+.sidebar {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    min-height: 500px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.project-box {
+    margin-bottom: 15px;
+}
+
+.project-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.project-title-container h4 {
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.delete-proj-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    line-height: 1;
+}
+
+.delete-proj-btn:hover {
+    background: #fee2e2;
+}
+
+.project-box ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.project-box li.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.project-box li.file-item:last-child {
+    border-bottom: none;
+}
+
+.file-name {
+    flex-grow: 1;
+    cursor: pointer;
+    color: #0284c7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.file-name:hover {
+    text-decoration: underline;
+    color: #0369a1;
+}
+
+.delete-file-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    line-height: 1;
+}
+
+.delete-file-btn:hover {
+    background: #fee2e2;
+}
+
+/* --- Modal (Popup) Styles --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 25px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.live-edit-modal {
+    width: 95% !important;
+    max-width: 1400px !important;
+    height: 90vh;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.modal-body {
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px dashed #cbd5e1;
+    padding: 20px;
+    overflow-x: auto;
+    flex: 1;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 60vh;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#previewCodeContainer {
+    flex: 1;
+    overflow: hidden;
+}
+
+#previewCodeContainer > div {
+    height: 100%;
+}
+
+#previewMermaid {
+    width: 100%;
+    text-align: center;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}

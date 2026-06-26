@@ -1,0 +1,26 @@
+{
+  "name": "domain-analyzer",
+  "version": "1.0.0",
+  "description": "域名价值分析专家。评估域名的投资价值、商业潜力、SEO 友好度。",
+  "author": "宋哥",
+  "license": "MIT",
+  "keywords": [
+    "domain",
+    "域名",
+    "投资",
+    "分析",
+    "估值"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "domain-analyzer"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.6.0"
+  },
+  "scripts": {
+    "analyze": "python3 scripts/analyze_domain.py"
+  }
+}

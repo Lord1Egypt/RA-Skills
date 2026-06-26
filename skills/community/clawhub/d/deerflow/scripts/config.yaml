@@ -1,0 +1,36 @@
+# DeerFlow Service Configuration
+# Note: Model API keys are managed by the DeerFlow deployment,
+# not by this skill. Configure them in DeerFlow's own .env file.
+
+deerflow:
+  # DeerFlow service URL (Nginx public gateway)
+  url: "${DEERFLOW_URL:-http://localhost:2026}"
+
+  # LangGraph internal API URL
+  langgraph_url: "${DEERFLOW_LANGGRAPH_URL:-http://localhost:2024}"
+
+  # Default assistant ID
+  assistant_id: "lead_agent"
+
+  # Default model (must match a model configured in DeerFlow)
+  model: "${DEERFLOW_MODEL:-minimax-m2.7}"
+
+  # Max recursion depth for agent loops
+  recursion_limit: 200
+
+  # API request timeout (ms)
+  timeout: 30000
+
+  # Number of retries on failure
+  retries: 3
+
+webhook:
+  # Webhook listener port (built into deerflow-bridge, not this skill)
+  port: 3002
+  path: "/webhook/deerflow"
+  public_url: "${WEBHOOK_PUBLIC_URL:-http://localhost:3002}"
+
+openclaw:
+  # OpenClaw callback URL (for deerflow-bridge notifications)
+  url: "${OPENCLAW_URL:-http://localhost:18789}"
+  notify_endpoint: "/api/notify"

@@ -1,35 +1,180 @@
 ---
-name: "数据自动分析"
-description: "数据自动分析 + 广告投放优化一体化 Skill。当用户上传 Excel/CSV 文件，或提到以下任一场景时必须触发：①通用数据分析（看报表、数据趋势、可视化）；②账户诊断（哪些计划效果差、哪些要暂停、投放诊断、账户体检）；③A/B 测试分析（两组数据对比、哪个版本好、是否显著、置信度）；④日报生成（投放日报、每..."
-category: "social-media"
-source: "ClawHub"
-tags: [data-auto-analyzer, ab-test, advertising, daily-report, data-analysis]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-auto-analyzer"
-sourceUrl: "https://clawhub.ai/skills/data-auto-analyzer"
+name: data-auto-analyzer
+description: 数据自动分析 + 广告投放优化一体化 Skill。当用户上传 Excel/CSV 文件，或提到以下任一场景时必须触发：①通用数据分析（看报表、数据趋势、可视化）；②账户诊断（哪些计划效果差、哪些要暂停、投放诊断、账户体检）；③A/B 测试分析（两组数据对比、哪个版本好、是否显著、置信度）；④日报生成（投放日报、每日汇报、钉钉/飞书周报、对比昨日）。适用于信息流广告优化师、运营、数据分析师。支持巨量引擎、腾讯广告、Meta Ads、Google Ads、快手等平台导出数据，也支持销售、财务、运营等任何结构化表格。即使用户只说"分析一下""看看报表""哪些计划要调整""这俩哪个好""生成日报"，也应触发此 Skill。
+metadata:
+  homepage: https://clawhub.ai/ming0429/data-auto-analyzer
+  version: 4.0.1
+  author: guojiaming
+  tags: [data-analysis, advertising, ab-test, daily-report, 数据分析, 广告优化, 账户诊断, AB测试, 日报生成]
+  clawdbot:
+    emoji: 📊
+    requires:
+      bins: [python3]
+      pip: [pandas, openpyxl, xlrd, jinja2, scipy]
+      env: []
 ---
 
-# 数据自动分析
+# 数据自动分析 Skill
 
-> 数据自动分析 + 广告投放优化一体化 Skill。当用户上传 Excel/CSV 文件，或提到以下任一场景时必须触发：①通用数据分析（看报表、数据趋势、可视化）；②账户诊断（哪些计划效果差、哪些要暂停、投放诊断、账户体检）；③A/B 测试分析（两组数据对比、哪个版本好、是否显著、置信度）；④日报生成（投放日报、每...
+一体化数据分析与广告优化工具集，包含 **4 个模式**，根据用户意图选择对应模式执行。
 
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-auto-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/data-auto-analyzer](https://clawhub.ai/skills/data-auto-analyzer)
+## 环境准备（所有模式通用）
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/data-auto-analyzer
+# 在 Skill 目录下创建虚拟环境（路径可移植，本地/云端/CI 均可）
+python3 -m venv .venv && source .venv/bin/activate
+pip install pandas openpyxl xlrd jinja2 scipy -q
 ```
+
+> Windows 用户激活命令为 `.venv\Scripts\activate`。若系统已装好依赖，可跳过 venv 直接用 `python3` 运行。
+
+## 输出目录（所有模式通用）
+
+所有生成的 HTML / TXT 文件**默认统一输出到当前工作目录下的 `data-auto-analyzer/` 文件夹**（脚本会自动创建）。
+
+- 想换目录：设置环境变量 `export DATA_AUTO_ANALYZER_OUTDIR=/your/path`，或给脚本的 `--out` / `--out-dir` 传一个带目录的完整路径（此时尊重用户指定）。
+- 下方各命令的 `--out` 只写文件名即可，文件会自动落到 `data-auto-analyzer/` 下。
+
+## 模式选择决策树
+
+```
+用户上传了 Excel/CSV？
+├── 是
+│   ├── 提到"诊断/体检/哪些要暂停/计划效果差" → 模式 B：账户诊断
+│   ├── 提到"日报/汇报/对比昨日" → 模式 D：日报生成
+│   ├── 提到"A/B 测试/显著性/哪个版本好" → 模式 C：A/B 测试
+│   └── 其他（看报表/分析数据/趋势） → 模式 A：通用分析
+└── 否
+    └── 用户直接描述两组数据（手工输入） → 模式 C：A/B 测试
+```
+
+**不确定时优先询问用户，不要猜。**
+
+---
+
+## 模式 A：通用数据分析
+
+**用途**：任意 Excel/CSV 都能用，自动识别列类型（日期/维度/指标/百分比），生成一份浅色主题、交互式的 HTML 报告。
+
+```bash
+python3 scripts/analyze.py --file <输入文件> --out data_report.html
+# → 生成到 data-auto-analyzer/data_report.html
+```
+
+**输出与交互能力**：
+
+- **左侧悬浮导航**：点击平滑滚动到对应模块，滚动自动高亮；所有模块支持折叠/展开（带动画）。
+- **概览 / 指标汇总 / 异常检测 / 优化建议**：指标汇总与异常默认展示前 4 项，可"展开更多"。
+- **明细表格**：
+  - 每页 10 条；置顶"全部数据汇总"行（原报表带汇总行则提取，否则自动计算：指标求和、百分比取均值），汇总行可勾选、有日期时可展开看每日合计。
+  - **二级树**：当数据含日期且同一维度跨多日时，自动按维度分组为父行，可展开查看按日期明细；仅父行可勾选。
+  - 数值列按真实数值排序（含整数列）；维度列模糊搜索 + "更多筛选"按指标列做多组 `> ≥ = ≤ <` 条件（"且"关系）。
+- **图表**（数据随表格勾选联动；未勾选时全量聚合）：
+  - **平滑折线图 / 柱形图**：双 Y 轴 + 左右轴多选指标（互斥）；X 轴可在「按日期 / 按维度」切换；按日期勾选多组时，每个维度组单独成线/柱。
+  - **占比饼图**：可选分组维度（单维或维度组合）与指标，不合并"其他"。
+  - **相关性热力图**：取方差最大的若干指标，基于全量数据。
+  - 所有下拉选择器均支持模糊搜索。
+
+> 完全本地处理；HTML 在浏览器打开时从 cdnjs 加载 ECharts（如需离线，可改为本地引入 echarts.min.js）。
+
+---
+
+## 模式 B：账户/计划诊断器
+
+**用途**：分析任意投放/业务报表，给每个实体（账户/计划/优化师…按表自动判定）打红/黄/绿预警并给出处置建议。**浅色主题 · 卡片阴影 · 可折叠 · 悬浮导航**，与模式 A 风格统一。
+
+```bash
+python3 scripts/diagnose.py --file <报表.xlsx> --out diagnose_report.html
+# → 生成到 data-auto-analyzer/diagnose_report.html
+```
+
+**完全动态识别**（不写死任何字段名）：
+- 实体维度按“会重复出现的业务维度”自动分组（含账户ID 等标识，每个实体成一组）。
+- 消耗/转化/点击/曝光/CPA/CTR/转化率等**按表格智能推断**；缺失的比率指标由基础列自动派生（CPA=消耗/转化、CTR=点击/曝光、CVR=转化/点击）。“成本”归为 CPA、“广告数量”等计数列不会被误当曝光/点击。
+
+**诊断规则摘要**（完整说明见 `references/diagnose_rules.md`，相对整体均值判定）：
+- 🔴 红色：高消耗零转化、CPA ≥ 均值 3 倍、CTR ≤ 均值 0.3 倍、转化率极低
+- 🟡 黄色：CPA ≥ 均值 1.5 倍、CTR/转化率偏低、高消耗低转化
+- 🟢 绿色：指标正常或优于均值
+
+若表中无任何广告指标，自动降级为**通用统计离群诊断**（按 z 分数标记异常实体）。报告含：诊断总览卡片 + 红/黄/绿筛选+搜索+分页明细表 + 分布饼图 + 主指标排行柱图。
+
+---
+
+## 模式 C：A/B 测试结果分析
+
+**用途**：判断两组数据差异是否显著，给出置信度和结论。**浅色主题 · 卡片阴影 · 可折叠**（结论框 + 关键结果卡 + A/B 对比柱图 + 统计明细表）。
+
+两种场景：
+- **比例型**（CTR、转化率）→ Z 检验
+- **均值型**（CPC、CPA、ROI）→ T 检验
+
+**执行方式 1：手工输入数据**
+```bash
+python3 scripts/ab_test.py --inline \
+  --a-success 120 --a-total 2400 \
+  --b-success 150 --b-total 2500 \
+  --out ab_result.html
+# → 生成到 data-auto-analyzer/ab_result.html
+```
+
+**执行方式 2：从文件**
+```bash
+python3 scripts/ab_test.py --file <数据.xlsx> \
+  --group-col <分组列名> --metric-col <指标列名> \
+  --metric-type <rate|mean> \
+  --out ab_result.html
+```
+
+详细用法和场景示例见 `references/ab_test_guide.md`。
+
+---
+
+## 模式 D：每日投放日报生成器
+
+**用途**：上传报表，生成结构化日报。指标与实体维度**完全按表格动态识别**（不写死“计划”等字段）。输出钉钉/飞书可直接粘贴的纯文本版 + 浅色主题 HTML 版。
+
+```bash
+# 单文件（默认输出到 data-auto-analyzer/ 目录）
+python3 scripts/daily_report.py --today <今日.xlsx>
+
+# 带昨日对比（可选；若 today 文件本身含多日数据，会自动取最新一天为今日、前一天为昨日做环比并画趋势）
+python3 scripts/daily_report.py --today <今日.xlsx> --yesterday <昨日.xlsx>
+```
+
+**输出两个文件**：
+- `daily_report.txt` — 纯文本，直接复制到钉钉/飞书/微信
+- `daily_report.html` — 浅色主题 HTML 版（卡片阴影 · 可折叠 · 悬浮导航）
+
+**日报结构**：核心指标卡片（含环比涨跌）+ TOP / 待优化实体（按 CPA 或主指标，每项展示 消耗/转化/CPA）+ 主指标按日趋势图 + 明日建议 + 可粘贴纯文本。实体维度（账户/计划/优化师…）与指标均按表自动判定。
+
+详见 `references/daily_report_format.md`。
+
+---
+
+## Notes
+
+- 分析过程完全本地执行，不上传任何数据；生成的 HTML 报告在浏览器打开时会从 CDN (cdnjs.cloudflare.com) 加载 ECharts
+- 所有脚本必须保存为 `.py` 文件执行，不支持 `python3 -c` 内联
+- 列名完全动态识别，不预设字段名
+- 编码自动识别，兼容 UTF-8 / GBK / GB2312
+- 输出统一落到 `data-auto-analyzer/` 目录，可用 `DATA_AUTO_ANALYZER_OUTDIR` 覆盖
+
+## 更新日志
+
+### 4.0.1
+- **模式 B/C/D 大改**：列识别全部改为**动态智能识别**（消耗/转化/点击/曝光/CPA/CTR/转化率等按表格推断，不写死任何字段名；“成本”归 CPA、“广告数量”等计数列不误判为曝光/点击）。
+- B/C/D 样式统一为**模式 A 的浅色高级主题**（白底卡片 + 阴影 + 折叠 + 悬浮导航 + 浅色 ECharts）。
+- 模式 B 改为按“会重复出现的业务维度”动态分组（每个账户/计划成一组），缺基础列时自动降级为通用统计离群诊断。
+- 模式 D 实体维度与指标全动态；TOP/待优化按 CPA（或主指标）排序，每项展示 消耗/转化/CPA；多日单文件可自动取最新日做环比并画趋势。
+- 共享能力下沉到 `_common.py`：`detect_columns / detect_roles / entity_dims / render_page`（统一浅色页面框架）。
+
+### 4.0.0
+- 模式 A 报告全面升级为**浅色高级主题**，新增**左侧悬浮导航**（点击平滑滚动 + 滚动高亮），各模块支持折叠/展开动画。
+- 明细表格新增**二级树**（同维度多日期自动聚合为父行，可展开看每日明细，仅父行可勾选）、**置顶汇总行**（可勾选/可展开）、**指标多组筛选**与维度列模糊搜索；修复整数列排序按字典序的问题。
+- 图表重构为**平滑折线 / 柱形（双 Y 轴、左右轴多选互斥、按日期/维度切换、按勾选组单独成线）+ 可选维度占比饼图 + 全量相关性热力图**，全部图表随表格勾选联动；所有下拉选择器支持模糊搜索；修复缩放控件与图例/坐标轴重叠、热力图色带与 X 轴文本重叠等问题。
+- 指标汇总/异常默认展示前 4 项并可展开更多；百分比指标在汇总中按均值而非求和处理。
+- 修复指标筛选条件组过多时底部"应用/重置"按钮被遮挡的问题（条件区可滚动、按钮固定、下拉浮层改用 fixed 定位避免裁切）。
+
+### 3.0.1
+- 统一输出目录到 `data-auto-analyzer/`，路径可移植（本地/云端/CI）；移除对 `/home/claude`、`/mnt/user-data` 等沙箱专用路径的依赖。

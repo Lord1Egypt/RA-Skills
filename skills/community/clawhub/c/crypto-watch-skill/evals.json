@@ -1,0 +1,200 @@
+{
+  "name": "CryptoView Skill Evaluation",
+  "version": "1.0.0",
+  "description": "Test cases for evaluating the crypto skill's ability to fetch market data and perform technical analysis",
+  "tests": [
+    {
+      "id": "test_001",
+      "name": "BTC Price Query",
+      "prompt": "What's the current price of Bitcoin?",
+      "expected_tool": "get_candles",
+      "expected_arguments": {
+        "inst_id": "BTC-USDT",
+        "bar": "1H",
+        "limit": 100
+      },
+      "tags": ["price", "btc", "english"]
+    },
+    {
+      "id": "test_002",
+      "name": "ETH Technical Analysis",
+      "prompt": "Help me analyze the 4-hour technical outlook for Ethereum",
+      "expected_tool": "get_analysis_summary",
+      "expected_arguments": {
+        "inst_id": "ETH-USDT",
+        "bar": "4H",
+        "limit": 100
+      },
+      "tags": ["technical_analysis", "eth", "english", "4h"]
+    },
+    {
+      "id": "test_003",
+      "name": "Funding Rate Query",
+      "prompt": "Check the funding rate for BTC perpetual contract",
+      "expected_tool": "get_funding_rate",
+      "expected_arguments": {
+        "inst_id": "BTC-USDT-SWAP",
+        "limit": 50
+      },
+      "tags": ["funding_rate", "btc", "english"]
+    },
+    {
+      "id": "test_004",
+      "name": "Open Interest Query",
+      "prompt": "What's the open interest for ETH?",
+      "expected_tool": "get_open_interest",
+      "expected_arguments": {
+        "inst_id": "ETH-USDT-SWAP",
+        "period": "1H",
+        "limit": 100
+      },
+      "tags": ["open_interest", "eth", "english"]
+    },
+    {
+      "id": "test_005",
+      "name": "Long Short Ratio",
+      "prompt": "Check the long/short ratio for Bitcoin",
+      "expected_tool": "get_long_short_ratio",
+      "expected_arguments": {
+        "ccy": "BTC",
+        "period": "1H",
+        "limit": 50
+      },
+      "tags": ["long_short_ratio", "btc", "english"]
+    },
+    {
+      "id": "test_006",
+      "name": "Liquidation Data",
+      "prompt": "What are the recent liquidation records for BTC?",
+      "expected_tool": "get_liquidation",
+      "expected_arguments": {
+        "inst_id": "BTC-USDT-SWAP",
+        "state": "filled",
+        "limit": 100
+      },
+      "tags": ["liquidation", "btc", "english"]
+    },
+    {
+      "id": "test_007",
+      "name": "Top Trader Position Ratio",
+      "prompt": "Show me the elite trader position ratio",
+      "expected_tool": "get_top_trader_position_ratio",
+      "expected_arguments": {
+        "inst_id": "BTC-USDT-SWAP",
+        "period": "1H",
+        "limit": 24
+      },
+      "tags": ["top_trader", "btc", "english"]
+    },
+    {
+      "id": "test_008",
+      "name": "Option Call/Put Ratio",
+      "prompt": "What's the call/put ratio for Bitcoin options?",
+      "expected_tool": "get_option_oi_volume_ratio",
+      "expected_arguments": {
+        "ccy": "BTC",
+        "period": "8H"
+      },
+      "tags": ["options", "btc", "english"]
+    },
+    {
+      "id": "test_009",
+      "name": "Fear and Greed Index",
+      "prompt": "What's the current fear and greed index?",
+      "expected_tool": "get_fear_greed_index",
+      "expected_arguments": {
+        "days": 7
+      },
+      "tags": ["sentiment", "fear_greed", "english"]
+    },
+    {
+      "id": "test_010",
+      "name": "All Indicators",
+      "prompt": "Get all technical indicators for SOL-USDT on daily timeframe",
+      "expected_tool": "get_all_indicators",
+      "expected_arguments": {
+        "inst_id": "SOL-USDT",
+        "bar": "1D",
+        "limit": 100,
+        "last_n": 10
+      },
+      "tags": ["technical_analysis", "sol", "all_indicators", "english"]
+    },
+    {
+      "id": "test_011",
+      "name": "Support and Resistance",
+      "prompt": "Calculate support and resistance levels for ETH",
+      "expected_tool": "get_support_resistance",
+      "expected_arguments": {
+        "inst_id": "ETH-USDT",
+        "bar": "1D",
+        "limit": 100,
+        "window": 5
+      },
+      "tags": ["support_resistance", "eth", "english"]
+    },
+    {
+      "id": "test_012",
+      "name": "Multi-Asset Batch Analysis",
+      "prompt": "Compare technical indicators for Bitcoin, Ethereum, and SOL",
+      "expected_behavior": "call_get_all_indicators_for_each_asset",
+      "assets": ["BTC-USDT", "ETH-USDT", "SOL-USDT"],
+      "tags": ["batch", "comparison", "btc", "eth", "sol", "english"]
+    },
+    {
+      "id": "test_013",
+      "name": "Gold Price Query",
+      "prompt": "What's the price trend for XAU Gold?",
+      "expected_tool": "get_candles",
+      "expected_arguments": {
+        "inst_id": "XAU-USDT-SWAP",
+        "bar": "1D",
+        "limit": 100
+      },
+      "tags": ["gold", "xau", "english"]
+    },
+    {
+      "id": "test_014",
+      "name": "RSI Query",
+      "prompt": "What's the current RSI for BTC?",
+      "expected_tool": "get_all_indicators",
+      "expected_arguments": {
+        "inst_id": "BTC-USDT",
+        "bar": "1H",
+        "limit": 100,
+        "last_n": 1
+      },
+      "tags": ["rsi", "btc", "english", "indicator"]
+    },
+    {
+      "id": "test_015",
+      "name": "MACD Analysis",
+      "prompt": "Check if ETH MACD shows a golden cross or death cross",
+      "expected_tool": "get_all_indicators",
+      "expected_arguments": {
+        "inst_id": "ETH-USDT",
+        "bar": "4H",
+        "limit": 100,
+        "last_n": 5
+      },
+      "tags": ["macd", "eth", "english", "indicator"]
+    }
+  ],
+  "scoring": {
+    "correct_tool_selection": 30,
+    "correct_arguments": 40,
+    "correct_execution": 30
+  },
+  "metadata": {
+    "created_at": "2025-03-16",
+    "skill_version": "1.0.0",
+    "test_coverage": [
+      "basic_price_queries",
+      "technical_indicators",
+      "derivatives_data",
+      "sentiment_analysis",
+      "batch_operations",
+      "multilingual_support"
+    ]
+  }
+}

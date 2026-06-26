@@ -1,0 +1,28 @@
+{
+  "name": "douyin-influencer-outreach",
+  "version": "1.1.0",
+  "license": "MIT-0",
+  "description": "Search for Douyin influencers matching criteria (followers < N, high engagement), browse their content, and send personalized DMs.",
+  "author": "adamwang",
+  "license": "MIT",
+  "keywords": [
+    "douyin",
+    "influencer",
+    "outreach",
+    "tiktok",
+    "koc",
+    "达人拓展",
+    "抖音",
+    "私信",
+    "团购"
+  ],
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "engines": {
+    "openclaw": ">=2026.4.0"
+  },
+  "dependencies": {
+    "openclaw": "*"
+  }
+}

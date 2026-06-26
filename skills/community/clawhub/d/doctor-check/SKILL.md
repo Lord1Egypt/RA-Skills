@@ -1,35 +1,53 @@
 ---
-name: "Doctor Check"
-description: "系统诊断 - 检查OpenClaw和运行环境健康状态"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/doctor-check"
-sourceUrl: "https://clawhub.ai/skills/doctor-check"
+name: doctor-check
+description: 系统诊断 - 检查OpenClaw和运行环境健康状态
 ---
 
-# Doctor Check
+# Doctor Check - 系统诊断
 
-> 系统诊断 - 检查OpenClaw和运行环境健康状态
+## 功能
+仿照Claude Code doctor命令，检查系统健康状态。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/doctor-check`
-- **Source URL:** [https://clawhub.ai/skills/doctor-check](https://clawhub.ai/skills/doctor-check)
+## 检查项
 
-## Overview
+### 1. 环境检查
+- Node.js/npm版本
+- Python环境
+- 磁盘空间
 
+### 2. 服务状态
+- Gateway运行状态
+- Cron任务状态
+- 锁文件清理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/doctor-check
+### 3. 配置检查
+- 配置文件完整性
+- API密钥有效性
+- 权限设置
+
+### 4. 日志检查
+- 最近错误
+- 异常模式
+- 性能指标
+
+## 使用方式
+```
+"系统诊断" → 执行完整诊断
+"检查问题" → 诊断当前问题
+```
+
+## 输出格式
+```markdown
+## 系统诊断报告
+
+### ✅ 正常
+- Gateway: 运行中
+- Cron: 10个任务
+
+### ⚠️ 警告
+- 磁盘空间不足 (<20%)
+- 旧日志未清理
+
+### ❌ 问题
+- IBKR连接超时
 ```

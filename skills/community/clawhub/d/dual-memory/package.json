@@ -1,0 +1,26 @@
+{
+	"name": "dual-memory",
+	"version": "1.0.5",
+	"type": "module",
+	"description": "Dual memory plugin: memory-core (local + dreaming) + supermemory (cloud). Requires SUPERMEMORY_OPENCLAW_API_KEY env var.",
+	"license": "MIT",
+	"dependencies": {
+		"supermemory": "^4.0.0",
+		"@sinclair/typebox": "0.34.47"
+	},
+	"peerDependencies": {
+		"openclaw": ">=2026.1.29"
+	},
+	"openclaw": {
+		"extensions": ["./index.ts"],
+		"compat": {
+			"pluginApi": "1.0.0"
+		},
+		"build": {
+			"openclawVersion": ">=2026.1.29"
+		}
+	},
+	"devDependencies": {
+		"typescript": "^5.9.3"
+	}
+}

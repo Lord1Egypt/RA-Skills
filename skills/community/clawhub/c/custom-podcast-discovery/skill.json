@@ -1,0 +1,36 @@
+{
+  "name": "podcast",
+  "version": "1.0.1",
+  "description": "Automated podcast topic discovery, research, script generation, fact-checking, and audio production. Multi-source discovery (RSS, HN, Nature), LLM script writing, citation enforcement, ElevenLabs TTS. Zero vendor lock-in.",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "source": "https://github.com/openclaw/skills",
+  "homepage": "https://clawhub.com/skills/podcast",
+  "tags": ["podcast", "audio", "content-generation", "research", "tts", "elevenlabs"],
+  "triggers": [
+    "generate a podcast",
+    "make a podcast episode",
+    "discover podcast topics",
+    "create an audio episode",
+    "research and script a podcast"
+  ],
+  "dependencies": {
+    "python": ">=3.7",
+    "tools": ["elevenlabs_text_to_speech", "web_search"]
+  },
+  "requiredEnv": [
+    "ELEVENLABS_API_KEY"
+  ],
+  "optionalEnv": [
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "AWS_DEFAULT_REGION"
+  ],
+  "requirements": {
+    "bins": ["python3"],
+    "optionalBins": ["aws"]
+  },
+  "config_required": true,
+  "readme": "README.md",
+  "skill_file": "SKILL.md"
+}

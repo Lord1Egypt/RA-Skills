@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigenAI Skill - Free AI Image & Video Generation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #0f0f18;
+            --bg-card: #16161f;
+            --bg-card-hover: #1c1c28;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --accent-dim: rgba(139, 92, 246, 0.15);
+            --text: #fff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+            --discord: #5865F2;
+            --telegram: #229ED9;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .nav-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            position: relative;
+        }
+
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: var(--bg-card-hover);
+            color: var(--text);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px;
+            min-width: 140px;
+            display: none;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .lang-dropdown.show { display: block; }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .lang-option:hover {
+            background: var(--bg-card-hover);
+            color: var(--text);
+        }
+
+        .lang-option.active {
+            background: var(--accent-dim);
+            color: var(--accent-light);
+        }
+
+        .lang-option .flag {
+            font-size: 16px;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            background: var(--bg-card);
+            color: var(--text);
+        }
+
+        .btn-telegram { background: var(--discord); color: white; }
+        .btn-telegram { background: var(--telegram); color: white; }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 48px 80px;
+            background: radial-gradient(ellipse 80% 60% at 20% 40%, rgba(139, 92, 246, 0.1), transparent);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-left {
+            max-width: 560px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 100px;
+            font-size: 14px;
+            color: var(--accent-light);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge .free {
+            background: var(--success);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .key-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .key-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .key-feature .check {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-dim);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            font-size: 11px;
+        }
+
+        /* Hero Right */
+        .hero-right {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .hero-code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-code-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .install-cmd {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg);
+            margin: 16px;
+            border-radius: 10px;
+        }
+
+        .install-cmd .prefix {
+            color: var(--accent-light);
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+        }
+
+        .install-cmd .text {
+            flex: 1;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .install-cmd .copy-btn {
+            padding: 6px 12px;
+            background: var(--bg-card-hover);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .install-cmd .copy-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .hero-code-body {
+            padding: 24px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .hero-code-body .comment { color: #6b7280; }
+        .hero-code-body .keyword { color: #c084fc; }
+        .hero-code-body .string { color: #34d399; }
+        .hero-code-body .function { color: #60a5fa; }
+        .hero-code-body .number { color: #fbbf24; }
+
+        .api-key-cta {
+            margin: 0 16px 16px;
+            padding: 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .api-key-cta h4 {
+            font-size: 14px;
+            color: var(--success);
+            margin-bottom: 8px;
+        }
+
+        .api-key-cta p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .api-key-cta .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Commands */
+        .commands {
+            padding: 100px 48px;
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 48px;
+        }
+
+        .cmd-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .cmd-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .cmd-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .cmd-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .cmd-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .cmd-example {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Developer */
+        .dev-cta {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .dev-cta h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .dev-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .dev-cta .btn {
+            margin: 0 8px;
+        }
+
+        /* Community */
+        .community {
+            padding: 100px 48px;
+            text-align: center;
+        }
+
+        .community h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .community > p {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .community-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            padding: 40px 48px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--success);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 200;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero {
+                padding: 120px 24px 60px;
+            }
+
+            .hero-left {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .key-features {
+                align-items: center;
+            }
+
+            .commands { padding: 60px 24px; }
+            .community { padding: 60px 24px; }
+            .nav { padding: 0 24px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="#" class="nav-brand">
+            <div class="nav-logo">⚡</div>
+            <span class="nav-title">DigenAI Skill</span>
+        </a>
+        <div class="nav-links">
+            <a href="#commands" data-i18n="nav.commands">Commands</a>
+            <a href="#build" data-i18n="nav.build">Build</a>
+            <a href="#community" data-i18n="nav.community">Community</a>
+        </div>
+        <div class="nav-right">
+            <div class="lang-selector">
+                <button class="lang-btn" onclick="toggleLang()">
+                    <span class="current-lang">🌐 EN</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-option active" data-lang="en"><span class="flag">🇺🇸</span> English</div>
+                    <div class="lang-option" data-lang="zh"><span class="flag">🇨🇳</span> 中文</div>
+                    <div class="lang-option" data-lang="ja"><span class="flag">🇯🇵</span> 日本語</div>
+                    <div class="lang-option" data-lang="ko"><span class="flag">🇰🇷</span> 한국어</div>
+                    <div class="lang-option" data-lang="es"><span class="flag">🇪🇸</span> Español</div>
+                </div>
+            </div>
+            <div class="nav-cta">
+                <a href="#community" class="btn btn-primary">Get Free API Key</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <span style="font-size:16px;margin-right:4px;">🦞</span>
+                    <span data-i18n="hero.badge">OpenClaw Skill</span>
+                    <span class="free" data-i18n="hero.free">100% FREE</span>
+                </div>
+                <h1><span data-i18n="hero.title1">AI Image & Video</span><br><span class="accent" data-i18n="hero.title2">Completely Free</span></h1>
+                <p class="hero-desc" data-i18n="hero.desc">
+                    High-performance AI image and video generation powered by DigenAI. Zero cost, permanently free. No credit card required.
+                </p>
+                <div class="hero-actions">
+                    <a href="#community" class="btn btn-primary">Get Free API Key</a>
+                    <a href="#commands" class="btn btn-ghost" data-i18n="hero.cta2">View Commands</a>
+                </div>
+                <div class="key-features">
+                    <div class="key-feature">
+                        <span class="check">✓</span>
+                        <span data-i18n="hero.feature1">Permanent free image generation</span>
+                    </div>
+                    <div class="key-feature">
+                        <span class="check">✓</span>
+                        <span data-i18n="hero.feature2">Image-to-video fully works</span>
+                    </div>
+                    <div class="key-feature">
+                        <span class="check">✓</span>
+                        <span data-i18n="hero.feature3">Multiple resolutions & aspect ratios</span>
+                    </div>
+                    <div class="key-feature">
+                        <span class="check">✓</span>
+                        <span data-i18n="hero.feature4">CDN acceleration, global fast access</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-code-header">
+                    <span class="hero-code-title" data-i18n="hero.codeTitle">Quick Start</span>
+                </div>
+
+                <div class="install-cmd">
+                    <span class="prefix">$</span>
+                    <span class="text">clawhub install digen-ai-free</span>
+                    <button class="copy-btn" onclick="copyCmd(this)">Copy</button>
+                </div>
+
+                <div class="hero-code-body">
+<span class="comment"># Usage</span>
+<span class="keyword">from</span> digen_ai_client <span class="keyword">import</span> DigenAIClient
+
+client = DigenAIClient(
+    api_key=<span class="string">"YOUR_API_KEY"</span>
+)
+
+<span class="comment"># Image Generation</span>
+result = client.generate_image_sync(
+    prompt=<span class="string">"cyberpunk city, neon lights"</span>,
+    model=<span class="string">"default"</span>,
+    resolution=<span class="string">"1:1"</span>
+)
+
+<span class="comment"># Video Generation (Image-to-Video)</span>
+result = client.generate_video_sync(
+    image_url=<span class="string">"https://example.com/img.jpg"</span>,
+    prompt=<span class="string">"camera pans left"</span>,
+    model=<span class="string">"turbo"</span>
+)
+                </div>
+
+                <div class="api-key-cta">
+                    <h4>🔑 Free API Key</h4>
+                    <p>Get your free API key via Portal, Discord or Telegram</p>
+                    <div style="display: flex; gap: 8px;">
+                        <a href="https://claw.digen.ai" class="btn btn-primary" target="_blank" style="flex:1; justify-content: center;">Portal →</a>
+                        <a href="https://t.me/digen_skill_bot" class="btn btn-telegram" target="_blank" style="flex:1; justify-content: center;">Telegram →</a>
+                        <a href="https://discord.gg/SRhbTt9hwp" class="btn btn-discord" target="_blank" style="flex:1; justify-content: center;">Discord →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commands -->
+    <section class="commands" id="commands">
+        <div class="section-header">
+            <h2 data-i18n="commands.title">Supported Commands</h2>
+            <p data-i18n="commands.subtitle">Powerful AI generation with simple commands</p>
+        </div>
+
+        <div class="commands-grid">
+            <div class="cmd-card">
+                <div class="cmd-card-icon">🖼️</div>
+                <h3 data-i18n="cmd.img.title">Text to Image</h3>
+                <p data-i18n="cmd.img.desc">Input text description, AI generates corresponding images</p>
+                <div class="cmd-example">default model, multiple styles</div>
+            </div>
+
+            <div class="cmd-card">
+                <div class="cmd-card-icon">📐</div>
+                <h3 data-i18n="cmd.size.title">Aspect Ratios</h3>
+                <p data-i18n="cmd.size.desc">Multiple output formats and aspect ratios</p>
+                <div class="cmd-example">1:1 / 16:9 / 9:16 / 4:3 / 3:4 / 21:9</div>
+            </div>
+
+            <div class="cmd-card">
+                <div class="cmd-card-icon">🎬</div>
+                <h3 data-i18n="cmd.video.title">Image to Video</h3>
+                <p data-i18n="cmd.video.desc">Transform static images into dynamic videos — fully working!</p>
+                <div class="cmd-example">model=turbo, 5-10s duration</div>
+            </div>
+
+            <div class="cmd-card">
+                <div class="cmd-card-icon">✍️</div>
+                <h3 data-i18n="cmd.txtvideo.title">Text to Video</h3>
+                <p data-i18n="cmd.txtvideo.desc">Directly generate video from text descriptions (may need credits)</p>
+                <div class="cmd-example">depends on API key credits</div>
+            </div>
+
+            <div class="cmd-card">
+                <div class="cmd-card-icon">🎭</div>
+                <h3 data-i18n="cmd.style.title">Style Control</h3>
+                <p data-i18n="cmd.style.desc">Multiple visual styles: cyberpunk, anime, realistic</p>
+                <div class="cmd-example">anime / cyberpunk / realistic</div>
+            </div>
+
+            <div class="cmd-card">
+                <div class="cmd-card-icon">⚡</div>
+                <h3 data-i18n="cmd.batch.title">Batch Generation</h3>
+                <p data-i18n="cmd.batch.desc">Submit multiple tasks at once for efficiency</p>
+                <div class="cmd-example">batch_size: 4</div>
+            </div>
+        </div>
+
+        <!-- Developer CTA -->
+        <div class="dev-cta" id="build">
+            <h3>🦞 Developer Recruitment</h3>
+            <p>Build AI applications with DigenAI Skill — short drama generators, ad materials, design tools... Get tech support and your free API key via Portal or community.</p>
+            <a href="https://claw.digen.ai" class="btn btn-primary" target="_blank">Get API Key</a>
+        </div>
+    </section>
+
+    <!-- Community -->
+    <section class="community" id="community">
+        <h2 data-i18n="community.title">Join the Community</h2>
+        <p data-i18n="community.desc">Get free API key, exchange ideas with developers, explore AI creation together</p>
+        <div class="community-btns">
+            <a href="https://claw.digen.ai" class="btn btn-primary" target="_blank" style="padding: 16px 32px; font-size: 15px;">
+                🔑 Get Free API Key
+            </a>
+            <a href="https://t.me/digen_skill_bot" class="btn btn-telegram" target="_blank" style="padding: 16px 32px; font-size: 15px;">
+                Telegram
+            </a>
+            <a href="https://discord.gg/SRhbTt9hwp" class="btn btn-discord" target="_blank" style="padding: 16px 32px; font-size: 15px;">
+                💬 Join Discord
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 DigenAI Skill · OpenClaw Ecosystem</p>
+    </footer>
+
+    <div class="toast" id="toast">Copied!</div>
+
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                "nav.commands": "Commands",
+                "nav.build": "Build",
+                "nav.community": "Community",
+                "nav.getKey": "Get Free API Key",
+                "hero.badge": "OpenClaw Skill",
+                "hero.free": "100% FREE",
+                "hero.title1": "AI Image & Video",
+                "hero.title2": "Completely Free",
+                "hero.desc": "High-performance AI image and video generation powered by DigenAI. Zero cost, permanently free. No credit card required.",
+                "hero.cta1": "Get Free API Key",
+                "hero.cta2": "View Commands",
+                "hero.feature1": "Permanent free image generation",
+                "hero.feature2": "Free text-to-video & image-to-video",
+                "hero.feature3": "Multiple output formats supported",
+                "hero.feature4": "CDN acceleration, global fast access",
+                "hero.codeTitle": "Quick Start",
+                "hero.keyDesc": "Get your free API key at https://claw.digen.ai",
+                "hero.keyDiscord": "Telegram Bot →",
+                "commands.title": "Supported Commands",
+                "commands.subtitle": "Powerful AI generation with simple commands",
+                "cmd.img.title": "Text to Image",
+                "cmd.img.desc": "Input text description, AI generates corresponding images",
+                "cmd.size.title": "Aspect Ratios",
+                "cmd.size.desc": "Multiple output formats and aspect ratios",
+                "cmd.video.title": "Image to Video",
+                "cmd.video.desc": "Transform static images into dynamic videos",
+                "cmd.txtvideo.title": "Text to Video",
+                "cmd.txtvideo.desc": "Directly generate video from text descriptions",
+                "cmd.style.title": "Style Control",
+                "cmd.style.desc": "Multiple visual styles: cyberpunk, anime, realistic",
+                "cmd.batch.title": "Batch Generation",
+                "cmd.batch.desc": "Submit multiple tasks at once for efficiency",
+                "dev.title": "🦞 Developer Recruitment",
+                "dev.desc": "Build AI applications with DigenAI Skill - short drama generators, ad materials, design tools... Join our developer community for tech support",
+                "dev.tg": "Developer Group",
+                "dev.discord": "Telegram",
+                "community.title": "Join the Community",
+                "community.desc": "Get free API key, exchange ideas with developers, explore AI creation together",
+                "community.tg": "Get Free Key via Telegram",
+                "community.discord": "Join Discord"
+            },
+            zh: {
+                "nav.commands": "指令",
+                "nav.build": "开发",
+                "nav.community": "社区",
+                "nav.getKey": "免费获取 API Key",
+                "hero.badge": "OpenClaw Skill",
+                "hero.free": "完全免费",
+                "hero.title1": "AI 图片 & 视频",
+                "hero.title2": "完全免费",
+                "hero.desc": "基于 DigenAI 的高性能 AI 图片和视频生成能力。零成本，永久免费，无需信用卡。",
+                "hero.cta1": "免费获取 API Key",
+                "hero.cta2": "查看指令",
+                "hero.feature1": "永久免费的基础图片生成",
+                "hero.feature2": "免费的文生视频、图生视频",
+                "hero.feature3": "多种分辨率和比例可选",
+                "hero.feature4": "CDN 加速，全球极速访问",
+                "hero.codeTitle": "快速开始",
+                "hero.keyDesc": "访问 https://claw.digen.ai 获取免费 API Key",
+                "hero.keyTg": "Telegram",
+                "hero.keyDiscord": "Telegram",
+                "commands.title": "支持的指令",
+                "commands.subtitle": "简单指令，强大 AI 生成能力",
+                "cmd.img.title": "文生图片",
+                "cmd.img.desc": "输入文字描述，AI 生成对应图片",
+                "cmd.size.title": "图片尺寸",
+                "cmd.size.desc": "多种分辨率，适应不同场景",
+                "cmd.video.title": "图生视频",
+                "cmd.video.desc": "将静态图片转换为动态视频",
+                "cmd.txtvideo.title": "文生视频",
+                "cmd.txtvideo.desc": "输入文字描述，AI 直接生成视频",
+                "cmd.style.title": "风格定制",
+                "cmd.style.desc": "多种视觉风格：赛博朋克、动漫、写实",
+                "cmd.batch.title": "批量生成",
+                "cmd.batch.desc": "一次提交多个任务，高效创作",
+                "dev.title": "🦞 开发者招募",
+                "dev.desc": "基于 DigenAI Skill 构建 AI 应用——短剧生成、广告素材、设计工具... 加入开发者社区，获取技术支持",
+                "dev.tg": "开发者群",
+                "dev.discord": "Telegram",
+                "community.title": "加入社区",
+                "community.desc": "免费获取 API Key，与开发者交流，一起探索 AI 创作",
+                "community.tg": "通过 Telegram 领取免费 Key",
+                "community.discord": "加入 Telegram"
+            },
+            ja: {
+                "nav.commands": "コマンド",
+                "nav.build": "開発",
+                "nav.community": "コミュニティ",
+                "nav.getKey": "無料 API Key を取得",
+                "hero.badge": "OpenClaw Skill",
+                "hero.free": "完全無料",
+                "hero.title1": "AI 画像 & 動画",
+                "hero.title2": "完全無料",
+                "hero.desc": "DigenAI による高性能 AI 画像・動画生成。コストゼロ、永続無料。クレジットカード不要。",
+                "hero.cta1": "無料 API Key を取得",
+                "hero.cta2": "コマンドを見る",
+                "hero.feature1": "永久無料の画像生成",
+                "hero.feature2": "無料テキスト→動画、画像→動画",
+                "hero.feature3": "複数の解像度と比率",
+                "hero.feature4": "CDN 加速、グローバル高速アクセス",
+                "hero.codeTitle": "クイックスタート",
+                "hero.keyDesc": "https://claw.digen.ai で無料 API Key を取得",
+                "hero.keyTg": "Telegram",
+                "hero.keyDiscord": "Telegram",
+                "commands.title": "対応コマンド",
+                "commands.subtitle": "シンプルなコマンドで強力な AI 生成",
+                "cmd.img.title": "テキストから画像",
+                "cmd.img.desc": "テキスト説明を入力すると、AI が画像を生成",
+                "cmd.size.title": "アスペクト比",
+                "cmd.size.desc": "様々なシナリオに対応する複数の解像度",
+                "cmd.video.title": "画像から動画",
+                "cmd.video.desc": "静止画を動的な動画に変換",
+                "cmd.txtvideo.title": "テキストから動画",
+                "cmd.txtvideo.desc": "テキスト説明から直接動画を生成",
+                "cmd.style.title": "スタイル制御",
+                "cmd.style.desc": "サイバー パンク、アニメ、リアリスティックなど",
+                "cmd.batch.title": "バッチ生成",
+                "cmd.batch.desc": "複数のタスクを一度に送信",
+                "dev.title": "🦞 デベロッパー募集",
+                "dev.desc": "DigenAI Skill で AI アプリケーションを構築 - 短編ドラマ生成、广告素材、デザイン... 開発者コミュニティに参加",
+                "dev.tg": "開発者グループ",
+                "dev.discord": "Telegram",
+                "community.title": "コミュニティに参加",
+                "community.desc": "無料 API Key を取得、開発者と交流、AI 創作を一緒に探索",
+                "community.tg": "Telegram で無料 Key を取得",
+                "community.discord": "Telegram に参加"
+            },
+            ko: {
+                "nav.commands": "명령어",
+                "nav.build": "개발",
+                "nav.community": "커뮤니티",
+                "nav.getKey": "무료 API Key 받기",
+                "hero.badge": "OpenClaw Skill",
+                "hero.free": "완전 무료",
+                "hero.title1": "AI 이미지 & 비디오",
+                "hero.title2": "완전 무료",
+                "hero.desc": "DigenAI 기반 고성능 AI 이미지 및 비디오 생성. 비용 제로, 영구 무료. 신용카드 필요 없음.",
+                "hero.cta1": "무료 API Key 받기",
+                "hero.cta2": "명령어 보기",
+                "hero.feature1": "영구 무료 이미지 생성",
+                "hero.feature2": "무료 텍스트→비디오, 이미지→비디오",
+                "hero.feature3": "여러 해상도 및 비율",
+                "hero.feature4": "CDN 가속, 글로벌 고속 액세스",
+                "hero.codeTitle": "빠른 시작",
+                "hero.keyDesc": "https://claw.digen.ai에서 무료 API Key 받기",
+                "hero.keyTg": "Telegram",
+                "hero.keyDiscord": "Telegram",
+                "commands.title": "지원 명령어",
+                "commands.subtitle": "간단한 명령으로 강력한 AI 생성",
+                "cmd.img.title": "텍스트 → 이미지",
+                "cmd.img.desc": "텍스트 설명을 입력하면 AI가 이미지를 생성",
+                "cmd.size.title": "종횡비",
+                "cmd.size.desc": "다양한 시나리오를 위한 여러 해상도",
+                "cmd.video.title": "이미지 → 비디오",
+                "cmd.video.desc": "정적 이미지를 동적 비디오로 변환",
+                "cmd.txtvideo.title": "텍스트 → 비디오",
+                "cmd.txtvideo.desc": "텍스트 설명에서 직접 비디오 생성",
+                "cmd.style.title": "스타일 제어",
+                "cmd.style.desc": "사이버펑크, 애니메, 리얼리스틱 등",
+                "cmd.batch.title": "배치 생성",
+                "cmd.batch.desc": "여러 작업을 한 번에 제출",
+                "dev.title": "🦞 개발자 모집",
+                "dev.desc": "DigenAI Skill으로 AI 앱 구축 - 단편 드라마 생성, 광고素材, 디자인 도구... 개발자 커뮤니티에 참여하세요",
+                "dev.tg": "개발자 그룹",
+                "dev.discord": "Telegram",
+                "community.title": "커뮤니티에 참여",
+                "community.desc": "무료 API Key 받기, 개발자와 교류, 함께 AI 창작 탐구",
+                "community.tg": "Telegram으로 무료 Key 받기",
+                "community.discord": "Telegram 참여"
+            },
+            es: {
+                "nav.commands": "Comandos",
+                "nav.build": "Desarrollar",
+                "nav.community": "Comunidad",
+                "nav.getKey": "Obtener API Key gratis",
+                "hero.badge": "OpenClaw Skill",
+                "hero.free": "100% GRATIS",
+                "hero.title1": "IA Imagen & Video",
+                "hero.title2": "Completamente Gratis",
+                "hero.desc": "Generación de imágenes y videos IA de alto rendimiento con DigenAI. Costo cero, permanentemente gratis. Sin tarjeta de crédito.",
+                "hero.cta1": "Obtener API Key gratis",
+                "hero.cta2": "Ver comandos",
+                "hero.feature1": "Generación de imágenes permanentemente gratis",
+                "hero.feature2": "Texto a video e imagen a video gratis",
+                "hero.feature3": "Múltiples resoluciones y proporciones",
+                "hero.feature4": "Aceleración CDN, acceso rápido global",
+                "hero.codeTitle": "Inicio rápido",
+                "hero.keyDesc": "Obtén tu API Key gratis en https://claw.digen.ai",
+                "hero.keyTg": "Telegram",
+                "hero.keyDiscord": "Telegram",
+                "commands.title": "Comandos soportados",
+                "commands.subtitle": "Generación IA potente con comandos simples",
+                "cmd.img.title": "Texto a imagen",
+                "cmd.img.desc": "Ingresa descripción de texto, IA genera imágenes",
+                "cmd.size.title": "Relaciones de aspecto",
+                "cmd.size.desc": "Múltiples resoluciones para diferentes escenarios",
+                "cmd.video.title": "Imagen a video",
+                "cmd.video.desc": "Transforma imágenes estáticas en videos dinámicos",
+                "cmd.txtvideo.title": "Texto a video",
+                "cmd.txtvideo.desc": "Genera video directamente desde descripciones de texto",
+                "cmd.style.title": "Control de estilo",
+                "cmd.style.desc": "Múltiples estilos: cyberpunk, anime, realista",
+                "cmd.batch.title": "Generación por lotes",
+                "cmd.batch.desc": "Envía múltiples tareas a la vez",
+                "dev.title": "🦞 Reclutamiento de desarrolladores",
+                "dev.desc": "Construye apps IA con DigenAI Skill - generadores de dramas, materiales publicitarios, herramientas de diseño...",
+                "dev.tg": "Grupo de desarrolladores",
+                "dev.discord": "Telegram",
+                "community.title": "Únete a la comunidad",
+                "community.desc": "Obtén API Key gratis, intercambia ideas con desarrolladores, explora la creación IA juntos",
+                "community.tg": "Obtener Key gratis por Telegram",
+                "community.discord": "Unirse a Telegram"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLang() {
+            document.getElementById('langDropdown').classList.toggle('show');
+        }
+
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                const lang = opt.dataset.lang;
+                currentLang = lang;
+                document.querySelectorAll('.lang-option').forEach(o => o.classList.remove('active'));
+                opt.classList.add('active');
+                document.querySelector('.current-lang').textContent = opt.textContent.trim().split(' ')[0] + ' ' + lang.toUpperCase();
+                document.getElementById('langDropdown').classList.remove('show');
+                setLanguage(lang);
+            });
+        });
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.lang-selector')) {
+                document.getElementById('langDropdown').classList.remove('show');
+            }
+        });
+
+        function copyCmd(btn) {
+            navigator.clipboard.writeText('clawhub install digen-ai-free').then(() => {
+                btn.textContent = 'Copied!';
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    toast.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

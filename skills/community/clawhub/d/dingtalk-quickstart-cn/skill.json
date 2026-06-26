@@ -1,0 +1,8 @@
+{
+  "name": "dingtalk-quickstart-cn",
+  "version": "1.0.0",
+  "description": "钉钉快速集成配置 - 5分钟连接 OpenClaw 与钉钉，解锁机器人消息、审批流程、智能办公",
+  "author": "yang1002378395-cmyk",
+  "license": "MIT",
+  "keywords": ["dingtalk", "dingding", "enterprise", "robot", "chinese", "openclaw"]
+}

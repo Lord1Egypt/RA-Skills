@@ -1,0 +1,85 @@
+{
+  "_comment": "MCP Tool: create_form - Complete Structured Form Example",
+  "_usage": "This example shows a fully configured structured form with questions, screens, and theme",
+
+  "organizationId": "<your_organization_id>",
+  "userId": "<your_user_id>",
+  "name": "Product Feedback Survey",
+  "type": "structured",
+  "description": "Comprehensive product feedback form with multiple question types",
+  "tone": "professional",
+
+  "welcomeScreen": {
+    "title": "Product Feedback Survey",
+    "message": "Help us improve by sharing your thoughts. This survey takes about 3 minutes.",
+    "callToActionText": "Start Survey",
+    "background": null
+  },
+
+  "questions": [
+    {
+      "key": "overall_satisfaction",
+      "type": "rating",
+      "description": "How satisfied are you with our product overall?",
+      "required": true,
+      "background": null
+    },
+    {
+      "key": "features_used",
+      "type": "multiple-choice",
+      "description": "Which features do you use regularly?",
+      "required": true,
+      "options": [
+        "Dashboard",
+        "Reports",
+        "Integrations",
+        "API Access",
+        "Mobile App"
+      ],
+      "background": null
+    },
+    {
+      "key": "recommendation",
+      "type": "single-choice",
+      "description": "How likely are you to recommend us to a colleague?",
+      "required": true,
+      "options": [
+        "Very likely",
+        "Likely",
+        "Neutral",
+        "Unlikely",
+        "Very unlikely"
+      ],
+      "background": null
+    },
+    {
+      "key": "improvements",
+      "type": "open-ended",
+      "description": "What improvements would you like to see?",
+      "required": false,
+      "background": null
+    },
+    {
+      "key": "contact_email",
+      "type": "open-ended",
+      "description": "Email (optional, for follow-up)",
+      "required": false,
+      "background": null
+    }
+  ],
+
+  "endScreen": {
+    "title": "Thank You!",
+    "message": "Your feedback has been submitted successfully. We appreciate your time and input.",
+    "callToActionText": "Visit Our Website",
+    "callToActionUrl": "https://example.com",
+    "background": null
+  },
+
+  "theme": {
+    "colorBackground": "#ffffff",
+    "colorForeground": "#1a1a1a",
+    "colorPrimary": "#0066cc",
+    "fontFamily": "sans"
+  }
+}

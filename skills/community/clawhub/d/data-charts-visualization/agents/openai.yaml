@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Charts Visualization"
+  short_description: "OpenClaw charting skill with helper-config rendering"
+  default_prompt: "Use $data-charts-visualization to analyze structured data, choose a chart, render it through the helper-config CLI, and guide the user to the config page when they mainly need style tuning."

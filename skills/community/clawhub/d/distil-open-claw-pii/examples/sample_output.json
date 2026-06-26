@@ -1,0 +1,50 @@
+{
+    "redacted_text": "Hi, my name is [PERSON] and I need help with my recent order #ORD-29481.\n\nYou can reach me at [EMAIL] or call me at [PHONE]. I'm a [AGE_YEARS:34]-year-old [MARITAL_STATUS] woman living at [ADDRESS].\n\nMy credit card ending in 4111 1111 1111 1234 was charged twice. My SSN is [SSN] and my patient ID is [UUID]. My IBAN is [IBAN_LAST4:6819].\n\nPlease resolve this as soon as possible. I'm a long-time customer of Acme Corp and I expect better service.\n",
+    "entities": [
+        {
+            "value": "Sarah Johnson",
+            "replacement_token": "[PERSON]",
+            "reason": "person name"
+        },
+        {
+            "value": "sarah.johnson@gmail.com",
+            "replacement_token": "[EMAIL]",
+            "reason": "email address"
+        },
+        {
+            "value": "+1 (415) 555-7823",
+            "replacement_token": "[PHONE]",
+            "reason": "phone number"
+        },
+        {
+            "value": "34",
+            "replacement_token": "[AGE_YEARS:34]",
+            "reason": "age"
+        },
+        {
+            "value": "married",
+            "replacement_token": "[MARITAL_STATUS]",
+            "reason": "marital status"
+        },
+        {
+            "value": "742 Evergreen Terrace, Apt 3B, Springfield, IL 62704",
+            "replacement_token": "[ADDRESS]",
+            "reason": "full address with street and unit number"
+        },
+        {
+            "value": "198-76-5432",
+            "replacement_token": "[SSN]",
+            "reason": "SSN number"
+        },
+        {
+            "value": "MRN-00284713",
+            "replacement_token": "[UUID]",
+            "reason": "patient ID (person-scoped system identifier)"
+        },
+        {
+            "value": "GB29 NWBK 6016 1331 9268 19",
+            "replacement_token": "[IBAN_LAST4:6819]",
+            "reason": "IBAN (keep last-4 only)"
+        }
+    ]
+}

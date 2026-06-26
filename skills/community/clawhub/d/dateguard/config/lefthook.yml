@@ -1,0 +1,41 @@
+# DateGuard -- lefthook configuration
+# Installed by: dateguard hooks install
+# Documentation: https://dateguard.pages.dev/docs/hooks
+#
+# This configuration integrates DateGuard with git hooks via lefthook.
+# Pre-commit: scans staged files for date/time issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    dateguard-check:
+      run: |
+        DATEGUARD_SKILL_DIR="${DATEGUARD_SKILL_DIR:-$HOME/.openclaw/skills/dateguard}"
+        if [[ -f "$DATEGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$DATEGUARD_SKILL_DIR/scripts/patterns.sh"
+          source "$DATEGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_dateguard_check
+        else
+          echo "[DateGuard] Skill not found at $DATEGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Date/time issues detected in staged files!
+        Run 'dateguard scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    dateguard-full-scan:
+      run: |
+        DATEGUARD_SKILL_DIR="${DATEGUARD_SKILL_DIR:-$HOME/.openclaw/skills/dateguard}"
+        if [[ -f "$DATEGUARD_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$DATEGUARD_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[DateGuard] Skill not found at $DATEGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        DateGuard detected date/time quality issues in your codebase.
+        Run 'dateguard scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

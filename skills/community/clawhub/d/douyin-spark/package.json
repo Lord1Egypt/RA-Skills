@@ -1,0 +1,21 @@
+{
+  "name": "openclaw-skill-douyin-spark",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for auto-renewing Douyin spark icons",
+  "main": "douyin-spark.js",
+  "bin": {
+    "douyin-spark": "./douyin-spark.js"
+  },
+  "scripts": {
+    "start": "node douyin-spark.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "douyin",
+    "spark",
+    "automation"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "dreaming-guard-pro",
+  "version": "1.0.0",
+  "description": "Advanced dreaming context manager for OpenClaw - prevents OOM crashes from unlimited context accumulation",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node test/run-tests.js"
+  },
+  "keywords": [
+    "openclaw",
+    "dreaming",
+    "context-manager",
+    "memory-protection",
+    "oom-prevention"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/dreaming-guard-pro.git"
+  }
+}

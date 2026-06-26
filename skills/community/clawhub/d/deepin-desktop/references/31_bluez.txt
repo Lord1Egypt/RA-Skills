@@ -1,0 +1,20 @@
+node / {
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s xml);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.ObjectManager {
+    methods:
+      GetManagedObjects(out a{oa{sa{sv}}} objects);
+    signals:
+      InterfacesAdded(o object,
+                      a{sa{sv}} interfaces);
+      InterfacesRemoved(o object,
+                        as interfaces);
+    properties:
+  };
+  node org {
+  };
+};

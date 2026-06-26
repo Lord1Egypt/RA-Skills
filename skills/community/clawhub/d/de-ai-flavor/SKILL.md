@@ -1,35 +1,94 @@
 ---
-name: "de-ai-flavor"
-description: "检查并优化中文文章的AI翻译腔，让文本更自然"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/de-ai-flavor"
-sourceUrl: "https://clawhub.ai/skills/de-ai-flavor"
+name: de-ai-flavor
+description: 检查并优化中文文章的AI翻译腔，让文本更自然
+argument-hint: <file-path> (要检查的中文 Markdown 文件路径)
 ---
 
-# de-ai-flavor
+# 去AI味
 
-> 检查并优化中文文章的AI翻译腔，让文本更自然
+检查中文文章中的 AI 翻译腔，给出修改建议并直接优化。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/de-ai-flavor`
-- **Source URL:** [https://clawhub.ai/skills/de-ai-flavor](https://clawhub.ai/skills/de-ai-flavor)
+## 输入
 
-## Overview
+`{ARGUMENT}` 是要检查的文件路径。如果为空，询问用户提供文件路径。
 
+## 检测规则
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/de-ai-flavor
+逐段扫描文章，检测以下 4 类 AI 翻译腔：
+
+### 规则 1：物理动作动词形容思维
+
+用物理动作来描述抽象思维过程，是英文直译的典型痕迹。
+
+**常见问题词：** 接住、击穿、拆解、锋利、打通、抓住、落地、深耕、赋能、抓手、沉淀、闭环、拉齐、对齐（作动词用时）、链路、痛点、颗粒度
+
+**修改方式：** 换成直接的中文表达，或删掉。
+- "拆解这个问题" → "分析这个问题"
+- "打通全链路" → "完成全部流程"
+- "赋能开发者" → "帮开发者"
+
+### 规则 2：形容词预判 + 冒号
+
+先给一个主观评价，再用冒号展开内容。AI 特别爱用这种结构。
+
+**典型模式：**
+- "X 很简单："
+- "X 有几个亮点："
+- "X 最让人印象深刻的是："
+- "X 的核心理念是："
+- "X 清晰分层："
+
+**修改方式：** 删掉评价部分，直接展开内容。
+- "SDK 的架构清晰分层：" → "SDK 的架构分了几层："
+- "就这么简单。`prompt()` 是阻塞式的" → "`prompt()` 是阻塞式的"
+- "这是最让人印象深刻的特性之一" → 直接说内容
+
+### 规则 3：抽象名词主语 + 形容词结论
+
+用抽象名词做主语，配上一个形容词结论，看起来高级但空洞。
+
+**典型模式：**
+- "X 的设计哲学不是 A 而是 B"
+- "X 为 Y 生态带来了一套完整的 Z"
+- "X 提供了一套生产级别的 Y"
+- "这些是在构建 Z 时必不可少的基础设施"
+
+**修改方式：** 换成具体描述，或直接说结论。
+- "它的设计哲学不是做一个简单的封装，而是提供一套生产级别的运行时" → "它提供的不只是 LLM API 的一层封装"
+- "值得一试" → "可以 clone 下来跑跑看"（给具体动作）
+
+### 规则 4：不必要的英文混入
+
+中英文夹杂在技术文章中有时必要，但有些混入是多余的。
+
+**判断标准：** 如果有对应的中文名称且读者普遍熟悉，就不需要英文。
+- "Interface" → "接口"（如果上下文都是中文）
+- "Leverage" → 直接用中文
+
+**注意：** 技术术语保留英文是正常的（API、SDK、LLM、Agent、MCP 等），不要过度修改。
+
+## 执行流程
+
+1. **读取文件**：读取 `{ARGUMENT}` 指定的文件
+2. **逐段扫描**：按上面 4 条规则逐段检查，记录所有问题
+3. **汇报问题**：列出发现的问题，按规则分类，每条给出原文和修改建议
+4. **应用修改**：直接修改文件
+5. **显示 diff**：用 git diff 展示改动，让用户确认
+
+## 输出格式
+
+先汇报问题，格式如下：
+
 ```
+规则 X：<规则名称>
+- 第 N 段："原文片段" → 建议改为："修改后"
+```
+
+然后直接应用修改，最后显示 diff。
+
+## 注意事项
+
+- 只修改有问题的句子，不要改写没有 AI 味的正常内容
+- 技术术语的英文保留不动
+- 保持文章原有的结构和排版
+- 如果文章几乎没有 AI 味，直接告诉用户"这篇文章没什么 AI 味，不需要改"

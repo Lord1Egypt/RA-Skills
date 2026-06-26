@@ -1,0 +1,25 @@
+{
+  "name": "decision-journal",
+  "version": "1.0.0",
+  "description": "Record, track, and analyze personal or professional decisions with structured reflection",
+  "main": "src/index.js",
+  "bin": {
+    "decision": "./scripts/cli.js"
+  },
+  "scripts": {
+    "test": "node scripts/cli.js --help"
+  },
+  "keywords": [
+    "decision",
+    "journal",
+    "reflection",
+    "tracking",
+    "analysis"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

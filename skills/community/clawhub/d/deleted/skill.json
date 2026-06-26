@@ -1,0 +1,64 @@
+{
+  "name": "bee-languages-get",
+  "description": "The list of enabled website languages on the Bee Website Builder platform, used for language filtering, dropdown linkage, and as a dependency data source for other skills.",
+  "version": "2.0.4",
+  "input": {
+    "type": "object",
+    "properties": {
+      "api_key": {
+        "type": "string",
+        "description": "API_KEY is the secure credential used for API authentication. It identifies the caller and controls interface access permissions. Please obtain it from the developer platform at https://open.tradew.com before use."
+      },
+      "required": [
+        "api_key"
+      ]
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "boolean",
+        "description": "Request status. `true` indicates success and `false` indicates failure."
+      },
+      "msg": {
+        "type": "string",
+        "description": "Response message"
+      },
+      "data": {
+        "type": [ "object", "null" ],
+        "description": "Returned result",
+        "properties": {
+          "list": {
+            "type": "array",
+            "description": "List of enabled website languages",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Language name (for display)"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "Site language code identifier (for API use)"
+                }
+              },
+              "required": [
+                "name",
+                "language"
+              ]
+            }
+          }
+        },
+        "required": [
+          "list"
+        ]
+      }
+    },
+    "required": [
+      "status",
+      "msg"
+    ]
+  }
+}

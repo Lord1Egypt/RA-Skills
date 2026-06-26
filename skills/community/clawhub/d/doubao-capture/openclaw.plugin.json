@@ -1,0 +1,10 @@
+{
+  "id": "doubao-capture",
+  "name": "Doubao Capture",
+  "version": "1.0.0",
+  "description": "Capture Doubao translation results with auto-scroll and auto-end detection.",
+  "tools": [
+    "capture_translation"
+  ],
+  "entry": "/mnt/h/AI/openclaw_workspace/video_translate/skills/capture_doubao_scroll_v2.py"
+}

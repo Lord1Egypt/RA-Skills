@@ -1,0 +1,34 @@
+{
+  "name": "douyin-text-extractor",
+  "version": "1.0.0",
+  "description": "抖音文案提取工具 - 从抖音分享链接提取无水印视频并 AI 识别语音文案",
+  "main": "src/douyin_extractor.py",
+  "scripts": {
+    "test": "python tests/test_extractor.py",
+    "start": "python src/douyin_extractor.py"
+  },
+  "keywords": [
+    "抖音",
+    "文案提取",
+    "语音识别",
+    "硅基流动",
+    "无水印视频",
+    "短视频",
+    "douyin",
+    "tiktok"
+  ],
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills/tree/main/douyin-text-extractor"
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "requests": "*",
+    "ffmpeg-python": "*"
+  },
+  "systemRequirements": {
+    "ffmpeg": "Required for audio/video processing"
+  }
+}

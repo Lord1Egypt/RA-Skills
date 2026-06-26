@@ -1,0 +1,27 @@
+{
+  "name": "deepresearchwork-forme",
+  "version": "1.0.0",
+  "description": "个人深度产研报告生成器 - 自动化研究、优化、可视化完整工作流",
+  "author": "QClaw",
+  "license": "MIT",
+  "keywords": ["research", "report", "markdown", "mermaid", "automation"],
+  "category": "productivity",
+  "dependencies": {
+    "skills": ["deepresearchwork", "markdown-formatter"],
+    "tools": ["@mermaid-js/mermaid-cli"]
+  },
+  "config": {
+    "mermaid": {
+      "width": 1200,
+      "height": 800,
+      "background": "transparent",
+      "outputFormat": "png"
+    },
+    "report": {
+      "includeTOC": true,
+      "includeDisclaimer": true,
+      "dateFormat": "YYYY-MM-DD",
+      "language": "zh-CN"
+    }
+  }
+}

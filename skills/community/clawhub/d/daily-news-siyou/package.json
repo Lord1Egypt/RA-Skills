@@ -1,0 +1,12 @@
+{
+  "name": "daily-news-skill",
+  "version": "1.0.0",
+  "description": "自定义新闻类型，自动从互联网抓取最新消息，语音播报",
+  "author": "司幼 (SiYou)",
+  "license": "MIT",
+  "tags": ["news", "broadcast", "feishu", "voice", "tts", "chinese"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/daily-news-skill"
+  }
+}

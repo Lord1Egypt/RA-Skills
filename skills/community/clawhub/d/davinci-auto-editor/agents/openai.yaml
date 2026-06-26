@@ -1,0 +1,4 @@
+interface:
+  display_name: "DaVinci Auto Editor"
+  short_description: "Pure Node EDL package generator for Resolve."
+  default_prompt: "Use this skill to scan local media, request a cloud editing plan, and generate a Resolve-importable EDL package with pure Node."

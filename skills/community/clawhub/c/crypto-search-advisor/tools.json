@@ -1,0 +1,89 @@
+{
+  "tools": [
+    {
+      "name": "search_crypto_info",
+      "description": "联网搜索加密货币实时行情、新闻、宏观数据。【必须传入真实价格】当用户询问币价时，Agent 必须先通过搜索获取真实价格，然后调用此工具时传入 --real-min 和 --real-max，禁止留空。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "币种符号，如 BTC、ETH、DOGE"
+          },
+          "query_type": {
+            "type": "string",
+            "enum": ["price", "news", "analysis", "macro", "onchain"],
+            "description": "搜索意图类型"
+          },
+          "real_min": {
+            "type": "number",
+            "description": "【必填】搜索到的真实最低价，如 77800。禁止传 0 或空。"
+          },
+          "real_max": {
+            "type": "number",
+            "description": "【必填】搜索到的真实最高价，如 78200。禁止传 0 或空。"
+          }
+        },
+        "required": ["symbol", "real_min", "real_max"]
+      }
+    },
+    {
+      "name": "analyze_screenshot",
+      "description": "分析用户上传的交易所APP截图，提取价格、K线形态、指标。【必须传入真实价格】Agent 必须先通过图像识别获取截图中的真实价格，然后调用此工具时传入 --real-price，禁止留空。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_url": {
+            "type": "string",
+            "description": "用户上传截图的URL或base64"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "币种符号，用于分类路由"
+          },
+          "user_claimed_timeframe": {
+            "type": "string",
+            "description": "用户声称的时间周期（1h/4h/日线等），可选"
+          },
+          "real_price": {
+            "type": "number",
+            "description": "【必填】图像识别到的真实价格，如 78146。禁止传 0 或空。"
+          }
+        },
+        "required": ["image_url", "symbol", "real_price"]
+      }
+    },
+    {
+      "name": "classify_coin",
+      "description": "币种自动分类（稳定币/主流币/Meme币）。当用户提及加密货币时第一步调用。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "symbol_or_name": {
+            "type": "string",
+            "description": "币种符号或中文名"
+          },
+          "price": {
+            "type": "number",
+            "description": "截图识别到的价格，可选"
+          }
+        },
+        "required": ["symbol_or_name"]
+      }
+    },
+    {
+      "name": "detect_trade_intent",
+      "description": "检测用户消息是否包含交易操作意图。如果命中，直接拒绝不执行后续分析。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_message": {
+            "type": "string",
+            "description": "用户原始输入"
+          }
+        },
+        "required": ["user_message"]
+      }
+    }
+  ]
+}

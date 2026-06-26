@@ -1,35 +1,34 @@
----
-name: "网络安全新闻持序迭代"
-description: "提供基于权威源的国内外网络安全新闻查询，涵盖公司动态、事件、漏洞、政策、产品及AI应用，按报道数量排序展示。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cybersecuritynews"
-sourceUrl: "https://clawhub.ai/skills/cybersecuritynews"
----
+# 网络安全新闻查询标准化Skills（纯文本版）
 
-# 网络安全新闻持序迭代
+一、新闻查询源与范围（按查询优先级排序，每个分类均明确对应站点名称及官方链接）
 
-> 提供基于权威源的国内外网络安全新闻查询，涵盖公司动态、事件、漏洞、政策、产品及AI应用，按报道数量排序展示。
+1. 国内网络安全公司动态（涵盖融资、违规处罚、1000万以上中标事件）：查询源包括安全内参（https://www.secrss.com）、中国政府采购网（https://www.ccgp.gov.cn）、财新网科技（https://tech.caixin.com）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cybersecuritynews`
-- **Source URL:** [https://clawhub.ai/skills/cybersecuritynews](https://clawhub.ai/skills/cybersecuritynews)
+2. 国内外网络安全并购/重组动态：查询源包括SecurityWeek（https://www.securityweek.com）、虎符智库（https://www.hufuzhiku.com）。
 
-## Overview
+3. 核心网络安全事件（涵盖高影响力攻击事件、数据泄露、漏洞曝光等典型事件）：查询源包括国家网络安全通报中心（https://www.cac.gov.cn/jgsj/wxtb）、CNVD（https://www.cnvd.org.cn）、安全客（https://www.anquanke.com）。
 
+4. 高危漏洞（优先统计国内软件/组件漏洞，需满足影响范围大、威胁性大、已被利用其中一项）：查询源包括CNVD（https://www.cnvd.org.cn）、国家网络安全通报中心（https://www.cac.gov.cn/jgsj/wxtb）。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cybersecuritynews
-```
+5. 网络安全政策法规/标准更新（涵盖中外最新出台、修订、落地的政策、法规、行业标准及监管要求）：查询源包括国家网信办（https://www.cac.gov.cn）、工信部（https://www.miit.gov.cn）、NIST（https://www.nist.gov）。
+
+6. 网络安全产品新概念（必须包含EASM外部攻击面管理相关内容，同时补充其他前沿产品概念）：查询源包括Gartner（https://www.gartner.com）、安全牛（https://www.aqniu.com）。
+
+7. AI技术在网络安全产品中的应用（聚焦具体产品类型，体现实际应用场景、赋能功能及落地效果）：查询源包括奇安信（https://www.qianxin.com）、深信服（https://www.sangfor.com.cn）。
+
+二、排序要求
+
+同一分类下的新闻，严格按照该新闻被本Skills指定查询源报道的网站数量，从多到少排序；若报道数量一致，按查询源优先级排序。
+
+三、新闻固定输出格式（每条新闻需完整包含以下5项内容，不得遗漏，其中新闻简述控制在100字以内）
+
+1. 新闻简述：简要概括新闻核心内容，语言简洁、重点突出，字数不超过100字。
+
+2. 报道该新闻的网站列表：逐条列出所有报道该新闻的指定查询源，每条需明确标注站点名称及对应官方链接，格式为“- 站点名称：XXX，链接：XXX”。
+
+3. 出现网站总数：明确标注该新闻被本Skills指定查询源报道的总数量。
+
+4. 本条新闻展示链接：选取报道该新闻的其中一个权威链接作为展示链接（优先选取查询源优先级高的站点链接）。
+
+5. 本条新闻来源站点：明确标注本条展示链接对应的站点名称。
+> （注：文档部分内容可能由 AI 生成）

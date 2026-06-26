@@ -1,0 +1,21 @@
+# DocCoverage -- lefthook configuration
+# Installed by: doccoverage hooks install
+# Documentation: https://doccoverage.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    doccoverage-doc-scan:
+      run: |
+        DOCCOVERAGE_SKILL_DIR="${DOCCOVERAGE_SKILL_DIR:-$HOME/.openclaw/skills/doccoverage}"
+        if [[ -f "$DOCCOVERAGE_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$DOCCOVERAGE_SKILL_DIR/scripts/patterns.sh"
+          source "$DOCCOVERAGE_SKILL_DIR/scripts/analyzer.sh"
+          hook_doccoverage_scan
+        else
+          echo "[DocCoverage] Skill not found at $DOCCOVERAGE_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Documentation gaps detected in staged files!
+        Run 'doccoverage scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

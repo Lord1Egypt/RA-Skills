@@ -1,35 +1,233 @@
 ---
-name: "人格修行系统 Daily Cultivation"
-description: "人格修行系统 - 每天10分钟，晨间智慧，晚上记录精进，持续修炼更好的自己。触发场景：用户提到"晨语"、"晚复盘"、"美德修炼"、"人格修行"、"每日反思"、"大师语录"，或需要定时发送晨间/晚间提醒时使用此 Skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-cultivation"
-sourceUrl: "https://clawhub.ai/skills/daily-cultivation"
+name: daily-cultivation
+description: 人格修行系统 - 每天10分钟，晨间智慧，晚上记录精进，持续修炼更好的自己。触发场景：用户提到"晨语"、"晚复盘"、"美德修炼"、"人格修行"、"每日反思"、"大师语录"，或需要定时发送晨间/晚间提醒时使用此 Skill。
 ---
 
-# 人格修行系统 Daily Cultivation
+# 人格修行系统 (Daily Cultivation)
 
-> 人格修行系统 - 每天10分钟，晨间智慧，晚上记录精进，持续修炼更好的自己。触发场景：用户提到"晨语"、"晚复盘"、"美德修炼"、"人格修行"、"每日反思"、"大师语录"，或需要定时发送晨间/晚间提醒时使用此 Skill。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-cultivation`
-- **Source URL:** [https://clawhub.ai/skills/daily-cultivation](https://clawhub.ai/skills/daily-cultivation)
+人格修行系统是一套每日自我修炼的完整流程：
 
-## Overview
+- **晨间**：接收大师智慧 + 美德提醒（输入）
+- **晚间**：自我复盘 + 美德践行（输出）
 
+通过日积月累的循环修炼，持续成为更强大、更稳定、更有影响力的自己。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-cultivation
+---
+
+## 核心功能
+
+### 1. 晨语生成与发送
+
+**触发**：每天定时（默认 08:00）或用户请求"发晨语"
+
+**内容组成**：
+- 信息流宪法
+- 今日美德（13周轮转）
+- 大师智慧（从语录库抽取，每日不重复）
+- 美德寄语
+
+**执行流程**：
+1. 读取 `virtue-status.md` 获取当前美德
+2. 从 `quotes/*.md` 抽取各大师语录
+3. 使用 `morning-template.md` 生成内容
+4. 发送到配置的渠道
+
+### 2. 晚复盘生成与发送
+
+**触发**：每天定时（默认 21:00）或用户请求"发晚复盘"
+
+**内容组成**：
+- 信息流宪法检查
+- 生理地基复盘（睡眠、运动、饮食）
+- 神经控制复盘（冲动控制）
+- 微善系统复盘
+- 美德践行打分
+- 今日产出与感悟
+
+**执行流程**：
+1. 读取 `virtue-status.md` 获取当前美德
+2. 使用 `evening-template.md` 生成内容
+3. 发送到配置的渠道
+4. 可选：保存复盘到 Obsidian vault
+
+### 3. 语录库管理
+
+**更新频率**：每周一次
+
+**支持的大师数量**：最多 6 位
+
+**语录格式**：见 `references/config-guide.md`
+
+### 4. 美德轮转
+
+**系统支持**：
+- 默认：富兰克林 13 美德
+- 自定义：用户可定义自己的美德体系
+
+**配置选项**：
+- 美德数量：自由定义（建议 4-13 个）
+- 美德名称：自定义
+- 美德定义：自定义
+- 循环周期：自动计算（美德数量 = 周数）
+
+**轮转逻辑**：
+- 每周一自动切换到下一项美德
+- 更新 `virtue-status.md` 中的状态
+
+### 5. 晚复盘自动存档
+
+**功能**：用户完成晚复盘后，自动保存到本地
+
+**推荐**：结合 Obsidian 使用
+
+**存档路径**：`{vault}/每晚复盘/{YYYY-MM-DD}-晚复盘.md`
+
+**价值**：
+- 形成个人修炼库
+- 长期追踪成长轨迹
+- 可回顾、可搜索、可分析
+
+---
+
+## 初始化流程
+
+首次使用时，引导用户完成以下配置：
+
+### Step 1: 确认配置路径
+
 ```
+"你的配置文件想放在哪里？"
+建议：Obsidian vault 或指定工作目录
+```
+
+### Step 2: 选择大师
+
+```
+"你想追随哪些大师的智慧？最多6位。"
+可选预设：段永平、富兰克林、万维钢、冯仑、乔布斯、吴军
+或自定义
+```
+
+### Step 3: 设置美德体系
+
+```
+"使用富兰克林13美德，还是自定义？"
+```
+
+### Step 4: 配置定时
+
+```
+"晨语几点发送？（默认08:00）"
+"晚复盘几点发送？（默认22:00）"
+```
+
+### Step 5: 选择渠道
+
+```
+"发送到哪个平台？"
+支持：飞书、Discord、Telegram 等
+```
+
+### Step 6: 配置 Cron
+
+根据用户选择，自动配置 OpenClaw Cron 任务：
+
+```yaml
+cron:
+  - name: morning-wisdom
+    schedule: "0 8 * * *"
+    action: "发送晨语"
+    skill: daily-cultivation
+
+  - name: evening-reflection
+    schedule: "0 21 * * *"
+    action: "发送晚复盘"
+    skill: daily-cultivation
+```
+
+---
+
+## 配置文件
+
+主配置文件：`daily-cultivation-config.yaml`
+
+详细配置说明见：`references/config-guide.md`
+
+示例配置见：`assets/config.yaml.example`
+
+---
+
+## 美德体系
+
+富兰克林 13 美德定义见：`references/franklin-virtues.md`
+
+用户可自定义美德体系（最多 13 项）。
+
+---
+
+## 模板文件
+
+- 晨语模板：`assets/morning-template.md`
+- 晚复盘模板：`assets/evening-template.md`
+
+---
+
+## 语录库结构
+
+```
+quotes/
+├── 段永平.md
+├── 富兰克林.md
+├── 万维钢.md
+├── 冯仑.md
+├── 乔布斯.md
+└── 吴军.md
+```
+
+每位大师语录文件格式：
+
+```markdown
+# [大师名]语录
+
+## 语录列表
+
+1. **第一条语录内容。**（来源）
+2. **第二条语录内容。**（来源）
+...
+
+## 已发送记录
+
+| 日期 | 语录编号 |
+|:---|:---:|
+| 2026-04-14 | 1, 5, 8 |
+```
+
+---
+
+## 手动触发
+
+用户可以说：
+- "发晨语"
+- "发晚复盘"
+- "更新语录库"
+- "切换到下一周美德"
+
+---
+
+## 数据追踪
+
+系统自动追踪：
+- 已发送的晨语/晚复盘日期
+- 每位大师语录的使用记录（避免重复）
+- 美德轮转进度
+
+---
+
+## 扩展性
+
+- **自定义大师**：用户可添加自己的大师语录
+- **自定义美德**：支持自定义美德体系
+- **多渠道发送**：支持飞书、Discord、Telegram 等
+- **复盘存档**：可保存到 Obsidian vault

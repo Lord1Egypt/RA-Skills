@@ -1,0 +1,655 @@
+{
+  "version": "2.0.0",
+  "description": "窗口查找别名映射表 - 覆盖开发、教育、销售、影视、音乐、自媒体6大行业",
+  "aliases": {
+    "_meta": {
+      "industries": ["开发", "教育", "销售", "影视", "音乐", "自媒体"],
+      "totalApps": 150
+    },
+
+    "=== 开发行业 (30+) ===": {},
+    "VS Code": {
+      "keywords": ["code", "vscode", "vs code", "visual studio code", "vs编辑器"],
+      "processes": ["Code"]
+    },
+    "Visual Studio": {
+      "keywords": ["vs", "visual studio", "devenv", "vs ide", "微软ide"],
+      "processes": ["devenv"]
+    },
+    "IntelliJ IDEA": {
+      "keywords": ["idea", "intellij", "ij", "jetbrains ide", "java ide"],
+      "processes": ["idea64", "idea"]
+    },
+    "PyCharm": {
+      "keywords": ["pycharm", "py", "python ide", "jetbrains python"],
+      "processes": ["pycharm64", "pycharm"]
+    },
+    "WebStorm": {
+      "keywords": ["webstorm", "ws", "jetbrains web", "前端ide", "web ide"],
+      "processes": ["webstorm64", "webstorm"]
+    },
+    "GoLand": {
+      "keywords": ["goland", "go ide", "golang ide", "jetbrains go"],
+      "processes": ["goland64", "goland"]
+    },
+    "CLion": {
+      "keywords": ["clion", "c ide", "cpp ide", "c++ ide", "jetbrains c"],
+      "processes": ["clion64", "clion"]
+    },
+    "Rider": {
+      "keywords": ["rider", "csharp ide", "dotnet ide", "jetbrains rider"],
+      "processes": ["rider64", "rider"]
+    },
+    "DataGrip": {
+      "keywords": ["datagrip", "database ide", "sql ide", "jetbrains db"],
+      "processes": ["datagrip64", "datagrip"]
+    },
+    "Android Studio": {
+      "keywords": ["android studio", "as", "安卓开发", "android ide"],
+      "processes": ["studio64", "studio"]
+    },
+    "Xcode": {
+      "keywords": ["xcode", "苹果开发", "ios ide", "mac开发"],
+      "processes": ["Xcode"]
+    },
+    "Sublime Text": {
+      "keywords": ["sublime", "st", "sublime text", "subl"],
+      "processes": ["sublime_text"]
+    },
+    "Notepad++": {
+      "keywords": ["notepad++", "npp", "notepadplus", "文本编辑器"],
+      "processes": ["notepad++"]
+    },
+    "Cursor": {
+      "keywords": ["cursor", "cursor ide", "ai ide", "cursor editor"],
+      "processes": ["Cursor"]
+    },
+    "Trae": {
+      "keywords": ["trae", "trae ide", "字节ide", "byteide"],
+      "processes": ["Trae"]
+    },
+    "Docker Desktop": {
+      "keywords": ["docker", "docker desktop", "容器", "container"],
+      "processes": ["Docker Desktop"]
+    },
+    "Postman": {
+      "keywords": ["postman", "api", "接口测试", "api工具"],
+      "processes": ["Postman"]
+    },
+    "Apifox": {
+      "keywords": ["apifox", "api文档", "接口管理", "国产postman"],
+      "processes": ["Apifox"]
+    },
+    "Navicat": {
+      "keywords": ["navicat", "数据库工具", "mysql工具", "db工具"],
+      "processes": ["navicat"]
+    },
+    "DBeaver": {
+      "keywords": ["dbeaver", "数据库客户端", "sql客户端", "开源db工具"],
+      "processes": ["dbeaver"]
+    },
+    "GitHub Desktop": {
+      "keywords": ["github desktop", "git gui", "github客户端"],
+      "processes": ["GitHubDesktop"]
+    },
+    "SourceTree": {
+      "keywords": ["sourcetree", "git工具", "版本控制gui"],
+      "processes": ["SourceTree"]
+    },
+    "VMware Workstation": {
+      "keywords": ["vmware", "虚拟机", "vm", "workstation"],
+      "processes": ["vmware", "vmware-vmx"]
+    },
+    "VirtualBox": {
+      "keywords": ["virtualbox", "vbox", "虚拟机", "oracle vm"],
+      "processes": ["VirtualBoxVM", "VirtualBox"]
+    },
+    "Windows Terminal": {
+      "keywords": ["wt", "terminal", "windows terminal", "终端", "微软终端"],
+      "processes": ["WindowsTerminal"]
+    },
+    "PowerShell": {
+      "keywords": ["powershell", "ps", "pwsh", "posh"],
+      "processes": ["powershell", "pwsh"]
+    },
+    "Jupyter Notebook": {
+      "keywords": ["jupyter", "jupyter notebook", "ipython", "数据科学"],
+      "processes": ["jupyter-notebook"]
+    },
+    "Anaconda": {
+      "keywords": ["anaconda", "conda", "python环境", "数据科学平台"],
+      "processes": ["anaconda-navigator"]
+    },
+    "FileZilla": {
+      "keywords": ["filezilla", "ftp", "sftp", "文件传输"],
+      "processes": ["filezilla"]
+    },
+    "Xshell": {
+      "keywords": ["xshell", "ssh", "远程连接", "服务器终端"],
+      "processes": ["Xshell"]
+    },
+
+    "=== 教育行业 (25+) ===": {},
+    "钉钉": {
+      "keywords": ["钉钉", "dingding", "ding", "阿里钉钉", "dd"],
+      "processes": ["DingTalk", "钉钉"]
+    },
+    "腾讯会议": {
+      "keywords": ["腾讯会议", "tencent meeting", "vooV", "txhy", "wemeet"],
+      "processes": ["wemeetapp", "腾讯会议"]
+    },
+    "ClassIn": {
+      "keywords": ["classin", "class in", "在线教室", "classin上课"],
+      "processes": ["ClassIn"]
+    },
+    "Zoom": {
+      "keywords": ["zoom", "zoom meeting", "视频会议"],
+      "processes": ["Zoom"]
+    },
+    "希沃白板": {
+      "keywords": ["希沃", "seewo", "希沃白板", "en5", "课件"],
+      "processes": ["EasiNote"]
+    },
+    "雨课堂": {
+      "keywords": ["雨课堂", "rainclassroom", "清华雨课堂"],
+      "processes": ["RainClassroom"]
+    },
+    "学习通": {
+      "keywords": ["学习通", "chaoxing", "超星", "超星学习通"],
+      "processes": ["学习通"]
+    },
+    "智慧树": {
+      "keywords": ["智慧树", "zhihuishu", "知到", "网课"],
+      "processes": ["智慧树"]
+    },
+    "腾讯课堂": {
+      "keywords": ["腾讯课堂", "tencent classroom", "txkt"],
+      "processes": ["腾讯课堂"]
+    },
+    "网易云课堂": {
+      "keywords": ["网易云课堂", "163 study", "网易课堂"],
+      "processes": ["网易云课堂"]
+    },
+    "中国大学MOOC": {
+      "keywords": ["mooc", "中国大学mooc", "慕课", "icourse"],
+      "processes": ["中国大学MOOC"]
+    },
+    "WPS Office": {
+      "keywords": ["wps", "金山办公", "wps office", "国产office"],
+      "processes": ["wps", "et", "wpp"]
+    },
+    "Microsoft Office": {
+      "keywords": ["office", "microsoft office", "word", "excel", "ppt", "ms office"],
+      "processes": ["WINWORD", "EXCEL", "POWERPNT"]
+    },
+    "XMind": {
+      "keywords": ["xmind", "思维导图", "mindmap", "脑图"],
+      "processes": ["XMind", "XMind ZEN"]
+    },
+    "MindMaster": {
+      "keywords": ["mindmaster", "亿图脑图", "edraw mind"],
+      "processes": ["MindMaster"]
+    },
+    "有道词典": {
+      "keywords": ["有道词典", "youdao", "youdao dict", "翻译"],
+      "processes": ["YoudaoDict"]
+    },
+    "欧路词典": {
+      "keywords": ["欧路词典", "eudic", "frhelper", "法语助手"],
+      "processes": ["eudic"]
+    },
+    "GeoGebra": {
+      "keywords": ["geogebra", "几何画板", "数学工具", "图形计算器"],
+      "processes": ["GeoGebra"]
+    },
+    "MATLAB": {
+      "keywords": ["matlab", "矩阵实验室", "数学软件", "工程计算"],
+      "processes": ["MATLAB"]
+    },
+    "知云文献翻译": {
+      "keywords": ["知云", "zhiyun", "文献翻译", "pdf翻译"],
+      "processes": ["知云文献翻译"]
+    },
+    "CAJViewer": {
+      "keywords": ["caj", "cajviewer", "知网阅读器", "caj阅读"],
+      "processes": ["CAJViewer"]
+    },
+    "超星阅读器": {
+      "keywords": ["超星阅读器", "ssreader", "pdg阅读"],
+      "processes": ["SSReader"]
+    },
+    "EndNote": {
+      "keywords": ["endnote", "文献管理", "参考文献", "文献引用"],
+      "processes": ["EndNote"]
+    },
+    "Zotero": {
+      "keywords": ["zotero", "开源文献管理", "文献工具"],
+      "processes": ["zotero"]
+    },
+
+    "=== 销售行业 (25+) ===": {},
+    "企业微信": {
+      "keywords": ["企微", "企业微", "qiwei", "qiyou", "wechatwork", "wecom", "wxwork"],
+      "processes": ["WXWork", "WeMail", "企业微信"]
+    },
+    "飞书": {
+      "keywords": ["飞书", "feishu", "lark", "字节飞书", "lark office"],
+      "processes": ["Lark", "飞书"]
+    },
+    "纷享销客": {
+      "keywords": ["纷享销客", "fxiaoke", "纷享", "移动crm"],
+      "processes": ["fxiaoke"]
+    },
+    "销售易": {
+      "keywords": ["销售易", "xiaoshouyi", "xSY", "crm"],
+      "processes": ["销售易"]
+    },
+    "Salesforce": {
+      "keywords": ["salesforce", "sf", "sales cloud", "crm"],
+      "processes": ["Salesforce"]
+    },
+    "HubSpot": {
+      "keywords": ["hubspot", "营销自动化", "crm", "inbound"],
+      "processes": ["HubSpot"]
+    },
+    "Microsoft Dynamics": {
+      "keywords": ["dynamics", "dynamics 365", "微软crm", "ms dynamics"],
+      "processes": [ "Dynamics"]
+    },
+    "金蝶": {
+      "keywords": ["金蝶", "kingdee", "金蝶云", "k3", "eas"],
+      "processes": ["Kingdee"]
+    },
+    "用友": {
+      "keywords": ["用友", "yonyou", "nc", "u8", "畅捷通"],
+      "processes": ["用友"]
+    },
+    "管家婆": {
+      "keywords": ["管家婆", "gjp", "进销存", "财务软件"],
+      "processes": ["管家婆"]
+    },
+    "红圈CRM": {
+      "keywords": ["红圈", "红圈crm", "hecom", "和创"],
+      "processes": ["红圈CRM"]
+    },
+    "Teambition": {
+      "keywords": ["teambition", "tb", "阿里项目", "项目管理"],
+      "processes": ["Teambition"]
+    },
+    "Tower": {
+      "keywords": ["tower", "tower项目管理", "tower.im"],
+      "processes": ["Tower"]
+    },
+    "禅道": {
+      "keywords": ["禅道", "zentao", "项目管理", "bug管理"],
+      "processes": ["ZenTao"]
+    },
+    "Outlook": {
+      "keywords": ["outlook", "邮件", "邮箱", "microsoft mail"],
+      "processes": ["OUTLOOK"]
+    },
+    "Foxmail": {
+      "keywords": ["foxmail", "狐邮", "腾讯邮箱", "fox"],
+      "processes": ["Foxmail"]
+    },
+    "网易邮箱大师": {
+      "keywords": ["网易邮箱", "邮箱大师", "mail master", "163邮箱"],
+      "processes": ["MailMaster"]
+    },
+    "腾讯文档": {
+      "keywords": ["腾讯文档", "tencent doc", "txwd", "在线文档"],
+      "processes": ["腾讯文档"]
+    },
+    "石墨文档": {
+      "keywords": ["石墨", "shimo", "石墨文档", "shimo doc"],
+      "processes": ["Shimo"]
+    },
+    "讯飞语记": {
+      "keywords": ["讯飞语记", "iflynote", "语音转文字", "会议记录"],
+      "processes": ["iFlyNote"]
+    },
+    "印象笔记": {
+      "keywords": ["印象笔记", "evernote", "evernote国际版", "笔记"],
+      "processes": ["Evernote", "印象笔记"]
+    },
+    "语雀": {
+      "keywords": ["语雀", "yuque", "阿里文档", "知识库"],
+      "processes": ["语雀"]
+    },
+    "ProcessOn": {
+      "keywords": ["processon", "流程图", "在线作图", "思维导图"],
+      "processes": ["ProcessOn"]
+    },
+
+    "=== 影视行业 (30+) ===": {},
+    "Premiere Pro": {
+      "keywords": ["pr", "premiere", "premiere pro", "adobe pr", "剪辑"],
+      "processes": ["Adobe Premiere Pro"]
+    },
+    "After Effects": {
+      "keywords": ["ae", "after effects", "adobe ae", "特效", "合成"],
+      "processes": ["AfterFX"]
+    },
+    "Photoshop": {
+      "keywords": ["ps", "photoshop", "adobe ps", "修图", "图像处理"],
+      "processes": ["Photoshop"]
+    },
+    "Illustrator": {
+      "keywords": ["ai", "illustrator", "adobe ai", "矢量图", "插画"],
+      "processes": ["Illustrator"]
+    },
+    "Audition": {
+      "keywords": ["au", "audition", "adobe au", "音频编辑", "音频处理"],
+      "processes": ["Adobe Audition"]
+    },
+    "Media Encoder": {
+      "keywords": ["me", "media encoder", "adobe me", "转码", "编码"],
+      "processes": ["Adobe Media Encoder"]
+    },
+    "Lightroom": {
+      "keywords": ["lr", "lightroom", "adobe lr", "摄影后期", "调色"],
+      "processes": ["Lightroom"]
+    },
+    "Final Cut Pro": {
+      "keywords": ["fcp", "final cut", "final cut pro", "苹果剪辑", "fcp x"],
+      "processes": ["Final Cut Pro"]
+    },
+    "DaVinci Resolve": {
+      "keywords": ["davinci", "达芬奇", "resolve", "调色", "剪辑", "fusion"],
+      "processes": ["Resolve", "DaVinci Resolve"]
+    },
+    "剪映专业版": {
+      "keywords": ["剪映", "jianying", "jy", "capcut", "抖音剪辑", "剪映pro"],
+      "processes": ["剪映专业版", "CapCut"]
+    },
+    "必剪": {
+      "keywords": ["必剪", "bijian", "bj", "b站剪辑", "bilibili剪辑"],
+      "processes": ["必剪"]
+    },
+    "Avid Media Composer": {
+      "keywords": ["avid", "media composer", "avid mc", "专业剪辑", "电影剪辑"],
+      "processes": ["AvidMediaComposer"]
+    },
+    "Edius": {
+      "keywords": ["edius", "ed", "广电剪辑", "非编", "canopus"],
+      "processes": ["Edius"]
+    },
+    "Cinema 4D": {
+      "keywords": ["c4d", "cinema 4d", "maxon", "3d设计", "三维"],
+      "processes": ["CINEMA 4D"]
+    },
+    "Maya": {
+      "keywords": ["maya", "autodesk maya", "三维动画", "影视动画"],
+      "processes": ["maya"]
+    },
+    "3ds Max": {
+      "keywords": ["3ds max", "3dmax", "max", "autodesk 3ds", "三维建模"],
+      "processes": ["3dsmax"]
+    },
+    "Blender": {
+      "keywords": ["blender", "开源3d", "三维软件", "建模", "动画"],
+      "processes": ["blender"]
+    },
+    "Houdini": {
+      "keywords": ["houdini", "sidefx", "特效", "影视特效", "程序化"],
+      "processes": ["houdini"]
+    },
+    "Nuke": {
+      "keywords": ["nuke", "foundry", "合成", "影视合成", "节点合成"],
+      "processes": ["Nuke"]
+    },
+    "Arctime": {
+      "keywords": ["arctime", "字幕", "时间轴", "视频字幕"],
+      "processes": ["Arctime"]
+    },
+    "Aegisub": {
+      "keywords": ["aegisub", "ass字幕", "高级字幕", "特效字幕"],
+      "processes": ["aegisub"]
+    },
+    "Subtitle Edit": {
+      "keywords": ["subtitle edit", "字幕编辑", "srt字幕"],
+      "processes": ["SubtitleEdit"]
+    },
+    "HandBrake": {
+      "keywords": ["handbrake", "视频转码", "压缩", "格式转换"],
+      "processes": ["HandBrake"]
+    },
+    "格式工厂": {
+      "keywords": ["格式工厂", "format factory", "视频格式", "转换"],
+      "processes": ["FormatFactory"]
+    },
+    "PotPlayer": {
+      "keywords": ["potplayer", "pot", "播放器", "视频播放"],
+      "processes": ["PotPlayerMini64", "PotPlayer"]
+    },
+    "VLC": {
+      "keywords": ["vlc", "vlc media player", "开源播放器"],
+      "processes": ["vlc"]
+    },
+
+    "=== 音乐行业 (25+) ===": {},
+    "FL Studio": {
+      "keywords": ["fl", "fl studio", "flstudio", "水果", "水果编曲"],
+      "processes": ["FL"]
+    },
+    "Cubase": {
+      "keywords": ["cubase", "steinberg", "编曲", "音乐制作"],
+      "processes": ["Cubase"]
+    },
+    "Logic Pro": {
+      "keywords": ["logic", "logic pro", "苹果音乐", "mac编曲"],
+      "processes": ["Logic Pro X"]
+    },
+    "Ableton Live": {
+      "keywords": ["ableton", "ableton live", "live", "电子音乐", "演出"],
+      "processes": ["Ableton Live"]
+    },
+    "Pro Tools": {
+      "keywords": ["pro tools", "avid pro tools", "录音", "混音", "行业标准"],
+      "processes": ["ProTools"]
+    },
+    "Studio One": {
+      "keywords": ["studio one", "presonus", "编曲", "录音"],
+      "processes": ["Studio One"]
+    },
+    "Reaper": {
+      "keywords": ["reaper", "cocokara", "数字音频", "daw", "轻量"],
+      "processes": ["REAPER"]
+    },
+    "GarageBand": {
+      "keywords": ["garageband", "库乐队", "苹果入门", "mac音乐"],
+      "processes": ["GarageBand"]
+    },
+    "Cakewalk": {
+      "keywords": ["cakewalk", "bandlab", "免费daw", "sonar"],
+      "processes": ["Cakewalk"]
+    },
+    "Audacity": {
+      "keywords": ["audacity", "开源音频", "录音", "免费音频"],
+      "processes": ["audacity"]
+    },
+    "Sibelius": {
+      "keywords": ["sibelius", "西贝柳斯", "avid", "打谱", "五线谱"],
+      "processes": ["Sibelius"]
+    },
+    "Finale": {
+      "keywords": ["finale", "makemusic", "打谱软件", "乐谱"],
+      "processes": ["Finale"]
+    },
+    "MuseScore": {
+      "keywords": ["musescore", "开源打谱", "免费乐谱", "制谱"],
+      "processes": ["MuseScore"]
+    },
+    "Guitar Pro": {
+      "keywords": ["guitar pro", "gp", "吉他谱", "六线谱", "tab"],
+      "processes": ["Guitar Pro"]
+    },
+    "Kontakt": {
+      "keywords": ["kontakt", "ni", "native instruments", "采样器", "音源"],
+      "processes": ["Kontakt"]
+    },
+    "Serato DJ": {
+      "keywords": ["serato", "serato dj", "dj", "打碟"],
+      "processes": ["Serato DJ"]
+    },
+    "Rekordbox": {
+      "keywords": ["rekordbox", "pioneer", "pioneer dj", "先锋dj"],
+      "processes": ["rekordbox"]
+    },
+    "QQ音乐": {
+      "keywords": ["qq音乐", "qqmusic", "腾讯音乐"],
+      "processes": ["QQMusic"]
+    },
+    "网易云音乐": {
+      "keywords": ["网易云音乐", "163music", "netease music", "wyy", "云音乐"],
+      "processes": ["cloudmusic"]
+    },
+    "酷狗音乐": {
+      "keywords": ["酷狗", "kugou", "kg", "酷狗音乐"],
+      "processes": ["KuGou"]
+    },
+    "酷我音乐": {
+      "keywords": ["酷我", "kuwo", "kw", "酷我音乐"],
+      "processes": ["kuwo"]
+    },
+    "Foobar2000": {
+      "keywords": ["foobar", "foobar2000", "fb2k", "发烧播放器"],
+      "processes": ["foobar2000"]
+    },
+
+    "=== 自媒体行业 (30+) ===": {},
+    "抖音": {
+      "keywords": ["抖音", "douyin", "dy", "tiktok", "短视频"],
+      "processes": ["抖音"]
+    },
+    "快手": {
+      "keywords": ["快手", "kuaishou", "ks", "gif快手"],
+      "processes": ["快手"]
+    },
+    "视频号": {
+      "keywords": ["视频号", "channels", "微信视频号"],
+      "processes": ["微信"]
+    },
+    "小红书": {
+      "keywords": ["小红书", "xiaohongshu", "xhs", "redbook"],
+      "processes": ["小红书"]
+    },
+    "B站": {
+      "keywords": ["b站", "bilibili", "blbl", "哔哩哔哩", "bili"],
+      "processes": ["哔哩哔哩"]
+    },
+    "快影": {
+      "keywords": ["快影", "kuaiying", "快手剪辑"],
+      "processes": ["快影"]
+    },
+    "度加剪辑": {
+      "keywords": ["度加", "dujia", "百度剪辑", "度加剪辑"],
+      "processes": ["度加剪辑"]
+    },
+    "VN视频剪辑": {
+      "keywords": ["vn", "vn视频剪辑", "vn editor"],
+      "processes": ["VN"]
+    },
+    "Canva": {
+      "keywords": ["canva", "可画", "在线设计", "模板设计"],
+      "processes": ["Canva"]
+    },
+    "创客贴": {
+      "keywords": ["创客贴", "chuangkit", "ckt", "在线作图"],
+      "processes": ["创客贴"]
+    },
+    "稿定设计": {
+      "keywords": ["稿定设计", "gaoding", "gd", "设计工具"],
+      "processes": ["稿定设计"]
+    },
+    "醒图": {
+      "keywords": ["醒图", "xingtu", "xt", "修图", "美图"],
+      "processes": ["醒图"]
+    },
+    "美图秀秀": {
+      "keywords": ["美图秀秀", "meitu", "xiuxiu", "美图", "修图"],
+      "processes": ["Meitu"]
+    },
+    "黄油相机": {
+      "keywords": ["黄油相机", "huangyou", "p图", "滤镜"],
+      "processes": ["黄油相机"]
+    },
+    "Obsidian": {
+      "keywords": ["obsidian", "obs", "黑曜石", "知识管理", "笔记"],
+      "processes": ["Obsidian"]
+    },
+    "Notion": {
+      "keywords": ["notion", "知识库", "协作", "笔记", "wiki"],
+      "processes": ["Notion"]
+    },
+    "Typora": {
+      "keywords": ["typora", "markdown", "md编辑器", "写作"],
+      "processes": ["Typora"]
+    },
+    "飞书文档": {
+      "keywords": ["飞书文档", "lark doc", "飞书云文档"],
+      "processes": ["Lark"]
+    },
+    "订阅号助手": {
+      "keywords": ["订阅号助手", "公众号助手", "微信公众平台", "mp.weixin"],
+      "processes": ["订阅号助手"]
+    },
+    "OBS Studio": {
+      "keywords": ["obs", "obs studio", "录屏", "直播推流", "obs直播"],
+      "processes": ["obs64", "obs32"]
+    },
+    "Streamlabs": {
+      "keywords": ["streamlabs", "slobs", "直播", "obs分支"],
+      "processes": ["Streamlabs OBS"]
+    },
+    "抖音直播伴侣": {
+      "keywords": ["直播伴侣", "douyin live", "抖音直播", "推流"],
+      "processes": ["抖音直播伴侣"]
+    },
+    "快手直播伴侣": {
+      "keywords": ["快手直播伴侣", "kuaishou live", "快手直播"],
+      "processes": ["快手直播伴侣"]
+    },
+    "淘宝直播": {
+      "keywords": ["淘宝直播", "taobao live", "主播工作台"],
+      "processes": ["淘宝直播"]
+    },
+    "喜马拉雅": {
+      "keywords": ["喜马拉雅", "ximalaya", "xmly", "音频平台"],
+      "processes": ["喜马拉雅"]
+    },
+    "蜻蜓FM": {
+      "keywords": ["蜻蜓fm", "qingting", "qt", "音频"],
+      "processes": ["蜻蜓FM"]
+    },
+    "荔枝": {
+      "keywords": ["荔枝", "lizhi", "lz", "fm", "音频直播"],
+      "processes": ["荔枝"]
+    },
+    "新榜": {
+      "keywords": ["新榜", "newrank", "数据分析", "公众号数据"],
+      "processes": ["新榜"]
+    },
+    "蝉妈妈": {
+      "keywords": ["蝉妈妈", "chanmama", "直播数据", "抖音数据"],
+      "processes": ["蝉妈妈"]
+    },
+    "巨量算数": {
+      "keywords": ["巨量算数", "算数", "抖音趋势", "巨量引擎"],
+      "processes": ["巨量算数"]
+    }
+  },
+  "fuzzyRules": {
+    "description": "模糊匹配增强规则",
+    "pinyinMappings": {
+      "qiyou": ["企业"],
+      "qiwei": ["企微", "企业微信"],
+      "weixin": ["微信"],
+      "dingding": ["钉钉"],
+      "feishu": ["飞书"],
+      "jianshi": ["剪映"],
+      "wyy": ["网易云音乐"],
+      "youdao": ["有道"]
+    }
+  }
+}

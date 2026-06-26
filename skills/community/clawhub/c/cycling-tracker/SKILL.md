@@ -1,35 +1,40 @@
 ---
-name: "Cycling Tracker"
-description: "骑行追踪 - 骑行记录、速度分析、路线规划"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cycling-tracker"
-sourceUrl: "https://clawhub.ai/skills/cycling-tracker"
+name: cycling-tracker
+description: 骑行追踪 - 骑行记录、速度分析、路线规划
 ---
 
 # Cycling Tracker
 
-> 骑行追踪 - 骑行记录、速度分析、路线规划
+骑行追踪工具，记录你的骑行旅程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cycling-tracker`
-- **Source URL:** [https://clawhub.ai/skills/cycling-tracker](https://clawhub.ai/skills/cycling-tracker)
+## 功能
 
-## Overview
+- ✅ 骑行记录
+- ✅ 速度分析
+- ✅ 路线规划
+- ✅ 训练计划
+- ✅ 统计报告
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cycling-tracker
+# 记录骑行
+clawhub cycle log --distance 20 --time 60
+
+# 速度分析
+clawhub cycle speed --distance 20 --time 60
+
+# 路线规划
+clawhub cycle route --distance 30 --type "scenic"
+
+# 查看统计
+clawhub cycle stats --month 2026-04
 ```
+
+## 定价
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | ¥0 | 基础记录 |
+| Pro 版 | ¥39 | 全部功能 |
+| 订阅版 | ¥9/月 | Pro+ AI 计划 |

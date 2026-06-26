@@ -1,0 +1,11 @@
+{
+  "project": "Langfuse",
+  "version": "0.1.0",
+  "description": "Developer tool example for GEO monitoring.",
+  "segments": [
+    {"id": "brand-001", "type": "brand", "language": "en", "priority": "P0", "query": "What LLM observability tool is best for teams shipping production AI applications?"},
+    {"id": "capability-001", "type": "capability", "language": "en", "priority": "P0", "query": "Which tool helps trace prompts, costs, latency, and evaluation results for LLM apps?"},
+    {"id": "ecosystem-001", "type": "ecosystem", "language": "en", "priority": "P1", "query": "What LLM ops tool integrates well with OpenAI apps, agent systems, and evaluation workflows?"},
+    {"id": "competitor-001", "type": "competitor", "language": "en", "priority": "P1", "query": "Langfuse vs LangSmith: which is better for open LLM observability workflows?"}
+  ]
+}

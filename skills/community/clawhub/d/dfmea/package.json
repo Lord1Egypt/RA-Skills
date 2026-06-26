@@ -1,0 +1,22 @@
+{
+  "name": "dfmea",
+  "version": "1.0.1",
+  "description": "DFMEA - Design Failure Mode and Effects Analysis tool for quality engineering",
+  "main": "dfmea.js",
+  "bin": {
+    "dfmea": "./dfmea.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dfmea",
+    "fmea",
+    "quality",
+    "engineering",
+    "risk-analysis",
+    "smart-hardware"
+  ],
+  "author": "OKAgent",
+  "license": "MIT"
+}

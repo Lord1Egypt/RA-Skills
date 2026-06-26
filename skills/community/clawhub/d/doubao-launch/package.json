@@ -1,0 +1,14 @@
+{
+  "name": "doubao-launch",
+  "version": "1.0.0",
+  "description": "Launch Doubao desktop application and configure real-time translation window.",
+  "main": "index.js",
+  "openclaw": {
+    "plugin": "openclaw.plugin.json"
+  },
+  "keywords": [
+    "openclaw",
+    "skill"
+  ],
+  "license": "MIT"
+}

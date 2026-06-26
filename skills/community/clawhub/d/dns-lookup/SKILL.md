@@ -1,35 +1,64 @@
 ---
-name: "Dns Lookup"
+name: dns-lookup
 description: "Resolve hostnames to IP addresses using `dig` from bind-utils."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dns-lookup"
-sourceUrl: "https://clawhub.ai/skills/dns-lookup"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🌐",
+        "requires": { "bins": ["dig"] },
+        "install":
+          [
+            {
+              "id": "dnf",
+              "kind": "dnf",
+              "package": "bind-utils",
+              "bins": ["dig"],
+              "label": "Install bind-utils (dnf)",
+            },
+          ],
+      },
+  }
 ---
 
-# Dns Lookup
+# DNS Lookup Skill
 
-> Resolve hostnames to IP addresses using `dig` from bind-utils.
+Resolve hostnames to IP addresses using `dig`. Provided by the `bind-utils` package.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dns-lookup`
-- **Source URL:** [https://clawhub.ai/skills/dns-lookup](https://clawhub.ai/skills/dns-lookup)
+## Basic Lookup
 
-## Overview
+Resolve A records for a hostname:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dns-lookup
+dig example.com A +short
+```
+
+## IPv6 Lookup
+
+Resolve AAAA records:
+
+```bash
+dig example.com AAAA +short
+```
+
+## Full DNS Record
+
+Get the full DNS response with authority and additional sections:
+
+```bash
+dig example.com ANY
+```
+
+## Reverse Lookup
+
+Find the hostname for an IP address:
+
+```bash
+dig -x 93.184.216.34 +short
+```
+
+## Install
+
+```bash
+sudo dnf install bind-utils
 ```

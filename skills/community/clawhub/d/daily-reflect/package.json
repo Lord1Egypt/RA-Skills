@@ -1,0 +1,9 @@
+{
+  "name": "daily-journal",
+  "version": "1.0.2",
+  "description": "Daily journaling prompts for meaningful reflection — morning intention-setting and evening review. Build a consistent self-reflection habit one prompt at a time.",
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

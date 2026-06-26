@@ -1,0 +1,11 @@
+{
+  "name": "daily-life-compass",
+  "version": "2.0.0",
+  "description": "Daily guide using Eastern philosophy (24 solar terms, Yin-Yang) without superstition",
+  "author": "PsyVector",
+  "homepage": "https://iheaven.org",
+  "price": "$9.90",
+  "tags": ["productivity", "chinese-philosophy", "daily-routine", "mindfulness", "lifestyle"],
+  "kernel": "H2",
+  "scenario": "S6"
+}

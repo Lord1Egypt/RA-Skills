@@ -1,0 +1,35 @@
+{
+  "skill_name": "diary-force",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "今晚 23:00 了，检查我有没有写日记",
+      "expected_output": "检测 E:\\My-life\\daily/今日日期.md 是否存在，如不存在则催促用户",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "今天累得不想打字，帮我记日记",
+      "expected_output": "启动交互式记录，引导用户口述，提取结构化内容（事件、能量、情绪、洞察、计划）",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "用思维模型分析一下：今天能量 5 分，尝试优化 openclaw 但效果一般",
+      "expected_output": "调用 OpenCode，输出 6 种思维模型分析，每种 1-2 句话",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "把今天的日记内化到记忆系统",
+      "expected_output": "提取日记洞察，转换为记忆条目，写入 memory/目录，Git commit",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "查看今天日记状态",
+      "expected_output": "返回今日日记是否已写、能量评分、是否有思维模型分析",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,603 @@
+{
+  "2": [
+    {
+      "id": 71,
+      "key": "poor_mans_shield",
+      "name": "Poor Man's Shield",
+      "cost": 0
+    },
+    {
+      "id": 187,
+      "key": "medallion_of_courage",
+      "name": "Medallion of Courage",
+      "cost": 0
+    },
+    {
+      "id": 359,
+      "key": "essence_ring",
+      "name": "Essence Ring",
+      "cost": 0
+    },
+    {
+      "id": 840,
+      "key": "pogo_stick",
+      "name": "Tumbler's Toy",
+      "cost": 0
+    },
+    {
+      "id": 945,
+      "key": "seeds_of_serenity",
+      "name": "Seeds of Serenity",
+      "cost": 0
+    },
+    {
+      "id": 950,
+      "key": "defiant_shell",
+      "name": "Defiant Shell",
+      "cost": 0
+    },
+    {
+      "id": 1599,
+      "key": "mana_draught",
+      "name": "Mana Draught",
+      "cost": 0
+    },
+    {
+      "id": 1601,
+      "key": "crippling_crossbow",
+      "name": "Crippling Crossbow",
+      "cost": 0
+    },
+    {
+      "id": 1604,
+      "key": "searing_signet",
+      "name": "Searing Signet",
+      "cost": 0
+    }
+  ],
+  "5": [
+    {
+      "id": 292,
+      "key": "desolator_2",
+      "name": "Stygian Desolator",
+      "cost": 0
+    },
+    {
+      "id": 326,
+      "key": "spider_legs",
+      "name": "Spider Legs",
+      "cost": 0,
+      "localized_name": "网虫腿",
+      "ability_key": "Skitter",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "cd",
+          "old": "20",
+          "new": "15",
+          "description": "急行 CD 20s→15s"
+        },
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "duration",
+          "old": "14",
+          "new": "12",
+          "description": "急行 持续 14s→12s"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 5,
+      "lore": "A horrifying yet useful mixture of necromancy and artificing.",
+      "abilities": [
+        {
+          "type": "active",
+          "title": "Skitter",
+          "description_cn": "获得 20% 移速加成、50% 转向速率加成和自由通行，持续 12 秒。走过树木会将其摧毁。",
+          "description_en": "Grants you 20% bonus movement speed, 50% improved turn rate, and free pathing for 12 seconds. Walking over trees causes them to be destroyed."
+        }
+      ],
+      "attrib": {
+        "turn_rate": "50",
+        "bonus_movement_speed_active": "20",
+        "duration": "12"
+      },
+      "cd": 15
+    },
+    {
+      "id": 370,
+      "key": "demonicon",
+      "name": "Book of the Dead",
+      "cost": 0
+    },
+    {
+      "id": 371,
+      "key": "fallen_sky",
+      "name": "Fallen Sky",
+      "cost": 0,
+      "localized_name": "天崩",
+      "ability_key": "Fallen Sky",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "impact_damage_buildings",
+          "old": "75",
+          "new": "110",
+          "description": "对建筑冲击伤害 75→110"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 5,
+      "lore": "One of the few surviving creations of the acolytes of the Wyrmforge.",
+      "abilities": [
+        {
+          "type": "active",
+          "title": "Fallen Sky",
+          "description_cn": "变成陨石，1 秒后砸向目标区域（315 范围），晕眩 1.6 秒并造成冲击伤害，随后对范围内敌方单位和建筑每秒造成伤害，持续 6 秒。\n\n对建筑冲击伤害：110\n对建筑持续伤害：60\n\n对单位冲击伤害：150\n对单位持续伤害：60\n\n3 秒内受到敌方英雄或肉山的伤害后无法使用。",
+          "description_en": "Transform into a meteor that strikes down at the target area after 1 seconds in a 315 AoE, stunning enemies for 1.6 seconds and dealing impact damage. Continues to deal damage every 1 seconds to enemy units and buildings for 6 seconds.\n\nBuilding Impact Damage: 110\nBuilding Over Time Damage: 60\n\nNon-Building Impact Damage: 150\nNon-Building Over Time Damage: 60\n\nFallen Sky cannot be used for 3 seconds after taking damage from an enemy hero or Roshan."
+        }
+      ],
+      "attrib": {
+        "burn_dps_buildings": "60",
+        "burn_dps_units": "60",
+        "burn_duration": "6",
+        "stun_duration": "1.6",
+        "burn_interval": "1.0",
+        "land_time": "1",
+        "impact_radius": "315",
+        "max_duration": "2.5",
+        "impact_damage_buildings": "110",
+        "impact_damage_units": "150",
+        "blink_damage_cooldown": "3.0"
+      },
+      "cd": 25
+    },
+    {
+      "id": 377,
+      "key": "minotaur_horn",
+      "name": "Minotaur Horn",
+      "cost": 0
+    },
+    {
+      "id": 837,
+      "key": "heavy_blade",
+      "name": "Witchbane",
+      "cost": 0,
+      "localized_name": "行巫之祸",
+      "ability_key": "Cleanse",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "cast_range",
+          "old": "500",
+          "new": "700",
+          "description": "清洗 施法距离 500→700"
+        },
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "mc",
+          "old": "150",
+          "new": "50",
+          "description": "清洗 蓝耗 150→50"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 5,
+      "lore": "With ready access to test subjects, untold cruelties have been dreamed up and loosed upon the world from within the walls of the Tyler Estate.",
+      "abilities": [
+        {
+          "type": "active",
+          "title": "Cleanse",
+          "description_cn": "驱散 300 范围内所有敌人和盟友。\n\n驱散类型：基础驱散",
+          "description_en": "Dispel all enemies and allies in a 300 unit radius.\n\nDispel Type: Basic Dispel"
+        },
+        {
+          "type": "passive",
+          "title": "Subjugate",
+          "description_cn": "攻击附带目标最大魔法值 4% 的额外魔法伤害。",
+          "description_en": "Your attacks deal bonus magical damage equal to 4% of your target's Max Mana."
+        }
+      ],
+      "attrib": {
+        "radius": "300",
+        "damage": "4",
+        "cast_range": "700"
+      },
+      "mc": 50,
+      "cd": 40
+    },
+    {
+      "id": 1642,
+      "key": "dezun_bloodrite",
+      "name": "Dezun Bloodrite",
+      "cost": 0,
+      "localized_name": "德尊血式",
+      "ability_key": "Blood Invocation",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "aoe_pct",
+          "old": "16",
+          "new": "20",
+          "description": "血咒作用范围加成 16%→20%"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 5,
+      "lore": "The gateway to a lost lineage of power, unlocked only with blood.",
+      "abilities": [
+        {
+          "type": "passive",
+          "title": "Blood Invocation",
+          "description_cn": "技能作用范围扩大 20%，但额外消耗等同于其魔法消耗 35% 的生命值。",
+          "description_en": "Spells have a 20% larger Area of Effect, but now additionally cost health equal to 35% of their mana cost."
+        }
+      ],
+      "attrib": {
+        "health_pct": "35",
+        "aoe_pct": "20"
+      }
+    },
+    {
+      "id": 1644,
+      "key": "divine_regalia",
+      "name": "Divine Regalia",
+      "cost": 0
+    },
+    {
+      "id": 1718,
+      "key": "riftshadow_prism",
+      "name": "Riftshadow Prism",
+      "cost": 0,
+      "localized_name": "影墟棱晶",
+      "ability_key": "Refract",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "outgoing_damage",
+          "old": "50",
+          "new": "60",
+          "description": "折射 幻象继承攻击力 50%→60%"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 5,
+      "lore": "",
+      "abilities": [
+        {
+          "type": "active",
+          "title": "Refract",
+          "description_cn": "消耗当前 8% 生命值制造一个满血幻象，持续 20 秒。幻象继承 60% 攻击力，受到 200% 伤害。",
+          "description_en": "Spend 8% of your current life total to create a full health illusion that lasts for 20 seconds. The illusion has 60% outgoing damage and takes 200% of incoming damage."
+        }
+      ],
+      "attrib": {
+        "outgoing_damage": "60",
+        "incoming_damage": "200",
+        "duration": "20",
+        "health_cost": "8"
+      },
+      "cd": 30
+    },
+    {
+      "id": 1863,
+      "key": "harmonizer",
+      "name": "Harmonizer",
+      "cost": 0,
+      "localized_name": "协和",
+      "ability_key": "Balance",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "manacost_reduction",
+          "old": "5",
+          "new": "7",
+          "description": "均衡 不在冷却技能提供蓝耗降低 5%→7%"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 5,
+      "lore": "",
+      "abilities": [
+        {
+          "type": "passive",
+          "title": "Balance",
+          "description_cn": "每有一个不在冷却中的技能获得 7% 蓝耗降低，每有一个在冷却中的技能获得 6% 法术增强。",
+          "description_en": "Gain 7% spell manacost reduction for every spell off cooldown and 6% spell amplification for every spell on cooldown."
+        }
+      ],
+      "attrib": {
+        "manacost_reduction": "7",
+        "spell_amp": "6"
+      },
+      "notes": "Only considers abilities that are visible and have a cooldown"
+    }
+  ],
+  "1": [
+    {
+      "id": 565,
+      "key": "chipped_vest",
+      "name": "Chipped Vest",
+      "cost": 0
+    },
+    {
+      "id": 577,
+      "key": "possessed_mask",
+      "name": "Possessed Mask",
+      "cost": 0
+    },
+    {
+      "id": 947,
+      "key": "occult_bracelet",
+      "name": "Occult Bracelet",
+      "cost": 0
+    },
+    {
+      "id": 1077,
+      "key": "dagger_of_ristul",
+      "name": "Dagger of Ristul",
+      "cost": 0
+    },
+    {
+      "id": 2097,
+      "key": "duelist_gloves",
+      "name": "Duelist Gloves",
+      "cost": 0
+    },
+    {
+      "id": 1606,
+      "key": "polliwog_charm",
+      "name": "Pollywog Charm",
+      "cost": 0
+    },
+    {
+      "id": 1637,
+      "key": "kobold_cup",
+      "name": "Kobold Cup",
+      "cost": 0
+    },
+    {
+      "id": 1638,
+      "key": "dormant_curio",
+      "name": "Dormant Curio",
+      "cost": 0
+    },
+    {
+      "id": 1716,
+      "key": "weighted_dice",
+      "name": "Weighted Dice",
+      "cost": 0
+    },
+    {
+      "id": 1717,
+      "key": "ash_legion_shield",
+      "name": "Ash Legion Shield",
+      "cost": 0
+    },
+    {
+      "id": 1861,
+      "key": "stonefeather_satchel",
+      "name": "Stonefeather Satchel",
+      "cost": 0
+    },
+    {
+      "id": 1868,
+      "key": "foragers_kit",
+      "name": "Forager's Kit",
+      "cost": 0
+    }
+  ],
+  "3": [
+    {
+      "id": 574,
+      "key": "cloak_of_flames",
+      "name": "Cloak of Flames",
+      "cost": 0
+    },
+    {
+      "id": 675,
+      "key": "psychic_headband",
+      "name": "Psychic Headband",
+      "cost": 0
+    },
+    {
+      "id": 585,
+      "key": "stormcrafter",
+      "name": "Stormcrafter",
+      "cost": 0
+    },
+    {
+      "id": 1598,
+      "key": "unrelenting_eye",
+      "name": "Unrelenting Eye",
+      "cost": 0
+    },
+    {
+      "id": 1603,
+      "key": "gunpowder_gauntlets",
+      "name": "Gunpowder Gauntlet",
+      "cost": 0
+    },
+    {
+      "id": 1605,
+      "key": "serrated_shiv",
+      "name": "Serrated Shiv",
+      "cost": 0
+    },
+    {
+      "id": 1640,
+      "key": "jidi_pollen_bag",
+      "name": "Jidi Pollen Bag",
+      "cost": 0
+    },
+    {
+      "id": 1859,
+      "key": "spellslinger",
+      "name": "Spellslinger",
+      "cost": 0
+    },
+    {
+      "id": 1873,
+      "key": "partisans_brand",
+      "name": "Partisan's Brand",
+      "cost": 0
+    }
+  ],
+  "4": [
+    {
+      "id": 2190,
+      "key": "dandelion_amulet",
+      "name": "Dandelion Amulet",
+      "cost": 0
+    },
+    {
+      "id": 1168,
+      "key": "rattlecage",
+      "name": "Rattlecage",
+      "cost": 0
+    },
+    {
+      "id": 1643,
+      "key": "giant_maul",
+      "name": "Giant's Maul",
+      "cost": 0
+    },
+    {
+      "id": 1719,
+      "key": "metamorphic_mandible",
+      "name": "Metamorphic Mandible",
+      "cost": 0
+    },
+    {
+      "id": 1720,
+      "key": "idol_of_screeauk",
+      "name": "Idol of Scree'auk",
+      "cost": 0,
+      "localized_name": "丝奎奥克神像",
+      "ability_key": "False Flight",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "evasion",
+          "old": "25",
+          "new": "35",
+          "description": "飞天之幻闪避 25%→35%"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 4,
+      "lore": "",
+      "abilities": [
+        {
+          "type": "active",
+          "title": "False Flight",
+          "description_cn": "获得 50% 减速抗性、相位移动和 35% 闪避，持续 5 秒。",
+          "description_en": "Gain 50% slow resistance, phased movement, and 35% evasion for 5 seconds."
+        }
+      ],
+      "attrib": {
+        "duration": "5",
+        "slow_resist": "50",
+        "evasion": "35"
+      },
+      "cd": 30
+    },
+    {
+      "id": 1721,
+      "key": "flayers_bota",
+      "name": "Flayer's Bota",
+      "cost": 0,
+      "localized_name": "剥皮血囊",
+      "ability_key": "Bloodrush",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "death_radius",
+          "old": "1200",
+          "new": "1500",
+          "description": "鲜血之激范围 1200→1500"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 4,
+      "lore": "沾满血祭之礼的古老皮靴，踩过的每一步都让敌人闻风丧胆。",
+      "abilities": [
+        {
+          "type": "active",
+          "title": "Bloodthirst",
+          "description_cn": "获得 15% 基础伤害和 30 攻击速度，持续 6 秒。",
+          "description_en": "Gain 15% base damage and 30 attack speed for 6 seconds."
+        },
+        {
+          "type": "passive",
+          "title": "Bloodrush",
+          "description_cn": "1500 范围内敌方英雄死亡时重置 Bloodthirst 的冷却。",
+          "description_en": "Enemy heroes dying within 1500 units reset the cooldown of Bloodthirst."
+        }
+      ],
+      "attrib": {
+        "duration": "6",
+        "base_damage": "15",
+        "attack_speed": "30",
+        "death_radius": "1500"
+      },
+      "cd": 65
+    },
+    {
+      "id": 1860,
+      "key": "prophets_pendulum",
+      "name": "Prophet's Pendulum",
+      "cost": 0,
+      "localized_name": "先知灵摆",
+      "ability_key": "Linger",
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-06-05",
+          "field": "note",
+          "old": null,
+          "new": "damage_delay_applies_to_nonlethal",
+          "description": "延缓伤害延迟现在对非致死伤害生效"
+        }
+      ],
+      "last_updated": "2026-06-05",
+      "tier": 4,
+      "lore": "",
+      "abilities": [
+        {
+          "type": "passive",
+          "title": "Linger",
+          "description_cn": "受到的 30% 伤害延迟 5 秒结算（7.41d 起对非致死伤害生效）。",
+          "description_en": "30% of incoming damage is delayed over 5 seconds (7.41d: now applies to non-lethal damage)."
+        }
+      ],
+      "attrib": {
+        "delay_pct": "30",
+        "delay_time": "5",
+        "damage_interval": "1"
+      },
+      "patch_notes": "7.41d: 延缓的伤害延迟现在对于非致死的伤害生效。"
+    },
+    {
+      "id": 1862,
+      "key": "enchanters_bauble",
+      "name": "Enchanter's Bauble",
+      "cost": 0
+    },
+    {
+      "id": 1864,
+      "key": "conjurers_catalyst",
+      "name": "Conjurer's Catalyst",
+      "cost": 0
+    }
+  ]
+}

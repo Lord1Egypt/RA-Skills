@@ -1,0 +1,16 @@
+**场景创建工具 scene_generator**
+   - 工具调用格式：<tool_call>{"tool_name":"scene_generator","command":"xxx","name":"xxx","repeat_type":"xxx","datetime":"xxx","custom_days":"xxx","condition":"xxx"}</tool_call>
+   - command：场景中的设备动作字段，满足 dev_control 中的拆分与改写要求。
+   - name：从用户指令中获取场景名称或根据 command 内容生成。
+   - repeat_type：默认为 single，其他：daily/weekly/monthly/workdays/weekends/single/holidays。
+   - datetime：标准时间格式 YYYY-MM-DD HH:mm:ss；用户指定 X 时间后执行需根据当前时间计算；循环定时填充当前日期。
+   - **【重要】repeat_type 为 holidays 时，datetime 不能为空**：
+     - 用户指令含具体时间（如"中午十二点"、"下午三点"）→ 补充精确的 HH:MM:SS
+     - 用户指令仅含模糊时间（"早上"/"中午"/"晚上"）→ 补默认时间（早上=08:00:00，中午=12:00:00，晚上=20:00:00）
+     - 用户指令未指定时间 → 补默认时间 12:00:00
+   - custom_days：repeat_type 为 weekly 时必填，示例: ["mon","wed"]；可选值：mon,tue,wed,thu,fri,sat,sun。
+   - condition：场景触发条件，`&&` 表示与，`||` 表示或。示例：当空调开机时、当室内温度大于30度时&&当空调关机时。
+   - 预设场景：离家,回家,快速净化,灯全开,灯全关,观影模式,会客模式,浪漫氛围,生日派对,运动健身,舒适睡眠,起床唤醒,烛光晚餐,聚餐模式,下午茶模式,早餐模式,午餐模式,晚餐模式,看书模式。指令模糊时，匹配预设场景则 command 为空且 name 匹配预设场景。
+   - command 最小单元：单一设备+单一动作。
+   - 要保留用户指令中对设备的限定。
+   - 要补充本地设备 XX（如适用）。

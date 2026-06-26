@@ -1,0 +1,77 @@
+# Dida Coach 默认配置
+
+personality:
+  preset: warm_encouraging
+
+work_method:
+  default: flexible_pomodoro
+  auto_recommend: true
+  methods:
+    flexible_pomodoro:
+      name: 灵活番茄（默认）
+      focus: 30
+      short_break: 5
+      long_break: 15
+      boxes_before_long: 4
+      max_consecutive: 4
+    classic_pomodoro:
+      name: 经典番茄
+      focus: 25
+      short_break: 5
+      long_break: 15
+      boxes_before_long: 4
+      max_consecutive: 4
+    long_pomodoro:
+      name: 长番茄（深度工作）
+      focus: 50
+      short_break: 10
+      long_break: 30
+      boxes_before_long: 2
+      max_consecutive: 2
+    ultradian:
+      name: 90 分钟深度
+      focus: 90
+      short_break: 0
+      long_break: 20
+      boxes_before_long: 1
+      max_consecutive: 1
+
+reminders:
+  daily_plan: "09:00"
+  daily_review: "21:00"
+  weekly_review: "Sunday 20:00"
+  enabled: true
+
+productivity_system:
+  root: "~/.dida-coach/productivity"
+  bootstrap_from_dida: true
+  auto_update_after_init: true
+  managed_files:
+    - dashboard.md
+    - commitments/promises.md
+    - commitments/delegated.md
+    - planning/daily.md
+    - planning/weekly.md
+    - planning/focus-blocks.md
+    - reviews/weekly.md
+    - reviews/monthly.md
+    - focus/sessions.md
+    - focus/distractions.md
+    - routines/morning.md
+    - routines/shutdown.md
+
+review:
+  dimensions:
+    - completion_rate
+    - time_distribution
+    - task_type_analysis
+    - missed_reason
+    - suggestions
+    - highlights
+    - procrastination_time
+    - automation_candidates
+
+closure:
+  check_in_enabled: true
+  missed_task_follow_up: true
+  max_reschedule_times: 3

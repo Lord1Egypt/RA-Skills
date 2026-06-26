@@ -1,35 +1,376 @@
 ---
-name: "钉钉 AI 表格跨表格洞察分析"
-description: "钉钉 AI 表格跨表格洞察分析。支持按关键词筛选特定业务/项目的 AI 表格，进行综合分析，识别风险点、数据异常、业务洞察。Use when user wants to analyze multiple AI tables by keyword/topic for insights, risks, and ano..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dingtalk-ai-table-insights"
-sourceUrl: "https://clawhub.ai/skills/dingtalk-ai-table-insights"
+name: dingtalk-ai-table-insights
+description: 钉钉 AI 表格跨表格洞察分析。支持按关键词筛选特定业务/项目的 AI 表格，进行综合分析，识别风险点、数据异常、业务洞察。Use when user wants to analyze multiple AI tables by keyword/topic for insights, risks, and anomalies.
+version: "1.6.10"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - DINGTALK_MCP_TOKEN
+      bins:
+        - python3
+      skills:
+        - dingtalk-ai-table
+    primaryEnv: DINGTALK_MCP_TOKEN
+    emoji: 📊
+    dependencies:
+      - name: dingtalk-ai-table
+        description: 钉钉 AI 表格操作技能（用于读取表格数据）
+        url: https://github.com/aliramw/dingtalk-ai-table
 ---
 
-# 钉钉 AI 表格跨表格洞察分析
+# AI 表格跨表格洞察技能
 
-> 钉钉 AI 表格跨表格洞察分析。支持按关键词筛选特定业务/项目的 AI 表格，进行综合分析，识别风险点、数据异常、业务洞察。Use when user wants to analyze multiple AI tables by keyword/topic for insights, risks, and ano...
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dingtalk-ai-table-insights`
-- **Source URL:** [https://clawhub.ai/skills/dingtalk-ai-table-insights](https://clawhub.ai/skills/dingtalk-ai-table-insights)
+**设计理念：** 让用户专注特定业务/项目，而非被时间限制。
 
-## Overview
+- **关键词筛选** - 按业务/项目名称筛选相关表格
+- **跨表格分析** - 同时分析多个表格，发现关联
+- **风险识别** - 自动识别异常和高风险项
+- **洞察报告** - 生成可执行的业务建议
+- **大模型分析** - **默认使用大模型**进行深度分析，发现人眼难以察觉的洞察
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 基本用法
+
 ```bash
-hermes skills install clawhub/dingtalk-ai-table-insights
+# 业务线分析（默认使用大模型）
+python3 scripts/analyze_tables.py --keyword "销售"
+python3 scripts/analyze_tables.py --keyword "市场"
+
+# 项目追踪
+python3 scripts/analyze_tables.py --keyword "华东项目"
+
+# 职能分析
+python3 scripts/analyze_tables.py --keyword "招聘"
+python3 scripts/analyze_tables.py --keyword "预算"
+
+# 全局扫描
+python3 scripts/analyze_tables.py
+
+# 使用本地模板（不使用大模型）
+python3 scripts/analyze_tables.py --keyword "销售" --no-llm
 ```
+
+### 使用场景
+
+| 场景 | 关键词 | 价值 |
+|------|--------|------|
+| **业务线分析** | `销售 `、`市场`、` 客服` | 专注特定业务的健康度 |
+| **项目追踪** | `项目 A`、`华东区` | 跟踪特定项目的整体进展 |
+| **职能分析** | `招聘 `、`预算`、` 采购` | 职能维度的数据洞察 |
+| **全量扫描** | 不指定 | 全局风险排查 |
+
+### 🤖 大模型分析能力
+
+**默认启用** - 脚本会自动尝试使用大模型进行深度分析：
+
+- **深度洞察** - 发现数据间的关联和模式
+- **智能风险识别** - 基于上下文识别潜在风险
+- **个性化建议** - 根据数据特点生成针对性行动建议
+- **自然语言报告** - 更流畅、更易读的报告输出
+
+**调用方式**：
+1. 检测 OpenClaw 会话环境
+2. 使用 `openclaw agent` 调用大模型
+3. 超时或失败时自动降级
+
+**降级方案** - 如果大模型不可用（超时/无响应/环境限制），自动降级使用本地模板生成报告。
+
+**手动控制** - 使用 `--no-llm` 参数强制使用本地模板（更快，但分析深度有限）。
+
+**注意** - 大模型分析需要 30-90 秒，取决于数据量和模型响应速度。
+
+## 分析维度
+
+### 🔍 数据一致性检查
+跨表格对比相同指标，发现矛盾：
+- 销售表 vs 财务报表的收入差异
+- 项目进度表 vs 周报的完成度不一致
+- 客户状态在不同表格中的冲突
+
+### 💡 趋势洞察
+从多个表格中发现关联：
+- 招聘增加 → 差旅费上涨
+- 项目延期 → 成本超支
+- 客户投诉 → 销售下滑
+
+### 🚨 风险预警
+优先关注的问题：
+- 高金额订单处于高风险状态
+- 关键指标连续恶化
+- 资源分配不平衡
+
+### 📋 行动建议
+具体可执行的建议：
+- 做什么 + 谁来做 + 何时完成 + 预期结果
+
+## 脚本参数
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--keyword` | 表格名称关键词筛选 | 无（全量） |
+| `--output` | 输出文件路径 | 无（打印到终端） |
+| `--format` | 输出格式（markdown/json） | markdown |
+| `--limit` | 每个数据表抽样记录数 | 100 |
+| `--no-cache` | 禁用缓存，强制刷新 | 否 |
+| `--clear-cache` | 清除缓存后退出 | 否 |
+| `--no-llm` | 不使用大模型，使用本地模板 | 否（**默认使用大模型**） |
+
+## 输出示例
+
+```markdown
+## 📊 AI 表格洞察报告
+
+**筛选关键词**: 销售
+**分析表格数**: 5 个
+**数据记录数**: 128 条
+
+### 📋 分析范围
+- 销售管理表格
+- 销售日报
+- 销售目标追踪表
+
+### 🚨 风险预警
+1. **高优先级**: 3 个大额订单状态"待跟进"超过 72 小时
+
+### 📋 行动建议
+- 今天内联系王五，确认 28k 订单进展
+```
+
+## 依赖说明
+
+### 🏗️ 架构说明
+
+本技能依赖 `dingtalk-ai-table` 技能，**MCP 配置由该技能统一管理**。
+
+```
+dingtalk-ai-table-insights (本技能)
+    ↓ 依赖
+dingtalk-ai-table (基础技能 - 管理 MCP 配置)
+    ↓
+钉钉 AI 表格 MCP 服务器
+```
+
+### 必需依赖
+
+#### 1. dingtalk-ai-table 技能
+- **作用** - MCP 配置管理、数据读取 API 封装
+- **安装** - `clawhub install dingtalk-ai-table`
+- **配置** - 详见该技能的配置文档
+
+#### 2. 二进制文件
+- `python3` - Python 3.7+ 运行环境
+- `mcporter` - MCP 客户端工具（与 dingtalk-ai-table 共享配置）
+
+### 配置说明
+
+**⚠️ 重要：保护敏感信息**
+
+MCP 配置包含访问令牌，**请勿将配置文件发布到公开仓库**。
+
+**MCP 配置位置：** `<workspace>/config/mcporter.json`
+
+**配置责任：**
+- ✅ `dingtalk-ai-table` - 负责 MCP 配置
+- ✅ `dingtalk-ai-table-insights` - 复用配置，无需重复配置
+
+**环境变量（可选）：**
+- `DINGTALK_MCP_CONFIG` - 自定义 MCP 配置文件路径
+
+**配置模板：**
+```json
+{
+  "mcpServers": {
+    "dingtalk-ai-table": {
+      "baseUrl": "https://mcp-gw.dingtalk.com/server/YOUR_ID?key=YOUR_KEY"
+    }
+  }
+}
+```
+
+**安全建议：**
+1. 将 `config/mcporter.json` 添加到 `.gitignore`
+2. 使用配置模板 `config/mcporter.json.example` 分享配置格式
+3. 不要将真实 URL 和 Key 提交到版本控制
+
+### 权限说明
+- 需要钉钉 AI 表格的**读取权限**
+- 仅读取表格数据，不修改任何内容
+- 数据仅在分析过程中使用，不存储
+
+### 权限说明
+- 需要钉钉 AI 表格的**读取权限**
+- 仅读取表格数据，不修改任何内容
+- 数据仅在分析过程中使用，不存储
+
+## 安全说明
+
+### 数据处理
+- ✅ **只读操作** - 仅读取表格数据，不修改
+- ✅ **本地分析** - 所有分析在本地执行
+- ✅ **无数据留存** - 分析结果不上传外部服务
+- ⚠️ **Token 安全** - MCP token 需妥善保管
+
+### 权限最小化
+- 仅需表格读取权限
+- 不需要写入/删除权限
+- 不需要用户个人信息
+
+### 数据抽样
+- 每个数据表默认读取前 100 条记录
+- 避免大量数据传输
+- 降低 token 消耗
+- 可通过 `--limit` 参数调整
+
+### 大数据量处理（v1.2.0 新增）
+- ✅ **分页读取** - 自动使用分页（每页 50 条）处理大数据表
+- ✅ **游标支持** - 使用 cursor 参数连续读取所有数据
+- ✅ **临时文件** - 使用临时文件避免 JSON 截断问题
+- ✅ **自动合并** - 自动合并所有分页数据
+
+## 限制说明
+
+### 已知限制
+1. **访问记录** - 钉钉无用户访问记录 API，无法按"最近访问"筛选
+2. **权限问题** - 部分表格可能因 token 权限无法访问，脚本会优雅跳过
+3. **数据量** - v1.2.0 已解决，支持分页读取大数据表
+
+### 未来规划
+- [ ] 支持多关键词组合筛选
+- [ ] 支持正则表达式匹配
+- [ ] 支持排除关键词
+- [ ] 钉钉定时推送集成
+- [x] 分页读取大数据表（v1.2.0 已实现）
+
+## 文件结构
+
+```
+dingtalk-ai-table-insights/
+├── SKILL.md                          # 技能说明（本文件）
+├── scripts/
+│   └── analyze_tables.py             # 核心分析脚本
+└── references/
+    ├── examples.md                   # 使用示例
+    ├── quickstart.md                 # 快速开始指南
+    └── prompt_design.md              # Prompt 设计指南
+```
+
+## 故障排查
+
+### 表格显示"权限不足"
+- 检查表格是否已分享给正确的组织
+- 确认 MCP token 有效性
+- 跳过无权限表格，继续分析其他表格
+
+### 分析结果为空
+- 确认关键词能匹配到表格
+- 尝试不使用关键词进行全量扫描
+- 检查表格中是否有数据
+
+### 运行缓慢
+- 使用 `--keyword` 筛选表格
+- 减少 `--limit` 抽样数量
+- 分析时间通常 1-3 分钟，取决于表格数量
+- 使用缓存可加速表格列表获取（默认 5 分钟）
+
+### 缓存问题
+- 清除缓存：`--clear-cache`
+- 强制刷新：`--no-cache`
+- 缓存位置：`~/.cache/dingtalk-ai-table-insights/`
+
+### dingtalk-ai-table 未安装
+```bash
+# 安装依赖技能
+clawhub install dingtalk-ai-table
+
+# 验证安装
+clawhub list
+```
+
+### 读取数据失败
+- 确认 dingtalk-ai-table skill 已正确安装
+- 检查表格 ID 是否正确
+- 确认数据表名称（自动获取，不再硬编码）
+- **大数据表** - v1.2.0 已支持分页读取，自动处理
+
+## 相关资源
+
+- **使用示例**: `references/examples.md`
+- **快速开始**: `references/quickstart.md`
+- **依赖说明**: `references/dependencies.md`
+- **Prompt 设计**: `references/prompt_design.md`
+
+## 版本历史
+
+### v1.6.9 (2026-03-02)
+- ✅ **大模型分析完全修复** - 使用 `--agent main` 成功调用 LLM
+- 📊 **详细数据样本** - 发送每个表格的数据表分布和实际记录样本
+- 🔧 **JSON 解析增强** - 正确解析 `result.payloads[0].text` 格式
+- 📝 **完整 LLM 报告** - 包含深度分析、风险识别、行动建议
+
+### v1.6.8 (2026-03-02)
+- 🔧 **会话 ID 自动获取** - 从 sessions list 获取并传递给 agent
+- 📡 **--session-id 参数** - 明确指定会话避免路由错误
+
+### v1.6.7 (2026-03-02)
+- 🔧 **调用参数修复** - 使用 `--message` 长格式（参考 analyze_with_llm.py）
+- ⏱️ **超时优化** - 120 秒超时，支持更长分析
+
+### v1.6.6 (2026-03-02)
+- 🔧 **会话 ID 修复** - 正确解析 sessions list 输出
+- 📡 **使用 --session-id** - 通过 session-id 调用大模型
+
+### v1.6.5 (2026-03-02)
+- 🔧 **大模型调用修复** - 添加 `-m` 参数到 openclaw agent 命令
+- 📡 **调试信息** - 显示使用的调用方式
+
+### v1.6.4 (2026-03-02)
+- 📝 **数据示例优化** - 跳过系统字段，避免显示 JSON 和复杂数据
+- 🔍 **字段验证** - 确保提取的内容有意义
+- ✅ **更清晰的报告** - 数据示例更易读
+
+### v1.6.3 (2026-03-02)
+- 🔧 **大模型调用优化** - 改进 openclaw agent 调用方式
+- 📝 **数据示例增强** - 支持更多字段名，避免显示"无"
+- ✅ **技术说明准确** - 动态显示实际抽样数量
+
+### v1.6.2 (2026-03-02)
+- 🎯 **数据抽样优化** - 每个数据表最多 100 条（之前 50 条）
+- ⚡ **性能提升** - 平衡分析质量与处理速度
+- 💾 **降低消耗** - 减少 token 使用和内存占用
+
+### v1.6.1 (2026-03-02)
+- 🎯 **分析方式透明化** - 报告中明确显示大模型调用状态
+- 📝 **错误信息输出** - 大模型失败时在报告中显示具体原因
+- 🔧 **状态追踪** - analyze_with_llm 返回 (报告，状态) tuple
+- ✅ **用户友好** - 无需猜测报告是如何生成的
+
+### v1.3.0 (2026-02-28)
+- 🎉 **大模型分析** - 默认使用大模型进行深度分析
+- 🆕 **--no-llm 参数** - 可选择使用本地模板
+- 🔄 **多级降级** - OpenClaw 会话 → MCP 大模型 → 本地模板
+- 📝 **详细日志** - 改进错误处理和日志输出
+- 📄 **更新日志** - 新增 CHANGELOG.md
+
+### v1.2.0 (2026-02-28)
+- ✅ **分页读取** - 支持大数据表分页读取（limit + cursor）
+- ✅ **临时文件** - 使用临时文件避免 JSON 截断
+- ✅ **自动合并** - 自动合并所有分页数据
+- ✅ **修复** - 解决大数据量 JSON 解析失败问题
+
+### v1.1.0 (2026-02-28)
+- ✅ **自动 Sheet 检测** - 使用 `list_base_tables` API 获取 Sheet 列表
+- ✅ **Sheet ID 支持** - 优先使用 Sheet ID，避免中文编码问题
+- ✅ **缓存机制** - 表格列表 5 分钟缓存
+- ✅ **重试机制** - 网络错误自动重试（最多 3 次）
+- ✅ **错误处理** - 区分权限错误和业务错误
+
+### v1.0.0 (2025-02-28)
+- 初始版本发布
+- 技能命名：dingtalk-ai-table-insights
+- 支持关键词筛选
+- 四维分析框架（一致性、趋势、风险、建议）
+- 钉钉 AI 表格 MCP 集成（使用 dingtalk-ai-table skill）

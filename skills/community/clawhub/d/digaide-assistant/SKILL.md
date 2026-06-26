@@ -1,35 +1,37 @@
 ---
-name: "Digaide Assistant"
-description: "Persistent identity and memory context layer for AI agents across platforms."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, identity, memory, personal assistants]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/digaide-assistant"
-sourceUrl: "https://clawhub.ai/skills/digaide-assistant"
+name: digaide-memory-layer
+description: Persistent identity and memory context layer for AI agents across platforms.
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      env:
+        - DIGAIDE_API_KEY
+      bins:
+        - curl
+    primaryEnv: DIGAIDE_API_KEY
+    homepage: https://digaide.com
 ---
 
-# Digaide Assistant
+# Digaide Memory Layer
 
-> Persistent identity and memory context layer for AI agents across platforms.
+Digaide provides a persistent identity and long-term memory layer for AI agents.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/digaide-assistant`
-- **Source URL:** [https://clawhub.ai/skills/digaide-assistant](https://clawhub.ai/skills/digaide-assistant)
+## What this skill helps with
 
-## Overview
+- Keep one user identity across sessions and platforms.
+- Enrich context with memory before response generation.
+- Keep assistant behavior consistent with selected persona.
+- Improve long task UX with progress-aware workflows.
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/digaide-assistant
-```
+1. Prepare `DIGAIDE_API_KEY`.
+2. Set `DIGAIDE_API_BASE` if you use non-production API endpoint.
+3. Configure your agent runtime hooks.
+4. Use Digaide API endpoints for initialize, enrich, and wrap flows.
+
+## Links
+
+- Website: https://digaide.com
+- API: https://api.digaide.com

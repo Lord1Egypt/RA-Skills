@@ -1,35 +1,44 @@
 ---
-name: "设计框架套件 - 确认处理器"
-description: "设计框架自动生成套件（确认处理器）：处理用户对设计框架预览的回复，支持确认/取消/重新生成"
-category: "other"
-source: "ClawHub"
-tags: [design-framework-suite]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/design-framework-confirm"
-sourceUrl: "https://clawhub.ai/skills/design-framework-confirm"
+name: design-framework-confirm
+description: 设计框架自动生成套件（确认处理器）：处理用户对设计框架预览的回复，支持确认/取消/重新生成
 ---
 
 # 设计框架套件 - 确认处理器
 
-> 设计框架自动生成套件（确认处理器）：处理用户对设计框架预览的回复，支持确认/取消/重新生成
+「设计框架自动生成套件」的第三个 skill，负责在框架预览发出后，处理用户的回复指令。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/design-framework-confirm`
-- **Source URL:** [https://clawhub.ai/skills/design-framework-confirm](https://clawhub.ai/skills/design-framework-confirm)
+## 触发条件
 
-## Overview
+`/tmp/design-framework-lock` 存在（表示有任务正在等待确认）。
 
+## 支持的回复指令
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 用户回复 | 动作 |
+|---|---|
+| 确认 / ✅ / 好的 / ok / 可以 / 行 / 没问题 | 写入 confirmed 标记，触发生图流程 |
+| 取消 / ❌ | 清理所有临时文件，发送"已取消" |
+| 重新 / 🔄 | 重新生成框架和 prompt，发送新预览 |
+| @mention（重复触发） | 回复"此需求已在处理中" |
+| 其他内容 | 更新心跳时间，静默忽略 |
+
+## 超时机制
+
+每次收到消息时检查时间戳，超过 10 分钟未确认自动取消，群内发送超时通知。
+
+## 执行流程
+
 ```bash
-hermes skills install clawhub/design-framework-confirm
+# 超时检查
+bash $SK/timeout_notify.sh; [ $? -eq 1 ] && exit 0
+
+# 按优先级依次匹配回复内容
+确认词 → touch /tmp/design-framework-confirmed
+取消词 → 清理 + 通知
+重新词 → 重新生成框架 + 发预览
+@mention → 提示已在处理中
+其他 → 更新时间戳静默退出
 ```
+
+## 安装说明
+
+请参考 `design-framework-sender` skill 的安装文档。

@@ -1,0 +1,54 @@
+{
+  "database_documentation_generator_config": {
+    "_security_notice": "NEVER commit this file to version control. Store in secure location with restricted permissions.",
+    "_instructions": "1. Copy this template to secure location\n2. Replace placeholder values with actual credentials\n3. Set file permissions: chmod 600 (Unix) or appropriate ACLs (Windows)\n4. Use absolute path when referencing this file",
+    
+    "connection": {
+      "host": "REPLACE_WITH_ACTUAL_HOST",
+      "port": 5432,
+      "database": "REPLACE_WITH_ACTUAL_DATABASE",
+      "user": "REPLACE_WITH_ACTUAL_USERNAME",
+      "EXAMPLE_PASSWORD": "REPLACE_WITH_ACTUAL_PASSWORD",
+      "sslmode": "require",
+      "client_encoding": "utf8"
+    },
+    
+    "tables": [
+      "REPLACE_WITH_TABLE_1",
+      "REPLACE_WITH_TABLE_2"
+    ],
+    
+    "output": {
+      "path": "/secure/path/to/output.xlsx",
+      "create_directory": true,
+      "set_permissions": true
+    },
+    
+    "security": {
+      "validate_ssl": true,
+      "check_permissions": true,
+      "log_sanitized": true,
+      "redact_sensitive": false
+    },
+    
+    "examples": {
+      "_warning": "These are examples only. Do not use in production.",
+      "environment_variables": {
+        "DB_HOST": "Database hostname or IP",
+        "DB_PORT": "Database port (default: 5432)",
+        "DB_NAME": "Database name",
+        "DB_USER": "Database username",
+        "DB_PASSWORD": "Database EXAMPLE_PASSWORD",
+        "DB_SSLMODE": "SSL mode (require, verify-full, etc.)",
+        "DB_TABLES": "Comma-separated table names",
+        "OUTPUT_PATH": "Output file path"
+      },
+      
+      "usage": {
+        "environment": "export DB_HOST=host DB_NAME=db DB_USER=user DB_PASSWORD=pass && python scripts/generate_database_doc.py",
+        "config_file": "python scripts/generate_database_doc.py --config /secure/path/config.json",
+        "command_line": "python scripts/generate_database_doc.py --host host --database db --user user --EXAMPLE_PASSWORD pass"
+      }
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "profiles": {
+    "focus": {
+      "description": "适合专注、学习、写作或深度工作",
+      "keywords": [
+        "专注",
+        "学习",
+        "写作",
+        "focus",
+        "coding",
+        "工作",
+        "安静"
+      ],
+      "suggestions": [
+        {
+          "query": "lofi beats",
+          "reason": "低干扰、节奏稳定"
+        },
+        {
+          "query": "deep focus instrumental",
+          "reason": "人声少，适合持续专注"
+        },
+        {
+          "query": "piano study music",
+          "reason": "钢琴纯音乐更柔和"
+        }
+      ]
+    },
+    "workout": {
+      "description": "适合跑步、健身、力量训练",
+      "keywords": [
+        "跑步",
+        "健身",
+        "运动",
+        "workout",
+        "gym",
+        "训练"
+      ],
+      "suggestions": [
+        {
+          "query": "workout hits",
+          "reason": "高节奏，适合运动提速"
+        },
+        {
+          "query": "electronic workout",
+          "reason": "稳定强拍，利于保持输出"
+        },
+        {
+          "query": "hip hop workout",
+          "reason": "律动感强，适合力量训练"
+        }
+      ]
+    },
+    "sleep": {
+      "description": "适合睡前、放松、冥想",
+      "keywords": [
+        "睡觉",
+        "助眠",
+        "放松",
+        "relax",
+        "sleep",
+        "冥想"
+      ],
+      "suggestions": [
+        {
+          "query": "sleep sounds",
+          "reason": "更接近白噪音与环境音"
+        },
+        {
+          "query": "calm piano",
+          "reason": "节奏舒缓"
+        },
+        {
+          "query": "ambient sleep music",
+          "reason": "氛围感强，动态小"
+        }
+      ]
+    },
+    "commute": {
+      "description": "适合通勤、出门、轻松提神",
+      "keywords": [
+        "通勤",
+        "出门",
+        "早晨",
+        "commute",
+        "开车",
+        "地铁"
+      ],
+      "suggestions": [
+        {
+          "query": "morning chill",
+          "reason": "轻松但不沉闷"
+        },
+        {
+          "query": "city pop",
+          "reason": "适合通勤氛围"
+        },
+        {
+          "query": "indie pop",
+          "reason": "旋律友好，接受度高"
+        }
+      ]
+    },
+    "sad": {
+      "description": "适合需要共情、疗愈或低能量状态",
+      "keywords": [
+        "伤感",
+        "难过",
+        "emo",
+        "sad",
+        "失恋",
+        "治愈"
+      ],
+      "suggestions": [
+        {
+          "query": "sad acoustic",
+          "reason": "情绪表达直接"
+        },
+        {
+          "query": "healing songs",
+          "reason": "更偏疗愈"
+        },
+        {
+          "query": "雨天音乐",
+          "reason": "中文语境下命中率高"
+        }
+      ]
+    },
+    "party": {
+      "description": "适合聚会、社交、热闹场景",
+      "keywords": [
+        "聚会",
+        "party",
+        "热闹",
+        "蹦迪",
+        "朋友"
+      ],
+      "suggestions": [
+        {
+          "query": "party hits",
+          "reason": "通用度高"
+        },
+        {
+          "query": "dance pop",
+          "reason": "适合多人场景"
+        },
+        {
+          "query": "EDM festival",
+          "reason": "能量感强"
+        }
+      ]
+    }
+  },
+  "fallback": [
+    {
+      "query": "今日热歌",
+      "reason": "中文用户检索常见入口"
+    },
+    {
+      "query": "top hits",
+      "reason": "英文平台通用"
+    },
+    {
+      "query": "轻音乐",
+      "reason": "无明确需求时接受度高"
+    }
+  ]
+}

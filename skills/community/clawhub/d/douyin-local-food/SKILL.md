@@ -1,35 +1,264 @@
 ---
-name: "Douyin Local Food"
+name: douyin-local-food
 description: "抖音本地生活餐饮运营专家 Agent。提供店铺诊断、爆款菜品打造、团购方案设计、内容运营策略、数据分析等全链路运营支持。Keywords: 抖音, 本地生活, 餐饮, 团购, 运营, 抖音运营, 餐饮营销."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-local-food"
-sourceUrl: "https://clawhub.ai/skills/douyin-local-food"
 ---
 
-# Douyin Local Food
+# 抖音本地生活餐饮运营专家
 
-> 抖音本地生活餐饮运营专家 Agent。提供店铺诊断、爆款菜品打造、团购方案设计、内容运营策略、数据分析等全链路运营支持。Keywords: 抖音, 本地生活, 餐饮, 团购, 运营, 抖音运营, 餐饮营销.
+> 专为餐饮商家打造的抖音本地生活运营 Agent，覆盖从开店诊断到爆款打造的完整运营链路。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-local-food`
-- **Source URL:** [https://clawhub.ai/skills/douyin-local-food](https://clawhub.ai/skills/douyin-local-food)
+---
 
-## Overview
+## 使用场景
 
+当用户提到以下关键词时触发：
+- 抖音运营、抖音团购、抖音本地生活
+- 餐饮营销、餐厅推广、菜品推广
+- 团购方案、套餐设计、爆款打造
+- 店铺诊断、运营策略、数据分析
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/douyin-local-food
+---
+
+## 核心能力矩阵
+
+| 能力模块 | 功能 | 输出物 |
+|---------|------|--------|
+| **店铺诊断** | 分析店铺现状、识别问题、给出优先级建议 | 诊断报告 PDF |
+| **爆款菜品** | 选品策略、定价逻辑、卖点提炼、话术设计 | 爆款方案文档 |
+| **团购设计** | 套餐组合、价格梯度、引流款/利润款规划 | 团购方案表 |
+| **内容运营** | 短视频选题、脚本模板、发布节奏、DOU+投放策略 | 内容日历+脚本库 |
+| **数据分析** | 核心指标解读、竞品对标、优化建议 | 数据周报 |
+| **客服话术** | 差评回复、私聊转化、复购引导 | 话术库 |
+
+---
+
+## 命令列表
+
+| 命令 | 说明 | 用法 |
+|------|------|------|
+| `diagnose` | 店铺诊断 | `python3 scripts/douyin_tool.py diagnose [参数]` |
+| `dish` | 爆款菜品打造 | `python3 scripts/douyin_tool.py dish [参数]` |
+| `groupon` | 团购方案设计 | `python3 scripts/douyin_tool.py groupon [参数]` |
+| `content` | 内容运营策略 | `python3 scripts/douyin_tool.py content [参数]` |
+| `analyze` | 数据分析 | `python3 scripts/douyin_tool.py analyze [参数]` |
+| `script` | 客服话术生成 | `python3 scripts/douyin_tool.py script [参数]` |
+
+---
+
+## 使用流程
+
+### 场景 1：新店冷启动诊断
+
 ```
+我刚开了一家火锅店，抖音上没什么流量，帮我诊断一下
+```
+
+**执行：**
+```bash
+python3 scripts/douyin_tool.py diagnose \
+  --type hotpot \
+  --stage new \
+  --city "深圳" \
+  --output diagnose_report.pdf
+```
+
+**输出：**
+- 店铺基础信息完善度评分
+- 同城竞品对标分析
+- 冷启动优先级清单（POI认领→基础装修→首条视频→首单团购）
+- 预估起号周期
+
+---
+
+### 场景 2：爆款菜品打造
+
+```
+我想把招牌酸菜鱼打造成爆款，怎么搞？
+```
+
+**执行：**
+```bash
+python3 scripts/douyin_tool.py dish \
+  --name "招牌酸菜鱼" \
+  --price 88 \
+  --type "川菜" \
+  --selling-points "活鱼现杀,酸爽开胃,分量足" \
+  --output dish_plan.md
+```
+
+**输出：**
+- 菜品定位（引流款/利润款/形象款）
+- 定价策略（原价/团购价/秒杀价梯度）
+- 视频拍摄脚本（3个角度：制作过程、食客反应、环境展示）
+- 文案话术（标题模板+评论区互动）
+- 预估转化路径
+
+---
+
+### 场景 3：团购方案设计
+
+```
+帮我设计一套团购套餐，要有引流款也有利润款
+```
+
+**执行：**
+```bash
+python3 scripts/douyin_tool.py groupon \
+  --restaurant-type "火锅" \
+  --avg-ticket 120 \
+  --target "引流+利润" \
+  --output groupon_plan.xlsx
+```
+
+**输出：**
+| 套餐名 | 原价 | 团购价 | 毛利率 | 定位 | 适用场景 |
+|--------|------|--------|--------|------|---------|
+| 2人尝鲜餐 | 168 | 88 | 35% | 引流款 | 新客首单 |
+| 4人聚会餐 | 328 | 198 | 48% | 主推款 | 朋友聚餐 |
+| 6人豪华餐 | 498 | 328 | 52% | 利润款 | 家庭聚餐 |
+| 秒杀单品券 | 68 | 38 | 20% | 爆款 | 限时引流 |
+
+---
+
+### 场景 4：内容运营策略
+
+```
+下周的内容怎么安排？给我一个发布计划
+```
+
+**执行：**
+```bash
+python3 scripts/douyin_tool.py content \
+  --restaurant "我的火锅店" \
+  --focus "酸菜鱼,毛肚,环境" \
+  --days 7 \
+  --output content_calendar.xlsx
+```
+
+**输出：**
+- 7天发布日历（时间+主题+视频类型+DOU+预算）
+- 每日视频脚本模板
+- 热点蹭流建议
+- 评论区互动话术库
+
+---
+
+### 场景 5：数据分析周报
+
+```
+这周数据怎么样？帮我分析一下
+```
+
+**执行：**
+```bash
+python3 scripts/douyin_tool.py analyze \
+  --data-file weekly_data.xlsx \
+  --output analysis_report.pdf
+```
+
+**输出：**
+- 核心指标看板（曝光→点击→下单→核销漏斗）
+- 同城排名变化
+- 爆款视频分析
+- 下周优化建议
+
+---
+
+## 行业知识库
+
+### 餐饮类型与运营要点
+
+| 类型 | 核心卖点 | 视频重点 | 团购策略 |
+|------|---------|---------|---------|
+| 火锅 | 食材新鲜、锅底特色 | 涮菜过程、蘸料调配 | 多人套餐为主 |
+| 烧烤 | 现烤现吃、烟火气 | 烤制过程、滋滋声 | 夜宵时段+酒水搭配 |
+| 川菜 | 麻辣鲜香、下饭 | 爆炒过程、色泽 | 单人工作餐+多人聚餐 |
+| 日料 | 新鲜、精致 | 刺身展示、师傅手艺 | 套餐制、午市特价 |
+| 茶饮 | 颜值、解渴 | 制作过程、颜值展示 | 第二杯半价、月卡 |
+| 甜品 | 网红、打卡 | 摆盘、环境 | 下午茶套餐 |
+
+### 抖音本地生活核心指标
+
+```
+曝光量 → 点击率 → 下单转化率 → 核销率 → 复购率
+   ↓        ↓          ↓         ↓        ↓
+ 内容质量  团购吸引力  价格优势   体验满意度  服务质量
+```
+
+### 常见问题与解决方案
+
+| 问题 | 原因 | 解决方案 |
+|------|------|---------|
+| 曝光低 | 内容质量差、账号权重低 | 优化视频前3秒、DOU+投放测试 |
+| 点击率低 | 团购吸引力不足 | 优化主图、调整价格梯度 |
+| 下单转化低 | 详情页说服力不够 | 增加买家秀、优化文案 |
+| 核销率低 | 体验与预期不符 | 提升服务质量、优化套餐内容 |
+| 复购率低 | 缺乏留存机制 | 私域引流、会员体系 |
+
+---
+
+## 配置文件
+
+### 用户配置 (`config/user_config.yaml`)
+
+```yaml
+restaurant:
+  name: "我的火锅店"
+  type: "火锅"
+  city: "深圳"
+  avg_ticket: 120
+  signature_dishes:
+    - "招牌酸菜鱼"
+    - "鲜毛肚"
+    - "手工虾滑"
+
+douyin:
+  account_id: "xxx"
+  poi_id: "xxx"  # 抖音POI ID
+
+target:
+  monthly_revenue: 50000
+  monthly_orders: 500
+```
+
+### 行业配置 (`config/industry_config.yaml`)
+
+```yaml
+hotpot:
+  peak_hours:
+    - "11:30-13:30"
+    - "17:30-21:00"
+  best_video_types:
+    - "食材展示"
+    - "涮菜过程"
+    - "食客反应"
+  groupon_strategy: "多人套餐为主"
+
+pricing_rules:
+ 引流_margin: [0.2, 0.35]
+  profit_margin: [0.45, 0.55]
+  image_margin: [0.3, 0.4]
+```
+
+---
+
+## 前置依赖
+
+```bash
+pip install pyyaml pandas openpyxl jinja2 markdown
+```
+
+---
+
+## 注意事项
+
+1. **数据安全**：不存储用户抖音账号密码，仅使用官方API授权
+2. **合规提醒**：所有团购方案需符合抖音本地生活平台规则
+3. **效果预估**：所有预估数据基于行业平均值，实际效果因店而异
+4. **更新频率**：行业知识库每月更新一次，紧跟平台规则变化
+
+---
+
+## 更新日志
+
+- **v1.0.0** (2026-04-27) — 初始版本，支持6大核心能力模块

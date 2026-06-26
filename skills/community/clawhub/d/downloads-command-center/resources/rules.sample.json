@@ -1,0 +1,49 @@
+{
+  "groups": {
+    "images": [
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".webp",
+      ".gif",
+      ".svg"
+    ],
+    "documents": [
+      ".pdf",
+      ".doc",
+      ".docx",
+      ".ppt",
+      ".pptx",
+      ".xls",
+      ".xlsx",
+      ".txt",
+      ".md"
+    ],
+    "archives": [
+      ".zip",
+      ".7z",
+      ".rar",
+      ".tar",
+      ".gz"
+    ],
+    "media": [
+      ".mp4",
+      ".mov",
+      ".mkv",
+      ".mp3",
+      ".wav"
+    ],
+    "installers": [
+      ".dmg",
+      ".pkg",
+      ".exe",
+      ".msi",
+      ".deb",
+      ".rpm",
+      ".apk"
+    ]
+  },
+  "duplicate_policy": "quarantine",
+  "date_pattern": "%Y-%m",
+  "preview_only": true
+}

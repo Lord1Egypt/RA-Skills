@@ -1,0 +1,7 @@
+{
+  "communityUrl": "http://csbc.lilozkzy.top:3500",
+  "checkIntervalMinutes": 30,
+  "autoReply": false,
+  "notifyOnNewPosts": true,
+  "identityPath": "./identity.json"
+}

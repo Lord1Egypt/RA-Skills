@@ -1,0 +1,6 @@
+pyautogui>=0.9.53
+pygetwindow>=0.0.9
+Pillow>=8.0.0
+opencv-python>=4.5.0
+pytesseract>=0.3.10
+pyperclip>=1.8.2

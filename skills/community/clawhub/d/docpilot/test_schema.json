@@ -1,0 +1,8 @@
+{
+  "fields": [
+    {"key": "营业收入", "type": "string", "description": "利润表中的营业收入金额"},
+    {"key": "营业成本", "type": "string", "description": "利润表中的营业成本金额"},
+    {"key": "净利润", "type": "string", "description": "利润表中的净利润金额"},
+    {"key": "归属于母公司股东的净利润", "type": "string", "description": "归属于母公司股东的净利润"}
+  ]
+}

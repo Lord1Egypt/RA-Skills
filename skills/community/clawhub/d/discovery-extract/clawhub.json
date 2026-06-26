@@ -1,0 +1,12 @@
+{
+  "name": "Discovery Engine — Paper Extraction",
+  "tagline": "Cross-domain scientific discovery through structured extraction of scientific publications",
+  "description": "What one paper solves, another needs — but they're in different fields and will never cite each other. This skill extracts structured provides/requires relationships from scientific papers across arXiv, PubMed Central, OpenAlex, and OSTI, building a knowledge graph that surfaces hidden cross-domain connections. No API keys or external LLM needed — the agent is the extractor. Results are submitted as PRs to grow the open-access graph.",
+  "category": "data",
+  "tags": ["science", "research", "knowledge-graph", "extraction", "cross-domain", "discovery", "papers"],
+  "version": "1.1.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/pcdeni/discovery-engine/issues",
+  "homepage": "https://github.com/pcdeni/discovery-engine"
+}

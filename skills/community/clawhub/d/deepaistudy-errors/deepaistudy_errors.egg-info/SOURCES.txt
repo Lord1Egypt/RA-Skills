@@ -1,0 +1,8 @@
+deepaistudy_errors.py
+setup.py
+deepaistudy_errors.egg-info/PKG-INFO
+deepaistudy_errors.egg-info/SOURCES.txt
+deepaistudy_errors.egg-info/dependency_links.txt
+deepaistudy_errors.egg-info/entry_points.txt
+deepaistudy_errors.egg-info/requires.txt
+deepaistudy_errors.egg-info/top_level.txt

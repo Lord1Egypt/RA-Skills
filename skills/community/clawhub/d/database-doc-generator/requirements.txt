@@ -1,0 +1,19 @@
+# Security-pinned requirements for Database Documentation Generator
+# Install with: pip install -r requirements.txt
+
+# PostgreSQL adapter (binary version, no build tools needed)
+psycopg2-binary==2.9.9
+
+# Data manipulation and analysis
+pandas==2.2.1
+
+# Excel file handling
+openpyxl==3.1.2
+
+# Optional: For security checking
+# safety==2.4.1b1  # Uncomment to enable vulnerability scanning
+
+# Development dependencies (not required for runtime)
+# black==24.1.1     # Code formatting
+# flake8==7.0.0     # Linting
+# mypy==1.8.0       # Type checking

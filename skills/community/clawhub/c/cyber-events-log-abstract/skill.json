@@ -1,0 +1,5 @@
+{
+  "runtime": "subagent",
+  "enabled": true,
+  "description": "专门生成安全事件关键信息摘要报告，提取安全事件关键信息并生成简洁的安全事件报告摘要。"
+}

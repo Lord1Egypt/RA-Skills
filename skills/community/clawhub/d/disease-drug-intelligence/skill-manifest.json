@@ -1,0 +1,282 @@
+{
+  "schema_version": "1.0",
+  "type": "claw-skill",
+  "name": "disease-drug-intelligence",
+  "display_name": "疾病创新药情报整合",
+  "description": "面向疾病创新药、靶点机制和临床进展分析的多数据库中文报告技能。",
+  "version": "0.1.0",
+  "entrypoint": {
+    "kind": "skill_markdown",
+    "path": "SKILL.md"
+  },
+  "artifacts": {
+    "agent_metadata": "agents/openai.yaml",
+    "reference_playbook": "references/disease_to_drug_playbook.md"
+  },
+  "runtime": {
+    "language": "python",
+    "runner": "bash local_tools/run_tool.sh",
+    "python_min_version": "3.9"
+  },
+  "dependencies": {
+    "pip": [
+      "requests>=2.31.0",
+      "langchain-tavily>=0.2.0"
+    ],
+    "env": [
+      {
+        "name": "TAVILY_API_KEY",
+        "required_for": [
+          "search_api.run"
+        ]
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "chembl.search_target",
+      "description": "Search ChEMBL targets by free-text query.",
+      "command": "bash local_tools/run_tool.sh chembl_api.py search_target",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Target keyword, alias, or gene symbol."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of results to return.",
+            "default": 10,
+            "minimum": 1
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "chembl.search_molecule",
+      "description": "Search ChEMBL molecules by free-text query.",
+      "command": "bash local_tools/run_tool.sh chembl_api.py search_molecule",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Molecule name, synonym, or identifier keyword."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of results to return.",
+            "default": 10,
+            "minimum": 1
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "chembl.get_drug_by_id",
+      "description": "Fetch a ChEMBL drug record by ChEMBL ID.",
+      "command": "bash local_tools/run_tool.sh chembl_api.py get_drug_by_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "chembl_id": {
+            "type": "string",
+            "description": "Drug ChEMBL identifier, such as CHEMBL3545063."
+          }
+        },
+        "required": [
+          "chembl_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "chembl.get_molecule_by_id",
+      "description": "Fetch a ChEMBL molecule record by ChEMBL ID.",
+      "command": "bash local_tools/run_tool.sh chembl_api.py get_molecule_by_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "chembl_id": {
+            "type": "string",
+            "description": "Molecule ChEMBL identifier."
+          }
+        },
+        "required": [
+          "chembl_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "chembl.get_target_by_id",
+      "description": "Fetch a ChEMBL target record by ChEMBL ID.",
+      "command": "bash local_tools/run_tool.sh chembl_api.py get_target_by_id",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "chembl_id": {
+            "type": "string",
+            "description": "Target ChEMBL identifier."
+          }
+        },
+        "required": [
+          "chembl_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "chembl.get_mechanism",
+      "description": "Fetch ChEMBL mechanism records, optionally filtered by molecule.",
+      "command": "bash local_tools/run_tool.sh chembl_api.py get_mechanism",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "molecule_chembl_id": {
+            "type": "string",
+            "description": "Optional molecule ChEMBL identifier."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of rows to return.",
+            "default": 20,
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "chembl.get_drug_indication",
+      "description": "Fetch ChEMBL drug indication records by molecule or disease term.",
+      "command": "bash local_tools/run_tool.sh chembl_api.py get_drug_indication",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "molecule_chembl_id": {
+            "type": "string",
+            "description": "Optional molecule ChEMBL identifier."
+          },
+          "efo_term": {
+            "type": "string",
+            "description": "Optional EFO disease term."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of rows to return.",
+            "default": 20,
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "clinicaltrials.get_studies",
+      "description": "Search ClinicalTrials.gov studies by condition, keyword, status, and selected fields.",
+      "command": "bash local_tools/run_tool.sh clinicaltrials_api.py get_studies",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query_cond": {
+            "type": "string",
+            "description": "Condition or disease text."
+          },
+          "query_term": {
+            "type": "string",
+            "description": "Additional keyword query."
+          },
+          "filter_overall_status": {
+            "type": "string",
+            "description": "Optional status filter such as RECRUITING or COMPLETED."
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Selected response fields."
+          },
+          "sort": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sort directives."
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "Page size for the result page.",
+            "default": 20,
+            "minimum": 1
+          },
+          "count_total": {
+            "type": "boolean",
+            "description": "Whether to request total count metadata.",
+            "default": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "clinicaltrials.get_study",
+      "description": "Fetch a single ClinicalTrials.gov study by NCT ID.",
+      "command": "bash local_tools/run_tool.sh clinicaltrials_api.py get_study",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "nct_id": {
+            "type": "string",
+            "description": "ClinicalTrials.gov study identifier, such as NCT01234567."
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Optional subset of fields to return."
+          }
+        },
+        "required": [
+          "nct_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "search_api.run",
+      "description": "Run Tavily-backed web search as a controlled fallback for recent public updates.",
+      "command": "bash local_tools/run_tool.sh search_api.py",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Natural-language search query."
+          },
+          "max_results": {
+            "type": "integer",
+            "description": "Maximum number of search results.",
+            "default": 5,
+            "minimum": 1
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

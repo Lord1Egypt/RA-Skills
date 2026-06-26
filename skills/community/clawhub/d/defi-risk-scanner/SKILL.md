@@ -1,35 +1,207 @@
 ---
-name: "DeFi Risk Scanner"
-description: "Web3/DeFi 风险扫描工具。当用户提到"分析 DeFi 协议风险"、"检查 Token 是否是 Rug Pull"、"评估项目安全性"、"查看合约风险"、"DeFi 安全"、"链上风险"、"代币风险评估"、"协议尽调"、"这个项目安全吗"时使用。覆盖主流 EVM 链，提供结构化风险评分、风险因子拆解、关键指..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/defi-risk-scanner"
-sourceUrl: "https://clawhub.ai/skills/defi-risk-scanner"
+name: defi-risk-scanner
+description: Web3/DeFi 风险扫描工具。当用户提到"分析 DeFi 协议风险"、"检查 Token 是否是 Rug Pull"、"评估项目安全性"、"查看合约风险"、"DeFi 安全"、"链上风险"、"代币风险评估"、"协议尽调"、"这个项目安全吗"时使用。覆盖主流 EVM 链，提供结构化风险评分、风险因子拆解、关键指标解读和可操作建议。
 ---
 
-# DeFi Risk Scanner
+# DeFi Risk Scanner 🛡️
 
-> Web3/DeFi 风险扫描工具。当用户提到"分析 DeFi 协议风险"、"检查 Token 是否是 Rug Pull"、"评估项目安全性"、"查看合约风险"、"DeFi 安全"、"链上风险"、"代币风险评估"、"协议尽调"、"这个项目安全吗"时使用。覆盖主流 EVM 链，提供结构化风险评分、风险因子拆解、关键指...
+**为 DeFi 协议和代币项目提供结构化风险评估。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/defi-risk-scanner`
-- **Source URL:** [https://clawhub.ai/skills/defi-risk-scanner](https://clawhub.ai/skills/defi-risk-scanner)
+> ⚠️ 本工具仅供教育参考，不构成财务建议。加密货币投资有极高风险，可能导致本金全损。
 
-## Overview
+---
 
+## 触发场景
 
-## Installation
-To install this skill, run the following command in your terminal:
+用户会在以下情况下使用此技能：
+
+- 🔍 **"帮我分析一下 [协议名] 的风险"** — 输入协议名（slug），如 `aave`、`uniswap-v3`
+- 🪙 **"这个代币安全吗：[地址]"** — 输入合约地址，如 `0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9`
+- 📊 **"帮我做个协议尽调"** — 全面评估 TVL、流动性、市值、合约安全
+- ⚠️ **"检查这个项目是不是 Rug Pull"** — 使用 Rug Pull 检测维度
+- 💰 **"帮我看看这个 DeFi 能投吗"** — 结合多维度给出可参与性建议
+
+---
+
+## 核心框架：风险评分（0-100）
+
+| 评分 | 风险等级 | 说明 |
+|------|---------|------|
+| 80-100 | 🟢 低风险 | 各项指标健康，可持续性良好 |
+| 60-79 | 🟡 中低风险 | 存在少数关注点，建议深入尽调 |
+| 40-59 | 🟠 中高风险 | 多个风险因子，需谨慎评估 |
+| 20-39 | 🔴 高风险 | 重大风险，不建议参与 |
+| 0-19 | ⚫ 极高风险 | 高度疑似 Rug Pull 或诈骗 |
+
+---
+
+## 使用方式
+
+### 协议模式（按名称查询）
+
 ```bash
-hermes skills install clawhub/defi-risk-scanner
+# 基础用法
+./scripts/risk-check.sh <protocol-slug> [chain]
+
+# 示例
+./scripts/risk-check.sh aave ethereum
+./scripts/risk-check.sh uniswap-v3 ethereum
+./scripts/risk-check.sh curve-finance ethereum
+./scripts/risk-check.sh lido ethereum
 ```
+
+> 提示：使用协议 slug（如 `aave-v3` 而非 `Aave V3`），可通过 [DeFiLlama](https://defillama.com) 查找正确 slug。
+
+### 代币模式（按地址查询）
+
+```bash
+# 输入合约地址（0x 开头）
+./scripts/risk-check.sh 0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9 ethereum
+./scripts/risk-check.sh 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984 ethereum
+```
+
+---
+
+## 分析维度
+
+### 协议模式（DefiLlama 数据源）
+
+1. **TVL（总锁仓量）** — 最大权重因子
+   - >$1B = 高度可信 ✅
+   - $100M-$1B = 良好 ✅
+   - $10M-$100M = 中等 ⚠️
+   - <$10M = 低流动性 ⚠️
+
+2. **链上多样性** — 覆盖链数量
+   - ≥5 条链 = 多链部署 ✅
+   - 2-4 条链 = 部分多链 ⚠️
+   - 单链 = 集中风险
+
+3. **协议识别** — 知名协议加分
+   - Aave、Uniswap、Curve、Compound、Maker、Synthetix = +10分
+   - Lido = +8分
+
+4. **质押/Pool2** — 健康度指标
+
+### 代币模式（DexScreener 数据源）
+
+1. **流动性 vs 市值比** — 最关键指标
+   - ≥10% = 流动性充足 ✅（+20分）
+   - 5-10% = 中等 ⚠️（+10分）
+   - 1-5% = 低 ⚠️（0分）
+   - <1% = 🔴 极高风险（-20分）
+
+2. **市值/FDV 比** — 代币解锁风险
+   - ≥80% = 流通量健康 ✅（+20分）
+   - 50-80% = 部分未释放 ⚠️（+10分）
+   - 20-50% = 大量未解锁 ⚠️
+   - <20% = 🔴 大量代币未解锁（-15分）
+
+3. **交易活跃度** — 24h 成交量/流动性比
+   - ≥5% = 活跃市场 ✅（+10分）
+   - 1-5% = 一般活跃 ⚠️（+5分）
+
+4. **DEX 分布** — 交易对数量
+   - ≥3 个交易所 = 分散风险 ✅
+   - 仅 1 个 = 集中风险 ⚠️
+
+---
+
+## 输出示例
+
+```
+═══════════════════════════════════════════════════
+  🔍 DeFi Risk Scanner - 风险评估报告
+═══════════════════════════════════════════════════
+  目标: aave
+  链:   ethereum
+───────────────────────────────────────────────────
+
+▶ 📊 DefiLlama 链上数据
+  ─────────────────────────────────
+  名称:         Aave
+  符号:         AAVE
+  官网:         https://aave.com
+  Twitter:      @aave
+  描述:         Aave is an Open Source...
+  TVL:          $59.93B USD
+
+  风险评分计算...
+  ─────────────────────────────────
+  综合评分:     100/100 🟢 低风险 | 安全
+  ─────────────────────────────────
+
+  风险因子拆解:
+    ✅ TVL > $1B — 高度可信
+    ✅ 多链部署（25 条链）— 分散风险
+    ✅ 有质押池（$325.50M）
+    ✅ 知名协议，长期运营
+
+▶ 🔐 安全与审计建议
+  推荐验证步骤:
+    1. 在 https://debank.com/ 查看钱包持仓分布
+    2. 在 https://tokensniffer.com/ 分析代币合约风险
+    3. 在 https://revoke.cash/ 检查授权风险
+
+═══════════════════════════════════════════════════
+  综合风险评分: 100/100 🟢 低风险 | 安全
+═══════════════════════════════════════════════════
+  ✅ 结论: 该项目各项指标健康，可持续性良好
+  💡 建议: 可进行常规参与，建议持续监控
+
+⚠️ 免责声明: 以上分析仅供参考，非财务建议。
+  DYOR（Do Your Own Research）
+```
+
+---
+
+## 数据源
+
+| 用途 | API | 费用 |
+|------|-----|------|
+| 协议 TVL/基本信息 | `api.llama.fi/protocol/{slug}` | 免费 |
+| 代币流动性/市值 | `api.dexscreener.com` | 免费 |
+| 合约源码验证 | Etherscan API | 免费 Key |
+| 代币分析 | tokensniffer.com | 免费 |
+
+---
+
+## 推荐验证工具
+
+- **链上数据**: Etherscan / Polygonscan / Arbiscan
+- **DeFi 聚合**: DeFiLlama / DeBank / DappRadar
+- **安全审计**: Immunefi / Hacken / Trail of Bits
+- **代币分析**: Token Terminal / CoinGecko / DexScreener
+- **授权管理**: revoke.cash / approval.sh
+
+---
+
+## 与其他技能的区别
+
+- **vs crypto-watcher**: 监控钱包余额变化，本技能专注于**协议/代币风险评分**
+- **vs portfolio-risk-analyzer**: 聚焦于**单协议**的深度安全评估，非组合分析
+- **核心优势**: 完全免费、无需 API Key、实时链上数据
+
+---
+
+## 定价策略（路线图）
+
+| 功能 | 免费版 | Pro 版（规划中）|
+|------|--------|----------------|
+| 基础 TVL 查询 | ✅ | ✅ |
+| 合约验证状态 | ✅ | ✅ |
+| 流动性/市值分析 | ✅ | ✅ |
+| **Rug Pull 评分** | ❌ | ✅ |
+| **实时预警** | ❌ | ✅ |
+| **历史风险追踪** | ❌ | ✅ |
+| **PDF 报告导出** | ❌ | ✅ |
+
+---
+
+## 风险评估原则
+
+1. **数据优先**: 优先使用链上数据，其次才是项目自述
+2. **多源交叉**: 单个异常 ≠ 诈骗，多个叠加 = 高风险
+3. **保守原则**: 无法确认安全时，默认给出警告评分
+4. **坦诚局限**: 明确告知无法100%确认安全的场景
+5. **DYOR 提醒**: 始终强调用户需自行验证

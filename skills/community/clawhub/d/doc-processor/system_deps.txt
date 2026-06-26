@@ -1,0 +1,13 @@
+# 系统依赖 - 文档处理 Skill
+# 这些依赖需要通过系统包管理器安装
+
+# PDF 处理 (必需)
+# 提供：pdftotext, pdfinfo
+#
+# 安装命令:
+#   Linux (Debian/Ubuntu):  sudo apt install poppler-utils
+#   Linux (RHEL/CentOS):    sudo yum install poppler-utils
+#   macOS:                  brew install poppler
+#   Windows:                choco install poppler
+
+poppler-utils

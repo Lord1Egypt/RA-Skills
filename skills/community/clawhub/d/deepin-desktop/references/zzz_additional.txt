@@ -1,0 +1,50 @@
+=== org.deepin.dde.Appearance1 ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.deepin.dde.Appearance1 was not provided by any .service files
+
+=== org.deepin.dde.Sound1 ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.deepin.dde.Sound1 was not provided by any .service files
+
+=== org.deepin.dde.Notify1 ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.deepin.dde.Notify1 was not provided by any .service files
+
+=== org.deepin.dde.SessionManager1 ===
+错误：GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.deepin.dde.SessionManager1 was not provided by any .service files
+
+=== com.deepin.lastore ===
+node / {
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s xml_data);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+  node com {
+  };
+};
+
+=== com.deepin.dde.LockService ===
+node / {
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s xml_data);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+  node com {
+  };
+};
+

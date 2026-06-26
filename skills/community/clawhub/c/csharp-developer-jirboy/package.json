@@ -1,0 +1,35 @@
+{
+  "name": "csharp-developer",
+  "version": "1.0.0",
+  "description": "Professional C#/.NET development skill for OpenClaw - project templates, code generation, architecture design, and code review",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create": "node index.js"
+  },
+  "keywords": [
+    "csharp",
+    "c#",
+    "dotnet",
+    ".NET",
+    "wpf",
+    "aspnetcore",
+    "development",
+    "coding"
+  ],
+  "author": "SuperMike",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "dotnet-sdk": ">=6.0"
+  },
+  "engines": {
+    "node": ">=18",
+    "dotnet": ">=6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "homepage": "https://github.com/openclaw/openclaw#readme"
+}

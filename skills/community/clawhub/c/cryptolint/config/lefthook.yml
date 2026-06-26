@@ -1,0 +1,41 @@
+# CryptoLint -- lefthook configuration
+# Installed by: cryptolint hooks install
+# Documentation: https://cryptolint.pages.dev/docs/hooks
+#
+# This configuration integrates CryptoLint with git hooks via lefthook.
+# Pre-commit: scans staged files for cryptography issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    cryptolint-check:
+      run: |
+        CRYPTOLINT_SKILL_DIR="${CRYPTOLINT_SKILL_DIR:-$HOME/.openclaw/skills/cryptolint}"
+        if [[ -f "$CRYPTOLINT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$CRYPTOLINT_SKILL_DIR/scripts/patterns.sh"
+          source "$CRYPTOLINT_SKILL_DIR/scripts/analyzer.sh"
+          hook_cryptolint_check
+        else
+          echo "[CryptoLint] Skill not found at $CRYPTOLINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Cryptography issues detected in staged files!
+        Run 'cryptolint scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    cryptolint-full-scan:
+      run: |
+        CRYPTOLINT_SKILL_DIR="${CRYPTOLINT_SKILL_DIR:-$HOME/.openclaw/skills/cryptolint}"
+        if [[ -f "$CRYPTOLINT_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$CRYPTOLINT_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[CryptoLint] Skill not found at $CRYPTOLINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        CryptoLint detected cryptography quality issues in your codebase.
+        Run 'cryptolint scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日报 · 2026-03-21</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A1A2E',
+            accent: '#6C5CE7',
+            'accent-hover': '#5A4BD1',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .ai-gradient-line { border-left: 3px solid; border-image: linear-gradient(to bottom, #6C5CE7, #3B82F6) 1; }
+    .ai-bg { background: linear-gradient(135deg, #F8F7FF, #F0F7FF); }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif; }
+    .card-hover { transition: box-shadow 0.2s ease, transform 0.2s ease; }
+    .card-hover:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-1px); }
+    .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+    .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-scroll::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 2px; }
+    .feed-scroll::-webkit-scrollbar { width: 5px; }
+    .feed-scroll::-webkit-scrollbar-track { background: transparent; }
+    .feed-scroll::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 3px; }
+
+    .vote-btn, .bookmark-btn { cursor: pointer; user-select: none; transition: all 0.2s ease; }
+    .vote-btn:hover { color: #6C5CE7; }
+    .vote-btn.voted { color: #6C5CE7; font-weight: 600; }
+    .bookmark-btn:hover { color: #F59E0B; }
+    .bookmark-btn.bookmarked { color: #F59E0B; }
+    .tag-clickable { cursor: pointer; transition: all 0.15s ease; }
+    .tag-clickable:hover { transform: scale(1.05); box-shadow: 0 1px 4px rgba(108,92,231,0.2); }
+    .tag-clickable.tag-clicked { background: #6C5CE7 !important; color: white !important; }
+
+    .action-item { position: relative; }
+    .ai-trigger-wrap {
+      position: absolute; top: 4px; right: 4px;
+      display: flex; align-items: flex-start; z-index: 50;
+      pointer-events: none;
+    }
+    .ai-trigger-icon {
+      width: 26px; height: 26px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: #C4B5FD; font-size: 12px; cursor: pointer;
+      transition: all 0.15s ease; flex-shrink: 0;
+      pointer-events: auto;
+    }
+    .ai-trigger-icon:hover { background: #6C5CE7; color: white; }
+    .ai-menu {
+      background: white; border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06);
+      padding: 6px; min-width: 156px;
+      opacity: 0; pointer-events: none;
+      transform: translateX(8px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      margin-right: 4px;
+    }
+    .ai-menu.open { opacity: 1; pointer-events: auto; transform: translateX(0); }
+    .ai-menu-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 12px; border-radius: 7px; font-size: 12px;
+      color: #4B5563; cursor: pointer; transition: background 0.12s ease; white-space: nowrap;
+    }
+    .ai-menu-item:hover { background: #F5F3FF; color: #6C5CE7; }
+    .ai-menu-item i { width: 16px; text-align: center; font-size: 13px; }
+    .ai-menu-item .item-icon-claude { color: #C96E2B; }
+    .ai-menu-item .item-icon-chatgpt { color: #0FA47F; }
+    .ai-menu-item .item-icon-deepseek { color: #2563EB; }
+    .ai-menu-item .item-icon-copy { color: #9CA3AF; }
+    .ai-menu-sep { height: 1px; background: #F3F4F6; margin: 4px 8px; }
+
+    .card-ai-wrap { position: relative; flex-shrink: 0; }
+    .card-ai-wrap .ai-menu { position: absolute; bottom: calc(100% + 6px); right: 0; margin-right: 0; }
+    .card-ai-btn {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 2px 8px; border-radius: 6px; font-size: 11px;
+      cursor: pointer; transition: all 0.15s ease; color: #C4B5FD; white-space: nowrap;
+    }
+    .card-ai-btn:hover { background: #6C5CE7; color: white; }
+
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: #1A1A2E; color: white; padding: 10px 20px; border-radius: 10px;
+      font-size: 13px; z-index: 9999; transition: transform 0.3s ease, opacity 0.3s ease; opacity: 0;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  </style>
+</head>
+<body class="bg-[#FAFBFC] text-primary h-screen overflow-hidden flex flex-col">
+
+  <header class="flex-shrink-0 bg-white border-b border-gray-100 px-8 py-4">
+    <div class="flex items-center justify-between max-w-[1600px] mx-auto">
+      <div class="flex items-center gap-4">
+        <h1 class="text-2xl font-bold text-primary"><i class="fa-solid fa-newspaper text-accent mr-2"></i>你的日报</h1>
+        <span class="text-gray-300">|</span>
+        <p class="text-gray-500 text-sm"><i class="fa-regular fa-calendar mr-1"></i>2026年3月21日 · 周六</p>
+        <span class="bg-accent/10 text-accent text-xs font-medium px-2.5 py-1 rounded-full">15 条资讯</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="text-gray-400 text-xs"><i class="fa-regular fa-clock mr-1"></i>生成于 08:00</span>
+        <span class="inline-block bg-[#F3F0FF] text-accent text-xs font-medium px-3 py-1.5 rounded-full"><i class="fa-solid fa-user mr-1"></i>综合关注</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex-1 flex overflow-hidden max-w-[1600px] mx-auto w-full">
+
+    <!-- ======== 左栏 ======== -->
+    <aside class="w-[420px] flex-shrink-0 border-r border-gray-100 bg-white overflow-y-auto sidebar-scroll">
+      <div class="p-5 space-y-5">
+
+        <section>
+          <h2 class="text-base font-semibold text-primary mb-3 flex items-center">
+            <span class="w-6 h-6 rounded-md bg-accent/10 flex items-center justify-center mr-2"><i class="fa-solid fa-bolt text-accent text-[10px]"></i></span>今日速览
+          </h2>
+          <ol class="space-y-3 text-[13px] leading-relaxed">
+            <li class="flex gap-2.5 items-start">
+              <span class="flex-shrink-0 w-5 h-5 rounded-full bg-accent text-white text-[10px] font-bold flex items-center justify-center mt-0.5">1</span>
+              <span class="text-gray-700"><strong class="text-primary">NVIDIA GTC 2026 重磅发布</strong>：Vera Rubin 平台性能是 Blackwell 的 10 倍，芯片需求预计达 1 万亿美元，同时发布 OpenClaw 开源项目一周 GitHub 星标破 10 万。</span>
+            </li>
+            <li class="flex gap-2.5 items-start">
+              <span class="flex-shrink-0 w-5 h-5 rounded-full bg-accent text-white text-[10px] font-bold flex items-center justify-center mt-0.5">2</span>
+              <span class="text-gray-700"><strong class="text-primary">白宫发布国家 AI 立法框架</strong>，六大方向试图统一联邦监管，限制各州自行立法，涵盖儿童安全、数据中心能源、开发者责任等。</span>
+            </li>
+            <li class="flex gap-2.5 items-start">
+              <span class="flex-shrink-0 w-5 h-5 rounded-full bg-accent text-white text-[10px] font-bold flex items-center justify-center mt-0.5">3</span>
+              <span class="text-gray-700"><strong class="text-primary">开源模型集体爆发</strong>：DeepSeek-V3.2 推理能力达 Gemini-3.0-Pro 水平，GLM-5 / Qwen3.5 多模态小模型密集发布，开源与闭源差距持续缩小。</span>
+            </li>
+          </ol>
+        </section>
+
+        <hr class="border-gray-100">
+
+        <section>
+          <h2 class="text-base font-semibold text-primary mb-3 flex items-center">
+            <span class="w-6 h-6 rounded-md bg-accent/10 flex items-center justify-center mr-2"><i class="fa-solid fa-bullseye text-accent text-[10px]"></i></span>今日行动建议
+          </h2>
+          <ul class="space-y-2.5 text-[13px]">
+            <li class="action-item flex items-start gap-2.5 ai-bg rounded-lg px-3 py-2.5"
+                data-action-type="learn"
+                data-action-prompt="请帮我深入了解 NVIDIA GTC 2026 的核心发布内容：1) Vera Rubin 平台的架构设计，为什么能做到 Blackwell 10 倍性能/瓦特？2) Groq 3 LPU 是什么，和 GPU 推理有什么区别？3) OpenClaw 开源项目的定位和功能是什么？NemoClaw 的 guardrails 机制如何工作？4) 对 AI 应用开发者来说，这些发布意味着什么？">
+              <i class="fa-solid fa-book-open text-blue-500 mt-0.5 text-sm"></i>
+              <div class="flex-1">
+                <strong class="text-blue-600">建议学习</strong>
+                <p class="text-gray-600 mt-0.5 leading-relaxed">GTC 2026 核心发布：Vera Rubin 架构、Groq 3 LPU、OpenClaw 开源项目及 NemoClaw 安全机制</p>
+              </div>
+            </li>
+            <li class="action-item flex items-start gap-2.5 ai-bg rounded-lg px-3 py-2.5"
+                data-action-type="try"
+                data-action-prompt="请帮我制定一个开源大模型评测方案：1) 对比 DeepSeek-V3.2、GLM-5、Qwen3.5-9B 在代码生成、文本摘要、多轮对话场景下的表现；2) 与 GPT-5.4 和 Claude Opus 4.6 的能力差距在哪里；3) 本地部署 Qwen3.5 小模型（0.8B-9B）的硬件需求和推理速度；4) 给出具体的 benchmark 测试步骤。">
+              <i class="fa-solid fa-wrench text-emerald-500 mt-0.5 text-sm"></i>
+              <div class="flex-1">
+                <strong class="text-emerald-600">建议尝试</strong>
+                <p class="text-gray-600 mt-0.5 leading-relaxed">评测 DeepSeek-V3.2、GLM-5、Qwen3.5 等最新开源模型，对比闭源模型差距和本地部署可行性</p>
+              </div>
+            </li>
+            <li class="action-item flex items-start gap-2.5 ai-bg rounded-lg px-3 py-2.5"
+                data-action-type="watch"
+                data-action-prompt="请帮我梳理以下两个方向的最新进展：1) 白宫 AI 立法框架的具体条款，特别是对 AI 编程工具和基础模型的透明度要求，欧盟 AI Act 对 AI 编码工具的高风险分类意味着什么？2) Kimi K2.5 的 Agent Swarm 技术——支持 100 个子 Agent 并行调度是如何实现的，有没有技术文档或 API？">
+              <i class="fa-solid fa-eye text-amber-500 mt-0.5 text-sm"></i>
+              <div class="flex-1">
+                <strong class="text-amber-600">持续关注</strong>
+                <p class="text-gray-600 mt-0.5 leading-relaxed">白宫+欧盟 AI 监管对编程工具的影响；Kimi K2.5 Agent Swarm 百 Agent 并行调度技术</p>
+              </div>
+            </li>
+            <li class="action-item flex items-start gap-2.5 ai-bg rounded-lg px-3 py-2.5"
+                data-action-type="alert"
+                data-action-prompt="请帮我分析 AI 生成代码的安全风险：斯坦福和 MIT 研究发现 AI 生成代码有 14.3% 含安全漏洞（人类代码 9.1%），FTC 要求企业对 AI 生成代码承担全部安全责任。1) 主要漏洞类型有哪些？2) 有哪些工具可以自动检测 AI 生成代码的安全问题？3) 企业应该建立什么样的 AI 代码审查流程？">
+              <i class="fa-solid fa-triangle-exclamation text-red-500 mt-0.5 text-sm"></i>
+              <div class="flex-1">
+                <strong class="text-red-600">需要警惕</strong>
+                <p class="text-gray-600 mt-0.5 leading-relaxed">AI 生成代码 14.3% 含安全漏洞，FTC 要求企业承担全部责任，需建立 AI 代码审查流程</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <hr class="border-gray-100">
+
+        <section>
+          <h2 class="text-base font-semibold text-primary mb-3 flex items-center">
+            <span class="w-6 h-6 rounded-md bg-accent/10 flex items-center justify-center mr-2"><i class="fa-solid fa-chart-line text-accent text-[10px]"></i></span>趋势雷达
+          </h2>
+          <div class="space-y-2 text-[13px] mb-3">
+            <div class="flex items-center gap-2">
+              <span class="flex-shrink-0 w-12 text-right"><i class="fa-solid fa-arrow-trend-up text-emerald-500 text-xs mr-0.5"></i><strong class="text-emerald-600 text-[11px]">上升</strong></span>
+              <div class="flex gap-1.5 flex-wrap">
+                <span class="bg-emerald-50 text-emerald-700 text-[11px] px-2 py-0.5 rounded-full">Agentic AI</span>
+                <span class="bg-emerald-50 text-emerald-700 text-[11px] px-2 py-0.5 rounded-full">开源模型</span>
+                <span class="bg-emerald-50 text-emerald-700 text-[11px] px-2 py-0.5 rounded-full">AI 基础设施</span>
+                <span class="bg-emerald-50 text-emerald-700 text-[11px] px-2 py-0.5 rounded-full">世界模型</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="flex-shrink-0 w-12 text-right"><i class="fa-solid fa-arrow-trend-down text-gray-400 text-xs mr-0.5"></i><strong class="text-gray-500 text-[11px]">消退</strong></span>
+              <div class="flex gap-1.5 flex-wrap">
+                <span class="bg-gray-50 text-gray-500 text-[11px] px-2 py-0.5 rounded-full">Prompt 工程</span>
+                <span class="bg-gray-50 text-gray-500 text-[11px] px-2 py-0.5 rounded-full">传统微调</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="flex-shrink-0 w-12 text-right"><i class="fa-solid fa-fire text-red-500 text-xs mr-0.5"></i><strong class="text-red-600 text-[11px]">持续</strong></span>
+              <div class="flex gap-1.5 flex-wrap">
+                <span class="bg-red-50 text-red-600 text-[11px] px-2 py-0.5 rounded-full">大模型</span>
+                <span class="bg-red-50 text-red-600 text-[11px] px-2 py-0.5 rounded-full">AI 监管</span>
+                <span class="bg-red-50 text-red-600 text-[11px] px-2 py-0.5 rounded-full">RAG</span>
+                <span class="bg-red-50 text-red-600 text-[11px] px-2 py-0.5 rounded-full">芯片竞争</span>
+              </div>
+            </div>
+          </div>
+          <div class="ai-bg rounded-lg px-3 py-3">
+            <p class="text-[12px] text-gray-600 leading-relaxed">
+              <i class="fa-solid fa-wand-magic-sparkles text-accent mr-1"></i>
+              <strong class="text-primary">AI 洞察：</strong>本周最大主题是 <strong>NVIDIA GTC 2026</strong>，Vera Rubin 平台 + Groq 3 LPU + OpenClaw 三连发，AI 算力正从"买 GPU"进入"买 AI 工厂"时代。与此同时，<strong>开源模型集体爆发</strong>——DeepSeek-V3.2 在推理基准上追平 Gemini-3.0-Pro，Qwen3.5 系列覆盖边缘到云端，开源与闭源的能力差距已降至历史最低。<strong>监管双线推进</strong>：美国白宫框架侧重统一联邦标准，欧盟 AI Act 已将 AI 编码工具纳入高风险分类。Agent 生态方面，Kimi K2.5 的百 Agent 并行调度标志着 Agentic AI 进入规模化阶段。
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </aside>
+
+    <!-- ======== 右栏：资讯流 ======== -->
+    <main class="flex-1 overflow-y-auto feed-scroll px-8 py-6 min-w-0">
+      <h2 class="text-lg font-semibold text-primary mb-4 flex items-center">
+        <span class="w-7 h-7 rounded-lg bg-accent/10 flex items-center justify-center mr-2.5"><i class="fa-solid fa-newspaper text-accent text-xs"></i></span>
+        今日资讯<span class="text-xs text-gray-400 font-normal ml-3">按相关度排序 · 共 15 条</span>
+      </h2>
+      <div class="space-y-3">
+
+        <!-- 1 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-fire text-red-500 mr-1.5 text-xs"></i>NVIDIA GTC 2026：Vera Rubin 平台发布，AI 芯片需求达万亿美元</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">3天前</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>CNBC / NVIDIA Blog</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            <p class="mb-0.5"><strong class="text-gray-700">发生了什么：</strong>Jensen Huang 在 GTC 2026 发布 Vera Rubin 全栈平台（7 款芯片、5 套机架系统），性能是 Grace Blackwell 的 10 倍/瓦特。同时发布 Groq 3 LPU（收购 Groq 后首款产品）。预计 AI 芯片需求 2027 年达 1 万亿美元。</p>
+            <p><strong class="text-gray-700">为什么重要：</strong>AI 硬件从"卖 GPU"进入"卖 AI 工厂"时代，AWS 将部署超百万块 NVIDIA GPU，Azure 首家上线 Vera Rubin NVL72。</p>
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>推理成本将随新硬件代际下降，本地部署和云端推理的性价比格局即将改变。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#AI基础设施</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#NVIDIA</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#芯片</span></div>
+            <a href="https://www.cnbc.com/2026/03/16/nvidia-gtc-2026-ceo-jensen-huang-keynote-blackwell-vera-rubin.html" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-fire text-red-500 mr-1.5 text-xs"></i>白宫发布国家 AI 立法框架，试图统一联邦监管</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">1天前</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>NBC News</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            <p class="mb-0.5"><strong class="text-gray-700">发生了什么：</strong>白宫发布六大方向 AI 立法框架，涵盖儿童安全保护、数据中心能源规范、开发者法律责任限制等，呼吁国会建立统一联邦标准，限制各州自行立法。</p>
+            <p><strong class="text-gray-700">为什么重要：</strong>美国首个系统性联邦级 AI 立法提案，将直接影响 AI 产品的合规设计和上市策略。超过 50 名共和党议员对限制州立法权表示担忧。</p>
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>关注对模型透明度和数据使用的具体要求，可能影响 AI 产品架构设计。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#AI政策</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#监管</span></div>
+            <a href="https://www.nbcnews.com/tech/tech-news/trump-ai-congress-law-framework-legislation-artificial-intelligence-rcna264433" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-fire text-red-500 mr-1.5 text-xs"></i>DeepSeek-V3.2 发布，推理能力追平 Gemini-3.0-Pro</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本周</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>LLM Stats / DEV Community</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            <p class="mb-0.5"><strong class="text-gray-700">发生了什么：</strong>DeepSeek-V3.2 发布，专注推理和 Agent 场景。其 Speciale 变体在 AIME 和 HMMT 2025 基准上超越 GPT-5，达到 Gemini-3.0-Pro 级别。</p>
+            <p><strong class="text-gray-700">为什么重要：</strong>开源模型在推理能力上首次与闭源前沿模型并驾齐驱，对 AI 技术选型有重大影响。</p>
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>如果你在做 Agent 或推理密集型应用，DeepSeek-V3.2 是一个值得评测的开源替代方案。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#开源</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#大模型</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#DeepSeek</span></div>
+            <a href="https://dev.to/aibughunter/the-llm-and-ai-agent-releases-that-actually-matter-this-week-march-2026-5d7i" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-fire text-red-500 mr-1.5 text-xs"></i>OpenAI 发布 GPT-5.4 Thinking，引入规划和中断机制</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本月</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>AI Agent 社区</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            <p class="mb-0.5"><strong class="text-gray-700">发生了什么：</strong>OpenAI 发布推理模型 GPT-5.4 Thinking，引入执行前"Planning"和执行中"Interrupting"机制，1M token 上下文窗口，原生 Computer Use 能力。</p>
+            <p><strong class="text-gray-700">为什么重要：</strong>Planning + Interrupting 改变了人机协作模式，Agent 可以先规划再执行，执行中可被人类中断修正。</p>
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>新的 Planning/Interrupting 范式值得关注，可能成为 Agent 开发的标准交互模式。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#大模型</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#OpenAI</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#Agent</span></div>
+            <a href="https://xzhibot.com/1269.html" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-thumbtack text-amber-500 mr-1.5 text-xs"></i>Kimi K2.5 发布：万亿参数 + Agent Swarm 百 Agent 并行</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本月</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>新浪 / AI Agent 社区</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            Kimi K2.5 拥有万亿参数，核心特性是 Agent Swarm——能自主拆解任务并并行调度最多 100 个子 Agent。MIT 许可证开源，在多项编码和推理基准上接近闭源前沿模型。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>Agent Swarm 的多 Agent 并行调度是一个值得深入研究的架构模式。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#Agent</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#开源</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#国产AI</span></div>
+            <a href="https://k.sina.com.cn/article_7879848900_1d5acf3c401902sk04.html" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-thumbtack text-amber-500 mr-1.5 text-xs"></i>Qwen3.5 发布四款多模态小模型，覆盖边缘到云端</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本周</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>LLM Stats</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            阿里云发布 Qwen3.5 系列四款开源小模型（0.8B/2B/4B/9B），支持文本、图像和视频处理，可在边缘设备运行。9B 版本在 MMLU-Pro 上达到 82.5 分。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>端侧多模态模型意味着更多场景可以离线运行 AI，值得评估本地部署方案。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#开源</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#多模态</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#Qwen</span></div>
+            <a href="https://llm-stats.com/ai-news" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-thumbtack text-amber-500 mr-1.5 text-xs"></i>AI 生成代码 14.3% 含安全漏洞，FTC 要求企业承担全部责任</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本月</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>WBN Digital</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            斯坦福和 MIT 联合研究分析 200 万+ AI 生成代码片段，发现 14.3% 含安全漏洞（人类代码 9.1%）。FTC 发布指引：无论代码由人类还是 AI 生成，企业承担全部安全质量责任。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>使用 AI 编程工具时需要更严格的代码审查流程，关注自动安全扫描工具的集成。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#AI编程</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#安全</span></div>
+            <a href="https://www.wbn.digital/the-prompt-report-march-19-2026-ai-spend-gets-more-aggressive/" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-thumbtack text-amber-500 mr-1.5 text-xs"></i>AMI Labs 完成 10.3 亿美元种子轮，"世界模型"挑战 LLM</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">3天前</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>Crescendo AI News</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            Yann LeCun 创办的 AMI Labs 完成欧洲最大种子轮融资，估值 35 亿美元，获 Nvidia 和 Bezos Expeditions 支持，致力于开发面向机器人和制造业的"世界模型"。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>"世界模型"是 LLM 之外的另一条技术路线，可能在 2-3 年内开辟新的 AI 应用范式。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#前沿研究</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#融资</span></div>
+            <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 9 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-thumbtack text-amber-500 mr-1.5 text-xs"></i>Google Gemini Embedding 2：首个跨模态统一向量模型</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本周</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>LLM Stats</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            Google 发布 Gemini Embedding 2，首个将文本、图像、视频、音频和 PDF 编码到同一向量空间的模型，支持 8192 token 文本、6 张图片、120 秒视频、原生音频处理。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>统一向量空间大幅简化多模态 RAG 架构，不再需要为不同模态维护独立的 Embedding 管线。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#RAG</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#多模态</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#Google</span></div>
+            <a href="https://llm-stats.com/ai-news" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 10 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-thumbtack text-amber-500 mr-1.5 text-xs"></i>OpenAI 收购 Python 工具商 Astral，强化 AI 编程布局</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本月</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>WBN Digital</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            OpenAI 将收购 Python 工具开发商 Astral，加强在 AI 辅助软件开发领域的布局。Astral 开发的工具链被广泛用于 Python 生态的代码质量和开发效率提升。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>OpenAI 进入开发工具链，可能推出更深度集成模型能力的 Python 工具。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#AI编程</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#OpenAI</span></div>
+            <a href="https://www.wbn.digital/the-prompt-report-march-19-2026-ai-spend-gets-more-aggressive/" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 11 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug">三人因走私 AI 芯片至中国在美被起诉，涉案 25 亿美元</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">1天前</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>美国司法部 / Al Jazeera</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            三名与 Super Micro Computer 相关人员被起诉，涉嫌走私价值超 25 亿美元的 AI 芯片至中国。同时美国对华芯片出口管制政策出现微妙调整，NVIDIA H200 获批向中国销售。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>芯片管制政策的松紧直接影响 AI 算力成本和技术方案选择。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#AI芯片</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#出口管制</span></div>
+            <a href="https://www.justice.gov/opa/pr/three-charged-conspiring-unlawfully-divert-cutting-edge-us-artificial-intelligence" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 12 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug">Meta 发布四款自研 AI 芯片，Atlassian 裁 1600 人转向 AI</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">3天前</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>Crescendo AI News</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            Meta 公布自研芯片路线图（MTIA 300-500），计划 2027 年部署。Atlassian 裁减 10% 员工转向 AI，替换 CTO 为两位 AI 负责人。Samsung 计划 2026 年投资 730 亿美元强化半导体。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>科技巨头全面 AI 转型，Jira/Confluence 可能迎来 AI 能力大升级。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#AI基础设施</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#行业动态</span></div>
+            <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 13 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug">Google 个人智能全面开放，Gemini 整合 Gmail/Photos/YouTube</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本周</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>Crescendo AI News</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            Google 向全美免费用户开放 Personal Intelligence 功能，Gemini 可调用 Gmail、Photos、YouTube 等数据提供上下文感知响应。此前仅付费用户可用。
+          </div>
+          <div class="bg-[#F8F7FF] rounded-lg px-3 py-2 text-[13px] text-gray-700 my-2">
+            <i class="fa-solid fa-lightbulb text-accent mr-1"></i><strong>与你相关：</strong>AI 从独立工具走向平台级集成，个人数据+AI 的结合模式值得产品层面思考。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#AI应用</span><span class="bg-[#F3F0FF] text-accent text-[11px] px-2.5 py-0.5 rounded-full">#Google</span></div>
+            <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 14 拓展 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover border border-dashed border-gray-200">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-compass text-gray-400 mr-1.5 text-xs"></i><span class="text-gray-400 text-[11px] font-normal mr-1.5">拓展</span>Shopify 押注 Agent 驱动电商，AI 代替用户挑选购买商品</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">本周</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>Crescendo AI News</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            Shopify 大力投入 Agent 驱动电商，AI 系统作为"个人购物助手"代替用户发现、比较和购买商品，通过学习用户偏好提供深度个性化推荐。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-gray-100 text-gray-500 text-[11px] px-2.5 py-0.5 rounded-full">#AI应用</span><span class="bg-gray-100 text-gray-500 text-[11px] px-2.5 py-0.5 rounded-full">#电商</span></div>
+            <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+        <!-- 15 拓展 -->
+        <article class="bg-white rounded-xl shadow-sm p-4 card-hover border border-dashed border-gray-200">
+          <div class="flex items-start justify-between">
+            <h3 class="text-[15px] font-semibold text-primary leading-snug"><i class="fa-solid fa-compass text-gray-400 mr-1.5 text-xs"></i><span class="text-gray-400 text-[11px] font-normal mr-1.5">拓展</span>Ford 推出 AI 车队管理助手，日处理 10 亿数据点</h3>
+            <span class="text-xs text-gray-400 whitespace-nowrap ml-3">3天前</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-link mr-1"></i>Crescendo AI News</p>
+          <div class="ai-gradient-line pl-3 my-2.5 text-[13px] text-gray-600 leading-relaxed">
+            Ford 推出 "Ford Pro AI" 商用车 AI 助手，每日分析超 10 亿数据点，免费提供给 84 万订阅用户，目标减少车队管理人员每周 23 小时的行政工作。
+          </div>
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex gap-1.5"><span class="bg-gray-100 text-gray-500 text-[11px] px-2.5 py-0.5 rounded-full">#AI应用</span><span class="bg-gray-100 text-gray-500 text-[11px] px-2.5 py-0.5 rounded-full">#汽车</span></div>
+            <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank" class="text-accent text-xs hover:underline"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>原文</a>
+          </div>
+        </article>
+
+      </div>
+      <div class="text-center text-xs text-gray-400 mt-6 pb-4">
+        数据来源：NVIDIA、CNBC、NBC News、DOJ、LLM Stats、DEV Community、WBN、Crescendo AI、新浪、Al Jazeera 等<br>
+        生成时间 2026-03-21 08:00
+      </div>
+    </main>
+  </div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+(function() {
+  'use strict';
+  const DATE = '2026-03-21';
+  const IS_HTTP = location.protocol.startsWith('http');
+  const events = [];
+  const cardTimers = {};
+  const cardDwellTime = {};
+  const pageLoadTime = Date.now();
+
+  const AI_TOOLS = [
+    { id: 'claude', name: 'Claude', icon: 'fa-solid fa-message', btnClass: 'btn-claude', url: 'https://claude.ai/new?q={prompt}' },
+    { id: 'chatgpt', name: 'ChatGPT', icon: 'fa-brands fa-openai', btnClass: 'btn-chatgpt', url: 'https://chatgpt.com/?q={prompt}' },
+    { id: 'deepseek', name: 'DeepSeek', icon: 'fa-solid fa-magnifying-glass', btnClass: 'btn-deepseek', url: 'https://chat.deepseek.com/?q={prompt}' },
+    { id: 'copy', name: '复制 Prompt', icon: 'fa-regular fa-copy', btnClass: 'btn-copy', url: null }
+  ];
+
+  function ts() { return new Date().toISOString(); }
+  function log(event) { events.push(event); console.log('%c[反馈]%c ' + event.type, 'color:#6C5CE7;font-weight:bold', 'color:#333', event); }
+  function showToast(msg, dur) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), dur || 2000); }
+
+  function sendToAI(tool, prompt) {
+    if (tool.id === 'copy') { navigator.clipboard.writeText(prompt).then(() => showToast('Prompt 已复制到剪贴板')); }
+    else { window.open(tool.url.replace('{prompt}', encodeURIComponent(prompt)), '_blank'); showToast('已发送至 ' + tool.name); }
+    log({ type: 'send_to_ai', tool: tool.id, prompt: prompt.substring(0, 100) + '...', timestamp: ts() });
+  }
+
+  function showAIMenu(anchor, prompt) {
+    document.querySelectorAll('.ai-menu').forEach(m => m.classList.remove('open'));
+    const menu = document.createElement('div'); menu.className = 'ai-menu open';
+    AI_TOOLS.forEach((tool, i) => {
+      if (i > 0 && tool.id === 'copy') menu.insertAdjacentHTML('beforeend', '<div class="ai-menu-sep"></div>');
+      const item = document.createElement('div'); item.className = 'ai-menu-item';
+      item.innerHTML = '<i class="' + tool.icon + ' item-icon-' + tool.id + '"></i><span>' + tool.name + '</span>';
+      item.addEventListener('click', e => { e.stopPropagation(); sendToAI(tool, prompt); menu.remove(); });
+      menu.appendChild(item);
+    });
+    anchor.style.position = 'relative'; anchor.appendChild(menu);
+    setTimeout(() => { const close = e => { if (!menu.contains(e.target)) { menu.remove(); document.removeEventListener('click', close); } }; document.addEventListener('click', close); }, 0);
+  }
+
+  // 1a. 卡片初始化
+  const cards = document.querySelectorAll('main article.card-hover');
+  cards.forEach((card, i) => {
+    const h3 = card.querySelector('h3'); if (!h3) return;
+    const title = h3.textContent.trim().replace(/^[^\w\u4e00-\u9fff]+/, '');
+    const id = 'article-' + (i + 1);
+    card.dataset.articleId = id; card.dataset.title = title;
+    const tagEls = card.querySelectorAll('span[class*="rounded-full"]');
+    const tags = [];
+    tagEls.forEach(t => {
+      const text = t.textContent.trim();
+      if (text.startsWith('#')) { tags.push(text); t.classList.add('tag-clickable');
+        t.addEventListener('click', function() { const w = this.classList.toggle('tag-clicked'); log({ type: w ? 'tag_follow' : 'tag_unfollow', tag: text, articleId: id, title, timestamp: ts() }); });
+      }
+    });
+    card.dataset.tags = JSON.stringify(tags);
+    const actionBar = card.querySelector('.flex.items-center.justify-between.mt-2');
+    if (actionBar) {
+      const btnGroup = document.createElement('span'); btnGroup.className = 'flex items-center gap-3 ml-auto mr-3';
+      btnGroup.innerHTML = '<span class="vote-btn flex items-center gap-1 text-gray-400 text-xs" data-voted="false"><i class="fa-solid fa-caret-up text-sm"></i><span class="vote-count">0</span></span><span class="bookmark-btn text-gray-300 text-sm" data-bookmarked="false"><i class="fa-regular fa-bookmark"></i></span>';
+      const sourceLink = actionBar.querySelector('a');
+      if (sourceLink) actionBar.insertBefore(btnGroup, sourceLink);
+      btnGroup.querySelector('.vote-btn').addEventListener('click', function() {
+        const v = this.dataset.voted === 'true'; this.dataset.voted = v ? 'false' : 'true'; this.classList.toggle('voted'); this.querySelector('.vote-count').textContent = v ? '0' : '1';
+        log({ type: v ? 'unvote' : 'vote', articleId: id, title, tags, timestamp: ts() });
+      });
+      btnGroup.querySelector('.bookmark-btn').addEventListener('click', function() {
+        const m = this.dataset.bookmarked === 'true'; this.dataset.bookmarked = m ? 'false' : 'true'; this.classList.toggle('bookmarked');
+        this.querySelector('i').className = m ? 'fa-regular fa-bookmark' : 'fa-solid fa-bookmark';
+        log({ type: m ? 'unbookmark' : 'bookmark', articleId: id, title, tags, timestamp: ts() });
+      });
+    }
+  });
+
+  // 1b. 行动建议 AI 菜单
+  document.querySelectorAll('.action-item').forEach(item => {
+    const prompt = item.dataset.actionPrompt; if (!prompt) return;
+    const wrap = document.createElement('div'); wrap.className = 'ai-trigger-wrap';
+    const menu = document.createElement('div'); menu.className = 'ai-menu';
+    AI_TOOLS.forEach((tool, i) => {
+      if (i > 0 && tool.id === 'copy') menu.insertAdjacentHTML('beforeend', '<div class="ai-menu-sep"></div>');
+      const mi = document.createElement('div'); mi.className = 'ai-menu-item';
+      mi.innerHTML = '<i class="' + tool.icon + ' item-icon-' + tool.id + '"></i><span>' + tool.name + '</span>';
+      mi.addEventListener('click', e => { e.stopPropagation(); sendToAI(tool, prompt); });
+      menu.appendChild(mi);
+    });
+    wrap.appendChild(menu);
+    const icon = document.createElement('span'); icon.className = 'ai-trigger-icon';
+    icon.innerHTML = '<i class="fa-solid fa-paper-plane"></i>'; icon.title = '发送至工具';
+    wrap.appendChild(icon); item.appendChild(wrap);
+    let ht = null;
+    function show() { clearTimeout(ht); menu.classList.add('open'); }
+    function hide() { ht = setTimeout(() => menu.classList.remove('open'), 150); }
+    icon.addEventListener('mouseenter', show); icon.addEventListener('mouseleave', hide);
+    menu.addEventListener('mouseenter', show); menu.addEventListener('mouseleave', hide);
+  });
+
+  // 1c. 卡片 深入分析
+  cards.forEach(card => {
+    const title = card.dataset.title; const tags = JSON.parse(card.dataset.tags || '[]');
+    const se = card.querySelector('.ai-gradient-line'); const s = se ? se.textContent.trim().substring(0, 200) : '';
+    const re = card.querySelector('[class*="F8F7FF"]'); const r = re ? re.textContent.trim() : '';
+    const dp = '我在阅读日报时看到了这条资讯，请帮我深入分析：\n\n标题：' + title + '\n标签：' + tags.join(' ') + '\n摘要：' + s + '\n' + (r ? '与我的关联：' + r + '\n' : '') + '\n请从以下角度展开：\n1. 技术细节和背景\n2. 短期和长期影响\n3. 我应如何应对\n4. 推荐学习资源';
+    const ab = card.querySelector('.flex.items-center.justify-between.mt-2');
+    if (ab) {
+      const wrap = document.createElement('span'); wrap.className = 'card-ai-wrap';
+      const icon = document.createElement('span'); icon.className = 'card-ai-btn';
+      icon.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i>深入分析'; wrap.appendChild(icon);
+      const menu = document.createElement('div'); menu.className = 'ai-menu';
+      AI_TOOLS.forEach((tool, i) => {
+        if (i > 0 && tool.id === 'copy') menu.insertAdjacentHTML('beforeend', '<div class="ai-menu-sep"></div>');
+        const mi = document.createElement('div'); mi.className = 'ai-menu-item';
+        mi.innerHTML = '<i class="' + tool.icon + ' item-icon-' + tool.id + '"></i><span>' + tool.name + '</span>';
+        mi.addEventListener('click', e => { e.stopPropagation(); sendToAI(tool, dp); });
+        menu.appendChild(mi);
+      });
+      wrap.appendChild(menu);
+      let ht = null;
+      function show() { clearTimeout(ht); menu.classList.add('open'); }
+      function hide() { ht = setTimeout(() => menu.classList.remove('open'), 150); }
+      icon.addEventListener('mouseenter', show); icon.addEventListener('mouseleave', hide);
+      menu.addEventListener('mouseenter', show); menu.addEventListener('mouseleave', hide);
+      const sl = ab.querySelector('a'); if (sl) ab.insertBefore(wrap, sl);
+    }
+  });
+
+  // 2. 曝光停留
+  const fc = document.querySelector('main.feed-scroll');
+  if (fc) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { const c = e.target, id = c.dataset.articleId; if (!id) return;
+        if (e.isIntersecting) { cardTimers[id] = Date.now(); } else if (cardTimers[id]) {
+          const el = Date.now() - cardTimers[id]; cardDwellTime[id] = (cardDwellTime[id] || 0) + el; delete cardTimers[id];
+          if (el > 5000) log({ type: 'dwell', articleId: id, title: c.dataset.title, tags: JSON.parse(c.dataset.tags || '[]'), duration_ms: el, timestamp: ts() });
+        }
+      });
+    }, { root: fc, threshold: 0.5 });
+    cards.forEach(c => obs.observe(c));
+  }
+
+  // 3. 原文点击
+  document.querySelectorAll('main a[target="_blank"]').forEach(l => {
+    l.addEventListener('click', function() { const c = this.closest('article[data-article-id]');
+      if (c) log({ type: 'click_source', articleId: c.dataset.articleId, title: c.dataset.title, tags: JSON.parse(c.dataset.tags || '[]'), url: this.href, timestamp: ts() });
+    });
+  });
+
+  // 4. 复制
+  document.addEventListener('copy', function() {
+    const s = window.getSelection(); if (!s || !s.anchorNode) return;
+    const c = s.anchorNode.parentElement?.closest('article[data-article-id]');
+    if (c) log({ type: 'copy', articleId: c.dataset.articleId, title: c.dataset.title, tags: JSON.parse(c.dataset.tags || '[]'), copiedText: s.toString().substring(0, 100), timestamp: ts() });
+  });
+
+  // 5. 不做中途落盘，统一在离开页面时上报完整 session
+
+  // 6. 离开汇总
+  function buildSummary() {
+    Object.keys(cardTimers).forEach(id => { cardDwellTime[id] = (cardDwellTime[id] || 0) + (Date.now() - cardTimers[id]); });
+    const totalTime = Math.round((Date.now() - pageLoadTime) / 1000);
+    const voted = events.filter(e => e.type === 'vote').map(e => ({ id: e.articleId, title: e.title, tags: e.tags }));
+    const bookmarked = events.filter(e => e.type === 'bookmark').map(e => ({ id: e.articleId, title: e.title, tags: e.tags }));
+    const tagFollows = [...new Set(events.filter(e => e.type === 'tag_follow').map(e => e.tag))];
+    const tagUnfollows = [...new Set(events.filter(e => e.type === 'tag_unfollow').map(e => e.tag))];
+    const clicked = events.filter(e => e.type === 'click_source').map(e => ({ id: e.articleId, title: e.title }));
+    const copied = events.filter(e => e.type === 'copy').map(e => ({ id: e.articleId, title: e.title }));
+    const aiUsage = events.filter(e => e.type === 'send_to_ai');
+    const aiCounts = {}; aiUsage.forEach(u => { aiCounts[u.tool] = (aiCounts[u.tool] || 0) + 1; });
+    const dwellRanking = Object.entries(cardDwellTime).map(([id, ms]) => {
+      const c = document.querySelector(`[data-article-id="${id}"]`);
+      return { articleId: id, title: c ? c.dataset.title : id, tags: c ? JSON.parse(c.dataset.tags || '[]') : [], dwell_seconds: Math.round(ms / 1000) };
+    }).filter(d => d.dwell_seconds > 0).sort((a, b) => b.dwell_seconds - a.dwell_seconds);
+    const tagScores = {};
+    function addTS(tags, w) { (tags || []).forEach(t => { tagScores[t] = (tagScores[t] || 0) + w; }); }
+    voted.forEach(v => addTS(v.tags, 3)); bookmarked.forEach(b => addTS(b.tags, 3));
+    tagFollows.forEach(t => { tagScores[t] = (tagScores[t] || 0) + 2; });
+    dwellRanking.forEach(d => { if (d.dwell_seconds >= 5) addTS(d.tags, 1); });
+    const tagRanking = Object.entries(tagScores).sort((a, b) => b[1] - a[1]).map(([tag, score]) => ({ tag, score }));
+    return {
+      date: DATE,
+      session: { total_time_seconds: totalTime, total_events: events.length, page_load: new Date(pageLoadTime).toISOString() },
+      explicit_feedback: { voted, bookmarked, tags_followed: tagFollows, tags_unfollowed: tagUnfollows },
+      implicit_feedback: { dwell_ranking: dwellRanking, articles_clicked: clicked, articles_copied: copied },
+      ai_interaction: { tools_used: aiCounts, detail: aiUsage.map(u => ({ tool: u.tool, prompt_preview: u.prompt })) },
+      interest_profile: { tag_scores: tagRanking, top_interests: tagRanking.slice(0, 5).map(t => t.tag) },
+      all_events: events
+    };
+  }
+
+  function onLeave() {
+    const summary = buildSummary();
+    if (IS_HTTP) navigator.sendBeacon('/api/feedback', JSON.stringify(summary));
+    try { const st = JSON.parse(localStorage.getItem('daily_feedback') || '[]'); st.push(summary); if (st.length > 30) st.splice(0, st.length - 30); localStorage.setItem('daily_feedback', JSON.stringify(st)); } catch(e) {}
+    console.log('\n%c╔══════════════════════════════════════════════════╗', 'color:#6C5CE7');
+    console.log('%c║     日报反馈汇总 · ' + DATE + '                  ║', 'color:#6C5CE7;font-weight:bold');
+    console.log('%c╚══════════════════════════════════════════════════╝', 'color:#6C5CE7');
+    console.log(JSON.stringify(summary, null, 2));
+  }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') onLeave(); });
+  window.addEventListener('beforeunload', onLeave);
+
+  // 启动提示
+  console.log('%c╔══════════════════════════════════════════════════╗', 'color:#6C5CE7');
+  console.log('%c║     日报反馈采集已启动 · ' + DATE + '            ║', 'color:#6C5CE7;font-weight:bold');
+  console.log('%c╚══════════════════════════════════════════════════╝', 'color:#6C5CE7');
+  console.log('%c模式：' + (IS_HTTP ? 'HTTP（反馈自动回流）' : 'File（仅控制台+localStorage）'), 'color:#333;font-weight:bold');
+  console.log('  📌 隐式 — 停留时长、原文点击、文本复制');
+  console.log('  👆 显式 — 投票(▲)、收藏(🔖)、标签关注');
+  console.log('  🤖 AI — 行动建议/AI深入 发送至工具');
+  console.log('%c关闭页面时自动输出汇总\n', 'color:#888');
+})();
+</script>
+</body>
+</html>

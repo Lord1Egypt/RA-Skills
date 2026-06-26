@@ -1,0 +1,15 @@
+{
+  "common": {
+    "welcome_back": "Welcome Back",
+    "please_sign_in_to": "Please sign in to continue",
+    "email_address": "Email Address",
+    "password": "Password",
+    "sign_in": "Sign In",
+    "cancel": "Cancel",
+    "reset_it_here": "Reset it here",
+    "enter_your_email": "Enter your email",
+    "email_input_field": "Email input field",
+    "enter_your_password": "Enter your password",
+    "password_input_field": "Password input field"
+  }
+}

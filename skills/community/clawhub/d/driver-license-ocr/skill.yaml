@@ -1,0 +1,21 @@
+name: driver_license_ocr
+version: 1.0.0
+description: 支持识别驾驶证主/副页，从主页提取姓名、证号、准驾车型、初次领证日期及有效期等。从副页提取驾驶证副页，提取档案编号、姓名、证号、以及记录信息。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/driver_license_ocr.git  # 请替换为实际仓库地址
+dependencies:
+  - python3
+  - requests

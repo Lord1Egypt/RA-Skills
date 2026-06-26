@@ -1,0 +1,32 @@
+# Development dependencies for Database Documentation Generator
+# Install with: pip install -r requirements-dev.txt
+
+# Core runtime dependencies
+-r requirements.txt
+
+# Testing
+pytest==8.0.0
+pytest-cov==4.1.0
+
+# Code quality
+black==24.1.1
+flake8==7.0.0
+mypy==1.8.0
+isort==5.13.2
+
+# Security tools
+safety==2.4.1b1
+bandit==1.7.7
+
+# Documentation
+sphinx==7.2.6
+sphinx-rtd-theme==2.0.0
+
+# Development utilities
+pre-commit==3.6.0
+ipython==8.20.0
+jupyter==1.0.0
+
+# Virtual environment management
+virtualenv==20.25.0
+pip-tools==7.4.0

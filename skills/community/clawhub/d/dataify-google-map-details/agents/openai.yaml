@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Google Map Details"
+  short_description: "Submit Dataify Google Maps detail tasks by URL, CID, location, or place ID"
+  icon_small: "./assets/dataify-google-map-details-small.svg"
+  icon_large: "./assets/dataify-google-map-details-large.svg"
+  default_prompt: "Use $dataify-google-map-details to submit Google Maps detail Builder tasks by URL, CID, location, or place ID through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

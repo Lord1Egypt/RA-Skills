@@ -1,35 +1,43 @@
----
-name: "Denario (Autonomous Research Pipeline)"
-description: "Automates scientific research by generating ideas, methodology, results, papers, and citations using the Denario framework with Z.ai integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/denario-skill"
-sourceUrl: "https://clawhub.ai/skills/denario-skill"
+# Denario Skill
+
+Wraps the **Denario** framework to automate the scientific research process. Handles environment setup and Z.ai integration automatically.
+
+**Engine:** `scripts/wrapper.sh`
+**Working Directory:** `./` (Skill Root)
+
 ---
 
-# Denario (Autonomous Research Pipeline)
+## Trigger Phrases
 
-> Automates scientific research by generating ideas, methodology, results, papers, and citations using the Denario framework with Z.ai integration.
+| Phrase | Action |
+|--------|--------|
+| **"Denario idea"** | Generate research ideas (Maker/Hater loop). |
+| **"Denario methods"** | Develop methodology. |
+| **"Denario results"** | Generate results and analysis. |
+| **"Denario paper"** | Compile full paper. |
+| **"Denario citations"** | Manage citations. |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/denario-skill`
-- **Source URL:** [https://clawhub.ai/skills/denario-skill](https://clawhub.ai/skills/denario-skill)
+---
 
-## Overview
+## Usage Guide
 
+### 1. Generating an Idea
+> **User:** "Denario idea"
+> **Bot:** Runs the wrapper script to execute `test_denario.py`. First run will auto-install dependencies.
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 2. Full Pipeline
+> **User:** "Denario methods", then "Denario results", then "Denario paper"
+> **Bot:** Progresses through the research stages.
+
+---
+
+## Configuration
+
+**API Key Required:**
+You must set your Z.ai/Zhipu API key in Clawdbot's environment:
 ```bash
-hermes skills install clawhub/denario-skill
+clawdbot config set env.OPENAI_API_KEY <your-key>
 ```
+
+**Environment:**
+Creates and manages a virtualenv at `~/.denario_skill_env` automatically.

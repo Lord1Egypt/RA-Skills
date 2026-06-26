@@ -1,0 +1,9 @@
+{
+  "name": "daily-idiom",
+  "version": "1.0.2",
+  "description": "Daily Chinese idiom (成语) — origin story, meaning, usage examples, and memory tip. Build Chinese vocabulary and cultural knowledge one 成语 per day.",
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

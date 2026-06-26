@@ -1,0 +1,202 @@
+[
+  {
+    "method": "flightListV2",
+    "description": "航班列表查询",
+    "category": "RESOURCE",
+    "subCategory": "FLIGHT",
+    "action": "SEARCH",
+    "version": "v2",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "fromCityName": {
+          "type": "string",
+          "description": "出发城市名称（如：北京、上海、武汉）"
+        },
+        "toCityName": {
+          "type": "string",
+          "description": "到达城市名称（如：广州、深圳）"
+        },
+        "fromDate": {
+          "type": "string",
+          "description": "出发日期，格式 yyyyMMdd，如 20260315"
+        }
+      },
+      "required": ["fromCityName", "toCityName", "fromDate"]
+    }
+  },
+  {
+    "method": "cabinList",
+    "description": "航班详情舱位列表",
+    "category": "RESOURCE",
+    "subCategory": "FLIGHT",
+    "action": "DETAIL",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "goExtData": {
+          "type": "string",
+          "description": "去程扩展数据，取自航班列表接口 goFlight.flights[].extData"
+        }
+      },
+      "required": ["goExtData"]
+    }
+  },
+  {
+    "method": "getPassengerList",
+    "description": "获取乘客信息列表",
+    "category": "PASSENGER",
+    "subCategory": "COMMON",
+    "action": "LIST",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderType": {
+          "type": "integer",
+          "description": "订单类型：0-机票（默认）",
+          "default": 0
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "method": "savePassenger",
+    "description": "保存乘客信息",
+    "category": "PASSENGER",
+    "subCategory": "COMMON",
+    "action": "SAVE",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "passengerName": {
+          "type": "string",
+          "description": "旅客姓名（中文）"
+        },
+        "identityType": {
+          "type": "string",
+          "description": "证件类型：ID-身份证（默认）",
+          "default": "ID"
+        },
+        "identityNo": {
+          "type": "string",
+          "description": "证件号码"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "手机号码"
+        }
+      },
+      "required": ["passengerName", "identityNo", "phoneNumber"]
+    }
+  },
+  {
+    "method": "flight.createOrder",
+    "description": "创建机票订单",
+    "category": "ORDER",
+    "subCategory": "FLIGHT",
+    "action": "BOOK",
+    "version": "v2",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "resourceItemId": { "type": "string", "description": "资源项id，取自 cabinList" },
+        "goExtData": { "type": "string", "description": "航班列表中的data.goFlight.flights[].extData" },
+        "passengerIds": {"type": "array", "description": "选择出行的用户的id", "items": {"type": "Long"}},
+        "contactPhone": {"type": "string", "description": "联系人手机号"}
+      },
+      "required": ["resourceItemId", "goExtData", "passengerIds", "contactPhone"]
+    }
+  },
+  {
+    "method": "getOrderStatus",
+    "description": "获取订单状态",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "STATUS",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单号"
+        }
+      },
+      "required": ["orderBaseId"]
+    }
+  },
+  {
+    "method": "orderDetail",
+    "description": "获取订单详情",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "QUERY",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单号"
+        }
+      },
+      "required": ["orderBaseId"]
+    }
+  },
+  {
+    "method": "flight.cancelOrder",
+    "description": "取消机票订单（仅未支付）",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "CANCEL",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "orderBaseId": {
+          "type": "string",
+          "description": "订单ID"
+        },
+        "orderType": {
+          "type": "integer",
+          "description": "订单类型，默认0（飞机）",
+          "default": 0
+        },
+        "subOrderType": {
+          "type": "string",
+          "description": "子订单类型，默认 DOMESTIC_FLIGHT",
+          "default": "DOMESTIC_FLIGHT"
+        },
+        "cancelReason": {
+          "type": "string",
+          "description": "取消原因"
+        },
+        "terminalCode": {
+          "type": "string",
+          "description": "终端类型，如 APP",
+          "default": "APP"
+        }
+      },
+      "required": [
+        "orderBaseId",
+        "orderType",
+        "subOrderType"
+      ]
+    }
+  },
+  {
+    "method": "orderHistory",
+    "description": "获取机票订单历史列表",
+    "category": "ORDER",
+    "subCategory": "FLIGHT",
+    "action": "HISTORY",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "memberId": {
+          "type": "string",
+          "description": "会员ID"
+        }
+      },
+      "required": ["memberId"]
+    }
+  }
+]

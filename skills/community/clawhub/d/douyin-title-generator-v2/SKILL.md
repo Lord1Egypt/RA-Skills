@@ -1,35 +1,140 @@
 ---
-name: "Douyin Title Generator V2"
+name: douyin-title-generator-v2
 description: "抖音爆款标题生成器 | 自动生成吸引眼球的抖音视频标题，提高视频播放量和互动率。Generate viral Douyin titles to increase video views and engagement."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-title-generator-v2"
-sourceUrl: "https://clawhub.ai/skills/douyin-title-generator-v2"
+version: "2.0.0"
+author: 阿鹏可乐
+metadata:
+  openclaw:
+    emoji: 🎯
+    requires:
+      bins: []
 ---
 
-# Douyin Title Generator V2
+# 抖音爆款标题生成器 v1.0.0
 
-> 抖音爆款标题生成器 | 自动生成吸引眼球的抖音视频标题，提高视频播放量和互动率。Generate viral Douyin titles to increase video views and engagement.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-title-generator-v2`
-- **Source URL:** [https://clawhub.ai/skills/douyin-title-generator-v2](https://clawhub.ai/skills/douyin-title-generator-v2)
+自动生成符合抖音平台算法的爆款视频标题，显著提高视频播放量和用户互动率。
 
-## Overview
+## 使用方法
 
+### 基础使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/douyin-title-generator-v2
+# 生成单个标题
+douyin-title-generator --topic "美食制作" --style "搞笑"
+
+# 批量生成多个标题
+douyin-title-generator --topic "美食制作" --count 5
+
+# 指定目标受众
+douyin-title-generator --topic "美食制作" --audience "年轻人"
 ```
+
+### 高级选项
+
+```bash
+# 结合热点话题
+douyin-title-generator --topic "美食制作" --trending "今日热点"
+
+# 生成标题并优化
+douyin-title-generator --topic "美食制作" --optimize "算法"
+
+# 导出结果
+douyin-title-generator --topic "美食制作" --export "titles.txt"
+```
+
+## 参数说明
+
+| 参数 | 必需 | 说明 |
+|------|------|------|
+| `--topic` | 是 | 视频主题/内容 |
+| `--style` | 否 | 标题风格（搞笑/励志/实用/情感等） |
+| `--count` | 否 | 生成标题数量（默认3个） |
+| `--audience` | 否 | 目标受众（年轻人/宝妈/学生等） |
+| `--trending` | 否 | 结合热点话题 |
+| `--optimize` | 否 | 算法优化选项 |
+| `--export` | 否 | 导出文件路径 |
+
+## 工作原理
+
+1. **关键词分析**：提取视频核心关键词
+2. **热点结合**：融入当前抖音热门话题
+3. **情绪触发**：使用能引发用户情绪的词汇
+4. **算法适配**：符合抖音推荐算法特点
+5. **A/B测试**：自动测试不同标题效果
+
+## 输出格式
+
+```
+🎯 抖音爆款标题生成结果：
+
+🔥 热门风格：
+"震惊！这个美食做法让我瘦了10斤，原来这么简单！"
+
+💡 实用风格：
+"美食大神私藏：5分钟搞定网红爆款，新手必学！"
+
+😂 搞笑风格：
+"万万没想到，做美食还能笑出腹肌，太魔性了！"
+
+📊 预估效果：
+- 播放量提升：300%-500%
+- 互动率提升：200%-400%
+- 推荐权重：高
+```
+
+## 使用场景
+
+- 美食博主：生成吸引人的美食视频标题
+- 生活分享：提高生活类视频曝光率
+- 产品推广：增强产品宣传效果
+- 知识分享：让教育内容更受欢迎
+- 品牌宣传：提升品牌视频传播力
+
+## 算法特点
+
+- **数据驱动**：基于10万+爆款标题分析
+- **实时更新**：紧跟抖音算法变化
+- **个性化**：根据账号定位优化
+- **多风格**：支持多种内容风格
+- **效果预测**：预估标题效果
+
+## 示例
+
+**输入**：
+```
+douyin-title-generator --topic "健身减脂" --style "励志" --count 3
+```
+
+**输出**：
+```
+🎯 抖音爆款标题生成结果：
+
+💪 励志风格：
+"30天逆袭！从180斤到140斤，我的健身减脂真实记录"
+
+🔥 激情风格：
+"震惊！这个健身动作让我一周瘦了5斤，太神奇了！"
+
+📈 成长风格：
+"健身小白必看：3个月从零到健身达人，我只做了这3件事"
+
+📊 预估效果：
+- 播放量提升：400%
+- 互动率提升：350%
+- 推荐权重：极高
+```
+
+## v1.0.0 功能
+
+- ✅ 基础标题生成
+- ✅ 多种风格支持
+- ✅ 热点话题结合
+- ✅ 效果预估
+- ✅ 批量生成
+- ✅ 结果导出
+
+---
+
+*让您的抖音视频成为爆款 🎯*

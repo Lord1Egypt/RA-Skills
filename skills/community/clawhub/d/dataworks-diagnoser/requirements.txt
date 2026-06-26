@@ -1,0 +1,11 @@
+# DataWorks Diagnoser - Python Dependencies
+
+# Alibaba Cloud SDK (required for API access)
+alibabacloud_dataworks_public20240518>=1.0.0
+alibabacloud_credentials>=0.3.0
+
+# Optional: for HTTP requests to official docs
+# requests>=2.28.0
+
+# Optional: for HTML parsing
+# beautifulsoup4>=4.11.0

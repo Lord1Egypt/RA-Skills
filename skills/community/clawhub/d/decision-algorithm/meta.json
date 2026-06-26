@@ -1,0 +1,12 @@
+{
+  "name": "Decision Algorithm",
+  "slug": "decision-algorithm",
+  "version": "v2",
+  "created_at": "2026-04-14T00:00:00.000000+00:00",
+  "source": "EKB Decision Algorithm Framework (based on 20 years of decision research)",
+  "framework": "EKB (Expected Value + Kelly Criterion + Bayes)",
+  "platforms": ["claude-code", "openclaw", "codex"],
+  "entry_point": "SKILL.md",
+  "description": "EKB Decision Algorithm: Analyze any life decision using Expected Value, Kelly Criterion, and Bayesian updating. Covers career, investment, relationship, education, and lifestyle decisions.",
+  "triggers": ["should I", "worth it", "torn between", "hesitating", "can't decide", "how to choose", "risk", "how much to invest", "win rate", "odds", "quit my job", "startup", "breakup", "invest"]
+}

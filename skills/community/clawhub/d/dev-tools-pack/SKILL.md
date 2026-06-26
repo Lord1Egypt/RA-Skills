@@ -1,35 +1,54 @@
----
-name: "Dev Tools Pack"
-description: "Collection of developer tools including Chrome extension templates, AI code reviews, GitHub README generators, SaaS landing pages, tech blogs, and tweet thre..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dev-tools-pack"
-sourceUrl: "https://clawhub.ai/skills/dev-tools-pack"
----
+# Developer Tools Pack
 
-# Dev Tools Pack
+A comprehensive collection of developer productivity tools.
 
-> Collection of developer tools including Chrome extension templates, AI code reviews, GitHub README generators, SaaS landing pages, tech blogs, and tweet thre...
+## Included Tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dev-tools-pack`
-- **Source URL:** [https://clawhub.ai/skills/dev-tools-pack](https://clawhub.ai/skills/dev-tools-pack)
+### Chrome Extension Generator
+Generate Chrome extension templates with popup, background script, options page support.
 
-## Overview
+### Code Review Assistant
+AI-powered code review automation with diff analysis and PR suggestions.
 
+### GitHub README Generator
+Create beautiful, professional GitHub README files with multiple templates.
 
-## Installation
-To install this skill, run the following command in your terminal:
+### SaaS Landing Page Generator
+Modern SaaS landing pages with responsive design and Tailwind CSS.
+
+### Tech Blog Generator
+Technical blog templates with code highlighting and SEO optimization.
+
+### Tweet Thread Generator
+Create engaging Twitter threads from text, URLs, or files.
+
+## Usage
+
 ```bash
-hermes skills install clawhub/dev-tools-pack
+# Generate Chrome Extension
+./chrome-extension-generator.sh "My Extension" "Description"
+
+# Code Review
+./code-review-assistant.sh review /path/to/code
+
+# GitHub README
+./github-readme-generator.sh "Project Name"
+
+# SaaS Landing Page
+./saas-landing-page.sh "My SaaS"
+
+# Tech Blog
+./tech-blog-generator.sh "My Blog" "Description"
+
+# Tweet Thread
+./tweet-thread-generator.sh text "Your content"
 ```
+
+## Requirements
+
+- Bash 4.0+
+- Git
+
+## Author
+
+Sunshine-del-ux

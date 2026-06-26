@@ -1,0 +1,51 @@
+{
+  "skill_name": "dingtalk-docs-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我有一个本地文件 weekly-report.md，内容是本周工作总结，帮我把它推送到钉钉知识库，放在「周报」文件夹下，标题叫「2026-W18 周报」。",
+      "expected_output": "调用 list_nodes 或 search_documents 找到「周报」文件夹的 nodeId，然后调用 create_document 创建文档，读取 weekly-report.md 内容作为 content 参数，最后返回文档标题和访问链接。",
+      "files": [],
+      "assertions": [
+        "调用了 create_document MCP 工具",
+        "文档标题包含「2026-W18 周报」",
+        "输出包含文档访问链接或 dentryUuid",
+        "没有跳过定位父文件夹的步骤"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我更新钉钉上的「产品需求文档 v2」，把本地的 prd-v2.md 内容覆盖上去。",
+      "expected_output": "先调用 search_documents 找到目标文档的 dentryUuid，确认文档类型是 adoc，然后调用 update_document 以 overwrite 模式更新内容，最后返回更新结果和文档链接。",
+      "files": [],
+      "assertions": [
+        "调用了 search_documents 或 get_document_info 定位文档",
+        "调用了 update_document 且 updateMode 为 overwrite",
+        "输出包含操作成功的确认信息"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我配置钉钉文档 MCP，我现在是第一次用。",
+      "expected_output": "输出初始化引导步骤：提供开通链接、说明需要登录并开通服务、说明复制 StreamableHttp URL、说明后续 Claude 会写入 settings.json。不调用任何 MCP 文档工具。",
+      "files": [],
+      "assertions": [
+        "输出包含 aihub.dingtalk.com 开通链接",
+        "说明需要复制 StreamableHttp URL",
+        "提到需要重启 Claude Code",
+        "没有尝试直接调用 create_document 等文档操作工具"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "列出钉钉知识库根目录下的所有文档。",
+      "expected_output": "调用 list_nodes 并传入知识库根节点 ID（如果用户未提供则先询问或说明需要知识库 ID），返回文档节点列表（标题、类型、节点 ID）。",
+      "files": [],
+      "assertions": [
+        "调用了 list_nodes MCP 工具",
+        "如果缺少知识库 ID 则向用户说明而不是猜测",
+        "输出展示了文档列表或明确说明缺少必要参数"
+      ]
+    }
+  ]
+}

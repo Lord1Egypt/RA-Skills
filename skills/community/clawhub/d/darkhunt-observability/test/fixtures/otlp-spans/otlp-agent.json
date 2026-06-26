@@ -1,0 +1,47 @@
+[
+  {
+    "traceId": "1505bd0602edb499f991140f29e4a89a",
+    "spanId": "a029585d92be7b60",
+    "name": "agent darkhunt-docs",
+    "kind": 0,
+    "startTimeUnixNano": 1773775671209000000,
+    "endTimeUnixNano": 1773775671210000000,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "openclaw.observation.type": "agent",
+      "openclaw.session.id": "agent:darkhunt-docs:slack:channel:c0am98auquq:thread:1773773584.660059",
+      "openclaw.session.key": "agent:darkhunt-docs:slack:channel:c0am98auquq:thread:1773773584.660059",
+      "openclaw.agent.id": "darkhunt-docs",
+      "user.id": "sergey",
+      "openclaw.user.slack_id": "U08TPAJ0Q91",
+      "openclaw.user.slack_username": "sergey",
+      "openclaw.user.display_name": "sergey",
+      "openclaw.channel.id": "C0AM98AUQUQ",
+      "openclaw.channel.provider": "slack",
+      "langfuse.observation.metadata.user_slack_id": "U08TPAJ0Q91",
+      "langfuse.observation.metadata.user_slack_username": "sergey",
+      "langfuse.observation.metadata.user_display_name": "sergey",
+      "langfuse.observation.metadata.channel_id": "C0AM98AUQUQ",
+      "langfuse.observation.metadata.channel_provider": "slack",
+      "langfuse.observation.metadata.agent_id": "darkhunt-docs",
+      "metadata": "{\"agent_id\":\"darkhunt-docs\",\"user_slack_id\":\"U08TPAJ0Q91\",\"user_slack_username\":\"sergey\",\"channel_id\":\"C0AM98AUQUQ\",\"channel_provider\":\"slack\"}",
+      "openclaw.observation.metadata": "{\"agent_id\":\"darkhunt-docs\",\"user_slack_id\":\"U08TPAJ0Q91\",\"user_slack_username\":\"sergey\",\"channel_id\":\"C0AM98AUQUQ\",\"channel_provider\":\"slack\"}",
+      "langfuse.trace.metadata.user_slack_id": "U08TPAJ0Q91",
+      "langfuse.trace.metadata.user_slack_username": "sergey",
+      "langfuse.trace.metadata.channel_id": "C0AM98AUQUQ",
+      "langfuse.trace.metadata.channel_provider": "slack",
+      "service.version": "0.3.4",
+      "openclaw.channel": "slack",
+      "openclaw.observation.level": "DEFAULT"
+    },
+    "resource": {
+      "service.name": "openclaw",
+      "service.version": "0.3.4",
+      "os.type": "Linux",
+      "process.runtime.name": "node",
+      "host.arch": "x64"
+    }
+  }
+]

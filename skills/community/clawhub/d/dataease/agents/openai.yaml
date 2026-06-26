@@ -1,0 +1,6 @@
+interface:
+  display_name: "DataEase 组织与资源导出"
+  short_description: "查询组织、切换组织并导出 DataEase 看板或大屏"
+  icon: "camera"
+  color: "blue"
+  default_prompt: "Use $dataease-resource-skill to list DataEase organizations, switch organization context when needed, list dashboards or big screens, and export the resource I name as an image or PDF file."

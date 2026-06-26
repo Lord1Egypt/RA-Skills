@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Dashboard</title>
+    <link rel="stylesheet" href="css/style.css?v=2.1">
+    <script src="js/i18n.js"></script>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="grid-pattern"></div>
+    
+    <!-- Floating particles -->
+    <div id="particles"></div>
+
+    <!-- Sidebar Toggle Button (Fixed) -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" data-i18n-title="nav.toggleSidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+        </svg>
+    </button>
+
+    <!-- Left Sidebar (Collapsible) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3 data-i18n="sidebar.title">📊 Agent 详情</h3>
+            <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+        </div>
+        <div class="sidebar-content" id="sidebarContent">
+            <div class="sidebar-empty">
+                <div class="sidebar-empty-icon">👈</div>
+                <p data-i18n="sidebar.emptyHint">点击 Agent 卡片查看详情</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Subagents Manager Modal -->
+    <div class="modal-overlay" id="subagentsModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="subagents.title">🔀 子 Agent 调度管理</h3>
+                <button class="modal-close" onclick="closeSubagentsManager()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="subagents-manager">
+                    <div class="form-group">
+                        <label data-i18n="subagents.dispatcherLabel">选择调度者 Agent（主 Agent）</label>
+                        <select id="subagentDispatcherSelect" onchange="loadSubagentConfig()">
+                            <option value="" data-i18n="subagents.selectPlaceholder">请选择...</option>
+                        </select>
+                        <small class="form-hint" data-i18n="subagents.hint">被选中的 Agent 可以调度下面配置的子 Agent</small>
+                    </div>
+                    
+                    <div class="subagents-config" id="subagentsConfig" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-i18n="subagents.maxConcurrent">最大并发数</label>
+                                <input type="number" id="subagentMaxConcurrent" min="1" max="20" value="4">
+                            </div>
+                        </div>
+                        
+                        <div class="section-title" style="margin-top: 20px;" data-i18n="subagents.allowedList">允许的子 Agent 列表</div>
+                        <p class="form-hint" data-i18n="subagents.checkHint">勾选允许被调度的 Agent</p>
+                        
+                        <div class="subagents-list" id="subagentsList">
+                            <!-- 动态生成 -->
+                        </div>
+                        
+                        <div class="form-actions" style="margin-top: 20px;">
+                            <button class="btn btn-secondary" onclick="closeSubagentsManager()" data-i18n="cancel">取消</button>
+                            <button class="btn btn-primary" onclick="saveSubagentConfig()" data-i18n="subagents.saveConfig">保存配置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Manager Modal -->
+    <div class="modal-overlay" id="skillsModal">
+        <div class="modal skills-modal">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="skills.title">🛠️ Agent 技能管理</h3>
+                <button class="modal-close" onclick="closeSkillsManager()">✕</button>
+            </div>
+            <div class="modal-body" id="skillsModalBody">
+                <!-- 动态生成技能管理内容 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Detail Modal -->
+    <div class="modal-overlay" id="skillDetailModal">
+        <div class="modal skills-modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="skillDetailTitle" data-i18n="skills.detailTitle">技能详情</h3>
+                <button class="modal-close" onclick="closeSkillDetail()">✕</button>
+            </div>
+            <div class="modal-body" id="skillDetailBody">
+                <!-- 动态生成技能详情 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <header>
+            <div class="header-top">
+                <div class="view-switcher">
+                    <button class="view-btn active" onclick="switchView('grid')" data-i18n-title="view.grid">
+                        <span>⊞</span>
+                    </button>
+                    <button class="view-btn" onclick="switchView('grid-horizontal')" data-i18n-title="view.gridHorizontal">
+                        <span>⊟</span>
+                    </button>
+                    <button class="view-btn" onclick="switchView('list')" data-i18n-title="view.list">
+                        <span>☰</span>
+                    </button>
+                </div>
+                <div class="header-actions">
+                    <button class="manage-subagents-btn" onclick="openSubagentsManager()">
+                        <span>🔀</span>
+                        <span data-i18n="nav.manageSubagents">调度管理</span>
+                    </button>
+                    <button class="settings-btn create-agent-btn" onclick="openCreateAgentModal()">
+                        <span>➕</span>
+                        <span data-i18n="nav.createAgent">新建 Agent</span>
+                    </button>
+                    <button class="settings-btn" onclick="openSettings()">
+                        <span>⚙️</span>
+                        <span data-i18n="nav.settings">设置</span>
+                    </button>
+                </div>
+            </div>
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <h1 id="dashboardTitle">Agent Dashboard</h1>
+            </div>
+            <p class="subtitle" id="dashboardSubtitle" data-i18n="app.subtitle">实时监控 Agent 状态与 Token 使用情况</p>
+            <div class="datetime-weather">
+                <div id="currentDate" class="current-date"></div>
+                <div class="weather-info" id="weatherInfo">
+                    <span class="weather-loading" data-i18n="weather.loading">🌤️ 获取天气中...</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="stats-overview" id="statsOverview">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p data-i18n="loading">加载中...</p>
+            </div>
+        </div>
+
+        <div class="sort-hint" id="sortHint">
+            <span data-i18n="sort.hint">拖动卡片左上角的手柄可以调整排序</span>
+        </div>
+        <div class="agent-grid" id="agentGrid">
+            <!-- Agent cards will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Session Details Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="session.title">会话详情</h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Agent Modal -->
+    <div class="modal-overlay" id="createAgentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="create.title">➕ 创建新 Agent</h3>
+                <button class="modal-close" onclick="closeCreateAgentModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="create.agentId">Agent ID <span class="required">*</span></label>
+                            <input type="text" id="newAgentId" data-i18n-placeholder="create.agentIdPlaceholder" 
+                                   pattern="[a-z0-9_-]+" data-i18n-title="create.agentIdPattern">
+                            <small class="form-hint" data-i18n="create.agentIdHint">唯一标识，创建后不可修改</small>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="create.displayName">显示名称 <span class="required">*</span></label>
+                            <input type="text" id="newAgentName" data-i18n-placeholder="create.displayNamePlaceholder">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="create.role">角色</label>
+                            <input type="text" id="newAgentRole" data-i18n-placeholder="create.rolePlaceholder">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="create.emoji">Emoji 图标</label>
+                            <input type="text" id="newAgentEmoji" placeholder="🤖" maxlength="2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="create.colorTheme">颜色主题</label>
+                            <select id="newAgentColor">
+                                <option value="cyan" data-i18n="create.color.cyan">青色 (Cyan)</option>
+                                <option value="main" data-i18n="create.color.main">蓝紫 (Main)</option>
+                                <option value="coder" data-i18n="create.color.coder">青蓝 (Coder)</option>
+                                <option value="brainstorm" data-i18n="create.color.brainstorm">橙粉 (Brainstorm)</option>
+                                <option value="writer" data-i18n="create.color.writer">绿青 (Writer)</option>
+                                <option value="investor" data-i18n="create.color.investor">绿橙 (Investor)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="create.modelProvider">模型提供商</label>
+                            <select id="newAgentProvider" onchange="onProviderChange()">
+                                <option value="" data-i18n="create.loading">加载中...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label data-i18n="create.selectModel">选择模型</label>
+                        <select id="newAgentModel">
+                            <option value="" data-i18n="create.selectProviderFirst">请先选择提供商</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label data-i18n="create.description">描述</label>
+                        <input type="text" id="newAgentDescription" data-i18n-placeholder="create.descriptionPlaceholder">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label data-i18n="create.systemPrompt">系统提示词 (System Prompt)</label>
+                        <textarea id="newAgentSystemPrompt" rows="3" 
+                                  data-i18n-placeholder="create.systemPromptPlaceholder"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="closeCreateAgentModal()" data-i18n="cancel">取消</button>
+                        <button class="btn btn-primary" onclick="createAgent()" data-i18n="create.createButton">创建 Agent</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="settings.title">⚙️ Dashboard 设置</h3>
+                <button class="modal-close" onclick="closeSettings()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label data-i18n="settings.dashboardName">Dashboard 名称</label>
+                        <input type="text" id="settingDashboardName" placeholder="Agent Dashboard">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label data-i18n="settings.subtitle">副标题</label>
+                        <input type="text" id="settingSubtitle" data-i18n-placeholder="settings.subtitlePlaceholder">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="settings.refreshInterval">自动刷新间隔 (秒)</label>
+                            <input type="number" id="settingRefreshInterval" min="5" max="300" value="30">
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="settingShowCost" checked>
+                                <span data-i18n="settings.showCost">显示费用估算</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title" style="margin-top: 20px;" data-i18n="settings.tokenCost">Token 成本配置 (元/百万tokens)</div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="settings.inputPrice">输入 Token 价格</label>
+                            <input type="number" id="settingInputPrice" step="0.1" min="0" placeholder="2">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="settings.outputPrice">输出 Token 价格</label>
+                            <input type="number" id="settingOutputPrice" step="0.1" min="0" placeholder="8">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="settings.cachePrice">缓存 Token 价格</label>
+                            <input type="number" id="settingCachePrice" step="0.1" min="0" placeholder="1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" onclick="closeSettings()" data-i18n="cancel">取消</button>
+                        <button class="btn btn-primary" onclick="saveSettings()" data-i18n="settings.saveButton">保存设置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avatar Upload Modal -->
+    <div class="modal-overlay" id="avatarModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" data-i18n="avatar.title">📷 更换头像</h3>
+                <button class="modal-close" onclick="closeAvatarUpload()">✕</button>
+            </div>
+            <div class="modal-body">
+                <img id="avatarPreview" class="avatar-preview" style="display: none;" alt="Preview">
+                
+                <div class="upload-zone" 
+                     onclick="document.getElementById('avatarFileInput').click()"
+                     ondragover="handleDragOver(event)"
+                     ondragleave="handleDragLeave(event)"
+                     ondrop="handleDrop(event)">
+                    <div class="upload-zone-icon">📁</div>
+                    <div class="upload-zone-text" data-i18n="avatar.uploadHint">点击或拖拽图片到此处</div>
+                    <div class="upload-zone-hint" data-i18n="avatar.formatHint">支持 PNG, JPG, GIF, WebP 格式，最大 5MB</div>
+                </div>
+                
+                <input type="file" id="avatarFileInput" class="file-input" 
+                       accept="image/png,image/jpeg,image/gif,image/webp"
+                       onchange="handleAvatarSelect(event)">
+                
+                <div class="form-actions">
+                    <button class="btn btn-secondary" onclick="closeAvatarUpload()" data-i18n="cancel">取消</button>
+                    <button class="btn btn-primary" onclick="uploadAvatar()" data-i18n="avatar.uploadButton">上传头像</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js?v=2.1"></script>
+</body>
+</html>

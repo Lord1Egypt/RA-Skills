@@ -1,0 +1,19 @@
+{
+  "name": "openclaw-devboxes-skill",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OpenClaw Devbox — Dev environment skill with browser, VSCode, VNC, Node",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adshrc/openclaw-devboxes-skill.git"
+  },
+  "release": {
+    "branches": ["main"],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
+  }
+}

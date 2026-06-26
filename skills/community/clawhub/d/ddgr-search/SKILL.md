@@ -1,35 +1,28 @@
----
-name: "Ddgr Search"
-description: "Perform web searches using ddgr with customizable result count from the command line."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ddgr-search"
-sourceUrl: "https://clawhub.ai/skills/ddgr-search"
----
+# DDGR Search Skill
 
-# Ddgr Search
+This skill provides a web search capability using `ddgr`.
 
-> Perform web searches using ddgr with customizable result count from the command line.
+## Description
+Use `ddgr` to perform web searches from the command line. This skill wraps the `ddgr` command for easy use.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ddgr-search`
-- **Source URL:** [https://clawhub.ai/skills/ddgr-search](https://clawhub.ai/skills/ddgr-search)
+## Tools
+```yaml
+tools:
+  - id: ddgr_search
+    description: Perform a web search using ddgr.
+    type: exec
+    command: ["ddgr", "-n", "{{args.count}}", "{{args.query}}"]
+    args:
+      query:
+        type: string
+        description: The search query.
+      count:
+        type: integer
+        description: The number of results to return (default 5).
+        default: 5
+```
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ddgr-search
+## Usage Example
+```
+/ddgr_search "openclaw telegram bot exec tool"
 ```

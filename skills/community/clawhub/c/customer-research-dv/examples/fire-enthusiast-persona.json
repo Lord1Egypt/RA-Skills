@@ -1,0 +1,62 @@
+{
+  "name": "FIRE Enthusiast Frank",
+  "demographics": {
+    "age_range": "30-40",
+    "income": "$150K-$250K",
+    "occupation": "Tech worker",
+    "location": "Urban tech hub",
+    "education": "Bachelor's or higher"
+  },
+  "goals": [
+    "Retire by age 45",
+    "Maintain high savings rate (40-60%)",
+    "Optimize investment allocation",
+    "Model different FIRE scenarios"
+  ],
+  "assumptions": [
+    {
+      "id": "A1",
+      "statement": "Finds existing retirement calculators too conservative",
+      "confidence": "medium",
+      "rationale": "Most calculators assume traditional retirement age and 4% rule"
+    },
+    {
+      "id": "A2",
+      "statement": "Willing to pay $50-100 for comprehensive FIRE planning software",
+      "confidence": "low",
+      "rationale": "Many FIRE enthusiasts are cost-conscious by nature"
+    },
+    {
+      "id": "A3",
+      "statement": "Frustrated by lack of Monte Carlo simulation in free tools",
+      "confidence": "high",
+      "rationale": "r/financialindependence frequently mentions this gap"
+    },
+    {
+      "id": "A4",
+      "statement": "Wants to model side hustle income in retirement",
+      "confidence": "medium",
+      "rationale": "Many FIRE folks plan barista FIRE or coast FIRE"
+    }
+  ],
+  "pain_points": [
+    "Existing tools don't account for aggressive savings rates",
+    "No good visualization of FIRE timeline trade-offs",
+    "Can't model variable retirement spending (early years vs. later)",
+    "Monte Carlo simulations require paid software",
+    "Hard to compare multiple FIRE strategies side-by-side"
+  ],
+  "behaviors": [
+    "Active on r/financialindependence and r/leanfire",
+    "Tracks net worth monthly in spreadsheets",
+    "Uses Personal Capital or Mint for portfolio tracking",
+    "Reads Mr. Money Mustache, Mad Fientist, etc.",
+    "Optimizes tax strategies (Roth conversion ladder, etc.)"
+  ],
+  "jobs_to_be_done": [
+    "When I get a raise, I want to model impact on FIRE timeline, so I can decide how much to increase lifestyle vs. savings",
+    "When market crashes, I want to stress-test my plan, so I know if I need to adjust",
+    "When planning career moves, I want to compare total comp impact on FIRE date, so I can make informed decisions",
+    "When considering geo-arbitrage, I want to model cost-of-living impact, so I can optimize location"
+  ]
+}

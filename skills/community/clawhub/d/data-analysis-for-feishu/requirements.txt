@@ -1,0 +1,5 @@
+# 飞书ECharts数据分析技能依赖包
+pandas>=2.0.0
+openpyxl>=3.1.0 # 用于读取Excel文件
+requests>=2.28.0
+pyppeteer>=2.0.0 # 无头浏览器截图依赖

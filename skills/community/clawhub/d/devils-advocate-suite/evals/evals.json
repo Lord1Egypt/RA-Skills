@@ -1,0 +1,35 @@
+{
+  "skill_name": "devils-advocate-suite",
+  "evals": [
+    {
+      "id": 1,
+      "name": "m&a-strategy-premortem",
+      "prompt": "We are planning to acquire a smaller competitor in the fintech space to gain their proprietary API technology. Conduct a Pre-Mortem. Assume one year from now the integration has failed and we have written off the acquisition cost.",
+      "expected_output": "Identification of critical integration risks, cultural mismatch, and technical debt. Report must sort items by risk score using the scripts/premortem_aggregator.py logic."
+    },
+    {
+      "id": 2,
+      "name": "pr-faq-stress-test",
+      "prompt": "Here is our draft for a new subscription-based grocery delivery service. Act as an authentic dissenter and provide an Internal FAQ for our leadership team. Target the Total Addressable Market and Profitability assumptions specifically.",
+      "expected_output": "Brutal, evidence-backed questioning of the revenue model and TAM. Must include specific questions on per-unit economics as per the ModelThinkers framework."
+    },
+    {
+      "id": 3,
+      "name": "triz-business-contradiction",
+      "prompt": "Our new product must be highly customized for enterprise clients (benefit), but this customization makes our deployment timeline too slow to be competitive (drawback). Use the TRIZ method to suggest inventive principles to resolve this capacity vs. complexity contradiction.",
+      "expected_output": "Invocation of TRIZ principles such as Segmentation (Principle 1) or Intermediary (Principle 24) to solve the conflict without compromise."
+    },
+    {
+      "id": 4,
+      "name": "groupthink-prevention-audit",
+      "prompt": "Our executive team is unanimous about shifting all R&D into Generative AI. We are highly cohesive and haven't consulted outside experts. Evaluate this scenario for groupthink symptoms and provide a surgical intervention plan.",
+      "expected_output": "Identification of symptoms (Illusion of Unanimity, Insulation). Plan must recommend Silent Start protocols and assigning a different devil's advocate for each meeting as per Janis."
+    },
+    {
+      "id": 5,
+      "name": "dialectical-inquiry-hybrid-work",
+      "prompt": "We need to decide on a Return to Office policy. Subgroup A wants 100% remote. Subgroup B wants 100% in-office. Use Dialectical Inquiry to find a synthesis.",
+      "expected_output": "A multi-perspective report that surfaces underlying assumptions (e.g., productivity vs. collaboration) and proposes a Third Path such as a structured hybrid model with team-defined core days."
+    }
+  ]
+}

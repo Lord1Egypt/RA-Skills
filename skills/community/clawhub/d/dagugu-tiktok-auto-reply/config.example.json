@@ -1,0 +1,18 @@
+{
+  "tiktok": {
+    "accessToken": "YOUR_ACCESS_TOKEN_HERE",
+    "clientKey": "YOUR_CLIENT_KEY_HERE",
+    "clientSecret": "YOUR_CLIENT_SECRET_HERE"
+  },
+  "keywords": ["热门", "教程", "技巧"],
+  "replyTemplates": [
+    "视频太棒了！🔥",
+    "学到了！感谢分享 👍",
+    "有意思～",
+    "666！👏",
+    "收藏了！"
+  ],
+  "checkIntervalMinutes": 30,
+  "maxRepliesPerHour": 10,
+  "dryRun": true
+}

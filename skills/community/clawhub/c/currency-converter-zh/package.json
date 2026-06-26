@@ -1,0 +1,9 @@
+{
+  "name": "currency-converter-zh",
+  "version": "1.0.0",
+  "description": "货币汇率换算工具（中文版）",
+  "main": "index.js",
+  "author": "黄豆豆",
+  "license": "MIT",
+  "keywords": ["货币", "汇率", "换算", "金融", "工具", "中文"]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "cwd-guardian",
+  "version": "1.0.0",
+  "description": "Protects evolver from uv_cwd ENOENT crashes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js start",
+    "check": "node index.js check"
+  }
+}

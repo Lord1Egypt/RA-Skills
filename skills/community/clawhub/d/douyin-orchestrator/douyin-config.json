@@ -1,0 +1,6 @@
+{
+  "downloader_priority": ["browser_dom"],
+  "transcriber": "whisper_local",
+  "whisper_model": "medium",
+  "temp_dir": "/path/to/temp/douyin"
+}

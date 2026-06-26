@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Reddit Comment By URL"
+  short_description: "Submit Dataify Reddit comment tasks by Reddit URL"
+  icon_small: "./assets/dataify-reddit-comment-by-url-small.svg"
+  icon_large: "./assets/dataify-reddit-comment-by-url-large.svg"
+  default_prompt: "Use $dataify-reddit-comment-by-url to submit Reddit comment Builder tasks by Reddit URL through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,17 @@
+# Python 依赖 - 文档处理 Skill v2.7.11
+# 安装：pip install -r requirements.txt
+
+# v2.7.11 变更：移除 AI 功能，由 OpenClaw 主程序统一处理
+
+# Word 处理
+python-docx>=1.1.0
+
+# Excel 处理
+openpyxl>=3.1.2
+pandas>=2.1.0
+
+# 工具
+python-dotenv>=1.0.0
+
+# v2.7.11 前依赖 (已移除):
+# - requests>=2.28.0 (用于 AI 服务，已移除)

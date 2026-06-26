@@ -1,0 +1,49 @@
+{
+  "name": "defi",
+  "version": "2.0.0",
+  "description": "A protocol risk analyst and yield reality checker for decentralized finance. Evaluates protocol safety, estimates real yield, flags rug-risk patterns, and organizes tax events from records you provide. Advisory only.",
+  "author": "qclawbot",
+  "license": "MIT-0",
+  "homepage": "https://github.com/qclawbot/defi-skill",
+  "keywords": [
+    "defi",
+    "yield farming",
+    "liquidity provision",
+    "protocol risk",
+    "rug risk",
+    "staking",
+    "bridge risk",
+    "tax event categorization"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "protocol_risk_analysis": "Evaluates smart contract, economic, governance, oracle, and liquidity risk before deposit",
+    "yield_reality_check": "Calculates realistic yield after emissions, gas, impermanent loss, and token drag",
+    "rug_risk_screening": "Flags common tokenomics, liquidity, governance, and audit red-risk patterns",
+    "tax_event_categorization": "Organizes DeFi transaction records into likely taxable-event categories",
+    "advisory_only_boundary": "Maintains a strict no-wallet, no-signing, no-execution boundary"
+  },
+  "triggers": [
+    "analyze defi protocol",
+    "is this APY real",
+    "check rug risk",
+    "liquidity pool analysis",
+    "staking risk",
+    "bridge risk",
+    "defi tax events"
+  ],
+  "audience": [
+    "DeFi beginners who want risk clarity before deposit",
+    "Active DeFi users seeking second-opinion protocol analysis",
+    "Users who want realistic yield math instead of dashboard vanity numbers",
+    "People organizing DeFi transaction records for tax review"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {
+      "env": []
+    }
+  }
+}

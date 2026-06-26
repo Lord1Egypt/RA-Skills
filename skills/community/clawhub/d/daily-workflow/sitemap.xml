@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:skill="https://clawhub.ai/schemas/skill-sitemap/1.0">
+  <url>
+    <loc>https://clawhub.ai/englandtong/daily-workflow</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <skill:slug>daily-workflow</skill:slug>
+    <skill:version>3.0.0</skill:version>
+    <skill:title><![CDATA[Daily Workflow / 项目记忆工作流]]></skill:title>
+    <skill:name><![CDATA[Daily Workflow / 项目记忆工作流]]></skill:name>
+    <skill:summary_en><![CDATA[A bilingual project memory workflow that records project metadata, targets, current status, completed work, pending work, next actions, archive history, and AI handoff notes at project start, checkpoint, wrap-up, or handoff.]]></skill:summary_en>
+    <skill:summary_zh><![CDATA[一个中英双语项目记忆工作流 Skill，用于在项目启动、工作中段、收工或交接时保存项目元数据、目标、当前状态、已完成事项、待办事项、下一步计划、归档历史和 AI 交接信息。]]></skill:summary_zh>
+    <skill:upgrade_note_en><![CDATA[This is the upgraded version of the previous Chinese and English Daily Workflow editions; going forward, both language editions will be maintained together in this single bilingual package.]]></skill:upgrade_note_en>
+    <skill:upgrade_note_zh><![CDATA[这是此前中文与英文 Daily Workflow 两版的升级版；以后中英文版本会合并在这个双语包里统一维护。]]></skill:upgrade_note_zh>
+    <skill:functions><![CDATA[Maintains project-local Docs/ workflow files including PROJECT.md, TARGET.md, STATUS.md, COMPLETED.md, PENDING.md, NEXT_ACTIONS.md, CONFIG.md, optional HANDOFF.md, and Docs/archive/YYYY-MM.md. Supports start work, checkpoint, wrap-up, handoff, context compression, legacy migration, and safe project memory management.]]></skill:functions>
+    <skill:tags><![CDATA[project-management, ai-workflow, project-memory, handoff, context-management, bilingual, zh-cn, en]]></skill:tags>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/daily-workflow/artifact/SKILL.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>SKILL.md</skill:file>
+    <skill:description><![CDATA[Main bilingual instruction file for the Daily Workflow / 项目记忆工作流 skill.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/daily-workflow/artifact/skill-card.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>skill-card.md</skill:file>
+    <skill:description><![CDATA[ClawHub display card and public description.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/daily-workflow/artifact/SECURITY.md</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>SECURITY.md</skill:file>
+    <skill:description><![CDATA[Security and privacy guidance for project memory files.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/daily-workflow/artifact/agents/openai.yaml</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>agents/openai.yaml</skill:file>
+    <skill:description><![CDATA[OpenAI agent configuration for this skill.]]></skill:description>
+  </url>
+</urlset>

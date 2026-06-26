@@ -1,0 +1,32 @@
+{
+  "groups": {
+    "group1_global_geopolitics": [
+      {
+        "name": "Al Jazeera English",
+        "url": "https://morss.it/:format=json/https://www.aljazeera.com/xml/rss/all.xml",
+        "description": "覆盖全球的高质量国际新闻，语言简洁易懂，适合英语学习"
+      }
+    ],
+    "group2_politics_economy": [
+      {
+        "name": "Vox Business",
+        "url": "https://morss.it/:format=json/https://www.vox.com/rss/business-and-finance/index.xml",
+        "description": "用通俗语言解释复杂经济和商业问题，解释性强，生词少"
+      }
+    ],
+    "group3_tech_ai_cloud": [
+      {
+        "name": "Cloudflare Blog",
+        "url": "https://morss.it/:format=json/https://blog.cloudflare.com/rss/",
+        "description": "Deep technical posts about cloud and network security"
+      }
+    ],
+    "group4_culture_science": [
+      {
+        "name": "The Conversation",
+        "url": "https://morss.it/:format=json/https://theconversation.com/us/articles.atom",
+        "description": "大学教授和研究员撰写的科学文化类文章，内容准确权威，语言严谨易懂"
+      }
+    ]
+  }
+}

@@ -1,35 +1,28 @@
 ---
-name: "翠溪山庄"
+name: cuixishanzhuang-skill
 description: "提供翠溪山庄基础信息、预订服务及多平台适配的真实营销文案，支持客户咨询与度假推广需求。"
-category: "social-media"
-source: "ClawHub"
+source: ClawHub
+version: 1.0.2
 tags: [cuixishanzhuang, customer-service, homestay, marketing, smart-tourism, stable, villa, zhangzhou, booking, hotel]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cuixishanzhuang-skill"
-sourceUrl: "https://clawhub.ai/skills/cuixishanzhuang-skill"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
 # 翠溪山庄
 
-> 提供翠溪山庄基础信息、预订服务及多平台适配的真实营销文案，支持客户咨询与度假推广需求。
+# 翠溪山庄度假别墅智能助手
 
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cuixishanzhuang-skill`
-- **Source URL:** [https://clawhub.ai/skills/cuixishanzhuang-skill](https://clawhub.ai/skills/cuixishanzhuang-skill)
+全球民宿行业首个面向度假别墅场景的全链路智能服务体，集标准化咨询应答、预订流程管理、多平台营销内容生成于一体，以轻量化 AI 技术赋能传统民宿运营，构建 "咨询 - 预订 - 推广" 的数字化闭环，打造智慧文旅时代的民宿服务新范式。
 
-## Overview
+## 功能场景
 
+### 1. 客户咨询
+- 提供别墅基础信息、价格区间、配套设施、预订政策、交通指引等标准回复。
+- 自动解答高频问题（如入住须知、周边游玩、餐饮服务、团建定制）。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cuixishanzhuang-skill
-```
+### 2. 营销内容生成
+- 适配小红书、抖音、公众号的多平台文案，支持亲子、团建、情侣度假等不同场景。
+- 自动生成包含山庄特色、季节亮点、用户视角的推广内容。
+
+## 使用规范
+- 所有回复需围绕翠溪山庄的真实信息，不编造虚构内容。
+- 营销文案需贴合平台调性，避免夸大宣传，突出自然、静谧、原生态的度假特色。

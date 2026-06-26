@@ -1,35 +1,55 @@
 ---
-name: "daily-progress-tracker"
-description: "帮助用户进行每日工作汇总，生成结构化的日报。当用户提到「日报」「工作总结」「今日汇报」「总结今天」时激活。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-progress-tracker"
-sourceUrl: "https://clawhub.ai/skills/daily-progress-tracker"
+name: daily-progress-tracker
+description: 帮助用户进行每日工作汇总，生成结构化的日报。当用户提到「日报」「工作总结」「今日汇报」「总结今天」时激活。
 ---
 
-# daily-progress-tracker
+# 每日工作进度跟踪
 
-> 帮助用户进行每日工作汇总，生成结构化的日报。当用户提到「日报」「工作总结」「今日汇报」「总结今天」时激活。
+帮助用户整理每日工作内容，生成结构化的日报文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-progress-tracker`
-- **Source URL:** [https://clawhub.ai/skills/daily-progress-tracker](https://clawhub.ai/skills/daily-progress-tracker)
+## 工作流程
 
-## Overview
+1. **询问今日工作** - 引导用户列出今天完成的工作
+2. **按项目分类** - 将工作内容按项目/模块分组
+3. **标注状态** - 每项工作标注状态：
+   - ✅ 已完成
+   - 🔄 进行中
+   - 🚫 阻塞
+4. **生成日报** - 输出 Markdown 格式
+5. **保存文件** - 存储到指定目录
 
+## 日报模板
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-progress-tracker
+```markdown
+# 工作日报 - {YYYY-MM-DD}
+
+## 项目A
+- ✅ 完成功能X开发
+- 🔄 进行中：接口对接（预计明天完成）
+- 🚫 阻塞：等待设计稿
+
+## 项目B
+- ✅ 修复 Bug #123
+- ✅ 代码评审
+
+## 明日计划
+- [ ] 继续接口对接
+- [ ] 开始新功能开发
+
+## 备注
+- 今日会议：产品需求评审 14:00-15:00
 ```
+
+## 环境变量
+
+- `REPORTS_DIR` - 日报存储目录，默认 `~/reports`
+
+## 脚本
+
+### 保存日报
+
+```bash
+node {baseDir}/scripts/save-report.mjs <content>
+```
+
+自动保存到 `~/reports/YYYY-MM-DD.md`（或 `$REPORTS_DIR/YYYY-MM-DD.md`）

@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "mode": "STRICT",
+  "timeout_seconds": 300,
+  "notification": {
+    "channel": "feishu",
+    "webhook_url": null
+  },
+  "security": {
+    "api_key": "CHANGE_ME",
+    "allowed_ips": ["127.0.0.1"],
+    "rate_limit": {
+      "requests_per_hour": 100
+    }
+  },
+  "audit": {
+    "log_path": "~/.auth_guard/audit_log.jsonl",
+    "retention_days": 90
+  }
+}

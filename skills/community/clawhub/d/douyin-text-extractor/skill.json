@@ -1,0 +1,54 @@
+{
+  "name": "douyin-text-extractor",
+  "version": "1.2.0",
+  "description": "抖音文案提取工具 - 从抖音分享链接提取无水印视频并 AI 识别语音文案，支持 MCP Server 和硅基流动/阿里云百炼 API，自动安装 FFmpeg，新用户注册引导",
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "keywords": [
+    "抖音",
+    "文案提取",
+    "语音识别",
+    "MCP",
+    "硅基流动",
+    "阿里云百炼",
+    "无水印视频",
+    "短视频",
+    "自动安装",
+    "douyin",
+    "tiktok",
+    "video",
+    "transcript",
+    "speech-to-text",
+    "ASR",
+    "字幕",
+    "视频文案",
+    "AI 识别"
+  ],
+  "category": "media",
+  "platforms": ["clawhub", "skillhub"],
+  "source": "https://github.com/rfdiosuao/openclaw-skills/tree/main/douyin-text-extractor",
+  "requirements": {
+    "python": ">=3.10",
+    "system": ["ffmpeg (auto-installable)"],
+    "packages": ["requests", "ffmpeg-python", "mcp>=1.0.0", "dashscope", "tqdm"]
+  },
+  "scripts": {
+    "install-ffmpeg": "python scripts/install_ffmpeg.py",
+    "check-ffmpeg": "python scripts/install_ffmpeg.py --check"
+  },
+  "env_vars": {
+    "API_KEY": {
+      "required": false,
+      "description": "API Key（硅基流动或阿里云百炼，文案提取/MCP 需要）",
+      "default": ""
+    },
+    "DASHSCOPE_API_KEY": {
+      "required": false,
+      "description": "阿里云百炼 API Key（MCP Server 专用）",
+      "default": ""
+    }
+  },
+  "entry_point": "src/douyin_extractor.py",
+  "mcp_entry": "src/mcp_server.py",
+  "test_entry": "tests/test_extractor.py"
+}

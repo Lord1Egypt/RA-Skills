@@ -1,0 +1,222 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "二娃聚合群API",
+    "description": "飞书群聊总结｜CA地址查询｜链上数据服务",
+    "version": "1.0.0",
+    "contact": {
+      "name": "erwaNFT",
+      "url": "http://88.222.241.169"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://88.222.241.169",
+      "description": "生产服务器"
+    }
+  ],
+  "paths": {
+    "/api/v1/group_ca/by-ca/{ca_address}": {
+      "get": {
+        "summary": "CA反向查询",
+        "description": "输入CA地址，查询哪些群组在讨论该代币",
+        "parameters": [
+          {
+            "name": "ca_address",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "完整的合约地址"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ca": "7m3HtU4...",
+                  "total_groups": 3,
+                  "groups": ["crazySen聊天", "孙哥聊天"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/group_ca/latest": {
+      "get": {
+        "summary": "获取最新CA",
+        "description": "获取群聊中最新的合约地址",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "返回数量"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功"
+          }
+        }
+      }
+    },
+    "/api/v1/group_ca/popular": {
+      "get": {
+        "summary": "热门CA统计",
+        "description": "统计指定日期被提及次数最多的CA",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "统计日期，默认为今天"
+          },
+          {
+            "name": "min_count",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "最小提及次数阈值"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功"
+          }
+        }
+      }
+    },
+    "/api/v1/summaries": {
+      "get": {
+        "summary": "群聊AI总结",
+        "description": "查询各大KOL群组的每日AI总结",
+        "parameters": [
+          {
+            "name": "group_name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "群组名称筛选，支持模糊匹配"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "日期筛选，默认为今天"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "返回数量"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功"
+          }
+        }
+      }
+    },
+    "/api/v1/second_kol/latest": {
+      "get": {
+        "summary": "二级KOL数据",
+        "description": "获取二级KOL的代币分析和推荐",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "返回数量"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功"
+          }
+        }
+      }
+    },
+    "/api/v1/newsflash/today": {
+      "get": {
+        "summary": "今日快讯",
+        "description": "获取今日加密市场快讯",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "返回数量"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功"
+          }
+        }
+      }
+    },
+    "/api/v1/token/usage": {
+      "get": {
+        "summary": "Token使用查询",
+        "description": "查询当前Token的调用次数使用情况",
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "example": {
+                  "token": "aaa3b7ad****3efc",
+                  "daily_limit": 500,
+                  "used_today": 45,
+                  "remaining_today": 455,
+                  "reset_time": "2026-03-09 08:00:00"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Dataify Crunchbase Builder"
+  short_description: "Prepare Dataify builder calls for crunchbase.com"
+  default_prompt: "Use $dataify-crunchbase-company-by-url to prepare a Dataify builder curl request."

@@ -1,0 +1,488 @@
+{
+  "eat": [
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "晨间滋养",
+      "description": "记录一次健康的早餐摄入，补充修行所需的能量。",
+      "category_tags": ["food", "daily", "morning"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": 5}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "午间补给",
+      "description": "完成午餐并简单记录所食用内容。",
+      "category_tags": ["food", "daily", "afternoon"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": 5}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "晚间调养",
+      "description": "享用晚餐，注意不要过量以免堆积脂垢。",
+      "category_tags": ["food", "daily", "evening"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "水分补充",
+      "description": "记录今日饮水量，保持身体水分平衡。",
+      "category_tags": ["food", "daily", "health"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 1, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "茶果点心",
+      "description": "品用一份水果或坚果作为加餐。",
+      "category_tags": ["food", "daily", "snack"],
+      "difficulty": "简单",
+      "rewards": {"experience": 6, "happiness": 2, "energy": 2}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "素食调和",
+      "description": "至少一顿包含蔬菜或豆制品。",
+      "category_tags": ["food", "daily", "nutrition"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 2, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "蛋白滋养",
+      "description": "摄入足够的蛋白质以维持筋骨强健。",
+      "category_tags": ["food", "daily", "nutrition"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 1, "energy": 4}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "清淡修身",
+      "description": "尝试一顿低盐低油的清淡饮食。",
+      "category_tags": ["food", "daily", "health"],
+      "difficulty": "中等",
+      "rewards": {"experience": 12, "happiness": 2, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "节制有度",
+      "description": "一餐不进食过饱，七分为宜。",
+      "category_tags": ["food", "daily", "discipline"],
+      "difficulty": "中等",
+      "rewards": {"experience": 10, "happiness": 2, "energy": 2}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "烹饪实践",
+      "description": "亲手制作一份食物，不论简繁皆是修行。",
+      "category_tags": ["food", "daily", "craft"],
+      "difficulty": "中等",
+      "rewards": {"experience": 15, "happiness": 3, "energy": 5}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "品茶静心",
+      "description": "喝一杯清茶，静坐五分钟。",
+      "category_tags": ["food", "daily", "meditation"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 3, "energy": 2}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "早餐优先",
+      "description": "务必在日出后三个时辰内用膳。",
+      "category_tags": ["food", "daily", "morning"],
+      "difficulty": "中等",
+      "rewards": {"experience": 12, "happiness": 2, "energy": 5}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "五谷为养",
+      "description": "主食不可废，米面杂粮皆有益。",
+      "category_tags": ["food", "daily", "grains"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 1, "energy": 4}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "五果为辅",
+      "description": "当日食用水果一份，以助消化。",
+      "category_tags": ["food", "daily", "fruit"],
+      "difficulty": "简单",
+      "rewards": {"experience": 7, "happiness": 2, "energy": 2}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "晚食早停",
+      "description": "晚饭后不再进食，留足消谷时间。",
+      "category_tags": ["food", "daily", "discipline"],
+      "difficulty": "困难",
+      "rewards": {"experience": 15, "happiness": 2, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "荤素均衡",
+      "description": "肉类与蔬菜比例恰当，不以口腹之欲贪多。",
+      "category_tags": ["food", "daily", "balance"],
+      "difficulty": "中等",
+      "rewards": {"experience": 10, "happiness": 2, "energy": 4}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "细嚼慢咽",
+      "description": "进餐时专心咀嚼，不急不躁。",
+      "category_tags": ["food", "daily", "mindfulness"],
+      "difficulty": "中等",
+      "rewards": {"experience": 10, "happiness": 3, "energy": 2}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "暖食护胃",
+      "description": "尽量食用温热食物，避开生冷。",
+      "category_tags": ["food", "daily", "health"],
+      "difficulty": "中等",
+      "rewards": {"experience": 9, "happiness": 2, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "食疗养生",
+      "description": "根据季节变化选择时令食材。",
+      "category_tags": ["food", "daily", "seasonal"],
+      "difficulty": "中等",
+      "rewards": {"experience": 12, "happiness": 2, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_eat_{seed}",
+      "task_name": "任意饮食记录",
+      "description": "记录今日任意一次进食即可，不求完美但求坚持。",
+      "category_tags": ["food", "daily", "any"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 1, "energy": 2}
+    }
+  ],
+  "learn": [
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "新知摄取",
+      "description": "学习一个之前不了解的概念或知识点。",
+      "category_tags": ["knowledge", "daily", "learning"],
+      "difficulty": "简单",
+      "rewards": {"experience": 12, "happiness": 2, "energy": -2}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "知识复述",
+      "description": "将一条今日所学向助手复述一遍，以巩固记忆。",
+      "category_tags": ["knowledge", "daily", "review"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": -1}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "技能精进",
+      "description": "练习一项已有技能，加深熟练度。",
+      "category_tags": ["knowledge", "daily", "practice"],
+      "difficulty": "中等",
+      "rewards": {"experience": 15, "happiness": 3, "energy": -3}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "文档阅读",
+      "description": "阅读一篇技术文档或说明材料。",
+      "category_tags": ["knowledge", "daily", "reading"],
+      "difficulty": "中等",
+      "rewards": {"experience": 12, "happiness": 2, "energy": -3}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "代码研读",
+      "description": "阅读或分析一段他人编写的代码。",
+      "category_tags": ["knowledge", "daily", "coding"],
+      "difficulty": "中等",
+      "rewards": {"experience": 14, "happiness": 2, "energy": -4}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "错误复盘",
+      "description": "回顾今日遇到的一个错误或 bug，总结教训。",
+      "category_tags": ["knowledge", "daily", "debug"],
+      "difficulty": "中等",
+      "rewards": {"experience": 16, "happiness": 2, "energy": -2}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "问题解决",
+      "description": "独立解决一个问题并向助手反馈过程。",
+      "category_tags": ["knowledge", "daily", "problem-solving"],
+      "difficulty": "中等",
+      "rewards": {"experience": 18, "happiness": 3, "energy": -4}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "概念梳理",
+      "description": "对某个复杂概念进行整理归纳。",
+      "category_tags": ["knowledge", "daily", "organization"],
+      "difficulty": "中等",
+      "rewards": {"experience": 14, "happiness": 2, "energy": -3}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "问答积累",
+      "description": "向助手提问并认真理解回答内容。",
+      "category_tags": ["knowledge", "daily", "qa"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": -2}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "笔记撰写",
+      "description": "写出一条有价值的学习笔记。",
+      "category_tags": ["knowledge", "daily", "writing"],
+      "difficulty": "中等",
+      "rewards": {"experience": 13, "happiness": 2, "energy": -3}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "视频学习",
+      "description": "观看一段教学视频并提取核心要点。",
+      "category_tags": ["knowledge", "daily", "video"],
+      "difficulty": "中等",
+      "rewards": {"experience": 12, "happiness": 2, "energy": -3}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "工具探索",
+      "description": "了解一个新工具的使用方法。",
+      "category_tags": ["knowledge", "daily", "tools"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": -2}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "方案对比",
+      "description": "比较两种不同技术方案或方法的优劣。",
+      "category_tags": ["knowledge", "daily", "comparison"],
+      "difficulty": "困难",
+      "rewards": {"experience": 20, "happiness": 3, "energy": -5}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "书籍阅读",
+      "description": "阅读一本相关书籍的一章或若干页。",
+      "category_tags": ["knowledge", "daily", "book"],
+      "difficulty": "中等",
+      "rewards": {"experience": 15, "happiness": 3, "energy": -4}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "课程推进",
+      "description": "完成在线课程的一个小节。",
+      "category_tags": ["knowledge", "daily", "course"],
+      "difficulty": "中等",
+      "rewards": {"experience": 14, "happiness": 2, "energy": -4}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "思维发散",
+      "description": "对一个话题进行自由思考并记录想法。",
+      "category_tags": ["knowledge", "daily", "thinking"],
+      "difficulty": "中等",
+      "rewards": {"experience": 11, "happiness": 3, "energy": -2}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "知识关联",
+      "description": "将新旧知识建立联系，形成体系。",
+      "category_tags": ["knowledge", "daily", "connection"],
+      "difficulty": "困难",
+      "rewards": {"experience": 18, "happiness": 3, "energy": -4}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "概念速查",
+      "description": "查阅一个陌生术语的定义和用法。",
+      "category_tags": ["knowledge", "daily", "lookup"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 1, "energy": -1}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "输出分享",
+      "description": "将所学内容分享给他人或通过文字表达出来。",
+      "category_tags": ["knowledge", "daily", "sharing"],
+      "difficulty": "困难",
+      "rewards": {"experience": 22, "happiness": 4, "energy": -5}
+    },
+    {
+      "task_id_template": "daily_learn_{seed}",
+      "task_name": "任意知识获取",
+      "description": "获取任意一条可复用知识并复述给自己。",
+      "category_tags": ["knowledge", "daily", "any"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": -2}
+    }
+  ],
+  "practice": [
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "桌面整理",
+      "description": "清理工作区域，让环境井然有序。",
+      "category_tags": ["action", "daily", "clean"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 2, "energy": 2}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "文件归档",
+      "description": "将散乱的文件归类到合适的位置。",
+      "category_tags": ["action", "daily", "organize"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 2, "energy": 1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "删除冗余",
+      "description": "删除无用的文件或临时数据。",
+      "category_tags": ["action", "daily", "cleanup"],
+      "difficulty": "简单",
+      "rewards": {"experience": 7, "happiness": 1, "energy": 1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "备份存档",
+      "description": "对重要数据进行一次备份。",
+      "category_tags": ["action", "daily", "backup"],
+      "difficulty": "中等",
+      "rewards": {"experience": 12, "happiness": 2, "energy": 1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "运动片刻",
+      "description": "进行十分钟以上的身体活动。",
+      "category_tags": ["action", "daily", "exercise"],
+      "difficulty": "中等",
+      "rewards": {"experience": 12, "happiness": 3, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "拉伸放松",
+      "description": "做一组简单的肌肉拉伸动作。",
+      "category_tags": ["action", "daily", "stretch"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 2, "energy": 2}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "项目推进",
+      "description": "完成手头项目的一个小步骤。",
+      "category_tags": ["action", "daily", "project"],
+      "difficulty": "中等",
+      "rewards": {"experience": 15, "happiness": 3, "energy": -2}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "任务完成",
+      "description": "划掉待办清单上的一项。",
+      "category_tags": ["action", "daily", "todo"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 3, "energy": 1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "计划制定",
+      "description": "列出明日三件最重要的事。",
+      "category_tags": ["action", "daily", "planning"],
+      "difficulty": "简单",
+      "rewards": {"experience": 9, "happiness": 2, "energy": -1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "复盘总结",
+      "description": "对今日的得失进行简短回顾。",
+      "category_tags": ["action", "daily", "review"],
+      "difficulty": "中等",
+      "rewards": {"experience": 14, "happiness": 2, "energy": -1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "环境优化",
+      "description": "改善一下工作或生活的物理环境。",
+      "category_tags": ["action", "daily", "environment"],
+      "difficulty": "中等",
+      "rewards": {"experience": 11, "happiness": 3, "energy": 2}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "习惯养成",
+      "description": "坚持一个微习惯的小行动。",
+      "category_tags": ["action", "daily", "habit"],
+      "difficulty": "中等",
+      "rewards": {"experience": 12, "happiness": 2, "energy": 1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "技能练习",
+      "description": "专项练习某项实用技能二十分钟。",
+      "category_tags": ["action", "daily", "skill"],
+      "difficulty": "困难",
+      "rewards": {"experience": 20, "happiness": 3, "energy": -3}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "创作尝试",
+      "description": "完成一件小型的创作作品。",
+      "category_tags": ["action", "daily", "create"],
+      "difficulty": "困难",
+      "rewards": {"experience": 18, "happiness": 4, "energy": -4}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "深度专注",
+      "description": "进行一次二十五分钟的无干扰专注时段。",
+      "category_tags": ["action", "daily", "focus"],
+      "difficulty": "困难",
+      "rewards": {"experience": 16, "happiness": 3, "energy": -3}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "工具熟练",
+      "description": "使用一个新功能或快捷键提升效率。",
+      "category_tags": ["action", "daily", "efficiency"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": 0}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "社交互动",
+      "description": "与一位他人发生一次积极互动。",
+      "category_tags": ["action", "daily", "social"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 3, "energy": 1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "感恩记录",
+      "description": "写下今日感动的三件小事情。",
+      "category_tags": ["action", "daily", "gratitude"],
+      "difficulty": "简单",
+      "rewards": {"experience": 8, "happiness": 4, "energy": 1}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "冥想呼吸",
+      "description": "进行五分钟的深呼吸或冥想练习。",
+      "category_tags": ["action", "daily", "meditation"],
+      "difficulty": "简单",
+      "rewards": {"experience": 9, "happiness": 3, "energy": 3}
+    },
+    {
+      "task_id_template": "daily_practice_{seed}",
+      "task_name": "任意实践执行",
+      "description": "完成任一可确认的实践动作（整理、清理、复盘、制作等）。",
+      "category_tags": ["action", "daily", "any"],
+      "difficulty": "简单",
+      "rewards": {"experience": 10, "happiness": 2, "energy": 1}
+    }
+  ]
+}

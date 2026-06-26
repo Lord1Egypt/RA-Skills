@@ -1,35 +1,33 @@
 ---
-name: "每日星座运势"
+name: daily-horoscope
 description: "查询今日星座运势。用于用户询问今日星座运势时使用，支持12星座。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-horoscope-cn"
-sourceUrl: "https://clawhub.ai/skills/daily-horoscope-cn"
 ---
 
 # 每日星座运势
 
-> 查询今日星座运势。用于用户询问今日星座运势时使用，支持12星座。
+## 支持的星座
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-horoscope-cn`
-- **Source URL:** [https://clawhub.ai/skills/daily-horoscope-cn](https://clawhub.ai/skills/daily-horoscope-cn)
+白羊座、金牛座、双子座、巨蟹座、狮子座、处女座、天秤座、天蝎座、射手座、摩羯座、水瓶座、双鱼座
 
-## Overview
+## 使用方式
 
+当用户问"XX座今天运势如何"时，直接回复以下格式：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-horoscope-cn
 ```
+♈ 白羊座 (3.21-4.19)
+━━━━━━━━━━━━━━━━
+💫 整体运势: ⭐⭐⭐⭐☆ (4/5)
+💕 爱情运:    有意外惊喜，单身者有望遇到有缘人
+💼 工作运:    效率提升，适合处理棘手问题
+💰 财富运:    适合理性投资，注意开销
+
+🔢 幸运数字: 7
+🎨 幸运颜色: 红色
+📅 明日提示: 注意休息，别太拼
+```
+
+## 运势说明
+
+- 运势仅供娱乐参考
+- 可以根据用户具体星座灵活调整内容
+- 保持轻松愉快的语气

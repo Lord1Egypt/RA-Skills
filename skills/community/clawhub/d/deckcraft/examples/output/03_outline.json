@@ -1,0 +1,126 @@
+{
+  "theme": "tech",
+  "canvas": "16:9",
+  "pages": [
+    {
+      "type": "cover",
+      "title": "Engineering Productivity Report",
+      "subtitle": "Q1–Q2 2026",
+      "author": "Platform Team",
+      "date": "2026-06-03"
+    },
+    {
+      "type": "toc",
+      "items": [
+        [
+          "01",
+          "Deploy Frequency",
+          "How often we ship"
+        ],
+        [
+          "02",
+          "Lead Time",
+          "Commit to production"
+        ],
+        [
+          "03",
+          "MTTR",
+          "Mean time to recover"
+        ],
+        [
+          "04",
+          "Change Fail Rate",
+          "Defects in production"
+        ]
+      ]
+    },
+    {
+      "type": "stat_cards",
+      "title": "Q2 Numbers at a Glance",
+      "stats": [
+        [
+          "42",
+          "Deploys / day"
+        ],
+        [
+          "2.1h",
+          "Lead time (median)"
+        ],
+        [
+          "18m",
+          "MTTR (median)"
+        ],
+        [
+          "3.2%",
+          "Change fail rate"
+        ]
+      ]
+    },
+    {
+      "type": "chart_bar",
+      "title": "Deploy Frequency by Service",
+      "data": [
+        [
+          48,
+          32,
+          24,
+          16,
+          8
+        ]
+      ],
+      "labels": [
+        "Auth",
+        "API",
+        "Frontend",
+        "Workers",
+        "Reports"
+      ],
+      "series_names": [
+        "Deploys / week"
+      ]
+    },
+    {
+      "type": "vs_compare",
+      "title": "Before vs After Platform Engineering",
+      "left_title": "Before (2025)",
+      "right_title": "After (2026)",
+      "rows": [
+        [
+          "Deploys / day",
+          "8",
+          "42"
+        ],
+        [
+          "Lead time",
+          "3.5 days",
+          "2.1h"
+        ],
+        [
+          "MTTR",
+          "2.4h",
+          "18m"
+        ],
+        [
+          "On-call load",
+          "High",
+          "Low"
+        ]
+      ]
+    },
+    {
+      "type": "summary",
+      "title": "What's Next",
+      "content": [
+        "Reduce lead time further (target: < 1h by Q4)",
+        "Invest in self-service deployment tooling",
+        "Expand on-call rotation fairness"
+      ],
+      "conclusion": "Roadmap finalized in next week's eng leadership sync"
+    },
+    {
+      "type": "closing",
+      "title": "Q&A",
+      "message": "Let's discuss tradeoffs"
+    }
+  ]
+}

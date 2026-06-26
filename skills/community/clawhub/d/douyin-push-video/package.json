@@ -1,0 +1,19 @@
+{
+  "name": "my-dy-skill",
+  "version": "1.0.0",
+  "description": "抖音视频上传发布 Skill - 根据用户发送的视频上传到抖音账号",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "post": "node index.js",
+    "upload": "node index.js",
+    "get-token": "node scripts/get-douyin-token.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "form-data": "^4.0.0"
+  }
+}

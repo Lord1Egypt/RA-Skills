@@ -1,0 +1,39 @@
+name: Deep Read
+version: 1.0.0
+description: "以研究驱动方法对书籍进行深度分析，提炼核心观点、金句，并生成应用指导与关联常青笔记"
+author: "Bao Zhu"
+inputs:
+  - name: book_title
+    type: string
+    required: true
+  - name: book_file
+    type: file
+    required: false
+  - name: user_notes
+    type: list
+    description: "用户已录入的笔记或参考材料"
+outputs:
+  - name: author_info
+    type: string
+  - name: creation_context
+    type: string
+  - name: book_outline
+    type: string
+  - name: main_content
+    type: string
+  - name: core_insights
+    type: string
+  - name: key_quotes
+    type: list
+  - name: application_examples
+    type: list
+  - name: related_evergreen_notes
+    type: list
+implementation:
+  type: python
+  path: deep_read_generator.py
+tags:
+  - deep-reading
+  - knowledge-management
+  - research-driven
+  - book-analysis

@@ -1,0 +1,17 @@
+# OpenClaw Skill
+# 打包文件（由 CI 自动生成，不提交到仓库）
+dist/*.skill
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc

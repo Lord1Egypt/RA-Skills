@@ -1,0 +1,69 @@
+{
+  "name": "Employee Satisfaction Survey",
+  "type": "structured",
+  "description": "Annual employee satisfaction and engagement survey",
+  "tone": "professional and supportive",
+  "welcomeScreen": {
+    "title": "Your Voice Matters",
+    "message": "This anonymous survey helps us create a better workplace. Your honest feedback is valued and will be used to improve our company culture.",
+    "callToActionText": "Begin Survey"
+  },
+  "questions": [
+    {
+      "key": "overall_satisfaction",
+      "type": "rating",
+      "description": "How satisfied are you with your job overall?",
+      "required": true
+    },
+    {
+      "key": "work_life_balance",
+      "type": "rating",
+      "description": "How would you rate your work-life balance?",
+      "required": true
+    },
+    {
+      "key": "career_growth",
+      "type": "single-choice",
+      "description": "Do you feel you have opportunities for career growth?",
+      "required": true,
+      "options": ["Strongly agree", "Agree", "Neutral", "Disagree", "Strongly disagree"]
+    },
+    {
+      "key": "management_support",
+      "type": "rating",
+      "description": "How supportive is your direct manager?",
+      "required": true
+    },
+    {
+      "key": "company_values",
+      "type": "single-choice",
+      "description": "Do you feel aligned with the company's values?",
+      "required": true,
+      "options": ["Very aligned", "Somewhat aligned", "Neutral", "Not very aligned", "Not aligned at all"]
+    },
+    {
+      "key": "improvements",
+      "type": "open-ended",
+      "description": "What's one thing we could improve to make this a better place to work?",
+      "required": false
+    },
+    {
+      "key": "strengths",
+      "type": "open-ended",
+      "description": "What do you appreciate most about working here?",
+      "required": false
+    }
+  ],
+  "endScreen": {
+    "title": "Thank You for Your Feedback",
+    "message": "Your responses have been submitted anonymously. We'll share the results and action plans with the team next month.",
+    "callToActionText": null,
+    "callToActionUrl": null
+  },
+  "theme": {
+    "colorBackground": "#f7fafc",
+    "colorForeground": "#2d3748",
+    "colorPrimary": "#4299e1",
+    "fontFamily": "sans"
+  }
+}

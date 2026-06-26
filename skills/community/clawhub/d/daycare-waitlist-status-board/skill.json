@@ -1,0 +1,41 @@
+{
+  "slug": "daycare-waitlist-status-board",
+  "name": "Daycare Waitlist Status Board",
+  "displayName": "Daycare Waitlist Status Board",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build a privacy-conscious daycare waitlist board with application status, licensing checks, policy questions, availability signals, follow-up messages, and decision checkpoints.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Family Admin",
+  "triggerKeywords": [
+    "daycare waitlist tracker",
+    "childcare waitlist status",
+    "preschool waitlist board",
+    "daycare follow up message",
+    "childcare licensing checklist",
+    "daycare application status",
+    "nursery waitlist comparison",
+    "daycare tour follow up",
+    "childcare enrollment checklist",
+    "daycare availability tracker"
+  ],
+  "tags": [
+    "childcare",
+    "family",
+    "waitlist",
+    "privacy",
+    "admin",
+    "comparison"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

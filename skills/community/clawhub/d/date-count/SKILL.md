@@ -1,35 +1,77 @@
 ---
-name: "date-count"
-description: "倒计日期以更好安排你的日程."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/date-count"
-sourceUrl: "https://clawhub.ai/skills/date-count"
+name: 倒计日
+description: 倒计日期以更好安排你的日程.
 ---
 
-# date-count
+# 倒计日 
 
-> 倒计日期以更好安排你的日程.
+No other things just markdown and json
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/date-count`
-- **Source URL:** [https://clawhub.ai/skills/date-count](https://clawhub.ai/skills/date-count)
+- **技能名称**：countdown_skill
+- **核心定位**：纯JSON存储的轻量倒计日工具，无代码、无数据库，仅靠配置文件管理倒计时
+- **适用场景**：记录生日、节日、纪念日、 deadlines，快速查询剩余天数
+-  **emoji 标识**：⏳
 
-## Overview
+## 核心功能
 
+1. **查询单条倒计日**：输入名称，查看距离目标日期的剩余/已过天数
+2. **查看全部倒计日**：批量展示所有已存倒计时及天数状态
+3. **手动维护数据**：直接编辑JSON文件，新增/修改/删除倒计日
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/date-count
+## 数据存储说明
+
+**唯一存储文件**：`~/.openclaw/skills/countdown_skill/countdown.json`
+
+该文件为纯文本JSON格式，**无需手动创建**，首次使用自动生成；也可直接手动编辑维护。
+
+### JSON标准格式（必填）
+
+```json
+{
+  "倒计日名称1": "YYYY-MM-DD",
+  "倒计日名称2": "YYYY-MM-DD",
+  "节日/纪念日": "YYYY-MM-DD"
+}
 ```
+
+- 键：倒计日名称（自定义，支持中文、英文，无特殊符号）
+- 值：目标日期，**固定格式 YYYY-MM-DD**（如2026-10-01）
+- 语法要求：最后一条数据末尾无逗号，引号为英文双引号
+
+## 使用方式
+
+### 1. 查询单个倒计日
+
+**指令示例**：
+
+- 查询2026春节剩余天数
+- 距离生日还有多久
+
+**返回结果**：
+
+- 目标日期未到：距离「XX」还有 XX 天
+- 当天：今天就是「XX」
+- 已过期：「XX」已过去 XX 天
+
+### 2. 查看全部倒计日
+
+**指令示例**：
+
+- 查看所有倒计时
+- 列出全部纪念日
+
+**返回结果**：按日期排序，逐条展示名称、目标日期、天数状态
+
+### 3. 新增/修改/删除倒计日
+
+直接编辑存储文件即可，无需重启服务：
+
+```bash
+nano ~/.openclaw/skills/countdown_skill/countdown.json
+```
+
+## 注意事项
+
+- 日期必须严格遵循 **YYYY-MM-DD** 格式，否则无法正常识别
+- 倒计日名称不重复，重复名称会覆盖原有日期
+- 文件编码为UTF-8，编辑后保存即可生效，无额外配置

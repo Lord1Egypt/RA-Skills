@@ -1,0 +1,88 @@
+{
+  "name": "datavault",
+  "version": "1.1.0",
+  "displayName": "DataVault",
+  "description": "全球领先的 Web3 Data Value 平台 - 101+ MCP Tools for AI Agents",
+  "author": {
+    "name": "DataVault Team",
+    "email": "hello@datavault.io",
+    "url": "https://datavault.io",
+    "handle": "datavault"
+  },
+  "homepage": "https://github.com/wangshuniguang/DataVault",
+  "repository": "https://github.com/wangshuniguang/DataVault.git",
+  "license": "MIT",
+  "keywords": [
+    "crypto",
+    "trading",
+    "market-data",
+    "blockchain",
+    "defi",
+    "tradingview",
+    "mcp",
+    "ai-agent",
+    "price",
+    "onchain",
+    "whale",
+    "sentiment",
+    "binance",
+    "ethereum",
+    "bitcoin"
+  ],
+  "platform": "openclaw",
+  "minOpenclawVersion": "1.0.0",
+  "published": "2026-04-14T00:00:00.000Z",
+  "updated": "2026-04-14T00:00:00.000Z",
+  "changelog": "v1.1.0 - 统一项目结构，整合 MCP + Skill 层",
+  "metadata": {
+    "openclaw": {
+      "emoji": "📊",
+      "category": "data",
+      "tags": [
+        "crypto",
+        "trading",
+        "market-data",
+        "defi",
+        "onchain",
+        "ai-ready"
+      ],
+      "features": [
+        "101+ MCP Tools",
+        "13 Skill Tools",
+        "多交易所支持",
+        "链上数据分析",
+        "DeFi TVL 追踪",
+        "技术指标"
+      ],
+      "usage": "call_tool('get_price', symbol='BTC/USDT')",
+      "requires": {
+        "env": [],
+        "bins": [
+          "python"
+        ]
+      },
+      "permissions": [
+        "network"
+      ]
+    }
+  },
+  "dependencies": {
+    "requests": "^2.31.0",
+    "ccxt": "^4.3.0",
+    "fastapi": "^0.109.0",
+    "uvicorn": "^0.27.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=1.0.0"
+  },
+  "engines": {
+    "python": ">=3.10"
+  },
+  "scripts": {
+    "start": "python -m skill",
+    "test": "python -c 'from skill import get_skill; print(get_skill().health())'",
+    "health": "python -c 'from skill import get_skill; import json; print(json.dumps(get_skill().health()))'"
+  },
+  "readme": "README.md",
+  "icon": "📊"
+}

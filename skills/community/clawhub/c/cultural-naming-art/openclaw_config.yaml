@@ -1,0 +1,385 @@
+# ============================================================
+# Lobster OpenClaw Hub — Agent Skill Configuration
+# Skill: Cultural Naming & AI Art Creation
+# Version: 2.0.0
+# Platform: ClawHub.ai / mirror-cn.clawhub.com
+# ============================================================
+
+skill:
+  id: "com.xiaoapensieve.cultural-naming-art"
+  name: "Cultural Naming & AI Art Creation"
+  version: "2.0.0"
+  author: "XiaoAIPensieve"
+  description: >
+    Transform a foreign identity into a Chinese cultural masterpiece.
+    Gives tourists a semantically rich Chinese name, generates classical
+    Jueju & Lüshi poetry, produces seal carving art prompts, ink-wash
+    Shanshui landscape prompts, and ancient-style portrait avatar prompts.
+
+# ------------------------------------------------------------
+# Deployment
+# ------------------------------------------------------------
+deployment:
+  primary_hub: "clawhub.ai"
+  mirror_hub: "mirror-cn.clawhub.com"
+  skill_path: ".trae/skills/cultural-naming-art"
+  skill_definition: "SKILL.md"
+  regions:
+    - id: "global"
+      endpoint: "https://clawhub.ai/api/v2/skills"
+    - id: "china-mirror"
+      endpoint: "https://mirror-cn.clawhub.com/api/v2/skills"
+
+# ------------------------------------------------------------
+# Runtime
+# ------------------------------------------------------------
+runtime:
+  preferred_models:
+    - provider: "anthropic"
+      model: "claude-3-5-sonnet-20241022"
+      priority: 1
+      use_for: ["naming", "poetry", "cultural_explanation"]
+    - provider: "openai"
+      model: "gpt-4o"
+      priority: 2
+      use_for: ["naming", "poetry", "prompt_engineering"]
+    - provider: "openai"
+      model: "gpt-4o-mini"
+      priority: 3
+      use_for: ["fallback"]
+
+  image_models:
+    - provider: "openai"
+      model: "dall-e-3"
+      priority: 1
+      quality: "hd"
+      use_for: ["seal_carving", "shanshui", "portrait"]
+    - provider: "stability_ai"
+      model: "stable-diffusion-xl-1024-v1-0"
+      priority: 2
+      use_for: ["shanshui", "portrait"]
+    - provider: "tencent"
+      model: "hunyuan-image"
+      priority: 3
+      use_for: ["china_mirror_fallback"]
+
+  context_window:
+    min: 8000
+    recommended: 32000
+
+  session_memory:
+    enabled: true
+    keys:
+      - "user_original_name"
+      - "user_chinese_name"
+      - "user_chinese_name_pinyin"
+      - "chosen_theme"
+      - "gender_preference"
+      - "generated_poem_jueju"
+      - "generated_poem_lushi"
+      - "art_outputs"
+      - "preferred_language"
+      - "dynasty_aesthetic"
+
+# ------------------------------------------------------------
+# Feature Flags
+# ------------------------------------------------------------
+features:
+  # Core features
+  name_generation:
+    enabled: true
+    options_count: 3           # Always generate 3 name options
+    include_etymology: true
+    include_literary_reference: true
+    include_pinyin: true
+    taboo_filter: true
+
+  # Poetry features
+  poetry_jueju:
+    enabled: true
+    format: "7-char-4-line"    # 七言绝句
+    include_translation: true
+    include_cultural_note: true
+    include_pinyin: true
+
+  poetry_lushi:
+    enabled: true
+    format: "7-char-8-line"    # 七言律诗
+    include_antithetical_couplets: true
+    include_translation: true
+    include_annotations: true
+    couplet_pairs: [3, 4]      # Lines 3-4 and 5-6 are couplets
+
+  # Art generation features
+  seal_carving:
+    enabled: true
+    carving_types: ["阴刻", "阳刻", "朱白相间"]
+    default_style: "阳刻"
+    script_options: ["金文", "小篆", "大篆"]
+    default_script: "小篆"
+    generate_image: true
+
+  shanshui_painting:
+    enabled: true
+    dynasty_styles: ["Song", "Tang", "Ming", "Modern"]
+    default_dynasty: "Song"
+    generate_image: true
+    include_poem_calligraphy: true   # Overlay poem on painting
+
+  portrait_avatar:
+    enabled: true
+    dynasty_aesthetics: ["Tang", "Song", "Ming", "Qing"]
+    default_gender: "neutral"
+    generate_image: true
+    include_name_calligraphy: true
+
+  # Package output
+  full_cultural_package:
+    enabled: true                    # Present everything in one formatted package
+    auto_generate_all_art: false     # Ask user which art they want
+    offer_download_package: true
+
+# ------------------------------------------------------------
+# Intent Triggers
+# ------------------------------------------------------------
+intent_triggers:
+
+  - id: "trigger_chinese_name"
+    confidence_threshold: 0.75
+    keywords:
+      en: ["Chinese name", "give me a name", "name in Chinese", "what's my Chinese name",
+           "Chinese characters for my name", "translate my name to Chinese",
+           "meaningful Chinese name", "Chinese identity"]
+      zh: ["中文名", "起名", "给我取个名字", "中国名字", "汉字名字"]
+    example_utterances:
+      - "Can you give me a Chinese name?"
+      - "What would my name be in Chinese?"
+      - "I want a meaningful Chinese name based on 'Sarah'"
+      - "Give me a Chinese name that means strength"
+    action:
+      type: "invoke_flow"
+      entry_step: "collect_user_info"
+      module: "name_generation"
+
+  - id: "trigger_seal_art"
+    confidence_threshold: 0.80
+    keywords:
+      en: ["seal carving", "Chinese seal", "stamp", "篆刻", "chop", "name stamp",
+           "red seal", "traditional seal", "seal script"]
+      zh: ["印章", "篆刻", "刻章", "印鉴", "朱砂印"]
+    example_utterances:
+      - "Create a seal carving with my name"
+      - "Make me a traditional Chinese seal"
+      - "Generate a 篆刻 stamp with 明远"
+    action:
+      type: "invoke_flow"
+      entry_step: "seal_carving_gen"
+      module: "seal_carving"
+      prerequisite: "user_chinese_name"  # Must have a name first
+
+  - id: "trigger_poem"
+    confidence_threshold: 0.75
+    keywords:
+      en: ["Chinese poem", "classical poem", "write a poem", "Jueju", "Lüshi",
+           "Tang poetry", "poem with my name", "古诗", "七言绝句", "律诗"]
+      zh: ["古诗", "绝句", "律诗", "写诗", "用我的名字写诗", "七言"]
+    example_utterances:
+      - "Write a classical Chinese poem with my name"
+      - "Create a Jueju poem for me"
+      - "Generate a Tang-style poem using 明远"
+      - "I want both Jueju and Lüshi poems"
+    action:
+      type: "invoke_flow"
+      entry_step: "select_poem_type"
+      module: "poetry_generation"
+      prerequisite: "user_chinese_name"
+
+  - id: "trigger_shanshui"
+    confidence_threshold: 0.78
+    keywords:
+      en: ["ink wash painting", "Shanshui", "landscape painting", "Chinese painting",
+           "水墨画", "mountain water painting", "traditional Chinese landscape",
+           "ink brush painting", "Chinese art"]
+      zh: ["山水画", "水墨画", "国画", "山水", "古风山水", "泼墨"]
+    example_utterances:
+      - "Generate a Shanshui painting inspired by my poem"
+      - "Create a Chinese ink wash landscape"
+      - "Make me a traditional mountain painting"
+    action:
+      type: "invoke_flow"
+      entry_step: "shanshui_config"
+      module: "shanshui_painting"
+      prerequisite: "user_chinese_name"
+
+  - id: "trigger_portrait"
+    confidence_threshold: 0.78
+    keywords:
+      en: ["ancient portrait", "Chinese avatar", "ancient style portrait",
+           "古风头像", "hanfu portrait", "traditional Chinese character art",
+           "dynasty character", "Chinese historical portrait"]
+      zh: ["古风头像", "古装人物", "古风插画", "汉服头像", "古代人物"]
+    example_utterances:
+      - "Create an ancient Chinese portrait avatar for me"
+      - "Generate a Tang Dynasty portrait with my name"
+      - "Make me a 古风头像 based on my Chinese identity"
+    action:
+      type: "invoke_flow"
+      entry_step: "portrait_config"
+      module: "portrait_avatar"
+      prerequisite: "user_chinese_name"
+
+  - id: "trigger_full_package"
+    confidence_threshold: 0.70
+    keywords:
+      en: ["everything", "full package", "all of it", "complete Chinese identity",
+           "name and poem and art", "cultural package", "the whole thing"]
+      zh: ["全套", "全部", "名字诗歌印章都要", "完整文化套餐"]
+    example_utterances:
+      - "Give me the full cultural package"
+      - "I want a Chinese name, poem, and all the art"
+      - "Everything please!"
+    action:
+      type: "invoke_flow"
+      entry_step: "collect_user_info"
+      auto_chain: ["name_generation", "poetry_jueju", "poetry_lushi", 
+                   "seal_carving", "shanshui_painting", "portrait_avatar"]
+
+# ------------------------------------------------------------
+# Flow Definitions
+# ------------------------------------------------------------
+flows:
+
+  collect_user_info:
+    id: "collect_user_info"
+    description: "Gather name, gender, and theme preference from user"
+    steps:
+      - ask: "full_original_name"
+        prompt: "What's your full name? (first and last name)"
+        required: true
+        store_as: "user_original_name"
+      - ask: "gender_preference"
+        prompt: "Any gender preference for your Chinese name?"
+        options: ["masculine", "feminine", "neutral / no preference"]
+        required: false
+        store_as: "gender_preference"
+        default: "neutral"
+      - ask: "theme_preference"
+        prompt: >
+          "What theme would you like your name to reflect? (pick 1-2)
+          🌿 Nature · ⚔️ Strength · 📖 Wisdom · 🌸 Beauty · 🦅 Freedom · 🔥 Passion"
+        multi_select: true
+        max_selections: 2
+        required: false
+        store_as: "chosen_theme"
+        default: ["nature"]
+    on_complete: "name_generation"
+
+  name_generation:
+    id: "name_generation"
+    description: "Generate 3 Chinese name options"
+    input: ["user_original_name", "gender_preference", "chosen_theme"]
+    output: "user_chinese_name"
+    on_complete: "present_name_options"
+    on_user_selection: "ask_next_creation"
+
+  ask_next_creation:
+    id: "ask_next_creation"
+    description: "After name selection, offer art options"
+    prompt: >
+      "🎉 Great! Your Chinese name is set. What would you like to create next?
+       1️⃣  📜 Classical Poem (Jueju 绝句)
+       2️⃣  📜 Classical Poem (Lüshi 律诗 — longer, more elaborate)
+       3️⃣  🔴 Seal Carving (篆刻印章)
+       4️⃣  🏔️ Landscape Painting (水墨山水)
+       5️⃣  👤 Ancient Portrait Avatar (古风头像)
+       6️⃣  🎁 Give me everything! (Full Cultural Package)"
+    options: ["1", "2", "3", "4", "5", "6"]
+    routes:
+      "1": "poetry_jueju"
+      "2": "poetry_lushi"
+      "3": "seal_carving_gen"
+      "4": "shanshui_config"
+      "5": "portrait_config"
+      "6": "full_package"
+
+# ------------------------------------------------------------
+# Image Generation Settings
+# ------------------------------------------------------------
+image_generation:
+  enabled: true
+  default_quality: "hd"
+  default_size:
+    seal: "1024x1024"
+    shanshui: "1024x1792"    # Tall vertical scroll format
+    portrait: "1024x1024"    # Square avatar
+  
+  style_presets:
+    seal_carving:
+      style: "natural"
+      negative_prompt: "blurry, modern font, digital art, cartoonish, low quality, 3D render"
+    shanshui:
+      style: "natural"
+      negative_prompt: "color photo, western watercolor, flat illustration, anime, modern"
+    portrait:
+      style: "vivid"
+      negative_prompt: "western cartoon, chibi, modern fashion, photo-realistic face, 3D"
+
+  rate_limits:
+    max_images_per_session: 6
+    max_images_per_module: 2
+    cooldown_seconds: 5
+
+# ------------------------------------------------------------
+# Localization
+# ------------------------------------------------------------
+localization:
+  default_language: "en"
+  auto_detect_language: true
+  supported_languages:
+    - code: "en"
+      name: "English"
+    - code: "zh-CN"
+      name: "简体中文"
+    - code: "fr"
+      name: "Français"
+    - code: "de"
+      name: "Deutsch"
+    - code: "es"
+      name: "Español"
+    - code: "ja"
+      name: "日本語"
+    - code: "ko"
+      name: "한국어"
+    - code: "it"
+      name: "Italiano"
+    - code: "pt"
+      name: "Português"
+    - code: "ru"
+      name: "Русский"
+
+# ------------------------------------------------------------
+# Safety
+# ------------------------------------------------------------
+safety:
+  cultural_sensitivity: "high"
+  taboo_character_filter: true
+  taboo_character_list_path: "data/taboo_characters.json"
+  content_policy: "respectful_cultural_education"
+  include_cultural_context: true      # Always explain WHY something is used
+  include_historical_source: true     # Cite dynasty/poet when referencing
+  
+  prohibited:
+    - "generate names with death-adjacent characters"
+    - "mock or trivialize Chinese cultural traditions"
+    - "claim historical accuracy without sourcing"
+    - "generate real historical figures as portrait subjects"
+
+# ------------------------------------------------------------
+# Analytics
+# ------------------------------------------------------------
+analytics:
+  enabled: true
+  track_most_popular_themes: true
+  track_module_completion_rates: true
+  no_pii_in_logs: true
+  telemetry_endpoint: "https://clawhub.ai/api/v2/telemetry"

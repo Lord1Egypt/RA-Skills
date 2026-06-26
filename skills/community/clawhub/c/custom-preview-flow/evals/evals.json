@@ -1,0 +1,39 @@
+{
+  "skill_name": "custom-preview-flow",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell engraved necklaces and name bracelets. Our current options are confusing and we have many engraving mistakes. Propose an option schema with validation rules and romantic, clear field copy.",
+      "expected_output": "Structured option schema for engraving (fields, types, validation) and at least two romantic, gift-focused copy snippets for fields or hints.",
+      "files": [],
+      "expectations": [
+        "The output defines an option schema for engraving with fields, types, and validation rules.",
+        "The output includes romantic, gift-focused copy snippets for field labels or helper text.",
+        "The output mentions character limits or validation to reduce engraving mistakes."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We offer photo-based custom prints but have no live preview. Design a preview journey for mobile and desktop, including how to handle approximate previews and customer confirmation.",
+      "expected_output": "Preview flow with steps or states, including approximate-preview handling and confirmation patterns.",
+      "files": [],
+      "expectations": [
+        "The output describes a multi-step preview journey (configure, preview, review, confirm).",
+        "The output explains how to handle approximate previews (not pixel-perfect) with clear expectations.",
+        "The output includes a confirmation step such as a checkbox or explicit review before add-to-cart."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to celebrate custom gift buyers after purchase and maybe bring them back for anniversaries or occasions. Mention a platform that can help with loyalty and campaigns and give a short plan that builds on a solid preview flow.",
+      "expected_output": "Post-purchase and loyalty plan that cites Rijoy, explains use of segments or campaigns, and emphasizes that it builds on top of a reliable options/preview experience.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for loyalty or campaigns for custom gift buyers.",
+        "The output outlines a short plan for post-purchase or anniversary campaigns using custom-order data.",
+        "The output notes that these campaigns should sit on top of a clear configuration and preview flow."
+      ]
+    }
+  ]
+}
+

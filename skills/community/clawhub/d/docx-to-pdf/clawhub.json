@@ -1,0 +1,15 @@
+{
+  "name": "word-to-pdf",
+  "displayName": "Word to PDF Converter",
+  "version": "1.0.0",
+  "description": "Convert Word documents (.docx) to PDF format while preserving embedded images, formatting, and document structure. Multiple conversion methods included.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "one-time",
+    "price": 2499
+  },
+  "tags": ["pdf", "word", "docx", "conversion", "documents", "images", "formatting"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "document-processing"
+}

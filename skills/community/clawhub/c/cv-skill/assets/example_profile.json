@@ -1,0 +1,155 @@
+{
+  "candidate": {
+    "name": "Alex Chen",
+    "contact_line": "alex.chen@example.com | +1 555-0100 | Singapore | CET-6",
+    "base_summary": "International graduate with experience across coordination, teaching support, content execution, and stakeholder communication.",
+    "location": "Singapore",
+    "email": "alex.chen@example.com",
+    "phone": "+1 555-0100",
+    "links": [
+      "linkedin.com/in/alexchen"
+    ]
+  },
+  "target": {
+    "role": "Operations Coordinator",
+    "company": "Example Company",
+    "industry": "Media / Technology",
+    "job_description": "Optional pasted job description or role requirements.",
+    "keywords": [
+      "coordination",
+      "stakeholder communication",
+      "documentation"
+    ]
+  },
+  "style": {
+    "latin_font": "Times New Roman",
+    "cjk_font": "宋体",
+    "page_size": "letter",
+    "language": "en"
+  },
+  "education": [
+    {
+      "left": "Example University | MBA",
+      "right": "2022.09 - 2024.06",
+      "bullets": [
+        "Completed coursework in entrepreneurship, business projects, and research foundations.",
+        "Worked in an English-speaking academic environment with presentations and team collaboration."
+      ]
+    },
+    {
+      "left": "Sample Teachers College | B.A. in Education",
+      "right": "2018.09 - 2022.06",
+      "bullets": [
+        "Built foundations in education, psychology, child development, and program organization."
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "key": "media_assistant",
+      "default_left": "Assistant | Example Media Co.",
+      "default_right": "2024.04 - Present",
+      "default_bullets": [
+        "Collected industry information and supported day-to-day communication and execution."
+      ]
+    },
+    {
+      "key": "teacher",
+      "default_left": "Language Teacher | Example Preschool",
+      "default_right": "2021.09 - 2024.05",
+      "default_bullets": [
+        "Supported classroom delivery, events, and parent communication."
+      ]
+    }
+  ],
+  "campus": [
+    {
+      "left": "Business Simulation Project",
+      "right": "Graduate Program",
+      "bullets": [
+        "Worked in a multicultural team on market strategy and presentations."
+      ]
+    }
+  ],
+  "tracks": {
+    "operations": {
+      "title": "Operations Coordinator / Platform Operations",
+      "summary": "International graduate with cross-cultural work experience in execution, coordination, and support operations. Experienced in information handoff, schedule follow-through, and multi-party communication. Seeking operations or business support roles with strong execution needs.",
+      "experience_order": [
+        "media_assistant",
+        "teacher"
+      ],
+      "experience_overrides": {
+        "media_assistant": {
+          "left": "Operations Assistant | Example Media Co.",
+          "right": "2024.04 - Present",
+          "bullets": [
+            "Supported live operations and execution pacing for daily sessions and campaign activities.",
+            "Coordinated communication across partners and internal stakeholders to keep execution milestones on track.",
+            "Handled materials, field support, and issue follow-up to improve day-to-day execution reliability."
+          ]
+        },
+        "teacher": {
+          "left": "Program Coordinator / Language Teacher | Example Preschool",
+          "right": "2021.09 - 2024.05",
+          "bullets": [
+            "Planned and executed school events, materials preparation, and stakeholder communication.",
+            "Built experience in schedule coordination, on-site support, and structured documentation."
+          ]
+        }
+      },
+      "campus_items": [
+        {
+          "left": "Business Simulation Project",
+          "right": "Graduate Program",
+          "bullets": [
+            "Worked in a multicultural team on market analysis and recommendations, strengthening cross-border collaboration and execution planning."
+          ]
+        }
+      ],
+      "skills_lines": [
+        "Tools: Excel, Word, PowerPoint, Photoshop.",
+        "Keywords: coordination, workflow support, scheduling, documentation, stakeholder communication."
+      ],
+      "cover_letter": {
+        "recipient_name": "Hiring Manager",
+        "recipient_title": "Recruiting Team",
+        "company": "Example Company",
+        "address_lines": [
+          "123 Main Street",
+          "Boston, MA 02116"
+        ],
+        "opening_angle": "Connect cross-cultural coordination experience to operations support needs.",
+        "proof_points": [
+          "Supported live operations, partner communication, and issue follow-up for daily sessions and campaign activities.",
+          "Planned school events, prepared materials, and coordinated stakeholder communication in a structured education setting."
+        ],
+        "closing_angle": "Reinforce interest in dependable execution support and availability for an interview."
+      }
+    },
+    "content": {
+      "title": "Content Operations / Social Media Support / Asset Operations",
+      "summary": "International graduate with experience in content support, live-session maintenance, and material organization. Comfortable with asset capture, visual tool basics, and content execution. Seeking content operations, social media support, or brand support roles.",
+      "experience_order": [
+        "media_assistant",
+        "teacher"
+      ],
+      "experience_overrides": {
+        "media_assistant": {
+          "left": "Content Operations Assistant | Example Media Co.",
+          "right": "2024.04 - Present",
+          "bullets": [
+            "Supported live-session content maintenance and execution flow.",
+            "Captured behind-the-scenes materials and organized content assets for reuse.",
+            "Tracked industry topics and summarized information for content direction support."
+          ]
+        }
+      },
+      "campus_items": [],
+      "skills_lines": [
+        "Tools: Photoshop, Illustrator, PowerPoint, Word.",
+        "Keywords: content support, materials organization, visual coordination, live support."
+      ]
+    }
+  }
+}

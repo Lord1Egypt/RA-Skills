@@ -1,35 +1,32 @@
 ---
-name: "Data Analysis Zh"
-description: "数据分析助手，从原始数据中提取洞察、生成可视化建议和分析报告。适用于销售数据分析、 用户行为分析、财务数据解读、运营指标拆解等场景。解决"数据太多不知道看哪里"、 "帮我做数据分析"、"数据报告怎么写"、"这份数据有什么规律"等问题。 支持 Excel / CSV / 数据库查询结果等多种输入格式，兼容 WPS..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-analysis-zh"
-sourceUrl: "https://clawhub.ai/skills/data-analysis-zh"
+name: data-analysis-zh
+description: >
+  数据分析助手，从原始数据中提取洞察、生成可视化建议和分析报告。适用于销售数据分析、
+  用户行为分析、财务数据解读、运营指标拆解等场景。解决"数据太多不知道看哪里"、
+  "帮我做数据分析"、"数据报告怎么写"、"这份数据有什么规律"等问题。
+  支持 Excel / CSV / 数据库查询结果等多种输入格式，兼容 WPS 表格与 Microsoft Excel。
+tags: [数据分析, data-analysis, 数据洞察, 分析报告, 运营分析, 业务分析, 数据可视化]
 ---
 
-# Data Analysis Zh
+# 数据分析助手
 
-> 数据分析助手，从原始数据中提取洞察、生成可视化建议和分析报告。适用于销售数据分析、 用户行为分析、财务数据解读、运营指标拆解等场景。解决"数据太多不知道看哪里"、 "帮我做数据分析"、"数据报告怎么写"、"这份数据有什么规律"等问题。 支持 Excel / CSV / 数据库查询结果等多种输入格式，兼容 WPS...
+从原始数据中提取业务洞察，生成结构化分析报告和可视化建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-analysis-zh`
-- **Source URL:** [https://clawhub.ai/skills/data-analysis-zh](https://clawhub.ai/skills/data-analysis-zh)
+## Tools Required
+- read
 
-## Overview
+## Usage
 
+- "帮我分析这份销售数据，找出增长最快的产品和下滑的原因"
+- "这些用户行为数据有什么规律，帮我总结关键指标"
+- "根据这个季度的运营数据，写一份带结论和建议的分析报告"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-analysis-zh
-```
+## Examples
+
+输入：`这是我们上个月的销售明细表（Excel），帮我找出销售额前三的品类，以及周环比变化趋势`
+
+输出：
+- 销售额 Top3 品类及占比
+- 各品类周环比变化表格
+- 异常波动原因分析（若有）
+- 下月重点关注建议

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Bing News"
+  short_description: "Search Bing News"
+  default_prompt: "Use $dataify-bing-news to run a search query."

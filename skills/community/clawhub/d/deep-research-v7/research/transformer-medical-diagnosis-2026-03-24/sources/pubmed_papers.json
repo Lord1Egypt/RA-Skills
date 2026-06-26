@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Medical slice transformer for improved diagnosis and explainability on 3D medical images with DINOv2",
+    "pmid": "40615608",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40615608/"
+  },
+  {
+    "title": "TransMorph: Transformer for unsupervised medical image registration.",
+    "pmid": "36156420",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36156420/"
+  },
+  {
+    "title": "Chatbots and Large Language Models in Radiology: A Practical Primer for Clinical and Research Applic",
+    "pmid": "38226883",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38226883/"
+  },
+  {
+    "title": "H2Former: An Efficient Hierarchical Hybrid Transformer for Medical Image Segmentation.",
+    "pmid": "37018111",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/37018111/"
+  },
+  {
+    "title": "Enhancing medical image segmentation with a multi-transformer U-Net.",
+    "pmid": "38435997",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38435997/"
+  }
+]

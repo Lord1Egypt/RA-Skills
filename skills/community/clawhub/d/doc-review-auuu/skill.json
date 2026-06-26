@@ -1,0 +1,65 @@
+{
+  "spec_version": "1.0",
+  "name": "doc-review-Auuu",
+  "slug": "doc-review-auuu",
+  "version": "2.9.4",
+  "title": "飞书 AI 文档审查",
+  "description": "飞书 AI 文档审查 Skill - 对技术文档进行智能审查，支持文献调研、方案推演、实验设计、对外材料四类。接收用户提供的文档内容或公开链接，生成审查报告并创建飞书云文档。",
+  "author": "Auuu",
+  "requires_credentials": true,
+  "credentials_help": "本 Skill 需要飞书 API 凭证才能创建审查报告文档和汇总表。首次使用时，请按提示完成 lark-cli 授权登录。",
+  "runtime_requirements": {
+    "binaries": [
+      {
+        "name": "lark-cli",
+        "required": true,
+        "install_help": "npm install -g @larksuite/cli",
+        "purpose": "飞书命令行工具，用于读取文档、创建报告、更新汇总表"
+      }
+    ],
+    "packages": [
+      "@larksuite/cli"
+    ]
+  },
+  "runtime_permissions": [
+    {
+      "scope": "space:document:retrieve",
+      "description": "读取飞书文档内容"
+    },
+    {
+      "scope": "docx:document:write_only",
+      "description": "创建/写入飞书文档（报告和汇总表）"
+    }
+  ],
+  "deliverables": {
+    "required": [
+      {
+        "name": "chat_output",
+        "description": "对话中的审查报告（兜底输出，必须执行）"
+      },
+      {
+        "name": "feishu_report_doc",
+        "description": "飞书审查报告文档（主要交付物，必须尝试）"
+      },
+      {
+        "name": "feishu_summary_table",
+        "description": "审查汇总表（主要交付物，必须尝试）"
+      }
+    ]
+  },
+  "tags": [
+    "飞书",
+    "文档审查",
+    "AI",
+    "文献调研",
+    "方案推演",
+    "实验设计",
+    "lark-cli"
+  ],
+  "categories": [
+    "文档处理",
+    "代码审查"
+  ],
+  "autonomous": false,
+  "install": "本 Skill 使用 lark-cli 进行飞书文档操作。\n\n## 前置条件\n\n### 1. 安装 lark-cli\n```bash\nnpm install -g @larksuite/cli\n```\n\n### 2. 配置应用\n```bash\nlark-cli config init\n```\n\n### 3. 授权登录\n```bash\nlark-cli auth login --scope \"space:document:retrieve,docx:document:write_only\"\n```"
+}

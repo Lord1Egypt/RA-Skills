@@ -1,35 +1,154 @@
 ---
-name: "Dev Machine Cleanup"
-description: "开发机清理技能 - 异步清理日志和临时文件（不阻塞主会话）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dev-machine-cleanup"
-sourceUrl: "https://clawhub.ai/skills/dev-machine-cleanup"
+name: dev-machine-cleanup
+description: 开发机清理技能 - 异步清理日志和临时文件（不阻塞主会话）
+metadata: {"version":"1.0","author":"Hank","updated":"2026-03-12"}
 ---
 
-# Dev Machine Cleanup
+# 🧹 开发机清理技能（异步版）
 
-> 开发机清理技能 - 异步清理日志和临时文件（不阻塞主会话）
+清理开发机（datax）上的日志文件和临时文件，**异步执行不阻塞**。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dev-machine-cleanup`
-- **Source URL:** [https://clawhub.ai/skills/dev-machine-cleanup](https://clawhub.ai/skills/dev-machine-cleanup)
+## 🎯 触发词
 
-## Overview
+- "打扫卫生"
+- "清理开发机"
+- "清理绿地"
+- "让老高去打扫卫生"
+- "让顺子去打扫卫生"
+- "清理日志"
+- "清理临时文件"
 
+## 🚀 核心特性
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dev-machine-cleanup
+**异步执行：**
+- ✅ 不阻塞主会话
+- ✅ 可以并行执行其他任务
+- ✅ 完成后主动通知
+- ✅ 实时输出进度
+
+## 📋 执行流程
+
+### 1️⃣ 异步调用子 agent
+
+```javascript
+sessions_spawn({
+  agentId: "agent-ge",  // 或 agent-cc
+  task: "清理开发机日志和临时文件",
+  mode: "run",
+  streamTo: "parent",
+  label: "dev-cleanup"
+})
 ```
+
+### 2️⃣ 子 agent 执行清理
+
+SSH 到 datax 开发机，执行：
+
+```bash
+# 检查清理前磁盘状态
+df -h
+
+# 清理 7 天前的 .log 文件
+find /mnt/www -name '*.log' -mtime +7 -delete
+
+# 清理 3 天前的 tmp_* 文件
+find /mnt/www -name 'tmp_*' -mtime +3 -delete
+
+# 清理 Docker 悬空镜像（可选）
+docker image prune -f
+
+# 检查清理后磁盘状态
+df -h
+```
+
+### 3️⃣ 实时播报进度
+
+清理过程中输出：
+- 📊 清理前磁盘使用率
+- 🗑️ 正在删除 XXX 文件...
+- ✅ 清理完成
+- 📊 清理后磁盘使用率
+- 💾 腾出 XX GB 空间
+
+### 4️⃣ 完成后通知
+
+清理完成后自动通知：
+```
+✅ 开发机清理完成！
+
+清理结果：
+- 删除日志文件：XX 个
+- 删除临时文件：XX 个
+- 腾出空间：1.2 GB
+
+当前状态：
+- 根分区 (/)：87% → 85%
+- 数据分区 (/mnt)：60% → 59%
+```
+
+## ⚙️ 配置说明
+
+**清理规则：**
+| 文件类型 | 保留时间 | 清理位置 |
+|---------|---------|---------|
+| `*.log` | 7 天 | `/mnt/www` 及子目录 |
+| `tmp_*` | 3 天 | `/mnt/www` 及子目录 |
+| Docker 悬空镜像 | 总是 | 所有悬空镜像 |
+
+**安全边界：**
+- ❌ 不删除 7 天内的日志
+- ❌ 不删除 3 天内的临时文件
+- ❌ 不删除业务数据文件
+- ❌ 不删除配置文件
+
+## 📝 使用示例
+
+```
+用户：让老高去打扫卫生
+助手：好的，老高正在去开发机清理日志...（异步执行）
+
+用户：让顺子检查 DataWorks 任务
+助手：好的，顺子正在检查...（并行执行）
+
+[1 分钟后]
+老高：✅ 开发机清理完成！腾出 1.2GB 空间
+```
+
+## 🔧 技术实现
+
+**主会话（我）：**
+```javascript
+// 收到"打扫卫生"指令
+sessions_spawn({
+  agentId: "agent-ge",
+  task: `
+    1. SSH 到 datax 开发机
+    2. 执行清理命令
+    3. 报告清理结果
+  `,
+  mode: "run",
+  streamTo: "parent",
+  label: "dev-cleanup-${Date.now()}"
+})
+
+// 立即回复用户
+"好的，老高正在去开发机打扫卫生，完成后会通知你～"
+```
+
+**子 agent（老高）：**
+- 接收任务后 SSH 到开发机
+- 执行清理命令（bash）
+- 实时输出进度
+- 完成后返回结果
+
+## ⚠️ 注意事项
+
+1. **并发控制：** 避免同时启动多个清理任务
+2. **磁盘空间：** 清理前检查磁盘使用率，>90% 时告警
+3. **日志记录：** 清理结果记录到 `memory/dev-cleanup-YYYY-MM-DD.md`
+4. **错误处理：** SSH 失败时立即通知用户
+
+---
+
+**版本历史：**
+- v1.0 (2026-03-12): 初始版本，异步执行不阻塞

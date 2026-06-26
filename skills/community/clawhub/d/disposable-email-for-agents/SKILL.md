@@ -1,35 +1,69 @@
----
-name: "Disposable Email For Agents"
-description: "Create and manage disposable email inboxes for AI agents to receive, read, and download messages and attachments with auto-deletion after 24 hours."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/disposable-email-for-agents"
-sourceUrl: "https://clawhub.ai/skills/disposable-email-for-agents"
----
+# myagentinbox
 
-# Disposable Email For Agents
+Disposable email inboxes for AI agents. Create a temporary email address, receive emails, read messages, and download attachments — all through MCP tools. Inboxes auto-delete after 24 hours.
 
-> Create and manage disposable email inboxes for AI agents to receive, read, and download messages and attachments with auto-deletion after 24 hours.
+## MCP Configuration
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/disposable-email-for-agents`
-- **Source URL:** [https://clawhub.ai/skills/disposable-email-for-agents](https://clawhub.ai/skills/disposable-email-for-agents)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/disposable-email-for-agents
+```json
+{
+  "mcpServers": {
+    "myagentinbox": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://myagentinbox.com/mcp"]
+    }
+  }
+}
 ```
+
+## Tools
+
+### create_inbox
+
+Create a disposable email inbox that expires in 24 hours. Returns the generated email address.
+
+### check_inbox
+
+Check for messages in an inbox.
+
+- `address` (string): The inbox email address
+
+### read_message
+
+Read the full content of a specific email message including sender, subject, body, and attachment info.
+
+- `address` (string): The inbox email address
+- `message_id` (string): The message ID
+
+### download_attachment
+
+Download an email attachment. Returns images as base64, text files inline, and binary files as download URLs.
+
+- `address` (string): The inbox email address
+- `message_id` (string): The message ID
+- `filename` (string): The attachment filename
+
+## REST API
+
+Alternatively, use the REST API directly:
+
+- `POST /api/inboxes` — Create inbox
+- `GET /api/inboxes/:address/messages` — List messages
+- `GET /api/inboxes/:address/messages/:id` — Read message
+- `GET /api/inboxes/:address/messages/:id/attachments/:filename` — Download attachment
+
+## Limits
+
+- Inbox creation: 10 per minute
+- API reads: 60 per minute
+- Inbox lifetime: 24 hours
+- Max email size: 10 MB
+
+## Example Usage
+
+1. Use `create_inbox` to get a disposable `@myagentinbox.com` address
+2. Sign up for a service or trigger an email to that address
+3. Use `check_inbox` to see incoming messages
+4. Use `read_message` to read the full email content
+5. Use `download_attachment` if the email has attachments
+
+No accounts, no API keys, no setup required.

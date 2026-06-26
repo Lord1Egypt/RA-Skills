@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Search"
+  short_description: "Search Google and get structured SERP results"
+  default_prompt: "Use $dataify-google-search to run a search query."

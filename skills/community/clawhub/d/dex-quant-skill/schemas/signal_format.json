@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StrategySignalOutput",
+  "description": "策略脚本的标准输出格式。所有策略脚本（py/ts）运行后必须输出此格式的 JSON。",
+  "type": "object",
+  "required": ["strategy_name", "strategy_version", "generated_at", "signals"],
+  "properties": {
+    "strategy_name": {
+      "type": "string",
+      "description": "策略名称"
+    },
+    "strategy_version": {
+      "type": "string",
+      "description": "策略版本号，如 v1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "信号生成时间 (ISO 8601)"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["live", "backtest"],
+      "description": "运行模式：live 实时 / backtest 回测"
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Signal"
+      },
+      "description": "信号列表，可以为空（表示当前无信号）"
+    },
+    "warning": {
+      "type": "string",
+      "description": "可选的警告信息（如社媒策略不支持回测）"
+    }
+  },
+  "definitions": {
+    "Signal": {
+      "type": "object",
+      "required": ["symbol", "action", "confidence", "reason", "source_type"],
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "description": "交易对，如 BTCUSDT",
+          "examples": ["BTCUSDT", "ETHUSDT", "SOLUSDT"]
+        },
+        "action": {
+          "type": "string",
+          "enum": ["buy", "sell", "close", "hold"],
+          "description": "交易动作：buy 买入 / sell 卖出 / close 平仓 / hold 持有"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "信号置信度，0 到 1"
+        },
+        "reason": {
+          "type": "string",
+          "description": "人类可读的触发原因，如 'MACD 金叉 + 成交量放大 1.8x'"
+        },
+        "price_at_signal": {
+          "type": "number",
+          "description": "信号触发时的价格"
+        },
+        "suggested_stop_loss": {
+          "type": "number",
+          "description": "建议的止损价格"
+        },
+        "suggested_take_profit": {
+          "type": "number",
+          "description": "建议的止盈价格"
+        },
+        "source_type": {
+          "type": "string",
+          "enum": ["technical", "social", "onchain", "mixed"],
+          "description": "信号来源类型：technical 技术指标 / social 社媒 / onchain 链上 / mixed 混合"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "信号对应的时间点"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "触发条件的具体数值，如 {macd_dif: 150, rsi: 62}",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

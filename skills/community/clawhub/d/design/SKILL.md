@@ -1,35 +1,32 @@
 ---
 name: "Design"
 description: "Auto-learns your visual preferences. Adapts to UI, graphics, video, and any creative work."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/design"
-sourceUrl: "https://clawhub.ai/skills/design"
 ---
 
-# Design
+## Auto-Adaptive Design Preferences
 
-> Auto-learns your visual preferences. Adapts to UI, graphics, video, and any creative work.
+This skill auto-evolves. Edit sections below as you learn user's visual taste.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/design`
-- **Source URL:** [https://clawhub.ai/skills/design](https://clawhub.ai/skills/design)
+**Rules:**
+- Detect patterns from choices, feedback, and reactions
+- Support all design types (UI, graphics, video, print, any visual)
+- Confirm after 2+ consistent preferences
+- Keep entries ultra-compact
+- Check `dimensions.md` for categories, `criteria.md` for format
 
-## Overview
+---
 
+### Aesthetic
+<!-- General visual taste. Format: "trait" -->
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/design
-```
+### By Medium
+<!-- Different preferences by type. Format: "medium: traits" -->
+
+### Brands
+<!-- Named projects/brands with distinct styles. Format: "name: traits" -->
+
+### Never
+<!-- Things user rejected or dislikes visually -->
+
+---
+*Empty sections = no preference yet. Observe and fill.*

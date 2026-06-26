@@ -1,0 +1,12 @@
+{
+  "name": "doc-spellcheck",
+  "version": "1.0.0",
+  "description": "Automatically detect and fix spelling errors in documentation files across any project",
+  "author": "Linux2010",
+  "license": "MIT",
+  "keywords": ["spellcheck", "documentation", "markdown", "linting"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Linux2010/openclaw-skills"
+  }
+}

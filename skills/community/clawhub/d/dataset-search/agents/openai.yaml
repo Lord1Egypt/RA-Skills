@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataset Search"
+  short_description: "Find datasets across public data sources"
+  default_prompt: "Use $dataset-search to find and compare suitable datasets or data lakes for my analysis."

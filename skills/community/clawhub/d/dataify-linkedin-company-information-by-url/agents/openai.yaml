@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Dataify Linkedin Builder"
+  short_description: "Prepare Dataify builder calls for linkedin.com"
+  default_prompt: "Use $dataify-linkedin-company-information-by-url to prepare a Dataify builder curl request."

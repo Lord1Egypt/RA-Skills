@@ -1,0 +1,10 @@
+{
+  "1": {"name": "乾", "symbol": "☰", "meaning": "天"},
+  "2": {"name": "兑", "symbol": "☱", "meaning": "泽"},
+  "3": {"name": "离", "symbol": "☲", "meaning": "火"},
+  "4": {"name": "震", "symbol": "☳", "meaning": "雷"},
+  "5": {"name": "巽", "symbol": "☴", "meaning": "风"},
+  "6": {"name": "坎", "symbol": "☵", "meaning": "水"},
+  "7": {"name": "艮", "symbol": "☶", "meaning": "山"},
+  "8": {"name": "坤", "symbol": "☷", "meaning": "地"}
+}

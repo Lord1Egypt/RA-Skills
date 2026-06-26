@@ -1,0 +1,37 @@
+{
+  "slug": "deck-narrative-planner",
+  "title": "演示叙事规划器",
+  "category": "docs",
+  "categoryLabel": "文档与知识",
+  "mode": "structured_brief",
+  "summary": "把材料转成 PPT/Deck 叙事结构，生成每页一句标题、证据需求与过渡逻辑。",
+  "inputHint": "目标受众、核心结论、证据材料",
+  "sections": [
+    "整体主线",
+    "页级标题",
+    "证据需求",
+    "过渡语",
+    "风险页",
+    "结尾行动"
+  ],
+  "useCases": [
+    "汇报演示",
+    "融资材料",
+    "项目复盘"
+  ],
+  "positiveExamples": [
+    "把这堆材料整理成 10 页 deck 结构",
+    "每页给我一句标题"
+  ],
+  "negativeExamples": [
+    "不要直接生成花哨视觉稿",
+    "不要编造证据"
+  ],
+  "risk": "输出是结构和文案草案，不代替设计软件。",
+  "tags": [
+    "presentation",
+    "deck",
+    "storytelling",
+    "slides"
+  ]
+}

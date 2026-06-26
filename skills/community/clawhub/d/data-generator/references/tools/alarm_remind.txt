@@ -1,0 +1,10 @@
+**闹钟与提醒工具 alarm_remind**
+   - 工具调用格式：<tool_call>{"tool_name":"alarm_remind","alarm_ids":["xxx"],"action":"xxx","alarm_type":"xxx","label":"xxx","repeat_type":"xxx","custom_days":["xxx"],"time":"xxx"}</tool_call>
+   - 闹钟：到时间只响铃；提醒：播报提醒内容。
+   - 删除操作前需先调用 action=list 获取 alarm_id。
+   - action：add(新增)/delete(删除)/list(查看列表)。
+   - alarm_ids：action 为 delete 时必填，字符串类型。
+   - alarm_type：alarm(闹钟)/reminder(提醒)。
+   - repeat_type：daily/weekly/monthly/workdays/weekends/single/holidays；action 为 add 时必填。
+   - custom_days：repeat_type 为 weekly 时必填，示例: ["mon","wed"]。
+   - time：标准时间格式 YYYY-MM-DD HH:mm:ss；action 为 add 时必填。

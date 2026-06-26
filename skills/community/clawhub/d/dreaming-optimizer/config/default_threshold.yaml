@@ -1,0 +1,41 @@
+# dreaming-optimizer configuration
+version: "1.0.0"
+
+# Scoring thresholds
+scoring:
+  default_threshold: 70          # Min score to commit to B-layer
+  archive_threshold: 35         # Min score to archive (else discard)
+  max_entries_per_cycle: 1000   # Cap entries per REM cycle
+
+# Fact term dictionary (MVP scoring — rule-based)
+fact_terms:
+  zh:
+    - 数据库, API, 配置, bug, 修复, 测试, agent, skill
+    - 已修复, 已实现, 完成了, 测试通过, deployed, fixed
+    - 代码, 函数, 模块, 架构, 部署, 上线, 发布, 创建
+  en:
+    - fixed, deployed, implemented, completed, tested
+    - bug, api, config, module, architecture, created
+
+# Deduplication
+dedup:
+  token_threshold: 0.85         # Token overlap similarity threshold
+  use_embeddings: false          # Pro feature (v1.1)
+  embedding_model: "paraphrase-multilingual-MiniLM-L12-v2"
+  check_blayer_limit: 1000      # Max existing memories to compare against
+
+# B-layer settings
+blayer:
+  db_name: "main.sqlite"         # Agent DB name
+  auto_create_schema: true       # Create schema if missing
+
+# Archive settings
+archive:
+  enabled: true
+  dir: "dreaming-archives"       # Relative to workspace/memory/
+  max_archive_age_days: 90      # Auto-purge archives older than this
+
+# Output settings
+output:
+  summary_dir: "dreaming-summaries"
+  summary_format: "json"         # json | markdown

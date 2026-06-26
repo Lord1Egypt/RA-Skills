@@ -1,35 +1,63 @@
 ---
-name: "Doubao Launch"
-description: "Launch Doubao desktop application and configure real-time translation window."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/doubao-launch"
-sourceUrl: "https://clawhub.ai/skills/doubao-launch"
+ name: doubao-launch
+ description: Launch Doubao desktop application and configure real-time translation window.
+ tools:
+   - launch_doubao
 ---
 
 # Doubao Launch
 
-> Launch Doubao desktop application and configure real-time translation window.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/doubao-launch`
-- **Source URL:** [https://clawhub.ai/skills/doubao-launch](https://clawhub.ai/skills/doubao-launch)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/doubao-launch
+python scripts/doubao_auto_workflow.py [--dual|--single] --json-output
 ```
+
+## Parameters
+
+- `mode` (optional): "dual" or "single", default: "dual"
+
+## Returns
+
+```json
+{
+  "success": true,
+  "window_handle": 123456,
+  "window_title": "Doubao - Real-time Subtitles",
+  "mode": "dual"
+}
+```
+
+## Tools
+
+## launch_doubao
+
+Launch Doubao application
+
+
+## Workflow Integration
+
+This skill is part of the YouTube translation workflow:
+1. **youtube-audio-download**: Download audio from YouTube
+2. **doubao-launch**: Launch Doubao translation window
+3. **audio-play**: Play the downloaded audio
+4. **doubao-capture**: Capture translated subtitles
+
+## Execution
+
+All skills execute on Windows Python via WSL cross-platform call:
+```
+wsl -> python.exe scripts/doubao_auto_workflow.py ...
+```
+
+## Error Handling
+
+All skills return JSON with `success` field:
+- `success: true` - Operation completed
+- `success: false` - Check `error_code` and `error_message`
+
+## Notes
+
+- Windows GUI automation requires visible desktop (no RDP disconnect)
+- Output files are stored in Windows `works/` directory
+- WSL accesses Windows files via `/mnt/h/...`

@@ -1,0 +1,18 @@
+{
+  "reportTime": "22:00",
+  "timezone": "Asia/Shanghai",
+  "discordChannel": "1482276869108797521",
+  "dataSources": {
+    "failureMonitor": "memory/failure-monitor-log.json",
+    "corrections": "~/self-improving/corrections.md",
+    "dailyNotes": "memory/"
+  },
+  "clawhubSearch": {
+    "enabled": true,
+    "keywords": ["discord", "automation", "monitoring", "self-improvement"]
+  },
+  "notifications": {
+    "discord": true,
+    "email": false
+  }
+}

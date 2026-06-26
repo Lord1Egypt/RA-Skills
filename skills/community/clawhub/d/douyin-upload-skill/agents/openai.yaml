@@ -1,0 +1,4 @@
+interface:
+  display_name: "Douyin Upload Skill"
+  short_description: "Publish local Douyin videos with ASR and captions"
+  default_prompt: "Authorize Douyin, transcribe local video audio, draft captions, and publish with confirmation."

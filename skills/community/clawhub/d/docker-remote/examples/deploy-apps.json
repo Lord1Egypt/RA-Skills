@@ -1,0 +1,27 @@
+{
+    "hosts": {
+        "home": {
+            "host": "192.168.1.100",
+            "description": "My Mac Mini, deployed at home, serves as the primary node of my Home Lab.",
+            "base-dir": "/opt/docker",
+            "user": "docker",
+            "apps": {
+                "blinko": {
+                    "description": "An AI-powered card note-taking project.",
+                    "update-command": "sh ./upgrade.sh"
+                }
+            }
+        },
+        "cloud": {
+            "host": "123.33.44.55",
+            "description": "My cloud server, primarily used as the public gateway and monitoring hub for my Home Lab.",
+            "base-dir": "/opt/docker",
+            "user": "docker",
+            "apps": {
+                "nginx": {
+                    "description": "My gateway."
+                }
+            }
+        }
+    }
+}

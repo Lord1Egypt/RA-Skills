@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Finance"
+  short_description: "Search Google Finance for financial data"
+  default_prompt: "Use $dataify-google-finance to run a search query."

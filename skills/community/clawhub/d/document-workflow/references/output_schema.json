@@ -1,0 +1,37 @@
+{
+  "paper_title": "string — Full title of the paper",
+  "authors": ["string — List of author names"],
+  "source": "string — Where the paper was obtained (arXiv, OpenReview, Google Scholar)",
+  "task_definition": {
+    "domain": "string — Research domain (e.g., computer vision, NLP, robotics)",
+    "task": "string — Specific task addressed (e.g., video generation, object detection)",
+    "problem_statement": "string — One-paragraph description of what problem the paper solves",
+    "key_contributions": ["string — List of main contributions"]
+  },
+  "experiments": {
+    "datasets": ["string — Datasets used for evaluation"],
+    "baselines": ["string — Methods compared against"],
+    "metrics": [
+      {
+        "name": "string — Metric name (e.g., FID, BLEU, mAP)",
+        "description": "string — description of what this metric measures",
+        "definition": "string — Mathematical definition or formula for the metric"
+      },
+      {
+        "name": "string — Metric name (e.g., FID, BLEU, mAP)",
+        "description": "string — description of what this metric measures",
+        "definition": "string — Mathematical definition or formula for the metric"
+      }
+    ],
+    "results": [
+      {
+        "setting": "string — Experimental setting or dataset",
+        "metric": "string — Metric name",
+        "proposed_method": "string|number — Score of this paper's method",
+        "best_baseline": "string|number — Best competing method's score",
+        "best_baseline_name": "string — Name of the best competing method"
+      }
+    ],
+    "key_findings": ["string — Notable findings or takeaways from experiments"]
+  }
+}

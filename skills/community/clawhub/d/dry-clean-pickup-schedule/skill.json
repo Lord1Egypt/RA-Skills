@@ -1,0 +1,35 @@
+{
+  "name": "dry-clean-pickup-schedule",
+    "slug": "dry-clean-pickup-schedule",
+  "displayName": "Dry-Clean Pickup Schedule Keeper",
+  "version": "1.0.0",
+  "description": "Create a simple dry-cleaning pickup tracker and bag tag note template for dropped-off garments, pickup dates, special notes, and reminder text, without handling payments, disputes, or accounts.",
+  "triggerKeywords": [
+    "dry cleaning pickup schedule",
+    "dry clean tracker",
+    "laundry pickup reminder",
+    "dry cleaner bag tag",
+    "garment pickup checklist",
+    "cleaning ticket tracker",
+    "clothes drop off tracker",
+    "pickup date reminder"
+  ],
+  "tags": [
+    "home-admin",
+    "errands",
+    "clothing",
+    "scheduling",
+    "checklist"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Scheduling tracker only. Do not handle payments, refunds, billing disputes, damage claims, missing-item disputes, account logins, loyalty credentials, legal claims, or external communication with the cleaner. Keep notes neutral and practical."
+}

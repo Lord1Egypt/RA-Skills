@@ -1,0 +1,28 @@
+{
+  "name": "daily-self-improvement",
+  "version": "1.0.0",
+  "description": "每日自动总结问题、搜索改进、做自我反思，持续提升 AI 能力",
+  "main": "scripts/run.cjs",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "self-improvement",
+    "learning",
+    "automation",
+    "daily-report",
+    "reflection"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-community/daily-self-improvement"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "requires": {
+      "bins": ["node"]
+    },
+    "configPaths": ["config/settings.json"]
+  }
+}

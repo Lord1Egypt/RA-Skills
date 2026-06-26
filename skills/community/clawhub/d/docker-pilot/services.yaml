@@ -1,0 +1,40 @@
+# Docker Pilot — Service Map Configuration
+# Customize this file for your deployment.
+# Containers marked as protected will require explicit confirmation before stop/restart/remove.
+
+services:
+  adguardhome:
+    role: "DNS/ad-blocking"
+    critical: true
+    protected: true
+    port: 53
+    network: host
+    note: "Stopping breaks DNS for entire network. Verify /etc/resolv.conf has fallback before stopping."
+
+  buck-dashboard:
+    role: "System dashboard"
+    critical: false
+    port: 8080
+    network: host
+    note: "Mission Control dashboard for OpenClaw."
+
+  verdaccio:
+    role: "NPM registry"
+    critical: false
+    port: 4873
+    network: bridge
+    note: "Private npm registry for development."
+
+  mockserver:
+    role: "API mocking"
+    critical: false
+    port: 1080
+    network: bridge
+    note: "Dev tool. Can be restarted freely."
+
+  gitbox:
+    role: "Git server"
+    critical: false
+    port: 8081
+    network: bridge
+    note: "Git hosting. Restart tolerable but disruptive."

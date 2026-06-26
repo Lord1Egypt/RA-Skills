@@ -1,0 +1,26 @@
+{
+  "url": "https://api.github.com/repos/openai/openai-python/releases/98765432",
+  "assets_url": "https://api.github.com/repos/openai/openai-python/releases/98765432/assets",
+  "upload_url": "https://uploads.github.com/repos/openai/openai-python/releases/98765432/assets{?name,label}",
+  "html_url": "https://github.com/openai/openai-python/releases/tag/v1.0.0",
+  "id": 98765432,
+  "author": {
+    "login": "openai-devrel",
+    "id": 22222222,
+    "avatar_url": "https://avatars.githubusercontent.com/u/22222222?v=4",
+    "html_url": "https://github.com/openai-devrel",
+    "type": "User"
+  },
+  "node_id": "RE_kwDOXYZABC4AbCdEf",
+  "tag_name": "v1.0.0",
+  "target_commitish": "main",
+  "name": "v1.0.0",
+  "draft": false,
+  "prerelease": false,
+  "created_at": "2023-11-06T11:30:00Z",
+  "published_at": "2023-11-06T12:00:00Z",
+  "assets": [],
+  "tarball_url": "https://api.github.com/repos/openai/openai-python/tarball/v1.0.0",
+  "zipball_url": "https://api.github.com/repos/openai/openai-python/zipball/v1.0.0",
+  "body": "## v1.0.0 — November 6, 2023\n\nThis is a complete rewrite of the OpenAI Python library. The new version is built on top of our new [Stainless](https://stainlessapi.com)-generated SDK framework, which provides improved type safety, pagination support, and a more consistent API surface.\n\n## BREAKING CHANGES\n\nThis release contains **breaking changes** that require code updates. Run `openai migrate` for auto-fix of the most common patterns.\n\n- `openai.Completion.create()` has been **removed**. Use `client.completions.create()` on the new client instance instead.\n- `openai.ChatCompletion.create()` has been **removed**. Use `client.chat.completions.create()` on the new client instance instead.\n- `openai.Edit.create()` has been **removed** (the Edit endpoint was deprecated by OpenAI).\n- Error classes have moved: `openai.error.AuthenticationError` → `openai.AuthenticationError`, `openai.error.RateLimitError` → `openai.RateLimitError`, `openai.error.APIError` → `openai.APIError`. The entire `openai.error` module is removed.\n- `openai.api_key = 'sk-...'` global mutation is **removed**. Pass `api_key` to the `OpenAI()` constructor or set the `OPENAI_API_KEY` environment variable.\n- `openai.organization` global setting removed — use `OpenAI(organization='org-...')` instead.\n- `openai.api_base` removed — use `OpenAI(base_url='...')` for custom endpoints.\n- Response objects are no longer plain dicts. They are typed Pydantic-like models. Use `.model_dump()` to convert to dict.\n\n## Migration Guide\n\n### Quickstart\n\nRun the official migration tool:\n```bash\npip install 'openai>=1.0.0'\nopenai migrate\n```\n\nThis automatically rewrites the most common patterns.\n\n### Manual migration\n\nBefore (v0.x):\n```python\nimport openai\nopenai.api_key = 'sk-...'\n\n# Completions\nresponse = openai.Completion.create(\n    model='text-davinci-003',\n    prompt='Hello world'\n)\nprint(response['choices'][0]['text'])\n\n# Chat\nresponse = openai.ChatCompletion.create(\n    model='gpt-3.5-turbo',\n    messages=[{'role': 'user', 'content': 'Hello'}]\n)\n```\n\nAfter (v1.x):\n```python\nfrom openai import OpenAI\nclient = OpenAI()  # reads OPENAI_API_KEY from environment\n\n# Completions\nresponse = client.completions.create(\n    model='gpt-3.5-turbo-instruct',\n    prompt='Hello world'\n)\nprint(response.choices[0].text)\n\n# Chat\nresponse = client.chat.completions.create(\n    model='gpt-4',\n    messages=[{'role': 'user', 'content': 'Hello'}]\n)\n```\n\n### Error handling\n\nBefore:\n```python\ntry:\n    ...\nexcept openai.error.RateLimitError as e:\n    ...\n```\n\nAfter:\n```python\ntry:\n    ...\nexcept openai.RateLimitError as e:\n    ...\n```\n\n## New Features\n\n- Full async support via `AsyncOpenAI` client\n- Automatic retries with exponential backoff (configurable via `max_retries`)\n- Streaming helpers: `client.chat.completions.stream()` context manager\n- Typed response models for all endpoints\n- Built-in pagination for list endpoints\n- `httpx` transport layer (replaces `requests`)\n\nSee the [migration guide](https://github.com/openai/openai-python/discussions/742) for a comprehensive overview.\n"
+}

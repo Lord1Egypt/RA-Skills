@@ -1,0 +1,84 @@
+{
+  "date": "2026-03-31",
+  "title": "📅 科技日报 | 2026-03-31",
+  "sections": {
+    "重磅": [],
+    "技术前沿": [
+      {
+        "title": "openclaw",
+        "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 ",
+        "html_url": "https://github.com/openclaw/openclaw",
+        "stargazers_count": 341513
+      },
+      {
+        "title": "opencode",
+        "description": "The open source coding agent.",
+        "html_url": "https://github.com/anomalyco/opencode",
+        "stargazers_count": 132837
+      },
+      {
+        "title": "superpowers",
+        "description": "An agentic skills framework & software development methodology that works.",
+        "html_url": "https://github.com/obra/superpowers",
+        "stargazers_count": 125091
+      },
+      {
+        "title": "everything-claude-code",
+        "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+        "html_url": "https://github.com/affaan-m/everything-claude-code",
+        "stargazers_count": 118488
+      },
+      {
+        "title": "skills",
+        "description": "Public repository for Agent Skills",
+        "html_url": "https://github.com/anthropics/skills",
+        "stargazers_count": 106461
+      },
+      {
+        "title": "gemini-cli",
+        "description": "An open-source AI agent that brings the power of Gemini directly into your terminal.",
+        "html_url": "https://github.com/google-gemini/gemini-cli",
+        "stargazers_count": 99542
+      },
+      {
+        "title": "spec-kit",
+        "description": "💫 Toolkit to help you get started with Spec-Driven Development",
+        "html_url": "https://github.com/github/spec-kit",
+        "stargazers_count": 83714
+      },
+      {
+        "title": "codex",
+        "description": "Lightweight coding agent that runs in your terminal",
+        "html_url": "https://github.com/openai/codex",
+        "stargazers_count": 68431
+      },
+      {
+        "title": "agency-agents",
+        "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+        "html_url": "https://github.com/msitarzewski/agency-agents",
+        "stargazers_count": 66353
+      },
+      {
+        "title": "autoresearch",
+        "description": "AI agents running research on single-GPU nanochat training automatically",
+        "html_url": "https://github.com/karpathy/autoresearch",
+        "stargazers_count": 61490
+      }
+    ],
+    "行业动态": [
+      {
+        "source": "机器之心",
+        "title": "AI 最新进展",
+        "url": "#"
+      },
+      {
+        "source": "量子位",
+        "title": "大模型更新",
+        "url": "#"
+      }
+    ],
+    "AI 应用": []
+  },
+  "total": 12,
+  "generated_at": "2026-03-30T16:26:57.531Z"
+}

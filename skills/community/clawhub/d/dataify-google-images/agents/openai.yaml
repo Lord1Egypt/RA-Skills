@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Images"
+  short_description: "Search Google Images"
+  default_prompt: "Use $dataify-google-images to run a search query."

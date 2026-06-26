@@ -1,0 +1,242 @@
+{
+  "brand": {
+    "name": "DevTool Answer Monitor",
+    "tagline": "Track what LLMs say before users choose your developer tool."
+  },
+  "projects": [
+    {
+      "id": "mineru",
+      "name": "MinerU",
+      "description": "Repair-loop sample for a developer tool with baseline, T+7, and T+14 artifacts.",
+      "story": "A version-controlled repair story that improves mention, positivity, and ecosystem clarity.",
+      "runs": [
+        {
+          "id": "baseline",
+          "label": "Baseline",
+          "source": "data/runs/sample-run/summary.json",
+          "created_at": "2026-04-16T12:00:00Z",
+          "record_count": 5,
+          "metrics": {
+            "mention_rate": 80.0,
+            "positive_mention_rate": 70.0,
+            "capability_accuracy": 100.0,
+            "ecosystem_accuracy": 50.0
+          },
+          "strict_rates": {
+            "mention_rate": 60.0,
+            "positive_mention_rate": 40.0,
+            "capability_accuracy": 100.0,
+            "ecosystem_accuracy": 0.0
+          },
+          "by_funnel_stage": [
+            {
+              "funnel_stage": "awareness",
+              "record_count": 1,
+              "mention_rate": 100.0,
+              "positive_mention_rate": 100.0,
+              "capability_accuracy": null,
+              "ecosystem_accuracy": null
+            },
+            {
+              "funnel_stage": "selection",
+              "record_count": 2,
+              "mention_rate": 75.0,
+              "positive_mention_rate": 75.0,
+              "capability_accuracy": 100.0,
+              "ecosystem_accuracy": null
+            },
+            {
+              "funnel_stage": "activation",
+              "record_count": 1,
+              "mention_rate": 100.0,
+              "positive_mention_rate": 50.0,
+              "capability_accuracy": null,
+              "ecosystem_accuracy": null
+            },
+            {
+              "funnel_stage": "agent",
+              "record_count": 1,
+              "mention_rate": 50.0,
+              "positive_mention_rate": 50.0,
+              "capability_accuracy": null,
+              "ecosystem_accuracy": 50.0
+            }
+          ],
+          "repair_candidates": [
+            {
+              "query_id": "ecosystem-001",
+              "model_id": "gpt-4.1-mini",
+              "repair_type": "outdated"
+            },
+            {
+              "query_id": "negative-001",
+              "model_id": "gpt-4.1-mini",
+              "repair_type": "negative_eval"
+            }
+          ]
+        },
+        {
+          "id": "t7",
+          "label": "T+7",
+          "source": "data/runs/repair-t7-run/summary.json",
+          "created_at": "2026-04-23T12:00:00Z",
+          "record_count": 5,
+          "metrics": {
+            "mention_rate": 85.0,
+            "positive_mention_rate": 75.0,
+            "capability_accuracy": 100.0,
+            "ecosystem_accuracy": 75.0
+          },
+          "strict_rates": {
+            "mention_rate": 60.0,
+            "positive_mention_rate": 60.0,
+            "capability_accuracy": 100.0,
+            "ecosystem_accuracy": 50.0
+          },
+          "by_funnel_stage": [],
+          "repair_candidates": [
+            {
+              "query_id": "negative-001",
+              "model_id": "gpt-4.1-mini",
+              "repair_type": "negative_eval"
+            }
+          ]
+        },
+        {
+          "id": "t14",
+          "label": "T+14",
+          "source": "data/runs/repair-t14-run/summary.json",
+          "created_at": "2026-04-30T12:00:00Z",
+          "record_count": 5,
+          "metrics": {
+            "mention_rate": 90.0,
+            "positive_mention_rate": 82.0,
+            "capability_accuracy": 100.0,
+            "ecosystem_accuracy": 100.0
+          },
+          "strict_rates": {
+            "mention_rate": 80.0,
+            "positive_mention_rate": 60.0,
+            "capability_accuracy": 100.0,
+            "ecosystem_accuracy": 100.0
+          },
+          "by_funnel_stage": [],
+          "repair_candidates": []
+        }
+      ],
+      "headline": {
+        "title": "Repair loop result",
+        "body": "By T+14, the public sample lifts mention rate by 10 points and ecosystem accuracy by 50 points."
+      },
+      "deltas_from_baseline_to_latest": {
+        "mention_rate": 10.0,
+        "positive_mention_rate": 12.0,
+        "capability_accuracy": 0.0,
+        "ecosystem_accuracy": 50.0
+      },
+      "links": {
+        "benchmark": "benchmark/mineru-public-benchmark.md",
+        "weekly_report": "data/runs/sample-run/weekly_report.md"
+      }
+    },
+    {
+      "id": "sciverse",
+      "name": "Sciverse API",
+      "description": "Public snapshot for a scientific API and agent workflow product.",
+      "story": "A funnel-stage benchmark that shows strong capability understanding but weak activation confidence.",
+      "runs": [
+        {
+          "id": "snapshot",
+          "label": "Public snapshot",
+          "source": "data/runs/sciverse-sample-run/summary.json",
+          "created_at": "2026-04-21T12:00:00Z",
+          "record_count": 11,
+          "metrics": {
+            "mention_rate": 77.27,
+            "positive_mention_rate": 63.64,
+            "capability_accuracy": 100.0,
+            "ecosystem_accuracy": 83.33
+          },
+          "strict_rates": {
+            "mention_rate": 54.55,
+            "positive_mention_rate": 36.36,
+            "capability_accuracy": 100.0,
+            "ecosystem_accuracy": 66.67
+          },
+          "by_funnel_stage": [
+            {
+              "funnel_stage": "awareness",
+              "record_count": 2,
+              "mention_rate": 75.0,
+              "positive_mention_rate": 75.0,
+              "capability_accuracy": null,
+              "ecosystem_accuracy": null
+            },
+            {
+              "funnel_stage": "selection",
+              "record_count": 4,
+              "mention_rate": 75.0,
+              "positive_mention_rate": 75.0,
+              "capability_accuracy": 100.0,
+              "ecosystem_accuracy": null
+            },
+            {
+              "funnel_stage": "integration",
+              "record_count": 1,
+              "mention_rate": 100.0,
+              "positive_mention_rate": 50.0,
+              "capability_accuracy": null,
+              "ecosystem_accuracy": 100.0
+            },
+            {
+              "funnel_stage": "activation",
+              "record_count": 2,
+              "mention_rate": 75.0,
+              "positive_mention_rate": 25.0,
+              "capability_accuracy": null,
+              "ecosystem_accuracy": null
+            },
+            {
+              "funnel_stage": "agent",
+              "record_count": 2,
+              "mention_rate": 75.0,
+              "positive_mention_rate": 75.0,
+              "capability_accuracy": null,
+              "ecosystem_accuracy": 75.0
+            }
+          ],
+          "repair_candidates": [
+            {
+              "query_id": "ecosystem-002",
+              "model_id": "gpt-4.1-mini",
+              "repair_type": "competitor_insert"
+            },
+            {
+              "query_id": "competitor-002",
+              "model_id": "gpt-4.1-mini",
+              "repair_type": "weak_positioning"
+            },
+            {
+              "query_id": "negative-001",
+              "model_id": "gpt-4.1-mini",
+              "repair_type": "integration_friction"
+            },
+            {
+              "query_id": "negative-002",
+              "model_id": "gpt-4.1-mini",
+              "repair_type": "negative_eval"
+            }
+          ]
+        }
+      ],
+      "headline": {
+        "title": "Activation gap",
+        "body": "The public sample keeps capability accuracy at 100% while activation positivity falls to 25%."
+      },
+      "links": {
+        "benchmark": "benchmark/sciverse-api-public-benchmark.md",
+        "weekly_report": "data/runs/sciverse-sample-run/weekly_report.md"
+      }
+    }
+  ]
+}

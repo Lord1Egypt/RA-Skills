@@ -1,0 +1,14 @@
+{
+  "name": "doubao-capture",
+  "version": "1.0.0",
+  "description": "Capture Doubao translation results with auto-scroll and auto-end detection.",
+  "main": "index.js",
+  "openclaw": {
+    "plugin": "openclaw.plugin.json"
+  },
+  "keywords": [
+    "openclaw",
+    "skill"
+  ],
+  "license": "MIT"
+}

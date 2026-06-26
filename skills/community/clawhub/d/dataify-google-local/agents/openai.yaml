@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Local"
+  short_description: "Search Google Local for nearby places"
+  default_prompt: "Use $dataify-google-local to run a search query."

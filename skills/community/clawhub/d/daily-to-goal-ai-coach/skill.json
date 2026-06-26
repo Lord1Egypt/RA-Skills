@@ -1,0 +1,14 @@
+{
+  "name": "Daily to Goal AI Coach",
+  "version": "0.1.0",
+  "entrypoint": "/api/skill-gateway",
+  "installationFlow": {
+    "start": "/api/skill-gateway/installations/start",
+    "complete": "/api/skill-gateway/installations/complete"
+  },
+  "automation": {
+    "dailyDigest": "/api/skill-gateway/automation/daily-digest",
+    "weeklyReport": "/api/skill-gateway/automation/weekly-report",
+    "riskScan": "/api/skill-gateway/automation/risk-scan"
+  }
+}

@@ -1,35 +1,15 @@
 ---
-name: "Demo Archiver"
-description: "A demo skill for archiving and organizing files into a structured resource library."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/demo-archiver"
-sourceUrl: "https://clawhub.ai/skills/demo-archiver"
+name: demo-archiver
+description: A demo skill for archiving and organizing files into a structured resource library.
+metadata: { "openclaw": { "emoji": "📦" } }
 ---
 
 # Demo Archiver
 
-> A demo skill for archiving and organizing files into a structured resource library.
+Archive files into a structured directory with metadata tracking.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/demo-archiver`
-- **Source URL:** [https://clawhub.ai/skills/demo-archiver](https://clawhub.ai/skills/demo-archiver)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/demo-archiver
-```
+1. Place source files in the skill's `incoming/` directory.
+2. Run the archive script to move files into `archive/YYYY-MM/` with a metadata sidecar JSON.
+3. Review the archive index at `archive/index.json`.

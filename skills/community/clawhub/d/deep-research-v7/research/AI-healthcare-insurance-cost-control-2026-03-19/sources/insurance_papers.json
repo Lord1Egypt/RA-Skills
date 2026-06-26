@@ -1,0 +1,112 @@
+[
+  {
+    "pmid": "35355615",
+    "topic": "远程医疗保险",
+    "title": "Cost-effectiveness and cost-utility of traditional and telemedicine combined population-based age-re",
+    "abstract": "To assess the cost-effectiveness and cost-utility of a population-level traditional and telemedicine combined age-related macular degeneration (AMD) and diabetic retinopathy (DR) screening program in rural and urban China. Decision-analytic Markov models were conducted to evaluate the costs and benefits of traditional and telemedicine combined AMD and DR screening from a societal perspective. A cohort of all participants aged 50 years old and above was followed through a total of 30 1-year Markov cycles. Separate analyses were performed for rural and urban settings. Relevant parameters such as",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35355615/"
+  },
+  {
+    "pmid": "32114993",
+    "topic": "远程医疗保险",
+    "title": "Efficiency of telemedicine for acute stroke: a cost-effectiveness analysis from a French pilot study",
+    "abstract": "Telestroke is an effective way to improve care and health outcomes for stroke patients. This study evaluates the cost-effectiveness of a French telestroke network. A decision analysis model was built using population-based data. We compared short-term clinical outcomes and costs for the management of acute ischemic stroke patients before and after the implementation of a telestroke network from the point of view of the national health insurance system. Three effectiveness endpoints were used: hospital death, death at 3 months, and severe disability 3 months after stroke (assessed with the modi",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32114993/"
+  },
+  {
+    "pmid": "32035106",
+    "topic": "远程医疗保险",
+    "title": "Clinical effectiveness and cost-effectiveness of teledermatology: Where are we now, and what are the",
+    "abstract": "There&#xa0;has been rapid growth in teledermatology over the past decade, and teledermatology services are increasingly being used to support patient care across a variety of care settings. Teledermatology has the potential to increase access to high-quality dermatologic care while maintaining clinical efficacy and cost-effectiveness. Recent expansions in telemedicine reimbursement from the Centers for Medicare &amp; Medicaid Services (CMS) ensure that teledermatology will play an increasingly prominent role in patient care. Therefore, it is important that dermatologists be well informed of bo",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32035106/"
+  },
+  {
+    "pmid": "31351136",
+    "topic": "再入院预测控费",
+    "title": "Readmission prediction using deep learning on electronic health records.",
+    "abstract": "Unscheduled 30-day readmissions are a hallmark of Congestive Heart Failure (CHF) patients that pose significant health risks and escalate care cost. In order to reduce readmissions and curb the cost of care, it is important to initiate targeted intervention programs for patients at risk of readmission. This requires identifying high-risk patients at the time of discharge from hospital. Here, using real data from over 7500 CHF patients hospitalized between 2012 and 2016 in Sweden, we built and tested a deep learning framework to predict 30-day unscheduled readmission. We present a cost-sensitiv",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31351136/"
+  },
+  {
+    "pmid": "26786291",
+    "topic": "再入院预测控费",
+    "title": "Sulfonylurea use and the risk of hospital readmission in patients with type 2 diabetes.",
+    "abstract": "Hospital inpatient care for patients with diabetes was estimated to cost $76 billion in 2012. Substantial expense resulted from those patients having multiple hospitalizations. The objective was to compare the risk for diabetes-related hospital readmission in patients with type 2 diabetes treated with sulfonylureas (SUs) compared to those treated with other oral antihyperglycemic agents (AHAs). A retrospective cohort analysis was conducted using two-year panels, from 1999 to 2010, from the Medical Expenditure Panel Survey. The study included patients with type 2 diabetes taking an oral AHA who",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26786291/"
+  },
+  {
+    "pmid": "40175543",
+    "topic": "AI诊断控费",
+    "title": "A natural experiment on the effect of herpes zoster vaccination on dementia.",
+    "abstract": "",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40175543/"
+  },
+  {
+    "pmid": "41144242",
+    "topic": "AI诊断控费",
+    "title": "An AI-Powered Lifestyle Intervention vs Human Coaching in the Diabetes Prevention Program: A Randomi",
+    "abstract": "Prediabetes is common, yet evidence-based lifestyle interventions are underutilized. To determine whether referral to an exclusively artificial intelligence (AI)-led lifestyle intervention based on the Diabetes Prevention Program (DPP) is noninferior to referral to a human-led DPP in achieving recommended thresholds for weight loss, hemoglobin A1c (HbA1c) reduction, and weekly physical activity among adults with prediabetes and overweight or obesity. This phase 3, parallel-group, pragmatic, noninferiority randomized clinical trial was conducted from October 11, 2021, to December 16, 2024 (last",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41144242/"
+  },
+  {
+    "pmid": "39166365",
+    "topic": "AI诊断控费",
+    "title": "Evaluation of dupilumab on the disease burden in children and adolescents with atopic dermatitis: A ",
+    "abstract": "Dupilumab is the first and only biologic agent approved for the treatment of atopic dermatitis (AD) in pediatric patients aged from 6&#x2009;months to 17&#x2009;years. The study aimed to evaluate the impact of dupilumab on the occurrence of comorbidities in pediatric patients with AD. In this population-based cohort study, we utilized electronic health&#xa0;records from multiple healthcare organizations across the United States. Pediatric patients (&lt;18&#x2009;years of age) with a diagnosis of AD initiating dupilumab were propensity-score matched 1:1 to those initiating other systemic agents",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39166365/"
+  },
+  {
+    "pmid": "29286945",
+    "topic": "危重症预测ICU成本",
+    "title": "An Interpretable Machine Learning Model for Accurate Prediction of Sepsis in the ICU.",
+    "abstract": "Sepsis is among the leading causes of morbidity, mortality, and cost overruns in critically ill patients. Early intervention with antibiotics improves survival in septic patients. However, no clinically validated system exists for real-time prediction of sepsis onset. We aimed to develop and validate an Artificial Intelligence Sepsis Expert algorithm for early prediction of sepsis. Observational cohort study. Academic medical center from January 2013 to December 2015. Over 31,000 admissions to the ICUs at two Emory University hospitals (development cohort), in addition to over 52,000 ICU patie",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29286945/"
+  },
+  {
+    "pmid": "40200699",
+    "topic": "危重症预测ICU成本",
+    "title": "Explainable Machine Learning Model for Predicting Persistent Sepsis-Associated Acute Kidney Injury: ",
+    "abstract": "Persistent sepsis-associated acute kidney injury (SA-AKI) shows poor clinical outcomes and remains a therapeutic challenge for clinicians. Early identification and prediction of persistent SA-AKI are crucial. The aim of this study was to develop and validate an interpretable machine learning (ML) model that predicts persistent SA-AKI and to compare its diagnostic performance with that of C-C motif chemokine ligand 14 (CCL14) in a prospective cohort. The study used 4 retrospective cohorts and 1 prospective cohort for model derivation and validation. The derivation cohort used the MIMIC-IV datab",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40200699/"
+  },
+  {
+    "pmid": "35206537",
+    "topic": "危重症预测ICU成本",
+    "title": "Early Prediction of Sepsis Onset Using Neural Architecture Search Based on Genetic Algorithms.",
+    "abstract": "Sepsis is a life-threatening condition with a high mortality rate. Early prediction and treatment are the most effective strategies for increasing survival rates. This paper proposes a neural architecture search (NAS) model to predict the onset of sepsis with a low computational cost and high search performance by applying a genetic algorithm (GA). The proposed model shares the weights of all possible connection nodes internally within the neural network. Externally, the search cost is reduced through the weight-sharing effect between the genotypes of the GA. A predictive analysis was performe",
+    "sample_size": null,
+    "cost_data": null,
+    "has_data": false,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35206537/"
+  }
+]

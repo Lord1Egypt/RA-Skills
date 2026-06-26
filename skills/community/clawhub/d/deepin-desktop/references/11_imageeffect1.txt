@@ -1,0 +1,42 @@
+=== org.deepin.dde.ImageEffect1 /org/deepin/dde/ImageEffect1 ===
+node /org/deepin/dde/ImageEffect1 {
+  interface org.deepin.dde.ImageEffect1 {
+    methods:
+      Delete(in  s effect,
+             in  s filename);
+      Get(in  s effect,
+          in  s filename,
+          out s outputFile);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

@@ -1,0 +1,26 @@
+{
+  "name": "database-admin",
+  "version": "2.0.0",
+  "description": "Comprehensive database administration, schema management, data operations, and optimization.",
+  "main": "scripts/index.js",
+  "author": "杜甫 <杜甫@openclaw.ai>",
+  "license": "MIT",
+  "keywords": [
+    "database",
+    "postgresql",
+    "sql",
+    "admin",
+    "roadflow"
+  ],
+  "scripts": {
+    "build": "echo 'Database skill bundled'",
+    "test": "node scripts/verify.js",
+    "lint": "eslint . --quiet",
+    "example:create-table": "node scripts/create-stock-info.js",
+    "example:insert-data": "node scripts/insert-products.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

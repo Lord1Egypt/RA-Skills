@@ -1,0 +1,6 @@
+[
+  {"name": "调研skills实现", "assignedTo": "1010753", "estimate": 6, "estStarted": "2026-03-25", "deadline": "2026-03-25"},
+  {"name": "编写skills代码", "assignedTo": "1010753", "estimate": 6, "estStarted": "2026-03-26", "deadline": "2026-03-26"},
+  {"name": "测试skills功能", "assignedTo": "1010753", "estimate": 6, "estStarted": "2026-03-27", "deadline": "2026-03-27"},
+  {"name": "验收skills功能", "assignedTo": "004936", "estimate": 1, "estStarted": "2026-03-27", "deadline": "2026-03-27"}
+]

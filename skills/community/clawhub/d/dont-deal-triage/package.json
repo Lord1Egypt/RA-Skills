@@ -1,0 +1,16 @@
+{
+  "name": "dont-deal-triage",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-contained dont-deal triage skill package for Codex, Claude Code, and OpenClaw-style hosts.",
+  "type": "module",
+  "bin": {
+    "dont-deal-snapshot": "./scripts/index.js",
+    "dont-deal-triage-quick": "./scripts/quick-triage-cli.js"
+  },
+  "scripts": {
+    "snapshot": "node scripts/index.js",
+    "triage:quick": "node scripts/quick-triage-cli.js",
+    "check": "node --check scripts/index.js && node --check scripts/git-sleep.js && node --check scripts/host-detect.js && node --check scripts/system-info.js && node --check scripts/config-store.js && node --check scripts/profile-store.js && node --check scripts/triage-engine.js && node --check scripts/quick-triage-cli.js"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "database_documentation_generator_config": {
+    "security_notice": "NEVER commit real credentials to source control. This is an example only.",
+    "example_configuration": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "example_database",
+      "user": "example_user",
+      "EXAMPLE_PASSWORD": "example_EXAMPLE_PASSWORD",
+      "tables": ["example_table1", "example_table2"],
+      "output_path": "example_output.xlsx"
+    },
+    "secure_usage_instructions": [
+      "1. Copy this file to a secure location outside the skill directory",
+      "2. Replace example values with real credentials",
+      "3. Set file permissions to restrict access (chmod 600 on Unix)",
+      "4. Use environment variables for production (recommended)",
+      "5. Consider using a secrets management system for production"
+    ],
+    "environment_variables": {
+      "DB_HOST": "Database hostname or IP",
+      "DB_PORT": "Database port (default: 5432)",
+      "DB_NAME": "Database name",
+      "DB_USER": "Database username",
+      "DB_PASSWORD": "Database EXAMPLE_PASSWORD"
+    }
+  }
+}

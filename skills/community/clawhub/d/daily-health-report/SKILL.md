@@ -1,35 +1,20 @@
----
-name: "Daily Health Report"
-description: "Generates and publishes a daily Raspberry Pi system health report including uptime, memory, swap, load, disk, and temperature metrics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-health-report"
-sourceUrl: "https://clawhub.ai/skills/daily-health-report"
----
+# daily-health-report
 
-# Daily Health Report
+Description:
+- Generates and publishes a daily system health report from the Raspberry Pi, including uptime, memory, swap, load, disk, and temperature metrics.
 
-> Generates and publishes a daily Raspberry Pi system health report including uptime, memory, swap, load, disk, and temperature metrics.
+Purpose:
+- Provide a consistent, automated health snapshot for quick review and logging.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-health-report`
-- **Source URL:** [https://clawhub.ai/skills/daily-health-report](https://clawhub.ai/skills/daily-health-report)
+Inputs:
+- None (pulls data from the local system at run time via health_report.sh).
 
-## Overview
+Outputs:
+- A human-readable health report text block and a log entry.
 
+Dependencies:
+- /home/welderjustin/.openclaw/workspace/scripts/health_report.sh
+- /home/welderjustin/.openclaw/workspace/logs/
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-health-report
-```
+Invocation:
+- Run the health_report script and publish its output to the chosen channel (or integrate with the main agent).

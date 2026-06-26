@@ -1,35 +1,158 @@
 ---
-name: "Doc Structurer"
+name: doc-structurer
 description: "파싱된 문서 텍스트를 분석하여 문서 유형을 자동 분류하고, 핵심 정보를 구조화된 데이터(JSON)로 변환하는 스킬. doc-parser 결과를 받아 후속 처리하는 파이프라인 스킬."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/doc-structurer"
-sourceUrl: "https://clawhub.ai/skills/doc-structurer"
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
+    emoji: "🏗️"
+    tags:
+      - document-structuring
+      - classification
+      - json
+      - data-pipeline
 ---
 
-# Doc Structurer
+# doc-structurer: 문서 구조화/DB화 스킬
 
-> 파싱된 문서 텍스트를 분석하여 문서 유형을 자동 분류하고, 핵심 정보를 구조화된 데이터(JSON)로 변환하는 스킬. doc-parser 결과를 받아 후속 처리하는 파이프라인 스킬.
+## 목적
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/doc-structurer`
-- **Source URL:** [https://clawhub.ai/skills/doc-structurer](https://clawhub.ai/skills/doc-structurer)
+`doc-parser`에서 추출한 원시 텍스트와 메타데이터를 분석하여, 문서의 성격을 자동 분류하고 핵심 필드를 구조화된 데이터로 변환한다. 이 결과는 `notion-sync` 스킬이 Notion DB에 저장할 수 있는 형태로 출력된다.
 
-## Overview
+## 문서 유형 자동 분류
 
+### 분류 카테고리
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/doc-structurer
+| 카테고리 | 키워드/패턴 | 예시 |
+|----------|-------------|------|
+| 공문/관공서 | 수신, 발신, 시행, 문서번호, 관인 | 입찰공고, 사업계획 승인 |
+| 계약서 | 계약, 갑/을, 조항, 위약금, 계약기간 | 용역계약서, 임대차계약 |
+| 제안서 | 제안, 사업개요, 추진전략, 기대효과 | RFP 응답, 기술제안서 |
+| 보고서 | 보고, 결과, 분석, 현황, 추진실적 | 월간보고서, 감사보고서 |
+| 회의록 | 회의, 참석자, 안건, 결정사항 | 이사회 회의록 |
+| 기획서 | 기획, 목적, 일정, 예산, 추진방안 | 사업기획서, 행사기획 |
+| 견적서/청구서 | 견적, 단가, 수량, 합계, 부가세 | 견적서, 세금계산서 |
+| 증명서/확인서 | 증명, 확인, 발급, 용도 | 재직증명서, 사업자등록증 |
+| 기타 | 위 패턴에 해당하지 않음 | 일반 문서 |
+
+### 분류 로직
+
+문서 분류는 다음 우선순위로 진행한다:
+
+1. **파일명 기반 1차 분류**: 파일명에 포함된 키워드로 빠르게 추정
+2. **본문 키워드 빈도 분석**: 각 카테고리별 키워드 출현 빈도를 계산
+3. **문서 구조 패턴 분석**: 테이블 비율, 단락 구조, 서식 패턴으로 보정
+4. **LLM 기반 최종 판별**: 위 결과가 모호한 경우 LLM에게 문서 앞부분(500자)을 보여주고 분류 요청
+
+**신뢰도 점수**: 각 분류에 0.0~1.0 사이의 confidence 점수를 부여한다. 0.7 미만이면 사용자에게 확인을 요청한다.
+
+## 구조화 필드 추출
+
+### 상세 필드 정의
+
+모든 문서에서 다음 필드를 추출 시도한다:
+
+```json
+{
+  "doc_id": "자동 생성 UUID",
+  "title": "문서 제목",
+  "doc_type": "분류된 문서 유형",
+  "doc_type_confidence": 0.95,
+  "summary": "3줄 이내 핵심 요약",
+
+  "assignee": "담당자/작성자",
+  "organization": "발신 기관/회사",
+  "recipient": "수신처",
+
+  "dates": {
+    "document_date": "문서 작성일",
+    "deadline": "마감일/기한",
+    "start_date": "시작일",
+    "end_date": "종료일",
+    "event_dates": ["행사/일정 관련 날짜들"]
+  },
+
+  "priority": "상/중/하",
+  "status": "신규",
+  "tags": ["자동 생성 태그들"],
+
+  "financial": {
+    "total_amount": null,
+    "currency": "KRW",
+    "line_items": []
+  },
+
+  "related_docs": ["관련 문서 참조"],
+  "attachments": ["첨부파일 목록"],
+
+  "key_items": ["핵심 사항/안건 목록"],
+  "action_items": ["필요 조치사항"],
+
+  "raw_metadata": {
+    "filename": "원본 파일명",
+    "file_type": "hwpx/docx/pdf",
+    "page_count": 3,
+    "ocr_applied": false
+  }
+}
 ```
+
+### 문서 유형별 추출 전략
+
+**공문/관공서:**
+- 문서번호, 수신처, 발신처를 상단에서 추출
+- "시행일자", "기한" 등 날짜 패턴 집중 탐색
+- 첨부 목록은 "붙임" 키워드 이후에서 파싱
+
+**계약서:**
+- 계약 당사자(갑/을), 계약기간, 계약금액 추출
+- 조항별 핵심 내용 요약
+- 특약사항 별도 태깅
+
+**견적서/청구서:**
+- 테이블에서 품목, 수량, 단가, 합계 파싱
+- 부가세, 총액 자동 계산 검증
+- 유효기간 추출
+
+**회의록:**
+- 참석자 목록, 안건, 결정사항, 후속조치 분리 추출
+- 일자/장소 정보
+
+## 날짜 정규화
+
+문서에서 발견되는 다양한 날짜 형식을 `YYYY-MM-DD`로 통일한다:
+
+| 입력 형식 | 정규화 |
+|-----------|--------|
+| 2024년 3월 15일 | 2024-03-15 |
+| 2024.03.15 | 2024-03-15 |
+| 24/03/15 | 2024-03-15 |
+| 3월 15일 (연도 없음) | 현재 연도 적용 후 확인 요청 |
+
+## 관련 문서 연결
+
+같은 폴더 내 문서들 사이의 관계를 탐지한다:
+
+- **파일명 유사도**: "계약서_v1.docx"와 "계약서_v2.docx"는 관련 문서
+- **본문 참조**: 문서 내에서 다른 문서를 언급하는 경우 ("첨부된 견적서 참조")
+- **날짜/프로젝트 연관**: 동일 프로젝트명이나 기간이 겹치는 문서
+
+## 우선순위 자동 판정
+
+| 조건 | 우선순위 |
+|------|----------|
+| 마감일이 3일 이내 | 상 |
+| 마감일이 7일 이내 | 중 |
+| 마감일이 없거나 7일 초과 | 하 |
+| 금액 1억 이상 | 상 (상향) |
+| "긴급", "시급" 키워드 포함 | 상 (상향) |
+
+## 출력
+
+구조화된 결과는 JSON 배열로 출력하며, `notion-sync` 스킬에 직접 전달 가능한 형태여야 한다. 사용자에게는 처리된 문서 수, 유형별 분포, 주의가 필요한 항목(낮은 분류 신뢰도, 누락 필드 등)을 요약 보고한다.
+
+## 다음 단계
+
+구조화된 데이터는 `notion-sync` 스킬을 통해 Notion 데이터베이스에 저장되고, 날짜 정보가 포함된 항목은 `calendar-sync` 스킬로 Apple 캘린더에 등록된다.

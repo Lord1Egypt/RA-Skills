@@ -1,0 +1,37 @@
+{
+  "name": "cryptowatch",
+  "version": "1.0.2",
+  "description": "₿ CryptoWatch - 加密货币价格监控，24h 涨跌幅排行榜",
+  "main": "scripts/watch.mjs",
+  "type": "module",
+  "scripts": {
+    "watch": "node scripts/watch.mjs",
+    "top": "node scripts/top.mjs",
+    "alert": "node scripts/alert.mjs",
+    "test": "node scripts/watch.mjs btc,eth,sol"
+  },
+  "keywords": [
+    "crypto",
+    "price",
+    "bitcoin",
+    "ethereum",
+    "watch",
+    "alert",
+    "coingecko"
+  ],
+  "author": "@gztanht",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gztanht/cryptowatch"
+  },
+  "homepage": "https://clawhub.com/skills/cryptowatch",
+  "funding": {
+    "type": "crypto",
+    "usdt": "0x33f943e71c7b7c4e88802a68e62cca91dab65ad9",
+    "usdc": "0xcb5173e3f5c2e32265fbbcaec8d26d49bf290e44"
+  }
+}

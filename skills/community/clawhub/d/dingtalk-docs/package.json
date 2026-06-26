@@ -1,0 +1,51 @@
+{
+  "name": "dingtalk-docs",
+  "version": "0.3.4",
+  "description": "管理钉钉云文档中的文档、文件夹和内容。当用户想要创建文档、搜索文档、读取或写入文档内容、创建文件夹整理文档时使用。也适用于用户提到云文档、在线文档、钉钉文档、钉文档等关键词的场景。不要在用户需要操作多维表、管理日程、发消息或处理审批流时触发。",
+  "keywords": [
+    "dingtalk",
+    "docs",
+    "document",
+    "云文档",
+    "钉钉文档",
+    "在线文档",
+    "openclaw",
+    "skill"
+  ],
+  "author": "Marila@Dingtalk",
+  "contributors": [
+    "Marila@Dingtalk"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/aliramw/dingtalk-docs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliramw/dingtalk-docs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aliramw/dingtalk-docs/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "mcporter": ">=0.7.0"
+  },
+  "clawhub": {
+    "requiresBinaries": [
+      "mcporter"
+    ],
+    "credentials": [
+      {
+        "name": "DINGTALK_MCP_DOCS_URL",
+        "description": "钉钉文档服务的 Streamable HTTP 地址（含访问令牌）",
+        "docs": "https://mcp.dingtalk.com",
+        "storageMethod": "mcporter config (recommended) or environment variable"
+      }
+    ],
+    "notes": "Beta: 创建文档功能可能需要企业钉钉账号"
+  },
+  "scripts": {
+    "test": "python3 tests/test_security.py -v"
+  }
+}

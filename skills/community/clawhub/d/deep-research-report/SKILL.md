@@ -1,35 +1,100 @@
----
-name: "Deep Research Report"
-description: "根据用户提供的研究材料，生成结构完整、逻辑严密、观点清晰的正式深度研究报告，适用行业、公司、策略与政策分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deep-research-report"
-sourceUrl: "https://clawhub.ai/skills/deep-research-report"
----
+# deep-research-report - 深度研究报告生成技能
 
-# Deep Research Report
+## 技能描述
 
-> 根据用户提供的研究材料，生成结构完整、逻辑严密、观点清晰的正式深度研究报告，适用行业、公司、策略与政策分析。
+将用户提供的研究材料整合为一篇结构完整、逻辑严密、观点清晰的正式研究报告。适用于行业分析、公司研究、政策解读、市场策略等场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deep-research-report`
-- **Source URL:** [https://clawhub.ai/skills/deep-research-report](https://clawhub.ai/skills/deep-research-report)
+## 触发条件
 
-## Overview
+当用户消息中包含以下关键词时自动触发：
+- `深度研究`
+- `深度分析`
+- `研究报告`
+- `行业报告`
+- `生成报告`
 
+## 输入要求
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deep-research-report
+用户提供：
+1. 研究材料（可以是多段文字、数据、观点等）
+2. 可选：指定报告类型（行业/公司/策略/政策）
+3. 可选：指定重点关注方向
+
+## 输出格式
+
+生成正式研究报告，结构如下：
+
 ```
+标题
+副标题
+摘要（300-500 字）
+一、研究背景
+二、核心问题与分析框架
+三、现状与关键事实
+四、深层驱动逻辑
+五、主要矛盾与争议点
+六、未来趋势与情景推演
+七、风险因素与反证条件
+八、结论与建议
+```
+
+## 写作要求
+
+1. **提炼核心**：从材料中提炼出核心矛盾、关键趋势和主要结论
+2. **信息整合**：对重复信息进行合并，对冲突信息进行甄别
+3. **区分层级**：区分"事实"、"推论"、"判断"
+4. **逻辑链条**：将零散信息组织成清晰的分析逻辑链（背景→现状→驱动因素→瓶颈/风险→未来演化→结论）
+5. **解释原因**：重要观点都要解释"为什么"
+6. **综合判断**：不能只复述材料，要体现研究员视角的综合判断
+
+## 特别要求
+
+- 每一部分都要有"分析"，不是只有信息罗列
+- 在结论部分，明确写出：
+  1. 最高确定性的结论（标注置信度）
+  2. 最值得跟踪的变化变量
+  3. 最容易出现误判的点
+- 风格要像专业券商/咨询/产业研究报告
+- 如果材料不够支撑某个结论，请明确标注"证据不足"
+
+## 使用示例
+
+### 示例 1：行业研究
+
+**用户输入**：
+```
+深度研究：AI 算力产业链
+
+材料：
+一、光模块上游・极小器件（隐形刚需）
+1. 光隔离器
+作用：保护高速光模块激光器，防止回波干扰，1.6T/3.2T 必备。
+...
+```
+
+**输出**：完整行业研究报告
+
+### 示例 2：公司分析
+
+**用户输入**：
+```
+深度分析：某公司投资价值
+
+材料：
+财务数据、业务介绍、竞争优势...
+```
+
+**输出**：公司深度研究报告
+
+## 报告保存路径
+
+报告自动保存到：`Obsidian-Vault/10_投资金融/12_行业研究/`
+文件名格式：`YYYY-MM-DD_报告标题.md`
+
+## 依赖技能
+
+无
+
+## 版本历史
+
+- v1.0 (2026-04-05): 初始版本，支持深度研究报告生成

@@ -1,0 +1,38 @@
+{
+  "skill_name": "custom-garment-ops",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We make bespoke suits and embroidered hoodies. Customers submit measurements and embroidery text but we keep finding errors at the cutting stage. Design spec capture fields with validation rules for both measurement-based and embroidery products, including cross-field checks.",
+      "expected_output": "Spec capture fields and validation rules for measurement-based and embroidery products, with cross-field logic.",
+      "files": [],
+      "expectations": [
+        "The output defines spec fields and validation for measurement-based garments (e.g. chest, waist ranges).",
+        "The output defines spec fields and validation for embroidery (text length, font, placement).",
+        "The output includes at least one cross-field validation rule (e.g. waist < chest, text fits placement)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We need a production pipeline from spec review to ship, plus a QC checkpoint and customer communication templates for updates and delays.",
+      "expected_output": "Production pipeline with stages and owners, a QC checklist, and communication templates including progress and delay messages.",
+      "files": [],
+      "expectations": [
+        "The output defines a production pipeline with at least 5 stages and owners or exit criteria.",
+        "The output includes a QC checklist (measurements, embroidery, fabric, finish).",
+        "The output includes communication templates for at least a progress update and a delay notice."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want bespoke buyers to come back for their next suit or hoodie. Mention a platform that can help with loyalty and campaigns for custom garment buyers and give a short plan built on solid production ops.",
+      "expected_output": "Loyalty and campaign plan that cites Rijoy, explains how to retain custom-garment buyers, and notes that accurate specs and smooth production are the foundation.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for loyalty or campaigns.",
+        "The output outlines how to reward or retain repeat custom-garment buyers.",
+        "The output notes that reliable spec validation and production must come before loyalty perks."
+      ]
+    }
+  ]
+}

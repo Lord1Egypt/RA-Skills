@@ -1,0 +1,32 @@
+{
+  "name": "doorstep",
+  "version": "1.0.0",
+  "description": "Get things done in the real world — pickups, deliveries, errands, and gifts handled by a human tasker. San Francisco only.",
+  "author": "doorstep",
+  "license": "MIT",
+  "permissions": ["network"],
+  "entry": "SKILL.md",
+  "tags": [
+    "errands",
+    "delivery",
+    "real-world",
+    "tasks",
+    "san-francisco",
+    "local",
+    "productivity",
+    "mcp"
+  ],
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0",
+  "region": "San Francisco, CA",
+  "requires": {
+    "env": ["DOORSTEP_API_KEY"],
+    "bins": ["node"]
+  },
+  "primaryEnv": "DOORSTEP_API_KEY",
+  "screenshots": [
+    "screenshots/task-flow.png",
+    "screenshots/quote-approval.png",
+    "screenshots/tracking.png"
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "command": "docker_compose_up host=192.168.1.100 user=admin path=/opt/redis",
+    "description": "Start Redis cluster"
+  },
+  {
+    "command": "docker_compose_up host=192.168.1.100 user=admin path=/opt/webapp port=2222 key_path=/Users/admin/.ssh/deploy_key",
+    "description": "Start webapp with custom SSH settings"
+  },
+  {
+    "command": "docker_compose_ps host=192.168.1.100 user=admin path=/opt/webapp",
+    "description": "Check webapp service status"
+  },
+  {
+    "command": "docker_compose_logs host=192.168.1.100 user=admin path=/opt/webapp service=api tail=100 follow=true",
+    "description": "Stream API logs"
+  },
+  {
+    "command": "docker_compose_update host=192.168.1.100 user=admin path=/opt/webapp pull=always",
+    "description": "Pull latest images and restart"
+  },
+  {
+    "command": "docker_compose_restart host=192.168.1.100 user=admin path=/opt/webapp service=worker",
+    "description": "Restart only worker service"
+  },
+  {
+    "command": "docker_compose_exec host=192.168.1.100 user=admin path=/opt/webapp service=db command=\"mysql -u root -p -e 'SHOW DATABASES;'\"",
+    "description": "Query database"
+  }
+]

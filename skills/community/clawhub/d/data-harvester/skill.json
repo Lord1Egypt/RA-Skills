@@ -1,0 +1,72 @@
+{
+  "name": "智能数据采集器",
+  "slug": "data-harvester",
+  "description": "🚀 全中文数据采集神器 - 支持网页、API、数据库、文件等多数据源，智能清洗转换，一键导出JSON/CSV/Excel/PDF，定时自动采集。OpenClaw生态首个专业级数据采集技能，完全免费！",
+  "version": "1.0.1",
+  "author": "dxg852621787",
+  "homepage": "https://openclawx.asia",
+  "license": "MIT-0",
+  "category": "data-collection",
+  "subcategory": "automation",
+  "tags": ["data", "采集", "爬虫", "自动化", "数据清洗", "openclaw", "免费", "excel", "csv"],
+  "min_claw_version": "0.8.0",
+  "python_version": ">=3.12",
+  "dependencies": [
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "pandas>=2.0.0",
+    "APScheduler>=3.10.0",
+    "pydantic>=2.0.0",
+    "cryptography>=42.0.0",
+    "SQLAlchemy>=2.0.0"
+  ],
+  "entrypoint": "src.data_harvester.openclaw_integration.skill_wrapper:OpenClawSkillWrapper",
+  "config_schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "data_sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["web", "api", "database", "file"]
+            },
+            "url": {
+              "type": "string"
+            },
+            "auth": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "processing_rules": {
+        "type": "object"
+      },
+      "export_format": {
+        "type": "string",
+        "enum": ["json", "csv", "excel", "sqlite"]
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dxg852621787/openclaw-data-harvester.git"
+  },
+  "documentation": "https://openclawx.asia",
+  "bugs": {
+    "url": "https://openclawx.asia/#contact"
+  },
+  "keywords": ["data", "harvester", "openclaw", "自动化", "爬虫", "免费", "web-scraping"],
+  "features": [
+    "🌐 多数据源：网页、API、数据库、文件",
+    "🧹 智能清洗：自动去重、格式化、转换",
+    "📤 多种导出：JSON、CSV、Excel、PDF",
+    "⏰ 定时任务：支持周期调度采集",
+    "🇨🇳 全中文：界面、文档、错误信息",
+    "🔌 即装即用：一条命令安装"
+  ]
+}

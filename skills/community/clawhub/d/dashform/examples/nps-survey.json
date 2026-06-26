@@ -1,0 +1,49 @@
+{
+  "name": "Net Promoter Score Survey",
+  "type": "dynamic",
+  "description": "Measure customer loyalty and satisfaction with NPS methodology",
+  "tone": "friendly and appreciative",
+  "welcomeScreen": {
+    "title": "Help Us Improve",
+    "message": "Your opinion matters! This quick survey helps us understand how we're doing and where we can improve.",
+    "callToActionText": "Start"
+  },
+  "questions": [
+    {
+      "key": "nps_score",
+      "type": "single-choice",
+      "description": "On a scale of 0-10, how likely are you to recommend our product to a friend or colleague?",
+      "required": true,
+      "options": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    {
+      "key": "reason",
+      "type": "open-ended",
+      "description": "What's the main reason for your score?",
+      "required": true
+    },
+    {
+      "key": "improvement",
+      "type": "open-ended",
+      "description": "What's the ONE thing we could do to improve your experience?",
+      "required": false
+    }
+  ],
+  "snippets": [
+    "We're a SaaS company providing project management tools.",
+    "Recent updates include mobile app, Slack integration, and advanced reporting."
+  ],
+  "maxFollowUpQuestions": 2,
+  "endScreen": {
+    "title": "Thank You!",
+    "message": "Your feedback is incredibly valuable. We read every response and use it to make our product better.",
+    "callToActionText": null,
+    "callToActionUrl": null
+  },
+  "theme": {
+    "colorBackground": "#ffffff",
+    "colorForeground": "#1a1a1a",
+    "colorPrimary": "#10b981",
+    "fontFamily": "sans"
+  }
+}

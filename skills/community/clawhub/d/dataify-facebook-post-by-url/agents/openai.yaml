@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Facebook Post By URL"
+  short_description: "Submit Dataify Facebook post tasks by URL"
+  icon_small: "./assets/dataify-facebook-post-by-url-small.svg"
+  icon_large: "./assets/dataify-facebook-post-by-url-large.svg"
+  default_prompt: "Use $dataify-facebook-post-by-url to submit Facebook post Builder tasks by URL through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

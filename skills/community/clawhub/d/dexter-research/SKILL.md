@@ -1,35 +1,120 @@
 ---
-name: "Dexter Research"
-description: "A股自主金融研究技能。触发条件：(1) 用户要求分析股票、研究公司财务、查询个股基本面 (2) 用户给出股票代码或名称让进行研究 (3) 用户说"分析XXX股票"、"帮我研究这个公司"、"查一下这个股的财务"等类似表达。当用户明确要求对A股上市公司进行财务分析、个股研究、股票评分时激活本技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dexter-research"
-sourceUrl: "https://clawhub.ai/skills/dexter-research"
+name: dexter-research
+description: A股自主金融研究技能。触发条件：(1) 用户要求分析股票、研究公司财务、查询个股基本面 (2) 用户给出股票代码或名称让进行研究 (3) 用户说"分析XXX股票"、"帮我研究这个公司"、"查一下这个股的财务"等类似表达。当用户明确要求对A股上市公司进行财务分析、个股研究、股票评分时激活本技能。
 ---
 
-# Dexter Research
+# Dexter Research - A股自主金融研究
 
-> A股自主金融研究技能。触发条件：(1) 用户要求分析股票、研究公司财务、查询个股基本面 (2) 用户给出股票代码或名称让进行研究 (3) 用户说"分析XXX股票"、"帮我研究这个公司"、"查一下这个股的财务"等类似表达。当用户明确要求对A股上市公司进行财务分析、个股研究、股票评分时激活本技能。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dexter-research`
-- **Source URL:** [https://clawhub.ai/skills/dexter-research](https://clawhub.ai/skills/dexter-research)
+输入股票代码或名称，自动完成：
+1. **数据收集**：财务指标(80指标)、资金流向、K线、行业信息
+2. **量化评分**：盈利能力/成长性/财务健康/现金流四维评分
+3. **研报生成**：结构化JSON + 飞书推送摘要
+4. **Mari总结**：深度解读，补充行业对比与投资逻辑
 
-## Overview
+## 数据源
 
+| 数据类型 | 来源 | 覆盖 |
+|----------|------|------|
+| 财务指标(80个) | AKShare东方财富接口 | 最多30期季度/年报数据 |
+| K线数据 | Tencent财经API | 近8319个交易日，实时更新 |
+| 资金流向 | AKShare | 近120日主力/散户资金流 |
+| 个股信息 | AKShare | 市值/行业/股本等 |
+| 行业信息 | 东方财富API | 实时行业分类 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dexter-research
+## 依赖
+
 ```
+pip install -r requirements.txt
+```
+
+必需依赖：akshare, requests, pandas, numpy
+
+## 环境变量配置
+
+飞书推送功能需要配置以下环境变量：
+
+| 变量名 | 说明 | 示例 |
+|--------|------|------|
+| `FEISHU_APP_ID` | 飞书应用 App ID | `cli_a9156fac40b85bdb` |
+| `FEISHU_APP_SECRET` | 飞书应用 App Secret | `O9kytkJcHDFXRXrFO9A4HcrXB3KZPip5` |
+| `FEISHU_USER_OPEN_ID` | 接收推送的用户 Open ID（可选） | `ou_xxxxxxxx` |
+
+**配置方式：**
+```bash
+export FEISHU_APP_ID=your_app_id
+export FEISHU_APP_SECRET=your_app_secret
+export FEISHU_USER_OPEN_ID=ou_xxxxxxxx  # 可选
+```
+
+> ⚠️ 凭证必须从环境变量读取，严禁硬编码在代码中。
+
+## 执行流程
+
+```
+用户: "分析贵州茅台"
+         ↓
+Step 1 - 执行数据收集脚本
+    python3 scripts/research.py <股票代码>
+         ↓
+Step 2 - 脚本输出:
+    - 飞书推送财务摘要（含评分）
+    - /root/.openclaw/workspace/data/dexter-research.json
+         ↓
+Step 3 - Mari深度总结
+    - 读取JSON数据
+    - 结合行业背景给出投资研判
+    - 飞书推送深度报告
+```
+
+## 使用方式
+
+### 方式1：直接分析
+```
+用户: "分析贵州茅台" 或 "帮我研究 600519"
+```
+
+执行步骤：
+1. 判断股票代码（上交所600/601/688/898开头 → sh，深交所000/001/002/003/300开头 → sz）
+2. 运行 `python3 /root/.openclaw/workspace/skills/dexter-research/scripts/research.py <代码>`
+3. 等待JSON生成后，Mari读取并深度总结
+4. 总结完成后发起飞书消息给用户
+
+### 方式2：批量分析
+```
+用户: "分析以下股票：000001、600519、000002"
+```
+按顺序逐一分析，每只股票独立生成报告后汇总推送。
+
+## 评分体系（满分100）
+
+| 维度 | 权重 | 计算方式 |
+|------|------|----------|
+| 盈利能力 | 35% | ROE + 毛利率 + 净利率 |
+| 成长性 | 25% | 营收增长率 + 净利润增长率 |
+| 财务健康 | 25% | 资产负债率 + 流动比率 + 速动比率 |
+| 现金流 | 15% | 经营现金流正/负 |
+
+**评分参考**：
+- 80+：优质公司
+- 60-80：良好
+- 40-60：一般
+- <40：需谨慎
+
+## 注意事项
+
+- 财务数据来自东方财富，A股上市公司一般滞后1-2个季度
+- 银行/保险行业资产负债率天然偏高（>90%正常），评分需结合行业特点
+- K线数据通过 Tencent财经API 获取，自动识别沪深交易所
+- 研究结果保存在 `/root/.openclaw/workspace/data/dexter-research.json`，每次运行覆盖
+- 评分仅供参考，不构成投资建议
+
+## 故障排除
+
+| 问题 | 原因 | 解决方案 |
+|------|------|----------|
+| K线获取失败 | Tencent财经API限流 | 等待后重试或切换数据源 |
+| 财务数据为空 | 代码错误 | 确认股票代码为6位纯数字 |
+| 飞书推送失败 | token过期 | 重新获取tenant_access_token |
+| 行业信息为空 | 东方财富API限制 | 跳过行业字段，使用股票简称 |

@@ -1,35 +1,104 @@
 ---
-name: "设计日报"
-description: "每日设计与科技资讯聚合 - 从优设读报、36氪、虎嗅自动抓取并筛选最新的设计、AI、产品等行业动态。使用此技能获取最新的设计行业新闻、AI 趋势或每日新闻摘要。"
-category: "other"
-source: "ClawHub"
-tags: [NewsInformation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/design-daily-news"
-sourceUrl: "https://clawhub.ai/skills/design-daily-news"
+name: 设计日报
+slug: design-daily-news
+description: 每日设计与科技资讯聚合 - 从优设读报、36氪、虎嗅自动抓取并筛选最新的设计、AI、产品等行业动态。使用此技能获取最新的设计行业新闻、AI 趋势或每日新闻摘要。
 ---
 
 # 设计日报
 
-> 每日设计与科技资讯聚合 - 从优设读报、36氪、虎嗅自动抓取并筛选最新的设计、AI、产品等行业动态。使用此技能获取最新的设计行业新闻、AI 趋势或每日新闻摘要。
+每日自动聚合三大数据源，推送设计与科技行业精选资讯。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/design-daily-news`
-- **Source URL:** [https://clawhub.ai/skills/design-daily-news](https://clawhub.ai/skills/design-daily-news)
+## 🎯 核心功能
 
-## Overview
+- **多源聚合**: 优设读报 + 36氪 + 虎嗅，三大数据源覆盖设计与科技
+- **智能筛选**: 自动过滤不相关内容，保留设计/AI/科技核心资讯
+- **优先级规则**: 优设读报当日新闻全部展示，剩余名额从36氪+虎嗅补充
+- **总量控制**: 每日最多推送 15 条
+- **可点击链接**: 有来源链接的新闻以 `[标题](链接)` 格式展示，支持微信直接点击跳转
 
+## 📡 数据来源
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/design-daily-news
+| 来源 | 网址 | 类型 | 抓取方式 | 状态 |
+|------|------|------|----------|------|
+| 优设读报 | https://www.uisdc.com/news | 设计/AI | HTML 内嵌 JSON (`var uisdc_news`) | ✅ 正常 |
+| 36氪 | https://36kr.com | 科技/创投 | `fetch_36kr.sh` | ✅ 正常 |
+| 虎嗅 | https://www.huxiu.com | 科技/商业 | HTML `__NUXT_DATA__` JSON | ✅ 正常 |
+
+## 📋 推送规则
+
+### 数量规则
+1. **优设读报**: 当日新闻**全部展示**（不限条数）
+2. **36氪 + 虎嗅**: 从剩余名额里补充优质新闻，交替取以保证来源均衡
+3. **总上限**: 15 条
+
+### 内容筛选（仅适用于36氪/虎嗅）
+
+**✅ 保留关键词:**
+AI、GPT、Claude、Gemini、OpenAI、DeepSeek、GPU、UI、UX、Figma、Adobe、Cursor、Midjourney、OpenClaw、人工智能、芯片、设计、产品、交互、科技、技术、创新、趋势、Agent、模型、智能、腾讯、阿里、百度、龙虾、大模型、机器人、开源、MiniMax、Manus、字节、小米、华为、苹果、谷歌、微软
+
+**❌ 过滤关键词:**
+白酒、营销、广告、SU7、电动车评测、明星、综艺、体育、足球、篮球、娱乐、八卦、房产、理财、基金
+
+## 📖 输出格式规范
+
 ```
+📰 设计日报 - YYYY-MM-DD
+
+🎨 优设读报
+
+1. [有链接的标题](https://example.com) - 内容摘要
+2. 没有链接的标题 - 内容摘要
+
+📡 科技资讯精选
+
+3. [有链接的标题](https://example.com) [36氪] - 内容摘要
+4. 没有链接的标题 [虎嗅] - 内容摘要
+
+---
+共 N 条 | 优设读报 X 条 + 科技精选 Y 条
+```
+
+**格式要点:**
+- 有来源链接 → `[标题](url)` 格式，微信可直接点击跳转
+- 无来源链接 → 纯文本标题
+- 优设读报内嵌的 `[[来源:xxx]]` / `[[全文:xxx]]` / `[[官网:xxx]]` 自动提取为链接
+- 36氪/虎嗅新闻标题后附 `[来源名]` 标签
+
+## 🔧 核心脚本
+
+| 脚本 | 说明 |
+|------|------|
+| `scripts/build_daily_report.py` | **主脚本** - 统一抓取三源、筛选、格式化输出 |
+| `scripts/fetch_uisdc.sh` | 优设读报抓取脚本 |
+| `scripts/fetch_36kr.sh` | 36氪抓取脚本 |
+| `scripts/fetch_huxiu.sh` | 虎嗅抓取脚本（修复版） |
+
+**运行主脚本:**
+```bash
+python3 /Applications/QClaw.app/Contents/Resources/openclaw/config/skills/design-daily-news-1.0.0/scripts/build_daily_report.py
+```
+
+## ⏰ 定时任务
+
+- **任务名称**: 设计日报
+- **执行时间**: 每天 09:00（Asia/Shanghai）
+- **推送渠道**: 微信（ClawBot）
+- **超时限制**: 300 秒
+
+## 🔧 故障排查
+
+| 问题 | 原因 | 解决方案 |
+|------|------|----------|
+| 优设读报抓取失败 | 网站结构变更 | 检查 `var uisdc_news` 是否仍存在 |
+| 虎嗅抓取为空 | `__NUXT_DATA__` 结构变更 | 更新 `fetch_huxiu.sh` 解析逻辑 |
+| 36氪抓取失败 | 网络或反爬 | 检查 `fetch_36kr.sh` |
+| 链接无法点击 | 格式问题 | 确认使用 `[标题](url)` markdown 格式 |
+
+## 📝 版本历史
+
+- **v1.0.0** (2026-03-23): 初始版本，支持优设读报
+- **v1.1.0** (2026-03-24): 重构为设计日报，移除不稳定的虎嗅/36氪
+- **v1.2.0** (2026-03-25): 重新加入36氪+虎嗅，新增统一推送脚本，支持可点击链接格式
+
+**作者**: TUNE.天宇  
+**更新**: 2026-03-25

@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Instagram Profiles"
+  short_description: "Submit Dataify Instagram profile tasks by username or profile URL"
+  icon_small: "./assets/dataify-instagram-profiles-small.svg"
+  icon_large: "./assets/dataify-instagram-profiles-large.svg"
+  default_prompt: "Use $dataify-instagram-profiles to submit Instagram profile Builder tasks by username or profile URL through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

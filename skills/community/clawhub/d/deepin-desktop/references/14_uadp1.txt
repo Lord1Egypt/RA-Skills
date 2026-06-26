@@ -1,0 +1,45 @@
+=== org.deepin.dde.Uadp1 /org/deepin/dde/Uadp1 ===
+node /org/deepin/dde/Uadp1 {
+  interface org.deepin.dde.Uadp1 {
+    methods:
+      Available(out b outArg0);
+      Delete(in  s name);
+      Get(in  s name,
+          out ay outArg0);
+      ListName(out as outArg0);
+      Release();
+      Set(in  s name,
+          in  ay data);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

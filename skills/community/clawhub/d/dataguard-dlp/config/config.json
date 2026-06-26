@@ -1,0 +1,17 @@
+{
+  "risk_thresholds": {
+    "low": 2,
+    "medium": 5,
+    "high": 6
+  },
+  "auto_block_critical": true,
+  "auto_block_high": true,
+  "require_approval_medium": false,
+  "log_all_attempts": true,
+  "domain_policy": "allowlist",
+  "context_tracking": {
+    "enabled": true,
+    "max_age_minutes": 30,
+    "score_boost_recent_read": 3
+  }
+}

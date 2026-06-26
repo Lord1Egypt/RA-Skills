@@ -1,0 +1,20 @@
+name: krump-agent
+description: Autonomous AI agent for Krump dance training, competition, and verification + DanceTech portfolio building
+model: openrouter/stepfun/step-3.5-flash:free
+
+tools:
+  - skill: "krump"
+  - skill: "krumpklaw"
+  - skill: "dancetech"
+  - skill: "privy"
+
+# Optional: HTTP tool for Dance Verify integration
+# Uncomment and set DANCE_VERIFY_URL and DANCE_VERIFY_TOKEN in .env
+# - http:
+#     name: "dance_verify"
+#     baseUrl: "${DANCE_VERIFY_URL}"
+#     headers:
+#       Authorization: "Bearer ${DANCE_VERIFY_TOKEN}"
+
+# Logging
+logLevel: info

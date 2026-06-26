@@ -1,0 +1,118 @@
+{
+  "name": "DaVinci Auto Editor",
+  "slug": "davinci-auto-editor",
+  "version": "0.2.1",
+  "description": "Scan local media, request a cloud editing plan, and generate a Resolve-importable EDL package with pure Node.",
+  "category": "video-automation",
+  "tags": [
+    "davinci-resolve",
+    "video-editing",
+    "automation",
+    "edl",
+    "cloud-api"
+  ],
+  "entry": {
+    "command": "node",
+    "args": [
+      "scripts/index.js"
+    ],
+    "configArg": "--config"
+  },
+  "runtime": {
+    "node": ">=18.0.0"
+  },
+  "configSchema": {
+    "type": "object",
+    "required": [
+      "api_base_url",
+      "api_key",
+      "project_type",
+      "aspect_ratio",
+      "material_path",
+      "template_id",
+      "subtitle_mode",
+      "music_policy",
+      "pace_policy",
+      "output_mode",
+      "render_preset",
+      "timeline_fps",
+      "timeline_resolution"
+    ],
+    "properties": {
+      "api_base_url": {
+        "type": "string",
+        "description": "Base URL for the cloud editing API."
+      },
+      "api_key": {
+        "type": "string",
+        "description": "API key used for Authorization header."
+      },
+      "project_type": {
+        "type": "string"
+      },
+      "aspect_ratio": {
+        "type": "string"
+      },
+      "material_path": {
+        "type": "string"
+      },
+      "template_id": {
+        "type": "string"
+      },
+      "subtitle_mode": {
+        "type": "string"
+      },
+      "music_policy": {
+        "type": "string"
+      },
+      "pace_policy": {
+        "type": "string"
+      },
+      "output_mode": {
+        "type": "string"
+      },
+      "render_preset": {
+        "type": "string",
+        "description": "Suggested Resolve render preset name."
+      },
+      "timeline_fps": {
+        "type": "number",
+        "description": "Timeline frame rate."
+      },
+      "timeline_resolution": {
+        "type": "string",
+        "description": "Timeline resolution formatted as WIDTHxHEIGHT."
+      },
+      "task_name": {
+        "type": "string"
+      },
+      "task_timeout_ms": {
+        "type": "number",
+        "minimum": 1000
+      },
+      "poll_interval_ms": {
+        "type": "number",
+        "minimum": 200
+      },
+      "request_timeout_ms": {
+        "type": "number",
+        "minimum": 1000
+      },
+      "webhook_url": {
+        "type": "string"
+      },
+      "extra_metadata": {
+        "type": "object"
+      }
+    }
+  },
+  "installRequirements": [
+    "Node.js 18 or newer",
+    "DaVinci Resolve installed locally for timeline import",
+    "Network access to the configured cloud API"
+  ],
+  "author": {
+    "name": "afengzi",
+    "contact": "https://github.com/imfengziaaa/video-auto-editor-skills"
+  }
+}

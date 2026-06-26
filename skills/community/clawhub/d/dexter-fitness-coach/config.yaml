@@ -1,0 +1,39 @@
+# AI健身教练配置文件
+
+# 大模型配置
+llm:
+  provider: "zhipu"  # 智谱GLM / claude / deepseek
+  api_key: ""  # 在这里填入你的API密钥
+  model: "glm-4-flash"  # 模型名称
+  temperature: 0.8
+  max_tokens: 2000
+
+# 飞书配置
+feishu:
+  enabled: false
+  app_id: ""  # 飞书应用ID
+  app_secret: ""  # 飞书应用Secret
+  base_url: "https://open.feishu.cn/open-apis"
+
+# 数据存储配置
+storage:
+  data_dir: "~/.claude/skills/fitness-coach/data"
+  backup_enabled: true
+  backup_interval: 86400  # 秒
+
+# 教练个性配置
+personality:
+  style: "encouraging"  # encouraging（鼓励型） / strict（严格型） / humorous（幽默型）
+  motivation_frequency: "medium"  # low / medium / high
+  reminder_enabled: true
+
+# 训练计划配置
+training:
+  default_frequency: 3  # 默认每周训练次数
+  rest_days: ["周日"]  # 默认休息日
+  session_duration: 45  # 默认训练时长（分钟）
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "fitness_coach.log"

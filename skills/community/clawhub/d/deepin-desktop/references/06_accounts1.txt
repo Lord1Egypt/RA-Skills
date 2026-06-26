@@ -1,0 +1,83 @@
+=== org.deepin.dde.Accounts1 /org/deepin/dde/Accounts1 ===
+node /org/deepin/dde/Accounts1 {
+  interface org.deepin.dde.Accounts1 {
+    methods:
+      AllowGuestAccount(in  b allow);
+      CreateGroup(in  s groupName,
+                  in  u gid,
+                  in  b isSystem);
+      CreateGuestAccount(out s user);
+      CreateUser(in  s name,
+                 in  s fullName,
+                 in  i accountType,
+                 out o userPath);
+      DeleteGroup(in  s groupName,
+                  in  b force);
+      DeleteUser(in  s name,
+                 in  b rmFiles);
+      EnablePasswdChangedHandler(in  b enable);
+      FindUserById(in  s uid,
+                   out s user);
+      FindUserByName(in  s name,
+                     out s user);
+      GetGroupInfoByName(in  s name,
+                         out s groupInfo);
+      GetGroups(out as groups);
+      GetPresetGroups(in  i accountType,
+                      out as groups);
+      IsPasswordValid(in  s password,
+                      out b valid,
+                      out s msg,
+                      out i code);
+      IsUsernameValid(in  s name,
+                      out b valid,
+                      out s msg,
+                      out i code);
+      ModifyGroup(in  s currentGroupName,
+                  in  s newGroupName,
+                  in  u newGID);
+      RandUserIcon(out s iconFile);
+      SetTerminalLocked(in  b locked);
+    signals:
+      UserAdded(s objPath);
+      UserDeleted(s objPath);
+    properties:
+      readonly s GuestIcon = 'file:///var/lib/AccountsService/icons/illustration/computer.png';
+      readonly b AllowGuest = false;
+      readonly as GroupList = ['_ssh', 'adm', 'audio', 'avahi', 'backup', 'bin', 'bluetooth', 'cdrom', 'crontab', 'daemon', 'dde', 'deepin-admin-daemon', 'deepin-daemon', 'deepin-linglong', 'dialout', 'dip', 'disk', 'fax', 'floppy', 'games', 'geoclue', 'input', 'irc', 'kmem', 'kvm', 'lightdm', 'list', 'lp', 'lpadmin', 'mail', 'man', 'messagebus', 'netdev', 'news', 'nm-openconnect', 'nm-openvpn', 'nogroup', 'operator', 'pipewire', 'plugdev', 'polkitd', 'proxy', 'pulse', 'pulse-access', 'render', 'root', 'sambashare', 'sasl', 'scanner', 'seat', 'sgx', 'shadow', 'src', 'ssl-cert', 'sstpc', 'staff', 'sudo', 'sys', 'systemd-coredump', 'systemd-journal', 'systemd-network', 'systemd-timesync', 'tape', 'tss', 'tty', 'users', 'utmp', 'uucp', 'video', 'voice', 'winbindd_priv', 'www-data', 'zane'];
+      readonly b IsTerminalLocked = false;
+      readonly b QuickLoginEnabled = true;
+      readonly as UserList = ['/org/deepin/dde/Accounts1/User1000'];
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+  node User1000 {
+  };
+};

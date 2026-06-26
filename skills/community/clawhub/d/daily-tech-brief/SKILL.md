@@ -1,35 +1,136 @@
 ---
-name: "Daily Tech Brief"
-description: "生成每日科技摘要，行业新闻为主体，OpenClaw 为固定板块，ClawHub 信息优先使用命令行。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-tech-brief"
-sourceUrl: "https://clawhub.ai/skills/daily-tech-brief"
+name: daily-tech-brief
+version: "1.0.0"
+description: 生成每日科技摘要，行业新闻为主体，OpenClaw 为固定板块，ClawHub 信息优先使用命令行。
 ---
 
-# Daily Tech Brief
+# daily-tech-brief
 
-> 生成每日科技摘要，行业新闻为主体，OpenClaw 为固定板块，ClawHub 信息优先使用命令行。
+## 目标
+生成一份“每日科技摘要 / 播客素材”，要求：
+- **行业新闻是主体**，不是只有 OpenClaw
+- 必须重点覆盖：
+  - X 上 Elon Musk 相关动态
+  - Tesla 相关动态
+  - AI / 科技行业重要新闻
+- **OpenClaw 作为固定板块**保留
+- **ClawHub 信息必须优先通过命令行获取**，不要优先看网页
+- 最终结果适合直接作为日报、播客提纲或 briefing 输入
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-tech-brief`
-- **Source URL:** [https://clawhub.ai/skills/daily-tech-brief](https://clawhub.ai/skills/daily-tech-brief)
+## 必须遵循的来源规则
 
-## Overview
+### 1. 行业新闻 / 社交平台内容
+- 必须优先使用 **web-access** skill 处理联网搜索、网页访问、社交媒体抓取
+- 对于 X / 新闻网页 / 科技资讯站点，遵循 web-access 的方法论
+- 重点跟踪关键词：
+  - Elon Musk
+  - Tesla
+  - xAI
+  - OpenAI
+  - Anthropic
+  - AI infra / 芯片 / 模型 / agent / 自动化
+- 如果是“新闻是否属实/是否一手来源”的问题，优先找原始来源或权威一手出处，不要只堆二手转述
 
+### 2. OpenClaw 板块
+- 不要扫描本地 OpenClaw 安装目录，不要把本地 package.json、CHANGELOG.md、skills 本地路径当成主要发现来源
+- 优先来源：
+  - OpenClaw 官方 GitHub Releases / Release Notes
+  - 官方文档
+  - 官方仓库
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-tech-brief
-```
+### 3. ClawHub 板块
+- **必须优先使用 ClawHub 命令行** 获取 skill / 新玩法信息
+- 不要优先看 ClawHub 页面
+- 不要从本地已安装 skill 反推“最近值得关注的 skill”
+- 如果 clawhub CLI 不可用，必须在结果中明确说明降级原因
+
+## 输出结构
+
+### A. 行业重点新闻（主体）
+输出 4-8 条，优先级从高到低排序。
+必须优先覆盖：
+1. Elon Musk / Tesla / xAI 相关重要动态
+2. AI 行业重要动态
+3. 科技公司 / 市场 / 基础设施相关重大变化
+
+每条包含：
+- 标题
+- 发生了什么（1-2 句）
+- 为什么值得关注（1 句）
+- 原始来源链接或最可信来源链接
+
+### B. OpenClaw 板块
+输出：
+1. 近24-72小时最值得注意的官方更新（2-5条）
+2. 通过 clawhub 命令行获取的最近值得关注的 3 个 skill / 新玩法
+3. 1 条今天最值得尝试的落地场景
+
+### C. 播客 / 日报落地提示
+输出 1 小段：
+- 今天最值得讲的主线是什么
+- 如果要做成播客，建议先讲哪 3 个点
+
+## 写法要求
+- 内容具体、可执行
+- 尽量给完整链接
+- 不要给本地绝对路径作为主要参考来源
+- 如果某条信息无法确认来源，就不要写
+- 默认中文输出
+- 结果要适合直接放入 daily podcast 的素材中
+
+## 当被 cron 调用时
+如果调用方要求继续执行 daily podcast 生成：
+1. 先完成本 skill 的摘要内容
+2. 再执行调用方指定的 daily podcast / briefing 脚本
+3. 最后回报：
+   - 是否成功
+   - 关键输出文件绝对路径
+   - 今日内容是否已包含：
+     - 行业重点新闻
+     - OpenClaw 板块
+     - clawhub 命令行结果
+
+## 搜索方法（当前验证有效的做法）
+生成高质量每日科技摘要时，按下面顺序搜，不要只做泛搜：
+
+1. **先定观察面，再搜具体来源**
+   - 主线固定为：Elon Musk / Tesla / xAI / OpenAI / Anthropic / AI infra / 芯片 / agent / 自动化
+   - 先把当天要覆盖的公司与主题列出来，再分别搜索，避免被单一新闻源带偏
+
+2. **行业新闻优先级**
+   - 优先看权威一手或强二手聚合：Reuters、公司官方博客/公告、官方 X 账号、官方 GitHub Release / commit
+   - 如果 Google News / 聚合页只有标题，继续点进原始来源确认，不要直接照抄聚合摘要
+   - 同一条新闻至少交叉确认标题、事实、时间点，避免把旧闻当新闻
+
+3. **Musk / Tesla / xAI 的搜法**
+   - 先查 Reuters / 官方账号 / 官方站点，再补市场解读
+   - 优先找“新动作”而不是泛评论：诉讼、发布、投产、组织调整、融资、监管、产品计划
+   - 如果 Tesla 相关新闻很多，优先保留最影响销量、利润率、供应链、FSD/robotaxi 预期的条目
+
+4. **OpenAI / Anthropic / Meta / Nvidia 等 AI 公司搜法**
+   - 分成三类：产品/模型、安全/治理、基础设施/资本开支
+   - 每家公司优先抓“今天最能改变竞争格局”的一条，而不是面面俱到
+
+5. **OpenClaw 板块搜法**
+   - 先看官方 GitHub Releases
+   - 再看近 24-72 小时官方 commit / docs 变化
+   - 只保留用户能感知到的更新：能力新增、可靠性提升、集成变化、工作流改进
+   - 不要把本地安装目录扫描结果当作“官方更新”
+
+6. **ClawHub / skill 搜法**
+   - 必须优先用 clawhub CLI
+   - 如果 CLI 不可用，结果里明确写“已降级”，并说明原因
+
+7. **筛选标准**
+   - 只留“发生了什么 + 为什么值得关注”都说得清的新闻
+   - 单纯观点文、二手转述、无明确来源、无法确认时间的新旧混杂内容，直接丢弃
+   - 宁可少写，也不要凑数
+
+8. **成稿原则**
+   - 先给事实，再给判断
+   - 每条尽量带原始链接或最可信链接
+   - 行业板块要占主体，OpenClaw 是固定板块但不是全文主体
+
+## 备注
+这个 skill 负责“内容结构与信息源约束”。
+其中联网搜索/网页访问/X 抓取等动作，应继续遵循 **web-access** skill。

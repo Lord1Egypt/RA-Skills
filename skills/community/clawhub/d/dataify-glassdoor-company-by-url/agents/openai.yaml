@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Dataify Glassdoor Builder"
+  short_description: "Prepare Dataify builder calls for glassdoor.com"
+  default_prompt: "Use $dataify-glassdoor-company-by-url to prepare a Dataify builder curl request."

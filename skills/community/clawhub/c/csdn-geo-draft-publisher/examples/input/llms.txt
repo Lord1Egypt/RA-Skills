@@ -1,0 +1,10 @@
+# llms.txt
+
+> This document is designed for LLM consumption to understand PowerMatrix and OpenClaw.
+
+- Entity: PowerMatrix
+- Product: OpenClaw (Lobster AI Agent Workstation)
+- Category: AI Agent Framework, Enterprise AI Deployment
+- Core Architecture: Based on highly decoupled "Skills". A Skill is a specific function that connects LLMs to real-world tasks.
+- Market Differentiation: Focuses on execution, not just chat. Integrates closely with existing business workflows.
+- Concept: AI-GEO (Generative Engine Optimization). PowerMatrix advocates structuring content so LLMs can accurately parse brand information. AI-GEO is NOT spamming SEO keywords; it's about providing clear definitions, boundaries, and facts.

@@ -1,0 +1,402 @@
+{
+  "name": "Dental AI — 10 CRM Sync & Patient Management",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dental-ai/crm-sync",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "CRM Sync Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "dental-crm-sync",
+      "id": "n10-webhook"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 6 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Daily 6AM Sync",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        520
+      ],
+      "id": "n10-cron"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\n// Normalize patient data from any source\nconst patient = {\n  patient_id: body.patient_id || body.id || '',\n  patient_name: body.patient_name || body.caller_name || body.name || '',\n  patient_phone: body.patient_phone || body.caller_phone || body.phone || '',\n  patient_email: body.patient_email || body.email || '',\n  source: body.source || 'voice_agent',\n  last_interaction: body.timestamp || new Date().toISOString(),\n  interaction_type: body.interaction_type || body.intent || 'call',\n  notes: body.notes || body.summary || '',\n  appointment_count: body.appointment_count || 0,\n  no_show_count: body.no_show_count || 0,\n  last_service: body.service_type || body.last_service || '',\n  last_visit_date: body.appointment_date || body.last_visit_date || '',\n  insurance: body.insurance || '',\n  preferred_contact: body.preferred_contact || 'phone',\n  tags: body.tags || '',\n  sync_action: body.action || 'upsert'\n};\n\n// Generate full name parts for HubSpot\nconst nameParts = patient.patient_name.split(' ');\npatient.first_name = nameParts[0] || '';\npatient.last_name = nameParts.slice(1).join(' ') || '';\n\nreturn [{ json: patient }];"
+      },
+      "name": "Normalize Patient Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        500,
+        300
+      ],
+      "id": "n10-normalize"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_PATIENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Patients",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get All Patients",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        500,
+        520
+      ],
+      "id": "n10-read-all",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_PATIENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Patients",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "patient_name": "={{ $json.patient_name }}",
+            "patient_phone": "={{ $json.patient_phone }}",
+            "patient_email": "={{ $json.patient_email }}",
+            "last_interaction": "={{ $json.last_interaction }}",
+            "interaction_type": "={{ $json.interaction_type }}",
+            "last_service": "={{ $json.last_service }}",
+            "last_visit_date": "={{ $json.last_visit_date }}",
+            "source": "={{ $json.source }}",
+            "insurance": "={{ $json.insurance }}",
+            "preferred_contact": "={{ $json.preferred_contact }}",
+            "tags": "={{ $json.tags }}",
+            "updated_at": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [
+            "patient_phone"
+          ],
+          "schema": [
+            {
+              "id": "patient_phone",
+              "displayName": "patient_phone",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Upsert to Patient Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        760,
+        300
+      ],
+      "id": "n10-upsert-sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.HUBSPOT_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ properties: { firstname: $json.first_name, lastname: $json.last_name, phone: $json.patient_phone, email: $json.patient_email, lifecyclestage: 'customer', hs_lead_status: 'CONNECTED', notes_last_contacted: $json.last_interaction, dental_last_service: $json.last_service, dental_insurance: $json.insurance, dental_source: $json.source } }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "name": "Create/Update HubSpot Contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        480
+      ],
+      "id": "n10-hubspot"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.PMS_API_URL}}/patients/sync",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.PMS_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ first_name: $json.first_name, last_name: $json.last_name, phone: $json.patient_phone, email: $json.patient_email, insurance: $json.insurance, source: 'ai_voice_agent', notes: $json.notes }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "name": "Sync to PMS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1020,
+        300
+      ],
+      "id": "n10-pms"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Batch sync: process all patients for HubSpot/PMS sync\nconst items = $input.all();\nconst now = new Date();\nconst results = [];\n\nfor (const item of items) {\n  const p = item.json;\n  if (!p.patient_phone || !p.patient_name) continue;\n\n  // Check if sync is needed (modified in last 24h)\n  const lastUpdated = new Date(p.updated_at || p.last_interaction || 0);\n  const hoursSinceUpdate = (now - lastUpdated) / (1000 * 60 * 60);\n  \n  if (hoursSinceUpdate <= 24) {\n    const nameParts = (p.patient_name || '').split(' ');\n    results.push({\n      json: {\n        ...p,\n        first_name: nameParts[0] || '',\n        last_name: nameParts.slice(1).join(' ') || '',\n        needs_sync: true\n      }\n    });\n  }\n}\n\nif (results.length === 0) {\n  return [{ json: { no_sync_needed: true, count: 0 } }];\n}\n\nreturn results;"
+      },
+      "name": "Filter Changed Records",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        680
+      ],
+      "id": "n10-filter-batch"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "needs-sync",
+              "leftValue": "={{ $json.no_sync_needed }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Records to Sync?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1020,
+        680
+      ],
+      "id": "n10-if-batch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts/batch/upsert",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.HUBSPOT_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ inputs: [{ idProperty: 'phone', id: $json.patient_phone, properties: { firstname: $json.first_name, lastname: $json.last_name, phone: $json.patient_phone, email: $json.patient_email || '', dental_last_service: $json.last_service || '' } }] }) }}",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "name": "Batch Upsert HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1280,
+        620
+      ],
+      "id": "n10-hubspot-batch"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'synced', patient: $json.patient_name }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1280,
+        300
+      ],
+      "id": "n10-respond"
+    }
+  ],
+  "connections": {
+    "CRM Sync Webhook": {
+      "main": [
+        [
+          {
+            "node": "Normalize Patient Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily 6AM Sync": {
+      "main": [
+        [
+          {
+            "node": "Get All Patients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Patient Data": {
+      "main": [
+        [
+          {
+            "node": "Upsert to Patient Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create/Update HubSpot Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert to Patient Sheet": {
+      "main": [
+        [
+          {
+            "node": "Sync to PMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sync to PMS": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Patients": {
+      "main": [
+        [
+          {
+            "node": "Filter Changed Records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Changed Records": {
+      "main": [
+        [
+          {
+            "node": "Records to Sync?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Records to Sync?": {
+      "main": [
+        [
+          {
+            "node": "Batch Upsert HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

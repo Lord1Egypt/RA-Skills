@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DevTool Answer Monitor Run Summary",
+  "type": "object",
+  "required": ["run_id", "created_at", "project", "metrics", "by_model", "record_count"],
+  "properties": {
+    "run_id": {"type": "string"},
+    "created_at": {"type": "string"},
+    "project": {"type": "string"},
+    "record_count": {"type": "integer"},
+    "metrics": {
+      "type": "object",
+      "required": ["mention_rate", "positive_mention_rate", "capability_accuracy", "ecosystem_accuracy"],
+      "properties": {
+        "mention_rate": {"type": ["number", "null"]},
+        "positive_mention_rate": {"type": ["number", "null"]},
+        "capability_accuracy": {"type": ["number", "null"]},
+        "ecosystem_accuracy": {"type": ["number", "null"]}
+      }
+    },
+    "by_model": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["model_id", "record_count", "mention_rate", "positive_mention_rate", "capability_accuracy", "ecosystem_accuracy"],
+        "properties": {
+          "model_id": {"type": "string"},
+          "record_count": {"type": "integer"},
+          "mention_rate": {"type": ["number", "null"]},
+          "positive_mention_rate": {"type": ["number", "null"]},
+          "capability_accuracy": {"type": ["number", "null"]},
+          "ecosystem_accuracy": {"type": ["number", "null"]}
+        }
+      }
+    },
+    "by_funnel_stage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["funnel_stage", "record_count", "mention_rate", "positive_mention_rate", "capability_accuracy", "ecosystem_accuracy"],
+        "properties": {
+          "funnel_stage": {"type": "string"},
+          "record_count": {"type": "integer"},
+          "mention_rate": {"type": ["number", "null"]},
+          "positive_mention_rate": {"type": ["number", "null"]},
+          "capability_accuracy": {"type": ["number", "null"]},
+          "ecosystem_accuracy": {"type": ["number", "null"]}
+        }
+      }
+    }
+  }
+}

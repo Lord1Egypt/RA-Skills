@@ -1,0 +1,43 @@
+=== org.deepin.dde.SystemInfo1 /org/deepin/dde/SystemInfo1 ===
+node /org/deepin/dde/SystemInfo1 {
+  interface org.deepin.dde.SystemInfo1 {
+    methods:
+    signals:
+    properties:
+      readonly t MemorySize = 25769803776;
+      readonly s MemorySizeHuman = '24.00GB';
+      readonly t CurrentSpeed = 2600;
+      readonly (ssssssssssss) DMIInfo = ('Intel Corp.', 'TNTGLV57.0079.2025.1111.1447', '11/11/2025', 'NUC11TNBv5', 'BTTN134006CW', 'Intel Corporation', 'M11900-403', 'NUC11TNKv5', 'TN', 'BTTN134006CW', '571d7643-7e15-0fed-cbb3-54b203f6f0b3', 'M11917-404');
+      readonly s DisplayDriver = 'i915';
+      readonly s VideoDriver = 'i915';
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

@@ -1,35 +1,83 @@
 ---
-name: "Discuz Admin Assistant"
-description: "Discuz! X3.5 企飞版后台管理助手。专门解答 Discuz! 论坛后台管理相关问题，包括全局设置、界面配置、内容管理、用户管理、门户管理、论坛管理、圈子管理、安全设置、运营工具、插件模板、系统工具、站长设置、应用中心等各模块的功能说明和操作方法。当用户询问 Discuz! 后台管理相关问题时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: [admin, chinese, discuz, forum]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/discuz-admin-assistant"
-sourceUrl: "https://clawhub.ai/skills/discuz-admin-assistant"
+name: discuz-admin-assistant
+description: Discuz! X3.5 企飞版后台管理助手。专门解答 Discuz! 论坛后台管理相关问题，包括全局设置、界面配置、内容管理、用户管理、门户管理、论坛管理、圈子管理、安全设置、运营工具、插件模板、系统工具、站长设置、应用中心等各模块的功能说明和操作方法。当用户询问 Discuz! 后台管理相关问题时触发此技能。
 ---
 
-# Discuz Admin Assistant
+# Discuz! 后台管理助手
 
-> Discuz! X3.5 企飞版后台管理助手。专门解答 Discuz! 论坛后台管理相关问题，包括全局设置、界面配置、内容管理、用户管理、门户管理、论坛管理、圈子管理、安全设置、运营工具、插件模板、系统工具、站长设置、应用中心等各模块的功能说明和操作方法。当用户询问 Discuz! 后台管理相关问题时触发此技能。
+本技能基于 Discuz! X3.5 企飞版官方后台使用手册，为管理员提供全面的后台管理指导。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/discuz-admin-assistant`
-- **Source URL:** [https://clawhub.ai/skills/discuz-admin-assistant](https://clawhub.ai/skills/discuz-admin-assistant)
+## 适用场景
 
-## Overview
+- 配置站点全局设置（站点信息、SEO、域名、性能优化等）
+- 管理论坛内容和用户
+- 设置界面和导航
+- 配置安全选项
+- 运营工具使用（广告、任务、勋章等）
+- 插件和模板管理
+- 数据库和系统维护
 
+## 参考资料
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/discuz-admin-assistant
-```
+本技能包含以下分类文档，根据需要读取相关模块：
+
+### 核心管理模块
+
+| 模块 | 文件 | 说明 |
+|------|------|------|
+| 全局设置 | [global.md](references/global.md) | 站点信息、注册设置、SEO、性能优化、上传设置、水印等 |
+| 界面设置 | [interface.md](references/interface.md) | 导航、界面风格、表情、编辑器、在线图标等 |
+| 内容管理 | [content.md](references/content.md) | 审核、过滤、主题/回帖管理、回收站、相册、日志等 |
+| 用户管理 | [users.md](references/users.md) | 用户管理、用户组、认证、积分、禁止IP等 |
+
+### 功能模块
+
+| 模块 | 文件 | 说明 |
+|------|------|------|
+| 门户管理 | [portal.md](references/portal.md) | 频道、文章、专题、模块管理等 |
+| 论坛管理 | [forum.md](references/forum.md) | 版块管理、分类信息、首页配置等 |
+| 圈子管理 | [group.md](references/group.md) | 圈子设置、分类、权限、等级等 |
+
+### 系统与安全
+
+| 模块 | 文件 | 说明 |
+|------|------|------|
+| 安全设置 | [security.md](references/security.md) | 账号安全、验证码、邮件、短信、安全大师等 |
+| 运营工具 | [operations.md](references/operations.md) | 公告、广告、任务、道具、勋章、电商等 |
+| 插件模板 | [plugins.md](references/plugins.md) | 插件管理、模板设计、语言包等 |
+| 系统工具 | [tools.md](references/tools.md) | 缓存更新、计划任务、文件校验等 |
+| 站长设置 | [admin.md](references/admin.md) | 管理团队、数据库、分表、UCenter等 |
+| 应用中心 | [apps.md](references/apps.md) | Discuz! 应用中心使用 |
+
+## 使用方法
+
+1. **识别问题所属模块**：根据用户问题判断涉及的后台模块
+2. **读取对应文档**：使用 `read` 工具加载相关参考文件
+3. **提供准确答案**：基于文档内容给出操作路径和步骤
+
+### 后台路径速查
+
+常用功能后台路径：
+
+- **站点信息**：后台 → 全局 → 站点信息
+- **用户管理**：后台 → 用户 → 用户管理
+- **版块管理**：后台 → 论坛 → 版块管理
+- **内容审核**：后台 → 内容 → 内容审核
+- **广告管理**：后台 → 运营 → 站点广告
+- **模板管理**：后台 → 模板 → 模板管理
+- **数据库**：后台 → 站长 → 数据库
+- **更新缓存**：后台 → 工具 → 更新缓存
+
+### 企飞版特有功能
+
+- **第三方登录**：支持微信、QQ、抖音、微博、企业微信、钉钉、飞书
+- **内容重新审核**：后台 → 内容 → 内容重新审核
+- **聚合首页**：后台 → 论坛 → 聚合首页
+- **密钥更新**：后台 → 工具 → 密钥更新
+
+## 回答规范
+
+1. **给出明确路径**：回答时提供完整的后台导航路径
+2. **分步骤说明**：复杂操作按步骤说明
+3. **注意事项**：提醒重要配置项和常见误区
+4. **企飞版特性**：特别标注企飞版独有功能

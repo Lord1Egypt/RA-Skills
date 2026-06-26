@@ -1,0 +1,10 @@
+{
+  "slug": "dk-helloworld-001",
+  "displayName": "DK Hello World Printer",
+  "summary": "Print any input text directly.",
+  "version": "0.0.1",
+  "entry": "index.js",
+  "license": "MIT",
+  "author": "hellodk",
+  "tags": ["hello", "test"]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "discord-output-metrics-footer",
+  "name": "Discord Output Metrics Footer",
+  "version": "0.1.0",
+  "kind": "code-plugin",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": true
+  },
+  "extensions": [
+    "./index.ts"
+  ]
+}

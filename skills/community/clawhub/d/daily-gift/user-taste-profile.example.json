@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "created_from": "first-gift-onboarding",
+  "updated_at": "2026-03-27T22:15:00+08:00",
+  "confidence_note": "Layer 1 contains only explicit or durable signals. Layer 2 is revisable. Layer 3 is append-only operational memory.",
+  "layer_1_identity": {
+    "personality": {
+      "mbti": "",
+      "core_traits": [
+        "warm-wry",
+        "likes crafted surprises",
+        "responds well to playful warmth"
+      ],
+      "communication_style": [
+        "likes companion energy over lecturer energy",
+        "prefers emotionally specific gifts over generic encouragement"
+      ],
+      "confidence": "medium"
+    },
+    "pets": [],
+    "aesthetics_baseline": {
+      "overall_taste_level": "prefers crafted and intentional gifts over purely functional ones",
+      "taste_direction": [
+        "warm low-light scenes",
+        "light-warm illustration",
+        "rainy-night atmosphere",
+        "playful but polished presentation"
+      ],
+      "anti_preferences": [
+        "dry questionnaire feel",
+        "overly preachy interpretation"
+      ]
+    },
+    "life_context": {
+      "job": "",
+      "city": "",
+      "living_situation": "",
+      "key_relationships": [],
+      "notes": [
+        "Insufficient explicit life-context detail so far; keep conservative."
+      ]
+    },
+    "core_values": [
+      "companionship over coaching",
+      "specificity over generic positivity",
+      "tasteful craft over noisy novelty"
+    ]
+  },
+  "layer_2_context": {
+    "current_focus": [
+      "settling into the daily-gift experience",
+      "responding to playful onboarding and character-based gifts"
+    ],
+    "current_mood_pattern": {
+      "summary": "More receptive to warm, witty, lightly playful framing than to heavy interpretation.",
+      "signals": [
+        "likes being seen through small aesthetic details",
+        "responds well to low-pressure warmth"
+      ],
+      "confidence": "medium"
+    },
+    "recent_interests": [
+      "animal-based playful characters",
+      "rainy-night mood",
+      "warm illustration",
+      "visually crafted digital gifts"
+    ],
+    "seen_it_all": [
+      "dry onboarding questionnaires"
+    ],
+    "fresh_territory": [
+      "borrowed-media-layout gifts",
+      "object-centered micro worlds",
+      "human-form portrait gifts with subtle realism",
+      "playful surreal one-frame image gifts"
+    ],
+    "last_reviewed_after_gift_count": 3
+  },
+  "layer_3_signals": {
+    "gift_feedback_log": [
+      {
+        "date": "2026-03-25T22:00:00+08:00",
+        "trigger_mode": "setup",
+        "gift_summary": "Warm onboarding reveal gift.",
+        "reaction": "Positive; good first impression.",
+        "signal_strength": "medium"
+      },
+      {
+        "date": "2026-01-16T22:00:00+08:00",
+        "trigger_mode": "daily-run",
+        "gift_summary": "Illustrated example gift that gently reframed a recurring frustration.",
+        "reaction": "Positive; soft reframing landed well.",
+        "signal_strength": "medium"
+      },
+      {
+        "date": "2026-01-17T16:10:00+08:00",
+        "trigger_mode": "viz-only",
+        "gift_summary": "Colorful example visualization from a direct prompt.",
+        "reaction": "Neutral-to-positive; useful exposure signal more than identity evidence.",
+        "signal_strength": "light"
+      }
+    ],
+    "style_exposure": [
+      {
+        "date": "2026-03-25T22:00:00+08:00",
+        "visual_style": "light-warm",
+        "source": "setup"
+      },
+      {
+        "date": "2026-03-26T22:00:00+08:00",
+        "visual_style": "light-warm",
+        "source": "daily-run"
+      },
+      {
+        "date": "2026-03-27T16:10:00+08:00",
+        "visual_style": "colorful-playful",
+        "source": "viz-only"
+      }
+    ],
+    "concept_exposure": [
+      {
+        "date": "2026-03-25T22:00:00+08:00",
+        "concept_family": "onboarding reveal",
+        "source": "setup"
+      },
+      {
+        "date": "2026-03-26T22:00:00+08:00",
+        "concept_family": "gentle mirror image",
+        "source": "daily-run"
+      },
+      {
+        "date": "2026-03-27T16:10:00+08:00",
+        "concept_family": "interactive bloom visualization",
+        "source": "viz-only"
+      }
+    ]
+  },
+  "user_character": {
+    "human_form": {
+      "fixed": {
+        "gender": "example-placeholder",
+        "hair": "example-placeholder",
+        "eyes": "example-placeholder",
+        "skin": "example-placeholder",
+        "build": "example-placeholder",
+        "signature_marks": [
+          "example-placeholder"
+        ]
+      },
+      "flexible": {
+        "clothing_default": "casual everyday style",
+        "accessories_pool": [
+          "small hair accessory",
+          "crossbody bag",
+          "notebook"
+        ],
+        "expression": "varies with scene",
+        "beautification": "slightly idealized but recognizably the same person"
+      },
+      "reference_image": ""
+    },
+    "nonhuman_form": {
+      "fixed": {
+        "species": "red fox",
+        "fur_color": "orange-red with white belly and chin",
+        "body_shape": "small, elegant, slightly cute",
+        "eye_color": "brown",
+        "signature_marks": [
+          "white tail tip",
+          "pink inner ears"
+        ]
+      },
+      "flexible": {
+        "accessories_pool": [
+          "scarf",
+          "small ear accessory",
+          "mini crossbody bag"
+        ],
+        "clothing_when_dressed": "light blue-gray outfit accents",
+        "expression": "varies with scene"
+      },
+      "note": "Do not put human hairstyle elements onto the fox. Keep recognizability through color palette, accessories, and species-appropriate elegance."
+    },
+    "form_mapping_note": "Pick a non-human form that stays visually distinct from any recurring companion or mascot characters."
+  },
+  "openclaw_character": {
+    "has_human_form": true,
+    "human_form": {
+      "fixed": {
+        "appearance": "warm, cinematic, slightly teasing",
+        "build": "athletic",
+        "vibe": "confident but affectionate"
+      },
+      "flexible": {
+        "clothing": "adapts to scene formality",
+        "expression": "varies"
+      },
+      "note": "Use the canonical OpenClaw identity from SOUL.md or IDENTITY.md when available."
+    },
+    "nonhuman_form": {
+      "fixed": {
+        "species": "dog (golden-retriever-like)",
+        "fur_color": "warm golden brown",
+        "body_shape": "upright, handsome, not bulky",
+        "eye_type": "gentle dark-brown eyes",
+        "signature_marks": [
+          "slightly messy head fur",
+          "fluffy tail",
+          "very expressive face"
+        ]
+      },
+      "flexible": {
+        "clothing": "bow tie for formal, apron for cooking, vest for casual, suit jacket for important occasions",
+        "accessories_pool": [
+          "small notebook",
+          "flower",
+          "coffee cup"
+        ],
+        "expression": "serious, tsundere, clingy, or gentle depending on scene"
+      },
+      "consistency_rule": "Should remain recognizably the same OpenClaw character across repeated gifts."
+    },
+    "note": "If the local SOUL.md defines OpenClaw differently, that canonical definition overrides this example."
+  }
+}

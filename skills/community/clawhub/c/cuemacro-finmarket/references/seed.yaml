@@ -1,0 +1,3081 @@
+meta:
+  id: finance-bp-108-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-108
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:51.768652+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  upgraded_from: finance-bp-108-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:29.151803+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-108--finmarketpy/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-108--finmarketpy/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-PORTFOLIO-ANALYTICS-001
+  title: Division by zero in price ratio calculations corrupts rebalancing
+  description: When calculating price_diff using current_price divided by old_price without validating old_price is non-zero,
+    the result is NaN or INF. This corrupts portfolio rebalancing calculations in wealthbot, causing incorrect buy/sell decisions
+    based on invalid prices_diff values. The same issue appears in getPricesDiff() where divide-by-zero when old_price equals
+    zero produces NaN/infinity that propagates to all subsequent trade decisions.
+  project_source: finance-bp-066--wealthbot
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-002
+  title: Look-ahead bias from unshifted signal generation and position calculations
+  description: Generating trading signals from current-period technical indicators (RSI, moving averages) without proper shift(-1)
+    creates look-ahead bias, causing live trading returns to fall far below backtested results. Similarly, when estimating
+    intraday positions from transactions without applying shift(1) to EOD positions, day-start positions are contaminated
+    with end-of-day values, making results unrepresentative of actual trading.
+  project_source: finance-bp-108--finmarketpy, finance-bp-106--pyfolio-reloaded
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-003
+  title: Non-positive-semidefinite covariance matrix breaks CVXPY optimization
+  description: Passing a non-positive-semidefinite covariance matrix to CVXPY optimization with assume_PSD=True produces incorrect
+    results because the solver assumes validity without verification. This causes Cholesky decomposition to fail or produce
+    garbage weights, preventing portfolio optimization from running entirely. Riskfolio-Lib and PyPortfolioOpt both require
+    explicit PSD validation before optimization.
+  project_source: finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-004
+  title: Incorrect portfolio value tracking destroys time-series integrity
+  description: Updating existing ClientPortfolioValue records instead of creating new ones destroys the time-series integrity
+    needed for billing calculations and historical reconciliation. This creates data corruption where billing calculations
+    and historical reporting against custodian records will fail to match. Portfolio value records must be linked to parent
+    ClientPortfolio via proper relationships to avoid orphaned records.
+  project_source: finance-bp-066--wealthbot
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-005
+  title: Allocation denominator excludes cash, corrupting portfolio composition
+  description: When computing allocation percentages excluding cash from the denominator, portfolio allocation percentages
+    will not sum to 100%, misrepresenting the portfolio's actual composition. Additionally, concentration metrics become artificially
+    skewed when including cash (a non-position asset), producing misleading diversification assessments that could lead to
+    inappropriate risk management decisions.
+  project_source: finance-bp-106--pyfolio-reloaded
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-006
+  title: FIFO sell order violation corrupts cost basis and XIRR
+  description: Processing positions out of chronological order in FIFO sell operations causes incorrect cost basis assignment,
+    leading to inaccurate realized gains/losses and wrong XIRR calculation. Chinese funds have tiered redemption fees based
+    on holding periods, so FIFO violations result in incorrect holding period calculation and wrong redemption fee being applied,
+    causing direct financial loss.
+  project_source: finance-bp-068--xalpha
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-007
+  title: Score validation bypass allows invalid composite calculations
+  description: Accepting scores outside the 0-100 range in screener results corrupts ranking and rating logic, causing unpredictable
+    screening results that violate the fundamental score contract. When combined with division-by-zero guards that return
+    0.0 for empty screener lists, this creates unpredictable behavior where invalid scores produce wrong composite calculations
+    and incorrect Strong Buy/Buy/Watch/Pass ratings.
+  project_source: finance-bp-082--stock-screener
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-008
+  title: Convex optimization constraints violate DCP rules
+  description: Using non-convex objectives or DCP-violating expressions in CVXPY optimization causes DCPError, completely
+    preventing portfolio optimization from running. Similarly, providing non-callable constraints or invalid bounds formats
+    (not matching n_assets length) causes TypeError. Feasibility violations like setting target_volatility below global minimum
+    or target_return above maximum achievable return make problems infeasible.
+  project_source: finance-bp-093--PyPortfolioOpt
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-009
+  title: Transaction data corruption from missing columns and invalid dates
+  description: Extracting round trips from transactions DataFrame without validating required columns (amount, price, symbol)
+    causes KeyError exceptions. When open_dt is not strictly less than close_dt, negative or zero duration values indicate
+    data corruption causing incorrect holding period statistics. Similarly, non-normalized transaction timestamps cause intra-day
+    trades to be incorrectly split across days.
+  project_source: finance-bp-106--pyfolio-reloaded
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-010
+  title: Missing DataFrame schema validation causes KeyError propagation
+  description: Passing non-DataFrame objects (numpy arrays, lists) where DataFrame is expected causes NameError, AttributeError,
+    or TypeError in downstream pandas operations. xalpha's fundinfo.price requires specific columns (date, netvalue, totvalue,
+    comment), PyPortfolioOpt and Riskfolio-Lib require index alignment between expected returns and covariance matrix. Missing
+    columns cause backtest calculations to fail with NaN values or KeyError.
+  project_source: finance-bp-068--xalpha, finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-011
+  title: Wrong annualization factors distort cross-frequency metric comparison
+  description: Applying incorrect annualization factors (wrong values for daily, weekly, monthly, quarterly, yearly frequencies)
+    produces non-comparable metrics across different return frequencies, causing invalid strategy comparisons and misallocated
+    capital. The Sharpe ratio formula must use correct annualization with sample standard deviation (ddof=1), otherwise producing
+    misleading risk-adjusted return estimates.
+  project_source: finance-bp-107--empyrical-reloaded
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-012
+  title: Misaligned time series in alpha/beta calculation produces invalid factor analysis
+  description: Passing returns and factor_returns to alpha_beta functions without verifying data alignment on index labels
+    (pd.Series) or length equality (np.ndarray) produces incorrect alpha/beta values due to correlation computed between mismatched
+    periods. Including benchmark ticker in the asset ticker list causes circular correlation producing meaningless beta values
+    of approximately 1.0.
+  project_source: finance-bp-107--empyrical-reloaded, finance-bp-118--FinanceToolkit
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-013
+  title: Forward-filling spot prices creates look-ahead bias in TRI construction
+  description: Forward-filling spot prices creates look-ahead bias where future prices are used to calculate historical returns,
+    invalidating all TRI-based backtest results. The total return index construction requires multiplicative cumulation using
+    cumprod (not cumsum) with base value 100, as additive cumulation allows negative cumulative returns to break the index
+    chain.
+  project_source: finance-bp-108--finmarketpy
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-014
+  title: Unsupported solver selection breaks advanced risk calculations
+  description: Using solvers that don't support required cone programming (power cone, exponential cone) causes CVXPY to fail
+    with SolverError, returning None and breaking risk calculations. CLARABEL, SCS, ECOS support power cone for RLVaR/RLDaR
+    calculations, while CLARABEL/MOSEK/SCS/ECOS support exponential cone for EVaR calculations. Riskfolio-Lib and PyPortfolioOpt
+    both require careful solver selection.
+  project_source: finance-bp-117--Riskfolio-Lib, finance-bp-093--PyPortfolioOpt
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+cross_project_wisdom:
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-001
+  source_project: finance-bp-066--wealthbot, finance-bp-082--stock-screener, finance-bp-093--PyPortfolioOpt
+  pattern_name: Defensive zero-division guards with explicit handling
+  description: Always guard division operations with explicit zero-value checks before executing. In price ratio calculations,
+    filter out securities where old_price is zero before calling getPricesDiff. In composite score calculations, guard against
+    total_weight of zero and return 0.0 for empty input lists. This prevents NaN/infinity propagation that corrupts downstream
+    calculations and crashes pipelines.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-002
+  source_project: finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  pattern_name: Covariance matrix positive-semidefiniteness verification
+  description: Always verify covariance matrix is positive-semidefinite before passing to CVXPY optimization. Apply eigenvalue
+    clipping if violated, as non-PSD matrices cause Cholesky decomposition failures. Both PyPortfolioOpt and Riskfolio-Lib
+    enforce this constraint to prevent optimizer from finding mathematically invalid solutions or crashing entirely.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-003
+  source_project: finance-bp-068--xalpha, finance-bp-106--pyfolio-reloaded, finance-bp-107--empyrical-reloaded
+  pattern_name: Geometric compounding for cumulative returns
+  description: Compute cumulative returns using geometric compounding via cumprod(1 + returns), never arithmetic cumulation
+    via cumsum. Arithmetic cumulative sum overstates gains and understates losses, causing cumulative returns to diverge significantly
+    from actual portfolio performance over volatile periods. This principle applies to total return index construction and
+    any cumulative performance calculation.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-004
+  source_project: finance-bp-108--finmarketpy, finance-bp-106--pyfolio-reloaded
+  pattern_name: Temporal shift enforcement to prevent look-ahead bias
+  description: Enforce proper temporal shifting in signal generation and position calculations. Use shift(-1) for exit signals
+    to prevent look-ahead bias, and shift(1) when estimating intraday positions from EOD data. Forward-fill carry data and
+    backward-fill only old data gaps, never forward-fill spot prices. Violations cause live trading returns to diverge from
+    backtested results.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-005
+  source_project: finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  pattern_name: DCP-compliant convex optimization construction
+  description: Use only DCP-compliant convex objectives and constraints in CVXPY. Provide constraints as callable functions
+    accepting weight variables, use valid bounds formats matching n_assets length, and verify target parameters (volatility,
+    return) are within feasible ranges. Non-convex or infeasible problems fail with DCPError or OptimizationError, preventing
+    optimization entirely.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-006
+  source_project: finance-bp-107--empyrical-reloaded, finance-bp-118--FinanceToolkit
+  pattern_name: Correct Sharpe ratio formula with risk-free rate subtraction
+  description: Calculate Sharpe ratio using (mean returns - risk_free) / std(returns) * sqrt(annualization) with sample standard
+    deviation (ddof=1). Subtract risk-free rate from asset returns before dividing by volatility. Incorrect Sharpe ratio calculation
+    produces misleading risk-adjusted return estimates, causing poor investment decisions based on faulty performance attribution.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-007
+  source_project: finance-bp-068--xalpha, finance-bp-066--wealthbot
+  pattern_name: Immutable FIFO position tracking with chronological ordering
+  description: Maintain FIFO position tracking with strictly increasing date order for position entries. Use copy() function
+    to create independent copies before mutating remtable to avoid side effects. Enforce chronological ordering in sell operations
+    to ensure correct cost basis and holding period calculation, particularly important for funds with tiered fees by holding
+    period.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-008
+  source_project: finance-bp-082--stock-screener, finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  pattern_name: Validation at system boundaries with descriptive errors
+  description: Enforce validation at system boundaries with descriptive error messages. Validate expected returns matches
+    covariance matrix dimensions, score values are within [0, 100], confidence values within [0, 1], and required DataFrame
+    columns are present. Invalid inputs should raise ValueError with descriptive messages listing valid options to prevent
+    silent failures or corrupted calculations.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-009
+  source_project: finance-bp-068--xalpha, finance-bp-107--empyrical-reloaded
+  pattern_name: Decimal rounding for monetary calculations
+  description: Use Decimal with explicit rounding (myround) for each monetary calculation to avoid floating-point errors that
+    cause share miscalculation and incorrect cost basis. This prevents rounding errors from propagating to XIRR and portfolio
+    valuation calculations. Direct floating-point operations in financial calculations accumulate errors that become material
+    over many transactions.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-010
+  source_project: finance-bp-106--pyfolio-reloaded, finance-bp-068--xalpha
+  pattern_name: Cash flow sign convention enforcement
+  description: Mark cash outflows as negative and cash inflows as positive in cftable. Incorrect cash flow signs cause NPV
+    calculation to invert, producing negative returns for profitable trades and vice versa. Verify sum of round trip PnLs
+    equals total realized transaction dollars to catch sign convention errors before they corrupt performance attribution.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: finmarketpy_examples/finmarketpy_notebooks/arcticdb_example.ipynb
+  business_problem: Provides persistent storage for high-frequency tick market data using ArcticDB, supporting both local
+    LMDB and S3 cloud storage backends for efficient time series data management.
+  intent_keywords:
+  - arcticdb
+  - tick data storage
+  - time series database
+  - lmdb
+  - market data persistence
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+- kuc_id: KUC-102
+  source_file: finmarketpy_examples/finmarketpy_notebooks/backtest_example.ipynb
+  business_problem: Enables historical backtesting of FX trading strategies using G10 currency pairs with technical indicator-based
+    signal generation to evaluate strategy performance.
+  intent_keywords:
+  - backtest
+  - fx trading
+  - g10 currency
+  - technical indicators
+  - strategy testing
+  stage: backtesting
+  data_domain: trading_data
+  type: trading_strategy
+- kuc_id: KUC-103
+  source_file: finmarketpy_examples/finmarketpy_notebooks/market_data_example.ipynb
+  business_problem: Fetches economic and financial market data from external vendors like Quandl, demonstrating how to request
+    and cache market data with specific fields and date ranges.
+  intent_keywords:
+  - market data
+  - quandl
+  - fetch data
+  - vendor data
+  - interest rates
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+- kuc_id: KUC-104
+  source_file: finmarketpy_examples/finmarketpy_notebooks/s3_bucket_example.ipynb
+  business_problem: Demonstrates writing and reading tick market data to/from AWS S3 cloud storage using Parquet format for
+    efficient compression and retrieval of historical FX tick data.
+  intent_keywords:
+  - s3 storage
+  - aws
+  - parquet
+  - cloud storage
+  - tick data
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+component_capability_map:
+  project: finance-bp-108--finmarketpy
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 6
+    total_classes: 33
+    total_functions: 0
+    total_stages: 6
+  modules:
+    market_data_collection:
+      class_count: 4
+      stage_id: data_collection
+      stage_order: 1
+      responsibility: Fetches market data from external vendors (Bloomberg, FRED, Quandl) via findatapy MarketDataRequest
+        abstraction layer. Provides raw time series for downstream processing, abstracting vendor-specific ticker formats
+        from strategy logic.
+      classes:
+      - name: MarketDataRequest.__init__
+        file: market_data_collection/marketdatarequest-init.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Market.fetch_market_data
+        file: market_data_collection/market-fetch-market-data.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: SpeedCache.generate_key
+        file: market_data_collection/speedcache-generate-key.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: data_source
+        file: market_data_collection/data-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    technical_indicator_&_signal_generation:
+      class_count: 5
+      stage_id: signal_generation
+      stage_order: 2
+      responsibility: Computes technical indicators (SMA, EMA, RSI, Bollinger Bands) and converts them to discrete +1/-1 trading
+        signals. Acts as the core alpha generation engine, transforming raw price data into actionable directional signals.
+      classes:
+      - name: TechIndicator.create_tech_ind
+        file: technical_indicator_&_signal_generation/techindicator-create-tech-ind.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: TechParams.__init__
+        file: technical_indicator_&_signal_generation/techparams-init.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: EventsFactory.create_event_signal
+        file: technical_indicator_&_signal_generation/eventsfactory-create-event-signal.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: indicator_type
+        file: technical_indicator_&_signal_generation/indicator-type.py
+        line: 0
+        kind: replaceable_point
+      - name: signal_direction_filter
+        file: technical_indicator_&_signal_generation/signal-direction-filter.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    total_return_index_construction:
+      class_count: 6
+      stage_id: curve_construction
+      stage_order: 3
+      responsibility: Builds continuous time series of total return indices for FX spot, forwards, and options by incorporating
+        carry/roll costs and handling rolling around contract expiry dates. Provides the asset return stream for P&L calculation.
+      classes:
+      - name: FXSpotCurve.construct_total_returns_index
+        file: total_return_index_construction/fxspotcurve-construct-total-returns-inde.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FXForwardsCurve.roll_contracts
+        file: total_return_index_construction/fxforwardscurve-roll-contracts.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FXOptionsCurve.construct_tri
+        file: total_return_index_construction/fxoptionscurve-construct-tri.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: AbstractCurve.generate_key
+        file: total_return_index_construction/abstractcurve-generate-key.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: roll_event
+        file: total_return_index_construction/roll-event.py
+        line: 0
+        kind: replaceable_point
+      - name: construct_via_currency
+        file: total_return_index_construction/construct-via-currency.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    fx_volatility_surface_&_pricing:
+      class_count: 6
+      stage_id: volatility_pricing
+      stage_order: 4
+      responsibility: Builds interpolated FX volatility surface from market quotes (ATM vol, 25d/10d risk reversals/strangles).
+        Prices vanilla FX options using FinancePy. Computes realized volatility and volatility risk premium for vol-targeting
+        adjustments.
+      classes:
+      - name: FXVolSurface.build_vol_surface
+        file: fx_volatility_surface_&_pricing/fxvolsurface-build-vol-surface.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FXOptionsPricer.price_option
+        file: fx_volatility_surface_&_pricing/fxoptionspricer-price-option.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FXForwardsPricer.price_odd_date
+        file: fx_volatility_surface_&_pricing/fxforwardspricer-price-odd-date.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: VolStats.calculate
+        file: fx_volatility_surface_&_pricing/volstats-calculate.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: vol_function_type
+        file: fx_volatility_surface_&_pricing/vol-function-type.py
+        line: 0
+        kind: replaceable_point
+      - name: pricing_engine
+        file: fx_volatility_surface_&_pricing/pricing-engine.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    strategy_backtesting_engine:
+      class_count: 7
+      stage_id: backtesting
+      stage_order: 5
+      responsibility: Combines signals with asset returns to compute P&L. Applies volatility targeting, position limits, and
+        transaction costs. Aggregates into portfolio returns with exposure tracking and leverage management. Core engine for
+        strategy evaluation.
+      classes:
+      - name: Backtest.calculate_trading_PnL
+        file: strategy_backtesting_engine/backtest-calculate-trading-pnl.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: TradingModel.construct_strategy
+        file: strategy_backtesting_engine/tradingmodel-construct-strategy.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: PortfolioWeightConstruction.optimize_portfolio_weights
+        file: strategy_backtesting_engine/portfolioweightconstruction-optimize-por.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: RiskEngine.calculate_leverage_factor
+        file: strategy_backtesting_engine/riskengine-calculate-leverage-factor.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: portfolio_combination
+        file: strategy_backtesting_engine/portfolio-combination.py
+        line: 0
+        kind: replaceable_point
+      - name: signal_delay
+        file: strategy_backtesting_engine/signal-delay.py
+        line: 0
+        kind: replaceable_point
+      - name: portfolio_vol_adjust
+        file: strategy_backtesting_engine/portfolio-vol-adjust.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 7
+    trade_analysis_&_reporting:
+      class_count: 5
+      stage_id: analysis_reporting
+      stage_order: 6
+      responsibility: Post-backtest analysis including return statistics, sensitivity analysis to parameters and transaction
+        costs, day-of-month effects, and comparison across multiple models. Transforms raw P&L into actionable insights.
+      classes:
+      - name: TradeAnalysis.analyse_strategy
+        file: trade_analysis_&_reporting/tradeanalysis-analyse-strategy.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: BacktestComparison.compare
+        file: trade_analysis_&_reporting/backtestcomparison-compare.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Report.generate
+        file: trade_analysis_&_reporting/report-generate.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Seasonality.detect
+        file: trade_analysis_&_reporting/seasonality-detect.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: analysis_engine
+        file: trade_analysis_&_reporting/analysis-engine.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.32
+    evidence_invalid: 51
+    evidence_verified: 24
+    evidence_auto_fixed: 0
+    audit_coverage: 60/60 (100%)
+    audit_pass_rate: 8/60 (13%)
+    audit_fail_total: 18
+    audit_finance_universal:
+      pass: 5
+      warn: 11
+      fail: 4
+    audit_subdomain_totals:
+      pass: 3
+      warn: 23
+      fail: 14
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-108. Evidence verify ratio
+    = 32.0% and audit fail total = 18. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-108-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: ArcticDB Tick Data Storage
+    positive_terms:
+    - arcticdb
+    - tick data storage
+    - time series database
+    - lmdb
+    - market data persistence
+    data_domain: market_data
+    negative_terms:
+    - backtest strategy
+    - screening
+    - live trading
+    - screening factors
+    - ml prediction
+    ambiguity_question: Are you looking to store and retrieve tick-level market data from a time series database, or are you
+      running a trading strategy or backtest?
+  - uc_id: UC-102
+    name: FX G10 Cross Backtesting
+    positive_terms:
+    - backtest
+    - fx trading
+    - g10 currency
+    - technical indicators
+    - strategy testing
+    data_domain: trading_data
+    negative_terms:
+    - arcticdb storage
+    - s3 bucket
+    - screening
+    - live trading
+    - data collection only
+    ambiguity_question: Do you want to test a trading strategy on historical FX data (backtesting), or do you need to just
+      fetch and store market data?
+  - uc_id: UC-103
+    name: Market Data Fetching from Vendors
+    positive_terms:
+    - market data
+    - quandl
+    - fetch data
+    - vendor data
+    - interest rates
+    data_domain: market_data
+    negative_terms:
+    - backtest
+    - strategy
+    - arcticdb
+    - s3 storage
+    - live trading
+    ambiguity_question: Are you trying to download market data from a vendor for analysis, or are you running a backtest or
+      trading strategy?
+  - uc_id: UC-104
+    name: S3 Cloud Storage for Tick Data
+    positive_terms:
+    - s3 storage
+    - aws
+    - parquet
+    - cloud storage
+    - tick data
+    data_domain: market_data
+    negative_terms:
+    - backtest strategy
+    - arcticdb
+    - quandl
+    - live trading
+    - screening
+    ambiguity_question: Do you need to store tick data in AWS S3 cloud storage, or are you running a trading strategy or backtest?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 82
+    fatal_constraints_count: 18
+    non_fatal_constraints_count: 132
+    use_cases_count: 4
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions:
+    - id: BD-001
+      type: B/DK
+      summary: Separate vendor tickers from internal tickers via MarketDataRequest
+    - id: BD-002
+      type: BA/DK
+      summary: Use 'close' as default field across each data sources
+    - id: BD-031
+      type: B/DK
+      summary: Left join with fill-down for asset-signal alignment
+    - id: BD-032
+      type: B/BA
+      summary: FFILL for carry/deposit data, not spot
+    - id: BD-GAP-001
+      type: B
+      summary: 'Missing: Train/test time split integrity'
+    - id: BD-GAP-002
+      type: B
+      summary: 'Missing: Immutable event log'
+    - id: BD-GAP-003
+      type: B
+      summary: 'Missing: Immutable event log'
+    - id: BD-GAP-004
+      type: B
+      summary: 'Missing: Default Definition & IFRS 9 Staging'
+    - id: BD-GAP-005
+      type: B
+      summary: 'Missing: Stress Test Macro Variables'
+    - id: BD-GAP-006
+      type: B
+      summary: 'Missing: Funds Transfer Pricing (FTP)'
+    - id: BD-GAP-007
+      type: B
+      summary: 'Missing: Cash Pooling Legal Structure'
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 31 source groups: analysis_reporting(5),
+        asset_selection(1), backtesting(7), carry_calculation(1), cost_modeling(1), curve_construction(6), and 25 more.'
+      key_decisions: 71 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-020
+      type: BA
+      summary: Output path defaults to 'output_data/YYYYMMDD' with timestamp
+    - id: BD-021
+      type: M
+      summary: PyFolio integration optional (try/except import)
+    - id: BD-052
+      type: B
+      summary: GraphicalLassoCV for covariance-based network learning
+    - id: BD-053
+      type: B/DK
+      summary: Affinity propagation for clustering assets in network
+    - id: BD-054
+      type: B
+      summary: Locally Linear Embedding for 2D network visualization
+    - id: BD-029
+      type: B
+      summary: G10 USD crosses basket for FX trend following
+    - id: BD-014
+      type: B/BA
+      summary: 10% vol target as default for both signal and portfolio
+    - id: BD-015
+      type: BA/DK
+      summary: 252 annualization factor for daily data
+    - id: BD-016
+      type: BA
+      summary: Max leverage capped at 5x for vol-targeted strategies
+    - id: BD-017
+      type: BA
+      summary: Signal delayed by 0 periods (trade same day as signal)
+    - id: BD-018
+      type: B/BA
+      summary: Position limits applied via element-wise clip adjustment
+    - id: BD-019
+      type: BA/DK
+      summary: Transaction costs in basis points (bp) not decimals
+    - id: BD-028
+      type: B/BA
+      summary: Only allow longs in EURUSD single-currency strategy
+    - id: BD-039
+      type: B/BA
+      summary: ON (overnight) tenor for spot carry calculation
+    - id: BD-023
+      type: B/BA
+      summary: Default spot transaction cost of 2.5 basis points
+    - id: BD-006
+      type: B/BA
+      summary: Depos tenor 'ON' (overnight) as default for spot curve
+    - id: BD-007
+      type: BA
+      summary: Multiplicative cum_index by default ('mult' not 'add')
+    - id: BD-008
+      type: BA/DK
+      summary: FX options roll on 'expiry-date' not month-end
+    - id: BD-009
+      type: BA/DK
+      summary: Construct crosses via 'no' (direct) or via domestic currency
+    - id: BD-027
+      type: B
+      summary: Rebalance frequency of 'BM' (business month end) for vol targeting
+    - id: BD-050
+      type: B/BA
+      summary: Portfolio combination default is None (equal weight)
+    - id: BD-040
+      type: B/BA
+      summary: 'Currencies with 365-day basis: AUD, CAD, GBP, NZD'
+    - id: BD-074
+      type: BA/M
+      summary: Cumulative index default 'mult' vs 'add' changes P&L scaling fundamentally
+    - id: BD-055
+      type: B/BA
+      summary: Event study uses NYC 10am cutoff for economic releases
+    - id: BD-030
+      type: B/BA
+      summary: Signal delay of 0 (same-day execution)
+    - id: BD-038
+      type: B/BA
+      summary: 1M tenor as default for options and forwards trading
+    - id: BD-071
+      type: RC
+      summary: Hardcoded 365-day count currencies affect ALL FX curve calculations
+    - id: BD-072
+      type: B
+      summary: Stop loss/take profit signals MUST be applied BEFORE portfolio weight optimization
+    - id: BD-075
+      type: B
+      summary: Signal delay via signal_delay shift MUST occur BEFORE non-trading day masking
+    - id: BD-073
+      type: BA/DK
+      summary: Transaction costs divided by 2 assumes symmetric round-trip costs (entry + exit)
+    - id: BD-059
+      type: B/BA
+      summary: Parallel backtesting with multiprocessing on Linux (8 threads)
+    - id: BD-060
+      type: B/BA
+      summary: Output calculation fields disabled by default for performance
+    - id: BD-033
+      type: B
+      summary: Numba JIT compilation for total return index calculation
+    - id: BD-049
+      type: B/BA
+      summary: Multiplicative cumulative index starting at 100
+    - id: BD-024
+      type: B
+      summary: Vol target of 10% annualised with 20-day lookback period
+    - id: BD-025
+      type: B/BA
+      summary: Maximum leverage of 5x for vol-adjusted signals
+    - id: BD-051
+      type: B/BA
+      summary: Position clip resample to BM (business month) by default
+    - id: BD-057
+      type: B
+      summary: Use expiry-date roll event for options strategy
+    - id: BD-058
+      type: B
+      summary: Roll 5 days before roll event
+    - id: BD-003
+      type: B/BA
+      summary: Signal uses +1 for buy/above, -1 for sell/below (not 1/0)
+    - id: BD-004
+      type: BA/DK
+      summary: fillna=True by default in TechParams
+    - id: BD-005
+      type: BA/DK
+      summary: Forward-fill signals on non-trading days (hold previous position)
+    - id: BD-022
+      type: B/BA
+      summary: SMA period of 200 for trend following FX strategy
+    - id: BD-044
+      type: B/BA
+      summary: Buy if spot above SMA, sell if below
+    - id: BD-045
+      type: B/BA
+      summary: First n-1 periods set to NaN for rolling indicators
+    - id: BD-046
+      type: B
+      summary: GMMA uses EMA spans [3,5,7,10,12,15] short and [30,35,40,45,50,60] long
+    - id: BD-047
+      type: B/BA
+      summary: RSI period of 14 for momentum calculation
+    - id: BD-048
+      type: B/BA
+      summary: ATR period of 14 for volatility-adjusted signals
+    - id: BD-062
+      type: B/BA
+      summary: Volatility-targeting via rolling realized vol with max leverage cap
+    - id: BD-065
+      type: B/BA
+      summary: Risk stop signals with stop-loss and take-profit levels
+    - id: BD-066
+      type: B/BA
+      summary: Position clipping to enforce net/total exposure limits
+    - id: BD-068
+      type: B/BA
+      summary: Black-Scholes model for FX vanilla option pricing
+    - id: BD-064
+      type: B
+      summary: FX implied vol surface interpolation with polynomial/Clark5 methods
+    - id: BD-069
+      type: T
+      summary: Rolling realized volatility with annualization factor
+    - id: BD-070
+      type: T
+      summary: Volatility risk premium as implied minus realized vol
+    - id: BD-063
+      type: B/DK
+      summary: Guppy Multiple Moving Average with 12 EMA components
+    - id: BD-067
+      type: B
+      summary: Graphical Lasso for sparse covariance estimation in network
+    - id: BD-026
+      type: B/BA
+      summary: Annualisation factor of 252 for daily data
+    - id: BD-041
+      type: B/BA
+      summary: Multiplier of sqrt(3) for Friday ON vol adjustment
+    - id: BD-056
+      type: B/BA
+      summary: Realised vol rolling window of tenor_days for daily data
+    - id: BD-042
+      type: B
+      summary: Weighted median model for implied vol addon estimation
+    - id: BD-043
+      type: B/BA
+      summary: Model window of 20 days for vol addon calculation
+    - id: BD-010
+      type: B/BA
+      summary: CLARK5 interpolation for vol surface by default
+    - id: BD-011
+      type: B/BA
+      summary: Fwd-delta-neutral-premium-adj ATM method
+    - id: BD-012
+      type: M/BA
+      summary: Nelder-Mead-Numba solver (faster but less accurate)
+    - id: BD-013
+      type: M
+      summary: Uses FinancePy externally for pricing engine
+    - id: BD-034
+      type: B
+      summary: CLARK5 interpolation for FX vol surface
+    - id: BD-035
+      type: B/BA
+      summary: Forward delta neutral premium adjusted for ATM method
+    - id: BD-036
+      type: B/BA
+      summary: Spot delta premium adjusted for delta quoting
+    - id: BD-037
+      type: B/DK
+      summary: Nelder-Mead Numba solver for vol surface calibration
+    - id: BD-061
+      type: B/BA
+      summary: Premium output in pct-for (base currency percentage)
+resources:
+  packages:
+  - name: blosc
+    version_pin: latest
+  - name: chartpy
+    version_pin: latest
+  - name: findatapy
+    version_pin: latest
+  - name: matplotlib
+    version_pin: latest
+  - name: numba
+    version_pin: latest
+  - name: numpy
+    version_pin: latest
+  - name: pandas
+    version_pin: latest
+  - name: scikit-learn
+    version_pin: latest
+  - name: seasonal
+    version_pin: latest
+  - name: financepy
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install blosc
+    - python3 -m pip install chartpy
+    - python3 -m pip install findatapy
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-008
+    when: When accessing Bloomberg Terminal for market data
+    action: Attempt to use Bloomberg Desktop API on non-Windows platforms
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: Bloomberg Terminal/DAPI is Windows-only; attempting to use it on Linux/Mac causes immediate failure with
+      cryptic errors
+    stage_ids:
+    - data_collection
+  - id: finance-C-011
+    when: When using finmarketpy for live trading decisions
+    action: Claim finmarketpy provides real-time trading signals or live execution capability
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: finmarketpy is a backtesting library; claiming live trading capability misleads users into making trading
+      decisions based on unverified backtest-only code
+    stage_ids:
+    - data_collection
+  - id: finance-C-012
+    when: When presenting backtest results
+    action: Present backtest returns as guaranteed future trading performance
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtest results reflect historical conditions and perfect execution assumptions; presenting them as future
+      guarantees leads to unexpected live trading losses
+    stage_ids:
+    - data_collection
+  - id: finance-C-016
+    when: When computing discrete trading signals from technical indicators
+    action: output exclusively +1 (long), -1 (short), or NaN (flat) values
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Signal values outside {+1, -1, NaN} will cause incorrect position sizing in the backtest engine, as the PnL
+      calculation at backtestengine.py:201-216 assumes symmetric long/short encoding
+    stage_ids:
+    - signal_generation
+  - id: finance-C-017
+    when: When implementing indicator-based signal generation
+    action: introduce inherent 1-period lag through rolling window or shift operations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Signals generated without lag will exhibit look-ahead bias, causing live trading returns to fall far below
+      backtested results because the strategy would have traded on information not yet available
+    stage_ids:
+    - signal_generation
+  - id: finance-C-022
+    when: When constructing signals from RSI indicator
+    action: use shift(-1) for RSI exit signals to prevent look-ahead bias
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using current-period RSI values for signal generation creates look-ahead bias, as the signal would fire based
+      on price movements that haven't occurred yet in the current period
+    stage_ids:
+    - signal_generation
+  - id: finance-C-029
+    when: When implementing total return index construction with multiplicative cumulation
+    action: Initialize TRI at base value 100 and compound returns forward using cumprod
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Additive cumulation (cumsum) allows negative cumulative returns to break the index chain, causing TRI values
+      to become meaningless for P&L calculation and potentially producing misleading backtest results
+    stage_ids:
+    - curve_construction
+  - id: finance-C-035
+    when: When handling missing deposit rate data at start of TRI series
+    action: Forward-fill carry data and backward-fill only old data gaps, never forward-fill spot prices
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Forward-filling spot prices creates look-ahead bias where future prices are used to calculate historical
+      returns, invalidating all TRI-based backtest results
+    stage_ids:
+    - curve_construction
+  - id: finance-C-046
+    when: When calculating option delta hedging P&L
+    action: Use previous period's delta for current period's spot return hedging
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using current delta with current spot return creates circular dependency where hedge ratio is set after price
+      is known, producing fictitious hedging profits
+    stage_ids:
+    - curve_construction
+  - id: finance-C-048
+    when: When computing cross-currency returns via intermediate currency
+    action: Subtract term currency returns from base currency returns (base_rets - terms_rets)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect sign in cross-currency return calculation inverts the strategy direction, causing long positions
+      to be treated as shorts and producing completely wrong P&L attribution
+    stage_ids:
+    - curve_construction
+  - id: finance-C-059
+    when: When pricing options on high-vol event dates
+    action: Build vol surface before extracting surface or pricing instruments
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Calling extract_vol_surface or price_instrument without prior build_vol_surface results in NoneType errors,
+      causing complete failure of option pricing pipeline
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-061
+    when: When processing vol surface quotes for JPY pairs
+    action: Apply divisor of 100 to JPY rates to convert from percentage to decimal
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: JPY market quotes are in percentage (e.g., 3.46%) while code expects decimal; omitting divisor produces 100x
+      wrong rates, corrupting discount curves and option prices
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-085
+    when: When outputting strategy comparison results
+    action: validate each models are TradingModel instances before plotting
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-TradingModel input causes AttributeError at runtime when plotting methods are called, blocking comparison
+      reports
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-089
+    when: When presenting backtest results to stakeholders
+    action: present simulated backtest returns as guaranteed future performance
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Misrepresenting backtest results as predictive leads to inappropriate strategy allocation, potentially causing
+      significant financial losses when live trading differs from historical simulation
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-102
+    when: When implementing signal generation logic for bidirectional trading strategies
+    action: Use +1 for buy/above-threshold signals and -1 for sell/below-threshold signals — do not use 1/0 binary encoding
+      which lacks directional information for short positions
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using 1/0 binary encoding causes undefined behavior at signal boundaries and eliminates the ability to represent
+      short positions, breaking long/short strategy symmetry and producing incorrect trading signals
+    derived_from_bd_id: BD-003
+  - id: finance-C-106
+    when: When implementing option pricing functionality in FX options trading
+    action: Verify FinancePy library is installed and accessible — the framework delegates each option pricing calculations
+      to FinancePy; without it, pricing functionality will fail
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Attempting to use option pricing without FinancePy causes import failures, breaking the entire options pricing
+      pipeline and preventing vol surface calibration and option valuation
+    derived_from_bd_id: BD-013
+  - id: finance-C-109
+    when: When implementing FX curve calculations for AUD, CAD, GBP, or NZD currencies
+    action: Apply ACT/365 (ACTual/365) day count convention for accruals and discounting on AUD, CAD, GBP, and NZD currencies
+      — do not use 30/360 or ACT/360
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Applying incorrect day count conventions violates market conventions and regulatory reporting requirements,
+      causing miscalculated funding costs and incorrect risk valuations that may constitute regulatory violations
+    derived_from_bd_id: BD-071
+  - id: finance-C-139
+    when: When validating Black-Scholes model inputs for FX vanilla option pricing
+    action: 'Verify that volatility inputs conform to Black-Scholes constant-vol assumption: volatility_std > 0.001 (0.1%),
+      volatility < 2.0 (200%), and volatility_surface_skew < 0.05 (5%) — inputs outside these bounds indicate smile dynamics
+      incompatible with the model'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Invalid volatility inputs cause Black-Scholes to produce nonsensical prices (near-zero or infinite values
+      when vol approaches zero or infinity), making all downstream Greeks and hedge ratios unreliable
+    derived_from_bd_id: BD-068
+  regular:
+  - id: finance-C-001
+    when: When implementing data collection for backtesting
+    action: Use 'close' field as the default trading field for price calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-'close' fields as default may cause incorrect backtest results, since close prices are most reliable
+      for end-of-day backtesting and strategies are typically designed around close-to-close returns
+    stage_ids:
+    - data_collection
+  - id: finance-C-002
+    when: When processing market data with non-trading days
+    action: Produce NaN values for missing data on non-trading days rather than raising errors
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Throwing errors on non-trading days will halt the entire backtest pipeline; NaN values allow the system to
+      continue and fill forward from the last valid price
+    stage_ids:
+    - data_collection
+  - id: finance-C-003
+    when: When creating DataFrame output from market data collection
+    action: Verify returned DataFrame has DateTimeIndex aligned to the requested date range
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-DatetimeIndex or misaligned index causes downstream indicator calculations and signal generation to fail
+      or produce incorrect results
+    stage_ids:
+    - data_collection
+  - id: finance-C-004
+    when: When collecting data from external market data vendors
+    action: Use MarketDataRequest abstraction to separate vendor-specific tickers from internal tickers
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mixing vendor tickers with internal logic creates tight coupling; switching vendors requires rewriting strategy
+      code instead of just updating ticker mappings
+    stage_ids:
+    - data_collection
+  - id: finance-C-005
+    when: When loading market data via TradingModel
+    action: Use the load_assets method as the sole data entry point for the TradingModel
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Direct access to market data bypassing load_assets bypasses data validation and standardization, causing
+      inconsistent behavior across strategies
+    stage_ids:
+    - data_collection
+  - id: finance-C-006
+    when: When fetching market data from external data sources
+    action: Implement fallback mechanism when data fetch returns None
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Network failures, API errors, or missing credentials cause fetch_market to return None; without fallback,
+      the entire backtest fails without generating any results
+    stage_ids:
+    - data_collection
+  - id: finance-C-007
+    when: When using external market data vendors
+    action: Assume real-time data availability from vendors that only provide delayed data
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Most vendors (FRED, Quandl, Yahoo Finance) provide delayed data; assuming real-time causes live trading strategies
+      to fail or trade on stale prices
+    stage_ids:
+    - data_collection
+  - id: finance-C-009
+    when: When downloading market data from paid data vendors
+    action: Configure API keys for FRED, Quandl, and other vendors requiring authentication
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Missing API keys cause authentication failures; data downloads fail and backtest cannot proceed
+    stage_ids:
+    - data_collection
+  - id: finance-C-010
+    when: When standardizing column names from different data vendors
+    action: Verify DataFrame columns match standardized names regardless of vendor source
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Bloomberg returns 'PX_LAST', FRED returns 'close'; if not normalized, downstream signal generation and P&L
+      calculations fail with KeyError
+    stage_ids:
+    - data_collection
+  - id: finance-C-013
+    when: When using parallel data fetching from external vendors
+    action: Use excessive parallel threads that trigger vendor rate limits
+    severity: medium
+    kind: operational_lesson
+    modality: must_not
+    consequence: Some data providers limit concurrent requests; excessive threads cause HTTP 429 errors, data fetch failures,
+      or temporary API key suspension
+    stage_ids:
+    - data_collection
+  - id: finance-C-014
+    when: When configuring market data collection for backtesting
+    action: Set signal_delay parameter to prevent look-ahead bias in strategy signals
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Signals generated at end-of-day using same-day close prices cannot be executed; without signal_delay, backtest
+      assumes impossible execution timing
+    stage_ids:
+    - data_collection
+  - id: finance-C-015
+    when: When running multiple parallel backtests with market data fetching
+    action: Use Redis caching to reduce redundant API calls to data vendors
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Repeated data fetches for same tickers consume API quota, slow down backtesting, and may hit rate limits
+    stage_ids:
+    - data_collection
+  - id: finance-C-018
+    when: When initializing TechParams for signal generation
+    action: verify indicator warmup periods produce NaN signals for the initial window
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Signals generated before the warmup period completes will use incomplete indicator calculations, producing
+      unreliable trading signals that can cause significant financial losses
+    stage_ids:
+    - signal_generation
+  - id: finance-C-019
+    when: When processing signals across non-trading days
+    action: forward-fill the previous valid signal to maintain position continuity
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without forward-fill, signals on non-trading days will be NaN, causing unintended position flat states that
+      break position continuity and distort backtested PnL calculations
+    stage_ids:
+    - signal_generation
+  - id: finance-C-020
+    when: When configuring signal direction filters
+    action: simultaneously set both only_allow_longs and only_allow_shorts to True
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Setting both direction filters simultaneously results in all signals being zeroed out, as each filter eliminates
+      the other's signals, producing a dead strategy with zero returns
+    stage_ids:
+    - signal_generation
+  - id: finance-C-021
+    when: When creating technical indicators with fillna enabled
+    action: forward-fill missing prices before computing indicators to verify continuous signals
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Computing indicators without forward-filling prices creates NaN gaps that propagate through rolling calculations,
+      causing discontinuous indicator values and erratic signal generation
+    stage_ids:
+    - signal_generation
+  - id: finance-C-023
+    when: When backtesting strategies with technical indicators
+    action: claim that backtest returns equal expected live trading returns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting backtest results as live trading proof violates the fundamental limitation that backtests cannot
+      account for slippage, liquidity constraints, and execution delays present in live markets
+    stage_ids:
+    - signal_generation
+  - id: finance-C-024
+    when: When configuring signal_delay parameter
+    action: apply signal shift in the backtest engine after signal generation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Skipping signal_delay application causes signals to execute on the same bar as indicator calculation, creating
+      look-ahead bias in the backtest that won't occur in live trading
+    stage_ids:
+    - signal_generation
+  - id: finance-C-025
+    when: When computing Bollinger Bands signals
+    action: forward-fill flat signals between band touches to maintain position state
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without forward-fill, Bollinger Band signals become NaN between touch events, causing unintended position
+      flat states that break the trend-following logic
+    stage_ids:
+    - signal_generation
+  - id: finance-C-026
+    when: When constructing signal DataFrames
+    action: preserve the original price DataFrame index (DateTimeIndex) for temporal alignment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using a different index causes misaligned signal-to-price multiplication in the backtest, producing NaN PnL
+      values because signal and price timestamps don't match
+    stage_ids:
+    - signal_generation
+  - id: finance-C-027
+    when: When implementing custom technical indicators
+    action: override create_custom_tech_ind method and call parent implementation for standard indicators
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Custom indicators that don't follow the _signal/_techind naming convention will break the TradingModel.construct_strategy
+      call chain, causing PnL calculations to fail
+    stage_ids:
+    - signal_generation
+  - id: finance-C-028
+    when: When using volatility-adjusted signals
+    action: claim real-time signal generation capability when using polling-based data fetching
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Polling-based data fetching cannot provide true real-time signals; claiming real-time capability misleads
+      users about the system's latency characteristics
+    stage_ids:
+    - signal_generation
+  - id: finance-C-030
+    when: When constructing total return indices for FX spot
+    action: Use overnight deposit tenor (ON) for carry calculation to represent true daily carry cost
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using longer deposit tenors (1M, 3M) misrepresents daily carry cost, causing TRI to over/understate true
+      overnight FX position returns and leading to incorrect strategy P&L attribution
+    stage_ids:
+    - curve_construction
+  - id: finance-C-031
+    when: When calculating carry accrual for TRI construction
+    action: Apply correct day count convention based on currency (365 for AUD/CAD/GBP/NZD, 360 for others)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect day count causes carry returns to be miscalculated by approximately 1.4%, leading to systematic
+      TRI drift from true values and invalid strategy performance comparison
+    stage_ids:
+    - curve_construction
+  - id: finance-C-032
+    when: When rolling FX forwards contracts in TRI construction
+    action: Use month-end as roll trigger with 5 business days before for 1M contracts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Rolling on incorrect dates causes exposure to expiring contracts, resulting in gap risk at delivery and misalignment
+      with broker execution dates
+    stage_ids:
+    - curve_construction
+  - id: finance-C-033
+    when: When rolling FX options contracts in TRI construction
+    action: Use expiry-date as roll trigger to avoid gamma exposure near expiration
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Rolling at month-end instead of expiry-date creates positions with high gamma near expiration, causing delta
+      hedging costs to spike and TRI to overstate option strategy returns
+    stage_ids:
+    - curve_construction
+  - id: finance-C-034
+    when: When joining TRI series with different currency pairs
+    action: Use outer join to preserve each dates across currency pairs
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inner join drops dates where only some pairs have data, creating gaps in multi-currency portfolio TRI and
+      causing signal generation to skip valid trading days
+    stage_ids:
+    - curve_construction
+  - id: finance-C-036
+    when: When constructing cross rates via intermediate currency
+    action: Handle USDUSD special case by returning zero returns and apply correct sign for base/terms currency
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing USDUSD special case causes division by zero or incorrect cross-rate calculation, producing NaN or
+      wrong TRI values for pairs involving the reference currency
+    stage_ids:
+    - curve_construction
+  - id: finance-C-037
+    when: When processing FX forward tickers for TRI construction
+    action: Convert ticker notation to market convention before processing (e.g., USDEUR -> EURUSD)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Processing non-standard ticker notation causes incorrect delivery date calculation and wrong roll timing,
+      leading to positions held past expiration
+    stage_ids:
+    - curve_construction
+  - id: finance-C-038
+    when: When calculating time differences for daily carry accrual
+    action: Floor time difference to whole days and set first value to zero
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using sub-daily time differences causes incorrect carry scaling for intraday data, making TRI inconsistent
+      between daily and intraday backtests
+    stage_ids:
+    - curve_construction
+  - id: finance-C-039
+    when: When marking FX forwards to market at roll date
+    action: Use previous contract's interpolated forward price for MTM calculation on roll dates
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using current (new) contract price for MTM at roll date causes artificial return spike/discontinuity, inflating
+      TRI and misrepresenting actual P&L at roll
+    stage_ids:
+    - curve_construction
+  - id: finance-C-040
+    when: When working with NDF currencies (e.g., BRL, INR, KRW)
+    action: Forward-fill missing deposit data since NDF fixings may have gaps
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without forward-filling NDF deposit data, TRI construction fails on business days without fixing, creating
+      NaN carry values and breaking the cumulative index chain
+    stage_ids:
+    - curve_construction
+  - id: finance-C-041
+    when: When aligning deposit data with spot prices
+    action: Join carry with spot using inner join to verify carry only exists when spot is available
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Left join with spot causes carry values to exist on days without spot data, leading to carry accrual without
+      price movement and TRI overstatement
+    stage_ids:
+    - curve_construction
+  - id: finance-C-042
+    when: When handling first return in TRI series
+    action: Set first return to zero (0) rather than leaving as NaN from shift operation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: NaN first return propagates through cumprod, corrupting entire TRI series and causing downstream signal generation
+      and P&L calculation failures
+    stage_ids:
+    - curve_construction
+  - id: finance-C-043
+    when: When implementing FX options TRI with delta hedging
+    action: Price exiting option using previous day's strike and expiry to avoid look-ahead bias
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using current contract parameters for MTM on exit date reveals future information, creating artificial hedging
+      profits/losses not achievable in live trading
+    stage_ids:
+    - curve_construction
+  - id: finance-C-044
+    when: When using freeze_implied_vol for options pricing
+    action: Disable vol freezing unless testing sensitivity scenarios
+    severity: medium
+    kind: operational_lesson
+    modality: should_not
+    consequence: Freezing implied vol causes TRI to ignore vol surface evolution, misrepresenting realized option P&L and
+      creating discrepancies with live trading where vol changes affect delta
+    stage_ids:
+    - curve_construction
+  - id: finance-C-045
+    when: When comparing constructed TRI with external benchmarks (Bloomberg)
+    action: Accept approximate tracking rather than exact match due to timing and convention differences
+    severity: medium
+    kind: claim_boundary
+    modality: must
+    consequence: Presenting constructed TRI as identical to Bloomberg indices overstates accuracy; timing differences (NYC
+      vs. LDN cut) and convention handling create measurable tracking error
+    stage_ids:
+    - curve_construction
+  - id: finance-C-047
+    when: When handling FX option expiry dates for backtest
+    action: Adjust expiry to nearest available market data date if expiry falls on non-trading day
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using calendar expiry date when market data doesn't exist causes NaN pricing and TRI breaks at expiry, leading
+      to missing P&L around roll dates
+    stage_ids:
+    - curve_construction
+  - id: finance-C-049
+    when: When building an FX volatility surface from market quotes
+    action: Use CLARK5 interpolation function type for smoother vol surface without arbitrage
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using BBG interpolation may produce jagged vol surfaces with potential arbitrage violations, causing incorrect
+      option pricing and PnL calculation errors
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-050
+    when: When quoting ATM volatility for FX options
+    action: Use fwd-delta-neutral-premium-adj ATM method to account for premium difference between calls/puts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using spot or forward ATM methods without premium adjustment will misalign delta-neutral strikes, causing
+      systematic pricing errors in FX options strategies
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-051
+    when: When interpolating volatility surface across tenors
+    action: Interpolate linearly in variance space (sigma^2 * T), not in vol space
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Linear interpolation in vol space creates biased vol surface, causing material pricing errors especially
+      for long-dated options where variance interpolation is mathematically correct
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-052
+    when: When calculating volatility risk premium
+    action: Align implied vol and realized vol periods using BDay offset, not simple shift
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using pandas shift() for VRP calculation introduces look-ahead bias, causing VRP estimates to include future
+      information and misrepresent true vol risk premium
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-053
+    when: When building vol surface for unstable market periods
+    action: Increase solver tolerance to fill sparse vol surface areas during high-vol events
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: During market stress (Brexit, elections), default tolerance 1e-8 causes solver non-convergence, leaving gaps
+      in vol surface that corrupt downstream option pricing
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-054
+    when: When calculating realized volatility
+    action: Strip time component from datetime index before returning realized vol series
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Realized vol series retains timestamp information causing join failures with daily implied vol data, producing
+      NaN VRP values and broken downstream calculations
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-055
+    when: When using FX vol surface for option pricing
+    action: Install FinancePy as optional dependency separately from finmarketpy
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: FinancePy has strict version dependencies (llvmlite) that conflict with other libraries; installing via pip
+      with --no-deps prevents dependency conflicts that break vol surface construction
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-056
+    when: When choosing a volatility surface interpolation method
+    action: Use SABR model for production vol surface fitting
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: SABR volatility function type is not fully implemented in current FinancePy version, causing unpredictable
+      behavior and potential crashes during build_vol_surface calls
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-057
+    when: When calibrating FX vol surface with nelder-mead-numba solver
+    action: Accept accuracy-speed tradeoff; numba version is faster but less precise
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Using nelder-mead-numba for real-time pricing gives speed but introduces calibration imprecision that accumulates
+      across vol surface strikes, causing systematic mispricing
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-058
+    when: When running FX vol surface code with Numba JIT compilation
+    action: Delete __pycache__ folders if Numba frontend errors occur
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Stale Numba cache causes 'Failed in nopython mode pipeline' errors that prevent vol surface construction,
+      blocking all option pricing functionality
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-060
+    when: When calling calculate_vol_for_strike_expiry
+    action: Pass either expiry_date or tenor parameter for vol interpolation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Passing neither expiry_date nor tenor returns None, causing downstream NaN vol values that corrupt option
+      pricing calculations
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-062
+    when: When working with 10d delta strikes in vol surface
+    action: Expect full 10d strike interpolation support in price_instrument
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: 10d OTM strike pricing has incomplete implementation (TODO comment), causing incorrect strikes to be used
+      for 10d butterfly and strangle constructions
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-063
+    when: When comparing implied vol with realized vol
+    action: Present VRP as guaranteed predictor of future realized vol
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Vol risk premium is a statistical relationship that frequently breaks down during market regime changes,
+      and presenting it as predictive causes overconfident risk estimates
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-064
+    when: When computing vol surface across multiple dates
+    action: Use extract_vol_surface_across_dates for batch processing, not individual calls
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Building vol surface individually for each date without the batch method causes redundant computation and
+      potential inconsistent extreme value tracking across the surface
+    stage_ids:
+    - volatility_pricing
+  - id: finance-C-065
+    when: When implementing volatility targeting with rolling window periods
+    action: account for NaN values in the first N periods before the rolling window completes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Volatility-adjusted leverage will be NaN for the initial periods equal to the rolling window (vol_periods),
+      causing backtest P&L series to contain NaN values for warmup periods and potentially causing downstream calculation
+      errors in portfolio aggregation
+    stage_ids:
+    - backtesting
+  - id: finance-C-066
+    when: When calculating transaction costs from basis points input
+    action: convert bp to decimal by dividing by (2.0 * 100.0 * 100.0) for spot_tc_bp and by (100.0 * 100.0) for spot_rc_bp
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Transaction costs will be incorrectly applied (off by factor of 10000), severely overstating or understating
+      actual trading costs and producing misleading backtest P&L results that do not reflect realistic transaction cost drag
+    stage_ids:
+    - backtesting
+  - id: finance-C-067
+    when: When configuring annualization factor for daily return statistics
+    action: use 252 as the annualization factor for daily data to match standard trading days in a year
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Annualized return and volatility statistics will be overstated if using 365 (natural days) or understated
+      if using other values, leading to incorrect Sharpe ratios and risk metrics that mischaracterize strategy performance
+    stage_ids:
+    - backtesting
+  - id: finance-C-068
+    when: When aligning signals with asset returns for P&L calculation
+    action: apply forward-fill (ffill) to asset holidays and signal gaps to carry forward the last valid value
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: P&L will contain NaN values on asset holidays even though the signal remains valid, causing discontinuities
+      in cumulative returns and incorrect trade counts when assets resume trading after gaps
+    stage_ids:
+    - backtesting
+  - id: finance-C-069
+    when: When applying stop loss and take profit risk management
+    action: apply stop loss/take profit signals BEFORE portfolio weight optimization and volatility targeting
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Risk stops applied after portfolio optimization will cause incorrect signal cascades where leverage adjustments
+      trigger unnecessary stops, distorting the true risk-adjusted returns and overstating the frequency of stop-out events
+    stage_ids:
+    - backtesting
+  - id: finance-C-070
+    when: When implementing signal delay for execution timing
+    action: apply signal_delay via pandas shift operation to delay signal execution by the configured number of periods
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Backtest will exhibit look-ahead bias if signal_delay=0 is used with same-day execution assumption, causing
+      P&L alignment errors when the strategy is deployed live with next-day execution, overstating historical returns
+    stage_ids:
+    - backtesting
+  - id: finance-C-071
+    when: When calculating trade counts from signal changes
+    action: compute trade counts as the absolute difference of signal values using shift(1) operation
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Trade counts will not match actual signal changes if computed differently, causing discrepancies between
+      reported turnover and P&L attribution analysis, making it impossible to accurately measure transaction cost drag
+    stage_ids:
+    - backtesting
+  - id: finance-C-072
+    when: When applying position limits via element-wise clip adjustment
+    action: scale positions proportionally using the position_clip_adjustment to respect net and total exposure limits
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Portfolio will exceed configured position limits causing unintended concentrated exposure, potentially leading
+      to significant losses during adverse market movements when leverage exceeds risk parameters
+    stage_ids:
+    - backtesting
+  - id: finance-C-073
+    when: When configuring maximum leverage for volatility-targeted strategies
+    action: set max_leverage to 5.0 as the conservative default to prevent runaway leverage in volatile periods
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Unlimited leverage during low-volatility periods will create excessive position sizes that amplify losses
+      during volatility spikes, potentially causing margin calls and forced liquidation at the worst possible time
+    stage_ids:
+    - backtesting
+  - id: finance-C-074
+    when: When using vol targeting without sufficient historical data
+    action: verify the backtest period contains at least vol_periods observations before computing meaningful leverage
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Leverage calculation will produce unreliable or extreme values due to insufficient sample for volatility
+      estimation, causing unstable position sizing that either under-allocates capital or generates excessive leverage
+    stage_ids:
+    - backtesting
+  - id: finance-C-075
+    when: When applying portfolio-level volatility targeting
+    action: apply portfolio leverage AFTER individual signal leverage to correctly scale the combined position
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Double application or incorrect ordering of leverage will distort portfolio-level risk controls, causing
+      either excessive or insufficient total exposure compared to the intended vol target
+    stage_ids:
+    - backtesting
+  - id: finance-C-076
+    when: When interpreting backtest results as indicators of live trading performance
+    action: present backtest returns as guaranteed expected live trading returns without specified caveats
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtest results include look-ahead bias, ignore slippage, and do not account for execution variability,
+      leading to unrealistic expectations that can cause poor risk management decisions and significant losses when deploying
+      strategies live
+    stage_ids:
+    - backtesting
+  - id: finance-C-077
+    when: When using finmarketpy backtest results for regulatory or compliance reporting
+    action: represent simulated backtest P&L as proof of actual trading performance without independent verification
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting backtest-only results as verified trading records violates compliance requirements and can constitute
+      misleading marketing, exposing the practitioner to regulatory action and reputational damage
+    stage_ids:
+    - backtesting
+  - id: finance-C-078
+    when: When comparing strategies with different trade frequencies
+    action: account for transaction costs proportionally to trade frequency when evaluating strategy profitability
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: High-frequency signal changes will incur disproportionate transaction costs that may exceed gross returns,
+      causing strategies to appear profitable in backtest but lose money in live trading due to cost drag
+    stage_ids:
+    - backtesting
+  - id: finance-C-079
+    when: When configuring the portfolio combination method
+    action: verify portfolio_combination method is explicitly set to 'sum', 'mean', or 'weighted' to avoid implicit equal-weighting
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Implicit mean weighting will silently combine signals with potentially unintended equal contribution, distorting
+      risk-adjusted returns and causing position sizing that doesn't match the intended portfolio construction methodology
+    stage_ids:
+    - backtesting
+  - id: finance-C-080
+    when: When implementing sensitivity analysis with parameter sweeps
+    action: reset trading model parameters after completing the sweep
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without parameter reset, subsequent analyses use incorrectly overridden parameter values, causing corrupted
+      P&L reports and invalid Sharpe ratios across model runs
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-081
+    when: When running strategy return statistics with finmarketpy engine
+    action: save and restore SCALE_FACTOR after report generation
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: SCALE_FACTOR remains at 0.75 for subsequent plots, causing incorrectly scaled charts and potentially misleading
+      visual representation of performance metrics
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-082
+    when: When importing TradeAnalysis for PyFolio-based reporting
+    action: assume PyFolio is always available in the environment
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Code crashes with ImportError when PyFolio is not installed, preventing report generation entirely
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-083
+    when: When configuring chart rendering engine
+    action: specify a valid chart engine from the supported set
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Invalid engine name causes chart generation failure, blocking all plot outputs including Sharpe ratios and
+      drawdown visualizations
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-084
+    when: When conducting parameter sensitivity analysis
+    action: verify parameter_list matches pretty_portfolio_names in length
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Index mismatch causes IndexError during sensitivity loop iteration, causing analysis to fail mid-sweep and
+      produce incomplete CSV exports
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-086
+    when: When calculating Sharpe ratios from strategy returns
+    action: annualize returns using sqrt of annualization factor
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Misaligned annualization produces misleading Sharpe ratios that misrepresent strategy performance, leading
+      to incorrect investment decisions
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-087
+    when: When using parallel processing for sensitivity analysis
+    action: check platform-specific thread configuration before enabling
+    severity: medium
+    kind: resource_boundary
+    modality: should
+    consequence: Incorrect thread count for platform causes poor parallel performance or resource exhaustion, slowing down
+      parameter sweeps significantly
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-088
+    when: When generating drawdown metrics for reporting
+    action: compute drawdowns from cumulative returns series without look-ahead
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Drawdown calculation using future information produces artificially optimistic risk metrics, misrepresenting
+      actual historical drawdown exposure
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-090
+    when: When resampling time series for annualized statistics
+    action: align resample_ann_factor with actual data frequency
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Mismatched annualization factor produces incorrect annualized returns and Sharpe ratios, distorting strategy
+      comparison across different data frequencies
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-091
+    when: When exporting CSV data from sensitivity analysis
+    action: verify DUMP_PATH directory exists before writing
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Missing output directory causes FileNotFoundError, preventing CSV export of requested statistics and blocking
+      automated analysis pipelines
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-092
+    when: When computing Information Ratio for strategy comparison
+    action: use returns excess over benchmark, not absolute returns
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: IR calculation using absolute returns instead of excess returns misrepresents manager skill, leading to flawed
+      strategy selection decisions
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-093
+    when: When creating multi-model comparison plots
+    action: align strategy PnL time series by date before comparison
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Unaligned time series cause incorrect difference calculations in comparison plots, producing misleading relative
+      performance charts
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-094
+    when: When processing day-of-month seasonality analysis
+    action: resample to business days before calculating bus_day seasonality
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Calendar day resampling includes non-trading days, distorting day-of-month seasonality patterns and leading
+      to incorrect trading signal timing
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-095
+    when: When setting up report output path with timestamp
+    action: include execution timestamp in output directory name
+    severity: low
+    kind: operational_lesson
+    modality: should
+    consequence: Without timestamp, repeated runs overwrite previous analysis outputs, losing historical comparison data and
+      complicating audit trails
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-096
+    when: When running backtest analysis without NumPy float precision concerns
+    action: ignore floating-point precision in Sharpe ratio calculations
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Cumulative floating-point errors in long-running backtests distort final Sharpe ratio calculations, causing
+      subtle performance misrepresentation
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-097
+    when: When filtering return statistics by date range
+    action: apply plot_start and plot_finish filters after cumulative index calculation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Premature filtering before cumulative calculation produces incomplete equity curves with incorrect starting
+      values, misrepresenting historical performance
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-098
+    when: When calculating individual trade P&L from signals and returns
+    action: use signal changes to identify trade boundaries, not daily returns
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Trade identification using incorrect boundary markers splits trades at wrong points, producing inaccurate
+      individual trade statistics and misleading win/loss ratios
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-099
+    when: When claiming the system can analyze any trading strategy
+    action: overstate analysis capabilities without considering data quality requirements
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Analyzing strategies with insufficient historical data or missing price points produces unreliable Sharpe
+      ratios and drawdown metrics that appear statistically valid but lack sufficient sample size
+    stage_ids:
+    - analysis_reporting
+  - id: finance-C-101
+    when: When implementing position sizing logic in the vol-targeting system
+    action: Use vol_target=0.10 (10% annualized) and lookback_period=20 days as specified — these are the standard parameters
+      for risk normalization across currency pairs
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-standard vol target values changes position sizes proportionally, causing the strategy to either
+      under-risk or over-risk across currency pairs with different volatilities, leading to inconsistent risk-adjusted returns
+    derived_from_bd_id: BD-024
+  - id: finance-C-103
+    when: When implementing signal transitions between directional positions
+    action: Use explicit zero assignment for neutral signals — do not leave signal value undefined or rely on implicit zero-crossing
+      behavior during transitions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Leaving signal transitions undefined creates ambiguity that can introduce silent directional bias, causing
+      incorrect position assignments in backtesting and misalignment with live trading execution
+    derived_from_bd_id: BD-003
+  - id: finance-C-104
+    when: When constructing equity curve or cumulative return index in backtesting
+    action: Use multiplicative compounding mode (cum_index='mult') for cumulative index construction — this accurately represents
+      real trading where profits and losses are reinvested proportionally
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using additive cumulation mode produces negative index values and misrepresents portfolio growth, distorting
+      drawdown severity and return distribution in backtest results
+    derived_from_bd_id: BD-007
+  - id: finance-C-105
+    when: When configuring P&L scaling mode in backtestrequest
+    action: Use cum_index='mult' (multiplicative) mode — multiplicative compounding scales P&L geometrically and correctly
+      represents percentage returns with continuous compounding
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using additive ('add') mode treats returns as linear increments, misrepresenting drawdown severity and return
+      distribution, leading to incorrect risk assessment and strategy evaluation
+    derived_from_bd_id: BD-074
+  - id: finance-C-107
+    when: When generating portfolio analytics and tear sheets
+    action: Be aware that PyFolio integration is optional — the core backtesting engine functions without PyFolio, but advanced
+      analytics (tear sheets) will be unavailable if PyFolio is not installed
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Attempting to generate PyFolio tear sheets without installation raises errors, but the error is handled gracefully
+      and does not crash the backtesting engine
+    derived_from_bd_id: BD-021
+  - id: finance-C-108
+    when: When calibrating volatility surfaces for FX options pricing
+    action: Use Nelder-Mead optimization with Numba JIT compilation as the default solver — the Numba JIT acceleration is
+      essential for the speed/accuracy tradeoff; alternative solvers without JIT will be significantly slower
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using alternative solvers without Numba JIT causes calibration to run significantly slower, making real-time
+      vol surface updates infeasible for backtesting workflows
+    derived_from_bd_id: BD-012
+  - id: finance-C-110
+    when: When implementing rebalancing frequency logic for volatility targeting in backtesting
+    action: Use business month end (BM) rebalancing frequency aligned with data frequency — BM provides monthly calibration
+      for vol calculations without excessive transaction costs; weekly was rejected due to higher costs and quarterly was
+      rejected as too infrequent
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect rebalancing frequency (e.g., weekly or quarterly) desynchronizes position adjustments from
+      vol calculation periods, causing inaccurate volatility targeting and mis-sized positions in backtesting
+    derived_from_bd_id: BD-027
+  - id: finance-C-111
+    when: When selecting currency pairs for FX trend following strategies
+    action: Use G10 USD crosses as the FX universe (7-10 pairs) — G10 represents the most liquid FX universe with sufficient
+      volatility and data quality for trend following; EM currencies were rejected due to liquidity concerns
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-G10 currencies (e.g., EM crosses) may introduce liquidity risk with wider spreads and data gaps,
+      causing execution prices to deviate significantly from backtest assumptions
+    derived_from_bd_id: BD-029
+  - id: finance-C-112
+    when: When constructing spot curves for FX carry calculations
+    action: Use overnight (ON) deposit tenor as the default starting point for spot curve construction — ON deposits are the
+      most liquid tenor representing true overnight carry cost for position funding; override only for emerging market currencies
+      with illiquid ON markets
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using 1W or 1M deposit as default adds complexity and less liquidity to carry interpretation, causing carry
+      calculation errors that misrepresent true funding costs for FX positions
+    derived_from_bd_id: BD-006
+  - id: finance-C-113
+    when: When constructing volatility surfaces for FX options pricing
+    action: Use CLARK5 interpolation algorithm as the default vol surface interpolation method — CLARK5 provides smoother
+      interpolation avoiding wing oscillation artifacts compared to cubic spline; override only for exotic surfaces with discontinuities
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using cubic spline (BBG) interpolation introduces oscillation artifacts at the wings of the vol surface,
+      causing incorrect option pricing especially for deep ITM/OTM strikes
+    derived_from_bd_id: BD-010
+  - id: finance-C-114
+    when: When aligning asset price data with trading signals in backtesting
+    action: Use left join with forward-fill (fill direction='left') for asset-signal alignment — left join preserves asset
+      observations while forward-fill ensures alignment without introducing look-ahead bias; inner join drops assets without
+      signals and right join drops signal observations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using inner join drops assets without signals causing survivorship bias; using right join drops signal observations;
+      incorrect join type introduces data leakage or survivorship bias in backtest results
+    derived_from_bd_id: BD-031
+  - id: finance-C-115
+    when: When calibrating volatility surface parameters for FX options pricing
+    action: Use Nelder-Mead simplex solver for vol surface calibration — this derivative-free method handles noisy objective
+      functions from market quotes without requiring gradient computation; L-BFGS-B requires gradients and Levenberg-Marquardt
+      requires specific problem structure
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Gradient-based solvers may fail to converge on noisy vol surface calibration data, producing incorrect surface
+      parameters and systematic option pricing errors
+    derived_from_bd_id: BD-037
+  - id: finance-C-116
+    when: When configuring volatility targeting with maximum leverage limits in backtesting
+    action: Verify that signal_vol_max_leverage=5x is configured correctly for vol-targeted strategies — this 5x cap prevents
+      runaway leverage during high-volatility periods and reflects common regulatory limits; only override with explicit documentation
+      and regulatory compliance review
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without proper leverage caps, high-volatility periods trigger extreme position sizing that can exceed account
+      capacity and regulatory limits, causing catastrophic losses and compliance violations
+    derived_from_bd_id: BD-016
+  - id: finance-C-117
+    when: When implementing signal delay configuration for execution timing in backtesting
+    action: Verify that signal_delay=0 (same-bar execution) matches strategy timing assumptions — for close-to-close strategies
+      requiring end-of-day signal evaluation, set delay=1 to avoid same-bar look-ahead; high-frequency strategies may use
+      sub-day delays
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Same-bar execution (delay=0) may introduce subtle look-ahead bias if signal generation uses same-bar closing
+      prices, causing backtest results to appear more favorable than actual trading would achieve
+    derived_from_bd_id: BD-017
+  - id: finance-C-118
+    when: When calculating technical indicators with default fillna behavior
+    action: Verify that fillna=True (default forward-fill of missing values) matches strategy requirements — for high-frequency
+      or momentum strategies sensitive to stale data, set fillna=False to prevent carrying stale weekend/holiday prices across
+      multiple days
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Forward-filling through weekends carries stale prices across multiple days, causing momentum strategies to
+      hold outdated positions with artificially smoothed indicators and increased risk exposure
+    derived_from_bd_id: BD-004
+  - id: finance-C-119
+    when: When processing signals across non-trading periods in backtesting
+    action: Verify that forward-fill (ffill) strategy aligns with position management requirements — for momentum strategies
+      requiring periodic rebalancing or signal decay, implement explicit signal decay logic instead of relying on ffill to
+      hold positions through thin market days
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Forward-filling signals through non-trading periods maintains stale positions without rebalancing, causing
+      momentum strategies to underperform during trending markets with periodic volatility spikes
+    derived_from_bd_id: BD-005
+  - id: finance-C-120
+    when: When implementing cumulative return index calculation for backtesting
+    action: Use Numba JIT compilation for total return index calculation — do not replace with pure Python loops or untested
+      optimization approaches
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Pure Python loops are 10-100x slower than Numba JIT; for backtests with >1000 observations, this causes unacceptable
+      runtime making iterative development impractical
+    derived_from_bd_id: BD-033
+  - id: finance-C-121
+    when: When constructing FX volatility surfaces for option pricing
+    action: Use CLARK5 interpolation for FX vol surface fitting — do not substitute with alternative methods without validating
+      accuracy against industry standard
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: CLARK5 provides smooth vol surface fitting across strikes and tenors; alternative methods may introduce pricing
+      errors in vanilla FX options, causing systematic mispricing
+    derived_from_bd_id: BD-034
+  - id: finance-C-122
+    when: When estimating implied vol addon for option pricing
+    action: Use weighted median model for vol addon estimation — do not replace with mean or unweighted median as they are
+      sensitive to outliers
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Weighted median is robust to outliers in vol addon estimation; using mean causes tail observations to distort
+      addon values, leading to incorrect option pricing and delta hedging errors
+    derived_from_bd_id: BD-042
+  - id: finance-C-123
+    when: When determining ATM strike for vanilla FX options pricing
+    action: Use forward delta-neutral with premium adjustment method for ATM strike determination — do not use spot or forward
+      ATM without premium adjustment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Forward delta-neutral with premium adjustment ensures accurate delta hedging across the vol surface; using
+      spot or forward ATM without premium adjustment causes delta hedging errors in FX options
+    derived_from_bd_id: BD-011
+  - id: finance-C-124
+    when: When configuring volatility targeting for signal or portfolio level
+    action: Explicitly verify and set vol_target parameter rather than relying on the 10% default — higher-volatility strategies
+      (e.g., short-vol, carry) must explicitly increase the target
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default 10% vol target is appropriate for moderate-risk FX trend-following but causes unlimited leverage
+      risk for high-volatility strategies if not explicitly overridden
+    derived_from_bd_id: BD-014
+  - id: finance-C-125
+    when: When clustering assets in network analysis
+    action: Use affinity propagation algorithm for asset clustering — do not replace with K-means or hierarchical clustering
+      that require pre-specifying cluster count
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Affinity propagation automatically determines cluster numbers without requiring pre-specified k; using K-means
+      with arbitrary k would produce incorrect natural groupings in FX markets
+    derived_from_bd_id: BD-053
+  - id: finance-C-126
+    when: When implementing Guppy Multiple Moving Average technical indicator
+    action: Use exactly 12 EMA components with windows (3,5,7,9,11,14,21,28,35,42,49,56) for Guppy MMA — do not reduce component
+      count or change EMA windows
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: The fixed 12-component structure distinguishes rapid trend changes from sustained directional moves via short-group
+      vs long-group crossovers; changing component count alters entry/exit signal boundaries
+    derived_from_bd_id: BD-063
+  - id: finance-C-127
+    when: When configuring output paths for backtest analysis
+    action: Override the default 'output_data/YYYYMMDD' path for production pipelines requiring consistent output paths —
+      production systems must use deterministic paths
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default timestamped paths prevent overwrites in iterative workflows but production pipelines require consistent
+      paths for downstream processing; failing to override causes missing data in automated workflows
+    derived_from_bd_id: BD-020
+  - id: finance-C-128
+    when: When implementing FX options roll logic for backtesting
+    action: Trigger FX options rolling at actual expiry dates rather than calendar month-end — use 'expiry-date' roll event,
+      not month-end
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Options gamma peaks at expiry; rolling at month-end misaligns with actual option lifecycle, causing unintended
+      gamma exposure and misaligned variance-targeting in strategies
+    derived_from_bd_id: BD-008
+  - id: finance-C-129
+    when: When constructing cross-currency pairs for return attribution
+    action: Verify required cross rates are available when using 'no' (direct) mode; if unavailable, fallback to domestic
+      currency conversion requires complete market data for the domestic currency
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Direct triangulation ('no' mode) requires all required cross rates; using it with missing rates produces
+      incorrect USD-denominated P&L attribution across currency exposures
+    derived_from_bd_id: BD-009
+  - id: finance-C-130
+    when: When implementing rolling technical indicators in signal generation
+    action: Set first n-1 periods to NaN to create warmup periods equal to indicator period — verify rolling indicators require
+      full lookback window before generating signals
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without NaN warmup periods, rolling indicators generate unstable signals from incomplete history, causing
+      look-ahead bias where signals use future information not available at signal time
+    derived_from_bd_id: BD-045
+  - id: finance-C-131
+    when: When implementing RSI momentum calculation for trading signals
+    action: Use RSI period of 14 (Wilder's original specification) — verify the period meets minimum of 1 and balances signal
+      stability with responsiveness for momentum signals
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using non-standard RSI period causes signal characteristics to deviate from historical performance data validated
+      with 14-period settings, leading to unreliable momentum signals
+    derived_from_bd_id: BD-047
+  - id: finance-C-132
+    when: When implementing volatility-adjusted signals using ATR
+    action: Use ATR period of 14 (Wilder's original specification) — verify the period meets minimum of 1 and captures approximately
+      two weeks of daily price action
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using non-standard ATR period causes volatility-adjusted signals to be either too noisy or too slow, reducing
+      signal quality and strategy performance for volatility-managed trades
+    derived_from_bd_id: BD-048
+  - id: finance-C-133
+    when: When implementing event study logic for economic releases
+    action: Set NYC 10am cutoff for economic releases (8:30am ET typical release time) — verify timezone conversion uses America/New_York
+      local market time to capture same-day market response
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Incorrect cutoff time causes event study to misalign economic releases with market price responses, leading
+      to incorrect event attribution and distorted strategy performance metrics
+    derived_from_bd_id: BD-055
+  - id: finance-C-134
+    when: When implementing volatility calculation for realized volatility using rolling window
+    action: Use tenor_days as the rolling window for realized volatility on daily data — verify window scales proportionally
+      with instrument maturity to maintain consistency with day count conventions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using fixed rolling window instead of tenor_days causes volatility estimates to be inconsistent across instruments
+      with different maturities, leading to incorrect risk assessment and strategy performance degradation
+    derived_from_bd_id: BD-056
+  - id: finance-C-135
+    when: When implementing volatility-targeting position sizing logic in backtesting
+    action: Apply max leverage cap (typically 1.0-2.0x) when scaling positions based on realized volatility — the cap prevents
+      unbounded position growth during low-volatility periods that would otherwise exceed prudent risk limits
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without a max leverage cap, volatility-targeting produces oversized positions during low-volatility regimes,
+      amplifying losses when volatility reverts and potentially exceeding available capital or margin limits
+    derived_from_bd_id: BD-062
+  - id: finance-C-136
+    when: When implementing trade exit logic in backtesting
+    action: Enforce stop-loss and take-profit levels to bound PnL distributions per trade — positions must be closed when
+      price reaches the stop-loss level (capping maximum loss) or take-profit level (locking predetermined gains)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without stop-loss and take-profit enforcement, trades remain open indefinitely, producing unbounded loss
+      potential and making backtest results incompatible with live trading discipline where positions require manual or automated
+      exit
+    derived_from_bd_id: BD-065
+  - id: finance-C-137
+    when: When implementing position sizing and capital allocation logic in backtesting
+    action: Apply position clipping to enforce hard limits on net exposure (directional risk) and gross exposure (sum of absolute
+      positions) — prevent positions from exceeding predetermined risk budgets that bound margin requirements and counterparty
+      exposure
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without position clipping, favorable signals drive unbounded position accumulation that exceeds available
+      capital, causing margin calls in live trading and making backtest results unreproducible due to capital constraint violations
+    derived_from_bd_id: BD-066
+  - id: finance-C-138
+    when: When pricing FX vanilla options using Black-Scholes model
+    action: Apply Black-Scholes for instruments with significant volatility smile or skew — the constant-vol assumption under
+      log-normal dynamics systematically misprices deep OTM options where smile effects are pronounced, causing 5-15% pricing
+      errors on risk-reversal strategies
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Black-Scholes systematically underprices out-of-the-money puts and overprices out-of-the-money calls when
+      volatility smile exists, causing hedge ratios and premium estimates to deviate significantly from market-quoted prices
+    derived_from_bd_id: BD-068
+  - id: finance-C-140
+    when: When using the framework's default premium output format for FX option pricing
+    action: Verify that fx_options_premium_output='pct_for' matches user expectations for G10 pairs — if pct_dom or abs format
+      is required for specific use cases, explicitly override the default parameter to avoid misinterpretation of premium
+      quotes
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Default pct-for format expresses premium as percentage of foreign currency notional, which may be misinterpreted
+      as domestic-currency percentage for pairs with significant cross rates, causing hedge ratio and PnL calculation errors
+    derived_from_bd_id: BD-061
+  - id: finance-C-141
+    when: When implementing options roll management in the framework
+    action: Use expiry-date roll event for options rolling — roll_event must be one of 'expiry', 'delivery', or 'value'; expiry
+      is the standard for FX options per the standardized expiration calendar
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-expiry roll events for FX options causes positions to miss the standardized expiration calendar,
+      potentially resulting in unwanted physical delivery for cash-settled instruments or incorrect position tracking
+    derived_from_bd_id: BD-057
+  - id: finance-C-142
+    when: When implementing options roll timing logic in the framework
+    action: Set roll_days parameter to 5 as the pre-roll buffer — roll_days must be >= 1; 5 days provides optimal buffer for
+      execution without excessive stale positions or last-minute execution risk
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using fewer than 5 roll days creates tight execution windows that risk missing the roll event due to execution
+      delays; using more than 5 days leaves positions stale too early, reducing carry returns unnecessarily
+    derived_from_bd_id: BD-058
+  - id: finance-C-143
+    when: When implementing FX implied volatility surface interpolation for pricing and risk management
+    action: Use polynomial interpolation or Clark5 model for FX implied vol surface — these methods provide smooth interpolation
+      between discrete strike-tenor nodes and respect theoretical no-arbitrage structure
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using cubic splines or SABR for vol surface interpolation introduces arbitrage violations in the wings, causing
+      economically invalid prices that lead to systematic mispricing and incorrect risk calculations
+    derived_from_bd_id: BD-064
+  - id: finance-C-144
+    when: When implementing covariance estimation for financial network analysis with high-dimensional asset sets
+    action: Use Graphical Lasso for sparse covariance estimation — the L1 penalty on precision matrix produces sparse estimates
+      essential for revealing genuine conditional relationships and reducing overfitting
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using sample covariance or Ledoit-Wolf shrinkage produces dense matrices that overfit to historical noise
+      in high-dimensional settings, causing poor out-of-sample portfolio performance and incorrect risk attribution
+    derived_from_bd_id: BD-067
+  - id: finance-C-145
+    when: When implementing the backtesting workflow that combines signal generation with portfolio optimization
+    action: Apply stop loss and take profit signals to returns_df BEFORE calling optimize_portfolio_weights — stop loss/take
+      profit constraints modify the return distribution and must be applied pre-optimization
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Applying stop loss/take profit after optimization uses unconstrained returns for weight calculation, then
+      projects constraints onto already-optimized weights, violating optimality conditions and producing suboptimal portfolios
+    derived_from_bd_id: BD-072
+  - id: finance-C-146
+    when: When using the framework's default annualization factor for risk metric calculations
+    action: Verify that ann_factor=252 matches the trading calendar assumption (~21 trading days/month) for the target market;
+      adjust to 250 for European markets or 252 for US equity/FX if needed
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using 252 for markets with different trading day conventions (e.g., 250 for some European exchanges) systematically
+      overstates annualized Sharpe ratios by 0.8%, leading to flawed strategy selection based on misleading performance metrics
+    derived_from_bd_id: BD-026
+  - id: finance-C-147
+    when: When implementing or refactoring execution direction logic for EURUSD single-currency strategies
+    action: Enforce only_allow_longs=True to restrict execution to long positions only; must reject or filter any short signals
+      before order generation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Removing the longs-only constraint allows short positions which introduce funding costs, overnight borrowing
+      fees, and counterparty risk not accounted for in the EURUSD baseline strategy design, causing live P&L to diverge significantly
+      from backtest
+    derived_from_bd_id: BD-028
+  - id: finance-C-148
+    when: When implementing data filling logic for multi-asset backtesting with spot and carry data
+    action: Apply forward-fill (FFILL) only to carry rates, deposit rates, and yield curve data; spot prices must use the
+      last known traded price without forward-filling across missing values
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Forward-filling spot prices creates look-ahead bias where future prices are used retroactively in historical
+      backtests; this causes strategy signals to appear earlier than they could in live trading, systematically overstating
+      returns by 2-5% in volatile periods
+    derived_from_bd_id: BD-032
+  - id: finance-C-149
+    when: When pricing FX options and determining at-the-money strike for delta hedging calculations
+    action: 'Use forward delta neutral ATM method: calculate ATM strike as forward-adjusted spot (spot * exp(rate_diff * tenor)),
+      not spot delta neutral; verify fx_options_atm_method is set to ''forward_delta_neutral'' for major currency pairs'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using spot delta neutral ATM instead of forward delta neutral systematically misprices options by ignoring
+      interest rate differential; for high-yielding currency pairs, this causes 3-8% mispricing in option premiums, leading
+      to incorrect hedge ratios and P&L attribution errors
+    derived_from_bd_id: BD-035
+  - id: finance-C-151
+    when: When recording trading events and backtesting results for audit or reproduction
+    action: Assume the framework provides an immutable event log — the framework does not implement audit trail functionality;
+      events can be modified or deleted after execution
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without immutable event logging, backtest results cannot be audited or reproduced; regulatory compliance
+      requirements for trading systems are violated and forensic analysis becomes impossible
+    derived_from_bd_id: BD-GAP-002
+  - id: finance-C-152
+    when: When implementing event logging for trading and backtesting operations
+    action: Implement append-only event storage with cryptographic integrity checks; log entries must include timestamp, event_type,
+      payload hash, and previous_entry_hash to detect tampering
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Implementing immutable event logging ensures full auditability and reproducibility of backtest results; regulators
+      and internal auditors can verify strategy execution, and disputes can be resolved with cryptographic evidence
+    derived_from_bd_id: BD-GAP-002
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-108 / ArcticDB Tick Data Storage
+    version: v5.3
+    intent_keywords:
+    - arcticdb
+    - tick data storage
+    - time series database
+    - lmdb
+    - market data persistence
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (2 distinct values, balanced distribution)
+      groups:
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 3
+        ucs:
+        - uc_id: UC-101
+          name: ArcticDB Tick Data Storage
+          short_description: Provides persistent storage for high-frequency tick market data using ArcticDB, supporting both
+            local LMDB and S3 cloud storage backends for efficient
+          sample_triggers:
+          - arcticdb
+          - tick data storage
+          - time series database
+        - uc_id: UC-103
+          name: Market Data Fetching from Vendors
+          short_description: 'Fetches economic and financial market data from external vendors like Quandl, demonstrating
+            how to request and cache market data with specific fields '
+          sample_triggers:
+          - market data
+          - quandl
+          - fetch data
+        - uc_id: UC-104
+          name: S3 Cloud Storage for Tick Data
+          short_description: Demonstrates writing and reading tick market data to/from AWS S3 cloud storage using Parquet
+            format for efficient compression and retrieval of histori
+          sample_triggers:
+          - s3 storage
+          - aws
+          - parquet
+      - group_id: trading_strategy
+        name: Trading Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-102
+          name: FX G10 Cross Backtesting
+          short_description: Enables historical backtesting of FX trading strategies using G10 currency pairs with technical
+            indicator-based signal generation to evaluate strategy
+          sample_triggers:
+          - backtest
+          - fx trading
+          - g10 currency
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try arcticdb tick data storage
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try fx g10 cross backtesting
+      auto_selected: true
+    - uc_id: UC-103
+      beginner_prompt: Try market data fetching from vendors
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 4 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Market Data Fetching from Vendors
+    - FX G10 Cross Backtesting
+    - ArcticDB Tick Data Storage
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

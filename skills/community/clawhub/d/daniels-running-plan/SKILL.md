@@ -1,35 +1,105 @@
 ---
-name: "Daniels Running Plan"
-description: "使用丹尼尔斯经典跑步训练法（Jack Daniels' Running Formula）为跑者制定个性化训练计划。当用户要求制定跑步训练计划、制定马拉松/10公里/半程马拉松训练计划、制定跑步计划、或询问如何训练跑步时触发此skill。此skill涵盖VDOT配速系统，五种核心训练类型（E/T/I/R）、周期化训..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daniels-running-plan"
-sourceUrl: "https://clawhub.ai/skills/daniels-running-plan"
+name: daniels-running-plan
+description: 使用丹尼尔斯经典跑步训练法（Jack Daniels' Running Formula）为跑者制定个性化训练计划。当用户要求制定跑步训练计划、制定马拉松/10公里/半程马拉松训练计划、制定跑步计划、或询问如何训练跑步时触发此skill。此skill涵盖VDOT配速系统，五种核心训练类型（E/T/I/R）、周期化训练结构、2Q计划原则，适用于从初学者到精英跑者的各级别跑步者。
 ---
 
-# Daniels Running Plan
+# 丹尼尔斯跑步训练计划
 
-> 使用丹尼尔斯经典跑步训练法（Jack Daniels' Running Formula）为跑者制定个性化训练计划。当用户要求制定跑步训练计划、制定马拉松/10公里/半程马拉松训练计划、制定跑步计划、或询问如何训练跑步时触发此skill。此skill涵盖VDOT配速系统，五种核心训练类型（E/T/I/R）、周期化训...
+使用杰克·丹尼尔斯（Jack Daniels）《跑步训练法》为跑者制定科学的训练计划。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daniels-running-plan`
-- **Source URL:** [https://clawhub.ai/skills/daniels-running-plan](https://clawhub.ai/skills/daniels-running-plan)
+## 工作流程
 
-## Overview
+### Step 1：收集跑者信息
 
+依次询问以下信息：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daniels-running-plan
+1. **性别**：男/女
+2. **年龄**：岁（用于计算最大心率和调整恢复时间）
+3. **目标比赛**：10公里/半马/全马，目标成绩是多少？
+4. **当前水平**：最近的比赛成绩（5K/10K/半马/全马皆可）
+5. **跑步经验**：跑了几年
+6. **训练周期起始周**：计划从「第几周周一开始」（倒推比赛日得到）
+7. **每周想休息几天**：这个问题的答案直接影响训练量分配（必问！）
+8. **每周哪几天可以跑**：用户说天天有时间也可以，休息日由你来安排
+
+### Step 2：计算配速
+
+获取信息后：
+1. T 配速 = 目标比赛配速
+2. E 配速 = T + 45~60秒/km（约慢25-30%）
+3. I 配速 = T - 6秒/400米
+4. R 配速 = I - 6秒/400米
+5. 最大心率 = 220 - 年龄（或用实测值）
+
+### Step 3：设计训练计划
+
+**根据用户休息天数动态分配**：
+- 3天休息：标准保守安排，适合新手/47岁以上
+- 2天休息：标准推荐
+- 1天休息：高密度，适合有经验的跑者
+
+**L跑（>10km）强制规则**：
+- 尽量安排在周六或周日
+- L跑前一天不安排高质量训练（Q2 远离 L跑日）
+- **L跑后必须有一天休息或E跑恢复**
+- L跑配速：全程 E 配速
+
+**Q1 / Q2 安排规则**：
+- Q1（最重要）放 L跑当天或次日
+- Q2：放周中（周三/周四），确保与 L跑隔开 2-3 个 E 日
+- 47岁以上：Q1 和 Q2 之间至少 3 个 E 日
+
+**阶段推进**：
+- 基础期（1-4周）：E跑为主，T训练引入
+- 强化期（5-10周）：T + 少量 I，E跑保持
+- 高峰期（11-14周）：I + T 混合，质量量最大
+- 竞赛期（15-16周）：减量 50-70%，保持强度感觉
+
+### Step 4：输出训练计划
+
+**日期格式（重要，必须遵守）**：
+- 不写具体日历日期
+- 格式：「**第×周第×天**」（从第1周第1天 = 周一起算）
+- 第1周第1天 = 周一，第1周第7天 = 周日
+- 第2周第8天 = 周一…以此类推
+
+**每周标题**：
 ```
+━━━ 第×周（基础期/强化期/高峰期/竞赛期）━━━━━━━
+```
+
+**每天格式**：
+```
+第×天 周X | E跑 | 25min E配速(5:43-5:58/km) 心率118-142
+第×天 周X | Q2:T训练 | 热身5min E + 25min T@4:58/km + 冷身5min E 心率162-167
+```
+
+**长距离周**（L跑>10km 的周）在标题注明「★长距离周」。
+
+**ST和加速跑必须标注步频或配速**，格式：
+- ST 跨步跑：`6×15秒ST(步频180-190步/分)` + 组间说明
+- 加速跑：`8×10秒加速跑(步频190+步/分)`
+- 上坡ST：`6×80m上坡ST(全力爬坡感)`
+
+### Step 5：保存文件
+
+同时保存到桌面：
+1. **TXT 版**：`/home/ai/桌面/running-plan.txt`（方便阅读）
+2. **CSV 版**：`/home/ai/桌面/running-plan.csv`（UTF-8 BOM，encoding='utf-8-sig'）
+
+---
+
+## 训练类型速查
+
+| 符号 | 名称 | 配速/强度 | 感觉/步频 |
+|------|------|-----------|-----------|
+| E | 轻松跑 | T+45~60秒/km | 能聊天 |
+| T | 乳酸门槛跑 | 目标比赛配速 | 略吃力 |
+| I | 间歇跑 | T-6秒/400m | 吃力 |
+| R | 重复跑 | 近乎全力 | 近乎全力 |
+| ST | 跨步跑 | **步频180-190步/分，15秒全力**，组间休息1分钟 | 接近全力 |
+| 加速跑 | — | **步频190+步/分，10秒**，组间休息1分钟 | 全力 |
+| 上坡ST | — | **全力80-100米爬坡**，组间休息2分钟走回 | 近乎全力 |
+| L | 长距离跑 | E配速 | 轻松 |
+
+> 详细训练说明见 `references/knowledge.md`

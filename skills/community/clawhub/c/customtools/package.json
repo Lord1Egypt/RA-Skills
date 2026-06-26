@@ -1,0 +1,17 @@
+{
+  "name": "@custom/openclaw-custom-tools",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Custom tools for OpenClaw - Task, Skill, LSP, Config tools",
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "compat": {
+      "pluginApi": ">=2026.4.0",
+      "minGatewayVersion": "2026.4.0"
+    },
+    "build": {
+      "openclawVersion": "2026.4.14",
+      "pluginSdkVersion": "2026.4.0"
+    }
+  }
+}

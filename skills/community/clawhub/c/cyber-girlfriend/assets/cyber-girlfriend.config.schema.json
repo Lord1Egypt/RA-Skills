@@ -1,0 +1,539 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/schemas/cyber-girlfriend.config.v2.schema.json",
+  "title": "Cyber Girlfriend Config v2",
+  "type": "object",
+  "required": [
+    "version",
+    "character_profile_path",
+    "relationship",
+    "delivery",
+    "timezone",
+    "schedule",
+    "life_schedule",
+    "runtime"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 2
+    },
+    "timezone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "character_profile_path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Path to character-profile.md. Core companion persona is maintained in Markdown, not config.local.json."
+    },
+    "owner_profile": {
+      "type": "object",
+      "description": "Optional lightweight owner identity profile. Keep this separate from persona so companion life is not projected onto the owner.",
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": [
+            "manual",
+            "user_md",
+            "none"
+          ]
+        },
+        "user_md_path": {
+          "type": "string",
+          "description": "Optional USER.md path for importing stable owner identity fields. Channel IDs must not be copied into prompts."
+        },
+        "name": {
+          "type": "string"
+        },
+        "preferred_name": {
+          "type": "string"
+        },
+        "pronouns": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "identity_summary": {
+          "type": "string"
+        },
+        "not_assumptions": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "relationship": {
+      "type": "object",
+      "required": [
+        "mode",
+        "intimacy_baseline",
+        "jealousy_allowed",
+        "clinginess_ceiling",
+        "conflict_style"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "owner_only"
+          ]
+        },
+        "intimacy_baseline": {
+          "type": "string",
+          "enum": [
+            "light",
+            "warm",
+            "close"
+          ]
+        },
+        "jealousy_allowed": {
+          "type": "boolean"
+        },
+        "clinginess_ceiling": {
+          "type": "string",
+          "enum": [
+            "none",
+            "light",
+            "medium"
+          ]
+        },
+        "conflict_style": {
+          "type": "string",
+          "enum": [
+            "low_drama",
+            "gentle",
+            "playful_only"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "delivery": {
+      "type": "object",
+      "required": [
+        "channel",
+        "owner_target"
+      ],
+      "properties": {
+        "channel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "account": {
+          "type": "string"
+        },
+        "owner_target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner_session_key": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "schedule": {
+      "type": "object",
+      "required": [
+        "quiet_hours_start",
+        "quiet_hours_end"
+      ],
+      "properties": {
+        "quiet_hours_start": {
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+        },
+        "quiet_hours_end": {
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "behavior": {
+      "type": "object",
+      "properties": {
+        "emotion_thresholds": {
+          "type": "object",
+          "required": [
+            "present_sec",
+            "slightly_needy_sec",
+            "misses_him_sec"
+          ],
+          "properties": {
+            "present_sec": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "slightly_needy_sec": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "misses_him_sec": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "derived_profile": {
+          "type": "object",
+          "properties": {
+            "activity_level": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "medium_high",
+                "high"
+              ]
+            },
+            "social_energy": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "medium_high",
+                "high"
+              ]
+            },
+            "sleep_profile": {
+              "type": "string",
+              "enum": [
+                "early_sleep",
+                "normal_sleep",
+                "late_sleep",
+                "night_owl"
+              ]
+            },
+            "weekend_outdoor_bias": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "medium_high",
+                "high"
+              ]
+            },
+            "expression_density": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "scene_anchor": {
+              "type": "string",
+              "enum": [
+                "general_city_life",
+                "student_life",
+                "commuter_city_life",
+                "flex_lifestyle"
+              ]
+            },
+            "topical_bias": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "mode_profiles": {
+          "type": "object",
+          "description": "Optional style/content hints. Current presence runner only uses heartbeat.",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "style_variants": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "content_types": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "content_rules": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/contentRule"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "content_rules": {
+          "type": "array",
+          "description": "Optional global content-selection rules. Per-mode mode_profiles.<mode>.content_rules overrides these.",
+          "items": {
+            "$ref": "#/$defs/contentRule"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "life_schedule": {
+      "type": "object",
+      "required": [
+        "enabled",
+        "day_schedule",
+        "continuity"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "day_schedule": {
+          "type": "object",
+          "required": [
+            "enabled",
+            "schedule_path",
+            "refresh_mode",
+            "midday_refresh"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "schedule_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "refresh_mode": {
+              "type": "string",
+              "enum": [
+                "daily_cron",
+                "manual"
+              ]
+            },
+            "midday_refresh": {
+              "type": "boolean"
+            },
+            "required_events": {
+              "type": "array",
+              "description": "User-defined events that must appear in day-schedule.md but do not count toward the 3-5 generated daily event quota.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "time",
+                  "title",
+                  "duration_min",
+                  "scene_hint",
+                  "activity_hint",
+                  "mention_hint",
+                  "avoid"
+                ],
+                "properties": {
+                  "time": {
+                    "type": "string",
+                    "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "duration_min": {
+                    "type": "integer",
+                    "minimum": 5,
+                    "maximum": 360
+                  },
+                  "scene_hint": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "activity_hint": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "mention_hint": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "interaction_hint": {
+                    "type": "string"
+                  },
+                  "media_hint": {
+                    "type": "string",
+                    "description": "Optional media generation instruction. Daily schedule builders should copy this into 媒体信息 when this required event involves photo, audio, video, or similar media."
+                  },
+                  "avoid": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "continuity": {
+          "type": "object",
+          "required": [
+            "enabled",
+            "life_log_path"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "life_log_path": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "runtime": {
+      "type": "object",
+      "required": [
+        "workspace_root",
+        "sessions_store_path",
+        "state_file",
+        "healthcheck_command"
+      ],
+      "properties": {
+        "workspace_root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sessions_store_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state_file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "healthcheck_command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cron_jobs_file": {
+          "type": "string"
+        },
+        "jobs_list_command": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "contentRule": {
+      "type": "object",
+      "properties": {
+        "modes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "when": {
+          "type": "object",
+          "properties": {
+            "operational_level": {
+              "type": "string",
+              "enum": [
+                "none",
+                "medium",
+                "high"
+              ]
+            },
+            "emotion_level": {
+              "type": "string",
+              "minLength": 1
+            },
+            "emotion_level_not": {
+              "type": "string",
+              "minLength": 1
+            },
+            "last_content_not": {
+              "type": "string",
+              "minLength": 1
+            },
+            "preference_gte": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "preference_gte_key": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "preference_any": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "gt_key": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "gte": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "key"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "content_type": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "content_type"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

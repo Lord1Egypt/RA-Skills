@@ -1,0 +1,178 @@
+# Daily Literature Search - Configuration Template
+# Copy this file to config.yaml and customize for your needs
+
+# ==================== Directory Configuration ====================
+
+# Base directory for all paper storage
+papers_dir: "${HOME}/.openclaw/workspace/papers"
+
+# Category directories (for automatic classification)
+categories:
+  B-ALL:
+    name: "B-ALL"
+    description: "B-cell Acute Lymphoblastic Leukemia"
+    directory: "B-ALL/raw"
+  MM:
+    name: "MM"
+    description: "Multiple Myeloma"
+    directory: "MM/raw"
+  OTHER:
+    name: "OTHER"
+    description: "Other Research"
+    directory: "OTHER/raw"
+
+# Upload directory for manual paper uploads
+upload_dir: "upload_temp/incoming"
+
+# Logs and reports directory
+log_dir: "daily_search_logs"
+
+# ==================== Search Configuration ====================
+
+# Search keywords (supports boolean operators)
+search_keywords:
+  - '"inotuzumab ozogamicin"'
+  - '"Elranatamab"'
+  - '"Teclistamab"'
+  - '"Talquetamab"'
+  - '"Blinatumomab"'
+  - '("CAR-T" AND "B-ALL")'
+
+# Search data sources
+# Available: pm (PubMed), oa (OpenAlex), s2 (Semantic Scholar)
+sources:
+  - pm
+  - oa
+  - s2
+
+# Maximum results per keyword per source
+max_results_per_keyword: 10
+
+# Date range for search (recent N days)
+date_range_days: 7
+
+# ==================== Classification Keywords ====================
+
+# Keywords for automatic paper classification
+classification:
+  B-ALL:
+    - "b-cell acute lymphoblastic leukemia"
+    - "b-all"
+    - "b cell acute lymphoblastic"
+    - "b lymphoblastic leukemia"
+    - "acute lymphoblastic leukemia"
+    - "cd19"
+    - "cd22"
+    - "blinatumomab"
+    - "inotuzumab"
+    - "car-t"
+    - "cart"
+    - "tisagenlecleucel"
+    - "brexucabtagene"
+    - "ph-positive"
+    - "ph-negative"
+    - "philadelphia chromosome"
+  
+  MM:
+    - "multiple myeloma"
+    - "myeloma"
+    - "plasma cell"
+    - "bcma"
+    - "gprc5d"
+    - "fcrh5"
+    - "elranatamab"
+    - "teclistamab"
+    - "talquetamab"
+    - "daratumumab"
+    - "isatuximab"
+
+# ==================== API Configuration ====================
+
+# Email for polite API access (required for OpenAlex/Crossref)
+user_email: "${USER_EMAIL:-anonymous@example.org}"
+
+# API keys (optional, for higher rate limits)
+api_keys:
+  semantic_scholar: "${SEMANTIC_SCHOLAR_API_KEY:-}"
+  openalex: "${OPENALEX_API_KEY:-}"
+
+# ==================== Notification Configuration ====================
+
+# Enable notifications after search completion
+notifications:
+  enabled: false
+  
+  # Email notification
+  email:
+    enabled: false
+    smtp_server: "smtp.example.com"
+    smtp_port: 587
+    username: "${EMAIL_USERNAME:-}"
+    password: "${EMAIL_PASSWORD:-}"
+    recipients:
+      - "your@email.com"
+  
+  # Slack/Discord webhook
+  webhook:
+    enabled: false
+    url: "${NOTIFICATION_WEBHOOK:-}"
+  
+  # DingTalk (for Chinese users)
+  dingtalk:
+    enabled: false
+    webhook: "${DINGTALK_WEBHOOK:-}"
+
+# ==================== Advanced Settings ====================
+
+# Deduplication settings
+dedup:
+  # Check against existing library
+  check_library: true
+  
+  # Check within batch
+  check_batch: true
+  
+  # Use title hash for papers without DOI
+  use_title_hash: true
+
+# Download settings
+download:
+  # Enable automatic OA download
+  auto_download: true
+  
+  # Try PubMed Central first
+  prefer_pmc: true
+  
+  # Timeout for downloads (seconds)
+  timeout: 60
+  
+  # User agent for downloads
+  user_agent: "Mozilla/5.0 (compatible; LiteratureBot/1.0)"
+
+# Report settings
+report:
+  # Generate daily report
+  enabled: true
+  
+  # Report format: markdown, json
+  format: markdown
+  
+  # Include DOI links
+  include_doi_links: true
+
+# Logging settings
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+  
+  # Log to file
+  file: true
+  
+  # Log to console
+  console: true
+  
+  # Maximum log file size (MB)
+  max_size: 10
+  
+  # Number of backup logs to keep
+  backup_count: 5

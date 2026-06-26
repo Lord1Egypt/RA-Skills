@@ -1,0 +1,4 @@
+interface:
+  display_name: "Discord Purge Bot"
+  short_description: "Safely purge Discord channel history"
+  default_prompt: "Use $discord-purge-bot to preview or purge guild channel messages with scoped filters and a confirmation code."

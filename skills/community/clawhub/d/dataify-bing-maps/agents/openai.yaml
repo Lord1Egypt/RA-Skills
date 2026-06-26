@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Bing Maps"
+  short_description: "Search Bing Maps for locations"
+  default_prompt: "Use $dataify-bing-maps to run a search query."

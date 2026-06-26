@@ -1,0 +1,31 @@
+{
+  "name": "article-formatter",
+  "version": "1.0.0",
+  "description": "自媒体文章排版专家 - 将长文转化为易读、美观、移动端友好的格式",
+  "main": "SKILL.md",
+  "keywords": [
+    "article",
+    "formatting",
+    "layout",
+    "content",
+    "weixin",
+    "xiaohongshu",
+    "mobile"
+  ],
+  "author": "大象AI共学",
+  "license": "MIT",
+  "skills": {
+    "article-formatter": {
+      "description": "自媒体文章排版专家",
+      "category": "content",
+      "version": "1.0.0",
+      "capabilities": [
+        "文章结构优化",
+        "视觉元素增强",
+        "信息呈现优化",
+        "数据可视化",
+        "移动端适配"
+      ]
+    }
+  }
+}

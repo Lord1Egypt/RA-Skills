@@ -1,0 +1,1 @@
+错误：org.opensuse.Cimom.M择 不是有效的总线名称

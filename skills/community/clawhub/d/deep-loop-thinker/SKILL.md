@@ -1,35 +1,97 @@
 ---
-name: "Deep Loop Thinker"
-description: "多轮深度思考技能。借鉴OpenMythos循环推理架构，每次循环都注入新输入，逐轮深化理解。适用于重要决策、复杂问题、创意生成、问题发现。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deep-loop-thinker"
-sourceUrl: "https://clawhub.ai/skills/deep-loop-thinker"
+name: deep-loop-thinker
+description: 多轮深度思考技能。借鉴OpenMythos循环推理架构，每次循环都注入新输入，逐轮深化理解。适用于重要决策、复杂问题、创意生成、问题发现。
 ---
 
-# Deep Loop Thinker
+# Deep Loop Thinker Skill v2.1
 
-> 多轮深度思考技能。借鉴OpenMythos循环推理架构，每次循环都注入新输入，逐轮深化理解。适用于重要决策、复杂问题、创意生成、问题发现。
+## 核心原理
+借鉴OpenMythos的Recurrent-Depth Transformer：
+- 同一层多次运行，每次有新输入注入
+- 隐藏状态h_t更新：`h_{t+1} = A·h_t + B·e + Transformer(h_t, e)`
+- 每次循环不是重复，而是递进
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deep-loop-thinker`
-- **Source URL:** [https://clawhub.ai/skills/deep-loop-thinker](https://clawhub.ai/skills/deep-loop-thinker)
+## 用户需求追踪
 
-## Overview
+### 谁会使用这个技能？
+- 创业者做重大决策
+- 分析师处理复杂问题
+- 开发者解决技术难题
+- 研究者探索未知领域
+- AI Agent增强推理能力
 
+### 用户痛点
+- 决策前思考不够全面
+- 容易忽视风险
+- 缺乏系统性反思
+- 决策后不复盘
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deep-loop-thinker
+## 循环架构
+
 ```
+问题输入
+    ↓
+[Prelude层] — 提取关键要素
+    ↓
+[Recurrent Block] — 多轮递进思考
+    ↑____↓
+    ↓ (每轮注入新洞察)
+[Coda层] — 综合输出
+    ↓
+行动计划 + 自我反思
+```
+
+## 多轮思考模式
+
+| 轮次 | 思考类型 | 核心问题 |
+|------|---------|---------|
+| 1 | 直觉捕捉 | 第一反应？情绪？ |
+| 2 | 利益分析 | 谁受益？谁受损？ |
+| 3 | 风险挖掘 | 最坏情况？3年后还重要吗？ |
+| 4 | 本质洞察 | 根本原因？规律？ |
+| 5 | 行动设计 | 第一步？Plan B？ |
+| 6 | 反思验证 | 假设可靠？盲点在哪？ |
+
+## 用户反馈收集
+
+每次使用后记录：
+```markdown
+【用户反馈】
+- 用户是谁：{匿名/具体描述}
+- 帮助程度：{1-5星}
+- 改进建议：{用户的具体反馈}
+- 下次需要：{用户的实际问题}
+```
+
+## 迭代记录
+
+| 版本 | 日期 | 更新内容 |
+|------|------|---------|
+| 1.0 | 2026-04-21 | 初始版本 |
+| 2.0 | 2026-04-22 | 增加6轮思考 |
+| 2.1 | 2026-04-22 | 增加用户追踪机制 |
+
+## 质量标准
+
+好的思考报告：
+- ✅ 有具体数据/例子支撑
+- ✅ 能回答"为什么"
+- ✅ 第一步可立即执行
+- ✅ 包含风险预案
+- ✅ 诚实承认盲点
+
+## 触发条件
+
+- 问题影响超过3个月
+- 涉及多方利益
+- 情绪波动明显
+- 反复纠结无法决定
+- 问题反复出现
+
+## 约束
+
+- 简单问题不要过度思考（杀鸡不用牛刀）
+- 不要超过6轮（防止无限循环）
+- 保持诚实，不要自欺欺人
+- 行动比完美计划重要
+- 记录用户反馈用于迭代

@@ -1,0 +1,5 @@
+pyautogui>=0.9.54
+Pillow>=10.0.0
+opencv-python>=4.8.0
+pyobjc-framework-Vision>=10.0
+pyobjc-framework-Quartz>=10.0

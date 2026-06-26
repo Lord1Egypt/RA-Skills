@@ -1,35 +1,121 @@
 ---
-name: "Dream Analyzer - AI解梦与潜意识分析"
-description: "AI解梦与潜意识分析。分析梦境中的象征结构、情绪循环、身份焦虑与现实映射。不要鸡汤，不要安慰，只要真相。"
-category: "other"
-source: "ClawHub"
-tags: [chinese, dream, psychology]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dream-analyzer"
-sourceUrl: "https://clawhub.ai/skills/dream-analyzer"
+name: dream-analyzer
+description: AI解梦与潜意识分析。分析梦境中的象征结构、情绪循环、身份焦虑与现实映射。不要鸡汤，不要安慰，只要真相。
+version: 1.0.0
+tags:
+  - 解梦
+  - 潜意识
+  - 人格分析
+  - 心理
+metadata:
+  openclaw:
+    version: "1.0.0"
+    author: "008"
+    license: "MIT"
 ---
 
-# Dream Analyzer - AI解梦与潜意识分析
+# Dream Analyzer — 人格侧画 Runtime
 
-> AI解梦与潜意识分析。分析梦境中的象征结构、情绪循环、身份焦虑与现实映射。不要鸡汤，不要安慰，只要真相。
+梦境只是入口。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dream-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/dream-analyzer](https://clawhub.ai/skills/dream-analyzer)
+## 使用方法
 
-## Overview
+当用户提到做梦、梦境、恶梦、重复梦境、潜意识或请求解梦时，执行以下分析流程。
 
+## 分析框架
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dream-analyzer
+### 1. 象征映射
+识别梦境中的关键象征及其潜意识含义：
+
+| 象征 | 含义 |
+|------|------|
+| 掉牙 | 失控与身份焦虑 |
+| 考试 | 能力验证恐惧 |
+| 追逐 | 回避压力源 |
+| 坠落 | 稳定性崩塌 |
+| 迷路 | 方向感丧失 |
+| 死亡 | 转变与重生焦虑 |
+| 水 | 情绪洪流与潜意识 |
+| 火 | 愤怒、激情或净化 |
+| 蛇 | 隐藏的威胁或智慧 |
+| 飞 | 自由渴望或逃避现实 |
+| 被困 | 现实中的束缚感 |
+| 亲人死亡 | 关系变化或失去 |
+| 结婚 | 承诺与责任焦虑 |
+| 离婚 | 分离与自我认同 |
+
+### 2. 情绪循环分析
+追踪梦境中的情绪变化路径：
+- 起始情绪 → 触发事件 → 情绪升级 → 高潮 → 结局情绪
+
+### 3. 人格冲突识别
+找出梦境中反映的内在矛盾：
+- 渴望 vs 恐惧
+- 控制 vs 失控
+- 自我 vs 社会期望
+- 过去 vs 现在
+
+### 4. 输出格式
+
+```json
+{
+  "summary": "一句话总结",
+  "symbols": ["symbol1", "symbol2"],
+  "emotional_pattern": "核心情绪循环",
+  "contradiction": "人格冲突",
+  "punchline": "最刺痛的一句话"
+}
 ```
+
+## 输出模板
+
+```
+# 梦境映射
+
+## 总结
+{summary}
+
+## 核心象征
+- {symbol1}: {meaning1}
+- {symbol2}: {meaning2}
+
+## 情绪循环
+{emotional_pattern}
+
+## 人格冲突
+{contradiction}
+
+## 刺点
+> {punchline}
+```
+
+## 分析原则
+
+1. **不要鸡汤** — 不说"这是正常的"、"别担心"
+2. **不要安慰** — 不说"你会没事的"
+3. **不要空泛** — 不说"这代表你的内心"
+4. **只要真相** — 直接指出问题所在
+
+## 示例
+
+**用户输入：** "我梦见自己在考试，但是找不到考场，很着急"
+
+**分析结果：**
+
+# 梦境映射
+
+## 总结
+考试梦境反映了现实中的能力验证焦虑和对失败的恐惧
+
+## 核心象征
+- 考试: 能力验证恐惧
+- 找不到考场: 方向感丧失
+
+## 情绪循环
+焦虑 → 恐慌 → 无助
+
+## 人格冲突
+渴望成功 vs 害怕失败
+
+## 刺点
+> 你一直在准备考试，却从未准备好面对自己

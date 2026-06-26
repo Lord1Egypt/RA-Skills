@@ -1,0 +1,1694 @@
+[
+  {
+    "value": "19",
+    "label": "Games",
+    "children": [
+      {
+        "value": "19006",
+        "label": "Shooter",
+        "children": [
+          {
+            "value": "19006001",
+            "label": "Shooter"
+          }
+        ]
+      },
+      {
+        "value": "19001",
+        "label": "MOBA",
+        "children": [
+          {
+            "value": "19001001",
+            "label": "MOBA"
+          }
+        ]
+      },
+      {
+        "value": "19012",
+        "label": "Strategy & Battle",
+        "children": [
+          {
+            "value": "19012003",
+            "label": "PvP"
+          },
+          {
+            "value": "19012004",
+            "label": "Strategy Survival"
+          },
+          {
+            "value": "19012002",
+            "label": "Card Battle"
+          },
+          {
+            "value": "19012001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "19004",
+        "label": "Sports & Racing",
+        "children": [
+          {
+            "value": "19004001",
+            "label": "Sports"
+          },
+          {
+            "value": "19004003",
+            "label": "Racing"
+          },
+          {
+            "value": "19004002",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "19005",
+        "label": "Action",
+        "children": [
+          {
+            "value": "19005004",
+            "label": "Fighting"
+          },
+          {
+            "value": "19005002",
+            "label": "Action Adventure"
+          },
+          {
+            "value": "19005003",
+            "label": "Platformer"
+          },
+          {
+            "value": "19005001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "19013",
+        "label": "Role-Playing",
+        "children": [
+          {
+            "value": "19013002",
+            "label": "RPG"
+          },
+          {
+            "value": "19013004",
+            "label": "Open World"
+          },
+          {
+            "value": "19013001",
+            "label": "MMORPG"
+          },
+          {
+            "value": "19013003",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "19009",
+        "label": "Simulation & Management",
+        "children": [
+          {
+            "value": "19009001",
+            "label": "Simulation & Management"
+          }
+        ]
+      },
+      {
+        "value": "19003",
+        "label": "Casual & Social",
+        "children": [
+          {
+            "value": "19003003",
+            "label": "Puzzle & Casual"
+          },
+          {
+            "value": "19003002",
+            "label": "Party & Social"
+          },
+          {
+            "value": "19003001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "19014",
+        "label": "Rhythm",
+        "children": [
+          {
+            "value": "19014001",
+            "label": "Rhythm"
+          }
+        ]
+      },
+      {
+        "value": "19007",
+        "label": "Horror & Mystery",
+        "children": [
+          {
+            "value": "19007001",
+            "label": "Horror & Mystery"
+          }
+        ]
+      },
+      {
+        "value": "19002",
+        "label": "Anime",
+        "children": [
+          {
+            "value": "19002001",
+            "label": "Anime"
+          }
+        ]
+      },
+      {
+        "value": "19008",
+        "label": "Text Adventure",
+        "children": [
+          {
+            "value": "19008001",
+            "label": "Text Adventure"
+          }
+        ]
+      },
+      {
+        "value": "19010",
+        "label": "Sandbox",
+        "children": [
+          {
+            "value": "19010001",
+            "label": "Sandbox"
+          }
+        ]
+      },
+      {
+        "value": "19011",
+        "label": "Gaming Equipment",
+        "children": [
+          {
+            "value": "19011001",
+            "label": "Gaming Equipment"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "25",
+    "label": "Beauty & Personal Care",
+    "children": [
+      {
+        "value": "25006",
+        "label": "Makeup",
+        "children": [
+          {
+            "value": "25006004",
+            "label": "Facial Makeup"
+          },
+          {
+            "value": "25006003",
+            "label": "Eye Makeup"
+          },
+          {
+            "value": "25006002",
+            "label": "Lip Makeup"
+          },
+          {
+            "value": "25006001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "25011",
+        "label": "Tattoo",
+        "children": [
+          {
+            "value": "25011001",
+            "label": "Tattoo"
+          }
+        ]
+      },
+      {
+        "value": "25012",
+        "label": "Nail Art & Tools",
+        "children": [
+          {
+            "value": "25012001",
+            "label": "Nail Art & Tools"
+          }
+        ]
+      },
+      {
+        "value": "25003",
+        "label": "Makeup Tools & Accessories",
+        "children": [
+          {
+            "value": "25003001",
+            "label": "Makeup Tools & Accessories"
+          }
+        ]
+      },
+      {
+        "value": "25002",
+        "label": "Wigs",
+        "children": [
+          {
+            "value": "25002001",
+            "label": "Wigs"
+          }
+        ]
+      },
+      {
+        "value": "25009",
+        "label": "Skincare",
+        "children": [
+          {
+            "value": "25009001",
+            "label": "Skincare"
+          }
+        ]
+      },
+      {
+        "value": "25007",
+        "label": "Hair Care",
+        "children": [
+          {
+            "value": "25007001",
+            "label": "Hair Care"
+          }
+        ]
+      },
+      {
+        "value": "25004",
+        "label": "Oral Care",
+        "children": [
+          {
+            "value": "25004001",
+            "label": "Oral Care"
+          }
+        ]
+      },
+      {
+        "value": "25013",
+        "label": "Body Care",
+        "children": [
+          {
+            "value": "25013001",
+            "label": "Body Care"
+          }
+        ]
+      },
+      {
+        "value": "25008",
+        "label": "Beauty Devices & Accessories",
+        "children": [
+          {
+            "value": "25008001",
+            "label": "Beauty Devices & Accessories"
+          }
+        ]
+      },
+      {
+        "value": "25005",
+        "label": "Feminine Care",
+        "children": [
+          {
+            "value": "25005001",
+            "label": "Feminine Care"
+          }
+        ]
+      },
+      {
+        "value": "25010",
+        "label": "Men's Care",
+        "children": [
+          {
+            "value": "25010001",
+            "label": "Men's Care"
+          }
+        ]
+      },
+      {
+        "value": "25001",
+        "label": "Adult Products",
+        "children": [
+          {
+            "value": "25001001",
+            "label": "Adult Products"
+          }
+        ]
+      },
+      {
+        "value": "25014",
+        "label": "Perfume",
+        "children": [
+          {
+            "value": "25014001",
+            "label": "Perfume"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "16",
+    "label": "Clothing & Fashion",
+    "children": [
+      {
+        "value": "16002",
+        "label": "Women's Clothing",
+        "children": [
+          {
+            "value": "16002001",
+            "label": "Women's Clothing"
+          }
+        ]
+      },
+      {
+        "value": "16003",
+        "label": "Men's Clothing",
+        "children": [
+          {
+            "value": "16003001",
+            "label": "Men's Clothing"
+          }
+        ]
+      },
+      {
+        "value": "16004",
+        "label": "Kids' Clothing",
+        "children": [
+          {
+            "value": "16004001",
+            "label": "Kids' Clothing"
+          }
+        ]
+      },
+      {
+        "value": "16007",
+        "label": "Footwear",
+        "children": [
+          {
+            "value": "16007001",
+            "label": "Footwear"
+          }
+        ]
+      },
+      {
+        "value": "16005",
+        "label": "Bags & Luggage",
+        "children": [
+          {
+            "value": "16005001",
+            "label": "Bags & Luggage"
+          }
+        ]
+      },
+      {
+        "value": "16008",
+        "label": "Jewelry",
+        "children": [
+          {
+            "value": "16008001",
+            "label": "Jewelry"
+          }
+        ]
+      },
+      {
+        "value": "16006",
+        "label": "Accessories",
+        "children": [
+          {
+            "value": "16006006",
+            "label": "Watches"
+          },
+          {
+            "value": "16006003",
+            "label": "Sunglasses"
+          },
+          {
+            "value": "16006007",
+            "label": "Belts"
+          },
+          {
+            "value": "16006005",
+            "label": "Hats"
+          },
+          {
+            "value": "16006008",
+            "label": "Ties"
+          },
+          {
+            "value": "16006004",
+            "label": "Hair Accessories"
+          },
+          {
+            "value": "16006002",
+            "label": "Scarves"
+          },
+          {
+            "value": "16006001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "16001",
+        "label": "Occasion Wear",
+        "children": [
+          {
+            "value": "16001007",
+            "label": "Workplace & Business Meetings"
+          },
+          {
+            "value": "16001005",
+            "label": "Daily Casual"
+          },
+          {
+            "value": "16001008",
+            "label": "Sports"
+          },
+          {
+            "value": "16001002",
+            "label": "Travel & Dating"
+          },
+          {
+            "value": "16001003",
+            "label": "Weddings & Banquets"
+          },
+          {
+            "value": "16001006",
+            "label": "Campus"
+          },
+          {
+            "value": "16001004",
+            "label": "Niche Hobbies"
+          },
+          {
+            "value": "16001001",
+            "label": "Others"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "3",
+    "label": "Healthcare",
+    "children": [
+      {
+        "value": "3001",
+        "label": "Health Supplements",
+        "children": [
+          {
+            "value": "3001001",
+            "label": "Health Supplements"
+          }
+        ]
+      },
+      {
+        "value": "3002",
+        "label": "Medical Devices",
+        "children": [
+          {
+            "value": "3002001",
+            "label": "Medical Devices"
+          }
+        ]
+      },
+      {
+        "value": "3003",
+        "label": "Medical Science Popularization & Health Knowledge",
+        "children": [
+          {
+            "value": "3003001",
+            "label": "Medical Science Popularization & Health Knowledge"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "12",
+    "label": "Outdoor & Sports",
+    "children": [
+      {
+        "value": "12001",
+        "label": "Fitness",
+        "children": [
+          {
+            "value": "12001005",
+            "label": "Aerobic Training"
+          },
+          {
+            "value": "12001004",
+            "label": "Strength Training"
+          },
+          {
+            "value": "12001001",
+            "label": "Healthy Recipes"
+          },
+          {
+            "value": "12001002",
+            "label": "Fitness Equipment"
+          },
+          {
+            "value": "12001006",
+            "label": "Yoga & Pilates"
+          },
+          {
+            "value": "12001003",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "12007",
+        "label": "Ball Sports",
+        "children": [
+          {
+            "value": "12007007",
+            "label": "Basketball"
+          },
+          {
+            "value": "12007010",
+            "label": "Football"
+          },
+          {
+            "value": "12007003",
+            "label": "Volleyball"
+          },
+          {
+            "value": "12007008",
+            "label": "Tennis"
+          },
+          {
+            "value": "12007001",
+            "label": "Table Tennis"
+          },
+          {
+            "value": "12007009",
+            "label": "Badminton"
+          },
+          {
+            "value": "12007005",
+            "label": "Baseball"
+          },
+          {
+            "value": "12007006",
+            "label": "Rugby"
+          },
+          {
+            "value": "12007004",
+            "label": "Hockey"
+          },
+          {
+            "value": "12007011",
+            "label": "Golf"
+          },
+          {
+            "value": "12007002",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "12008",
+        "label": "Running",
+        "children": [
+          {
+            "value": "12008001",
+            "label": "Running"
+          }
+        ]
+      },
+      {
+        "value": "12006",
+        "label": "Water Sports",
+        "children": [
+          {
+            "value": "12006003",
+            "label": "Swimming"
+          },
+          {
+            "value": "12006004",
+            "label": "Diving"
+          },
+          {
+            "value": "12006002",
+            "label": "Rowing & Boating"
+          },
+          {
+            "value": "12006001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "12002",
+        "label": "Ice & Snow Sports",
+        "children": [
+          {
+            "value": "12002003",
+            "label": "Skiing"
+          },
+          {
+            "value": "12002002",
+            "label": "Skating"
+          },
+          {
+            "value": "12002001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "12010",
+        "label": "Cycling",
+        "children": [
+          {
+            "value": "12010001",
+            "label": "Cycling"
+          }
+        ]
+      },
+      {
+        "value": "12005",
+        "label": "Combat & Martial Arts",
+        "children": [
+          {
+            "value": "12005001",
+            "label": "Combat & Martial Arts"
+          }
+        ]
+      },
+      {
+        "value": "12009",
+        "label": "Camping & Gear",
+        "children": [
+          {
+            "value": "12009001",
+            "label": "Camping & Gear"
+          }
+        ]
+      },
+      {
+        "value": "12003",
+        "label": "Hiking & Mountaineering",
+        "children": [
+          {
+            "value": "12003001",
+            "label": "Hiking & Mountaineering"
+          }
+        ]
+      },
+      {
+        "value": "12004",
+        "label": "Extreme Sports",
+        "children": [
+          {
+            "value": "12004002",
+            "label": "Surfing"
+          },
+          {
+            "value": "12004003",
+            "label": "Rock Climbing"
+          },
+          {
+            "value": "12004004",
+            "label": "Skateboarding"
+          },
+          {
+            "value": "12004001",
+            "label": "Others"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "26",
+    "label": "Food & Beverages",
+    "children": [
+      {
+        "value": "26004",
+        "label": "Food",
+        "children": [
+          {
+            "value": "26004001",
+            "label": "Food"
+          }
+        ]
+      },
+      {
+        "value": "26005",
+        "label": "Beverages",
+        "children": [
+          {
+            "value": "26005002",
+            "label": "Coffee"
+          },
+          {
+            "value": "26005003",
+            "label": "Tea Drinks"
+          },
+          {
+            "value": "26005004",
+            "label": "Alcoholic Drinks"
+          },
+          {
+            "value": "26005001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "26003",
+        "label": "Cooking",
+        "children": [
+          {
+            "value": "26003001",
+            "label": "Cooking"
+          }
+        ]
+      },
+      {
+        "value": "26002",
+        "label": "Food Exploration & Reviews",
+        "children": [
+          {
+            "value": "26002001",
+            "label": "Food Exploration & Reviews"
+          }
+        ]
+      },
+      {
+        "value": "26001",
+        "label": "Food Live Streaming",
+        "children": [
+          {
+            "value": "26001001",
+            "label": "Food Live Streaming"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "24",
+    "label": "Technology & Electronics",
+    "children": [
+      {
+        "value": "24001",
+        "label": "Electronics",
+        "children": [
+          {
+            "value": "24001003",
+            "label": "Mobile Phones"
+          },
+          {
+            "value": "24001006",
+            "label": "Computers"
+          },
+          {
+            "value": "24001004",
+            "label": "Photography & Video Equipment"
+          },
+          {
+            "value": "24001001",
+            "label": "VR & AR"
+          },
+          {
+            "value": "24001005",
+            "label": "Smart Watches & Bands"
+          },
+          {
+            "value": "24001007",
+            "label": "Headphones"
+          },
+          {
+            "value": "24001002",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "24002",
+        "label": "Digital Accessories",
+        "children": [
+          {
+            "value": "24002002",
+            "label": "Mobile Phone Accessories"
+          },
+          {
+            "value": "24002003",
+            "label": "Computer Accessories"
+          },
+          {
+            "value": "24002001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "24003",
+        "label": "Technology News",
+        "children": [
+          {
+            "value": "24003001",
+            "label": "Technology News"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "15",
+    "label": "Travel & Lifestyle",
+    "children": [
+      {
+        "value": "15001",
+        "label": "Travel",
+        "children": [
+          {
+            "value": "15001003",
+            "label": "Travel Guides"
+          },
+          {
+            "value": "15001005",
+            "label": "Hotel Experiences"
+          },
+          {
+            "value": "15001004",
+            "label": "Natural Scenery"
+          },
+          {
+            "value": "15001002",
+            "label": "Cultural Experiences"
+          },
+          {
+            "value": "15001001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "15002",
+        "label": "Lifestyle",
+        "children": [
+          {
+            "value": "15002001",
+            "label": "Lifestyle"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "28",
+    "label": "Art",
+    "children": [
+      {
+        "value": "28004",
+        "label": "Music",
+        "children": [
+          {
+            "value": "28004001",
+            "label": "Music"
+          }
+        ]
+      },
+      {
+        "value": "28003",
+        "label": "Dance",
+        "children": [
+          {
+            "value": "28003001",
+            "label": "Dance"
+          }
+        ]
+      },
+      {
+        "value": "28001",
+        "label": "Crafts & Handmade",
+        "children": [
+          {
+            "value": "28001001",
+            "label": "Crafts & Handmade"
+          }
+        ]
+      },
+      {
+        "value": "28002",
+        "label": "Painting",
+        "children": [
+          {
+            "value": "28002001",
+            "label": "Painting"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "5",
+    "label": "Entertainment",
+    "children": [
+      {
+        "value": "5002",
+        "label": "Film & TV Editing & Commentary",
+        "children": [
+          {
+            "value": "5002001",
+            "label": "Film & TV Editing & Commentary"
+          }
+        ]
+      },
+      {
+        "value": "5005",
+        "label": "Variety Shows & Reality TV",
+        "children": [
+          {
+            "value": "5005001",
+            "label": "Variety Shows & Reality TV"
+          }
+        ]
+      },
+      {
+        "value": "5003",
+        "label": "Celebrity News",
+        "children": [
+          {
+            "value": "5003001",
+            "label": "Celebrity News"
+          }
+        ]
+      },
+      {
+        "value": "5004",
+        "label": "Comics & Animation",
+        "children": [
+          {
+            "value": "5004001",
+            "label": "Comics & Animation"
+          }
+        ]
+      },
+      {
+        "value": "5001",
+        "label": "Comedy & Humor",
+        "children": [
+          {
+            "value": "5001001",
+            "label": "Comedy & Humor"
+          }
+        ]
+      },
+      {
+        "value": "5006",
+        "label": "Cosplay",
+        "children": [
+          {
+            "value": "5006001",
+            "label": "Cosplay"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "9",
+    "label": "Pets",
+    "children": [
+      {
+        "value": "9002",
+        "label": "Pet Supplies",
+        "children": [
+          {
+            "value": "9002004",
+            "label": "Pet Food"
+          },
+          {
+            "value": "9002003",
+            "label": "Pet Lifestyle Products"
+          },
+          {
+            "value": "9002002",
+            "label": "Pet Toys"
+          },
+          {
+            "value": "9002001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "9001",
+        "label": "Pet Entertainment",
+        "children": [
+          {
+            "value": "9001001",
+            "label": "Pet Entertainment"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "1",
+    "label": "Parenting & Family",
+    "children": [
+      {
+        "value": "1001",
+        "label": "Family Daily Life",
+        "children": [
+          {
+            "value": "1001001",
+            "label": "Parent-Child Interaction"
+          },
+          {
+            "value": "1001003",
+            "label": "Couple Interaction"
+          },
+          {
+            "value": "1001002",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "1002",
+        "label": "Maternity & Baby Products",
+        "children": [
+          {
+            "value": "1002003",
+            "label": "Maternal Products"
+          },
+          {
+            "value": "1002002",
+            "label": "Baby Products"
+          },
+          {
+            "value": "1002001",
+            "label": "Others"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "17",
+    "label": "Automotive & Transportation",
+    "children": [
+      {
+        "value": "17003",
+        "label": "Automobiles",
+        "children": [
+          {
+            "value": "17003001",
+            "label": "Automobiles"
+          }
+        ]
+      },
+      {
+        "value": "17001",
+        "label": "Motorcycles",
+        "children": [
+          {
+            "value": "17001001",
+            "label": "Motorcycles"
+          }
+        ]
+      },
+      {
+        "value": "17004",
+        "label": "Car Maintenance",
+        "children": [
+          {
+            "value": "17004001",
+            "label": "Car Maintenance"
+          }
+        ]
+      },
+      {
+        "value": "17006",
+        "label": "In-Vehicle Products",
+        "children": [
+          {
+            "value": "17006001",
+            "label": "In-Vehicle Products"
+          }
+        ]
+      },
+      {
+        "value": "17007",
+        "label": "Auto Parts",
+        "children": [
+          {
+            "value": "17007003",
+            "label": "Car Parts"
+          },
+          {
+            "value": "17007002",
+            "label": "Motorcycle Parts"
+          },
+          {
+            "value": "17007001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "17002",
+        "label": "Car Modification",
+        "children": [
+          {
+            "value": "17002001",
+            "label": "Car Modification"
+          }
+        ]
+      },
+      {
+        "value": "17005",
+        "label": "Self-Driving Travel",
+        "children": [
+          {
+            "value": "17005001",
+            "label": "Self-Driving Travel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "10",
+    "label": "Home & Living",
+    "children": [
+      {
+        "value": "10004",
+        "label": "Furniture",
+        "children": [
+          {
+            "value": "10004001",
+            "label": "Furniture"
+          }
+        ]
+      },
+      {
+        "value": "10007",
+        "label": "Home Decoration",
+        "children": [
+          {
+            "value": "10007001",
+            "label": "Home Decoration"
+          }
+        ]
+      },
+      {
+        "value": "10008",
+        "label": "Home Appliances",
+        "children": [
+          {
+            "value": "10008003",
+            "label": "Kitchen Appliances"
+          },
+          {
+            "value": "10008002",
+            "label": "Bathroom Appliances"
+          },
+          {
+            "value": "10008005",
+            "label": "Household Appliances"
+          },
+          {
+            "value": "10008004",
+            "label": "Lighting Fixtures"
+          },
+          {
+            "value": "10008006",
+            "label": "Audio-Visual & Entertainment"
+          },
+          {
+            "value": "10008001",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "10010",
+        "label": "Bedding",
+        "children": [
+          {
+            "value": "10010001",
+            "label": "Bedding"
+          }
+        ]
+      },
+      {
+        "value": "10009",
+        "label": "Home Textiles",
+        "children": [
+          {
+            "value": "10009001",
+            "label": "Home Textiles"
+          }
+        ]
+      },
+      {
+        "value": "10012",
+        "label": "Daily Necessities",
+        "children": [
+          {
+            "value": "10012001",
+            "label": "Daily Necessities"
+          }
+        ]
+      },
+      {
+        "value": "10002",
+        "label": "Kitchen & Tableware",
+        "children": [
+          {
+            "value": "10002001",
+            "label": "Kitchen & Tableware"
+          }
+        ]
+      },
+      {
+        "value": "10001",
+        "label": "Bathroom Supplies",
+        "children": [
+          {
+            "value": "10001001",
+            "label": "Bathroom Supplies"
+          }
+        ]
+      },
+      {
+        "value": "10006",
+        "label": "Home Cleaning",
+        "children": [
+          {
+            "value": "10006001",
+            "label": "Home Cleaning"
+          }
+        ]
+      },
+      {
+        "value": "10005",
+        "label": "Home Storage & Organization",
+        "children": [
+          {
+            "value": "10005001",
+            "label": "Home Storage & Organization"
+          }
+        ]
+      },
+      {
+        "value": "10011",
+        "label": "Room Renovation",
+        "children": [
+          {
+            "value": "10011001",
+            "label": "Room Renovation"
+          }
+        ]
+      },
+      {
+        "value": "10003",
+        "label": "Gardening & Plants",
+        "children": [
+          {
+            "value": "10003001",
+            "label": "Gardening & Plants"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "20",
+    "label": "Toys",
+    "children": [
+      {
+        "value": "20001",
+        "label": "Children's Toys",
+        "children": [
+          {
+            "value": "20001001",
+            "label": "Children's Toys"
+          }
+        ]
+      },
+      {
+        "value": "20002",
+        "label": "Adult Art Toys",
+        "children": [
+          {
+            "value": "20002001",
+            "label": "Adult Art Toys"
+          }
+        ]
+      },
+      {
+        "value": "20005",
+        "label": "Building Block Toys",
+        "children": [
+          {
+            "value": "20005001",
+            "label": "Building Block Toys"
+          }
+        ]
+      },
+      {
+        "value": "20004",
+        "label": "Educational Toys",
+        "children": [
+          {
+            "value": "20004001",
+            "label": "Educational Toys"
+          }
+        ]
+      },
+      {
+        "value": "20003",
+        "label": "Model Toys",
+        "children": [
+          {
+            "value": "20003001",
+            "label": "Model Toys"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "30",
+    "label": "Software",
+    "children": [
+      {
+        "value": "30001",
+        "label": "AI",
+        "children": [
+          {
+            "value": "30001001",
+            "label": "AI"
+          }
+        ]
+      },
+      {
+        "value": "30003",
+        "label": "Mobile Apps",
+        "children": [
+          {
+            "value": "30003005",
+            "label": "Social"
+          },
+          {
+            "value": "30003009",
+            "label": "Music"
+          },
+          {
+            "value": "30003006",
+            "label": "Video & Live Streaming"
+          },
+          {
+            "value": "30003003",
+            "label": "Learning"
+          },
+          {
+            "value": "30003004",
+            "label": "Tools"
+          },
+          {
+            "value": "30003007",
+            "label": "Shopping"
+          },
+          {
+            "value": "30003001",
+            "label": "Fitness"
+          },
+          {
+            "value": "30003008",
+            "label": "Finance"
+          },
+          {
+            "value": "30003002",
+            "label": "Others"
+          }
+        ]
+      },
+      {
+        "value": "30002",
+        "label": "Web3",
+        "children": [
+          {
+            "value": "30002001",
+            "label": "NFT (Non-Fungible Token)"
+          },
+          {
+            "value": "30002003",
+            "label": "Cryptocurrency"
+          },
+          {
+            "value": "30002004",
+            "label": "Decentralized Finance"
+          },
+          {
+            "value": "30002002",
+            "label": "Others"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "29",
+    "label": "Finance",
+    "children": [
+      {
+        "value": "29001",
+        "label": "Finance",
+        "children": [
+          {
+            "value": "29001001",
+            "label": "Finance"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "4",
+    "label": "Books",
+    "children": [
+      {
+        "value": "4001",
+        "label": "Books",
+        "children": [
+          {
+            "value": "4001001",
+            "label": "Books"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "6",
+    "label": "Learning & Education",
+    "children": [
+      {
+        "value": "6001",
+        "label": "Learning & Education",
+        "children": [
+          {
+            "value": "6001001",
+            "label": "Learning & Education"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "27",
+    "label": "Career Development",
+    "children": [
+      {
+        "value": "27001",
+        "label": "Career Development",
+        "children": [
+          {
+            "value": "27001001",
+            "label": "Career Development"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "11",
+    "label": "Architecture",
+    "children": [
+      {
+        "value": "11001",
+        "label": "Architecture",
+        "children": [
+          {
+            "value": "11001001",
+            "label": "Architecture"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "23",
+    "label": "Science",
+    "children": [
+      {
+        "value": "23001",
+        "label": "Science",
+        "children": [
+          {
+            "value": "23001001",
+            "label": "Science"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "14",
+    "label": "Culture & Customs",
+    "children": [
+      {
+        "value": "14001",
+        "label": "Culture & Customs",
+        "children": [
+          {
+            "value": "14001001",
+            "label": "Culture & Customs"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "8",
+    "label": "Religion & Beliefs",
+    "children": [
+      {
+        "value": "8001",
+        "label": "Religion & Beliefs",
+        "children": [
+          {
+            "value": "8001001",
+            "label": "Religion & Beliefs"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "22",
+    "label": "Social Welfare",
+    "children": [
+      {
+        "value": "22001",
+        "label": "Social Welfare",
+        "children": [
+          {
+            "value": "22001001",
+            "label": "Social Welfare"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "21",
+    "label": "Environmental Protection",
+    "children": [
+      {
+        "value": "21001",
+        "label": "Environmental Protection",
+        "children": [
+          {
+            "value": "21001001",
+            "label": "Environmental Protection"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "2",
+    "label": "Agriculture & Rural Areas",
+    "children": [
+      {
+        "value": "2001",
+        "label": "Agriculture & Rural Areas",
+        "children": [
+          {
+            "value": "2001001",
+            "label": "Agriculture & Rural Areas"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "7",
+    "label": "Safety & Emergency",
+    "children": [
+      {
+        "value": "7001",
+        "label": "Safety & Emergency",
+        "children": [
+          {
+            "value": "7001001",
+            "label": "Safety & Emergency"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "13",
+    "label": "Politics",
+    "children": [
+      {
+        "value": "13001",
+        "label": "Politics",
+        "children": [
+          {
+            "value": "13001001",
+            "label": "Politics"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "18",
+    "label": "Rule of Law",
+    "children": [
+      {
+        "value": "18001",
+        "label": "Rule of Law",
+        "children": [
+          {
+            "value": "18001001",
+            "label": "Rule of Law"
+          }
+        ]
+      }
+    ]
+  }
+]

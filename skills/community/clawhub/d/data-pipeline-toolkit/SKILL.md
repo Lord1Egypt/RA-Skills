@@ -1,35 +1,56 @@
----
-name: "Data Pipeline Toolkit"
-description: "Create, schedule, and monitor ETL pipelines extracting from APIs, databases, files, and streams, with transform and load support to warehouses and APIs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-pipeline-toolkit"
-sourceUrl: "https://clawhub.ai/skills/data-pipeline-toolkit"
----
-
 # Data Pipeline Toolkit
 
-> Create, schedule, and monitor ETL pipelines extracting from APIs, databases, files, and streams, with transform and load support to warehouses and APIs.
+Build ETL pipelines in minutes.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-pipeline-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/data-pipeline-toolkit](https://clawhub.ai/skills/data-pipeline-toolkit)
+## Features
 
-## Overview
+- **Extract** - APIs, databases, files, streams
+- **Transform** - Clean, filter, aggregate, join
+- **Load** - Data warehouses, databases, APIs
+- **Scheduling** - Cron-based or event-driven
+- **Monitoring** - Alerts on failures
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/data-pipeline-toolkit
+# Create pipeline
+./pipeline.sh create my-pipeline
+
+# Add extract step
+./pipeline.sh extract my-pipeline api --url https://api.example.com
+
+# Add transform
+./pipeline.sh transform my-pipeline filter "age > 18"
+
+# Add load
+./pipeline.sh load my-pipeline postgres --connection $DB_URL
+
+# Run
+./pipeline.sh run my-pipeline
 ```
+
+## Sources
+
+- REST APIs
+- GraphQL
+- SQL Databases
+- CSV/JSON/Parquet files
+- S3/Google Cloud Storage
+- Kafka/SQS
+
+## Destinations
+
+- PostgreSQL/MySQL
+- Snowflake/BigQuery
+- S3
+- APIs
+- Data warehouses
+
+## Requirements
+
+- Python 3.8+
+- Docker (optional)
+
+## Author
+
+Sunshine-del-ux

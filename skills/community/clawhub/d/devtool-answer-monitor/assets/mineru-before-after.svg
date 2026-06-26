@@ -1,0 +1,87 @@
+<svg width="984" height="620" viewBox="0 0 984 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="984" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#F5F3EC"/>
+    </linearGradient>
+    <linearGradient id="baseline" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#CBD5E1"/>
+      <stop offset="1" stop-color="#94A3B8"/>
+    </linearGradient>
+    <linearGradient id="t7" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="t14" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#14B8A6"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="976" height="612" rx="28" fill="url(#bg)" stroke="#E2E8F0" stroke-width="8"/>
+  <text x="56" y="80" fill="#0F172A" font-family="Avenir Next, Segoe UI, Arial, sans-serif" font-size="38" font-weight="700">MinerU Repair Loop</text>
+  <text x="56" y="118" fill="#475569" font-family="Avenir Next, Segoe UI, Arial, sans-serif" font-size="20" font-weight="500">Public benchmark sample: baseline vs T+7 vs T+14</text>
+
+  <g font-family="Avenir Next, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">
+    <rect x="56" y="144" width="20" height="20" rx="10" fill="url(#baseline)"/>
+    <text x="86" y="159" fill="#475569">Baseline</text>
+    <rect x="194" y="144" width="20" height="20" rx="10" fill="url(#t7)"/>
+    <text x="224" y="159" fill="#475569">T+7</text>
+    <rect x="302" y="144" width="20" height="20" rx="10" fill="url(#t14)"/>
+    <text x="332" y="159" fill="#475569">T+14</text>
+  </g>
+
+  <g font-family="Avenir Next, Segoe UI, Arial, sans-serif" font-size="18" fill="#0F172A">
+    <text x="56" y="214" font-weight="700">Mention rate</text>
+    <rect x="56" y="232" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="56" y="232" width="218" height="28" rx="14" fill="url(#baseline)"/>
+    <rect x="56" y="268" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="56" y="268" width="231" height="28" rx="14" fill="url(#t7)"/>
+    <rect x="56" y="304" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="56" y="304" width="245" height="28" rx="14" fill="url(#t14)"/>
+    <text x="340" y="252" font-weight="700">80%</text>
+    <text x="340" y="288" font-weight="700">85%</text>
+    <text x="340" y="324" font-weight="700">90%</text>
+
+    <text x="430" y="214" font-weight="700">Positive mention</text>
+    <rect x="430" y="232" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="430" y="232" width="190" height="28" rx="14" fill="url(#baseline)"/>
+    <rect x="430" y="268" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="430" y="268" width="204" height="28" rx="14" fill="url(#t7)"/>
+    <rect x="430" y="304" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="430" y="304" width="223" height="28" rx="14" fill="url(#t14)"/>
+    <text x="714" y="252" font-weight="700">70%</text>
+    <text x="714" y="288" font-weight="700">75%</text>
+    <text x="714" y="324" font-weight="700">82%</text>
+
+    <text x="56" y="396" font-weight="700">Capability accuracy</text>
+    <rect x="56" y="414" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="56" y="414" width="272" height="28" rx="14" fill="url(#baseline)"/>
+    <rect x="56" y="450" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="56" y="450" width="272" height="28" rx="14" fill="url(#t7)"/>
+    <rect x="56" y="486" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="56" y="486" width="272" height="28" rx="14" fill="url(#t14)"/>
+    <text x="340" y="434" font-weight="700">100%</text>
+    <text x="340" y="470" font-weight="700">100%</text>
+    <text x="340" y="506" font-weight="700">100%</text>
+
+    <text x="430" y="396" font-weight="700">Ecosystem accuracy</text>
+    <rect x="430" y="414" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="430" y="414" width="136" height="28" rx="14" fill="url(#baseline)"/>
+    <rect x="430" y="450" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="430" y="450" width="204" height="28" rx="14" fill="url(#t7)"/>
+    <rect x="430" y="486" width="272" height="28" rx="14" fill="#E2E8F0"/>
+    <rect x="430" y="486" width="272" height="28" rx="14" fill="url(#t14)"/>
+    <text x="714" y="434" font-weight="700">50%</text>
+    <text x="714" y="470" font-weight="700">75%</text>
+    <text x="714" y="506" font-weight="700">100%</text>
+  </g>
+
+  <g font-family="Avenir Next, Segoe UI, Arial, sans-serif">
+    <text x="770" y="208" fill="#0F172A" font-size="24" font-weight="700">Story notes</text>
+    <text x="770" y="246" fill="#475569" font-size="18" font-weight="500">Baseline: outdated + negative_eval</text>
+    <text x="770" y="284" fill="#475569" font-size="18" font-weight="500">T+7: one remaining negative_eval</text>
+    <text x="770" y="322" fill="#475569" font-size="18" font-weight="500">T+14: no open repair candidates</text>
+    <text x="770" y="400" fill="#0F766E" font-size="42" font-weight="700">+50 pts</text>
+    <text x="770" y="436" fill="#475569" font-size="20" font-weight="600">Ecosystem accuracy by T+14</text>
+  </g>
+</svg>

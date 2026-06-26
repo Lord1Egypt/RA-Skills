@@ -1,0 +1,11 @@
+{
+  "name": "daily-news-brief",
+  "description": "每日新闻摘要推送",
+  "version": "1.0.0",
+  "author": "OpenClaw",
+  "permissions": ["telegram", "internet"],
+  "config": {
+    "telegram_chat_id": "",
+    "telegram_bot_token": ""
+  }
+}

@@ -1,0 +1,56 @@
+# FTP Usage Guide (FTP 使用指南)
+
+Drive configuration is automatically loaded from `config.json`. (云盘配置从 `config.json` 自动加载。)
+
+## FTP Config Template (FTP 配置模版)
+
+```json
+{
+  "name": "ftpDrive", // Configuration Alias (设置别名)
+  "user": "user", // FTP Username (FTP 用户名)
+  "password": "password", // FTP Password (FTP 密码)
+  "ip": "192.168.50.1", // Server IP or Hostname (服务器 IP 或域名)
+  "port": 21, // Port Number (端口号), default 21
+  "tls": false, // Enable TLS (是否启用 TLS), true means FTPS
+  "path": "/" // Initial remote path (初始远程路径)
+}
+```
+- Assist users in completing relevant configuration information according to the template, and record it to `skills/drive-tools/config.json`. (协助用户按模板完成相关配置信息，并记录到 `skills/drive-tools/config.json`)
+- The configuration template can be output as a code block for users to fill in; do not omit any fields in the code block. (将配置模版通过代码块的格式输出给用户，让用户进行填写，代码块格式里不要缺少字段。)
+
+
+## Quick Start (快速开始)
+
+**Script (脚本):** `scripts/ftp_drive_tools.py`
+
+### Global Options (通用参数)
+- `--name <config_name>`: Specify the connection name or index in `config.json` (指定 `config.json` 中的连接名称或索引).
+
+```shell
+# Test Connection (测试连接是否成功)
+python scripts/ftp_drive_tools.py --name ftpDrive test
+
+# List Directory (列出目录内容)
+python scripts/ftp_drive_tools.py --name ftpDrive ls /Movies
+
+# Upload File: local_path -> remote_path (上传本地文件: 本地路径 -> 远程路径)
+python scripts/ftp_drive_tools.py --name ftpDrive put ./video.mp4 /Movies/video.mp4
+
+# Download File: remote_path -> local_path (下载远程文件: 远程路径 -> 本地路径)
+python scripts/ftp_drive_tools.py --name ftpDrive get /Movies/video.mp4 ./video.mp4
+
+# Create Directory (创建远程目录)
+python scripts/ftp_drive_tools.py --name ftpDrive mkdir /NewFolder
+
+# Delete File or Directory (删除远程文件或目录)
+# Use -d for directories (使用 -d 参数删除目录)
+python scripts/ftp_drive_tools.py --name ftpDrive rm /old.txt
+python scripts/ftp_drive_tools.py --name ftpDrive rm -d /old_dir
+
+# Rename or Move: old_path -> new_path (重命名或移动: 旧路径 -> 新路径)
+python scripts/ftp_drive_tools.py --name ftpDrive mv /old.txt /new.txt
+
+# Search Recursively (递归搜索关键字)
+python scripts/ftp_drive_tools.py --name ftpDrive find keywords --path /
+
+```

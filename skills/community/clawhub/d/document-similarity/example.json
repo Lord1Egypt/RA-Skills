@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/document/similarity",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url1": "https://pdfapihub.com/sample-document-similarity-1.jpg", "url2": "https://pdfapihub.com/sample-document-similarity-2.jpg", "method": "auto" }
+  },
+  "response": {
+    "status": 200,
+    "body": { "similarity": 0.92, "confidence": "high", "method": "feature_match" }
+  }
+}

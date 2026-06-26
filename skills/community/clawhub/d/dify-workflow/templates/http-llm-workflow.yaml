@@ -1,0 +1,326 @@
+# HTTP + LLM Workflow Template
+# Pattern: Start → HTTP Request → Code (Parse) → IF/ELSE → LLM → End
+# Use case: Fetch external data and process with LLM
+
+app:
+  description: Fetch data from API and analyze with LLM
+  icon: globe
+  icon_background: '#E0F2FE'
+  mode: workflow
+  name: HTTP + LLM Workflow
+  use_icon_as_answer_icon: false
+
+dependencies: []
+
+kind: app
+version: 0.6.0  # replace with exported version
+
+workflow:
+  conversation_variables: []
+  environment_variables:
+    - name: API_KEY
+      value_type: secret
+      value: ''
+  features:
+    file_upload:
+      enabled: false
+  graph:
+    edges:
+      # Start → HTTP Request
+      - data:
+          sourceType: start
+          targetType: http-request
+        id: start-to-http
+        source: '1700000000001'
+        sourceHandle: source
+        target: '1700000000002'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # HTTP Request → Code
+      - data:
+          sourceType: http-request
+          targetType: code
+        id: http-to-code
+        source: '1700000000002'
+        sourceHandle: source
+        target: '1700000000003'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # Code → IF/ELSE
+      - data:
+          sourceType: code
+          targetType: if-else
+        id: code-to-ifelse
+        source: '1700000000003'
+        sourceHandle: source
+        target: '1700000000004'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # IF/ELSE (true) → LLM
+      - data:
+          sourceType: if-else
+          targetType: llm
+        id: ifelse-true-to-llm
+        source: '1700000000004'
+        sourceHandle: 'true'
+        target: '1700000000005'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # IF/ELSE (false) → End Error
+      - data:
+          sourceType: if-else
+          targetType: end
+        id: ifelse-false-to-end
+        source: '1700000000004'
+        sourceHandle: 'false'
+        target: '1700000000007'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      # LLM → End
+      - data:
+          sourceType: llm
+          targetType: end
+        id: llm-to-end
+        source: '1700000000005'
+        sourceHandle: source
+        target: '1700000000006'
+        targetHandle: target
+        type: custom
+        zIndex: 0
+
+    nodes:
+      # ============ START NODE ============
+      - data:
+          type: start
+          title: Start
+          desc: Input resource ID
+          variables:
+            - variable: resource_id
+              label: Resource ID
+              type: text-input
+              required: true
+              max_length: 100
+              options: []
+        id: '1700000000001'
+        type: custom
+        position:
+          x: 30
+          y: 275
+        width: 244
+        height: 118
+
+      # ============ HTTP REQUEST NODE ============
+      - data:
+          type: http-request
+          title: Fetch Data
+          desc: Call external API
+          method: get
+          url: https://api.example.com/resource
+          params: "id:{{#1700000000001.resource_id#}}"
+          headers: "Authorization:Bearer {{#env.API_KEY#}}"
+          body:
+            type: none
+            data: []
+          authorization:
+            type: no-auth
+            config: null
+          timeout:
+            max_connect_timeout: 30000
+            max_read_timeout: 60000
+            max_write_timeout: 30000
+          retry_config:
+            retry_enabled: true
+            max_retries: 3
+            retry_interval: 1000
+        id: '1700000000002'
+        type: custom
+        position:
+          x: 334
+          y: 275
+        width: 244
+        height: 139
+
+      # ============ CODE NODE (Parse Response) ============
+      - data:
+          type: code
+          title: Parse Response
+          desc: Parse API response JSON
+          code_language: python3
+          code: |
+            import json
+
+            def main(response_body, status_code):
+                """Parse API response and extract data."""
+                result = {
+                    "success": False,
+                    "content": "",
+                    "error_message": ""
+                }
+
+                # Check status code
+                if status_code != 200:
+                    result["error_message"] = f"API returned status {status_code}"
+                    return result
+
+                # Parse JSON
+                if not response_body:
+                    result["error_message"] = "Empty response"
+                    return result
+
+                try:
+                    data = json.loads(response_body)
+                    if data.get("success"):
+                        result["success"] = True
+                        result["content"] = data.get("content", "")
+                    else:
+                        result["error_message"] = data.get("message", "Unknown error")
+                except json.JSONDecodeError as e:
+                    result["error_message"] = f"JSON parse error: {str(e)}"
+
+                return result
+          variables:
+            - variable: response_body
+              value_selector:
+                - '1700000000002'
+                - body
+            - variable: status_code
+              value_selector:
+                - '1700000000002'
+                - status_code
+          outputs:
+            success:
+              type: boolean
+              children: null
+            content:
+              type: string
+              children: null
+            error_message:
+              type: string
+              children: null
+        id: '1700000000003'
+        type: custom
+        position:
+          x: 638
+          y: 275
+        width: 244
+        height: 82
+
+      # ============ IF/ELSE NODE ============
+      - data:
+          type: if-else
+          title: Check Success
+          desc: Branch based on parse result
+          conditions:
+            - id: condition-1
+              variable_selector:
+                - '1700000000003'
+                - success
+              comparison_operator: is
+              value: 'true'
+              varType: boolean
+          cases:
+            - id: 'true'
+              case_id: 'true'
+              logical_operator: and
+              conditions:
+                - id: condition-1
+                  variable_selector:
+                    - '1700000000003'
+                    - success
+                  comparison_operator: is
+                  value: 'true'
+                  varType: boolean
+        id: '1700000000004'
+        type: custom
+        position:
+          x: 942
+          y: 275
+        width: 244
+        height: 126
+
+      # ============ LLM NODE ============
+      - data:
+          type: llm
+          title: Analyze Content
+          desc: Analyze fetched content with LLM
+          model:
+            # replace provider/name with values from your instance export
+            provider: langgenius/openai/openai
+            name: gpt-4o
+            mode: chat
+            completion_params: {}
+          prompt_template:
+            - id: system-prompt
+              role: system
+              text: |
+                You are an expert content analyst.
+                Analyze the provided content and provide insights.
+            - id: user-prompt
+              role: user
+              text: |
+                Please analyze the following content:
+
+                {{#1700000000003.content#}}
+
+                Provide:
+                1. Summary (2-3 sentences)
+                2. Key points (bullet list)
+                3. Quality score (1-10)
+          context:
+            enabled: false
+            variable_selector: []
+          vision:
+            enabled: false
+        id: '1700000000005'
+        type: custom
+        position:
+          x: 1246
+          y: 200
+        width: 244
+        height: 118
+
+      # ============ END NODE (Success) ============
+      - data:
+          type: end
+          title: End (Success)
+          desc: Output analysis result
+          outputs:
+            - variable: analysis
+              value_selector:
+                - '1700000000005'
+                - text
+        id: '1700000000006'
+        type: custom
+        position:
+          x: 1550
+          y: 200
+        width: 244
+        height: 118
+
+      # ============ END NODE (Error) ============
+      - data:
+          type: end
+          title: End (Error)
+          desc: Output error message
+          outputs:
+            - variable: error_message
+              value_selector:
+                - '1700000000003'
+                - error_message
+        id: '1700000000007'
+        type: custom
+        position:
+          x: 1246
+          y: 400
+        width: 244
+        height: 118
+
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.8

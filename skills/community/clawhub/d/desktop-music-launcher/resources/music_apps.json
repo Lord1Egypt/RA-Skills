@@ -1,0 +1,367 @@
+{
+  "apps": [
+    {
+      "id": "spotify",
+      "label": "Spotify",
+      "platforms": {
+        "windows": {
+          "display_names": [
+            "Spotify"
+          ],
+          "paths": [
+            "%APPDATA%\\\\Spotify\\\\Spotify.exe",
+            "%LOCALAPPDATA%\\\\Microsoft\\\\WindowsApps\\\\Spotify.exe",
+            "%PROGRAMFILES%\\\\Spotify\\\\Spotify.exe",
+            "%PROGRAMFILES(X86)%\\\\Spotify\\\\Spotify.exe"
+          ],
+          "commands": [
+            "spotify",
+            "Spotify"
+          ],
+          "open_uri_prefixes": [
+            "spotify:"
+          ],
+          "search_uri_template": "spotify:search:{query}",
+          "supports": [
+            "open",
+            "search",
+            "play_uri"
+          ]
+        },
+        "macos": {
+          "app_names": [
+            "Spotify.app"
+          ],
+          "app_paths": [
+            "/Applications/Spotify.app"
+          ],
+          "commands": [
+            "open -a Spotify"
+          ],
+          "open_uri_prefixes": [
+            "spotify:"
+          ],
+          "search_uri_template": "spotify:search:{query}",
+          "supports": [
+            "control",
+            "open",
+            "play_query_control",
+            "play_uri",
+            "search"
+          ]
+        },
+        "linux": {
+          "commands": [
+            "spotify",
+            "spotify-launcher"
+          ],
+          "desktop_files": [
+            "spotify.desktop"
+          ],
+          "open_uri_prefixes": [
+            "spotify:"
+          ],
+          "search_uri_template": "spotify:search:{query}",
+          "supports": [
+            "open",
+            "search",
+            "play_uri"
+          ]
+        }
+      }
+    },
+    {
+      "id": "apple-music",
+      "label": "Apple Music / iTunes",
+      "platforms": {
+        "windows": {
+          "display_names": [
+            "Apple Music",
+            "iTunes"
+          ],
+          "paths": [
+            "%PROGRAMFILES%\\\\Apple Music\\\\Apple Music.exe",
+            "%PROGRAMFILES%\\\\iTunes\\\\iTunes.exe",
+            "%PROGRAMFILES(X86)%\\\\iTunes\\\\iTunes.exe"
+          ],
+          "commands": [
+            "AppleMusic",
+            "iTunes"
+          ],
+          "search_web_template": "https://music.apple.com/us/search?term={query}",
+          "supports": [
+            "open",
+            "search_web"
+          ]
+        },
+        "macos": {
+          "app_names": [
+            "Music.app",
+            "iTunes.app"
+          ],
+          "app_paths": [
+            "/System/Applications/Music.app",
+            "/Applications/Music.app",
+            "/Applications/iTunes.app"
+          ],
+          "commands": [
+            "open -a Music",
+            "open -a iTunes"
+          ],
+          "search_web_template": "https://music.apple.com/us/search?term={query}",
+          "supports": [
+            "control",
+            "open",
+            "play_query_control",
+            "search_web"
+          ]
+        }
+      }
+    },
+    {
+      "id": "netease-cloud-music",
+      "label": "NetEase Cloud Music",
+      "platforms": {
+        "windows": {
+          "display_names": [
+            "网易云音乐"
+          ],
+          "paths": [
+            "%LOCALAPPDATA%\\\\Programs\\\\cloudmusic\\\\cloudmusic.exe",
+            "%PROGRAMFILES%\\\\NetEase\\\\CloudMusic\\\\cloudmusic.exe"
+          ],
+          "commands": [
+            "cloudmusic"
+          ],
+          "search_web_template": "https://music.163.com/#/search/m/?s={query}&type=1",
+          "supports": [
+            "open",
+            "search_web"
+          ]
+        },
+        "macos": {
+          "app_names": [
+            "网易云音乐.app",
+            "NetEaseMusic.app"
+          ],
+          "app_paths": [
+            "/Applications/网易云音乐.app",
+            "/Applications/NetEaseMusic.app"
+          ],
+          "commands": [
+            "open -a 网易云音乐",
+            "open -a NetEaseMusic"
+          ],
+          "search_web_template": "https://music.163.com/#/search/m/?s={query}&type=1",
+          "supports": [
+            "open",
+            "search_web"
+          ]
+        }
+      }
+    },
+    {
+      "id": "qq-music",
+      "label": "QQ Music",
+      "platforms": {
+        "windows": {
+          "display_names": [
+            "QQ音乐"
+          ],
+          "paths": [
+            "%PROGRAMFILES%\\\\Tencent\\\\QQMusic\\\\QQMusic.exe",
+            "%PROGRAMFILES(X86)%\\\\Tencent\\\\QQMusic\\\\QQMusic.exe"
+          ],
+          "commands": [
+            "QQMusic"
+          ],
+          "search_web_template": "https://y.qq.com/n/ryqq/search?w={query}",
+          "supports": [
+            "open",
+            "search_web"
+          ]
+        },
+        "macos": {
+          "app_names": [
+            "QQ音乐.app",
+            "QQMusic.app"
+          ],
+          "app_paths": [
+            "/Applications/QQ音乐.app",
+            "/Applications/QQMusic.app"
+          ],
+          "commands": [
+            "open -a QQ音乐",
+            "open -a QQMusic"
+          ],
+          "search_web_template": "https://y.qq.com/n/ryqq/search?w={query}",
+          "supports": [
+            "open",
+            "search_web"
+          ]
+        }
+      }
+    },
+    {
+      "id": "vlc",
+      "label": "VLC",
+      "platforms": {
+        "windows": {
+          "display_names": [
+            "VLC media player",
+            "VLC"
+          ],
+          "paths": [
+            "%PROGRAMFILES%\\\\VideoLAN\\\\VLC\\\\vlc.exe",
+            "%PROGRAMFILES(X86)%\\\\VideoLAN\\\\VLC\\\\vlc.exe"
+          ],
+          "commands": [
+            "vlc",
+            "VLC"
+          ],
+          "supports": [
+            "open",
+            "play_file",
+            "play_url"
+          ]
+        },
+        "macos": {
+          "app_names": [
+            "VLC.app"
+          ],
+          "app_paths": [
+            "/Applications/VLC.app"
+          ],
+          "commands": [
+            "open -a VLC"
+          ],
+          "supports": [
+            "open",
+            "play_file",
+            "play_url"
+          ]
+        },
+        "linux": {
+          "commands": [
+            "vlc",
+            "cvlc"
+          ],
+          "desktop_files": [
+            "vlc.desktop"
+          ],
+          "supports": [
+            "open",
+            "play_file",
+            "play_url"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mpv",
+      "label": "mpv",
+      "platforms": {
+        "windows": {
+          "paths": [
+            "%PROGRAMFILES%\\\\mpv\\\\mpv.exe"
+          ],
+          "commands": [
+            "mpv"
+          ],
+          "supports": [
+            "open",
+            "play_file",
+            "play_url"
+          ]
+        },
+        "macos": {
+          "app_names": [
+            "mpv.app"
+          ],
+          "app_paths": [
+            "/Applications/mpv.app"
+          ],
+          "commands": [
+            "open -a mpv",
+            "mpv"
+          ],
+          "supports": [
+            "open",
+            "play_file",
+            "play_url"
+          ]
+        },
+        "linux": {
+          "commands": [
+            "mpv"
+          ],
+          "desktop_files": [
+            "mpv.desktop"
+          ],
+          "supports": [
+            "open",
+            "play_file",
+            "play_url"
+          ]
+        }
+      }
+    },
+    {
+      "id": "foobar2000",
+      "label": "foobar2000",
+      "platforms": {
+        "windows": {
+          "paths": [
+            "%PROGRAMFILES%\\\\foobar2000\\\\foobar2000.exe",
+            "%PROGRAMFILES(X86)%\\\\foobar2000\\\\foobar2000.exe"
+          ],
+          "commands": [
+            "foobar2000"
+          ],
+          "supports": [
+            "open",
+            "play_file"
+          ]
+        }
+      }
+    },
+    {
+      "id": "musicbee",
+      "label": "MusicBee",
+      "platforms": {
+        "windows": {
+          "paths": [
+            "%PROGRAMFILES%\\\\MusicBee\\\\MusicBee.exe",
+            "%PROGRAMFILES(X86)%\\\\MusicBee\\\\MusicBee.exe"
+          ],
+          "commands": [
+            "MusicBee"
+          ],
+          "supports": [
+            "open",
+            "play_file"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rhythmbox",
+      "label": "Rhythmbox",
+      "platforms": {
+        "linux": {
+          "commands": [
+            "rhythmbox"
+          ],
+          "desktop_files": [
+            "rhythmbox.desktop"
+          ],
+          "supports": [
+            "open",
+            "play_file",
+            "play_url"
+          ]
+        }
+      }
+    }
+  ]
+}

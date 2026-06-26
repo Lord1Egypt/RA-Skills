@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Diagram Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="[https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js](https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js)"></script>
+</head>
+<body>
+
+    <h1>Diagram Generator & Editor</h1>
+
+    <div class="main-container">
+        <div class="editor-section">
+            <div class="examples-container">
+                <span class="examples-label">Try an example:</span>
+                <button class="example-btn" data-prompt="A flowchart showing a user login process.">Login Flowchart</button>
+                <button class="example-btn" data-prompt="Gantt chart for a 3-month release cycle.">Gantt Chart</button>
+                <button class="example-btn" data-prompt="Generate a draw.io architecture diagram showing a web client connecting to a load balancer, two node servers, and a PostgreSQL database.">Draw.io Architecture</button>
+            </div>
+
+            <div class="prompt-header">
+                <label for="promptInput" style="font-weight: 600; color: #475569; font-size: 14px;">Prompt & Context</label>
+                <button id="attachContextBtn" class="example-btn" style="background: #f1f5f9; color: #475569; border-color: #cbd5e1;">📎 Attach Context</button>
+                <input type="file" id="promptFileInput" accept=".txt,.pdf,.png,.jpg,.jpeg,.docx,.js,.py,.json,.html,.css,.ts,.java,.md" multiple hidden>
+            </div>
+
+            <div id="attachedFilesContainer" class="attached-files-container"></div>
+            <textarea id="promptInput" placeholder="Describe your diagram, or ask for changes, or simply type 'Draw this' if you attached a file..."></textarea>
+
+            <div class="controls">
+                <button id="generateBtn" class="primary-btn">Generate / Update</button>
+                <button id="loadFileBtn">Load Local Code File</button>
+                <input type="file" id="fileInput" accept=".mmd,.txt,.drawio,.xml" hidden>
+            </div>
+
+            <div class="save-controls">
+                <input type="text" id="projectNameInput" placeholder="Project Name (e.g., App_V1)" value="My_Project">
+                <button id="saveServerTextBtn">Save (.mmd)</button>
+                <button id="saveServerDrawioBtn">Save (.drawio)</button>
+                <button id="saveServerPngBtn">Save (PNG)</button>
+                <button id="saveServerJpgBtn">Save (JPG)</button>
+            </div>
+
+            <div id="statusMessage">Ready. Describe a diagram to begin.</div>
+
+            <div id="output">
+                <p id="placeholderText" style="color: #888; margin-top: 100px;">Your diagram will appear here.</p>
+                <div id="mermaidOutput" style="display:none;"></div>
+                <iframe id="drawioOutput" style="display:none; width:100%; height:500px; border:none;"></iframe>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h2>Saved Projects</h2>
+            <button id="refreshFilesBtn" style="width: 100%; margin-bottom: 10px;">Refresh List</button>
+            <div id="fileBrowserTree"></div>
+        </div>
+    </div>
+
+    <div id="previewModal" class="modal">
+        <div class="modal-content live-edit-modal">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
+                <h3 id="previewTitle" style="margin: 0;">File Preview</h3>
+                <span class="close-btn" id="closeModalBtn">&times;</span>
+            </div>
+
+            <div class="modal-body" style="flex-direction: column;">
+                <img id="previewImage" src="" alt="Preview" style="display: none; align-self: center;">
+
+                <div id="previewCodeContainer" style="display: none; width: 100%; gap: 20px;">
+                    <div style="flex: 1; display: flex; flex-direction: column;">
+                        <h4 style="margin-top: 0; margin-bottom: 10px;">Raw Text Editor</h4>
+                        <textarea id="previewCodeEditor" style="flex: 1; font-family: monospace; padding: 10px; border: 1px solid #ccc; border-radius: 4px; min-height: 400px; resize: vertical;"></textarea>
+                        <button id="rerenderPreviewBtn" style="margin-top: 10px; background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe;">🔄 Live Update Preview</button>
+                    </div>
+
+                    <div style="flex: 1; display: flex; flex-direction: column; background: white; border: 1px dashed #cbd5e1; border-radius: 4px; padding: 15px; overflow: auto;">
+                        <h4 style="margin-top: 0; margin-bottom: 10px;">Rendered Output</h4>
+                        <div id="previewMermaid" style="display: none; text-align: center;"></div>
+                        <iframe id="previewDrawio" style="display: none; width: 100%; height: 400px; border: none;"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="loadIntoEditorBtn" class="primary-btn" style="display: none;">Load Code into Main Editor</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

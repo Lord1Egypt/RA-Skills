@@ -1,0 +1,14 @@
+interface:
+  display_name: "Deyo"
+  short_description: "使用已安装的 deyo 命令发起链接转写，并在执行过程中向用户同步任务进度"
+  default_prompt: "Use the deyo skill to install, configure, or run the published deyo transcription CLI, and keep the user updated on task progress."
+
+# Gemini CLI 原生支持基于 SKILL.md 的加载方式。
+# Gemini 依靠 SKILL.md 顶部的 YAML frontmatter（包含 name 和 description）来识别和触发 skill。
+# 本文件用于与 claude.yaml 和 openai.yaml 保持平行结构，记录 Gemini 侧的说明。
+gemini_cli:
+  skill_id: "deyo"
+  notes:
+    - "Gemini CLI 原生读取 SKILL.md，只要包含 name 和 description frontmatter 即可。"
+    - "安装方式：在 Gemini CLI 中执行：gemini skills install <path/to/deyo> --scope workspace|user"
+    - "安装后，用户需在交互式会话中执行 /skills reload 生效。"

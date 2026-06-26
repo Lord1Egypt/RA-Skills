@@ -1,35 +1,44 @@
----
-name: "Crypto Scalper Bot"
-description: "Automated Binance Futures USDT-M scalping bot using RSI, EMA, Volume, Bollinger Bands, with auto SL/TP, Telegram alerts, and health monitoring."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-scalper-bot"
-sourceUrl: "https://clawhub.ai/skills/crypto-scalper-bot"
----
+# Crypto Trading Bot
 
-# Crypto Scalper Bot
+> Automated crypto scalping bot for Binance Futures USDT-M
 
-> Automated Binance Futures USDT-M scalping bot using RSI, EMA, Volume, Bollinger Bands, with auto SL/TP, Telegram alerts, and health monitoring.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-scalper-bot`
-- **Source URL:** [https://clawhub.ai/skills/crypto-scalper-bot](https://clawhub.ai/skills/crypto-scalper-bot)
+A complete crypto trading bot with multiple strategies:
+- **Scalper**: RSI + EMA + Volume based trading
+- **Bollinger Bands**: Mean reversion strategy
+- **QA System**: Auto health checks
 
-## Overview
+## Features
 
+- 6 trading pairs: BTC, ETH, SOL, BNB, XAU, XAG
+- Auto SL/TP management
+- Telegram notifications
+- System health monitoring
+- Backtest ready
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
 ```bash
-hermes skills install clawhub/crypto-scalper-bot
+# Setup credentials
+nano binance.env
+nano telegram.env
+
+# Verify setup
+bash setup.sh
+
+# Run strategies
+bash run_cycle.sh              # Scalper
+bash run_mean_reversion.sh     # Bollinger
+bash run_qa.sh                # QA check
 ```
+
+## Requirements
+
+- Python 3.8+
+- Binance Futures account
+- VPS (recommended)
+
+## Docs
+
+See README.md for full installation guide.

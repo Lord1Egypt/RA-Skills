@@ -1,0 +1,7 @@
+interface:
+  display_name: "赛博朋克主题"
+  short_description: "一键安装 OpenClaw 赛博朋克聊天/梦境主题并替换七个视觉槽位"
+  icon_small: "./assets/cyberpunk-theme-small.svg"
+  icon_large: "./assets/cyberpunk-theme-large.svg"
+  brand_color: "#35E8FF"
+  default_prompt: "Use $赛博朋克主题 to install this OpenClaw cyberpunk theme or swap the assistant, tool, help/history, user, chat, and dream visuals with my own assets."

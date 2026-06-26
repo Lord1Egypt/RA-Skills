@@ -1,0 +1,5 @@
+interface:
+  display_name: "DeepL 翻译工具"
+  short_description: "仅连接 DeepL 官方 API 的翻译、润色与文档处理工具"
+  brand_color: "#0F2B46"
+  default_prompt: "使用 $deepL-translate 处理 DeepL 翻译、文本润色、文档翻译或词汇表管理。"

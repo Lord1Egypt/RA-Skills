@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "douyin-to-photos",
+  "name": "Douyin-to-Photos",
+  "version": "0.1.0",
+  "author": "local-workspace",
+  "description": "Resolve authorized Douyin share links into playable MP4 URLs via configurable API providers, then save to Photos and clean temp files.",
+  "platforms": [
+    "ios-shortcuts",
+    "macos-shortcuts"
+  ],
+  "entrypoints": {
+    "shortcut_name": "Douyin-to-Photos",
+    "trigger_modes": [
+      "share_sheet",
+      "back_tap"
+    ],
+    "input_types": [
+      "url",
+      "text",
+      "clipboard"
+    ]
+  },
+  "parameters": {
+    "api_primary": {
+      "type": "string",
+      "default": "https://www.tikwm.com/api/",
+      "required": true,
+      "description": "Primary parser endpoint"
+    },
+    "api_fallback": {
+      "type": "string",
+      "default": "",
+      "required": false,
+      "description": "Fallback parser endpoint returning normalized JSON"
+    },
+    "album_name": {
+      "type": "string",
+      "default": "Douyin",
+      "required": false,
+      "description": "Destination album name"
+    },
+    "timeout_sec": {
+      "type": "number",
+      "default": 20,
+      "minimum": 5,
+      "maximum": 60,
+      "required": true
+    }
+  },
+  "permissions": {
+    "network": true,
+    "photos_add_only": true,
+    "photos_read": false,
+    "contacts": false,
+    "calendar": false,
+    "location": false
+  },
+  "error_handling": {
+    "invalid_url": "未识别到有效抖音链接，请重新复制分享链接后重试。",
+    "timeout": "网络超时，请检查网络或稍后重试。",
+    "api_limit": "解析服务繁忙或已达上限，请稍后重试或切换备用接口。",
+    "empty_video_url": "解析成功但未返回可下载地址，请更换视频或备用接口。"
+  },
+  "privacy": {
+    "data_storage": "none",
+    "telemetry": false,
+    "statement": "Skill does not store user links, media, or personal identifiers outside local runtime."
+  },
+  "compliance": {
+    "user_must_have_rights": true,
+    "respect_platform_terms": true,
+    "note": "Publish with clear lawful-use disclaimer in listing README."
+  },
+  "artifacts": {
+    "skill_doc": "SKILL.md",
+    "shortcut_guide": "references/shortcut-build-guide.md",
+    "resolver_script": "scripts/fetch_douyin_no_watermark.sh"
+  }
+}

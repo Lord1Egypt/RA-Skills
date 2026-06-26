@@ -1,0 +1,64 @@
+=== org.deepin.dde.Daemon1 /org/deepin/dde/Daemon1 ===
+node /org/deepin/dde/Daemon1 {
+  interface org.deepin.dde.Daemon1 {
+    methods:
+      BluetoothGetDeviceTechnologies(in  s adapter,
+                                     in  s device,
+                                     out as technologies);
+      ClearTty(in  u number);
+      ClearTtys();
+      DeleteCustomWallPaper(in  s username,
+                            in  s file);
+      GetCustomWallPapers(in  s username,
+                          out as outArg0);
+      IsPidVirtualMachine(in  u pid,
+                          out b isVM);
+      NetworkGetConnections(out ay data);
+      NetworkSetConnections(in  ay data);
+      SaveCustomWallPaper(in  s username,
+                          in  s file,
+                          out s outArg0);
+      ScalePlymouth(in  u scale);
+      SetLogindTTY(in  i NAutoVTs,
+                   in  b resetCustom,
+                   in  b live);
+      SetLongPressDuration(in  u duration);
+      SetPlymouthTheme(in  s themeName);
+      SetReadOnlyProtection(in  b enable);
+    signals:
+      HandleForSleep(b start);
+      WallpaperChanged(s userName,
+                       u added,
+                       as file);
+    properties:
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+};

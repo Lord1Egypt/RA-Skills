@@ -1,0 +1,117 @@
+<svg width="1600" height="960" viewBox="0 0 1600 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="210" y1="36" x2="1300" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#130A23"/>
+      <stop offset="1" stop-color="#06030B"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="315" y1="118" x2="1140" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="rgba(255,255,255,0.08)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0.01)"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="1010" y1="150" x2="1228" y2="710" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BC97FF"/>
+      <stop offset="1" stop-color="#6C39FF"/>
+    </linearGradient>
+    <linearGradient id="liquid" x1="985" y1="564" x2="1216" y2="564" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6A35FF"/>
+      <stop offset="1" stop-color="#B47BFF"/>
+    </linearGradient>
+    <radialGradient id="orbA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1228 170) rotate(90) scale(188 256)">
+      <stop stop-color="#9A66FF" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#9A66FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(308 152) rotate(90) scale(208 280)">
+      <stop stop-color="#52D8FF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#52D8FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="860" y="58" width="548" height="438" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="960" rx="40" fill="url(#bg)"/>
+  <rect width="1600" height="960" rx="40" fill="url(#orbB)"/>
+  <g filter="url(#blur)">
+    <ellipse cx="1134" cy="277" rx="194" ry="139" fill="url(#orbA)"/>
+  </g>
+
+  <g opacity="0.13">
+    <path d="M0 80H1600" stroke="white"/>
+    <path d="M0 160H1600" stroke="white"/>
+    <path d="M0 240H1600" stroke="white"/>
+    <path d="M0 320H1600" stroke="white"/>
+    <path d="M0 400H1600" stroke="white"/>
+    <path d="M0 480H1600" stroke="white"/>
+    <path d="M0 560H1600" stroke="white"/>
+    <path d="M0 640H1600" stroke="white"/>
+    <path d="M0 720H1600" stroke="white"/>
+    <path d="M0 800H1600" stroke="white"/>
+    <path d="M120 0V960" stroke="white"/>
+    <path d="M240 0V960" stroke="white"/>
+    <path d="M360 0V960" stroke="white"/>
+    <path d="M480 0V960" stroke="white"/>
+    <path d="M600 0V960" stroke="white"/>
+    <path d="M720 0V960" stroke="white"/>
+    <path d="M840 0V960" stroke="white"/>
+    <path d="M960 0V960" stroke="white"/>
+    <path d="M1080 0V960" stroke="white"/>
+    <path d="M1200 0V960" stroke="white"/>
+    <path d="M1320 0V960" stroke="white"/>
+    <path d="M1440 0V960" stroke="white"/>
+  </g>
+
+  <text x="130" y="138" fill="#D8C8FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="24" font-weight="700" letter-spacing="0.34em">CYBER FANTASY UI SKILL</text>
+  <text x="128" y="252" fill="#F5F1FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="88" font-weight="700">Dark neon glass</text>
+  <text x="128" y="338" fill="#F5F1FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="88" font-weight="700">for dashboards</text>
+  <text x="128" y="430" fill="#D4C8F4" font-family="Noto Sans SC, sans-serif" font-size="30">Mystical sci-fi depth, liquid progress, and game-like hierarchy for React and Tailwind surfaces.</text>
+
+  <rect x="128" y="506" width="210" height="62" rx="31" fill="url(#purple)"/>
+  <text x="178" y="545" fill="white" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="24" font-weight="700">README</text>
+  <rect x="354" y="506" width="244" height="62" rx="31" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="404" y="545" fill="#D9D0F3" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="24" font-weight="700">Formerly Aoleme UI</text>
+
+  <g>
+    <rect x="924" y="110" width="408" height="736" rx="40" fill="rgba(14,10,24,0.88)" stroke="rgba(221,204,255,0.14)"/>
+    <rect x="946" y="190" width="364" height="146" rx="30" fill="rgba(28,22,46,0.78)" stroke="rgba(221,204,255,0.12)"/>
+    <rect x="968" y="214" width="148" height="34" rx="17" fill="rgba(135,86,255,0.18)" stroke="rgba(183,140,255,0.26)"/>
+    <text x="990" y="237" fill="#F1E6FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="18" font-weight="700">Cultivation Online</text>
+    <text x="968" y="287" fill="#F8F4FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="34" font-weight="700">结丹期 · Core Formation</text>
+    <text x="968" y="318" fill="#D6CAE8" font-family="Noto Sans SC, sans-serif" font-size="16">Merit is rising. Breath control is stable. Tonight is good for breakthroughs.</text>
+    <circle cx="1224" cy="254" r="44" fill="url(#purple)"/>
+    <text x="1211" y="265" fill="white" font-family="Noto Sans SC, sans-serif" font-size="28" font-weight="700">灵</text>
+
+    <rect x="946" y="360" width="174" height="142" rx="28" fill="rgba(28,22,46,0.78)" stroke="rgba(221,204,255,0.12)"/>
+    <text x="968" y="396" fill="#9F93BA" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="16" font-weight="700" letter-spacing="0.18em">MERIT</text>
+    <text x="968" y="452" fill="#F8F4FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="44" font-weight="700">12,480</text>
+    <text x="968" y="484" fill="#D6CAE8" font-family="Noto Sans SC, sans-serif" font-size="16">+128 this cycle</text>
+
+    <rect x="1136" y="360" width="174" height="142" rx="28" fill="rgba(28,22,46,0.78)" stroke="rgba(221,204,255,0.12)"/>
+    <text x="1158" y="396" fill="#9F93BA" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="16" font-weight="700" letter-spacing="0.18em">FOCUS</text>
+    <text x="1158" y="452" fill="#F8F4FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="44" font-weight="700">91%</text>
+    <text x="1158" y="484" fill="#D6CAE8" font-family="Noto Sans SC, sans-serif" font-size="16">Qi stable</text>
+
+    <rect x="946" y="526" width="364" height="128" rx="28" fill="rgba(28,22,46,0.78)" stroke="rgba(221,204,255,0.12)"/>
+    <text x="968" y="564" fill="#F2EDFF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="20" font-weight="700">Breakthrough Progress</text>
+    <text x="1248" y="564" fill="#F2EDFF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="20" font-weight="700">78%</text>
+    <rect x="968" y="588" width="320" height="18" rx="9" fill="rgba(0,0,0,0.34)"/>
+    <rect x="968" y="588" width="250" height="18" rx="9" fill="url(#liquid)"/>
+    <rect x="968" y="624" width="154" height="34" rx="17" fill="rgba(96,230,168,0.14)" stroke="rgba(96,230,168,0.26)"/>
+    <text x="997" y="646" fill="#DDFFF0" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="16" font-weight="700">Stable meridians</text>
+    <rect x="1140" y="624" width="102" height="34" rx="17" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.09)"/>
+    <text x="1167" y="646" fill="#EEE7FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="16" font-weight="700">3 pages left</text>
+
+    <rect x="946" y="676" width="364" height="132" rx="28" fill="rgba(28,22,46,0.78)" stroke="rgba(221,204,255,0.12)"/>
+    <text x="968" y="714" fill="#F2EDFF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="20" font-weight="700">Tonight's Ritual</text>
+    <rect x="1178" y="692" width="110" height="34" rx="17" fill="rgba(255,207,112,0.14)" stroke="rgba(255,207,112,0.26)"/>
+    <text x="1202" y="714" fill="#FFF1D6" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="16" font-weight="700">Time-limited</text>
+    <circle cx="976" cy="750" r="6" fill="#FFCF70"/>
+    <circle cx="976" cy="780" r="6" fill="#FFCF70"/>
+    <text x="994" y="756" fill="#D6CAE8" font-family="Noto Sans SC, sans-serif" font-size="16">Review sect manual annotations</text>
+    <text x="994" y="786" fill="#D6CAE8" font-family="Noto Sans SC, sans-serif" font-size="16">Refine source map synchronization</text>
+  </g>
+
+  <rect x="128" y="646" width="370" height="164" rx="30" fill="rgba(28,22,46,0.78)" stroke="rgba(221,204,255,0.12)"/>
+  <text x="160" y="694" fill="#D8C8FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="18" font-weight="700" letter-spacing="0.22em">VISUAL SIGNALS</text>
+  <text x="160" y="738" fill="#F7F2FF" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="34" font-weight="700">Glass layers. Liquid progress. Luminous actions.</text>
+  <text x="160" y="786" fill="#D6CAE8" font-family="Noto Sans SC, sans-serif" font-size="18">Built for immersive membership, dashboard, profile, and growth surfaces.</text>
+</svg>

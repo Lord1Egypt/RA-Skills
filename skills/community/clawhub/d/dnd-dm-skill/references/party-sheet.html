@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博德之门：坠入阿弗纳斯 — 小队角色卡</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a1a;color:#ddd;font-family:"Segoe UI","Microsoft YaHei",sans-serif;padding:20px}
+.all-4up{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:960px){.all-4up{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.all-4up{grid-template-columns:1fr}}
+h1{color:#c88;font-size:20px;text-align:center;padding:10px 0 4px}
+.sub{text-align:center;color:#888;font-size:12px;margin-bottom:16px}
+.card{background:#1e1a16;border:2px solid #3a2a1a;border-radius:12px;margin-bottom:16px;overflow:hidden}
+.card-header{background:linear-gradient(160deg,#1c2834,#0f1a24);padding:14px 20px;border-bottom:2px solid #2a3f4f}
+.h-row{display:flex;justify-content:space-between;align-items:flex-start}
+.name{font-size:22px;font-weight:800;color:#eed8b0}
+.race-cls{font-size:13px;color:#9ab;margin-top:2px}
+.hp-big{color:#e55;font-size:28px;font-weight:800}
+.hp-label{font-size:11px;color:#999}
+.ac-detail{color:#b88;font-size:11px;margin-top:2px}
+.xp-bar{background:#182018;border-radius:3px;height:8px;overflow:hidden;margin:6px 0 0}
+.xp-fill{height:100%;background:linear-gradient(90deg,#486348,#6a9a6a);border-radius:3px}
+.pad{padding:14px}
+.stat-title{font-size:10px;color:#887766;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-weight:700}
+.ability-row{display:flex;justify-content:space-between;align-items:center;padding:4px 6px;border-bottom:1px solid #1e1814;font-size:13px}
+.ability-row .ab{color:#ba9;min-width:34px;font-weight:600}
+.ability-row .val{font-size:18px;font-weight:800;color:#eed8b0}
+.ability-row .mod{color:#8a8;font-weight:600}
+.sv-row{display:flex;justify-content:space-between;padding:3px 6px;border-bottom:1px solid #1e1814;font-size:12px}
+.prof-box{text-align:center;background:#1a1510;border:1px solid #2a2218;border-radius:6px;padding:6px;margin-top:10px}
+.prof-box .big{font-size:22px;font-weight:800;color:#8ac}
+.prof-box .lbl{font-size:10px;color:#887766;text-transform:uppercase}
+.section{margin-bottom:14px}
+.section-title{font-size:11px;color:#b88;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #2a1f1a;padding-bottom:3px;margin-bottom:6px;font-weight:700}
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px 10px}
+.res-item{display:flex;justify-content:space-between;padding:4px 8px;border-bottom:1px solid #1e1814;font-size:12px}
+.res-item .rn{color:#ba9}
+.res-item .rv{color:#eed8b0;font-weight:600}
+.attacks-table{width:100%;border-collapse:collapse;font-size:12px}
+.attacks-table th{text-align:left;padding:4px 6px;border-bottom:1px solid #2a1f1a;color:#887766;font-size:10px}
+.attacks-table td{padding:4px 6px;border-bottom:1px solid #1e1814;color:#ddd}
+.attacks-table td:nth-child(1){color:#eed8b0;font-weight:600}
+.feature-tag{display:inline-block;background:#1a1510;border:1px solid #2a2218;border-radius:10px;padding:2px 10px;font-size:11px;color:#9ab;margin:2px}
+.items-list{font-size:12px;line-height:1.6;padding-left:18px;color:#ccc}
+.items-list li{margin-bottom:2px}
+.gear-list{font-size:12px;color:#aaa;line-height:1.5}
+.eq-row{font-size:12px;padding:3px 6px;border-bottom:1px solid #1e1814}
+.eq-slot{color:#b88;font-weight:600}
+.eq-bonus{color:#8a8}
+.spell-lvl{color:#8a7;font-size:11px;font-weight:700;margin:6px 0 2px}
+.spell-row{padding:2px 4px;font-size:11px;border-bottom:1px solid #1e1814}
+.spell-name{color:#eed8b0;font-weight:600}
+.spell-type{color:#687}
+</style>
+</head>
+<body>
+<h1 id="mod-title">博德之门：坠入阿弗纳斯</h1>
+<div class="sub">小队角色卡</div>
+<div id="root"></div>
+<script>
+var CHARS = [];  /* 角色数据由 live_party.json 提供。发布时必须清空，禁止嵌入测试数据 */
+
+function abMod(n){var m=Math.floor((n-10)/2);return m>=0?'+'+m:''+m}
+
+function render(p){
+  var s=p.stats||{};var hp=p.hp||{};var sc=p.spellcasting||{};
+  var keys=["力量","敏捷","体质","智力","感知","魅力"];
+  var stHTML='';for(var i=0;i<keys.length;i++){stHTML+='<div class="ability-row"><span class="ab">'+keys[i]+'</span><span class="val">'+(s[keys[i]]||10)+'</span><span class="mod">'+abMod(s[keys[i]]||10)+'</span></div>';}
+  var svHTML='';for(var i=0;i<keys.length;i++){var v=(p.saves||{})[keys[i]];if(v===undefined)v=abMod(s[keys[i]]||10);else v=(v>=0?'+':'')+v;svHTML+='<div class="sv-row"><span>'+keys[i][0]+'</span><span'+(parseInt(v)>0?' style="color:#5b8;font-weight:700"':'')+'>'+v+'</span></div>';}
+  var skHTML='';for(var i=0;i<(p.skills||[]).length;i++){var sk=p.skills[i];skHTML+='<div class="sv-row"><span'+(sk.expertise?' style="color:#7da;font-weight:700"':sk.prof?' style="color:#5b8;font-weight:700"':'')+'>'+(sk.expertise?'* ':sk.prof?'o ':'')+sk.name+'</span><span>'+(sk.mod>=0?'+':'')+sk.mod+'</span></div>';}
+  var resHTML='';for(var i=0;i<(p.resources||p.res||[]).length;i++){var r=(p.resources||p.res||[])[i];resHTML+='<div class="res-item"><span class="rn">'+r.name+'</span><span class="rv">'+r.val+'</span></div>';}
+  var atkHTML='';for(var i=0;i<(p.attacks||[]).length;i++){var a=p.attacks[i];atkHTML+='<tr><td>'+a.name+'</td><td>'+a.bonus+'</td><td>'+a.dmg+'</td><td style="color:#888">'+(a.note||'')+'</td></tr>';}
+  var splHTML='';if(p.spells&&p.spells.length>0){splHTML+='<div style="color:#9ab;font-size:11px;margin-bottom:4px">'+sc.stat+' | +'+sc.atk+' | DC'+sc.dc+'</div>';for(var li=0;li<10;li++){var lvsp=p.spells.filter(function(x){return x.level==li;});if(lvsp.length==0)continue;splHTML+='<div class="spell-lvl">'+(li==0?'--- 戏法 ---':'--- '+li+'环 ---')+'</div>';for(var si=0;si<lvsp.length;si++){splHTML+='<div class="spell-row"><span class="spell-name">'+lvsp[si].name+'</span></div>';}}}
+  var eqHTML='';for(var i=0;i<(p.equipped||[]).length;i++){eqHTML+='<div class="eq-row"><span class="eq-slot">['+p.equipped[i].slot+']</span> '+p.equipped[i].name+'</div>';}
+  var bpHTML='';if(p.backpack&&p.backpack.length>0){bpHTML='<ul class="items-list">'+p.backpack.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';}
+  var featHTML=(p.features||[]).map(function(f){return '<span class="feature-tag">'+f+'</span>';}).join('');
+  return '<div class="card"><div class="card-header"><div class="h-row"><div><div class="name">'+p.name+'</div><div class="race-cls">'+(p.race?p.race+' ':'')+p.class+(p.subclass?' ['+p.subclass+']':'')+' Lv.'+p.level+'</div><div class="ac-detail">AC '+p.ac+'</div></div><div style="text-align:right"><div class="hp-big">'+(hp.current||0)+'</div><div class="hp-label">/'+(hp.max||0)+' HP</div></div></div></div><div class="pad"><div class="section-title">属性</div>'+stHTML+'<div class="section-title">豁免</div>'+svHTML+'<div class="prof-box"><div class="big">+'+(p.proficiency||2)+'</div><div class="lbl">熟练加值</div></div><div class="section"><div class="section-title">技能</div><div class="skill-grid">'+skHTML+'</div></div><div class="section"><div class="section-title">资源</div>'+resHTML+'</div><div class="section"><div class="section-title">可用动作</div><table class="attacks-table"><tr><th>名称</th><th>加值</th><th>伤害</th><th>备注</th></tr>'+atkHTML+'</table>'+(splHTML?'<div style="margin-top:8px">'+splHTML+'</div>':'')+'</div>'+(eqHTML?'<div class="section"><div class="section-title">装备</div>'+eqHTML+'</div>':'')+'<div class="section"><div class="section-title">特征</div>'+featHTML+'</div>'+(bpHTML?'<div class="section"><div class="section-title">背包</div>'+bpHTML+'</div>':'')+'<div class="section"><div class="section-title">物品</div><div class="gear-list">'+(p.gear||'')+'</div></div></div></div>';
+}
+
+function showEmptyState() {
+  var h='<div style="text-align:center;padding:80px 20px;color:#887766">';
+  h+='<div style="font-size:48px;margin-bottom:16px">[DM]</div>';
+  h+='<div style="font-size:20px;color:#bba;margin-bottom:12px">尚未加载角色数据</div>';
+  h+='<div style="font-size:14px;line-height:1.8">开始游戏后，角色卡会自动显示在这里。<br>如果已有存档，请先加载存档。</div>';
+  h+='</div>';
+  document.getElementById("root").innerHTML = h;
+}
+
+function renderAll() {
+  if(CHARS.length===0) { showEmptyState(); return; }
+  var html='<div class="all-4up">';
+  for(var i=0;i<CHARS.length;i++) html+=render(CHARS[i]);
+  html+='</div>';
+  document.getElementById("root").innerHTML = html;
+}
+
+renderAll();
+</script>
+
+<script>
+(function(){
+  var h1=document.getElementById("mod-title");
+  if(!h1)return;
+  var xhr=new XMLHttpRequest();
+  try {
+    xhr.open("GET", "live_party.json", true);
+    xhr.onload=function(){
+      try {
+        var d=JSON.parse(xhr.responseText);
+        if(d.module) h1.textContent=d.module;
+      } catch(e){}
+    };
+    xhr.send();
+  } catch(e){}
+})();
+</script>
+</body>
+</html>

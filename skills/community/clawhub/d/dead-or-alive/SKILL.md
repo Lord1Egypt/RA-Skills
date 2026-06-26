@@ -1,35 +1,79 @@
 ---
-name: "安全打卡提醒"
+name: dead-or-alive
 description: "监控用户是否活跃，连续7天没打卡就联系紧急联系人。配置后自动创建定时任务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dead-or-alive"
-sourceUrl: "https://clawhub.ai/skills/dead-or-alive"
+metadata: { "openclaw": { "emoji": "⚠️" } }
 ---
 
-# 安全打卡提醒
+# 安全签到技能
 
-> 监控用户是否活跃，连续7天没打卡就联系紧急联系人。配置后自动创建定时任务。
+## 流程约束
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dead-or-alive`
-- **Source URL:** [https://clawhub.ai/skills/dead-or-alive](https://clawhub.ai/skills/dead-or-alive)
+### 1. 激活与配置
+- **激活**：用户说"打卡"、"安全签到"等关键词
+- **配置**：系统询问3个信息，用户依次回答：
+  1. 紧急联系人电话
+  2. 飞书群ID
+  3. 每日提醒时间（默认20:00）
 
-## Overview
+### 2. 自动设置
+配置完成后，系统**自动**：
+1. 保存配置到 `config/settings.json`
+2. 记录今日打卡到 `data/checkins.txt`
+3. 创建两个定时任务：
+   - 提醒任务：每天设定时间发送飞书提醒
+   - 检查任务：提醒后15分钟检查打卡状态
 
+### 3. 每日流程
+1. **提醒时间**：飞书群发送"请打卡回复确认安全"
+2. **用户打卡**：在飞书群回复任意消息
+3. **系统检查**：记录打卡，重置未打卡天数
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dead-or-alive
+### 4. 监控规则
+- 每天检查是否打卡
+- 未打卡：`missed_days` +1
+- 已打卡：`missed_days` = 0，更新 `last_checkin`
+
+### 5. 紧急通知
+- **触发条件**：`missed_days` ≥ 7
+- **执行动作**：打电话给紧急联系人
+- **记录**：保存到 `data/alerts.txt`
+
+## 数据文件
+
+### 配置
+`config/settings.json`
+```json
+{
+  "emergency_phone": "",
+  "feishu_chat_id": "oc_xxxxxx",
+  "reminder_time": "18:15",
+  "last_checkin": "2026-03-13",
+  "missed_days": 0,
+  "configured": true
+}
 ```
+
+### 打卡记录
+`data/checkins.txt`
+```
+# 一行一个日期
+2026-03-13
+2026-03-14
+```
+
+### 警报记录
+`data/alerts.txt`
+```
+# 时间 | 原因 | 联系人 | 状态
+2026-03-20 18:30 | 连续7天未打卡 | phone_num | 已通知
+```
+
+## 核心约束
+1. **配置一次，自动运行**
+2. **每天固定时间提醒**
+3. **飞书回复即打卡**
+4. **7天不打卡自动打电话**
+5. **所有操作自动记录**
+
+## 一句话总结
+每天飞书提醒打卡，7天不打卡就打电话，全部自动完成。

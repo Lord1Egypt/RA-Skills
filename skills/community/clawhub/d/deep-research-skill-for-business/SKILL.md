@@ -1,35 +1,107 @@
 ---
-name: "deep-research skill"
-description: "商业决策级深度调研 Skill V3.1——多步骤编排 + 断点强制校验 + Agent 执行指令。触发条件：用户要求深度调研、行业分析、商业调研、竞品分析等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deep-research-skill-for-business"
-sourceUrl: "https://clawhub.ai/skills/deep-research-skill-for-business"
+name: deep_research_v3
+description: 商业决策级深度调研 Skill V3.1——多步骤编排 + 断点强制校验 + Agent 执行指令。触发条件：用户要求深度调研、行业分析、商业调研、竞品分析等。
 ---
 
-# deep-research skill
+# 深度调研 Skill V3.1
 
-> 商业决策级深度调研 Skill V3.1——多步骤编排 + 断点强制校验 + Agent 执行指令。触发条件：用户要求深度调研、行业分析、商业调研、竞品分析等。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deep-research-skill-for-business`
-- **Source URL:** [https://clawhub.ai/skills/deep-research-skill-for-business](https://clawhub.ai/skills/deep-research-skill-for-business)
+用户在聊天中明确提出调研需求（深度研究、行业分析、商业调研、竞品分析、市场研究等）。
 
-## Overview
+## ⛔ Agent 入口规则（最先读，最先执行）
 
+> ⚠️ **Agent 收到调研任务后的第一件事不是读 step 文件，而是初始化编排会话。**
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Agent 必须执行的启动流程
+
 ```bash
-hermes skills install clawhub/deep-research-skill-for-business
+# 1. 初始化会话（必须！）
+bash orchestrator.sh "[调研主题]"
+
+# 脚本会：
+#   - 创建会话 ID 和状态文件
+#   - 打印 s0 步骤内容
+#   - 打印 AGENT_INSTRUCTION 块（告诉你在 s0 必须做什么、禁止做什么）
+#   - 等待你完成 s0 后用 --complete 推进
+```
+
+### Agent 的逐步骤推进规则
+
+| 规则 | 说明 |
+|------|------|
+| **必须通过编排脚本推进** | 每步完成后必须执行 `bash orchestrator.sh --complete sX --next sY`，不可直接读取下一步文件跳过 |
+| **不可跨步读文件** | 你只能知道当前步骤的内容（编排脚本打印什么就看什么），不可提前 `read steps/s5.md` 等来"预览" |
+| **不可跳过 AGENT_INSTRUCTION** | 每步的 `AGENT_INSTRUCTION` 块是你的强制执行清单，不是建议 |
+| **不可跳过断点** | s0（范围确认）、s2（搜索前反思）、s9（12项自检）是三个强制断点，任一未完成不可继续 |
+
+### 如果编排脚本不可用（兜底）
+
+```
+如因技术原因无法运行 orchestrator.sh（如 bash 不可用 / 文件缺失），则：
+1. 明确告知用户："编排脚本不可用，我将按步骤文件手动执行，但会缺失断点强制校验。"
+2. 手动按 s0→s1→...→s9 顺序执行
+3. 报告保存后，手动执行 S9 的 12 项自检（见下）
+4. 全 ✅ 后才能交付
+```
+
+---
+
+## ⛔ 11 条刚性红线（不可违反）
+
+1. **不可跳步**：必须按 s0→s1→s2→...→s9 顺序执行，跳过任一步骤则报告无效
+2. **必出检查表**：s0 必须输出 6 要素确认表，s2 必须输出反思校验表，s9 必须输出 12 项自检表
+3. **三源印证**：核心数据必须有 3 个及以上独立来源，否则标注"⚠️ 未经充分印证"
+4. **仅标注推测**：事实/分析/判断不标注，仅推测内容标注【推测，置信度：X】
+5. **不编造**：找不到的信息明确说"该数据暂缺"，绝不编造场景或数据
+6. **信源分级**：T3 级信源（自媒体/论坛）不得作为核心论点支撑
+7. **纵向叙事体**：纵轴必须是故事体（因果链条 + 时代脉络），不是年表流水账
+8. **交汇洞察独立**：第 4 章必须是新判断，不是前面内容的缩写版
+9. **缺口诚实**：明确指出哪些问题数据不足、哪些结论置信度低
+10. **交付前自检**：s9 的 12 项全部打勾才能交付，缺一项都不行。**如因故未走编排脚本，报告保存后必须手动执行 S9 12 项自检（`bash orchestrator.sh --self-check`）**
+11. **不可绕过编排**：Agent 第一步必须 `bash orchestrator.sh "主题"` 初始化会话，后续每步通过 `--complete sX --next sY` 推进，不可直接读取 step 文件跳步执行
+
+---
+
+## 执行方式
+
+收到调研任务后，**必须**运行编排脚本来执行：
+
+```bash
+bash orchestrator.sh "[调研主题]"
+```
+
+编排脚本会在每个步骤：
+1. 打印步骤内容（目标 / 操作 / 校验标准）
+2. 打印 **AGENT_INSTRUCTION** 块（当前步骤的强制执行清单 + 禁止事项）
+3. 等待你完成步骤后用 `--complete sX --next sY` 推进
+
+**不要**自己读完所有步骤文件后一次性写报告。编排脚本的存在就是为了防止你这么做。
+
+---
+
+## S9 交付自检
+
+无论是否走编排脚本，报告完成后的最终自检命令：
+
+```bash
+bash orchestrator.sh --self-check
+```
+
+脚本会自动检查 6 项（文件完整性 / 结构 / 推测标注 / 引用 / 模糊表述），然后列出 10 项手动核验清单。
+
+**所有 16 项必须全 ✅ 才能交付。**
+
+---
+
+## 文件结构
+
+```
+deep-research-v3/
+├── README.md             ← 人类阅读的说明文档
+├── SKILL.md              ← Agent 阅读的 Skill 定义
+├── orchestrator.sh       ← 编排脚本（入口）+ Agent 指令 + 自检
+├── steps/                ← 10 个步骤文件（s0-s9）
+├── templates/            ← 固定模板
+└── rules/                ← 信源分级 + 写作风格
 ```

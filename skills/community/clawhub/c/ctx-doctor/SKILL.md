@@ -1,35 +1,137 @@
 ---
-name: "Context Doctor"
+name: context-doctor
 description: "上下文诊断。随时检查当前会话的健康状态——context 使用率、token 消耗趋势、哪些工具调用最占空间、预估还能聊多少轮、给出优化建议。触发词：体检、诊断、context doctor、健康检查、token 用了多少、还能聊多久、会话状态。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ctx-doctor"
-sourceUrl: "https://clawhub.ai/skills/ctx-doctor"
 ---
 
-# Context Doctor
+# Context Doctor — 上下文诊断
 
-> 上下文诊断。随时检查当前会话的健康状态——context 使用率、token 消耗趋势、哪些工具调用最占空间、预估还能聊多少轮、给出优化建议。触发词：体检、诊断、context doctor、健康检查、token 用了多少、还能聊多久、会话状态。
+给你的对话做一次全面体检。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ctx-doctor`
-- **Source URL:** [https://clawhub.ai/skills/ctx-doctor](https://clawhub.ai/skills/ctx-doctor)
+## 什么时候用
 
-## Overview
+- 用户说"体检"、"诊断"、"context doctor"
+- 对话感觉变慢时（可能接近 context 上限）
+- 长时间工作后想了解消耗情况
+- 决定是否需要 compact 之前
+- 定期检查（建议每 20-30 轮对话检查一次）
 
+## 核心理念
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ctx-doctor
+每次对话都有一个隐形的"油箱"—— context window。
+用着用着就满了，但你看不到油量表。满了之后要么报错，要么被强制压缩丢信息。
+
+Context Doctor 就是这个油量表：
+- 告诉你用了多少、还剩多少
+- 找出最占空间的"油耗大户"
+- 预测还能跑多远
+- 建议什么时候该"加油"（compact）
+
+## 执行流程
+
+### Step 1 — 采集数据（Collect）
+
+通过 `session_status` 获取当前 session 的实时数据：
+
+- **总 context window 大小**（如 200,000 tokens）
+- **当前已使用 tokens**（输入 + 输出）
+- **本次 session 消耗**（输入 tokens、输出 tokens、费用）
+- **模型信息**（当前使用的模型和配置）
+
+### Step 2 — 分析对话结构（Analyze）
+
+回顾当前对话，统计：
+
+- **总轮次**：用户和 Agent 各说了多少轮
+- **工具调用次数**：exec、read、write、web_search 等各多少次
+- **工具输出大小排行**：哪些工具调用返回了最多内容
+- **最大单次输出**：最占空间的那次工具调用是什么
+- **重复内容检测**：是否有多次读取同一文件等冗余操作
+
+### Step 3 — 健康评估（Diagnose）
+
+根据采集的数据生成健康评分：
+
+| 指标 | 健康 🟢 | 注意 🟡 | 危险 🔴 |
+|------|---------|---------|---------|
+| Context 使用率 | <50% | 50-80% | >80% |
+| 单轮平均 tokens | <2000 | 2000-5000 | >5000 |
+| 工具输出占比 | <60% | 60-80% | >80% |
+| 预估剩余轮次 | >30 | 10-30 | <10 |
+
+综合评分：
+- **A（优秀）**：所有指标绿灯，可以放心继续
+- **B（良好）**：个别黄灯，留意但不急
+- **C（注意）**：多个黄灯或一个红灯，建议准备 compact
+- **D（警告）**：多个红灯，强烈建议立即 compact
+- **F（危险）**：随时可能触发强制压缩
+
+### Step 4 — 生成报告（Report）
+
+输出可视化诊断报告：
+
 ```
+🏥 Context Doctor 诊断报告
+━━━━━━━━━━━━━━━━━━━━━
+
+📊 综合评分：B（良好）
+
+🔋 Context 油量
+████████████░░░░░░░░ 58% (116,000 / 200,000)
+
+📈 消耗统计
+├─ 对话轮次：23 轮
+├─ 输入 tokens：89,000
+├─ 输出 tokens：27,000
+├─ 本次费用：$0.42
+└─ 平均每轮：5,043 tokens
+
+🔍 空间占用 TOP 5
+1. exec(cat large-file.log)     — 12,300 tokens（10.6%）
+2. web_fetch(docs.openclaw.ai)  — 8,200 tokens（7.1%）
+3. read(MEMORY.md)              — 4,500 tokens（3.9%）
+4. exec(git log --oneline)      — 3,800 tokens（3.3%）
+5. web_search("OpenClaw skills") — 2,100 tokens（1.8%）
+
+⚠️ 发现问题
+- exec 输出占总 context 的 42%，建议对大输出使用 head/tail 截断
+- MEMORY.md 被读取 3 次，考虑缓存到对话上下文中
+
+🔮 预测
+├─ 预估剩余：约 17 轮对话
+├─ 建议 compact 时机：再聊 10 轮后
+└─ 如果继续当前节奏：约 35 分钟后达到 80%
+
+💡 优化建议
+1. exec 命令加 | head -50 限制输出长度
+2. 大文件用 read 的 offset/limit 参数分段读取
+3. 考虑在下一个自然断点执行 compact
+```
+
+### Step 5 — 趋势追踪（Trend）
+
+如果多次执行诊断，对比历史数据：
+
+```
+📈 趋势（最近 3 次诊断）
+诊断1 (14:00): 32% → B
+诊断2 (15:30): 58% → B
+诊断3 (16:45): 74% → C ⬆️
+
+消耗速度：约 28% / 小时
+加速中 ⚠️（工具调用频率增加）
+```
+
+## 规则
+
+- **数据准确**：所有数字基于 session_status 真实数据，不估算不猜测
+- **建议温和**：给建议但不强制，用户决定是否 compact
+- **不消耗太多**：诊断本身要轻量，不要因为诊断反而加速 context 膨胀
+- **可视化优先**：用进度条和 emoji 让报告直观易读
+- **隐私安全**：报告不包含对话具体内容，只统计结构和大小
+
+## 与其他 Skill 配合
+
+- **Smart Compact**：Context Doctor 诊断后建议 compact → Smart Compact 安全执行
+- **Hook Guard**：诊断结果触发 Yellow 级别备份（保存当前对话快照）
+- **Memory-Dream**：诊断数据是 Dream 整合时的参考（哪些 session 消耗最大）
+- **Session Resume**：诊断中发现即将 compact 时，提醒保存任务状态

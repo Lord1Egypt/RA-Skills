@@ -1,0 +1,203 @@
+{
+  "project_id": "video_20260331_120000",
+  "theme": "智能手表 X1 宣传视频",
+  "created_at": "2026-03-31T12:00:00",
+  "updated_at": "2026-03-31T12:00:00",
+  "status": "collecting",
+  
+  "video_specs": {
+    "total_duration": 30,
+    "scene_duration": 5,
+    "scene_count": 6,
+    "ratio": "9:16",
+    "resolution": "720p",
+    "fps": 24,
+    "platform": "抖音",
+    "confirmed_at": "2026-03-31T12:05:00"
+  },
+  
+  "api_config": {
+    "api_key": "65ae8f92-134c-4194-a3af-6e6cb74284e0",
+    "text_to_video_model": "doubao-seedance-2-0-pro",
+    "image_to_video_model": "doubao-seedance-1-5-pro",
+    "configured_at": "2026-03-31T12:00:00"
+  },
+  
+  "references": {
+    "documents": [
+      {
+        "name": "产品说明书.pdf",
+        "path": "/path/to/doc.pdf",
+        "uploaded_at": "2026-03-31T12:05:00"
+      }
+    ],
+    "urls": [
+      {
+        "url": "https://example.com/product",
+        "fetched_at": "2026-03-31T12:06:00",
+        "content_preview": "智能手表 X1，7 天续航..."
+      }
+    ],
+    "images": [
+      {
+        "name": "产品正面图.png",
+        "path": "/path/to/product.png",
+        "uploaded_at": "2026-03-31T12:07:00"
+      }
+    ],
+    "notes": "目标用户：都市白领、运动爱好者"
+  },
+  
+  "script": {
+    "total_duration": 12,
+    "scene_count": 3,
+    "scenes": [
+      {
+        "id": 1,
+        "time": "0-4 秒",
+        "title": "开场展示",
+        "description": "手表特写，镜头从下往上扫过",
+        "copy": "创新科技，改变生活",
+        "style": "现代科技感",
+        "generation_mode": "image_to_video",
+        "prototype_images": [
+          {
+            "description": "场景原型图",
+            "path": "/path/to/scene1_prototype.png",
+            "generated_at": "2026-03-31T12:15:00",
+            "status": "confirmed"
+          }
+        ],
+        "prompt": "参考上传图片的场景，现代科技感办公室，白色办公桌，桌上放置智能手表 X1，镜头从下往上缓缓移动，聚焦手表表盘，自然光线从窗户射入，简约商务风格，高清写实，电影级画质，4K 细节",
+        "prompt_confirmed": true,
+        "prompt_confirmed_at": "2026-03-31T12:16:00",
+        "video_path": "/path/to/scene1.mp4",
+        "video_status": "confirmed",
+        "status": "confirmed"
+      },
+      {
+        "id": 2,
+        "time": "4-8 秒",
+        "title": "功能演示",
+        "description": "产品使用场景，用户操作演示",
+        "copy": "简单便捷，一触即发",
+        "style": "清晰直观",
+        "generation_mode": "text_to_video",
+        "prototype_images": [],
+        "prompt": "都市白领在办公室使用智能手表，手指轻触屏幕，显示心率和步数数据，清晰直观，现代办公环境",
+        "prompt_confirmed": false,
+        "video_path": null,
+        "video_status": "pending",
+        "status": "pending"
+      },
+      {
+        "id": 3,
+        "time": "8-12 秒",
+        "title": "品牌结尾",
+        "description": "品牌 Logo + Slogan",
+        "copy": "X1，你的智能伙伴",
+        "style": "专业大气",
+        "generation_mode": "text_to_video",
+        "prototype_images": [],
+        "prompt": "智能手表 X1 产品图，品牌 Logo 淡入，Slogan 显示，专业大气，简洁背景",
+        "prompt_confirmed": false,
+        "video_path": null,
+        "video_status": "pending",
+        "status": "pending"
+      }
+    ]
+  },
+  
+  "key_elements": {
+    "characters": [
+      {
+        "id": 1,
+        "description": "都市白领男性，30 岁左右，运动装扮",
+        "image_path": "/path/to/character_main.png",
+        "status": "confirmed",
+        "feedback": "",
+        "created_at": "2026-03-31T12:10:00",
+        "confirmed_at": "2026-03-31T12:11:00"
+      }
+    ],
+    "scenes": [
+      {
+        "id": 1,
+        "description": "现代科技感办公室，白色办公桌",
+        "image_path": "/path/to/scene_office.png",
+        "status": "confirmed",
+        "feedback": "",
+        "created_at": "2026-03-31T12:12:00",
+        "confirmed_at": "2026-03-31T12:13:00"
+      }
+    ],
+    "objects": [
+      {
+        "id": 1,
+        "description": "智能手表 X1，银色表带，黑色表盘",
+        "image_path": "/path/to/watch_product.png",
+        "status": "confirmed",
+        "feedback": "",
+        "created_at": "2026-03-31T12:14:00",
+        "confirmed_at": "2026-03-31T12:14:30"
+      }
+    ]
+  },
+  
+  "scenes": [
+    {
+      "id": 1,
+      "time": "0-4 秒",
+      "title": "开场展示",
+      "generation_mode": "image_to_video",
+      "prototype_images": ["/path/to/scene1_prototype.png"],
+      "prompt": "参考上传图片的场景，现代科技感办公室...",
+      "prompt_confirmed": true,
+      "video_path": "/path/to/scene1.mp4",
+      "video_status": "confirmed",
+      "status": "confirmed",
+      "created_at": "2026-03-31T12:15:00",
+      "updated_at": "2026-03-31T12:20:00"
+    }
+  ],
+  
+  "final_video": null,
+  
+  "generation_log": [
+    {
+      "timestamp": "2026-03-31T12:00:00",
+      "action": "project_created",
+      "details": {"theme": "智能手表 X1 宣传视频"}
+    },
+    {
+      "timestamp": "2026-03-31T12:05:00",
+      "action": "reference_added",
+      "details": {"type": "document", "name": "产品说明书.pdf"}
+    },
+    {
+      "timestamp": "2026-03-31T12:10:00",
+      "action": "key_element_generated",
+      "details": {"type": "character", "id": 1}
+    },
+    {
+      "timestamp": "2026-03-31T12:11:00",
+      "action": "key_element_confirmed",
+      "details": {"type": "character", "id": 1}
+    },
+    {
+      "timestamp": "2026-03-31T12:15:00",
+      "action": "scene_generation_started",
+      "details": {"scene_id": 1, "mode": "image_to_video"}
+    },
+    {
+      "timestamp": "2026-03-31T12:18:00",
+      "action": "scene_generation_completed",
+      "details": {"scene_id": 1, "video_path": "/path/to/scene1.mp4"}
+    },
+    {
+      "timestamp": "2026-03-31T12:20:00",
+      "action": "scene_confirmed",
+      "details": {"scene_id": 1}
+    }
+  ]
+}

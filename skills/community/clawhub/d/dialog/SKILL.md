@@ -1,35 +1,112 @@
 ---
-name: "Dialog"
+name: "dialog"
+version: "1.0.0"
 description: "Generate dialog UI elements and design assets. Use when building interfaces, creating visual components, or styling web pages."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dialog"
-sourceUrl: "https://clawhub.ai/skills/dialog"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [dialog, frontend, cli, tool]
+category: "frontend"
 ---
 
-# Dialog
+# dialog
 
-> Generate dialog UI elements and design assets. Use when building interfaces, creating visual components, or styling web pages.
+Generate dialog UI elements and design assets. Use when building interfaces, creating visual components, or styling web pages.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dialog`
-- **Source URL:** [https://clawhub.ai/skills/dialog](https://clawhub.ai/skills/dialog)
+## Commands
 
-## Overview
+### `status`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dialog
+scripts/script.sh status
 ```
+
+Show current status
+
+### `add`
+
+```bash
+scripts/script.sh add
+```
+
+Add new entry
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+List all entries
+
+### `search`
+
+```bash
+scripts/script.sh search
+```
+
+Search entries
+
+### `remove`
+
+```bash
+scripts/script.sh remove
+```
+
+Remove entry by number
+
+### `export`
+
+```bash
+scripts/script.sh export
+```
+
+Export data to file
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+Show statistics
+
+### `config`
+
+```bash
+scripts/script.sh config
+```
+
+View or set config
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+## Configuration
+
+Use `scripts/script.sh config <key> <value>` to set preferences.
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DIALOG_DIR` | No | Data directory (default: ~/.dialog/) |
+
+## Data Storage
+
+All data stored in `~/.dialog/` using JSONL format (one JSON object per line).
+
+## Output
+
+Structured output to stdout. Exit code 0 on success, 1 on error.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

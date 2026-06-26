@@ -1,0 +1,135 @@
+# developer-self-improve-core 配置文件
+# 
+# 使用说明：
+#   根据下方注释和示例修改配置值
+
+# ============ 基础配置 ============
+
+# 使用模式
+# 可选值：personal（个人） | team（团队）
+# 示例：
+#   mode: personal  # 个人使用
+#   mode: team      # 团队协作
+mode: personal
+
+# 用户名（用于记忆标记）
+# 示例：
+#   user: zhangsan    # 张三（中文名示例）
+#   user: michael     # Michael（英文名示例）
+#   user: your_name   # 替换为你的名字
+user: your_name
+
+# 平台类型（多平台隔离关键配置）
+# 可选值：
+#   - ios:           仅 iOS 平台（专注 iOS 开发）
+#   - android:       仅 Android 平台（专注 Android 开发）
+#   - flutter:       仅 Flutter 平台（专注 Flutter 开发）
+#   - h5:            仅 H5 平台
+#   - java:          仅 Java 后端
+#   - multi-platform: 多平台模式（同时开发多个平台）
+# 示例：
+#   platform: ios              # 开发 iOS 项目
+#   platform: android          # 开发 Android 项目
+#   platform: multi-platform   # 同时开发 iOS+Android+Flutter
+platform: ios
+
+# ============ 记忆管理配置 ============
+
+# 临时提案保留天数（1-30 天）
+# 示例：
+#   retention_days: 3   # 保留 3 天（快速清理）
+#   retention_days: 7   # 保留 7 天（推荐）
+#   retention_days: 14  # 保留 14 天（长期保留）
+retention_days: 7
+
+# 触发清洗的对话轮数阈值（5-50 轮）
+# 示例：
+#   cleanup_threshold: 5   # 每 5 轮对话清洗一次（频繁）
+#   cleanup_threshold: 10  # 每 10 轮对话清洗一次（推荐）
+#   cleanup_threshold: 20  # 每 20 轮对话清洗一次（宽松）
+cleanup_threshold: 10
+
+# 是否启用静默自检（true/false）
+# 示例：
+#   enable_self_check: true   # 启用自检
+#   enable_self_check: false  # 禁用自检
+enable_self_check: true
+
+# 是否启用错误防重（true/false）
+# 示例：
+#   enable_error_prevention: true   # 启用错误防重
+#   enable_error_prevention: false  # 禁用错误防重
+enable_error_prevention: true
+
+# ============ Token 优化配置 ============
+
+# 是否启用场景匹配检索（true/false）
+# 示例：
+#   enable_scene_matching: true   # 仅加载匹配规则
+#   enable_scene_matching: false  # 加载全部规则
+enable_scene_matching: true
+
+# 是否启用自动清理（true/false）
+# 建议：初始测试时设为 false，确认无误后再启用
+# enable_auto_cleanup: true   # 自动清理超期草案
+enable_auto_cleanup: false  # 手动清理（推荐）
+
+# 是否启用规则合并（true/false）
+# 示例：
+#   enable_rule_merge: true   # 自动建议合并
+#   enable_rule_merge: false  # 不合并
+enable_rule_merge: true
+
+# ============ 高级配置 ============
+
+# 规则 ID 生成方式（hash_based/date_based）
+# 示例：
+#   rule_id_strategy: hash_based  # 场景哈希去重
+#   rule_id_strategy: date_based  # 日期序列
+rule_id_strategy: hash_based
+
+# 是否启用版本管理（true/false）
+# 示例：
+#   enable_version_control: true   # 启用版本管理
+#   enable_version_control: false  # 禁用版本管理
+enable_version_control: true
+
+# 是否启用操作日志（true/false）
+# 示例：
+#   enable_operation_log: true   # 启用操作日志
+#   enable_operation_log: false  # 禁用操作日志
+enable_operation_log: true
+
+# 是否启用回滚功能（true/false）
+# 示例：
+#   enable_rollback: true   # 启用回滚
+#   enable_rollback: false  # 禁用回滚
+enable_rollback: true
+
+# ============ 自动化提醒配置 ============
+
+# 钉钉账号 ID（接收提醒消息）
+# 格式：钉钉用户 ID（数字字符串）
+# 示例：084466090526*****
+# 长度：18 位数字
+# 获取方式：联系钉钉管理员或从钉钉开发者后台获取
+# ⚠️  请修改为您的钉钉账号 ID
+dingtalk_target: "YOUR_DINGTALK_ID"
+
+# 钉钉频道类型（留空或 dingtalk）
+dingtalk_channel: ""
+
+# 定时提醒时间（cron 格式：分钟 小时 日期 月份 星期）
+# 默认：每天 9:30
+# 示例：
+#   reminder_time: "30 9 * * *"      # 每天 9:30
+#   reminder_time: "0 16 * * *"      # 每天 16:00
+#   reminder_time: "0 9 * * 1-5"     # 工作日 9:00
+reminder_time: "30 9 * * *"
+
+# 是否启用定时提醒（true/false）
+# 建议：初始测试时设为 false，确认无误后再启用
+enable_reminder: false
+
+# 日志文件路径
+log_file: "/tmp/daily-pending-check.log"

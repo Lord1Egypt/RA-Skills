@@ -1,0 +1,104 @@
+{
+  "tools": [
+    {
+      "name": "browse_templates",
+      "description": "Browse Leewow product templates. Returns JSON array — each item has localImagePath (workspace file). CRITICAL: You MUST send each template's image to the user as a media attachment (NOT markdown). Use the message tool with media param, or your platform's image-sending method. Then include name, price, templateId in the text caption.",
+      "executor": "bash",
+      "command": "python3 scripts/browse.py --category '{{category}}' --count {{count}}",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "Optional category filter (e.g. 'bag', 'accessory', 'home', 'apparel'). Leave empty to browse all.",
+            "default": ""
+          },
+          "count": {
+            "type": "integer",
+            "description": "Number of templates to return (1-20, default 10)",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 20
+          }
+        }
+      }
+    },
+    {
+      "name": "generate_preview",
+      "description": "Upload a design image and start generation. Returns only taskId — no image or URL. You MUST then call get_generation_status(task_id, poll=true) to get the preview image and signed purchase link. Do NOT fabricate or guess any URL — only use purchaseUrl from get_generation_status.",
+      "executor": "bash",
+      "command": "python3 scripts/generate.py --image-path '{{image_path}}' --template-id {{template_id}} --design-theme '{{design_theme}}' --aspect-ratio '{{aspect_ratio}}' --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_path": {
+            "type": "string",
+            "description": "Local file path of the design image. MUST be in workspace directory: ~/.openclaw/workspace/"
+          },
+          "template_id": {
+            "type": "integer",
+            "description": "Product template ID (from browse_templates results)"
+          },
+          "design_theme": {
+            "type": "string",
+            "description": "Design theme or style description (e.g. 'cute cartoon', 'minimalist')",
+            "default": ""
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "description": "Aspect ratio: '3:4', '1:1', '4:3'",
+            "default": "3:4"
+          }
+        },
+        "required": ["image_path", "template_id"]
+      }
+    },
+    {
+      "name": "get_generation_status",
+      "description": "Check generation task status. When COMPLETED, returns JSON with localImagePath (workspace preview image) and purchaseUrl (signed order link). CRITICAL: You MUST send the preview image to the user as a media attachment, and include the purchaseUrl in the text. Do NOT just describe the product — send the actual image file.",
+      "executor": "bash",
+      "command": "python3 scripts/get_status.py '{{task_id}}' {{#if poll}}--poll{{/if}} --timeout {{timeout}} --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Task ID returned by generate_preview"
+          },
+          "poll": {
+            "type": "boolean",
+            "description": "Wait and poll until generation completes",
+            "default": true
+          },
+          "timeout": {
+            "type": "integer",
+            "description": "Maximum wait time in seconds",
+            "default": 120
+          }
+        },
+        "required": ["task_id"]
+      }
+    },
+    {
+      "name": "cos_presign_url",
+      "description": "Generate a presigned URL for accessing COS (Tencent Cloud Object Storage) images. Useful for private buckets or when images need temporary access tokens.",
+      "executor": "bash",
+      "command": "python3 scripts/cos_presign.py '{{cos_url}}' --expired {{expired}} --json",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "cos_url": {
+            "type": "string",
+            "description": "COS URL to generate presigned URL for (e.g., https://bucket.cos.region.myqcloud.com/key.png)"
+          },
+          "expired": {
+            "type": "integer",
+            "description": "URL expiration time in seconds (default: 3600 = 1 hour)",
+            "default": 3600
+          }
+        },
+        "required": ["cos_url"]
+      }
+    }
+  ]
+}

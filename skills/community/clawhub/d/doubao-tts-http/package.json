@@ -1,0 +1,40 @@
+{
+  "name": "doubao-tts",
+  "version": "1.0.0",
+  "description": "豆包 TTS 文字转语音（火山引擎 HTTP 版）",
+  "author": "吴",
+  "license": "MIT",
+  "keywords": [
+    "tts",
+    "voice",
+    "语音合成",
+    "豆包",
+    "火山引擎",
+    "openclaw",
+    "skill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "config": {
+    "configFile": "~/.openclaw/doubao-tts-config.json",
+    "dependencies": [
+      "jq",
+      "curl",
+      "base64"
+    ]
+  },
+  "triggers": [
+    "朗读",
+    "转语音",
+    "TTS",
+    "语音合成",
+    "读出来",
+    "用声音读",
+    "播放这段"
+  ]
+}

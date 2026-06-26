@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google Shopping Keywords"
+  short_description: "Collect Google Shopping products by keyword through Dataify."
+  default_prompt: "Use $dataify-google-shopping-keywords to collect Google Shopping product information by keyword iphone."

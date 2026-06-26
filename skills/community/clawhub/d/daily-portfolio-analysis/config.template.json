@@ -1,0 +1,28 @@
+{
+  "_comment": "持仓配置模板 - 请根据实际情况修改",
+  "_doc": "详细说明见 SKILL.md 或 README.md",
+  "_privacy_warning": "⚠️ 重要：此文件包含你的真实持仓信息，请勿上传到公开仓库或分享给他人！",
+  
+  "accounts": {
+    "your_broker_1": {
+      "name": "你的券商 1（如：富途 HK）",
+      "currency": "HKD",
+      "holdings": {
+        "HK.00700": {
+          "name": "腾讯控股",
+          "shares": [填写你的持仓股数],
+          "cost_basis": [填写你的成本价],
+          "market": "HK"
+        }
+        // 添加更多持仓...
+      },
+      "cash_usd": 0,
+      "cash_hkd": 0
+    }
+    // 添加更多账户（如：盈透证券、港股通等）...
+  },
+  
+  "report_time": "20:00",
+  "timezone": "Asia/Shanghai",
+  "last_updated": "填写配置日期"
+}

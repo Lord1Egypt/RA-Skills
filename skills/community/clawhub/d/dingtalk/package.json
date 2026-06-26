@@ -1,0 +1,36 @@
+{
+  "name": "@openclaw/dingtalk",
+  "version": "0.1.0",
+  "description": "OpenClaw DingTalk channel plugin (钉钉)",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "channel": {
+      "id": "dingtalk",
+      "label": "DingTalk",
+      "selectionLabel": "DingTalk (钉钉)",
+      "docsPath": "/channels/dingtalk",
+      "docsLabel": "dingtalk",
+      "blurb": "DingTalk enterprise messaging integration.",
+      "aliases": [
+        "dingding",
+        "钉钉"
+      ],
+      "order": 36,
+      "quickstartAllowFrom": true
+    },
+    "install": {
+      "localPath": "extensions/dingtalk",
+      "defaultChoice": "local"
+    }
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.2.0"
+  }
+}

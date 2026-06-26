@@ -1,0 +1,37 @@
+{
+  "slug": "dependency-upgrade-briefing",
+  "title": "依赖升级简报官",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "structured_brief",
+  "summary": "解释依赖升级的收益、风险、回滚方案与对业务的影响。",
+  "inputHint": "依赖名称、版本变化、变更摘要",
+  "sections": [
+    "升级摘要",
+    "收益",
+    "风险",
+    "回滚方案",
+    "业务影响",
+    "建议节奏"
+  ],
+  "useCases": [
+    "升级评审",
+    "技术债治理",
+    "发布沟通"
+  ],
+  "positiveExamples": [
+    "帮我解释这次依赖升级值不值得做",
+    "给老板一版业务影响说明"
+  ],
+  "negativeExamples": [
+    "不要伪造上游 changelog",
+    "不要替代兼容性测试"
+  ],
+  "risk": "结论以用户提供信息为准，建议附上 changelog。",
+  "tags": [
+    "dependencies",
+    "upgrade",
+    "risk",
+    "engineering"
+  ]
+}

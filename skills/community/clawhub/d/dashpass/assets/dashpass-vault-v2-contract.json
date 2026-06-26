@@ -1,0 +1,187 @@
+{
+  "$format_version": "0",
+  "$schema": "https://schema.dash.org/dpp-0-4-0/meta/data-contract",
+  "version": 1,
+  "ownerId": "{{ownerId}}",
+  "documents": {
+    "credential": {
+      "type": "object",
+      "description": "Encrypted credential for DashPass AI-first vault (v2)",
+      "indices": [
+        {
+          "name": "byOwnerService",
+          "properties": [
+            { "$ownerId": "asc" },
+            { "service": "asc" }
+          ],
+          "unique": false
+        },
+        {
+          "name": "byOwnerType",
+          "properties": [
+            { "$ownerId": "asc" },
+            { "credType": "asc" }
+          ],
+          "unique": false
+        },
+        {
+          "name": "byOwnerStatus",
+          "properties": [
+            { "$ownerId": "asc" },
+            { "status": "asc" }
+          ],
+          "unique": false
+        },
+        {
+          "name": "byOwnerLevel",
+          "properties": [
+            { "$ownerId": "asc" },
+            { "level": "asc" }
+          ],
+          "unique": false
+        }
+      ],
+      "properties": {
+        "service": {
+          "type": "string",
+          "maxLength": 63,
+          "description": "Service identifier (plaintext, primary lookup key)",
+          "position": 0
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 63,
+          "description": "Human/agent-readable label",
+          "position": 1
+        },
+        "encryptedBlob": {
+          "type": "array",
+          "byteArray": true,
+          "maxItems": 4096,
+          "minItems": 1,
+          "description": "AES-256-GCM encrypted JSON payload (value + metadata)",
+          "position": 2
+        },
+        "salt": {
+          "type": "array",
+          "byteArray": true,
+          "maxItems": 32,
+          "minItems": 32,
+          "description": "HKDF salt (32 bytes, random per credential)",
+          "position": 3
+        },
+        "nonce": {
+          "type": "array",
+          "byteArray": true,
+          "maxItems": 12,
+          "minItems": 12,
+          "description": "AES-GCM nonce (12 bytes)",
+          "position": 4
+        },
+        "authScheme": {
+          "type": "string",
+          "maxLength": 16,
+          "description": "Encryption scheme: 'identity' (Scheme C) or 'mpc' (Vultisig)",
+          "position": 5
+        },
+        "credType": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "Credential type: api-key, oauth-token, ssh-key, wif, db-cred, tls-cert, service-token, encryption-key",
+          "position": 6
+        },
+        "level": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Security level: critical, sensitive, normal",
+          "position": 7
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Credential version (incremented on rotation)",
+          "position": 8
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Lifecycle status: active, archived, revoked",
+          "position": 9
+        },
+        "expiresAt": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unix timestamp (ms) when credential expires. 0 = no expiry.",
+          "position": 10
+        },
+        "previousDocId": {
+          "type": "string",
+          "maxLength": 44,
+          "description": "Base58 document ID of previous version (rotation chain)",
+          "position": 11
+        }
+      },
+      "required": [
+        "service", "label", "encryptedBlob", "salt", "nonce",
+        "authScheme", "credType", "level", "version", "status"
+      ],
+      "additionalProperties": false
+    },
+    "accessLog": {
+      "type": "object",
+      "description": "On-chain audit log entry (Phase 3)",
+      "indices": [
+        {
+          "name": "byOwnerTime",
+          "properties": [
+            { "$ownerId": "asc" },
+            { "timestamp": "asc" }
+          ],
+          "unique": false
+        },
+        {
+          "name": "byOwnerService",
+          "properties": [
+            { "$ownerId": "asc" },
+            { "service": "asc" }
+          ],
+          "unique": false
+        }
+      ],
+      "properties": {
+        "service": {
+          "type": "string",
+          "maxLength": 63,
+          "description": "Service that was accessed",
+          "position": 0
+        },
+        "action": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Action: get, put, rotate, delete, export",
+          "position": 1
+        },
+        "agentId": {
+          "type": "string",
+          "maxLength": 63,
+          "description": "Identifier of the agent that performed the action",
+          "position": 2
+        },
+        "timestamp": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unix timestamp (ms) of the action",
+          "position": 3
+        },
+        "resultHash": {
+          "type": "string",
+          "maxLength": 64,
+          "description": "SHA256 hash of the action result (for integrity, not content)",
+          "position": 4
+        }
+      },
+      "required": ["service", "action", "agentId", "timestamp"],
+      "additionalProperties": false
+    }
+  }
+}

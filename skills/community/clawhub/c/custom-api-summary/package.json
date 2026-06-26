@@ -1,0 +1,14 @@
+{
+  "name": "custom-api-summary",
+  "version": "1.0.0",
+  "description": "调用自定义 API 做文本处理 / 总结",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

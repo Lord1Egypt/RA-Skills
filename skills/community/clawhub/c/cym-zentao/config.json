@@ -1,0 +1,55 @@
+{
+  "tools": [
+    {
+      "name": "zentao_login",
+      "description": "禅道登录测试",
+      "inputSchema": { "type": "object", "properties": {} }
+    },
+    {
+      "name": "zentao_list_executions",
+      "description": "列出执行",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "keyword": { "type": "string", "description": "搜索关键词" }
+        }
+      }
+    },
+    {
+      "name": "zentao_create_task",
+      "description": "创建任务",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "executionId": { "type": "number" },
+          "name": { "type": "string" },
+          "assignedTo": { "type": "string" },
+          "options": {
+            "type": "object",
+            "properties": {
+              "pri": { "type": "number" },
+              "estimate": { "type": "number" },
+              "type": { "type": "string" },
+              "estStarted": { "type": "string" },
+              "deadline": { "type": "string" },
+              "desc": { "type": "string" }
+            }
+          }
+        },
+        "required": ["executionId", "name", "assignedTo"]
+      }
+    },
+    {
+      "name": "zentao_list_tasks",
+      "description": "列出任务",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "executionId": { "type": "number" },
+          "status": { "type": "string" }
+        },
+        "required": ["executionId"]
+      }
+    }
+  ]
+}

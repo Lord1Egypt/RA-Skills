@@ -1,0 +1,138 @@
+{
+  "name": "document-organizer",
+  "version": "1.0.4",
+  "description": "批量文档转换技能：将 Office 文档和 PDF 高质量转换为 Markdown",
+  "author": "byteuser",
+  "dependencies": {
+    "python": ">=3.10",
+    "pip_packages": [
+      "markitdown[docx,xlsx,pdf]>=0.1.5",
+      "pywin32>=311;platform_system=='Windows'"
+    ],
+    "external_tools": [
+      {
+        "name": "LibreOffice",
+        "required": true,
+        "download_url": "https://zh-cn.libreoffice.org/",
+        "windows_path": "D:\\Program Files\\LibreOffice\\program\\soffice.exe",
+        "linux_path": "/usr/bin/soffice",
+        "macos_path": "/Applications/LibreOffice.app/Contents/MacOS/soffice"
+      }
+    ]
+  },
+  "config": {
+    "default_source": null,
+    "default_output": "./output",
+    "default_types": ["doc", "xls", "docx", "xlsx", "ppt", "pptx", "pdf"],
+    "log_file": "conversion.log",
+    "soffice_path": null,
+    "recursive": true,
+    "keep_structure": true
+  },
+  "commands": {
+    "convert": {
+      "description": "批量转换文档",
+      "usage": "python scripts/batch_convert.py --source <dir> [--output <dir>] [--type <types>]",
+      "options": {
+        "--source": "源目录路径（必需）",
+        "--output": "输出目录路径（默认: ./output）",
+        "--type": "处理的文件类型，逗号分隔（默认: doc,xls,docx,xlsx,ppt,pptx,pdf）",
+        "--soffice-path": "LibreOffice soffice.exe 路径（自动检测）",
+        "--log-file": "日志文件路径（默认: conversion.log）",
+        "--dry-run": "仅扫描统计，不实际转换",
+        "--help": "显示帮助信息"
+      }
+    },
+    "scan": {
+      "description": "仅扫描统计目录内容",
+      "usage": "python scripts/batch_convert.py --dry-run --source <dir>"
+    }
+  },
+  "examples": [
+    {
+      "description": "转换整个目录（所有支持的格式）",
+      "command": "python scripts/batch_convert.py --source \"G:\\历史文档\" --output \"d:\\知识库\""
+    },
+    {
+      "description": "仅转换 Word 文档",
+      "command": "python scripts/batch_convert.py --source \"G:\\docs\" --output \"d:\\md\" --type doc,docx"
+    },
+    {
+      "description": "仅转换 Excel 表格",
+      "command": "python scripts/batch_convert.py --source \"G:\\excels\" --output \"d:\\tables\" --type xls,xlsx"
+    },
+    {
+      "description": "仅转换 PDF 文档",
+      "command": "python scripts/batch_convert.py --source \"G:\\pdfs\" --output \"d:\\pdf_md\" --type pdf"
+    },
+    {
+      "description": "预览即将转换的文件（不执行）",
+      "command": "python scripts/batch_convert.py --source \"G:\\docs\" --dry-run"
+    },
+    {
+      "description": "指定 LibreOffice 路径",
+      "command": "python scripts/batch_convert.py --source \"G:\\docs\" --soffice-path \"C:\\Program Files\\LibreOffice\\program\\soffice.exe\""
+    }
+  ],
+  "output_format": "Markdown",
+  "supported_formats": {
+    "input": [".doc", ".xls", ".docx", ".xlsx", ".ppt", ".pptx", ".pdf"],
+    "output": [".md"],
+    "intermediate": [".xlsx", ".pptx"]
+  },
+  "scripts": {
+    "main": "scripts/batch_convert.py"
+  },
+  "performance": {
+    "throughput": {
+      "doc": "~33 文件/秒",
+      "docx": "~33 文件/秒",
+      "xls": "~22 文件/秒 (转 xlsx) + ~17 文件/秒 (转 md)",
+      "xlsx": "~17 文件/秒",
+      "ppt": "~17 文件/秒 (转 pptx) + ~8 文件/秒 (转 md)",
+      "pptx": "~8 文件/秒",
+      "pdf": "~4 文件/秒"
+    },
+    "note": "实际速度取决于硬件和文件复杂度"
+  },
+  "changelog": {
+    "1.0.4": {
+      "date": "2026-03-12",
+      "changes": [
+        "修复：移除对不存在的外部 convert-markdown 目录和脚本的依赖",
+        "修复：移除对特定路径虚拟环境的依赖",
+        "优化：直接使用 markitdown 命令行工具进行转换",
+        "优化：增加 markitdown 命令的自动检测逻辑"
+      ]
+    },
+    "1.0.3": {
+      "date": "2026-03-12",
+      "changes": [
+        "修复：移除不存在的 --temp-dir 参数",
+        "更新：完善所有支持的文件类型",
+        "优化：文档与实际脚本保持一致"
+      ]
+    },
+    "1.0.2": {
+      "date": "2026-03-11",
+      "changes": [
+        "优化：移除临时目录，直接生成 .md 文件",
+        "新增：.docx 文件 LibreOffice 直接转换",
+        "优化：convert_modern 支持参数调用",
+        "优化：批量转换逻辑，提高速度",
+        "优化：--dry-run 模式跳过 LibreOffice 检查"
+      ]
+    },
+    "1.0.0": {
+      "date": "2026-03-11",
+      "changes": [
+        "初始版本发布",
+        "支持 .doc 直接转 .md（LibreOffice 批量）",
+        "支持 .xls 两步转换（LibreOffice → .xlsx → MarkItDown）",
+        "按目录分组批量处理",
+        "自动保持目录结构",
+        "错误日志记录"
+      ]
+    }
+  }
+}

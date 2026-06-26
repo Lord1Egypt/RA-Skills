@@ -1,0 +1,8 @@
+{
+  "name": "dingtalk-connector-guide",
+  "version": "1.0.0",
+  "description": "钉钉机器人接入指南 - OpenClaw连接钉钉完整教程",
+  "author": "yang1002378395-cmyk",
+  "license": "MIT",
+  "keywords": ["dingtalk", "钉钉", "机器人", "openclaw", "企业", "教程"]
+}

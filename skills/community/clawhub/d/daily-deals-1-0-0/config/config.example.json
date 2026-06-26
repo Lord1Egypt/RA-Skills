@@ -1,0 +1,15 @@
+{
+  "categories": ["digital", "clothing", "home", "food"],
+  "minDiscount": 0.3,
+  "platforms": ["jd", "taobao", "pdd", "smzdm"],
+  "pushChannels": ["console"],
+  "webhooks": {
+    "wechat": "",
+    "dingtalk": "",
+    "feishu": ""
+  },
+  "schedule": {
+    "morning": "0 8 * * *",
+    "evening": "0 20 * * *"
+  }
+}

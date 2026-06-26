@@ -1,35 +1,57 @@
 ---
-name: "Custom Smtp Sender"
-description: "A skill to send emails with support for markdown, HTML text, and attachments, leveraging existing SMTP configuration in `/home/bb/.openclaw/smtp-config.json`. Includes retry logic and logging."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/custom-smtp-sender"
-sourceUrl: "https://clawhub.ai/skills/custom-smtp-sender"
+name: custom-smtp-sender
+description: A skill to send emails with support for markdown, HTML text, and attachments, leveraging existing SMTP configuration in `/home/bb/.openclaw/smtp-config.json`. Includes retry logic and logging.
 ---
 
-# Custom Smtp Sender
+# Custom SMTP Sender
 
-> A skill to send emails with support for markdown, HTML text, and attachments, leveraging existing SMTP configuration in `/home/bb/.openclaw/smtp-config.json`. Includes retry logic and logging.
+Custom skill to send emails with advanced options including HTML/Markdown conversion, attachments, and retry handling. Integrates existing configuration, ensuring secure and reliable operations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/custom-smtp-sender`
-- **Source URL:** [https://clawhub.ai/skills/custom-smtp-sender](https://clawhub.ai/skills/custom-smtp-sender)
+## Features
+- **HTML/Markdown support**: Compose emails using markdown converted to HTML.
+- **Attachments**: Include one or more files easily.
+- **Retries**: Attempts to resend in case of temporary failures.
+- **Logging**: Maintains a log of sent emails and errors for auditing.
 
-## Overview
+## Prerequisites
+- **SMTP Configuration File**: `smtp-config.json` located at `/home/bb/.openclaw/`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/custom-smtp-sender
+Example:
+```json
+{
+  "server": "smtp.exmail.qq.com",
+  "port": 465,
+  "username": "your-email@example.com",
+  "password": "your-password",
+  "emailFrom": "your-email@example.com",
+  "useTLS": true
+}
 ```
+
+Ensure file permissions are secured (chmod 600).
+
+## Usage
+Send a basic email:
+```bash
+custom-smtp-sender send --to "recipient@example.com" --subject "Hello" --body "你好"
+```
+
+Send an HTML email with an attachment:
+```bash
+custom-smtp-sender send \
+  --to "recipient@example.com" \
+  --subject "Weekly Report" \
+  --body "**Important updates inside.** See attached." \
+  --html \
+  --attachments path/to/file.pdf
+```
+
+## Error Handling
+The tool retries up to 3 times on failure, logging each attempt. Networking or credential issues are reported in detail.
+
+## Future Expansion
+- Support for CC/BCC fields
+- Scheduling emails (cron integration)
+- Email templates
+
+Set up your SMTP-service once, and you’re ready to integrate email into your workflow!

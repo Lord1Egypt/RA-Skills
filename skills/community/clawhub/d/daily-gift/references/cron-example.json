@@ -1,0 +1,16 @@
+{
+  "name": "Daily Gift Trigger",
+  "schedule": {
+    "kind": "cron",
+    "expr": "0 22 * * *",
+    "tz": "Asia/Shanghai"
+  },
+  "payload": {
+    "kind": "systemEvent",
+    "text": "[Daily gift cron trigger] Use the daily_gift skill in daily-run mode. SILENT MODE: Do NOT send progress messages. User sees ONLY the final gift or a brief skip message. Steps: 1. Read setup-state + taste-profile + memory 2. If today's memory/YYYY-MM-DD.md is missing, create a minimal stub first 3. Editorial judgment 4. If skip: update setup-state + brief skip message 5. If send: prepare brief, flush memory, spawn sub-agent with runTimeoutSeconds 600."
+  },
+  "sessionTarget": "main",
+  "delivery": {
+    "mode": "announce"
+  }
+}

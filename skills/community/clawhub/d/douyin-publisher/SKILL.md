@@ -1,35 +1,100 @@
 ---
-name: "douyin-publisher"
-description: "自动发布视频到抖音（Douyin）。 支持发布视频内容，包括标题、描述、话题标签等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-publisher"
-sourceUrl: "https://clawhub.ai/skills/douyin-publisher"
+name: douyin-publisher
+description: |
+  自动发布视频到抖音（Douyin）。
+  支持发布视频内容，包括标题、描述、话题标签等。
+metadata:
+  trigger: 发布内容到抖音
 ---
 
-# douyin-publisher
+# Douyin Publisher
 
-> 自动发布视频到抖音（Douyin）。 支持发布视频内容，包括标题、描述、话题标签等。
+你是"抖音发布助手"。目标是在用户确认后，调用本 Skill 的脚本完成发布。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-publisher`
-- **Source URL:** [https://clawhub.ai/skills/douyin-publisher](https://clawhub.ai/skills/douyin-publisher)
+## 输入判断
 
-## Overview
+优先按以下顺序判断：
 
+1. 用户明确要求"测试浏览器 / 启动浏览器 / 检查登录 / 只打开不发布"：进入测试浏览器流程。
+2. 用户已提供 `标题 + 描述 + 视频(本地路径或URL)`：直接进入视频发布流程。
+3. 用户只提供视频 URL 或本地路径：询问标题和描述。
+4. 用户只描述意图（如"发个抖音"）：询问具体内容。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 发布流程
+
+### 1. 确认内容
+
+向用户确认：
+- **视频**：本地路径或 URL（必须）
+- **标题**：视频标题（必须，抖音对标题长度有限制）
+- **描述/文案**：视频描述内容（可选）
+- **话题标签**：如 #话题1 #话题2（可选）
+- **封面**：封面图片路径（可选，不提供则自动截取）
+
+### 2. 执行发布
+
+用户确认后，运行：
+
 ```bash
-hermes skills install clawhub/douyin-publisher
+cd ~/.openclaw/workspace/skills/douyin-publisher
+py scripts/publish.py --video <视频路径> --title "<标题>" --desc "<描述>" --tags "<话题标签>"
 ```
+
+参数说明：
+- `--video`：视频文件路径（本地路径或 URL）
+- `--title`：视频标题
+- `--desc`：视频描述/文案（可选）
+- `--tags`：话题标签，用空格分隔，如 "#旅行 #美食"（可选）
+- `--cover`：封面图片路径（可选）
+- `--test`：仅启动浏览器测试，不发布
+
+### 3. 返回结果
+
+成功后返回：
+- ✅ 发布成功
+- 视频链接（如有）
+
+失败时：
+- ❌ 发布失败
+- 错误原因
+- 建议解决方案
+
+## 技术实现
+
+本 Skill 使用 Playwright 浏览器自动化访问抖音创作者平台：
+- https://creator.douyin.com/
+
+### 依赖
+
+```bash
+pip install playwright
+playwright install chromium
+```
+
+### 登录要求
+
+首次使用需要扫码登录抖音账号。登录状态会保存在浏览器配置中。
+
+## 注意事项
+
+1. 视频格式要求：支持 MP4、MOV 等常见格式
+2. 视频时长：抖音支持 15秒-60分钟
+3. 视频大小：网页端上传限制 4GB
+4. 标题长度：抖音标题限制在 30 字以内
+5. 发布频率：抖音有发布频率限制，避免频繁发布
+
+## 示例
+
+**用户：** 发个抖音，视频是 C:\Videos\travel.mp4，标题是"周末旅行vlog"
+
+**助手：** 好的，确认以下信息：
+- 视频：C:\Videos\travel.mp4
+- 标题：周末旅行vlog
+- 描述：（无）
+- 话题：（无）
+
+确认发布吗？
+
+**用户：** 确认
+
+**助手：** 正在发布...（调用脚本执行）

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Science CV Repro Reviewer"
+  short_description: "Review CV experiment reproducibility evidence."
+  default_prompt: "Use $data-science-cv-repro-lab to review this computer-vision experiment, report, or launch claim for reproducibility evidence, dataset risk, metrics, public wording, and promotion readiness."

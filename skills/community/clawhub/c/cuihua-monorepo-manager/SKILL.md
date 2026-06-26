@@ -1,35 +1,53 @@
 ---
-name: "Cuihua Monorepo Manager"
-description: "🏗️ AI-powered monorepo management assistant. Automate workspace orchestration, dependency management, and build optimization for large-scale monorepo projects."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cuihua-monorepo-manager"
-sourceUrl: "https://clawhub.ai/skills/cuihua-monorepo-manager"
+name: cuihua-monorepo-manager
+description: |
+  🏗️ AI-powered monorepo management assistant. Automate workspace orchestration, dependency management, 
+  and build optimization for large-scale monorepo projects.
+
+metadata:
+  openclaw:
+    requires:
+      bins: [node, git]
+      env: []
+  version: "1.0.0"
+  author: "翠花 (Cuihua) - ClawHub Pioneer"
+  license: "MIT"
+  tags: [monorepo, workspace, lerna, nx, turborepo, build-optimization]
+
+capabilities:
+  - Workspace dependency analysis
+  - Build order optimization
+  - Cross-package change detection
+  - Automated versioning
+  - CI/CD optimization
 ---
 
-# Cuihua Monorepo Manager
+# cuihua-monorepo-manager 🏗️
 
-> 🏗️ AI-powered monorepo management assistant. Automate workspace orchestration, dependency management, and build optimization for large-scale monorepo projects.
+> **Tame your monorepo with AI-powered automation**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cuihua-monorepo-manager`
-- **Source URL:** [https://clawhub.ai/skills/cuihua-monorepo-manager](https://clawhub.ai/skills/cuihua-monorepo-manager)
+Intelligent monorepo management for Lerna, Nx, Turborepo, and Yarn/npm workspaces.
 
-## Overview
+## Features
 
+- 📊 Dependency graph analysis
+- ⚡ Smart build ordering
+- 🔄 Change detection
+- 📦 Version management
+- 🚀 CI/CD optimization
+
+## Quick Start
+
+> "Analyze monorepo dependencies"
+> "Optimize build order"
+> "Detect affected packages"
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/cuihua-monorepo-manager
+clawhub install cuihua-monorepo-manager
 ```
+
+## License
+
+MIT | Made with 🌸 by 翠花

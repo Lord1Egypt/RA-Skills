@@ -1,0 +1,9 @@
+{
+  "manifest": {
+    "name": "deAIify",
+    "description": "Ban LLM em-dashes and en-dashes before delivery, rewrite via embedded LLM",
+    "version": "3.4.0",
+    "main": "./dist/index.js",
+    "type": "module"
+  }
+}

@@ -1,0 +1,655 @@
+{
+  "version": "2.0",
+  "title": "工程量创新配比参数体系 v2.0 - '测不准'原理",
+  "author": "度量衡智库",
+  "date": "2026-04-03",
+  "philosophy": {
+    "name": "测不准原理 (Heisenberg-Quantity Principle)",
+    "origin": "源自量子力学的不确定性原理，我们创新性地引入工程造价领域",
+    "principle": "任何单一配比参数都无法精确预测工程量，但多个配比参数交叉验证，可以将误差收敛到可接受区间。",
+    "core_insight": "工程量估算的本质不是追求精确，而是量化不确定性。当我们知道'我们不知道多少'时，才是真正的工程智慧。",
+    "three_axioms": [
+      "闭合性公理: 建筑总费用 = Σ(构件体积 × 构件单价)，所有构件体积之和必须等于建筑总体积（含容差）",
+      "守恒性公理: 钢筋总量在混凝土中守恒，墙体体积在建筑面积中守恒",
+      "相关性公理: 任意两个配比参数之间存在统计学相关性，相关系数r应在[0.3, 0.95]之间"
+    ],
+    "uncertainty_budget": {
+      "A级(高精度)": "误差±8%，需要完整施工图",
+      "B级(中精度)": "误差±15%，需要初步设计",
+      "C级(低精度)": "误差±25%，仅需概念方案",
+      "D级(估算级)": "误差±40%，仅需建筑类型和面积"
+    }
+  },
+  "ratio_categories": {
+
+    "structural_cross_ratios": {
+      "title": "【第一族】结构构件交叉配比 - 构件间的隐秘关系",
+      "description": "墙、梁、板、柱是建筑的四大构件，它们之间的体积比藏着设计的密码。",
+      "ratios": {
+
+        "wall_beam_slab_ratio": {
+          "name": "墙:梁:板三相配比",
+          "definition": "主体结构中，剪力墙体积 : 梁体积 : 板体积的体积比",
+          "unit": "无量纲比值",
+          "formula": "W : B : S (三者之和=1)",
+          "building_types": {
+            "纯剪力墙住宅": {
+              "low": "0.55 : 0.15 : 0.30",
+              "median": "0.60 : 0.12 : 0.28",
+              "high": "0.68 : 0.10 : 0.22",
+              "note": "剪力墙占主导，钢筋含量高"
+            },
+            "框架-剪力墙高层": {
+              "low": "0.35 : 0.25 : 0.40",
+              "median": "0.40 : 0.22 : 0.38",
+              "high": "0.45 : 0.20 : 0.35",
+              "note": "框架与剪力墙协同"
+            },
+            "框架结构办公楼": {
+              "low": "0.05 : 0.35 : 0.60",
+              "median": "0.08 : 0.32 : 0.60",
+              "high": "0.12 : 0.30 : 0.58",
+              "note": "框架梁板为主"
+            },
+            "框架-核心筒超高层": {
+              "low": "0.45 : 0.18 : 0.37",
+              "median": "0.50 : 0.15 : 0.35",
+              "high": "0.58 : 0.12 : 0.30",
+              "note": "核心筒剪力墙承担主要地震力"
+            }
+          },
+          "engineering_insight": "通过这个配比，可以反推结构形式。如果梁:板比>0.35，说明存在大跨度需求，钢筋含量将显著增加。",
+          "norm_reference": "GB50010-2010 5.2节",
+          "uncertainty_range": "±12%"
+        },
+
+        "column_wall_ratio": {
+          "name": "柱:墙体积比",
+          "definition": "框架柱（含芯柱）体积与剪力墙体积之比",
+          "unit": "无量纲比值",
+          "formula": "V_柱 / V_墙",
+          "ranges": {
+            "纯框架(无剪力墙)": "∞ (仅柱无墙)",
+            "框架-支撑结构": "0.8~1.2",
+            "框架-剪力墙结构": "0.2~0.5",
+            "剪力墙结构": "0.05~0.15",
+            "框架-核心筒结构": "0.1~0.3"
+          },
+          "engineering_insight": "柱墙比越小，说明剪力墙越密，结构刚度越大，但建筑空间利用率降低。超高层建筑通常需要0.15~0.25的柱墙比来平衡刚度与经济性。",
+          "norm_reference": "GB50011-2010 8.1节",
+          "uncertainty_range": "±18%"
+        },
+
+        "transfer_structure_ratio": {
+          "name": "转换层含量比",
+          "definition": "转换层梁板混凝土量 / 标准层混凝土量",
+          "unit": "无量纲比值",
+          "formula": "V_transfer / V_standard",
+          "ranges": {
+            "梁式转换": {"low": 2.5, "median": 3.2, "high": 4.0, "unit": "倍"},
+            "板式转换": {"low": 2.0, "median": 2.8, "high": 3.5, "unit": "倍"},
+            "桁架转换": {"low": 1.8, "median": 2.5, "high": 3.2, "unit": "倍"},
+            "空腹转换": {"low": 2.2, "median": 3.0, "high": 3.8, "unit": "倍"}
+          },
+          "engineering_insight": "转换层是结构成本突变点。梁式转换成本最高，但结构效率最好；板式转换成本较低，但会显著增加层高（每层增加0.8~1.5m净高）。",
+          "norm_reference": "GB50010-2010 10.1节",
+          "uncertainty_range": "±20%"
+        },
+
+        "basement_structure_ratio": {
+          "name": "地下室结构含量比",
+          "definition": "地下室混凝土量 / 同等面积地上混凝土量",
+          "unit": "无量纲比值",
+          "formula": "V_basement / (V_ground × A_ratio)",
+          "ranges": {
+            "普通地下室(1层)": {"low": 1.8, "median": 2.3, "high": 3.0},
+            "普通地下室(2层)": {"low": 2.5, "median": 3.2, "high": 4.0},
+            "普通地下室(3层)": {"low": 3.2, "median": 4.0, "high": 5.0},
+            "人防地下室": {"low": 2.8, "median": 3.5, "high": 4.5, "note": "含人防构造钢筋，双层配筋"},
+            "复合地下室(带抗浮)": {"low": 3.5, "median": 4.5, "high": 6.0, "note": "含抗浮锚杆/抗拔桩"}
+          },
+          "engineering_insight": "地下室是地上结构成本的2~4倍。深度每增加一层，边坡支护成本增加约30%。抗浮设计在地下水位较高时可使混凝土量增加15%~25%。",
+          "norm_reference": "GB50010-2010 8.4节 + GB50046-2018",
+          "uncertainty_range": "±25%"
+        },
+
+        "stair_concrete_ratio": {
+          "name": "楼梯混凝土含量比",
+          "definition": "楼梯投影面积 / 建筑面积（含楼梯间的楼层）",
+          "unit": "m²/m²",
+          "formula": "A_stair_projected / A_total",
+          "ranges": {
+            "多层住宅(6层)": {"low": 0.035, "median": 0.042, "high": 0.050, "note": "每单元一部楼梯"},
+            "高层住宅(33层)": {"low": 0.020, "median": 0.028, "high": 0.035, "note": "两部剪刀梯/核心筒"},
+            "办公楼": {"low": 0.010, "median": 0.015, "high": 0.025, "note": "核心筒内楼梯为主"},
+            "商业综合体": {"low": 0.015, "median": 0.020, "high": 0.030, "note": "含消防疏散楼梯"}
+          },
+          "engineering_insight": "楼梯是结构成本中最'划算'的构件——投影面积系数约1.8~2.0（即展开面积是投影面积的1.8~2倍），但单价仅为梁板的60%~70%。优化楼梯数量是住宅降本的重要手段。",
+          "norm_reference": "GB50096-2011 6.3节",
+          "uncertainty_range": "±15%"
+        }
+      }
+    },
+
+    "building_envelope_ratios": {
+      "title": "【第二族】建筑围护配比 - 门窗墙的黄金比例",
+      "description": "建筑的'皮肤'——外墙、门窗、幕墙——藏着能耗、安全、造价的关键密码。",
+      "ratios": {
+
+        "window_wall_ratio": {
+          "name": "窗墙面积比（核心指标）",
+          "definition": "窗户（含透明幕墙）面积 / 朝向外墙总面积",
+          "unit": "无（0~1）",
+          "formula": "A_window / A_exterior_wall",
+          "norm_limits": {
+            "住宅东向": "≤0.35 (夏热冬冷地区)",
+            "住宅南向": "≤0.50",
+            "住宅西向": "≤0.30",
+            "住宅北向": "≤0.40",
+            "办公/商业": "≤0.70 (玻璃幕墙)",
+            "医院": "≤0.45 (需控制自然采光均匀度)"
+          },
+          "ranges_by_building": {
+            "低窗墙比建筑": {"ratio_range": [0.15, 0.30], "typical": "住宅、病房、实验室"},
+            "中窗墙比建筑": {"ratio_range": [0.30, 0.50], "typical": "办公、酒店"},
+            "高窗墙比建筑": {"ratio_range": [0.50, 0.75], "typical": "商业幕墙、全玻璃幕墙"}
+          },
+          "engineering_insight": "窗墙比每增加0.10，外墙传热系数（K值）增加约0.3 W/m²·K，空调能耗增加约8%~12%。但高窗墙比可减少人工照明，降低照明能耗约15%。存在最优窗墙比（约0.35~0.45）使生命周期成本最低。",
+          "cost_impact": {
+            "低窗墙比(≤0.30)": "外墙成本基准×1.0~1.1（含外墙涂料/面砖）",
+            "中窗墙比(0.30~0.50)": "外墙成本基准×1.1~1.4（含普通铝合金窗）",
+            "高窗墙比(≥0.50)": "外墙成本基准×1.4~2.5（含幕墙系统）"
+          },
+          "uncertainty_range": "±10%"
+        },
+
+        "door_wall_ratio": {
+          "name": "门墙面积比",
+          "definition": "门洞口面积 / 墙体总面积",
+          "unit": "无（0~1）",
+          "formula": "A_door / A_wall",
+          "ranges": {
+            "住宅": {"low": 0.08, "median": 0.10, "high": 0.13, "note": "含入户门+室内门"},
+            "办公楼": {"low": 0.06, "median": 0.08, "high": 0.12, "note": "含防火门+普通门"},
+            "商业": {"low": 0.12, "median": 0.18, "high": 0.25, "note": "大开间，含玻璃门"},
+            "医院": {"low": 0.10, "median": 0.15, "high": 0.20, "note": "含手术室气密门"},
+            "工业厂房": {"low": 0.04, "median": 0.06, "high": 0.10, "note": "大型工业门"}
+          },
+          "engineering_insight": "门墙比反映建筑的使用密度。医院门墙比最高（大量医疗门），工业厂房最低。门的单价是普通墙体的8~15倍，但门洞省去了墙体砌筑，综合来看门墙比对成本影响约为±5%。",
+          "uncertainty_range": "±18%"
+        },
+
+        "curtain_wall_density": {
+          "name": "幕墙密度指数",
+          "definition": "幕墙系统面积 / 建筑总外表面积",
+          "unit": "无（0~1）",
+          "formula": "A_curtain / A_total_exterior",
+          "ranges": {
+            "无幕墙": {"ratio": 0.0, "cost_index": 1.0},
+            "点式幕墙": {"ratio_range": [0.3, 0.5], "cost_index_range": [1.5, 2.0]},
+            "横明竖隐": {"ratio_range": [0.4, 0.7], "cost_index_range": [1.8, 2.5]},
+            "横隐竖明": {"ratio_range": [0.4, 0.7], "cost_index_range": [1.6, 2.2]},
+            "全玻璃幕墙": {"ratio_range": [0.6, 0.95], "cost_index_range": [2.0, 3.5]}
+          },
+          "engineering_insight": "幕墙密度决定了建筑外立面的复杂度。点式幕墙（如深圳平安金融中心）单位面积成本约为单元式幕墙的1.3~1.5倍，但通透性更好。超高层建筑幕墙成本约占建安总成本的8%~15%。",
+          "uncertainty_range": "±20%"
+        },
+
+        "exterior_to_volume_ratio": {
+          "name": "外表面积体积比（体形系数）",
+          "definition": "建筑外表面积 / 建筑体积（计容体积）",
+          "unit": "1/m",
+          "formula": "A_exterior / V_building",
+          "norm_limits": "GB50189-2015: 体形系数≤0.40（否则需提高围护结构保温性能）",
+          "ranges": {
+            "板式住宅(大面宽)": {"low": 0.30, "median": 0.38, "high": 0.45},
+            "塔式住宅(点式)": {"low": 0.45, "median": 0.55, "high": 0.70},
+            "办公塔楼": {"low": 0.35, "median": 0.45, "high": 0.60},
+            "商业综合体": {"low": 0.25, "median": 0.35, "high": 0.45, "note": "体型系数低，能耗效率高"},
+            "工业厂房": {"low": 0.80, "median": 1.00, "high": 1.50, "note": "单层大空间，体形系数高"}
+          },
+          "engineering_insight": "体形系数每增加0.10，外墙保温成本增加约12%~18%。这是设计阶段控制能耗成本的核心指标。塔式住宅（点式）体形系数显著高于板式住宅，北方地区需特别关注。",
+          "uncertainty_range": "±8%"
+        }
+      }
+    },
+
+    "mep_cross_ratios": {
+      "title": "【第三族】机电安装交叉配比 - 设备管线的隐秘网络",
+      "description": "机电安装是建筑的'神经系统'和'循环系统'，其配比关系比结构更复杂，也更具降本空间。",
+      "ratios": {
+
+        "duct_expansion_ratio": {
+          "name": "风管展开面积比（创新核心指标）",
+          "definition": "风管展开面积（含咬口、法兰） / 建筑面积",
+          "unit": "无（0~∞）",
+          "formula": "A_duct_expanded / A_building = Σ(L×P) / A_building",
+          "ranges": {
+            "住宅(分体机)": {"low": 0.0, "median": 0.0, "high": 0.0, "note": "通常无中央风管"},
+            "住宅(中央空调)": {"low": 0.15, "median": 0.25, "high": 0.40},
+            "办公楼(风机盘管+新风)": {"low": 0.30, "median": 0.45, "high": 0.65},
+            "办公楼(全空气系统)": {"low": 0.60, "median": 0.85, "high": 1.20},
+            "商业综合体(全空气)": {"low": 0.80, "median": 1.10, "high": 1.50},
+            "医院(净化空调)": {"low": 1.20, "median": 1.60, "high": 2.20, "note": "初效+中效+高效过滤段"}
+          },
+          "engineering_insight": "风管展开面积比是衡量空调系统复杂度的关键指标。全空气系统展开比远高于风机盘管系统，但舒适性更好。净化空调系统展开比最高（需多级过滤），这也是医院空调成本高的核心原因之一。",
+          "cost_correlation": "风管展开面积每增加0.1㎡/㎡，暖通安装成本增加约25~35元/㎡（地上建筑面积）",
+          "uncertainty_range": "±22%"
+        },
+
+        "cooling_load_density": {
+          "name": "冷负荷密度比（创新核心指标）",
+          "definition": "设计冷负荷 / 建筑面积（或建筑体积）",
+          "unit": "W/㎡ 或 W/m³",
+          "formula": "Q_cooling_design / A_building",
+          "ranges": {
+            "住宅": {"low": 80, "median": 100, "high": 130, "unit": "W/㎡"},
+            "办公楼": {"low": 95, "median": 120, "high": 160, "unit": "W/㎡"},
+            "商场": {"low": 150, "median": 180, "high": 220, "unit": "W/㎡"},
+            "酒店": {"low": 110, "median": 130, "high": 160, "unit": "W/㎡"},
+            "医院手术室": {"low": 800, "median": 1000, "high": 1500, "unit": "W/㎡", "note": "恒温恒湿极高要求"},
+            "数据中心": {"low": 800, "median": 1500, "high": 3000, "unit": "W/㎡", "note": "高密度机柜"}
+          },
+          "engineering_insight": "冷负荷密度比直接决定制冷主机容量，进而决定管道、冷塔、泵的选型。商场冷负荷密度约为住宅的1.8倍，主机容量差异导致管道成本增加约60%~80%。设计阶段准确估算冷负荷可避免主机选型过大（浪费初投资）或过小（无法满足极端天气）。",
+          "refrigerant_per_volume": {
+            "name": "制冷剂量配比",
+            "definition": "制冷剂充注量 / 制冷量",
+            "ranges": [
+              {"system": "螺杆式冷水机组", "ratio": "0.8~1.2 kg/RT"},
+              {"system": "离心式冷水机组", "ratio": "0.5~0.8 kg/RT"},
+              {"system": "涡旋式机组(风冷)", "ratio": "1.5~2.5 kg/RT"}
+            ]
+          },
+          "uncertainty_range": "±20%"
+        },
+
+        "pipe_fitting_density": {
+          "name": "管道配件密度指数（创新核心指标）",
+          "definition": "管道配件（如弯头、三通、法兰、阀门）个数 / 管道直线长度（m）",
+          "unit": "个/m",
+          "formula": "N_fitting / L_pipe",
+          "ranges": {
+            "普通给水系统": {"low": 0.04, "median": 0.06, "high": 0.10, "unit": "个/m"},
+            "消防喷淋系统": {"low": 0.12, "median": 0.18, "high": 0.28, "unit": "个/m", "note": "支管密集"},
+            "燃气管道": {"low": 0.02, "median": 0.04, "high": 0.07, "unit": "个/m"},
+            "工艺管道": {"low": 0.08, "median": 0.15, "high": 0.25, "unit": "个/m"},
+            "空调冷冻水": {"low": 0.06, "median": 0.10, "high": 0.15, "unit": "个/m"}
+          },
+          "engineering_insight": "管道配件密度是衡量管道系统复杂度的核心指标。消防喷淋系统配件密度最高（支管密集），每增加0.01个/m，管道安装成本增加约3~5元/m。管件费用通常占管道直接费的25%~40%，远高于直线管段。",
+          "fitting_cost_ratio": {
+            "name": "管件费占比",
+            "ranges": [
+              {"system": "给排水", "ratio_range": [0.20, 0.30]},
+              {"system": "消防喷淋", "ratio_range": [0.30, 0.45]},
+              {"system": "空调水系统", "ratio_range": [0.25, 0.35]},
+              {"system": "燃气管道", "ratio_range": [0.15, 0.25]}
+          },
+          "uncertainty_range": "±25%"
+        },
+
+        "water_head_loss_ratio": {
+          "name": "水头损失比（创新核心指标）",
+          "definition": "最不利环路总水头损失 / 静水压头",
+          "unit": "无（0~1）",
+          "formula": "H_loss / H_static = Σ(h_friction + h_local) / H_static",
+          "design_target": "水头损失比应控制在 0.25~0.35（即水泵扬程的65%~75%用于克服沿程+局部损失）",
+          "ranges": {
+            "低层建筑(≤6层)": {"ratio_range": [0.10, 0.20], "pump_head": "15~25 m"},
+            "小高层(7~18层)": {"ratio_range": [0.15, 0.25], "pump_head": "25~45 m"},
+            "高层(19~33层)": {"ratio_range": [0.20, 0.32], "pump_head": "45~75 m"},
+            "超高层(>100m)": {"ratio_range": [0.25, 0.40], "pump_head": "75~150 m", "note": "需分区供水"}
+          },
+          "engineering_insight": "水头损失比决定了水泵能耗和运行成本。如果比值>0.40，说明管道设计不够优化（流速过高或管道偏小），水泵能耗将显著增加。每降低水头损失比0.05，水泵功率可降低约8%~10%，生命周期电费节省可观。",
+          "uncertainty_range": "±15%"
+        },
+
+        "fire_pipe_density": {
+          "name": "消防管线密度比（重要指标）",
+          "definition": "消防管道（含消火栓、喷淋）长度 / 建筑面积",
+          "unit": "m/m²",
+          "formula": "L_fire_pipe / A_building",
+          "ranges": {
+            "住宅(消火栓系统)": {"low": 0.08, "median": 0.12, "high": 0.18, "unit": "m/㎡"},
+            "住宅(消火栓+喷淋)": {"low": 0.18, "median": 0.25, "high": 0.35, "unit": "m/㎡"},
+            "办公楼(消火栓+喷淋)": {"low": 0.20, "median": 0.30, "high": 0.45, "unit": "m/㎡"},
+            "商业(全系统)": {"low": 0.30, "median": 0.45, "high": 0.65, "unit": "m/㎡"},
+            "地下车库(喷淋)": {"low": 0.60, "median": 0.80, "high": 1.10, "unit": "m/㎡", "note": "密度最高，喷头间距密"}
+          },
+          "engineering_insight": "地下车库喷淋管道密度最高（可达0.8~1.1 m/㎡），因为喷头保护半径仅1.8~2.4m，需要大量支管。消防规范（GB50016）越来越严格，新规要求更多场所设置自动喷淋，是近年消防成本上涨的主要原因之一。",
+          "cost_weight": "消防管道安装费约占安装总造价的12%~18%，其中车库占比最高。",
+          "uncertainty_range": "±18%"
+        },
+
+        "弱电管线密度": {
+          "name": "弱电管线密度比（创新核心指标）",
+          "definition": "弱电系统（含综合布线、安防、楼控、广播等）管道长度 / 建筑面积",
+          "unit": "m/m²",
+          "formula": "L_弱电 / A_building",
+          "ranges": {
+            "简单办公(网络+电话)": {"low": 0.15, "median": 0.22, "high": 0.30},
+            "标准办公楼": {"low": 0.30, "median": 0.45, "high": 0.60},
+            "智慧楼宇": {"low": 0.60, "median": 0.85, "high": 1.20, "note": "含物联网传感器"},
+            "医院": {"low": 0.50, "median": 0.75, "high": 1.00, "note": "含医疗气体监控"},
+            "数据中心": {"low": 1.00, "median": 1.50, "high": 2.50, "note": "光纤+铜缆双路由"}
+          },
+          "engineering_insight": "弱电管线密度在过去10年增长了3~5倍。智慧建筑（含物联网传感器）弱电管线密度可能超过1.0 m/㎡。弱电管线的敷设方式（吊顶内/地板下/线槽）对成本影响巨大——地板下布线成本约为吊顶内布线的1.5~2倍。",
+          "uncertainty_range": "±30%"
+        }
+      }
+    },
+
+    "reinforcement_intelligence_ratios": {
+      "title": "【第四族】钢筋智能配比 - 藏在混凝土里的钢铁森林",
+      "description": "钢筋是混凝土的'骨骼'，钢筋配比是结构成本的核心变量。",
+      "ratios": {
+
+        "reinforcement_per_concrete": {
+          "name": "钢筋混凝土比（核心指标）",
+          "definition": "钢筋重量 / 混凝土体积",
+          "unit": "kg/m³",
+          "formula": "W_rebar / V_concrete",
+          "ranges": {
+            "框架结构(多层)": {"low": 75, "median": 95, "high": 115, "unit": "kg/m³"},
+            "框架结构(高层)": {"low": 95, "median": 120, "high": 150, "unit": "kg/m³"},
+            "框架-剪力墙": {"low": 110, "median": 140, "high": 170, "unit": "kg/m³"},
+            "剪力墙结构": {"low": 130, "median": 160, "high": 195, "unit": "kg/m³"},
+            "框架-核心筒": {"low": 150, "median": 180, "high": 220, "unit": "kg/m³"},
+            "框支剪力墙(转换层)": {"low": 200, "median": 260, "high": 350, "unit": "kg/m³", "note": "转换构件钢筋极密"}
+          },
+          "engineering_insight": "钢筋混凝土比是衡量结构效率的黄金指标。剪力墙结构钢筋含量比框架结构高约40%~60%，但混凝土含量也更高。超高层转换层钢筋含量可达260~350 kg/m³，是普通楼层的2~3倍。",
+          "norm_reference": "GB50010-2010",
+          "uncertainty_range": "±12%"
+        },
+
+        "rebar_grade_ratio": {
+          "name": "钢筋牌号配比（创新指标）",
+          "definition": "不同强度等级钢筋的重量占比",
+          "unit": "无（%总和=1）",
+          "formula": "HRB400占比 : HRB500占比 : 其他",
+          "ranges": {
+            "传统设计(2010年前)": "HRB335:65%, HRB400:30%, HPB300:5%",
+            "当前主流(2015~2020)": "HRB400:75%, HRB500:15%, HPB300:10%",
+            "高强度设计(2020后)": "HRB500:40%, HRB400:50%, 其他:10%",
+            "高烈度设防区": "HRB500:60%, HRB400:35%, 其他:5%"
+          },
+          "engineering_insight": "采用HRB500高强钢筋（比HRB400贵约8%~12%）可减少钢筋用量约10%~15%，综合考虑反而可能降低总成本。但HRB500施工要求更高（焊接工艺、锚固长度），需综合权衡。",
+          "cost_model": "钢筋综合单价 = Σ(牌号占比 × 牌号单价)。当前市场：HRB400≈4.8元/kg, HRB500≈5.2元/kg, HPB300≈4.5元/kg（参考价，各地差异±15%）",
+          "uncertainty_range": "±8%"
+        },
+
+        "stirrup_lap_ratio": {
+          "name": "箍筋搭接长度比（精细化指标）",
+          "definition": "箍筋搭接长度 / 构件截面周长",
+          "unit": "无",
+          "formula": "L_lap_stirrup / P_section",
+          "ranges": {
+            "HRB400, C30, 一级抗震": {"ratio": 48, "note": "48d，d为箍筋直径"},
+            "HRB400, C30, 二级抗震": {"ratio": 54, "note": "54d"},
+            "HRB500, C40, 一级抗震": {"ratio": 60, "note": "60d"}
+          },
+          "engineering_insight": "箍筋搭接长度是连接质量的保障。搭接长度不足会导致混凝土裂缝沿搭接区发展，降低构件延性。高层建筑箍筋总长度（含搭接）可达主筋长度的15%~25%，是钢筋工程量的重要组成部分。",
+          "uncertainty_range": "±5%"
+        },
+
+        "node_rebar_density": {
+          "name": "梁柱节点钢筋密度指数（精细化指标）",
+          "definition": "梁柱节点区钢筋总重量 / 节点混凝土体积",
+          "unit": "kg/m³",
+          "formula": "W_rebar_node / V_concrete_node",
+          "ranges": {
+            "普通框架节点": {"low": 200, "median": 280, "high": 380, "note": "含柱纵筋+梁纵筋+箍筋"},
+            "核心筒连梁节点": {"low": 300, "median": 400, "high": 550, "note": "地震耗能区，钢筋极密"},
+            "转换层托柱节点": {"low": 400, "median": 550, "high": 750, "note": "受力复杂"}
+          },
+          "engineering_insight": "梁柱节点是结构的'心脏'，钢筋密度通常为普通构件的2~3倍。节点钢筋过密会导致混凝土浇筑困难（蜂窝狗洞），施工质量难以保障。装配式混凝土结构通过灌浆套筒连接，可在一定程度上缓解节点钢筋拥挤问题。",
+          "uncertainty_range": "±20%"
+        }
+      }
+    },
+
+    "foundation_geotechnical_ratios": {
+      "title": "【第五族】地基基础配比 - 建筑的根与土的对话",
+      "description": "地基基础是'看不见的工程'，其配比不确定性最大，却是造价波动的主要来源。",
+      "ratios": {
+
+        "pile_length_density": {
+          "name": "桩长密度（核心指标）",
+          "definition": "平均桩长 × 桩数 / 基底面积",
+          "unit": "m/m²",
+          "formula": "(ΣL_pile × N_pile) / A_basement",
+          "ranges": {
+            "软土地区(长三角/珠三角)": {
+              "预制管桩(400mm)": {"low": 1.5, "median": 2.5, "high": 4.0, "unit": "m/㎡"},
+              "钻孔灌注桩(800mm)": {"low": 1.0, "median": 1.8, "high": 3.0, "unit": "m/㎡"},
+              "搅拌桩加固": {"low": 2.0, "median": 3.5, "high": 5.5, "unit": "m/㎡"}
+            },
+            "中软土地区": {
+              "预制管桩(400mm)": {"low": 0.8, "median": 1.5, "high": 2.5, "unit": "m/㎡"},
+              "钻孔灌注桩(800mm)": {"low": 0.6, "median": 1.2, "high": 2.0, "unit": "m/㎡"}
+            },
+            "基岩地区(山地城市)": {
+              "嵌岩桩": {"low": 0.3, "median": 0.6, "high": 1.2, "unit": "m/㎡", "note": "桩端嵌入中风化岩"}
+            }
+          },
+          "engineering_insight": "桩长密度是地基成本的核心变量，也是估算不确定性最大的指标——地质勘察报告的准确性直接决定桩长估算偏差。软土地区桩基成本约占建安总造价的8%~15%，而地质条件差异可能导致±50%的成本波动。",
+          "uncertainty_range": "±35%"
+        },
+
+        "cap_pile_ratio": {
+          "name": "桩承台体积比（精细化指标）",
+          "definition": "承台混凝土体积 / 桩身混凝土体积",
+          "unit": "无",
+          "formula": "V_cap / V_pile_shaft",
+          "ranges": {
+            "预制管桩(独立承台)": {"low": 0.15, "median": 0.25, "high": 0.40},
+            "灌注桩(条形承台)": {"low": 0.20, "median": 0.35, "high": 0.55},
+            "筏板基础(桩筏)": {"low": 0.30, "median": 0.50, "high": 0.80, "note": "筏板作为承台"}
+          },
+          "engineering_insight": "桩承台体积比反映桩基与基础的协调设计。筏板基础（桩筏）承台比最高，因为筏板既作为承台又作为防水底板。优化桩基设计时，桩数、桩长、承台尺寸需要协同优化，单方面增加桩数不一定是经济的。",
+          "uncertainty_range": "±20%"
+        },
+
+        "soil_replacement_ratio": {
+          "name": "土方换填比（精细化指标）",
+          "definition": "换填材料体积 / 基坑开挖总体积",
+          "unit": "无（0~1）",
+          "formula": "V_replacement / V_excavation",
+          "ranges": {
+            "无换填(直接利用)": {"ratio": 0.0},
+            "局部换填(处理软弱下卧层)": {"low": 0.10, "median": 0.20, "high": 0.35},
+            "全换填(不良地基)": {"low": 0.50, "median": 0.70, "high": 0.90, "note": "如喀斯特地貌注浆填充"}
+          },
+          "engineering_insight": "换填比决定土方工程的经济性。全换填意味着挖除全部不良土层，成本极高（约为原土回填的8~12倍）。褥垫层（砂石褥垫层）是筏板基础的标准配置，换填比通常为0.05~0.10。",
+          "uncertainty_range": "±40%"
+        }
+      }
+    },
+
+    "decoration_finishing_ratios": {
+      "title": "【第六族】装饰装修配比 - 建筑的表情与触感",
+      "description": "装饰工程是建筑'软实力'的体现，配比差异最大，也是成本弹性最大的部分。",
+      "ratios": {
+
+        "ceiling_density_ratio": {
+          "name": "吊顶面积比（核心指标）",
+          "definition": "吊顶面积 / 建筑面积",
+          "unit": "无（0~1）",
+          "formula": "A_ceiling / A_building",
+          "ranges": {
+            "毛坯住宅": {"low": 0.0, "median": 0.0, "high": 0.05, "note": "仅厨卫吊顶"},
+            "简装住宅": {"low": 0.30, "median": 0.40, "high": 0.50, "note": "厨卫+客厅局部吊顶"},
+            "精装住宅": {"low": 0.60, "median": 0.75, "high": 0.90, "note": "全屋吊顶+灯槽"},
+            "普通办公楼": {"low": 0.70, "median": 0.85, "high": 0.98, "note": "矿棉板/石膏板吊顶"},
+            "高档办公楼": {"low": 0.90, "median": 1.00, "high": 1.00, "note": "含设备层全吊顶"},
+            "商业综合体": {"low": 0.80, "median": 0.95, "high": 1.00, "note": "声学天花/造型吊顶"}
+          },
+          "engineering_insight": "吊顶面积比是装修成本的核心变量。精装住宅吊顶面积比约为毛坯的3~5倍。吊顶还遮蔽了机电管线，可减少明装管道带来的视觉不美观，但增加了安装空间需求（层高需增加0.1~0.3m）。",
+          "uncertainty_range": "±20%"
+        },
+
+        "floor_finish_layer_ratio": {
+          "name": "楼地面做法层数比（精细化指标）",
+          "definition": "楼地面构造层总厚度 / 标准层高",
+          "unit": "无",
+          "formula": "Σδ_floor_layers / H_floor",
+          "ranges": {
+            "毛坯住宅(找平层)": {"low": 0.015, "median": 0.025, "high": 0.040, "unit": "m"},
+            "精装住宅(地暖+面层)": {"low": 0.080, "median": 0.120, "high": 0.160, "unit": "m", "note": "含保温层+地暖+保护层+面层"},
+            "办公(架空地板)": {"low": 0.150, "median": 0.250, "high": 0.350, "unit": "m", "note": "OA地板系统"},
+            "商业(石材)": {"low": 0.060, "median": 0.100, "high": 0.150, "unit": "m"}
+          },
+          "engineering_insight": "楼地面做法层数比反映了装修品质。地暖系统可使楼地面厚度增加80~120mm，这是精装住宅净高的主要消耗者。架空地板系统（OA地板）在办公楼中广泛使用，可快速布线，但成本约为普通楼地面的3~5倍。",
+          "uncertainty_range": "±18%"
+        },
+
+        "paint_area_coefficient": {
+          "name": "涂料面积系数（核心指标）",
+          "definition": "涂料实际涂刷面积 / 建筑面积",
+          "unit": "无（>1）",
+          "formula": "A_paint / A_building",
+          "ranges": {
+            "毛坯住宅": {"low": 2.2, "median": 2.6, "high": 3.0, "note": "墙面+顶棚"},
+            "精装住宅": {"low": 2.8, "median": 3.2, "high": 3.8, "note": "含造型墙面"},
+            "普通办公楼": {"low": 3.0, "median": 3.5, "high": 4.2, "note": "含隔墙"},
+            "高档酒店": {"low": 4.0, "median": 5.0, "high": 6.5, "note": "大量装饰面+造型"}
+          },
+          "engineering_insight": "涂料面积系数远大于1（通常2~6），因为建筑有层高，墙面需要双面涂刷。高档酒店系数最高（4~6.5），因为存在大量装饰隔断和造型墙面。准确估算涂料面积需要考虑层高（通常2.8~3.2m）和门窗扣除。",
+          "uncertainty_range": "±15%"
+        }
+      }
+    },
+
+    "composite_cross_domain_ratios": {
+      "title": "【第七族】跨域综合配比 - 系统间的隐秘共振",
+      "description": "跨系统关联是'测不准'体系的核心创新——通过不同系统的参数交叉验证，提高估算精度。",
+      "ratios": {
+
+        "electrical_pipe_reinforcement_correlation": {
+          "name": "电气管线-钢筋相关性指数（跨域创新）",
+          "definition": "电气管线暗敷逢中绑扎，钢筋间距影响线管通过性",
+          "unit": "无",
+          "formula": "R_间距 / φ_线管 = n（线管直径被钢筋间距整除的倍数）",
+          "principle": "钢筋间距应为线管外径的3倍以上，以保证线管能顺利穿过",
+          "ranges": {
+            "优化设计(n≥3)": {"description": "线管通过性好，施工效率高"},
+            "临界设计(n≈2)": {"description": "勉强通过，质量风险较高"},
+            "冲突设计(n<2)": {"description": "无法暗敷，需改明装，成本增加约20%~40%"}
+          },
+          "engineering_insight": "这是一个典型的跨专业协调问题。结构设计时若不考虑电气管线走向，装修阶段会导致大量明装管道，既不美观又增加成本。采用BIM正向设计可在设计阶段发现并解决90%以上的管线冲突。",
+          "uncertainty_range": "±25%"
+        },
+
+        "hvac_ceiling_height_correlation": {
+          "name": "暖通-层高相关性指数（跨域创新）",
+          "definition": "风管高度+水管高度+桥架高度 / 净层高",
+          "unit": "无（0~1）",
+          "formula": "(H_duct + H_pipe + H_tray) / H_net",
+          "optimal_range": [0.20, 0.40, 0.55],
+          "engineering_insight": "吊顶内机电管线占用空间不应超过净层高的40%（理想20%~30%）。超高层高会增加结构成本（约增加2%~4%/10cm），过低则机电安装困难、净高不足。综合最优净高需平衡结构、机电、装修三方需求。",
+          "ranges_by_building": {
+            "普通住宅": {"net_height": 2.8, "mech_ratio": 0.25, "sufficient": true},
+            "高档住宅": {"net_height": 3.0, "mech_ratio": 0.20, "sufficient": true},
+            "办公楼": {"net_height": 2.7, "mech_ratio": 0.35, "sufficient": true, "note": "A级写字楼净高要求≥2.7m"},
+            "商业": {"net_height": 3.5, "mech_ratio": 0.30, "sufficient": true}
+          },
+          "uncertainty_range": "±20%"
+        },
+
+        "structure_mep_coordination_index": {
+          "name": "结构-机电协调指数（跨域创新）",
+          "definition": "预留孔洞数量（套管、留洞）/ 结构构件总数",
+          "unit": "无（0~1）",
+          "formula": "N_hole / N_member",
+          "ranges": {
+            "无BIM协调": {"low": 0.10, "median": 0.18, "high": 0.30, "note": "现场凿补量大"},
+            "二维协同设计": {"low": 0.05, "median": 0.10, "high": 0.15},
+            "BIM正向设计": {"low": 0.02, "median": 0.05, "high": 0.08, "note": "预留预埋精准"}
+          },
+          "engineering_insight": "结构-机电协调指数每降低0.05，可节省后期开凿修复费用约8~15元/㎡建筑面积。超高层建筑预留孔洞数量可达3000~10000个，BIM协同设计可减少70%以上的现场开凿量。",
+          "uncertainty_range": "±30%"
+        },
+
+        "total_piping_volume_per_area": {
+          "name": "管线总长度密度（综合指标）",
+          "definition": "全部机电管线长度之和 / 建筑面积",
+          "unit": "m/m²",
+          "formula": "(L_电气 + L_给排水 + L_暖通 + L_弱电 + L_消防) / A_building",
+          "ranges": {
+            "普通住宅": {"low": 2.5, "median": 3.5, "high": 4.5, "unit": "m/㎡"},
+            "精装住宅": {"low": 4.0, "median": 5.5, "high": 7.0, "unit": "m/㎡"},
+            "普通办公楼": {"low": 6.0, "median": 8.0, "high": 11.0, "unit": "m/㎡"},
+            "智慧楼宇": {"low": 10.0, "median": 14.0, "high": 20.0, "unit": "m/㎡"},
+            "医院": {"low": 9.0, "median": 12.0, "high": 16.0, "unit": "m/㎡"},
+            "数据中心": {"low": 15.0, "median": 25.0, "high": 40.0, "unit": "m/㎡", "note": "含精密空调管道"}
+          },
+          "engineering_insight": "管线总长度密度是衡量建筑'神经系统复杂度'的综合指标。数据中心的管线密度是普通住宅的6~10倍，这也是数据中心建安成本极高的原因之一（约为普通办公楼的3~5倍）。",
+          "uncertainty_range": "±22%"
+        }
+      }
+    }
+  },
+
+  "innovation_framework": {
+    "title": "'测不准'体系创新框架",
+    "core_concepts": {
+
+      "uncertainty_propagation": {
+        "description": "不确定性传播模型",
+        "principle": "单个配比参数的不确定性会通过工程量计算链传播放大，但多个独立参数交叉验证可以抑制噪声。",
+        "formula": "σ_total = √(Σσᵢ² × Cᵢ²)",
+        "where": {
+          "σ_total": "总估算不确定度",
+          "σᵢ": "第i个配比参数的不确定度",
+          "Cᵢ": "第i个配比参数的成本系数"
+        }
+      },
+
+      "triangular_distribution": {
+        "description": "三角分布估算",
+        "principle": "每个配比参数的真实值服从三角分布（最可能值在中间，低限高限在两端），通过蒙特卡洛模拟可得到成本概率分布。",
+        "application": "当输入10个以上配比参数时，总成本呈近似正态分布，95%置信区间约为均值±2σ。"
+      },
+
+      "correlation_matrix": {
+        "description": "配比参数相关性矩阵",
+        "principle": "同一族的配比参数通常正相关（如钢筋含量↑，模板含量通常也↑），跨族参数可能负相关（如窗墙比↑，外墙混凝土量↓）。",
+        "example": {
+          "钢筋含量": "与混凝土强度正相关，与结构高宽比正相关",
+          "风管密度": "与制冷负荷正相关，与建筑层高正相关",
+          "管线密度": "与建筑智能化程度正相关，与结构板厚负相关"
+        }
+      }
+    }
+  },
+
+  "practical_application": {
+    "title": "实用化应用指南",
+    "input_parameters": {
+      "required": [
+        "建筑类型（住宅/办公/商业/医院/学校/厂房）",
+        "结构形式（框架/剪力墙/框架-剪力墙/框架-核心筒）",
+        "建筑面积（㎡）",
+        "建筑层数/高度（层/m）",
+        "建设城市"
+      ],
+      "optional_but_impactful": [
+        "是否有地下室（层数、面积占比）",
+        "抗震设防等级",
+        "装修标准（毛坯/简装/精装/豪装）",
+        "空调系统类型（分体/中央/净化/精密）",
+        "智能化程度（普通/智慧楼宇）",
+        "是否有转换层"
+      ]
+    },
+
+    "output_report_structure": {
+      "chapter_1": "项目基本信息",
+      "chapter_2": "创新配比参数清单（7族58项）",
+      "chapter_3": "主要工程量估算（配比→工程量→造价）",
+      "chapter_4": "跨域关联分析（参数相关性热力图）",
+      "chapter_5": "不确定性量化报告（置信区间、概率分布）",
+      "chapter_6": "风险预警与优化建议",
+      "chapter_7": "设计阶段降本策略"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+interface:
+  display_name: "DeckLingo for PPTX"
+  short_description: "Translate editable PPTX decks with glossary-aware verification."
+  icon_small: "./assets/pptx-translator-small.svg"
+  icon_large: "./assets/pptx-translator-large.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $decklingo-pptx to translate an editable PowerPoint into my chosen target language and keep the layout stable."
+
+policy:
+  allow_implicit_invocation: true

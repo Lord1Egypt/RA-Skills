@@ -1,35 +1,20 @@
 ---
-name: "lin"
-description: "extract parameters from a given URL and save them into a MySQL database. use when you need to store URL query parameters for later processing or analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cshi"
-sourceUrl: "https://clawhub.ai/skills/cshi"
+name: url-parameter-saver
+description: extract parameters from a given URL and save them into a MySQL database. use when you need to store URL query parameters for later processing or analysis.
 ---
 
-# lin
+# URL Parameter Saver
 
-> extract parameters from a given URL and save them into a MySQL database. use when you need to store URL query parameters for later processing or analysis.
+This skill extracts parameters from a provided URL and saves them into a MySQL database. If the table does not exist, it will be created automatically. Currently supports single URL processing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cshi`
-- **Source URL:** [https://clawhub.ai/skills/cshi](https://clawhub.ai/skills/cshi)
+## Usage
 
-## Overview
+1. Call the `save_url_params.py` script with a URL.
+2. The script parses the query parameters and inserts them as a new row in the database.
+3. Each URL's parameters are saved in independent rows.
 
+### Database
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cshi
-```
+- Database type: MySQL
+- Table name: `url_parameters`
+- Columns: dynamically matched to URL parameter names

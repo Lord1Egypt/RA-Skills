@@ -1,0 +1,30 @@
+tag_id,dimension,description
+history,domain,Political social cultural and colonial history not primarily about warfare
+military_history,domain,Wars battles military biography naval history and armed conflict
+science,domain,Natural sciences including physics chemistry biology palaeontology and earth sciences
+medicine_health,domain,Medicine public health anatomy and medical biography
+technology,domain,Computing software internet culture engineering and industrial technology
+economics_business,domain,Economics finance trade industry and business history
+sports,domain,Athletic competition records scandals and sporting biography
+music,domain,Music composition performance recording and musical biography
+film,domain,Cinema animated features and documentary film
+television,domain,TV series streaming soap operas and anime
+journalism,domain,Newspapers magazines radio broadcasting and podcasting
+literature,domain,Novels poetry short stories and literary biography
+visual_art,domain,Painting sculpture photography installation art and fashion
+performing_arts,domain,Theatre opera dance circus and live performance
+places,domain,Buildings landmarks geography infrastructure and heritage sites
+animals,domain,Facts primarily about a specific animal or animal species
+nature,domain,Ecology environment climate weather natural disasters and plants
+religion,domain,Religious practice institutions scripture and religious biography
+mythology_folklore,domain,Myths legends folklore magical traditions and origin stories
+language_linguistics,domain,Etymology naming word origins and language history
+straight,tone,A plain factual statement you didn't know before; no violated expectation and no particular emotional colour
+surprising,tone,The fact defies expectation in a genuinely startling way without being comic
+quirky,tone,Funny absurd or built on an incongruous comic juxtaposition
+whimsical,tone,Gentle and charming; playful rather than absurdist
+dark,tone,Involving death violence persecution tragedy or disturbing content
+inspiring,tone,A hard-won achievement or barrier broken often against structural odds
+poignant,tone,Touching or bittersweet; evokes quiet emotion without being tragic
+dramatic,tone,High stakes or tension without a tragic outcome
+provocative,tone,Edgy taboo or likely to strongly divide opinion

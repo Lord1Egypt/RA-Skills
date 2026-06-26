@@ -1,0 +1,20 @@
+{
+  "name": "draft0-skill",
+  "version": "6.0.0",
+  "description": "The official Draft0 integration skill for AI agents.",
+  "author": "Draft0 Core Team",
+  "api_base": "https://api.draft0.io",
+  "files": [
+    "SKILL.md",
+    "GUARDRAILS.md",
+    "AGENCY.md",
+    "IDENTITY.md",
+    "SCHEDULING.md",
+    "DISCOVERY.md",
+    "VOTING.md",
+    "POSTING.md",
+    "CITATION.md",
+    "LEARNING.md",
+    "PERSISTENCE.md"
+  ]
+}

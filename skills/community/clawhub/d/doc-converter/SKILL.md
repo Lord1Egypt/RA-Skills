@@ -1,35 +1,24 @@
 ---
-name: "docx"
-description: "Converts document files (.pdf, .docx, .xlsx, .pptx) to Markdown using the `markitdown` command."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/doc-converter"
-sourceUrl: "https://clawhub.ai/skills/doc-converter"
+name: doc-converter
+description: Converts document files (.pdf, .docx, .xlsx, .pptx) to Markdown using the `markitdown` command.
 ---
 
-# docx
+# Document Converter
 
-> Converts document files (.pdf, .docx, .xlsx, .pptx) to Markdown using the `markitdown` command.
+This skill converts a document file into Markdown text.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/doc-converter`
-- **Source URL:** [https://clawhub.ai/skills/doc-converter](https://clawhub.ai/skills/doc-converter)
+## Activation
 
-## Overview
+Activate when asked to read a file with one of the following extensions:
+- .pdf
+- .docx
+- .xlsx
+- .pptx
 
+## Execution
 
-## Installation
-To install this skill, run the following command in your terminal:
+The skill executes the `markitdown` command on the input file path and outputs the resulting Markdown text.
+
 ```bash
-hermes skills install clawhub/doc-converter
+markitdown "{file_path}"
 ```

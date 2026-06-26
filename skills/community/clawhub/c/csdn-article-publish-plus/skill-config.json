@@ -1,0 +1,14 @@
+{
+  "skillPath": "/Users/yaohua.liu/.workbuddy/skills/csdn-article-publish",
+  "outputDir": "~/WorkBuddy/csdn-article-publish",
+  "description": "使用用户目录浏览器会话发布 CSDN；支持草稿、预览、发布，默认保持会话",
+  "defaults": {
+    "browser": "edge",
+    "keepOpen": true,
+    "mode": "draft-preview"
+  },
+  "env": {
+    "CSDN_VERTICAL_QR_IMAGE_URL": "https://i-blog.csdnimg.cn/direct/8a10f6e3d1074961859f9548e7ded86d.jpeg",
+    "CSDN_VERTICAL_QR_DESCRIPTION": "欢迎关注我的微信公众号，获取更多实战内容。"
+  }
+}

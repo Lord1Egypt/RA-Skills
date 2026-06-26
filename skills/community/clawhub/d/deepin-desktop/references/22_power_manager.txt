@@ -1,0 +1,2 @@
+=== com.deepin.daemon.PowerManager /com/deepin/daemon/PowerManager ===
+解析 Introspection XML 时出错：1:1: 第 1 行第 1 个字符出错： 文档必须以一个元素开始（例如 <book>）

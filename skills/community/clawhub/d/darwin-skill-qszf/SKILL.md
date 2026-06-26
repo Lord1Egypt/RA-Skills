@@ -1,35 +1,55 @@
 ---
-name: "darwin-skill"
+name: darwin-skill
 description: "达尔文.skill 2.0 — 自主Skill优化系统：评估→改进→测试→保留或回滚。与女娲.skill配合使用：女娲造人（创建Skill），达尔文进化（优化Skill）。集成微软SkillLens 9维评分+SkillOpt验证机制"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/darwin-skill-qszf"
-sourceUrl: "https://clawhub.ai/skills/darwin-skill-qszf"
+version: 2.0.0
+category: company-skills
+author: 邱数智方 · 技术局 李智
 ---
 
-# darwin-skill
+# 达尔文.skill 2.0 — Skill进化系统
 
-> 达尔文.skill 2.0 — 自主Skill优化系统：评估→改进→测试→保留或回滚。与女娲.skill配合使用：女娲造人（创建Skill），达尔文进化（优化Skill）。集成微软SkillLens 9维评分+SkillOpt验证机制
+> **核心理念：评估 → 改进 → 实测验证 → 保留或回滚**
+> 配合女娲.skill使用：女娲造人（创建Skill），达尔文进化（优化Skill）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/darwin-skill-qszf`
-- **Source URL:** [https://clawhub.ai/skills/darwin-skill-qszf](https://clawhub.ai/skills/darwin-skill-qszf)
+## 设计哲学
+1. **单一可编辑资产** — 每次只改一个SKILL.md
+2. **双重评估** — 结构评分 + 效果验证
+3. **棘轮机制** — 只保留改进，自动回滚退步
+4. **独立评分** — 评分用子agent，避免自己改自己评的偏差
+5. **人在回路** — 每个skill优化完后暂停，用户确认再继续
 
-## Overview
+## 9维度评估体系（总分100）
+基于微软SkillLens论文（arXiv 2605.23899）
 
+| 维度 | 权重 | 评估内容 |
+|:----|:----:|:---------|
+| ① 结构完整性 | 15% | YAML frontmatter完整性、章节划分合理 |
+| ② 清晰度 | 15% | 语言简洁、目标明确、无歧义 |
+| ③ 内容完整性 | 15% | 覆盖主题关键方面，无重大遗漏 |
+| ④ 可操作性 | 15% | 步骤具体、命令可执行、路径可查 |
+| ⑤ 准确性 | 10% | 事实正确、引用准确、无幻觉 |
+| ⑥ 一致性 | 10% | 内部逻辑自洽、术语统一 |
+| ⑦ 执行效率 | 8% | 无冗余步骤、工具使用得当 |
+| ⑧ 鲁棒性 | 7% | 有错误处理、备用方案、边界说明 |
+| ⑨ 元技能合规 | 5% | 不违反元技能黑名单 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/darwin-skill-qszf
-```
+## 优化流程
+1. **评分** — 子agent独立9维评分
+2. **改进** — 根据低分项针对性优化
+3. **测试** — 跑test-prompts验证效果
+4. **验证** — 独立judge agent盲评
+5. **棘轮** — 只保留改进，自动回滚退步
+6. **确认** — 人在回路，确认后定稿
+7. **成果** — 生成结果卡片（HTML）
+
+## 使用方式
+调用达尔文对已有skill进行优化评估
+
+## 关联Skill
+- nuwa-skill（女娲·造人）→ 创建Skill
+- darwin-skill（达尔文·进化）→ 优化Skill ✅ 当前
+- skill-orchestrator（技能总指挥）→ 调度管理
+
+## GitHub 发布
+本Skill已发布在公司GitHub仓库：
+https://github.com/dxy0905/qiushuzhifang-skills/tree/main/skills/darwin-skill

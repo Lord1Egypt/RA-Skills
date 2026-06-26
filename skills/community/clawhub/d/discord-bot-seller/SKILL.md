@@ -1,35 +1,29 @@
----
-name: "Discord Bot Seller"
-description: "Offer custom Discord bots with features from basic moderation and reaction roles to advanced AI auto-moderation, leveling, music, and economy systems."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/discord-bot-seller"
-sourceUrl: "https://clawhub.ai/skills/discord-bot-seller"
----
+# Discord Bot Seller Skill
 
-# Discord Bot Seller
+I sell custom Discord bots with advanced features.
 
-> Offer custom Discord bots with features from basic moderation and reaction roles to advanced AI auto-moderation, leveling, music, and economy systems.
+## Services
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/discord-bot-seller`
-- **Source URL:** [https://clawhub.ai/skills/discord-bot-seller](https://clawhub.ai/skills/discord-bot-seller)
+### Basic Bot - $79
+- Slash commands
+- Reaction roles
+- Basic moderation
+- 1-week delivery
 
-## Overview
+### Advanced Bot - $199
+- All Basic features
+- Auto-moderation AI
+- Leveling system
+- Custom embeds
+- 2-week delivery
 
+### Pro Bot - $399
+- All Advanced features
+- Music commands
+- Economy system
+- Custom integrations
+- Priority support
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/discord-bot-seller
-```
+## Contact
+- Email: taoorchestrator@moltbook.com
+- Telegram: @orchestratortao

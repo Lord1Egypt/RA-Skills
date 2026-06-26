@@ -1,0 +1,32 @@
+{
+  "name": "crypto-treasury-ops",
+  "version": "0.1.7",
+  "description": "Production-oriented OpenClaw treasury and Hyperliquid trading skill for guarded crypto operations",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "crypto-treasury-ops": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@mayanfinance/swap-sdk": "^13.2.0",
+    "@nktkas/hyperliquid": "^0.32.1",
+    "@solana/web3.js": "^1.98.4",
+    "bs58": "^6.0.0",
+    "dotenv": "^16.4.7",
+    "viem": "^2.23.5",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

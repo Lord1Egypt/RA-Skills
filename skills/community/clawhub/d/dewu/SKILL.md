@@ -1,35 +1,49 @@
 ---
-name: "Dewu"
-description: "整理得物电商平台公开的商家入驻条件、活动信息、营销工具及服务规则等官方信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dewu"
-sourceUrl: "https://clawhub.ai/skills/dewu"
+name: dewu
+description: 注册“得物”技能；用于电商平台公开页面、商家规则、活动信息与服务说明整理。
+homepage: `https://www.dewu.com/`
+metadata: {"clawdbot":{"emoji":"🛒"}}
 ---
 
-# Dewu
+# 得物
 
-> 整理得物电商平台公开的商家入驻条件、活动信息、营销工具及服务规则等官方信息。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dewu`
-- **Source URL:** [https://clawhub.ai/skills/dewu](https://clawhub.ai/skills/dewu)
+- 面向公开官网、招商页、帮助中心、活动页与规则页的信息整理
+- 不提供店铺后台操作、下单代付、账号接管、风控规避或数据抓取绕权能力
+- 仅处理公开可见的平台招商、营销活动、服务规则与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://www.dewu.com/
+- 商家与平台招商：招商、入驻、卖家中心、商家帮助入口
+- 活动与规则：大促会场、官方规则、服务与售后说明入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/dewu
-```
+常见任务
+
+- 入驻条件、店铺类型、费用结构与流程整理
+- 活动节点、报名入口、营销工具与流量位说明提取
+- 售后规则、物流说明、消费者保障与违规处罚汇总
+
+数据字段
+
+- 店铺类型、入驻条件、费用项、活动入口、链接
+- 营销工具、流量资源、报名周期、帮助页链接
+- 售后规则、发货时效、违规类型、处罚说明
+
+自动化要点
+
+- 活动页和规则页更新频繁，输出时保留原始链接与日期
+- 平台规则区分商家端和消费者端，整理时需分开展示
+- 不操作商家后台，不处理订单数据、资金数据或用户隐私
+
+示例流程
+
+- 入驻整理：访问 Dewu 招商或商家页 → 提取条件与流程 → 输出清单
+- 大促汇总：进入活动页与规则页 → 提取时间、门槛、资源位 → 输出表格
+- 服务规则：访问帮助中心 → 汇总售后、物流、违规说明 → 输出摘要
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

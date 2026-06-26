@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Dataify Reddit Comment">
+  <rect x="16" y="16" width="96" height="96" rx="24" fill="#ff4500"/>
+  <path d="M34 38h60a14 14 0 0 1 14 14v28a14 14 0 0 1-14 14H58l-20 15v-15h-4a14 14 0 0 1-14-14V52a14 14 0 0 1 14-14Z" fill="#fff"/>
+  <circle cx="50" cy="66" r="5" fill="#ff4500"/>
+  <circle cx="64" cy="66" r="5" fill="#ff4500"/>
+  <circle cx="78" cy="66" r="5" fill="#ff4500"/>
+</svg>

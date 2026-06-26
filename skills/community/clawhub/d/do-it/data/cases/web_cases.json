@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "updated_at": "2026-03-15",
+    "source": "do-it 案例采集",
+    "total_cases": 6,
+    "case_types": [
+      "跳槽决策",
+      "生活选择",
+      "薪资谈判",
+      "城市选择",
+      "职业选择"
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "WEB-0001",
+      "source": "知乎",
+      "title": "35 岁程序员，大厂裁员后该去小厂还是考公？",
+      "url": "https://zhihu.com/question/xxx",
+      "problem_type": "职业选择",
+      "summary": "35 岁，10 年经验，被裁员后纠结去小厂当技术总监还是考公务员",
+      "options": [
+        "去小厂 (薪资持平，风险高)",
+        "考公务员 (稳定，薪资降)"
+      ],
+      "engagement": {
+        "votes": 156,
+        "answers": 45
+      },
+      "crawl_date": "2026-03-15",
+      "status": "pending_analysis"
+    },
+    {
+      "case_id": "WEB-0002",
+      "source": "知乎",
+      "title": "深圳房价太高，该回老家省会还是留在深圳？",
+      "url": "https://zhihu.com/question/xxx",
+      "problem_type": "城市选择",
+      "summary": "深圳工作 5 年，攒了 100 万，但首付还是不够，纠结是否回老家",
+      "options": [
+        "留深圳 (压力大，机会多)",
+        "回老家 (压力小，机会少)"
+      ],
+      "engagement": {
+        "votes": 289,
+        "answers": 67
+      },
+      "crawl_date": "2026-03-15",
+      "status": "pending_analysis"
+    },
+    {
+      "case_id": "WEB-0003",
+      "source": "知乎",
+      "title": "offer 选择：字节 35kvs 腾讯 30k，怎么选？",
+      "url": "https://zhihu.com/question/xxx",
+      "problem_type": "跳槽决策",
+      "summary": "两个大厂 offer，字节薪资高但累，腾讯稳定但涨薪慢",
+      "options": [
+        "字节 (35k，累，成长快)",
+        "腾讯 (30k，稳定，wlb)"
+      ],
+      "engagement": {
+        "votes": 412,
+        "answers": 89
+      },
+      "crawl_date": "2026-03-15",
+      "status": "pending_analysis"
+    },
+    {
+      "case_id": "WEB-0004",
+      "source": "脉脉",
+      "title": "财务 BP，长沙 15kvs 深圳 30k，选哪个？",
+      "url": "https://maimai.cn/question/xxx",
+      "problem_type": "薪资谈判",
+      "summary": "38 岁财务专家，长沙离家近但薪资低，深圳薪资高但压力大",
+      "options": [
+        "长沙 (15k，稳定，离家近)",
+        "深圳 (30k，压力大，机会多)"
+      ],
+      "engagement": {
+        "votes": 78,
+        "answers": 34
+      },
+      "crawl_date": "2026-03-15",
+      "status": "pending_analysis"
+    },
+    {
+      "case_id": "WEB-0005",
+      "source": "脉脉",
+      "title": "35 岁被优化，该降薪去小厂还是继续找大厂？",
+      "url": "https://maimai.cn/question/xxx",
+      "problem_type": "跳槽决策",
+      "summary": "大厂被优化，小厂 offer 降薪 30%，继续找可能空窗更久",
+      "options": [
+        "小厂 (降薪，稳定)",
+        "继续找 (可能更好，可能更差)"
+      ],
+      "engagement": {
+        "votes": 156,
+        "answers": 52
+      },
+      "crawl_date": "2026-03-15",
+      "status": "pending_analysis"
+    },
+    {
+      "case_id": "WEB-0006",
+      "source": "小红书",
+      "title": "该不该为了孩子教育换学区房？",
+      "url": "https://xiaohongshu.com/explore/xxx",
+      "problem_type": "生活选择",
+      "summary": "为了孩子上学，要不要卖掉现在的房子换学区房，负债 200 万",
+      "options": [
+        "换学区房 (孩子教育好，压力大)",
+        "不换 (压力小，教育一般)"
+      ],
+      "engagement": {
+        "votes": 234,
+        "answers": 89
+      },
+      "crawl_date": "2026-03-15",
+      "status": "pending_analysis"
+    }
+  ]
+}

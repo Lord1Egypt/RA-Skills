@@ -1,35 +1,43 @@
----
-name: "Data Format Converter"
-description: "Convert data efficiently between CSV, JSON, XML, YAML, and TOML formats including batch processing for CSV↔JSON, JSON↔YAML, XML↔JSON, and TOML↔JSON conversions."
-category: "other"
-source: "ClawHub"
-tags: [converter, format]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-format-converter"
-sourceUrl: "https://clawhub.ai/skills/data-format-converter"
----
-
 # Data Format Converter
 
-> Convert data efficiently between CSV, JSON, XML, YAML, and TOML formats including batch processing for CSV↔JSON, JSON↔YAML, XML↔JSON, and TOML↔JSON conversions.
+在不同数据格式间转换：CSV、JSON、XML、YAML、TOML 等。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-format-converter`
-- **Source URL:** [https://clawhub.ai/skills/data-format-converter](https://clawhub.ai/skills/data-format-converter)
+## 功能
 
-## Overview
+- CSV ↔ JSON 转换
+- JSON ↔ YAML 转换
+- XML ↔ JSON 转换
+- TOML ↔ JSON 转换
+- 批量转换
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-format-converter
+- "格式转换"
+- "格式互转"
+- "convert format"
+- "csv to json"
+
+## 支持格式
+
+| 输入 | 输出 |
+|------|------|
+| CSV | JSON |
+| JSON | YAML |
+| YAML | JSON |
+| XML | JSON |
+| TOML | JSON |
+
+## 示例
+
+```
+输入 (CSV):
+name,age
+John,30
+Jane,25
+
+输出 (JSON):
+[
+  {"name": "John", "age": "30"},
+  {"name": "Jane", "age": "25"}
+]
 ```

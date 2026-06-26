@@ -1,35 +1,36 @@
 ---
-name: "Daily Memory Summary"
+name: daily-memory-summary
 description: "每日定时任务：从 computer_io 文件夹读取剪贴板和通知数据，写入每日 memory。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-memory-summary"
-sourceUrl: "https://clawhub.ai/skills/daily-memory-summary"
 ---
 
 # Daily Memory Summary
 
-> 每日定时任务：从 computer_io 文件夹读取剪贴板和通知数据，写入每日 memory。
+## 文件结构
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-memory-summary`
-- **Source URL:** [https://clawhub.ai/skills/daily-memory-summary](https://clawhub.ai/skills/daily-memory-summary)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-memory-summary
 ```
+memory/YYYY-MM-DD/
+├── computer_io/
+│   ├── clipboard/
+│   │   └── timestamp.md    # 剪贴板数据
+│   └── notification/
+│       └── timestamp.md    # 通知数据
+└── YYYY-MM-DD.md          # 每日 memory 主文件
+```
+
+## 使用方式
+
+```bash
+~/.openclaw/workspace/skills/daily-memory-summary/scripts/summarize.sh
+```
+
+## 工作流程
+
+1. 从 `memory/YYYY-MM-DD/computer_io/clipboard/` 读取最新剪贴板文件
+2. 从 `memory/YYYY-MM-DD/computer_io/notification/` 读取最新通知文件
+3. 合并内容，写入 `memory/YYYY-MM-DD.md`
+
+## 定时任务
+
+已在 `~/.openclaw/cron/jobs.json` 中配置：
+- 任务名：`Daily Memory Summary`
+- 时间：每天 23:00（Asia/Shanghai）

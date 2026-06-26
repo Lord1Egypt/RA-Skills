@@ -1,0 +1,14 @@
+name: daily-news-briefing
+version: 1.0.0
+description: Production-grade daily briefing skill for executive digests, newsletters, and source-linked news summaries.
+author: fanghao19
+license: MIT
+categories:
+  - productivity
+  - language
+tags:
+  - daily-briefing
+  - newsletter
+  - executive-digest
+  - news-summary
+  - market-brief

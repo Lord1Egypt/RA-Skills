@@ -1,0 +1,90 @@
+{
+  "skill_name": "open-claw",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to fill out a visa application form. Here are my details: Full name: John Michael Smith, Date of birth: 14 March 1990, Nationality: British, Passport number: A1234567, Passport expiry: 12 November 2030, Address: 42 Baker Street, London, W1U 6TY, UK, Phone: +44 7700 900000, Email: john@example.com, Employer: Acme Corp, Job title: Software Engineer.",
+      "expected_output": "A filled form table with all provided fields populated, a clear list of missing fields, and a note about fields that require physical action (e.g., signature).",
+      "expectations": [
+        "Output contains a table with field names and values",
+        "John Michael Smith appears in the output as the name value",
+        "Passport number A1234567 appears in the output",
+        "Missing fields are listed separately",
+        "Signature field is flagged as requiring physical action",
+        "No hallucinated values are present for fields not provided"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Please review this contract and tell me what risks I should know about. The contract says: This Service Agreement is between TechCorp Inc. and the Customer. The term is 24 months with automatic renewal unless cancelled 90 days in advance. TechCorp may modify pricing with 30 days written notice. Customer is liable for all damages including indirect and consequential losses with no cap on liability. All disputes must be resolved by binding arbitration in Delaware. TechCorp may assign this agreement to any third party without consent.",
+      "expected_output": "A TL;DR summary of the contract, a risk report with RED/YELLOW/GREEN tiers, and identification of renewal traps and hidden terms.",
+      "expectations": [
+        "Output contains a TL;DR or summary section",
+        "Auto-renewal with 90-day cancellation window is flagged as a risk",
+        "Uncapped liability is flagged as RED risk",
+        "Arbitration-only clause is flagged as RED risk",
+        "Unilateral price modification by TechCorp is flagged as a risk",
+        "Assignment without consent is flagged as a risk",
+        "Risk items are categorized by severity (RED/YELLOW/GREEN or equivalent)",
+        "Renewal trap section identifies the 90-day cancellation requirement"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I just bought lunch. Here are the receipt details: Merchant: Nobu Restaurant, 45 Park Lane, London. Date: 15 March 2024. Items: Salmon Sashimi x2 ($28.00), Miso Black Cod ($45.00), Green Tea x2 ($8.00). Subtotal: $81.00. Tax (8.5%): $6.89. Tip: $16.00. Total: $103.89. Paid by Visa ending 4521. Receipt #: 00847.",
+      "expected_output": "A structured expense entry with all fields extracted, correct category assignment, and an offer to log to expenses.csv.",
+      "expectations": [
+        "Merchant name Nobu Restaurant appears in the output",
+        "Date 2024-03-15 or 15 March 2024 appears in the output",
+        "Total amount 103.89 appears in the output",
+        "Tax amount 6.89 appears in the output",
+        "Category is Food & Dining or equivalent",
+        "Payment method Visa with last 4 digits 4521 appears in the output",
+        "Receipt number 00847 appears in the output",
+        "An offer to log to expenses.csv or similar file is present",
+        "The expense_logger.py add command or equivalent is shown"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Analyze my bank statement. Here are the transactions for March 2024: 2024-03-01 Netflix -15.99, 2024-03-01 Spotify -9.99, 2024-03-02 Salary +5000.00, 2024-03-05 Starbucks -13.50, 2024-03-08 Amazon -45.00, 2024-03-10 AWS -120.00, 2024-03-12 GitHub Pro -4.00, 2024-03-15 Starbucks -12.80, 2024-03-18 Delta Airlines -620.00, 2024-03-20 Unknown TRX*98234 -75.00, 2024-03-22 Starbucks -45.50, 2024-03-22 Starbucks -45.50, 2024-03-25 Adobe Creative Cloud -54.99, 2024-03-28 Notion -8.00.",
+      "expected_output": "A spending breakdown by category, list of detected subscriptions with annualized costs, flagged anomalies including the duplicate Starbucks charge, and tax deduction candidates.",
+      "expectations": [
+        "Spending breakdown by category is present",
+        "Netflix and Spotify are listed as subscriptions",
+        "Annualized cost is shown for at least one subscription",
+        "The duplicate Starbucks charge on 2024-03-22 is flagged as an anomaly",
+        "The unknown transaction TRX*98234 is flagged",
+        "AWS, GitHub Pro, Adobe Creative Cloud, and Notion are identified as tax deduction candidates",
+        "Delta Airlines is identified as a potential tax deduction",
+        "A tax disclaimer or note to consult an accountant is present",
+        "Total credits include the 5000.00 salary"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I want to log an expense. I had a coffee at Starbucks on March 15th 2024. It cost $13.12 total.",
+      "expected_output": "The skill correctly identifies this as receipt scanning mode and provides a structured expense entry with auto-detected category, offering to log it.",
+      "expectations": [
+        "Mode is correctly identified as receipt/expense logging",
+        "Merchant Starbucks is in the output",
+        "Date 2024-03-15 is in the output",
+        "Amount 13.12 is in the output",
+        "Category is Food & Dining or Coffee",
+        "An expense_logger.py command or equivalent is provided"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "What can you help me with?",
+      "expected_output": "The skill presents all four capabilities: form filling, contract analysis, receipt scanning, and bank statement analysis.",
+      "expectations": [
+        "Form filling or autofill capability is mentioned",
+        "Contract review or analysis capability is mentioned",
+        "Receipt scanning capability is mentioned",
+        "Bank statement analysis capability is mentioned",
+        "User is asked which they need or offered clear options"
+      ]
+    }
+  ]
+}

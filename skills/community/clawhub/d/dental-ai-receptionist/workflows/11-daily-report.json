@@ -1,0 +1,314 @@
+{
+  "name": "Dental AI — 11 Daily Operations Report",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 20 * * 1-6"
+            }
+          ]
+        }
+      },
+      "name": "Daily at 8PM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        400
+      ],
+      "id": "n11-cron"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Call Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        260
+      ],
+      "id": "n11-calls",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_APPOINTMENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Appointments",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Appointments",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        440
+      ],
+      "id": "n11-appts",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Escalations",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Escalations",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        620
+      ],
+      "id": "n11-escalations",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const today = new Date().toISOString().split('T')[0];\n\n// Get data from all 3 sources\nconst callItems = $('Get Call Log').all();\nconst apptItems = $('Get Appointments').all();\nconst escalItems = $('Get Escalations').all();\n\n// Filter today's data\nconst todayCalls = callItems.filter(i => (i.json.timestamp || '').startsWith(today));\nconst todayAppts = apptItems.filter(i => (i.json.appointment_date || '').startsWith(today) || (i.json.created_at || '').startsWith(today));\nconst todayEscalations = escalItems.filter(i => (i.json.timestamp || '').startsWith(today));\n\n// Calculate metrics\nconst totalCalls = todayCalls.length;\nconst callsByIntent = {};\ntodayCalls.forEach(c => {\n  const intent = c.json.intent || 'unknown';\n  callsByIntent[intent] = (callsByIntent[intent] || 0) + 1;\n});\n\nconst newBookings = todayAppts.filter(a => a.json.status === 'confirmed' && (a.json.created_at || '').startsWith(today)).length;\nconst cancellations = todayAppts.filter(a => a.json.status === 'cancelled' && (a.json.cancelled_at || '').startsWith(today)).length;\nconst noShows = todayAppts.filter(a => a.json.status === 'no_show').length;\nconst completed = todayAppts.filter(a => a.json.showed_up === 'yes').length;\nconst totalScheduled = todayAppts.filter(a => (a.json.appointment_date || '').startsWith(today)).length;\n\nconst escalationCount = todayEscalations.length;\nconst highPriority = todayEscalations.filter(e => e.json.priority === 'high').length;\n\n// Upcoming tomorrow\nconst tomorrow = new Date();\ntomorrow.setDate(tomorrow.getDate() + 1);\nconst tomorrowStr = tomorrow.toISOString().split('T')[0];\nconst tomorrowAppts = apptItems.filter(i => (i.json.appointment_date || '').startsWith(tomorrowStr) && i.json.status === 'confirmed').length;\n\n// Calculate total call duration\nconst totalDuration = todayCalls.reduce((sum, c) => sum + (parseInt(c.json.duration) || 0), 0);\nconst avgDuration = totalCalls > 0 ? Math.round(totalDuration / totalCalls) : 0;\n\n// Show rate\nconst showRate = totalScheduled > 0 ? Math.round((completed / totalScheduled) * 100) : 0;\n\nconst report = {\n  date: today,\n  total_calls: totalCalls,\n  calls_by_intent: callsByIntent,\n  new_bookings: newBookings,\n  cancellations: cancellations,\n  no_shows: noShows,\n  completed_appointments: completed,\n  total_scheduled: totalScheduled,\n  show_rate: showRate,\n  escalations: escalationCount,\n  high_priority_escalations: highPriority,\n  avg_call_duration_sec: avgDuration,\n  total_call_duration_min: Math.round(totalDuration / 60),\n  tomorrow_appointments: tomorrowAppts\n};\n\n// Build HTML report\nconst intentRows = Object.entries(callsByIntent).map(([k,v]) => `<tr><td style='padding:6px 12px;border-bottom:1px solid #f0f0f0;'>${k}</td><td style='padding:6px 12px;border-bottom:1px solid #f0f0f0;text-align:right;'>${v}</td></tr>`).join('');\n\nconst html = `<div style='font-family:Arial,sans-serif;max-width:640px;margin:0 auto;'>\n<h1 style='color:#1e293b;font-size:24px;margin-bottom:4px;'>Daily Operations Report</h1>\n<p style='color:#64748b;margin-top:0;'>${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>\n\n<div style='display:flex;gap:12px;margin:20px 0;flex-wrap:wrap;'>\n  <div style='flex:1;min-width:120px;background:#eff6ff;border-radius:8px;padding:16px;text-align:center;'><div style='font-size:28px;font-weight:bold;color:#2563eb;'>${totalCalls}</div><div style='color:#64748b;font-size:13px;'>Total Calls</div></div>\n  <div style='flex:1;min-width:120px;background:#f0fdf4;border-radius:8px;padding:16px;text-align:center;'><div style='font-size:28px;font-weight:bold;color:#16a34a;'>${newBookings}</div><div style='color:#64748b;font-size:13px;'>New Bookings</div></div>\n  <div style='flex:1;min-width:120px;background:#fef2f2;border-radius:8px;padding:16px;text-align:center;'><div style='font-size:28px;font-weight:bold;color:#dc2626;'>${noShows}</div><div style='color:#64748b;font-size:13px;'>No-Shows</div></div>\n  <div style='flex:1;min-width:120px;background:#fefce8;border-radius:8px;padding:16px;text-align:center;'><div style='font-size:28px;font-weight:bold;color:#ca8a04;'>${cancellations}</div><div style='color:#64748b;font-size:13px;'>Cancellations</div></div>\n</div>\n\n<h3 style='color:#1e293b;border-bottom:2px solid #e2e8f0;padding-bottom:8px;'>Appointments</h3>\n<table style='width:100%;border-collapse:collapse;'>\n  <tr><td style='padding:6px 0;color:#64748b;'>Scheduled Today</td><td style='text-align:right;font-weight:bold;'>${totalScheduled}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Completed</td><td style='text-align:right;font-weight:bold;color:#16a34a;'>${completed}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Show Rate</td><td style='text-align:right;font-weight:bold;'>${showRate}%</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Tomorrow's Appointments</td><td style='text-align:right;font-weight:bold;color:#2563eb;'>${tomorrowAppts}</td></tr>\n</table>\n\n<h3 style='color:#1e293b;border-bottom:2px solid #e2e8f0;padding-bottom:8px;margin-top:24px;'>Calls by Intent</h3>\n<table style='width:100%;border-collapse:collapse;'>${intentRows || '<tr><td style=\"color:#94a3b8;padding:12px;\">No calls today</td></tr>'}</table>\n\n<h3 style='color:#1e293b;border-bottom:2px solid #e2e8f0;padding-bottom:8px;margin-top:24px;'>Call Stats</h3>\n<table style='width:100%;border-collapse:collapse;'>\n  <tr><td style='padding:6px 0;color:#64748b;'>Avg Call Duration</td><td style='text-align:right;'>${avgDuration}s</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Total Call Time</td><td style='text-align:right;'>${Math.round(totalDuration / 60)} min</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Escalations</td><td style='text-align:right;${escalationCount > 0 ? \"color:#dc2626;font-weight:bold;\" : \"\"}'>${escalationCount}${highPriority > 0 ? ` (${highPriority} high priority)` : ''}</td></tr>\n</table>\n\n<div style='margin-top:24px;padding:16px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;text-align:center;color:#64748b;font-size:13px;'>Generated by Dental AI Voice Receptionist</div>\n</div>`;\n\nreturn [{ json: { ...report, html_report: html } }];"
+      },
+      "name": "Generate Report",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        400
+      ],
+      "id": "n11-generate"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.DENTAL_CLINIC_EMAIL}}",
+        "toEmail": "={{$env.DENTAL_OWNER_EMAIL}}",
+        "subject": "=Daily Report — {{ $json.date }} | {{ $json.total_calls }} Calls, {{ $json.new_bookings }} Bookings, {{ $json.show_rate }}% Show Rate",
+        "html": "={{ $json.html_report }}",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Email Report to Owner",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1020,
+        320
+      ],
+      "id": "n11-email-owner",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.DENTAL_CLINIC_EMAIL}}",
+        "toEmail": "={{$env.DENTAL_STAFF_EMAIL}}",
+        "subject": "=Daily Report — {{ $json.date }} | {{ $json.tomorrow_appointments }} Appointments Tomorrow",
+        "html": "={{ $json.html_report }}",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Email Report to Staff",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1020,
+        500
+      ],
+      "id": "n11-email-staff",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Daily Reports",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $json.date }}",
+            "total_calls": "={{ $json.total_calls }}",
+            "new_bookings": "={{ $json.new_bookings }}",
+            "cancellations": "={{ $json.cancellations }}",
+            "no_shows": "={{ $json.no_shows }}",
+            "completed": "={{ $json.completed_appointments }}",
+            "show_rate": "={{ $json.show_rate }}%",
+            "escalations": "={{ $json.escalations }}",
+            "avg_call_duration": "={{ $json.avg_call_duration_sec }}s",
+            "total_call_time_min": "={{ $json.total_call_duration_min }}",
+            "tomorrow_appointments": "={{ $json.tomorrow_appointments }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Archive Report",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1280,
+        400
+      ],
+      "id": "n11-archive",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily at 8PM": {
+      "main": [
+        [
+          {
+            "node": "Get Call Log",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Appointments",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Escalations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Call Log": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Appointments": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Escalations": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Report": {
+      "main": [
+        [
+          {
+            "node": "Email Report to Owner",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email Report to Staff",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Report to Owner": {
+      "main": [
+        [
+          {
+            "node": "Archive Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

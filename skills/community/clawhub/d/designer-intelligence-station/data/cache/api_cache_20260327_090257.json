@@ -1,0 +1,164 @@
+[
+  {
+    "title": "mvanhorn /last30days-skill",
+    "link": "https://github.com/mvanhorn/last30days-skill",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.869350+00:00",
+    "summary": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+    "author": null,
+    "tags": [
+      "Python"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "10,267",
+      "forks": "885",
+      "since": "daily"
+    }
+  },
+  {
+    "title": "Yeachan-Heo /oh-my-claudecode",
+    "link": "https://github.com/Yeachan-Heo/oh-my-claudecode",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.870204+00:00",
+    "summary": "Teams-first Multi-agent orchestration for Claude Code",
+    "author": null,
+    "tags": [
+      "TypeScript"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "12,632",
+      "forks": "837",
+      "since": "daily"
+    }
+  },
+  {
+    "title": "virattt /dexter",
+    "link": "https://github.com/virattt/dexter",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.870848+00:00",
+    "summary": "An autonomous agent for deep financial research",
+    "author": null,
+    "tags": [
+      "TypeScript"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "18,988",
+      "forks": "2,329",
+      "since": "daily"
+    }
+  },
+  {
+    "title": "ruvnet /RuView",
+    "link": "https://github.com/ruvnet/RuView",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.871438+00:00",
+    "summary": "π RuView: WiFi DensePose turns commodity WiFi signals into real-time human pose estimation, vital sign monitoring, and presence detection — all without a single pixel of video.",
+    "author": null,
+    "tags": [
+      "Rust"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "43,166",
+      "forks": "5,847",
+      "since": "daily"
+    }
+  },
+  {
+    "title": "bytedance /deer-flow",
+    "link": "https://github.com/bytedance/deer-flow",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.872048+00:00",
+    "summary": "An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skill, subagents and message gateway, it handles different levels of ta",
+    "author": null,
+    "tags": [
+      "Python"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "48,338",
+      "forks": "5,758",
+      "since": "daily"
+    }
+  },
+  {
+    "title": "Vaibhavs10 /insanely-fast-whisper",
+    "link": "https://github.com/Vaibhavs10/insanely-fast-whisper",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.872706+00:00",
+    "summary": "",
+    "author": null,
+    "tags": [
+      "Jupyter Notebook"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "11,213",
+      "forks": "817",
+      "since": "daily"
+    }
+  },
+  {
+    "title": "agentscope-ai /agentscope",
+    "link": "https://github.com/agentscope-ai/agentscope",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.873327+00:00",
+    "summary": "Build and run agents you can see, understand and trust.",
+    "author": null,
+    "tags": [
+      "Python"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "20,413",
+      "forks": "1,990",
+      "since": "daily"
+    }
+  },
+  {
+    "title": "twentyhq /twenty",
+    "link": "https://github.com/twentyhq/twenty",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.874225+00:00",
+    "summary": "Building a modern alternative to Salesforce, powered by the community.",
+    "author": null,
+    "tags": [
+      "TypeScript"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "41,272",
+      "forks": "5,501",
+      "since": "daily"
+    }
+  },
+  {
+    "title": "datalab-to /chandra",
+    "link": "https://github.com/datalab-to/chandra",
+    "source": "GitHub Trending",
+    "source_id": "COM002",
+    "published": "2026-03-27T01:02:57.874818+00:00",
+    "summary": "OCR model that handles complex tables, forms, handwriting with full layout.",
+    "author": null,
+    "tags": [
+      "Python"
+    ],
+    "type": "api",
+    "extra": {
+      "stars": "6,150",
+      "forks": "674",
+      "since": "daily"
+    }
+  }
+]

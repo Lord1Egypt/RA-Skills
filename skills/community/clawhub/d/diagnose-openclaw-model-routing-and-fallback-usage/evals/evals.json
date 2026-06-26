@@ -1,0 +1,49 @@
+{
+  "skill_name": "diagnose-openclaw-model-routing-and-fallback-usage",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我严谨看下 OpenClaw 现在到底在用哪个模型。我项目是 `/srv/openclaw/prod-agent`，配置里 `models.providers.local-router.models[]` 明明注册了 `claude-opus-4-6-thinking`，但我看 `/var/log/openclaw/server.log` 几乎全是 `OpenClaw fallback model: gpt-5.4 via http://localhost:8317/v1`。我想确认两件事：1）是不是根本没请求打到 `local-router/claude-opus-4-6-thinking`；2）还是说其实打到了 `local-router` provider，只是没用到这个具体模型。顺便结合 `config/openclaw.yaml`、`agents.defaults.model` 和最近 24 小时日志，判断 main/coder/writer 的主模型和 fallback 实际有没有生效，不要只读静态配置下结论。",
+      "expectations": [
+        "明确区分“local-router 这个 provider 是否被调用”与“local-router/claude-opus-4-6-thinking 这个具体模型是否被调用”两层问题",
+        "核对并说明 main、coder、writer 当前绑定的主模型，以及 agents.defaults.model 的 primary/fallback 链，而不是只看 provider 注册列表",
+        "指出 `claude-opus-4-6-thinking` 如果仅存在于 provider 的 models 列表中、但未被主模型或 fallback 链引用，则‘没流量’是配置层面的必然结果",
+        "结合日志判断 `OpenClaw fallback model: gpt-5.4 via http://localhost:8317/v1` 不能直接证明每次请求都发生了 fallback"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "我这边有点懵，麻烦排查下是不是 fallback 真发生过。仓库在 `D:\\workspace\\openclaw-lab\\router-debug`，日志文件是 `logs\\embedded-run-2026-03-14.log`。我搜到一条失败：`2026-03-14T05:32:22.073+08:00 embedded run agent end isError=true model=gpt-5.4 provider=local-router error=500 Post \"https://chatgpt.com/backend-api/codex/responses\": EOF`。但我又没搜到标准的 `candidate_failed` / `candidate_succeeded` / `requested=local-router/gpt-5.4` 这些字段。请你基于配置和日志给个结论：能不能说“所有到 local-router/gpt-5.4 的请求都成功”？以及能不能说“完全没有 fallback”？",
+      "expectations": [
+        "根据明确的失败日志，否定“所有到 local-router/gpt-5.4 的请求都成功”这一说法",
+        "说明缺少 `candidate_failed`、`candidate_succeeded`、`requested=...` 等标准化字段，只能证明 fallback 证据不完整，不能直接推出‘完全没有 fallback’",
+        "把配置层面的 fallback 链与日志层面的实际切换证据分开分析",
+        "输出结论时应注明证据边界：哪些是已证实，哪些只能保守判断"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "想让你帮我做一次归因，不只是看 yaml。最近同事一直说“OpenClaw 没走 local-router”，但我怀疑他们把 provider 和 model 搞混了。环境在 `/opt/team-ai/openclaw`，`agents/main.yaml`、`agents/coder.yaml`、`agents/writer.yaml` 都能看。另一个线索是插件 `memos-local-openclaw-plugin` 的 summarizer 似乎也指到 `http://localhost:8317/v1`，模型像是 `claude-sonnet-4-6`。请你结合主 Agent、fallback、插件辅助链路和历史日志里出现过的 `requested=local-router/claude-opus-4-6-thinking` / `candidate_failed ... reason=rate_limit`，判断：当前是不是主链路没用 Claude，但系统某些辅助链路仍然用了 local-router？并把“历史曾经用过”和“当前正在用”分开说清楚。",
+      "expectations": [
+        "区分当前主 Agent 链路与 memory/plugin 等辅助链路，不把插件调用误判为主模型流量",
+        "解释“历史日志曾出现 requested=local-router/claude-opus-4-6-thinking”不等于当前配置仍在使用该模型",
+        "指出如果 main/coder/writer 当前主模型都指向 `local-router/gpt-5.4`，则不能说‘完全没走 local-router’，只能说‘没走期望的 Claude 模型’",
+        "给出一份按时间和链路拆分的归因结论：当前主链路、fallback 链、插件辅助链路分别用了什么"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "帮看下这个是不是 ClaudeCodeCLI 协作任务被中断了，日志太乱我有点看不懂……项目 `~/dev/acme-monorepo/.openclaw`，运行 `openclaw run --agent coder --task \"refactor billing retry logic\"` 时，经常直接挂。终端里出现过 `Exec failed`、`code 143`、`SIGTERM`，有时还会看到子进程没 stdout。与此同时我又在 server log 里看到 `OpenClaw fallback model: gpt-5.4 via http://localhost:8317/v1`，所以不确定是模型路由问题，还是 CLI 进程本身被杀了。麻烦你把这两类问题拆开分析：一类是 Agent 实际走了哪个模型/有没有 fallback，另一类是为什么 ClaudeCodeCLI 协作执行会中途终止；最好能给出可执行的规避建议。",
+      "expectations": [
+        "将‘模型路由/fallback 是否发生’与‘ClaudeCodeCLI 进程被 SIGTERM 或 Exec failed 中断’这两类问题分开诊断",
+        "说明 `code 143`/`SIGTERM`/`Exec failed` 更偏向子进程执行层异常，不能仅凭 `OpenClaw fallback model: ...` 就归因为模型切换",
+        "结合配置和日志判断 Agent 主模型、fallback 候选是否真正被使用，而不是把调试打印当成实际切换证据",
+        "给出针对 CLI 中断的可执行建议，例如检查超时、父进程回收、资源限制、命令路径/权限、stdout 捕获方式等"
+      ],
+      "trigger_confidence": "high"
+    }
+  ]
+}

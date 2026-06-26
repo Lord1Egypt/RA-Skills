@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Web Unlocker"
+  short_description: "Unlock blocked or JS-heavy pages through Dataify"
+  default_prompt: "Use $dataify-web-unlocker to fetch or unlock a web page through the Dataify API."

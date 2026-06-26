@@ -1,0 +1,37 @@
+{
+  "slug": "dataset-intake-auditor",
+  "title": "数据集接入审计器",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "csv_audit",
+  "summary": "在新数据集接入前检查字段、单位、缺失率、异常值与可用性。",
+  "inputHint": "CSV/TSV 文件或目录",
+  "sections": [
+    "数据集概览",
+    "字段摘要",
+    "缺失与异常",
+    "单位与口径风险",
+    "接入建议",
+    "后续动作"
+  ],
+  "useCases": [
+    "数据接入",
+    "分析前检查",
+    "质量门控"
+  ],
+  "positiveExamples": [
+    "检查这个数据集能不能接入",
+    "给出字段和缺失率审计"
+  ],
+  "negativeExamples": [
+    "不要伪造统计结果",
+    "不要替代正式数据治理平台"
+  ],
+  "risk": "基于本地文件做只读分析。",
+  "tags": [
+    "data",
+    "dataset",
+    "audit",
+    "ingestion"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "type": "video",
+  "media": {
+    "videoPath": "./douyin-output/stability/video.mp4",
+    "videoPaths": [
+      "./douyin-output/stability/video.mp4"
+    ],
+    "cover": {
+      "mode": "auto_recommended",
+      "imagePath": "./douyin-output/stability/cover.png"
+    }
+  },
+  "metadata": {
+    "title": "模板稳定测试",
+    "description": "这是完整发布任务模板的稳定性测试。",
+    "topics": [
+      "自动发布测试"
+    ],
+    "mentions": [],
+    "collection": null,
+    "declaration": null,
+    "chapters": [],
+    "tags": [],
+    "location": null,
+    "hotspot": null
+  },
+  "settings": {
+    "visibility": "public",
+    "allowSave": true,
+    "publishTime": {
+      "mode": "now",
+      "scheduledAt": null
+    }
+  }
+}

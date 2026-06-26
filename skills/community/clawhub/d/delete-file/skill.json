@@ -1,0 +1,16 @@
+{
+  "name": "Delete File",
+  "description": "Delete a file from cloud storage by URL. Only the API key that uploaded the file can delete it.",
+  "method": "POST",
+  "endpoint": "/v1/file/delete",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": true, "description": "File URL previously returned by the upload endpoint" }
+      ]
+    }
+  }
+}

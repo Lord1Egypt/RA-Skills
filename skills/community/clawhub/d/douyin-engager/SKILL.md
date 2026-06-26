@@ -1,35 +1,90 @@
 ---
-name: "douyin-engager"
-description: "自动在抖音搜索指定主题的热门视频，进行评论和关注操作。 支持设置间隔时间、操作次数、自定义评论内容。 触发词：抖音评论、抖音关注、抖音互动、抖音推广、douyin engager"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-engager"
-sourceUrl: "https://clawhub.ai/skills/douyin-engager"
+name: douyin-engager
+description: |
+  自动在抖音搜索指定主题的热门视频，进行评论和关注操作。
+  支持设置间隔时间、操作次数、自定义评论内容。
+  触发词：抖音评论、抖音关注、抖音互动、抖音推广、douyin engager
 ---
 
-# douyin-engager
+# Douyin Engager - 抖音自动互动助手
 
-> 自动在抖音搜索指定主题的热门视频，进行评论和关注操作。 支持设置间隔时间、操作次数、自定义评论内容。 触发词：抖音评论、抖音关注、抖音互动、抖音推广、douyin engager
+自动在抖音上搜索热门视频、评论、关注作者。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-engager`
-- **Source URL:** [https://clawhub.ai/skills/douyin-engager](https://clawhub.ai/skills/douyin-engager)
+## 输入判断
 
-## Overview
+1. 用户要求"抖音互动/评论/关注"：进入互动流程
+2. 需要用户提供：**主题关键词** + **评论内容**
 
+## 互动流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 确认参数
+
+向用户确认：
+- **主题**：搜索关键词（如"美食"、"旅行"、"科技"）
+- **评论内容**：要发布的评论（可多条随机选，用 `|` 分隔）
+- **操作次数**：要互动多少个视频（默认20）
+- **间隔时间**：每次操作间隔多少分钟（默认3分钟）
+
+### 2. 执行互动
+
+用户确认后，运行：
+
 ```bash
-hermes skills install clawhub/douyin-engager
+cd ~/.openclaw/workspace/skills/douyin-engager
+py scripts/engage.py --keyword "<主题>" --comments "<评论>" [--count 20] [--interval 3]
 ```
+
+参数说明：
+- `--keyword`：搜索关键词（必须）
+- `--comments`：评论内容，多条用 `|` 分隔（必须）
+- `--count`：操作次数（默认20）
+- `--interval`：间隔分钟数（默认3）
+- `--test`：仅启动浏览器测试，不执行操作
+
+### 3. 返回结果
+
+完成后返回：
+- ✅ 成功互动数量
+- 📊 已评论/已关注的视频列表
+- ⚠️ 失败原因（如有）
+
+## 技术实现
+
+使用 Playwright 浏览器自动化：
+- 访问抖音网页版：https://www.douyin.com
+- 搜索主题 → 筛选热门视频 → 评论 → 关注作者
+
+### 依赖
+
+```bash
+pip install playwright
+playwright install chromium
+```
+
+### 登录要求
+
+首次使用需要扫码登录抖音账号。登录状态保存在浏览器配置中。
+
+## 注意事项
+
+⚠️ **风险提示**：
+1. 频繁操作可能触发抖音风控，建议间隔不要太短
+2. 评论内容避免敏感词，否则可能被删
+3. 新账号建议先养号，不要一上来就大量互动
+4. 建议每天操作不超过50次
+
+## 示例
+
+**用户：** 帮我在抖音找"美食"相关的热门视频，评论"太棒了！"，关注作者，做20个，间隔3分钟
+
+**助手：** 好的，确认以下参数：
+- 搜索主题：美食
+- 评论内容：太棒了！
+- 操作次数：20个视频
+- 间隔时间：3分钟
+
+确认开始吗？
+
+**用户：** 确认
+
+**助手：** 正在启动浏览器，开始互动...（调用脚本执行）

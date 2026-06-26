@@ -1,35 +1,45 @@
----
-name: "Dicom Segmentation Api"
-description: "Deploy and manage medical image segmentation using TotalSegmentator and MONAI with DICOM upload, batch processing, 3D export, and statistics generation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dicom-segmentation-api"
-sourceUrl: "https://clawhub.ai/skills/dicom-segmentation-api"
----
+# DICOM Segmentation API
 
-# Dicom Segmentation Api
+Deploy medical image segmentation API using TotalSegmentator and MONAI.
 
-> Deploy and manage medical image segmentation using TotalSegmentator and MONAI with DICOM upload, batch processing, 3D export, and statistics generation.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dicom-segmentation-api`
-- **Source URL:** [https://clawhub.ai/skills/dicom-segmentation-api](https://clawhub.ai/skills/dicom-segmentation-api)
+- TotalSegmentator integration (117 body structures)
+- MONAI workflow support
+- Fast API server
+- DICOM file upload
+- 3D model export (GLB format)
+- Statistics generation
+- Batch processing
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dicom-segmentation-api
+# Start server
+python api_server.py
+
+# Or with custom port
+python api_server.py --port 8000
 ```
+
+## API Endpoints
+
+- `POST /api/segment` - Upload DICOM for segmentation
+- `GET /api/task/{task_id}` - Get task status
+- `GET /api/result/{task_id}` - Get segmentation result
+- `GET /health` - Health check
+
+## Requirements
+
+- Python 3.8+
+- CUDA (optional, for GPU acceleration)
+- 8GB RAM minimum
+
+## Models
+
+- TotalSegmentator: 117 body structures
+- MONAI: whole-body-3mm, organ, tumor models
+
+## Author
+
+Sunshine-del-ux

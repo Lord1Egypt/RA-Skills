@@ -1,0 +1,7 @@
+interface:
+  display_name: "DataGate"
+  short_description: "Parse CSV/JSON before model analysis."
+  default_prompt: "Use DataGate via $data-boundary to parse untrusted CSV or JSON before analyzing it."
+
+policy:
+  allow_implicit_invocation: true

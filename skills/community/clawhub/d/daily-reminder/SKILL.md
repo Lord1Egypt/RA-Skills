@@ -1,35 +1,33 @@
 ---
-name: "Daily Reminder"
-description: "每日提醒、倒计时、纪念日管理工具"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-reminder"
-sourceUrl: "https://clawhub.ai/skills/daily-reminder"
+name: daily-reminder
+version: 1.0.0
+description: 每日提醒、倒计时、纪念日管理工具
+author: 黄豆豆
+tags: [提醒, 工具, 日程管理]
 ---
 
-# Daily Reminder
+# daily-reminder - 每日提醒技能
 
-> 每日提醒、倒计时、纪念日管理工具
+定时提醒、倒计时、纪念日管理工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-reminder`
-- **Source URL:** [https://clawhub.ai/skills/daily-reminder](https://clawhub.ai/skills/daily-reminder)
+## 功能列表
+1. **定时提醒** - 设置每天/每周固定时间的提醒
+2. **倒计时** - 设定目标日期，显示倒计时天数
+3. **纪念日** - 记录重要日期，提前提醒
 
-## Overview
+## 触发关键词
+- 提醒、设置提醒
+- 倒计时
+- 纪念日
+- 查看提醒、我的提醒
 
+## 数据存储
+- reminders.json - 定时提醒
+- countdowns.json - 倒计时
+- anniversaries.json - 纪念日
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-reminder
-```
+## 使用示例
+- "明天上午9点提醒我开会"
+- "倒计时到2026年春节"
+- "2026年3月15日是女朋友生日"
+- "查看我的提醒"

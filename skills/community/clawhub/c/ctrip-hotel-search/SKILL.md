@@ -1,35 +1,28 @@
 ---
-name: "携程酒店搜索"
-description: "自动搜索携程酒店，支持实时比价和详情获取。使用浏览器自动化技术，实现携程账号登录、酒店搜索、详情获取和对比分析功能。"
-category: "domain"
-source: "ClawHub"
-tags: [booking, ctrip, hotel, search, travel]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ctrip-hotel-search"
-sourceUrl: "https://clawhub.ai/skills/ctrip-hotel-search"
+name: ctrip-hotel-search
+description: 自动搜索携程酒店，支持实时比价和详情获取。使用浏览器自动化技术，实现携程账号登录、酒店搜索、详情获取和对比分析功能。
 ---
 
-# 携程酒店搜索
+# 携程酒店搜索 Skill
 
-> 自动搜索携程酒店，支持实时比价和详情获取。使用浏览器自动化技术，实现携程账号登录、酒店搜索、详情获取和对比分析功能。
+## 核心功能
+- ✅ 自动登录携程账号
+- ✅ 实时搜索酒店（按地点、日期、价格筛选）
+- ✅ 获取酒店详情和用户评价
+- ✅ 多酒店对比分析
+- ✅ 支持民宿/客栈搜索
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ctrip-hotel-search`
-- **Source URL:** [https://clawhub.ai/skills/ctrip-hotel-search](https://clawhub.ai/skills/ctrip-hotel-search)
+## 使用场景
+- "搜索建水古城4月9日的酒店，价格200-400元"
+- "对比南沙镇3家民宿的优缺点"
+- "查找元阳梯田附近的特色民宿"
 
-## Overview
+## 技术栈
+- Playwright（浏览器自动化）
+- Node.js（运行环境）
+- 携程网站（数据源）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ctrip-hotel-search
-```
+## 配置要求
+1. 携程账号（用于登录）
+2. Node.js 16+ 环境
+3. Playwright 浏览器

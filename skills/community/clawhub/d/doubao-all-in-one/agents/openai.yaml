@@ -1,0 +1,4 @@
+interface:
+  display_name: "豆包图片与视频生成"
+  short_description: "使用豆包 Seedream/Seedance 生成图片或视频，将结果保存到本地。"
+  default_prompt: "当用户明确要求使用豆包生成图片或视频时，使用 $doubao-all-in-one。"

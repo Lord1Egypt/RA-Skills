@@ -1,0 +1,16 @@
+{
+  "name": "defi-yield-optimizer",
+  "displayName": "DeFi Yield Farming Optimizer",
+  "version": "1.0.0",
+  "description": "Professional DeFi yield farming optimizer with multi-chain tracking, ROI calculations, risk assessment, and portfolio management across Ethereum, Polygon, BSC, Arbitrum, Optimism, and more.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 14900,
+    "interval": "monthly"
+  },
+  "tags": ["defi", "yield-farming", "crypto", "ethereum", "polygon", "bsc", "arbitrum", "optimism", "portfolio", "roi"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "financial"
+}

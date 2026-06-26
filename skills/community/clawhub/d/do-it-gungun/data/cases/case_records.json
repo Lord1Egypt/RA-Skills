@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "updated_at": "2026-03-15",
+    "source": "do-it 案例积累",
+    "total_cases": 1
+  },
+  "cases": [
+    {
+      "case_id": "CASE-20260315-001",
+      "date": "2026-03-15",
+      "user_profile": {
+        "age": 38,
+        "gender": "男",
+        "experience_years": 16,
+        "role": "财务 BP 专家",
+        "industry": "跨境电商/财务",
+        "education": "本科",
+        "city": "长沙 (家在深圳)",
+        "background": "大疆 IFS 项目背书，16 年财务经验，业财一体化专家"
+      },
+      "problem_type": "职业选择",
+      "problem_description": "38 岁财务 BP，长沙 10K vs 惠州 25K vs 深圳找机会，该怎么选？",
+      "options": [
+        {
+          "id": "A",
+          "name": "留长沙",
+          "description": "留在当前公司，看长沙 + 深圳机会",
+          "salary": 10000,
+          "location": "长沙",
+          "pros": ["在职状态", "每天陪孩子", "面试灵活"],
+          "cons": ["10K 严重低估", "公司动荡", "发展有限"]
+        },
+        {
+          "id": "B",
+          "name": "去惠州",
+          "description": "去惠州电商物流公司，财务专家岗",
+          "salary": 25000,
+          "location": "惠州",
+          "pros": ["薪资止损", "赛道 OK", "骑驴找马"],
+          "cons": ["辛苦", "异地", "5 年周期"]
+        },
+        {
+          "id": "C",
+          "name": "辞职深圳",
+          "description": "辞职去深圳，全职找机会",
+          "salary": 30000,
+          "location": "深圳",
+          "pros": ["机会多", "不用异地", "专心面试"],
+          "cons": ["空窗期", "行业降本", "谈判劣势"]
+        }
+      ],
+      "recommendation": {
+        "option": "B",
+        "option_name": "去惠州",
+        "confidence": 85,
+        "core_reasoning": "25K 是确定性收益，空窗期是风险，10K 是消耗。骑驴找马，进退自如。",
+        "key_factors": [
+          "10K 必须立刻止损",
+          "惠州 offer 确定性高",
+          "可以同时看深圳机会",
+          "38 岁空窗期风险大",
+          "设定 1 年评估 2 年退出机制"
+        ]
+      },
+      "execution_plan": {
+        "step1": "去惠州，和总经理沟通，拿 offer",
+        "step2": "入职惠州，快速上手 (1-3 个月)",
+        "step3": "同步看深圳机会 (3-12 个月)",
+        "step4": "深圳有合适的→跳，没有→待满 1.5 年再跳",
+        "exit_mechanism": "1 年评估，2 年退出，不陪跑 5 年"
+      },
+      "status": "pending_followup",
+      "follow_up_schedule": [
+        {"date": "2026-04-15", "type": "入职 1 个月适应情况"},
+        {"date": "2026-09-15", "type": "入职 6 个月项目评估"},
+        {"date": "2027-03-15", "type": "入职 1 年去留决定"}
+      ],
+      "outcome": null,
+      "user_satisfaction": null,
+      "accuracy_score": null,
+      "lessons_learned": [],
+      "tags": ["职业选择", "薪资谈判", "中年危机", "异地工作", "骑驴找马", "财务 BP"]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<svg width="984" height="320" viewBox="0 0 984 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="984" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="84" y1="72" x2="236" y2="248" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <filter id="shadow" x="42" y="34" width="248" height="248" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect x="4" y="4" width="976" height="312" rx="28" fill="url(#panel)" stroke="#E2E8F0" stroke-width="8"/>
+
+  <g filter="url(#shadow)">
+    <rect x="58" y="50" width="216" height="216" rx="36" fill="#FFFFFF"/>
+  </g>
+
+  <circle cx="166" cy="158" r="20" fill="#EA580C"/>
+  <circle cx="166" cy="158" r="56" stroke="#0F172A" stroke-width="10"/>
+  <circle cx="166" cy="158" r="92" stroke="url(#signal)" stroke-width="10"/>
+  <path d="M166 56C222.333 56 268 101.667 268 158" stroke="#0F766E" stroke-width="10" stroke-linecap="round"/>
+  <path d="M64 158C64 101.667 109.667 56 166 56" stroke="#06B6D4" stroke-width="10" stroke-linecap="round"/>
+  <path d="M166 260C109.667 260 64 214.333 64 158" stroke="#0F172A" stroke-opacity="0.18" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="166" cy="56" r="11" fill="#0F766E"/>
+  <circle cx="268" cy="158" r="11" fill="#06B6D4"/>
+  <circle cx="97" cy="230" r="11" fill="#F59E0B"/>
+  <path d="M196 128L229 95" stroke="#0F172A" stroke-width="8" stroke-linecap="round"/>
+  <path d="M103 219L136 186" stroke="#0F172A" stroke-width="8" stroke-linecap="round" opacity="0.28"/>
+
+  <g font-family="Avenir Next, Segoe UI, Arial, sans-serif" fill="#0F172A">
+    <text x="332" y="136" font-size="58" font-weight="700" letter-spacing="-1.2">DevTool Answer</text>
+    <text x="332" y="194" font-size="52" font-weight="700" fill="#0F766E">Monitor</text>
+    <text x="334" y="236" font-size="24" font-weight="500" fill="#475569">Track what LLMs say before users choose your tool</text>
+  </g>
+</svg>

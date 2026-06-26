@@ -1,0 +1,26 @@
+{
+  "best_config_idx": 1,
+  "best_config": {
+    "epsilon_decay": 0.995,
+    "learning_rate": 0.02,
+    "adaptation_threshold": 1.0
+  },
+  "best_score": 0.0,
+  "meta_history": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ]
+}

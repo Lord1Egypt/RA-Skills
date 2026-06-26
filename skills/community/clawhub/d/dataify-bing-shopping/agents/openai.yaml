@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Bing Shopping"
+  short_description: "Search Bing Shopping for products"
+  default_prompt: "Use $dataify-bing-shopping to run a search query."

@@ -1,0 +1,638 @@
+[
+  {
+    "title": "PediatricsGPT: Large Language Models as Chinese Medical Assistants for Pediatric Applications",
+    "id": "2405.19266v4",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2405.19266v4",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Medical Knowledge-Guided Deep Curriculum Learning for Elbow Fracture Diagnosis from X-Ray Images",
+    "id": "2110.10381v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2110.10381v1",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Human-Centered Evaluation of an LLM-Based Process Modeling Copilot: A Mixed-Methods Study with Domain Experts",
+    "id": "2603.12895v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2603.12895v1",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Learning From Failure: Integrating Negative Examples when Fine-tuning Large Language Models as Agents",
+    "id": "2402.11651v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2402.11651v2",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Instruction-tuned Large Language Models for Machine Translation in the Medical Domain",
+    "id": "2408.16440v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2408.16440v2",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "PB-LLM: Partially Binarized Large Language Models",
+    "id": "2310.00034v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2310.00034v2",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Exploring Advanced Large Language Models with LLMsuite",
+    "id": "2407.12036v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2407.12036v2",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "WizardLM: Empowering large pre-trained language models to follow complex instructions",
+    "id": "2304.12244v3",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2304.12244v3",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "MedAide: Information Fusion and Anatomy of Medical Intents via LLM-based Agent Collaboration",
+    "id": "2410.12532v3",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2410.12532v3",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Demystifying Instruction Mixing for Fine-tuning Large Language Models",
+    "id": "2312.10793v3",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2312.10793v3",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Medical Misinformation in AI-Assisted Self-Diagnosis: Development of a Method (EvalPrompt) for Analyzing Large Language Models",
+    "id": "2307.04910v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2307.04910v2",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Multi-Turn Human-LLM Interaction Through the Lens of a Two-Way Intelligibility Protocol",
+    "id": "2410.20600v4",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2410.20600v4",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Jais and Jais-chat: Arabic-Centric Foundation and Instruction-Tuned Open Generative Large Language Models",
+    "id": "2308.16149v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2308.16149v2",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Can ChatGPT be Your Personal Medical Assistant?",
+    "id": "2312.12006v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2312.12006v1",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Humans and Large Language Models in Clinical Decision Support: A Study with Medical Calculators",
+    "id": "2411.05897v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2411.05897v2",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "A generalist medical language model for disease diagnosis assistance.",
+    "id": "39779927",
+    "source": "pubmed",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Patient-Representing Population's Perceptions of GPT-Generated Versus Standard Emergency Department Discharge Instructions: Randomized Blind Survey Assessment.",
+    "id": "39094112",
+    "source": "pubmed",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Performance Comparison of a Neuro-Symbolic Large Language Model System Versus Human Experts in Acute Cholecystitis Management.",
+    "id": "41827149",
+    "source": "pubmed",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "How to improve ChatGPT performance for nephrologists: a technique guide.",
+    "id": "38771519",
+    "source": "pubmed",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "DILIConsult: A Multi-Agent Large Language Model Framework for Evaluating Drug-Induced Liver Injury in ICU Settings.",
+    "id": "41826786",
+    "source": "pubmed",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Comparative Analysis of Diagnostic Performance: Differential Diagnosis Lists by LLaMA3 Versus LLaMA2 for Case Reports.",
+    "id": "39561356",
+    "source": "pubmed",
+    "topic_tag": "ai_vs_human"
+  },
+  {
+    "title": "Medical Knowledge-Guided Deep Curriculum Learning for Elbow Fracture Diagnosis from X-Ray Images",
+    "id": "2110.10381v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2110.10381v1",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "A Neutrosophic Recommender System for Medical Diagnosis Based on Algebraic Neutrosophic Measures",
+    "id": "1602.08447v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1602.08447v1",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Rule Based Expert System for Cerebral Palsy Diagnosis",
+    "id": "1207.0117v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1207.0117v1",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "A Generic Knowledge Based Medical Diagnosis Expert System",
+    "id": "2110.04439v5",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2110.04439v5",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Rule Based Expert System for Diagnosis of Neuromuscular Disorders",
+    "id": "1207.2104v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1207.2104v1",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Belief-Rule-Based Expert Systems for Evaluation of E- Government: A Case Study",
+    "id": "1403.5618v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1403.5618v2",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Verification, Validation and Integrity of Distributed and Interchanged Rule Based Policies and Contracts in the Semantic Web",
+    "id": "cs/0609119v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/cs/0609119v2",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Expert-Guided Explainable Few-Shot Learning for Medical Image Diagnosis",
+    "id": "2509.08007v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2509.08007v2",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "MedTutor: A Retrieval-Augmented LLM System for Case-Based Medical Education",
+    "id": "2601.06979v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2601.06979v2",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "AutoLungDx: A Hybrid Deep Learning Approach for Early Lung Cancer Diagnosis Using 3D Res-U-Net, YOLOv5, and Vision Transformers",
+    "id": "2305.00046v4",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2305.00046v4",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Local learning rules to attenuate forgetting in neural networks",
+    "id": "1807.05097v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1807.05097v1",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "ICADx: Interpretable computer aided diagnosis of breast masses",
+    "id": "1805.08960v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1805.08960v1",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Segment Anything Model for Medical Image Analysis: an Experimental Study",
+    "id": "2304.10517v3",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2304.10517v3",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Is it Time to Replace CNNs with Transformers for Medical Images?",
+    "id": "2108.09038v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2108.09038v1",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Towards objective and systematic evaluation of bias in artificial intelligence for medical imaging",
+    "id": "2311.02115v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2311.02115v2",
+    "topic_tag": "rule_based"
+  },
+  {
+    "title": "Changing Data Sources in the Age of Machine Learning for Official Statistics",
+    "id": "2306.04338v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2306.04338v1",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "DOME: Recommendations for supervised machine learning validation in biology",
+    "id": "2006.16189v4",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2006.16189v4",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "MEMe: An Accurate Maximum Entropy Method for Efficient Approximations in Large-Scale Machine Learning",
+    "id": "1906.01101v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1906.01101v1",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "A Benchmark Study of Machine Learning Models for Online Fake News Detection",
+    "id": "1905.04749v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1905.04749v2",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Learning Curves for Decision Making in Supervised Machine Learning: A Survey",
+    "id": "2201.12150v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2201.12150v2",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Physics-Inspired Interpretability Of Machine Learning Models",
+    "id": "2304.02381v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2304.02381v2",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Privacy-preserving machine learning for healthcare: open challenges and future perspectives",
+    "id": "2303.15563v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2303.15563v1",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Active learning for data streams: a survey",
+    "id": "2302.08893v4",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2302.08893v4",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "A Machine Learning Approach for Recruitment Prediction in Clinical Trial Design",
+    "id": "2111.07407v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2111.07407v1",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Lightweight Transformers for Clinical Natural Language Processing",
+    "id": "2302.04725v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2302.04725v1",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Hidden Stratification Causes Clinically Meaningful Failures in Machine Learning for Medical Imaging",
+    "id": "1909.12475v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1909.12475v2",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Emotion in Reinforcement Learning Agents and Robots: A Survey",
+    "id": "1705.05172v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1705.05172v1",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Fourier Learning Machines: Nonharmonic Fourier-Based Neural Networks for Scientific Machine Learning",
+    "id": "2509.08759v3",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2509.08759v3",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Verbalized Machine Learning: Revisiting Machine Learning with Language Models",
+    "id": "2406.04344v3",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2406.04344v3",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Generalizing Machine Learning Evaluation through the Integration of Shannon Entropy and Rough Set Theory",
+    "id": "2404.12511v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2404.12511v1",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Comparative benchmarking of the DeepSeek large language model on medical tasks and clinical reasoning.",
+    "id": "40267969",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Towards accurate differential diagnosis with large language models.",
+    "id": "40205049",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Large language models deconstruct the clinical intuition behind diagnosing autism.",
+    "id": "40147442",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "DeepSeek Versus GPT: Evaluation of Large Language Model Chatbots' Responses on Orofacial Clefts.",
+    "id": "40245329",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "th International Symposium on Intensive Care and Emergency Medicine : Brussels, Belgium. 15-18 March 2016.",
+    "id": "27885969",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "A large language model improves clinicians' diagnostic performance in complex critical illness cases.",
+    "id": "40481529",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "A large language model for complex cardiology care.",
+    "id": "41652123",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Large language model-augmented learning for auto-delineation of treatment targets in head-and-neck cancer radiotherapy.",
+    "id": "39855601",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Natural Language-based Machine Learning Models for the Annotation of Clinical Radiology Reports.",
+    "id": "29381109",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Multimodal large language model versus emergency physicians for burn assessment: a prospective non-inferiority study.",
+    "id": "41645231",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Evaluating Large Language Models in Ophthalmology: Systematic Review.",
+    "id": "41144954",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Evaluating large language models for WAO/EAACI guideline compliance in hereditary angioedema management.",
+    "id": "40682228",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Performance of Large Language Models in Analyzing Common Hypertension Scenarios.",
+    "id": "41178536",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Virtual Patients Using Large Language Models: Scalable, Contextualized Simulation of Clinician-Patient Dialogue With Feedback.",
+    "id": "39854611",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Evaluating the o1 reasoning large language model for cognitive bias: a vignette study.",
+    "id": "40841953",
+    "source": "pubmed",
+    "topic_tag": "ml_vs_llm"
+  },
+  {
+    "title": "Medical Knowledge-Guided Deep Curriculum Learning for Elbow Fracture Diagnosis from X-Ray Images",
+    "id": "2110.10381v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2110.10381v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Med-Bot: An AI-Powered Assistant to Provide Accurate and Reliable Medical Information",
+    "id": "2411.09648v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2411.09648v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "An Overview and Case Study of the Clinical AI Model Development Life Cycle for Healthcare Systems",
+    "id": "2003.07678v3",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2003.07678v3",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Privacy-preserving machine learning for healthcare: open challenges and future perspectives",
+    "id": "2303.15563v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2303.15563v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "FUTURE-AI: Guiding Principles and Consensus Recommendations for Trustworthy Artificial Intelligence in Medical Imaging",
+    "id": "2109.09658v6",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2109.09658v6",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Towards Trustworthy Healthcare AI: Attention-Based Feature Learning for COVID-19 Screening With Chest Radiography",
+    "id": "2207.09312v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2207.09312v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Document Understanding for Healthcare Referrals",
+    "id": "2309.13184v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2309.13184v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Foundations of GenIR",
+    "id": "2501.02842v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2501.02842v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Caging the Agents: A Zero Trust Security Architecture for Autonomous AI in Healthcare",
+    "id": "2603.17419v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2603.17419v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Competing Visions of Ethical AI: A Case Study of OpenAI",
+    "id": "2601.16513v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2601.16513v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Meaningful human control: actionable properties for AI system development",
+    "id": "2112.01298v2",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2112.01298v2",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Tutorial on the development of AI models for medical image analysis",
+    "id": "2208.00766v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2208.00766v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Beyond Accuracy: A Decision-Theoretic Framework for Allocation-Aware Healthcare AI",
+    "id": "2601.06161v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2601.06161v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "A Quantum-Compliant Formulation for Network Epidemic Control",
+    "id": "2509.00337v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/2509.00337v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "A Systematic Approach to Detect Hierarchical Healthcare Cost Drivers and Interpretable Change Patterns",
+    "id": "1907.08237v1",
+    "source": "arxiv",
+    "url": "https://arxiv.org/abs/1907.08237v1",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Primary Aldosteronism: An Endocrine Society Clinical Practice Guideline.",
+    "id": "40658480",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "A Review of the Role of Artificial Intelligence in Healthcare.",
+    "id": "37373940",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Artificial intelligence in rare disease diagnosis and treatment.",
+    "id": "37646577",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "A clinical practice guideline for tuberculous meningitis.",
+    "id": "40840485",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Social determinants of health and US cancer screening interventions: A systematic review.",
+    "id": "37329257",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Effect of Artificial Intelligence-based Health Education Accurately Linking System (AI-HEALS) for Type 2 diabetes self-management: protocol for a mixed-methods study.",
+    "id": "37434126",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Epidemiology of HIV in the USA: epidemic burden, inequities, contexts, and responses.",
+    "id": "33617774",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "The potential for improving cardio-renal outcomes in chronic kidney disease with the aldosterone synthase inhibitor vicadrostat (BI 690517): a rationale for the EASi-KIDNEY trial.",
+    "id": "39533115",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Guidelines for the use and interpretation of assays for monitoring autophagy (4th edition)",
+    "id": "33634751",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Management of chronic kidney disease in type 2 diabetes: screening, diagnosis and treatment goals, and recommendations.",
+    "id": "34817311",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Prediction of complicated disease course for children newly diagnosed with Crohn's disease: a multicentre inception cohort study.",
+    "id": "28259484",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Cost-effectiveness analysis of AI-based image quality control for perinatal ultrasound screening.",
+    "id": "39696216",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Biparametric vs Multiparametric MRI for Prostate Cancer Diagnosis: The PRIME Diagnostic Clinical Trial.",
+    "id": "40928788",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Molecularly guided therapy versus chemotherapy after disease control in unfavourable cancer of unknown primary (CUPISCO): an open-label, randomised, phase 2 study.",
+    "id": "39096924",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  },
+  {
+    "title": "Characterising acute and chronic care needs: insights from the Global Burden of Disease Study 2019.",
+    "id": "40335470",
+    "source": "pubmed",
+    "topic_tag": "cost_control"
+  }
+]

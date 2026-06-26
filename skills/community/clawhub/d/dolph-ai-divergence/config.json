@@ -1,0 +1,12 @@
+{
+  "max_position": "0.16",
+  "kelly_fraction": "0.1",
+  "max_position_usd": "0.16",
+  "min_edge": 0.05,
+  "max_trade_amount": "0.16",
+  "max_bet_usd": 0.16,
+  "daily_budget": 3.26,
+  "max_usd": "0.16",
+  "max_trade_usd": "0.16",
+  "max_bet": "0.16"
+}

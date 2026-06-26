@@ -1,0 +1,163 @@
+[
+  {
+    "method": "poi-list",
+    "description": "景点列表",
+    "category": "RESOURCE",
+    "subCategory": "TICKET",
+    "action": "SEARCH",
+    "parameters": {
+      "properties": {
+        "keyword": { "description": "查询关键词" },
+        "destinationCityName": { "description": "目的地城市名称 (例如：北京)" },
+        "sortType": { "description": "排序: 0综合 1低价 2高价" },
+        "current": { "description": "当前页码" },
+        "size": { "description": "每页数量" }
+      },
+      "required": ["destinationCityName"]
+    }
+  },
+  {
+    "method": "poiDetail",
+    "description": "景点详情",
+    "category": "RESOURCE",
+    "subCategory": "TICKET",
+    "action": "DETAIL",
+    "parameters": {
+      "properties": {
+        "poiId": { "description": "景点ID" },
+        "ticketDate": { "description": "查询日期yyyy-MM-dd，默认当天" }
+      },
+      "required": ["poiId"]
+    }
+  },
+  {
+    "method": "getPassengerList",
+    "description": "获取乘客信息列表",
+    "category": "PASSENGER",
+    "subCategory": "COMMON",
+    "action": "LIST",
+    "parameters": {
+      "properties": {
+        "orderType": { "description": "订单类型，3=门票" }
+      },
+      "required": []
+    }
+  },
+  {
+    "method": "savePassenger",
+    "description": "保存乘客信息",
+    "category": "PASSENGER",
+    "subCategory": "COMMON",
+    "action": "SAVE",
+    "parameters": {
+      "properties": {
+        "passengerName": { "description": "旅客姓名" },
+        "identityNo": { "description": "证件号码" },
+        "phoneNumber": { "description": "手机号码" }
+      },
+      "required": ["passengerName", "identityNo", "phoneNumber"]
+    }
+  },
+  {
+    "method": "poiRule",
+    "description": "门票规则",
+    "category": "RESOURCE",
+    "subCategory": "TICKET",
+    "action": "TICKET_RULE",
+    "parameters": {
+      "properties": {
+        "resourceId": { "description": "资源ID" }
+      },
+      "required": ["resourceId"]
+    }
+  },
+  {
+    "method": "createTicketOrder",
+    "description": "创建门票订单",
+    "category": "ORDER",
+    "subCategory": "TICKET",
+    "action": "BOOK",
+    "parameters": {
+      "properties": {
+        "phoneNumber": { "description": "联系人手机号" },
+        "orderSource": { "description": "订单来源，默认0" },
+        "orderType": { "description": "订单类型，3=门票" },
+        "serviceFee": { "description": "服务费" },
+        "resourceItemId": { "description": "资源ID" },
+        "quantity": { "description": "购买数量" },
+        "price": { "description": "单价" },
+        "totalPrice": { "description": "总价" },
+        "travelDate": { "description": "游玩日期 yyyy-MM-dd" },
+        "travellerInfoList": {
+          "description": "出游人列表",
+          "items": {
+            "passengerId": { "description": "出行人ID" },
+            "name": { "description": "姓名" },
+            "idNumber": { "description": "证件号" },
+            "idType": { "description": "证件类型" },
+            "phoneNumber": { "description": "手机号" }
+          }
+        },
+        "name": { "description": "联系人姓名" },
+        "mobile": { "description": "联系人手机号" }
+      },
+      "required": ["phoneNumber", "orderSource", "resourceItemId", "quantity", "price", "totalPrice", "travelDate", "travellerInfoList", "name", "mobile"]
+    }
+  },
+  {
+    "method": "getOrderStatus",
+    "description": "获取订单状态",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "STATUS",
+    "parameters": {
+      "properties": {
+        "orderBaseId": { "description": "订单号" }
+      },
+      "required": ["orderBaseId"]
+    }
+  },
+  {
+    "method": "orderDetail",
+    "description": "获取订单详情",
+    "category": "ORDER",
+    "subCategory": "TICKET",
+    "action": "QUERY",
+    "parameters": {
+      "properties": {
+        "orderBaseId": { "description": "订单号" }
+      },
+      "required": ["orderBaseId"]
+    }
+  },
+  {
+    "method": "ticket.cancelOrder",
+    "description": "取消门票订单",
+    "category": "ORDER",
+    "subCategory": "COMMON",
+    "action": "CANCEL",
+    "parameters": {
+      "properties": {
+        "orderBaseId": { "description": "订单ID" },
+        "orderType": { "description": "订单类型，3=门票" },
+        "subOrderType": { "description": "子订单类型，固定DOMESTIC_TICKET" },
+        "cancelReason": { "description": "取消原因" }
+      },
+      "required": ["orderBaseId"]
+    }
+  },
+  {
+    "method": "orderHistory",
+    "description": "订单历史列表",
+    "category": "ORDER",
+    "subCategory": "TICKET",
+    "action": "HISTORY",
+    "parameters": {
+      "properties": {
+        "current": { "description": "当前页码，默认1" },
+        "size": { "description": "每页数量，默认10" }
+      },
+      "required": []
+    }
+  }
+]

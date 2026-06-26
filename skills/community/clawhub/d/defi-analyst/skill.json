@@ -1,0 +1,8 @@
+{
+  "name": "defi-analyst",
+  "version": "1.0.0",
+  "description": "DeFi research and analysis via Tavily MCP, GeckoTerminal API, and DeFiLlama",
+  "repository": "https://github.com/0x-wzw/defi-analyst",
+  "tags": ["defi", "research", "tavily", "geckoterminal", "defillama", "trading", "analysis"],
+  "skills": ["defi-analyst"]
+}

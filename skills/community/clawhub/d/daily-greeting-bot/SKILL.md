@@ -1,35 +1,28 @@
 ---
-name: "Daily Greeting Bot"
-description: "获取当地天气，并结合天气情况生成一句幽默的早安问候或“土味情话”。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-greeting-bot"
-sourceUrl: "https://clawhub.ai/skills/daily-greeting-bot"
+name: daily-greeting-bot
+description: 获取当地天气，并结合天气情况生成一句幽默的早安问候或“土味情话”。
+version: 1.0.0
+metadata:
+  requires:
+    env:
+      - WEATHER_API_KEY # 声明该技能需要用户配置这个环境变量
+    bins:
+      - curl # 声明该技能依赖系统中的 curl 命令
 ---
 
 # Daily Greeting Bot
 
-> 获取当地天气，并结合天气情况生成一句幽默的早安问候或“土味情话”。
+## 身份设定
+你是一个幽默、贴心的私人早安助手。你的任务是在每天早晨为用户提供当天的天气预报，并根据天气情况搭配一句应景的“土味情话”或幽默段子。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-greeting-bot`
-- **Source URL:** [https://clawhub.ai/skills/daily-greeting-bot](https://clawhub.ai/skills/daily-greeting-bot)
+## 执行步骤
+1. **获取天气**：当用户触发你时，询问用户所在的城市。使用系统的 `curl` 工具和环境变量中的 `WEATHER_API_KEY`，调用天气 API 获取当天的气温和天气状况。
+2. **构思文案**：
+   - 如果是晴天，说一些阳光、明媚的情话。
+   - 如果是雨天，说一些关于撑伞、思念的段子。
+3. **输出格式**：
+   - 🌡️ **今日天气**：[天气状况]，[气温]
+   - 💌 **早安寄语**：[你生成的幽默情话]
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-greeting-bot
-```
+## 异常处理
+如果无法获取天气数据（如网络错误或 API Key 无效），请委婉地告知用户，并直接送上一句不需要天气背景的通用早安祝福。

@@ -1,0 +1,6 @@
+{
+  "engine": "gemini_pro",
+  "format": "markdown_table",
+  "wrapper": "Bitte antworte extrem präzise unter Nutzung von Markdown.\n\n{content}\n\nAntwort-Struktur: Markdown",
+  "notes": "Gemini 3.1 Pro bevorzugt dichte Markdown-Hierarchien und Tabellen."
+}

@@ -1,35 +1,106 @@
 ---
-name: "CTG Bus"
-description: "查询中旅巴士（hkctgbus）班次、票价和余票。当用户提到「中旅」「中旅巴士」「ctg」「hkctgbus」「中旅快线」「跨境巴士」等查询时触发。支持中文自然语言输入，自动解析日期、城市、站点。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ctg-bus"
-sourceUrl: "https://clawhub.ai/skills/ctg-bus"
+name: ctg-bus
+description: 查询中旅巴士（hkctgbus）班次、票价和余票。当用户提到「中旅」「中旅巴士」「ctg」「hkctgbus」「中旅快线」「跨境巴士」等查询时触发。支持中文自然语言输入，自动解析日期、城市、站点。
 ---
 
-# CTG Bus
+# 中旅巴士查询
 
-> 查询中旅巴士（hkctgbus）班次、票价和余票。当用户提到「中旅」「中旅巴士」「ctg」「hkctgbus」「中旅快线」「跨境巴士」等查询时触发。支持中文自然语言输入，自动解析日期、城市、站点。
+## 触发示例
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ctg-bus`
-- **Source URL:** [https://clawhub.ai/skills/ctg-bus](https://clawhub.ai/skills/ctg-bus)
+- 「中旅明天去深圳的票」
+- 「查中旅巴士后天去香港」
+- 「中旅旺角到深圳湾口岸」
+- 「hkctgbus 查票」
+- 「5月30号中旅去珠海」
 
-## Overview
+## 解析规则
 
+### 城市识别
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 城市 | code | CityNo |
+|------|------|--------|
+| 香港 | 810000 | G1095 |
+| 澳門 | 820000 | K1146 |
+| 深圳 | 440300 | K1096 |
+| 廣州 | 440100 | N1097 |
+| 珠海 | 440400 | K1121 |
+| 佛山 | 440600 | N1131 |
+| 江門 | 440700 | N1133 |
+| 中山 | 442000 | N1135 |
+| 東莞 | 441900 | N1105 |
+| 肇慶 | 441200 | N1137 |
+
+### 常用站点
+
+**香港出发/到达：**
+- 旺角維景酒店（太子中旅巴士）
+- 太子榮利（港鐵A出口）
+- 尖沙咀中港城
+- 灣仔
+- 上環
+- 觀塘
+- 鑽石山
+- 屯門
+- 荃灣
+- 香港機場
+- 港珠澳大橋香港口岸
+
+**深圳出发/到达：**
+- 深圳灣口岸
+- 皇崗口岸
+- 寶安機場
+
+### 方向判断
+
+- 含「回」「去」→ 推导出发/到达城市
+- 默认：香港 → 深圳
+
+### 日期解析
+
+- 「今天」→ 当天
+- 「明天/后天」→ 相对日期
+- 「X月X号」→ 具体日期
+- 无日期 → 当天
+
+## 执行
+
+解析完参数后运行：
+
 ```bash
-hermes skills install clawhub/ctg-bus
+node scripts/ctg_bus_query.js <日期YYYY-MM-DD> <出发城市> <到达城市> [上车站] [下车站]
 ```
+
+示例：
+```bash
+node scripts/ctg_bus_query.js 2026-05-30 香港 深圳 旺角維景酒店 深圳灣口岸
+node scripts/ctg_bus_query.js 2026-05-30 深圳 香港 深圳灣口岸 旺角維景酒店
+```
+
+脚本路径相对于 skill 目录：`scripts/ctg_bus_query.js`
+
+## 输出格式
+
+脚本输出 JSON，整理为以下格式，**必须列出所有班次**：
+
+```
+🚌 中旅巴士：上车站 → 下车站
+📅 日期：YYYY-MM-DD
+💰 票价：成人 HK$60 | 人民币 ¥55
+
+出发    到达(经)          余票  班次号
+──────────────────────────────────────
+07:30   深圳灣口岸(香港)   29座  ✅
+08:00   深圳灣口岸(香港)   15座  ✅
+...
+```
+
+- 显示途经口岸/站点信息
+- 显示票价（港币+人民币）
+- 余票为 0 标记 ⛔
+
+## 注意
+
+- 如果用户指定站点不在预设列表中，仍可通过 API 动态查找
+- 站点名称支持繁体和简体混合匹配
+- 脚本通过 `https://wechat.hkctgbus.com/ctb` API 查询，无需登录
+- 查询到的班次数据包含途经站点详情（ViaStations 字段）

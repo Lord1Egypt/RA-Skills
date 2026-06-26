@@ -1,0 +1,47 @@
+{
+  "name": "douyin",
+  "version": "1.0.0",
+  "description": "Rebuild weak scripts into stronger Douyin-native traffic structures. Diagnose first-3-second hooks, retention friction, and recommendation-friendly pacing.",
+  "author": "qclawbot",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "douyin",
+    "抖音",
+    "前3秒钩子",
+    "短视频脚本",
+    "完播率",
+    "流量拆解",
+    "retention",
+    "hook design"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "hook_diagnosis": "Diagnose first-3-second hook strength and swipe risk",
+    "retention_analysis": "Identify flat sections and likely drop-off points in short-form scripts",
+    "traffic_rebuild": "Restructure weak scripts into stronger Douyin-native pacing",
+    "payoff_design": "Improve payoff, replay, and reaction triggers"
+  },
+  "triggers": [
+    "douyin script",
+    "抖音脚本",
+    "前3秒钩子",
+    "完播率",
+    "流量拆解",
+    "短视频不吸引人",
+    "为什么没人看完",
+    "douyin retention"
+  ],
+  "audience": [
+    "Douyin creators",
+    "Short-form video operators",
+    "Scriptwriters optimizing for retention",
+    "Brands rebuilding weak short-video scripts"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

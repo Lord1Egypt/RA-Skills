@@ -1,0 +1,48 @@
+{
+  "name": "alive-check-monitor",
+  "version": "1.0.1",
+  "displayName": "还活着么监测服务",
+  "description": "独居人群每日签到监测服务，长时间未签到自动通知紧急联系人，关爱独居安全",
+  "author": "zhdryanchang",
+  "category": "生活服务",
+  "tags": ["独居", "安全", "监测", "签到", "紧急联系", "关怀"],
+  "pricing": {
+    "model": "pay-per-use",
+    "price": 0.001,
+    "currency": "USDT",
+    "provider": "skillpay.me"
+  },
+  "apiKey": "sk_e390b52cb259fc4f4aa1489547a48375d72876acdee75de57101d9e0e833fcb7",
+  "endpoints": [
+    {
+      "path": "/checkin",
+      "method": "POST",
+      "description": "用户每日签到"
+    },
+    {
+      "path": "/register",
+      "method": "POST",
+      "description": "注册用户并设置紧急联系人"
+    },
+    {
+      "path": "/status/:userId",
+      "method": "GET",
+      "description": "查询用户签到状态"
+    },
+    {
+      "path": "/emergency-contacts",
+      "method": "POST",
+      "description": "设置紧急联系人"
+    },
+    {
+      "path": "/history/:userId",
+      "method": "GET",
+      "description": "查看签到历史"
+    }
+  ],
+  "config": {
+    "checkInterval": "0 */6 * * *",
+    "alertThreshold": 24,
+    "reminderHours": [9, 12, 18, 21]
+  }
+}

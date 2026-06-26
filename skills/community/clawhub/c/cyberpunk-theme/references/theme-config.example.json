@@ -1,0 +1,10 @@
+{
+  "workspace": "/path/to/workspace",
+  "assistantAvatar": "/path/to/main.png",
+  "toolAvatar": "/path/to/tool.png",
+  "helpAvatar": "/path/to/help.png",
+  "userAvatar": "/path/to/user.png",
+  "chatBackground": "/path/to/chat.jpg",
+  "dreamAvatar": "/path/to/dream.gif",
+  "dreamBackground": "/path/to/dream-bg.png"
+}

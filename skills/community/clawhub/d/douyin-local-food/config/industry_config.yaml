@@ -1,0 +1,237 @@
+# 行业配置 - 餐饮类型与运营要点
+
+restaurant_types:
+  hotpot:
+    name: "火锅"
+    core_selling_points:
+      - "食材新鲜"
+      - "锅底特色"
+      - "蘸料丰富"
+    video_focus:
+      - "涮菜过程"
+      - "蘸料调配"
+      - "食客反应"
+    groupon_strategy: "多人套餐为主"
+    peak_hours:
+      - "11:30-13:30"
+      - "17:30-21:00"
+    avg_margin: 0.48
+    best_video_duration: "15-30秒"
+    
+  bbq:
+    name: "烧烤"
+    core_selling_points:
+      - "现烤现吃"
+      - "烟火气"
+      - "夜宵氛围"
+    video_focus:
+      - "烤制过程"
+      - "滋滋声"
+      - "撸串场景"
+    groupon_strategy: "夜宵时段+酒水搭配"
+    peak_hours:
+      - "18:00-02:00"
+    avg_margin: 0.52
+    best_video_duration: "15-25秒"
+    
+  sichuan:
+    name: "川菜"
+    core_selling_points:
+      - "麻辣鲜香"
+      - "下饭神器"
+      - "分量足"
+    video_focus:
+      - "爆炒过程"
+      - "色泽展示"
+      - "下饭场景"
+    groupon_strategy: "单人工作餐+多人聚餐"
+    peak_hours:
+      - "11:30-13:30"
+      - "17:30-20:30"
+    avg_margin: 0.45
+    best_video_duration: "20-35秒"
+    
+  japanese:
+    name: "日料"
+    core_selling_points:
+      - "新鲜"
+      - "精致"
+      - "师傅手艺"
+    video_focus:
+      - "刺身展示"
+      - "师傅手艺"
+      - "精致摆盘"
+    groupon_strategy: "套餐制、午市特价"
+    peak_hours:
+      - "11:30-13:30"
+      - "18:00-21:00"
+    avg_margin: 0.55
+    best_video_duration: "20-40秒"
+    
+  tea:
+    name: "茶饮"
+    core_selling_points:
+      - "颜值"
+      - "解渴"
+      - "网红打卡"
+    video_focus:
+      - "制作过程"
+      - "颜值展示"
+      - "打卡场景"
+    groupon_strategy: "第二杯半价、月卡"
+    peak_hours:
+      - "10:00-22:00"
+    avg_margin: 0.65
+    best_video_duration: "10-20秒"
+    
+  dessert:
+    name: "甜品"
+    core_selling_points:
+      - "网红"
+      - "打卡"
+      - "颜值"
+    video_focus:
+      - "摆盘"
+      - "环境"
+      - "打卡照"
+    groupon_strategy: "下午茶套餐"
+    peak_hours:
+      - "14:00-18:00"
+    avg_margin: 0.60
+    best_video_duration: "15-25秒"
+
+# 抖音本地生活核心指标基准
+benchmarks:
+  exposure_to_click: 0.08      # 曝光→点击率基准 8%
+  click_to_order: 0.10        # 点击→下单转化率基准 10%
+  order_to_verify: 0.80       # 下单→核销率基准 80%
+  verify_to_repurchase: 0.25  # 核销→复购率基准 25%
+
+# 定价规则
+pricing_rules:
+  引流款:
+    margin_range: [0.20, 0.35]
+    discount_range: [0.6, 0.75]
+    positioning: "吸引新客，牺牲毛利"
+    
+  主推款:
+    margin_range: [0.40, 0.50]
+    discount_range: [0.75, 0.85]
+    positioning: "平衡毛利与吸引力"
+    
+  利润款:
+    margin_range: [0.50, 0.60]
+    discount_range: [0.80, 0.90]
+    positioning: "保证利润，提升客单价"
+    
+  爆款:
+    margin_range: [0.15, 0.25]
+    discount_range: [0.5, 0.6]
+    positioning: "限时引流，制造话题"
+
+# 视频发布最佳时间
+best_post_times:
+  weekday:
+    - "12:00-13:00"  # 午休时段
+    - "18:00-20:00"  # 晚间高峰
+    - "21:00-22:00"  # 睡前刷抖音
+  weekend:
+    - "10:00-12:00"  # 周末上午
+    - "14:00-16:00"  # 下午休闲
+    - "19:00-21:00"  # 晚间高峰
+
+# 冷启动清单
+cold_start_checklist:
+  - step: 1
+    task: "POI认领"
+    priority: "P0"
+    desc: "认领抖音店铺POI，完善基础信息"
+    estimated_time: "1天"
+    
+  - step: 2
+    task: "基础装修"
+    priority: "P0"
+    desc: "上传店铺门头、环境、菜品图片（至少9张）"
+    estimated_time: "2天"
+    
+  - step: 3
+    task: "首条视频"
+    priority: "P0"
+    desc: "发布第一条店铺介绍视频（15-30秒）"
+    estimated_time: "3天"
+    
+  - step: 4
+    task: "首单团购"
+    priority: "P0"
+    desc: "上线第一个引流团购（低价爆款）"
+    estimated_time: "1周"
+    
+  - step: 5
+    task: "达人合作"
+    priority: "P1"
+    desc: "联系同城探店达人，安排探店"
+    estimated_time: "2周"
+    
+  - step: 6
+    task: "DOU+投放"
+    priority: "P1"
+    desc: "对优质视频投放DOU+测试（100-300元）"
+    estimated_time: "持续"
+    
+  - step: 7
+    task: "私域搭建"
+    priority: "P2"
+    desc: "建立粉丝群，引导核销顾客入群"
+    estimated_time: "持续"
+
+# 常见问题与解决方案
+common_issues:
+  - problem: "曝光低"
+    causes:
+      - "内容质量差"
+      - "账号权重低"
+      - "发布时间不对"
+    solutions:
+      - "优化视频前3秒，增加视觉冲击"
+      - "DOU+投放测试，找到优质内容方向"
+      - "调整发布时间，选择高峰时段"
+      
+  - problem: "点击率低"
+    causes:
+      - "团购吸引力不足"
+      - "主图不够吸引"
+      - "标题不够诱人"
+    solutions:
+      - "调整价格梯度，增加引流款"
+      - "优化团购主图，突出性价比"
+      - "优化标题，加入数字、情绪词"
+      
+  - problem: "下单转化低"
+    causes:
+      - "详情页说服力不够"
+      - "评价太少"
+      - "价格对比不清晰"
+    solutions:
+      - "增加买家秀、探店视频"
+      - "引导好评，积累口碑"
+      - "明确标注原价，突出优惠力度"
+      
+  - problem: "核销率低"
+    causes:
+      - "体验与预期不符"
+      - "预约困难"
+      - "服务态度差"
+    solutions:
+      - "优化套餐内容，确保体验达标"
+      - "简化预约流程，增加时段"
+      - "加强员工培训，提升服务意识"
+      
+  - problem: "复购率低"
+    causes:
+      - "缺乏留存机制"
+      - "没有会员体系"
+      - "私域运营弱"
+    solutions:
+      - "建立会员积分体系"
+      - "引导加微信/入群"
+      - "定期推送优惠活动"

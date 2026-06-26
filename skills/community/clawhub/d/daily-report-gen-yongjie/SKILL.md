@@ -1,35 +1,72 @@
 ---
-name: "日报/周报生成器"
-description: "日报/周报生成器 | 根据工作内容描述自动生成结构化工日报/周报，支持军工格式和通用格式"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-report-gen-yongjie"
-sourceUrl: "https://clawhub.ai/skills/daily-report-gen-yongjie"
+name: daily-report-generator
+description: 日报/周报生成器 | 根据工作内容描述自动生成结构化工日报/周报，支持军工格式和通用格式
 ---
 
 # 日报/周报生成器
 
-> 日报/周报生成器 | 根据工作内容描述自动生成结构化工日报/周报，支持军工格式和通用格式
+根据一天/一周的工作内容描述，自动生成格式规范、结构清晰的日报或周报。支持普通企业格式和军工体系格式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-report-gen-yongjie`
-- **Source URL:** [https://clawhub.ai/skills/daily-report-gen-yongjie](https://clawhub.ai/skills/daily-report-gen-yongjie)
+## 适用场景
 
-## Overview
+- 日报/周报撰写困难症
+- 需要规范化汇报格式
+- 军工企业标准格式要求
+- 项目进度汇报
 
+## 支持的格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-report-gen-yongjie
+| 格式类型 | 适用场景 |
+|----------|----------|
+| 通用格式 | 一般企业，项目汇报 |
+| 军工格式 | 符合GJB体系，含技术状态管理要素 |
+| 简洁格式 | 快速日报，要言不烦 |
+| 详细格式 | 汇报上级/客户，需详细说明 |
+
+## 输入方式
+
+**方式一：自然语言描述**
+```
+用户：今天做了FOC参数调试，完成了电磁仿真，发现轴承有问题要换供应商，参加了项目评审会
+```
+
+**方式二：分条列举**
+```
+- 完成了电机方案设计
+- 跟进轴承供应商
+- 参加项目评审
+```
+
+## 输出结构
+
+标准日报/周报包含：
+
+| 模块 | 内容 |
+|------|------|
+| 基本信息 | 日期、姓名、部门、项目 |
+| 今日/本周完成 | 已完成的任务及产出 |
+| 进行中 | 正在进行的工作 |
+| 明日/下周计划 | 计划开展的工作 |
+| 问题与风险 | 遇到的困难、需要支持的事项 |
+| 备注 | 其他说明 |
+
+## 军工格式扩展
+
+如选择军工格式，额外包含：
+- 技术状态标识
+- 质量记录编号
+- 设计评审/验证状态
+- 依据标准引用（GJB9001C等）
+
+## 示例对话
+
+```
+用户：用军工格式生成本周周报
+- 周一：完成无刷力矩电机电磁方案设计
+- 周二： Maxwell仿真验证，发现磁密偏高达标
+- 周三：调整气隙长度，仿真复验通过
+- 周四：参加设计评审会，通过评审
+- 周五：编制设计输出文件
+
+助手：（生成符合GJB格式的周报）
 ```

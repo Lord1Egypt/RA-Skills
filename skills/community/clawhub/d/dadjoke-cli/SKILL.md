@@ -1,35 +1,27 @@
 ---
-name: "Random Test"
+name: joke-teller
 description: "Tells programming jokes to brighten your day."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dadjoke-cli"
-sourceUrl: "https://clawhub.ai/skills/dadjoke-cli"
+allowed-tools: Bash
 ---
 
-# Random Test
+# Joke Teller
 
-> Tells programming jokes to brighten your day.
+A simple skill that tells programming jokes.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dadjoke-cli`
-- **Source URL:** [https://clawhub.ai/skills/dadjoke-cli](https://clawhub.ai/skills/dadjoke-cli)
+## Tell a Joke
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dadjoke-cli
+echo "Why do programmers prefer dark mode? Because light attracts bugs."
 ```
+
+## Tell Another Joke
+
+```bash
+echo "There are only 10 types of people in the world: those who understand binary and those who don't."
+```
+
+## Usage Tips
+
+- Use when you need a laugh during debugging
+- Great for breaking the ice in code reviews
+- Works offline, no API key needed

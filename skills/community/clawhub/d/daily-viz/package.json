@@ -1,0 +1,12 @@
+{
+  "name": "daily-viz",
+  "version": "1.0.0",
+  "description": "Daily life tracking and data visualization for OpenClaw",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["openclaw", "skill", "tracking", "visualization"],
+  "author": "军哥",
+  "license": "MIT"
+}

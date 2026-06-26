@@ -1,0 +1,16 @@
+{
+  "output_dir": "/tank/obsidian/每日语录",
+  "image_api_key": "${SEEDREAM_API_KEY}",
+  "voice_enabled": true,
+  "channels": ["telegram"],
+  "image_size": "2k",
+  "image_style": "写实摄影风格，高清，有深度",
+  "voice_speed": 1.0,
+  "max_retries": 3,
+  "retry_delay": 5,
+  "log_level": "INFO",
+  "backup_enabled": true,
+  "backup_dir": "/tank/backups/每日语录",
+  "notify_on_success": true,
+  "notify_on_failure": true
+}

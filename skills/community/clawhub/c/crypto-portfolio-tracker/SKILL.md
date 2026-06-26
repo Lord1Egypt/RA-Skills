@@ -1,35 +1,44 @@
 ---
-name: "Crypto Portfolio Tracker"
-description: "加密貨幣Portfolio追蹤 - 支援TRON/ETH/BSC，分析持倉、收益、Gas費用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-portfolio-tracker"
-sourceUrl: "https://clawhub.ai/skills/crypto-portfolio-tracker"
+name: crypto-portfolio-tracker
+description: 加密貨幣Portfolio追蹤 - 支援TRON/ETH/BSC，分析持倉、收益、Gas費用
+version: 1.0.0
+tags:
+  - crypto
+  - defi
+  - tron
+  - eth
+  - portfolio
+  - tracking
 ---
 
 # Crypto Portfolio Tracker
 
-> 加密貨幣Portfolio追蹤 - 支援TRON/ETH/BSC，分析持倉、收益、Gas費用
+追蹤你既加密貨幣投資組合。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-portfolio-tracker`
-- **Source URL:** [https://clawhub.ai/skills/crypto-portfolio-tracker](https://clawhub.ai/skills/crypto-portfolio-tracker)
+## 支援網絡
 
-## Overview
+- 🌐 TRON (TRC20)
+- 🔷 Ethereum (ERC20)
+- 🔶 BSC (BEP20)
 
+## 功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 💰 餘額查詢
+- 📊 持倉分析
+- 📈 收益計算
+- ⛽ Gas費用追蹤
+- 🔔 價格alert (optional)
+
+## 使用
+
 ```bash
-hermes skills install clawhub/crypto-portfolio-tracker
+# TRON餘額
+tron wallet --address TXXX... balance
+
+# 查詢代幣
+tron token --address TXXX... balance --symbol USDT
 ```
+
+## 整合
+
+可以配合 Sunswap DEX skill 做swap分析。

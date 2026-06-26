@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "status",
+    "run_id",
+    "delivery_contract",
+    "media_contract",
+    "state_commit"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["ok", "skip", "notify_owner", "needs_review", "dry_run"]
+    },
+    "pipeline_stage": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "life_context": {
+      "type": "object",
+      "required": ["generated_at", "timezone", "speaker", "today", "event", "reality_check"],
+      "properties": {
+        "generated_at": { "type": "string" },
+        "timezone": { "type": "string" },
+        "speaker": {
+          "type": "object",
+          "required": ["name", "identity", "write_as"],
+          "properties": {
+            "name": { "type": "string" },
+            "identity": { "type": "string" },
+            "write_as": { "type": "string" },
+            "boundary": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "today": { "type": "object" },
+        "event": { "type": "object" },
+        "delivery_mood": { "type": "object" },
+        "reality_check": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "delivery_contract": {
+      "type": "object",
+      "required": ["channel", "target", "account", "send_in_main_turn"],
+      "properties": {
+        "channel": { "type": "string" },
+        "target": { "type": "string" },
+        "account": { "type": "string" },
+        "send_in_main_turn": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "media_contract": {
+      "type": "object",
+      "required": ["kind", "async", "count", "completion_event_is_sender", "callback_context"],
+      "properties": {
+        "kind": { "type": "string" },
+        "async": { "type": "boolean" },
+        "count": { "type": "integer", "minimum": 0 },
+        "tool_name": { "type": "string" },
+        "completion_event_is_sender": { "type": "boolean" },
+        "callback_context": {
+          "type": "object",
+          "required": [
+            "strategy",
+            "requires_original_session_context",
+            "send_media_with",
+            "commit_after_media_send_with"
+          ],
+          "properties": {
+            "strategy": { "type": "string" },
+            "requires_original_session_context": { "type": "boolean" },
+            "send_media_with": { "type": "string" },
+            "commit_after_media_send_with": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "state_commit": {
+      "type": "object",
+      "required": ["when", "token", "command"],
+      "properties": {
+        "when": {
+          "type": "string",
+          "enum": ["after_text_send"]
+        },
+        "token": { "type": "string" },
+        "command": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

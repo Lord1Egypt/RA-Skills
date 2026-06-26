@@ -1,35 +1,194 @@
 ---
-name: "Deepthink Expert"
+name: deepthink-expert
+version: 2.0.0
 description: "升级版Expert Mode | 集成Claude Code多Agent并行机制 | 代码审查(4Agent并行+置信度评分) | 特性开发(7阶段工作流) | 复杂决策(7专家会诊+交叉验证) | 自动Ralph循环调试"
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, problem-solving, thinking]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/deepthink-expert"
-sourceUrl: "https://clawhub.ai/skills/deepthink-expert"
+author:
+  name: Hao Zheng
 ---
 
-# Deepthink Expert
+# 🧠 DeepThink Expert Mode v2.0
 
-> 升级版Expert Mode | 集成Claude Code多Agent并行机制 | 代码审查(4Agent并行+置信度评分) | 特性开发(7阶段工作流) | 复杂决策(7专家会诊+交叉验证) | 自动Ralph循环调试
+## 用途
+处理复杂/高难度任务时自动切换为**多Agent专家协作模式**，集成Claude Code源码泄露中的核心技术。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/deepthink-expert`
-- **Source URL:** [https://clawhub.ai/skills/deepthink-expert](https://clawhub.ai/skills/deepthink-expert)
+---
 
-## Overview
+## 自动触发机制
 
+### 🔴 强制触发
+- 用户说"专家模式"、"多Agent"、"并行分析"
+- 涉及大额（>$100）/法律/合规/医学/安全决策
+- 用户要求"用专业方式分析"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/deepthink-expert
+### 🟡 建议触发
+- 问题需要多个专业知识交叉验证
+- 代码审查、复杂调试、架构设计
+- 信息矛盾需要综合研判
+
+### 🔵 自适应触发
+- 用户表现出犹豫/不确定
+- 与之前给出的结论矛盾
+- 影响面较大的决策
+
+---
+
+## ⚡ 核心模式（从Claude Code源码移植）
+
+### 模式一：四Agent并行审查 🕵️
+
+**来源：** code-review 插件（4 Agent并行 + 置信度评分）
+
 ```
+┌─ 问题 ───────────────────────────────┐
+│ "审查这段代码 / 分析这个问题"         │
+└────────────────┬─────────────────────┘
+                 ▼
+    ┌─────────────────────────────┐
+    │ Step 1: 可行性判断 (快速)   │
+    │ 是否值得4Agent并行分析？    │
+    └─────────────┬───────────────┘
+                  ▼
+    ┌─────────────────────────────┐
+    │ Step 2: 多Agent并行分析     │
+    ├─ Agent A: 架构/逻辑审查     │
+    ├─ Agent B: 安全/风险审查     │
+    ├─ Agent C: 质量/优化审查     │
+    └─ Agent D: 兼容性/回归审查   ┘
+                  ⬇ (并行执行)
+    ┌─────────────────────────────┐
+    │ Step 3: 交叉验证             │
+    │ 每个Agent审查其他Agent结果   │
+    │ 输出置信度评分 (0-100)       │
+    └─────────────┬───────────────┘
+                  ▼
+    ┌─────────────────────────────┐
+    │ Step 4: 置信度过滤           │
+    │ ≥80: 高置信度 → 最终报告    │
+    │ 50-79: 中置信度 → 标注说明  │
+    │ <50: 低置信度 → 丢弃         │
+    └─────────────────────────────┘
+```
+
+**适用场景：** 代码审查、方案评估、文档审核、安全审计
+
+---
+
+### 模式二：七阶段工作流 📋
+
+**来源：** feature-dev 插件
+
+```
+Phase 1 发现     → 理解需求、范围、约束
+Phase 2 探索     → 并行2-3个Agent深入分析代码库/上下文
+Phase 3 澄清     → 识别模糊点 → ⏳ 等待用户回答
+Phase 4 设计     → 3个架构方案（最小改动/优雅架构/务实平衡）
+Phase 5 实现     → ⏳ 等待用户审批后开始
+Phase 6 审查     → 3个Agent并行审查（简洁性/Bug/规范）
+Phase 7 总结     → 输出完整报告 + 后续建议
+```
+
+**适用场景：** 复杂编码、新功能开发、系统重构
+
+---
+
+### 模式三：七专家会诊 👨‍⚕️
+
+**来源：** 原始Expert Mode + 并行机制升级
+
+| 专家 | 专长领域 |
+|------|---------|
+| 🎯 **Strategy Analyst** | 策略分析、权衡取舍、市场判断 |
+| 🔍 **Logic Critic** | 逻辑漏洞、假设错误、思维盲区 |
+| 💰 **Financial Auditor** | 成本计算、ROI分析、风险量化 |
+| 🏗️ **Technical Architect** | 系统设计、技术可行性、架构评审 |
+| 👿 **Devils Advocate** | 反向论证、最坏场景、安全边界 |
+| 📊 **Data Scientist** | 统计分析、预测建模、数据验证 |
+| 🌐 **Scenario Planner** | 多场景推演、概率加权、应对预案 |
+
+每位专家输出：
+1. **专业判断**
+2. **置信度** (0-100%)
+3. **关键假设**
+
+---
+
+### 模式四：Ralph 自循环调试 🔄
+
+**来源：** ralph-wiggum 插件
+
+```
+用户: "修复这个bug"
+
+/ralph "修复[问题]" --completion-promise "FIXED"
+
+循环开始:
+  ┌─ 1. AI分析问题并修复 ──────────────┐
+  │ 2. 测试修复是否有效                  │
+  │ 3. 如果完成 → 输出 <promise>FIXED    │
+  │ 4. 如果失败 → 保留修改痕迹回到第1步  │
+  └───────────────────────────────────┘
+  每次循环看到之前的修改和git历史
+  持续迭代直到成功或达到最大次数
+```
+
+**适用场景：** 反复出错的bug修复、编译/测试失败的自动修复
+
+---
+
+## 🎯 自动模式选择
+
+| 问题类型 | 推荐模式 | 原因 |
+|---------|---------|------|
+| 代码审查 | 🕵️ 四Agent并行 | 多角度审查，置信度过滤假阳性 |
+| 新功能开发 | 📋 七阶段工作流 | 需要系统性规划 |
+| 投资/商业决策 | 👨‍⚕️ 七专家会诊 | 多领域交叉验证 |
+| 反复失败的bug | 🔄 Ralph循环 | 自动迭代直到修复 |
+| 安全审计 | 🕵️+🔒 并行+安全 | 安全是最高优先级 |
+| 架构设计 | 📋+👨‍⚕️ 工作流+会诊 | 先规划再设计 |
+
+---
+
+## 输出格式
+
+### 快速版（默认）
+```
+🧠 [DeepThink Mode]
+📋 模式：🕵️ 四Agent并行 / 📋 七阶段工作流 / 👨‍⚕️ 七专家会诊 / 🔄 Ralph循环
+🎯 问题：{一句话}
+🔬 分析：{关键发现列表}
+📊 置信度：{整体评分}
+💡 结论：{行动建议}
+
+💬 输入"详细分析"展开完整报告
+```
+
+### 完整版（用户说"详细分析"时）
+详细输出所有Agent的独立分析 + 交叉验证结果 + 置信度评分 + 最终建议。
+
+---
+
+## 模式退出
+
+自动退出条件：
+- 问题已解决
+- 用户说"就这样"
+- 连续2次迭代无新发现
+
+手动退出：说"退出专家模式"或"普通模式"
+
+---
+
+## 注意事项
+
+1. 多Agent模式消耗更多token，仅在需要时启用
+2. 默认使用"快速版"，用户要求时展开"详细版"
+3. 置信度 < 50% 的建议不采纳，标注清楚
+4. Ralph循环默认最大5次迭代，防止无限循环
+5. 交叉验证是核心——每个Agent必须审查其他Agent的结论
+
+---
+
+## 版本历史
+
+- v1.0 - 初始Expert Mode（7专家会诊）
+- v2.0 - 加入多Agent并行审查、7阶段工作流、Ralph循环、置信度评分系统

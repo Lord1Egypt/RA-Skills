@@ -1,0 +1,15 @@
+# 定时任务配置示例
+# 添加到 crontab: crontab -e
+
+# 每天早上 8 点播报
+0 8 * * * bash /root/.openclaw/workspace/skills/daily-news-skill/scripts/news_broadcast.sh >> /tmp/news_broadcast.log 2>&1
+
+# 每天早上 7 点 30 分播报
+30 7 * * * bash /root/.openclaw/workspace/skills/daily-news-skill/scripts/news_broadcast.sh >> /tmp/news_broadcast.log 2>&1
+
+# 工作日早上 8 点播报
+0 8 * * 1-5 bash /root/.openclaw/workspace/skills/daily-news-skill/scripts/news_broadcast.sh >> /tmp/news_broadcast.log 2>&1
+
+# 每天早晚各播报一次
+0 8 * * * bash /root/.openclaw/workspace/skills/daily-news-skill/scripts/news_broadcast.sh >> /tmp/news_broadcast.log 2>&1
+0 20 * * * bash /root/.openclaw/workspace/skills/daily-news-skill/scripts/news_broadcast.sh >> /tmp/news_broadcast.log 2>&1

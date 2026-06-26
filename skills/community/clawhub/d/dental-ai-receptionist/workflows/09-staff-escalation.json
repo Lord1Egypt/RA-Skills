@@ -1,0 +1,320 @@
+{
+  "name": "Dental AI — 09 Staff Escalation & Call Summary",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dental-ai/escalate",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Escalation Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "dental-escalate",
+      "id": "n9-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\nconst data = {\n  call_id: body.call_id || '',\n  caller_phone: body.caller_phone || body.patient_phone || '',\n  caller_name: body.caller_name || body.patient_name || 'Unknown',\n  reason: body.reason || body.ended_reason || 'Not specified',\n  transcript: body.transcript || '',\n  summary: body.summary || '',\n  question: body.question || '',\n  ai_answer: body.ai_answer || '',\n  intent: body.intent || 'escalation',\n  source: body.source || 'voice_agent',\n  recording_url: body.recording_url || '',\n  duration: body.duration || 0,\n  platform: body.platform || '',\n  timestamp: new Date().toISOString(),\n  priority: 'normal'\n};\n\n// Determine priority\nconst urgentKeywords = ['emergency', 'pain', 'bleeding', 'complaint', 'angry', 'urgent', 'insurance issue', 'billing'];\nconst transcriptLower = (data.transcript + ' ' + data.reason + ' ' + data.summary).toLowerCase();\nif (urgentKeywords.some(k => transcriptLower.includes(k))) {\n  data.priority = 'high';\n}\n\nreturn [{ json: data }];"
+      },
+      "name": "Parse Escalation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "n9-parse"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a dental clinic assistant. Generate a concise, professional call summary for the front desk staff. Include:\n1. Caller name and phone\n2. Reason for call\n3. Key details from the conversation\n4. Recommended action for staff\n5. Priority level\n\nKeep it brief and actionable.\n\nCALL DATA:\n- Caller: {{ $json.caller_name }} ({{ $json.caller_phone }})\n- Reason: {{ $json.reason }}\n- Source: {{ $json.source }}\n- AI Answer Given: {{ $json.ai_answer || 'None' }}\n- Question Asked: {{ $json.question || 'N/A' }}\n- Transcript/Summary: {{ $json.summary || $json.transcript || 'No transcript available' }}\n- Duration: {{ $json.duration }}s\n- Priority: {{ $json.priority }}",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.2,
+          "maxTokens": 400
+        }
+      },
+      "name": "AI Generate Summary",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        700,
+        400
+      ],
+      "id": "n9-ai",
+      "credentials": {
+        "openAiApi": {
+          "id": "={{$env.OPENAI_CRED_ID}}",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiResponse = $input.first().json;\nconst prevData = $('Parse Escalation').first().json;\n\nconst callSummary = aiResponse.choices?.[0]?.message?.content || aiResponse.message?.content || 'Summary generation failed. Please review call recording.';\n\nreturn [{\n  json: {\n    ...prevData,\n    call_summary: callSummary\n  }\n}];"
+      },
+      "name": "Prepare Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        400
+      ],
+      "id": "n9-prepare"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.DENTAL_CLINIC_EMAIL}}",
+        "toEmail": "={{$env.DENTAL_STAFF_EMAIL}}",
+        "subject": "={{ $json.priority === 'high' ? '🔴 HIGH PRIORITY' : '📞' }} Escalation: {{ $json.caller_name }} — {{ $json.reason }}",
+        "html": "=<div style='font-family:Arial,sans-serif;max-width:600px;'><h2 style='color:{{ $json.priority === \"high\" ? \"#dc2626\" : \"#2563eb\" }};'>{{ $json.priority === 'high' ? 'High Priority ' : '' }}Call Escalation</h2><div style='background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px;margin:16px 0;'><table style='width:100%;border-collapse:collapse;'><tr><td style='padding:8px 0;color:#64748b;width:130px;'>Caller</td><td style='padding:8px 0;font-weight:bold;'>{{ $json.caller_name }}</td></tr><tr><td style='padding:8px 0;color:#64748b;'>Phone</td><td style='padding:8px 0;'><a href='tel:{{ $json.caller_phone }}'>{{ $json.caller_phone }}</a></td></tr><tr><td style='padding:8px 0;color:#64748b;'>Reason</td><td style='padding:8px 0;'>{{ $json.reason }}</td></tr><tr><td style='padding:8px 0;color:#64748b;'>Priority</td><td style='padding:8px 0;'><span style='background:{{ $json.priority === \"high\" ? \"#fef2f2\" : \"#f0f9ff\" }};color:{{ $json.priority === \"high\" ? \"#dc2626\" : \"#2563eb\" }};padding:2px 8px;border-radius:4px;font-size:13px;'>{{ $json.priority.toUpperCase() }}</span></td></tr><tr><td style='padding:8px 0;color:#64748b;'>Call Time</td><td style='padding:8px 0;'>{{ $json.timestamp }}</td></tr><tr><td style='padding:8px 0;color:#64748b;'>Duration</td><td style='padding:8px 0;'>{{ $json.duration }}s</td></tr>{{ $json.recording_url ? \"<tr><td style='padding:8px 0;color:#64748b;'>Recording</td><td style='padding:8px 0;'><a href='\" + $json.recording_url + \"'>Listen to Call</a></td></tr>\" : '' }}</table></div><h3 style='color:#1e293b;'>AI Call Summary</h3><div style='background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:20px;white-space:pre-wrap;'>{{ $json.call_summary }}</div><p style='margin-top:20px;'><strong>Action Required:</strong> Please follow up with this patient at your earliest convenience.</p></div>",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Email Staff with Summary",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        300
+      ],
+      "id": "n9-email",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "is-high",
+              "leftValue": "={{ $json.priority }}",
+              "rightValue": "high",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "High Priority?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        500
+      ],
+      "id": "n9-if-priority"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{$env.DENTAL_DENTIST_PHONE}}",
+        "body": "=HIGH PRIORITY ESCALATION: {{ $json.caller_name }} ({{ $json.caller_phone }}) needs urgent attention. Reason: {{ $json.reason }}. Check email for full summary."
+      },
+      "name": "SMS Alert to Manager",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        440
+      ],
+      "id": "n9-sms-urgent",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Escalations",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "call_id": "={{ $json.call_id }}",
+            "caller_name": "={{ $json.caller_name }}",
+            "caller_phone": "={{ $json.caller_phone }}",
+            "reason": "={{ $json.reason }}",
+            "priority": "={{ $json.priority }}",
+            "source": "={{ $json.source }}",
+            "call_summary": "={{ $json.call_summary }}",
+            "recording_url": "={{ $json.recording_url }}",
+            "timestamp": "={{ $json.timestamp }}",
+            "staff_notified": "yes",
+            "resolution": ""
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Escalation",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1460,
+        260
+      ],
+      "id": "n9-log",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'escalated', call_id: $json.call_id, priority: $json.priority }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1700,
+        400
+      ],
+      "id": "n9-respond"
+    }
+  ],
+  "connections": {
+    "Escalation Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Escalation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Escalation": {
+      "main": [
+        [
+          {
+            "node": "AI Generate Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Generate Summary": {
+      "main": [
+        [
+          {
+            "node": "Prepare Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Summary": {
+      "main": [
+        [
+          {
+            "node": "Email Staff with Summary",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "High Priority?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Staff with Summary": {
+      "main": [
+        [
+          {
+            "node": "Log Escalation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High Priority?": {
+      "main": [
+        [
+          {
+            "node": "SMS Alert to Manager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Log Escalation": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SMS Alert to Manager": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

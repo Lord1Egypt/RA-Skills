@@ -1,0 +1,30 @@
+{
+  "name": "wdangz-doc-converter",
+  "version": "1.3.0",
+  "description": "调用文档转换全能王(https://www.wdangz.com)API进行文档格式转换。支持PDF/Word/Excel/PPT/图片等格式互转，OCR识别，PDF合并拆分加密等。转换完成后自动下载到原文件目录。",
+  "env_vars": [
+    {
+      "name": "WDANGZ_API_KEY",
+      "description": "文档转换全能王 API Key，从 https://www.wdangz.com 获取",
+      "required": true
+    }
+  ],
+  "scripts": [
+    "scripts/convert.py"
+  ],
+  "endpoints": [
+    "https://www.wdangz.com/api/v1/convert",
+    "https://www.wdangz.com/api/v1/checkState",
+    "https://www.wdangz.com/file/{docId}"
+  ],
+  "dependencies": [
+    "requests"
+  ],
+  "security_notes": [
+    "⚠️ 此技能会将本地文件上传到 https://www.wdangz.com 进行转换",
+    "⚠️ 请勿上传包含敏感信息、机密数据或受监管文档",
+    "⚠️ 涉及商业秘密、个人隐私的文档请使用本地转换工具",
+    "🔐 API Key 仅通过环境变量配置，不支持明文配置文件"
+  ],
+  "keywords": ["pdf", "word", "excel", "ppt", "ocr", "转换", "格式转换", "文档处理"]
+}

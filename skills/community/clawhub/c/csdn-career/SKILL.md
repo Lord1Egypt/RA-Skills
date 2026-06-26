@@ -1,35 +1,26 @@
 ---
 name: "CSDN"
 description: "提供程序员职业发展、技术博客及开源项目指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/csdn-career"
-sourceUrl: "https://clawhub.ai/skills/csdn-career"
 ---
 
-# CSDN
+# CSDN技术栈
 
-> 提供程序员职业发展、技术博客及开源项目指引。
+## 筛选项
+- 协作模式（同步办公/异步文档/在线会议）
+- 权限颗粒度（只读/编辑/管理/分享链接）
+- 跨端兼容性（PC/Mac/移动端/平板同步）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/csdn-career`
-- **Source URL:** [https://clawhub.ai/skills/csdn-career](https://clawhub.ai/skills/csdn-career)
+## 返回字段
+- 编辑版本历史/修改日志/冲突解决状态
+- 任务节点进度/截止日期提醒/项目看板
+- 存储容量/云同步状态/导出格式支持
 
-## Overview
+## 示例请求
+- “如何快速使用 CSDN技术栈 处理 [具体场景任务] ？”
+- “CSDN技术栈 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 结合协同效率反馈与软件功能升级按月度深度优化
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/csdn-career
-```
+## 注意事项
+- 核心数据建议定期离线备份；协同分享链接务必设置过期时间与访问密码。

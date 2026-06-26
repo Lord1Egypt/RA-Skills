@@ -1,35 +1,30 @@
 ---
-name: "design pick"
-description: "Generates multi-themed food collages (Viral Cakes, Street Food, Smoothie Bowls, Coffee Art, Fusion Tacos). Use when user asks for a collage of specific food..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/design-pick"
-sourceUrl: "https://clawhub.ai/skills/design-pick"
+name: design-pick
+description: "Generates multi-themed food collages (Viral Cakes, Street Food, Smoothie Bowls, Coffee Art, Fusion Tacos). Use when user asks for a collage of specific food categories, layouts with circle-masked images, or when they want to 'pick' items from a curated list."
 ---
 
-# design pick
+# Design Pick
 
-> Generates multi-themed food collages (Viral Cakes, Street Food, Smoothie Bowls, Coffee Art, Fusion Tacos). Use when user asks for a collage of specific food...
+This skill generates high-quality food collages based on predefined themes.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/design-pick`
-- **Source URL:** [https://clawhub.ai/skills/design-pick](https://clawhub.ai/skills/design-pick)
+## Usage
 
-## Overview
+Use the `generate_collage.py` script to generate collages. 
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/design-pick
+python3 /root/.openclaw/workspace/skills/design-pick/scripts/generate_collage.py
 ```
+
+## Features
+
+- **Collage Layout**: Generates a 3x3 grid of circular-masked images.
+- **Dynamic Titles**: Automatically handles "PICK 2..." or "PICK 3..." titles based on the theme.
+- **Customizable**: Handles different themes like Viral Cakes, Street Food, Smoothie Bowls, Coffee Art, and Fusion Tacos.
+
+## Themes
+
+- Viral_Cakes
+- Street_Food
+- Smoothie_Bowls
+- Coffee_Art
+- Fusion_Tacos

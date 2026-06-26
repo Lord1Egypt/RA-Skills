@@ -1,0 +1,20 @@
+[
+  {
+    "comment": "这个怎么做的？",
+    "intent": "inquiry",
+    "priority": "high",
+    "suggested_action": "public_reply",
+    "public_reply": "这个可以做，关键看你的场景和目标，想了解更具体的版本可以私信我。",
+    "dm_follow_up": "你把你的场景/目前卡点发我，我直接按你的情况给你一个更合适的建议。",
+    "notes": "example"
+  },
+  {
+    "comment": "多少钱？",
+    "intent": "buying_intent",
+    "priority": "high",
+    "suggested_action": "public_reply_plus_dm",
+    "public_reply": "可以的，这类我这边有现成思路，想看适合你的版本可以私信我。",
+    "dm_follow_up": "你把你的使用场景发我，我直接给你对应版本和建议。",
+    "notes": "example"
+  }
+]

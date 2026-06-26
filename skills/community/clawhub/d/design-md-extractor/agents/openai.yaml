@@ -1,0 +1,3 @@
+display_name: Design.md Extractor
+short_description: Generate AI-friendly design.md from a webpage URL.
+default_prompt: Generate design.md from this webpage URL using local design token extraction.

@@ -1,0 +1,56 @@
+{
+  "id": "douyin-traffic-dashboard",
+  "slug": "douyin-traffic-dashboard",
+  "question": "抖音平台流量在哪?",
+  "skillName": "抖音流量分配大盘",
+  "tags": [
+    "抖音",
+    "流量分配",
+    "热点",
+    "大盘",
+    "实时"
+  ],
+  "profession": [
+    "内容创作者",
+    "运营",
+    "电商",
+    "营销"
+  ],
+  "industry": [
+    "新媒体",
+    "电商",
+    "娱乐",
+    "通用"
+  ],
+  "hidden": false,
+  "auth": {
+    "type": "api-key",
+    "header": "X-API-Key",
+    "tenantHeader": "X-Tenant-Id"
+  },
+  "comingSoon": false,
+  "providerType": "api",
+  "providerConfig": {
+    "catalog": {
+      "icon": "BarChart3",
+      "rating": 4.9,
+      "displayOrder": 1,
+      "subProfession": [
+        "content-creator",
+        "analyst"
+      ]
+    },
+    "endpoint": "/api/v1/douyin/billboard/fetch_hot_rise_list",
+    "apiSource": "tikhub",
+    "aggregateMode": "traffic-distribution"
+  },
+  "invocationMode": "execute",
+  "invocation": {
+    "type": "execute",
+    "executePath": "/api/execute"
+  },
+  "formSchema": {
+    "type": "object",
+    "properties": {}
+  }
+}

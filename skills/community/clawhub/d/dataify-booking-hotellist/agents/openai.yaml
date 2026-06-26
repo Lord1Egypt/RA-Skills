@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Booking Hotel Info"
+  short_description: "Collect Booking hotel information through Dataify."
+  default_prompt: "Use $dataify-booking-hotellist to collect Booking hotel information by Booking URL."

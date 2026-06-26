@@ -1,0 +1,9 @@
+{
+  "name": "crypto-social-intel",
+  "version": "1.0.0",
+  "description": "Crypto social intelligence skill powered by Santiment. Social volume trending, sentiment scoring, KOL signals, mention surge detection, and Fear & Greed Index.",
+  "keywords": ["crypto", "social", "sentiment", "kol", "fear-greed", "santiment"],
+  "author": "Antalpha",
+  "license": "MIT",
+  "main": "SKILL.md"
+}

@@ -1,0 +1,32 @@
+{
+  "action_id": "mineru-error-fix-001",
+  "project": "MinerU",
+  "action_type": "information_error",
+  "target_queries": [
+    "capability-001"
+  ],
+  "baseline_run_id": "sample-run",
+  "followups": [
+    {
+      "checkpoint": "T+7",
+      "run_id": "repair-t7-run",
+      "observed_metrics": {
+        "capability_accuracy": 75.0
+      }
+    },
+    {
+      "checkpoint": "T+14",
+      "run_id": "repair-t14-run",
+      "observed_metrics": {
+        "capability_accuracy": 100.0
+      }
+    }
+  ],
+  "expected_change": {
+    "capability_accuracy": {
+      "baseline": 50.0,
+      "target": 100.0
+    }
+  },
+  "conclusion": "success"
+}

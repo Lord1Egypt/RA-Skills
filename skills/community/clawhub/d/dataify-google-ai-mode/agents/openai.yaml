@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Google AI Mode"
+  short_description: "Search Google using AI Mode"
+  default_prompt: "Use $dataify-google-ai-mode to run a search query."

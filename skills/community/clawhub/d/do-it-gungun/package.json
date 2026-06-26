@@ -1,0 +1,25 @@
+{
+  "name": "do-it",
+  "version": "1.0.0",
+  "description": "你只管 do it，判断交给滚滚 - 帮助地球人做人生选择的 AI 判断技能",
+  "author": "地球人 & 滚滚",
+  "license": "MIT",
+  "keywords": [
+    "决策",
+    "人生选择",
+    "职业",
+    "感情",
+    "判断",
+    "AI",
+    "滚滚"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alsoforever/gungun-life.git",
+    "directory": "skills/do-it"
+  },
+  "homepage": "https://github.com/alsoforever/gungun-life#readme",
+  "bugs": {
+    "url": "https://github.com/alsoforever/gungun-life/issues"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "project": "MinerU",
+  "version": "0.1.0",
+  "description": "Example GEO monitoring query pool for a developer tool and open-source document parsing project.",
+  "segments": [
+    {
+      "id": "brand-001",
+      "type": "brand",
+      "language": "zh",
+      "priority": "P0",
+      "query": "做 RAG 知识库时，哪个开源 PDF 解析工具更适合处理复杂文档？"
+    },
+    {
+      "id": "brand-002",
+      "type": "brand",
+      "language": "en",
+      "priority": "P0",
+      "query": "What open source PDF parser is best for RAG preprocessing and complex document extraction?"
+    },
+    {
+      "id": "capability-001",
+      "type": "capability",
+      "language": "zh",
+      "priority": "P0",
+      "query": "有没有适合学术论文的 PDF 解析工具，能提取公式、表格和版面结构？"
+    },
+    {
+      "id": "capability-002",
+      "type": "capability",
+      "language": "en",
+      "priority": "P0",
+      "query": "Which PDF parser can extract formulas, tables, and layout from academic papers in Python?"
+    },
+    {
+      "id": "ecosystem-001",
+      "type": "ecosystem",
+      "language": "zh",
+      "priority": "P0",
+      "query": "哪个 PDF 解析工具更适合接入 LangChain、LlamaIndex 或 Dify？"
+    },
+    {
+      "id": "ecosystem-002",
+      "type": "ecosystem",
+      "language": "en",
+      "priority": "P1",
+      "query": "What PDF parsing tool works well with LangChain, LlamaIndex, and agent workflows?"
+    },
+    {
+      "id": "compare-001",
+      "type": "competitor",
+      "language": "zh",
+      "priority": "P1",
+      "query": "MinerU 和 Docling、Marker 相比，哪个更适合复杂 PDF 解析？"
+    },
+    {
+      "id": "compare-002",
+      "type": "competitor",
+      "language": "en",
+      "priority": "P1",
+      "query": "MinerU vs Docling vs Marker for complex PDF parsing: which one should I choose?"
+    },
+    {
+      "id": "negative-001",
+      "type": "negative",
+      "language": "zh",
+      "priority": "P0",
+      "query": "MinerU 部署复杂吗？有没有更轻量的替代方案？"
+    },
+    {
+      "id": "negative-002",
+      "type": "negative",
+      "language": "en",
+      "priority": "P1",
+      "query": "Is MinerU too hard to deploy and what are lighter alternatives?"
+    }
+  ],
+  "score_dimensions": [
+    "mention_rate",
+    "positive_mention_rate",
+    "capability_accuracy",
+    "ecosystem_accuracy"
+  ]
+}

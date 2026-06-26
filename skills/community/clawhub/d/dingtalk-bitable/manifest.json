@@ -1,0 +1,214 @@
+{
+  "name": "dingtalk-bitable",
+  "version": "1.0.0",
+  "description": "钉钉多维表格 API 集成 - 表格管理、数据 CRUD",
+  "tools": [
+    {
+      "name": "bitable_list",
+      "description": "获取多维表格列表",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "space_id": {
+            "type": "string",
+            "description": "可选的空间 ID"
+          },
+          "limit": {
+            "type": "number",
+            "description": "返回数量限制，默认 20"
+          }
+        }
+      }
+    },
+    {
+      "name": "bitable_get_meta",
+      "description": "获取表格元数据（从 URL /base/XXX 或 /wiki/XXX 获取 app_token）",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_token": {
+            "type": "string",
+            "description": "表格应用 token（从 URL 获取）"
+          }
+        },
+        "required": ["app_token"]
+      }
+    },
+    {
+      "name": "bitable_list_fields",
+      "description": "获取表格字段列表",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_token": {
+            "type": "string",
+            "description": "表格应用 token"
+          },
+          "table_id": {
+            "type": "string",
+            "description": "表格 ID"
+          }
+        },
+        "required": ["app_token", "table_id"]
+      }
+    },
+    {
+      "name": "bitable_list_records",
+      "description": "查询记录（支持筛选、排序、分页）",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_token": {
+            "type": "string",
+            "description": "表格应用 token"
+          },
+          "table_id": {
+            "type": "string",
+            "description": "表格 ID"
+          },
+          "filter": {
+            "type": "string",
+            "description": "筛选条件（JSON 字符串）"
+          },
+          "sort": {
+            "type": "string",
+            "description": "排序字段（JSON 字符串）"
+          },
+          "page_size": {
+            "type": "number",
+            "description": "每页数量，默认 100"
+          },
+          "page_token": {
+            "type": "string",
+            "description": "分页 token"
+          }
+        },
+        "required": ["app_token", "table_id"]
+      }
+    },
+    {
+      "name": "bitable_get_record",
+      "description": "获取单条记录",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_token": {
+            "type": "string",
+            "description": "表格应用 token"
+          },
+          "table_id": {
+            "type": "string",
+            "description": "表格 ID"
+          },
+          "record_id": {
+            "type": "string",
+            "description": "记录 ID"
+          }
+        },
+        "required": ["app_token", "table_id", "record_id"]
+      }
+    },
+    {
+      "name": "bitable_create_record",
+      "description": "新增记录",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_token": {
+            "type": "string",
+            "description": "表格应用 token"
+          },
+          "table_id": {
+            "type": "string",
+            "description": "表格 ID"
+          },
+          "fields": {
+            "type": "object",
+            "description": "字段值（字典）"
+          }
+        },
+        "required": ["app_token", "table_id", "fields"]
+      }
+    },
+    {
+      "name": "bitable_update_record",
+      "description": "更新记录",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_token": {
+            "type": "string",
+            "description": "表格应用 token"
+          },
+          "table_id": {
+            "type": "string",
+            "description": "表格 ID"
+          },
+          "record_id": {
+            "type": "string",
+            "description": "记录 ID"
+          },
+          "fields": {
+            "type": "object",
+            "description": "要更新的字段值"
+          }
+        },
+        "required": ["app_token", "table_id", "record_id", "fields"]
+      }
+    },
+    {
+      "name": "bitable_delete_record",
+      "description": "删除记录",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_token": {
+            "type": "string",
+            "description": "表格应用 token"
+          },
+          "table_id": {
+            "type": "string",
+            "description": "表格 ID"
+          },
+          "record_id": {
+            "type": "string",
+            "description": "记录 ID"
+          }
+        },
+        "required": ["app_token", "table_id", "record_id"]
+      }
+    },
+    {
+      "name": "bitable_create_field",
+      "description": "添加字段",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "app_token": {
+            "type": "string",
+            "description": "表格应用 token"
+          },
+          "table_id": {
+            "type": "string",
+            "description": "表格 ID"
+          },
+          "field_name": {
+            "type": "string",
+            "description": "字段名称"
+          },
+          "field_type": {
+            "type": "string",
+            "description": "字段类型 (Text/Number/Date/SingleSelect/MultiSelect/Checkbox/User/Phone/URL)",
+            "default": "Text"
+          }
+        },
+        "required": ["app_token", "table_id", "field_name"]
+      }
+    }
+  ],
+  "runtime": {
+    "type": "python",
+    "entry": "run.py",
+    "requirements": ["requests"]
+  }
+}

@@ -1,0 +1,140 @@
+# 外部高算力设备配置
+
+# ComfyUI 服务器配置
+comfyui_servers:
+  # 主服务器（高算力设备）
+  main:
+    enabled: true
+    name: "高算力设备"
+    description: "局域网高算力设备，运行ComfyUI"
+    base_url: "http://{{COMFYUI_SERVER_IP}}:{{COMFYUI_SERVER_PORT}}"
+    api_endpoints:
+      prompt: "/prompt"
+      queue: "/queue"
+      history: "/history"
+      upload: "/upload/image"
+      view: "/"
+      object_info: "/object_info"
+    
+    # 连接配置
+    connection:
+      timeout: 30  # 连接超时（秒）
+      retry_attempts: 3  # 重试次数
+      retry_delay: 5  # 重试延迟（秒）
+      verify_ssl: false  # 是否验证SSL证书
+    
+    # 认证配置（如果需要）
+    authentication:
+      enabled: false
+      type: "none"  # none/basic/token/api_key
+      credentials: {}
+    
+    # 健康检查
+    health_check:
+      enabled: true
+      endpoint: "/"
+      interval: 60  # 检查间隔（秒）
+      timeout: 10  # 健康检查超时（秒）
+    
+    # 性能配置
+    performance:
+      max_concurrent_jobs: 2  # 最大并发任务数
+      queue_wait_timeout: 300  # 队列等待超时（秒）
+      execution_timeout: 600  # 执行超时（秒）
+    
+    # 工作流配置
+    workflows:
+      image_generation: "image_generation_workflow.json"
+      text_to_video: "text_to_video_workflow.json"
+      image_to_video: "image_to_video_workflow.json"
+      upscale: "upscale_workflow.json"
+    
+    # 监控配置
+    monitoring:
+      enabled: true
+      metrics:
+        - response_time
+        - success_rate
+        - queue_length
+        - error_rate
+      alert_thresholds:
+        response_time: 30  # 响应时间超过30秒告警
+        error_rate: 0.1  # 错误率超过10%告警
+        queue_length: 5  # 队列长度超过5告警
+
+# 备用服务器（可选）
+backup:
+  enabled: false
+  name: "备用服务器"
+  base_url: "http://{{BACKUP_SERVER_IP}}:{{BACKUP_SERVER_PORT}}"
+  api_endpoints:
+    prompt: "/prompt"
+    queue: "/queue"
+    history: "/history"
+  connection:
+    timeout: 30
+    retry_attempts: 2
+
+# 负载均衡策略
+load_balancing:
+  enabled: false
+  strategy: "round_robin"  # round_robin/least_connections/fastest_response
+  health_check_interval: 30
+
+# 故障转移配置
+failover:
+  enabled: false
+  primary: "main"
+  backup: "backup"
+  switch_threshold: 3  # 连续失败3次切换
+  auto_recovery: true  # 是否自动恢复
+
+# 缓存配置
+caching:
+  enabled: true
+  cache_results: true
+  cache_duration: 3600  # 缓存持续时间（秒）
+  max_cache_size: 100  # 最大缓存条目数
+
+# 日志配置
+logging:
+  enabled: true
+  level: "INFO"  # DEBUG/INFO/WARNING/ERROR
+  log_file: "./logs/external_agents.log"
+  max_file_size: 10485760  # 10MB
+  backup_count: 5
+
+# 统计配置
+statistics:
+  enabled: true
+  track_metrics:
+    - total_requests
+    - successful_requests
+    - failed_requests
+    - average_response_time
+    - total_tokens_used
+  report_interval: 3600  # 统计报告间隔（秒）
+
+# 安全配置
+security:
+  enabled: true
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+    burst_limit: 10
+  request_validation:
+    enabled: true
+    validate_input: true
+    sanitize_input: true
+  access_control:
+    enabled: false
+    allowed_ips: []
+    blocked_ips: []
+
+# 调试配置
+debug:
+  enabled: false
+  log_requests: false
+  log_responses: false
+  simulate_failures: false
+  failure_rate: 0.0

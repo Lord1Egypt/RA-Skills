@@ -1,0 +1,28 @@
+{
+  "name": "deterministic-calc",
+  "version": "1.0.0",
+  "description": "确定性计算技能 - 将确定性计算固化为代码执行，避免大模型猜测结果",
+  "main": "__init__.py",
+  "scripts": {
+    "test": "python -m pytest tests/ -v",
+    "demo": "python -m deterministic_calc calc '123456789 * 987654321'"
+  },
+  "keywords": [
+    "deterministic",
+    "calculation",
+    "math",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/deterministic-calc-skill"
+  },
+  "files": [
+    "__init__.py",
+    "SKILL.md",
+    "README.md"
+  ]
+}

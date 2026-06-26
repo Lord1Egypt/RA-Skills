@@ -1,0 +1,4 @@
+interface:
+  display_name: "Disease Innovative Drug Intelligence"
+  short_description: "A multi-database skill for disease-level innovative drug retrieval and evidence integration"
+  default_prompt: "Based on a disease name, integrate ChEMBL, ClinicalTrials, and Search evidence when needed, then generate a structured English innovative drug analysis report."

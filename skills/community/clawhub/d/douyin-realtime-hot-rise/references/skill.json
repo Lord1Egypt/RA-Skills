@@ -1,0 +1,94 @@
+{
+  "id": "douyin-realtime-hot-rise",
+  "slug": "douyin-realtime-hot-rise",
+  "question": "拍什么会有流量?",
+  "skillName": "抖音上升热点选题助手",
+  "tags": [
+    "抖音",
+    "热点",
+    "趋势",
+    "内容创作",
+    "流量"
+  ],
+  "profession": [
+    "内容创作者",
+    "运营",
+    "电商",
+    "营销"
+  ],
+  "industry": [
+    "新媒体",
+    "电商",
+    "娱乐",
+    "通用"
+  ],
+  "hidden": false,
+  "auth": {
+    "type": "api-key",
+    "header": "X-API-Key",
+    "tenantHeader": "X-Tenant-Id"
+  },
+  "comingSoon": false,
+  "providerType": "api",
+  "providerConfig": {
+    "catalog": {
+      "icon": "TrendingUp",
+      "rating": 4.9,
+      "displayOrder": 3,
+      "subProfession": [
+        "content-creator",
+        "analyst"
+      ]
+    },
+    "endpoint": "/api/v1/douyin/billboard/fetch_hot_rise_list",
+    "apiSource": "tikhub",
+    "fixedParams": {
+      "page": 1,
+      "page_size": 50
+    }
+  },
+  "invocationMode": "execute",
+  "invocation": {
+    "type": "execute",
+    "executePath": "/api/execute"
+  },
+  "formSchema": {
+    "type": "object",
+    "properties": {
+      "tag": {
+        "type": "string",
+        "title": "热点分类",
+        "description": "筛选特定分类的热点（从分类接口获取）",
+        "x-component": "CategorySelect",
+        "x-component-props": {
+          "allowClear": true,
+          "placeholder": "全部分类"
+        }
+      },
+      "order": {
+        "enum": [
+          "rank",
+          "rank_diff"
+        ],
+        "type": "string",
+        "title": "排序方式",
+        "default": "rank",
+        "enumNames": [
+          "热度排序",
+          "变化排序"
+        ],
+        "description": "选择热点排序方式"
+      },
+      "keyword": {
+        "type": "string",
+        "title": "搜索词",
+        "description": "搜索特定关键词的热点",
+        "x-component-props": {
+          "maxLength": 100,
+          "allowClear": true,
+          "placeholder": "输入关键词搜索"
+        }
+      }
+    }
+  }
+}

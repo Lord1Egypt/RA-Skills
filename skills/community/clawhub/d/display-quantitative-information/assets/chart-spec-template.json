@@ -1,0 +1,66 @@
+{
+  "title": "Monthly defect rate by production line",
+  "purpose": "Compare defect-rate trends across production lines and identify changes after a process change.",
+  "chart_type": "line",
+  "data_points": 120,
+  "variables": [
+    "month",
+    "line",
+    "defect_rate_per_1000_units"
+  ],
+  "data_grain": "one row per production line per month",
+  "encodings": {
+    "x": "month",
+    "y": "defect_rate_per_1000_units",
+    "color": "line",
+    "size": null,
+    "shape": null,
+    "facet": null,
+    "label": null
+  },
+  "axes": {
+    "x_labeled": true,
+    "y_labeled": true,
+    "units_shown": true,
+    "y_zero_baseline": null,
+    "y_scale": "linear",
+    "same_scale_across_panels": true,
+    "axis_break": false,
+    "dual_axis": false
+  },
+  "labels": {
+    "direct_labels": true,
+    "legend": false,
+    "source_shown": true,
+    "definitions_shown": true,
+    "annotations": [
+      "process change, 2025-09"
+    ]
+  },
+  "context": {
+    "denominator_shown": true,
+    "uncertainty_shown": null,
+    "sample_size_shown": null,
+    "comparison_baseline_shown": true,
+    "time_range_justified": true
+  },
+  "design": {
+    "grid": "light",
+    "decorations": [],
+    "three_d": false,
+    "background_image": false,
+    "uses_area_for_quantity": false,
+    "uses_volume_for_quantity": false,
+    "color_count": 4,
+    "color_is_only_identifier": false
+  },
+  "integrity_measurements": {
+    "data_effect_percent": null,
+    "visual_effect_percent": null
+  },
+  "medium": {
+    "destination": "report",
+    "color_required": false,
+    "minimum_text_size_pt": 9
+  }
+}

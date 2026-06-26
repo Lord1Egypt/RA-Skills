@@ -1,0 +1,250 @@
+{
+  "_comment": "LLM SQL生成 - KPI计算公式参考（从 acm-module-dashboard Service 层提取）",
+  "_source": "EarnedValueAnalysisServiceImpl.java, DashboardPlanProgressServiceImpl.java",
+  "_updated": "2026-03-26",
+
+  "挣值分析(Earned Value)公式": {
+    "_source": "EarnedValueAnalysisServiceImpl.recursionTaskTree2Summary()",
+    "_note": "用于项目整体健康度、进度偏差、成本偏差分析",
+
+    "PV_计划值": {
+      "formula": "PV = 计划完成百分比(planCompletePct) * 预算费用(budgetCost) / 100",
+      "fields": {
+        "planCompletePct": "计划完成百分比 = 已过去工期 / 总工期 * 100",
+        "budgetCost": "预算费用（从资源表 wsd_plan_taskrsrc 的 budget_cost 汇总）"
+      }
+    },
+
+    "EV_挣值": {
+      "formula": "EV = 实际完成百分比(completePct) * 预算费用(budgetCost) / 100",
+      "fields": {
+        "completePct": "任务完成百分比（来自 wsd_plan_task.complete_pct）"
+      }
+    },
+
+    "AC_实际费用": {
+      "formula": "AC = 实际费用（来自 wsd_plan_taskrsrc.act_cost 汇总）",
+      "fields": {
+        "actCost": "实际成本/费用"
+      }
+    },
+
+    "SPI_进度绩效指数": {
+      "formula": "SPI = 实际完成百分比 / 计划完成百分比",
+      "formulaCode": "spi = completePct.divide(planCompletePct, 2, RoundingMode.HALF_DOWN)",
+      "interpretation": {
+        "SPI > 1": "进度超前",
+        "SPI = 1": "进度正常",
+        "SPI < 1": "进度落后"
+      }
+    },
+
+    "CPI_成本绩效指数": {
+      "formula": "CPI = 挣值(EV) / 实际费用(AC)",
+      "formulaCode": "cpi = ev.divide(actCost, 2, RoundingMode.HALF_DOWN)",
+      "interpretation": {
+        "CPI > 1": "成本节约",
+        "CPI = 1": "成本正常",
+        "CPI < 1": "成本超支"
+      }
+    },
+
+    "SV_进度偏差": {
+      "formula": "SV = EV - PV",
+      "formulaCode": "sv = ev.subtract(pv)"
+    },
+
+    "CV_成本偏差": {
+      "formula": "CV = EV - AC",
+      "formulaCode": "cv = ev.subtract(actCost)"
+    },
+
+    "SVRate_进度偏差率": {
+      "formula": "SVRate = (实际完成百分比 - 计划完成百分比) / 100",
+      "formulaCode": "svRate = completePct.subtract(planCompletePct).divide(100, 2, RoundingMode.HALF_DOWN)"
+    },
+
+    "EAC_项目完成费用预测": {
+      "formula": "EAC = 项目预算 / CPI",
+      "formulaCode": "eac = budgetCost.divide(cpi, 2, RoundingMode.HALF_DOWN)"
+    },
+
+    "计划完成百分比计算": {
+      "_note": "基于日历工期计算，非自然日",
+      "formula": "planCompletePct = 已过去工期(overDrtn) / 总工期(planDrtn) * 100",
+      "overDrtn计算": {
+        "当前日期 < 计划开始时间": "overDrtn = 0",
+        "当前日期 > 计划结束时间": "overDrtn = planDrtn",
+        "当前日期在计划期内": "overDrtn = CalendarUtil.caculateDuration(planStartTime, currentDate, calendar)"
+      }
+    }
+  },
+
+  "任务状态判定": {
+    "_source": "DashboardPlanProgressServiceImpl.setData_v2() / getTaskRunStatus()",
+    "_note": "feedback_status 是 String 类型，值为 '0', '1', '2'（非字典表）",
+
+    "feedback_status_枚举": {
+      "0": "未开始",
+      "1": "进行中",
+      "2": "已完成"
+    },
+
+    "任务进展状态判定逻辑": {
+      "_note": "基于 feedback_status + plan_end_time + act_end_time + 当前日期 综合判定",
+
+      "未开始": {
+        "条件": "feedback_status = '0' AND 当前日期 <= plan_end_time",
+        "SQL片段": "feedback_status = 0 AND CURDATE() <= plan_end_time"
+      },
+
+      "按期进行中": {
+        "条件": "feedback_status = '1' AND 当前日期 <= plan_end_time",
+        "SQL片段": "feedback_status = 1 AND CURDATE() <= plan_end_time"
+      },
+
+      "超期未完成": {
+        "条件": "feedback_status IN ('0', '1') AND 当前日期 > plan_end_time",
+        "SQL片段": "feedback_status IN (0,1) AND CURDATE() > plan_end_time"
+      },
+
+      "按期完成": {
+        "条件": "feedback_status = '2' AND act_end_time <= plan_end_time",
+        "SQL片段": "feedback_status = 2 AND act_end_time <= plan_end_time"
+      },
+
+      "超期完成": {
+        "条件": "feedback_status = '2' AND act_end_time > plan_end_time",
+        "SQL片段": "feedback_status = 2 AND act_end_time > plan_end_time"
+      }
+    },
+
+    "里程碑(task_type=2或3)特殊处理": {
+      "_note": "开始里程碑用 act_start_time 判断，结束里程碑用 act_end_time 判断",
+      "开始里程碑(task_type=2)完成判定": "act_start_time <= plan_end_time（注意：里程碑的 plan_end_time = plan_start_time）",
+      "完成里程碑(task_type=3)完成判定": "act_end_time <= plan_end_time"
+    }
+  },
+
+  "项目健康度判定": {
+    "_note": "健康度 = 综合进度偏差 + 延期任务数 + 风险数，详见 DashboardProjectProgressServiceImpl.getTaskRunStatus()",
+
+    "健康度颜色定义": {
+      "green": "按期完成：feedback_status=2 且 act_end_time <= plan_end_time",
+      "orange": "超期完成：feedback_status=2 且 act_end_time > plan_end_time",
+      "red": "超期未完成：feedback_status=1 且 当前日期 > plan_end_time",
+      "black": "未开始或其他"
+    },
+
+    "简单健康度计算（SQL层面）": {
+      "公式": "健康度得分 = SUM(按期完成) / SUM(总数) * 100%",
+      "SQL模板": {
+        "按期完成数": "COUNT(CASE WHEN feedback_status = 2 AND act_end_time <= plan_end_time THEN 1 END)",
+        "超期完成数": "COUNT(CASE WHEN feedback_status = 2 AND act_end_time > plan_end_time THEN 1 END)",
+        "超期未完成数": "COUNT(CASE WHEN feedback_status IN (0,1) AND CURDATE() > plan_end_time THEN 1 END)",
+        "正常进行中数": "COUNT(CASE WHEN feedback_status = 1 AND CURDATE() <= plan_end_time THEN 1 END)"
+      }
+    }
+  },
+
+  "年度任务进展统计": {
+    "_source": "DashboardPlanProgressServiceImpl.queryDashboardProgressCount()",
+
+    "时间范围": {
+      "本年": "DateUtil.getYearStart() ~ DateUtil.getYearEndTime()",
+      "本季": "DateUtil.getQuarterStartTime() ~ DateUtil.getQuarterEndTime()",
+      "本月": "DateUtil.getMonthStartTime() ~ DateUtil.getMonthEndTime()",
+      "今日": "DateUtil.appendEndTime(new Date())"
+    },
+
+    "进展状态统计指标": {
+      "aqjx": "按期进行中",
+      "aqwc": "按期完成",
+      "tqwc": "超期完成",
+      "tqww": "超期未完成",
+      "wks": "正常未开始（计划开始时间未到）",
+      "cqwks": "超期未开始（计划开始时间已过但未开始）",
+      "allcount": "任务总数"
+    }
+  },
+
+  "项目进度完成率": {
+    "_source": "DashboardPlanProgressServiceImpl.queryDashboardProgressInfo()",
+
+    "计划完成率": {
+      "公式": "planRate = (今日计划累计产值 / 项目总计划产值) * 100%",
+      "公式Code": "planRate = TodayPlanSum / PlanSum * 100"
+    },
+
+    "实际完成率": {
+      "公式": "actRate = (实际累计产值 / 项目总计划产值) * 100%",
+      "公式Code": "actRate = ActSum / PlanSum * 100"
+    },
+
+    "计划产值字段": {
+      "planSum": "项目总计划产值",
+      "todayPlanSum": "今日计划产值",
+      "actSum": "实际累计产值",
+      "thiyearPlanSum": "今年计划产值",
+      "thiyearActSum": "今年实际产值"
+    }
+  },
+
+  "里程碑数据来源": {
+    "_note": "里程碑不存在独立表，通过 wsd_plan_task.task_type IN (2,3) 标识",
+    "task_type_枚举": {
+      "2": "开始里程碑",
+      "3": "完成里程碑"
+    },
+    "里程碑完成状态判定": {
+      "_source": "DashboardPlanMilestoneServiceImpl",
+      "未开始": "feedback_status=0 AND 当前日期 <= plan_end_time",
+      "进行中": "feedback_status=1",
+      "已完成_按期": "feedback_status=2 AND act_end_time <= plan_end_time",
+      "已完成_超期": "feedback_status=2 AND act_end_time > plan_end_time",
+      "拖期未完成": "feedback_status=0 AND 当前日期 > plan_end_time"
+    }
+  },
+
+  "资源负载计算": {
+    "算法": "资源负载 = Y / (N × X) × 100%",
+    "参数说明": {
+      "Y": "资源计划总人天 = SUM(BUDGET_QTY) / 8",
+      "N": "资源人员数量 = COUNT(DISTINCT RSRC_ID)",
+      "X": "工作日天数 = 日期范围内总天数 × (252/365)，前端动态计算并传入"
+    },
+    "工时统计": {
+      "计划工期": "SUM(wsd_plan_taskrsrc.plan_drtn) / 8（人天）",
+      "实际工时": "SUM(wsd_plan_taskrsrc.act_qty) / 8（人天）",
+      "剩余工时": "SUM(wsd_plan_taskrsrc.remain_qty) / 8（人天）"
+    },
+    "SQL模板": {
+      "SELECT": "r.ORG_ID, o.ORG_NAME as dept_name, COUNT(DISTINCT r.ID) as resource_count, SUM(t.BUDGET_QTY) / 8 as total_plan_days, COUNT(DISTINCT r.ID) * ? as total_capacity_days, SUM(t.BUDGET_QTY) / 8 / (COUNT(DISTINCT r.ID) * ?) * 100 as load_rate",
+      "FROM": "wsd_plan_taskrsrc t JOIN wsd_rsrc_user r ON t.RSRC_ID = r.ID LEFT JOIN wsd_sys_org o ON r.ORG_ID = o.ID",
+      "WHERE": "r.ORG_ID IS NOT NULL AND t.PLAN_START_TIME >= ? AND t.PLAN_START_TIME <= ?",
+      "GROUP_BY": "r.ORG_ID, o.ORG_NAME",
+      "ORDER_BY": "load_rate DESC"
+    },
+    "阈值": {
+      "<70%": "空闲",
+      "70%-90%": "正常",
+      ">90%": "过载"
+    },
+    "前端调用": "executeQuery('resourceLoad', [workingDays, workingDays, startDate, endDate])"
+  },
+
+  "风险热力图": {
+    "四象限": {
+      "X轴": "影响程度 (aftermath_level, 1-5)",
+      "Y轴": "发生概率 (probability_level, 1-5)"
+    },
+    "象限划分": {
+      "高风险区": "probability >= 3 AND impact >= 3",
+      "中风险区": "probability >= 2 OR impact >= 2",
+      "低风险区": "probability < 2 AND impact < 2"
+    },
+    "SQL模板": {
+      "热力数据": "SELECT probability_level, aftermath_level, COUNT(*) FROM wsd_risk_register WHERE project_id = ? AND del = 0 GROUP BY probability_level, aftermath_level"
+    }
+  }
+}

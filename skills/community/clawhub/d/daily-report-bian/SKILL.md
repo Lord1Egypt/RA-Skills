@@ -1,35 +1,87 @@
----
-name: "daily-report-bian"
-description: "自动生成并在指定时间通过飞书推送每日研究进展报告，内容涵盖今日进展、延续项目、明日计划及系统状态，字数不超1000字。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-report-bian"
-sourceUrl: "https://clawhub.ai/skills/daily-report-bian"
----
+# Daily Report Skill - 每日研究进展推送
 
-# daily-report-bian
+## 功能说明
 
-> 自动生成并在指定时间通过飞书推送每日研究进展报告，内容涵盖今日进展、延续项目、明日计划及系统状态，字数不超1000字。
+自动生成每日研究进展报告，并在指定时间推送给用户。报告总字数控制在 1000 字以内。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-report-bian`
-- **Source URL:** [https://clawhub.ai/skills/daily-report-bian](https://clawhub.ai/skills/daily-report-bian)
+## 数据源
 
-## Overview
+1. **当天会话记录** - 从飞书会话 JSONL 文件读取
+2. **最近 7 天记忆文件** - 读取 `memory/YYYY-MM-DD.md`
 
+## 核心逻辑
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-report-bian
+### 1. 项目识别
+- 从当天会话中提取完成的任务/项目
+- 从最近 7 天记忆文件中识别延续性项目
+- 保持项目命名前后一致
+
+### 2. 报告生成
+- 按模板填充内容
+- 总字数 ≤1000 字
+- 结构清晰，分条罗列
+
+### 3. 记忆更新
+- 报告生成后追加到当天记忆文件
+- 避免重复记录
+
+### 4. 推送配置
+- 默认推送时间：22:00
+- 推送渠道：飞书私聊
+- 支持用户自定义时间
+
+## 文件结构
+
 ```
+daily-report/
+├── SKILL.md          # 本文件
+├── generate.js       # 报告生成核心逻辑
+├── config.json       # 配置（推送时间、数据源天数等）
+└── template.md       # 报告模板
+```
+
+## 报告结构
+
+1. **今日进展** - 从会话记录和记忆文件提取
+2. **延续性项目** - 持续进行中的项目列表
+3. **明日计划** - 基于今日进展推导
+4. **系统状态** - 上下文占用等
+5. **月度工作热力图** - GitHub 风格，展示最近 30 天工作量
+
+## 使用方法
+
+### 手动生成
+```bash
+node /root/.openclaw/workspace/skills/daily-report/generate.js
+```
+
+### Cron 定时任务（已配置）
+```bash
+# 查看任务
+openclaw cron list
+
+# 修改推送时间（如改为 21:00）
+openclaw cron edit <job-id> --cron "0 21 * * *"
+
+# 手动测试
+openclaw cron run <job-id>
+```
+
+### 默认配置
+- **推送时间**: 22:00 (Asia/Shanghai)
+- **推送渠道**: 飞书私聊
+- **字数限制**: ≤1000 字
+- **数据源**: 当天会话 + 最近 7 天记忆文件
+
+## 热力图说明
+
+- ⬜ **白色** - 无工作
+- 🟨 **黄色** - 少量工作（<500 字）
+- 🟩 **绿色** - 中等工作（500-2000 字）
+- 🟥 **红色** - 大量工作（>2000 字）
+
+## 注意事项
+
+1. 首次运行需确保 `memory/` 目录存在
+2. 推送前检查上下文占用，避免超限
+3. 延续性项目名需保持一致，便于追踪

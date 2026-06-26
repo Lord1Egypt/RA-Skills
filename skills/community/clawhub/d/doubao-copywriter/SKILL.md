@@ -1,35 +1,46 @@
----
-name: "doubao-copywriter"
-description: "调用豆包AI，根据用户提供的主题或大纲生成适用于小红书、公众号和抖音脚本的定制文案。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/doubao-copywriter"
-sourceUrl: "https://clawhub.ai/skills/doubao-copywriter"
----
+# doubao-copywriter - 豆包文案生成技能
 
-# doubao-copywriter
+## 功能
+调用豆包AI，根据给定的主题/大纲生成文案
 
-> 调用豆包AI，根据用户提供的主题或大纲生成适用于小红书、公众号和抖音脚本的定制文案。
+## 适用场景
+- 小红书文案
+- 公众号文章
+- 抖音脚本
+- 任何需要AI辅助写作的场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/doubao-copywriter`
-- **Source URL:** [https://clawhub.ai/skills/doubao-copywriter](https://clawhub.ai/skills/doubao-copywriter)
+## 限制
+- 需要豆包账号登录
+- 沙箱浏览器可能无法使用，需用户本地浏览器
 
-## Overview
+## 工作流程
 
+### 方式一：豆包网页生成
+1. 用 browser 打开 https://www.doubao.com/chat/
+2. **检查登录状态**：
+   - 有对话列表 → 已登录
+   - 有"登录"按钮 → 未登录
+3. **如果未登录**：
+   - 点击"登录"
+   - 截图发给用户让其扫码
+   - 等待用户确认登录完成
+4. 在输入框输入文案主题/大纲
+5. 等待生成（10-30秒）
+6. 复制生成的文案发给用户
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/doubao-copywriter
-```
+### 方式二：用户本地生成（未登录时）
+1. 告知用户需要手动登录
+2. 提供文案主题/大纲
+3. 让用户自行生成后复制回来
+
+## 输入
+- 用户提供的主题/大纲/关键词
+
+## 输出
+- 生成的文案内容（纯文字）
+- 直接复制给用户使用
+
+## 注意事项
+- 文案风格可根据用户偏好调整（正式/接地气/幽默等）
+- 生成后可让用户确认或修改
+- 不满意可以重新生成

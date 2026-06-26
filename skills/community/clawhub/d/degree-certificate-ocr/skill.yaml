@@ -1,0 +1,21 @@
+name: degree_certificate_ocr
+version: 1.0.0
+description: 支持学位证书识别,提取获得者姓名、授予学位类别、授予单位及授予日期等。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/degree_certificate_ocr.git  # 请替换为实际仓库地址
+dependencies:
+  - python3
+  - requests

@@ -1,35 +1,77 @@
----
-name: "Draw doge ASCII"
-description: "使用 Python 打印经典 Doge 表情包的 ASCII 艺术图及代表性短语，实现字符画空间布局与文本对齐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/doge"
-sourceUrl: "https://clawhub.ai/skills/doge"
----
+### 技能名称：ASCII Doge Meme 生成器
 
-# Draw doge ASCII
+### 技能描述
 
-> 使用 Python 打印经典 Doge 表情包的 ASCII 艺术图及代表性短语，实现字符画空间布局与文本对齐。
+本技能指导 Agent 使用 Python 的字符串处理和打印功能，通过精心排列的 ASCII 字符构建出经典的“Doge”柴犬表情包。该技能侧重于字符画的空间布局设计、文本对齐技巧以及利用不同字符的灰度值来模拟图像阴影和轮廓，旨在提升 Agent 在纯文本环境下的视觉表达能力。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/doge`
-- **Source URL:** [https://clawhub.ai/skills/doge](https://clawhub.ai/skills/doge)
+### 核心代码实现
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/doge
 ```
+def print_doge_meme():
+    """
+    在控制台打印 ASCII 格式的 Doge Meme
+    包含经典的柴犬头像轮廓及标志性短语
+    """
+    
+    # 1. 定义 Doge 的头部轮廓
+    # 使用 / \ ( ) 等符号构建耳朵和脸型
+    doge_art = r"""
+      __      __
+     /  \    /  \
+    (    )  (    )
+     \  /    \  /
+      \/      \/
+      (        )
+       \      /
+        \    /
+         \  /
+          \/
+    """
+    
+    # 2. 定义 Doge 的标志性短语
+    # 模拟表情包中五颜六色的内心独白
+    phrases = [
+        "       such skill",
+        "    wow",
+        "          much ascii",
+        "       so python",
+        "    very meme"
+    ]
+    
+    # 3. 组合输出
+    # 先打印狗头，再打印文字，形成图文混排效果
+    print(doge_art)
+    for phrase in phrases:
+        print(phrase)
+        
+    print("\n  [Doge Meme Generated Successfully]")
+
+# 执行函数
+if __name__ == "__main__":
+    print_doge_meme()
+```
+
+### 实现原理解析
+
+1. **原始字符串与转义**
+代码使用了 Python 的原始字符串表示法（即在引号前加 `r`，如 `r"""..."""`）。
+    - **原理**：在 ASCII 艺术中，反斜杠 `\` 是构成线条的重要元素。在普通字符串中，`\` 是转义字符（如 `\n` 代表换行）。使用原始字符串可以确保 `\` 被直接视为普通字符，避免语法错误，保持图形的完整性。
+2. **空间布局与对齐**
+ASCII 艺术的本质是字符矩阵。
+    - **脸型构建**：通过 `( )` 和 `/ \` 的组合，利用括号的弧度模拟柴犬圆润的脸颊和竖起的耳朵。
+    - **文字排版**：`phrases` 列表中的字符串前添加了不同数量的空格。这种手动缩进模拟了 Doge 表情包中文字随意散落在狗头周围的经典排版风格，打破了严格的居中对齐，增加了趣味性。
+3. **模块化设计**
+将图形数据（`doge_art`）与逻辑数据（`phrases`）分离存储。
+    - **优势**：这种分离使得修改内容变得非常容易。如果用户想要更换表情包文案，只需修改 `phrases` 列表，而无需触碰复杂的 ASCII 图形部分，符合单一职责原则。
+
+### 常见问题排查
+
+- **图形变形**：如果运行后图形看起来被拉伸或压缩，请检查你的编辑器或终端是否使用了等宽字体（Monospace Font）。ASCII 艺术依赖于每个字符宽度一致（通常 Courier 或 Consolas 是标准选择），非等宽字体（如 Arial）会导致字符错位。
+- **语法错误**：在复制粘贴 `doge_art` 字符串时，务必保留开头的 `r` 和三个引号。如果去掉 `r`，代码中的反斜杠可能会被解释器误读为转义符，导致 `SyntaxError`。
+- **文字重叠**：如果修改了 `doge_art` 的宽度，记得同步调整 `phrases` 中前导空格的数量，以免文字“撞”到狗头上。
+
+### 技能扩展建议
+
+- **动态颜色**：如果运行环境支持 ANSI 转义序列，可以为 `phrases` 中的每一行添加颜色代码（例如红色、黄色、蓝色），还原 Doge 表情包五颜六色的文字效果。
+- **用户自定义**：编写一个输入接口，允许用户输入自己的短语（如 "very agent"），然后随机插入到 `phrases` 列表中，实现个性化表情包生成。
+- **复杂化图形**：目前的图形是简化版。进阶技能可以引入更密集的字符（如 `@`, `#`, `%`, `.`）来绘制具有明暗阴影的写实风格柴犬头像，提升视觉冲击力。

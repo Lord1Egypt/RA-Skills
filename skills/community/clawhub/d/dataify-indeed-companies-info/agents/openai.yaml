@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Indeed Companies Info"
+  short_description: "Collect Indeed company information through Dataify."
+  default_prompt: "Use $dataify-indeed-companies-info to collect Indeed company information by keyword openai."

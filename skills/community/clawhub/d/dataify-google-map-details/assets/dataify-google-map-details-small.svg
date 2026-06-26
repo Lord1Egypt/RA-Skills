@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Dataify Google Map Details">
+  <rect x="16" y="16" width="96" height="96" rx="22" fill="#f8fafd"/>
+  <path d="M64 20c-20 0-36 16-36 36 0 28 36 56 36 56s36-28 36-56c0-20-16-36-36-36Z" fill="#4285f4"/>
+  <path d="M64 20v92s36-28 36-56c0-20-16-36-36-36Z" fill="#34a853"/>
+  <path d="M64 112S28 84 28 56c0-8 3-16 8-22l56 56c-11 13-28 22-28 22Z" fill="#fbbc04"/>
+  <circle cx="64" cy="56" r="14" fill="#fff"/>
+  <circle cx="64" cy="56" r="7" fill="#ea4335"/>
+</svg>

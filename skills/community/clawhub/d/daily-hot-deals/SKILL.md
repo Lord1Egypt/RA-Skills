@@ -1,35 +1,99 @@
 ---
-name: "Daily Hot Deals"
-description: "每日神价推送服务，自动聚合全网优惠，生成精简报告。适合忙碌的省钱达人、副业套利者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-hot-deals"
-sourceUrl: "https://clawhub.ai/skills/daily-hot-deals"
+name: daily-hot-deals
+version: 1.0.0
+description: 每日神价推送服务，自动聚合全网优惠，生成精简报告。适合忙碌的省钱达人、副业套利者。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📦",
+        "requires": { "bins": ["python3"] },
+        "install": [],
+      },
+  }
 ---
 
-# Daily Hot Deals
+# 每日神价推送
 
-> 每日神价推送服务，自动聚合全网优惠，生成精简报告。适合忙碌的省钱达人、副业套利者。
+自动聚合全网优惠，每日定时推送精简报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-hot-deals`
-- **Source URL:** [https://clawhub.ai/skills/daily-hot-deals](https://clawhub.ai/skills/daily-hot-deals)
+## 功能
 
-## Overview
+1. **定时推送**: 每日 8:00/20:00 自动发送
+2. **全网聚合**: 淘宝/京东/拼多多/1688
+3. **智能筛选**: 只推送真正的神价
+4. **分类整理**: 数码/服饰/家居/食品
+5. **利润测算**: 附带套利空间计算
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-hot-deals
+**订阅日报**:
 ```
+订阅每日神价推送，发送到我的微信
+```
+
+**自定义品类**:
+```
+我只想看数码和家居类的神价
+```
+
+**设置阈值**:
+```
+只推送折扣超过 50% 的商品
+```
+
+**查看历史**:
+```
+查看昨天的神价报告
+```
+
+## 输出示例
+
+```
+📦 每日神价日报 2026-03-24
+
+🔥 今日 TOP10 神价
+
+【数码】
+1. iPhone 15 128G - ¥4,299（日常¥5,999）
+   平台：拼多多 | 折扣：72 折 | 省¥1,700
+   套利空间：淘宝售价¥4,899，毛利¥600
+
+2. 小米手环 8 - ¥149（历史低价¥169）
+   平台：京东 | 折扣：88 折 | 省¥20
+
+【服饰】
+3. 优衣库羽绒服 - ¥199（日常¥599）
+   平台：天猫 | 折扣：33 折 | 省¥400
+
+【家居】
+4. 小米空气净化器 - ¥499（日常¥799）
+   平台：淘宝 | 折扣：62 折 | 省¥300
+
+📊 今日统计：
+- 监控商品：5000+
+- 神价数量：47
+- 平均折扣：65 折
+- 最大折扣：25 折（BUG 价已下架）
+
+💡 套利建议：
+今日数码类价差较大，建议关注 iPhone/小米产品
+```
+
+## 变现模式
+
+- 免费：每日 1 次推送，基础品类
+- 付费 (¥19/月)：每日 2 次 + 全品类 + 套利建议
+- 付费 (¥49/月)：实时推送 + 定制阈值 + 导出功能
+
+## 优势
+
+- ✅ 被动收入（订阅制）
+- ✅ 用户粘性高
+- ✅ 边际成本低
+- ✅ 易传播
+
+---
+
+**声明**: 优惠信息来自公开数据，价格可能随时变动。

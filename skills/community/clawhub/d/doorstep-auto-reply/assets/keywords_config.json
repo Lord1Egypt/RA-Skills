@@ -1,0 +1,103 @@
+{
+  "skill_name": "auto-reply",
+  "version": "1.0.0",
+  "description": "多平台自动回复配置模板",
+  "platforms": {
+    "抖音": {
+      "reply_mode": "comment+private_msg",
+      "character_limit": 30,
+      "supports_emoji": true,
+      "supports_link": false,
+      "reply_rules": {
+        "comment": {
+          "style": "短平快",
+          "examples": [
+            "私你了宝~ 💌",
+            "姐妹来了！私信我安排~",
+            "滴滴，看下私信哦"
+          ]
+        },
+        "private_msg": {
+          "style": "热情引导",
+          "auto_reply_keywords": {
+            "价格": "您好~我们按次[XX元]、月卡[XX元]、私教包月[XX元]三种模式，首体验有优惠哦~",
+            "在哪": "我们是上门服务，您在家或在小区就可以，已经开通[XX]个城市~",
+            "预约": "太棒了！请留下您的联系方式和地址，我帮您安排最近的教练~"
+          }
+        }
+      }
+    },
+    "小红书": {
+      "reply_mode": "comment+private_msg",
+      "character_limit": 1000,
+      "supports_emoji": true,
+      "supports_link": false,
+      "reply_rules": {
+        "comment": {
+          "style": "温柔种草",
+          "templates": [
+            "姐妹，[具体回复内容]，先关注不然找不到我哦💕",
+            "整理好啦！[具体回复]，记得收藏~",
+            "真的超推荐！[具体内容]"
+          ]
+        },
+        "private_msg": {
+          "style": "专业耐心",
+          "auto_reply_keywords": {
+            "教程|方法": "给您整理了一份详细的教程，需要发您哪里呢？😊",
+            "价格|收费": "我们的价格很透明哦~私信我发您价目表~",
+            "效果|对比": "给您看几位学员的真实对比图→"
+          }
+        }
+      }
+    },
+    "微信公众号": {
+      "reply_mode": "keyword+subscribe",
+      "character_limit": 600,
+      "supports_emoji": true,
+      "supports_link": true,
+      "reply_rules": {
+        "subscribe": {
+          "title": "欢迎关注上门体育服务！",
+          "content": "回复关键词了解更多：\n📌 回复「价格」查看收费\n📌 回复「预约」立即体验\n📌 回复「教练」了解团队\n📌 回复「地址」查看服务区域\n\n首次体验特惠进行中，快来试试吧！",
+          "media_type": "text"
+        },
+        "keyword_reply": {
+          "价格|收费|多少钱": {
+            "type": "text",
+            "content": "我们提供三种模式：\n1. 按次体验：[XX元/次]\n2. 月卡套餐：[XX元/月]（含4次）\n3. 私教包月：[XX元/月]（不限次数）\n\n首次体验价仅[XX元]，私信客服了解详情~"
+          },
+          "预约|报名|体验": {
+            "type": "text",
+            "content": "预约流程：\n1. 选择服务类型\n2. 填写地址和时间\n3. 客服匹配教练\n4. 确认并支付\n\n点击下方立即预约👉 [链接]"
+          },
+          "教练|老师|资质": {
+            "type": "text", 
+            "content": "我们的教练团队：\n✅ 全部持国家认证教练证\n✅ 平均3年以上教学经验\n✅ 经过严格背景审查\n✅ 擅长：减脂/增肌/康复/体适能"
+          }
+        }
+      }
+    },
+    "飞书": {
+      "reply_mode": "keyword+qa",
+      "character_limit": 2000,
+      "supports_emoji": true,
+      "supports_card": true,
+      "reply_rules": {
+        "keyword_reply": {
+          "价格|收费": {
+            "type": "text",
+            "content": "我们提供按次/月卡/包月三种模式，详询客服~"
+          },
+          "预约": {
+            "type": "card",
+            "content": {
+              "title": "立即预约体验课",
+              "buttons": ["填写预约信息", "联系客服"]
+            }
+          }
+        }
+      }
+    }
+  }
+}

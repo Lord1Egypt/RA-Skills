@@ -1,0 +1,20 @@
+{
+  "name": "my-video-project",
+  "version": "1.0.0",
+  "description": "Markdown doc -> video via Remotion + edge-tts + ffmpeg",
+  "scripts": {
+    "build:temp": "remotion render src/index.tsx MyVideo out/temp.mp4",
+    "build:final": "remotion render src/index.tsx MyVideo out/final_video.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.242",
+    "remotion": "4.0.242",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.3",
+    "@types/node": "20.14.10",
+    "typescript": "5.4.5"
+  }
+}

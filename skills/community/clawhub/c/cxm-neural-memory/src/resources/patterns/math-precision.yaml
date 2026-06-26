@@ -1,0 +1,7 @@
+id: "MATH_PRECISION_V1"
+logic_gate: "Deterministic"
+constraints:
+  - "No floating point errors for ratios"
+  - "Mandatory unit validation (ml, l, mg)"
+  - "Security: Type-checking for all inputs"
+distilled_success: "Use Decimal class for high-precision calculations to avoid rounding issues. Never use standard float division for critical ratios."

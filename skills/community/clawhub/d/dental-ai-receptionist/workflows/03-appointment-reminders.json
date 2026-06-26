@@ -1,0 +1,381 @@
+{
+  "name": "Dental AI — 03 Appointment Reminders",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "name": "Hourly Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        400
+      ],
+      "id": "n3-cron"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_APPOINTMENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Appointments",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get All Appointments",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        400
+      ],
+      "id": "n3-read-appts",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const appt = item.json;\n  if (appt.status !== 'confirmed') continue;\n\n  const apptDate = new Date(appt.appointment_date);\n  if (isNaN(apptDate.getTime())) continue;\n\n  const hoursUntil = (apptDate - now) / (1000 * 60 * 60);\n\n  // 48-hour reminder\n  if (hoursUntil > 47 && hoursUntil <= 49 && appt.reminder_48h_sent !== 'yes') {\n    results.push({\n      json: {\n        ...appt,\n        reminder_type: '48h',\n        hours_until: Math.round(hoursUntil),\n        sms_message: `Hi ${appt.patient_name}! This is a reminder that your ${appt.service_type} appointment is in 2 days on ${apptDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} at ${apptDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}. Reply CONFIRM to confirm or CANCEL to cancel.`,\n        voice_message: `Hello ${appt.patient_name}, this is a reminder from your dental clinic. You have a ${appt.service_type} appointment scheduled in 2 days on ${apptDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} at ${apptDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}. Please press 1 to confirm or press 2 to cancel and reschedule. Thank you.`\n      }\n    });\n  }\n\n  // 24-hour reminder\n  if (hoursUntil > 23 && hoursUntil <= 25 && appt.reminder_24h_sent !== 'yes') {\n    results.push({\n      json: {\n        ...appt,\n        reminder_type: '24h',\n        hours_until: Math.round(hoursUntil),\n        sms_message: `Hi ${appt.patient_name}! Your ${appt.service_type} appointment is TOMORROW at ${apptDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}. Please arrive 10 minutes early. Reply CONFIRM to confirm or call us to reschedule.`,\n        voice_message: `Hello ${appt.patient_name}, this is your dental clinic calling with a friendly reminder. Your ${appt.service_type} appointment is tomorrow at ${apptDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}. Please arrive 10 minutes early. Press 1 to confirm your attendance, or press 2 if you need to reschedule. We look forward to seeing you.`\n      }\n    });\n  }\n\n  // 2-hour reminder (final)\n  if (hoursUntil > 1.5 && hoursUntil <= 2.5 && appt.reminder_2h_sent !== 'yes') {\n    results.push({\n      json: {\n        ...appt,\n        reminder_type: '2h',\n        hours_until: Math.round(hoursUntil),\n        sms_message: `Hi ${appt.patient_name}! Quick reminder: your ${appt.service_type} appointment is in 2 hours at ${apptDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}. See you soon!`,\n        voice_message: null\n      }\n    });\n  }\n}\n\nif (results.length === 0) {\n  results.push({ json: { no_reminders: true } });\n}\n\nreturn results;"
+      },
+      "name": "Filter Due Reminders",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        680,
+        400
+      ],
+      "id": "n3-filter"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-reminder",
+              "leftValue": "={{ $json.no_reminders }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Has Reminders?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        900,
+        400
+      ],
+      "id": "n3-if-has"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{ $json.patient_phone }}",
+        "body": "={{ $json.sms_message }}"
+      },
+      "name": "Send Reminder SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        300
+      ],
+      "id": "n3-sms",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-voice",
+              "leftValue": "={{ $json.voice_message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Has Voice Msg?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1140,
+        500
+      ],
+      "id": "n3-if-voice"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.VAPI_API_URL}}/call/phone",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.VAPI_API_KEY}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ assistantId: $env.VAPI_REMINDER_ASSISTANT_ID, customer: { number: $json.patient_phone, name: $json.patient_name }, metadata: { appointment_id: $json.appointment_id, reminder_type: $json.reminder_type, service_type: $json.service_type, appointment_date: $json.appointment_date } }) }}",
+        "options": {}
+      },
+      "name": "Make Reminder Call (Vapi)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        440
+      ],
+      "id": "n3-vapi-call"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_APPOINTMENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Appointments",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "appointment_id": "={{ $json.appointment_id }}",
+            "reminder_48h_sent": "={{ $json.reminder_type === '48h' ? 'yes' : $json.reminder_48h_sent }}",
+            "reminder_24h_sent": "={{ $json.reminder_type === '24h' ? 'yes' : $json.reminder_24h_sent }}",
+            "reminder_2h_sent": "={{ $json.reminder_type === '2h' ? 'yes' : $json.reminder_2h_sent }}"
+          },
+          "matchingColumns": [
+            "appointment_id"
+          ],
+          "schema": [
+            {
+              "id": "appointment_id",
+              "displayName": "appointment_id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Update Reminder Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1380,
+        260
+      ],
+      "id": "n3-update-sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Reminders Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "appointment_id": "={{ $json.appointment_id }}",
+            "patient_name": "={{ $json.patient_name }}",
+            "patient_phone": "={{ $json.patient_phone }}",
+            "reminder_type": "={{ $json.reminder_type }}",
+            "channel": "sms",
+            "sent_at": "={{ new Date().toISOString() }}",
+            "status": "sent"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Reminder Sent",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1620,
+        300
+      ],
+      "id": "n3-log-reminder",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "name": "No Reminders Due",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        660
+      ],
+      "id": "n3-noop"
+    }
+  ],
+  "connections": {
+    "Hourly Check": {
+      "main": [
+        [
+          {
+            "node": "Get All Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Appointments": {
+      "main": [
+        [
+          {
+            "node": "Filter Due Reminders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Due Reminders": {
+      "main": [
+        [
+          {
+            "node": "Has Reminders?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Reminders?": {
+      "main": [
+        [
+          {
+            "node": "Send Reminder SMS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Has Voice Msg?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Reminders Due",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Voice Msg?": {
+      "main": [
+        [
+          {
+            "node": "Make Reminder Call (Vapi)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Send Reminder SMS": {
+      "main": [
+        [
+          {
+            "node": "Update Reminder Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Reminder Status": {
+      "main": [
+        [
+          {
+            "node": "Log Reminder Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

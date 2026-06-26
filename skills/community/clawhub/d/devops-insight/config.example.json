@@ -1,0 +1,89 @@
+{
+  "devops-insight": {
+    "mcpServers": {
+      "kubernetes": {
+        "command": "mcp-server-kubernetes",
+        "args": ["--kubeconfig", "${HOME}/.kube/config"],
+        "env": {
+          "KUBECONFIG": "${HOME}/.kube/config"
+        }
+      },
+      "postgresql": {
+        "command": "mcp-server-postgresql",
+        "args": [
+          "--connection-string",
+          "postgresql://user:password@localhost:5432/monitoring"
+        ]
+      },
+      "redis": {
+        "command": "mcp-server-redis",
+        "args": [
+          "--host", "localhost",
+          "--port", "6379"
+        ]
+      },
+      "neo4j": {
+        "command": "mcp-server-neo4j",
+        "args": [
+          "--uri", "bolt://localhost:7687",
+          "--user", "neo4j",
+          "--password", "password"
+        ]
+      },
+      "elasticsearch": {
+        "command": "mcp-server-elasticsearch",
+        "args": [
+          "--url", "http://localhost:9200"
+        ]
+      },
+      "skywalking": {
+        "command": "mcp-server-skywalking",
+        "args": [
+          "--url", "http://localhost:8080"
+        ]
+      }
+    },
+    "evomap": {
+      "apiUrl": "https://evomap.ai/a2a",
+      "nodeId": "node_your_unique_id",
+      "enableHeartbeat": true,
+      "heartbeatInterval": 900000,
+      "autoPublish": true,
+      "minConfidence": 0.8
+    },
+    "github": {
+      "defaultOrg": "your-org",
+      "defaultRepo": "your-repo",
+      "autoCreateBranch": true,
+      "branchPrefix": "fix/devops-insight-"
+    },
+    "analysis": {
+      "timeRangeDefault": "1h",
+      "maxLogLines": 1000,
+      "enableAutoFix": false,
+      "requireApproval": true
+    },
+    "alerts": {
+      "severityThresholds": {
+        "critical": {
+          "errorRate": 0.05,
+          "responseTime": 5000,
+          "cpuUsage": 0.9,
+          "memoryUsage": 0.9
+        },
+        "high": {
+          "errorRate": 0.02,
+          "responseTime": 3000,
+          "cpuUsage": 0.8,
+          "memoryUsage": 0.8
+        },
+        "medium": {
+          "errorRate": 0.01,
+          "responseTime": 2000,
+          "cpuUsage": 0.7,
+          "memoryUsage": 0.7
+        }
+      }
+    }
+  }
+}

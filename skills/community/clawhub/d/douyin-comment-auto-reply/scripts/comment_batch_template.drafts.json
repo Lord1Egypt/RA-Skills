@@ -1,0 +1,42 @@
+[
+  {
+    "comment": "这个怎么做的？",
+    "video_topic": "AI自动化",
+    "intent": "inquiry",
+    "priority": "high",
+    "suggested_action": "public_reply",
+    "public_reply": "这个可以做，关键看你的场景和目标，想了解更具体的版本可以私信我。",
+    "dm_follow_up": "你把你的场景/目前卡点发我，我直接按你的情况给你一个更合适的建议。",
+    "notes": "new viewer"
+  },
+  {
+    "comment": "多少钱？",
+    "video_topic": "AI安装服务",
+    "intent": "buying_intent",
+    "priority": "high",
+    "suggested_action": "public_reply_plus_dm",
+    "public_reply": "可以的，这类我这边有现成思路，想看适合你的版本可以私信我。",
+    "dm_follow_up": "你把你的场景/目前卡点发我，我直接按你的情况给你一个更合适的建议。",
+    "notes": "price sensitive"
+  },
+  {
+    "comment": "真的假的",
+    "video_topic": "AI助理",
+    "intent": "skepticism",
+    "priority": "medium",
+    "suggested_action": "public_reply_review",
+    "public_reply": "你的顾虑正常，这类内容最怕讲得太虚，所以我更愿意只讲能真正落地的部分。",
+    "dm_follow_up": "",
+    "notes": "needs trust"
+  },
+  {
+    "comment": "求出教程第二集",
+    "video_topic": "工作流",
+    "intent": "engagement",
+    "priority": "medium",
+    "suggested_action": "public_reply",
+    "public_reply": "这个方向后面我会继续拆，下一条我就讲 工作流。",
+    "dm_follow_up": "",
+    "notes": "good for boosting"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "run_id": "repair-t14-run",
+  "created_at": "2026-04-30T12:00:00Z",
+  "project": "MinerU",
+  "record_count": 5,
+  "metrics": {
+    "mention_rate": 90.0,
+    "positive_mention_rate": 82.0,
+    "capability_accuracy": 100.0,
+    "ecosystem_accuracy": 100.0
+  },
+  "strict_rates": {
+    "mention_rate": 80.0,
+    "positive_mention_rate": 60.0,
+    "capability_accuracy": 100.0,
+    "ecosystem_accuracy": 100.0
+  },
+  "by_model": [
+    {
+      "model_id": "gpt-4.1-mini",
+      "record_count": 5,
+      "mention_rate": 90.0,
+      "positive_mention_rate": 82.0,
+      "capability_accuracy": 100.0,
+      "ecosystem_accuracy": 100.0
+    }
+  ],
+  "repair_candidates": []
+}

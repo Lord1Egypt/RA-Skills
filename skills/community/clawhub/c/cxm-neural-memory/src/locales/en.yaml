@@ -1,0 +1,83 @@
+app:
+  name: "CXM (ContextMachine)"
+  description: "AI Context Orchestrator"
+
+cli:
+  init:
+    welcome: "Welcome to CXM (ContextMachine)!"
+    setup_done: "Initialization complete."
+    workspace_created: "Workspace created at"
+    config_created: "Configuration created at"
+    next_steps: "Next steps"
+    index_hint: "1. Index your project: 'cxm index'"
+    ask_hint: "2. Ask your first question: 'cxm ask \"Your problem\"'"
+  ask:
+    analyzing: "Analyzing intent and gathering context..."
+    intent_found: "Detected Intent"
+    inference: "Automatically detected (Context Inference)"
+    completeness: "Prompt Completeness"
+    critical_gaps: "Missing critical information (Critical Gaps)"
+    optional_ask: "Would you like to provide optional details?"
+    refined_title: "Refined Intermediate Prompt"
+    rag_confirm: "Should this prompt be enriched by the RAG engine?"
+    searching_rag: "Searching for relevant code context in RAG index..."
+    final_title: "CLEANED MASTER PROMPT"
+    saved_at: "Saved in"
+    copy_hint: "You can now simply copy the text between the lines."
+
+dashboard:
+  menu_title: "Main Menu"
+  ctx: "Local Changes (git diff)"
+  rag_search: "Search Knowledge (RAG)"
+  rag_index: "Index File/Folder"
+  sessions: "Manage Sessions"
+  language: "Language (Sprache)"
+  prompt_builder: "Build New Prompt (Prompt Builder)"
+  exit: "Exit"
+  choose: "Choose an action:"
+  bye: "Goodbye!"
+  back: "Press Enter to return..."
+  search_query: "What are you looking for?"
+  indexing: "Indexing..."
+  path_prompt: "Path (e.g. '.' for this folder or 'app.py')"
+  session_action: "Choose action:"
+  status:
+    gathering_ctx: "Gathering context..."
+    searching_rag: "Searching long-term memory..."
+    building_prompt: "Gathering context and building prompt..."
+  context:
+    title: "Current Context"
+    branch: "Branch"
+    changes: "Changes"
+    recent_edits: "Recent Edits"
+    files: "files"
+  settings:
+    lang_title: "Language Settings"
+    lang_select: "Select language"
+    lang_current: "current"
+    lang_set: "Language set to"
+  sessions_ui:
+    title: "Active Sessions"
+    name: "Session Name"
+    plan_prompt: "Planning Prompt"
+  builder:
+    title: "PROMPT BUILDER"
+    subtitle: "Building a high-context prompt for your app."
+    goal_q: "1. What is your goal? (e.g. 'Create a new route for user logins')"
+    focus_q: "2. Which file(s) are mainly affected? (e.g. 'app.py' or 'auth.js')"
+    rag_info: "### Relevant knowledge from RAG engine:"
+    finished: "Finished Prompt"
+    saved: "Prompt also saved at:"
+    copy_msg: "You can now copy this text and paste it into our Gemini chat window!"
+
+intents:
+  code_optimization:
+    target: "Which function/file should be optimized?"
+    current_perf: "How slow is it currently?"
+    goal_perf: "What would be acceptable performance?"
+  bug_fixing:
+    error_message: "What is the error message?"
+    reproduction: "How do you reproduce the error?"
+    expected: "What should happen instead?"
+  general:
+    goal: "What exactly do you want to achieve?"

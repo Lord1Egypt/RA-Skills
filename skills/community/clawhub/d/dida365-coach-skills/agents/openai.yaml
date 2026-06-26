@@ -1,0 +1,15 @@
+interface:
+  display_name: "Dida Coach"
+  short_description: "滴答执行层 + 本地生产力管控层，负责拆解、时间盒、承诺、复盘与闭环支持"
+  default_prompt: "Use $dida-coach to build a Dida-backed productivity system with planning, timeboxes, commitments, reviews, and follow-through."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "dida365"
+      description: "滴答清单 MCP，用于读取和写入任务"
+      transport: "streamable_http"
+      url: "https://mcp.dida365.com"
+
+policy:
+  allow_implicit_invocation: true

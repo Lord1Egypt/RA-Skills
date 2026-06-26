@@ -1,0 +1,17 @@
+{
+  "name": "duange-zero-skill-creator",
+  "version": "0.1.0",
+  "description": "面向完全零基础用户的 Skill 创建教练，用生活化提问把朴素想法变成可用 Codex Skill。",
+  "author": "",
+  "created_for": "Codex",
+  "entry": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "examples.md",
+    "references/simple-conversation.md",
+    "references/templates.md",
+    "references/safety-quality.md"
+  ]
+}
+

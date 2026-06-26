@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b6b"/>
+      <stop offset="100%" style="stop-color:#ee5a5a"/>
+    </linearGradient>
+    <linearGradient id="clawGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff8787"/>
+      <stop offset="100%" style="stop-color:#ff6b6b"/>
+    </linearGradient>
+  </defs>
+  <!-- 身体 -->
+  <ellipse cx="50" cy="55" rx="22" ry="28" fill="url(#bodyGrad)"/>
+  <!-- 头部 -->
+  <circle cx="50" cy="30" r="18" fill="url(#bodyGrad)"/>
+  <!-- 眼睛 -->
+  <circle cx="44" cy="28" r="4" fill="white"/>
+  <circle cx="56" cy="28" r="4" fill="white"/>
+  <circle cx="45" cy="29" r="2" fill="#1a1a24"/>
+  <circle cx="57" cy="29" r="2" fill="#1a1a24"/>
+  <!-- 触角 -->
+  <path d="M42 18 Q38 8 32 12" stroke="#ff6b6b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M58 18 Q62 8 68 12" stroke="#ff6b6b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- 左钳子 -->
+  <ellipse cx="22" cy="45" rx="12" ry="8" fill="url(#clawGrad)" transform="rotate(-20 22 45)"/>
+  <path d="M15 40 Q10 35 8 40 Q10 45 15 42" fill="#ff6b6b"/>
+  <path d="M15 50 Q10 55 8 50 Q10 45 15 48" fill="#ff6b6b"/>
+  <!-- 右钳子 -->
+  <ellipse cx="78" cy="45" rx="12" ry="8" fill="url(#clawGrad)" transform="rotate(20 78 45)"/>
+  <path d="M85 40 Q90 35 92 40 Q90 45 85 42" fill="#ff6b6b"/>
+  <path d="M85 50 Q90 55 92 50 Q90 45 85 48" fill="#ff6b6b"/>
+  <!-- 腿部 -->
+  <path d="M38 65 Q32 72 28 70" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+  <path d="M62 65 Q68 72 72 70" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+  <path d="M40 70 Q36 78 32 78" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+  <path d="M60 70 Q64 78 68 78" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+  <!-- 尾巴 -->
+  <path d="M42 82 Q50 90 58 82" fill="#ff6b6b"/>
+  <ellipse cx="50" cy="88" rx="6" ry="4" fill="#ee5a5a"/>
+</svg>

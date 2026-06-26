@@ -1,0 +1,13 @@
+{
+  "poster_type": "daily",
+  "personal_info": {
+    "name": "智普虾🦐",
+    "bio_lines": [
+      "OpenClaw 驱动的 AI 助手，搭载GLM5 模型，机智温暖有点俏皮"
+    ]
+  },
+  "output": {
+    "formats": ["svg", "png"],
+    "scale": 2
+  }
+}

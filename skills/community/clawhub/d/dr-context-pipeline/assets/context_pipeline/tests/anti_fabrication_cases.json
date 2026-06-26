@@ -1,0 +1,425 @@
+[
+  {
+    "id": "debug_missing_context_pack_artifact",
+    "mode": "debug",
+    "user_message": "I didn't receive the daily briefing again",
+    "expected_task_type": "ops",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "I didn't receive the daily briefing again",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "ops",
+        "derived_queries": ["Daily AI Briefing cron delivery discord"],
+        "caps": {
+          "top_k_snippets": 14,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/automation.md:22-28",
+          "path": "memory/topics/automation.md",
+          "start_line": 22,
+          "end_line": 28,
+          "citation": "memory/topics/automation.md:22",
+          "text": "Daily briefing delivery issues should retrieve automation and Discord delivery context.",
+          "score": 0.94,
+          "tags": ["automation", "briefing"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "ops",
+      "must_follow": [
+        {
+          "rule": "Do not claim delivery checks ran unless the required evidence exists.",
+          "why": "Ops issues need proof of execution.",
+          "sources": ["S1"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "Daily briefing delivery issues should inspect automation and Discord delivery context.",
+          "why": "The user reports a missed daily briefing.",
+          "sources": ["S2"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed"
+      },
+      "artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json"],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "artifact_paths", "retrieval_bundle", "context_pack", "lint_result", "dropped_reasons", "answer_stub"],
+      "forbidden_transcript_keys": ["receipt_ledger"]
+    },
+    "tamper": {
+      "delete_artifacts": ["context_pack.json"]
+    },
+    "expect_failure": {
+      "contains": ["missing artifact context_pack.json"]
+    }
+  },
+  {
+    "id": "debug_forged_artifact_path_claim",
+    "mode": "debug",
+    "user_message": "Implement the rollout plan for the context pipeline",
+    "expected_task_type": "planning",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Implement the rollout plan for the context pipeline",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "planning",
+        "derived_queries": ["always_on topic catalog retrieval compression context pack"],
+        "caps": {
+          "top_k_snippets": 12,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/context.md:40-45",
+          "path": "memory/topics/context.md",
+          "start_line": 40,
+          "end_line": 45,
+          "citation": "memory/topics/context.md:40",
+          "text": "Rollout planning should preserve the compact default mode while exposing debug and audit evidence only when requested.",
+          "score": 0.93,
+          "tags": ["planning", "context-pipeline"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": [
+        {
+          "path": "memory/topics/old-rollout-notes.md",
+          "reason": "Dropped due to retrieval cap after compression prioritization."
+        }
+      ]
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "planning",
+      "must_follow": [
+        {
+          "rule": "Keep normal mode compact while debug and audit expose evidence.",
+          "why": "This is a rollout invariant for the pipeline.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "The always-on policy must still be loaded before any routing or planning step.",
+          "why": "The planning answer must preserve the pipeline invariant.",
+          "sources": ["S1"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": ["memory/topics/old-rollout-notes.md"]
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed",
+        "expected_dropped_paths": ["memory/topics/old-rollout-notes.md"],
+        "expected_dropped_due_to_limits": ["memory/topics/old-rollout-notes.md"]
+      },
+      "artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json"],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "artifact_paths", "retrieval_bundle", "context_pack", "lint_result", "dropped_reasons", "answer_stub"],
+      "forbidden_transcript_keys": ["receipt_ledger"]
+    },
+    "tamper": {
+      "artifact_path_overrides": {
+        "context_pack.json": "/tmp/forged-context-pack.json"
+      }
+    },
+    "expect_failure": {
+      "contains": ["artifact_paths missing or wrong for context_pack.json"]
+    }
+  },
+  {
+    "id": "audit_broken_receipt_hash",
+    "mode": "audit",
+    "user_message": "Review this customer-facing claim for accuracy",
+    "expected_task_type": "doc_review",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Review this customer-facing claim for accuracy",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "doc_review",
+        "derived_queries": ["doc review mode untrusted claims validation questions"],
+        "caps": {
+          "top_k_snippets": 10,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/docs.md:5-9",
+          "path": "memory/topics/docs.md",
+          "start_line": 5,
+          "end_line": 9,
+          "citation": "memory/topics/docs.md:5",
+          "text": "Customer-facing claims require validation questions when the source evidence is not present.",
+          "score": 0.89,
+          "tags": ["doc-review"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "doc_review",
+      "must_follow": [
+        {
+          "rule": "Flag customer-facing claims that lack source evidence.",
+          "why": "Accuracy review should not invent validation.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "The always-on policy was loaded before routing.",
+          "why": "Audit mode needs proof for every pipeline step.",
+          "sources": ["S1"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [
+        {
+          "question": "What source evidence supports the customer-facing claim?",
+          "why_needed": "The fixture intentionally lacks the underlying source claim."
+        }
+      ],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed",
+        "require_unknowns_to_confirm": true
+      },
+      "artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json", "receipt_ledger.json"],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "artifact_paths", "retrieval_bundle", "context_pack", "lint_result", "dropped_reasons", "receipt_ledger", "answer_stub"],
+      "forbidden_transcript_keys": [],
+      "receipt_artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json"]
+    },
+    "tamper": {
+      "corrupt_receipt_hashes_for": ["retrieval_bundle.json"]
+    },
+    "expect_failure": {
+      "contains": ["receipt hash mismatch for retrieval_bundle.json"]
+    }
+  },
+  {
+    "id": "audit_missing_lint_receipt_step",
+    "mode": "audit",
+    "user_message": "Review this customer-facing claim for accuracy",
+    "expected_task_type": "doc_review",
+    "expected_snippet_ids": ["S1", "S2"],
+    "retrieval_bundle": {
+      "retrieval_version": "1.0",
+      "user_message": {
+        "text": "Review this customer-facing claim for accuracy",
+        "timestamp_utc": "2026-06-23T00:00:00Z"
+      },
+      "always_on": {
+        "path": "memory/always_on.md",
+        "content": "Always load policy header and topic catalog before retrieval.",
+        "content_hash": "fixture-always-on"
+      },
+      "query_plan": {
+        "task_type": "doc_review",
+        "derived_queries": ["doc review mode untrusted claims validation questions"],
+        "caps": {
+          "top_k_snippets": 10,
+          "max_lines_per_snippet": 60,
+          "max_snippets_per_file": 2
+        }
+      },
+      "snippets": [
+        {
+          "snippet_id": "S1",
+          "stable_id": "memory/always_on.md:1-4",
+          "path": "memory/always_on.md",
+          "start_line": 1,
+          "end_line": 4,
+          "citation": "memory/always_on.md:1",
+          "text": "Always load the policy header and topic catalog before routing.",
+          "score": 1.0,
+          "tags": ["policy"],
+          "source_group": "always_on"
+        },
+        {
+          "snippet_id": "S2",
+          "stable_id": "memory/topics/docs.md:5-9",
+          "path": "memory/topics/docs.md",
+          "start_line": 5,
+          "end_line": 9,
+          "citation": "memory/topics/docs.md:5",
+          "text": "Customer-facing claims require validation questions when the source evidence is not present.",
+          "score": 0.89,
+          "tags": ["doc-review"],
+          "source_group": "topics"
+        }
+      ],
+      "dropped": []
+    },
+    "context_pack": {
+      "version": "1.0",
+      "task_type": "doc_review",
+      "must_follow": [
+        {
+          "rule": "Flag customer-facing claims that lack source evidence.",
+          "why": "Accuracy review should not invent validation.",
+          "sources": ["S2"]
+        }
+      ],
+      "relevant_context": [
+        {
+          "fact_or_context": "The always-on policy was loaded before routing.",
+          "why": "Audit mode needs proof for every pipeline step.",
+          "sources": ["S1"]
+        }
+      ],
+      "conflicts_or_ambiguities": [],
+      "unknowns_to_confirm": [
+        {
+          "question": "What source evidence supports the customer-facing claim?",
+          "why_needed": "The fixture intentionally lacks the underlying source claim."
+        }
+      ],
+      "exclude_as_irrelevant": [],
+      "retrieval_notes": {
+        "included_sources": ["S1", "S2"],
+        "dropped_due_to_limits": []
+      }
+    },
+    "lint_result": {
+      "status": "passed",
+      "errors": [],
+      "fallback_used": false
+    },
+    "expect": {
+      "compression": {
+        "expected_status": "succeeded",
+        "expected_lint_status": "passed",
+        "require_unknowns_to_confirm": true
+      },
+      "artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json", "receipt_ledger.json"],
+      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "artifact_paths", "retrieval_bundle", "context_pack", "lint_result", "dropped_reasons", "receipt_ledger", "answer_stub"],
+      "forbidden_transcript_keys": [],
+      "receipt_artifacts": ["retrieval_bundle.json", "context_pack.json", "lint_result.json", "reasoning_input_summary.json"]
+    },
+    "tamper": {
+      "remove_receipt_steps": ["lint_context_pack"]
+    },
+    "expect_failure": {
+      "contains": ["receipt steps mismatch"]
+    }
+  }
+]

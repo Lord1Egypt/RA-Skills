@@ -1,0 +1,22 @@
+# 每日唐诗技能配置
+# 发布前：将 DAILY_TANG_POEM_API_URL 的 default 改为你的 Vercel 地址
+
+name: daily-tang-poem
+version: 1.1.1
+author: romanluo00007-tech
+description: 每日唐诗：一句诗+讲解，晚上验收，支持艾宾浩斯复习和诗人缘分
+
+config:
+  DAILY_TANG_POEM_API_URL:
+    type: string
+    required: false
+    default: "https://daily-tang-poem-nqbl.vercel.app"  # 发布前改成你的 Vercel 地址
+    description: "API 地址，用户安装后零配置即用"
+  DAILY_TANG_POEM_API_KEY:
+    type: string
+    required: false
+    description: "若 API 配置了鉴权则填入，否则留空"
+  DAILY_TANG_POEM_USER_ID:
+    type: string
+    required: false
+    description: "用户唯一标识。可填：终端运行 uuidgen 得到的字符串、Telegram chat id、或自定义如 my-phone。不填则复习不可用"

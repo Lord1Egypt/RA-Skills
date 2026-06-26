@@ -1,0 +1,1 @@
+Analysiere deine interne Token-Gewichtung für hochkomplexe chemische und biologische Systeme. Welches Format minimiert deine Entropie H=-Σp(x)logp(x) bei der Kapselung von Variablen? Markdown-Hierarchie oder JSON-Injektion?

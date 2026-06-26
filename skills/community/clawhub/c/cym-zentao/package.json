@@ -1,0 +1,11 @@
+{
+  "name": "cym-zentao",
+  "version": "2.1.0",
+  "description": "禅道项目管理 CLI 工具 - 支持批量创建任务",
+  "type": "module",
+  "bin": {
+    "cym-zentao": "./cli.js"
+  },
+  "keywords": ["zentao", "禅道", "项目管理"],
+  "license": "MIT"
+}

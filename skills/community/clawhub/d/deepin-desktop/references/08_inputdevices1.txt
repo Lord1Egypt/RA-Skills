@@ -1,0 +1,49 @@
+=== org.deepin.dde.InputDevices1 /org/deepin/dde/InputDevices1 ===
+node /org/deepin/dde/InputDevices1 {
+  interface org.deepin.dde.InputDevices1 {
+    methods:
+      SetWakeupDevices(in  s path,
+                       in  s value);
+    signals:
+      TouchscreenAdded(o path);
+      TouchscreenRemoved(o path);
+      EventChanged(s devNode,
+                   s devName,
+                   s path,
+                   b state);
+    properties:
+      readonly ao Touchscreens = [];
+      readwrite a{ss} SupportWakeupDevices = {'/sys/bus/usb/devices/3-7/power/wakeup': 'enabled', '/sys/bus/usb/devices/3-3/power/wakeup': 'disabled'};
+  };
+  interface org.freedesktop.DBus.Introspectable {
+    methods:
+      Introspect(out s out);
+    signals:
+    properties:
+  };
+  interface org.freedesktop.DBus.Properties {
+    methods:
+      Get(in  s interface,
+          in  s property,
+          out v value);
+      GetAll(in  s interface,
+             out a{sv} props);
+      Set(in  s interface,
+          in  s property,
+          in  v value);
+    signals:
+      PropertiesChanged(s interface,
+                        a{sv} changed_properties,
+                        as invalidates_properties);
+    properties:
+  };
+  interface org.freedesktop.DBus.Peer {
+    methods:
+      Ping();
+      GetMachineId(out s machine_uuid);
+    signals:
+    properties:
+  };
+  node Touchpad {
+  };
+};

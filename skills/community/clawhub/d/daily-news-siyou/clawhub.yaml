@@ -1,0 +1,47 @@
+# ClawHub Skill Manifest
+name: daily-news-siyou
+display_name: Daily News Skill - 每日新闻播报
+version: 1.1.0
+description: 自定义新闻类型，自动从互联网抓取最新消息，语音播报（多源聚合）
+author: 司幼 (SiYou)
+license: MIT
+
+tags:
+  - news
+  - broadcast
+  - feishu
+  - voice
+  - tts
+  - chinese
+  - 新闻
+  - 播报
+
+category: news
+
+requirements:
+  - jq
+  - python3
+  - curl
+  - ffmpeg
+
+env_vars:
+  - FEISHU_APP_ID
+  - FEISHU_APP_SECRET
+  - FEISHU_CHAT_ID
+  - NOIZ_API_KEY
+  - TAVILY_API_KEY
+
+entry_point: scripts/news_broadcast.sh
+
+pricing:
+  type: subscription
+  price: 9.9
+  currency: CNY
+  billing_cycle: monthly
+
+changelog: |
+  v1.1.0:
+  - ✅ 优化新闻源（Tavily/RSS/搜索引擎）
+  - ✅ 添加新闻去重功能
+  - ✅ 支持多源聚合
+  - ✅ 优化播报内容格式

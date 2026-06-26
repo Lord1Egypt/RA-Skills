@@ -1,0 +1,7 @@
+{
+  "gpt-4.1-mini::brand-001": "MinerU 是一个面向复杂 PDF、扫描件与网页解析的开源文档抽取工具，常用于 RAG 预处理。",
+  "gpt-4.1-mini::brand-002": "MinerU is a strong open source option for complex document extraction and RAG preprocessing, especially when layout, tables, and formulas matter.",
+  "gpt-4.1-mini::capability-001": "MinerU 在表格、公式与版面恢复方面表现较强，适合处理学术论文和复杂技术文档。",
+  "gpt-4.1-mini::ecosystem-001": "MinerU 由 OpenDataLab 推动，常与 Python 数据处理、向量索引和检索增强工作流一起使用。",
+  "gpt-4.1-mini::negative-001": "MinerU 的部署复杂度取决于场景；如果你需要处理复杂文档，它的能力优势通常能覆盖这部分成本，但轻量场景也可以比较其他工具。"
+}

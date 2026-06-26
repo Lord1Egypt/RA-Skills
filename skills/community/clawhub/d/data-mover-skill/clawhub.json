@@ -1,0 +1,37 @@
+{
+  "name": "data-mover-skill",
+  "version": "2.0.0",
+  "description": "跨系统数据自动搬运工 - OCR 识别 + 自动复制粘贴 + 多系统支持",
+  "author": "于金泽",
+  "license": "MIT",
+  "category": "productivity",
+  "tags": ["data-entry", "automation", "ocr", "rpa", "copy-paste"],
+  "repository": "https://github.com/openclaw/skills",
+  "main": "scripts/mover.py",
+  "scripts": {
+    "start": "python3 scripts/mover.py",
+    "test": "python3 -m pytest tests/test_mover.py -v",
+    "demo": "python3 scripts/mover.py --demo"
+  },
+  "dependencies": {
+    "pyautogui": ">=0.9.53",
+    "paddleocr": ">=2.7.0",
+    "pandas": ">=1.5.0",
+    "opencv-python": ">=4.7.0",
+    "tqdm": ">=4.65.0"
+  },
+  "devDependencies": {
+    "pytest": ">=7.0.0",
+    "pytest-cov": ">=4.0.0"
+  },
+  "engines": {
+    "python": ">=3.6"
+  },
+  "files": [
+    "scripts/",
+    "tests/",
+    "README.md",
+    "SKILL.md",
+    "CHANGELOG.md"
+  ]
+}

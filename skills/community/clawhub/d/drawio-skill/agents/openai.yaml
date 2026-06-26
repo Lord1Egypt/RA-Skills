@@ -1,0 +1,14 @@
+interface:
+  display_name: "drawio_skill"
+  short_description: "Create draw.io flow, architecture, and ML diagrams"
+  default_prompt: "Use $drawio-skill to create, edit, or export a draw.io diagram through the configured drawio MCP server."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "drawio"
+      description: "Configured draw.io MCP server"
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: true

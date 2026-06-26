@@ -1,0 +1,23 @@
+{
+  "name": "@jahonn/research-agent-skill",
+  "version": "1.0.0",
+  "description": "Deep research and analysis agent for any topic. 5 modes: Quick, Deep Dive, Compare, Landscape, Evaluate. Structured reports with source evaluation. Works with Claude Code, Codex, Trae, Cursor, Gemini CLI and 20+ AI tools (Agent Skills standard).",
+  "keywords": [
+    "agent-skills",
+    "research",
+    "analysis",
+    "competitor-analysis",
+    "market-research",
+    "comparison",
+    "claude-code",
+    "codex",
+    "trae",
+    "ai-coding"
+  ],
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "references/"
+  ]
+}

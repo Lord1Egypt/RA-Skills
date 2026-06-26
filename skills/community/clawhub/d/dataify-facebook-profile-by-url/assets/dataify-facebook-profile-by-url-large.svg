@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Dataify Facebook profile by URL">
+  <rect width="256" height="256" rx="36" fill="#ffffff"/>
+  <circle cx="128" cy="128" r="94" fill="#1877f2"/>
+  <circle cx="128" cy="98" r="34" fill="#ffffff"/>
+  <path d="M64 198c12-42 44-62 64-62s52 20 64 62" fill="#ffffff"/>
+</svg>

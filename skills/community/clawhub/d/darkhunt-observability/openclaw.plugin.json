@@ -1,0 +1,38 @@
+{
+  "id": "darkhunt-observability",
+  "name": "Darkhunt Observability",
+  "version": "0.3.8",
+  "main": "dist/index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "traces_endpoint": {
+        "type": "string",
+        "description": "Full OTLP traces URL, e.g. https://api.example.com/trace-hub/otlp/t/{tenantId}/v1/traces"
+      },
+      "logs_endpoint": {
+        "type": "string",
+        "description": "Full OTLP logs URL, e.g. https://api.example.com/trace-hub/otlp/t/{tenantId}/v1/logs"
+      },
+      "headers": {
+        "type": "object",
+        "description": "HTTP headers (Authorization, X-Workspace-Id, X-Application-Id)",
+        "additionalProperties": { "type": "string" }
+      },
+      "authorization": { "type": "string", "description": "Shorthand for headers.Authorization" },
+      "workspace_id": { "type": "string", "description": "Shorthand for headers.X-Workspace-Id" },
+      "application_id": { "type": "string", "description": "Shorthand for headers.X-Application-Id" },
+      "payload_mode": {
+        "type": "string",
+        "enum": ["metadata", "debug", "full"],
+        "default": "metadata",
+        "description": "Controls what content is exported. metadata=structural only (tokens, cost, duration). debug=metadata + truncated content. full=everything subject to size limits."
+      },
+      "batch_delay_ms": { "type": "number", "default": 2000 },
+      "batch_max_size": { "type": "number", "default": 50 },
+      "export_timeout_ms": { "type": "number", "default": 30000 },
+      "enabled": { "type": "boolean", "default": true }
+    },
+    "required": []
+  }
+}

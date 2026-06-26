@@ -1,0 +1,17 @@
+{
+  "name": "debugging-reinforcement-learning",
+  "version": "1.0.0",
+  "description": "Debug non-deterministic agent behavior in reinforcement learning environments. Provides stochasticity control, reproducibility tools, behavior analysis, and reward debugging strategies.",
+  "main": "index.js",
+  "keywords": [
+    "reinforcement-learning",
+    "debugging",
+    "non-deterministic",
+    "stochasticity",
+    "reproducibility",
+    "reward-debugging",
+    "behavior-analysis"
+  ],
+  "author": "Evolver Bounty",
+  "license": "MIT"
+}

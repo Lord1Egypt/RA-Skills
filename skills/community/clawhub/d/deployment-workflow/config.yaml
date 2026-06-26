@@ -1,0 +1,143 @@
+# 定时任务配置
+# 使用: openclaw cron add --job config/jobs.yaml
+
+jobs:
+  # ===== 恒睿-内容组 =====
+  - name: 抖音热点榜-上午
+    schedule: "0 10 * * *"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "【抖音热点榜】请检索今日抖音热搜中八卦/网红相关内容，给出热点榜单（3-5条）"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003030827738"
+
+  - name: 抖音热点榜-下午
+    schedule: "0 16 * * *"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "【抖音热点榜】请检索今日抖音热搜中八卦/网红相关内容，给出热点榜单（3-5条）"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003030827738"
+
+  - name: 日报汇总
+    schedule: "10 22 * * 1-5"
+    tz: Asia/Shanghai
+    sessionTarget: main
+    payload:
+      kind: systemEvent
+      text: "在群组「恒睿-内容组」中汇总当日日报，从memory文件读取数据，用纯文本格式发送给程欢"
+
+  - name: 数据对比
+    schedule: "15 22 * * 1-6"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "在群组「恒睿-内容组」中发送今日数据对比分析，执行脚本 /root/.openclaw/workspace/scripts/daily_compare.py"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003030827738"
+
+  - name: 周报汇总
+    schedule: "30 19 * * 6"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "在群组「恒睿-内容组」中汇总本周周报，用纯文本格式发送"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003030827738"
+
+  - name: 月报汇总
+    schedule: "0 22 28-31 * *"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "在群组「恒睿-内容组」中汇总当月月报，用纯文本格式发送"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003030827738"
+
+  # ===== 恒睿-原运营二部-二组 =====
+  - name: 午间汇报
+    schedule: "0 12 * * 1-5"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "汇总当日午间汇报，从memory文件读取测试汇报，用纯文本格式发送到群里"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003486728414"
+
+  - name: 晚间汇报
+    schedule: "0 21 * * 1-5"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "汇总当日晚间汇报，从memory文件读取测试汇报，用纯文本格式发送到群里"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003486728414"
+
+  - name: 周六午间汇报
+    schedule: "0 12 * * 6"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "汇总当日午间汇报，从memory文件读取测试汇报，用纯文本格式发送到群里"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003486728414"
+
+  # ===== 私聊程欢 =====
+  - name: AI早间简报
+    schedule: "0 9 * * *"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "请检索今日AI领域最新开源项目和技术动态，整理成简要早间简报，用纯文本格式发送给用户"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "5772396205"
+
+  - name: 日报汇总(私聊)
+    schedule: "10 22 * * 1-5"
+    tz: Asia/Shanghai
+    sessionTarget: main
+    payload:
+      kind: systemEvent
+      text: "汇总当日日报发给程欢"
+
+  # ===== 恒睿-内容组-Agent-A =====
+  - name: 周报收集
+    schedule: "0 14 * * 5"
+    tz: Asia/Shanghai
+    sessionTarget: isolated
+    payload:
+      kind: agentTurn
+      message: "在群组「恒睿-内容组-Agent-A」中收集agent周报，汇总后用纯文本格式发给程欢"
+    delivery:
+      channel: telegram
+      mode: announce
+      to: "-1003813268921"

@@ -1,35 +1,32 @@
 ---
-name: "1.2.0"
-description: "Data quality validation patterns for daily checks and anomaly follow-up."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-quality-operations"
-sourceUrl: "https://clawhub.ai/skills/data-quality-operations"
+name: data-quality-operations
+description: Data quality validation patterns for daily checks and anomaly follow-up.
+version: 1.2.0
 ---
 
-# 1.2.0
+# Data Quality Operations
 
-> Data quality validation patterns for daily checks and anomaly follow-up.
+Use when dataset freshness/completeness checks must be run consistently.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-quality-operations`
-- **Source URL:** [https://clawhub.ai/skills/data-quality-operations](https://clawhub.ai/skills/data-quality-operations)
+## Inputs to Gather
 
-## Overview
+- Primary target (service, team, or dataset)
+- Current impact and urgency
+- Assigned owner and deadline
 
+## Core Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-quality-operations
-```
+- `dq profile --dataset <name>`
+- `dq validate --rule-set <id>`
+- `dq anomaly --open --metric <name>`
+- `workflow checklist --from templates/checklist.md`
+- `workflow report --from templates/report.md`
+
+## Operating Notes
+
+- Prefer explicit owner assignment before action.
+- Keep timeline notes concise and timestamped.
+- Save output artifacts for audit and handoff.
+- This version adds a structured report template for post-task summaries.
+
+Version marker: data-quality-operations 1.2.0

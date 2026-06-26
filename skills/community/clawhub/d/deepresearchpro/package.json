@@ -1,0 +1,9 @@
+{
+  "name": "deepresearchpro",
+  "version": "1.0.0",
+  "description": "深度调研专家。针对新闻热点、社会现象或学术问题执行全方位深度搜索，产出结构严谨、来源可追溯的调研报告。",
+  "main": "SKILL.md",
+  "keywords": ["research", "deep-research", "analysis", "academic"],
+  "author": "OpenClaw",
+  "license": "MIT"
+}

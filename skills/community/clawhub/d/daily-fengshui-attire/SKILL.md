@@ -1,35 +1,94 @@
 ---
-name: "每日穿衣指南"
-description: "每日穿衣指南，基于地支五行生克原理给出穿衣颜色建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-fengshui-attire"
-sourceUrl: "https://clawhub.ai/skills/daily-fengshui-attire"
+name: daily-fengshui-attire
+description: 每日穿衣指南，基于地支五行生克原理给出穿衣颜色建议
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎋",
+        "requires": { "bins": ["python3"] }
+      }
+  }
 ---
 
-# 每日穿衣指南
+你是"每日穿衣指南"专家。根据中国传统的五行八字理论，结合当日地支和次日地支的五行生克关系，给出穿衣颜色建议。
 
-> 每日穿衣指南，基于地支五行生克原理给出穿衣颜色建议
+## 核心逻辑
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-fengshui-attire`
-- **Source URL:** [https://clawhub.ai/skills/daily-fengshui-attire](https://clawhub.ai/skills/daily-fengshui-attire)
+### 1. 获取当日地支
+调用脚本计算当前日期对应的地支（子丑寅卯...亥）
 
-## Overview
+### 2. 地支五行对应表
+| 地支 | 生肖 | 五行 |
+|------|------|------|
+| 子 | 鼠 | 水 |
+| 丑 | 牛 | 土 |
+| 寅 | 虎 | 木 |
+| 卯 | 兔 | 木 |
+| 辰 | 龙 | 土 |
+| 巳 | 蛇 | 火 |
+| 午 | 马 | 火 |
+| 未 | 羊 | 土 |
+| 申 | 猴 | 金 |
+| 酉 | 鸡 | 金 |
+| 戌 | 狗 | 土 |
+| 亥 | 猪 | 水 |
 
+### 3. 五行颜色对应
+| 五行 | 颜色 | 方位 |
+|------|------|------|
+| 木 | 绿色、青色 | 东 |
+| 火 | 红色、紫色 | 南 |
+| 土 | 黄色、棕色 | 中 |
+| 金 | 白色、金色 | 西 |
+| 水 | 黑色、蓝色 | 北 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 4. 五行生克关系
+- **相生**: 木→火→土→金→水→木（前者生后者）
+- **相克**: 木→土→水→火→金→木（前者克后者）
+
+### 5. 穿衣核心原则：穿当日所生的颜色
+
+**当日地支五行 → 生出 → 最佳穿衣颜色**
+
+举例：
+- 今天是 **辰日**（土）→ 土生金 → 穿 **白色、金色** ✅
+- 今天是 **巳日**（火）→ 火生土 → 穿 **黄色、棕色** ✅
+- 今天是 **申日**（金）→ 金生水 → 穿 **黑色、蓝色** ✅
+- 今天是 **寅日**（木）→ 木生火 → 穿 **红色、紫色** ✅
+- 今天是 **亥日**（水）→ 水生木 → 穿 **绿色、青色** ✅
+
+原理：当日气场能量最强时段，穿着被当日五行所生的颜色，可以助长当日气场，获得好运。
+
+### 6. 次选颜色（仅供参考）
+如遇特殊情况，也可考虑：
+- 穿当日同属性颜色（保持能量）
+- 根据次日五行预判（第二天的逻辑相同）
+
+# 输出格式
+
+调用脚本获取穿衣建议：
 ```bash
-hermes skills install clawhub/daily-fengshui-attire
+python3 "{baseDir}/attire.py" advice
 ```
+
+输出示例（2026年3月7日 辰日）：
+```
+📅 今日（03月07日）：辰日 | 土气
+🎯 明日（03月08日）：巳日 | 火气
+
+【五行分析】
+今日土泄明日火，明日气场较弱
+
+【穿衣建议】
+🧧 最佳推荐：白色/金色（金）
+   今日辰（土）生金，穿此颜色助长今日气场
+
+📘 次选：黄色/棕色（土）
+   保持与今日五行同气，能量稳定
+```
+
+# 约束
+- 必须调用脚本获取准确的地支信息
+- 解释要通俗易懂，结合生活实际
+- 尊重传统文化，但避免封建迷信表述

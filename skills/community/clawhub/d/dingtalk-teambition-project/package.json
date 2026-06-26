@@ -1,0 +1,59 @@
+{
+  "name": "dingtalk-teambition",
+  "version": "0.0.3",
+  "description": "Teambition 项目和任务管理技能。使用 User Token 认证，通过 TQL（查询语言）灵活查询和管理 Teambition 项目、任务、成员等。",
+  "keywords": [
+    "teambition",
+    "task-management",
+    "project-management",
+    "tql",
+    "openclaw",
+    "项目管理",
+    "skill",
+    "dingtalk"
+  ],
+  "author": "Teambition Team",
+  "contributors": [
+    "Teambition Team"
+  ],
+  "license": "MIT",
+  "homepage": "https://clawhub.com/skills/dingtalk-teambition",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teambition/tb-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/teambition/tb-skills/issues"
+  },
+  "engines": {
+    "python": ">=3.8.0"
+  },
+  "peerDependencies": {
+    "uv": ">=0.1.0"
+  },
+  "clawhub": {
+    "requiresBinaries": [
+      "uv"
+    ],
+    "credentials": [
+      {
+        "name": "TEAMBITION_USER_TOKEN",
+        "description": "Teambition User Token (用户访问令牌)",
+        "docs": "https://open.teambition.com/user-mcp",
+        "storageMethod": "environment variable or user-token.json"
+      }
+    ],
+    "setup": {
+      "commands": [
+        "uv sync"
+      ],
+      "description": "安装 Python 依赖"
+    }
+  },
+  "scripts": {
+    "setup": "uv sync",
+    "test:tasks": "uv run scripts/query_tasks.py --tql \"executorId = me() AND isDone = false\"",
+    "test:projects": "uv run scripts/query_projects.py --tql \"involveMembers = me()\"",
+    "test:members": "uv run scripts/query_members.py --keyword \"test\""
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "customer",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for acquiring, onboarding, retaining, and growing customers. Covers health scoring, churn prevention, renewal strategy, expansion revenue, customer advocacy, and exit analysis for B2B and SaaS businesses.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "customer", "customer success", "churn", "retention", "renewal",
+    "expansion", "onboarding", "NPS", "health score", "upsell",
+    "customer advocacy", "QBR", "business review", "net revenue retention",
+    "customer experience", "B2B", "SaaS"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "health_scoring": "Builds predictive health score frameworks calibrated to specific products and customer bases",
+    "churn_prevention": "Identifies at-risk customers early and executes intervention playbooks",
+    "onboarding_design": "Structures onboarding programs that reliably deliver first value within 90 days",
+    "renewal_management": "Builds renewal motions that make uncertain renewals rare",
+    "expansion_identification": "Surfaces expansion signals and builds conversations that feel like advocacy",
+    "churn_analysis": "Extracts patterns from churned customers to fix preventable churn systematically"
+  },
+  "triggers": [
+    "customer", "customer success", "churn", "retention", "renewal",
+    "onboarding", "health score", "expansion", "upsell", "NPS",
+    "business review", "QBR", "at-risk customer", "customer health",
+    "net revenue retention", "NRR", "customer advocacy", "reference",
+    "customer satisfaction", "CSAT", "customer journey", "lifecycle"
+  ],
+  "heartbeat": {
+    "daily": "Health alerts and urgent account identification",
+    "weekly": "Full portfolio review with renewal and onboarding status",
+    "monthly": "Business review preparation for each scheduled QBR",
+    "quarterly": "Portfolio health analysis including churn, expansion, and NPS trends"
+  },
+  "audience": [
+    "Customer success managers with a book of 20-100 accounts",
+    "VP of Customer Success building a scalable CS function",
+    "Founders doing customer success themselves before hiring",
+    "Account managers responsible for renewal and expansion revenue",
+    "SaaS businesses experiencing churn they cannot explain"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

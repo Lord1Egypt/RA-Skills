@@ -1,0 +1,10 @@
+{
+  "name": "dingtalk-approval",
+  "version": "2.3.2",
+  "description": "钉钉 OA 审批处理插件 - 支持查询待办、查看详情、执行审批和查询假期余额",
+  "main": "index.js",
+  "keywords": ["dingtalk", "approval", "oa", "钉钉", "审批"],
+  "author": "Yang",
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Daily Report Config",
+  "type": "object",
+  "properties": {
+    "template": {
+      "type": "string",
+      "default": "default",
+      "description": "报表模板名称"
+    },
+    "output_dir": {
+      "type": "string",
+      "default": "~/Desktop",
+      "description": "默认输出目录"
+    },
+    "include_time": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否包含时间戳"
+    },
+    "include_stats": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否包含统计信息"
+    },
+    "language": {
+      "type": "string",
+      "default": "zh-CN",
+      "enum": ["zh-CN", "en-US"],
+      "description": "语言设置"
+    }
+  }
+}

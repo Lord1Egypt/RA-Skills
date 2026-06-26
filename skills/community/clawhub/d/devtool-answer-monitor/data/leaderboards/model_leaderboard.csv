@@ -1,0 +1,7 @@
+run_id,project,model_id,mention_rate,positive_mention_rate,capability_accuracy,ecosystem_accuracy
+multi-model-demo,MinerU,gpt-4.1-mini,80.0,70.0,100.0,50.0
+multi-model-demo,MinerU,gpt-4.1-nano,72.0,60.0,92.0,48.0
+repair-t14-run,MinerU,gpt-4.1-mini,90.0,82.0,100.0,100.0
+repair-t7-run,MinerU,gpt-4.1-mini,85.0,75.0,100.0,75.0
+sample-run,MinerU,gpt-4.1-mini,80.0,70.0,100.0,50.0
+sciverse-sample-run,Sciverse API,gpt-4.1-mini,77.27,63.64,100.0,83.33

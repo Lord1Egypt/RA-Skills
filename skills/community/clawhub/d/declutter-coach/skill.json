@@ -1,0 +1,9 @@
+{
+  "name": "declutter-coach",
+  "slug": "declutter-coach",
+  "version": "0.1.0",
+  "description": "auto-generated skeleton",
+  "author": "Harry",
+  "tags": ["lifestyle"],
+  "handler": "handler.py"
+}

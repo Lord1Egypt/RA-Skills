@@ -1,0 +1,7 @@
+scope,name,record_count,mention_rate,positive_mention_rate,capability_accuracy,ecosystem_accuracy
+overall,MinerU,5,80.0,70.0,100.0,50.0
+model,gpt-4.1-mini,5,80.0,70.0,100.0,50.0
+funnel_stage,awareness,1,100.0,100.0,,
+funnel_stage,selection,2,75.0,75.0,100.0,
+funnel_stage,activation,1,100.0,50.0,,
+funnel_stage,agent,1,50.0,50.0,,50.0

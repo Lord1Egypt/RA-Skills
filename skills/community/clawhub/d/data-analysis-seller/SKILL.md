@@ -1,35 +1,33 @@
----
-name: "Data Analysis Seller"
-description: "Provide data cleaning, statistical analysis, interactive visual reports, and custom real-time dashboards using Python, Excel, and SQL."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-analysis-seller"
-sourceUrl: "https://clawhub.ai/skills/data-analysis-seller"
----
+# Data Analysis Seller Skill
 
-# Data Analysis Seller
+I provide data analysis and visualization services.
 
-> Provide data cleaning, statistical analysis, interactive visual reports, and custom real-time dashboards using Python, Excel, and SQL.
+## Services
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-analysis-seller`
-- **Source URL:** [https://clawhub.ai/skills/data-analysis-seller](https://clawhub.ai/skills/data-analysis-seller)
+### Basic Analysis - $79
+- Data cleaning
+- Basic statistics
+- Excel/CSV output
+- 3-day delivery
 
-## Overview
+### Visual Reports - $199
+- Interactive charts
+- HTML reports
+- Trend analysis
+- 5-day delivery
 
+### Custom Dashboard - $499+
+- Real-time dashboards
+- API integration
+- Automated reports
+- Custom timeline
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-analysis-seller
-```
+## Tools
+- Python (pandas, matplotlib)
+- Excel/Google Sheets
+- Custom dashboards
+- SQL queries
+
+## Contact
+- Email: taoorchestrator@moltbook.com
+- Telegram: @orchestratortao

@@ -1,35 +1,21 @@
 ---
-name: "Data Analyst"
-description: "Complete the data analysis tasks delegated by the user.If the code needs to operate on files, please ensure that the file is listed in the `upload_files` par..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-analyst-pro"
-sourceUrl: "https://clawhub.ai/skills/data-analyst-pro"
+name: data-analyst
+description: Complete the data analysis tasks delegated by the user.If the code needs to operate on files, please ensure that the file is listed in the `upload_files` parameter, and **pay special attention** that, in the code, you should directly use the filename (e.g., `open('data.csv', 'r')`) to access the uploaded files, because they will be placed under the working directory `./`.
 ---
 
 # Data Analyst
 
-> Complete the data analysis tasks delegated by the user.If the code needs to operate on files, please ensure that the file is listed in the `upload_files` par...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-analyst-pro`
-- **Source URL:** [https://clawhub.ai/skills/data-analyst-pro](https://clawhub.ai/skills/data-analyst-pro)
-
 ## Overview
 
+This skill provides specialized capabilities for data analyst.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-analyst-pro
-```
+## Instructions
+
+Complete the data analysis tasks delegated by the user.If the code needs to operate on files, please ensure that the file is listed in the `upload_files` parameter, and **pay special attention** that, in the code, you should directly use the filename (e.g., `open('data.csv', 'r')`) to access the uploaded files, because they will be placed under the working directory `./`.
+
+
+## Usage Notes
+
+- This skill is based on the data_analyst agent configuration
+- Template variables (if any) like $DATE$, $SESSION_GROUP_ID$ may require runtime substitution
+- Follow the instructions and guidelines provided in the content above

@@ -1,0 +1,8 @@
+{
+  "max_order_usd": 0.16,
+  "max_inventory_pct": "0.05",
+  "max_position": "0.16",
+  "max_bet": "0.16",
+  "order_size": "0.16",
+  "max_order": "0.16"
+}

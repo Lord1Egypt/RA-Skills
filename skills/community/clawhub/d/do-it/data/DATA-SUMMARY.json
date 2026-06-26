@@ -1,0 +1,16 @@
+{
+  "report_date": "2026-03-15 11:50",
+  "data_files": {
+    "salary": "data/salary/finance_bp_salary.json",
+    "city": "data/city/city_comparison.json",
+    "cases_manual": "data/cases/case_records.json",
+    "cases_web": "data/cases/web_cases.json"
+  },
+  "statistics": {
+    "salary_records": 8,
+    "city_records": 7,
+    "manual_cases": 1,
+    "web_cases": 6,
+    "total_cases": 7
+  }
+}

@@ -1,35 +1,29 @@
 ---
-name: "/Message"
-description: "Send a message to Jarvis by typing "/message" followed by your text. Works as a text command - triggers when you type "/message" in chat."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/discordanywhere"
-sourceUrl: "https://clawhub.ai/skills/discordanywhere"
+name: message
+description: Send a message to Jarvis by typing "/message" followed by your text. Works as a text command - triggers when you type "/message" in chat.
 ---
 
-# /Message
+# Message Command
 
-> Send a message to Jarvis by typing "/message" followed by your text. Works as a text command - triggers when you type "/message" in chat.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/discordanywhere`
-- **Source URL:** [https://clawhub.ai/skills/discordanywhere](https://clawhub.ai/skills/discordanywhere)
+Type `/message` followed by your message:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/discordanywhere
 ```
+/message What's the weather today?
+/message Turn on my PC
+/message Remind me to call mom at 5pm
+```
+
+## How It Works
+
+When you type `/message` as text:
+1. OpenClaw detects the `/message` prefix
+2. Routes the text after it to Jarvis
+3. Jarvis responds with a **public** message
+
+## Notes
+
+- Works in any channel where Jarvis is present
+- Response is public (not ephemeral)
+- No need to @mention the bot

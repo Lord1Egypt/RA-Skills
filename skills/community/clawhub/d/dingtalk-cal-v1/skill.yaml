@@ -1,0 +1,26 @@
+name: dingtalk-calendar
+version: 1.0.0
+description: 钉钉日程管理（创建日程、查询闲忙、会议室预订）。使用 mcporter CLI 连接钉钉 MCP server 执行日程管理、日程查询、会议室预订等操作。
+author: clawd
+homepage: https://clawhub.com/skills/dingtalk-calendar
+
+triggers:
+  - 钉钉日程
+  - 创建日程
+  - 会议预订
+  - 会议室预订
+  - 查询闲忙
+  - dingtalk calendar
+
+features:
+  - 创建/更新/删除日程
+  - 查询日程列表
+  - 查询他人闲忙状态
+  - 查询空闲会议室
+  - 为日程添加会议室
+  - 搜索通讯录用户
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

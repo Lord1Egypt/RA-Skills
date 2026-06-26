@@ -1,0 +1,4 @@
+interface:
+  display_name: "Daily Brief Writer"
+  short_description: "Draft concise daily briefs from raw notes"
+  default_prompt: "Use $daily-brief-writer to turn these notes into a concise daily brief."

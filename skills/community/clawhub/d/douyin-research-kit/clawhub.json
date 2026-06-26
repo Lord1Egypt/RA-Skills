@@ -1,0 +1,22 @@
+{
+  "name": "Douyin Research Kit",
+  "tagline": "Extract metadata, captions, and stats from Douyin (抖音) videos and profiles",
+  "description": "A content research toolkit for Douyin (抖音). Extract video metadata, captions, engagement stats, creator profiles, music/sound info, hashtag trends, and live stream data — powered by yt-dlp locally. Perfect for Chinese short-video content research and creator analysis.",
+  "category": "data",
+  "tags": [
+    "douyin",
+    "抖音",
+    "chinese",
+    "short-video",
+    "research",
+    "metadata",
+    "content-analysis",
+    "yt-dlp",
+    "tiktok-china"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/xuya227939/douyin-research-kit/issues",
+  "homepage": "https://snapvee.com"
+}

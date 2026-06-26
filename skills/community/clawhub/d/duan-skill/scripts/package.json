@@ -1,0 +1,8 @@
+{
+  "name": "duan-slides-tools",
+  "dependencies": {
+    "playwright": "^1.42.0",
+    "sharp": "^0.33.2",
+    "pptxgenjs": "^3.12.0"
+  }
+}

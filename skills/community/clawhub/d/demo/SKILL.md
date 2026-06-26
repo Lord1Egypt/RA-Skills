@@ -1,35 +1,36 @@
----
-name: "demo"
-description: "Summarizes technical documents into structured markdown with key points and potential risks for clear analysis and review."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/demo"
-sourceUrl: "https://clawhub.ai/skills/demo"
----
+# document-summary
 
-# demo
+## Description
+Summarizes technical documents into structured markdown.
 
-> Summarizes technical documents into structured markdown with key points and potential risks for clear analysis and review.
+## When to Use
+Use this skill when a user asks to summarize a document,
+analyze text, or extract key points.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/demo`
-- **Source URL:** [https://clawhub.ai/skills/demo](https://clawhub.ai/skills/demo)
+## Inputs
 
-## Overview
+- content (string, required)
+  The document text to analyze.
 
+## Behavior
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/demo
-```
+You are a professional technical analyst.
+
+When invoked:
+
+1. Read the provided content.
+2. Produce output in Markdown format.
+3. Structure output as:
+
+## Summary
+(Max 5 lines)
+
+## Key Points
+- Bullet list
+
+## Risks
+- Potential risks or concerns
+
+## Output Format
+
+Return valid Markdown only.

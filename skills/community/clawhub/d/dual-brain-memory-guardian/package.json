@@ -1,0 +1,33 @@
+{
+  "name": "dual-brain-memory-guardian",
+  "version": "1.0.3",
+  "private": true,
+  "description": "Dual-brain memory runtime for the Dual-Brain Memory Guardian skill (Markdown + Pinecone).",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "memory:init": "node scripts/memory-cli.js init-index",
+    "memory:session-start": "node scripts/memory-cli.js session-start",
+    "memory:auto-session-start": "node scripts/memory-cli.js auto-session-start",
+    "memory:on-correction": "node scripts/memory-cli.js on-correction",
+    "memory:on-task-complete": "node scripts/memory-cli.js on-task-complete",
+    "memory:auto-task-complete": "node scripts/memory-cli.js auto-task-complete",
+    "memory:mark-promoted": "node scripts/memory-cli.js mark-promoted",
+    "memory:save": "node scripts/memory-cli.js save",
+    "memory:search": "node scripts/memory-cli.js search",
+    "memory:forget": "node scripts/memory-cli.js forget",
+    "memory:import:start": "node scripts/memory-cli.js import-start",
+    "memory:import:status": "node scripts/memory-cli.js import-status",
+    "memory:import:list": "node scripts/memory-cli.js import-list",
+    "memory:import:cancel": "node scripts/memory-cli.js import-cancel",
+    "memory:freshness": "node scripts/memory-cli.js freshness",
+    "memory:forget-all": "node scripts/memory-cli.js forget-all",
+    "verify": "node scripts/verify.js"
+  },
+  "dependencies": {
+    "@pinecone-database/pinecone": "^7.1.0",
+    "dotenv": "^16.4.7"
+  }
+}

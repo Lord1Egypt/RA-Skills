@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- 背景 -->
+  <rect width="256" height="256" fill="#f0f4ff" rx="32"/>
+
+  <!-- 主体 - 海报/大图 -->
+  <rect x="40" y="50" width="176" height="160" fill="none" stroke="#2563eb" stroke-width="3" rx="8"/>
+
+  <!-- 标题区域 -->
+  <rect x="50" y="60" width="156" height="30" fill="#2563eb" rx="4"/>
+  <text x="128" y="82" font-size="16" font-weight="bold" fill="white" text-anchor="middle">AI大图生成</text>
+
+  <!-- 内容区域 -->
+  <line x1="50" y1="100" x2="206" y2="100" stroke="#e5e7eb" stroke-width="2"/>
+  <line x1="50" y1="115" x2="206" y2="115" stroke="#e5e7eb" stroke-width="2"/>
+  <line x1="50" y1="130" x2="206" y2="130" stroke="#e5e7eb" stroke-width="2"/>
+  <line x1="50" y1="145" x2="180" y2="145" stroke="#e5e7eb" stroke-width="2"/>
+
+  <!-- AI 符号 -->
+  <circle cx="220" cy="220" r="28" fill="#8b5cf6" opacity="0.2"/>
+  <text x="220" y="228" font-size="24" font-weight="bold" fill="#8b5cf6" text-anchor="middle">AI</text>
+</svg>

@@ -1,35 +1,20 @@
 ---
 name: "抖音运营"
 description: "提供抖音运营的可落地指南与SOP。在开展抖音运营相关工作时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-operations"
-sourceUrl: "https://clawhub.ai/skills/douyin-operations"
 ---
+# 抖音运营 (douyin-operations)
+## 内容与节奏
+- 每周3-5条视频：知识型/场景型/对比测评；直播带货每周至少1场；
+- 统一人设与话术，打造稳定主题与系列内容。
 
-# 抖音运营
+## 推荐机制要点
+- 完播率、互动率、转粉率、停留时长；前3秒强钩子、字幕与配乐优化；
+- 投流与自然流量配比；DOU+使用策略与风险控制。
 
-> 提供抖音运营的可落地指南与SOP。在开展抖音运营相关工作时调用。
+## 带货链路
+- 商品卡配置、达人佣金、橱窗与店铺跳转；活动节点（618/双11）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-operations`
-- **Source URL:** [https://clawhub.ai/skills/douyin-operations](https://clawhub.ai/skills/douyin-operations)
+## 合规
+- 禁止夸大宣传；标注广告；遵守平台禁词与敏感类目规则。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/douyin-operations
-```
+生成日期：2026-03-17

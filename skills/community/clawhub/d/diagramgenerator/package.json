@@ -1,0 +1,33 @@
+{
+  "name": "diagram-generator",
+  "version": "1.0.1",
+  "description": "An AI-powered tool to generate and iteratively edit Mermaid and Draw.io diagrams.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "skill:install": "openclaw install .",
+    "test:skill": "concurrently \"npm run start\" \"openclaw\" --names \"SERVER,AGENT\" --prefix-colors \"blue,magenta\""
+  },
+  "dependencies": {
+    "@google/genai": "^1.45.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0"
+  },
+  "keywords": [
+    "mermaid",
+    "diagrams",
+    "ai",
+    "llm",
+    "generator",
+    "drawio"
+  ],
+  "author": "Kaushik Datta",
+  "license": "MIT"
+}

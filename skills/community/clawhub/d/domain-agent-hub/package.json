@@ -1,0 +1,51 @@
+{
+  "name": "domain-agent-hub",
+  "version": "0.2.0",
+  "description": "领域专家枢纽 - 智能判断任务领域，优先推荐成熟方案，无成熟方案时扩展创建",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "domain",
+    "agent",
+    "hub",
+    "task-routing",
+    "expert",
+    "ai-agent"
+  ],
+  "author": "yangdaowan",
+  "license": "MIT",
+  "homepage": "https://clawdhub.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": ["darwin", "linux", "win32"],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "clawdbot": {
+    "skill": true,
+    "emoji": "🔀",
+    "category": "Task Management",
+    "requires": {},
+    "permissions": {
+      "filesystem": "none",
+      "network": "none",
+      "system": "none"
+    },
+    "tags": [
+      "domain",
+      "agent",
+      "hub",
+      "task-routing"
+    ]
+  }
+}

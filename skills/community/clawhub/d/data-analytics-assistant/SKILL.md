@@ -1,35 +1,188 @@
 ---
-name: "Data Analytics Assistant - 数据分析助手"
-description: "数据分析助手。支持网站访问统计、用户行为分析、转化率优化建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/data-analytics-assistant"
-sourceUrl: "https://clawhub.ai/skills/data-analytics-assistant"
+name: data-analytics-assistant
+description: 数据分析助手。支持网站访问统计、用户行为分析、转化率优化建议。
 ---
 
-# Data Analytics Assistant - 数据分析助手
+# 数据分析助手
 
-> 数据分析助手。支持网站访问统计、用户行为分析、转化率优化建议。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/data-analytics-assistant`
-- **Source URL:** [https://clawhub.ai/skills/data-analytics-assistant](https://clawhub.ai/skills/data-analytics-assistant)
+### 1. 网站访问统计
+- 日活/月活用户统计
+- 页面浏览量 (PV/UV)
+- 访问来源分析
+- 用户地域分布
 
-## Overview
+### 2. 用户行为分析
+- 平均停留时长
+- 跳出率分析
+- 用户路径追踪
+- 热门页面排行
 
+### 3. 转化率优化
+- 转化漏斗分析
+- A/B 测试建议
+- 优化点识别
+- ROI 计算
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/data-analytics-assistant
+### 4. 数据报告生成
+- 日报/周报/月报
+- 数据可视化图表
+- 趋势分析
+- 异常预警
+
+---
+
+## 使用示例
+
+### 查看访问统计
 ```
+用户：昨天网站有多少人访问
+助手：查询并展示 PV/UV 数据
+```
+
+### 用户行为分析
+```
+用户：用户平均停留多久
+助手：分析停留时长 + 跳出率
+```
+
+### 转化率优化
+```
+用户：如何提高测试完成率
+助手：分析漏斗 + 给出优化建议
+```
+
+### 生成报告
+```
+用户：生成上周的数据报告
+助手：生成完整周报（含图表）
+```
+
+---
+
+## 核心指标
+
+### 流量指标
+| 指标 | 说明 | 计算公式 |
+|------|------|----------|
+| PV | 页面浏览量 | 总页面访问次数 |
+| UV | 独立访客数 | 去重用户数 |
+| DAU | 日活跃用户 | 当日访问用户数 |
+| MAU | 月活跃用户 | 当月访问用户数 |
+
+### 行为指标
+| 指标 | 说明 | 健康值 |
+|------|------|--------|
+| 停留时长 | 用户平均停留时间 | >2 分钟 |
+| 跳出率 | 单页离开比例 | <50% |
+| 完成率 | 测试完成比例 | >60% |
+| 分享率 | 分享/访问比 | >5% |
+
+### 转化指标
+| 指标 | 说明 | 计算公式 |
+|------|------|----------|
+| 转化率 | 完成目标用户比例 | 转化数/访问数 |
+| CAC | 获客成本 | 总投入/新增用户 |
+| ROI | 投资回报率 | (收入 - 成本)/成本 |
+| LTV | 用户生命周期价值 | 平均消费 × 复购次数 |
+
+---
+
+## 分析模板
+
+### 日报模板
+```
+📊 数据日报 | YYYY-MM-DD
+
+【核心数据】
+- PV: XXXX (+X%)
+- UV: XXXX (+X%)
+- 转化率：X.X% (+X%)
+
+【流量来源】
+- 小红书：XX%
+- 朋友圈：XX%
+- 直接访问：XX%
+
+【热门页面】
+1. 城市性格测试 - XXXX 访问
+2. XXXX - XXXX 访问
+3. XXXX - XXXX 访问
+
+【优化建议】
+1. [具体建议]
+2. [具体建议]
+```
+
+### 周报模板
+```
+📈 数据周报 | YYYY-MM-DD 至 YYYY-MM-DD
+
+【本周汇总】
+- 总 PV: XXXXX
+- 总 UV: XXXXX
+- 平均转化率：X.X%
+
+【趋势分析】
+- 流量趋势：[上升/下降/平稳]
+- 转化趋势：[上升/下降/平稳]
+- 关键发现：[具体发现]
+
+【渠道表现】
+| 渠道 | 访问数 | 转化率 | ROI |
+|------|--------|--------|-----|
+| 小红书 | XXXX | X.X% | X.X |
+| 抖音 | XXXX | X.X% | X.X |
+
+【下周计划】
+1. [具体计划]
+2. [具体计划]
+```
+
+---
+
+## 优化建议库
+
+### 提高转化率
+1. 简化测试流程（减少题目数量）
+2. 优化加载速度（目标<3 秒）
+3. 增加进度条提示
+4. 添加社交证明（用户评价）
+5. 优化移动端体验
+
+### 降低跳出率
+1. 优化首屏内容
+2. 添加互动元素
+3. 提高页面加载速度
+4. 增加相关推荐
+5. 优化视觉设计
+
+### 提高分享率
+1. 设计吸引人的结果页
+2. 添加分享奖励机制
+3. 生成个性化分享图
+4. 添加分享文案模板
+5. 设置分享排行榜
+
+---
+
+## 数据可视化
+
+### 推荐图表类型
+| 数据类型 | 推荐图表 |
+|----------|----------|
+| 趋势分析 | 折线图 |
+| 占比分析 | 饼图/环形图 |
+| 对比分析 | 柱状图/条形图 |
+| 转化漏斗 | 漏斗图 |
+| 用户分布 | 地图/热力图 |
+
+---
+
+## 相关资源
+
+- `scripts/generate_report.py` - 报告生成脚本
+- `scripts/calculate_metrics.py` - 指标计算脚本
+- `references/metrics-definition.md` - 指标定义
+- `templates/report_templates.md` - 报告模板

@@ -1,0 +1,7 @@
+[skill]
+name = "翠溪山庄AI智慧管家"
+version = "1.0.1"
+description = "民宿行业首个面向度假别墅场景的全链路智能服务体，集标准化咨询应答、预订流程管理、多平台营销内容生成于一体，以轻量化AI技术赋能传统民宿运营，构建'咨询-预订-推广'的数字化闭环，打造智慧文旅时代的民宿服务新范式。"
+author = "许亚东·翠溪山庄"
+license = "MIT-0"
+tags = ["homestay", "villa", "smart-tourism", "customer-service", "marketing"]

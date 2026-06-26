@@ -1,0 +1,144 @@
+# Podcast Skill Configuration Example
+# Copy this to config.yaml and customize
+
+# Sources - where to discover topics from
+# The more sources you add, the better your topic variety.
+# All RSS feeds work out of the box. Just add url + name + category.
+sources:
+
+  # ── Longform & Essays ──────────────────────────────────
+  - type: rss
+    url: https://aeon.co/feed.rss
+    name: Aeon Magazine
+    category: Philosophy/Science
+
+  - type: rss
+    url: https://nautil.us/feed/
+    name: Nautilus
+    category: Science
+
+  - type: rss
+    url: https://asteriskmag.com/feed
+    name: Asterisk Magazine
+    category: Science/Future
+
+  - type: rss
+    url: https://longreads.com/feed/
+    name: Longreads
+    category: Longform/Culture
+
+  # ── Science & Research ─────────────────────────────────
+  - type: rss
+    url: https://api.quantamagazine.org/feed/
+    name: Quanta Magazine
+    category: Science/Math
+
+  - type: nature
+    section: news
+    name: Nature News
+
+  - type: rss
+    url: https://www.newscientist.com/feed/home/
+    name: New Scientist
+    category: Science/Tech
+
+  # ── Tech & AI ──────────────────────────────────────────
+  - type: rss
+    url: https://www.technologyreview.com/feed/
+    name: MIT Technology Review
+    category: Tech/Innovation
+
+  - type: hackernews
+    min_points: 200
+    min_comments: 50
+    name: Hacker News (>200pts)
+
+  - type: rss
+    url: https://arstechnica.com/feed/
+    name: Ars Technica
+    category: Tech/Science
+
+  - type: rss
+    url: https://feeds.feedburner.com/TheHackersNews
+    name: The Hacker News (Security)
+    category: Cybersecurity
+
+  - type: rss
+    url: https://spectrum.ieee.org/feeds/feed.rss
+    name: IEEE Spectrum
+    category: Engineering/Tech
+
+  # ── Economics & Business ───────────────────────────────
+  - type: rss
+    url: https://marginalrevolution.com/feed
+    name: Marginal Revolution
+    category: Economics/Tech
+
+  - type: rss
+    url: https://stratechery.com/feed/
+    name: Stratechery
+    category: Tech Strategy
+
+  # ── Health & Longevity ─────────────────────────────────
+  - type: rss
+    url: https://peterattiamd.com/feed/
+    name: Peter Attia
+    category: Health/Longevity
+
+  # ── Startup & VC ───────────────────────────────────────
+  - type: rss
+    url: https://techcrunch.com/feed/
+    name: TechCrunch
+    category: Startup/Tech
+
+  - type: rss
+    url: https://www.ben-evans.com/benedictevans/rss.xml
+    name: Benedict Evans
+    category: Tech/Analysis
+
+# Interests - keywords/topics to prioritize
+# Topics matching these will rank higher
+interests:
+  - AI/LLM cutting edge
+  - Machine learning
+  - Tech/Startup news
+  - Science/Innovation
+  - Health/Longevity
+  - Biotech
+  - Fintech
+  - Productivity
+  - Future of work
+
+# Voice configuration (ElevenLabs)
+voice:
+  provider: elevenlabs
+  # Use YOUR voice ID from your ElevenLabs library
+  voice_id: "<your-voice-id>"
+  # Or use a voice name:
+  # voice_name: "<your-voice-name>"
+  model: eleven_turbo_v2_5
+
+# Storage configuration
+storage:
+  # Options: s3 | local
+  type: s3
+  bucket: my-bucket-name
+  region: us-east-1
+  prefix: podcast/
+
+  # For local storage:
+  # type: local
+  # path: ./output
+
+# Delivery (optional)
+# This skill does not include delivery code.
+# Implement your own delivery in your cron worker/automation.
+delivery:
+  enabled: false
+
+# Script generation settings
+script:
+  word_count: 2500-3500
+  # Options: conversational | formal | casual
+  style: conversational
+  fact_check: true

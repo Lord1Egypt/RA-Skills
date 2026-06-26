@@ -1,0 +1,39 @@
+{
+  "discord_channel_id": "1483536881814868071",
+  "discord_channel_name": "crypto",
+  "guild_id": "1477442892879626260",
+  "exchange": "coinbase",
+  "risk_tolerance": "aggressive",
+  "monthly_target": 1000,
+  "watchlist": [
+    "BTC", "ETH", "SOL", "XRP", "DOGE", "AVAX", "LINK", "ADA",
+    "DOT", "MATIC", "ATOM", "UNI", "NEAR", "APT", "SUI", "ARB",
+    "OP", "INJ", "PEPE", "SHIB", "RENDER", "FET", "ONDO", "WIF"
+  ],
+  "alerts": {
+    "funding_scan_interval_hours": 4,
+    "risk_radar_interval_hours": 12,
+    "momentum_threshold_pct": 5,
+    "price_check_interval_hours": 2
+  },
+  "strategy": {
+    "funding_arb": {
+      "enabled": true,
+      "min_rate": -0.0005,
+      "max_leverage": 5,
+      "notes": "Aggressive: collect funding while holding direction"
+    },
+    "momentum": {
+      "enabled": true,
+      "entry_on_dip_pct": -8,
+      "entry_on_breakout_pct": 5,
+      "stop_loss_pct": 10,
+      "take_profit_pct": 15
+    },
+    "risk_regime": {
+      "enabled": true,
+      "buy_on_green_after_red": true,
+      "reduce_on_red": true
+    }
+  }
+}

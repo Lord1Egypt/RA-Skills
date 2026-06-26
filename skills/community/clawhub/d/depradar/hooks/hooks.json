@@ -1,0 +1,13 @@
+{
+  "hooks": [
+    {
+      "name": "depradar-config-check",
+      "event": "SessionStart",
+      "script": "hooks/scripts/check-config.sh",
+      "description": "Checks /depradar API key configuration and prints a one-line tip if GITHUB_TOKEN is missing.",
+      "run": "once_per_session",
+      "silent_on_pass": true,
+      "timeout_seconds": 5
+    }
+  ]
+}

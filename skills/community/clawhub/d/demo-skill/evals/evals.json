@@ -1,0 +1,23 @@
+{
+  "skill_name": "demo-doc-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我需要写一个技术规格文档，介绍我们团队正在开发的用户登录功能。这个功能支持邮箱+密码登录和 Google OAuth，使用 JWT token。帮我生成一份完整的技术 spec 文档。",
+      "expected_output": "包含 Overview、Goals、Non-Goals、Design/Approach、API/Interface、Open Questions 等章节的完整技术规格 Markdown 文档",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "帮我写今天的项目周报，我们的支付系统重构项目：本周完成了数据库 schema 迁移和旧接口兼容层，下周计划集成新的 Stripe SDK，当前有一个风险是 QA 资源紧张。",
+      "expected_output": "包含 Summary 状态标识、Progress、Next Steps、Risks & Blockers 表格的项目状态报告",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "给我们的开源工具 'datapipe' 写一个 README，它是一个 Python 命令行工具，用于在不同格式（CSV、JSON、Parquet）之间转换数据文件，支持 pip 安装，命令是 datapipe convert input.csv output.json。",
+      "expected_output": "包含项目介绍、Quick Start、Usage 示例、Configuration 等章节的完整 README.md",
+      "files": []
+    }
+  ]
+}

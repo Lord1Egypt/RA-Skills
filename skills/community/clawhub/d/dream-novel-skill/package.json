@@ -1,0 +1,14 @@
+{
+  "name": "dream-novel-openclaw-skill",
+  "version": "1.0.0",
+  "description": "基于雪花写作法和三层记忆架构的小说创作辅助技能，适用于 OpenClaw / Claude Code 等智能体",
+  "main": "scripts/prompt-assembler.js",
+  "author": "Antigravity & User",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "prompt-skill",
+    "agent",
+    "novel"
+  ]
+}

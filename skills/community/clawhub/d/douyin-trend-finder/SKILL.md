@@ -1,35 +1,99 @@
 ---
-name: "Douyin Trend Finder"
-description: "抖音热点追踪、BGM 发现、话题分析、爆款视频拆解。适合短视频创作者、品牌运营、MCN 机构。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/douyin-trend-finder"
-sourceUrl: "https://clawhub.ai/skills/douyin-trend-finder"
+name: douyin-trend-finder
+version: 1.0.0
+description: 抖音热点追踪、BGM 发现、话题分析、爆款视频拆解。适合短视频创作者、品牌运营、MCN 机构。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎵",
+        "requires": { "bins": ["python3", "curl"] },
+        "install":
+          [
+            {
+              "id": "requests",
+              "kind": "pip",
+              "package": "requests",
+              "label": "安装依赖：pip3 install requests",
+            },
+          ],
+      },
+  }
 ---
 
-# Douyin Trend Finder
+# 抖音热点发现技能
 
-> 抖音热点追踪、BGM 发现、话题分析、爆款视频拆解。适合短视频创作者、品牌运营、MCN 机构。
+追踪抖音实时热点，发现爆款 BGM，分析热门话题，拆解爆款视频公式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/douyin-trend-finder`
-- **Source URL:** [https://clawhub.ai/skills/douyin-trend-finder](https://clawhub.ai/skills/douyin-trend-finder)
+## 功能
 
-## Overview
+1. **热点榜单**: 实时热榜、上升榜、新人榜
+2. **BGM 发现**: 热门音乐、飙升 BGM、原创音乐
+3. **话题分析**: 热门挑战、话题参与度、趋势预测
+4. **爆款拆解**: 分析爆款视频的结构、节奏、元素
+5. **达人监控**: 追踪对标账号的爆款内容
+6. **创意灵感**: 基于热点生成创意建议
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/douyin-trend-finder
 ```
+查看今日抖音热榜 TOP10
+```
+
+```
+帮我找最近飙升最快的 BGM
+```
+
+```
+分析这个爆款视频为什么火：[视频链接]
+```
+
+```
+美妆类最近有什么热门话题
+```
+
+```
+生成 5 个蹭热点的创意方向
+```
+
+## 输出示例
+
+```
+🎵 抖音热点报告
+
+🔥 今日热榜 TOP5：
+1. #秋天第一杯奶茶（5.2 亿播放）🥤
+2. #打工人日常（3.8 亿播放）💼
+3. #穿搭分享（2.1 亿播放）👗
+4. #美食探店（1.9 亿播放）🍜
+5. #宠物成精了（1.5 亿播放）🐱
+
+🎶 飙升 BGM TOP3：
+1. 《XXX》- 歌手名（使用量 +320%）
+2. 《YYY》- 歌手名（使用量 +280%）
+3. 《ZZZ》- 歌手名（使用量 +250%）
+
+💡 爆款视频拆解：
+视频：XXX（点赞 120w）
+├─ 前 3 秒：悬念引入（"你绝对想不到..."）
+├─ 节奏：每 5 秒一个反转
+├─ BGM：《XXX》高潮部分
+├─ 文案：引发共鸣的痛点
+└─ CTA：引导评论互动
+
+📈 趋势预测：
+- 上升中：#办公室零食、#居家健身
+- 即将爆发：#双 11 购物分享
+- 衰退中：#夏日穿搭、#毕业季
+```
+
+## 变现模式
+
+- 免费：每日 10 次查询
+- 付费 (¥69/月)：无限查询 + 实时监控 + 创意生成
+- 付费 (¥129/月)：+ 定制报告 + 达人数据 + API 访问
+
+---
+
+**声明**: 数据来源于公开信息，仅供参考。

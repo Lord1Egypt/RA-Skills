@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/file/delete",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url": "https://bucket.s3.amazonaws.com/pdf/abc123_my_report.pdf" }
+  },
+  "response": {
+    "status": 200,
+    "body": { "success": true, "deleted": true, "url": "https://bucket.s3.amazonaws.com/pdf/abc123_my_report.pdf" }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "mcp": {
+    "servers": {
+      "drillr": {
+        "url": "https://gateway.drillr.ai/mcp",
+        "headers": {
+          "Authorization": "Bearer ${DRILLR_API_KEY}"
+        }
+      }
+    }
+  }
+}

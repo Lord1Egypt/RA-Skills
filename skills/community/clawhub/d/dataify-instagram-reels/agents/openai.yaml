@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify Instagram Reels"
+  short_description: "Submit Dataify Instagram Reel tasks by detail URL, list URL, or website URL"
+  icon_small: "./assets/dataify-instagram-reels-small.svg"
+  icon_large: "./assets/dataify-instagram-reels-large.svg"
+  default_prompt: "Use $dataify-instagram-reels to submit Instagram Reel Builder tasks by detail URL, list URL, or website URL through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

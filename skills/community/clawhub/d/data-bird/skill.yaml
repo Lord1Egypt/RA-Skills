@@ -1,0 +1,46 @@
+id: data-bird
+name: Data Bird
+description: 基于 OpenClaw 的数据分析 Agent：按自然语言意图生成 ECharts 图表与结论
+version: 1.1.0
+category: data
+
+# 平台/API：query + datasource（由 datasourceId 解析得到）
+# CLI/脚本：query + datasource { type, config } 或 --file
+inputs:
+  - name: query
+    type: string
+    required: true
+    description: 分析问题，如「各渠道销售额占比」「近一周趋势」「销售额分布」
+  - name: datasource_id
+    type: string
+    required: false
+    description: 工作台上传后的数据源 ID（csv_xxx）；与 datasource 二选一
+  - name: datasource
+    type: object
+    required: false
+    description: "{ type: csv|excel|mysql, config: { file_path 或 MySQL 连接 } }"
+  - name: options
+    type: object
+    required: false
+    description: "{ llm_include_row_samples: bool, job_id?: string, output_dir?: string, report_title?: string }"
+
+outputs:
+  - name: charts
+    type: array
+    description: ECharts option 数组（line/bar/pie/histogram/scatter）
+  - name: insight
+    type: object
+    description: 结论、异常、建议
+  - name: report_md
+    type: string
+    description: Markdown 报告（与 reportMd 同义，兼容旧字段）
+  - name: artifacts
+    type: object
+    description: "落盘产物信息：report_md_path/report_html_path/report_pdf_path/chart_paths/chart_image_paths"
+  - name: summary
+    type: object
+    description: 字段 schema、行数、画像 profile
+
+execution:
+  entry: scripts/main.py
+  timeout: 120

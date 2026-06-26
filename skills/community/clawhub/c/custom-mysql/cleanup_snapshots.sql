@@ -1,0 +1,10 @@
+-- cleanup_snapshots.sql
+-- Version: 1.1.7
+--
+-- NOTE: This file is intentionally empty as of v1.1.7.
+-- The agent_config_files table and snapshot functionality have been removed
+-- to prevent storage of sensitive operational files (MEMORY.md, AGENTS.md,
+-- BOOT.md, SECURITY.md).
+--
+-- Data retention for remaining tables should be handled by the MySQL
+-- event scheduler or manual cleanup queries as needed.

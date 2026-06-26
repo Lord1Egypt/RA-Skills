@@ -1,0 +1,37 @@
+{
+  "slug": "desktop-cleanup-playbook",
+  "title": "桌面整理作战手册",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "directory_audit",
+  "summary": "为桌面文件生成整理方案、分类规则和阶段性清理计划，先分析再行动。",
+  "inputHint": "桌面目录路径",
+  "sections": [
+    "现状概览",
+    "分类建议",
+    "短期清理",
+    "长期规则",
+    "误删风险",
+    "确认清单"
+  ],
+  "useCases": [
+    "桌面治理",
+    "文件归档",
+    "极简工作台"
+  ],
+  "positiveExamples": [
+    "给我桌面整理方案",
+    "先分析不要直接动文件"
+  ],
+  "negativeExamples": [
+    "不要自动删除桌面文件",
+    "不要越权访问系统目录"
+  ],
+  "risk": "默认只输出方案和预案。",
+  "tags": [
+    "desktop",
+    "cleanup",
+    "organization",
+    "productivity"
+  ]
+}

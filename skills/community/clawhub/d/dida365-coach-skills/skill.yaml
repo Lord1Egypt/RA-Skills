@@ -1,0 +1,40 @@
+name: dida-coach
+description: 生产力管控系统与滴答执行层结合的任务教练，负责目标拆解、时间盒安排、管理视角、承诺跟踪、专注复盘，以及更自然的任务查询、创建、更新与闭环支持
+version: 1.2.0
+author: openclaw
+
+setup:
+  required_mcp:
+    - name: dida365
+      url: https://mcp.dida365.com
+      description: 滴答清单 MCP，用于任务读写和状态同步
+
+entry_points:
+  default:
+    prompt: prompts/system.md
+    tools:
+      - tools.mcp_client
+      - tools.config_manager
+      - tools.task_parser
+      - tools.timebox_calculator
+      - tools.work_method_recommender
+      - tools.review_analyzer
+      - tools.productivity_system
+
+triggers:
+  - pattern: "(我想|我要|计划|目标).*"
+    prompt: prompts/task_breakdown.md
+  - pattern: "(建立.*生产力系统|搭一个.*生产力系统|初始化.*生产力系统|当前最该推进|当前重点|管理视角|承诺|等待项|委派|周复盘|月复盘|复盘这月|记录.*专注|干扰原因|晨间流程|收尾流程|过载|清理过载|驾驶舱).*"
+    prompt: prompts/productivity_management.md
+  - pattern: "(今天有哪些任务|今天.*未完成|明天有哪些任务|列出所有清单|所有清单|查看.*清单|查看.*项目|搜索任务|查一下|筛选.*任务|按.*筛.*任务|标记.*完成|完成这个任务|把.*任务.*移到|移动.*任务|创建.*任务|创建一个任务|改提醒|改优先级|改截止时间).*"
+    prompt: prompts/task_management.md
+  - pattern: "(做|完成|准备|安排).*"
+    prompt: prompts/timebox_creation.md
+  - pattern: "(复盘这周|本周复盘|周复盘|回顾这周|总结这周).*"
+    prompt: prompts/weekly_review.md
+  - pattern: "(复盘这个月|复盘这月|本月复盘|月复盘|回顾这个月|总结这个月).*"
+    prompt: prompts/monthly_review.md
+  - pattern: "(复盘|回顾|总结).*"
+    prompt: prompts/daily_review.md
+  - pattern: "(改|调整|延后|提前|取消).*"
+    prompt: prompts/rescheduling.md

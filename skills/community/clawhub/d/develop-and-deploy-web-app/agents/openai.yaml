@@ -1,0 +1,4 @@
+interface:
+  display_name: "Develop and Deploy Web App"
+  short_description: "Build and share a simple React, Express, SQLite web app"
+  default_prompt: "Use $develop-and-deploy-web-app to build, run, and expose a simple full-stack web app in this workspace."

@@ -1,0 +1,36 @@
+{
+  "tunnels": [
+    {
+      "name": "non-target-port-https",
+      "public_url": "https://wrong-port.ngrok-free.app",
+      "proto": "https",
+      "config": {
+        "addr": "http://127.0.0.1:3999"
+      }
+    },
+    {
+      "name": "target-port-http-only",
+      "public_url": "http://target-http-only.ngrok-free.app",
+      "proto": "http",
+      "config": {
+        "addr": "http://127.0.0.1:3105"
+      }
+    },
+    {
+      "name": "target-port-https-first",
+      "public_url": "https://exact-first.ngrok-free.app",
+      "proto": "https",
+      "config": {
+        "addr": "http://127.0.0.1:3105"
+      }
+    },
+    {
+      "name": "target-port-https-second",
+      "public_url": "https://exact-second.ngrok-free.app",
+      "proto": "https",
+      "config": {
+        "addr": "localhost:3105"
+      }
+    }
+  ]
+}

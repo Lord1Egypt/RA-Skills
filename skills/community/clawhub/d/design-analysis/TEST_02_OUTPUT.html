@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1280">
+    <title>测试2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            overflow-x: hidden;
+            width: 1920px;
+            height: 1280px;
+            margin: 0 auto;
+        }
+
+        html {
+            width: 1920px;
+            height: 1280px;
+        }
+
+        /* Navigation */
+        .nav-dock {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-dot:hover {
+            background: #bbb;
+            transform: scale(1.2);
+        }
+
+        .nav-dot.active {
+            background: #007AFF;
+            border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+        }
+
+        /* Page Controls */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .controls button {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .controls button:hover {
+            background: #0056CC;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+        }
+
+        .controls button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .page-indicator {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            padding: 0 12px;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            width: 1920px;
+            height: 1280px;
+            background: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-section {
+            width: 30%;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-section h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .text-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            margin-top: 32px;
+            font-weight: 600;
+            opacity: 0.95;
+            line-height: 1.3;
+        }
+
+        .text-section h3 {
+            font-size: 22px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .text-section p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            opacity: 0.85;
+        }
+
+        .text-section ul {
+            padding-left: 28px;
+            margin-bottom: 20px;
+        }
+
+        .text-section li {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            opacity: 0.85;
+        }
+
+        .image-section {
+            width: 70%;
+            padding: 40px;
+            background: #fafafa;
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            max-height: 1180px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 800px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 24px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        /* Scrollbar styling */
+        .text-section::-webkit-scrollbar,
+        .image-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .text-section::-webkit-scrollbar-track,
+        .image-section::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .text-section::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .text-section::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .image-section::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        .image-section::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <nav class="nav-dock" id="navDock"></nav>
+
+    <!-- Page Controls -->
+    <div class="controls">
+        <button id="prevBtn" onclick="prevPage()">
+            ◀ 上一页
+        </button>
+        <div class="page-indicator">
+            <span id="currentPage">1</span> / <span id="totalPages">4</span>
+        </div>
+        <button id="nextBtn" onclick="nextPage()">
+            下一页 ▶
+        </button>
+    </div>
+
+    <!-- Pages Container -->
+    <div id="pagesContainer"></div>
+
+    <script>
+        const pages = [
+  {
+    "title": "设计分析总览",
+    "tags": [
+      "设计系统",
+      "UI/UX"
+    ],
+    "content": "\n      <h2>项目概述</h2>\n      <p>本设计分析针对设计素材文件夹，共包含 <b>2</b> 个设计文件。</p>\n\n      <h2>设计素材清单</h2>\n      <ul>\n        <li><span class=\"highlight\">截屏2026-03-11 16.26.28.png</span> - 第1张设计稿</li>\n<li><span class=\"highlight\">截屏2026-03-11 16.27.28.png</span> - 第2张设计稿</li>\n      </ul>\n\n      <h2>分析维度</h2>\n      <p>将从以下维度进行分析：</p>\n      <ul>\n        <li>视觉层次与信息架构</li>\n        <li>色彩系统与品牌表达</li>\n        <li>布局与间距体系</li>\n        <li>图标与组件设计</li>\n        <li>交互模式与动效</li>\n      </ul>\n\n      <h3>设计理念</h3>\n      <p>设计遵循现代UI/UX最佳实践，强调清晰的信息层级、一致的视觉语言和优秀的用户体验。</p>\n    ",
+    "image": "截屏2026-03-11 16.26.28.png"
+  },
+  {
+    "title": "视觉层次分析",
+    "tags": [
+      "排版",
+      "信息架构"
+    ],
+    "content": "\n        <h2>排版系统</h2>\n        <p>设计采用清晰的视觉层次结构，通过字体大小、字重和色彩区分信息重要性。</p>\n\n        <h2>标题层级</h2>\n        <ul>\n          <li><strong>一级标题 (H1):</strong> 模块主标题，字号最大，用于章节划分</li>\n          <li><strong>二级标题 (H2):</strong> 功能分组标题，字号中等</li>\n          <li><strong>三级标题 (H3):</strong> 细分项目标题，字号较小</li>\n        </ul>\n\n        <h2>段落与列表</h2>\n        <p>正文采用舒适的行高(1.6-1.8)，确保可读性。列表用于展示并列信息，通过项目符号明确层次。</p>\n\n        <h2>强调元素</h2>\n        <p>使用<span class=\"highlight\">高亮背景</span>突出关键信息，如文件名、核心概念等。</p>\n      ",
+    "image": "截屏2026-03-11 16.26.28.png"
+  },
+  {
+    "title": "色彩与布局系统",
+    "tags": [
+      "配色",
+      "栅格"
+    ],
+    "content": "\n        <h2>色彩系统</h2>\n        <p>设计采用紫蓝渐变主题色，营造专业、现代、富有科技感的视觉氛围。</p>\n\n        <h2>色彩应用规范</h2>\n        <ul>\n          <li><strong>主题渐变:</strong> 蓝紫渐变 #667eea → #764ba2</li>\n          <li><strong>文字颜色:</strong> 纯白(#FFFFFF)，高对比度</li>\n          <li><strong>标签背景:</strong> rgba(255,255,255,0.2) 半透明层次</li>\n          <li><strong>高亮区域:</strong> rgba(255,255,255,0.15) 突出关键信息</li>\n          <li><strong>操作按钮:</strong> #007AFF 主色调</li>\n        </ul>\n\n        <h2>布局结构</h2>\n        <p>采用 <b>30% : 70%</b> 分栏布局：</p>\n        <ul>\n          <li><strong>左侧30%:</strong> 文字内容区</li>\n          <li><strong>右侧70%:</strong> 视觉展示区</li>\n        </ul>\n\n        <h2>间距与圆角</h2>\n        <ul>\n          <li>页面边距: 20px</li>\n          <li>内容区内边距: 40-60px</li>\n          <li>圆角: 页面16px、图片12px、按钮20px</li>\n          <li>阴影: 多层次阴影营造空间感</li>\n        </ul>\n      ",
+    "image": "截屏2026-03-11 16.27.28.png"
+  },
+  {
+    "title": "交互与动效",
+    "tags": [
+      "导航",
+      "用户体验"
+    ],
+    "content": "\n      <h2>翻页机制</h2>\n      <ul>\n        <li><strong>底部控制栏:</strong> 悬浮固定，包含翻页按钮和页码</li>\n        <li><strong>侧边导航点:</strong> 右侧圆点快速跳转</li>\n        <li><strong>键盘支持:</strong> 左右方向键翻页</li>\n      </ul>\n\n      <h2>动效设计</h2>\n      <ul>\n        <li><strong>页面切换:</strong> 淡入动画 + 上移效果</li>\n        <li><strong>按钮悬浮:</strong> 上移2px + 阴影增强</li>\n        <li><strong>导航点:</strong> 放大1.2倍 + 颜色变化</li>\n      </ul>\n\n      <h2>响应式适配</h2>\n      <p>移动端自动切换为上下布局：</p>\n      <ul>\n        <li>文字和图片各占100%宽度</li>\n        <li>调整控制栏和导航点尺寸</li>\n      </ul>\n\n      <h2>可用性考虑</h2>\n      <ul>\n        <li>控制栏固定在底部，易于操作</li>\n        <li>导航点在右侧，便于单手操作</li>\n        <li>清晰的按钮禁用状态</li>\n        <li>明确的页码指示</li>\n      </ul>\n    ",
+    "image": "截屏2026-03-11 16.27.28.png"
+  }
+];
+
+        let currentPage = 0;
+        const totalPages = pages.length;
+
+        // Initialize
+        function init() {
+            document.getElementById('totalPages').textContent = totalPages;
+            renderNavDots();
+            renderPages();
+            showPage(0);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevPage();
+                if (e.key === 'ArrowRight') nextPage();
+            });
+        }
+
+        // Render navigation dots
+        function renderNavDots() {
+            const navDock = document.getElementById('navDock');
+            navDock.innerHTML = '';
+            pages.forEach((page, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'nav-dot';
+                dot.onclick = () => showPage(index);
+                dot.title = page.title;
+                navDock.appendChild(dot);
+            });
+        }
+
+        // Render all pages
+        function renderPages() {
+            const container = document.getElementById('pagesContainer');
+            container.innerHTML = '';
+            pages.forEach((page, index) => {
+                const pageEl = document.createElement('div');
+                pageEl.className = 'page';
+                pageEl.id = `page-${index}`;
+
+                // 使用绝对路径加载图片
+                const imagePath = page.image ?
+                    `${window.location.pathname.replace(/[^/]*$/, '')}${page.image}` :
+                    '';
+
+                const imageHtml = imagePath ?
+                    `<img src="${imagePath}" alt="${page.title}" onerror="this.parentElement.innerHTML='<div class=\'image-placeholder\' style=\'width:100%;height:800px;background:#e0e0e0;display:flex;align-items:center;justify-content:center;color:#999;font-size:24px;border-radius:8px;\'>图片加载失败</div>'" />` :
+                    `<div class="image-placeholder">图片位置: ${page.title}</div>`;
+
+                pageEl.innerHTML = `
+                    <div class="page-content">
+                        <div class="text-section">
+                            <h1>${page.title}</h1>
+                            ${page.tags ? page.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+                            ${page.content}
+                        </div>
+                        <div class="image-section">
+                            ${imageHtml}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(pageEl);
+            });
+        }
+
+        // Show specific page
+        function showPage(index) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+
+            // Show target page
+            document.getElementById(`page-${index}`).classList.add('active');
+            document.querySelectorAll('.nav-dot')[index].classList.add('active');
+
+            currentPage = index;
+            document.getElementById('currentPage').textContent = index + 1;
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalPages - 1;
+        }
+
+        // Navigation functions
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                showPage(currentPage + 1);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                showPage(currentPage - 1);
+            }
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

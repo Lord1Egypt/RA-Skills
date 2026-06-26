@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "tag": {
+      "type": "string",
+      "title": "热点分类",
+      "description": "筛选特定分类的热点（从分类接口获取）",
+      "x-component": "CategorySelect",
+      "x-component-props": {
+        "allowClear": true,
+        "placeholder": "全部分类"
+      }
+    },
+    "order": {
+      "enum": [
+        "rank",
+        "rank_diff"
+      ],
+      "type": "string",
+      "title": "排序方式",
+      "default": "rank",
+      "enumNames": [
+        "热度排序",
+        "变化排序"
+      ],
+      "description": "选择热点排序方式"
+    },
+    "keyword": {
+      "type": "string",
+      "title": "搜索词",
+      "description": "搜索特定关键词的热点",
+      "x-component-props": {
+        "maxLength": 100,
+        "allowClear": true,
+        "placeholder": "输入关键词搜索"
+      }
+    }
+  }
+}

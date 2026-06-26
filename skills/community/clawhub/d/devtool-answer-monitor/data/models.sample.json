@@ -1,0 +1,68 @@
+{
+  "_comment": "Model config for answer-monitor runners. Set enabled=false to skip a model. All models use the OpenAI Chat Completions API format. Set OPENAI_BASE_URL to point at a proxy/gateway that serves multiple providers.",
+  "models": [
+    {
+      "id": "gpt-4.1-mini",
+      "provider": "openai_compatible",
+      "api_model": "gpt-4.1-mini",
+      "enabled": true,
+      "temperature": 0.1,
+      "_note": "OpenAI — works with both run_monitor.py (Responses API) and run_chat_completions.py"
+    },
+    {
+      "id": "gpt-4o",
+      "provider": "openai_compatible",
+      "api_model": "gpt-4o",
+      "enabled": false,
+      "temperature": 0.1
+    },
+    {
+      "id": "claude-sonnet-4-6",
+      "provider": "openai_compatible",
+      "api_model": "claude-sonnet-4-6",
+      "enabled": false,
+      "temperature": 0.1,
+      "_note": "Anthropic Claude via OpenAI-compatible proxy — use run_chat_completions.py only"
+    },
+    {
+      "id": "gemini-2.5-flash",
+      "provider": "openai_compatible",
+      "api_model": "gemini-2.5-flash",
+      "enabled": false,
+      "temperature": 0.1,
+      "_note": "Google Gemini via OpenAI-compatible proxy — use run_chat_completions.py only"
+    },
+    {
+      "id": "deepseek-v3",
+      "provider": "openai_compatible",
+      "api_model": "deepseek-v3-250324",
+      "enabled": false,
+      "temperature": 0.1,
+      "_note": "DeepSeek via proxy — use run_chat_completions.py only"
+    },
+    {
+      "id": "qwen-max",
+      "provider": "openai_compatible",
+      "api_model": "qwen-max",
+      "enabled": false,
+      "temperature": 0.1,
+      "_note": "Alibaba Qwen via proxy — use run_chat_completions.py only"
+    },
+    {
+      "id": "minimax-m2",
+      "provider": "openai_compatible",
+      "api_model": "minimax/minimax-m2",
+      "enabled": false,
+      "temperature": 0.1,
+      "_note": "MiniMax M2 via proxy — use run_chat_completions.py only"
+    },
+    {
+      "id": "glm-5",
+      "provider": "openai_compatible",
+      "api_model": "glm-5",
+      "enabled": false,
+      "temperature": 0.1,
+      "_note": "Zhipu GLM-5 via proxy — use run_chat_completions.py only"
+    }
+  ]
+}

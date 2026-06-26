@@ -1,0 +1,37 @@
+# REGISTRY.example.yaml
+#
+# Copy this file to REGISTRY.yaml if the registry does not exist.
+# The root key must be 'skills'. Do not rename it.
+#
+# This example demonstrates the expected structure for manually installed skills.
+# Fields:
+# - type: github-dir / github-file / github-readme / local
+# - source: remote location or 'local'
+# - version: commit SHA for github-dir, SHA256 for files, ~ for local
+# - updated: YYYY-MM-DD (last update date)
+
+skills:
+
+  example-dir-skill:
+    type: github-dir
+    source: example-owner/example-repo@main:skills/example-dir-skill
+    version: 0000000000000000000000000000000000000000
+    updated: YYYY-MM-DD
+
+  example-file-skill:
+    type: github-file
+    source: example-owner/example-repo@main:SKILL.md
+    version: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    updated: YYYY-MM-DD
+
+  example-readme-skill:
+    type: github-readme
+    source: example-owner/example-project@main
+    version: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    updated: YYYY-MM-DD
+
+  example-local-skill:
+    type: local
+    source: local
+    version: ~
+    updated: YYYY-MM-DD

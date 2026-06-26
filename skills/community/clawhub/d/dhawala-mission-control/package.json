@@ -1,0 +1,38 @@
+{
+  "name": "mission-control",
+  "version": "1.0.0",
+  "description": "CLI-first system health aggregator for autonomous AI agents. One command to check all agents, resources, cron, and services.",
+  "author": "dhawal",
+  "price": 0,
+  "tags": [
+    "monitoring",
+    "agents",
+    "health",
+    "cli",
+    "devops",
+    "automation",
+    "infrastructure",
+    "status"
+  ],
+  "main": "scripts/mctl.sh",
+  "scripts": {
+    "status": "bash scripts/mctl.sh status",
+    "agents": "bash scripts/mctl.sh agents",
+    "health": "bash scripts/mctl.sh health",
+    "cron": "bash scripts/mctl.sh cron",
+    "services": "bash scripts/mctl.sh services"
+  },
+  "keywords": [
+    "mission control",
+    "system health",
+    "agent monitoring",
+    "autonomous agents",
+    "openclaw",
+    "daemon",
+    "devops"
+  ],
+  "license": "MIT",
+  "openclaw": {
+    "price": 0
+  }
+}

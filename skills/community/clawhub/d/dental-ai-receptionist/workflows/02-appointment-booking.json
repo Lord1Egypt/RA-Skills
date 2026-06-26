@@ -1,0 +1,350 @@
+{
+  "name": "Dental AI — 02 Appointment Booking",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dental-ai/book-appointment",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Booking Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "dental-book-appt",
+      "id": "n2-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\n\n// Validate required fields\nconst required = ['patient_name', 'caller_phone', 'appointment_date', 'appointment_time'];\nconst missing = required.filter(f => !body[f]);\n\nif (missing.length > 0) {\n  return [{ json: { ...body, valid: false, error: `Missing fields: ${missing.join(', ')}` } }];\n}\n\n// Parse and validate date/time\nconst dateStr = body.appointment_date;\nconst timeStr = body.appointment_time;\nconst appointmentDT = new Date(`${dateStr}T${timeStr}`);\n\nif (isNaN(appointmentDT.getTime())) {\n  return [{ json: { ...body, valid: false, error: 'Invalid date/time format' } }];\n}\n\n// Check if appointment is in the future\nif (appointmentDT <= new Date()) {\n  return [{ json: { ...body, valid: false, error: 'Appointment must be in the future' } }];\n}\n\n// Standard appointment durations by type\nconst durations = {\n  'cleaning': 60, 'prophy': 60, 'prophylaxis': 60,\n  'exam': 30, 'checkup': 30, 'check-up': 30,\n  'filling': 45, 'restoration': 45,\n  'extraction': 60, 'root_canal': 90, 'root canal': 90,\n  'crown': 60, 'bridge': 90,\n  'whitening': 60, 'bleaching': 60,\n  'srp': 90, 'scaling': 90, 'deep_cleaning': 90, 'deep cleaning': 90,\n  'consultation': 30, 'emergency': 30,\n  'implant': 120, 'veneer': 60, 'denture': 60,\n  'orthodontic': 30, 'braces': 45, 'invisalign': 30,\n  'default': 45\n};\n\nconst serviceType = (body.appointment_type || 'default').toLowerCase();\nconst duration = durations[serviceType] || durations['default'];\n\nconst endDT = new Date(appointmentDT.getTime() + duration * 60000);\n\nreturn [{ json: {\n  ...body,\n  valid: true,\n  appointment_start: appointmentDT.toISOString(),\n  appointment_end: endDT.toISOString(),\n  duration_minutes: duration,\n  service_type: serviceType,\n  patient_name: body.patient_name,\n  patient_phone: body.caller_phone,\n  patient_email: body.patient_email || '',\n  call_id: body.call_id || '',\n  notes: body.notes || `Booked via AI voice agent - ${body.platform || 'phone'}`,\n  status: 'confirmed'\n} }];"
+      },
+      "name": "Validate & Prepare Booking",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "n2-validate"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "valid-check",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Is Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        680,
+        400
+      ],
+      "id": "n2-if-valid"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "calendar": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_CALENDAR_ID}}",
+          "mode": "id"
+        },
+        "start": "={{ $json.appointment_start }}",
+        "end": "={{ $json.appointment_end }}",
+        "additionalFields": {
+          "summary": "={{ $json.service_type.charAt(0).toUpperCase() + $json.service_type.slice(1) }} — {{ $json.patient_name }}",
+          "description": "Patient: {{ $json.patient_name }}\nPhone: {{ $json.patient_phone }}\nEmail: {{ $json.patient_email }}\nService: {{ $json.service_type }}\nDuration: {{ $json.duration_minutes }} min\nBooked via: AI Voice Agent\nCall ID: {{ $json.call_id }}",
+          "location": "={{$env.DENTAL_CLINIC_NAME}} — {{$env.DENTAL_CLINIC_ADDRESS}}"
+        }
+      },
+      "name": "Create Calendar Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 3,
+      "position": [
+        920,
+        300
+      ],
+      "id": "n2-calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "={{$env.GOOGLE_CALENDAR_CRED_ID}}",
+          "name": "Google Calendar"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.DENTAL_APPOINTMENTS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Appointments",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "appointment_id": "={{ $('Create Calendar Event').first().json.id }}",
+            "patient_name": "={{ $json.patient_name }}",
+            "patient_phone": "={{ $json.patient_phone }}",
+            "patient_email": "={{ $json.patient_email }}",
+            "service_type": "={{ $json.service_type }}",
+            "appointment_date": "={{ $json.appointment_start }}",
+            "appointment_end": "={{ $json.appointment_end }}",
+            "duration_minutes": "={{ $json.duration_minutes }}",
+            "status": "confirmed",
+            "booked_via": "AI Voice Agent",
+            "call_id": "={{ $json.call_id }}",
+            "created_at": "={{ $json.timestamp || new Date().toISOString() }}",
+            "reminder_48h_sent": "no",
+            "reminder_24h_sent": "no",
+            "showed_up": ""
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log to Appointments Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1160,
+        300
+      ],
+      "id": "n2-log-sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "from": "={{$env.TWILIO_PHONE_NUMBER}}",
+        "to": "={{ $json.patient_phone }}",
+        "body": "Hi {{ $json.patient_name }}! Your {{ $json.service_type }} appointment has been confirmed for {{ $json.appointment_start.split('T')[0] }} at {{ $json.appointment_start.split('T')[1].substring(0,5) }}. Location: {{$env.DENTAL_CLINIC_NAME}}. Reply CANCEL to cancel or call us to reschedule. See you soon!"
+      },
+      "name": "Send Confirmation SMS",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        480
+      ],
+      "id": "n2-sms",
+      "credentials": {
+        "twilioApi": {
+          "id": "={{$env.TWILIO_CRED_ID}}",
+          "name": "Twilio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.DENTAL_CLINIC_EMAIL}}",
+        "toEmail": "={{$env.DENTAL_STAFF_EMAIL}}",
+        "subject": "=New Booking: {{ $json.patient_name }} — {{ $json.service_type }} on {{ $json.appointment_start.split('T')[0] }}",
+        "html": "=<h2>New Appointment Booked via AI</h2><table style='border-collapse:collapse;'><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Patient</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.patient_name }}</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Phone</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.patient_phone }}</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Service</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.service_type }}</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Date</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.appointment_start }}</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Duration</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.duration_minutes }} minutes</td></tr><tr><td style='padding:8px;border:1px solid #ddd;font-weight:bold;'>Call ID</td><td style='padding:8px;border:1px solid #ddd;'>{{ $json.call_id }}</td></tr></table>",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Notify Staff",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1160,
+        660
+      ],
+      "id": "n2-notify-staff",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.PMS_API_URL}}/appointments",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.PMS_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ patient_name: $json.patient_name, patient_phone: $json.patient_phone, patient_email: $json.patient_email, service_type: $json.service_type, start_time: $json.appointment_start, end_time: $json.appointment_end, notes: $json.notes, source: 'ai_voice_agent' }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "name": "Sync to PMS (Dentrix/Eaglesoft)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1400,
+        300
+      ],
+      "id": "n2-pms-sync"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'booked', appointment_id: $('Create Calendar Event').first().json.id, patient: $json.patient_name, date: $json.appointment_start, service: $json.service_type }) }}",
+        "options": {}
+      },
+      "name": "Respond Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1640,
+        400
+      ],
+      "id": "n2-respond-ok"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'error', message: $json.error }) }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "name": "Respond Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        920,
+        560
+      ],
+      "id": "n2-respond-err"
+    }
+  ],
+  "connections": {
+    "Booking Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validate & Prepare Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate & Prepare Booking": {
+      "main": [
+        [
+          {
+            "node": "Is Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Valid?": {
+      "main": [
+        [
+          {
+            "node": "Create Calendar Event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Calendar Event": {
+      "main": [
+        [
+          {
+            "node": "Log to Appointments Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Confirmation SMS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify Staff",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Appointments Sheet": {
+      "main": [
+        [
+          {
+            "node": "Sync to PMS (Dentrix/Eaglesoft)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sync to PMS (Dentrix/Eaglesoft)": {
+      "main": [
+        [
+          {
+            "node": "Respond Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

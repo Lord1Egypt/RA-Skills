@@ -1,0 +1,9 @@
+interface:
+  display_name: "Dataify YouTube Transcript By ID"
+  short_description: "Submit Dataify YouTube transcript tasks by video ID"
+  icon_small: "./assets/dataify-youtube-transcript-by-id-small.svg"
+  icon_large: "./assets/dataify-youtube-transcript-by-id-large.svg"
+  default_prompt: "Use $dataify-youtube-transcript-by-id to submit YouTube transcript Builder tasks by video ID through Dataify and return the task_id and status."
+
+policy:
+  allow_implicit_invocation: true

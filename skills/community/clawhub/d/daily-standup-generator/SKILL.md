@@ -1,35 +1,38 @@
 ---
-name: "Daily Standup Generator"
-description: "Generate a concise daily standup report summarizing completed tasks, today's plan, and blockers from provided data or user input."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-standup-generator"
-sourceUrl: "https://clawhub.ai/skills/daily-standup-generator"
+name: daily-standup-generator
+description: Generate a daily standup report from task lists, chat logs, or project management tools. Trigger: "生成每日站会报告"、"standup"
 ---
 
 # Daily Standup Generator
 
-> Generate a concise daily standup report summarizing completed tasks, today's plan, and blockers from provided data or user input.
+Generate a structured daily standup report for team communication.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-standup-generator`
-- **Source URL:** [https://clawhub.ai/skills/daily-standup-generator](https://clawhub.ai/skills/daily-standup-generator)
+## When to Use
+- User asks for daily standup report
+- User wants to summarize yesterday's work
+- User needs to prepare for team meeting
 
-## Overview
+## Output Format
 
+```markdown
+## 昨日完成 (Completed Yesterday)
+- [Task 1]
+- [Task 2]
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-standup-generator
+## 今日计划 (Today's Plan)
+- [Task 1]
+- [Task 2]
+
+## 遇到问题 (Blockers)
+- [Issue or "无"]
 ```
+
+## Data Sources
+1. Check memory files for recent tasks
+2. Read conversation history for work context
+3. Ask user for specific tasks if unclear
+
+## Tips
+- Keep it brief (3-5 bullet points max)
+- Use emoji for quick scanning 🎯 ✅ 🚧
+- If no data available, ask user instead of making up

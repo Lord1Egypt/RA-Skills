@@ -1,0 +1,26 @@
+{
+  "name": "data_insight_generator",
+  "description": "零代码BI分析器，支持CSV/JSON数据自动清洗、指标计算、图表推荐与业务洞察输出",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "data_content": {
+        "type": "string",
+        "description": "CSV/JSON数据片段或字段结构描述（需含表头与示例行，建议脱敏后传入）"
+      },
+      "business_context": {
+        "type": "string",
+        "enum": ["销售", "库存", "用户增长", "财务", "供应链", "营销", "其他"],
+        "description": "业务场景分类"
+      },
+      "analysis_goal": {
+        "type": "string",
+        "description": "具体分析目标（例：评估双11活动ROI/找出高流失渠道/优化库存周转天数）"
+      }
+    },
+    "required": ["data_content", "business_context"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

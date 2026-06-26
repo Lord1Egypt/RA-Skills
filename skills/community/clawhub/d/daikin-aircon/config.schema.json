@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique device identifier (MAC address)"
+          },
+          "name": {
+            "type": "string",
+            "description": "User-friendly device name (e.g., living-room, bedroom)"
+          },
+          "ip": {
+            "type": "string",
+            "description": "IP address of the Daikin device"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["brp069", "brp072c", "brp084", "airbase", "skyfi"],
+            "description": "Device type (auto-detected if not specified)"
+          },
+          "key": {
+            "type": "string",
+            "description": "API key for BRP072C devices"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password for SkyFi devices"
+          }
+        },
+        "required": ["name", "ip"]
+      }
+    },
+    "defaultDevice": {
+      "type": "string",
+      "description": "Default device name to use when none specified"
+    }
+  }
+}

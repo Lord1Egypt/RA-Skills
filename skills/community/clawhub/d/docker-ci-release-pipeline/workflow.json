@@ -1,0 +1,62 @@
+{
+  "name": "docker-ci-release-pipeline",
+  "version": "1.0.0",
+  "description": "Docker镜像构建测试与GitHub Actions发布全链路流水线",
+  "skills": [
+    {
+      "name": "docker-expert",
+      "role": "dockerfile-generation",
+      "description": "生成生产级多阶段Dockerfile，配置安全加固、健康检查、镜像优化"
+    },
+    {
+      "name": "testing-patterns",
+      "role": "test-generation",
+      "description": "生成容器内集成测试用例，工厂函数mock模式"
+    },
+    {
+      "name": "github-actions-templates",
+      "role": "ci-workflow-generation",
+      "description": "生成完整GitHub Actions工作流：构建→测试→扫描→推送"
+    },
+    {
+      "name": "github",
+      "role": "ci-verification",
+      "description": "验证CI运行状态，查看失败日志，处理发布结果"
+    }
+  ],
+  "flow": [
+    {
+      "step": 1,
+      "skill": "docker-expert",
+      "input": "项目目录结构、语言/框架信息",
+      "output": "Dockerfile, docker-compose.yml, .dockerignore"
+    },
+    {
+      "step": 2,
+      "skill": "testing-patterns",
+      "input": "应用入口文件、API路由/函数列表",
+      "output": "tests/ 目录下的集成测试文件"
+    },
+    {
+      "step": 3,
+      "skill": "github-actions-templates",
+      "input": "项目语言、Dockerfile路径、镜像仓库地址",
+      "output": ".github/workflows/build-push.yml"
+    },
+    {
+      "step": 4,
+      "skill": "github",
+      "input": "仓库地址、workflow运行ID",
+      "output": "CI状态报告、失败日志摘要"
+    }
+  ],
+  "triggers": [
+    "Docker构建",
+    "镜像发布",
+    "CI/CD",
+    "容器化部署",
+    "GitHub Actions"
+  ],
+  "category": "开发",
+  "author": "openclaw-skill-combo"
+}

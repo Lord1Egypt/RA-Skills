@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "test_cases": [
+    {
+      "name": "电商大促销售数据ROI分析",
+      "input": {
+        "data_content": "date,channel,impressions,clicks,orders,gmv,cost\n2024-11-01,douyin,50000,2500,150,45000,12000\n2024-11-01,xiaohongshu,30000,1800,90,27000,9000\n2024-11-02,douyin,52000,2600,160,48000,12500",
+        "business_context": "销售",
+        "analysis_goal": "评估各渠道投放ROI并优化预算分配"
+      },
+      "expected_output_contains": [
+        "数据分析与洞察报告",
+        "数据质量摘要",
+        "核心指标看板",
+        "图表推荐配置",
+        "业务洞察与行动建议",
+        "ROI",
+        "转化率"
+      ],
+      "validation_rules": [
+        "必须计算各渠道转化率与ROI",
+        "图表推荐需包含预算分配建议",
+        "输出需标注数据局限性声明"
+      ]
+    },
+    {
+      "name": "SaaS产品用户留存与流失分析",
+      "input": {
+        "data_content": "user_id,signup_date,last_login,plan_type,feature_usage_count,is_churned\nU001,2024-06-01,2024-08-15,pro,45,false\nU002,2024-07-10,2024-07-12,free,3,true\nU003,2024-06-20,2024-09-01,pro,12,false",
+        "business_context": "用户增长",
+        "analysis_goal": "识别高流失特征并制定干预策略"
+      },
+      "expected_output_contains": [
+        "流失率",
+        "留存曲线/漏斗建议",
+        "特征关联分析",
+        "相关性≠因果性"
+      ],
+      "validation_rules": [
+        "需区分免费/付费版留存差异",
+        "必须提示相关性不等于因果性",
+        "建议需具备可执行性（如产品迭代/运营触达）"
+      ]
+    }
+  ]
+}

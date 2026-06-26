@@ -1,0 +1,27 @@
+{
+  "name": "@degov-agent-skills/dao-governance-scripts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cli": "tsx degov-client.ts",
+    "check": "pnpm run typecheck && pnpm exec tsx degov-client.ts help",
+    "format": "prettier --write \"../../../README.md\" \"../SKILL.md\" \"./README.md\" \"./*.ts\" \"./*.json\" \"../../../.github/workflows/*.yml\" \"../../../.prettierrc.json\"",
+    "format:check": "prettier --check \"../../../README.md\" \"../SKILL.md\" \"./README.md\" \"./*.ts\" \"./*.json\" \"../../../.github/workflows/*.yml\" \"../../../.prettierrc.json\"",
+    "typecheck": "tsc --noEmit",
+    "wallet:init": "pnpm exec tsx degov-client.ts wallet init",
+    "wallet:address": "pnpm exec tsx degov-client.ts wallet address",
+    "wallet:balance": "pnpm exec tsx degov-client.ts wallet balance"
+  },
+  "dependencies": {
+    "@x402/evm": "^2.6.0",
+    "@x402/fetch": "^2.6.0",
+    "viem": "^2.37.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2"
+  }
+}

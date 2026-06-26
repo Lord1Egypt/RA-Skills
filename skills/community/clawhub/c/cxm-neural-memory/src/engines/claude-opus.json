@@ -1,0 +1,6 @@
+{
+  "engine": "claude_opus",
+  "format": "xml_tags",
+  "wrapper": "System-Prompt: Nutze striktes XML-Tagging.\n\n<input>\n{content}\n</input>\n\n<output_format>XML</output_format>",
+  "notes": "Claude Opus ist stark optimiert auf XML-Kapselung."
+}

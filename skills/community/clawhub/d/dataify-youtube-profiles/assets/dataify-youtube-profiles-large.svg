@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Dataify YouTube profiles">
+  <rect width="256" height="256" rx="36" fill="#ffffff"/>
+  <circle cx="102" cy="91" r="42" fill="#ff0033"/>
+  <path d="M35 211c15-50 49-75 102-75s87 25 102 75" fill="none" stroke="#ff0033" stroke-width="22" stroke-linecap="round"/>
+  <path d="M165 78h43M165 112h43" stroke="#1f2937" stroke-width="14" stroke-linecap="round"/>
+</svg>

@@ -1,35 +1,129 @@
 ---
-name: "Daily Finance Pro"
-description: "每日财经推送专家版。当用户说"今日财经"、"财经日报"、"每日金融推送"、"设置财经推送"、"取消财经推送"时触发。特色：浓精简（3条精华）、市场情绪指标（ bearish/bullish/neutral）、定时推送飞书。比 daily-finance 更精炼，比 daily-trending 更专业。"
-category: "domain"
-source: "ClawHub"
-tags: [china, daily, finance, market, news, pro]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-finance-pro"
-sourceUrl: "https://clawhub.ai/skills/daily-finance-pro"
+name: daily-finance-pro
+description: 每日财经推送专家版。当用户说"今日财经"、"财经日报"、"每日金融推送"、"设置财经推送"、"取消财经推送"时触发。特色：浓精简（3条精华）、市场情绪指标（ bearish/bullish/neutral）、定时推送飞书。比 daily-finance 更精炼，比 daily-trending 更专业。
 ---
 
-# Daily Finance Pro
+# daily-finance-pro
 
-> 每日财经推送专家版。当用户说"今日财经"、"财经日报"、"每日金融推送"、"设置财经推送"、"取消财经推送"时触发。特色：浓精简（3条精华）、市场情绪指标（ bearish/bullish/neutral）、定时推送飞书。比 daily-finance 更精炼，比 daily-trending 更专业。
+每日财经推送专家版——浓精简 + 市场情绪 + 可定时推送到飞书。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-finance-pro`
-- **Source URL:** [https://clawhub.ai/skills/daily-finance-pro](https://clawhub.ai/skills/daily-finance-pro)
+## 两种使用模式
 
-## Overview
+### 模式一：手动查询（完整版）
 
+触发词：`今日财经` / `财经日报`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/daily-finance-pro
+同 `daily-finance`，抓取多平台热榜，输出完整日报。
+
+### 模式二：定时推送（专家版特色）
+
+触发词：`开启财经推送` / `设置财经推送`
+
+设置每日定时推送到飞书，早7:30自动推送。
+
+## 定时推送设置流程
+
+当用户说"开启财经推送"时，执行以下步骤：
+
+**步骤1：询问推送时间**
 ```
+推荐早上7:30（开盘前），可自定义。
+请告诉我你想几点推送（如：7:30）
+```
+
+**步骤2：确认后执行**
+```bash
+openclaw cron add \
+  --name "每日财经推送" \
+  --agent main \
+  --message "今日财经pro" \
+  --schedule "30 7 * * *" \
+  --channel feishu
+```
+
+> 注：仅支持 UTC cron 格式，北京时间需 -8 小时。7:30 北京 = 23:30 UTC。
+
+**步骤3：验证推送**
+```bash
+openclaw cron run "每日财经推送" --preview
+```
+
+**取消推送**
+```
+openclaw cron rm "每日财经推送"
+```
+
+## 推送内容格式（浓精简）
+
+每天推送 5-7 条精华 + 市场情绪，总字数控制在 500 字以内：
+
+```
+💹 财经早参 | X月X日
+
+[情绪指标] [一句话总结今日市场]
+
+【精选N条】
+1. [事件，含关键数据]
+2. [事件，含关键数据]
+3. [事件，含关键数据]
+4. [事件，含关键数据]
+5. [事件，含关键数据]
+6. [事件，含关键数据]
+7. [事件，含关键数据]
+
+#来源：华尔街见闻 · 雪球 · 新浪财经
+```
+
+**情绪指标规则：**
+- ☀️ 加仓信号（利好明确，风险偏好上升）
+- 🌙 减仓信号（利空明确，市场恐慌）
+- ⚖️ 观望（多空交织，无明显方向）
+- 🔥 异动（大宗商品、汇率等出现极端波动）
+
+**情绪判断标准（基于当日热榜）：**
+- 多条热榜反映同一主题 → 对应情绪
+- 涨跌统计 > 3000家单边 → 对应情绪
+- 大宗商品单边波动 > 3% → 🔥异动
+- 无明确方向 → ⚖️观望
+
+## 数据来源（精筛版）
+
+只抓取质量最高、数据最准的平台：
+
+| 平台 | 路径 | 用途 |
+|---|---|---|
+| 华尔街见闻·日排行 | `/n/G2me3ndwjq` | 国际宏观+情绪 |
+| 雪球·今日话题 | `/n/X12owXzvNV` | 市场情绪+散户预期 |
+| 新浪财经·7x24h实时 | `/n/WmoO9qYd4E` | 快讯+数据 |
+| 百度·财经榜 | `/n/ARe1p17d7n` | 综合热度 |
+
+## 手动查询完整版格式
+
+```
+💹 财经日报（X月X日）
+
+【精选5条】
+1. [事件完整描述]
+2. [事件完整描述]
+...
+
+【各平台热榜】
+🏛 华尔街见闻：
+...
+
+🏛 雪球热议：
+...
+
+🏛 新浪实时快讯：
+...
+
+🏛 百度财经：
+...
+```
+
+## 重要提示
+
+- 浓精简推送版输出5-7条，不输出完整热榜
+- 推送时间默认7:30（北京时间），用户可自定义
+- 推送消息控制在300字以内，适合飞书阅读
+- 只讲事实，不加主观评论

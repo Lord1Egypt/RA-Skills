@@ -1,0 +1,91 @@
+{
+  "chartType": "bar",
+  "common": {
+    "title": {
+      "main": {
+        "show": true,
+        "align": "center",
+        "fontSize": 24,
+        "color": "#1f2937",
+        "bold": true
+      },
+      "subtitle": {
+        "show": true,
+        "fontSize": 14,
+        "color": "#6b7280"
+      }
+    },
+    "canvas": {
+      "backgroundColor": "#fafafa",
+      "palette": [
+        "#2563eb",
+        "#06b6d4",
+        "#f59e0b",
+        "#ef4444",
+        "#84cc16"
+      ],
+      "plotArea": {
+        "left": "12%",
+        "right": "9%",
+        "top": "21%",
+        "bottom": "15%"
+      }
+    },
+    "legend": {
+      "show": true,
+      "position": "bottom-center",
+      "orient": "horizontal",
+      "fontSize": 12,
+      "color": "#4b5563"
+    },
+    "axes": {
+      "x": {
+        "lineShow": true,
+        "tickShow": true,
+        "rotate": 0,
+        "labelFontSize": 12,
+        "labelColor": "#4b5563",
+        "lineColor": "#9ca3af",
+        "formatter": "{value}"
+      },
+      "y": {
+        "lineShow": true,
+        "tickShow": true,
+        "labelFontSize": 12,
+        "labelColor": "#4b5563",
+        "lineColor": "#9ca3af",
+        "scale": false,
+        "formatter": "{value}"
+      }
+    },
+    "splitLines": {
+      "horizontal": {
+        "show": true,
+        "color": "#e5e7eb",
+        "type": "dashed",
+        "width": 0.6
+      },
+      "vertical": {
+        "show": false,
+        "color": "#e5e7eb",
+        "type": "dashed",
+        "width": 0.6
+      }
+    }
+  },
+  "specific": {
+    "bar": {
+      "barGap": "10%",
+      "itemOpacity": 0.92,
+      "borderRadius": 0,
+      "borderWidth": 0,
+      "borderColor": "#ffffff"
+    },
+    "dataLabels": {
+      "show": true,
+      "position": "top",
+      "fontSize": 12,
+      "color": "#334155"
+    }
+  }
+}

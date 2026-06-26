@@ -1,0 +1,5 @@
+
+interface:
+  display_name: Defuddle Web Cleaner
+  short_description: Convert web pages into clean markdown articles
+  category: productivity

@@ -1,35 +1,16 @@
 ---
-name: "Docker Diag"
-description: "Advanced log analysis for Docker containers using signal extraction."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/docker-diag"
-sourceUrl: "https://clawhub.ai/skills/docker-diag"
+name: Docker Pro Diagnostic
+description: Advanced log analysis for Docker containers using signal extraction.
+bins: ["python3", "docker"]
 ---
 
-# Docker Diag
+# Docker Pro Diagnostic
 
-> Advanced log analysis for Docker containers using signal extraction.
+When a user asks "Why is my container failing?" or "Analyze the logs for [container]", follow these steps:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/docker-diag`
-- **Source URL:** [https://clawhub.ai/skills/docker-diag](https://clawhub.ai/skills/docker-diag)
+1.  **Run Extraction:** Call `python3 {{skillDir}}/log_processor.py <container_name>`.
+2.  **Analyze:** Feed the output (which contains errors and context) into your reasoning engine.
+3.  **Report:** Summarize the root cause. If it looks like a code error, suggest a fix. If it looks like a resource error (OOM), suggest increasing Docker memory limits.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/docker-diag
-```
+## Example Command
+`python3 log_processor.py api_gateway_prod`

@@ -1,35 +1,26 @@
 ---
-name: "Qrcode Tool"
-description: "Generate QR codes from text or URLs for easy sharing and scanning. Outputs as ASCII art or image files for printing and digital use."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dinghaibin-qrcode-tool"
-sourceUrl: "https://clawhub.ai/skills/dinghaibin-qrcode-tool"
+name: qrcode-tool
+description: Generate QR codes from text or URLs for easy sharing and scanning. Outputs as ASCII art or image files for printing and digital use.
 ---
+# QR Code Generator
 
-# Qrcode Tool
+Create QR codes from text input, URLs, or contact information. QR codes can be scanned by mobile devices for quick access to links, text, or data.
 
-> Generate QR codes from text or URLs for easy sharing and scanning. Outputs as ASCII art or image files for printing and digital use.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dinghaibin-qrcode-tool`
-- **Source URL:** [https://clawhub.ai/skills/dinghaibin-qrcode-tool](https://clawhub.ai/skills/dinghaibin-qrcode-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/dinghaibin-qrcode-tool
+qrcode-tool [options] <data>
+```
+
+## Options
+
+- `-o file`: Save QR code as image file (PNG)
+- `-s N`: Set QR code size in pixels
+- `-a`: Output as ASCII art in terminal
+
+## Examples
+
+```bash
+qrcode-tool -a "https://example.com"
+qrcode-tool -o qr.png "Hello World"
+qrcode-tool -s 500 -o link.png "https://github.com"
 ```

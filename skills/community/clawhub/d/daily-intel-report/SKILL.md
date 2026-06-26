@@ -1,35 +1,205 @@
 ---
-name: "Daily Intel Report"
-description: "知讯📡每日情报推送。自动采集AI行业资讯+招标信息，整理为中文日报推送到飞书/邮件。包含两个子任务：(1) AI资讯从AIBase、IT之家等源抓取；(2) 招标信息从浙江政府采购网等平台抓取。适用于每日定时推送、即时资讯调取、招标信息筛选。触发词：每日资讯、早报、AI新闻、招标信息、今日推送。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/daily-intel-report"
-sourceUrl: "https://clawhub.ai/skills/daily-intel-report"
+name: daily-intel-report
+description: 知讯📡每日情报推送。自动采集AI行业资讯+招标信息，整理为中文日报推送到飞书/邮件。包含两个子任务：(1) AI资讯从AIBase、IT之家等源抓取；(2) 招标信息从浙江政府采购网等平台抓取。适用于每日定时推送、即时资讯调取、招标信息筛选。触发词：每日资讯、早报、AI新闻、招标信息、今日推送。
 ---
 
-# Daily Intel Report
+# Daily Intel Report - 每日情报推送
 
-> 知讯📡每日情报推送。自动采集AI行业资讯+招标信息，整理为中文日报推送到飞书/邮件。包含两个子任务：(1) AI资讯从AIBase、IT之家等源抓取；(2) 招标信息从浙江政府采购网等平台抓取。适用于每日定时推送、即时资讯调取、招标信息筛选。触发词：每日资讯、早报、AI新闻、招标信息、今日推送。
+整合AI行业资讯和招标信息的自动采集与推送。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/daily-intel-report`
-- **Source URL:** [https://clawhub.ai/skills/daily-intel-report](https://clawhub.ai/skills/daily-intel-report)
+## 核心功能
 
-## Overview
+1. **AI资讯采集** - 从AIBase、IT之家等抓取最新AI行业动态
+2. **招标信息采集** - 从浙江政府采购网抓取匹配关键词的招标公告
+3. **统一推送** - 整合为日报格式推送到飞书/邮件
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 步骤1：采集AI资讯
+
+使用 web_fetch 抓取以下数据源：
+
+| 源 | URL | 说明 |
+|---|---|---|
+| AIBase | https://www.aibase.com/news | AI行业综合资讯 |
+| IT之家AI频道 | https://www.ithome.com/tags/AI/ | 科技AI频道 |
+
+采集规则：
+- 提取最新24小时内的AI相关资讯
+- 筛选关键词：大模型、AI、GPT、Claude、Gemini、LLM、Agent、人工智能
+- 去重（按标题相似度）
+- 输出格式：标题 + 摘要（50字内）+ 来源链接
+
+### 步骤2：采集招标信息
+
+执行脚本获取浙江政府采购网数据：
+
 ```bash
-hermes skills install clawhub/daily-intel-report
+PYTHONPATH=./libs python3 scripts/zhejiang_ccgp.py
 ```
+
+默认关键词：AI、人工智能、语音、语音室、云桌面、大模型、智能、算力、软件、系统、平台、数据
+
+输出字段：
+- 采购项目标题
+- 采购人
+- 地区
+- 开标时间
+- 详情链接
+
+### 步骤3：整理推送
+
+将采集内容整合为日报格式：
+
+```
+📡 知讯·每日情报 | {日期}
+
+━━ 🧠 AI行业资讯 ━━
+
+1. {标题}
+   {摘要}
+   来源：{来源}
+
+2. ...
+
+━━ 🏛️ 招标信息 ━━
+
+1. 【{日期}】{标题}
+   采购人：{采购人} | 地区：{地区}
+   开标时间：{时间}
+   链接：{链接}
+
+2. ...
+
+━━━━━━━━━━━━━━
+数据源：AIBase / IT之家 / 浙江政府采购网
+```
+
+## 时效性保障机制（4层防护）
+
+### 第1层：时间戳提取与过滤
+
+从抓取内容中提取明确的发布时间，只保留今日内容。
+
+**IT之家时间解析规则：**
+- `今日 HH:MM` → 今天
+- `昨日 HH:MM` → 昨天
+- `MM月DD日` → 具体日期，与当前日期比对
+- 无时间戳 → 标记为"未知"，降低优先级
+
+**AIBase时间解析规则：**
+- `just now` → 需验证，不直接信任
+- 有明确日期 → 优先使用
+
+**过滤逻辑：**
+```
+if 时间 == "今日" or 时间 == "昨天":
+    保留
+elif 时间 == "just now":
+    保留但标记为"待验证"
+else:
+    跳过
+```
+
+### 第2层：内容ID去重记录
+
+记录已推送的文章ID/URL，避免重复推送。
+
+**存储位置：** `memory/last-pushed.json`
+
+**格式：**
+```json
+{
+  "last_push_date": "2026-05-20",
+  "pushed_items": [
+    {"source": "aibase", "id": "28164", "title": "..."},
+    {"source": "ithome", "url": "https://...", "title": "..."}
+  ]
+}
+```
+
+**去重逻辑：**
+- 每次推送前读取记录
+- 跳过已推送的ID/URL
+- 推送完成后更新记录
+
+### 第3层：多源交叉验证
+
+同一新闻从多个源获取，提高置信度。
+
+**验证规则：**
+- 两个源都有同一新闻 = 高置信度，优先推送
+- 仅一个源有 = 正常推送
+- 标题相似度>80% = 视为同一新闻
+
+### 第4层：优先级排序
+
+```
+优先级 = 时间权重 × 来源权重 × 关键词权重
+
+时间权重：今日=3, 昨日=2, 其他=1
+来源权重：多源交叉=2, 单源=1
+关键词权重：命中高价值关键词=2, 普通=1
+```
+
+## 关键词配置
+
+AI资讯筛选关键词（可自定义）：
+- 核心：AI、大模型、LLM、GPT、Claude、Gemini、人工智能
+- 扩展：Agent、RAG、向量、开源、融资、安全
+
+招标信息筛选关键词（可自定义）：
+- 高价值：AI、模型、仿真、数据、软件、系统
+- 关注领域：语音室、云桌面、智能、算力、平台
+
+## 推送配置
+
+### 飞书DM
+- 推送渠道：飞书DM
+- 推送时间：每日07:00（Asia/Shanghai）
+- 推送格式：文本消息，分类清晰，重点标粗
+
+### 邮件推送（可选）
+- SMTP服务器：根据邮箱服务商配置
+- SMTP端口：465（SSL）或 587（TLS）
+- 格式：HTML，包含可点击超链接
+
+## 手动触发
+
+### 告诉助手
+> 执行今日资讯推送
+> 抓取今日AI新闻
+> 获取今日招标信息
+
+### 命令行触发
+```bash
+openclaw cron run <cron-id>
+```
+
+## 定时任务配置
+
+使用 `openclaw cron add` 创建定时任务，建议配置：
+- 时间：每天早上7:00（Asia/Shanghai）
+- 推送：飞书DM + 邮件（可选）
+
+执行步骤：
+1. 采集AI资讯（AIBase、IT之家）
+2. 采集招标信息（浙江政府采购网脚本）
+3. 4层时效性过滤
+4. 整理推送格式
+5. 双渠道推送（飞书+邮件）
+6. 更新去重记录
+
+## 注意事项
+
+- web_fetch为必需工具
+- 浙江政府采购网API无需认证
+- 招标信息详情页可能被WAF拦截，仅获取列表数据
+- 如需扩展数据源，修改本文件的采集规则即可
+- 邮件推送需自行配置SMTP信息
+
+## 相关文件
+
+- 招标脚本：`scripts/zhejiang_ccgp.py`
+- 去重记录：`memory/last-pushed.json`
+- 数据源参考：`references/data-sources.md`

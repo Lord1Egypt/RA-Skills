@@ -1,0 +1,17 @@
+[
+  {
+    "comment": "这个怎么做的？",
+    "reply": "这个可以做，关键看你的场景和目标，想了解更具体的版本可以私信我。",
+    "suggested_action": "public_reply"
+  },
+  {
+    "comment": "多少钱？",
+    "reply": "可以的，这类我这边有现成思路，想看适合你的版本可以私信我。",
+    "suggested_action": "public_reply_plus_dm"
+  },
+  {
+    "comment": "求出教程第二集",
+    "reply": "这个方向后面我会继续拆，下一条我就讲 工作流。",
+    "suggested_action": "public_reply"
+  }
+]

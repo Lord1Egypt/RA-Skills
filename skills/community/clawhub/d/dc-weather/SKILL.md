@@ -1,35 +1,32 @@
 ---
-name: "DC Weather"
-description: "Check Washington DC weather using Open-Meteo API. Use when user asks about DC weather, current conditions, or needs a weather report for Washington DC."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/dc-weather"
-sourceUrl: "https://clawhub.ai/skills/dc-weather"
+name: dc-weather
+description: Check Washington DC weather using Open-Meteo API. Use when user asks about DC weather, current conditions, or needs a weather report for Washington DC.
 ---
 
-# DC Weather
+# DC Weather Skill
 
-> Check Washington DC weather using Open-Meteo API. Use when user asks about DC weather, current conditions, or needs a weather report for Washington DC.
+Get Washington DC weather without API keys using Open-Meteo.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/dc-weather`
-- **Source URL:** [https://clawhub.ai/skills/dc-weather](https://clawhub.ai/skills/dc-weather)
+## Quick Check
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/dc-weather
+curl -s "https://api.open-meteo.com/v1/forecast?latitude=38.9072&longitude=-77.0369&current_weather=true&temperature_unit=fahrenheit" | jq -r '"DC: \(.current_weather.temperature)°F, wind \(.current_weather.windspeed) mph, code \(.current_weather.weathercode)"'
+```
+
+## Weather Codes
+
+| Code | Condition |
+|------|-----------|
+| 0 | Clear |
+| 1-3 | Partly cloudy |
+| 45-48 | Fog |
+| 51-57 | Drizzle |
+| 61-67 | Rain |
+| 71-77 | Snow |
+| 95-99 | Thunderstorm |
+
+## Pretty Format
+
+```bash
+curl -s "https://api.open-meteo.com/v1/forecast?latitude=38.9072&longitude=-77.0369&current_weather=true&temperature_unit=fahrenheit" | jq -r '"\n🌤️ Washington, DC\n━━━━━━━━━━━━━━\n🌡️  \(.current_weather.temperature)°F\n💨  Wind: \(.current_weather.windspeed) mph\n🌪️  Code: \(.current_weather.weathercode)\n"'
 ```

@@ -1,0 +1,21 @@
+# doc-process skill — optional script dependencies
+# Install everything:  pip install -r skills/doc-process/requirements.txt
+# Or run the setup script:  bash skills/doc-process/setup.sh
+
+# ── PDF & image redaction (redactor.py) ──────────────────────────────────────
+pymupdf>=1.23
+Pillow>=10.0
+pytesseract>=0.3        # also needs: brew install tesseract / apt install tesseract-ocr
+
+# ── Document scanning / perspective correction (doc_scanner.py) ──────────────
+opencv-python-headless>=4.9
+numpy>=1.24
+# Pillow already listed above
+img2pdf>=0.5            # optional — for PDF output; Pillow fallback used if absent
+
+# ── Table extraction from PDFs (table_extractor.py) ──────────────────────────
+pdfplumber>=0.11
+
+# ── Audio transcription (audio_transcriber.py) ───────────────────────────────
+openai-whisper>=20231117  # also needs: brew install ffmpeg / apt install ffmpeg
+                           # downloads ~140 MB model on first run only

@@ -1,0 +1,7 @@
+interface:
+  display_name: "投融资日报"
+  short_description: "调用分页投融资事件接口，按单日或最近2-7天清洗去重并自动生成投融资报告"
+  default_prompt: "Use $daily-investment-digest to fetch financing events and generate the financing report. By default, use yesterday as the single-day report date; only use today when the user explicitly asks for today. If the user asks for recent two days, three days, or up to one week, use recent-days mode, fetch up to the hard limit of 250 records, and filter by createdAt. The scripts only produce the event list and basic statistics. In the final AI response, append exactly one ending section titled '投资事件总结' after all event entries; do not implement that summary in code."
+
+policy:
+  allow_implicit_invocation: true

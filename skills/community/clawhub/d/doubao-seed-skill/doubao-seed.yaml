@@ -1,0 +1,22 @@
+skills:
+  doubao-seed-skill:
+    command: "doubao-seed-skill"
+    args:
+      - "--image-url"
+      - "{{image_path}}"
+      - "--output"
+      - "/tmp/doubao_{{session_id}}.txt"
+
+    # 🔑 关键配置：强制同步等待
+    async: false              # 禁用异步执行
+    wait_for_completion: true # 等待 CLI 进程结束
+    capture_output: true      # 捕获 stdout/stderr
+
+    output:
+      type: "file"
+      path: "/tmp/doubao_{{session_id}}.txt"
+      wait_for_file: true     # 🔑 等待文件出现再返回
+      poll_interval: "500ms"  # 轮询间隔
+      max_wait: "60s"         # 最大等待时间
+
+    timeout: "90s"            # 总超时（要大于 CLI 执行时间）

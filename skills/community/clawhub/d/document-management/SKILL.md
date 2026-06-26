@@ -1,35 +1,178 @@
 ---
-name: "document-management"
-description: "Analyze, classify, organize, summarize, and report on PDFs within a given local folder, including batch processing and auto-sorting by topic."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/document-management"
-sourceUrl: "https://clawhub.ai/skills/document-management"
+name: Document-Management
+description: analyze and organize pdf documents in a local folder. use when the user provides a local folder path and wants to manage, organize, classify, summarize, review, or generate a report for the documents in that folder, especially for batch processing of multiple pdf files. 触发词: 管理文档, 管理某路径的文档, 整理文档, 分析文档, 文档分类, 生成文档报告
 ---
 
-# document-management
+# 文件分析器
 
-> Analyze, classify, organize, summarize, and report on PDFs within a given local folder, including batch processing and auto-sorting by topic.
+当用户提供一个包含多个文档的本地目录，并希望：
+- 对文档进行管理
+- 批量提取文档文本
+- 对文档进行主题分类
+- 基于固定模板输出一份总报告
+- **自动将文档移动到分类后的文件夹**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/document-management`
-- **Source URL:** [https://clawhub.ai/skills/document-management](https://clawhub.ai/skills/document-management)
+---
+## Token Extraction
 
-## Overview
+From user input `管理 D:\测试`路径下的文档 → `file_path` = `D:\测试`
 
+# 技能目标
 
-## Installation
-To install this skill, run the following command in your terminal:
+本技能的目标是处理一个本地文件夹，并输出**一份完整报告**。
+
+整个流程必须分为三个阶段：
+
+1. **提取文本**
+2. **文档分类** + **文件整理**
+3. **写报告**
+
+其中：
+- 第一阶段由脚本完成
+- 第二阶段完成分类 + 文件移动
+- 第三阶段写报告时，必须参考用户提供的报告模板或技能内预设模板
+---
+
+# 输入
+
+用户会提供一个本地目录路径，例如：
+
+`D:\papers`
+
+目录中应包含一个或多个 `.pdf` 文件。
+
+如果用户提供的是单个文件而不是目录，不要假装支持目录分析。  
+应明确说明该输入不符合本技能预期。
+
+---
+
+# 第一部分：提取文本
+
+这一阶段只负责从目录中的 PDF 提取原始文本。
+
+## 脚本职责
+
+运行脚本，遍历目标目录中的全部 PDF，并提取每篇文档的纯文本。
+
+脚本只负责：
+- 校验目录是否存在
+- 遍历目录中的 PDF 文件
+- 提取 PDF 文本
+- 返回结构化结果
+
+不要把以下逻辑写进 Python：
+- 分类任务
+- 摘要生成
+- 报告写作
+- 模板填充
+
+这些工作都应交给模型完成。
+
+## 脚本调用
+
+运行脚本：
+
 ```bash
-hermes skills install clawhub/document-management
+run {baseDir}/scripts/extract_pdf_folder.py "<folder_path>"
 ```
+
+# 第二部分：文档分类
+
+## 分类数量要求
+主题数量应根据文档数量动态调整，建议：
+- 文档数量 3-6 篇：3-4 个主题
+- 文档数量 7-12 篇：4-6 个主题
+- 文档数量 12 篇以上：6-8 个主题
+
+分类时应考虑：
+- **研究领域**（如机器学习、交通工程、气候科学等）
+- **应用场景**（如预测、检测、建模、分析等）
+- **数据类型**（如 GPS 轨迹、时序数据、遥感数据等）
+- **方法论**（如深度学习、统计方法、混合方法等）
+
+优先按研究领域细分，同一领域内可按应用场景或方法论进一步区分。
+
+## 第二部分输入
+输入为第一阶段返回的 `documents` 列表。
+
+## 第二部分执行
+逐篇读取 `text`，判断其最核心主题。
+将其加入到对应的文件夹。
+
+## 文件整理（移动文档到分类文件夹）
+
+### 执行要求
+在完成文档分类后，必须将每篇 PDF 文件移动到对应的分类文件夹中。
+
+### 操作步骤
+1. 在目标目录（PDF 所在目录）下创建以主题命名的子文件夹
+2. 将每篇 PDF 移动到对应主题的子文件夹中
+3. 文件夹名称应简洁明了，建议使用中文命名（如"电动汽车出行模式"、"城市货运物流"等）
+
+### 注意事项
+- 如果目标文件夹已存在同名子文件夹，直接使用
+- 移动前确保原文件没有被占用
+- 报告中的"各主题下的文档归应与实际文件夹结构一致
+
+## 第二部分输出
+至少形成两类内部结果：
+1. 文档到主题的映射
+2. 主题到文档集合的映射（根据文档数量动态调整）
+
+# 第三部分：写报告
+
+这一阶段根据以下输入生成最终报告：
+
+1. 第一阶段提取出的文本
+2. 第二阶段生成的分类结果
+3. 用户提供的模板或默认模板
+
+## 第三部分目标
+
+生成一份完整总报告。  
+报告应先呈现整体内容，再呈现单篇文档卡片。  
+不要把单篇卡片单独作为第一结果输出。
+
+## 模板位置
+
+默认报告模板文件位于：
+
+`references/report-template.md`
+
+写报告时，必须先读取并遵循该模板。
+
+如果用户在当前对话中提供了自己的模板，则优先使用用户模板。  
+如果用户没有提供模板，则使用默认模板。
+
+## 第三部分执行顺序
+
+1. 读取并理解报告模板
+2. 根据第一阶段文本和第二阶段分类结果整理报告内容
+3. 先写文件夹概览
+4. 再写主题分类结果
+5. 再写各主题下的文档归并
+6. 再写总体结论
+7. 最后写单篇文档卡片
+8. 若存在失败文件，则在末尾列出
+
+## 第三部分输出
+
+最终只输出一份完整报告，并保存。
+
+报告中至少应包含：
+- 文件夹概览
+- 主题分类结果
+- 各主题下的文档归并
+- 总体结论
+- 单篇文档卡片
+- 处理失败的文件（如有）
+
+## 模板遵循要求
+
+不要脱离模板自由生成章节结构。  
+不要擅自增加“文档对比”“差异分析”“优劣比较”等内容，除非用户明确要求。  
+如果模板中的某个字段无法从文本中得到明确支持，写：
+
+`未明确提及`
+
+不要为了填满模板而编造内容。

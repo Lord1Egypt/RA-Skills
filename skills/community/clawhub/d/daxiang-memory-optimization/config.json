@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "config": {
+    "window": 200,
+    "prune_threshold": 0.6,
+    "enable_auto_prune": true,
+    "prune_interval": 604800,
+    "enable_smart_retrieve": true,
+    "top_k": 10
+  },
+  "scoring": {
+    "keyword_weight": 0.4,
+    "time_decay_weight": 0.2,
+    "access_frequency_weight": 0.2,
+    "tag_match_weight": 0.2
+  },
+  "time_decay": {
+    "no_decay_days": 7,
+    "decay_rate_per_day": 0.02,
+    "min_score": 0.1
+  },
+  "archive": {
+    "enabled": true,
+    "archive_dir": "memory/archive",
+    "retention_days": 90
+  },
+  "optimization": {
+    "enable_incremental_scoring": true,
+    "enable_score_cache": true,
+    "cache_ttl": 3600,
+    "batch_size": 50
+  }
+}

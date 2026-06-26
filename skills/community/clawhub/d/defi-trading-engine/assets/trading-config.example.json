@@ -1,0 +1,24 @@
+{
+  "chain": "base",
+  "trade_size_usd": 40,
+  "max_active_positions": 5,
+  "max_daily_trades": 8,
+  "cooldown_minutes": 30,
+  "take_profit_pct": 4.0,
+  "stop_loss_pct": 8.0,
+  "max_drawdown_pct": 20.0,
+  "min_volume_24h": 100000,
+  "min_liquidity": 50000,
+  "scan_interval_minutes": 120,
+  "dry_run": true,
+  "trade_journal_dir": "trades",
+  "review_dir": "reviews",
+  "strategies": {
+    "momentum": { "enabled": true, "weight": 0.4 },
+    "mean_reversion": { "enabled": true, "weight": 0.3 },
+    "dca": { "enabled": false, "weight": 0.2 },
+    "asymmetric": { "enabled": true, "weight": 0.1 }
+  },
+  "excluded_tokens": ["USDC", "USDT", "DAI"],
+  "max_correlated_positions": 2
+}

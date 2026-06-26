@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: Debt Payoff Plan Comparison
+  short_description: Collect debt and mortgage inputs, call a plans API, and summarize snowball/avalanche/refinance comparisons.
+  default_prompt: Gather debt and assumptions data, run the get-plans script, compare refinance/snowball/avalanche outcomes, and summarize top recommendations with marketing hints.

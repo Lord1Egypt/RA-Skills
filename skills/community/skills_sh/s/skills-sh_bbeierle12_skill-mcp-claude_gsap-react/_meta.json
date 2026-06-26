@@ -1,0 +1,20 @@
+{
+  "name": "gsap-react",
+  "description": "GSAP integration with React including useGSAP hook, ref handling, cleanup patterns, and context management. Use when implementing GSAP animations in React components, handling component lifecycle, or building reusable animation hooks.",
+  "tags": [
+    "animation",
+    "react",
+    "javascript",
+    "code-generation"
+  ],
+  "sub_skills": [],
+  "source": "claude-user",
+  "type": "template",
+  "depends_on": [
+    "gsap-fundamentals"
+  ],
+  "enhances": [],
+  "last_reviewed_at": "2026-06-16",
+  "review_score": 60,
+  "relevance_tier": "A"
+}

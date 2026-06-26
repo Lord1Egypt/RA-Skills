@@ -1,35 +1,127 @@
 ---
-name: "postgres"
-description: "Indexed by skills.sh from dedalus-erp-pas/foundation-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "dedalus-erp-pas"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/dedalus-erp-pas/foundation-skills/postgres"
-sourceUrl: "https://skills.sh/dedalus-erp-pas/foundation-skills/postgres"
+name: postgres
+description: "Exécute des requêtes SQL en lecture seule sur plusieurs bases de données PostgreSQL. À utiliser pour : (1) interroger des bases PostgreSQL, (2) explorer les schémas/tables, (3) exécuter des requêtes SELECT pour l'analyse de données, (4) vérifier le contenu des bases. Supporte plusieurs connexions avec descriptions pour une sélection automatique intelligente. Bloque toutes les opérations d'écriture (INSERT, UPDATE, DELETE, DROP, etc.) par sécurité."
+version: 1.0.1
+license: MIT
 ---
 
-# postgres
+# PostgreSQL Read-Only Query Skill
 
-> Indexed by skills.sh from dedalus-erp-pas/foundation-skills
+Execute safe, read-only queries against configured PostgreSQL databases.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** dedalus-erp-pas
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/dedalus-erp-pas/foundation-skills/postgres`
-- **Source URL:** [https://skills.sh/dedalus-erp-pas/foundation-skills/postgres](https://skills.sh/dedalus-erp-pas/foundation-skills/postgres)
+## Prerequisites
 
-## Overview
+- Python 3.8+
+- psycopg2-binary: `pip install -r requirements.txt`
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
+Create `connections.json` in the skill directory or `~/.config/claude/postgres-connections.json`.
+
+**Security**: Set file permissions to `600` since it contains credentials:
 ```bash
-hermes skills install skills-sh/dedalus-erp-pas/foundation-skills/postgres
+chmod 600 connections.json
 ```
+
+```json
+{
+  "databases": [
+    {
+      "name": "production",
+      "description": "Main app database - users, orders, transactions",
+      "host": "db.example.com",
+      "port": 5432,
+      "database": "app_prod",
+      "user": "readonly_user",
+      "password": "your-password",
+      "sslmode": "require"
+    }
+  ]
+}
+```
+
+### Config Fields
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| name | Yes | Identifier for the database (case-insensitive) |
+| description | Yes | What data this database contains (used for auto-selection) |
+| host | Yes | Database hostname |
+| port | No | Port number (default: 5432) |
+| database | Yes | Database name |
+| user | Yes | Username |
+| password | Yes | Password |
+| sslmode | No | SSL mode: disable, allow, prefer (default), require, verify-ca, verify-full |
+
+## Usage
+
+### List configured databases
+```bash
+python3 scripts/query.py --list
+```
+
+### Query a database
+```bash
+python3 scripts/query.py --db production --query "SELECT * FROM users LIMIT 10"
+```
+
+### List tables
+```bash
+python3 scripts/query.py --db production --tables
+```
+
+### Show schema
+```bash
+python3 scripts/query.py --db production --schema
+```
+
+### Limit results
+```bash
+python3 scripts/query.py --db production --query "SELECT * FROM orders" --limit 100
+```
+
+## Database Selection
+
+Match user intent to database `description`:
+
+| User asks about | Look for description containing |
+|-----------------|--------------------------------|
+| users, accounts | users, accounts, customers |
+| orders, sales | orders, transactions, sales |
+| analytics, metrics | analytics, metrics, reports |
+| logs, events | logs, events, audit |
+
+If unclear, run `--list` and ask user which database.
+
+## Safety Features
+
+- **Read-only session**: Connection uses PostgreSQL `readonly=True` mode (primary protection)
+- **Query validation**: Only SELECT, SHOW, EXPLAIN, WITH queries allowed
+- **Single statement**: Multiple statements per query rejected
+- **SSL support**: Configurable SSL mode for encrypted connections
+- **Query timeout**: 30-second statement timeout enforced
+- **Memory protection**: Max 10,000 rows per query to prevent OOM
+- **Column width cap**: 100 char max per column for readable output
+- **Credential sanitization**: Error messages don't leak passwords
+
+## Troubleshooting
+
+| Error | Solution |
+|-------|----------|
+| Config not found | Create `connections.json` in skill directory |
+| Authentication failed | Check username/password in config |
+| Connection timeout | Verify host/port, check firewall/VPN |
+| SSL error | Try `"sslmode": "disable"` for local databases |
+| Permission warning | Run `chmod 600 connections.json` |
+
+## Exit Codes
+
+- **0**: Success
+- **1**: Error (config missing, auth failed, invalid query, database error)
+
+## Workflow
+
+1. Run `--list` to show available databases
+2. Match user intent to database description
+3. Run `--tables` or `--schema` to explore structure
+4. Execute query with appropriate LIMIT

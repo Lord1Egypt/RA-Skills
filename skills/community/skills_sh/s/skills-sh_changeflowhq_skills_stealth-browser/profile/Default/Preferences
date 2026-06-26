@@ -1,0 +1,32 @@
+{
+  "extensions": {
+    "alerts": {
+      "initialized": true
+    },
+    "chrome_url_overrides": {},
+    "commands": {},
+    "last_chrome_version": "144.0.7559.133"
+  },
+  "browser": {
+    "has_seen_welcome_page": true,
+    "should_reset_check_default_browser": false,
+    "window_placement": {
+      "bottom": -31625,
+      "left": -32000,
+      "maximized": false,
+      "right": -31500,
+      "top": -32000,
+      "work_area_bottom": 1080,
+      "work_area_left": 0,
+      "work_area_right": 2560,
+      "work_area_top": 25
+    }
+  },
+  "distribution": {
+    "import_bookmarks": false,
+    "skip_first_run_ui": true
+  },
+  "first_run_tabs": {
+    "first_run_finished": true
+  }
+}

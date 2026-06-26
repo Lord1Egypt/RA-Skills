@@ -1,35 +1,37 @@
 ---
-name: "codex-review"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/codex-review"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/codex-review"
+name: codex-review
+description: Professional code review with auto CHANGELOG generation, integrated with Codex AI
 ---
 
 # codex-review
 
-> Indexed by skills.sh from davila7/claude-code-templates
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/codex-review`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/codex-review](https://skills.sh/davila7/claude-code-templates/codex-review)
-
 ## Overview
+Professional code review with auto CHANGELOG generation, integrated with Codex AI
 
+## When to Use
+- When you want professional code review before commits
+- When you need automatic CHANGELOG generation
+- When reviewing large-scale refactoring
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/davila7/claude-code-templates/codex-review
+npx skills add -g BenedictKing/codex-review
 ```
+
+## Step-by-Step Guide
+1. Install the skill using the command above
+2. Ensure Codex CLI is installed
+3. Use `/codex-review` or natural language triggers
+
+## Examples
+See [GitHub Repository](https://github.com/BenedictKing/codex-review) for examples.
+
+## Best Practices
+- Keep CHANGELOG.md in your project root
+- Use conventional commit messages
+
+## Troubleshooting
+See the GitHub repository for troubleshooting guides.
+
+## Related Skills
+- context7-auto-research, tavily-web, exa-search, firecrawl-scraper

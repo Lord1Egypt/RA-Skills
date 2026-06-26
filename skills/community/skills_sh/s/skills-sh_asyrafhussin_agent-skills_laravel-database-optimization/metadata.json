@@ -1,0 +1,110 @@
+{
+  "name": "laravel-database-optimization",
+  "version": "1.1.1",
+  "description": "Comprehensive Laravel 13 database optimization guide designed for AI agents and LLMs. Contains 33 rules across 9 categories covering query performance, indexing strategies, Eloquent optimization, Redis caching, pagination, transactions, migrations, naming conventions, and query debugging.",
+  "framework": "Laravel 13.x",
+  "phpVersion": "8.3+",
+  "rulesTotal": 33,
+  "lastUpdated": "2026-03-26",
+  "categories": [
+    {
+      "name": "Query Performance & N+1",
+      "prefix": "query",
+      "impact": "CRITICAL",
+      "ruleCount": 4,
+      "description": "Eliminate N+1 queries, enforce eager loading, and select only needed columns"
+    },
+    {
+      "name": "Indexing Strategies",
+      "prefix": "index",
+      "impact": "CRITICAL",
+      "ruleCount": 4,
+      "description": "Foreign key indexes, composite indexes, covering indexes, and full-text search"
+    },
+    {
+      "name": "Eloquent Optimization",
+      "prefix": "eloquent",
+      "impact": "HIGH",
+      "ruleCount": 4,
+      "description": "Query builder for hot paths, withCount aggregates, subquery selects, and whereHas optimization"
+    },
+    {
+      "name": "Caching with Redis",
+      "prefix": "cache",
+      "impact": "HIGH",
+      "ruleCount": 4,
+      "description": "Cache::remember patterns, cache invalidation, cache tags, and TTL strategies"
+    },
+    {
+      "name": "Pagination & Large Datasets",
+      "prefix": "data",
+      "impact": "HIGH",
+      "ruleCount": 4,
+      "description": "Cursor pagination, chunkById processing, lazy cursors, and avoiding unbounded queries"
+    },
+    {
+      "name": "Transactions & Locking",
+      "prefix": "lock",
+      "impact": "HIGH",
+      "ruleCount": 3,
+      "description": "Short transactions, deadlock retry logic, and pessimistic locking for critical updates"
+    },
+    {
+      "name": "Migrations",
+      "prefix": "migrate",
+      "impact": "HIGH",
+      "ruleCount": 3,
+      "description": "Zero-downtime migrations, concurrent index creation, and safe column additions"
+    },
+    {
+      "name": "Query Debugging",
+      "prefix": "debug",
+      "impact": "MEDIUM",
+      "ruleCount": 3,
+      "description": "EXPLAIN ANALYZE, Laravel Debugbar integration, and slow query log monitoring"
+    },
+    {
+      "name": "Naming & Structure",
+      "prefix": "naming",
+      "impact": "HIGH",
+      "ruleCount": 4,
+      "description": "Table, column, relationship, and migration naming conventions for Eloquent"
+    }
+  ],
+  "references": [
+    "https://laravel.com/docs/13.x/eloquent",
+    "https://laravel.com/docs/13.x/queries",
+    "https://laravel.com/docs/13.x/cache",
+    "https://laravel.com/docs/13.x/pagination",
+    "https://laravel.com/docs/13.x/migrations",
+    "https://laravel.com/docs/13.x/redis",
+    "https://laravel.com/docs/13.x/eloquent-relationships"
+  ],
+  "keywords": [
+    "database",
+    "optimization",
+    "N+1",
+    "eager loading",
+    "indexing",
+    "caching",
+    "Redis",
+    "pagination",
+    "transactions",
+    "migrations",
+    "query builder",
+    "Eloquent",
+    "performance"
+  ],
+  "tags": [
+    "laravel",
+    "database",
+    "performance",
+    "optimization",
+    "eloquent",
+    "redis",
+    "caching",
+    "indexing",
+    "queries",
+    "migrations"
+  ]
+}

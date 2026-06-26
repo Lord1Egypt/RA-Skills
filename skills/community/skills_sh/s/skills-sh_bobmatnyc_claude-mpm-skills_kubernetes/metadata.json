@@ -1,0 +1,38 @@
+{
+  "name": "kubernetes",
+  "version": "1.0.0",
+  "category": "universal",
+  "toolchain": null,
+  "tags": [
+    "kubernetes",
+    "k8s",
+    "infrastructure",
+    "deployment",
+    "operations",
+    "reliability",
+    "debugging",
+    "security"
+  ],
+  "entry_point_tokens": 150,
+  "full_tokens": 2470,
+  "related_skills": [
+    "docker",
+    "github-actions",
+    "systematic-debugging",
+    "verification-before-completion",
+    "security-scanning"
+  ],
+  "author": "Claude MPM Team",
+  "license": "MIT",
+  "subcategory": "infrastructure",
+  "description": "Kubernetes operations playbook for deploying and running services: core objects, probes, resource sizing, safe rollouts, and fast kubectl debugging",
+  "self_contained": true,
+  "requires": [],
+  "repository": "https://github.com/bobmatnyc/claude-mpm-skills",
+  "created": "2025-12-17",
+  "updated": "2025-12-17",
+  "notes": [
+    "Progressive disclosure: entry-point SKILL.md + reference runbooks and hardening guides",
+    "Vendor-neutral Kubernetes patterns with kubectl-first diagnostics"
+  ]
+}

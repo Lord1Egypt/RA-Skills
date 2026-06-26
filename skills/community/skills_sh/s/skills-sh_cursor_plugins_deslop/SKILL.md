@@ -1,35 +1,22 @@
 ---
-name: "deslop"
-description: "Indexed by skills.sh from cursor/plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cursor"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cursor/plugins/deslop"
-sourceUrl: "https://skills.sh/cursor/plugins/deslop"
+name: deslop
+description: Remove AI-generated code slop and clean up code style
 ---
 
-# deslop
+# Remove AI code slop
 
-> Indexed by skills.sh from cursor/plugins
+Check the diff against main and remove AI-generated slop introduced in the branch.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cursor
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cursor/plugins/deslop`
-- **Source URL:** [https://skills.sh/cursor/plugins/deslop](https://skills.sh/cursor/plugins/deslop)
+## Focus Areas
 
-## Overview
+- Extra comments that are unnecessary or inconsistent with local style
+- Defensive checks or try/catch blocks that are abnormal for trusted code paths
+- Casts to `any` used only to bypass type issues
+- Deeply nested code that should be simplified with early returns
+- Other patterns inconsistent with the file and surrounding codebase
 
+## Guardrails
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/cursor/plugins/deslop
-```
+- Keep behavior unchanged unless fixing a clear bug.
+- Prefer minimal, focused edits over broad rewrites.
+- Keep the final summary concise (1-3 sentences).

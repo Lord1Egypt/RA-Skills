@@ -1,35 +1,77 @@
 ---
-name: "skill-creator"
-description: "Indexed by skills.sh from cap-go/capgo-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cap-go"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cap-go/capgo-skills/skill-creator"
-sourceUrl: "https://skills.sh/cap-go/capgo-skills/skill-creator"
+name: skill-creator
+description: Guides the agent through authoring and validating agent skills. Use when creating new skill directories, tightening skill metadata, extracting supporting references, or preparing skillgrade evals. Do not use for general app documentation, generic README editing, or non-agentic library code.
 ---
 
-# skill-creator
+# Skill Authoring Procedure
 
-> Indexed by skills.sh from cap-go/capgo-skills
+Create professional-grade skills with lean context, deterministic structure, and validation.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cap-go
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cap-go/capgo-skills/skill-creator`
-- **Source URL:** [https://skills.sh/cap-go/capgo-skills/skill-creator](https://skills.sh/cap-go/capgo-skills/skill-creator)
+## When to Use This Skill
 
-## Overview
+- User wants to create a new skill directory
+- User wants to improve a skill's discoverability or metadata
+- User wants to split large instructions into references or scripts
+- User wants to add or update skillgrade validation
 
+## Procedures
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/cap-go/capgo-skills/skill-creator
-```
+### Step 1: Validate the Skill Metadata
+
+Check that the frontmatter uses a unique lowercase name, a specific description, and clear negative triggers.
+
+Keep the description short enough to fit within the agent router's metadata budget.
+
+### Step 2: Keep the Main Skill Lean
+
+Write the main `SKILL.md` as a high-level workflow.
+
+Move dense rules, large schemas, and reusable templates into `references/` or `assets/`.
+
+Use `scripts/` only for fragile or repetitive logic that should not be re-authored by the agent.
+
+### Step 3: Match Command Context
+
+Keep command examples aligned with how the skill will be consumed.
+
+- Use standard `npm` and `npx` examples in skill prose, public docs, and marketing copy unless the skill is specifically about Bun.
+- Use `npx ...@latest` for Capacitor and Capgo CLI examples so consumers get the expected package version.
+- Use `bun`, `bun run`, and `bunx` only for this repository's development commands, CI commands, or Bun-specific skills.
+- When a skill tells an agent to edit a target repository, tell it to read that repository's instructions and follow that repository's package-manager policy before executing commands.
+
+### Step 4: Use Progressive Disclosure
+
+Command the agent to read supporting files only when the current step needs them.
+
+Prefer one-level-deep support files with explicit relative paths.
+
+When a skill depends on repository state that will differ at invocation time, prefer a guarded inline shell snapshot such as ``!`node -e "..."` `` instead of baking the current state into prose.
+
+Only do this when the command materially improves the invoked prompt, and keep the output short and deterministic.
+
+If a skill uses inline commands, declare the minimum required `allowed-tools` entries in frontmatter and keep them read-only.
+
+### Step 5: Add Validation
+
+Create a `skillgrade` eval when the skill needs regression testing.
+
+Use a deterministic grader for structural checks and an LLM rubric only when qualitative judgment is necessary.
+
+### Step 6: Review for Hallucination Gaps
+
+Inspect the skill for any step where the agent is forced to guess.
+
+Replace ambiguous prose with concrete commands, file names, or output expectations.
+
+### Step 7: Preserve Sensitive Values
+
+When a skill edits user files, instruct the agent not to replace user-provided tokens, keys, certificates, passwords, or other secrets with placeholders unless the user explicitly asks.
+
+Use placeholders for new generic examples only. Do not tell users to rotate secrets unless they explicitly ask for rotation guidance.
+
+## Error Handling
+
+- If a skill cannot be validated, reduce scope until the missing behavior becomes testable.
+- If the description is too broad, tighten the trigger text before adding more instructions.
+- If the supporting material grows too large, extract it into a separate file and point the agent to it explicitly.
+- If an inline command would require broad shell access or produce noisy output, keep the skill static and tell the agent to inspect the files explicitly instead.

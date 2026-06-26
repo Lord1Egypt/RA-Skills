@@ -1,0 +1,20 @@
+{
+  "name": "d3js-visualization",
+  "description": "Create D3.js charts and interactive data visualizations. Use when building bar charts, line charts, scatter plots, pie charts, force-directed graphs, geographic maps, or any custom data visualization.",
+  "tags": [
+    "data-visualization",
+    "d3",
+    "javascript",
+    "code-generation"
+  ],
+  "sub_skills": [],
+  "source": "claude-user",
+  "type": "template",
+  "depends_on": [],
+  "enhances": [
+    "dashboard"
+  ],
+  "last_reviewed_at": "2026-05-31",
+  "review_score": 60,
+  "relevance_tier": "B"
+}

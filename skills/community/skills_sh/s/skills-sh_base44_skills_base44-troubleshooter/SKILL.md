@@ -1,35 +1,70 @@
 ---
-name: "base44-troubleshooter"
-description: "Indexed by skills.sh from base44/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "base44"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/base44/skills/base44-troubleshooter"
-sourceUrl: "https://skills.sh/base44/skills/base44-troubleshooter"
+name: base44-troubleshooter
+description: Troubleshoot production issues using backend function logs. Use when investigating app errors, debugging function calls, or diagnosing production problems in Base44 apps.
 ---
 
-# base44-troubleshooter
+# Troubleshoot Production Issues
 
-> Indexed by skills.sh from base44/skills
+## Prerequisites
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** base44
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/base44/skills/base44-troubleshooter`
-- **Source URL:** [https://skills.sh/base44/skills/base44-troubleshooter](https://skills.sh/base44/skills/base44-troubleshooter)
+Verify authentication before fetching logs:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/base44/skills/base44-troubleshooter
+npx base44 whoami
 ```
+
+If not authenticated or token expired, instruct user to run `npx base44 login`.
+
+Resolve app context in one of these ways:
+
+```bash
+# From a linked local project
+cat base44/.app.jsonc
+
+# Or explicitly
+npx base44 logs --app-id app_123
+```
+
+## Available Commands
+
+| Command | Description | Reference |
+|---------|-------------|-----------|
+| `base44 logs` | Fetch function logs for this app | [project-logs.md](references/project-logs.md) |
+
+## Troubleshooting Flow
+
+### 1. Check Recent Errors
+
+Start by pulling the latest errors across all functions:
+
+```bash
+npx base44 logs --level error
+```
+
+### 2. Drill Into a Specific Function
+
+If you know which function is failing:
+
+```bash
+npx base44 logs --function <function_name> --level error
+```
+
+If you are outside the project directory, pass the app explicitly:
+
+```bash
+npx base44 logs --app-id app_123 --function <function_name> --level error
+```
+
+### 3. Inspect a Time Range
+
+Correlate with user-reported issue timestamps:
+
+```bash
+npx base44 logs --function <function_name> --since <start_time> --until <end_time>
+```
+
+### 4. Analyze the Logs
+
+- Look for stack traces and error messages in the output
+- Check timestamps to correlate with user-reported issues
+- Use `--limit` to fetch more entries if the default 50 isn't enough

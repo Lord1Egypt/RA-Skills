@@ -1,35 +1,43 @@
 ---
-name: "autonomous"
-description: "Indexed by skills.sh from camacho/ai-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "camacho"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/camacho/ai-skills/autonomous"
-sourceUrl: "https://skills.sh/camacho/ai-skills/autonomous"
+name: autonomous
+description: Exit copilot mode — return to autonomous mode with full worktree enforcement.
+user_invocable: true
 ---
 
-# autonomous
+# Return to Autonomous Mode
 
-> Indexed by skills.sh from camacho/ai-skills
+> **Claude Code enforcement only** — Codex and Cursor default to autonomous unless a future adapter uses this shared controller.
+> Shared mode controller: `.agents/skills/autonomous/scripts/`.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** camacho
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/camacho/ai-skills/autonomous`
-- **Source URL:** [https://skills.sh/camacho/ai-skills/autonomous](https://skills.sh/camacho/ai-skills/autonomous)
+## Shared Controller
 
-## Overview
+Mode is a setting with explicit values: `autonomous` and `copilot`.
 
+For now, this skill owns the shared mode controller because `autonomous` is the default and safe fallback value. `/copilot` is an alias that sets `mode=copilot`; it should not own separate mode logic.
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `.agents/skills/autonomous/scripts/mode.sh` is the sourceable mode facade for all agents and hooks.
+- `.agents/skills/autonomous/scripts/set-mode.sh` sets `mode=autonomous` or `mode=copilot`.
+- `scripts/lib/session-state.sh` remains project infrastructure because status, detection, bootstrap, and hook code all use it.
+
+## Activate
+
 ```bash
-hermes skills install skills-sh/camacho/ai-skills/autonomous
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+"$REPO_ROOT/.agents/skills/autonomous/scripts/set-mode.sh" autonomous
 ```
+
+If the script does not exist, tell the user: "This project doesn't have mode switching scripts. You are already in autonomous mode by default."
+
+## Confirmation
+
+After activation, print:
+
+```
+Mode: autonomous
+Worktree enforcement active. Full workflow pipeline.
+```
+
+## Behavior
+
+Follow **autonomous mode** rules in `.claude/rules/operating-mode.md`.
+Agents and hooks that need live mode state should source the shared helper or call `scripts/session-state get mode`; do not read raw mode-state files directly.

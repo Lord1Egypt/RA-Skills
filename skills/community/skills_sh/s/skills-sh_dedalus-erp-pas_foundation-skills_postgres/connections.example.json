@@ -1,0 +1,14 @@
+{
+    "databases": [
+        {
+            "name": "mydb",
+            "description": "Description of database contents",
+            "host": "localhost",
+            "port": 5432,
+            "database": "mydb",
+            "user": "user",
+            "password": "password",
+            "sslmode": "prefer"
+        }
+    ]
+}

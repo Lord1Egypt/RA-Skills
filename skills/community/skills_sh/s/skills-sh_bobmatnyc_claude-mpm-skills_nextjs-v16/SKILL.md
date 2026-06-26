@@ -1,35 +1,24 @@
 ---
-name: "nextjs-v16"
-description: "Indexed by skills.sh from bobmatnyc/claude-mpm-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "bobmatnyc"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/nextjs-v16"
-sourceUrl: "https://skills.sh/bobmatnyc/claude-mpm-skills/nextjs-v16"
+name: nextjs-v16
+description: Next.js 16 migration guide (async request APIs, "use cache", Turbopack)
+user-invocable: false
+disable-model-invocation: true
+version: 1.1.0
+category: toolchain
+progressive_disclosure:
+  entry_point:
+    summary: "Next.js 16 migration: async request APIs + opt-in caching"
+tags: [nextjs, nextjs-16]
 ---
 
-# nextjs-v16
+# Next.js 16
 
-> Indexed by skills.sh from bobmatnyc/claude-mpm-skills
+- Async `params`/`cookies`/`headers`; opt-in caching via `"use cache"`; Turbopack default.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** bobmatnyc
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/nextjs-v16`
-- **Source URL:** [https://skills.sh/bobmatnyc/claude-mpm-skills/nextjs-v16](https://skills.sh/bobmatnyc/claude-mpm-skills/nextjs-v16)
+Anti-patterns:
 
-## Overview
+- ❌ Sync request APIs; ✅ `await` `params`, `cookies()`, and `headers()`.
+- ❌ Keep `middleware.ts`; ✅ use `proxy.ts` and `export function proxy`.
+- ❌ `revalidateTag("posts")`; ✅ `revalidateTag("posts", "max")` or `{ expire: ... }`.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/nextjs-v16
-```
+References: `references/migration-checklist.md`, `references/cache-components.md`, `references/turbopack.md`

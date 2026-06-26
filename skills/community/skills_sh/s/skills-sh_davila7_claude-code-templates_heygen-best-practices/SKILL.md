@@ -1,35 +1,43 @@
 ---
-name: "heygen-best-practices"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/heygen-best-practices"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/heygen-best-practices"
+name: heygen-best-practices
+description: Best practices for HeyGen - AI avatar video creation API
+metadata:
+  tags: heygen, video, avatar, ai, api, text-to-video
 ---
 
-# heygen-best-practices
+## When to use
 
-> Indexed by skills.sh from davila7/claude-code-templates
+Use this skill whenever you are dealing with HeyGen API code to obtain domain-specific knowledge for creating AI avatar videos, managing avatars, handling video generation workflows, and integrating with HeyGen's services.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/heygen-best-practices`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/heygen-best-practices](https://skills.sh/davila7/claude-code-templates/heygen-best-practices)
+## How to use
 
-## Overview
+Read individual rule files for detailed explanations and code examples:
 
+### Foundation
+- [rules/authentication.md](rules/authentication.md) - API key setup, X-Api-Key header, and authentication patterns
+- [rules/quota.md](rules/quota.md) - Credit system, usage limits, and checking remaining quota
+- [rules/video-status.md](rules/video-status.md) - Polling patterns, status types, and retrieving download URLs
+- [rules/assets.md](rules/assets.md) - Uploading images, videos, and audio for use in video generation
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/heygen-best-practices
-```
+### Core Video Creation
+- [rules/avatars.md](rules/avatars.md) - Listing avatars, avatar styles, and avatar_id selection
+- [rules/voices.md](rules/voices.md) - Listing voices, locales, speed/pitch configuration
+- [rules/scripts.md](rules/scripts.md) - Writing scripts, pauses/breaks, pacing, and structure templates
+- [rules/video-generation.md](rules/video-generation.md) - POST /v2/video/generate workflow and multi-scene videos
+- [rules/video-agent.md](rules/video-agent.md) - One-shot prompt video generation with Video Agent API
+- [rules/dimensions.md](rules/dimensions.md) - Resolution options (720p/1080p) and aspect ratios
+
+### Video Customization
+- [rules/backgrounds.md](rules/backgrounds.md) - Solid colors, images, and video backgrounds
+- [rules/text-overlays.md](rules/text-overlays.md) - Adding text with fonts and positioning
+- [rules/captions.md](rules/captions.md) - Auto-generated captions and subtitle options
+
+### Advanced Features
+- [rules/templates.md](rules/templates.md) - Template listing and variable replacement
+- [rules/video-translation.md](rules/video-translation.md) - Translating videos, quality/fast modes, and dubbing
+- [rules/streaming-avatars.md](rules/streaming-avatars.md) - Real-time interactive avatar sessions
+- [rules/photo-avatars.md](rules/photo-avatars.md) - Creating avatars from photos (talking photos)
+- [rules/webhooks.md](rules/webhooks.md) - Registering webhook endpoints and event types
+
+### Integration
+- [rules/remotion-integration.md](rules/remotion-integration.md) - Using HeyGen avatar videos in Remotion compositions

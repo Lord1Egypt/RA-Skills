@@ -1,0 +1,27 @@
+{
+  "name": "typescript-core",
+  "version": "1.2.0",
+  "category": "toolchain",
+  "toolchain": "typescript",
+  "framework": null,
+  "tags": [
+    "typescript",
+    "types",
+    "validation",
+    "zod",
+    "typebox",
+    "tsconfig",
+    "decision-trees",
+    "troubleshooting",
+    "code-quality",
+    "anti-patterns"
+  ],
+  "entry_point_tokens": 107,
+  "full_tokens": 24858,
+  "author": "claude-mpm-skills",
+  "license": "MIT",
+  "requires": [],
+  "updated": "2026-06-15",
+  "source_path": "toolchains/typescript/core/SKILL.md",
+  "repository": "https://github.com/bobmatnyc/claude-mpm-skills"
+}

@@ -1,35 +1,36 @@
 ---
-name: "web-design-guidelines"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/web-design-guidelines"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/web-design-guidelines"
+name: web-design-guidelines
+description: Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or "check my site against best practices".
+argument-hint: <file-or-pattern>
 ---
 
-# web-design-guidelines
+# Web Interface Guidelines
 
-> Indexed by skills.sh from davila7/claude-code-templates
+Review files for compliance with Web Interface Guidelines.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/web-design-guidelines`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/web-design-guidelines](https://skills.sh/davila7/claude-code-templates/web-design-guidelines)
+## How It Works
 
-## Overview
+1. Fetch the latest guidelines from the source URL below
+2. Read the specified files (or prompt user for files/pattern)
+3. Check against all rules in the fetched guidelines
+4. Output findings in the terse `file:line` format
 
+## Guidelines Source
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/web-design-guidelines
+Fetch fresh guidelines before each review:
+
 ```
+https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md
+```
+
+Use WebFetch to retrieve the latest rules. The fetched content contains all the rules and output format instructions.
+
+## Usage
+
+When a user provides a file or pattern argument:
+1. Fetch guidelines from the source URL above
+2. Read the specified files
+3. Apply all rules from the fetched guidelines
+4. Output findings using the format specified in the guidelines
+
+If no files specified, ask the user which files to review.

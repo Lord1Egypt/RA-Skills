@@ -1,35 +1,25 @@
 ---
-name: "nextjs-core"
-description: "Indexed by skills.sh from bobmatnyc/claude-mpm-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "bobmatnyc"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/nextjs-core"
-sourceUrl: "https://skills.sh/bobmatnyc/claude-mpm-skills/nextjs-core"
+name: nextjs-core
+description: Core Next.js patterns for App Router development including Server Components, Server Actions, route handlers, data fetching, and caching strategies
+user-invocable: false
+disable-model-invocation: true
+version: 1.1.0
+category: toolchain
+progressive_disclosure:
+  entry_point:
+    summary: "Server-first patterns with safe mutations (Server Actions) and explicit caching/revalidation"
+tags: [nextjs, app-router]
 ---
 
-# nextjs-core
+# Next.js Core (App Router)
 
-> Indexed by skills.sh from bobmatnyc/claude-mpm-skills
+- Server Components by default; minimal `"use client"`.
+- Mutations in Server Actions (validate/authz; revalidate tags/paths).
+- Route handlers for APIs/webhooks; add loading/error boundaries.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** bobmatnyc
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/nextjs-core`
-- **Source URL:** [https://skills.sh/bobmatnyc/claude-mpm-skills/nextjs-core](https://skills.sh/bobmatnyc/claude-mpm-skills/nextjs-core)
+Anti-patterns:
+- ❌ Fetch initial data in `useEffect`.
+- ❌ Cache or revalidate too broadly.
+- ❌ Client-only authz.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/bobmatnyc/claude-mpm-skills/nextjs-core
-```
+References: see `references/` (server actions, fetching, caching, routing, auth, testing).

@@ -1,35 +1,56 @@
 ---
-name: "clerk-auth"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/clerk-auth"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/clerk-auth"
+name: clerk-auth
+description: "Expert patterns for Clerk auth implementation, middleware, organizations, webhooks, and user sync Use when: adding authentication, clerk auth, user authentication, sign in, sign up."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# clerk-auth
+# Clerk Authentication
 
-> Indexed by skills.sh from davila7/claude-code-templates
+## Patterns
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/clerk-auth`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/clerk-auth](https://skills.sh/davila7/claude-code-templates/clerk-auth)
+### Next.js App Router Setup
 
-## Overview
+Complete Clerk setup for Next.js 14/15 App Router.
+
+Includes ClerkProvider, environment variables, and basic
+sign-in/sign-up components.
+
+Key components:
+- ClerkProvider: Wraps app for auth context
+- <SignIn />, <SignUp />: Pre-built auth forms
+- <UserButton />: User menu with session management
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/clerk-auth
-```
+### Middleware Route Protection
+
+Protect routes using clerkMiddleware and createRouteMatcher.
+
+Best practices:
+- Single middleware.ts file at project root
+- Use createRouteMatcher for route groups
+- auth.protect() for explicit protection
+- Centralize all auth logic in middleware
+
+
+### Server Component Authentication
+
+Access auth state in Server Components using auth() and currentUser().
+
+Key functions:
+- auth(): Returns userId, sessionId, orgId, claims
+- currentUser(): Returns full User object
+- Both require clerkMiddleware to be configured
+
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| Issue | critical | See docs |
+| Issue | high | See docs |
+| Issue | high | See docs |
+| Issue | high | See docs |
+| Issue | medium | See docs |
+| Issue | medium | See docs |
+| Issue | medium | See docs |
+| Issue | medium | See docs |

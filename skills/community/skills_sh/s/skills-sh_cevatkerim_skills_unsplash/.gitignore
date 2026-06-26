@@ -1,0 +1,20 @@
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log
+
+# Test output
+test_results/
+*.json

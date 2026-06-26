@@ -1,35 +1,56 @@
 ---
-name: "neon-postgres"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/neon-postgres"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/neon-postgres"
+name: neon-postgres
+description: "Expert patterns for Neon serverless Postgres, branching, connection pooling, and Prisma/Drizzle integration Use when: neon database, serverless postgres, database branching, neon postgres, postgres serverless."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# neon-postgres
+# Neon Postgres
 
-> Indexed by skills.sh from davila7/claude-code-templates
+## Patterns
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/neon-postgres`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/neon-postgres](https://skills.sh/davila7/claude-code-templates/neon-postgres)
+### Prisma with Neon Connection
 
-## Overview
+Configure Prisma for Neon with connection pooling.
+
+Use two connection strings:
+- DATABASE_URL: Pooled connection for Prisma Client
+- DIRECT_URL: Direct connection for Prisma Migrate
+
+The pooled connection uses PgBouncer for up to 10K connections.
+Direct connection required for migrations (DDL operations).
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/neon-postgres
-```
+### Drizzle with Neon Serverless Driver
+
+Use Drizzle ORM with Neon's serverless HTTP driver for
+edge/serverless environments.
+
+Two driver options:
+- neon-http: Single queries over HTTP (fastest for one-off queries)
+- neon-serverless: WebSocket for transactions and sessions
+
+
+### Connection Pooling with PgBouncer
+
+Neon provides built-in connection pooling via PgBouncer.
+
+Key limits:
+- Up to 10,000 concurrent connections to pooler
+- Connections still consume underlying Postgres connections
+- 7 connections reserved for Neon superuser
+
+Use pooled endpoint for application, direct for migrations.
+
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| Issue | high | See docs |
+| Issue | high | See docs |
+| Issue | high | See docs |
+| Issue | medium | See docs |
+| Issue | medium | See docs |
+| Issue | low | See docs |
+| Issue | medium | See docs |
+| Issue | high | See docs |

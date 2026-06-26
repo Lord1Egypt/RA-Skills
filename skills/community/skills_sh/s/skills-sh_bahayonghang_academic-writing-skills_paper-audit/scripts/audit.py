@@ -1,0 +1,3201 @@
+"""
+Paper Audit Orchestrator.
+Main entry point for running paper audits across LaTeX, Typst, and PDF formats.
+Supports quick-audit, deep-review, gate, polish, and re-audit workflows.
+"""
+
+import argparse
+import contextlib
+import json
+import re
+import subprocess
+import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+
+from detect_language import detect_language
+from i18n import normalize_lang
+from parsers import get_parser
+from paths import WorkspaceLayout
+from prepare_review_workspace import prepare_workspace
+from report_generator import (
+    AuditIssue,
+    AuditResult,
+    ChecklistItem,
+    coerce_deep_review_issue,
+    normalize_deep_review_issue_dict,
+    render_deep_review_report,
+    render_json_report,
+    render_peer_review_report,
+    render_report,
+    render_revision_suggestions_report,
+)
+from verify_quotes import verify_quotes
+
+# Defensive source reader (utf-8 -> latin-1 -> replace). tex_loader and
+# typ_loader expose an identical, format-independent ``read_text_robust``; one
+# import covers both .tex and .typ ingestion.
+try:
+    from tex_loader import read_text_robust
+except ImportError:  # pragma: no cover - loader always vendored alongside
+    try:
+        from typ_loader import read_text_robust
+    except ImportError:
+        read_text_robust = None  # type: ignore[assignment]
+
+
+def _read_source(path: Path) -> str:
+    """Read a user-supplied .tex/.typ source defensively.
+
+    Non-UTF-8 manuscripts get decoded via the loader's fallback chain with a
+    loud stderr warning instead of crashing the audit. Workspace JSON/artifact
+    reads stay on strict utf-8 (they are skill-authored and utf-8 safe).
+    """
+    if read_text_robust is not None:
+        text, warning = read_text_robust(path)
+        if warning:
+            print(f"[audit] {warning}", file=sys.stderr)
+        return text
+    return path.read_text(encoding="utf-8")
+
+
+TOP_LEVEL_DEEP_REVIEW_ARTIFACTS: tuple[str, ...] = (
+    "artifacts/meta/metadata.json",
+    "artifacts/meta/phase0_context.md",
+    "artifacts/data/all_comments.json",
+    "artifacts/data/final_issues.json",
+    "artifacts/summary/overall_assessment.txt",
+    "revision_suggestions.md",
+    "review_report.md",
+    "artifacts/summary/peer_review_report.md",
+)
+
+REQUIRED_REVIEW_WORKSPACE_FILES: tuple[str, ...] = (
+    "artifacts/meta/metadata.json",
+    "artifacts/data/section_index.json",
+    "artifacts/data/claim_map.json",
+    "artifacts/meta/full_text.md",
+    "artifacts/summary/paper_summary.md",
+)
+
+# --- Mode Configuration ---
+
+MODE_CHECKS: dict[str, list[str]] = {
+    "quick-audit": [
+        "format",
+        "grammar",
+        "logic",
+        "experiment",
+        "sentences",
+        "deai",
+        "citations",
+        "bib",
+        "figures",
+        "pseudocode",
+        "references",
+        "visual",
+        "presubmission",
+    ],
+    "deep-review": [
+        "format",
+        "grammar",
+        "logic",
+        "experiment",
+        "sentences",
+        "deai",
+        "citations",
+        "bib",
+        "figures",
+        "pseudocode",
+        "references",
+        "visual",
+        "presubmission",
+    ],
+    # Legacy aliases kept for one compatibility cycle.
+    "self-check": [
+        "format",
+        "grammar",
+        "logic",
+        "experiment",
+        "sentences",
+        "deai",
+        "citations",
+        "bib",
+        "figures",
+        "pseudocode",
+        "references",
+        "visual",
+        "presubmission",
+    ],
+    "review": [
+        "format",
+        "grammar",
+        "logic",
+        "experiment",
+        "sentences",
+        "deai",
+        "citations",
+        "bib",
+        "figures",
+        "pseudocode",
+        "references",
+        "visual",
+        "presubmission",
+    ],
+    "gate": [
+        "format",
+        "bib",
+        "figures",
+        "pseudocode",
+        "references",
+        "visual",
+        "presubmission",
+        "checklist",
+    ],
+    "polish": ["logic", "sentences"],  # Fast rule-based only; agents handle the rest
+    "re-audit": [  # Same checks as quick-audit for fresh comparison
+        "format",
+        "grammar",
+        "logic",
+        "experiment",
+        "sentences",
+        "deai",
+        "citations",
+        "bib",
+        "figures",
+        "pseudocode",
+        "references",
+        "visual",
+        "presubmission",
+    ],
+}
+
+MODE_ALIASES: dict[str, str] = {
+    "self-check": "quick-audit",
+    "review": "deep-review",
+}
+
+DEEP_REVIEW_FOCI: tuple[str, ...] = (
+    "full",
+    "editor",
+    "theory",
+    "literature",
+    "methodology",
+    "logic",
+)
+
+FOCUS_TO_ALLOWED_LANES: dict[str, set[str]] = {
+    "full": {
+        "section_intro_related",
+        "section_methods",
+        "section_results",
+        "section_discussion_conclusion",
+        "section_appendix",
+        "claims_vs_evidence",
+        "notation_and_numeric_consistency",
+        "evaluation_fairness_and_reproducibility",
+        "self_standard_consistency",
+        "prior_art_and_novelty_grounding",
+        "pre_submission_readiness",
+    },
+    "editor": {
+        "section_intro_related",
+        "claims_vs_evidence",
+        "prior_art_and_novelty_grounding",
+        "pre_submission_readiness",
+    },
+    "theory": {
+        "section_intro_related",
+        "claims_vs_evidence",
+        "prior_art_and_novelty_grounding",
+    },
+    "literature": {
+        "section_intro_related",
+        "prior_art_and_novelty_grounding",
+    },
+    "methodology": {
+        "section_methods",
+        "section_results",
+        "notation_and_numeric_consistency",
+        "evaluation_fairness_and_reproducibility",
+    },
+    "logic": {
+        "section_discussion_conclusion",
+        "self_standard_consistency",
+        "claims_vs_evidence",
+    },
+}
+
+FOCUS_TO_COMMITTEE_ROLES: dict[str, tuple[str, ...]] = {
+    "full": ("editor", "theory", "literature", "methodology", "logic"),
+    "editor": ("editor",),
+    "theory": ("theory",),
+    "literature": ("literature",),
+    "methodology": ("methodology",),
+    "logic": ("logic",),
+}
+
+ROLE_TO_REVIEW_LANES: dict[str, set[str]] = {
+    "editor": {
+        "section_intro_related",
+        "claims_vs_evidence",
+        "prior_art_and_novelty_grounding",
+        "pre_submission_readiness",
+    },
+    "theory": {"section_intro_related", "claims_vs_evidence", "prior_art_and_novelty_grounding"},
+    "literature": {"section_intro_related", "prior_art_and_novelty_grounding"},
+    "methodology": {
+        "section_methods",
+        "section_results",
+        "notation_and_numeric_consistency",
+        "evaluation_fairness_and_reproducibility",
+    },
+    "logic": {"section_discussion_conclusion", "self_standard_consistency", "claims_vs_evidence"},
+}
+
+# Additional checks for Chinese documents
+ZH_EXTRA_CHECKS: list[str] = ["consistency", "gbt7714"]
+
+# --- Venue Configuration ---
+
+VENUE_CONFIG: dict[str, dict] = {
+    "neurips": {
+        "page_limit": 9,
+        "required_sections": ["broader_impact"],
+        "checklist_section": "NeurIPS",
+        "blind_review": True,
+        "extra_checks": [
+            (
+                "Paper checklist appendix present",
+                r"\\section\*?\{.*(?:Checklist|Paper\s+Checklist)",
+            ),
+            ("Broader impact statement present", r"(?:broader\s+impact|societal\s+impact)"),
+            ("Reproducibility statement present", r"(?:reproducibility|reproduce)"),
+        ],
+    },
+    "iclr": {
+        "page_limit": 10,
+        "checklist_section": "ICLR",
+        "blind_review": True,
+        "extra_checks": [
+            ("Reproducibility statement present", r"(?:reproducibility|reproduce)"),
+            (
+                "Code availability URL present",
+                r"(?:github\.com|code\s+available|code\s+repository)",
+            ),
+        ],
+    },
+    "icml": {
+        "page_limit": 8,
+        "required_sections": ["impact_statement"],
+        "checklist_section": "ICML",
+        "blind_review": True,
+        "extra_checks": [
+            ("Impact statement present", r"(?:impact\s+statement|societal\s+impact)"),
+        ],
+    },
+    "ieee": {
+        "abstract_max_words": 250,
+        "keywords_range": (3, 5),
+        "checklist_section": "IEEE",
+        "blind_review": False,
+        "extra_checks": [
+            ("Keywords section present", r"(?:\\begin\{IEEEkeywords\}|\\keywords|[Kk]eywords)"),
+        ],
+    },
+    "acm": {
+        "required_sections": ["ccs_concepts"],
+        "checklist_section": "ACM",
+        "blind_review": False,
+        "extra_checks": [
+            ("CCS concepts present", r"(?:\\ccsdesc|CCS\s+[Cc]oncepts|\\begin\{CCSXML\})"),
+            ("Rights management present", r"(?:\\copyrightyear|\\acmDOI|\\setcopyright)"),
+        ],
+    },
+    "thesis-zh": {
+        "checklist_section": "Chinese Thesis",
+        "blind_review": False,
+        "extra_checks": [
+            ("Bilingual abstract present", r"(?:\\begin\{abstract\}|摘\s*要)"),
+            ("Declaration of originality present", r"(?:原创性|独创性|声明)"),
+            ("Acknowledgments present", r"(?:致\s*谢|acknowledgment)"),
+        ],
+    },
+}
+
+# --- Skill Root Resolution ---
+
+SKILLS_ROOT = Path(__file__).resolve().parent.parent.parent
+SCRIPTS_AUDIT = Path(__file__).resolve().parent  # paper-audit's own scripts
+SCRIPTS_EN = SKILLS_ROOT / "latex-paper-en" / "scripts"
+SCRIPTS_ZH = SKILLS_ROOT / "latex-thesis-zh" / "scripts"
+SCRIPTS_TYPST = SKILLS_ROOT / "typst-paper" / "scripts"
+
+
+def _resolve_script(check_name: str, lang: str, fmt: str) -> Path | None:
+    """Resolve the script path for a given check, language, and format."""
+    script_map: dict[str, str] = {
+        "format": "check_format.py",
+        "grammar": "analyze_grammar.py",
+        "logic": "analyze_logic.py",
+        "experiment": "analyze_experiment.py",
+        "sentences": "analyze_sentences.py",
+        "deai": "deai_check.py",
+        "citations": "check_citations.py",
+        "bib": "verify_bib.py",
+        "figures": "check_figures.py",
+        "pseudocode": "check_pseudocode.py",
+        "consistency": "check_consistency.py",
+        "references": "check_references.py",
+        "visual": "visual_check.py",
+        "presubmission": "pre_submission_check.py",
+    }
+
+    script_name = script_map.get(check_name)
+    if not script_name:
+        return None
+
+    # paper-audit-owned checks live only in this skill's scripts directory
+    if check_name in {"visual", "presubmission"}:
+        path = SCRIPTS_AUDIT / script_name
+        return path if path.exists() else None
+
+    # citations check lives only in paper-audit's own scripts directory
+    if check_name == "citations":
+        path = SCRIPTS_AUDIT / script_name
+        return path if path.exists() else None
+
+    # references: paper-audit has its own router version; fall through to others
+    if check_name == "references":
+        # Prefer paper-audit's router version first
+        path = SCRIPTS_AUDIT / script_name
+        if path.exists():
+            return path
+
+    # Choose script directory based on format and language
+    if fmt == ".typ":
+        candidates = [SCRIPTS_TYPST]
+    elif lang == "zh":
+        candidates = [SCRIPTS_ZH, SCRIPTS_EN]
+    else:
+        candidates = [SCRIPTS_EN]
+
+    for scripts_dir in candidates:
+        path = scripts_dir / script_name
+        if path.exists():
+            return path
+
+    return None
+
+
+def normalize_mode(mode: str) -> tuple[str, str | None]:
+    """Return canonical mode and the legacy alias used, if any."""
+    canonical = MODE_ALIASES.get(mode, mode)
+    alias_used = mode if canonical != mode else None
+    return canonical, alias_used
+
+
+def _run_check_script(
+    script_path: Path, file_path: str, extra_args: list[str] | None = None
+) -> tuple[int, str, str]:
+    """Run a check script as subprocess and capture output."""
+    cmd = [sys.executable, str(script_path), file_path]
+    if extra_args:
+        cmd.extend(extra_args)
+
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=120,
+            cwd=str(script_path.parent),
+        )
+        return result.returncode, result.stdout, result.stderr
+    except subprocess.TimeoutExpired:
+        return -1, "", "Script timed out after 120 seconds"
+    except Exception as e:
+        return -1, "", str(e)
+
+
+def _parse_script_output(module_name: str, stdout: str) -> list[AuditIssue]:
+    """
+    Parse script output into AuditIssue objects.
+    Tries to detect structured output (Severity/Priority format),
+    falls back to treating each non-empty line as a Minor issue.
+    """
+    issues = []
+    if not stdout.strip():
+        return issues
+
+    # Pattern for structured output: [Severity: X] [Priority: Y]
+    structured_pattern = re.compile(
+        r"\[Severity:\s*(Critical|Major|Minor)\]\s*\[Priority:\s*(P[012])\]"
+    )
+    line_pattern = re.compile(r"\(Line\s+(\d+)\)")
+
+    for line in stdout.strip().split("\n"):
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+
+        severity = "Minor"
+        priority = "P2"
+        line_num = None
+
+        # Try structured format
+        sev_match = structured_pattern.search(line)
+        if sev_match:
+            severity = sev_match.group(1)
+            priority = sev_match.group(2)
+
+        line_match = line_pattern.search(line)
+        if line_match:
+            line_num = int(line_match.group(1))
+
+        # Clean message
+        msg = line
+        msg = structured_pattern.sub("", msg)
+        msg = line_pattern.sub("", msg)
+        msg = re.sub(r"^%\s*", "", msg)  # LaTeX comment prefix
+        msg = re.sub(r"^//\s*", "", msg)  # Typst comment prefix
+        msg = re.sub(r"^>\s*", "", msg)  # Markdown quote prefix
+        msg = re.sub(r"^\[?\w+\]?\s*", "", msg, count=1)  # Module tag
+        msg = msg.strip(" :-")
+
+        if msg:
+            issues.append(
+                AuditIssue(
+                    module=module_name.upper(),
+                    line=line_num,
+                    severity=severity,
+                    priority=priority,
+                    message=msg,
+                )
+            )
+
+    return issues
+
+
+def _lane_from_section(section_key: str) -> str:
+    """Map workspace section keys to default section-review lane names."""
+    if section_key in {"introduction", "related_work", "background"}:
+        return "section_intro_related"
+    if section_key in {"method", "methods", "approach", "model"}:
+        return "section_methods"
+    if section_key in {"experiment", "experiments", "results", "evaluation"}:
+        return "section_results"
+    if section_key in {"discussion", "conclusion", "limitations"}:
+        return "section_discussion_conclusion"
+    if section_key == "appendix":
+        return "section_appendix"
+    return "section_intro_related"
+
+
+def _section_lane_rules(section_key: str, normalized_text: str, claim_map: dict) -> list[dict]:
+    """Return declarative fallback rule matches for a single section."""
+    section_claims = claim_map.get("section_claims", {}).get(section_key, [])
+    return [
+        {
+            "enabled": section_key in {"abstract", "introduction", "discussion", "conclusion"}
+            and bool(section_claims)
+            and any(
+                keyword in section_claims[0].lower()
+                for keyword in ("state-of-the-art", "significant", "best", "novel")
+            ),
+            "title": "Headline claim needs tighter evidence calibration",
+            "quote": section_claims[0] if section_claims else "",
+            "explanation": (
+                "This sentence makes a strong paper-level claim. Verify that the results and "
+                "discussion sections explicitly delimit where the evidence holds and where it does not."
+            ),
+            "comment_type": "claim_accuracy",
+            "severity": "moderate",
+            "review_lane": "claims_vs_evidence",
+            "related_sections": [section_key, "results"],
+            "quote_keywords": ("state-of-the-art", "significant", "best", "novel", "superior"),
+        },
+        {
+            "enabled": section_key in {"method", "methods", "approach", "model"}
+            and ("assume" in normalized_text or "we define" in normalized_text),
+            "title": "Method assumptions should be justified explicitly",
+            "quote": "",
+            "explanation": (
+                "The methods section introduces assumptions/definitions. The deep review should verify "
+                "whether downstream experiments and appendix material justify those choices clearly."
+            ),
+            "comment_type": "methodology",
+            "severity": "moderate",
+            "review_lane": _lane_from_section(section_key),
+            "related_sections": None,
+            "quote_keywords": ("assume", "define"),
+        },
+        {
+            "enabled": section_key in {"experiment", "experiments", "results", "evaluation"}
+            and any(
+                token in normalized_text
+                for token in ("improve", "outperform", "%", "accuracy", "f1", "bleu")
+            ),
+            "title": "Result claims should identify comparison scope and uncertainty",
+            "quote": "",
+            "explanation": (
+                "The results section reports comparative performance. Confirm whether the paper states the "
+                "evaluation scope, variance, and fairness conditions tightly enough for a reviewer."
+            ),
+            "comment_type": "methodology",
+            "severity": "moderate",
+            "review_lane": "evaluation_fairness_and_reproducibility",
+            "related_sections": [section_key, "methods"],
+            "quote_keywords": ("improve", "outperform", "accuracy", "f1", "bleu", "baseline"),
+        },
+        {
+            "enabled": section_key == "appendix",
+            "title": "Appendix evidence should reconcile with main-text claims",
+            "quote": "",
+            "explanation": (
+                "Appendix material exists. Check that it supports the main-text metrics, notation, and claims "
+                "without introducing contradictions."
+            ),
+            "comment_type": "claim_accuracy",
+            "severity": "minor",
+            "review_lane": "notation_and_numeric_consistency",
+            "related_sections": [section_key, "results"],
+            "quote_requires_digits": True,
+        },
+    ]
+
+
+def _make_fallback_issue(
+    *,
+    title: str,
+    quote: str,
+    explanation: str,
+    comment_type: str,
+    severity: str,
+    source_section: str,
+    review_lane: str,
+    source_kind: str = "llm",
+    confidence: str = "medium",
+    related_sections: list[str] | None = None,
+    gate_blocker: bool = False,
+) -> dict:
+    """Build a lane-compatible fallback issue payload."""
+    normalized_quote = quote.strip()
+    normalized_confidence = confidence
+    if not normalized_quote and normalized_confidence == "medium":
+        normalized_confidence = "low"
+    return {
+        "title": title,
+        "quote": normalized_quote,
+        "explanation": explanation.strip(),
+        "comment_type": comment_type,
+        "severity": severity,
+        "confidence": normalized_confidence,
+        "source_kind": source_kind,
+        "source_section": source_section,
+        "related_sections": related_sections or ([source_section] if source_section else []),
+        "review_lane": review_lane,
+        "gate_blocker": gate_blocker,
+    }
+
+
+def _normalize_inline_text(text: str) -> str:
+    """Collapse internal whitespace for deterministic heuristics."""
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _summarize_section_text(section_text: str, *, max_len: int = 280) -> str:
+    """Return a compact normalized summary string for reports and heuristics."""
+    summary = _normalize_inline_text(section_text)
+    if len(summary) <= max_len:
+        return summary
+    return summary[: max_len - 3].rstrip() + "..."
+
+
+def _clean_section_for_quote_search(section_text: str) -> str:
+    """Drop markdown headings so fallback quotes stay closer to the paper prose."""
+    return "\n".join(
+        line for line in section_text.splitlines() if not line.lstrip().startswith("#")
+    ).strip()
+
+
+def _candidate_quote_sentences(section_text: str) -> list[str]:
+    """Split a section into sentence-like chunks for exact quote extraction."""
+    cleaned = _clean_section_for_quote_search(section_text)
+    if not cleaned:
+        return []
+    normalized = re.sub(r"\s+", " ", cleaned)
+    sentences = re.split(r"(?<=[.!?])\s+", normalized)
+    return [sentence.strip() for sentence in sentences if sentence.strip()]
+
+
+def _extract_sentence_quote(
+    section_text: str,
+    *,
+    keywords: tuple[str, ...] = (),
+    require_digits: bool = False,
+) -> str:
+    """Return an exact sentence from the section that matches the requested heuristic."""
+    for sentence in _candidate_quote_sentences(section_text):
+        lowered = sentence.lower()
+        if keywords and not any(keyword in lowered for keyword in keywords):
+            continue
+        if require_digits and not re.search(r"\b\d+(?:\.\d+)?\b", sentence):
+            continue
+        return sentence
+    return ""
+
+
+def _exact_quote_from_section(
+    section_text: str,
+    raw_quote: str = "",
+    *,
+    keywords: tuple[str, ...] = (),
+    require_digits: bool = False,
+) -> str:
+    """Prefer an existing exact quote; otherwise extract a sentence verbatim from the section."""
+    quote = raw_quote.strip()
+    if quote and quote in section_text:
+        return quote
+    return _extract_sentence_quote(
+        section_text,
+        keywords=keywords,
+        require_digits=require_digits,
+    )
+
+
+def _find_quote_in_sections(
+    section_texts: dict[str, str],
+    preferred_sections: tuple[str, ...],
+    *,
+    keywords: tuple[str, ...] = (),
+    require_digits: bool = False,
+) -> tuple[str, str]:
+    """Find the first exact quote across a preferred list of sections."""
+    for section_key in preferred_sections:
+        section_text = section_texts.get(section_key, "")
+        if not section_text:
+            continue
+        quote = _extract_sentence_quote(
+            section_text,
+            keywords=keywords,
+            require_digits=require_digits,
+        )
+        if quote:
+            return section_key, quote
+    return preferred_sections[0] if preferred_sections else "unknown", ""
+
+
+def _fallback_section_lane_issues(
+    section_key: str, section_text: str, claim_map: dict
+) -> list[dict]:
+    """Generate deterministic fallback findings for a workspace section."""
+    normalized = _normalize_inline_text(section_text)
+    if not normalized:
+        return []
+
+    issues: list[dict] = []
+    for rule in _section_lane_rules(section_key, normalized.lower(), claim_map):
+        if not rule["enabled"]:
+            continue
+        quote = _exact_quote_from_section(
+            section_text,
+            rule.get("quote", ""),
+            keywords=tuple(rule.get("quote_keywords", ())),
+            require_digits=bool(rule.get("quote_requires_digits", False)),
+        )
+        issues.append(
+            _make_fallback_issue(
+                title=rule["title"],
+                quote=quote,
+                explanation=rule["explanation"],
+                comment_type=rule["comment_type"],
+                severity=rule["severity"],
+                source_section=section_key,
+                review_lane=rule["review_lane"],
+                related_sections=rule["related_sections"],
+            )
+        )
+
+    return issues
+
+
+def _fallback_cross_cutting_issues(claim_map: dict, section_texts: dict[str, str]) -> list[dict]:
+    """Generate deterministic cross-cutting findings when no reviewer agents are available."""
+    issues: list[dict] = []
+    headline_claims = claim_map.get("headline_claims", [])
+    closure_targets = claim_map.get("closure_targets", [])
+
+    if headline_claims:
+        claim_section, claim_quote = _find_quote_in_sections(
+            section_texts,
+            ("abstract", "introduction"),
+            keywords=("state-of-the-art", "significant", "novel", "superior", "outperform"),
+        )
+        issues.append(
+            _make_fallback_issue(
+                title="Abstract and conclusion claims need explicit evidence traceability",
+                quote=claim_quote,
+                explanation=(
+                    "At least one headline claim was detected. Deep review should check whether experiments and "
+                    "conclusion language trace back to the same bounded evidence base."
+                ),
+                comment_type="claim_accuracy",
+                severity="major",
+                source_section=claim_section,
+                review_lane="claims_vs_evidence",
+                related_sections=[claim_section, "results", "conclusion"],
+            )
+        )
+
+    numeric_sections = [
+        key for key, text in section_texts.items() if re.search(r"\b\d+(?:\.\d+)?\b", text)
+    ]
+    if len(numeric_sections) >= 2:
+        numeric_section, numeric_quote = _find_quote_in_sections(
+            section_texts,
+            tuple(numeric_sections),
+            require_digits=True,
+        )
+        issues.append(
+            _make_fallback_issue(
+                title="Cross-section numeric consistency should be reconciled",
+                quote=numeric_quote,
+                explanation=(
+                    "Multiple sections contain numeric claims. Confirm that the same quantities reconcile across "
+                    "main text, tables, and appendix material."
+                ),
+                comment_type="presentation",
+                severity="moderate",
+                source_section=numeric_section,
+                review_lane="notation_and_numeric_consistency",
+                related_sections=numeric_sections[:3],
+            )
+        )
+
+    if closure_targets:
+        closure_section, closure_quote = _find_quote_in_sections(
+            section_texts,
+            ("conclusion", "discussion"),
+            keywords=("conclude", "therefore", "overall", "superior"),
+        )
+        issues.append(
+            _make_fallback_issue(
+                title="Conclusion should close the loop on the paper's strongest claims",
+                quote=closure_quote,
+                explanation=(
+                    "A closure claim appears in the discussion/conclusion. Verify that it matches the limitations, "
+                    "experimental scope, and prior-art positioning established earlier in the paper."
+                ),
+                comment_type="missing_information",
+                severity="minor",
+                source_section=closure_section,
+                review_lane="self_standard_consistency",
+                related_sections=[closure_section, "introduction", "results"],
+            )
+        )
+
+    if any(
+        "baseline" in text.lower() or "compare" in text.lower() for text in section_texts.values()
+    ):
+        comparison_section, comparison_quote = _find_quote_in_sections(
+            section_texts,
+            ("results", "experiment", "methods", "method"),
+            keywords=("baseline", "compare", "improve", "accuracy"),
+        )
+        issues.append(
+            _make_fallback_issue(
+                title="Comparison protocol should make fairness assumptions explicit",
+                quote=comparison_quote,
+                explanation=(
+                    "Comparative evaluation language was detected. Deep review should verify that baseline tuning, "
+                    "data splits, and reporting conventions are described symmetrically."
+                ),
+                comment_type="methodology",
+                severity="moderate",
+                source_section=comparison_section,
+                review_lane="evaluation_fairness_and_reproducibility",
+                related_sections=[
+                    key
+                    for key in ("methods", "method", "results", "experiment", "appendix")
+                    if key in section_texts
+                ],
+            )
+        )
+
+    if any(
+        any(token in text.lower() for token in ("prior work", "related work", "novel", "gap"))
+        for text in section_texts.values()
+    ):
+        prior_section, prior_quote = _find_quote_in_sections(
+            section_texts,
+            ("related_work", "introduction", "abstract"),
+            keywords=("prior work", "related work", "novel", "gap", "superiority"),
+        )
+        issues.append(
+            _make_fallback_issue(
+                title="Novelty claim should be grounded against the closest prior work",
+                quote=prior_quote,
+                explanation=(
+                    "The paper positions itself against prior work, but the current wording should make the "
+                    "closest comparator and the real novelty delta explicit instead of relying on broad "
+                    "superiority language."
+                ),
+                comment_type="claim_accuracy",
+                severity="moderate",
+                source_section=prior_section,
+                review_lane="prior_art_and_novelty_grounding",
+                related_sections=[prior_section, "results"],
+            )
+        )
+
+    return issues
+
+
+def _selected_lanes_for_focus(focus: str) -> set[str]:
+    """Return the allowed fallback lanes for the selected deep-review focus."""
+    return FOCUS_TO_ALLOWED_LANES.get(focus, FOCUS_TO_ALLOWED_LANES["full"])
+
+
+def _load_completed_lanes(review_dir: Path) -> set[str]:
+    """Return completed lane identifiers recorded in this workspace checkpoint."""
+    from checkpoint import load_checkpoint
+
+    checkpoint = load_checkpoint(review_dir)
+    if checkpoint is None:
+        return set()
+    return {str(lane) for lane in checkpoint.get("completed_lanes", [])}
+
+
+def _register_artifact_if_present(review_dir: Path, relative_path: str) -> None:
+    """Add an artifact to checkpoint generated_files if it exists."""
+    target = review_dir / relative_path
+    if not target.exists():
+        return
+    from checkpoint import register_generated_file
+
+    register_generated_file(review_dir, relative_path)
+
+
+def _register_json_lane_artifact(review_dir: Path, lane_name: str) -> None:
+    _register_artifact_if_present(review_dir, f"artifacts/comments/{lane_name}.json")
+
+
+def _register_committee_role_artifacts(review_dir: Path, role: str) -> None:
+    _register_artifact_if_present(review_dir, f"artifacts/committee/{role}.md")
+    _register_artifact_if_present(review_dir, f"artifacts/comments/committee_{role}.json")
+
+
+def _write_lane_outputs(
+    review_dir: Path,
+    section_index: list[dict],
+    claim_map: dict,
+    *,
+    focus: str = "full",
+    resume: bool = False,
+) -> list[dict]:
+    """Create fallback lane outputs inside comments/ and return all raw issues."""
+    layout = WorkspaceLayout(review_dir)
+    sections_dir = layout.sections_dir
+    comments_dir = layout.comments_dir
+    comments_dir.mkdir(parents=True, exist_ok=True)
+
+    section_texts: dict[str, str] = {}
+    raw_issues: list[dict] = []
+    allowed_lanes = _selected_lanes_for_focus(focus)
+    completed_lanes = _load_completed_lanes(review_dir) if resume else set()
+
+    for section in section_index:
+        section_key = section.get("section_key", "")
+        file_name = section.get("file_name")
+        if not section_key or not file_name:
+            continue
+        section_path = sections_dir / file_name
+        if not section_path.exists():
+            continue
+        section_text = section_path.read_text(encoding="utf-8")
+        section_texts[section_key] = section_text
+        lane_name = _lane_from_section(section_key)
+        if lane_name not in allowed_lanes:
+            continue
+        if lane_name in completed_lanes:
+            continue
+        lane_issues = _fallback_section_lane_issues(section_key, section_text, claim_map)
+        if lane_issues:
+            _write_lane_file(comments_dir, lane_name, lane_issues)
+            raw_issues.extend(lane_issues)
+            if resume:
+                from checkpoint import mark_lane_completed
+
+                mark_lane_completed(review_dir, lane_name)
+                _register_json_lane_artifact(review_dir, lane_name)
+
+    cross_cutting = _fallback_cross_cutting_issues(claim_map, section_texts)
+    lane_buckets: dict[str, list[dict]] = {}
+    for issue in cross_cutting:
+        if issue["review_lane"] not in allowed_lanes:
+            continue
+        if issue["review_lane"] in completed_lanes:
+            continue
+        lane_buckets.setdefault(issue["review_lane"], []).append(issue)
+        raw_issues.append(issue)
+
+    for lane_name, lane_issues in lane_buckets.items():
+        _write_lane_file(comments_dir, lane_name, lane_issues)
+        if resume:
+            from checkpoint import mark_lane_completed
+
+            mark_lane_completed(review_dir, lane_name)
+            _register_json_lane_artifact(review_dir, lane_name)
+
+    if not raw_issues:
+        placeholder_lane = next(iter(sorted(allowed_lanes)), "self_standard_consistency")
+        if placeholder_lane in completed_lanes:
+            return raw_issues
+        placeholder = [
+            _make_fallback_issue(
+                title="Deep review requires manual reviewer judgment",
+                quote="",
+                explanation=(
+                    "The deterministic fallback could not derive lane findings from the extracted text. "
+                    "A human or agent reviewer should inspect the prepared workspace directly."
+                ),
+                comment_type="missing_information",
+                severity="minor",
+                source_section="unknown",
+                review_lane=placeholder_lane,
+            )
+        ]
+        _write_lane_file(comments_dir, placeholder_lane, placeholder)
+        raw_issues.extend(placeholder)
+        if resume:
+            from checkpoint import mark_lane_completed
+
+            mark_lane_completed(review_dir, placeholder_lane)
+            _register_json_lane_artifact(review_dir, placeholder_lane)
+
+    return raw_issues
+
+
+def _section_for_phase0_issue(line_no: int | None, section_index: list[dict]) -> str:
+    """Map a phase-0 script line number to a prepared workspace section."""
+    if line_no is None:
+        return "unknown"
+    for section in section_index:
+        start = int(section.get("start_line", 0) or 0)
+        end = int(section.get("end_line", 0) or 0)
+        if int(section.get("line_base", 1) or 1) == 0:
+            start += 1
+            end += 1
+        if start <= line_no <= end:
+            return str(section.get("section_key", "unknown") or "unknown")
+    return "unknown"
+
+
+def _presubmission_comment_type(message: str) -> str:
+    """Classify mechanical pre-submission findings for the issue schema."""
+    lowered = message.lower()
+    if "abstract" in lowered or "missing" in lowered:
+        return "missing_information"
+    return "presentation"
+
+
+def _presubmission_issue_title(message: str) -> str:
+    """Remove rule IDs and keep a concise title for reviewer bundles."""
+    cleaned = re.sub(r"^\[[^\]]+\]\s*", "", message).strip()
+    cleaned = cleaned.rstrip(".")
+    if len(cleaned) <= 96:
+        return cleaned
+    return cleaned[:93].rstrip() + "..."
+
+
+def _presubmission_root_key(message: str) -> str:
+    """Derive a stable root-cause key from the rule ID when present."""
+    match = re.match(r"\[([A-Z0-9]+)\]", message)
+    if match:
+        return f"presubmission-{match.group(1).lower()}"
+    return "presubmission-readiness"
+
+
+def _presubmission_phase0_issues(
+    phase0_result: AuditResult,
+    section_index: list[dict],
+) -> list[dict]:
+    """Convert high-signal PRESUBMISSION findings into deep-review lane issues."""
+    lane_issues: list[dict] = []
+    for issue in phase0_result.issues:
+        if issue.module != "PRESUBMISSION" or issue.severity not in {"Critical", "Major"}:
+            continue
+        source_section = _section_for_phase0_issue(issue.line, section_index)
+        if source_section == "unknown" and "abstract" in issue.message.lower():
+            source_section = "abstract"
+        severity = "major" if issue.severity == "Critical" else "moderate"
+        lane_issues.append(
+            _make_fallback_issue(
+                title=_presubmission_issue_title(issue.message),
+                quote="",
+                explanation=(
+                    f"{issue.message} This is a mechanical pre-submission readiness "
+                    "finding and should be fixed before the final submission package."
+                ),
+                comment_type=_presubmission_comment_type(issue.message),
+                severity=severity,
+                source_section=source_section,
+                review_lane="pre_submission_readiness",
+                source_kind="script",
+                confidence="high",
+                related_sections=[source_section] if source_section != "unknown" else [],
+                gate_blocker=issue.severity == "Critical",
+            )
+            | {"root_cause_key": _presubmission_root_key(issue.message)}
+        )
+    return lane_issues
+
+
+def _write_presubmission_lane_outputs(
+    review_dir: Path,
+    phase0_result: AuditResult,
+    section_index: list[dict],
+    *,
+    focus: str,
+    resume: bool = False,
+) -> list[dict]:
+    """Write the pre-submission readiness lane for full/editor deep-review only."""
+    if focus not in {"full", "editor"}:
+        return []
+    if resume and "pre_submission_readiness" in _load_completed_lanes(review_dir):
+        return []
+    lane_issues = _presubmission_phase0_issues(phase0_result, section_index)
+    if not lane_issues:
+        return []
+    layout = WorkspaceLayout(review_dir)
+    comments_dir = layout.comments_dir
+    comments_dir.mkdir(parents=True, exist_ok=True)
+    _write_lane_file(comments_dir, "pre_submission_readiness", lane_issues)
+    if resume:
+        from checkpoint import mark_lane_completed
+
+        mark_lane_completed(review_dir, "pre_submission_readiness")
+        _register_json_lane_artifact(review_dir, "pre_submission_readiness")
+    return lane_issues
+
+
+def _issues_for_committee_role(role: str, issues: list[dict]) -> list[dict]:
+    """Select a focused subset of issue-bundle items for one committee role."""
+    role_lanes = ROLE_TO_REVIEW_LANES.get(role, set())
+    selected: list[dict] = []
+    for issue in issues:
+        title = str(issue.get("title", "")).lower()
+        section = str(issue.get("source_section", "")).lower()
+        lane = str(issue.get("review_lane", ""))
+        comment_type = str(issue.get("comment_type", ""))
+
+        if lane in role_lanes:
+            selected.append(issue)
+            continue
+        if role == "editor" and section in {"abstract", "introduction"}:
+            selected.append(issue)
+            continue
+        if role == "theory" and any(
+            token in title for token in ("theory", "novelty", "contribution", "gap", "prior work")
+        ):
+            selected.append(issue)
+            continue
+        if role == "literature" and any(
+            token in title for token in ("prior work", "novelty", "gap", "literature")
+        ):
+            selected.append(issue)
+            continue
+        if role == "methodology" and comment_type == "methodology":
+            selected.append(issue)
+            continue
+        if role == "logic" and any(
+            token in title for token in ("logic", "argument", "conclusion", "closure")
+        ):
+            selected.append(issue)
+            continue
+    return selected
+
+
+def _committee_issue_copies(role: str, issues: list[dict]) -> list[dict]:
+    """Re-label issue payloads for committee artifact storage."""
+    copied: list[dict] = []
+    for issue in issues:
+        payload = dict(issue)
+        payload["review_lane"] = f"committee_{role}"
+        copied.append(payload)
+    return copied
+
+
+def _committee_issue_line(issue: dict) -> str:
+    """Render one short committee-facing issue bullet."""
+    quote = issue.get("quote", "").strip()
+    section = issue.get("source_section", "unknown")
+    explanation = issue.get("explanation", "").strip()
+    quote_part = f'"{quote}"' if quote else issue.get("title", "issue")
+    return f"({section}) {quote_part} — {explanation}"
+
+
+def _render_editor_committee_markdown(
+    role_issues: list[dict],
+    *,
+    phase0_result: AuditResult,
+) -> str:
+    """Render the deterministic editor pre-screen artifact."""
+    verdict_basis = list(role_issues)
+    if not verdict_basis:
+        verdict_basis = [
+            normalize_deep_review_issue_dict(
+                {
+                    "title": issue.message,
+                    "quote": "",
+                    "explanation": issue.message,
+                    "comment_type": "presentation",
+                    "severity": "major" if issue.severity == "Critical" else "moderate",
+                    "source_kind": "script",
+                    "source_section": "abstract",
+                    "review_lane": "committee_editor",
+                }
+            )
+            for issue in phase0_result.issues
+            if issue.severity == "Critical"
+        ]
+    verdict = _infer_editor_verdict(phase0_result, verdict_basis)
+    score = _compute_committee_score(role_issues, verdict)
+    desk_reject_triggers = [
+        issue.get("title", "Untitled issue")
+        for issue in role_issues
+        if issue.get("severity") == "major"
+    ]
+    top_reasons = desk_reject_triggers or [
+        issue.get("title", "Untitled issue") for issue in role_issues[:3]
+    ]
+    fast_fixes = [
+        f"Clarify {issue.get('source_section', 'the affected section')} to address {issue.get('title', 'the issue').lower()}."
+        for issue in role_issues[:3]
+    ]
+
+    lines = [
+        "## Editor Pre-Screen (1-10)",
+        "",
+        f"Score: {score}/10",
+        f"Verdict: {verdict}",
+        "",
+        "### Desk-Reject Triggers (if any)",
+    ]
+    if desk_reject_triggers:
+        lines.extend([f"- {trigger}" for trigger in desk_reject_triggers])
+    else:
+        lines.append("- None identified from the deterministic fallback pass.")
+    lines.extend(["", "### Top 3 Reasons (no hedging)"])
+    if top_reasons:
+        lines.extend([f"{idx}. {reason}" for idx, reason in enumerate(top_reasons[:3], start=1)])
+    else:
+        lines.append("1. No blocking pre-screen concern was surfaced.")
+    lines.extend(["", "### Fast Fixes (within 1-2 days)"])
+    if fast_fixes:
+        lines.extend([f"- {fix}" for fix in fast_fixes])
+    else:
+        lines.append("- No fast fix identified.")
+    return "\n".join(lines) + "\n"
+
+
+def _render_theory_committee_markdown(role_issues: list[dict]) -> str:
+    """Render the deterministic theory review artifact."""
+    lines = ["## Theory Contribution Review", "", "### 3 Fatal Theory Holes"]
+    if role_issues:
+        for idx, issue in enumerate(role_issues[:3], start=1):
+            lines.append(f"{idx}. {_committee_issue_line(issue)}")
+    else:
+        lines.append("1. No theory-specific fatal hole was surfaced by the fallback pass.")
+    lines.extend(["", "### Concrete Moves"])
+    if role_issues:
+        for issue in role_issues[:4]:
+            lines.append(
+                f"- Tighten the paper's theoretical positioning in {issue.get('source_section', 'the affected section')} to resolve {issue.get('title', 'this issue').lower()}."
+            )
+    else:
+        lines.append("- Clarify the paper's conceptual delta against the closest baseline.")
+    return "\n".join(lines) + "\n"
+
+
+def _render_literature_committee_markdown(role_issues: list[dict]) -> str:
+    """Render the deterministic literature review artifact."""
+    lines = [
+        "## Literature Dialogue Review",
+        "",
+        "### Closest Prior Work Risks",
+    ]
+    if role_issues:
+        for issue in role_issues[:3]:
+            lines.append(f"- {_committee_issue_line(issue)}")
+    else:
+        lines.append("- No literature-grounding risk was surfaced by the fallback pass.")
+    lines.extend(["", "### Gap Claim Risks"])
+    if role_issues:
+        for issue in role_issues[:2]:
+            lines.append(
+                f"- The claimed gap should be defended more explicitly: {issue.get('title', 'Untitled issue')}."
+            )
+    else:
+        lines.append("- No selective-citation concern was surfaced.")
+    lines.extend(["", "### Fast Fixes"])
+    if role_issues:
+        for issue in role_issues[:3]:
+            lines.append(
+                f"- Name the closest prior comparator in {issue.get('source_section', 'the related-work framing')} and explain the real novelty delta."
+            )
+    else:
+        lines.append(
+            "- Add one sentence identifying the closest prior work and the exact novelty delta."
+        )
+    return "\n".join(lines) + "\n"
+
+
+def _render_methodology_committee_markdown(role_issues: list[dict]) -> str:
+    """Render the deterministic methodology review artifact."""
+    must_fix = [issue for issue in role_issues if issue.get("severity") == "major"]
+    should_fix = [issue for issue in role_issues if issue.get("severity") != "major"]
+    lines = [
+        "## Methodology Transparency Review (SRQR-aware)",
+        "",
+        "### MUST-FIX (submission blockers)",
+    ]
+    if must_fix:
+        for issue in must_fix:
+            lines.append(f"- {_committee_issue_line(issue)}")
+    else:
+        lines.append("- No methodology blocker was surfaced by the fallback pass.")
+    lines.extend(["", "### SHOULD-FIX (quality improvements)"])
+    if should_fix:
+        for issue in should_fix[:4]:
+            lines.append(f"- {_committee_issue_line(issue)}")
+    else:
+        lines.append("- No secondary methodology issue was surfaced.")
+    lines.extend(
+        [
+            "",
+            "### SRQR Checklist Deltas",
+            "- Sampling rationale: clarify how the evidence base supports the paper's strongest claims.",
+            "- Data collection details (time/place/duration): add context when results depend on specific settings.",
+            "- Coding process (stages, coders, disagreement resolution): specify if qualitative or hybrid analysis is used.",
+            "- Saturation: state whether the evidence scope is exhaustive or bounded.",
+            "- Triangulation: explain whether multiple evidence sources were reconciled.",
+            "- Reflexivity: acknowledge researcher choices that shape interpretation.",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def _render_logic_committee_markdown(role_issues: list[dict]) -> str:
+    """Render the deterministic logic review artifact."""
+    lines = ["## Logic Chain Review", "", "### Breakpoints"]
+    if role_issues:
+        for issue in role_issues[:4]:
+            lines.append(f"- {_committee_issue_line(issue)}")
+    else:
+        lines.append("- No explicit logic-chain breakpoint was surfaced by the fallback pass.")
+    lines.extend(["", "### Structural Fix Moves"])
+    if role_issues:
+        for issue in role_issues[:3]:
+            lines.append(
+                f"- Add one explicit bridge sentence in {issue.get('source_section', 'the affected section')} so the argument chain closes cleanly."
+            )
+    else:
+        lines.append("- Add one sentence linking the opening promise to the concluding claim.")
+    return "\n".join(lines) + "\n"
+
+
+def _write_committee_artifacts(
+    review_dir: Path,
+    phase0_result: AuditResult,
+    issues: list[dict],
+    *,
+    focus: str,
+    resume: bool = False,
+) -> tuple[float | None, str]:
+    """Write deterministic committee markdown/json artifacts for the selected focus."""
+    layout = WorkspaceLayout(review_dir)
+    committee_dir = layout.committee_dir
+    comments_dir = layout.comments_dir
+    committee_dir.mkdir(parents=True, exist_ok=True)
+    comments_dir.mkdir(parents=True, exist_ok=True)
+
+    selected_roles = FOCUS_TO_COMMITTEE_ROLES.get(focus, FOCUS_TO_COMMITTEE_ROLES["full"])
+    completed_lanes = _load_completed_lanes(review_dir) if resume else set()
+    rendered_role = False
+    for role in selected_roles:
+        lane_name = f"committee_{role}"
+        if lane_name in completed_lanes:
+            _register_committee_role_artifacts(review_dir, role)
+            rendered_role = True
+            continue
+        role_issues = _issues_for_committee_role(role, issues)
+        if role == "editor":
+            markdown = _render_editor_committee_markdown(role_issues, phase0_result=phase0_result)
+        elif role == "theory":
+            markdown = _render_theory_committee_markdown(role_issues)
+        elif role == "literature":
+            markdown = _render_literature_committee_markdown(role_issues)
+        elif role == "methodology":
+            markdown = _render_methodology_committee_markdown(role_issues)
+        else:
+            markdown = _render_logic_committee_markdown(role_issues)
+
+        (committee_dir / f"{role}.md").write_text(markdown, encoding="utf-8")
+        (comments_dir / f"committee_{role}.json").write_text(
+            json.dumps(_committee_issue_copies(role, role_issues), indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        if resume:
+            from checkpoint import mark_lane_completed
+
+            mark_lane_completed(review_dir, lane_name)
+            _register_committee_role_artifacts(review_dir, role)
+        rendered_role = True
+
+    if focus == "full":
+        _write_committee_consensus(review_dir, phase0_result, issues)
+        _register_artifact_if_present(review_dir, "committee/consensus.md")
+        editor_verdict = _extract_editor_verdict_from_markdown(
+            (committee_dir / "editor.md").read_text(encoding="utf-8")
+        )
+        return _compute_committee_score(issues, editor_verdict), editor_verdict or ""
+
+    if rendered_role and "editor" in selected_roles:
+        editor_verdict = _extract_editor_verdict_from_markdown(
+            (committee_dir / "editor.md").read_text(encoding="utf-8")
+        )
+        return _compute_committee_score(
+            _issues_for_committee_role("editor", issues), editor_verdict
+        ), (editor_verdict or "")
+
+    return None, ""
+
+
+def _write_lane_file(comments_dir: Path, lane_name: str, lane_issues: list[dict]) -> None:
+    """Write one lane JSON file in the workspace comments directory."""
+    (comments_dir / f"{lane_name}.json").write_text(
+        json.dumps(lane_issues, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+
+def _load_prepared_review_workspace(review_dir: Path) -> tuple[dict, list[dict], dict]:
+    """Load and validate the minimal files required to resume a prepared workspace."""
+    layout = WorkspaceLayout(review_dir)
+    missing = [
+        relative_path
+        for relative_path in REQUIRED_REVIEW_WORKSPACE_FILES
+        if not (review_dir / relative_path).exists()
+    ]
+    if missing:
+        raise FileNotFoundError(
+            f"Prepared review workspace is missing required file(s): {', '.join(missing)}"
+        )
+    metadata = json.loads(layout.metadata.read_text(encoding="utf-8"))
+    section_index = json.loads(layout.section_index.read_text(encoding="utf-8"))
+    claim_map = json.loads(layout.claim_map.read_text(encoding="utf-8"))
+    if not isinstance(metadata, dict):
+        raise ValueError("Prepared review workspace metadata.json must contain an object")
+    if not isinstance(section_index, list):
+        raise ValueError("Prepared review workspace section_index.json must contain a list")
+    if not isinstance(claim_map, dict):
+        raise ValueError("Prepared review workspace claim_map.json must contain an object")
+    return metadata, section_index, claim_map
+
+
+def _ensure_review_checkpoint(review_dir: Path) -> None:
+    """Ensure checkpoint.json exists for older prepared workspaces."""
+    from checkpoint import init_checkpoint, load_checkpoint
+
+    if load_checkpoint(review_dir) is not None:
+        return
+    init_checkpoint(
+        review_dir,
+        generated_files=[
+            relative_path
+            for relative_path in REQUIRED_REVIEW_WORKSPACE_FILES
+            if (review_dir / relative_path).exists()
+        ],
+    )
+
+
+def _mark_phase(review_dir: Path, phase: str, status: str, *, enabled: bool) -> None:
+    if not enabled:
+        return
+    from checkpoint import mark_phase
+
+    mark_phase(review_dir, phase, status)
+
+
+def _mark_deep_review_suspended(review_dir: Path, *, enabled: bool) -> None:
+    if not enabled:
+        return
+    from checkpoint import set_status
+
+    set_status(review_dir, "suspended")
+
+
+def _register_top_level_artifacts(review_dir: Path) -> None:
+    for relative_path in TOP_LEVEL_DEEP_REVIEW_ARTIFACTS:
+        _register_artifact_if_present(review_dir, relative_path)
+
+
+def _build_overall_assessment(issues: list[dict]) -> str:
+    """Create a short calibrated overall assessment from consolidated issues."""
+    if not issues:
+        return (
+            "The deep review did not surface actionable issues. Confirm manually that the prepared "
+            "workspace reflects the full paper before submission."
+        )
+
+    major = [issue for issue in issues if issue.get("severity") == "major"]
+    moderate = [issue for issue in issues if issue.get("severity") == "moderate"]
+    top_titles = [issue.get("title", "issue") for issue in (major[:2] + moderate[:1])][:3]
+    severity_summary = (
+        f"{len(major)} major, {len(moderate)} moderate, "
+        f"{sum(1 for issue in issues if issue.get('severity') == 'minor')} minor"
+    )
+    if top_titles:
+        concerns = "; ".join(top_titles)
+        return (
+            f"Deep review found {severity_summary} issues. "
+            f"The highest-priority concerns are: {concerns}."
+        )
+    return (
+        f"Deep review found {severity_summary} issues that should be addressed before submission."
+    )
+
+
+def _build_revision_roadmap(issues: list[dict]) -> list[dict]:
+    """Derive a priority-sorted roadmap from consolidated issue bundle items."""
+    priority_map = {"major": "Priority 1", "moderate": "Priority 2", "minor": "Priority 3"}
+    roadmap: list[dict] = []
+    for issue in issues:
+        roadmap.append(
+            {
+                "priority": priority_map.get(issue.get("severity", "minor"), "Priority 3"),
+                "title": issue.get("title", "Untitled issue"),
+                "source": "[Script]" if issue.get("source_kind") == "script" else "[LLM]",
+                "section": issue.get("source_section") or "unknown",
+            }
+        )
+    return roadmap
+
+
+def _write_revision_roadmap(review_dir: Path, roadmap: list[dict]) -> None:
+    """Persist the revision suggestions skeleton in Markdown form for workspace consumers.
+
+    Writes a roadmap-only fallback to ``revision_suggestions.md``. When the
+    revision-suggestion agent runs, ``render_revision_suggestions_report``
+    overwrites this with a fully detailed view.
+    """
+    layout = WorkspaceLayout(review_dir)
+    lines = ["# Revision Suggestions", ""]
+    for priority in ("Priority 1", "Priority 2", "Priority 3"):
+        items = [item for item in roadmap if item.get("priority") == priority]
+        if not items:
+            continue
+        lines.extend([f"## {priority}", ""])
+        for item in items:
+            lines.append(
+                f"- [ ] {item.get('title', 'Untitled issue')} "
+                f"({item.get('source', '[LLM]')}; {item.get('section', 'unknown')})"
+            )
+        lines.append("")
+    layout.revision_suggestions_md.write_text("\n".join(lines), encoding="utf-8")
+
+
+def _extract_editor_verdict_from_markdown(editor_md: str) -> str | None:
+    """Parse an editor verdict from committee/editor.md content."""
+    match = re.search(r"^\s*Verdict\s*:\s*(.+?)\s*$", editor_md, flags=re.IGNORECASE | re.MULTILINE)
+    if not match:
+        return None
+    verdict = match.group(1).strip()
+    if not verdict:
+        return None
+    return verdict
+
+
+def _infer_editor_verdict(
+    phase0_result: AuditResult,
+    issues: list[dict],
+) -> str:
+    """Infer an editor verdict when no explicit committee editor note exists."""
+    has_critical = any(issue.severity == "Critical" for issue in phase0_result.issues)
+    major_count = sum(1 for issue in issues if issue.get("severity") == "major")
+    if has_critical:
+        return "Desk Reject"
+    if major_count >= 3:
+        return "Conditional Pass"
+    return "Pass to Review"
+
+
+def _compute_committee_score(
+    issues: list[dict],
+    editor_verdict: str | None,
+) -> float:
+    """Compute committee score and enforce desk-reject cap."""
+    major_count = sum(1 for issue in issues if issue.get("severity") == "major")
+    moderate_count = sum(1 for issue in issues if issue.get("severity") == "moderate")
+    minor_count = sum(1 for issue in issues if issue.get("severity") == "minor")
+    score = 9.0 - (1.5 * major_count) - (0.7 * moderate_count) - (0.2 * minor_count)
+    score = max(1.0, score)
+    if editor_verdict and "desk reject" in editor_verdict.lower():
+        score = min(score, 4.0)
+    return round(score, 1)
+
+
+def _write_committee_consensus(
+    review_dir: Path,
+    phase0_result: AuditResult,
+    issues: list[dict],
+) -> None:
+    """Write committee/consensus.md with enforced score policy."""
+    layout = WorkspaceLayout(review_dir)
+    committee_dir = layout.committee_dir
+    committee_dir.mkdir(parents=True, exist_ok=True)
+
+    editor_path = committee_dir / "editor.md"
+    editor_verdict = None
+    if editor_path.exists():
+        editor_verdict = _extract_editor_verdict_from_markdown(
+            editor_path.read_text(encoding="utf-8")
+        )
+    if editor_verdict is None:
+        editor_verdict = _infer_editor_verdict(phase0_result, issues)
+
+    score = _compute_committee_score(issues, editor_verdict)
+    major_count = sum(1 for issue in issues if issue.get("severity") == "major")
+    moderate_count = sum(1 for issue in issues if issue.get("severity") == "moderate")
+    minor_count = sum(1 for issue in issues if issue.get("severity") == "minor")
+
+    top_issues = [
+        issue.get("title", "Untitled issue")
+        for issue in sorted(
+            issues,
+            key=lambda item: (
+                {"major": 0, "moderate": 1, "minor": 2}.get(item.get("severity", "minor"), 3),
+                item.get("source_section", ""),
+            ),
+        )[:3]
+    ]
+
+    lines = [
+        "## Committee Consensus",
+        "",
+        f"Overall Score: {score}/10",
+        f"Editor Verdict: {editor_verdict}",
+        "",
+        "### Score Formula",
+        "- base 9.0",
+        f"- minus 1.5 * major ({major_count})",
+        f"- minus 0.7 * moderate ({moderate_count})",
+        f"- minus 0.2 * minor ({minor_count})",
+        "- floor 1.0",
+        "- desk reject cap 4.0",
+        "",
+        "### Top 3 Issues To Fix First",
+    ]
+    if top_issues:
+        for idx, title in enumerate(top_issues, start=1):
+            lines.append(f"{idx}. {title}")
+    else:
+        lines.append("1. No actionable issues detected.")
+
+    (committee_dir / "consensus.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def run_deep_review(
+    file_path: str,
+    pdf_mode: str = "basic",
+    venue: str = "",
+    lang: str | None = None,
+    focus: str = "full",
+    online: bool = False,
+    email: str = "",
+    scholar_eval: bool = False,
+    literature_search: bool = False,
+    tavily_key: str = "",
+    s2_key: str = "",
+    regression: bool = False,
+    review_dir: str | None = None,
+    no_resume: bool = False,
+    overwrite_workspace: bool = False,
+) -> AuditResult:
+    """Run the end-to-end deep-review workflow with deterministic fallback lanes."""
+    source_path = str(Path(file_path).resolve())
+    resume_enabled = review_dir is not None
+    workspace = (
+        Path(review_dir).resolve()
+        if review_dir is not None
+        else prepare_workspace(
+            source_path,
+            overwrite=overwrite_workspace,
+            overwrite_hint="--overwrite-workspace",
+        )
+    )
+    layout = WorkspaceLayout(workspace)
+    layout.ensure_dirs()
+
+    if resume_enabled:
+        if no_resume:
+            from checkpoint import reset_checkpoint
+
+            reset_checkpoint(workspace)
+            print(f"[checkpoint] reset at {layout.checkpoint}")
+        else:
+            _ensure_review_checkpoint(workspace)
+    metadata, section_index, claim_map = _load_prepared_review_workspace(workspace)
+
+    try:
+        if resume_enabled:
+            from checkpoint import set_status
+
+            set_status(workspace, "in_progress")
+
+        metadata["review_focus"] = focus
+        layout.metadata.write_text(
+            json.dumps(metadata, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        _register_artifact_if_present(workspace, "artifacts/meta/metadata.json")
+
+        _mark_phase(workspace, "phase0_audit", "in_progress", enabled=resume_enabled)
+        phase0_result = run_audit(
+            file_path=source_path,
+            mode="quick-audit",
+            pdf_mode=pdf_mode,
+            venue=venue,
+            lang=lang,
+            focus=focus,
+            online=online,
+            email=email,
+            scholar_eval=scholar_eval,
+            literature_search=literature_search,
+            tavily_key=tavily_key,
+            s2_key=s2_key,
+            regression=regression,
+        )
+        layout.phase0_context.write_text(
+            export_phase0_context(phase0_result),
+            encoding="utf-8",
+        )
+        _register_artifact_if_present(workspace, "artifacts/meta/phase0_context.md")
+        _mark_phase(workspace, "phase0_audit", "completed", enabled=resume_enabled)
+
+        _mark_phase(workspace, "lanes", "in_progress", enabled=resume_enabled)
+        _write_lane_outputs(workspace, section_index, claim_map, focus=focus, resume=resume_enabled)
+        _write_presubmission_lane_outputs(
+            workspace, phase0_result, section_index, focus=focus, resume=resume_enabled
+        )
+        _mark_phase(workspace, "lanes", "completed", enabled=resume_enabled)
+
+        from consolidate_review_findings import consolidate_findings, load_comment_files
+
+        _mark_phase(workspace, "consolidation", "in_progress", enabled=resume_enabled)
+        findings = [
+            normalize_deep_review_issue_dict(issue)
+            for issue in load_comment_files(layout.comments_dir)
+        ]
+        consolidated = consolidate_findings(findings)
+        verified = [
+            normalize_deep_review_issue_dict(issue)
+            for issue in verify_quotes(layout.full_text.read_text(encoding="utf-8"), consolidated)
+        ]
+
+        layout.all_comments.write_text(
+            json.dumps(findings, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        layout.final_issues.write_text(
+            json.dumps(verified, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+
+        overall_assessment = _build_overall_assessment(verified)
+        layout.overall_assessment.write_text(overall_assessment + "\n", encoding="utf-8")
+        revision_roadmap = _build_revision_roadmap(verified)
+        _write_revision_roadmap(workspace, revision_roadmap)
+        _register_top_level_artifacts(workspace)
+        _mark_phase(workspace, "consolidation", "completed", enabled=resume_enabled)
+
+        _mark_phase(workspace, "committee", "in_progress", enabled=resume_enabled)
+        _write_committee_artifacts(
+            workspace, phase0_result, verified, focus=focus, resume=resume_enabled
+        )
+        _mark_phase(workspace, "committee", "completed", enabled=resume_enabled)
+
+        _mark_phase(workspace, "present", "in_progress", enabled=resume_enabled)
+        report_lang = normalize_lang(lang or metadata.get("language", "en"))
+        issue_bundle = [coerce_deep_review_issue(issue) for issue in verified]
+        result = AuditResult(
+            file_path=source_path,
+            language=lang or metadata.get("language", "en"),
+            mode="deep-review",
+            venue=venue,
+            issues=phase0_result.issues,
+            issue_bundle=issue_bundle,
+            checklist=phase0_result.checklist,
+            summary=layout.paper_summary.read_text(encoding="utf-8"),
+            overall_assessment=overall_assessment,
+            revision_roadmap=revision_roadmap,
+            section_index=section_index,
+            artifact_dir=str(workspace),
+            review_focus=focus,
+            scholar_eval_result=phase0_result.scholar_eval_result,
+            literature_context=phase0_result.literature_context,
+        )
+        layout.review_report_md.write_text(
+            render_deep_review_report(result, lang=report_lang),
+            encoding="utf-8",
+        )
+        layout.peer_review_report.write_text(
+            render_peer_review_report(result, lang=report_lang),
+            encoding="utf-8",
+        )
+
+        # Revision suggestions: roadmap-only fallback by default; agent enriches.
+        revision_suggestions_data: list[dict] = []
+        if layout.revision_suggestions_json.exists():
+            try:
+                payload = json.loads(layout.revision_suggestions_json.read_text(encoding="utf-8"))
+                if isinstance(payload, list):
+                    revision_suggestions_data = payload
+            except (OSError, json.JSONDecodeError):
+                revision_suggestions_data = []
+        layout.revision_suggestions_md.write_text(
+            render_revision_suggestions_report(result, revision_suggestions_data, lang=report_lang),
+            encoding="utf-8",
+        )
+
+        _register_top_level_artifacts(workspace)
+        _mark_phase(workspace, "present", "completed", enabled=resume_enabled)
+        if resume_enabled:
+            from checkpoint import set_status
+
+            set_status(workspace, "completed")
+        return result
+    except Exception:
+        _mark_deep_review_suspended(workspace, enabled=resume_enabled)
+        raise
+
+
+def _run_checklist(
+    content: str,
+    file_path: str,
+    lang: str,  # noqa: ARG001
+    venue: str = "",
+) -> list[ChecklistItem]:
+    """Run pre-submission checklist checks (universal + venue-specific)."""
+    items = []
+
+    # Check: no TODO/FIXME/XXX
+    todo_lines = [
+        i + 1
+        for i, line in enumerate(content.split("\n"))
+        if re.search(r"\b(TODO|FIXME|XXX)\b", line)
+    ]
+    items.append(
+        ChecklistItem(
+            "No placeholder text (TODO, FIXME, XXX)",
+            len(todo_lines) == 0,
+            f"Found on lines: {todo_lines[:5]}" if todo_lines else "",
+        )
+    )
+
+    # Check: all figures referenced (LaTeX/Typst)
+    ext = Path(file_path).suffix.lower()
+    if ext == ".tex":
+        fig_labels = set(re.findall(r"\\label\{(fig:[^}]+)\}", content))
+        fig_refs = set(re.findall(r"\\ref\{(fig:[^}]+)\}", content))
+        unreferenced = fig_labels - fig_refs
+        items.append(
+            ChecklistItem(
+                "All figures referenced in text",
+                len(unreferenced) == 0,
+                f"Unreferenced: {unreferenced}" if unreferenced else "",
+            )
+        )
+
+    # Check: all tables referenced (LaTeX)
+    if ext == ".tex":
+        tab_labels = set(re.findall(r"\\label\{(tab:[^}]+)\}", content))
+        tab_refs = set(re.findall(r"\\ref\{(tab:[^}]+)\}", content))
+        unref_tabs = tab_labels - tab_refs
+        items.append(
+            ChecklistItem(
+                "All tables referenced in text",
+                len(unref_tabs) == 0,
+                f"Unreferenced: {unref_tabs}" if unref_tabs else "",
+            )
+        )
+
+    # Check: anonymous submission (no author names in common patterns)
+    anon_patterns = [
+        r"\\author\{[^}]*[A-Z][a-z]+",  # LaTeX \author with name
+        r"#set document\(author:",  # Typst author
+    ]
+    has_author = any(re.search(p, content) for p in anon_patterns)
+    items.append(
+        ChecklistItem(
+            "Anonymous submission (blind review check)",
+            not has_author,
+            "Author information detected — verify if blind review required" if has_author else "",
+        )
+    )
+
+    # Check: consistent notation (basic — check for mixed $ and \( \))
+    if ext == ".tex":
+        inline_dollar = len(re.findall(r"(?<!\$)\$(?!\$)", content))
+        inline_paren = len(re.findall(r"\\\(", content))
+        mixed = inline_dollar > 0 and inline_paren > 0
+        items.append(
+            ChecklistItem(
+                "Consistent math notation",
+                not mixed,
+                f"Mixed styles: ${inline_dollar}x $...$ and {inline_paren}x \\(...\\)"
+                if mixed
+                else "",
+            )
+        )
+
+    # Check: acronyms defined on first use (basic heuristic)
+    acronyms = set(re.findall(r"\b([A-Z]{2,6})\b", content))
+    undefined = []
+    for acr in acronyms:
+        # Check if defined as (ACRONYM) or {ACRONYM}
+        if not re.search(rf"\({acr}\)|\{{{acr}\}}", content) and acr not in {
+            "PDF",
+            "URL",
+            "API",
+            "GPU",
+            "CPU",
+            "RAM",
+            "RGB",
+            "CNN",
+            "RNN",
+            "GAN",
+            "NLP",
+            "LLM",
+            "MLP",
+            "LSTM",
+            "IEEE",
+            "ACM",
+            "AAAI",
+            "ICLR",
+            "ICML",
+            "SOTA",
+            "BERT",
+            "GPT",
+            "TODO",
+            "FIXME",
+            "XXX",
+            "YAML",
+            "JSON",
+            "HTML",
+            "HTTP",
+            "SQL",
+        }:
+            undefined.append(acr)
+    items.append(
+        ChecklistItem(
+            "Acronyms defined on first use",
+            len(undefined) <= 3,  # Allow some tolerance
+            f"Potentially undefined: {undefined[:5]}" if undefined else "",
+        )
+    )
+
+    def _collect_ieee_pseudocode_items() -> list[ChecklistItem]:
+        ext = Path(file_path).suffix.lower()
+        if ext not in {".tex", ".typ"}:
+            return []
+
+        def _fallback_items() -> list[ChecklistItem]:
+            if ext == ".tex":
+                float_fail = bool(re.search(r"\\begin\{algorithm\*?\}", content))
+                figure_match = re.search(
+                    r"\\begin\{figure\*?\}[\s\S]*?\\begin\{algorithmic\}[\s\S]*?\\end\{figure\*?\}",
+                    content,
+                )
+                caption_label_fail = False
+                reference_fail = False
+                caption_details = ""
+                reference_details = ""
+                if figure_match:
+                    figure_text = figure_match.group(0)
+                    caption_label_fail = not (
+                        re.search(r"\\caption(?:\[[^\]]*\])?\{", figure_text)
+                        and re.search(r"\\label\{([^}]+)\}", figure_text)
+                    )
+                    if caption_label_fail:
+                        caption_details = (
+                            "Fallback IEEE pseudocode check found a figure-wrapped algorithmic block "
+                            "without both caption and label"
+                        )
+                    label_match = re.search(r"\\label\{([^}]+)\}", figure_text)
+                    if label_match:
+                        label_name = label_match.group(1).strip()
+                        begin_idx = content.find(figure_text)
+                        first_ref = re.search(
+                            rf"\\(?:ref|autoref|cref|Cref|pageref)\{{{re.escape(label_name)}\}}",
+                            content,
+                        )
+                        if first_ref is None or first_ref.start() > begin_idx:
+                            reference_fail = True
+                            reference_details = (
+                                "Fallback IEEE pseudocode check did not find a text reference before "
+                                "the pseudocode figure"
+                            )
+                return [
+                    ChecklistItem(
+                        "[IEEE] No floating pseudocode environment used",
+                        not float_fail,
+                        "Fallback IEEE pseudocode check found a floating algorithm environment"
+                        if float_fail
+                        else "",
+                    ),
+                    ChecklistItem(
+                        "[IEEE] Pseudocode blocks have caption and label",
+                        not caption_label_fail,
+                        caption_details,
+                    ),
+                    ChecklistItem(
+                        "[IEEE] Pseudocode blocks are referenced before appearing",
+                        not reference_fail,
+                        reference_details,
+                    ),
+                ]
+
+            wrapper_fail = "lovelace" in content and not (
+                "#figure(" in content or "algorithm-figure(" in content
+            )
+            caption_label_fail = "algorithm-figure(" in content and "caption:" not in content
+            return [
+                ChecklistItem(
+                    "[IEEE] No floating pseudocode environment used",
+                    not wrapper_fail,
+                    "Fallback IEEE pseudocode check found a lovelace block without a figure wrapper"
+                    if wrapper_fail
+                    else "",
+                ),
+                ChecklistItem(
+                    "[IEEE] Pseudocode blocks have caption and label",
+                    not caption_label_fail,
+                    "Fallback IEEE pseudocode check found algorithm-figure without caption"
+                    if caption_label_fail
+                    else "",
+                ),
+                ChecklistItem(
+                    "[IEEE] Pseudocode blocks are referenced before appearing",
+                    True,
+                    "",
+                ),
+            ]
+
+        if ext == ".tex":
+            has_pseudocode = any(
+                marker in content
+                for marker in (
+                    r"\begin{algorithm}",
+                    r"\begin{algorithmic}",
+                    "algorithm2e",
+                    "algorithmicx",
+                    "algpseudocodex",
+                )
+            )
+        else:
+            has_pseudocode = any(
+                marker in content
+                for marker in ("algorithm-figure", "@preview/algorithmic", "lovelace")
+            )
+
+        if not has_pseudocode:
+            return _fallback_items()
+
+        if not Path(file_path).exists():
+            return _fallback_items()
+
+        script = _resolve_script("pseudocode", "zh" if lang == "zh" else "en", ext)
+        if script is None:
+            return [
+                ChecklistItem(
+                    "[IEEE] Pseudocode audit script available",
+                    False,
+                    "Pseudocode checker script not found",
+                )
+            ]
+
+        returncode, stdout, _ = _run_check_script(script, file_path, ["--venue", "ieee", "--json"])
+        if returncode == -1:
+            return _fallback_items()
+
+        try:
+            payload = json.loads(stdout or "[]")
+        except json.JSONDecodeError:
+            return _fallback_items()
+
+        def _messages_for(patterns: tuple[str, ...]) -> list[str]:
+            messages: list[str] = []
+            for issue in payload:
+                message = issue.get("message", "")
+                if any(pattern in message for pattern in patterns):
+                    messages.append(message)
+            return messages
+
+        wrapper_messages = _messages_for(
+            ("floating algorithm environments", "not wrapped in a figure-like container")
+        )
+        caption_label_messages = _messages_for(("missing a caption", "missing a label"))
+        reference_messages = _messages_for(
+            ("never referenced", "first reference", "referenced before")
+        )
+
+        return [
+            ChecklistItem(
+                "[IEEE] No floating pseudocode environment used",
+                not wrapper_messages,
+                "; ".join(wrapper_messages[:2]) if wrapper_messages else "",
+            ),
+            ChecklistItem(
+                "[IEEE] Pseudocode blocks have caption and label",
+                not caption_label_messages,
+                "; ".join(caption_label_messages[:2]) if caption_label_messages else "",
+            ),
+            ChecklistItem(
+                "[IEEE] Pseudocode blocks are referenced before appearing",
+                not reference_messages,
+                "; ".join(reference_messages[:2]) if reference_messages else "",
+            ),
+        ]
+
+    # --- Venue-Specific Checks ---
+    venue_key = venue.lower().strip()
+    if venue_key and venue_key in VENUE_CONFIG:
+        config = VENUE_CONFIG[venue_key]
+
+        # Page limit check (heuristic: count \newpage or page-break markers)
+        page_limit = config.get("page_limit")
+        if page_limit:
+            # Rough page estimate: ~300 words per page for LaTeX
+            word_count = len(content.split())
+            est_pages = max(1, word_count // 300)
+            over_limit = est_pages > page_limit
+            items.append(
+                ChecklistItem(
+                    f"Page limit ({page_limit} pages for {venue_key.upper()})",
+                    not over_limit,
+                    f"Estimated ~{est_pages} pages (limit: {page_limit})"
+                    if over_limit
+                    else f"Estimated ~{est_pages} pages",
+                )
+            )
+
+        # Abstract word count (IEEE: max 250)
+        abstract_max = config.get("abstract_max_words")
+        if abstract_max:
+            abs_match = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", content, re.DOTALL)
+            if abs_match:
+                abs_words = len(abs_match.group(1).split())
+                items.append(
+                    ChecklistItem(
+                        f"Abstract word limit ({abstract_max} words for {venue_key.upper()})",
+                        abs_words <= abstract_max,
+                        f"Abstract has {abs_words} words (limit: {abstract_max})"
+                        if abs_words > abstract_max
+                        else f"Abstract has {abs_words} words",
+                    )
+                )
+
+        # Keywords count range (IEEE: 3-5)
+        keywords_range = config.get("keywords_range")
+        if keywords_range:
+            kw_match = re.search(
+                r"\\begin\{IEEEkeywords\}(.*?)\\end\{IEEEkeywords\}", content, re.DOTALL
+            )
+            if not kw_match:
+                kw_match = re.search(r"[Kk]eywords?[:\s]+(.+?)(?:\n\n|\\.)", content)
+            if kw_match:
+                kw_text = kw_match.group(1)
+                kw_count = len([k.strip() for k in re.split(r"[,;]", kw_text) if k.strip()])
+                lo, hi = keywords_range
+                items.append(
+                    ChecklistItem(
+                        f"Keywords count ({lo}-{hi} for {venue_key.upper()})",
+                        lo <= kw_count <= hi,
+                        f"Found {kw_count} keywords (expected {lo}-{hi})",
+                    )
+                )
+
+        # Blind review compliance
+        if config.get("blind_review"):
+            items.append(
+                ChecklistItem(
+                    f"Double-blind compliance ({venue_key.upper()})",
+                    not has_author,
+                    "Author information detected — must be anonymized for blind review"
+                    if has_author
+                    else "No author information detected",
+                )
+            )
+
+        # Venue-specific content checks (regex-based)
+        for check_label, pattern in config.get("extra_checks", []):
+            found = bool(re.search(pattern, content, re.IGNORECASE))
+            items.append(
+                ChecklistItem(
+                    f"[{venue_key.upper()}] {check_label}",
+                    found,
+                    "" if found else f"Not found — required for {venue_key.upper()} submission",
+                )
+            )
+
+        if venue_key == "ieee":
+            items.extend(_collect_ieee_pseudocode_items())
+
+    return items
+
+
+def _find_section_for_line(
+    line_no: int | None,
+    sections: dict[str, tuple[int, int]],
+) -> str:
+    """Map a line number to its enclosing section name."""
+    if line_no is None:
+        return "unknown"
+    for sec_name, (start, end) in sections.items():
+        if start <= line_no <= end:
+            return sec_name
+    return "unknown"
+
+
+def _write_state_file(paper_path: Path, data: dict) -> Path:
+    """Write polish precheck state JSON next to the paper file."""
+    import json
+
+    state_dir = paper_path.parent / ".polish-state"
+    state_dir.mkdir(exist_ok=True)
+    state_file = state_dir / "precheck.json"
+    state_file.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"[polish-precheck] State written to: {state_file}")
+    return state_file
+
+
+def run_polish_precheck(
+    file_path: str,
+    style: str = "A",
+    journal: str = "",
+    lang: str | None = None,
+    skip_logic: bool = False,
+) -> AuditResult:
+    """
+    Fast precheck for polish mode.
+    Writes .polish-state/precheck.json next to the paper file.
+    Returns AuditResult for report rendering.
+    """
+    from datetime import datetime
+
+    path = Path(file_path).resolve()
+    fmt = path.suffix.lower()
+    if fmt == ".pdf":
+        raise ValueError("Polish mode requires .tex or .typ source (not PDF).")
+
+    content = _read_source(path)
+    parser = get_parser(file_path)
+
+    if lang is None:
+        clean = parser.clean_text(content)
+        lang = detect_language(clean)
+
+    print(f"[polish-precheck] {path.name} | lang={lang} style={style}")
+
+    # Section map
+    raw_sections = parser.split_sections(content)  # dict[str, tuple[int,int]]
+    lines_list = content.split("\n")
+    sections_meta: dict = {}
+    for sec_name, (start, end) in raw_sections.items():
+        sec_lines = lines_list[start - 1 : end]
+        word_count = sum(len(parser.extract_visible_text(ln).split()) for ln in sec_lines)
+        sections_meta[sec_name] = {"start": start, "end": end, "word_count": word_count}
+
+    # Non-IMRaD detection
+    imrad_core = {"abstract", "introduction", "method", "experiment", "conclusion"}
+    non_imrad = len(imrad_core & set(raw_sections)) < 2
+
+    # Rule-based logic check (per-section, skip if --skip-logic)
+    precheck_issues: list[dict] = []
+    if not skip_logic:
+        logic_script = _resolve_script("logic", lang, fmt)
+        if logic_script:
+            for sec_name in raw_sections:
+                rc, stdout, _ = _run_check_script(logic_script, str(path), ["--section", sec_name])
+                if rc != -1 and stdout.strip():
+                    for issue in _parse_script_output("logic", stdout):
+                        precheck_issues.append(
+                            {
+                                "module": issue.module,
+                                "section": sec_name,
+                                "line": issue.line,
+                                "severity": issue.severity,
+                                "priority": issue.priority,
+                                "message": issue.message,
+                            }
+                        )
+
+    # Expression check (sentences)
+    expression_issues: list[dict] = []
+    sent_script = _resolve_script("sentences", lang, fmt)
+    if sent_script:
+        rc, stdout, _ = _run_check_script(
+            sent_script, str(path), ["--max-words", "60", "--max-clauses", "3"]
+        )
+        if rc != -1 and stdout.strip():
+            for issue in _parse_script_output("sentences", stdout):
+                expression_issues.append(
+                    {
+                        "module": issue.module,
+                        "section": _find_section_for_line(issue.line, raw_sections),
+                        "line": issue.line,
+                        "severity": issue.severity,
+                        "priority": issue.priority,
+                        "message": issue.message,
+                        "original": issue.original,
+                        "revised": issue.revised,
+                    }
+                )
+
+    # Hard blockers = Critical severity
+    blockers = [i for i in precheck_issues if i["severity"] == "Critical"]
+
+    precheck_data = {
+        "file_path": str(path),
+        "language": lang,
+        "style": style,
+        "journal": journal,
+        "sections": sections_meta,
+        "precheck_issues": precheck_issues,
+        "expression_issues": expression_issues,
+        "blockers": blockers,
+        "non_imrad": non_imrad,
+        "skip_logic": skip_logic,
+        "generated_at": datetime.now().isoformat(),
+    }
+    _write_state_file(path, precheck_data)
+
+    # Return AuditResult so existing render_report() can display precheck issues
+    all_issues = [
+        AuditIssue(
+            module=i["module"],
+            line=i.get("line"),
+            severity=i["severity"],
+            priority=i["priority"],
+            message=i["message"],
+        )
+        for i in precheck_issues + expression_issues
+    ]
+    return AuditResult(
+        file_path=str(path),
+        language=lang,
+        mode="polish",
+        venue=journal,
+        issues=all_issues,
+    )
+
+
+def run_audit(
+    file_path: str,
+    mode: str = "quick-audit",
+    pdf_mode: str = "basic",
+    venue: str = "",
+    lang: str | None = None,
+    focus: str = "full",
+    style: str = "A",
+    journal: str = "",
+    skip_logic: bool = False,
+    online: bool = False,
+    email: str = "",
+    scholar_eval: bool = False,
+    literature_search: bool = False,
+    tavily_key: str = "",
+    s2_key: str = "",
+    regression: bool = False,
+    review_dir: str | None = None,
+    no_resume: bool = False,
+    overwrite_workspace: bool = False,
+) -> AuditResult:
+    """
+    Run a complete paper audit.
+
+    Args:
+        file_path: Path to the document (.tex, .typ, or .pdf).
+        mode: Audit mode — "quick-audit", "deep-review", "gate", "polish", or "re-audit".
+        pdf_mode: PDF extraction mode — "basic" or "enhanced".
+        venue: Target venue (e.g., "neurips", "ieee").
+        lang: Force language ("en" or "zh"). Auto-detects if None.
+        literature_search: Enable external literature search and comparison.
+        tavily_key: API key for Tavily search (or env TAVILY_API_KEY).
+        s2_key: API key for Semantic Scholar (or env S2_API_KEY).
+        regression: Use the weighted-plus scoring model (weighted average +
+            interaction/penalty adjustments) instead of a plain weighted average.
+        overwrite_workspace: Replace an existing auto-created deep-review workspace.
+
+    Returns:
+        AuditResult with all findings.
+    """
+    canonical_mode, alias_used = normalize_mode(mode)
+
+    path = Path(file_path).resolve()
+    if not path.exists():
+        raise FileNotFoundError(f"File not found: {file_path}")
+
+    fmt = path.suffix.lower()
+    if fmt not in (".tex", ".typ", ".pdf"):
+        raise ValueError(f"Unsupported format: {fmt}")
+
+    # Polish mode: early dispatch to precheck
+    if canonical_mode == "polish":
+        return run_polish_precheck(
+            str(path),
+            style=style,
+            journal=journal,
+            lang=lang,
+            skip_logic=skip_logic,
+        )
+
+    if canonical_mode == "deep-review":
+        return run_deep_review(
+            file_path=str(path),
+            pdf_mode=pdf_mode,
+            venue=venue,
+            lang=lang,
+            focus=focus,
+            online=online,
+            email=email,
+            scholar_eval=scholar_eval,
+            literature_search=literature_search,
+            tavily_key=tavily_key,
+            s2_key=s2_key,
+            regression=regression,
+            review_dir=review_dir,
+            no_resume=no_resume,
+            overwrite_workspace=overwrite_workspace,
+        )
+
+    # Step 1: Extract text
+    parser = get_parser(str(path), pdf_mode=pdf_mode)
+
+    content = parser.extract_text_from_file(str(path)) if fmt == ".pdf" else _read_source(path)
+
+    # Step 2: Detect language
+    if lang is None:
+        clean = parser.clean_text(content) if fmt != ".pdf" else content
+        lang = detect_language(clean)
+
+    print(f"[audit] File: {path.name} | Format: {fmt} | Language: {lang} | Mode: {canonical_mode}")
+    if alias_used:
+        print(f"[audit] Compatibility alias detected: {alias_used} -> {canonical_mode}")
+
+    # Step 3: Determine checks
+    checks = list(MODE_CHECKS.get(canonical_mode, MODE_CHECKS["quick-audit"]))
+    if lang == "zh":
+        checks.extend(ZH_EXTRA_CHECKS)
+
+    # Step 4: Build task list (filter inapplicable checks first)
+    all_issues: list[AuditIssue] = []
+    tasks: list[tuple[str, Path, list[str]]] = []
+
+    for check_name in checks:
+        if check_name == "checklist":
+            continue  # Handled separately
+
+        script = _resolve_script(check_name, lang, fmt)
+        if script is None:
+            print(f"[audit] SKIP {check_name}: script not found")
+            continue
+
+        # PDF files need special handling — some scripts expect .tex/.typ
+        if fmt == ".pdf" and check_name in ("format", "figures", "references", "citations"):
+            print(f"[audit] SKIP {check_name}: not applicable for PDF input")
+            continue
+
+        # Visual check only applies to PDF input
+        if check_name == "visual" and fmt != ".pdf":
+            continue
+
+        extra_args: list[str] = []
+        if check_name == "logic":
+            extra_args = ["--cross-section"]
+        if check_name == "sentences":
+            extra_args = ["--max-words", "60", "--max-clauses", "3"]
+        if check_name == "bib" and online:
+            extra_args.append("--online")
+            if email:
+                extra_args.extend(["--email", email])
+
+        tasks.append((check_name, script, extra_args))
+
+    # Run independent checks in parallel (up to 4 workers)
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        future_to_check = {
+            executor.submit(_run_check_script, script, str(path), extra_args): check_name
+            for check_name, script, extra_args in tasks
+        }
+        for future in as_completed(future_to_check):
+            check_name = future_to_check[future]
+            try:
+                returncode, stdout, stderr = future.result()
+            except Exception as exc:
+                returncode, stdout, stderr = -1, "", str(exc)
+
+            if returncode == -1:
+                print(f"[audit] ERROR {check_name}: {stderr}")
+                all_issues.append(
+                    AuditIssue(
+                        module=check_name.upper(),
+                        line=None,
+                        severity="Minor",
+                        priority="P2",
+                        message=f"Check script failed: {stderr[:100]}",
+                    )
+                )
+            elif stdout.strip():
+                issues = _parse_script_output(check_name, stdout)
+                all_issues.extend(issues)
+                print(f"[audit] {check_name}: {len(issues)} issues found")
+            else:
+                print(f"[audit] {check_name}: clean")
+
+    # Step 5: Run checklist (universal + venue-specific)
+    checklist = _run_checklist(content, str(path), lang, venue=venue)
+
+    # Step 5.5: Literature search (optional)
+    literature_context = None
+    literature_grounding_score = None
+    if literature_search and canonical_mode in ("quick-audit", "deep-review"):
+        try:
+            import os
+
+            from literature_compare import compare_with_literature
+            from literature_search import build_literature_context
+
+            t_key = tavily_key or os.environ.get("TAVILY_API_KEY", "")
+            s_key = s2_key or os.environ.get("S2_API_KEY", "")
+            literature_context = build_literature_context(
+                file_path=str(path),
+                content=content,
+                parser=parser,
+                tavily_key=t_key,
+                s2_key=s_key,
+            )
+            print(
+                f"[audit] Literature search: {len(literature_context.filtered_results)} "
+                f"relevant results found"
+            )
+
+            # Compute grounding score via comparison
+            # Extract citation keys from content for comparison
+            citation_keys: list[str] = []
+            if fmt == ".tex":
+                citation_keys = re.findall(r"\\cite\{([^}]+)\}", content)
+                citation_keys = [k.strip() for keys in citation_keys for k in keys.split(",")]
+            elif fmt == ".typ":
+                citation_keys = re.findall(r"@([a-zA-Z][\w-]*)", content)
+
+            comparison_result = compare_with_literature(
+                paper_content=content,
+                paper_citations=citation_keys,
+                literature_results=literature_context.filtered_results,
+            )
+            literature_context.comparison_result = comparison_result
+            literature_grounding_score = comparison_result.grounding_score
+            print(f"[audit] Literature grounding score: {literature_grounding_score:.1f}/10")
+        except ImportError as exc:
+            print(f"[audit] Literature search: module not available — {exc}")
+        except Exception as exc:
+            print(f"[audit] Literature search: failed — {exc}")
+
+    # Step 6: Build result
+    result = AuditResult(
+        file_path=str(path),
+        language=lang,
+        mode=canonical_mode,
+        venue=venue,
+        mode_alias_used=alias_used,
+        review_focus=focus,
+        issues=all_issues,
+        checklist=checklist,
+        literature_context=literature_context,
+    )
+
+    # Step 7: ScholarEval (optional)
+    if scholar_eval and canonical_mode in ("quick-audit", "deep-review"):
+        try:
+            from scholar_eval import build_result as build_scholar_result
+            from scholar_eval import evaluate_from_audit
+
+            issue_dicts = [
+                {"module": i.module, "severity": i.severity, "message": i.message}
+                for i in all_issues
+            ]
+            script_scores = evaluate_from_audit(
+                issue_dicts,
+                literature_grounding_score=literature_grounding_score,
+            )
+            result.scholar_eval_result = build_scholar_result(
+                script_scores,
+                use_regression=regression,
+            )
+            print("[audit] ScholarEval: script-based scores computed")
+        except Exception as exc:
+            print(f"[audit] ScholarEval: failed — {exc}")
+
+    return result
+
+
+def export_phase0_context(result: AuditResult) -> str:
+    """Format AuditResult as structured context string for agent consumption.
+
+    Used by SKILL.md to pass Phase 0 automated findings to Phase 1 review agents.
+    Returns a Markdown-formatted summary suitable for inclusion in agent prompts.
+    """
+    from datetime import datetime
+
+    lines = [
+        "# Phase 0: Automated Audit Results",
+        "",
+        f"**File**: `{result.file_path}` | **Language**: {result.language} | **Mode**: {result.mode}",
+    ]
+    if result.venue:
+        lines.append(f"**Venue**: {result.venue}")
+    if result.mode_alias_used:
+        lines.append(f"**Legacy Alias Used**: {result.mode_alias_used}")
+    lines.append(f"**Generated**: {datetime.now().isoformat()}")
+    lines.append("")
+
+    # Issue summary
+    sev_counts: dict[str, int] = {}
+    for issue in result.issues:
+        sev_counts[issue.severity] = sev_counts.get(issue.severity, 0) + 1
+    lines.append(f"## Issue Summary ({len(result.issues)} total)")
+    for sev in ("Critical", "Major", "Minor"):
+        if sev in sev_counts:
+            lines.append(f"- {sev}: {sev_counts[sev]}")
+    lines.append("")
+
+    # Issues by module
+    modules: dict[str, list[AuditIssue]] = {}
+    for issue in result.issues:
+        modules.setdefault(issue.module, []).append(issue)
+
+    lines.append("## Issues by Module")
+    lines.append("")
+    for mod, issues in sorted(modules.items()):
+        lines.append(f"### {mod}")
+        lines.append("")
+        lines.append("| # | Line | Severity | Priority | Issue |")
+        lines.append("|---|------|----------|----------|-------|")
+        for idx, issue in enumerate(issues, 1):
+            loc = str(issue.line) if issue.line else "\u2014"
+            lines.append(
+                f"| {idx} | {loc} | {issue.severity} | {issue.priority} | {issue.message} |"
+            )
+        lines.append("")
+
+    # Checklist
+    if result.checklist:
+        lines.append("## Pre-Submission Checklist")
+        lines.append("")
+        for item in result.checklist:
+            check = "x" if item.passed else " "
+            detail = f" \u2014 {item.details}" if item.details else ""
+            lines.append(f"- [{check}] {item.description}{detail}")
+        lines.append("")
+
+    # Related Literature Summary (when literature search was performed)
+    if result.literature_context is not None:
+        try:
+            from literature_search import render_literature_summary
+
+            lines.append("## Related Literature Summary")
+            lines.append("")
+            lines.append(render_literature_summary(result.literature_context))
+            lines.append("")
+        except Exception:
+            pass
+
+    return "\n".join(lines)
+
+
+def _parse_previous_report(report_path: str) -> list[dict]:
+    """Parse a previous audit report (Markdown) to extract issues.
+
+    Recognises table rows from both full reports and gate reports, plus
+    root-cause summary bullets such as:
+    - Root cause `claim-scope-mismatch`: headline claim broader than evidence.
+
+    Returns a list of dicts with keys: module, severity, message, line, and
+    optional root_cause_key / match_strategy metadata.
+    """
+    text = Path(report_path).read_text(encoding="utf-8")
+    issues: list[dict] = []
+
+    # Match issue table rows: | # | MODULE | line | Severity | Priority | message |
+    table_row_re = re.compile(
+        r"^\|\s*\d+\s*\|"  # Row number
+        r"\s*([A-Z_]+)\s*\|"  # Module (uppercase)
+        r"\s*([^|]*?)\s*\|"  # Line
+        r"\s*(\w+)\s*\|"  # Severity
+        r"\s*([^|]*?)\s*\|"  # Priority
+        r"\s*([^|]*?)\s*\|",  # Message
+        re.MULTILINE,
+    )
+
+    for m in table_row_re.finditer(text):
+        module = m.group(1).strip()
+        line_str = m.group(2).strip()
+        severity = m.group(3).strip()
+        message = m.group(5).strip()
+
+        line_num = None
+        if line_str and line_str not in ("\u2014", "-", ""):
+            with contextlib.suppress(ValueError):
+                line_num = int(line_str)
+
+        issues.append(
+            {
+                "module": module,
+                "severity": severity,
+                "message": message,
+                "line": line_num,
+                "root_cause_key": "",
+                "match_strategy": "legacy_table",
+            }
+        )
+
+    root_cause_re = re.compile(
+        r"^\s*-\s*Root cause\s+`(?P<key>[^`]+)`:\s*(?P<message>.+)$",
+        re.MULTILINE,
+    )
+    for match in root_cause_re.finditer(text):
+        issues.append(
+            {
+                "module": "ROOT_CAUSE",
+                "severity": "Major",
+                "message": match.group("message").strip(),
+                "line": None,
+                "root_cause_key": match.group("key").strip(),
+                "match_strategy": "root_cause_summary",
+            }
+        )
+
+    return issues
+
+
+def _load_previous_issue_bundle(report_path: str) -> list[dict]:
+    """Load structured prior issue bundles when available."""
+    report = Path(report_path)
+    candidates: list[Path] = []
+
+    if report.suffix.lower() == ".json":
+        candidates.append(report)
+    else:
+        for name in ("previous_final_issues.json", "final_issues.json"):
+            candidate = report.with_name(name)
+            if candidate.exists():
+                candidates.append(candidate)
+
+    issues: list[dict] = []
+    for candidate in candidates:
+        try:
+            payload = json.loads(candidate.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(payload, list):
+            continue
+        for item in payload:
+            if not isinstance(item, dict):
+                continue
+            issues.append(
+                {
+                    "module": str(
+                        item.get("review_lane") or item.get("comment_type") or "REVIEW"
+                    ).upper(),
+                    "severity": str(item.get("severity", "major")).capitalize(),
+                    "message": item.get("title")
+                    or item.get("explanation")
+                    or item.get("quote")
+                    or "",
+                    "line": None,
+                    "title": item.get("title", ""),
+                    "explanation": item.get("explanation", ""),
+                    "quote": item.get("quote", ""),
+                    "root_cause_key": item.get("root_cause_key", ""),
+                    "match_strategy": "structured_issue",
+                }
+            )
+    return issues
+
+
+def _collect_previous_issues(report_path: str) -> list[dict]:
+    """Merge structured and markdown-derived prior issue records."""
+    merged: list[dict] = []
+    seen: set[tuple[str, str, str]] = set()
+
+    for issue in _load_previous_issue_bundle(report_path) + _parse_previous_report(report_path):
+        key = (
+            str(issue.get("root_cause_key", "")).strip(),
+            str(issue.get("module", "")).strip(),
+            str(issue.get("message", "")).strip(),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        merged.append(issue)
+
+    return merged
+
+
+def _fuzzy_match_score(a: str, b: str) -> float:
+    """Compute fuzzy similarity between two strings (0.0 to 1.0)."""
+    from difflib import SequenceMatcher
+
+    return SequenceMatcher(None, a.lower(), b.lower()).ratio()
+
+
+_SEVERITY_RANK: dict[str, int] = {"Critical": 3, "Major": 2, "Minor": 1}
+_MATCH_THRESHOLD: float = 0.6
+_REAUDIT_TOKEN_RE = re.compile(r"[a-z0-9]+")
+_REAUDIT_STOPWORDS = {
+    "the",
+    "and",
+    "for",
+    "with",
+    "that",
+    "this",
+    "from",
+    "into",
+    "over",
+    "under",
+    "more",
+    "than",
+    "across",
+    "while",
+    "would",
+    "could",
+    "should",
+    "issue",
+    "paper",
+    "method",
+    "results",
+}
+
+
+def _match_text_tokens(text: str) -> set[str]:
+    """Extract meaningful tokens for root-cause style matching."""
+    return {
+        token
+        for token in _REAUDIT_TOKEN_RE.findall(text.lower())
+        if len(token) >= 4 and token not in _REAUDIT_STOPWORDS
+    }
+
+
+def _match_threshold_for_prior(prior: dict) -> float:
+    strategy = prior.get("match_strategy")
+    if strategy == "legacy_table":
+        return _MATCH_THRESHOLD
+    if strategy == "root_cause_summary":
+        return 0.18
+    return 0.22
+
+
+def _issue_match_score(prior: dict, fresh_issue: AuditIssue) -> float:
+    """Score how well a fresh issue matches a prior issue record."""
+    strategy = prior.get("match_strategy")
+    if strategy == "legacy_table" and prior.get("module") and fresh_issue.module != prior["module"]:
+        return 0.0
+
+    prior_text_parts = [
+        str(prior.get("message", "")),
+        str(prior.get("title", "")),
+        str(prior.get("explanation", "")),
+        str(prior.get("quote", "")),
+        str(prior.get("root_cause_key", "")).replace("-", " "),
+    ]
+    prior_text_parts = [part for part in prior_text_parts if part]
+    if not prior_text_parts:
+        return 0.0
+
+    fuzzy = max(_fuzzy_match_score(part, fresh_issue.message) for part in prior_text_parts)
+    prior_tokens = _match_text_tokens(" ".join(prior_text_parts))
+    fresh_tokens = _match_text_tokens(fresh_issue.message)
+    overlap = len(prior_tokens & fresh_tokens)
+    coverage = overlap / len(prior_tokens) if prior_tokens else 0.0
+    token_score = coverage + overlap * 0.08
+    module_bonus = 0.12 if prior.get("module") == fresh_issue.module else 0.0
+
+    return max(fuzzy + module_bonus, token_score + module_bonus)
+
+
+def run_reaudit(
+    file_path: str,
+    previous_report: str,
+    pdf_mode: str = "basic",
+    venue: str = "",
+    lang: str | None = None,
+    online: bool = False,
+    email: str = "",
+    scholar_eval: bool = False,
+) -> AuditResult:
+    """Run a re-audit comparing current state against a previous report.
+
+    Runs a fresh quick-audit and classifies prior issues as:
+    - FULLY_ADDRESSED: No matching issue found in fresh audit
+    - PARTIALLY_ADDRESSED: Similar issue exists but with lower severity
+    - NOT_ADDRESSED: Same or worse issue still present
+    Also identifies NEW issues not in the previous report.
+
+    Args:
+        file_path: Path to the document.
+        previous_report: Path to the previous audit report (Markdown).
+        Other args: same as run_audit.
+
+    Returns:
+        AuditResult with reaudit_data populated.
+    """
+    if not Path(previous_report).exists():
+        raise FileNotFoundError(f"Previous report not found: {previous_report}")
+
+    # Step 1: Run fresh audit (using quick-audit checks)
+    fresh = run_audit(
+        file_path=file_path,
+        mode="quick-audit",
+        pdf_mode=pdf_mode,
+        venue=venue,
+        lang=lang,
+        online=online,
+        email=email,
+        scholar_eval=scholar_eval,
+    )
+
+    # Step 2: Parse previous report and any structured issue bundle alongside it.
+    prior_issues = _collect_previous_issues(previous_report)
+    print(f"[re-audit] Previous report: {len(prior_issues)} issues parsed")
+
+    # Step 3: Match and classify each prior issue
+    matched_fresh_indices: set[int] = set()
+    classifications: list[dict] = []
+
+    for prior in prior_issues:
+        best_score = 0.0
+        best_idx = -1
+
+        for idx, fresh_issue in enumerate(fresh.issues):
+            if idx in matched_fresh_indices:
+                continue
+            score = _issue_match_score(prior, fresh_issue)
+            if score > best_score:
+                best_score = score
+                best_idx = idx
+
+        if best_score >= _match_threshold_for_prior(prior) and best_idx >= 0:
+            matched_fresh_indices.add(best_idx)
+            matched = fresh.issues[best_idx]
+            prior_rank = _SEVERITY_RANK.get(prior["severity"], 1)
+            fresh_rank = _SEVERITY_RANK.get(matched.severity, 1)
+
+            status = "PARTIALLY_ADDRESSED" if fresh_rank < prior_rank else "NOT_ADDRESSED"
+
+            classifications.append(
+                {
+                    "prior_module": prior["module"],
+                    "prior_severity": prior["severity"],
+                    "prior_message": prior["message"],
+                    "status": status,
+                    "current_severity": matched.severity,
+                    "current_message": matched.message,
+                    "root_cause_key": prior.get("root_cause_key", ""),
+                    "match_score": round(best_score, 2),
+                }
+            )
+        else:
+            classifications.append(
+                {
+                    "prior_module": prior["module"],
+                    "prior_severity": prior["severity"],
+                    "prior_message": prior["message"],
+                    "status": "FULLY_ADDRESSED",
+                    "current_severity": None,
+                    "current_message": None,
+                    "root_cause_key": prior.get("root_cause_key", ""),
+                    "match_score": round(best_score, 2),
+                }
+            )
+
+    # Step 4: Identify NEW issues (unmatched in fresh audit)
+    new_issues = [
+        fresh.issues[i] for i in range(len(fresh.issues)) if i not in matched_fresh_indices
+    ]
+
+    # Build result
+    fresh.mode = "re-audit"
+    fresh.reaudit_data = {
+        "previous_report": previous_report,
+        "prior_issue_count": len(prior_issues),
+        "classifications": classifications,
+        "new_issues": [
+            {"module": i.module, "severity": i.severity, "message": i.message, "line": i.line}
+            for i in new_issues
+        ],
+        "summary": {
+            "fully_addressed": sum(1 for c in classifications if c["status"] == "FULLY_ADDRESSED"),
+            "partially_addressed": sum(
+                1 for c in classifications if c["status"] == "PARTIALLY_ADDRESSED"
+            ),
+            "not_addressed": sum(1 for c in classifications if c["status"] == "NOT_ADDRESSED"),
+            "new": len(new_issues),
+        },
+    }
+
+    summary = fresh.reaudit_data["summary"]
+    print(
+        f"[re-audit] Results: {summary['fully_addressed']} fixed, "
+        f"{summary['partially_addressed']} partial, "
+        f"{summary['not_addressed']} remaining, "
+        f"{summary['new']} new"
+    )
+
+    return fresh
+
+
+def main() -> int:
+    """CLI entry point."""
+    parser = argparse.ArgumentParser(
+        description="Paper Audit Tool — audit academic papers across formats and languages.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python audit.py paper.tex                          # Quick audit (default)
+  python audit.py paper.typ --mode deep-review       # Deep reviewer-style audit
+  python audit.py paper.pdf --mode gate --pdf-mode enhanced  # Quality gate with enhanced PDF
+  python audit.py paper.tex --venue neurips --lang en        # NeurIPS quick audit
+  python audit.py paper.tex --mode re-audit --previous-report report_v1.md  # Re-audit
+        """,
+    )
+
+    parser.add_argument("file", help="Path to the document (.tex, .typ, or .pdf)")
+    parser.add_argument(
+        "--mode",
+        choices=[
+            "quick-audit",
+            "deep-review",
+            "gate",
+            "polish",
+            "re-audit",
+            "self-check",
+            "review",
+        ],
+        default="quick-audit",
+        help="Audit mode (default: quick-audit; self-check/review kept as compatibility aliases)",
+    )
+    parser.add_argument(
+        "--pdf-mode",
+        choices=["basic", "enhanced"],
+        default="basic",
+        help="PDF extraction mode (default: basic)",
+    )
+    parser.add_argument(
+        "--venue",
+        default="",
+        help="Target venue (e.g., neurips, ieee, acm)",
+    )
+    parser.add_argument(
+        "--lang",
+        choices=["en", "zh"],
+        default=None,
+        help="Force language (auto-detects if not specified)",
+    )
+    parser.add_argument(
+        "--report-style",
+        choices=["deep-review", "peer-review"],
+        default="deep-review",
+        help="Preferred reviewer-facing report style for deep-review mode (default: deep-review)",
+    )
+    parser.add_argument(
+        "--focus",
+        choices=list(DEEP_REVIEW_FOCI),
+        default="full",
+        help="Deep-review focus selector (default: full)",
+    )
+    parser.add_argument(
+        "--style",
+        choices=["A", "B", "C"],
+        default="A",
+        help="Polish style: A=plain precise, B=narrative, C=formal academic",
+    )
+    parser.add_argument(
+        "--journal",
+        default="",
+        help="Target journal/venue for polish mode",
+    )
+    parser.add_argument(
+        "--skip-logic",
+        action="store_true",
+        help="Skip logic checking in polish mode (expression only)",
+    )
+    parser.add_argument(
+        "--online",
+        action="store_true",
+        help="Enable online bibliography verification via CrossRef/Semantic Scholar",
+    )
+    parser.add_argument(
+        "--email",
+        default="",
+        help="Email for CrossRef polite pool (faster rate limits)",
+    )
+    parser.add_argument(
+        "--scholar-eval",
+        action="store_true",
+        help="Enable ScholarEval 9-dimension assessment (8 scoring + computed overall)",
+    )
+    parser.add_argument(
+        "--literature-search",
+        action="store_true",
+        help="Enable external literature search and comparison (Tavily + Semantic Scholar + arXiv)",
+    )
+    parser.add_argument(
+        "--tavily-key",
+        default="",
+        help="API key for Tavily search (or set TAVILY_API_KEY env var)",
+    )
+    parser.add_argument(
+        "--s2-key",
+        default="",
+        help="API key for Semantic Scholar (or set S2_API_KEY env var)",
+    )
+    parser.add_argument(
+        "--regression",
+        action="store_true",
+        help="Use the weighted-plus scoring model (weighted average + interaction/penalty adjustments) for ScholarEval",
+    )
+    parser.add_argument(
+        "--previous-report",
+        default=None,
+        help="Path to previous audit report (required for re-audit mode)",
+    )
+    parser.add_argument(
+        "--output",
+        "-o",
+        default=None,
+        help="Output file path (default: stdout)",
+    )
+    parser.add_argument(
+        "--format",
+        choices=["md", "json"],
+        default="md",
+        help="Output format: 'md' for Markdown (default) or 'json' for CI/CD integration",
+    )
+    parser.add_argument(
+        "--review-dir",
+        default=None,
+        help="Path to a prepared deep-review workspace; required to read or reset checkpoint state.",
+    )
+    parser.add_argument(
+        "--no-resume",
+        action="store_true",
+        help="Reset the deep-review checkpoint at --review-dir before running, "
+        "forcing every phase / lane to execute again. Workspace artifacts are kept.",
+    )
+    parser.add_argument(
+        "--overwrite-workspace",
+        action="store_true",
+        help="Replace an existing auto-created deep-review workspace when --review-dir is omitted.",
+    )
+
+    args = parser.parse_args()
+
+    # Validate re-audit requires --previous-report
+    if args.mode == "re-audit" and not args.previous_report:
+        parser.error("--previous-report is required for re-audit mode")
+
+    try:
+        if args.mode == "re-audit":
+            result = run_reaudit(
+                file_path=args.file,
+                previous_report=args.previous_report,
+                pdf_mode=args.pdf_mode,
+                venue=args.venue,
+                lang=args.lang,
+                online=getattr(args, "online", False),
+                email=getattr(args, "email", ""),
+                scholar_eval=getattr(args, "scholar_eval", False),
+            )
+        else:
+            result = run_audit(
+                file_path=args.file,
+                mode=args.mode,
+                pdf_mode=args.pdf_mode,
+                venue=args.venue,
+                lang=args.lang,
+                focus=getattr(args, "focus", "full"),
+                style=getattr(args, "style", "A"),
+                journal=getattr(args, "journal", ""),
+                skip_logic=getattr(args, "skip_logic", False),
+                online=getattr(args, "online", False),
+                email=getattr(args, "email", ""),
+                scholar_eval=getattr(args, "scholar_eval", False),
+                literature_search=getattr(args, "literature_search", False),
+                tavily_key=getattr(args, "tavily_key", ""),
+                s2_key=getattr(args, "s2_key", ""),
+                regression=getattr(args, "regression", False),
+                review_dir=getattr(args, "review_dir", None),
+                no_resume=getattr(args, "no_resume", False),
+                overwrite_workspace=getattr(args, "overwrite_workspace", False),
+            )
+
+            if args.mode == "deep-review" and args.review_dir:
+                from checkpoint import load_checkpoint, summarize_checkpoint
+
+                checkpoint = load_checkpoint(args.review_dir)
+                if checkpoint is not None:
+                    print(summarize_checkpoint(checkpoint))
+
+        report_lang = normalize_lang(args.lang or getattr(result, "language", "") or "en")
+        report = (
+            render_json_report(result)
+            if args.format == "json"
+            else render_report(
+                result,
+                report_style=getattr(args, "report_style", "deep-review"),
+                lang=report_lang,
+            )
+        )
+
+        if args.output:
+            Path(args.output).write_text(report, encoding="utf-8")
+            print(f"\n[audit] Report saved to: {args.output}")
+        else:
+            print("\n" + report)
+
+        # Auto-render HTML for deep-review (best-effort, non-fatal).
+        if args.mode == "deep-review" and getattr(result, "artifact_dir", ""):
+            try:
+                from render_html_report import render_html_reports
+
+                render_html_reports(Path(result.artifact_dir), lang=report_lang)
+            except ImportError:
+                pass
+            except Exception as html_err:
+                print(f"[audit] HTML render skipped: {html_err}", file=sys.stderr)
+
+        # Exit code: 1 if critical issues found, 0 otherwise
+        has_critical = any(i.severity == "Critical" for i in result.issues)
+        return 1 if has_critical else 0
+
+    except (FileNotFoundError, FileExistsError, ValueError) as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())

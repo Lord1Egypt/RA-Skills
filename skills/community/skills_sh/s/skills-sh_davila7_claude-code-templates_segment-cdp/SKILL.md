@@ -1,35 +1,50 @@
 ---
-name: "segment-cdp"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/segment-cdp"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/segment-cdp"
+name: segment-cdp
+description: "Expert patterns for Segment Customer Data Platform including Analytics.js, server-side tracking, tracking plans with Protocols, identity resolution, destinations configuration, and data governance best practices. Use when: segment, analytics.js, customer data platform, cdp, tracking plan."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# segment-cdp
+# Segment CDP
 
-> Indexed by skills.sh from davila7/claude-code-templates
+## Patterns
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/segment-cdp`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/segment-cdp](https://skills.sh/davila7/claude-code-templates/segment-cdp)
+### Analytics.js Browser Integration
 
-## Overview
+Client-side tracking with Analytics.js. Include track, identify, page,
+and group calls. Anonymous ID persists until identify merges with user.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/segment-cdp
-```
+### Server-Side Tracking with Node.js
+
+High-performance server-side tracking using @segment/analytics-node.
+Non-blocking with internal batching. Essential for backend events,
+webhooks, and sensitive data.
+
+
+### Tracking Plan Design
+
+Design event schemas using Object + Action naming convention.
+Define required properties, types, and validation rules.
+Connect to Protocols for enforcement.
+
+
+## Anti-Patterns
+
+### ❌ Dynamic Event Names
+
+### ❌ Tracking Properties as Events
+
+### ❌ Missing Identify Before Track
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| Issue | medium | See docs |
+| Issue | high | See docs |
+| Issue | medium | See docs |
+| Issue | high | See docs |
+| Issue | low | See docs |
+| Issue | medium | See docs |
+| Issue | medium | See docs |
+| Issue | high | See docs |

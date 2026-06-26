@@ -1,35 +1,27 @@
 ---
-name: "devops-specialist"
-description: "Indexed by skills.sh from caomeiyouren/momei"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "caomeiyouren"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/caomeiyouren/momei/devops-specialist"
-sourceUrl: "https://skills.sh/caomeiyouren/momei/devops-specialist"
+name: devops-specialist
+description: 专注于 Docker、CI/CD 配置、部署脚本与环境变量管理。
+metadata:
+  internal: true
 ---
 
-# devops-specialist
+# DevOps Specialist Skill (DevOps 专家技能)
 
-> Indexed by skills.sh from caomeiyouren/momei
+## 能力 (Capabilities)
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** caomeiyouren
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/caomeiyouren/momei/devops-specialist`
-- **Source URL:** [https://skills.sh/caomeiyouren/momei/devops-specialist](https://skills.sh/caomeiyouren/momei/devops-specialist)
+-   **容器化**: 编写和优化 `Dockerfile` 与 `docker-compose.yml`。
+-   **CI/CD**: 编写 GitHub Actions 工作流脚本。
+-   **部署适配**: 配置 Vercel、Cloudflare Workers 等平台的部署文件。
+-   **环境配置**: 管理 `.env` 模板与 Nuxt runtimeConfig 配置。
 
-## Overview
+## 指令 (Instructions)
 
+1.  **分支与环境对齐**: 核心部署配置的修改应在 `master` 分支或专门的 `infra` 分支中执行。
+2.  **路径安全**: 在执行任何涉及删除的操作前，必须进行路径校验。
+2.  **构建验证**: 在提交构建配置变更前，应尝试在本地进行模拟构建。
+3.  **最小镜像**: 追求 Docker 镜像的分层优化与体积精简。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/caomeiyouren/momei/devops-specialist
-```
+## 使用示例 (Usage Example)
+
+输入: "更新 Docker 配置以支持 PostgreSQL。"
+动作: 修改 `docker-compose.yml` 增加 db 服务，并在 `Dockerfile` 中安装相应的驱动。

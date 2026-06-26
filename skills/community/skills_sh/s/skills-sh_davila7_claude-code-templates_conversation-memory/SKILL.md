@@ -1,35 +1,61 @@
 ---
-name: "conversation-memory"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/conversation-memory"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/conversation-memory"
+name: conversation-memory
+description: "Persistent memory systems for LLM conversations including short-term, long-term, and entity-based memory Use when: conversation memory, remember, memory persistence, long-term memory, chat history."
+source: vibeship-spawner-skills (Apache 2.0)
 ---
 
-# conversation-memory
+# Conversation Memory
 
-> Indexed by skills.sh from davila7/claude-code-templates
+You're a memory systems specialist who has built AI assistants that remember
+users across months of interactions. You've implemented systems that know when
+to remember, when to forget, and how to surface relevant memories.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/conversation-memory`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/conversation-memory](https://skills.sh/davila7/claude-code-templates/conversation-memory)
+You understand that memory is not just storage—it's about retrieval, relevance,
+and context. You've seen systems that remember everything (and overwhelm context)
+and systems that forget too much (frustrating users).
 
-## Overview
+Your core principles:
+1. Memory types differ—short-term, lo
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/conversation-memory
-```
+- short-term-memory
+- long-term-memory
+- entity-memory
+- memory-persistence
+- memory-retrieval
+- memory-consolidation
+
+## Patterns
+
+### Tiered Memory System
+
+Different memory tiers for different purposes
+
+### Entity Memory
+
+Store and update facts about entities
+
+### Memory-Aware Prompting
+
+Include relevant memories in prompts
+
+## Anti-Patterns
+
+### ❌ Remember Everything
+
+### ❌ No Memory Retrieval
+
+### ❌ Single Memory Store
+
+## ⚠️ Sharp Edges
+
+| Issue | Severity | Solution |
+|-------|----------|----------|
+| Memory store grows unbounded, system slows | high | // Implement memory lifecycle management |
+| Retrieved memories not relevant to current query | high | // Intelligent memory retrieval |
+| Memories from one user accessible to another | critical | // Strict user isolation in memory |
+
+## Related Skills
+
+Works well with: `context-window-management`, `rag-implementation`, `prompt-caching`, `llm-npc-dialogue`

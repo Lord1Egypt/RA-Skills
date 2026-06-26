@@ -1,35 +1,31 @@
 ---
-name: "agile-product-owner"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/agile-product-owner"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/agile-product-owner"
+name: agile-product-owner
+description: Agile product ownership toolkit for Senior Product Owner including INVEST-compliant user story generation, sprint planning, backlog management, and velocity tracking. Use for story writing, sprint planning, stakeholder communication, and agile ceremonies.
 ---
 
-# agile-product-owner
+# Agile Product Owner
 
-> Indexed by skills.sh from davila7/claude-code-templates
+Complete toolkit for Product Owners to excel at backlog management and sprint execution.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/agile-product-owner`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/agile-product-owner](https://skills.sh/davila7/claude-code-templates/agile-product-owner)
+## Core Capabilities
+- INVEST-compliant user story generation
+- Automatic acceptance criteria creation
+- Sprint capacity planning
+- Backlog prioritization
+- Velocity tracking and metrics
 
-## Overview
+## Key Scripts
 
+### user_story_generator.py
+Generates well-formed user stories with acceptance criteria from epics.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/agile-product-owner
-```
+**Usage**: 
+- Generate stories: `python scripts/user_story_generator.py`
+- Plan sprint: `python scripts/user_story_generator.py sprint [capacity]`
+
+**Features**:
+- Breaks epics into stories
+- INVEST criteria validation
+- Automatic point estimation
+- Priority assignment
+- Sprint planning with capacity

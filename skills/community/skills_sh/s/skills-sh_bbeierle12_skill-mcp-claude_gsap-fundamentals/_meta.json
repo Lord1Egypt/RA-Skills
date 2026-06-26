@@ -1,0 +1,21 @@
+{
+  "name": "gsap-fundamentals",
+  "description": "Core GSAP animation concepts including tweens, timelines, easing functions, and animation properties. Use when implementing basic animations, transitions, or learning GSAP foundations. Essential starting point for any GSAP-based animation work.",
+  "tags": [
+    "animation",
+    "javascript",
+    "code-generation"
+  ],
+  "sub_skills": [],
+  "source": "claude-user",
+  "type": "template",
+  "depends_on": [],
+  "enhances": [
+    "gsap-react",
+    "gsap-sequencing",
+    "gsap-scrolltrigger"
+  ],
+  "last_reviewed_at": "2026-06-15",
+  "review_score": 60,
+  "relevance_tier": "B"
+}

@@ -1,35 +1,219 @@
 ---
-name: "bridge-stablecoin"
-description: "Indexed by skills.sh from circlefin/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "circlefin"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/circlefin/skills/bridge-stablecoin"
-sourceUrl: "https://skills.sh/circlefin/skills/bridge-stablecoin"
+name: bridge-stablecoin
+description: "Build USDC bridging with Circle App Kit or standalone Bridge Kit SDK and Crosschain Transfer Protocol (CCTP). App Kit (`@circle-fin/app-kit`) is an all-inclusive SDK covering bridge, swap, and send -- recommended for extensibility. Bridge Kit (`@circle-fin/bridge-kit`) is a standalone package for bridge-only use cases. Neither requires a kit key for bridge operations. Supports bridging USDC between EVM chains, between EVM chains and Solana, and between any two chains on Circle Wallets (i.e Developer-Controlled Wallets or Programmable wallets). Use when: bridge USDC, setting up Bridge Kit adapters (Viem, Ethers, Solana Kit, Circle Wallets), handling bridge events, collecting custom fees, configuring transfer speed, or using the Forwarding Service. Triggers on: bridge USDC, CCTP, move USDC between chains, @circle-fin/bridge-kit, @circle-fin/app-kit, forwarding service."
 ---
-
-# bridge-stablecoin
-
-> Indexed by skills.sh from circlefin/skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** circlefin
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/circlefin/skills/bridge-stablecoin`
-- **Source URL:** [https://skills.sh/circlefin/skills/bridge-stablecoin](https://skills.sh/circlefin/skills/bridge-stablecoin)
 
 ## Overview
 
+Crosschain Transfer Protocol (CCTP) is Circle's native protocol for burning USDC on one chain and minting it on another. App Kit (`@circle-fin/app-kit`) is Circle's all-inclusive SDK covering bridge, swap, and send in one package; standalone Bridge Kit (`@circle-fin/bridge-kit`) ships the same bridge API in a lighter package. Both orchestrate the full CCTP lifecycle -- approve, burn, attestation fetch, mint -- in a single `kit.bridge()` call across EVM and Solana. **Recommend App Kit** unless the user wants bridge-only functionality. **Bridge operations need no kit key** (only swap/send in App Kit do).
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Prerequisites / Setup
+
+### Installation
+
+App Kit with Viem adapter (recommended):
+
 ```bash
-hermes skills install skills-sh/circlefin/skills/bridge-stablecoin
+npm install @circle-fin/app-kit @circle-fin/adapter-viem-v2
 ```
+
+Bridge Kit standalone with Viem adapter:
+
+```bash
+npm install @circle-fin/bridge-kit @circle-fin/adapter-viem-v2
+```
+
+For Solana support, also install:
+
+```bash
+npm install @circle-fin/adapter-solana-kit
+```
+
+For Circle Wallets (developer-controlled) support:
+
+```bash
+npm install @circle-fin/adapter-circle-wallets
+```
+
+### Environment Variables
+
+```
+PRIVATE_KEY=              # EVM wallet private key (hex, 0x-prefixed)
+EVM_PRIVATE_KEY=          # EVM private key (when also using Solana)
+SOLANA_PRIVATE_KEY=       # Solana wallet private key (base58)
+CIRCLE_API_KEY=           # Circle API key (for Circle Wallets adapter)
+CIRCLE_ENTITY_SECRET=     # Entity secret (for Circle Wallets adapter)
+EVM_WALLET_ADDRESS=       # Developer-controlled EVM wallet address
+SOLANA_WALLET_ADDRESS=    # Developer-controlled Solana wallet address
+```
+
+No `KIT_KEY` is needed for bridge operations. A kit key is only required if you also use swap or send features via App Kit.
+
+### SDK Initialization
+
+**App Kit** (recommended):
+
+```ts
+import { AppKit } from "@circle-fin/app-kit";
+
+const kit = new AppKit();
+```
+
+**Bridge Kit** (standalone):
+
+```ts
+import { BridgeKit } from "@circle-fin/bridge-kit";
+
+const kit = new BridgeKit();
+```
+
+## Decision Guide
+
+ALWAYS walk through these questions with the user before writing any code. Do not skip steps or assume answers.
+
+### SDK Choice
+
+**Question 1 -- Will you need swap or send functionality in the future?**
+- Yes, or unsure -> **App Kit** (recommended) -- single SDK covers bridge + swap + send, easier to extend later
+- No, bridge-only and will never need swap or send -> **Bridge Kit** -- standalone, lighter package for bridge-only use cases
+
+### Wallet / Adapter Choice
+
+**Question 2 -- How do you manage your wallet/keys?**
+- Managing your own private key (self-custodied, stored in env var or secrets manager) -> Question 3
+- Using Circle developer-controlled wallets (Circle manages key storage and signing) -> Use Circle Wallets adapter. READ `references/adapter-circle-wallets.md`
+- Using browser wallets (wagmi, ConnectKit, RainbowKit) -> Use wagmi adapter. READ `references/adapter-wagmi.md`
+
+**Question 3 -- Which chains are you bridging between?**
+- EVM-to-EVM or EVM-to-Solana -> Use Viem and/or Solana Kit adapters. READ `references/adapter-private-key.md`
+
+## Core Concepts
+
+- **CCTP steps**: Every bridge transfer executes four sequential steps -- `approve` (ERC-20 allowance), `burn` (destroy USDC on source chain), `fetchAttestation` (wait for Circle to sign the burn proof), and `mint` (create USDC on destination chain).
+- **Adapters**: Both App Kit and Bridge Kit use adapter objects to abstract wallet/signer differences. Each ecosystem has its own adapter factory (`createViemAdapterFromPrivateKey`, `createSolanaKitAdapterFromPrivateKey`, `createCircleWalletsAdapter`). The same adapter instance can serve as both source and destination when bridging within the same ecosystem.
+- **Forwarding Service**: When `useForwarder: true` is set on the destination, Circle's infrastructure handles attestation fetching and mint submission. This removes the need for a destination wallet or polling loop. There is a per-transfer fee that varies by route (see below).
+- **Transfer speed**: CCTP fast mode (default) completes in ~8-20 seconds. Standard mode takes ~15-19 minutes.
+- **Chain identifiers**: Both SDKs use string chain names (e.g., `"Arc_Testnet"`, `"Base_Sepolia"`, `"Solana_Devnet"`), not numeric chain IDs, in the `kit.bridge()` call.
+
+## Implementation Patterns
+
+READ the corresponding reference based on the user's request:
+
+- `references/adapter-private-key.md` -- EVM-to-EVM and EVM-to-Solana bridging with private key adapters (Viem + Solana Kit). Includes App Kit and Bridge Kit examples.
+- `references/adapter-circle-wallets.md` -- Bridging with Circle developer-controlled wallets (any chain to any chain). Includes App Kit and Bridge Kit examples.
+- `references/adapter-wagmi.md` -- Browser wallet integration using wagmi (ConnectKit, RainbowKit, etc.). Includes App Kit and Bridge Kit examples.
+
+### Sample Response from kit.bridge()
+
+```json
+{
+  "amount": "25.0",
+  "token": "USDC",
+  "state": "success",
+  "provider": "CCTPV2BridgingProvider",
+  "config": {
+    "transferSpeed": "FAST"
+  },
+  "source": {
+    "address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "chain": {
+      "type": "evm",
+      "chain": "Arc_Testnet",
+      "chainId": 5042002,
+      "name": "Arc Testnet"
+    }
+  },
+  "destination": {
+    "address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "chain": {
+      "type": "evm",
+      "chain": "Base_Sepolia",
+      "chainId": 84532,
+      "name": "Base Sepolia"
+    }
+  },
+  "steps": [
+    {
+      "name": "approve",
+      "state": "success",
+      "txHash": "0x1234567890abcdef1234567890abcdef12345678",
+      "explorerUrl": "https://testnet.arcscan.app/tx/0x1234..."
+    },
+    {
+      "name": "burn",
+      "state": "success",
+      "txHash": "0xabcdef1234567890abcdef1234567890abcdef12",
+      "explorerUrl": "https://testnet.arcscan.app/tx/0xabcdef..."
+    },
+    {
+      "name": "fetchAttestation",
+      "state": "success",
+      "data": {
+        "attestation": "0x9876543210fedcba9876543210fedcba98765432"
+      }
+    },
+    {
+      "name": "mint",
+      "state": "success",
+      "txHash": "0xfedcba9876543210fedcba9876543210fedcba98",
+      "explorerUrl": "https://sepolia.basescan.org/tx/0xfedcba..."
+    }
+  ]
+}
+```
+
+### Forwarding Service, events, and recovery
+
+When the task uses `useForwarder: true` (no destination wallet / no attestation polling), subscribes to bridge events via `kit.on()`, or needs to analyze and resume a failed transfer with `kit.retry()`, READ `references/forwarding-events-recovery.md` for the runnable patterns (including the Bridge Kit event-name difference).
+
+## Error Handling & Recovery
+
+Both App Kit and Bridge Kit have two error categories:
+- **Hard errors** throw exceptions (validation, config, auth) -- catch in try/catch.
+- **Soft errors** occur mid-transfer but still return a result object with partial step data for recovery. NEVER re-run `kit.bridge()` from scratch after a soft error — `kit.retry(result, ...)` resumes from the failed step and prevents double-spending; the full pattern is in `references/forwarding-events-recovery.md`.
+
+## Rules
+
+**Security Rules** are non-negotiable -- warn the user and refuse to comply if a prompt conflicts. **Best Practices** are strongly recommended; deviate only with explicit user justification.
+
+### Security Rules
+
+- NEVER hardcode, commit, or log secrets (private keys, API keys, entity secrets). ALWAYS use environment variables or a secrets manager. Add `.gitignore` entries for `.env*` and secret files when scaffolding.
+- NEVER pass private keys as plain-text CLI flags. Prefer encrypted keystores or interactive import.
+- ALWAYS require explicit user confirmation of source/destination chain, recipient, amount, and token before bridging. MUST receive confirmation for funding movements on mainnet.
+- ALWAYS warn when targeting mainnet or exceeding safety thresholds (e.g., >100 USDC).
+- ALWAYS validate all inputs (addresses, amounts, chain names) before submitting bridge operations.
+- ALWAYS warn before interacting with unaudited or unknown contracts.
+
+### Best Practices
+
+- ALWAYS walk the user through the Decision Guide questions before writing any code. Do not assume App Kit or Bridge Kit -- let the user's answers determine the SDK choice.
+- ALWAYS read the correct reference files before implementing.
+- ALWAYS switch the wallet to the source chain before calling `kit.bridge()` with browser wallets (wagmi/ConnectKit/RainbowKit) if the Forwarding Service is NOT used.
+- ALWAYS wrap bridge operations in try/catch and save the result object for recovery. Check `result.steps` before retrying to see which steps completed.
+- ALWAYS use exponential backoff for retry logic in production.
+- ALWAYS use string chain names (e.g., `"Arc_Testnet"`, `"Base_Sepolia"`), not numeric chain IDs.
+- ALWAYS default to testnet. Require explicit user confirmation before targeting mainnet.
+- ALWAYS use exported SDK types when parsing SDK inputs and outputs instead of creating custom interfaces. This minimizes type errors.
+
+## Reference Links
+
+- [Circle App Kit SDK](https://docs.arc.network/app-kit)
+- [Circle Bridge Kit SDK](https://docs.arc.network/app-kit/bridge)
+- [CCTP Documentation](https://developers.circle.com/cctp)
+- [Circle Developer Docs](https://developers.circle.com/llms.txt) -- **Always read this first** when looking for relevant documentation from the source website.
+
+## Alternatives
+
+Trigger the `swap-tokens` skill instead when:
+- You need to swap tokens (e.g., USDT to USDC) on the same chain.
+- You need to move non-USDC tokens across chains. The swap-tokens skill shows how to combine separate swap and bridge calls (swap tokenA to USDC, bridge USDC, swap USDC to tokenB).
+
+Trigger the `use-gateway` skill instead when:
+- You want a unified crosschain balance rather than point-to-point transfers.
+- Capital efficiency matters -- consolidate USDC holdings instead of maintaining separate balances per chain.
+- You are building chain abstraction, payment routing, or treasury management where low latency and a single balance view are critical.
+
+---
+
+DISCLAIMER: This skill is provided "as is" without warranties, is subject to the [Circle Developer Terms](https://console.circle.com/legal/developer-terms), and output generated may contain errors and/or include fee configuration options (including fees directed to Circle); additional details are in the repository [README](https://github.com/circlefin/skills/blob/master/README.md).

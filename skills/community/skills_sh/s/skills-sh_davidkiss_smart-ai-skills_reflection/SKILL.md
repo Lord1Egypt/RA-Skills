@@ -1,35 +1,30 @@
 ---
-name: "reflection"
-description: "Indexed by skills.sh from davidkiss/smart-ai-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davidkiss"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davidkiss/smart-ai-skills/reflection"
-sourceUrl: "https://skills.sh/davidkiss/smart-ai-skills/reflection"
+name: reflection
+description: "MUST use this skill when user provides feedback / ask to do things in certain way, or when a tool call fails - for self-improvement - to learn user preferences and store them in AGENT.md / CLAUDE.md, and to propose improvements to skills."
 ---
 
-# reflection
-
-> Indexed by skills.sh from davidkiss/smart-ai-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davidkiss
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davidkiss/smart-ai-skills/reflection`
-- **Source URL:** [https://skills.sh/davidkiss/smart-ai-skills/reflection](https://skills.sh/davidkiss/smart-ai-skills/reflection)
+# Reflection Skill
 
 ## Overview
+This skill is used to learn from interaction with the user and failures in tool calls. It analyzes what worked, what didn't (tool failures), and identifies recurring patterns or explicit user preferences that should be formalized.
 
+## Objectives
+- **Improve Skills:** Identify gaps or inefficiencies in existing skill definitions and propose concise updates.
+- **Store Preferences:** Capture user preferences, project-specific rules, or recurring instructions in a `AGENT.md` or `CLAUDE.md` (when used in Claude Code) file.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davidkiss/smart-ai-skills/reflection
-```
+## Process
+1.  **Analyze:** Review the conversation history, tool calls, and any failures or corrections from the user.
+2.  **Identify:** Determine if a specific behavior should be codified in a skill or if a user preference has emerged.
+3.  **Propose:** Formulate a single, concise change.
+    -   If updating a skill, show a diff of the proposed change.
+    -   If adding a preference, show the proposed addition to `CLAUDE.md`.
+4.  **Confirm:** Present the proposal to the user and ask for explicit confirmation without making any changes first.
+5.  **Apply Changes:** Once user confirmed the changes, only then apply them
+
+## Guidelines
+- **One at a time:** Only propose one change per invocation to maintain focus and allow for careful review.
+- **Conciseness:** Keep changes as brief as possible. Often a few words are enough to clarify a requirement or fix a common mistake.
+- **Accuracy:** Ensure the proposal directly addresses a real issue or preference observed in the session.
+- **Specificity:** Think how you could make the learnings more generic to apply to other use cases, but don't make the changes too generic so that it would not address the original learnings
+- **Failure Analysis:** Pay special attention to tool failures or when the user has to correct your approach. These are primary candidates for reflection.
+- **Conflict Resolution:** If a proposed change conflicts with details of an existing skill or user preference, propose a resolution that best serves the user's current intent.

@@ -1,35 +1,236 @@
 ---
-name: "claude-code-history-files-finder"
-description: "Indexed by skills.sh from daymade/claude-code-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "daymade"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/daymade/claude-code-skills/claude-code-history-files-finder"
-sourceUrl: "https://skills.sh/daymade/claude-code-skills/claude-code-history-files-finder"
+name: claude-code-history-files-finder
+description: Finds and recovers content from Claude Code session history files. This skill should be used when searching for deleted files, tracking changes across sessions, analyzing conversation history, or recovering code from previous Claude interactions. Triggers include mentions of "session history", "recover deleted", "find in history", "previous conversation", or ".claude/projects".
 ---
 
-# claude-code-history-files-finder
+# Claude Code History Files Finder
 
-> Indexed by skills.sh from daymade/claude-code-skills
+Extract and recover content from Claude Code's session history files stored in `~/.claude/projects/`.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** daymade
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/daymade/claude-code-skills/claude-code-history-files-finder`
-- **Source URL:** [https://skills.sh/daymade/claude-code-skills/claude-code-history-files-finder](https://skills.sh/daymade/claude-code-skills/claude-code-history-files-finder)
+## Capabilities
 
-## Overview
+- Recover deleted or lost files from previous sessions
+- Search for specific code or content across conversation history
+- Analyze file modifications across past sessions
+- Track tool usage and file operations over time
+- Find sessions containing specific keywords or topics
 
+## Session File Locations
 
-## Installation
-To install this skill, run the following command in your terminal:
+Session files are stored at `~/.claude/projects/<encoded-project-path>/<session-id>.jsonl`.
+
+**The directory name is the project's ABSOLUTE working-directory path with every `/` replaced by `-` — never the basename.** For example `/Users/<name>/Desktop/my-app` becomes `-Users-<name>-Desktop-my-app`, so a bare `my-app` cannot match a directory directly.
+
+**Before concluding a project "has no history", reverse-look-up the encoded name — do not infer absence from a failed `ls`:**
+
 ```bash
-hermes skills install skills-sh/daymade/claude-code-skills/claude-code-history-files-finder
+ls ~/.claude/projects/ | grep -i <project-name>
+find ~/.claude/projects -maxdepth 1 -iname '*<project-name>*'
+```
+
+A `ls <basename>` that returns nothing means the lookup used the wrong name, NOT that history is absent. The bundled `analyze_sessions.py` already expands `~`, resolves to an absolute path, and falls back to a basename reverse-lookup — prefer passing it the path (absolute, `~`, relative, or bare name all work).
+
+Note: sessions run from **Claude Desktop's cowork / built-in Claude Code mode** also land here (Desktop runs a bundled CLI); only Desktop's *native* chat lives elsewhere (a LevelDB store, not JSONL). So "it ran inside Desktop" does not mean it is missing from `~/.claude/projects/`.
+
+For detailed JSONL structure and extraction patterns, see `references/session_file_format.md`.
+
+## Core Operations
+
+### 1. List Sessions for a Project
+
+Find all session files for a specific project:
+
+```bash
+python3 scripts/analyze_sessions.py list /path/to/project
+```
+
+Shows most recent sessions with timestamps and sizes.
+
+Optional: `--limit N` to show only N sessions (default: 10).
+
+### 2. Search Sessions for Keywords
+
+Locate sessions containing specific content:
+
+```bash
+python3 scripts/analyze_sessions.py search /path/to/project keyword1 keyword2
+```
+
+Returns sessions ranked by keyword frequency with:
+- Total mention count
+- Per-keyword breakdown
+- Session date and path
+
+Optional: `--case-sensitive` for exact matching.
+
+### 3. Recover Deleted Content
+
+Extract files from session history:
+
+```bash
+python3 scripts/recover_content.py /path/to/session.jsonl
+```
+
+Extracts all Write tool calls and saves files to `./recovered_content/`, preserving the original directory structure.
+
+**Filtering by keywords**:
+
+```bash
+python3 scripts/recover_content.py session.jsonl -k ModelLoading FRONTEND deleted
+```
+
+Recovers only files matching any keyword in their path.
+
+**Custom output directory**:
+
+```bash
+python3 scripts/recover_content.py session.jsonl -o ./my_recovery/
+```
+
+### 4. Analyze Session Statistics
+
+Get detailed session metrics:
+
+```bash
+python3 scripts/analyze_sessions.py stats /path/to/session.jsonl
+```
+
+Reports:
+- Message counts (user/assistant)
+- Tool usage breakdown
+- File operation counts (Write/Edit/Read)
+
+Optional: `--show-files` to list all file operations.
+
+## Workflow Examples
+
+For detailed workflow examples including file recovery, tracking file evolution, and batch operations, see `references/workflow_examples.md`.
+
+## Recovery Best Practices
+
+### Deduplication
+
+`recover_content.py` automatically keeps only the latest version of each file. If a file was written multiple times in a session, only the final version is saved.
+
+### Keyword Selection
+
+Choose distinctive keywords that appear in:
+- File names or paths
+- Function/class names
+- Unique strings in code
+- Error messages or comments
+
+### Output Organization
+
+Create descriptive output directories:
+
+```bash
+# Bad
+python3 scripts/recover_content.py session.jsonl -o ./output/
+
+# Good
+python3 scripts/recover_content.py session.jsonl -o ./recovered_deleted_docs/
+python3 scripts/recover_content.py session.jsonl -o ./feature_xy_history/
+```
+
+### Verification
+
+After recovery, always verify content:
+
+```bash
+# Check directory structure (files preserved in subdirectories)
+find ./recovered_content/ -type f
+
+# Read recovery report (shows full output paths)
+cat ./recovered_content/recovery_report.txt
+
+# Spot-check content (use actual path from report)
+head -20 ./recovered_content/src/components/ImportantFile.jsx
+```
+
+## Limitations
+
+### What Can Be Recovered
+
+✅ Files written using Write tool
+✅ Code shown in markdown blocks (partial extraction)
+✅ File paths from Edit/Read operations
+
+### What Cannot Be Recovered
+
+❌ Files never written to disk (only discussed)
+❌ Files deleted before session start
+❌ Binary files (images, PDFs) - only paths available
+❌ External tool outputs not captured in session
+
+### File Versions
+
+- Only captures state when Write tool was called
+- Intermediate edits between Write calls are lost
+- Edit operations show deltas, not full content
+
+## Troubleshooting
+
+### No Sessions Found
+
+```bash
+# Verify project path normalization
+ls ~/.claude/projects/ | grep -i "project-name"
+
+# Check actual projects directory
+ls -la ~/.claude/projects/
+```
+
+### Empty Recovery
+
+Possible causes:
+- Files were edited (Edit tool) but never written (Write tool)
+- Keywords don't match file paths in session
+- Session predates file creation
+
+Solutions:
+- Try `--show-edits` flag to see Edit operations
+- Broaden keyword search
+- Search adjacent sessions
+
+### Large Session Files
+
+For sessions >100MB:
+- Scripts use streaming (line-by-line processing)
+- Memory usage remains constant
+- Processing may take 1-2 minutes
+
+## Security & Privacy
+
+### Before Sharing Recovered Content
+
+Session files may contain:
+- Absolute paths with usernames
+- API keys or credentials
+- Company-specific information
+
+Always sanitize before sharing:
+
+```bash
+# Remove absolute paths
+sed -i '' 's|~/|<home>/|g' file.js
+
+# Verify no credentials
+grep -i "api_key\|password\|token" recovered_content/*
+```
+
+### Safe Storage
+
+Recovered content inherits sensitivity from original sessions. Store securely and follow organizational policies for handling session data.
+
+## Next Step: Resume Interrupted Work
+
+After finding relevant session history, suggest continuing the work:
+
+```
+Found [N] relevant sessions with recoverable context.
+
+Options:
+A) Resume work — run /daymade-claude-code:continue-claude-work to pick up where you left off (Recommended)
+B) Just show me the content — I'll decide what to do with it
 ```

@@ -1,0 +1,91 @@
+{
+    "description": "Patient discharge from hospital - ADT^A03",
+    "messageType": "ADT^A03",
+    "eventCode": "A03",
+    "hl7": {
+        "raw": "MSH|^~\\&|HEXAFLUX|CHU_PARIS|TARGET|DEST|20260125180000||ADT^A03^ADT_A03|MSG003|P|2.5\rEVN|A03|20260125180000|||USER003\rPID|1||PAT12345^^^CHU_PARIS^PI||DUPONT^JEAN^^M.||19750315|M\rPV1|1|I|CHU_PARIS^CARDIO^LIT_001^CHU_PARIS||||PR_MARTIN^MARTIN^SOPHIE|||CARDIO||||||||||VIS20260122001|||||||||||||||||||||||||||20260125180000|||||HOME",
+        "segments": {
+            "MSH": {
+                "sendingApplication": "HEXAFLUX",
+                "sendingFacility": "CHU_PARIS",
+                "receivingApplication": "TARGET",
+                "receivingFacility": "DEST",
+                "dateTime": "20260125180000",
+                "messageType": "ADT^A03^ADT_A03",
+                "messageControlId": "MSG003",
+                "processingId": "P",
+                "versionId": "2.5"
+            },
+            "EVN": {
+                "eventTypeCode": "A03",
+                "recordedDateTime": "20260125180000",
+                "operatorId": "USER003"
+            },
+            "PID": {
+                "setId": "1",
+                "patientId": "PAT12345^^^CHU_PARIS^PI",
+                "patientName": "DUPONT^JEAN^^M.",
+                "birthDate": "19750315",
+                "sex": "M"
+            },
+            "PV1": {
+                "setId": "1",
+                "patientClass": "I",
+                "assignedLocation": "CHU_PARIS^CARDIO^LIT_001^CHU_PARIS",
+                "attendingDoctor": "PR_MARTIN^MARTIN^SOPHIE",
+                "hospitalService": "CARDIO",
+                "visitNumber": "VIS20260122001",
+                "dischargeDateTime": "20260125180000",
+                "dischargeDisposition": "HOME"
+            }
+        }
+    },
+    "explanation": {
+        "purpose": "Patient discharge from hospital",
+        "patient": {
+            "id": "PAT12345",
+            "name": "JEAN DUPONT",
+            "birthDate": "15/03/1975",
+            "sex": "Male"
+        },
+        "discharge": {
+            "visitNumber": "VIS20260122001",
+            "dischargeDateTime": "25/01/2026 18:00:00",
+            "location": "CHU_PARIS, Cardiology, Bed LIT_001",
+            "dischargeDisposition": "HOME (Home or self care)",
+            "dischargingPhysician": "Dr. MARTIN SOPHIE"
+        },
+        "event": {
+            "code": "A03",
+            "name": "Discharge a Patient",
+            "timestamp": "25/01/2026 18:00:00",
+            "operator": "USER003"
+        }
+    },
+    "validation": {
+        "requiredSegments": {
+            "MSH": true,
+            "EVN": true,
+            "PID": true,
+            "PV1": true
+        },
+        "requiredFields": {
+            "MSH-3": true,
+            "MSH-4": true,
+            "MSH-7": true,
+            "MSH-9": true,
+            "MSH-10": true,
+            "MSH-12": true,
+            "EVN-1": true,
+            "EVN-2": true,
+            "PID-3": true,
+            "PID-5": true,
+            "PID-7": true,
+            "PID-8": true,
+            "PV1-2": true,
+            "PV1-36": true,
+            "PV1-45": true
+        },
+        "iheCompliant": true
+    }
+}

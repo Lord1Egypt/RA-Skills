@@ -1,35 +1,128 @@
 ---
-name: "react-query-best-practices"
-description: "Indexed by skills.sh from arraydude/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "arraydude"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/arraydude/agent-skills/react-query-best-practices"
-sourceUrl: "https://skills.sh/arraydude/agent-skills/react-query-best-practices"
+name: react-query-best-practices
+description: React Query v4 (TanStack Query) best practices, patterns, and troubleshooting. Use when working with useQuery, useMutation, query invalidation, caching, WebSocket integration, or any async state management in React. Based on TkDodo's comprehensive blog series.
+license: MIT
+metadata:
+  author: arraydude
+  version: "1.0.0"
+  reactQueryVersion: "4.x"
 ---
 
-# react-query-best-practices
+# React Query Best Practices
 
-> Indexed by skills.sh from arraydude/agent-skills
+> **Important:** This guide targets **React Query v4**. Some patterns may differ in v5.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** arraydude
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/arraydude/agent-skills/react-query-best-practices`
-- **Source URL:** [https://skills.sh/arraydude/agent-skills/react-query-best-practices](https://skills.sh/arraydude/agent-skills/react-query-best-practices)
+Comprehensive guide for React Query v4 (TanStack Query) based on TkDodo's authoritative blog series. Contains 24 rules across 7 categories, prioritized by impact.
 
-## Overview
+## When to Apply
 
+Reference these guidelines when:
+- Implementing new queries or mutations
+- Integrating WebSockets with React Query
+- Setting up query invalidation patterns
+- Debugging React Query behavior
+- Optimizing render performance
+- TypeScript integration questions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/arraydude/agent-skills/react-query-best-practices
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Query Keys & Patterns | CRITICAL | `query-` |
+| 2 | Mutations & Updates | CRITICAL | `mutation-` |
+| 3 | Caching Strategy | HIGH | `cache-` |
+| 4 | WebSocket Integration | HIGH | `websocket-` |
+| 5 | TypeScript Integration | MEDIUM | `typescript-` |
+| 6 | Testing Patterns | MEDIUM | `testing-` |
+| 7 | Common Pitfalls | MEDIUM | `troubleshoot-` |
+| 8 | Migration to v5 | HIGH | `migration-` |
+
+## Quick Reference
+
+### 1. Query Keys & Patterns (CRITICAL)
+
+- `query-keys-as-dependencies` - Include all queryFn params in queryKey
+- `query-key-factory` - Use factory pattern for consistent key generation
+- `query-select-transforms` - Use select option for data transformations
+- `query-status-check-order` - Check data first, then error, then loading
+- `query-tracked-properties` - Only destructure properties you use
+- `query-placeholder-vs-initial` - Know when to use each approach
+- `query-dependent-enabled` - Use enabled option for dependent queries
+
+### 2. Mutations & Updates (CRITICAL)
+
+- `mutation-prefer-mutate` - Use mutate() with callbacks over mutateAsync()
+- `mutation-invalidation` - Invalidate queries after mutations
+- `mutation-direct-cache-update` - Update cache directly when appropriate
+- `mutation-optimistic-updates` - Show success immediately, rollback on failure
+- `mutation-callback-separation` - Query logic in hook, UI effects in component
+
+### 3. Caching Strategy (HIGH)
+
+- `cache-stale-time` - Set appropriate staleTime for your domain
+- `cache-refetch-triggers` - Keep refetch triggers enabled in production
+
+### 4. WebSocket Integration (HIGH)
+
+- `websocket-event-invalidation` - Use events to trigger invalidation
+- `websocket-stale-time-infinity` - Set staleTime: Infinity for WS-managed data
+- `websocket-reconnection` - Invalidate stale queries on reconnect
+
+### 5. TypeScript Integration (MEDIUM)
+
+- `typescript-infer-dont-specify` - Let TypeScript infer, type the queryFn
+- `typescript-zod-validation` - Use Zod for runtime validation
+
+### 6. Testing Patterns (MEDIUM)
+
+- `testing-fresh-client` - Create fresh QueryClient per test
+- `testing-msw-mocking` - Use MSW for network mocking
+
+### 7. Common Pitfalls (MEDIUM)
+
+- `troubleshoot-copy-to-state` - Never copy query data to local state
+- `troubleshoot-missing-key-deps` - Include all dependencies in query key
+- `troubleshoot-fetch-not-reject` - Handle HTTP errors with fetch
+
+### 8. Migration to v5 (HIGH)
+
+- `migration-single-signature` - All hooks now take a single object argument
+- `migration-status-pending` - status 'loading' → 'pending'; isLoading semantics changed
+- `migration-cache-time-to-gc-time` - cacheTime renamed to gcTime
+- `migration-keep-previous-data` - keepPreviousData → placeholderData with identity fn
+- `migration-query-callbacks-removed` - onSuccess/onError/onSettled removed from useQuery
+- `migration-suspense-hooks` - New useSuspenseQuery, useSuspenseInfiniteQuery hooks
+- `migration-throw-on-error` - useErrorBoundary renamed to throwOnError
+- `migration-remove-method` - query.remove() removed; use queryClient.removeQueries()
+- `migration-initial-page-param` - initialPageParam now required for infinite queries
+- `migration-refetch-page-to-max-pages` - refetchPage replaced by maxPages
+- `migration-hydration-boundary` - Hydrate component renamed to HydrationBoundary
+- `migration-refetch-interval-callback` - refetchInterval callback now receives only query
+- `migration-context-to-query-client` - context prop removed; pass queryClient directly
+- `migration-misc-breaking-changes` - React 18 min, server retry=0, hashKey, isDataEqual, etc.
+
+## Core Mental Model
+
+1. **React Query is NOT a data fetching library** - it's an async state manager
+2. **Server state != Client state** - never mix them in global state managers
+3. **Stale-while-revalidate** - show cached data immediately, fetch in background
+4. **Query keys are dependencies** - include all variables used in queryFn
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
 ```
+rules/query-key-factory.md
+rules/mutation-invalidation.md
+rules/websocket-event-invalidation.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example
+- Correct code example
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`

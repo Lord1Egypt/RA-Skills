@@ -1,0 +1,327 @@
+# Frontend Integration Overview
+
+Learn how to build frontends that integrate directly with your ADK bot's actions and tables.
+
+---
+
+## What is an ADK-Integrated Frontend?
+
+An ADK-integrated frontend is a web application that **calls your bot's actions as APIs** and **queries your bot's tables as a database**, creating a unified system where frontend and bot share the same business logic and data models.
+
+Unlike traditional architectures where you build separate REST APIs, your **bot actions ARE the API endpoints**, and your **bot tables ARE the database**.
+
+```
+Traditional Architecture:
+Frontend → REST API → Database
+        ↓
+    Bot calls API
+
+ADK-Integrated Architecture:
+Frontend → Botpress Client → Bot (Actions + Tables)
+                              ↓
+                         Integrations + Database
+```
+
+**Key differences:**
+
+- **Single source of truth**: Bot actions handle both conversation logic AND API requests
+- **Shared validation**: Zod schemas work in bot AND frontend (via generated types)
+- **Type safety**: Full TypeScript types auto-generated from bot definitions
+- **No API duplication**: Don't maintain separate REST endpoints for UI
+
+---
+
+## Architecture
+
+### High-Level Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        Frontend                             │
+│  ┌────────────┐  ┌─────────────┐  ┌──────────────┐        │
+│  │ Components │→ │   Services  │→ │ Client Store │        │
+│  └────────────┘  └─────────────┘  └──────────────┘        │
+└─────────────────────────┬───────────────────────────────────┘
+                          │ @botpress/client
+                          ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    Botpress Cloud                           │
+│  ┌──────────────────────────────────────────────┐          │
+│  │              Your ADK Bot                     │          │
+│  │  ┌──────────┐  ┌────────┐  ┌──────────────┐ │          │
+│  │  │ Actions  │  │ Tables │  │  Workflows   │ │          │
+│  │  └──────────┘  └────────┘  └──────────────┘ │          │
+│  └──────────────────────────────────────────────┘          │
+│                          ↓                                  │
+│  ┌──────────────────────────────────────────────┐          │
+│  │  Integrations (Slack, Shopify, etc.)        │          │
+│  └──────────────────────────────────────────────┘          │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Data Flow Example
+
+When a user clicks "Close Ticket" in your UI:
+
+1. **Component** triggers mutation → `closeTicket({ ticketId, agentId })`
+2. **Service** wraps the call → `client.callAction({ type: "closeTicket", input: {...} })`
+3. **Botpress Client** sends authenticated request → Botpress Cloud API
+4. **Bot Action** executes → Calls integration action, transforms data, updates table
+5. **Response** flows back → Frontend updates UI (optimistic or real data)
+
+---
+
+## Key Concepts
+
+### Actions as API Endpoints
+
+Your bot's actions can be invoked from the frontend using `client.callAction()`:
+
+```typescript
+// In your bot: src/actions/close-ticket.ts
+export const CloseTicket = new Action({
+  name: "closeTicket",
+  input: z.object({
+    ticketId: z.string(),
+    agentId: z.string()
+  }),
+  output: TicketSchema,
+  handler: async ({ ticketId, agentId }) => {
+    const result = await actions.myIntegration.closeTicket({...});
+    await TicketsTable.upsertRows({...});
+    return result;
+  }
+});
+
+// In your frontend: services/tickets.ts
+export async function closeTicket({ ticketId, agentId }) {
+  const result = await client.callAction({
+    type: "closeTicket",
+    input: { ticketId, agentId }
+  });
+  return result.output;  // ← Fully typed!
+}
+```
+
+**Why this works:**
+
+- Bot actions are already designed to be reusable, testable functions
+- Same validation logic applies whether called from conversation or frontend
+- No need to duplicate business rules in a separate API layer
+
+### Tables as Database
+
+Your bot's tables can be queried using `client.findTableRows()`:
+
+```typescript
+// In your bot: src/tables/tickets.ts
+export const TicketsTable = new Table({
+  name: 'TicketsTable',
+  schema: z.object({
+    title: z.string(),
+    state: z.enum(['open', 'closed', 'snoozed']),
+    assignee: z.string().optional(),
+  }),
+})
+
+// In your frontend: services/tickets.ts
+export async function listTickets(filter) {
+  const result = await client.findTableRows({
+    table: 'TicketsTable',
+    filter,
+    limit: 100,
+    orderBy: 'updatedAt',
+    orderDirection: 'desc',
+  })
+  return result.rows // ← Fully typed!
+}
+```
+
+**Query capabilities:**
+
+- Filtering: `{ state: "open" }`, `{ assignee: { $in: ["user1", "user2"] } }`
+- Sorting: `orderBy`, `orderDirection`
+- Pagination: `limit`, `offset`
+- Grouping: `group` for aggregations
+
+### Type Generation
+
+ADK automatically generates TypeScript types from your bot when you run `adk dev`:
+
+```typescript
+// Generated by ADK in bot/.adk/action-types.d.ts
+export interface BotActionDefinitions {
+  closeTicket: {
+    input: { ticketId: string; agentId: string }
+    output: { id: number; state: string /* ... */ }
+  }
+  // ... all your actions
+}
+
+// In your frontend: types/index.ts
+import type { BotActionDefinitions } from '@botpress/runtime/_types/actions'
+
+// Now you have full type safety!
+export type CloseTicketAction = BotActionDefinitions['closeTicket']
+```
+
+**Benefits:**
+
+- Compile-time errors if bot API changes
+- IntelliSense for all action inputs/outputs
+- Refactoring safety across bot and frontend
+- No manual type maintenance
+
+> **Tip:** The ADK also generates `.adk/client.ts` with a `createAdkClient` function. This typed wrapper provides an alternative to using the raw `@botpress/client` — it exposes action methods directly (e.g., `adkClient.closeTicket(input)`) instead of requiring `callAction()`.
+
+### Real-Time Synchronization
+
+Keep frontend state in sync with bot state using polling:
+
+```typescript
+// TanStack Query with auto-refetch
+const { data: tickets } = useQuery({
+  queryKey: ['tickets'],
+  queryFn: () => listTickets({ state: 'open' }),
+  refetchInterval: 3000, // Poll every 3 seconds
+})
+
+// Optimistic updates for instant UX
+const { mutate: close } = useMutation({
+  mutationFn: closeTicket,
+  onMutate: (variables) => {
+    queryClient.setQueryData(['tickets'], (old) => updateTicketState(old, variables.ticketId, 'closed'))
+  },
+})
+```
+
+---
+
+## When to Use This Pattern
+
+### Good Use Cases
+
+**Admin Dashboards**
+
+- Internal tools for managing bot operations
+- Analytics and reporting interfaces
+- Configuration and settings panels
+
+**Real-Time Collaboration Tools**
+
+- Team inboxes and shared workspaces
+- Live data exploration
+
+**Bot Management UIs**
+
+- Conversation monitoring
+- User management
+- Integration configuration
+
+**When UI needs bot logic**
+
+- Same validation rules in bot and UI
+- Shared data transformations
+- Consistent business rules
+
+### Not Ideal For
+
+**High-Traffic Public Sites**
+
+- Consumer-facing applications with millions of users
+- Use traditional CDN-cached APIs instead
+- Bot actions are optimized for logic, not scale
+
+**Simple CRUD Applications**
+
+- If you just need basic database operations without bot logic
+- Direct database access may be simpler
+
+**Public APIs**
+
+- External third-party integrations
+- Use a dedicated API gateway instead
+- Keep bot actions internal
+
+**Real-Time < 1s Requirements**
+
+- If you need sub-second updates everywhere
+- Consider WebSockets or server-sent events
+- Polling works well for most use cases (1-5s is fine)
+
+---
+
+## Typical Project Structure
+
+Here's the recommended file structure for an ADK-integrated frontend:
+
+```
+my-adk-frontend/
+├── src/
+│   ├── services/              # Service layer
+│   │   ├── tickets.ts         # Wrap ticket actions/tables
+│   │   ├── messages.ts        # Message queries and operations
+│   │   └── users.ts           # Wrap user actions/tables
+│   │
+│   ├── stores/                # Zustand stores
+│   │   └── clientsStore.ts    # Botpress client management
+│   │
+│   ├── types/                 # Type definitions
+│   │   └── index.ts           # Import generated bot types
+│   │
+│   ├── components/            # React components
+│   │   ├── TicketList.tsx
+│   │   └── TicketDetails.tsx
+│   │
+│   ├── routes/                # TanStack Router pages
+│   │   ├── __root.tsx
+│   │   └── dashboard.tsx
+│   │
+│   ├── lib/                   # Utilities
+│   │   ├── auth.tsx           # Authentication context
+│   │   ├── query-client.ts    # TanStack Query setup
+│   │   └── utils.ts           # Helper functions
+│   │
+│   ├── main.tsx               # App entry point
+│   └── config.ts              # Bot ID, workspace ID
+│
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── .env
+```
+
+**Key directories explained:**
+
+- **`services/`**: Wrap `client.callAction()` and `client.findTableRows()` with domain-specific functions
+- **`stores/`**: Manage global state (especially the Botpress client instance)
+- **`types/`**: Import generated types from bot and create type aliases
+- **`components/`**: Standard React components that use services
+- **`routes/`**: Pages/views for your application
+- **`lib/`**: Shared utilities, configuration, setup code
+
+---
+
+## What's Next
+
+Now that you understand the architecture, proceed with the setup guides:
+
+1. **[Project Setup](./project-setup.md)** - Create your project and install dependencies
+2. **[Botpress Client](./botpress-client.md)** - Connect to your bot via @botpress/client
+3. **[Type Generation](./type-generation.md)** - Use generated types from your bot
+4. **[Service Layer](./service-layer.md)** - Create service abstractions
+5. **[Calling Actions](./calling-actions.md)** - Invoke bot actions from frontend
+6. **[Data Fetching](./data-fetching.md)** - Query bot tables with TanStack Query
+7. **[Real-Time Updates](./realtime-updates.md)** - Polling and optimistic updates
+8. **[Authentication](./authentication.md)** - Secure your frontend with PATs
+9. **[State Management](./state-management.md)** - Zustand for client-side state
+10. **[Recommended Stack](./recommended-stack.md)** - Complete tech stack overview
+
+---
+
+## See Also
+
+- **[Service Layer](./service-layer.md)** - Wrapping actions/tables in domain functions
+- **[Type Generation](./type-generation.md)** - End-to-end type safety
+- **[Botpress Client](./botpress-client.md)** - Client setup and management
+- **[Recommended Stack](./recommended-stack.md)** - Full tech stack rationale

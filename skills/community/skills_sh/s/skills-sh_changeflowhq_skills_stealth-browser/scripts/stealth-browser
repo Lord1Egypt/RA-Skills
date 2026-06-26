@@ -1,0 +1,627 @@
+#!/bin/zsh
+# stealth-browser - Invisible Chrome automation via CDP
+#
+# Launches a real Chrome (not Playwright's Chromium) with remote debugging,
+# keeps it completely hidden, and sends commands via Chrome DevTools Protocol.
+# Sites see a normal browser with real extensions - no detectable automation.
+#
+# Chrome stays running between commands for instant re-use. Only the first
+# launch has a brief visual flash. All subsequent operations are invisible.
+
+# ─── macOS only ────────────────────────────────────────────────────────
+if [[ "$(uname)" != "Darwin" ]]; then
+    echo "[stealth-browser] Error: macOS only. This tool uses AppleScript and macOS-specific APIs to hide Chrome." >&2
+    exit 1
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SKILL_DIR="$(dirname "$SCRIPT_DIR")"
+CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+PROFILE="$SKILL_DIR/profile"
+CDP_PORT=9222
+PID_FILE="/tmp/stealth-browser.pid"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+log()   { echo -e "${GREEN}[stealth-browser]${NC} $1"; }
+error() { echo -e "${RED}[stealth-browser]${NC} $1" >&2; }
+warn()  { echo -e "${YELLOW}[stealth-browser]${NC} $1"; }
+
+# ─── Dependency checks ───────────────────────────────────────────────
+
+check_deps() {
+    local missing=()
+
+    if [ ! -x "$CHROME" ]; then
+        missing+=("Google Chrome: Install from https://google.com/chrome")
+    fi
+
+    if ! command -v agent-browser &>/dev/null; then
+        missing+=("agent-browser: npm install -g agent-browser")
+    fi
+
+    if ! command -v python3 &>/dev/null; then
+        missing+=("python3: brew install python3")
+    fi
+
+    if ! command -v curl &>/dev/null; then
+        missing+=("curl: Should be pre-installed on macOS")
+    fi
+
+    # d2m is optional (only needed for 'read' command)
+    if ! npx d2m --version &>/dev/null 2>&1; then
+        if [[ "${1:-}" == "read" ]]; then
+            missing+=("d2m: npm install -g d2m")
+        fi
+    fi
+
+    if [ ${#missing[@]} -gt 0 ]; then
+        error "Missing dependencies:"
+        for dep in "${missing[@]}"; do
+            error "  - $dep"
+        done
+        exit 1
+    fi
+}
+
+# ─── Profile management ──────────────────────────────────────────────
+
+ensure_profile() {
+    if [ -d "$PROFILE/Default" ]; then
+        return 0
+    fi
+
+    log "First run - creating Chrome profile..."
+    mkdir -p "$PROFILE"
+
+    "$CHROME" \
+        --user-data-dir="$PROFILE" \
+        --no-first-run \
+        --no-default-browser-check \
+        --disable-sync \
+        "about:blank" &
+
+    local pid=$!
+    sleep 3
+    kill "$pid" 2>/dev/null || true
+    sleep 1
+
+    if [ -d "$PROFILE/Default" ]; then
+        log "Profile created at $PROFILE"
+        log ""
+        log "Optional: open Chrome manually to install extensions:"
+        log "  $CHROME --user-data-dir=\"$PROFILE\""
+        log ""
+        log "Recommended extensions:"
+        log "  - I still don't care about cookies (auto-dismiss cookie banners)"
+        log "  - uBlock Origin Lite (block ads)"
+    else
+        error "Profile creation failed"
+        return 1
+    fi
+}
+
+# ─── Process management ──────────────────────────────────────────────
+
+is_running() {
+    if [ -f "$PID_FILE" ]; then
+        local pid=$(cat "$PID_FILE")
+        if kill -0 "$pid" 2>/dev/null; then
+            return 0
+        fi
+    fi
+    return 1
+}
+
+# Launch Chrome hidden via 'open -g' (doesn't become frontmost).
+# Background loop moves window off-screen and sets visible=false.
+stealth_launch() {
+    local url="$1"
+
+    # Save current frontmost app to re-activate it
+    local front_app
+    front_app=$(osascript -e 'tell application "System Events" to get name of first process whose frontmost is true' 2>/dev/null)
+
+    open -g -a "Google Chrome" --args \
+        --remote-debugging-port="$CDP_PORT" \
+        --user-data-dir="$PROFILE" \
+        --window-size=500,375 \
+        --no-first-run \
+        --no-default-browser-check \
+        --disable-background-networking \
+        --disable-client-side-phishing-detection \
+        --disable-default-apps \
+        --disable-hang-monitor \
+        --disable-popup-blocking \
+        --disable-prompt-on-repost \
+        --disable-sync \
+        --disable-translate \
+        --metrics-recording-only \
+        --safebrowsing-disable-auto-update \
+        "$url"
+
+    sleep 0.3
+    local chrome_pid
+    chrome_pid=$(pgrep -f "user-data-dir=$PROFILE" | head -1)
+    if [ -n "$chrome_pid" ]; then
+        echo "$chrome_pid" > "$PID_FILE"
+    else
+        error "Failed to find Chrome process"
+        return 1
+    fi
+
+    # Re-activate whatever app the user was in
+    if [ -n "$front_app" ]; then
+        osascript -e "tell application \"$front_app\" to activate" 2>/dev/null &
+    fi
+
+    # Background: move off-screen + hide (runs for ~4 seconds)
+    (
+        for i in $(seq 1 80); do
+            osascript -e '
+                try
+                    tell application "System Events"
+                        if exists process "Google Chrome" then
+                            tell process "Google Chrome"
+                                set position of window 1 to {-32000, -32000}
+                            end tell
+                            set visible of process "Google Chrome" to false
+                        end if
+                    end tell
+                end try
+            ' 2>/dev/null
+            sleep 0.05
+        done
+    ) &
+
+    echo "$chrome_pid"
+}
+
+# Wait for a URL to appear in CDP and pass bot challenges
+wait_for_page() {
+    local url="$1"
+    local max_wait="${2:-60}"
+    local waited=0
+    local tmp_cdp="/tmp/stealth-cdp-$$.json"
+
+    local challenge_patterns=(
+        "just a moment" "attention required" "checking your browser"
+        "please wait" "security check" "verify you are human"
+        "captcha" "cloudflare" "ddos protection" "browser check"
+        "verifying" "bot detection" "human verification" "challenge"
+    )
+
+    while [ $waited -lt $max_wait ]; do
+        curl -s "http://localhost:$CDP_PORT/json" > "$tmp_cdp" 2>/dev/null
+
+        if grep -q "$url" "$tmp_cdp" 2>/dev/null; then
+            local page_title=$(python3 -c "
+import json
+try:
+    with open('$tmp_cdp') as f:
+        for item in json.load(f):
+            if item.get('type') == 'page':
+                print(item.get('title', '')); break
+except: pass
+" 2>/dev/null)
+
+            # Empty title - wait a bit, then accept
+            if [ -z "$page_title" ]; then
+                if [ $waited -gt 5 ]; then
+                    rm -f "$tmp_cdp"
+                    return 0
+                fi
+                sleep 1; waited=$((waited + 1)); continue
+            fi
+
+            # Check for bot challenge pages
+            local title_lower=$(echo "$page_title" | tr '[:upper:]' '[:lower:]')
+            local is_challenge=false
+            for pattern in "${challenge_patterns[@]}"; do
+                if [[ "$title_lower" == *"$pattern"* ]]; then
+                    is_challenge=true; break
+                fi
+            done
+
+            if [ "$is_challenge" = false ]; then
+                log "Page ready: \"$page_title\" (${waited}s)"
+                rm -f "$tmp_cdp"
+                return 0
+            fi
+        fi
+
+        sleep 1
+        waited=$((waited + 1))
+    done
+
+    rm -f "$tmp_cdp"
+    warn "Timed out waiting for page (${max_wait}s)"
+    return 1
+}
+
+# ─── Commands ─────────────────────────────────────────────────────────
+
+cmd_open() {
+    local url="$1"
+    local hidden=false
+
+    shift 2>/dev/null
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --hidden) hidden=true; shift ;;
+            *) shift ;;
+        esac
+    done
+
+    if [ -z "$url" ]; then
+        error "Usage: stealth-browser open <url> [--hidden]"
+        exit 1
+    fi
+
+    ensure_profile
+
+    # Re-use existing Chrome
+    if is_running; then
+        warn "Chrome already running (PID $(cat $PID_FILE)). Navigating..."
+        agent-browser --cdp "$CDP_PORT" open "$url"
+        return
+    fi
+
+    if [ "$hidden" = true ]; then
+        log "Launching Chrome (hidden)..."
+        local pid=$(stealth_launch "$url")
+        log "Chrome started (PID $pid)"
+    else
+        log "Launching Chrome..."
+        "$CHROME" \
+            --remote-debugging-port="$CDP_PORT" \
+            --user-data-dir="$PROFILE" \
+            --window-size=1366,768 \
+            --no-first-run \
+            --no-default-browser-check \
+            --disable-sync \
+            "$url" &
+        echo "$!" > "$PID_FILE"
+        log "Chrome started (PID $!)"
+    fi
+
+    log "Waiting for page..."
+    wait_for_page "$url"
+    sleep 2  # Buffer for JS
+
+    # Verify CDP works
+    if agent-browser --cdp "$CDP_PORT" snapshot -c > /dev/null 2>&1; then
+        log "Ready. Use: agent-browser --cdp $CDP_PORT <command>"
+    else
+        warn "CDP not responding yet. Try: agent-browser --cdp $CDP_PORT snapshot"
+    fi
+
+    if [ "$hidden" = true ]; then
+        osascript -e 'tell application "System Events" to set visible of process "Google Chrome" to false' 2>/dev/null
+        log "Chrome hidden. Stays running for instant re-use."
+    fi
+}
+
+cmd_read() {
+    local url="$1"
+
+    if [ -z "$url" ]; then
+        error "Usage: stealth-browser read <url>"
+        exit 1
+    fi
+
+    if is_running; then
+        # Re-use existing hidden Chrome - no flash
+        agent-browser --cdp "$CDP_PORT" open "$url" > /dev/null 2>&1
+    else
+        # First launch - stealth start
+        ensure_profile > /dev/null 2>&1
+        stealth_launch "$url" > /dev/null
+
+        # Wait for CDP and page
+        local max_wait=30
+        local waited=0
+        while [ $waited -lt $max_wait ]; do
+            if curl -s "http://localhost:$CDP_PORT/json" 2>/dev/null | grep -q "$url"; then
+                break
+            fi
+            sleep 1
+            waited=$((waited + 1))
+        done
+        sleep 2
+    fi
+
+    # Wait for page to finish rendering (content stabilizes, challenges resolve)
+    wait_for_render() {
+        local prev_len=0
+        local stable_count=0
+        local challenge_patterns='just a moment|attention required|checking your browser|please wait|security check|verify you are human|captcha|cloudflare|ddos protection|browser check|verifying|challenge'
+
+        for i in $(seq 1 40); do
+            # Check page title for bot challenges (works at any content length)
+            local page_title
+            page_title=$(agent-browser --cdp "$CDP_PORT" eval 'document.title' 2>/dev/null)
+            if echo "$page_title" | grep -qiE "$challenge_patterns"; then
+                stable_count=0
+                prev_len=0
+                sleep 1
+                continue
+            fi
+
+            # Get content length
+            local cur_len
+            cur_len=$(agent-browser --cdp "$CDP_PORT" eval 'document.body.innerText.length' 2>/dev/null | tr -cd '0-9')
+            cur_len=${cur_len:-0}
+
+            # Check body text for loading indicators (any content length)
+            if [[ "$cur_len" =~ ^[0-9]+$ ]] && [ "$cur_len" -lt 2000 ]; then
+                local cur_text
+                cur_text=$(agent-browser --cdp "$CDP_PORT" eval 'document.body.innerText.substring(0,500)' 2>/dev/null)
+                if echo "$cur_text" | grep -qiE "$challenge_patterns|loading|spinner"; then
+                    stable_count=0
+                    prev_len=0
+                    sleep 1
+                    continue
+                fi
+            fi
+
+            if [[ "$cur_len" =~ ^[0-9]+$ ]] && [ "$cur_len" -gt 200 ] && [ "$cur_len" -eq "$prev_len" ]; then
+                stable_count=$((stable_count + 1))
+                if [ $stable_count -ge 2 ]; then
+                    return
+                fi
+            else
+                stable_count=0
+            fi
+            prev_len=$cur_len
+            sleep 0.5
+        done
+    }
+    wait_for_render > /dev/null 2>&1
+
+    # Extract HTML and convert to markdown
+    local temp_html="/tmp/stealth-read-$$.html"
+
+    agent-browser --cdp "$CDP_PORT" eval 'document.documentElement.outerHTML' > "$temp_html" 2>/dev/null
+
+    # Unescape JSON string output
+    python3 -c "
+import json
+try:
+    with open('$temp_html') as f:
+        html = json.loads(f.read())
+    with open('$temp_html', 'w') as f:
+        f.write(html)
+except: pass
+" 2>/dev/null
+
+    # Convert to markdown (try with content extraction first, fall back to full)
+    local markdown
+    markdown=$(npx d2m -i "$temp_html" -e -m basic 2>/dev/null)
+    if [ -z "$markdown" ]; then
+        markdown=$(npx d2m -i "$temp_html" -m basic 2>/dev/null)
+    fi
+
+    # Strip image markdown (not useful as text, wastes tokens)
+    markdown=$(echo "$markdown" | grep -v '!\[')
+
+    rm -f "$temp_html"
+
+    # Keep Chrome hidden and running
+    osascript -e 'try
+        tell application "System Events" to set visible of process "Google Chrome" to false
+    end try' 2>/dev/null
+
+    echo "$markdown"
+}
+
+cmd_screenshot() {
+    local output_path="${1:-/tmp/stealth-screenshot.png}"
+
+    if ! is_running; then
+        error "Chrome not running. Use: stealth-browser open <url> --hidden"
+        exit 1
+    fi
+
+    # CDP screenshots need compositor active - briefly unhide (stays behind other windows)
+    local was_hidden
+    was_hidden=$(osascript -e 'tell application "System Events" to get (not visible of process "Google Chrome")' 2>/dev/null)
+
+    if [ "$was_hidden" = "true" ]; then
+        osascript -e 'tell application "System Events" to set visible of process "Google Chrome" to true' 2>/dev/null
+        sleep 0.3
+    fi
+
+    agent-browser --cdp "$CDP_PORT" screenshot "$output_path" 2>/dev/null
+    local result=$?
+
+    if [ "$was_hidden" = "true" ]; then
+        osascript -e 'tell application "System Events" to set visible of process "Google Chrome" to false' 2>/dev/null
+    fi
+
+    if [ $result -eq 0 ]; then
+        log "Screenshot saved: $output_path"
+    else
+        error "Screenshot failed"
+        return 1
+    fi
+}
+
+cmd_close() {
+    local killed=false
+
+    if [ -f "$PID_FILE" ]; then
+        local pid=$(cat "$PID_FILE")
+        if kill -0 "$pid" 2>/dev/null; then
+            log "Stopping Chrome (PID $pid)..."
+            kill "$pid" 2>/dev/null
+            sleep 0.5
+            kill -9 "$pid" 2>/dev/null
+            killed=true
+        fi
+        rm -f "$PID_FILE"
+    fi
+
+    # Belt and suspenders: kill any Chrome using our profile
+    local profile_chromes=$(pgrep -f "user-data-dir=$PROFILE")
+    if [ -n "$profile_chromes" ]; then
+        echo "$profile_chromes" | xargs kill -9 2>/dev/null
+        killed=true
+    fi
+
+    if [ "$killed" = true ]; then
+        log "Chrome stopped."
+    else
+        log "Chrome not running."
+    fi
+}
+
+cmd_status() {
+    if is_running; then
+        local pid=$(cat "$PID_FILE")
+        local visible=$(osascript -e 'tell application "System Events" to get visible of process "Google Chrome"' 2>/dev/null)
+        local url=$(agent-browser --cdp "$CDP_PORT" get url 2>/dev/null)
+        log "Chrome running (PID $pid, port $CDP_PORT)"
+        [ -n "$url" ] && log "URL: $url"
+        log "Visible: $visible"
+    else
+        log "Chrome not running."
+    fi
+}
+
+cmd_hide() {
+    is_running || { error "Chrome not running"; exit 1; }
+    osascript -e 'tell application "System Events" to set visible of process "Google Chrome" to false' 2>/dev/null
+    log "Hidden."
+}
+
+cmd_unhide() {
+    is_running || { error "Chrome not running"; exit 1; }
+    osascript -e 'tell application "System Events" to set visible of process "Google Chrome" to true' 2>/dev/null
+    log "Visible (behind other windows)."
+}
+
+cmd_setup() {
+    if is_running; then
+        error "Close Chrome first: stealth-browser close"
+        exit 1
+    fi
+    log "Re-creating profile..."
+    rm -rf "$PROFILE"
+    ensure_profile
+}
+
+cmd_doctor() {
+    log "Checking dependencies..."
+    echo ""
+
+    local all_ok=true
+
+    # macOS
+    if [[ "$(uname)" == "Darwin" ]]; then
+        local macos_ver=$(sw_vers -productVersion 2>/dev/null || echo "unknown")
+        echo -e "  ${GREEN}✓${NC} macOS: $macos_ver"
+    else
+        echo -e "  ${RED}✗${NC} macOS: Not detected ($(uname)). stealth-browser requires macOS."
+        all_ok=false
+    fi
+
+    # Chrome
+    if [ -x "$CHROME" ]; then
+        local ver=$("$CHROME" --version 2>/dev/null | head -1)
+        echo -e "  ${GREEN}✓${NC} Chrome: $ver"
+    else
+        echo -e "  ${RED}✗${NC} Chrome: Not found at $CHROME"
+        echo -e "    Install: https://google.com/chrome"
+        all_ok=false
+    fi
+
+    # agent-browser
+    if command -v agent-browser &>/dev/null; then
+        echo -e "  ${GREEN}✓${NC} agent-browser: $(which agent-browser)"
+    else
+        echo -e "  ${RED}✗${NC} agent-browser: Not installed"
+        echo -e "    Install: npm install -g agent-browser"
+        all_ok=false
+    fi
+
+    # python3
+    if command -v python3 &>/dev/null; then
+        echo -e "  ${GREEN}✓${NC} python3: $(python3 --version 2>&1)"
+    else
+        echo -e "  ${RED}✗${NC} python3: Not installed"
+        echo -e "    Install: brew install python3"
+        all_ok=false
+    fi
+
+    # d2m
+    if npx d2m --version &>/dev/null 2>&1; then
+        echo -e "  ${GREEN}✓${NC} d2m: installed (HTML→markdown converter)"
+    else
+        echo -e "  ${YELLOW}!${NC} d2m: Not installed (needed for 'read' command)"
+        echo -e "    Install: npm install -g d2m"
+    fi
+
+    # Profile
+    echo ""
+    if [ -d "$PROFILE/Default" ]; then
+        local size=$(du -sh "$PROFILE" 2>/dev/null | cut -f1)
+        echo -e "  ${GREEN}✓${NC} Profile: $PROFILE ($size)"
+
+        # Check extensions
+        local ext_count=$(ls -d "$PROFILE/Default/Extensions"/*/ 2>/dev/null | wc -l | tr -d ' ')
+        echo -e "  ${GREEN}✓${NC} Extensions: $ext_count installed"
+    else
+        echo -e "  ${YELLOW}!${NC} Profile: Not created yet (run any command to auto-create)"
+    fi
+
+    echo ""
+    if [ "$all_ok" = true ]; then
+        log "All good."
+    else
+        error "Fix missing dependencies above."
+    fi
+}
+
+# ─── Main ─────────────────────────────────────────────────────────────
+
+case "${1:-}" in
+    read)        check_deps read; shift; cmd_read "$@" ;;
+    open)        check_deps; shift; cmd_open "$@" ;;
+    close)       cmd_close ;;
+    status)      cmd_status ;;
+    screenshot)  check_deps; shift; cmd_screenshot "$@" ;;
+    hide)        cmd_hide ;;
+    unhide)      cmd_unhide ;;
+    setup)       check_deps; cmd_setup ;;
+    doctor)      cmd_doctor ;;
+    *)
+        cat <<'EOF'
+stealth-browser - Invisible Chrome automation via CDP
+
+Usage:
+  stealth-browser read <url>              Fetch page as clean markdown
+  stealth-browser open <url> [--hidden]   Launch Chrome with CDP port
+  stealth-browser close                   Stop Chrome
+  stealth-browser status                  Show Chrome state
+  stealth-browser screenshot [path]       CDP screenshot (unhides briefly)
+  stealth-browser hide                    Hide Chrome window
+  stealth-browser unhide                  Show Chrome window
+  stealth-browser setup                   Re-create Chrome profile
+  stealth-browser doctor                  Check dependencies
+
+After opening, use agent-browser for full automation:
+  agent-browser --cdp 9222 snapshot -i    Get page elements
+  agent-browser --cdp 9222 click @e1      Click element
+  agent-browser --cdp 9222 fill @e2 "x"   Fill input
+  agent-browser --cdp 9222 screenshot p.png
+
+Chrome stays running between commands. First launch has a brief flash,
+all subsequent operations are completely invisible.
+EOF
+        ;;
+esac

@@ -1,0 +1,228 @@
+{
+  "app": {
+    "companyName": "Total Water Treatment Systems",
+    "logoUrl": "https://brandfetch.io/totalwater.com/logo",
+    "theme": {
+      "primaryColor": "#1a5f7a",
+      "accentColor": "#2d9cdb",
+      "mode": "light",
+      "allowModeToggle": true
+    }
+  },
+  "sections": [
+    {
+      "id": "configure",
+      "label": "Configure",
+      "icon": "Settings2",
+      "order": 1,
+      "component": "card-selector",
+      "componentConfig": {
+        "itemLayout": "grid",
+        "showPrice": true,
+        "showDescription": true,
+        "showOptions": true,
+        "selectionMode": "add-to-list",
+        "groupBy": "category"
+      },
+      "dataSource": "data.products",
+      "actions": [
+        { "label": "Add to Quote", "action": "addSelected", "variant": "primary" }
+      ]
+    },
+    {
+      "id": "quote",
+      "label": "Build Quote",
+      "icon": "FileText",
+      "order": 2,
+      "component": "data-table",
+      "componentConfig": {
+        "columns": [
+          { "key": "product", "label": "Product", "width": "auto" },
+          { "key": "options", "label": "Configuration", "width": "auto" },
+          { "key": "quantity", "label": "Qty", "width": "80px", "editable": true },
+          { "key": "unitPrice", "label": "Unit Price", "width": "120px", "format": "currency" },
+          { "key": "total", "label": "Total", "width": "120px", "format": "currency", "computed": true }
+        ],
+        "showRowActions": true,
+        "rowActions": ["edit", "duplicate", "remove"]
+      },
+      "dataSource": "data.lineItems",
+      "actions": [
+        { "label": "Preview Quote", "action": "navigateTo:preview", "variant": "primary" },
+        { "label": "Clear All", "action": "clearItems", "variant": "ghost", "confirm": true }
+      ]
+    },
+    {
+      "id": "preview",
+      "label": "Preview",
+      "icon": "Eye",
+      "order": 3,
+      "component": "summary",
+      "componentConfig": {
+        "showLineItems": true,
+        "showSubtotal": true,
+        "showMarkup": false,
+        "showTax": false,
+        "showTotal": true,
+        "showTerms": true,
+        "showNotes": true
+      },
+      "dataSource": "data.lineItems",
+      "actions": [
+        { "label": "Export PDF", "action": "exportPDF", "variant": "primary" },
+        { "label": "Back to Quote", "action": "navigateTo:quote", "variant": "ghost" }
+      ]
+    },
+    {
+      "id": "approve",
+      "label": "Approve",
+      "icon": "CheckCircle",
+      "order": 4,
+      "component": "form",
+      "componentConfig": {
+        "fields": [
+          { "key": "customerName", "label": "Customer Name", "type": "text", "required": true },
+          { "key": "customerEmail", "label": "Customer Email", "type": "email" },
+          { "key": "paymentTerms", "label": "Payment Terms", "type": "select", "default": "net30" },
+          { "key": "notes", "label": "Notes", "type": "textarea" },
+          { "key": "validUntil", "label": "Valid Until", "type": "date" }
+        ]
+      },
+      "dataSource": "data.quoteSettings",
+      "gated": {
+        "requires": ["customerName", "hasLineItems", "noErrors"],
+        "message": "Complete these before approving: customer name, at least one product, no unresolved dependency errors."
+      },
+      "actions": [
+        { "label": "Approve & Send", "action": "approveQuote", "variant": "primary", "confirm": true },
+        { "label": "Save Draft", "action": "saveDraft", "variant": "secondary" }
+      ]
+    }
+  ],
+  "navMode": "stepper",
+  "data": {
+    "products": [
+      {
+        "id": "culligan-he-softener",
+        "name": "Culligan HE Softener",
+        "category": "softener",
+        "description": "Commercial/industrial water softener, Culligan HE series",
+        "basePrice": 4500,
+        "pricingSource": "cost_plus",
+        "options": [
+          {
+            "id": "size",
+            "label": "Size",
+            "type": "select",
+            "choices": ["18-inch", "24-inch", "30-inch", "36-inch"],
+            "required": true,
+            "affectsPrice": true
+          },
+          {
+            "id": "valve-type",
+            "label": "Valve Type",
+            "type": "select",
+            "choices": ["Logix Controller", "Fleck Valve"],
+            "default": "Logix Controller",
+            "required": true,
+            "affectsPrice": false
+          }
+        ],
+        "active": true
+      },
+      {
+        "id": "brine-tank",
+        "name": "Brine Tank",
+        "category": "brine-tank",
+        "description": "Required companion for water softeners, must be size-matched",
+        "basePrice": 800,
+        "pricingSource": "cost_plus",
+        "options": [
+          {
+            "id": "size",
+            "label": "Size",
+            "type": "select",
+            "choices": ["18x36 Round", "24x50", "30x50"],
+            "required": true,
+            "affectsPrice": true
+          }
+        ],
+        "active": true
+      },
+      {
+        "id": "carbon-pre-filter",
+        "name": "Carbon Pre-Filter",
+        "category": "carbon-filter",
+        "description": "Upstream carbon filter to remove chlorine before softener",
+        "basePrice": 1200,
+        "pricingSource": "cost_plus",
+        "options": [],
+        "active": true
+      }
+    ],
+    "lineItems": [],
+    "quoteSettings": {
+      "currency": "USD",
+      "taxEnabled": false,
+      "defaultTerms": "net30",
+      "availableTerms": ["net30", "net45", "milestone"],
+      "markup": 0.375,
+      "quoteFormat": "itemized"
+    }
+  },
+  "rules": [
+    {
+      "id": "BR-001",
+      "type": "requires",
+      "trigger": "addItem",
+      "condition": { "item.category": "softener" },
+      "action": { "suggest": "brine-tank", "matchField": "size" },
+      "message": "This softener requires a size-matched brine tank. The softener does not function without one.",
+      "severity": "error"
+    },
+    {
+      "id": "BR-002",
+      "type": "recommends",
+      "trigger": "addItem",
+      "condition": { "item.category": "softener" },
+      "action": { "suggest": "carbon-pre-filter" },
+      "message": "Carbon pre-filter recommended. Chlorine in city water damages softener resin — without a carbon filter, expect a warranty issue within a year.",
+      "severity": "warning"
+    },
+    {
+      "id": "BR-003",
+      "type": "validates",
+      "trigger": "setTerms",
+      "condition": { "terms": { "$ne": "net30" } },
+      "action": { "requireApproval": "sales-director" },
+      "message": "Non-standard payment terms require Sales Director approval.",
+      "severity": "warning"
+    }
+  ],
+  "roles": [
+    {
+      "id": "sales-engineer",
+      "label": "Sales Engineer",
+      "permissions": ["createQuote", "editQuote", "selectProducts"]
+    },
+    {
+      "id": "sales-director",
+      "label": "Sales Director",
+      "permissions": ["approveQuote", "approveTerms", "viewReports", "editCatalog"]
+    }
+  ],
+  "metadata": {
+    "generatedAt": "2026-04-01T00:00:00Z",
+    "skill": "cpq-builder",
+    "skillVersion": "3.0",
+    "verticalPreset": "services",
+    "openQuestions": [
+      "Exact brine tank size-to-softener mapping (which sizes fit which softener)",
+      "Carbon filter — always recommend or only on city water applications?",
+      "Full product catalog — only 3 items captured in discovery call",
+      "Approval workflow UI — who approves, what's the flow?",
+      "Integration with Salesforce — what data flows where?"
+    ]
+  }
+}
+

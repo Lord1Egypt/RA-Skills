@@ -1,35 +1,10 @@
 ---
-name: "cc-skill-strategic-compact"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/cc-skill-strategic-compact"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/cc-skill-strategic-compact"
+name: cc-skill-strategic-compact
+description: Development skill from everything-claude-code
+author: affaan-m
+version: "1.0"
 ---
 
 # cc-skill-strategic-compact
 
-> Indexed by skills.sh from davila7/claude-code-templates
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/cc-skill-strategic-compact`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/cc-skill-strategic-compact](https://skills.sh/davila7/claude-code-templates/cc-skill-strategic-compact)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/cc-skill-strategic-compact
-```
+Development skill skill.

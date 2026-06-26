@@ -1,35 +1,23 @@
 ---
-name: "deslop"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/deslop"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/deslop"
+name: deslop
+description: Remove AI-generated code slop from a branch. Use when cleaning up AI-generated code, removing unnecessary comments, defensive checks, or type casts. Checks diff against main and fixes style inconsistencies.
 ---
 
-# deslop
+# Remove AI Code Slop
 
-> Indexed by skills.sh from davila7/claude-code-templates
+Check the diff against main and remove all AI-generated slop introduced in this branch.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/deslop`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/deslop](https://skills.sh/davila7/claude-code-templates/deslop)
+## What to Remove
 
-## Overview
+- Extra comments that a human wouldn't add or are inconsistent with the rest of the file
+- Extra defensive checks or try/catch blocks that are abnormal for that area of the codebase (especially if called by trusted/validated codepaths)
+- Casts to `any` to get around type issues
+- Inline imports in Python (move to top of file with other imports)
+- Any other style that is inconsistent with the file
 
+## Process
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/deslop
-```
+1. Get the diff against main: `git diff main...HEAD`
+2. Review each changed file for slop patterns
+3. Remove identified slop while preserving legitimate changes
+4. Report a 1-3 sentence summary of what was changed

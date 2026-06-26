@@ -1,35 +1,89 @@
 ---
-name: "better-all"
-description: "Indexed by skills.sh from casper-studios/casper-marketplace"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "casper-studios"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/casper-studios/casper-marketplace/better-all"
-sourceUrl: "https://skills.sh/casper-studios/casper-marketplace/better-all"
+name: better-all
+description: Use the better-all library for Promise.all with automatic DAG-based dependency optimization and full type inference. Use when parallelizing async operations with complex dependencies.
+user-invocable: false
+metadata:
+  author: BastiDood <basti@casperstudios.xyz>
 ---
 
-# better-all
+## Documentation
 
-> Indexed by skills.sh from casper-studios/casper-marketplace
+- GitHub Repository: https://github.com/shuding/better-all
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** casper-studios
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/casper-studios/casper-marketplace/better-all`
-- **Source URL:** [https://skills.sh/casper-studios/casper-marketplace/better-all](https://skills.sh/casper-studios/casper-marketplace/better-all)
+Note: This library is not yet indexed in DeepWiki or Context7.
 
-## Overview
+# better-all Library
 
+`better-all` provides `Promise.all` with automatic dependency optimization. Instead of manually analyzing which tasks can run in parallel, tasks declare dependencies inline and execution is automatically optimized.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install skills-sh/casper-studios/casper-marketplace/better-all
+pnpm add better-all
 ```
+
+## Basic Usage
+
+```typescript
+import { all } from "better-all";
+
+const results = await all({
+  // Independent tasks run in parallel
+  fetchUser: () => fetchUser(userId),
+  fetchPosts: () => fetchPosts(userId),
+
+  // Dependent task waits automatically
+  combined: async (ctx) => {
+    const user = await ctx.$.fetchUser;
+    const posts = await ctx.$.fetchPosts;
+    return { user, posts };
+  },
+});
+
+// results.fetchUser, results.fetchPosts, results.combined all typed
+```
+
+## Key Advantage: Automatic Optimization
+
+```typescript
+// Manual approach - error-prone
+const [user, posts] = await Promise.all([fetchUser(), fetchPosts()]);
+const profile = await buildProfile(user, posts);
+const [feed, stats] = await Promise.all([
+  buildFeed(profile, posts),
+  buildStats(profile),
+]);
+
+// better-all - dependencies declared, execution optimized
+const results = await all({
+  user: () => fetchUser(),
+  posts: () => fetchPosts(),
+  profile: async (ctx) => buildProfile(await ctx.$.user, await ctx.$.posts),
+  feed: async (ctx) => buildFeed(await ctx.$.profile, await ctx.$.posts),
+  stats: async (ctx) => buildStats(await ctx.$.profile),
+});
+```
+
+## Type Inference
+
+Results are fully typed based on task return types:
+
+```typescript
+const results = await all({
+  count: () => Promise.resolve(42),
+  name: () => Promise.resolve("test"),
+  combined: async (ctx) => ({
+    count: await ctx.$.count,
+    name: await ctx.$.name,
+  }),
+});
+
+// TypeScript knows:
+// results.count: number
+// results.name: string
+// results.combined: { count: number; name: string }
+```
+
+## References
+
+- For complex DAG patterns, see [dag-patterns.md](references/dag-patterns.md)

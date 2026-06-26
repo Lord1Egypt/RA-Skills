@@ -1,35 +1,32 @@
 ---
-name: "ui-design-system"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/ui-design-system"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/ui-design-system"
+name: ui-design-system
+description: UI design system toolkit for Senior UI Designer including design token generation, component documentation, responsive design calculations, and developer handoff tools. Use for creating design systems, maintaining visual consistency, and facilitating design-dev collaboration.
 ---
 
-# ui-design-system
+# UI Design System
 
-> Indexed by skills.sh from davila7/claude-code-templates
+Professional toolkit for creating and maintaining scalable design systems.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/ui-design-system`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/ui-design-system](https://skills.sh/davila7/claude-code-templates/ui-design-system)
+## Core Capabilities
+- Design token generation (colors, typography, spacing)
+- Component system architecture
+- Responsive design calculations
+- Accessibility compliance
+- Developer handoff documentation
 
-## Overview
+## Key Scripts
 
+### design_token_generator.py
+Generates complete design system tokens from brand colors.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/ui-design-system
-```
+**Usage**: `python scripts/design_token_generator.py [brand_color] [style] [format]`
+- Styles: modern, classic, playful
+- Formats: json, css, scss
+
+**Features**:
+- Complete color palette generation
+- Modular typography scale
+- 8pt spacing grid system
+- Shadow and animation tokens
+- Responsive breakpoints
+- Multiple export formats

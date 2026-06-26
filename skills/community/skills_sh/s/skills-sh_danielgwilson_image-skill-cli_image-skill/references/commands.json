@@ -1,0 +1,557 @@
+{
+  "schema": "image-skill.public-command-manifest.v1",
+  "command_prefix": "image-skill",
+  "product_frame": "Image Skill is a hosted thin CLI and public contract for agent-native durable creative media.",
+  "skill_url": "https://image-skill.com/skill.md",
+  "docs_url": "https://image-skill.com/cli.md",
+  "llms_url": "https://image-skill.com/llms.txt",
+  "commands": [
+    {
+      "id": "doctor",
+      "docs_anchor": "image-skill-doctor",
+      "surface": "client",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "trust",
+      "docs_anchor": "image-skill-trust",
+      "surface": "client",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "signup",
+      "docs_anchor": "image-skill-signup-agent",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": false
+    },
+    {
+      "id": "claim",
+      "docs_anchor": "image-skill-claim-request",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": false,
+      "subcommands": ["request"]
+    },
+    {
+      "id": "whoami",
+      "docs_anchor": "image-skill-whoami",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "usage",
+      "docs_anchor": "image-skill-usage",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["quota"]
+    },
+    {
+      "id": "quota",
+      "docs_anchor": "image-skill-quota",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false
+    },
+    {
+      "id": "credits",
+      "docs_anchor": "image-skill-credits",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": true,
+      "subcommands": ["methods", "packs list", "quote", "buy", "status"]
+    },
+    {
+      "id": "capabilities",
+      "docs_anchor": "image-skill-capabilities",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["list", "show"]
+    },
+    {
+      "id": "models",
+      "docs_anchor": "image-skill-models",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["list", "show"]
+    },
+    {
+      "id": "create",
+      "docs_anchor": "image-skill-create",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": true
+    },
+    {
+      "id": "upload",
+      "docs_anchor": "image-skill-upload",
+      "surface": "client",
+      "mutation": true,
+      "spend": false
+    },
+    {
+      "id": "edit",
+      "docs_anchor": "image-skill-edit",
+      "surface": "client",
+      "mutation": true,
+      "spend": true
+    },
+    {
+      "id": "assets",
+      "docs_anchor": "image-skill-assets",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["show", "get"]
+    },
+    {
+      "id": "jobs",
+      "docs_anchor": "image-skill-jobs",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["show", "wait"]
+    },
+    {
+      "id": "activity",
+      "docs_anchor": "image-skill-activity",
+      "surface": "hosted_cli",
+      "mutation": false,
+      "spend": false,
+      "subcommands": ["list", "show"]
+    },
+    {
+      "id": "feedback",
+      "docs_anchor": "image-skill-feedback",
+      "surface": "hosted_cli",
+      "mutation": true,
+      "spend": false,
+      "subcommands": ["create"]
+    }
+  ],
+  "modality_aliases": [
+    { "alias": "image", "command": "create", "intent": null },
+    { "alias": "video", "command": "create", "intent": "video" },
+    { "alias": "audio", "command": "create", "intent": "audio" },
+    { "alias": "3d", "command": "create", "intent": "image-to-3d" },
+    { "alias": "image-to-3d", "command": "create", "intent": "image-to-3d" },
+    { "alias": "three-d", "command": "create", "intent": "image-to-3d" }
+  ],
+  "help_entries": [
+    {
+      "key": "",
+      "help": {
+        "command": "help",
+        "usage": "image-skill <doctor|trust|signup|claim|whoami|usage|quota|credits|capabilities|models|create|upload|edit|assets|jobs|activity|feedback> --json",
+        "docs_url": "https://image-skill.com/cli.md",
+        "agent_skill": {
+          "url": "https://image-skill.com/skill.md",
+          "llms_url": "https://image-skill.com/llms.txt",
+          "cli_docs_url": "https://image-skill.com/cli.md",
+          "read_command": "curl -fsSL https://image-skill.com/skill.md",
+          "recommended_start_command": "image-skill create --guide --prompt PROMPT --json",
+          "model_discovery_command": "image-skill models list --available --operation image.generate --json",
+          "model_inspection_command": "image-skill models show MODEL_ID --json",
+          "no_spend": true,
+          "purpose": "Read the agent skill before paid media work; it explains model discovery, guide flow, model parameters, quota, and self-fund recovery."
+        },
+        "commands": [
+          "doctor",
+          "trust",
+          "signup --agent --agent-name NAME --runtime RUNTIME",
+          "claim request --contact INBOX",
+          "whoami",
+          "usage quota",
+          "quota",
+          "credits methods",
+          "credits quote",
+          "credits packs list",
+          "credits buy",
+          "credits status",
+          "capabilities",
+          "capabilities list",
+          "capabilities show",
+          "models",
+          "models list",
+          "models show",
+          "create --guide",
+          "image create --guide",
+          "video create --guide",
+          "audio create --guide",
+          "3d create --guide",
+          "create --dry-run",
+          "create",
+          "image edit",
+          "upload",
+          "edit",
+          "assets show",
+          "assets get",
+          "jobs show",
+          "jobs wait",
+          "activity list",
+          "activity show",
+          "feedback create"
+        ]
+      }
+    },
+    {
+      "key": "doctor",
+      "help": {
+        "command": "image-skill doctor help",
+        "usage": "image-skill doctor --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-doctor",
+        "description": "Check hosted API reachability, CLI version, auth state, health, and live-spend recovery breadcrumbs.",
+        "optional_flags": ["--sweep-in-flight"]
+      }
+    },
+    {
+      "key": "trust",
+      "help": {
+        "command": "image-skill trust help",
+        "usage": "image-skill trust --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-trust",
+        "description": "Return npm provenance, hosted contract hashes, API health, and model availability evidence."
+      }
+    },
+    {
+      "key": "signup",
+      "help": {
+        "command": "image-skill signup help",
+        "usage": "image-skill signup --agent --agent-name NAME --runtime RUNTIME --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-signup-agent",
+        "required_flags": ["--agent", "--agent-name", "--runtime"],
+        "optional_flags": [
+          "--agent-contact",
+          "--show-token",
+          "--no-save",
+          "--token-stdin"
+        ]
+      }
+    },
+    {
+      "key": "claim",
+      "help": {
+        "command": "image-skill claim help",
+        "usage": "image-skill claim request --contact AGENT_OR_OPERATOR_INBOX --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-claim-request",
+        "subcommands": ["request"]
+      }
+    },
+    {
+      "key": "claim request",
+      "help": {
+        "command": "image-skill claim request help",
+        "usage": "image-skill claim request --contact AGENT_OR_OPERATOR_INBOX --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-claim-request",
+        "required_flags": ["--contact"],
+        "optional_flags": ["--token-stdin"]
+      }
+    },
+    {
+      "key": "whoami",
+      "help": {
+        "command": "image-skill whoami help",
+        "usage": "image-skill whoami --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-whoami"
+      }
+    },
+    {
+      "key": "usage",
+      "help": {
+        "command": "image-skill usage help",
+        "usage": "image-skill usage quota --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-usage",
+        "subcommands": ["quota"]
+      }
+    },
+    {
+      "key": "usage quota",
+      "help": {
+        "command": "image-skill usage quota help",
+        "usage": "image-skill usage quota --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-usage"
+      }
+    },
+    {
+      "key": "quota",
+      "help": {
+        "command": "image-skill quota help",
+        "usage": "image-skill quota --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-quota"
+      }
+    },
+    {
+      "key": "credits",
+      "help": {
+        "command": "image-skill credits help",
+        "usage": "image-skill credits <methods|packs list|quote|buy|status> --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-credits",
+        "subcommands": ["methods", "packs list", "quote", "buy", "status"]
+      }
+    },
+    {
+      "key": "credits methods",
+      "help": {
+        "command": "image-skill credits methods help",
+        "usage": "image-skill credits methods",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-credits"
+      }
+    },
+    {
+      "key": "credits packs",
+      "help": {
+        "command": "image-skill credits packs help",
+        "usage": "image-skill credits packs list --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-credits",
+        "subcommands": ["list"]
+      }
+    },
+    {
+      "key": "credits quote",
+      "help": {
+        "command": "image-skill credits quote help",
+        "usage": "image-skill credits quote --pack PACK_ID --payment-method stripe_x402.exact.usdc --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-credits",
+        "required_flags": ["--pack or --credits", "--payment-method"],
+        "optional_flags": ["--idempotency-key"]
+      }
+    },
+    {
+      "key": "credits buy",
+      "help": {
+        "command": "image-skill credits buy help",
+        "usage": "image-skill credits buy --provider stripe_x402 --quote-id QUOTE_ID --idempotency-key KEY --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-credits",
+        "required_flags": ["--provider", "--quote-id", "--idempotency-key"],
+        "supported_providers": ["stripe", "stripe_x402"]
+      }
+    },
+    {
+      "key": "credits status",
+      "help": {
+        "command": "image-skill credits status help",
+        "usage": "image-skill credits status --payment-attempt-id PAYMENT_ATTEMPT_ID --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-credits",
+        "required_flags": ["--payment-attempt-id"]
+      }
+    },
+    {
+      "key": "capabilities",
+      "help": {
+        "command": "image-skill capabilities help",
+        "usage": "image-skill capabilities <list|show> --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-capabilities",
+        "subcommands": ["list", "show"]
+      }
+    },
+    {
+      "key": "capabilities list",
+      "help": {
+        "command": "image-skill capabilities list help",
+        "usage": "image-skill capabilities list --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-capabilities"
+      }
+    },
+    {
+      "key": "capabilities show",
+      "help": {
+        "command": "image-skill capabilities show help",
+        "usage": "image-skill capabilities show CAPABILITY_ID --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-capabilities"
+      }
+    },
+    {
+      "key": "models",
+      "help": {
+        "command": "image-skill models help",
+        "usage": "image-skill models <list|show> --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-models",
+        "subcommands": ["list", "show"]
+      }
+    },
+    {
+      "key": "models list",
+      "help": {
+        "command": "image-skill models list help",
+        "usage": "image-skill models list --available --operation image.generate --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-models",
+        "optional_flags": [
+          "--available",
+          "--executable",
+          "--catalog-only",
+          "--operation",
+          "--modality",
+          "--provider",
+          "--query",
+          "--summary",
+          "--details"
+        ]
+      }
+    },
+    {
+      "key": "models show",
+      "help": {
+        "command": "image-skill models show help",
+        "usage": "image-skill models show MODEL_ID --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-models"
+      }
+    },
+    {
+      "key": "create",
+      "help": {
+        "command": "image-skill create help",
+        "usage": "image-skill create --prompt \"...\" --intent explore --max-estimated-usd-per-image 0.07 --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-create",
+        "optional_flags": [
+          "--guide",
+          "--dry-run",
+          "--model",
+          "--aspect-ratio",
+          "--output-count",
+          "--element-frontal",
+          "--element-reference",
+          "--reference-image",
+          "--model-parameters-json",
+          "--idempotency-key"
+        ]
+      }
+    },
+    {
+      "key": "upload",
+      "help": {
+        "command": "image-skill upload help",
+        "usage": "image-skill upload PATH_OR_URL --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-upload"
+      }
+    },
+    {
+      "key": "edit",
+      "help": {
+        "command": "image-skill edit help",
+        "usage": "image-skill edit --input image_... --prompt \"...\" --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-edit",
+        "required_flags": ["--input"],
+        "optional_flags": [
+          "--guide",
+          "--dry-run",
+          "--prompt",
+          "--model",
+          "--mask",
+          "--element-reference",
+          "--element-frontal",
+          "--reference-image",
+          "--model-parameters-json",
+          "--idempotency-key"
+        ]
+      }
+    },
+    {
+      "key": "assets",
+      "help": {
+        "command": "image-skill assets help",
+        "usage": "image-skill assets <show|get> ASSET_ID_OR_URL --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-assets",
+        "subcommands": ["show", "get"]
+      }
+    },
+    {
+      "key": "assets show",
+      "help": {
+        "command": "image-skill assets show help",
+        "usage": "image-skill assets show ASSET_ID_OR_URL --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-assets"
+      }
+    },
+    {
+      "key": "assets get",
+      "help": {
+        "command": "image-skill assets get help",
+        "usage": "image-skill assets get ASSET_ID_OR_URL --output PATH --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-assets"
+      }
+    },
+    {
+      "key": "jobs",
+      "help": {
+        "command": "image-skill jobs help",
+        "usage": "image-skill jobs <show|wait> JOB_ID --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-jobs",
+        "subcommands": ["show", "wait"]
+      }
+    },
+    {
+      "key": "jobs show",
+      "help": {
+        "command": "image-skill jobs show help",
+        "usage": "image-skill jobs show JOB_ID --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-jobs"
+      }
+    },
+    {
+      "key": "jobs wait",
+      "help": {
+        "command": "image-skill jobs wait help",
+        "usage": "image-skill jobs wait JOB_ID --timeout-ms 30000 --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-jobs"
+      }
+    },
+    {
+      "key": "activity",
+      "help": {
+        "command": "image-skill activity help",
+        "usage": "image-skill activity <list|show> --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-activity",
+        "subcommands": ["list", "show"]
+      }
+    },
+    {
+      "key": "activity list",
+      "help": {
+        "command": "image-skill activity list help",
+        "usage": "image-skill activity list --subject JOB_ID --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-activity"
+      }
+    },
+    {
+      "key": "activity show",
+      "help": {
+        "command": "image-skill activity show help",
+        "usage": "image-skill activity show REFERENCE --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-activity"
+      }
+    },
+    {
+      "key": "feedback",
+      "help": {
+        "command": "image-skill feedback help",
+        "usage": "image-skill feedback create --title TITLE --body BODY --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-feedback",
+        "subcommands": ["create"]
+      }
+    },
+    {
+      "key": "feedback create",
+      "help": {
+        "command": "image-skill feedback create help",
+        "usage": "image-skill feedback create --title TITLE --body BODY --type user_feedback --json",
+        "docs_url": "https://image-skill.com/cli.md#image-skill-feedback",
+        "optional_flags": [
+          "--title",
+          "--body",
+          "--type",
+          "--severity",
+          "--confidence",
+          "--expected",
+          "--actual",
+          "--command"
+        ]
+      }
+    }
+  ]
+}

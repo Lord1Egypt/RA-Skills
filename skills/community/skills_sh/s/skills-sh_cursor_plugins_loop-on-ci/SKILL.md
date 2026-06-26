@@ -1,35 +1,50 @@
 ---
-name: "loop-on-ci"
-description: "Indexed by skills.sh from cursor/plugins"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cursor"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cursor/plugins/loop-on-ci"
-sourceUrl: "https://skills.sh/cursor/plugins/loop-on-ci"
+name: loop-on-ci
+description: Monitor PR checks and fix failures until green. Uses gh pr checks as the source of truth for PR-attached checks.
 ---
 
-# loop-on-ci
+# Loop on CI
 
-> Indexed by skills.sh from cursor/plugins
+## Trigger
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cursor
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cursor/plugins/loop-on-ci`
-- **Source URL:** [https://skills.sh/cursor/plugins/loop-on-ci](https://skills.sh/cursor/plugins/loop-on-ci)
+Need to watch a branch or pull request and iterate on CI failures until all required checks are green.
 
-## Overview
+Use `gh pr checks` as the source of truth. It includes all PR-attached checks, while `gh run list` only covers GitHub Actions.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Resolve the PR for the current branch.
+2. Inspect current PR checks before waiting.
+3. If checks already failed, diagnose those failures first.
+4. If checks are pending, watch with `gh pr checks --watch --fail-fast`.
+5. After each push, re-check the full PR check set and repeat until green.
+
+## Commands
+
 ```bash
-hermes skills install skills-sh/cursor/plugins/loop-on-ci
+# Resolve the active PR
+gh pr view --json number,url,headRefName
+
+# Inspect all attached checks
+gh pr checks --json name,bucket,state,workflow,link
+
+# Watch pending checks and fail fast
+gh pr checks --watch --fail-fast
+
+# GitHub Actions logs, when the failing check links to a GHA run
+gh run view <run-id> --log-failed
 ```
+
+## Guardrails
+
+- Keep each fix scoped to a single failure cause when possible.
+- Do not bypass hooks (`--no-verify`) to force progress.
+- If the failure is clearly unrelated to the PR and appears fixed on main, merge latest main instead of bloating the PR with unrelated fixes.
+- If failures are flaky, retry once and report flake evidence.
+- Re-run `gh pr checks --json name,bucket,state,workflow,link` after every push; the check set can change.
+
+## Output
+
+- Current CI status
+- Failure summary and fixes applied
+- PR URL once checks are green

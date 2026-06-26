@@ -1,0 +1,26 @@
+{
+  "name": "zod",
+  "version": "1.0.0",
+  "category": "toolchain",
+  "toolchain": "typescript",
+  "tags": [
+    "zod",
+    "validation",
+    "typescript",
+    "schema",
+    "type-safety"
+  ],
+  "entry_point_tokens": 65,
+  "full_tokens": 7468,
+  "related_skills": [
+    "../../data/drizzle",
+    "../../data/prisma",
+    "../../../nextjs"
+  ],
+  "author": "claude-mpm-skills",
+  "license": "MIT",
+  "subcategory": "validation",
+  "created": "2025-11-30",
+  "updated": "2025-11-30",
+  "repository": "https://github.com/bobmatnyc/claude-mpm-skills"
+}

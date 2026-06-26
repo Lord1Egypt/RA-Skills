@@ -1,35 +1,26 @@
 ---
-name: "product-strategist"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/product-strategist"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/product-strategist"
+name: product-strategist
+description: Strategic product leadership toolkit for Head of Product including OKR cascade generation, market analysis, vision setting, and team scaling. Use for strategic planning, goal alignment, competitive analysis, and organizational design.
 ---
 
-# product-strategist
+# Product Strategist
 
-> Indexed by skills.sh from davila7/claude-code-templates
+Strategic toolkit for Head of Product to drive vision, alignment, and organizational excellence.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/product-strategist`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/product-strategist](https://skills.sh/davila7/claude-code-templates/product-strategist)
+## Core Capabilities
+- OKR cascade generation and alignment
+- Market and competitive analysis
+- Product vision and strategy frameworks
+- Team scaling and organizational design
+- Metrics and KPI definition
 
-## Overview
+## Key Scripts
 
+### okr_cascade_generator.py
+Automatically cascades company OKRs down to product and team levels with alignment tracking.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/davila7/claude-code-templates/product-strategist
-```
+**Usage**: `python scripts/okr_cascade_generator.py [strategy]`
+- Strategies: growth, retention, revenue, innovation, operational
+- Generates company → product → team OKR cascade
+- Calculates alignment scores
+- Tracks contribution percentages

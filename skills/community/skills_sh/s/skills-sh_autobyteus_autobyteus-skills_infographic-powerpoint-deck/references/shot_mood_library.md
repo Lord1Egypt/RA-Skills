@@ -1,0 +1,69 @@
+# Shot + mood library (v3 shot language / time / weather / lighting)
+
+Goal: add cinematic energy reliably without making slides messy.
+The examples below are illustrative; map the same mood logic onto whatever subject the user is actually presenting.
+This file only handles one layer of the final prompt. It does not replace geometry, palette, typography, surface, or module instructions.
+
+## Quick recipe (per slide)
+
+Pick:
+- 1 **Shot** (camera feel)
+- 1 **Time/Weather** (mood)
+- 1–2 **Lighting** tricks (right side only)
+- 1 **Surface/material cue** if the slide is scene-led
+- 1 **Restraint rule** describing what must stay calm for readability
+
+Keep these effects subtle; readability always wins.
+If the user asks for relaxed/bright style, prioritize daylight moods and avoid vignette-heavy lighting.
+
+---
+
+## Shots (camera feel)
+
+- **Wide establishing**: show location context (harbor, city wall, desert road) with a small hero symbol in foreground.
+- **Medium hero**: hero symbol dominates (mask / scale / shield), location becomes soft backdrop.
+- **Medium protagonist**: one clear human or character figure dominates, with the environment as supporting backdrop.
+- **Close-up detail**: focus on one prop (ring, wax seal, rope/basket, scissors cutting chain) with strong texture and shallow depth of field.
+- **Low angle (awe)**: hero symbol appears towering; use rim light (use sparingly).
+- **Top-down (analysis)**: best for frameworks/checklists: desk view, cards laid out, map with dotted nodes.
+- **Diagonal composition (tension)**: spotlight beam, rope lowering basket, waves; gives motion energy.
+
+---
+
+## Time + weather moods
+
+- **Dusk (warm→cool transition)**: hopeful tension; great for introductions and big themes.
+- **Night / moonlight**: quiet danger; great for city wall escape, deception warnings.
+- **Dawn**: resolve + response; great for application/closing.
+- **Daylight (clear sky)**: clarity + openness; best for teaching/training/explainer slides.
+- **Soft overcast day**: calm, neutral, low-glare readability for dense text pages.
+- **Bright interior daylight**: clean and focused; ideal for frameworks/checklists.
+- **Storm at sea**: crisis; use silhouettes and low contrast.
+- **Haze / mist**: ambiguity and uncertainty; great for deception or false-signal warnings.
+- **Candlelit interior**: discernment, close reading, and careful evaluation; great for framework slides.
+
+---
+
+## Cinematic lighting tricks (pick 1–2)
+
+- **Volumetric ray (godray)**: a single beam through dust/haze; keep right-side only.
+- **Rim light**: thin gold edge highlight on hero symbol.
+- **Subtle vignette**: slightly darker corners to focus attention.
+- **Specular glints**: tiny gold sparkles on chain cut / ring / wax seal (very minimal).
+- **Depth haze**: far background softer, lower contrast to separate layers.
+- **Ambient fill light**: softly lift shadows to keep the slide bright and relaxed.
+- **Bounce light**: gentle reflected light from floor/wall surfaces for cleaner midtones.
+
+---
+
+## Emotion mapping (what to use when)
+
+- **Warning / deception**: night + haze + mask + rim light + faint shadow silhouette.
+- **Purity / covenant**: dusk + soft ray + ring/veil + shield.
+- **Discernment / clarity**: candlelit desk + top-down shot + clean three cards.
+- **Oppression / abuse**: diagonal tension + street silhouettes + puppet strings + broken chain light break.
+- **Suffering / endurance**: montage silhouettes + storm/road + low contrast + strong composition grid.
+- **Care / burden**: night map + heart glow + gold connection lines.
+- **Calm explanation / onboarding**: daylight + soft overcast + top-down or medium shot + low-noise background.
+- **Hopeful call-to-action**: bright dawn/daylight + clean foreground symbol + gentle highlight edges.
+Keep the emotional logic and swap the symbols to match the user's domain.

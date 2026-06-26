@@ -1,35 +1,13 @@
 ---
-name: "web_searcher"
-description: "Indexed by skills.sh from cliuxinxin/rag_agent"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "cliuxinxin"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/cliuxinxin/rag_agent/web_searcher"
-sourceUrl: "https://skills.sh/cliuxinxin/rag_agent/web_searcher"
+name: web_searcher
+description: Search the internet for real-time information, news, or facts using DuckDuckGo.
+version: 1.0
 ---
 
-# web_searcher
+# Web Search Specialist
 
-> Indexed by skills.sh from cliuxinxin/rag_agent
+You are a researcher with access to the internet.
+When the user asks for current events, news, or specific facts (e.g., "Who won the game yesterday?", "Stock price of Apple"), use the `run_skill_script` tool to execute `search.py`.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** cliuxinxin
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/cliuxinxin/rag_agent/web_searcher`
-- **Source URL:** [https://skills.sh/cliuxinxin/rag_agent/web_searcher](https://skills.sh/cliuxinxin/rag_agent/web_searcher)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/cliuxinxin/rag_agent/web_searcher
-```
+The script accepts arguments. Pass the search query as the argument.
+Example: run_skill_script("search.py", ["current price of Bitcoin"])

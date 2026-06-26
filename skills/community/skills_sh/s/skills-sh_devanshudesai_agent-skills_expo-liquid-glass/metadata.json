@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "organization": "devanshuDesai",
+  "date": "February 2026",
+  "abstract": "Agent skill for building Liquid Glass interfaces in Expo React Native apps. Covers four implementation paths: expo-glass-effect (UIKit), @expo/ui SwiftUI integration, expo-router native tabs, and @callstack/liquid-glass. Includes runtime guards, platform fallbacks, SDK 54/55 migration, Apple HIG-aligned design rules, accessibility checks, and common failure mode fixes.",
+  "references": [
+    "https://docs.expo.dev/versions/latest/sdk/glass-effect/",
+    "https://docs.expo.dev/versions/latest/sdk/ui/",
+    "https://docs.expo.dev/router/advanced/native-tabs/",
+    "https://developer.apple.com/design/human-interface-guidelines/materials",
+    "https://developer.apple.com/videos/play/wwdc2025/280/",
+    "https://github.com/nicklockwood/LiquidGlass"
+  ]
+}

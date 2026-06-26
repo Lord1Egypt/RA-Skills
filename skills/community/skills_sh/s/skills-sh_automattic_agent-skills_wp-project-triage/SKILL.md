@@ -1,35 +1,38 @@
 ---
-name: "wp-project-triage"
-description: "Indexed by skills.sh from automattic/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "automattic"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/automattic/agent-skills/wp-project-triage"
-sourceUrl: "https://skills.sh/automattic/agent-skills/wp-project-triage"
+name: wp-project-triage
+description: "Use when you need a deterministic inspection of a WordPress repository (plugin/theme/block theme/WP core/Gutenberg/full site) including tooling/tests/version hints, and a structured JSON report to guide workflows and guardrails."
+compatibility: "Targets WordPress 6.9+ (PHP 7.2.24+). Filesystem-based agent with bash + node. Some workflows require WP-CLI."
 ---
 
-# wp-project-triage
+# WP Project Triage
 
-> Indexed by skills.sh from automattic/agent-skills
+## When to use
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** automattic
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/automattic/agent-skills/wp-project-triage`
-- **Source URL:** [https://skills.sh/automattic/agent-skills/wp-project-triage](https://skills.sh/automattic/agent-skills/wp-project-triage)
+Use this skill to quickly understand what kind of WordPress repo you’re in and what commands/conventions to follow before making changes.
 
-## Overview
+## Inputs required
 
+- Repo root (current working directory).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/automattic/agent-skills/wp-project-triage
-```
+## Procedure
+
+1. Run the detector (prints JSON to stdout):
+   - `node skills/wp-project-triage/scripts/detect_wp_project.mjs`
+2. If you need the exact output contract, read:
+   - `skills/wp-project-triage/references/triage.schema.json`
+3. Use the report to select workflow guardrails:
+   - project kind(s)
+   - PHP/Node tooling present
+   - tests present
+   - version hints and sources
+4. If the report is missing signals you need, update the detector rather than guessing.
+
+## Verification
+
+- The JSON should parse and include: `project.kind`, `signals`, and `tooling`.
+- Re-run after changes that affect structure/tooling (adding `theme.json`, `block.json`, build config).
+
+## Failure modes / debugging
+
+- If it reports `unknown`, check whether the repo root is correct.
+- If scanning is slow, add/extend ignore directories in the script.

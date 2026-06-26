@@ -1,35 +1,36 @@
 ---
-name: "exa-search"
-description: "Indexed by skills.sh from davila7/claude-code-templates"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "davila7"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/davila7/claude-code-templates/exa-search"
-sourceUrl: "https://skills.sh/davila7/claude-code-templates/exa-search"
+name: exa-search
+description: Semantic search, similar content discovery, and structured research using Exa API
 ---
 
 # exa-search
 
-> Indexed by skills.sh from davila7/claude-code-templates
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** davila7
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/davila7/claude-code-templates/exa-search`
-- **Source URL:** [https://skills.sh/davila7/claude-code-templates/exa-search](https://skills.sh/davila7/claude-code-templates/exa-search)
-
 ## Overview
+Semantic search, similar content discovery, and structured research using Exa API
 
+## When to Use
+- When you need semantic/embeddings-based search
+- When finding similar content
+- When searching by category (company, people, research papers, etc.)
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/davila7/claude-code-templates/exa-search
+npx skills add -g BenedictKing/exa-search
 ```
+
+## Step-by-Step Guide
+1. Install the skill using the command above
+2. Configure Exa API key
+3. Use naturally in Claude Code conversations
+
+## Examples
+See [GitHub Repository](https://github.com/BenedictKing/exa-search) for examples.
+
+## Best Practices
+- Configure API keys via environment variables
+
+## Troubleshooting
+See the GitHub repository for troubleshooting guides.
+
+## Related Skills
+- context7-auto-research, tavily-web, firecrawl-scraper, codex-review

@@ -1,35 +1,135 @@
 ---
-name: "market-overview"
-description: "Indexed by skills.sh from chengzuopeng/stock-sdk-mcp"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "chengzuopeng"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/chengzuopeng/stock-sdk-mcp/market-overview"
-sourceUrl: "https://skills.sh/chengzuopeng/stock-sdk-mcp/market-overview"
+name: market-overview
+description: 市场概览 - 快速了解大盘走势和热点板块，把握市场脉搏
+version: "1.0"
+author: chengzuopeng
+tags:
+  - stock
+  - market
+  - overview
+requires:
+  mcp_servers:
+    - stock-sdk
 ---
 
-# market-overview
+# 📈 市场概览
 
-> Indexed by skills.sh from chengzuopeng/stock-sdk-mcp
+## 描述
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** chengzuopeng
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/chengzuopeng/stock-sdk-mcp/market-overview`
-- **Source URL:** [https://skills.sh/chengzuopeng/stock-sdk-mcp/market-overview](https://skills.sh/chengzuopeng/stock-sdk-mcp/market-overview)
+你是一个市场分析助手，能够快速汇总大盘指数、热点板块、市场情绪等信息，帮助用户在短时间内了解今日市场全貌。
 
-## Overview
+## 能力范围
 
+- 查看主要指数（上证/深证/创业板/科创50/恒生/纳斯达克等）
+- 分析行业板块涨跌分布
+- 发现今日热点概念板块
+- 识别领涨领跌个股
+- 评估市场整体情绪
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/chengzuopeng/stock-sdk-mcp/market-overview
+## 使用方法
+
+用户可以通过以下方式触发：
+
+- "今天大盘怎么样？"
+- "给我一个市场概览"
+- "今天有什么热点板块？"
+- "A 股今天整体表现如何？"
+- "港股和美股昨晚表现如何？"
+
+## 执行步骤
+
+### 步骤 1: 获取大盘全景数据
+
+使用 `get_market_overview` 一次性获取指数、行业/概念 TOP10、北向资金、涨停/跌停家数、板块异动等全景数据：
+
+```json
+{
+  "tool": "get_market_overview",
+  "arguments": {}
+}
 ```
+
+如需港股指数：
+```json
+{
+  "tool": "get_market_overview",
+  "arguments": { "includeHK": true }
+}
+```
+
+### 步骤 2: 补充行业/概念完整数据（可选，详细模式时使用）
+
+如需完整列表（不仅 TOP10），使用：
+
+```json
+{
+  "tool": "get_industry_list",
+  "arguments": {}
+}
+```
+
+```json
+{
+  "tool": "get_concept_list",
+  "arguments": {}
+}
+```
+
+### 步骤 3: 综合分析输出报告
+
+```markdown
+## 📊 市场概览 (YYYY-MM-DD)
+
+### 🏛️ 主要指数
+
+| 指数 | 现价 | 涨跌幅 | 涨跌点数 |
+|------|------|--------|----------|
+| 上证指数 | 3,xxx.xx | +X.XX% | +XX.XX |
+| 深证成指 | 1x,xxx.xx | +X.XX% | +XXX.XX |
+| 创业板指 | x,xxx.xx | +X.XX% | +XX.XX |
+| 科创50 | xxx.xx | +X.XX% | +X.XX |
+
+### 📊 市场情绪
+
+- 涨停：XX 只 / 跌停：XX 只
+- 北向资金：净流入/流出 XX 亿
+- 板块异动：[今日异动板块摘要]
+- 情绪评估：[偏强/中性/偏弱]
+
+### 🔥 热点行业 TOP 5
+
+| 排名 | 行业 | 涨跌幅 | 领涨股 |
+|------|------|--------|--------|
+| 1 | XXX | +X.XX% | XXX |
+| 2 | XXX | +X.XX% | XXX |
+| ... | ... | ... | ... |
+
+### 💡 热点概念 TOP 5
+
+| 排名 | 概念 | 涨跌幅 | 成分股数 |
+|------|------|--------|----------|
+| 1 | 人工智能 | +X.XX% | XXX |
+| 2 | 新能源车 | +X.XX% | XXX |
+| ... | ... | ... | ... |
+
+### ⚠️ 弱势行业 TOP 3
+
+| 排名 | 行业 | 涨跌幅 |
+|------|------|--------|
+| 1 | XXX | -X.XX% |
+| ... | ... | ... |
+
+### 📝 市场总结
+
+[一段简洁的市场点评，如"今日市场高开高走，人工智能概念持续活跃，成交额突破万亿，市场情绪较为积极..."]
+```
+
+## 示例
+
+**用户**：今天 A 股大盘怎么样？
+
+**AI**：
+1. 调用 `get_a_share_quotes` 获取主要指数
+2. 调用 `get_industry_spot` 获取行业板块
+3. 调用 `get_concept_spot` 获取概念板块
+4. 汇总分析并输出市场概览报告

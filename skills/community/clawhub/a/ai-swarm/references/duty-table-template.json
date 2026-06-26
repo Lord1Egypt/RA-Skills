@@ -1,0 +1,146 @@
+{
+  "assessedAt": "2026-03-24T18:00:47.171704-07:00",
+  "nextAssessment": "2026-03-25T00:00:47.171704-07:00",
+  "availableAgents": {
+    "claude": {
+      "cli": "claude",
+      "auth": "oauth",
+      "status": "active",
+      "models": {
+        "claude-opus-4-6": {
+          "status": "available",
+          "tier": "top",
+          "testedAt": "2026-03-09"
+        },
+        "claude-sonnet-4-6": {
+          "status": "available",
+          "tier": "mid",
+          "testedAt": "2026-03-09"
+        }
+      }
+    },
+    "codex": {
+      "cli": "codex",
+      "auth": "oauth",
+      "status": "benched",
+      "models": {
+        "gpt-5.3-codex": {
+          "status": "model-error",
+          "tier": "top",
+          "testedAt": "2026-03-22",
+          "note": "not supported with ChatGPT account"
+        }
+      }
+    },
+    "gemini": {
+      "cli": "gemini",
+      "auth": "oauth",
+      "status": "active",
+      "models": {
+        "gemini-3-flash-preview": {
+          "status": "available",
+          "tier": "mid",
+          "testedAt": "2026-03-09"
+        },
+        "gemini-2.5-pro": {
+          "status": "available",
+          "tier": "top",
+          "testedAt": "2026-03-09"
+        },
+        "gemini-2.5-flash": {
+          "status": "available",
+          "tier": "mid",
+          "testedAt": "2026-03-09"
+        }
+      }
+    }
+  },
+  "dutyTable": {
+    "architect": {
+      "agent": "claude",
+      "model": "claude-opus-4-6",
+      "reason": "architect role (auto-assessed)",
+      "nonInteractiveCmd": "claude --model claude-opus-4-6 --permission-mode bypassPermissions --print"
+    },
+    "builder": {
+      "agent": "codex",
+      "model": "gpt-5.3-codex",
+      "reason": "builder role (auto-assessed)",
+      "nonInteractiveCmd": "codex --model gpt-5.3-codex --full-auto exec"
+    },
+    "reviewer": {
+      "agent": "gemini",
+      "model": "gemini-2.5-pro",
+      "reason": "reviewer role (auto-assessed)",
+      "nonInteractiveCmd": "gemini -m gemini-2.5-pro -p"
+    },
+    "integrator": {
+      "agent": "claude",
+      "model": "claude-opus-4-6",
+      "reason": "integrator role (auto-assessed)",
+      "nonInteractiveCmd": "claude --model claude-opus-4-6 --permission-mode bypassPermissions --print"
+    }
+  },
+  "history": [
+    {
+      "date": "2026-03-09 12:44",
+      "changes": "WB MANUAL OVERRIDE: New duty table. Architect=gemini-3-flash-preview (fallback Opus), Workhorse=claude-sonnet-4-6, Reviewer=gemini-2.5-pro (fallback Sonnet), Speedster/Integration=claude-sonnet-4-6. Codex tokens exhausted this week.",
+      "dutyAssignments": "architect=gemini/3-flash-preview, workhorse=claude/sonnet-4-6, reviewer=gemini/2.5-pro, speedster=claude/sonnet-4-6"
+    },
+    {
+      "date": "2026-03-09",
+      "changes": "FALLBACK to Claude-heavy table (token/quota limits on Codex/Gemini)",
+      "dutyAssignments": "architect=claude/opus-4-6, workhorse=claude/sonnet-4-6, reviewer=claude/sonnet-4-6, speedster=claude/sonnet-4-6"
+    },
+    {
+      "date": "2026-03-12",
+      "changes": "FALLBACK to Claude-heavy table (token/quota limits on Codex/Gemini)",
+      "dutyAssignments": "architect=claude/opus-4-6, workhorse=claude/sonnet-4-6, reviewer=claude/sonnet-4-6, speedster=claude/sonnet-4-6"
+    },
+    {
+      "date": "2026-03-22",
+      "changes": "Weekly assessment: claude/claude-sonnet-4-6=available, claude/claude-opus-4-6=available, gemini/gemini-2.5-pro=available, codex/gpt-5.3-codex=available, gemini/gemini-2.5-flash=available",
+      "dutyAssignments": "architect=claude/claude-opus-4-6, workhorse=codex/gpt-5.3-codex, reviewer=gemini/gemini-2.5-pro, speedster=claude/claude-sonnet-4-6"
+    },
+    {
+      "date": "2026-03-22",
+      "changes": "Weekly assessment: claude/claude-sonnet-4-6=available, claude/claude-opus-4-6=available, gemini/gemini-2.5-pro=available, codex/gpt-5.3-codex=available, gemini/gemini-2.5-flash=available",
+      "dutyAssignments": "architect=claude/claude-opus-4-6, workhorse=codex/gpt-5.3-codex, reviewer=gemini/gemini-2.5-pro, speedster=claude/claude-sonnet-4-6"
+    },
+    {
+      "date": "2026-03-23",
+      "changes": "Weekly assessment: claude/claude-sonnet-4-6=available, claude/claude-opus-4-6=available, gemini/gemini-2.5-pro=unavailable, codex/gpt-5.3-codex=available, gemini/gemini-2.5-flash=available",
+      "dutyAssignments": "architect=claude/claude-opus-4-6, workhorse=codex/gpt-5.3-codex, reviewer=gemini/gemini-2.5-flash, speedster=claude/claude-sonnet-4-6"
+    },
+    {
+      "date": "2026-03-23",
+      "changes": "REDESIGN v2: Renamed speedster\u2192integrator, upgraded integrator to Opus (deep thinking). 3 phases: Architect(1-5), Builder+Reviewer(6-7), Integrator(8-11).",
+      "dutyAssignments": "architect=claude/opus-4-6, builder=claude/sonnet-4-6, reviewer=claude/sonnet-4-6, integrator=claude/opus-4-6"
+    },
+    {
+      "date": "2026-03-24",
+      "changes": "Weekly assessment: claude/claude-sonnet-4-6=available, claude/claude-opus-4-6=available, gemini/gemini-2.5-pro=unavailable, codex/gpt-5.3-codex=available, gemini/gemini-2.5-flash=available",
+      "dutyAssignments": "architect=claude/claude-opus-4-6, builder=codex/gpt-5.3-codex, reviewer=gemini/gemini-2.5-flash, integrator=claude/claude-opus-4-6"
+    },
+    {
+      "date": "2026-03-24",
+      "changes": "Weekly assessment: claude/claude-sonnet-4-6=available, claude/claude-opus-4-6=available, gemini/gemini-2.5-pro=available, codex/gpt-5.3-codex=available, gemini/gemini-2.5-flash=available",
+      "dutyAssignments": "architect=claude/claude-opus-4-6, builder=codex/gpt-5.3-codex, reviewer=gemini/gemini-2.5-pro, integrator=claude/claude-opus-4-6"
+    },
+    {
+      "date": "2026-03-24",
+      "changes": "Weekly assessment: claude/claude-sonnet-4-6=available, claude/claude-opus-4-6=available, gemini/gemini-2.5-pro=available, codex/gpt-5.3-codex=available, gemini/gemini-2.5-flash=available",
+      "dutyAssignments": "architect=claude/claude-opus-4-6, builder=codex/gpt-5.3-codex, reviewer=gemini/gemini-2.5-pro, integrator=claude/claude-opus-4-6"
+    },
+    {
+      "date": "2026-03-24",
+      "changes": "Weekly assessment: claude/claude-sonnet-4-6=available, claude/claude-opus-4-6=available, gemini/gemini-2.5-pro=available, codex/gpt-5.3-codex=available, gemini/gemini-2.5-flash=available",
+      "dutyAssignments": "architect=claude/claude-opus-4-6, builder=codex/gpt-5.3-codex, reviewer=gemini/gemini-2.5-pro, integrator=claude/claude-opus-4-6"
+    }
+  ],
+  "manualOverride": {
+    "enabled": true,
+    "setBy": "WB",
+    "note": "Mar 22 override: Claude-heavy. Codex benched (model errors). Gemini for reviewer only."
+  }
+}

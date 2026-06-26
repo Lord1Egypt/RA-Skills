@@ -1,0 +1,39 @@
+{
+  "name": "aka-seo-wireframe",
+  "displayName": "AKA SEO Wireframe",
+  "version": "1.1.0",
+  "author": "lebtiga",
+  "homepage": "https://rabihrizk.com/aka-seo-wireframe",
+  "description": "Generate 200+ page authority site content using the Authority-Knowledge-Answer (AKA) framework. Platform-agnostic — works with WordPress, Webflow, Shopify, static sites, or any CMS. WordPress deploy is optional.",
+  "env": {
+    "ANTHROPIC_API_KEY": {
+      "description": "Required for content generation via claude-opus-4. Uses your agent's existing Anthropic API key. Estimated cost ~$2-8 per hub.",
+      "required": true
+    },
+    "WP_URL": {
+      "description": "Optional. Your WordPress site URL. Only needed for the optional WordPress deploy step.",
+      "required": false
+    },
+    "WP_USER": {
+      "description": "Optional. WordPress username. Only needed for WordPress deploy step. Use a dedicated Editor-role account.",
+      "required": false
+    },
+    "WP_PASS": {
+      "description": "Optional. WordPress Application Password (not your login password). Generate at WP Admin → Users → Profile → Application Passwords.",
+      "required": false
+    }
+  },
+  "assets": [
+    {
+      "path": "assets/aka-framework-theme.zip",
+      "description": "Optional WordPress theme ZIP with all PHP template files (functions.php, header.php, footer.php, index.php, page-authority-hub.php, page-knowledge.php, page-answer.php, style.css).",
+      "required": false
+    }
+  ],
+  "warnings": [
+    "All AI-generated content must be reviewed before publishing.",
+    "For legal, medical, or financial verticals: qualified professional review required before publishing.",
+    "WordPress deploy: use --dry-run first, test on staging before production.",
+    "Business config (name, phone, email) will be sent to Anthropic API for content generation."
+  ]
+}

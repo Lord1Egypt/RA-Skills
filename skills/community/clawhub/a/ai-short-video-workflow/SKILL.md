@@ -1,35 +1,94 @@
 ---
-name: "Ai Video Workflow"
-description: "Use when creating complete AI-generated short videos, social videos, promotional videos, narration videos, or script-to-video outputs from a topic, brief, pr..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-short-video-workflow"
-sourceUrl: "https://clawhub.ai/skills/ai-short-video-workflow"
+name: ai-video-workflow
+description: Use when creating complete AI-generated short videos, social videos, promotional videos, narration videos, or script-to-video outputs from a topic, brief, product, article, or approved script.
 ---
 
-# Ai Video Workflow
+# AI 视频工作流
 
-> Use when creating complete AI-generated short videos, social videos, promotional videos, narration videos, or script-to-video outputs from a topic, brief, pr...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-short-video-workflow`
-- **Source URL:** [https://clawhub.ai/skills/ai-short-video-workflow](https://clawhub.ai/skills/ai-short-video-workflow)
+用于从主题、简报、产品、文章或已确认脚本制作完整 AI 视频。工作流必须按顺序完成：选择视频格式、确认脚本、分镜、素材、旁白、按旁白时长裁剪画面、字幕、音乐、合成、渲染和验收。所有用户确认节点都是硬门槛，未确认格式和脚本前不得进入制作。
 
-## Overview
+## 强制门槛
 
+1. 如果没确定视频的比例和尺寸先使用 `Ask` 让用户选择竖屏、横屏或自定义比例/尺寸；如果用户已经明确指定格式，则可跳过此问题。
+2. 脚本输出后询问用户是确认脚本还是要求修改。
+3. **报告完成前必须验证。** 未检查最终输出文件前，不得声称视频已完成。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-short-video-workflow
+## 视频格式问题
+
+当用户未指定视频格式时，必须用 `AskUserQuestion` 提问，并把选项做成可点击选项：竖屏 `9:16`、横屏 `16:9`、自定义比例/尺寸。
+
+```text
+请先选择视频格式：
+1. 竖屏短视频：9:16（常用 1080x1920）
+2. 横屏视频：16:9（常用 1920x1080）
+3. 自定义比例/尺寸（请告诉我比例或像素尺寸）
+
+选好后我会先写视频脚本给你确认，确认后再进入素材、配音、字幕和成片制作。
 ```
+
+如果用户只给出平台但没有给出比例，先确认默认推断：抖音/TikTok/Reels/Shorts 通常使用 `9:16`；YouTube/B 站长视频通常使用 `16:9`。
+
+## 脚本确认包
+
+格式确定后，生成脚本确认包：
+
+- 工作标题
+- 目标受众与语气
+- 预计时长
+- 开头钩子
+- 分镜旁白
+- 结尾或 CTA
+
+输出脚本后，必须使用 `AskUserQuestion` 提供确认选项，例如“确认脚本”和“需要修改”。用户确认或提出修改前停止。
+
+## 脚本确认后的制作流程
+
+1. 将已确认脚本扩展为带镜头时长的分镜表。
+2. 制定素材计划：画面关键词/提示词、素材类型、BGM 情绪、音效、人声风格和字幕风格。
+3. 收集或生成场景素材：
+   - 脚本确认后，优先搜索和下载免费/免版税视频资源；如果用户提供了指定素材，则使用用户提供的素材。
+   - 使用素材下载脚本前，检查该SKILL目录下是否存在 `./config.json`；如果未配置则提示用户“未配置 API key”，参照 `./config.example.json` 填写 Key。
+   - Pexels/Pixabay 用于视频和图片，Jamendo 用于 BGM/音乐，Freesound 用于音效。
+   - 使用 Bun 运行免费素材下载脚本；默认直接输出可读文本，只包含挑选素材需要的重要字段。需要保存完整原始 JSON 时，添加 `--output <path_to_json>`。
+     ```bash
+     bun ./scripts/pexels.ts search-videos --query "city skyline" --orientation portrait --per-page 10
+     bun ./scripts/pixabay.ts search-videos --query "ocean waves" --per-page 10
+     bun ./scripts/jamendo.ts search --query "background" --vocalinstrumental instrumental --limit 5
+     bun ./scripts/freesound.ts search --query "whoosh" --page-size 10
+
+     # 保存完整 JSON，便于后续程序处理或排查字段
+     bun ./scripts/pexels.ts search-videos --query "city skyline" --orientation portrait --per-page 10 --output ./pexels-videos.json
+     ```
+   - 只有当免费素材结果不足、不合适或场景需要定制画面时，才使用图片/视频生成或编辑工具。
+   - 尽量下载足够多的素材，不要重复使用视频，尽量使用不一样的视频来拼接。
+   - 检查下载的素材或用户提供的素材是否合适。
+   - 需要旁白时，使用本地或可用的 TTS 工具。
+4. 先生成旁白音频，再裁剪视频。旁白文本以已确认脚本为准；如果配音内容过长或 TTS 工具有单次文本/时长限制，则按分镜、段落或自然停顿拆分成多段文本，分别生成语音片段，再按脚本顺序拼接成最终旁白音频。
+5. 测量最终旁白音频总时长；可行时，也测量每个镜头/每句旁白的时长。后续裁剪视频和 ASR 字幕都以拼接后的最终旁白音频为准。
+6. 按实测旁白时长裁剪、延长、循环或调整视频素材；在生成字幕前锁定最终视频时间轴。
+7. 先合成无字幕视频：画面、运动效果、旁白、BGM 和音效，渲染出无字幕版本；除非用户另有要求，优先输出 H.264 MP4。
+8. 视频生产后再制作字幕：基于最终视频或最终旁白音频执行 ASR 语音识别，优先使用字符级时间戳；不可用时才退化到词级或句级时间戳。
+9. 根据 ASR 结果生成 `.ass` 字幕文件。字幕文本尽量不要使用标点符号；必要时仅保留影响理解的极少量标点。
+10. 使用 `ffmpeg` 将 `.ass` 字幕合成到无字幕视频中，输出最终带字幕视频。
+11. 验证输出文件、比例、时长、`.ass` 文件、ffmpeg 字幕合成结果、音频/字幕同步、字幕少标点规则和占位内容。
+
+## 防护规则
+
+- 不要因为需求看起来明显就跳过格式选择门槛。
+- 即使用户一句话要求“直接做完整成片”，也不能跳过脚本确认。
+- 优先使用免费/免版税素材；如果用户提供了素材，则使用用户提供的视频或图片素材。
+- 不在聊天中暴露或要求用户粘贴原始 API key。必须说明素材提供商未配置 API key 时无法下载，然后用 `AskUserQuestion` 确认用户是否已在本地配置。
+- 不要在视频生产前提前制作最终字幕；最终字幕必须基于最终视频或最终旁白音频重新 ASR 识别。
+- 优先使用字符级 ASR 时间戳制作 `.ass` 字幕；字符级不可用时，才退化到词级或句级时间戳。
+- 不检查最终输出文件、`.ass` 文件和 ffmpeg 字幕合成结果，就不能报告完成。
+
+## 常见请求处理
+
+| 用户请求 | 必须响应 |
+|---|---|
+| “帮我做一个短视频” | 用 `AskUserQuestion` 先询问视频格式。 |
+| “做一个竖屏9:16短视频，主题是 X” | 直接生成脚本确认包，然后用 `AskUserQuestion` 请求确认/修改。 |
+| “脚本确认，继续做成片” | 进入分镜、素材计划、旁白、按音频时长裁剪视频、先渲染无字幕视频、ASR 识别、生成 ASS 字幕、用 ffmpeg 合成字幕并验证。 |
+| “把这篇文章做成视频” | 如果未指定格式，先用 `AskUserQuestion` 询问格式；然后改写为视频脚本确认包。 |

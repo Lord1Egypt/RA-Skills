@@ -1,0 +1,26 @@
+{
+  "billing": {
+    "provider": "skillpay.me",
+    "api_url": "https://skillpay.me/api/v1/billing",
+    "api_key_env": "SKILL_BILLING_API_KEY",
+    "skill_id_env": "SKILL_ID",
+    "pricing": {
+      "1_usdt": "1000 tokens",
+      "per_call": "1 token",
+      "min_deposit": "8 USDT"
+    },
+    "currency": "USDT",
+    "chain": "BNB"
+  },
+  "service": {
+    "name": "Agricultural Output Forecasting",
+    "version": "1.0.0",
+    "description": "Agricultural Product Output Forecasting Based on Big Data"
+  },
+  "supported_crops": [
+    "wheat", "rice", "corn", "barley", "sorghum",
+    "tomato", "potato", "cabbage", "cucumber",
+    "apple", "orange", "grape", "peach",
+    "soybean", "cotton", "sugarcane"
+  ]
+}

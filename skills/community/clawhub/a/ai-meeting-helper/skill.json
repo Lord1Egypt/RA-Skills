@@ -1,0 +1,31 @@
+{
+  "name": "ai-meeting-helper",
+  "version": "1.0.0",
+  "description": "会议纪要生成器 - 自动将会议录音转为结构化纪要",
+  "author": "小叮当",
+  "license": "MIT",
+  "tags": [
+    "meeting",
+    "transcription",
+    "summarization",
+    "audio"
+  ],
+  "requirements": [
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0"
+  ],
+  "env_vars": {
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for Whisper and GPT",
+      "required": true
+    }
+  },
+  "scripts": {
+    "install": "install.sh",
+    "uninstall": "uninstall.sh"
+  },
+  "source": "source/meeting_helper.py",
+  "expose": [
+    "ai-meeting-helper"
+  ]
+}

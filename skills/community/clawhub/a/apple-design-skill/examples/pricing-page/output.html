@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — Find your plan.</title>
+
+  <!-- Google Fonts fallback for environments without Apple system fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       Design Tokens (from design-tokens.md)
+       ============================================================ */
+    :root {
+      /* Colors */
+      --apple-bg-white: #FFFFFF;
+      --apple-bg-dark: #1D1D1F;
+      --apple-bg-light-gray: #F5F5F7;
+      --apple-bg-elevated: #FBFBFD;
+      --apple-text-primary: #1D1D1F;
+      --apple-text-secondary: #6E6E73;
+      --apple-text-tertiary: #86868B;
+      --apple-text-on-dark: #F5F5F7;
+      --apple-text-white: #FFFFFF;
+      --apple-link-blue: #0066CC;
+      --apple-link-blue-hover: #0077ED;
+
+      /* Spacing */
+      --apple-section-gap: 100px;
+      --apple-section-gap-sm: 80px;
+      --apple-section-gap-lg: 120px;
+      --apple-component-gap-sm: 16px;
+      --apple-component-gap-md: 32px;
+      --apple-component-gap-lg: 48px;
+      --apple-card-padding: 32px;
+      --apple-card-padding-sm: 24px;
+      --apple-card-padding-lg: 40px;
+      --apple-content-max-width: 980px;
+      --apple-content-max-width-lg: 1200px;
+
+      /* Font Weights */
+      --apple-weight-title: 600;
+      --apple-weight-title-bold: 700;
+      --apple-weight-body: 400;
+      --apple-weight-body-medium: 500;
+
+      /* Border Radius */
+      --apple-radius-card: 18px;
+      --apple-radius-card-sm: 12px;
+      --apple-radius-card-lg: 20px;
+      --apple-radius-button: 980px;
+
+      /* Shadows */
+      --apple-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04),
+                           0 8px 24px rgba(0, 0, 0, 0.08);
+      --apple-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.06),
+                            0 12px 32px rgba(0, 0, 0, 0.12);
+
+      /* Gradients */
+      --apple-gradient-bg-dark: linear-gradient(180deg, #1D1D1F 0%, #000000 100%);
+      --apple-gradient-bg-light: linear-gradient(180deg, #FBFBFD 0%, #F5F5F7 100%);
+      --apple-gradient-text-purple: linear-gradient(90deg, #7B2FBE, #E040A0);
+      --apple-gradient-text-blue: linear-gradient(90deg, #2997FF, #5AC8FA);
+
+      /* Letter Spacing */
+      --apple-tracking-en-title: -0.015em;
+      --apple-tracking-body: 0em;
+
+      /* Line Height */
+      --apple-leading-title: 1.1;
+      --apple-leading-body: 1.53;
+
+      /* Font Sizes (from typography.md) */
+      --apple-font-size-hero: 56px;
+      --apple-font-size-hero-min: 48px;
+      --apple-font-size-hero-max: 80px;
+      --apple-font-size-subtitle: 28px;
+      --apple-font-size-subtitle-min: 24px;
+      --apple-font-size-subtitle-max: 32px;
+      --apple-font-size-body: 17px;
+      --apple-font-size-body-max: 21px;
+      --apple-font-size-caption: 12px;
+
+      /* Font Stacks (English — from typography.md) */
+      --apple-font-display: 'SF Pro Display', 'Helvetica Neue', 'Helvetica', 'Arial', 'Inter', sans-serif;
+      --apple-font-text: 'SF Pro Text', 'Helvetica Neue', 'Helvetica', 'Arial', 'Inter', sans-serif;
+
+      /* Responsive Breakpoints */
+      --apple-breakpoint-sm: 734px;
+      --apple-breakpoint-md: 1068px;
+      --apple-breakpoint-lg: 1440px;
+    }
+
+    /* ============================================================
+       Global Reset & Base Styles
+       ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--apple-font-text);
+      font-weight: var(--apple-weight-body);
+      color: var(--apple-text-primary);
+      background: var(--apple-bg-white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--apple-link-blue);
+    }
+
+    a:hover {
+      color: var(--apple-link-blue-hover);
+      text-decoration: underline;
+    }
+
+    /* ============================================================
+       Content Wrapper (from layout-patterns.md)
+       ============================================================ */
+    .apple-content {
+      width: 100%;
+      max-width: var(--apple-content-max-width);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 1440px) {
+      .apple-content {
+        max-width: var(--apple-content-max-width-lg);
+      }
+    }
+
+    @media (max-width: 733px) {
+      .apple-content {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    /* ============================================================
+       Section Spacing (from layout-patterns.md)
+       ============================================================ */
+    .apple-section {
+      padding-top: var(--apple-section-gap);
+      padding-bottom: var(--apple-section-gap);
+    }
+
+    @media (max-width: 733px) {
+      .apple-section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+    }
+
+    @media (min-width: 734px) and (max-width: 1067px) {
+      .apple-section {
+        padding-top: var(--apple-section-gap-sm);
+        padding-bottom: var(--apple-section-gap-sm);
+      }
+    }
+
+    /* ============================================================
+       Hero Section (from layout-patterns.md — Light variant)
+       ============================================================ */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      background: var(--apple-bg-white);
+      color: var(--apple-text-primary);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--apple-component-gap-sm);
+      padding-top: var(--apple-section-gap);
+      padding-bottom: var(--apple-component-gap-lg);
+    }
+
+    .hero__headline {
+      font-family: var(--apple-font-display);
+      font-size: var(--apple-font-size-hero-min);
+      font-weight: var(--apple-weight-title-bold);
+      line-height: var(--apple-leading-title);
+      letter-spacing: var(--apple-tracking-en-title);
+      margin: 0;
+    }
+
+    .hero__headline--gradient {
+      background: var(--apple-gradient-text-purple);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero__subtitle {
+      font-family: var(--apple-font-text);
+      font-size: var(--apple-font-size-subtitle);
+      font-weight: var(--apple-weight-body);
+      line-height: var(--apple-leading-body);
+      color: var(--apple-text-secondary);
+      margin: 0;
+      max-width: 600px;
+    }
+
+    @media (min-width: 734px) {
+      .hero__headline {
+        font-size: var(--apple-font-size-hero);
+      }
+    }
+
+    @media (min-width: 1068px) {
+      .hero__headline {
+        font-size: var(--apple-font-size-hero-max);
+      }
+    }
+
+    /* ============================================================
+       Pricing Grid (adapted from Product Grid — layout-patterns.md §4)
+       ============================================================ */
+    .pricing-section {
+      background: var(--apple-bg-light-gray);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--apple-component-gap-md);
+      align-items: stretch;
+    }
+
+    @media (min-width: 734px) {
+      .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ============================================================
+       Pricing Card
+       ============================================================ */
+    .pricing-card {
+      background: var(--apple-bg-white);
+      border-radius: var(--apple-radius-card-lg);
+      padding: var(--apple-card-padding-lg);
+      box-shadow: var(--apple-shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: var(--apple-component-gap-sm);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      box-shadow: var(--apple-shadow-hover);
+      transform: translateY(-4px);
+    }
+
+    .pricing-card__tier {
+      font-family: var(--apple-font-display);
+      font-size: var(--apple-font-size-subtitle-min);
+      font-weight: var(--apple-weight-title);
+      line-height: var(--apple-leading-title);
+      color: var(--apple-text-primary);
+      margin: 0;
+    }
+
+    .pricing-card__price {
+      font-family: var(--apple-font-display);
+      font-size: var(--apple-font-size-hero-min);
+      font-weight: var(--apple-weight-title-bold);
+      line-height: var(--apple-leading-title);
+      letter-spacing: var(--apple-tracking-en-title);
+      color: var(--apple-text-primary);
+      margin: 0;
+    }
+
+    .pricing-card__price span {
+      font-size: var(--apple-font-size-body);
+      font-weight: var(--apple-weight-body);
+      color: var(--apple-text-secondary);
+    }
+
+    .pricing-card__description {
+      font-family: var(--apple-font-text);
+      font-size: var(--apple-font-size-body);
+      font-weight: var(--apple-weight-body);
+      line-height: var(--apple-leading-body);
+      color: var(--apple-text-secondary);
+      margin: 0;
+    }
+
+    .pricing-card__divider {
+      border: none;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      margin: var(--apple-component-gap-sm) 0;
+    }
+
+    .pricing-card__features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+    }
+
+    .pricing-card__features li {
+      font-family: var(--apple-font-text);
+      font-size: var(--apple-font-size-body);
+      font-weight: var(--apple-weight-body);
+      line-height: var(--apple-leading-body);
+      color: var(--apple-text-secondary);
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .pricing-card__features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--apple-link-blue);
+      font-weight: var(--apple-weight-title);
+    }
+
+    .pricing-card__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      border-radius: var(--apple-radius-button);
+      font-family: var(--apple-font-text);
+      font-size: var(--apple-font-size-body);
+      font-weight: var(--apple-weight-title);
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.15s ease;
+      cursor: pointer;
+      border: none;
+      margin-top: var(--apple-component-gap-sm);
+      text-align: center;
+    }
+
+    .pricing-card__cta:hover {
+      text-decoration: none;
+      transform: scale(1.02);
+    }
+
+    .pricing-card__cta--secondary {
+      background: transparent;
+      color: var(--apple-link-blue);
+      border: 1px solid var(--apple-link-blue);
+    }
+
+    .pricing-card__cta--secondary:hover {
+      background: var(--apple-link-blue);
+      color: var(--apple-text-white);
+    }
+
+    .pricing-card__cta--primary {
+      background: var(--apple-link-blue);
+      color: var(--apple-text-white);
+    }
+
+    .pricing-card__cta--primary:hover {
+      background: var(--apple-link-blue-hover);
+      color: var(--apple-text-white);
+    }
+
+    /* ============================================================
+       Highlighted (Recommended) Pricing Card — Pro tier
+       ============================================================ */
+    .pricing-card--highlighted {
+      background: var(--apple-bg-dark);
+      position: relative;
+    }
+
+    .pricing-card--highlighted .pricing-card__tier {
+      color: var(--apple-text-on-dark);
+    }
+
+    .pricing-card--highlighted .pricing-card__price {
+      background: var(--apple-gradient-text-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pricing-card--highlighted .pricing-card__price span {
+      -webkit-text-fill-color: var(--apple-text-tertiary);
+    }
+
+    .pricing-card--highlighted .pricing-card__description {
+      color: var(--apple-text-tertiary);
+    }
+
+    .pricing-card--highlighted .pricing-card__divider {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .pricing-card--highlighted .pricing-card__features li {
+      color: var(--apple-text-on-dark);
+    }
+
+    .pricing-card--highlighted .pricing-card__features li::before {
+      color: #5AC8FA;
+    }
+
+    .pricing-card--highlighted .pricing-card__cta--primary {
+      background: var(--apple-text-white);
+      color: var(--apple-bg-dark);
+    }
+
+    .pricing-card--highlighted .pricing-card__cta--primary:hover {
+      background: var(--apple-text-on-dark);
+      color: var(--apple-bg-dark);
+    }
+
+    .pricing-card__badge {
+      display: inline-block;
+      font-family: var(--apple-font-text);
+      font-size: var(--apple-font-size-caption);
+      font-weight: var(--apple-weight-title);
+      color: #5AC8FA;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    /* ============================================================
+       CTA Section
+       ============================================================ */
+    .cta-section {
+      background: var(--apple-bg-white);
+      text-align: center;
+    }
+
+    .cta__headline {
+      font-family: var(--apple-font-display);
+      font-size: var(--apple-font-size-hero-min);
+      font-weight: var(--apple-weight-title-bold);
+      line-height: var(--apple-leading-title);
+      letter-spacing: var(--apple-tracking-en-title);
+      color: var(--apple-text-primary);
+      margin: 0;
+    }
+
+    .cta__subtitle {
+      font-family: var(--apple-font-text);
+      font-size: var(--apple-font-size-body-max);
+      font-weight: var(--apple-weight-body);
+      line-height: var(--apple-leading-body);
+      color: var(--apple-text-secondary);
+      margin: var(--apple-component-gap-sm) auto 0;
+      max-width: 600px;
+    }
+
+    .cta__actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--apple-component-gap-md);
+      margin-top: var(--apple-component-gap-lg);
+      flex-wrap: wrap;
+    }
+
+    .cta__link {
+      font-family: var(--apple-font-text);
+      font-size: var(--apple-font-size-body-max);
+      color: var(--apple-link-blue);
+      text-decoration: none;
+    }
+
+    .cta__link:hover {
+      color: var(--apple-link-blue-hover);
+      text-decoration: underline;
+    }
+
+    @media (min-width: 734px) {
+      .cta__headline {
+        font-size: var(--apple-font-size-hero);
+      }
+    }
+
+    @media (min-width: 1068px) {
+      .cta__headline {
+        font-size: var(--apple-font-size-hero-max);
+      }
+    }
+
+    /* ============================================================
+       Scroll Reveal Animation (from layout-patterns.md §6)
+       ============================================================ */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .scroll-reveal--delay-1 {
+      transition-delay: 0.15s;
+    }
+
+    .scroll-reveal--delay-2 {
+      transition-delay: 0.3s;
+    }
+
+    .scroll-reveal--delay-3 {
+      transition-delay: 0.45s;
+    }
+
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    .footer {
+      background: var(--apple-bg-light-gray);
+      padding: var(--apple-component-gap-lg) 0;
+      text-align: center;
+    }
+
+    .footer__text {
+      font-family: var(--apple-font-text);
+      font-size: var(--apple-font-size-caption);
+      color: var(--apple-text-tertiary);
+    }
+
+    .footer__link {
+      color: var(--apple-link-blue);
+      text-decoration: none;
+    }
+
+    .footer__link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       1. Hero Section — Light variant
+       Pattern: Full-Screen Hero (layout-patterns.md §3, light variant)
+       Copywriting: Fragment sentence pattern (copywriting.md §2.1)
+       ============================================================ -->
+  <section class="hero" role="banner">
+    <div class="apple-content hero__content">
+      <h1 class="hero__headline hero__headline--gradient">Find your plan.</h1>
+      <p class="hero__subtitle">Simple pricing that scales with your team. No hidden fees, no surprises. Just the tools you need to build something great.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. Pricing Cards Section
+       Pattern: Product Grid adapted for pricing (layout-patterns.md §4)
+       Copywriting: Benefit-first descriptions (copywriting.md §5)
+       ============================================================ -->
+  <section class="apple-section pricing-section">
+    <div class="apple-content">
+      <div class="pricing-grid">
+
+        <!-- Card 1: Basic -->
+        <article class="pricing-card scroll-reveal scroll-reveal--delay-1">
+          <h2 class="pricing-card__tier">Basic</h2>
+          <p class="pricing-card__price">$9 <span>/month</span></p>
+          <p class="pricing-card__description">Everything you need to get started. Perfect for individuals and small projects.</p>
+          <hr class="pricing-card__divider">
+          <ul class="pricing-card__features">
+            <li>Up to 3 projects</li>
+            <li>5 GB storage</li>
+            <li>Basic analytics</li>
+            <li>Email support</li>
+            <li>API access</li>
+          </ul>
+          <a href="#" class="pricing-card__cta pricing-card__cta--secondary">Get started</a>
+        </article>
+
+        <!-- Card 2: Pro (Highlighted / Recommended) -->
+        <article class="pricing-card pricing-card--highlighted scroll-reveal scroll-reveal--delay-2">
+          <span class="pricing-card__badge">Most Popular</span>
+          <h2 class="pricing-card__tier">Pro</h2>
+          <p class="pricing-card__price">$29 <span>/month</span></p>
+          <p class="pricing-card__description">Power and flexibility for growing teams. The plan most teams love.</p>
+          <hr class="pricing-card__divider">
+          <ul class="pricing-card__features">
+            <li>Unlimited projects</li>
+            <li>100 GB storage</li>
+            <li>Advanced analytics</li>
+            <li>Priority support</li>
+            <li>API access</li>
+            <li>Custom integrations</li>
+            <li>Team collaboration</li>
+          </ul>
+          <a href="#" class="pricing-card__cta pricing-card__cta--primary">Get started</a>
+        </article>
+
+        <!-- Card 3: Enterprise -->
+        <article class="pricing-card scroll-reveal scroll-reveal--delay-3">
+          <h2 class="pricing-card__tier">Enterprise</h2>
+          <p class="pricing-card__price">Custom</p>
+          <p class="pricing-card__description">Tailored solutions for organizations that need more. Built around your workflow.</p>
+          <hr class="pricing-card__divider">
+          <ul class="pricing-card__features">
+            <li>Unlimited everything</li>
+            <li>Dedicated storage</li>
+            <li>Custom analytics</li>
+            <li>Dedicated account manager</li>
+            <li>Full API access</li>
+            <li>Custom integrations</li>
+            <li>SSO and SAML</li>
+            <li>SLA guarantee</li>
+          </ul>
+          <a href="#" class="pricing-card__cta pricing-card__cta--secondary">Contact sales</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. CTA Section
+       Copywriting: Question/challenge pattern (copywriting.md §2.5)
+       ============================================================ -->
+  <section class="apple-section cta-section">
+    <div class="apple-content">
+      <div class="scroll-reveal">
+        <h2 class="cta__headline">Ready to start?</h2>
+        <p class="cta__subtitle">Try any plan free for 14 days. No credit card required. Cancel anytime.</p>
+      </div>
+      <div class="cta__actions scroll-reveal scroll-reveal--delay-1">
+        <a href="#" class="cta__link">Start free trial ›</a>
+        <a href="#" class="cta__link">Compare all features ›</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer class="footer">
+    <div class="apple-content">
+      <p class="footer__text">
+        This page was generated by the <a href="#" class="footer__link">Apple Design Skill</a>.
+        Design tokens, typography, copywriting, and layout patterns are defined in the Skill's prompt modules.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       Scroll Reveal Script (from layout-patterns.md §6)
+       ============================================================ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -60px 0px'
+      });
+
+      reveals.forEach((el) => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>

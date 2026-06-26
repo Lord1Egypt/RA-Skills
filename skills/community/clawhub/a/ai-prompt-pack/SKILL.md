@@ -1,35 +1,17 @@
----
-name: "Ai Prompt Pack"
-description: "Provides 10 engineered prompts for digital sellers to create product ideas, sales copy, email sequences, SEO, and descriptions for platforms like Gumroad and..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-prompt-pack"
-sourceUrl: "https://clawhub.ai/skills/ai-prompt-pack"
----
+# AI Prompt Pack for Digital Sellers
 
-# Ai Prompt Pack
+Este skill proporciona una colección curada de 10 prompts de alta ingeniería diseñados específicamente para creadores que venden productos digitales en plataformas como Gumroad y Etsy.
 
-> Provides 10 engineered prompts for digital sellers to create product ideas, sales copy, email sequences, SEO, and descriptions for platforms like Gumroad and...
+## Qué incluye
+- Prompts para generación de ideas de productos.
+- Estructuras para copy de páginas de venta (sales pages).
+- Secuencias de correos para lanzamientos.
+- Estrategias de SEO para Etsy.
+- Optimizadores de descripciones para Gumroad.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-prompt-pack`
-- **Source URL:** [https://clawhub.ai/skills/ai-prompt-pack](https://clawhub.ai/skills/ai-prompt-pack)
+## Cómo usar
+Simplemente llama al skill pidiendo ayuda para una fase específica de tu venta digital.
+Ejemplo: "Genera una descripción de producto para Gumroad usando este prompt pack."
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-prompt-pack
-```
+## Precio sugerido
+$15 USD

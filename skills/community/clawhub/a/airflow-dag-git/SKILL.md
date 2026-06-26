@@ -1,35 +1,31 @@
----
-name: "Airflow DAG Git"
-description: "Manage and update Airflow DAG Python files via GitHub PRs with strict path and content restrictions for secure workflow control."
-category: "github"
-source: "ClawHub"
-tags: [github, irflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/airflow-dag-git"
-sourceUrl: "https://clawhub.ai/skills/airflow-dag-git"
----
+# airflow-dag-git
 
-# Airflow DAG Git
+## Purpose
 
-> Manage and update Airflow DAG Python files via GitHub PRs with strict path and content restrictions for secure workflow control.
+Operate Airflow DAG files through GitHub PR workflow only.
 
-- **Category:** GitHub
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/airflow-dag-git`
-- **Source URL:** [https://clawhub.ai/skills/airflow-dag-git](https://clawhub.ai/skills/airflow-dag-git)
+## Available tools
 
-## Overview
+- `airflow_dag_git_read_file`
+- `airflow_dag_git_open_pr`
 
+## Guardrails
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/airflow-dag-git
-```
+- Use allowlisted `owner`, `repo`, and DAG paths only.
+- Target must be a single `.py` file.
+- No path traversal, absolute paths, delete, rename, or multi-file operations.
+- No CI workflow changes.
+- `open_pr` requires DAG-like content (`DAG(` or `@dag`) and rejects dangerous patterns.
+
+## Expected workflow
+
+1. Read existing DAG with `airflow_dag_git_read_file`.
+2. Prepare updated DAG content.
+3. Submit update through `airflow_dag_git_open_pr`.
+4. Human reviews PR and decides merge.
+
+## Rollback
+
+- Close PR if not merged.
+- Delete created branch.
+- Revert merge commit if already merged.

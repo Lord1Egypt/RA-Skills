@@ -1,0 +1,59 @@
+name: amazon-rufus-optimizer
+slug: amazon-rufus-optimizer
+version: 1.0.0
+emoji: "🤖"
+tagline: 亚马逊Rufus对话优化工具 — 让你的产品在AI导购对话中被优先推荐
+description: |
+  亚马逊Rufus AI对话优化技能。通过对话模拟、意图标签分析、文案改写和跨类目关联建议，
+  帮助卖家优化Listing以获得Rufus推荐。形成 amazon-listing-doctor → amazon-rufus-optimizer → 
+  amazon-aplus-generator 的完整优化闭环。
+category: Amazon运营
+features:
+  - name: Rufus对话模拟
+    description: 模拟真实用户与Rufus的10种对话场景，检测产品是否会被推荐
+  - name: 意图标签诊断
+    description: 基于四维意图体系（使用/人群/场景/情感）分析产品意图覆盖情况
+  - name: 对话式文案改写
+    description: 将参数罗列式文案改写为Rufus友好的对话式描述
+  - name: 跨类目关联建议
+    description: 分析产品可匹配的跨类目场景，提升Rufus推荐概率
+  - name: Rufus可见度评分
+    description: 综合评估产品在Rufus对话中的可见度（0-100分）
+inputs:
+  - name: 产品信息
+    type: text
+    required: true
+    description: 产品名称、ASIN或核心卖点关键词（3-5个）
+outputs:
+  - name: Rufus对话模拟结果
+    type: text
+    description: 模拟对话及推荐/不推荐判定
+  - name: 意图标签诊断
+    type: text
+    description: 已覆盖和缺失的意图标签分析
+  - name: 文案改写建议
+    type: text
+    description: 对话式文案改写方案
+  - name: 跨类目关联
+    type: text
+    description: 产品可匹配的跨类目场景建议
+  - name: Rufus可见度评分
+    type: number
+    description: 0-100的综合评分
+tech:
+  architecture: 基于行业知识库和Rufus对话模式生成优化建议，用户手动输入产品信息
+  dependencies: []
+screenshots: []
+keywords:
+  - Amazon
+  - Rufus
+  - AI导购
+  - Listing优化
+  - 意图标签
+  - 对话优化
+  - 跨境电商
+author: ClawHub
+license: MIT
+homepage: https://clawhub.ai
+repository: https://clawhub.ai/skills/amazon-rufus-optimizer
+issues: https://clawhub.ai/support

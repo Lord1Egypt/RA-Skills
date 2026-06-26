@@ -1,35 +1,139 @@
 ---
-name: "Aibrary Podcast Dialogue"
-description: "[Aibrary] Generate a book dialogue podcast script with two speakers — a host and a guest expert — discussing the book's ideas in a natural conversation. Use..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aibrary-podcast-dialogue"
-sourceUrl: "https://clawhub.ai/skills/aibrary-podcast-dialogue"
+name: aibrary-podcast-dialogue
+description: "[Aibrary] Generate a book dialogue podcast script with two speakers — a host and a guest expert — discussing the book's ideas in a natural conversation. Use when the user wants to create a conversational podcast about a book, turn a book into a two-person discussion, or generate a dialogue-style podcast script. Different from aibrary-podcast-summary (single narrator) and aibrary-podcast-ideatwin (debate format)."
 ---
 
-# Aibrary Podcast Dialogue
+# Podcast Dialogue — Aibrary
 
-> [Aibrary] Generate a book dialogue podcast script with two speakers — a host and a guest expert — discussing the book's ideas in a natural conversation. Use...
+Transform any book into a two-person conversational podcast script. Host + Guest expert format, designed for 10-15 minutes of engaging dialogue.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aibrary-podcast-dialogue`
-- **Source URL:** [https://clawhub.ai/skills/aibrary-podcast-dialogue](https://clawhub.ai/skills/aibrary-podcast-dialogue)
+## Input
 
-## Overview
+- **Book title** (required) — the book to discuss
+- **Author** (optional, helps disambiguate)
+- **Focus areas** (optional) — specific themes or chapters to emphasize
+- **Host personality** (optional) — curious beginner, knowledgeable peer, etc. (default: curious and well-read)
+- **Guest persona** (optional) — the expert's background (default: someone deeply familiar with the book's domain)
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aibrary-podcast-dialogue
+1. **Analyze the book**: Identify:
+   - The author's central thesis and key arguments
+   - The most interesting, surprising, or controversial ideas
+   - Real-world examples and stories that make great conversation
+   - Common questions or misconceptions about the topic
+
+2. **Design the conversation dynamic**:
+   - **Host**: Asks smart questions, makes connections to real life, represents the listener's perspective. Not a blank slate — has some knowledge but is genuinely curious.
+   - **Guest**: Deeply knowledgeable about the book and its domain. Shares insights with enthusiasm, uses stories and analogies, occasionally pushes back on assumptions.
+
+3. **Structure the dialogue**:
+   - **Opening banter** (1 minute): Natural introduction, hook the listener with why this book matters
+   - **Deep dives** (8-10 minutes): 3-4 topic blocks, each starting with a host question and unfolding naturally
+   - **Rapid fire** (1-2 minutes): Quick takes on specific points from the book
+   - **Key takeaway** (1-2 minutes): Each speaker shares their #1 takeaway
+   - **Closing** (30 seconds): Where to learn more, sign-off
+
+4. **Write natural dialogue**: The conversation should feel real:
+   - Include interruptions, agreement, and "hmm, that's interesting" moments
+   - Let the guest occasionally say "well, actually..." to add depth
+   - Use the host's follow-up questions to clarify complex ideas
+   - Include natural laughter markers `[laughs]` and reactions
+   - Avoid making it feel scripted — include filler words sparingly for authenticity
+
+5. **Language**: Detect the user's input language and generate the script in the same language.
+
+## Output Format
+
 ```
+# 🎙️ [Book Title] — Dialogue Podcast Script
+
+**Author**: [Author Name]
+**Duration**: ~[X] minutes
+**Format**: Host + Guest dialogue
+
+**Host**: [Name/Persona description]
+**Guest**: [Name/Persona description]
+
+---
+
+## [OPENING]
+
+**Host**: [Natural opening — welcome, introduce the topic, create intrigue]
+
+**Guest**: [Warm response, adds a hook or surprising fact about the book]
+
+**Host**: [Follow-up that sets the stage for the first topic]
+
+---
+
+## [TOPIC 1]: [Title]
+
+**Host**: [Question or observation that opens the topic]
+
+**Guest**: [Detailed response with story/example from the book]
+
+**Host**: [Follow-up question or real-world connection]
+
+**Guest**: [Deeper exploration, practical implications]
+
+**Host**: [Brief summary or transition to next topic]
+
+---
+
+## [TOPIC 2]: [Title]
+
+**Host**: [New angle or question]
+
+**Guest**: [Response with new insight]
+
+...
+
+---
+
+## [RAPID FIRE]
+
+**Host**: Okay, let's do some rapid fire. [Quick question 1]?
+
+**Guest**: [Brief answer]
+
+**Host**: [Quick question 2]?
+
+**Guest**: [Brief answer]
+
+...
+
+---
+
+## [KEY TAKEAWAYS]
+
+**Host**: If someone takes one thing from this book, what should it be?
+
+**Guest**: [Their #1 takeaway with brief explanation]
+
+**Host**: For me, it's [their #1 takeaway]. [Brief explanation]
+
+---
+
+## [CLOSING]
+
+**Host**: [Thank guest, tell listeners where to find the book/more info]
+
+**Guest**: [Closing thought, encouragement to readers]
+
+---
+
+*Script generated by Aibrary — turning books into conversations worth having.*
+```
+
+## Guidelines
+
+- Target 2,500-3,000 words for a 10-15 minute dialogue
+- The host should ask questions the listener would ask — be their voice
+- Don't make the guest a monologue machine — keep exchanges short and dynamic
+- Include at least one moment where the host challenges or pushes back on an idea
+- Include at least one moment of genuine surprise or "I never thought of it that way"
+- Natural conversation markers: `[laughs]`, `[pause]`, `[thinking]`
+- Each topic block should have 4-6 exchanges, not long speeches
+- The rapid fire section adds energy and covers interesting details without deep diving
+- If the book is unknown, say so honestly rather than fabricating dialogue about it

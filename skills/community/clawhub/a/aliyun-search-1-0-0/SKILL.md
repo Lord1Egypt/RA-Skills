@@ -1,35 +1,48 @@
 ---
-name: "Aliyun Search 1.0.0"
-description: "Perform web searches using Alibaba Cloud UnifiedSearch API. Provides advanced search capabilities with configurable parameters."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aliyun-search-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/aliyun-search-1-0-0"
+name: aliyun-search
+description: Perform web searches using Alibaba Cloud UnifiedSearch API. Provides advanced search capabilities with configurable parameters.
 ---
 
-# Aliyun Search 1.0.0
+# Alibaba Cloud UnifiedSearch Skill
 
-> Perform web searches using Alibaba Cloud UnifiedSearch API. Provides advanced search capabilities with configurable parameters.
+This skill provides the ability to perform web searches using Alibaba Cloud UnifiedSearch API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aliyun-search-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/aliyun-search-1-0-0](https://clawhub.ai/skills/aliyun-search-1-0-0)
+## Features
 
-## Overview
+- Support multiple search engine types (Generic, GenericAdvanced, LiteAdvanced)
+- Configurable time range filtering
+- Category-specific search (finance, law, medical, etc.)
+- Location-based search (city/IP)
+- Rich result formatting
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Basic Usage
 ```bash
-hermes skills install clawhub/aliyun-search-1-0-0
+python search.py "云栖大会"
 ```
+
+### Advanced Usage
+```bash
+python search.py "北京天气" --engine-type "Generic" --city "北京市"
+```
+
+```bash
+python search.py "金融新闻" --category "finance" --time-range "OneWeek" --engine-type "GenericAdvanced"
+```
+
+## Scripts
+
+- `search.py`: Python implementation of Alibaba Cloud UnifiedSearch API
+
+## Configuration
+
+Before using, you need to:
+1. Obtain Alibaba Cloud AccessKey and Secret
+2. Set environment variables:
+   ```bash
+   export ALIBABA_CLOUD_ACCESS_KEY_ID="your_access_key_id"
+   export ALIBABA_CLOUD_ACCESS_KEY_SECRET="your_access_key_secret"
+   ```
+3. Ensure the required permissions are granted
+4. Install dependencies: `pip install aliyun-python-sdk-core requests`

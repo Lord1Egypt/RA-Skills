@@ -1,0 +1,5 @@
+{
+  "name": "Security Audit",
+  "description": "Check code for security vulnerabilities",
+  "command": "Perform a security audit on the code I've shared. Look for: SQL injection, XSS, hardcoded secrets, insecure dependencies, and auth issues."
+}

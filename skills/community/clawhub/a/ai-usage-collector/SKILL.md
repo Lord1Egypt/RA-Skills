@@ -1,35 +1,85 @@
 ---
-name: "ai-usage-collector"
-description: "从微信群聊天截图或文字中批量提取同事使用AI工具（含WorkBuddy、龙虾及其他AI工具）的信息，整理成结构化记录。触发词：帮我整理群消息、提取AI使用情况、整理AI工具使用记录、汇总本周AI使用情况。排除：与AI工具使用无关的消息不处理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-usage-collector"
-sourceUrl: "https://clawhub.ai/skills/ai-usage-collector"
+name: ai-usage-collector
+description: 从微信群聊天截图或文字中批量提取同事使用AI工具（含WorkBuddy、龙虾及其他AI工具）的信息，整理成结构化记录。触发词：帮我整理群消息、提取AI使用情况、整理AI工具使用记录、汇总本周AI使用情况。排除：与AI工具使用无关的消息不处理。
+version: "1.0.0"
+author: mengfanguo1
 ---
 
-# ai-usage-collector
+# AI 使用信息收集 Skill
 
-> 从微信群聊天截图或文字中批量提取同事使用AI工具（含WorkBuddy、龙虾及其他AI工具）的信息，整理成结构化记录。触发词：帮我整理群消息、提取AI使用情况、整理AI工具使用记录、汇总本周AI使用情况。排除：与AI工具使用无关的消息不处理。
+每周批量处理微信群消息（文字+截图），提取同事使用 AI 工具的信息并输出结构化表格。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-usage-collector`
-- **Source URL:** [https://clawhub.ai/skills/ai-usage-collector](https://clawhub.ai/skills/ai-usage-collector)
+## 字段定义
 
-## Overview
+| 字段 | 说明 | 提取规则 |
+|------|------|----------|
+| 姓名 | 同事姓名 | 从消息中识别，识别不到留空 |
+| AI 工具 | 使用的 AI 工具名称 | WorkBuddy/龙虾/其他，识别不到留空 |
+| 业务场景 | 在什么场景下使用 | 从消息描述中提炼，缺失留空 |
+| 价值/操作点 | 解决了什么问题、有什么效果 | 从消息中提炼，缺失留空 |
 
+## 工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-usage-collector
+### Step 1：接收输入
+用户发送微信群截图和/或文字消息。
+- 如果只有文字：直接解析
+- 如果有截图：先读取图片内容（OCR/视觉理解）
+
+### Step 2：逐条提取
+对每条相关消息，按字段定义提取信息。
+- 能提取的字段：填入
+- 提取不到的字段：**留空**（连续逗号），不要瞎编
+- 与 AI 工具使用无关的消息：跳过，不输出
+
+### Step 3：输出结构化数据（纯文本，方便粘贴到表格）
+
+以 **CSV 格式（逗号分隔）** 输出，不含表头，每行一条记录。用户可直接复制粘贴到 Excel / Teams 表格，自动分列。
+
+输出格式（每行字段顺序）：
 ```
+姓名,AI工具,业务场景,价值/操作点,备注
+```
+
+示例输出：
+```
+张三,WorkBuddy,每日日报生成,节省30分钟/天,
+李四,龙虾,竞品分析,自动生成对比表格,
+```
+
+注意：
+- 字段中含逗号时用引号包裹，如：`"节省30分钟/天,效果明显"`
+- 缺失字段留空（连续逗号），不要写「待补充」（粘贴到表格后空单元格更整洁）
+- 无关消息直接跳过，不输出空行
+
+### Step 4：人工补充提示
+输出完后提示用户：
+> "已输出 CSV 格式，直接复制粘贴到 Excel / Teams 表格即可自动分列。空列是需要补充的字段。"
+
+## 示例
+
+**输入**（用户发送）：
+```
+本周群消息截图：
+- 张三：今天用 WorkBuddy 帮我生成了周报，省了半小时！
+- 李四：用龙虾做了个竞品对比，效果不错
+- 王五：最近在用小火箭写 PRD，感觉比之前快多了
+- 赵六：今天午饭真不错（这条无关，跳过）
+```
+
+**输出**（CSV 格式，直接复制粘贴到表格，不含表头）：
+> 列顺序：姓名, AI工具, 业务场景, 价值/操作点, 备注
+
+```
+张三,WorkBuddy,周报生成,节省30分钟/天,
+李四,龙虾,竞品对比,,
+王五,小火箭,写PRD,比之前快多了,
+```
+
+> 空列是需要补充的字段，完善后直接粘贴到 Excel / Teams 表格即可自动分列。
+
+## 注意事项
+
+- **禁止编造数据**：提取不到的字段留空，不要瞎编
+- **无关消息跳过**：不是关于 AI 工具使用的消息不处理
+- **批量处理**：支持一次处理多条消息/多张截图
+- **输出为 CSV 纯文本**：直接复制粘贴到 Excel / Teams 表格，自动分列

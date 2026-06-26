@@ -1,0 +1,42 @@
+[
+  {
+    "name": "OpenAI Blog",
+    "rss_url": "https://openai.com/news/rss.xml",
+    "category": "官方发布"
+  },
+  {
+    "name": "Anthropic Blog(OpenRSS)",
+    "rss_url": "https://openrss.org/feed/www.anthropic.com/news",
+    "category": "官方发布"
+  },
+  {
+    "name": "Hugging Face Blog",
+    "rss_url": "https://huggingface.co/blog/feed.xml",
+    "category": "开源与工具"
+  },
+  {
+    "name": "arXiv cs.AI",
+    "rss_url": "https://rss.arxiv.org/rss/cs.AI",
+    "category": "论文研究"
+  },
+  {
+    "name": "TechCrunch AI",
+    "rss_url": "https://techcrunch.com/tag/artificial-intelligence/feed/",
+    "category": "行业资讯"
+  },
+  {
+    "name": "VentureBeat AI",
+    "rss_url": "https://venturebeat.com/category/ai/feed/",
+    "category": "行业资讯"
+  },
+  {
+    "name": "腾讯混元GitHub动态",
+    "rss_url": "https://github.com/Tencent-Hunyuan/HunyuanDiT/commits/main.atom",
+    "category": "国内厂商动态"
+  },
+  {
+    "name": "阿里通义GitHub动态",
+    "rss_url": "https://github.com/QwenLM/Qwen3/commits/main.atom",
+    "category": "国内厂商动态"
+  }
+]

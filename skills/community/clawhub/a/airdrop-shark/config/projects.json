@@ -1,0 +1,82 @@
+{
+  "layerzero": {
+    "name": "LayerZero",
+    "chain": "多链",
+    "priority": "high",
+    "snapshot": "2026-Q2",
+    "expectedValue": "$2000-5000",
+    "difficulty": "中",
+    "requirements": ["跨链交易 > 5 次", "使用 > 3 条不同链", "总交易量 > $1000"],
+    "guide": "https://layerzero.network"
+  },
+  "zksync": {
+    "name": "zkSync Era",
+    "chain": "Ethereum",
+    "priority": "high",
+    "snapshot": "2026-Q1",
+    "expectedValue": "$1000-3000",
+    "difficulty": "低",
+    "requirements": ["主网交互 > 3 次", "持有 NFT", "使用桥"],
+    "guide": "https://zksync.io"
+  },
+  "starknet": {
+    "name": "Starknet",
+    "chain": "Starknet",
+    "priority": "medium",
+    "snapshot": "已完成",
+    "expectedValue": "$500-2000",
+    "difficulty": "低",
+    "requirements": ["主网交互", "持有代币"],
+    "guide": "https://starknet.io"
+  },
+  "scroll": {
+    "name": "Scroll",
+    "chain": "Ethereum",
+    "priority": "low",
+    "snapshot": "2026-Q3",
+    "expectedValue": "$300-1000",
+    "difficulty": "中",
+    "requirements": ["主网交互 > 5 次", "使用桥"],
+    "guide": "https://scroll.io"
+  },
+  "linea": {
+    "name": "Linea",
+    "chain": "Ethereum",
+    "priority": "low",
+    "snapshot": "2026-Q2",
+    "expectedValue": "$300-800",
+    "difficulty": "低",
+    "requirements": ["主网交互", "使用桥"],
+    "guide": "https://linea.build"
+  },
+  "base": {
+    "name": "Base",
+    "chain": "Base",
+    "priority": "low",
+    "snapshot": "2026-Q3",
+    "expectedValue": "$200-600",
+    "difficulty": "低",
+    "requirements": ["主网交互", "bridge 资产"],
+    "guide": "https://base.org"
+  },
+  "metamask": {
+    "name": "MetaMask",
+    "chain": "多链",
+    "priority": "high",
+    "snapshot": "2026-Q2",
+    "expectedValue": "$1000-5000",
+    "difficulty": "中",
+    "requirements": ["使用 Swap", "使用桥", "活跃 > 3 个月"],
+    "guide": "https://metamask.io"
+  },
+  "rabbit": {
+    "name": "RabbitHole",
+    "chain": "多链",
+    "priority": "medium",
+    "snapshot": "2026-Q2",
+    "expectedValue": "$200-800",
+    "difficulty": "低",
+    "requirements": ["完成 Quests", "持有 NFT"],
+    "guide": "https://rabbithole.gg"
+  }
+}

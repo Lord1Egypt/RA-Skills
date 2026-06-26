@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "description": "PDF生成配置 - 请使用外部配置 ~/.openclaw/config/ai-news-pdf.json",
+  "config": {
+    "enabled": false,
+    "output_dir": "./reports"
+  }
+}

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00D2FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0052D4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="innerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0066FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#003399;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="245" fill="#0A1628"/>
+  <circle cx="256" cy="256" r="238" fill="none" stroke="#00D2FF" stroke-width="2" opacity="0.3"/>
+
+  <!-- Shield shape -->
+  <path d="M256 58 L420 130 L420 270 C420 370 340 440 256 468 C172 440 92 370 92 270 L92 130 Z"
+        fill="url(#shieldGrad)" filter="url(#shadow)" opacity="0.95"/>
+
+  <!-- Inner shield -->
+  <path d="M256 85 L395 148 L395 265 C395 352 325 415 256 440 C187 415 117 352 117 265 L117 148 Z"
+        fill="url(#innerGrad)" opacity="0.6"/>
+
+  <!-- Checkmark -->
+  <polyline points="185,255 235,310 335,200"
+            fill="none" stroke="#FFFFFF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"
+            filter="url(#glow)"/>
+
+  <!-- Small lock icon at top -->
+  <rect x="237" y="105" width="38" height="28" rx="4" fill="#FFFFFF" opacity="0.9"/>
+  <path d="M244 105 L244 95 C244 85 250 80 256 80 C262 80 268 85 268 95 L268 105"
+        fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Subtle scan lines effect -->
+  <line x1="140" y1="200" x2="372" y2="200" stroke="#00D2FF" stroke-width="1" opacity="0.15"/>
+  <line x1="130" y1="230" x2="382" y2="230" stroke="#00D2FF" stroke-width="1" opacity="0.1"/>
+  <line x1="125" y1="260" x2="387" y2="260" stroke="#00D2FF" stroke-width="1" opacity="0.15"/>
+  <line x1="130" y1="290" x2="382" y2="290" stroke="#00D2FF" stroke-width="1" opacity="0.1"/>
+  <line x1="145" y1="320" x2="367" y2="320" stroke="#00D2FF" stroke-width="1" opacity="0.15"/>
+
+  <!-- Text: PG -->
+  <text x="256" y="410" text-anchor="middle" font-family="Helvetica,Arial,sans-serif"
+        font-size="36" font-weight="bold" fill="#00D2FF" letter-spacing="8" opacity="0.8">PHISHGUARD</text>
+</svg>

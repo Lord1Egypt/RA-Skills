@@ -1,0 +1,23 @@
+{
+  "facebook": {
+    "pixel_id": "REPLACE_WITH_PIXEL_ID",
+    "events": {
+      "PageView": "fbq('track', 'PageView');",
+      "Purchase": "fbq('track', 'Purchase', {value: {{value}}, currency: 'USD'});",
+      "Lead": "fbq('track', 'Lead');"
+    }
+  },
+  "ga4": {
+    "measurement_id": "REPLACE_WITH_MEASUREMENT_ID",
+    "events": {
+      "purchase": "gtag('event', 'purchase', { 'transaction_id': '{{tid}}', 'value': {{value}}, 'currency': 'USD', 'items': [{{items}}] });"
+    }
+  },
+  "google_ads": {
+    "conversion_id": "REPLACE_WITH_CONVERSION_ID",
+    "label": "REPLACE_WITH_LABEL"
+  },
+  "gumroad": {
+    "note": "Gumroad handles tracking via their own settings. Use UTMs for external attribution."
+  }
+}

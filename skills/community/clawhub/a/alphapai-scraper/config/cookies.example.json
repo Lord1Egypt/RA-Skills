@@ -1,0 +1,12 @@
+{
+  "cookies": [
+    {
+      "name": "sessionid",
+      "value": "paste-cookie-value-here",
+      "domain": ".alphapai-web.rabyte.cn",
+      "path": "/",
+      "httpOnly": true,
+      "secure": true
+    }
+  ]
+}

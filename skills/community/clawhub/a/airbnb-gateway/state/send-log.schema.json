@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "airbnb-gateway/send-log",
+  "title": "Airbnb gateway send ledger entry",
+  "description": "Append-only record of one send attempt. Keyed by dedupe_key. Written at the 'attempted' transition, before verification, so a crash mid-verify never looks like 'never sent'. The presence of an entry for a dedupe_key blocks any further send for that key.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["dedupe_key", "thread_id", "attempted_at", "final_state", "operator"],
+  "properties": {
+    "dedupe_key": {
+      "type": "string",
+      "description": "hash(thread_id + '\\n' + normalize(draft_text)). Idempotency key."
+    },
+    "thread_id": {
+      "type": "string",
+      "description": "Airbnb message thread id the reply was sent to."
+    },
+    "attempted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the send endpoint was called exactly once."
+    },
+    "final_state": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "unconfirmed", "failed"],
+      "description": "State after the verify loop. 'pending' only transiently between send and verify."
+    },
+    "verified_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "When the outbound message was verified visible. Null unless final_state=confirmed."
+    },
+    "operator": {
+      "type": "string",
+      "description": "Agent or human id that performed the send."
+    },
+    "reservation_id": {
+      "type": ["string", "null"],
+      "description": "Linked reservation, if known."
+    }
+  }
+}

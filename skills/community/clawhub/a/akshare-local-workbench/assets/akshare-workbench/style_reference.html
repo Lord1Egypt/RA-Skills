@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RizMoon Intelligence - AI-Powered Financial Solutions</title>
+    <style>
+        /* Language Toggle Button */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            padding: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            box-shadow: 0 2px 8px rgba(30, 110, 232, 0.3);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(30, 110, 232, 0.1);
+            color: var(--brand-primary);
+        }
+        :root {
+            --bg-primary: #eef3f7;
+            --text-primary: #0e1a26;
+            --text-muted: #536171;
+            --brand-primary: #1e6ee8;
+            --brand-secondary: #00c2b2;
+            --card-glass: rgba(255, 255, 255, 0.65);
+            --glass-stroke: rgba(255, 255, 255, 0.35);
+            --border-color: rgba(14, 26, 38, 0.12);
+            --shadow: 0 10px 30px rgba(8, 28, 61, 0.15);
+            --radius-xl: 18px;
+            --radius-md: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 14px;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background Blobs */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(30, 110, 232, 0.3), rgba(0, 194, 178, 0.2));
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(0, 194, 178, 0.25), rgba(30, 110, 232, 0.15));
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(30, 110, 232, 0.2), rgba(0, 194, 178, 0.3));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(20px, 30px) scale(1.02); }
+        }
+
+        /* Header */
+        header {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-stroke);
+            padding: 16px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border: 3px solid white;
+            border-radius: 50%;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .brand-name {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .domain {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .subtitle-badge {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .subtitle-badge .text {
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 40px 60px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 80px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--brand-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-stroke);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            padding: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(8, 28, 61, 0.2);
+        }
+
+        /* Products Grid */
+        .products-section {
+            margin-bottom: 80px;
+        }
+
+        /* Top row - 3 cards */
+        .products-row-top {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Bottom row - 2 cards aligned with top row */
+        .products-row-bottom {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* Product Overview Section */
+        .overview-section {
+            margin-bottom: 60px;
+        }
+
+        .overview-showcase {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: white;
+        }
+
+        .product-icon.icon-blue { background: linear-gradient(135deg, #1e6ee8, #4a90f0); }
+        .product-icon.icon-teal { background: linear-gradient(135deg, #00c2b2, #2dd4bf); }
+        .product-icon.icon-purple { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .product-icon.icon-amber { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+        .product-icon.icon-green { background: linear-gradient(135deg, #10b981, #34d399); }
+
+        .product-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .product-features {
+            margin-bottom: 24px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .feature-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand-secondary), var(--brand-primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-check::after {
+            content: '✓';
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .example-links {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .example-links h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .example-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, rgba(30, 110, 232, 0.1), rgba(0, 194, 178, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--brand-primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-align: center;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .example-btn:hover {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Image Showcase */
+        .image-showcase {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .image-frame-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Decorative corner accents */
+        .corner-accent {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            pointer-events: none;
+        }
+
+        .corner-accent.top-left {
+            top: 0;
+            left: 0;
+            border-top: 4px solid var(--brand-primary);
+            border-left: 4px solid var(--brand-primary);
+            border-top-left-radius: 16px;
+        }
+
+        .corner-accent.top-right {
+            top: 0;
+            right: 0;
+            border-top: 4px solid var(--brand-secondary);
+            border-right: 4px solid var(--brand-secondary);
+            border-top-right-radius: 16px;
+        }
+
+        .corner-accent.bottom-left {
+            bottom: 0;
+            left: 0;
+            border-bottom: 4px solid var(--brand-secondary);
+            border-left: 4px solid var(--brand-secondary);
+            border-bottom-left-radius: 16px;
+        }
+
+        .corner-accent.bottom-right {
+            bottom: 0;
+            right: 0;
+            border-bottom: 4px solid var(--brand-primary);
+            border-right: 4px solid var(--brand-primary);
+            border-bottom-right-radius: 16px;
+        }
+
+        /* Floating decorative dots */
+        .deco-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            opacity: 0.6;
+        }
+
+        .deco-dot-1 {
+            width: 14px;
+            height: 14px;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .deco-dot-2 {
+            width: 10px;
+            height: 10px;
+            bottom: 14px;
+            left: 25%;
+        }
+
+        .deco-dot-3 {
+            width: 12px;
+            height: 12px;
+            bottom: 14px;
+            right: 25%;
+        }
+
+        .deco-dot-4 {
+            width: 8px;
+            height: 8px;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+
+        .deco-dot-5 {
+            width: 8px;
+            height: 8px;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            background: var(--card-glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 2px solid var(--glass-stroke);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow), 0 0 0 1px rgba(30, 110, 232, 0.1);
+            overflow: hidden;
+            padding: 12px;
+        }
+
+        .image-inner-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(30, 110, 232, 0.05), rgba(0, 194, 178, 0.05));
+        }
+
+        .image-inner-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            display: block;
+        }
+
+        /* Image caption */
+        .image-caption {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .image-caption span {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        /* Decorative lines */
+        .deco-line {
+            position: absolute;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+            opacity: 0.3;
+            border-radius: 2px;
+        }
+
+        .deco-line-top {
+            height: 3px;
+            width: 30%;
+            top: 10px;
+            left: 35%;
+        }
+
+        .deco-line-bottom {
+            height: 3px;
+            width: 30%;
+            bottom: 10px;
+            left: 35%;
+        }
+
+        /* Frontier Section */
+        .frontier-section {
+            margin-bottom: 80px;
+        }
+
+        .frontier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .frontier-card {
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .frontier-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+            border-radius: 4px 0 0 4px;
+        }
+
+        .frontier-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, rgba(30, 110, 232, 0.15), rgba(0, 194, 178, 0.15));
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--brand-primary);
+            margin-bottom: 16px;
+        }
+
+        .frontier-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .frontier-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .frontier-card .example-btn {
+            margin-bottom: 0;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(83, 97, 113, 0.1);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        /* Technology Section */
+        .tech-section {
+            margin-bottom: 80px;
+        }
+
+        .tech-card {
+            padding: 50px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .tech-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .tech-content p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .tech-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .tech-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tech-feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(30, 110, 232, 0.15), rgba(0, 194, 178, 0.15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .tech-feature span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+
+        .chart-bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 220px;
+        }
+
+        .chart-bar {
+            width: 30px;
+            border-radius: 6px 6px 0 0;
+            transition: height 1s ease-out;
+            position: relative;
+        }
+
+        .chart-bar.traditional {
+            background: linear-gradient(180deg, #94a3b8, #cbd5e1);
+        }
+
+        .chart-bar.rizmoon {
+            background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+        }
+
+        .chart-bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .chart-bar.traditional::after { color: #64748b; }
+        .chart-bar.rizmoon::after { color: var(--brand-primary); }
+
+        .chart-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-dot.traditional { background: linear-gradient(180deg, #94a3b8, #cbd5e1); }
+        .legend-dot.rizmoon { background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary)); }
+
+        /* Workflow Section */
+        .workflow-section {
+            margin-bottom: 80px;
+        }
+
+        .workflow-card {
+            padding: 50px;
+        }
+
+        .workflow-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .workflow-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            right: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .workflow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            min-width: 140px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(30, 110, 232, 0.3);
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            max-width: 150px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            margin-bottom: 60px;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            text-align: center;
+            padding: 60px 40px;
+            color: white;
+        }
+
+        .cta-card h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-card p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: white;
+            color: var(--brand-primary);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-top: 1px solid var(--glass-stroke);
+            padding: 30px 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer strong {
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .workflow-steps::before {
+                display: none;
+            }
+
+            .products-row-top {
+                grid-template-columns: 1fr;
+            }
+
+            .products-row-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-showcase .image-frame-container {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 30px 20px 40px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 32px;
+            }
+
+            .section-title h2 {
+                font-size: 26px;
+            }
+
+            header {
+                padding: 12px 20px;
+            }
+
+            .header-content {
+                justify-content: center;
+            }
+
+            .lang-toggle {
+                order: -1;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            .lang-btn {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+
+            .subtitle-badge {
+                width: 100%;
+                text-align: center;
+            }
+
+            .tech-features {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-container {
+                flex-wrap: wrap;
+                height: auto;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="brand">
+                <div class="logo"></div>
+                <div>
+                    <div class="brand-name">RizMoon</div>
+                    <div class="domain" data-en="AI Financial Service Expert" data-zh="AI金融服务专家">AI Financial Service Expert</div>
+                </div>
+            </div>
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en">English</button>
+                <button class="lang-btn" data-lang="zh">中文</button>
+            </div>
+            <div class="subtitle-badge">
+                <div class="text" data-en="Bridge the Last Mile of AI Commercialization" data-zh="打通AI商业化最后一公里">Bridge the Last Mile of AI Commercialization</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 data-en="Intelligent AI Solutions for<br>Financial Professionals" data-zh="面向金融专业领域的<br>智能AI解决方案">Intelligent AI Solutions for<br>Financial Professionals</h1>
+            <p data-en="RizMoon Intelligence delivers cutting-edge AI agent solutions that transform how financial service firms handle document processing, analysis, and reporting." data-zh="RizMoon 升月云程提供前沿的AI Agent解决方案，变革金融服务机构文档处理、分析和报告的方式。">RizMoon Intelligence delivers cutting-edge AI agent solutions that transform how financial service firms handle document processing, analysis, and reporting.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-accuracy">99.5%</div>
+                    <div class="stat-label" data-en="Recognition Accuracy" data-zh="识别准确率">Recognition Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-checkpoints">100+</div>
+                    <div class="stat-label" data-en="Review Checkpoints" data-zh="审核检查点">Review Checkpoints</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-time">80%</div>
+                    <div class="stat-label" data-en="Time Saved" data-zh="时间节省">Time Saved</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-formats">15+</div>
+                    <div class="stat-label" data-en="File Formats" data-zh="文档类型">File Formats</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-tools">30+</div>
+                    <div class="stat-label" data-en="Automated Tools/Skills" data-zh="自动化工具/技能">Automated Tools/Skills</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-languages">15+</div>
+                    <div class="stat-label" data-en="Supported Languages" data-zh="支持语言">Supported Languages</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Products Section -->
+        <section class="products-section">
+            <div class="section-title">
+                <h2 data-en="Core Product Suite" data-zh="核心产品组合">Core Product Suite</h2>
+                <p data-en="Comprehensive AI-powered tools designed for financial workflow excellence" data-zh="专为金融流程卓越表现而设计的全面AI工具">Comprehensive AI-powered tools designed for financial workflow excellence</p>
+            </div>
+
+            <!-- Top Row: 3 Product Cards -->
+            <div class="products-row-top">
+                <!-- AI Reviewer -->
+                <div class="glass-card product-card">
+                    <div class="product-icon icon-blue">📋</div>
+                    <h3 data-en="AI Reviewer" data-zh="AI Reviewer 智能复核">AI Reviewer</h3>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Combines decades of professional expertise with flagship LLM models for intelligent report review" data-zh="结合专业经验与旗舰LLM模型，实现智能报告审核">Combines decades of professional expertise with flagship LLM models for intelligent report review</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Over 100 customizable checkpoints covering valuation, due diligence, and industry analysis" data-zh="超过100个可定制检查点，涵盖各类专业报告领域">Over 100 customizable checkpoints covering valuation, due diligence, and industry analysis</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="High accuracy with minimal hallucination through cross-reference verification and citations" data-zh="通过交叉引用验证和引用，实现高准确性并最大程度减少幻觉">High accuracy with minimal hallucination through cross-reference verification and citations</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Internal and external knowledge base integration with hierarchical result display" data-zh="内外部知识库集成，支持层级化结果展示">Internal and external knowledge base integration with hierarchical result display</span>
+                        </div>
+                    </div>
+                    <div class="example-links">
+                        <h4 data-en="Case Studies" data-zh="案例展示">Case Studies</h4>
+                        <a href="case_review_1.html" class="example-btn" target="_blank" data-en="Valuation - Market Approach - English" data-zh="估值报告 - 市场法 - 英文">Valuation - Market Approach - English</a>
+                        <a href="case_review_2.html" class="example-btn" target="_blank" data-en="Valuation - Cost Approach - Chinese" data-zh="估值报告 - 成本法 - 中文">Valuation - Cost Approach - Chinese</a>
+                    </div>
+                </div>
+
+                <!-- AI OCR -->
+                <div class="glass-card product-card">
+                    <div class="product-icon icon-teal">🔍</div>
+                    <h3 data-en="AI OCR" data-zh="AI OCR 智能识别">AI OCR</h3>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="World-class accuracy powered by flagship AI VLM models with local enhancements" data-zh="由旗舰AI模型驱动，结合本地优化，实现高准确度">World-class accuracy powered by flagship AI VLM models with local enhancements</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Decodes complex charts, graphs, tables, and handwriting into semantic context" data-zh="将复杂图表、图形和手写内容解码为语义化信息">Decodes complex charts, graphs, tables, and handwriting into semantic context</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Handles skewed, rotated, and scanned images from any source" data-zh="兼容各种来源文档，支持倾斜、旋转和扫描图像">Handles skewed, rotated, and scanned images from any source</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Converts any document to editable Word with Excel table export and real-time verification" data-zh="将文档转换为可编辑Word，支持Excel表格导出和实时验证">Converts any document to editable Word with Excel table export and real-time verification</span>
+                        </div>
+                    </div>
+                    <div class="example-links">
+                        <h4 data-en="Case Studies" data-zh="案例展示">Case Studies</h4>
+                        <a href="case_ocr_1.html" class="example-btn" target="_blank" data-en="Mixed Components - Multi-Language" data-zh="复杂混合元素文档 - 多语言">Mixed Components - Multi-Language</a>
+                        <a href="case_ocr_2.html" class="example-btn" target="_blank" data-en="Complex PPT - English/Chinese" data-zh="复杂结构PPT - 中英文">Complex PPT - English/Chinese</a>
+                    </div>
+                </div>
+
+                <!-- AI Translation -->
+                <div class="glass-card product-card">
+                    <div class="product-icon icon-purple">🌐</div>
+                    <h3 data-en="AI Translation" data-zh="AI Translation 智能翻译">AI Translation</h3>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Domain-oriented translation with context building for financial terminology accuracy" data-zh="面向领域的翻译，构建上下文体系确保术语准确性。可定制翻译基调及输出风格">Domain-oriented translation with context building for financial terminology accuracy</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Multi-language bilateral translation with consistency assurance" data-zh="多语言双向翻译，确保一致性">Multi-language bilateral translation with consistency assurance</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Supports all document formats including scanned images and handwritten notes" data-zh="支持各种文档格式，包括扫描图像和手写笔记">Supports all document formats including scanned images and handwritten notes</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Real-time comparison with editable Word output and Excel table export" data-zh="实时对比，支持可编辑Word输出和Excel表格导出">Real-time comparison with editable Word output and Excel table export</span>
+                        </div>
+                    </div>
+                    <div class="example-links">
+                        <h4 data-en="Case Studies" data-zh="案例展示">Case Studies</h4>
+                        <a href="case_translation_1.html" class="example-btn" target="_blank" data-en="Financial Report - Thai/Chinese" data-zh="财务报告 - 泰语/中文">Financial Report - Thai/Chinese</a>
+                        <a href="case_translation_2.html" class="example-btn" target="_blank" data-en="Literary Works - French/English/Chinese" data-zh="文学作品 - 法语/英语/中文">Literary Works - French/English/Chinese</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: AI Extraction + AI Business Intelligence -->
+            <div class="products-row-bottom">
+                <!-- AI Extraction -->
+                <div class="glass-card product-card">
+                    <div class="product-icon icon-amber">📊</div>
+                    <h3 data-en="AI Extraction" data-zh="AI Extraction 智能提取">AI Extraction</h3>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Fully customizable extraction fields with AI-powered suggestions" data-zh="完全可定制的提取字段，支持AI智能建议">Fully customizable extraction fields with AI-powered suggestions</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Batch processing for hundreds of documents simultaneously" data-zh="批量处理数百份文档，同时进行">Batch processing for hundreds of documents simultaneously</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Cross-document analysis for comprehensive data correlation" data-zh="跨文档分析，实现全面数据关联">Cross-document analysis for comprehensive data correlation</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="High-accuracy extraction with direct Excel export capability" data-zh="高准确度提取，支持直接Excel导出">High-accuracy extraction with direct Excel export capability</span>
+                        </div>
+                    </div>
+                    <div class="example-links">
+                        <h4 data-en="Case Studies" data-zh="案例展示">Case Studies</h4>
+                        <a href="case_extraction_1.html" class="example-btn" target="_blank" data-en="Fund Portfolio Details" data-zh="基金投资组合详情提取">Fund Portfolio Details</a>
+                        <a href="case_extraction_2.html" class="example-btn" target="_blank" data-en="CapTable Details" data-zh="投资合同CapTable详情提取">CapTable Details</a>
+                    </div>
+                </div>
+
+                <!-- AI Business Intelligence -->
+                <div class="glass-card product-card">
+                    <div class="product-icon icon-green">📈</div>
+                    <h3 data-en="AI Business Intelligence" data-zh="智能BI">AI Business Intelligence</h3>
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Dual-mode analysis supporting both structured data and unstructured context" data-zh="支持结构化数据和非结构化内容">Dual-mode analysis supporting both structured data and unstructured context</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Deep insight extraction from lengthy and complex documents" data-zh="从冗长复杂的文档中深度提取洞察">Deep insight extraction from lengthy and complex documents</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Flexible analysis with semantic understanding and fuzzy query support" data-zh="灵活分析，支持语义理解和模糊查询">Flexible analysis with semantic understanding and fuzzy query support</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-check"></div>
+                            <span data-en="Interactive BI dashboards with customizable styles and layouts" data-zh="交互式BI仪表板，支持自定义样式和布局">Interactive BI dashboards with customizable styles and layouts</span>
+                        </div>
+                    </div>
+                    <div class="example-links">
+                        <h4 data-en="Case Studies" data-zh="案例展示">Case Studies</h4>
+                        <a href="case_bi_1.html" class="example-btn" target="_blank" data-en="Data Based - Economic Outlook" data-zh="基于数据的BI - 经济展望数据看版">Data Based - Economic Outlook</a>
+                        <a href="case_bi_2.html" class="example-btn" target="_blank" data-en="Content Based - National Tariff" data-zh="基于多元信息的BI - 电网定价看版">Content Based - National Tariff</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Overview Section -->
+        <section class="overview-section">
+            <div class="section-title">
+                <h2 data-en="Unified AI Platform" data-zh="统一AI平台">Unified AI Platform</h2>
+                <p data-en="A comprehensive view of RizMoon's integrated AI solutions" data-zh="RizMoon集成AI解决方案全景展示">A comprehensive view of RizMoon's integrated AI solutions</p>
+            </div>
+
+            <div class="overview-showcase">
+                <div class="image-frame-container">
+                    <!-- Corner accents -->
+                    <div class="corner-accent top-left"></div>
+                    <div class="corner-accent top-right"></div>
+                    <div class="corner-accent bottom-left"></div>
+                    <div class="corner-accent bottom-right"></div>
+                    
+                    <!-- Decorative dots -->
+                    <div class="deco-dot deco-dot-1"></div>
+                    <div class="deco-dot deco-dot-2"></div>
+                    <div class="deco-dot deco-dot-3"></div>
+                    <div class="deco-dot deco-dot-4"></div>
+                    <div class="deco-dot deco-dot-5"></div>
+                    
+                    <!-- Decorative lines -->
+                    <div class="deco-line deco-line-top"></div>
+                    <div class="deco-line deco-line-bottom"></div>
+                    
+                    <!-- Image wrapper -->
+                    <div class="image-wrapper">
+                        <div class="image-inner-frame">
+                            <img id="product-overview-img" src="product_overview_en.png" alt="Product Overview - RizMoon AI Solutions" data-en="product_overview_en.png" data-zh="product_overview_ch.png">
+                        </div>
+                    </div>
+                    
+                    <!-- Caption -->
+                    <div class="image-caption" data-en="<span>Product Overview</span> — Unified AI Platform" data-zh="<span>产品概览</span> — 统一AI平台">
+                        <span>Product Overview</span> — Unified AI Platform
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Frontier Pipelines Section -->
+        <section class="frontier-section">
+            <div class="section-title">
+                <h2 data-en="Frontier Pipelines" data-zh="前沿产品管线">Frontier Pipelines</h2>
+                <p data-en="Next-generation AI capabilities pushing the boundaries of financial analysis" data-zh="突破金融分析边界的下一代AI能力">Next-generation AI capabilities pushing the boundaries of financial analysis</p>
+            </div>
+
+            <div class="frontier-grid">
+                <div class="glass-card frontier-card">
+                    <div class="frontier-badge" data-en="Available" data-zh="已开发">Available</div>
+                    <h3 data-en="AI Model Building" data-zh="AI模型构建">AI Model Building</h3>
+                    <p data-en="Automated financial model construction and valuation based on contract terms and market data." data-zh="基于合同条款和市场数据的自动化金融模型构建与估值。">Automated financial model construction and valuation based on contract terms and market data.</p>
+                    <a href="case_esop.html" class="example-btn" target="_blank" data-en="View Demo →" data-zh="查看演示 →">View Demo →</a>
+                </div>
+
+                <div class="glass-card frontier-card">
+                    <div class="frontier-badge" data-en="Available" data-zh="已开发">Available</div>
+                    <h3 data-en="AI Model Assistants" data-zh="AI模型助手">AI Model Assistants</h3>
+                    <p data-en="Comprehensive model testing, interpretation, and sensitivity analysis for financial models." data-zh="金融模型的全面测试、解释和敏感性分析。">Comprehensive model testing, interpretation, and sensitivity analysis for financial models.</p>
+                    <a href="case_monte.html" class="example-btn" target="_blank" data-en="View Demo →" data-zh="查看演示 →">View Demo →</a>
+                </div>
+
+                <div class="glass-card frontier-card">
+                    <div class="frontier-badge" style="background: rgba(83, 97, 113, 0.15); color: var(--text-muted);" data-en="Coming Soon" data-zh="即将推出">Coming Soon</div>
+                    <h3 data-en="AI Comparable Selection" data-zh="AI可比公司筛选">AI Comparable Selection</h3>
+                    <p data-en="Comparable research and selection based on financial & market conditions. Reasonablity and sensitivity analysis." data-zh="基于财务和市场条件的可比公司研究与筛选，合理性与敏感性分析。">Comparable research and selection based on financial & market conditions. Reasonablity and sensitivity analysis.</p>
+                    <span class="coming-soon" data-en="In Development" data-zh="开发中">In Development</span>
+                </div>
+
+                <div class="glass-card frontier-card">
+                    <div class="frontier-badge" style="background: rgba(83, 97, 113, 0.15); color: var(--text-muted);" data-en="Coming Soon" data-zh="即将推出">Coming Soon</div>
+                    <h3 data-en="AI Model Validation" data-zh="AI模型验证">AI Model Validation</h3>
+                    <p data-en="Build, rebuild, reverse-engineer, and validate complex financial models with AI precision." data-zh="高精度构建、重建、逆向工程和验证复杂金融模型。">Build, rebuild, reverse-engineer, and validate complex financial models with AI precision.</p>
+                    <span class="coming-soon" data-en="In Development" data-zh="开发中">In Development</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section class="tech-section">
+            <div class="glass-card tech-card">
+                <div class="tech-grid">
+                    <div class="tech-content">
+                        <h3 data-en="Powered by Advanced AI Technology" data-zh="由先进AI技术驱动">Powered by Advanced AI Technology</h3>
+                        <p data-en="RizMoon leverages state-of-the-art large language models and vision models, enhanced with proprietary financial domain expertise to deliver unparalleled accuracy and reliability." data-zh="RizMoon 利用最先进的大语言模型和视觉模型，结合专有金融领域专业知识，提供无与伦比的准确性和可靠性。">RizMoon leverages state-of-the-art large language models and vision models, enhanced with proprietary financial domain expertise to deliver unparalleled accuracy and reliability.</p>
+                        <div class="tech-features">
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">🧠</div>
+                                <span data-en="Flagship LLM & VLM" data-zh="旗舰LLM与VLM">Flagship LLM & VLM</span>
+                            </div>
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">📈</div>
+                                <span data-en="Domain Expertise" data-zh="领域专业知识">Domain Expertise</span>
+                            </div>
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">🔒</div>
+                                <span data-en="Enterprise Security" data-zh="企业级安全">Enterprise Security</span>
+                            </div>
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">⚡</div>
+                                <span data-en="Real-time Processing" data-zh="实时处理">Real-time Processing</span>
+                            </div>
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">🤖</div>
+                                <span data-en="Functions, Skills & Agents" data-zh="Functions、Skills与Agents">Functions, Skills & Agents</span>
+                            </div>
+                            <div class="tech-feature">
+                                <div class="tech-feature-icon">🔗</div>
+                                <span data-en="System & Local Integration" data-zh="系统与本地集成">System & Local Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-section">
+                        <div class="chart-container">
+                            <div class="chart-bar-group">
+                                <div class="chart-bars">
+                                    <div class="chart-bar traditional" style="height: 120px;" data-value="60%"></div>
+                                    <div class="chart-bar rizmoon" style="height: 198px;" data-value="99%"></div>
+                                </div>
+                                <div class="chart-label" data-en="Accuracy" data-zh="准确率">Accuracy</div>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bars">
+                                    <div class="chart-bar traditional" style="height: 180px;" data-value="100%"></div>
+                                    <div class="chart-bar rizmoon" style="height: 36px;" data-value="20%"></div>
+                                </div>
+                                <div class="chart-label" data-en="Time Spent" data-zh="耗时">Time Spent</div>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bars">
+                                    <div class="chart-bar traditional" style="height: 100px;" data-value="50%"></div>
+                                    <div class="chart-bar rizmoon" style="height: 190px;" data-value="95%"></div>
+                                </div>
+                                <div class="chart-label" data-en="Consistency" data-zh="一致性">Consistency</div>
+                            </div>
+                            <div class="chart-bar-group">
+                                <div class="chart-bars">
+                                    <div class="chart-bar traditional" style="height: 60px;" data-value="30%"></div>
+                                    <div class="chart-bar rizmoon" style="height: 180px;" data-value="90%"></div>
+                                </div>
+                                <div class="chart-label" data-en="Coverage" data-zh="覆盖率">Coverage</div>
+                            </div>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-dot traditional"></div>
+                                <span data-en="Traditional Method" data-zh="传统方法">Traditional Method</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot rizmoon"></div>
+                                <span>RizMoon AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section class="workflow-section">
+            <div class="section-title">
+                <h2 data-en="Seamless Integration" data-zh="无缝集成">Seamless Integration</h2>
+                <p data-en="Get started in minutes with our streamlined workflow" data-zh="通过我们流畅的工作流程，数分钟内即可上手">Get started in minutes with our streamlined workflow</p>
+            </div>
+
+            <div class="glass-card workflow-card">
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title" data-en="Upload" data-zh="上传">Upload</div>
+                        <div class="step-desc" data-en="Upload documents in any format - PDF, Word, PPT, or images" data-zh="上传任意格式的文档 - PDF、Word、PPT或图像">Upload documents in any format - PDF, Word, PPT, or images</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title" data-en="Configure" data-zh="配置">Configure</div>
+                        <div class="step-desc" data-en="Select AI tools and customize parameters for your needs" data-zh="选择AI工具并根据需求自定义参数">Select AI tools and customize parameters for your needs</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title" data-en="Process" data-zh="处理">Process</div>
+                        <div class="step-desc" data-en="AI analyzes and processes documents with high precision" data-zh="AI高精度分析和处理文档">AI analyzes and processes documents with high precision</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title" data-en="Review" data-zh="审阅">Review</div>
+                        <div class="step-desc" data-en="Verify results with real-time comparison tools" data-zh="使用实时对比工具验证结果">Verify results with real-time comparison tools</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-title" data-en="Export" data-zh="导出">Export</div>
+                        <div class="step-desc" data-en="Download as Word, Excel, or integrate via API" data-zh="下载为Word、Excel或通过API集成">Download as Word, Excel, or integrate via API</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="glass-card cta-card">
+                <h2 data-en="Ready to Transform Your Workflow?" data-zh="准备好变革您的工作流程了吗？">Ready to Transform Your Workflow?</h2>
+                <p data-en="Join leading financial institutions leveraging RizMoon's AI solutions to enhance accuracy, reduce processing time, and unlock new insights from their documents." data-zh="加入领先的金融机构行列，利用RizMoon的AI解决方案提升准确性、缩短处理时间，并从文档中解锁新洞察。">Join leading financial institutions leveraging RizMoon's AI solutions to enhance accuracy, reduce processing time, and unlock new insights from their documents.</p>
+                <a href="#contact" class="cta-button" target="_blank" data-en="Schedule a Demo" data-zh="预约演示">Schedule a Demo</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div>
+            © <span id="year">2025</span> <strong>RizMoon</strong>. All rights reserved. 版权所有
+        </div>
+    </footer>
+
+    <!-- Animation Script -->
+    <script>
+        // Language switching functionality
+        let currentLang = localStorage.getItem('rizmoon-lang') || 'en';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('rizmoon-lang', lang);
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                const text = el.dataset[lang];
+                if (text) {
+                    // Handle image elements - update src attribute
+                    if (el.tagName === 'IMG') {
+                        el.src = text;
+                    } else {
+                        // Check if the element contains HTML (like the image caption)
+                        el.innerHTML = text;
+                    }
+                }
+            });
+
+            // Update page title
+            if (lang === 'zh') {
+                document.title = 'RizMoon Intelligence - AI金融解决方案';
+            } else {
+                document.title = 'RizMoon Intelligence - AI-Powered Financial Solutions';
+            }
+
+            // Update html lang attribute
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            switchLanguage(currentLang);
+            
+            // Add click handlers for language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    switchLanguage(btn.dataset.lang);
+                });
+            });
+        });
+
+        // Animate stats on scroll
+        const animateValue = (element, start, end, duration, suffix = '') => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+
+                    // Animate hero stats
+                    if (entry.target.classList.contains('hero')) {
+                        animateValue(document.getElementById('stat-accuracy'), 0, 99.5, 1500, '%');
+                        animateValue(document.getElementById('stat-checkpoints'), 0, 100, 1500, '+');
+                        animateValue(document.getElementById('stat-time'), 0, 80, 1500, '%');
+                        animateValue(document.getElementById('stat-formats'), 0, 15, 1500, '+');
+                        animateValue(document.getElementById('stat-tools'), 0, 30, 1500, '+');
+                        animateValue(document.getElementById('stat-languages'), 0, 15, 1500, '+');
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe sections
+        document.querySelectorAll('.hero, .products-section, .overview-section, .frontier-section, .tech-section, .workflow-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Update year dynamically
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

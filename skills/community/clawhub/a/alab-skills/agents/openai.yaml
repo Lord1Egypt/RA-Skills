@@ -1,0 +1,7 @@
+interface:
+  display_name: "ALab Skills"
+  short_description: "Route ALab root, project, and experiment skills"
+  default_prompt: "Use $alab-skills to choose the least-privileged ALab role skill, understand the root/project/experiment hierarchy, and hand work to $alab-global-admin, $alab-project-controller, or $alab-experiment-worker with matching credentials."
+
+policy:
+  allow_implicit_invocation: true

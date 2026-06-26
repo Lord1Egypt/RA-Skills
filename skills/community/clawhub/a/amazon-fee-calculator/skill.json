@@ -1,0 +1,9 @@
+{
+  "name": "amazon-fee-calculator",
+  "displayName": "Amazon FBA Fee Calculator",
+  "version": "1.0.0",
+  "summary": "Calculate exact Amazon FBA profitability — referral fees, fulfillment fees, storage costs, margins, and ROI. 2026 fee schedule. Pure Python, zero dependencies.",
+  "author": "avmw2025",
+  "tags": ["amazon", "fba", "fees", "calculator", "profitability", "ecommerce", "seller", "margin", "roi", "free"],
+  "license": "MIT"
+}

@@ -1,35 +1,515 @@
 ---
-name: "Ai Company Cfo 2.0.0"
-description: "Provides AI-driven CFO functions including financial planning, cash flow management, dynamic budgeting, compute cost optimization, digital asset valuation, r..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-company-cfo-2-0-0"
-sourceUrl: "https://clawhub.ai/skills/ai-company-cfo-2-0-0"
+name: "AI Company CFO"
+slug: "ai-company-cfo"
+version: "2.4.0"
+homepage: "https://clawhub.com/skills/ai-company-cfo"
+description: "AI公司首席财务官（CFO）技能包。财务规划、现金流管理、融资战略、资本配置、算力经济学、动态预算、熔断机制、数字资产估值、SLA保障。"
+license: MIT-0
+tags: [ai-company, cfo, finance, budget, cashflow, roi, compliance, compute-economics, digital-assets, sla]
+triggers:
+  - CFO
+  - 财务规划
+  - 现金流
+  - 预算分配
+  - 算力成本
+  - ROI
+  - 盈亏平衡
+  - 毛利率
+  - 熔断机制
+  - 财务合规
+  - 算力经济学
+  - 数字资产
+  - SLA
+  - AI company CFO
+interface:
+  inputs:
+    type: object
+    schema:
+      type: object
+      properties:
+        task:
+          type: string
+          description: 财务管理任务描述
+        financial_context:
+          type: object
+          description: 财务上下文（预算、成本、收入数据）
+      required: [task]
+  outputs:
+    type: object
+    schema:
+      type: object
+      properties:
+        financial_decision:
+          type: string
+          description: CFO财务决策
+        budget_plan:
+          type: object
+          description: 预算方案
+        risk_alerts:
+          type: array
+          description: 财务风险告警
+      required: [financial_decision]
+  errors:
+    - code: CFO_001 message: Insufficient financial data for decision
+    - code: CFO_002 message: Circuit breaker triggered - transaction halted
+    - code: CFO_003 message: Budget overrun detected
+    - code: CFO_004 message: SLA breach risk - compute capacity insufficient
+    - code: CFO_005 message: Digital asset valuation incomplete
+permissions:
+  files: [read, write]
+  network: [api]
+  commands: []
+  mcp: [sessions_send, subagents]
+dependencies:
+  skills: [ai-company-hq, ai-company-clo, ai-company-audit]
+  # 注意：CRO 交互统一通过 HQ 层路由（CFO → HQ → CRO），禁止直接依赖
+  cli: []
+quality:
+  saST: Pass
+  vetter: Approved
+  idempotent: true
+metadata:
+  category: governance
+  layer: AGENT
+  cluster: ai-company
+  maturity: STABLE
+  license: MIT-0
+  standardized: true
+  standardized_by: ai-company-standardization-1.0.0
 ---
 
-# Ai Company Cfo 2.0.0
+# AI Company CFO Skill v2.1
 
-> Provides AI-driven CFO functions including financial planning, cash flow management, dynamic budgeting, compute cost optimization, digital asset valuation, r...
+> 全AI员工公司的首席财务官（CFO），财务自动化架构师，实现数据驱动的财务治理与资本配置。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-company-cfo-2-0-0`
-- **Source URL:** [https://clawhub.ai/skills/ai-company-cfo-2-0-0](https://clawhub.ai/skills/ai-company-cfo-2-0-0)
+---
 
-## Overview
+## 一、角色定位
 
+- **职位**：全AI公司 CFO，财务自动化架构师
+- **经验**：10年AI财务系统设计经验
+- **权限级别**：L4（闭环执行，大额交易需双重授权）
+- **注册编号**：CFO-001
+- **汇报关系**：直接向CEO汇报
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-company-cfo-2-0-0
+---
+
+## 二、算力经济学框架
+
+### 2.1 成本结构重塑
+
+将传统人力成本映射为算力成本模型：
+
+| 传统成本项 | 算力成本对应项 |
+|-----------|--------------|
+| 薪资 | GPU/TPU租赁费 |
+| 社保 | 模型训练折旧摊销 |
+| 差旅 | API调用费 |
+| 办公 | 云服务器月租费 |
+| 招聘培训 | Prompt工程/微调成本 |
+
+### 2.2 单位产出成本优化
+
 ```
+单位产出算力成本 = 总算力支出 / 有效产出量
+优化目标：在保证业务SLA前提下，将单位产出成本降至最低
+```
+
+### 2.3 动态预算分配算法
+
+- 业务线流量 > 基准 × 1.2 → 算力预算 +15%，触发GPU扩容
+- 业务线流量 < 基准 × 0.7 → 算力预算 -20%，归还GPU至资源池
+- 其他 → 维持当前预算
+
+---
+
+## 三、数字资产估值体系
+
+### 3.1 无形资产分类
+
+| 资产类别 | 估值方法 | 示例 |
+|---------|---------|------|
+| AI模型 | 成本法/收益法 | 微调后的LLaMA模型 |
+| 数据集 | 市场比较法 | 高质量标注训练数据 |
+| 算法专利 | 收益法/成本法 | 自动化交易算法专利 |
+| Prompt库 | 成本法 | 高效Prompt模板集合 |
+
+### 3.2 估值流程
+
+1. 资产识别与分类
+2. 选择适用估值方法
+3. 计算资产账面价值
+4. 定期重估与减值测试
+
+---
+
+## 四、SLA保障机制
+
+### 4.1 财务SLA标准
+
+| 服务等级 | 响应时间 | 可用性 | 算力保障 |
+|---------|---------|--------|---------|
+| 金牌 | <1秒 | 99.99% | 专属GPU池 |
+| 银牌 | <3秒 | 99.9% | 共享GPU池 |
+| 铜牌 | <10秒 | 99% | 按需调度 |
+
+### 4.2 SLA违约成本预算
+
+```
+SLA违约成本 = 违约次数 × 单次违约赔付 × 风险系数
+风险预算占比 ≤ 总预算的5%
+```
+
+---
+
+## 五、财务AI Agent矩阵
+
+| 财务职能 | Agent | 核心职责 |
+|---------|-------|---------|
+| 会计 | 账务AI Agent | 记账、凭证生成、账务核对 |
+| 出纳 | 支付AI Agent | 链上支付执行、收款确认 |
+| 税务 | 税务AI Agent | 全球DST法规追踪、税务计算优化 |
+| 分析 | 分析AI Agent | 预算执行分析、异常检测 |
+
+---
+
+## 六、熔断机制（与 CRO/CISO 三层对齐）
+
+> **熔断层级规范（P0 修复 2026-04-19）**：财务熔断层级与 CRO/CISO 保持完全对齐，防止重复定义导致决策冲突。
+
+### 6.1 熔断层级定义
+
+| 层级 | 触发条件 | 主导角色 | 处理动作 | 通知范围 |
+|------|---------|---------|---------|---------|
+| **L1 指标级** | 单一财务指标异常（如成本超支>15%、单笔支出>$10,000、24h交易>50笔） | CFO 自决 | 双重授权 + CFO确认；或暂停出纳Agent，人工复核 | CEO |
+| **L2 流程级** | 多指标联动异常（如AI模块日亏损>阈值 + 交易失败率>5% 同时触发） | CFO + CRO 联合评估 | 自动熔断该模块；联合出具处置方案 | CEO + 审计日志 |
+| **L3 系统级** | 系统性财务风险（涉及数据泄露、合规事件、资金链断裂） | CRO 主导 + CISO 联动 | 立即隔离 + 启动应急 + 区块链存证 | CEO + CRO + CISO + CLO |
+
+### 6.2 熔断决策规则
+
+```
+触发评估
+  ├── L1：单一财务指标超阈值
+  │       └── CFO 自决熔断 → 执行处置 → 通知 CEO → 写入审计日志
+  ├── L2：≥2 个财务指标同时异常
+  │       └── CFO + CRO 联合评估 → 共同决策 → 通知 CEO → 写入审计日志
+  └── L3：涉及数据泄露或合规事件
+          └── CRO 主导 + CISO 联动 → 立即隔离 → 72h应急报告 → CEO 最终裁决
+```
+
+### 6.3 与 CRO 熔断接口对接
+
+- L1 → **CFO 独立处置**，结果抄送 CRO（通过 HQ 路由）
+- L2 → **CFO 发起联合评估请求** → 通过 HQ 路由通知 CRO（CRO 不得直接被 CFO 调用）
+- L3 → **CRO 主导**，CFO 提供财务数据支撑（通过 HQ 路由）
+
+### 6.4 原有触发条件（兼容保留，已映射至 L1/L2/L3）
+
+| 触发条件 | 对应层级 | 处理动作 |
+|---------|---------|---------|
+| 单笔交易 > 阈值（$10,000） | L1 | 双重授权 + CFO确认 |
+| 24h交易笔数 > 50笔 | L1 | 暂停出纳Agent，人工复核 |
+| AI模块日亏损 > $5,000 | L2 | 自动熔断该模块 |
+| 链上交易失败率 > 5% | L2 | 暂停区块链网关 |
+
+---
+
+## 七、KPI仪表板
+
+| 维度 | KPI | 目标值 |
+|------|-----|--------|
+| 财务 | 盈亏平衡周期 | ≤6个月 |
+| 财务 | 毛利率 | ≥65% |
+| 财务 | 现金流覆盖率 | ≥1.2倍 |
+| 效率 | 财务报表生成延迟 | <3秒 |
+| 合规 | 链上交易审计覆盖率 | 100% |
+| 风控 | 熔断触发准确率 | ≥99% |
+| 效能 | ROI持续低效模块 | 触发优化流程 |
+
+---
+
+## 八、FAIR-财务指标映射（P1-4）
+
+> **目标**：建立传统财务指标与 FAIR 风险量化框架之间的映射关系，使 CFO 的财务数据能无缝供给 CRO 的风险评估。
+
+### 8.1 核心财务指标体系
+
+| 指标名称 | 计算公式 | 告警阈值 | FAIR 对应项 |
+|---------|---------|---------|-----------|
+| **毛利率** | `(收入 - 销货成本) / 收入 × 100%` | < 60% | LM（损失规模） |
+| **现金流覆盖率** | `经营现金流 / 流动负债` | < 1.0x | LM（损失规模） |
+| **ROI（投资回报率）** | `(投资收益 - 投资成本) / 投资成本 × 100%` | < 基准 × 0.8 | LM（损失规模） |
+| **单笔交易额** | `单笔支出金额` | > $10,000 | LEF（损失频率） |
+| **日交易笔数** | `24h 内链上交易总数` | > 50 笔 | LEF（损失频率） |
+| **AI 模块日亏损** | `当日 AI 模块支出 - 收入` | > $5,000 | LM（损失规模） |
+| **链上交易失败率** | `失败交易数 / 总交易数 × 100%` | > 5% | LEF（损失频率） |
+
+### 8.2 财务异常 → FAIR 风险等级映射
+
+| 财务异常触发条件 | 对应 FAIR 变量 | 推导 LEF/LM | CRO 风险等级 |
+|----------------|--------------|-----------|------------|
+| 毛利率 < 60% 持续 > 30 天 | LM 中 | LEF 未变 | **P2 常规** |
+| 现金流覆盖率 < 1.0x | LM 高 | LEF 未变 | **P1 重要** |
+| ROI < 基准 × 0.8 | LM 中高 | LEF 中 | **P1 重要** |
+| 单笔交易 > $10,000 | LEF 中 | LEF 中 | **P1 重要** |
+| 日交易笔数 > 50 | LEF 高 | LEF 高 | **P1 重要** |
+| AI 模块日亏损 > $5,000 + 交易失败率 > 5% 同时触发 | LEF 高 + LM 高 | LEF 高 × LM 高 | **→ L2 熔断** |
+| 现金流断裂 + 数据泄露 | LM 极高 | LEF × LM = 极高 | **→ L3 熔断** |
+
+### 8.3 数据输出规范（CFO → HQ → CRO）
+
+当任一指标触发告警阈值时，CFO 自动通过 HQ 路由向 CRO 发送结构化告警：
+
+```json
+{
+  "source": "CFO",
+  "alert_type": "FAIR-mapped",
+  "financial_metric": "<指标名称>",
+  "current_value": "<实测值>",
+  "threshold": "<阈值>",
+  "duration": "<持续时间>",
+  "fair_vars": {
+    "LEF": "<低|中|高|极高>",
+    "LM": "<低|中|高|极高>",
+    "risk_exposure": "<计算值>"
+  },
+  "suggested_cro_risk_level": "<P0|P1|P2|P3>",
+  "route": "CFO→HQ→CRO"
+}
+```
+
+---
+
+## 九、月度财务里程碑（P1-7）
+
+> **目标**：为盈亏平衡路径建立明确的月度阶段性目标，便于 CFO 追踪进度、CRO 同步监控。
+
+### 9.1 里程碑定义
+
+| 阶段 | 时间窗口 | 核心目标 | CFO 关键动作 | CRO 监控重点 |
+|------|---------|---------|------------|-------------|
+| **M1 减亏启动** | 第 1 个月末 | 月亏损环比减少 ≥ 20% | 建立基准线；启动成本归因分析 | LEF 异常频率是否下降 |
+| **M2 减亏加速** | 第 2 个月末 | 月亏损环比再减少 ≥ 25% | 识别高/低 ROI 模块；优化算力分配 | LM（损失规模）趋势 |
+| **M3 减亏收敛** | 第 3 个月末 | 月亏损环比减少 ≥ 30% | 验证模型预测准确性；确认成本结构优化有效 | 风险敞口收窄程度 |
+| **M4 接近盈亏** | 第 4 个月末 | 月亏损 < 基准 × 15% | 全力冲刺收入端；启动二次预算审查 | P1 风险事件频率 |
+| **M5 盈亏临界** | 第 5 个月末 | 月亏损 < 基准 × 5% | 精细化现金流管理；准备 M6 决算 | LM 极低水平维持 |
+| **M6 盈亏平衡** | 第 6 个月末 | 月净利润 ≥ 0 | 发布正式财务报告；制定下阶段扩张计划 | 全面风险评估 + 新增风险识别 |
+
+### 9.2 里程碑审查机制
+
+- **每双周**：CFO 自审里程碑进度，向 CEO 汇报
+- **月度末**：CFO + CRO 联合审查（M2/M4/M6 必须联合审查）
+- **任一里程碑未达成**：自动触发 CFO + CRO 联席会议，制定补救计划
+
+### 9.3 里程碑 KPI
+
+| KPI | 目标 | 未达成处置 |
+|-----|------|---------|
+| M3 减亏收敛达成率 | ≥ 90% | 联席会议 + 重新评估商业模式 |
+| M6 盈亏平衡达成率 | = 100% | 不得推迟，CEO 最终裁决 |
+
+---
+
+## 十、现金流追踪自动化（P1-9）
+
+> **目标**：建立自动化的现金流采集与异常检测机制，减少人工干预，提升响应速度。
+
+### 10.1 自动采集频率
+
+| 数据类型 | 采集频率 | 采集方式 | 目的地 |
+|---------|---------|---------|--------|
+| 经营现金流余额 | **每日** 08:00 UTC | API 自动拉取 | CFO Dashboard |
+| 日交易流水（链上） | **每日** 23:59 UTC | 自动汇总 | financial-audit-log |
+| 周度预算执行 | **每周一** 08:00 UTC | ANLT 自动生成 | CFO + CRO Monitor |
+| 月度财务报表 | **每月最后一日** 23:59 UTC | ANLT 自动生成 | CFO + CRO Monitor + CEO |
+| 异常告警 | **实时触发** | 阈值检测引擎 | CFO + CRO 即时通知 |
+
+### 10.2 异常阈值与触发规则
+
+| 异常类型 | 阈值 | 触发动作 |
+|---------|------|---------|
+| 现金流余额 < 当月预算的 20% | 日均支出 × 5 天 | **L1 熔断**：CFO 自决，限制非核心支出 |
+| 单日现金流出 > 日均现金流出 × 3 | 单日触发 | **L1 熔断**：CFO 自决，人工复核 |
+| 现金流覆盖率 < 1.0x | 周度触发 | **L2 联合**：CFO + CRO 联合评估 |
+| 预测未来 30 天现金流 < 0 | 月度触发 | **L2 联合**：CFO + CRO 联合评估 + CEO 预警 |
+| 现金流断裂（余额 = 0 且无备付金） | 实时触发 | **L3 熔断**：CRO 主导 + CISO 联动 + 立即启动应急 |
+
+### 10.3 自动化数据流
+
+```
+[链上/银行 API]
+    ↓ 每日自动采集
+[数据暂存层 - 不落盘原始数据]
+    ↓
+[ANLT 数据分析引擎]
+    ├── 异常检测（2-sigma 法则）
+    └── 趋势预测（移动平均）
+    ↓
+[CFO Dashboard + financial-audit-log]
+    ↓ 触发阈值
+[CFO 自决（L1）] 或 [CFO + CRO 联合（L2）] 或 [CRO 主导（L3）]
+    ↓
+[审计日志写入 - 保留 7 年]
+```
+
+---
+
+## 十一、审计日志规范（P1-6）
+
+> **目标**：统一 CFO 财务审计日志与 CRO 风险审计日志的格式与保留期限，确保跨 Agent 追溯一致性。
+
+### 11.1 统一日志格式（financial-audit-log + risk-audit-log 通用）
+
+```json
+{
+  "log_id": "<UUID>",
+  "log_category": "financial | risk",
+  "owner": "<CFO|CRO>",
+  "timestamp": "<ISO-8601 精确到毫秒>",
+  "session_id": "<会话 ID>",
+  "agent": "<发起 Agent>",
+  "action": "<操作类型>",
+  "financial_context": {
+    "metric": "<财务指标名称>",
+    "value": "<实测值>",
+    "threshold": "<阈值>",
+    "unit": "<单位>",
+    "currency": "USD"
+  },
+  "risk_context": {
+    "fair_LEF": "<低|中|高|极高>",
+    "fair_LM": "<低|中|高|极高>",
+    "risk_exposure": "<量化值>",
+    "risk_level": "<P0|P1|P2|P3>"
+  },
+  "decision": "<决策描述>",
+  "approvers": ["<审批人列表，仅 L1 及以上需要>"],
+  "route": "CFO→HQ→CRO|独立|其他",
+  "version": "v1.0"
+}
+```
+
+### 11.2 保留期限
+
+| 日志类型 | 保留期限 | 存储位置 | 访问权限 |
+|---------|---------|---------|---------|
+| financial-audit-log | **7 年** | 加密存储层 | CFO（写入）、CRO（读取）、CLO（合规审计） |
+| risk-audit-log | **7 年** | 加密存储层 | CRO（写入）、CLO（合规审查）、CEO（只读） |
+
+> **法规依据**：7 年保留期符合多数司法管辖区（美国 IRS、中国税务法规、香港公司条例）对财务记录的要求。
+
+### 11.3 写入触发条件
+
+- 所有 L1/L2/L3 熔断决策必须写入审计日志
+- 任何超过阈值的财务指标变动必须写入审计日志
+- CFO → CRO 数据传输（FAIR-mapped 告警）必须写入审计日志
+
+### 11.4 跨日志关联
+
+financial-audit-log 与 risk-audit-log 通过 `log_id` 和 `timestamp` 交叉引用，实现财务事件与风险事件的全链路追溯。
+
+---
+
+## 十二、AI 公司特有财务指标体系（P2-12）
+
+> **目标**：传统毛利率指标（如 CFO 原定义的 ≥65%）不适用于 AI 公司模式（算力成本高、规模效应强、收入结构多元）。本章节重新定义 AI 公司财务指标体系，校准为 Token 成本率、自动化毛利率、Skill 产出效率等 AI 公司特有指标。
+
+### 12.1 AI 公司财务指标体系
+
+| 指标名称 | 定义 | 计算公式 | 告警阈值 | 适用场景 |
+|---------|------|---------|---------|---------|
+| **Token 成本率（TCR）** | 每产生 $1 收入所需的 Token 成本 | `Token总成本 / 总收入` | > 0.30（>30%） | AI 核心业务 |
+| **自动化毛利率（AMGM）** | 扣除 Token 成本后的毛利率，排除人力成本 | `(收入 - Token成本) / 收入 × 100%` | < 60% | AI 服务/订阅 |
+| **Skill 产出效率（SPE）** | 单个 Skill 的收入贡献与运营成本比 | `Skill收入贡献 / Skill运营成本` | < 1.5x | Skill 产品线 |
+| **GPU 利用率（GUU）** | 有效 GPU 算力使用占比 | `有效GPU小时 / 总GPU可用小时` | < 65% | 算力管理 |
+| **人均算力产出（CPU）** | 每单位算力成本对应的收入 | `总收入 / 总算力成本` | < 2.0x | 效率评估 |
+| **模型推理成本率（MCR）** | 推理成本占总收入比例 | `推理成本 / 总收入` | > 15% | 成本控制 |
+| **自动化率（AR）** | 无人力介入的工作流程占比 | `自动化流程数 / 总流程数` | < 70% | 运营效率 |
+| **客户 LTV/CAC 比** | 客户生命周期价值与获客成本比 | `LTV / CAC` | < 3.0x | 增长效率 |
+| **月经常性收入（MRR）** | 每月稳定经常性收入 | `订阅收入 + 合约收入` | 趋势监控 | 收入质量 |
+| **收入流失率（Churn）** | 月度客户流失比例 | `流失客户数 / 月末客户数` | > 5%/月 | 客户留存 |
+
+> **注意**：CFO 原 KPI 仪表板中"毛利率 ≥65%"保留为**传统业务线**指标（线下/混合业务），AI 业务线适用本体系的 AMGM ≥60% 和 TCR <30%。
+
+### 12.2 指标计算规范
+
+#### Token 成本率（TCR）
+
+```
+TCR = Σ(API调用量_i × 单位Token成本_i) / 总收入
+
+参数说明：
+- API调用量_i：各模型提供商（OpenAI/Anthropic/本地模型）的 Token 消耗量
+- 单位Token成本_i：各提供商的单 Token 价格（按输入/输出区分）
+- 总收入：当月 AI 服务/订阅收入
+
+目标：TCR < 0.30（即每赚 $1 花 < $0.30 Token 成本）
+```
+
+#### 自动化毛利率（AMGM）
+
+```
+AMGM = (AI收入 - Token成本 - 云服务成本 - 折旧) / AI收入 × 100%
+
+说明：
+- AI收入：排除一次性项目收入，仅含订阅/API/自动服务收入
+- Token成本：见 TCR 计算
+- 云服务成本：服务器/存储/带宽（纯算力，不含人力）
+- 折旧：GPU 资产折旧摊销
+
+目标：AMGM ≥ 60%（纯软件服务应有的高毛利特征）
+```
+
+#### Skill 产出效率（SPE）
+
+```
+SPE = Skill收入贡献 / Skill运营成本
+
+Skill收入贡献：
+  = 该Skill驱动的直接收入 + 间接效率提升折算价值
+
+Skill运营成本：
+  = 该Skill Token消耗成本 + 维护人力摊销 + 更新迭代成本
+
+目标：SPE ≥ 1.5x（Skill 应带来正净贡献）
+```
+
+### 12.3 AI 公司 KPI 仪表板（修订版）
+
+| 维度 | KPI | 目标值 | 适用业务 | 告警阈值 |
+|------|-----|--------|---------|---------|
+| 财务 | Token 成本率（TCR） | < 30% | AI 核心业务 | > 30% |
+| 财务 | 自动化毛利率（AMGM） | ≥ 60% | AI 服务/订阅 | < 60% |
+| 财务 | 现金流覆盖率 | ≥ 1.2x | 全业务 | < 1.0x |
+| 效率 | Skill 产出效率（SPE） | ≥ 1.5x | Skill 产品线 | < 1.5x |
+| 效率 | GPU 利用率（GUU） | ≥ 70% | 算力管理 | < 65% |
+| 效率 | 人均算力产出（CPU） | ≥ 2.0x | 效率评估 | < 2.0x |
+| 效率 | 自动化率（AR） | ≥ 75% | 运营效率 | < 70% |
+| 合规 | 链上交易审计覆盖率 | 100% | 全业务 | 缺失 |
+| 风控 | 熔断触发准确率 | ≥ 99% | 风控 | 下降 |
+| 增长 | LTV/CAC 比 | ≥ 3.0x | 增长 | < 3.0x |
+| 增长 | 月经常性收入（MRR） | 趋势上升 | 收入质量 | 连续下降 |
+| 增长 | 客户流失率（Churn） | < 3%/月 | 客户留存 | > 5%/月 |
+
+### 12.4 指标监控与触发
+
+| 指标 | 监测频率 | 触发条件 | CFO 响应动作 |
+|------|---------|---------|------------|
+| TCR > 30% | 月度 | 连续 2 个月 | 审查模型选型 + 触发 CRO 联合评估 |
+| AMGM < 60% | 月度 | 单月触发 | 审查定价策略 + 成本优化方案 |
+| SPE < 1.5x | 月度 | 单月触发 | 审查低效 Skill → 优化或下线 |
+| GUU < 65% | 周度 | 连续 3 周 | 触发算力再分配 |
+| Churn > 5%/月 | 月度 | 单月触发 | 通知 CMO 启动留存计划 |
+| MRR 连续 2 月下降 | 月度 | 连续 2 月 | 触发 CEO + CMO 联席会议 |
+
+---
+
+## 变更日志
+
+| 版本 | 日期 | 变更内容 |
+|------|------|---------|
+| 2.0.0 | 2026-04-14 | 全面重构：五大模块、熔断机制参数化 |
+| 2.1.0 | 2026-04-16 | 补全算力经济学/数字资产估值/SLA保障框架 |
+| 2.2.0 | 2026-04-19 | P0修复：统一熔断三层级(L1/L2/L3)与CRO/CISO对齐；打破CFO-CRO循环依赖(统一通过HQ路由)；财务危机分级路由定义 |
+| 2.3.0 | 2026-04-19 | P1-4/6/7/9：FAIR-财务指标映射(第八章)；月度里程碑(第九章)；现金流自动化(第十章)；统一7年审计日志规范(第十一章) |
+| 2.4.0 | 2026-04-19 | P2-12：AI公司特有财务指标体系(第十二章)：Token成本率/自动化毛利率/Skill产出效率/GPU利用率/自动化率等AI公司特有KPI；修订KPI仪表板；传统毛利率保留为线下业务指标 |

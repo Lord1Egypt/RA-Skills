@@ -1,0 +1,39 @@
+{
+  "skill_name": "alicloud-ai-audio-cosyvoice-voice-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "用阿里云百炼的 CosyVoice 做一个新音色，目标模型 cosyvoice-v3.5-plus，前缀 announcer，音色描述是“沉稳的中年男性播音员，低沉有磁性，语速平稳，吐字清晰”，试听文案是“各位听众朋友，大家好，欢迎收听晚间新闻”。请直接给我请求 JSON。",
+      "expected_output": "Produces a valid voice design enrollment request with voice_prompt, preview_text, prefix, and target_model for cosyvoice-v3.5-plus.",
+      "files": [],
+      "expectations": [
+        "The output uses model \"voice-enrollment\".",
+        "The output includes voice_prompt.",
+        "The output includes preview_text.",
+        "The output sets target_model to cosyvoice-v3.5-plus."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我要设计一个英文产品介绍音色，prefix 叫 demo01，模型 cosyvoice-v3.5-plus，voice prompt 是 'A warm female product narrator with clear articulation and medium pace.'，preview text 是 'Welcome to our spring product launch.'。帮我生成最小可用请求，并提醒 language_hints 怎么配。",
+      "expected_output": "Produces an English voice design request and explains that language_hints should match the language of preview_text.",
+      "files": [],
+      "expectations": [
+        "The request includes prefix demo01.",
+        "The request includes the English voice_prompt and preview_text.",
+        "The answer explains that language_hints should match preview_text language."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我做一个 CosyVoice 声音设计模板，模型 cosyvoice-v3.5-plus，prefix stage8，voice prompt 是“年轻活泼的女性活动主持人，语气热情，节奏稍快”，preview text 是“欢迎来到今晚的新品发布会”，输出格式 wav，采样率 24000。",
+      "expected_output": "Produces a voice design request with parameters.sample_rate=24000 and parameters.response_format=wav.",
+      "files": [],
+      "expectations": [
+        "The request contains parameters.sample_rate set to 24000.",
+        "The request contains parameters.response_format set to wav.",
+        "The request includes both voice_prompt and preview_text."
+      ]
+    }
+  ]
+}

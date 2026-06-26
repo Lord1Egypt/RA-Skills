@@ -1,0 +1,10 @@
+# Amazon Listing Factory env template
+LISTING_API_KEY=
+LISTING_BASE_URL=
+LISTING_MODEL=
+
+# Optional image generation
+COZE_TOKEN=
+COZE_WORKFLOW_ID=
+COZE_API_URL=https://api.coze.cn/v1/workflow/run
+MIHE_KEY=

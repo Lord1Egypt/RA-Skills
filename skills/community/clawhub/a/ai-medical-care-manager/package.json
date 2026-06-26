@@ -1,0 +1,9 @@
+{
+  "name": "ai-medical-care-manager",
+  "version": "2.1.0",
+  "private": true,
+  "description": "OpenClaw skill package for AI medical care manager with AMap routing",
+  "dependencies": {
+    "axios": "^1.13.6"
+  }
+}

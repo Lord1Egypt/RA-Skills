@@ -1,0 +1,71 @@
+providers:
+  broken-primary:
+    type: openai-compatible
+    base_url: https://127.0.0.1:9/v1
+    api_key_env: PRIMARY_API_KEY
+    timeout_ms: 1000
+    models:
+      default: gpt-5.4
+      cheap: gpt-4o
+    inherit_from_openclaw: custom-ai-td-ee
+
+  openrouter:
+    type: openai-compatible
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    timeout_ms: 15000
+    models:
+      default: anthropic/claude-sonnet-4
+      cheap: openai/gpt-4o-mini
+
+  anthropic:
+    type: anthropic
+    base_url: https://api.anthropic.com
+    api_key_env: ANTHROPIC_API_KEY
+    timeout_ms: 15000
+    models:
+      default: claude-opus-4-6
+      cheap: claude-sonnet-4-5
+
+  local:
+    type: openai-compatible
+    base_url: http://127.0.0.1:11434/v1
+    api_key_env: OLLAMA_DUMMY_KEY
+    timeout_ms: 5000
+    models:
+      default: qwen2.5:latest
+      cheap: qwen2.5:latest
+
+task_profiles:
+  default:
+    routes:
+      - provider: broken-primary
+        model: default
+      - provider: openrouter
+        model: default
+      - provider: anthropic
+        model: default
+      - provider: local
+        model: default
+
+retry:
+  max_attempts_per_route: 1
+  backoff_ms: [100]
+  retry_on:
+    - RATE_LIMIT
+    - TIMEOUT
+    - SERVER_ERROR
+    - NETWORK_ERROR
+    - MODEL_UNAVAILABLE
+    - UNKNOWN_TRANSIENT
+
+circuit_breaker:
+  open_after_failures: 1
+  cooldown_seconds: 30
+  half_open_max_probes: 1
+  close_after_successes: 1
+
+provider_overrides:
+  local:
+    open_after_failures: 2
+    cooldown_seconds: 10

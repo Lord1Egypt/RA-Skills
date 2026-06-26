@@ -1,0 +1,3213 @@
+[{
+		"areaId": 1,
+		"parentAreaId": 0,
+		"name": "北京",
+		"shortName": "北京",
+		"urlDomain": "beijing",
+		"level": 2,
+		"capital": true,
+		"childAreas": [{
+			"areaId": 36,
+			"parentAreaId": 1,
+			"name": "北京市",
+			"shortName": "北京",
+			"urlDomain": "bj",
+			"level": 3
+		}]
+	},
+	{
+		"areaId": 2,
+		"parentAreaId": 0,
+		"name": "天津",
+		"shortName": "天津",
+		"urlDomain": "tianjin",
+		"level": 2,
+		"childAreas": [{
+			"areaId": 40,
+			"parentAreaId": 2,
+			"name": "天津市",
+			"shortName": "天津",
+			"urlDomain": "tj",
+			"level": 3
+		}]
+	},
+	{
+		"areaId": 3,
+		"parentAreaId": 0,
+		"name": "河北省",
+		"shortName": "河北",
+		"urlDomain": "hebei",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 73,
+				"parentAreaId": 3,
+				"name": "石家庄市",
+				"shortName": "石家庄",
+				"urlDomain": "sjz",
+				"level": 3
+			},
+			{
+				"areaId": 74,
+				"parentAreaId": 3,
+				"name": "唐山市",
+				"shortName": "唐山",
+				"urlDomain": "tangshan",
+				"level": 3
+			},
+			{
+				"areaId": 75,
+				"parentAreaId": 3,
+				"name": "秦皇岛市",
+				"shortName": "秦皇岛",
+				"urlDomain": "qhd",
+				"level": 3
+			},
+			{
+				"areaId": 76,
+				"parentAreaId": 3,
+				"name": "邯郸市",
+				"shortName": "邯郸",
+				"urlDomain": "handan",
+				"level": 3
+			},
+			{
+				"areaId": 77,
+				"parentAreaId": 3,
+				"name": "邢台市",
+				"shortName": "邢台",
+				"urlDomain": "xingtai",
+				"level": 3
+			},
+			{
+				"areaId": 78,
+				"parentAreaId": 3,
+				"name": "保定市",
+				"shortName": "保定",
+				"urlDomain": "baoding",
+				"level": 3
+			},
+			{
+				"areaId": 79,
+				"parentAreaId": 3,
+				"name": "张家口市",
+				"shortName": "张家口",
+				"urlDomain": "zjk",
+				"level": 3
+			},
+			{
+				"areaId": 80,
+				"parentAreaId": 3,
+				"name": "承德市",
+				"shortName": "承德",
+				"urlDomain": "chengde",
+				"level": 3
+			},
+			{
+				"areaId": 81,
+				"parentAreaId": 3,
+				"name": "衡水市",
+				"shortName": "衡水",
+				"urlDomain": "hengshui",
+				"level": 3
+			},
+			{
+				"areaId": 82,
+				"parentAreaId": 3,
+				"name": "廊坊市",
+				"shortName": "廊坊",
+				"urlDomain": "langfang",
+				"level": 3
+			},
+			{
+				"areaId": 83,
+				"parentAreaId": 3,
+				"name": "沧州市",
+				"shortName": "沧州",
+				"urlDomain": "cangzhou",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 4,
+		"parentAreaId": 0,
+		"name": "山西省",
+		"shortName": "山西",
+		"urlDomain": "shanxi",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 84,
+				"parentAreaId": 4,
+				"name": "太原市",
+				"shortName": "太原",
+				"urlDomain": "taiyuan",
+				"level": 3
+			},
+			{
+				"areaId": 85,
+				"parentAreaId": 4,
+				"name": "大同市",
+				"shortName": "大同",
+				"urlDomain": "datong",
+				"level": 3
+			},
+			{
+				"areaId": 86,
+				"parentAreaId": 4,
+				"name": "阳泉市",
+				"shortName": "阳泉",
+				"urlDomain": "yangquan",
+				"level": 3
+			},
+			{
+				"areaId": 87,
+				"parentAreaId": 4,
+				"name": "长治市",
+				"shortName": "长治",
+				"urlDomain": "changzhi",
+				"level": 3
+			},
+			{
+				"areaId": 88,
+				"parentAreaId": 4,
+				"name": "晋城市",
+				"shortName": "晋城",
+				"urlDomain": "jincheng",
+				"level": 3
+			},
+			{
+				"areaId": 89,
+				"parentAreaId": 4,
+				"name": "朔州市",
+				"shortName": "朔州",
+				"urlDomain": "shuozhou",
+				"level": 3
+			},
+			{
+				"areaId": 90,
+				"parentAreaId": 4,
+				"name": "晋中市",
+				"shortName": "晋中",
+				"urlDomain": "jinzhong",
+				"level": 3
+			},
+			{
+				"areaId": 91,
+				"parentAreaId": 4,
+				"name": "运城市",
+				"shortName": "运城",
+				"urlDomain": "yuncheng",
+				"level": 3
+			},
+			{
+				"areaId": 92,
+				"parentAreaId": 4,
+				"name": "忻州市",
+				"shortName": "忻州",
+				"urlDomain": "xinzhou",
+				"level": 3
+			},
+			{
+				"areaId": 93,
+				"parentAreaId": 4,
+				"name": "临汾市",
+				"shortName": "临汾",
+				"urlDomain": "linfen",
+				"level": 3
+			},
+			{
+				"areaId": 94,
+				"parentAreaId": 4,
+				"name": "吕梁市",
+				"shortName": "吕梁",
+				"urlDomain": "lvliang",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 5,
+		"parentAreaId": 0,
+		"name": "内蒙古自治区",
+		"shortName": "内蒙古",
+		"urlDomain": "neimeng",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 95,
+				"parentAreaId": 5,
+				"name": "呼和浩特市",
+				"shortName": "呼和浩特",
+				"urlDomain": "hhht",
+				"level": 3
+			},
+			{
+				"areaId": 96,
+				"parentAreaId": 5,
+				"name": "包头市",
+				"shortName": "包头",
+				"urlDomain": "baotou",
+				"level": 3
+			},
+			{
+				"areaId": 97,
+				"parentAreaId": 5,
+				"name": "乌海市",
+				"shortName": "乌海",
+				"urlDomain": "wuhai",
+				"level": 3
+			},
+			{
+				"areaId": 98,
+				"parentAreaId": 5,
+				"name": "赤峰市",
+				"shortName": "赤峰",
+				"urlDomain": "chifeng",
+				"level": 3
+			},
+			{
+				"areaId": 99,
+				"parentAreaId": 5,
+				"name": "通辽市",
+				"shortName": "通辽",
+				"urlDomain": "tongliao",
+				"level": 3
+			},
+			{
+				"areaId": 100,
+				"parentAreaId": 5,
+				"name": "鄂尔多斯市",
+				"shortName": "鄂尔多斯",
+				"urlDomain": "eeds",
+				"level": 3
+			},
+			{
+				"areaId": 101,
+				"parentAreaId": 5,
+				"name": "呼伦贝尔市",
+				"shortName": "呼伦贝尔",
+				"urlDomain": "hlbe",
+				"level": 3
+			},
+			{
+				"areaId": 102,
+				"parentAreaId": 5,
+				"name": "巴彦淖尔市",
+				"shortName": "巴彦淖尔",
+				"urlDomain": "byne",
+				"level": 3
+			},
+			{
+				"areaId": 103,
+				"parentAreaId": 5,
+				"name": "乌兰察布市",
+				"shortName": "乌兰察布",
+				"urlDomain": "wlcb",
+				"level": 3
+			},
+			{
+				"areaId": 104,
+				"parentAreaId": 5,
+				"name": "兴安盟",
+				"shortName": "兴安盟",
+				"urlDomain": "xam",
+				"level": 3
+			},
+			{
+				"areaId": 105,
+				"parentAreaId": 5,
+				"name": "锡林郭勒盟",
+				"shortName": "锡林郭勒",
+				"urlDomain": "xlglm",
+				"level": 3
+			},
+			{
+				"areaId": 106,
+				"parentAreaId": 5,
+				"name": "阿拉善盟",
+				"shortName": "阿拉善盟",
+				"urlDomain": "alsm",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 6,
+		"parentAreaId": 0,
+		"name": "辽宁省",
+		"shortName": "辽宁",
+		"urlDomain": "liaoning",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 107,
+				"parentAreaId": 6,
+				"name": "沈阳市",
+				"shortName": "沈阳",
+				"urlDomain": "shenyang",
+				"level": 3
+			},
+			{
+				"areaId": 108,
+				"parentAreaId": 6,
+				"name": "大连市",
+				"shortName": "大连",
+				"urlDomain": "dalian",
+				"level": 3
+			},
+			{
+				"areaId": 109,
+				"parentAreaId": 6,
+				"name": "鞍山市",
+				"shortName": "鞍山",
+				"urlDomain": "anshan",
+				"level": 3
+			},
+			{
+				"areaId": 110,
+				"parentAreaId": 6,
+				"name": "抚顺市",
+				"shortName": "抚顺",
+				"urlDomain": "fushun",
+				"level": 3
+			},
+			{
+				"areaId": 111,
+				"parentAreaId": 6,
+				"name": "本溪市",
+				"shortName": "本溪",
+				"urlDomain": "benxi",
+				"level": 3
+			},
+			{
+				"areaId": 112,
+				"parentAreaId": 6,
+				"name": "丹东市",
+				"shortName": "丹东",
+				"urlDomain": "dandong",
+				"level": 3
+			},
+			{
+				"areaId": 113,
+				"parentAreaId": 6,
+				"name": "锦州市",
+				"shortName": "锦州",
+				"urlDomain": "jinzhou",
+				"level": 3
+			},
+			{
+				"areaId": 114,
+				"parentAreaId": 6,
+				"name": "营口市",
+				"shortName": "营口",
+				"urlDomain": "yingkou",
+				"level": 3
+			},
+			{
+				"areaId": 115,
+				"parentAreaId": 6,
+				"name": "阜新市",
+				"shortName": "阜新",
+				"urlDomain": "fuxin",
+				"level": 3
+			},
+			{
+				"areaId": 116,
+				"parentAreaId": 6,
+				"name": "辽阳市",
+				"shortName": "辽阳",
+				"urlDomain": "liaoyang",
+				"level": 3
+			},
+			{
+				"areaId": 117,
+				"parentAreaId": 6,
+				"name": "盘锦市",
+				"shortName": "盘锦",
+				"urlDomain": "panjin",
+				"level": 3
+			},
+			{
+				"areaId": 118,
+				"parentAreaId": 6,
+				"name": "铁岭市",
+				"shortName": "铁岭",
+				"urlDomain": "tieling",
+				"level": 3
+			},
+			{
+				"areaId": 119,
+				"parentAreaId": 6,
+				"name": "朝阳市",
+				"shortName": "朝阳",
+				"urlDomain": "chaoyang",
+				"level": 3
+			},
+			{
+				"areaId": 120,
+				"parentAreaId": 6,
+				"name": "葫芦岛市",
+				"shortName": "葫芦岛",
+				"urlDomain": "huludao",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 7,
+		"parentAreaId": 0,
+		"name": "吉林省",
+		"shortName": "吉林",
+		"urlDomain": "jilin",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 121,
+				"parentAreaId": 7,
+				"name": "长春市",
+				"shortName": "长春",
+				"urlDomain": "changchun",
+				"level": 3
+			},
+			{
+				"areaId": 122,
+				"parentAreaId": 7,
+				"name": "吉林市",
+				"shortName": "吉林",
+				"urlDomain": "jl",
+				"level": 3
+			},
+			{
+				"areaId": 123,
+				"parentAreaId": 7,
+				"name": "四平市",
+				"shortName": "四平",
+				"urlDomain": "siping",
+				"level": 3
+			},
+			{
+				"areaId": 124,
+				"parentAreaId": 7,
+				"name": "辽源市",
+				"shortName": "辽源",
+				"urlDomain": "liaoyuan",
+				"level": 3
+			},
+			{
+				"areaId": 125,
+				"parentAreaId": 7,
+				"name": "通化市",
+				"shortName": "通化",
+				"urlDomain": "tonghua",
+				"level": 3
+			},
+			{
+				"areaId": 126,
+				"parentAreaId": 7,
+				"name": "白山市",
+				"shortName": "白山",
+				"urlDomain": "baishan",
+				"level": 3
+			},
+			{
+				"areaId": 127,
+				"parentAreaId": 7,
+				"name": "松原市",
+				"shortName": "松原",
+				"urlDomain": "songyuan",
+				"level": 3
+			},
+			{
+				"areaId": 128,
+				"parentAreaId": 7,
+				"name": "白城市",
+				"shortName": "白城",
+				"urlDomain": "baicheng",
+				"level": 3
+			},
+			{
+				"areaId": 129,
+				"parentAreaId": 7,
+				"name": "延边朝鲜族自治州",
+				"shortName": "延边",
+				"urlDomain": "yanbian",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 8,
+		"parentAreaId": 0,
+		"name": "黑龙江省",
+		"shortName": "黑龙江",
+		"urlDomain": "hlj",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 130,
+				"parentAreaId": 8,
+				"name": "哈尔滨市",
+				"shortName": "哈尔滨",
+				"urlDomain": "haerbin",
+				"level": 3
+			},
+			{
+				"areaId": 131,
+				"parentAreaId": 8,
+				"name": "齐齐哈尔市",
+				"shortName": "齐齐哈尔",
+				"urlDomain": "qqhe",
+				"level": 3
+			},
+			{
+				"areaId": 132,
+				"parentAreaId": 8,
+				"name": "鸡西市",
+				"shortName": "鸡西",
+				"urlDomain": "jixi",
+				"level": 3
+			},
+			{
+				"areaId": 133,
+				"parentAreaId": 8,
+				"name": "鹤岗市",
+				"shortName": "鹤岗",
+				"urlDomain": "hegang",
+				"level": 3
+			},
+			{
+				"areaId": 134,
+				"parentAreaId": 8,
+				"name": "双鸭山市",
+				"shortName": "双鸭山",
+				"urlDomain": "sys",
+				"level": 3
+			},
+			{
+				"areaId": 135,
+				"parentAreaId": 8,
+				"name": "大庆市",
+				"shortName": "大庆",
+				"urlDomain": "daqing",
+				"level": 3
+			},
+			{
+				"areaId": 136,
+				"parentAreaId": 8,
+				"name": "伊春市",
+				"shortName": "伊春",
+				"urlDomain": "yichun",
+				"level": 3
+			},
+			{
+				"areaId": 137,
+				"parentAreaId": 8,
+				"name": "佳木斯市",
+				"shortName": "佳木斯",
+				"urlDomain": "jiamusi",
+				"level": 3
+			},
+			{
+				"areaId": 138,
+				"parentAreaId": 8,
+				"name": "七台河市",
+				"shortName": "七台河",
+				"urlDomain": "qitaihe",
+				"level": 3
+			},
+			{
+				"areaId": 139,
+				"parentAreaId": 8,
+				"name": "牡丹江市",
+				"shortName": "牡丹江",
+				"urlDomain": "mdj",
+				"level": 3
+			},
+			{
+				"areaId": 140,
+				"parentAreaId": 8,
+				"name": "黑河市",
+				"shortName": "黑河",
+				"urlDomain": "heihe",
+				"level": 3
+			},
+			{
+				"areaId": 141,
+				"parentAreaId": 8,
+				"name": "绥化市",
+				"shortName": "绥化",
+				"urlDomain": "suihua",
+				"level": 3
+			},
+			{
+				"areaId": 142,
+				"parentAreaId": 8,
+				"name": "大兴安岭地区",
+				"shortName": "大兴安岭",
+				"urlDomain": "dxal",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 9,
+		"parentAreaId": 0,
+		"name": "上海",
+		"shortName": "上海",
+		"urlDomain": "shanghai",
+		"level": 2,
+		"childAreas": [{
+			"areaId": 39,
+			"parentAreaId": 9,
+			"name": "上海市",
+			"shortName": "上海",
+			"urlDomain": "sh",
+			"level": 3
+		}]
+	},
+	{
+		"areaId": 10,
+		"parentAreaId": 0,
+		"name": "江苏省",
+		"shortName": "江苏",
+		"urlDomain": "jiangsu",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 162,
+				"parentAreaId": 10,
+				"name": "南京市",
+				"shortName": "南京",
+				"urlDomain": "nanjing",
+				"level": 3
+			},
+			{
+				"areaId": 163,
+				"parentAreaId": 10,
+				"name": "无锡市",
+				"shortName": "无锡",
+				"urlDomain": "wuxi",
+				"level": 3
+			},
+			{
+				"areaId": 164,
+				"parentAreaId": 10,
+				"name": "徐州市",
+				"shortName": "徐州",
+				"urlDomain": "xuzhou",
+				"level": 3
+			},
+			{
+				"areaId": 165,
+				"parentAreaId": 10,
+				"name": "常州市",
+				"shortName": "常州",
+				"urlDomain": "changzhou",
+				"level": 3
+			},
+			{
+				"areaId": 166,
+				"parentAreaId": 10,
+				"name": "苏州市",
+				"shortName": "苏州",
+				"urlDomain": "suzhou",
+				"level": 3
+			},
+			{
+				"areaId": 167,
+				"parentAreaId": 10,
+				"name": "南通市",
+				"shortName": "南通",
+				"urlDomain": "nantong",
+				"level": 3
+			},
+			{
+				"areaId": 168,
+				"parentAreaId": 10,
+				"name": "连云港市",
+				"shortName": "连云港",
+				"urlDomain": "lyg",
+				"level": 3
+			},
+			{
+				"areaId": 169,
+				"parentAreaId": 10,
+				"name": "淮安市",
+				"shortName": "淮安",
+				"urlDomain": "huaian",
+				"level": 3
+			},
+			{
+				"areaId": 170,
+				"parentAreaId": 10,
+				"name": "盐城市",
+				"shortName": "盐城",
+				"urlDomain": "yancheng",
+				"level": 3
+			},
+			{
+				"areaId": 171,
+				"parentAreaId": 10,
+				"name": "扬州市",
+				"shortName": "扬州",
+				"urlDomain": "yangzhou",
+				"level": 3
+			},
+			{
+				"areaId": 172,
+				"parentAreaId": 10,
+				"name": "镇江市",
+				"shortName": "镇江",
+				"urlDomain": "zhenjiang",
+				"level": 3
+			},
+			{
+				"areaId": 173,
+				"parentAreaId": 10,
+				"name": "泰州市",
+				"shortName": "泰州",
+				"urlDomain": "taizhou",
+				"level": 3
+			},
+			{
+				"areaId": 174,
+				"parentAreaId": 10,
+				"name": "宿迁市",
+				"shortName": "宿迁",
+				"urlDomain": "suqian",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 11,
+		"parentAreaId": 0,
+		"name": "浙江省",
+		"shortName": "浙江",
+		"urlDomain": "zhejiang",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 175,
+				"parentAreaId": 11,
+				"name": "杭州市",
+				"shortName": "杭州",
+				"urlDomain": "hangzhou",
+				"level": 3
+			},
+			{
+				"areaId": 176,
+				"parentAreaId": 11,
+				"name": "宁波市",
+				"shortName": "宁波",
+				"urlDomain": "ningbo",
+				"level": 3
+			},
+			{
+				"areaId": 177,
+				"parentAreaId": 11,
+				"name": "温州市",
+				"shortName": "温州",
+				"urlDomain": "wenzhou",
+				"level": 3
+			},
+			{
+				"areaId": 178,
+				"parentAreaId": 11,
+				"name": "嘉兴市",
+				"shortName": "嘉兴",
+				"urlDomain": "jiaxing",
+				"level": 3
+			},
+			{
+				"areaId": 179,
+				"parentAreaId": 11,
+				"name": "湖州市",
+				"shortName": "湖州",
+				"urlDomain": "huzhou",
+				"level": 3
+			},
+			{
+				"areaId": 180,
+				"parentAreaId": 11,
+				"name": "绍兴市",
+				"shortName": "绍兴",
+				"urlDomain": "shaoxing",
+				"level": 3
+			},
+			{
+				"areaId": 181,
+				"parentAreaId": 11,
+				"name": "舟山市",
+				"shortName": "舟山",
+				"urlDomain": "zhoushan",
+				"level": 3
+			},
+			{
+				"areaId": 182,
+				"parentAreaId": 11,
+				"name": "衢州市",
+				"shortName": "衢州",
+				"urlDomain": "quzhou",
+				"level": 3
+			},
+			{
+				"areaId": 183,
+				"parentAreaId": 11,
+				"name": "金华市",
+				"shortName": "金华",
+				"urlDomain": "jinhua",
+				"level": 3
+			},
+			{
+				"areaId": 184,
+				"parentAreaId": 11,
+				"name": "台州市",
+				"shortName": "台州",
+				"urlDomain": "tz",
+				"level": 3
+			},
+			{
+				"areaId": 185,
+				"parentAreaId": 11,
+				"name": "丽水市",
+				"shortName": "丽水",
+				"urlDomain": "lishui",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 12,
+		"parentAreaId": 0,
+		"name": "安徽省",
+		"shortName": "安徽",
+		"urlDomain": "anhui",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 186,
+				"parentAreaId": 12,
+				"name": "合肥市",
+				"shortName": "合肥",
+				"urlDomain": "hefei",
+				"level": 3
+			},
+			{
+				"areaId": 187,
+				"parentAreaId": 12,
+				"name": "芜湖市",
+				"shortName": "芜湖",
+				"urlDomain": "wuhu",
+				"level": 3
+			},
+			{
+				"areaId": 188,
+				"parentAreaId": 12,
+				"name": "蚌埠市",
+				"shortName": "蚌埠",
+				"urlDomain": "bengbu",
+				"level": 3
+			},
+			{
+				"areaId": 189,
+				"parentAreaId": 12,
+				"name": "淮南市",
+				"shortName": "淮南",
+				"urlDomain": "huainan",
+				"level": 3
+			},
+			{
+				"areaId": 190,
+				"parentAreaId": 12,
+				"name": "马鞍山市",
+				"shortName": "马鞍山",
+				"urlDomain": "mas",
+				"level": 3
+			},
+			{
+				"areaId": 191,
+				"parentAreaId": 12,
+				"name": "淮北市",
+				"shortName": "淮北",
+				"urlDomain": "huaibei",
+				"level": 3
+			},
+			{
+				"areaId": 192,
+				"parentAreaId": 12,
+				"name": "铜陵市",
+				"shortName": "铜陵",
+				"urlDomain": "tongling",
+				"level": 3
+			},
+			{
+				"areaId": 193,
+				"parentAreaId": 12,
+				"name": "安庆市",
+				"shortName": "安庆",
+				"urlDomain": "anqing",
+				"level": 3
+			},
+			{
+				"areaId": 194,
+				"parentAreaId": 12,
+				"name": "黄山市",
+				"shortName": "黄山",
+				"urlDomain": "huangsh",
+				"level": 3
+			},
+			{
+				"areaId": 195,
+				"parentAreaId": 12,
+				"name": "滁州市",
+				"shortName": "滁州",
+				"urlDomain": "chuzhou",
+				"level": 3
+			},
+			{
+				"areaId": 196,
+				"parentAreaId": 12,
+				"name": "阜阳市",
+				"shortName": "阜阳",
+				"urlDomain": "fuyang",
+				"level": 3
+			},
+			{
+				"areaId": 197,
+				"parentAreaId": 12,
+				"name": "宿州市",
+				"shortName": "宿州",
+				"urlDomain": "suzh",
+				"level": 3
+			},
+			{
+				"areaId": 198,
+				"parentAreaId": 12,
+				"name": "巢湖市",
+				"shortName": "巢湖",
+				"urlDomain": "chaohu",
+				"level": 3
+			},
+			{
+				"areaId": 199,
+				"parentAreaId": 12,
+				"name": "六安市",
+				"shortName": "六安",
+				"urlDomain": "luan",
+				"level": 3
+			},
+			{
+				"areaId": 200,
+				"parentAreaId": 12,
+				"name": "亳州市",
+				"shortName": "亳州",
+				"urlDomain": "bozhou",
+				"level": 3
+			},
+			{
+				"areaId": 201,
+				"parentAreaId": 12,
+				"name": "池州市",
+				"shortName": "池州",
+				"urlDomain": "chizhou",
+				"level": 3
+			},
+			{
+				"areaId": 202,
+				"parentAreaId": 12,
+				"name": "宣城市",
+				"shortName": "宣城",
+				"urlDomain": "xuanch",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 13,
+		"parentAreaId": 0,
+		"name": "福建省",
+		"shortName": "福建",
+		"urlDomain": "fujian",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 203,
+				"parentAreaId": 13,
+				"name": "福州市",
+				"shortName": "福州",
+				"urlDomain": "fuzhou",
+				"level": 3
+			},
+			{
+				"areaId": 204,
+				"parentAreaId": 13,
+				"name": "厦门市",
+				"shortName": "厦门",
+				"urlDomain": "xiamen",
+				"level": 3
+			},
+			{
+				"areaId": 205,
+				"parentAreaId": 13,
+				"name": "莆田市",
+				"shortName": "莆田",
+				"urlDomain": "putian",
+				"level": 3
+			},
+			{
+				"areaId": 206,
+				"parentAreaId": 13,
+				"name": "三明市",
+				"shortName": "三明",
+				"urlDomain": "sanming",
+				"level": 3
+			},
+			{
+				"areaId": 207,
+				"parentAreaId": 13,
+				"name": "泉州市",
+				"shortName": "泉州",
+				"urlDomain": "quanzhou",
+				"level": 3
+			},
+			{
+				"areaId": 208,
+				"parentAreaId": 13,
+				"name": "漳州市",
+				"shortName": "漳州",
+				"urlDomain": "zhangzh",
+				"level": 3
+			},
+			{
+				"areaId": 209,
+				"parentAreaId": 13,
+				"name": "南平市",
+				"shortName": "南平",
+				"urlDomain": "nanping",
+				"level": 3
+			},
+			{
+				"areaId": 210,
+				"parentAreaId": 13,
+				"name": "龙岩市",
+				"shortName": "龙岩",
+				"urlDomain": "longyan",
+				"level": 3
+			},
+			{
+				"areaId": 211,
+				"parentAreaId": 13,
+				"name": "宁德市",
+				"shortName": "宁德",
+				"urlDomain": "ningde",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 14,
+		"parentAreaId": 0,
+		"name": "江西省",
+		"shortName": "江西",
+		"urlDomain": "jiangxi",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 212,
+				"parentAreaId": 14,
+				"name": "南昌市",
+				"shortName": "南昌",
+				"urlDomain": "nanchang",
+				"level": 3
+			},
+			{
+				"areaId": 213,
+				"parentAreaId": 14,
+				"name": "景德镇市",
+				"shortName": "景德镇",
+				"urlDomain": "jingdzh",
+				"level": 3
+			},
+			{
+				"areaId": 214,
+				"parentAreaId": 14,
+				"name": "萍乡市",
+				"shortName": "萍乡",
+				"urlDomain": "pingx",
+				"level": 3
+			},
+			{
+				"areaId": 215,
+				"parentAreaId": 14,
+				"name": "九江市",
+				"shortName": "九江",
+				"urlDomain": "jiujiang",
+				"level": 3
+			},
+			{
+				"areaId": 216,
+				"parentAreaId": 14,
+				"name": "新余市",
+				"shortName": "新余",
+				"urlDomain": "xinyu",
+				"level": 3
+			},
+			{
+				"areaId": 217,
+				"parentAreaId": 14,
+				"name": "鹰潭市",
+				"shortName": "鹰潭",
+				"urlDomain": "yingtan",
+				"level": 3
+			},
+			{
+				"areaId": 218,
+				"parentAreaId": 14,
+				"name": "赣州市",
+				"shortName": "赣州",
+				"urlDomain": "ganzhou",
+				"level": 3
+			},
+			{
+				"areaId": 219,
+				"parentAreaId": 14,
+				"name": "吉安市",
+				"shortName": "吉安",
+				"urlDomain": "jian",
+				"level": 3
+			},
+			{
+				"areaId": 220,
+				"parentAreaId": 14,
+				"name": "宜春市",
+				"shortName": "宜春",
+				"urlDomain": "xuanchun",
+				"level": 3
+			},
+			{
+				"areaId": 221,
+				"parentAreaId": 14,
+				"name": "抚州市",
+				"shortName": "抚州",
+				"urlDomain": "fuzh",
+				"level": 3
+			},
+			{
+				"areaId": 222,
+				"parentAreaId": 14,
+				"name": "上饶市",
+				"shortName": "上饶",
+				"urlDomain": "shangrao",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 15,
+		"parentAreaId": 0,
+		"name": "山东省",
+		"shortName": "山东",
+		"urlDomain": "shandong",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 223,
+				"parentAreaId": 15,
+				"name": "济南市",
+				"shortName": "济南",
+				"urlDomain": "jinan",
+				"level": 3
+			},
+			{
+				"areaId": 224,
+				"parentAreaId": 15,
+				"name": "青岛市",
+				"shortName": "青岛",
+				"urlDomain": "qingdao",
+				"level": 3
+			},
+			{
+				"areaId": 225,
+				"parentAreaId": 15,
+				"name": "淄博市",
+				"shortName": "淄博",
+				"urlDomain": "zibo",
+				"level": 3
+			},
+			{
+				"areaId": 226,
+				"parentAreaId": 15,
+				"name": "枣庄市",
+				"shortName": "枣庄",
+				"urlDomain": "zaoz",
+				"level": 3
+			},
+			{
+				"areaId": 227,
+				"parentAreaId": 15,
+				"name": "东营市",
+				"shortName": "东营",
+				"urlDomain": "dongying",
+				"level": 3
+			},
+			{
+				"areaId": 228,
+				"parentAreaId": 15,
+				"name": "烟台市",
+				"shortName": "烟台",
+				"urlDomain": "yantai",
+				"level": 3
+			},
+			{
+				"areaId": 229,
+				"parentAreaId": 15,
+				"name": "潍坊市",
+				"shortName": "潍坊",
+				"urlDomain": "weifang",
+				"level": 3
+			},
+			{
+				"areaId": 230,
+				"parentAreaId": 15,
+				"name": "济宁市",
+				"shortName": "济宁",
+				"urlDomain": "jining",
+				"level": 3
+			},
+			{
+				"areaId": 231,
+				"parentAreaId": 15,
+				"name": "泰安市",
+				"shortName": "泰安",
+				"urlDomain": "taian",
+				"level": 3
+			},
+			{
+				"areaId": 232,
+				"parentAreaId": 15,
+				"name": "威海市",
+				"shortName": "威海",
+				"urlDomain": "weihai",
+				"level": 3
+			},
+			{
+				"areaId": 233,
+				"parentAreaId": 15,
+				"name": "日照市",
+				"shortName": "日照",
+				"urlDomain": "rizhao",
+				"level": 3
+			},
+			{
+				"areaId": 234,
+				"parentAreaId": 15,
+				"name": "莱芜市",
+				"shortName": "莱芜",
+				"urlDomain": "laiwu",
+				"level": 3
+			},
+			{
+				"areaId": 235,
+				"parentAreaId": 15,
+				"name": "临沂市",
+				"shortName": "临沂",
+				"urlDomain": "linyi",
+				"level": 3
+			},
+			{
+				"areaId": 236,
+				"parentAreaId": 15,
+				"name": "德州市",
+				"shortName": "德州",
+				"urlDomain": "dezhou",
+				"level": 3
+			},
+			{
+				"areaId": 237,
+				"parentAreaId": 15,
+				"name": "聊城市",
+				"shortName": "聊城",
+				"urlDomain": "liaoch",
+				"level": 3
+			},
+			{
+				"areaId": 238,
+				"parentAreaId": 15,
+				"name": "滨州市",
+				"shortName": "滨州",
+				"urlDomain": "binzhou",
+				"level": 3
+			},
+			{
+				"areaId": 239,
+				"parentAreaId": 15,
+				"name": "菏泽市",
+				"shortName": "菏泽",
+				"urlDomain": "heze",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 16,
+		"parentAreaId": 0,
+		"name": "河南省",
+		"shortName": "河南",
+		"urlDomain": "henan",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 240,
+				"parentAreaId": 16,
+				"name": "郑州市",
+				"shortName": "郑州",
+				"urlDomain": "zhengzh",
+				"level": 3
+			},
+			{
+				"areaId": 241,
+				"parentAreaId": 16,
+				"name": "开封市",
+				"shortName": "开封",
+				"urlDomain": "kaifeng",
+				"level": 3
+			},
+			{
+				"areaId": 242,
+				"parentAreaId": 16,
+				"name": "洛阳市",
+				"shortName": "洛阳",
+				"urlDomain": "luoyang",
+				"level": 3
+			},
+			{
+				"areaId": 243,
+				"parentAreaId": 16,
+				"name": "平顶山市",
+				"shortName": "平顶山",
+				"urlDomain": "pds",
+				"level": 3
+			},
+			{
+				"areaId": 244,
+				"parentAreaId": 16,
+				"name": "安阳市",
+				"shortName": "安阳",
+				"urlDomain": "anyang",
+				"level": 3
+			},
+			{
+				"areaId": 245,
+				"parentAreaId": 16,
+				"name": "鹤壁市",
+				"shortName": "鹤壁",
+				"urlDomain": "hebi",
+				"level": 3
+			},
+			{
+				"areaId": 246,
+				"parentAreaId": 16,
+				"name": "新乡市",
+				"shortName": "新乡",
+				"urlDomain": "xinxiang",
+				"level": 3
+			},
+			{
+				"areaId": 247,
+				"parentAreaId": 16,
+				"name": "焦作市",
+				"shortName": "焦作",
+				"urlDomain": "jiaozuo",
+				"level": 3
+			},
+			{
+				"areaId": 248,
+				"parentAreaId": 16,
+				"name": "濮阳市",
+				"shortName": "濮阳",
+				"urlDomain": "puyang",
+				"level": 3
+			},
+			{
+				"areaId": 249,
+				"parentAreaId": 16,
+				"name": "许昌市",
+				"shortName": "许昌",
+				"urlDomain": "xuchang",
+				"level": 3
+			},
+			{
+				"areaId": 250,
+				"parentAreaId": 16,
+				"name": "漯河市",
+				"shortName": "漯河",
+				"urlDomain": "luohe",
+				"level": 3
+			},
+			{
+				"areaId": 251,
+				"parentAreaId": 16,
+				"name": "三门峡市",
+				"shortName": "三门峡",
+				"urlDomain": "smx",
+				"level": 3
+			},
+			{
+				"areaId": 252,
+				"parentAreaId": 16,
+				"name": "南阳市",
+				"shortName": "南阳",
+				"urlDomain": "nanyang",
+				"level": 3
+			},
+			{
+				"areaId": 253,
+				"parentAreaId": 16,
+				"name": "商丘市",
+				"shortName": "商丘",
+				"urlDomain": "shangqiu",
+				"level": 3
+			},
+			{
+				"areaId": 254,
+				"parentAreaId": 16,
+				"name": "信阳市",
+				"shortName": "信阳",
+				"urlDomain": "xinyang",
+				"level": 3
+			},
+			{
+				"areaId": 255,
+				"parentAreaId": 16,
+				"name": "周口市",
+				"shortName": "周口",
+				"urlDomain": "zhoukou",
+				"level": 3
+			},
+			{
+				"areaId": 256,
+				"parentAreaId": 16,
+				"name": "驻马店市",
+				"shortName": "驻马店",
+				"urlDomain": "zhmd",
+				"level": 3
+			},
+			{
+				"areaId": 257,
+				"parentAreaId": 16,
+				"name": "济源市",
+				"shortName": "济源",
+				"urlDomain": "jiyuan",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 17,
+		"parentAreaId": 0,
+		"name": "湖北省",
+		"shortName": "湖北",
+		"urlDomain": "hubei",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 258,
+				"parentAreaId": 17,
+				"name": "武汉市",
+				"shortName": "武汉",
+				"urlDomain": "wuhan",
+				"level": 3
+			},
+			{
+				"areaId": 259,
+				"parentAreaId": 17,
+				"name": "黄石市",
+				"shortName": "黄石",
+				"urlDomain": "huangshi",
+				"level": 3
+			},
+			{
+				"areaId": 260,
+				"parentAreaId": 17,
+				"name": "十堰市",
+				"shortName": "十堰",
+				"urlDomain": "shiyan",
+				"level": 3
+			},
+			{
+				"areaId": 261,
+				"parentAreaId": 17,
+				"name": "宜昌市",
+				"shortName": "宜昌",
+				"urlDomain": "yichang",
+				"level": 3
+			},
+			{
+				"areaId": 262,
+				"parentAreaId": 17,
+				"name": "襄阳市",
+				"shortName": "襄阳",
+				"urlDomain": "xiangyang",
+				"level": 3
+			},
+			{
+				"areaId": 263,
+				"parentAreaId": 17,
+				"name": "鄂州市",
+				"shortName": "鄂州",
+				"urlDomain": "ezhou",
+				"level": 3
+			},
+			{
+				"areaId": 264,
+				"parentAreaId": 17,
+				"name": "荆门市",
+				"shortName": "荆门",
+				"urlDomain": "jinmen",
+				"level": 3
+			},
+			{
+				"areaId": 265,
+				"parentAreaId": 17,
+				"name": "孝感市",
+				"shortName": "孝感",
+				"urlDomain": "xiaogan",
+				"level": 3
+			},
+			{
+				"areaId": 266,
+				"parentAreaId": 17,
+				"name": "荆州市",
+				"shortName": "荆州",
+				"urlDomain": "jinzh",
+				"level": 3
+			},
+			{
+				"areaId": 267,
+				"parentAreaId": 17,
+				"name": "黄冈市",
+				"shortName": "黄冈",
+				"urlDomain": "hg",
+				"level": 3
+			},
+			{
+				"areaId": 268,
+				"parentAreaId": 17,
+				"name": "咸宁市",
+				"shortName": "咸宁",
+				"urlDomain": "xianning",
+				"level": 3
+			},
+			{
+				"areaId": 269,
+				"parentAreaId": 17,
+				"name": "随州市",
+				"shortName": "随州",
+				"urlDomain": "suizhou",
+				"level": 3
+			},
+			{
+				"areaId": 270,
+				"parentAreaId": 17,
+				"name": "恩施土家族苗族自治州",
+				"shortName": "恩施",
+				"urlDomain": "enshi",
+				"level": 3
+			},
+			{
+				"areaId": 271,
+				"parentAreaId": 17,
+				"name": "仙桃市",
+				"shortName": "仙桃",
+				"urlDomain": "xiantao",
+				"level": 3
+			},
+			{
+				"areaId": 272,
+				"parentAreaId": 17,
+				"name": "潜江市",
+				"shortName": "潜江",
+				"urlDomain": "qj",
+				"level": 3
+			},
+			{
+				"areaId": 273,
+				"parentAreaId": 17,
+				"name": "天门市",
+				"shortName": "天门",
+				"urlDomain": "tianmen",
+				"level": 3
+			},
+			{
+				"areaId": 274,
+				"parentAreaId": 17,
+				"name": "神农架林区",
+				"shortName": "神农架",
+				"urlDomain": "snj",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 18,
+		"parentAreaId": 0,
+		"name": "湖南省",
+		"shortName": "湖南",
+		"urlDomain": "hunan",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 275,
+				"parentAreaId": 18,
+				"name": "长沙市",
+				"shortName": "长沙",
+				"urlDomain": "changsha",
+				"level": 3
+			},
+			{
+				"areaId": 276,
+				"parentAreaId": 18,
+				"name": "株洲市",
+				"shortName": "株洲",
+				"urlDomain": "zhuzhou",
+				"level": 3
+			},
+			{
+				"areaId": 277,
+				"parentAreaId": 18,
+				"name": "湘潭市",
+				"shortName": "湘潭",
+				"urlDomain": "xiangtan",
+				"level": 3
+			},
+			{
+				"areaId": 278,
+				"parentAreaId": 18,
+				"name": "衡阳市",
+				"shortName": "衡阳",
+				"urlDomain": "hengyang",
+				"level": 3
+			},
+			{
+				"areaId": 279,
+				"parentAreaId": 18,
+				"name": "邵阳市",
+				"shortName": "邵阳",
+				"urlDomain": "shaoyang",
+				"level": 3
+			},
+			{
+				"areaId": 280,
+				"parentAreaId": 18,
+				"name": "岳阳市",
+				"shortName": "岳阳",
+				"urlDomain": "yueyang",
+				"level": 3
+			},
+			{
+				"areaId": 281,
+				"parentAreaId": 18,
+				"name": "常德市",
+				"shortName": "常德",
+				"urlDomain": "changde",
+				"level": 3
+			},
+			{
+				"areaId": 282,
+				"parentAreaId": 18,
+				"name": "张家界市",
+				"shortName": "张家界",
+				"urlDomain": "zjj",
+				"level": 3
+			},
+			{
+				"areaId": 283,
+				"parentAreaId": 18,
+				"name": "益阳市",
+				"shortName": "益阳",
+				"urlDomain": "yiyang",
+				"level": 3
+			},
+			{
+				"areaId": 284,
+				"parentAreaId": 18,
+				"name": "郴州市",
+				"shortName": "郴州",
+				"urlDomain": "cz",
+				"level": 3
+			},
+			{
+				"areaId": 285,
+				"parentAreaId": 18,
+				"name": "永州市",
+				"shortName": "永州",
+				"urlDomain": "yongzhou",
+				"level": 3
+			},
+			{
+				"areaId": 286,
+				"parentAreaId": 18,
+				"name": "怀化市",
+				"shortName": "怀化",
+				"urlDomain": "huaihua",
+				"level": 3
+			},
+			{
+				"areaId": 287,
+				"parentAreaId": 18,
+				"name": "娄底市",
+				"shortName": "娄底",
+				"urlDomain": "loudi",
+				"level": 3
+			},
+			{
+				"areaId": 288,
+				"parentAreaId": 18,
+				"name": "湘西土家族苗族自治州",
+				"shortName": "湘西",
+				"urlDomain": "xiangxi",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 19,
+		"parentAreaId": 0,
+		"name": "广东省",
+		"shortName": "广东",
+		"urlDomain": "guangdong",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 289,
+				"parentAreaId": 19,
+				"name": "广州市",
+				"shortName": "广州",
+				"urlDomain": "gz",
+				"level": 3
+			},
+			{
+				"areaId": 290,
+				"parentAreaId": 19,
+				"name": "韶关市",
+				"shortName": "韶关",
+				"urlDomain": "shaoguan",
+				"level": 3
+			},
+			{
+				"areaId": 291,
+				"parentAreaId": 19,
+				"name": "深圳市",
+				"shortName": "深圳",
+				"urlDomain": "shenzhen",
+				"level": 3
+			},
+			{
+				"areaId": 292,
+				"parentAreaId": 19,
+				"name": "珠海市",
+				"shortName": "珠海",
+				"urlDomain": "zhuhai",
+				"level": 3
+			},
+			{
+				"areaId": 293,
+				"parentAreaId": 19,
+				"name": "汕头市",
+				"shortName": "汕头",
+				"urlDomain": "shantou",
+				"level": 3
+			},
+			{
+				"areaId": 294,
+				"parentAreaId": 19,
+				"name": "佛山市",
+				"shortName": "佛山",
+				"urlDomain": "foshan",
+				"level": 3
+			},
+			{
+				"areaId": 295,
+				"parentAreaId": 19,
+				"name": "江门市",
+				"shortName": "江门",
+				"urlDomain": "jiangmen",
+				"level": 3
+			},
+			{
+				"areaId": 296,
+				"parentAreaId": 19,
+				"name": "湛江市",
+				"shortName": "湛江",
+				"urlDomain": "zhanj",
+				"level": 3
+			},
+			{
+				"areaId": 297,
+				"parentAreaId": 19,
+				"name": "茂名市",
+				"shortName": "茂名",
+				"urlDomain": "maoming",
+				"level": 3
+			},
+			{
+				"areaId": 298,
+				"parentAreaId": 19,
+				"name": "肇庆市",
+				"shortName": "肇庆",
+				"urlDomain": "zhaoqing",
+				"level": 3
+			},
+			{
+				"areaId": 299,
+				"parentAreaId": 19,
+				"name": "惠州市",
+				"shortName": "惠州",
+				"urlDomain": "huizhou",
+				"level": 3
+			},
+			{
+				"areaId": 300,
+				"parentAreaId": 19,
+				"name": "梅州市",
+				"shortName": "梅州",
+				"urlDomain": "meizhou",
+				"level": 3
+			},
+			{
+				"areaId": 301,
+				"parentAreaId": 19,
+				"name": "汕尾市",
+				"shortName": "汕尾",
+				"urlDomain": "shanwei",
+				"level": 3
+			},
+			{
+				"areaId": 302,
+				"parentAreaId": 19,
+				"name": "河源市",
+				"shortName": "河源",
+				"urlDomain": "heyuan",
+				"level": 3
+			},
+			{
+				"areaId": 303,
+				"parentAreaId": 19,
+				"name": "阳江市",
+				"shortName": "阳江",
+				"urlDomain": "yangj",
+				"level": 3
+			},
+			{
+				"areaId": 304,
+				"parentAreaId": 19,
+				"name": "清远市",
+				"shortName": "清远",
+				"urlDomain": "qingyuan",
+				"level": 3
+			},
+			{
+				"areaId": 305,
+				"parentAreaId": 19,
+				"name": "东莞市",
+				"shortName": "东莞",
+				"urlDomain": "dongguan",
+				"level": 3
+			},
+			{
+				"areaId": 306,
+				"parentAreaId": 19,
+				"name": "中山市",
+				"shortName": "中山",
+				"urlDomain": "zhongsh",
+				"level": 3
+			},
+			{
+				"areaId": 307,
+				"parentAreaId": 19,
+				"name": "潮州市",
+				"shortName": "潮州",
+				"urlDomain": "chaozhou",
+				"level": 3
+			},
+			{
+				"areaId": 308,
+				"parentAreaId": 19,
+				"name": "揭阳市",
+				"shortName": "揭阳",
+				"urlDomain": "jieyang",
+				"level": 3
+			},
+			{
+				"areaId": 309,
+				"parentAreaId": 19,
+				"name": "云浮市",
+				"shortName": "云浮",
+				"urlDomain": "yunfu",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 20,
+		"parentAreaId": 0,
+		"name": "广西壮族自治区",
+		"shortName": "广西",
+		"urlDomain": "guangxi",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 310,
+				"parentAreaId": 20,
+				"name": "南宁市",
+				"shortName": "南宁",
+				"urlDomain": "nanning",
+				"level": 3
+			},
+			{
+				"areaId": 311,
+				"parentAreaId": 20,
+				"name": "柳州市",
+				"shortName": "柳州",
+				"urlDomain": "liuzhou",
+				"level": 3
+			},
+			{
+				"areaId": 312,
+				"parentAreaId": 20,
+				"name": "桂林市",
+				"shortName": "桂林",
+				"urlDomain": "guilin",
+				"level": 3
+			},
+			{
+				"areaId": 313,
+				"parentAreaId": 20,
+				"name": "梧州市",
+				"shortName": "梧州",
+				"urlDomain": "wuzhou",
+				"level": 3
+			},
+			{
+				"areaId": 314,
+				"parentAreaId": 20,
+				"name": "北海市",
+				"shortName": "北海",
+				"urlDomain": "beihai",
+				"level": 3
+			},
+			{
+				"areaId": 315,
+				"parentAreaId": 20,
+				"name": "防城港市",
+				"shortName": "防城港",
+				"urlDomain": "fcg",
+				"level": 3
+			},
+			{
+				"areaId": 316,
+				"parentAreaId": 20,
+				"name": "钦州市",
+				"shortName": "钦州",
+				"urlDomain": "qinzhou",
+				"level": 3
+			},
+			{
+				"areaId": 317,
+				"parentAreaId": 20,
+				"name": "贵港市",
+				"shortName": "贵港",
+				"urlDomain": "guigang",
+				"level": 3
+			},
+			{
+				"areaId": 318,
+				"parentAreaId": 20,
+				"name": "玉林市",
+				"shortName": "玉林",
+				"urlDomain": "yulin",
+				"level": 3
+			},
+			{
+				"areaId": 319,
+				"parentAreaId": 20,
+				"name": "百色市",
+				"shortName": "百色",
+				"urlDomain": "bose",
+				"level": 3
+			},
+			{
+				"areaId": 320,
+				"parentAreaId": 20,
+				"name": "贺州市",
+				"shortName": "贺州",
+				"urlDomain": "hezhou",
+				"level": 3
+			},
+			{
+				"areaId": 321,
+				"parentAreaId": 20,
+				"name": "河池市",
+				"shortName": "河池",
+				"urlDomain": "hechi",
+				"level": 3
+			},
+			{
+				"areaId": 322,
+				"parentAreaId": 20,
+				"name": "来宾市",
+				"shortName": "来宾",
+				"urlDomain": "laibin",
+				"level": 3
+			},
+			{
+				"areaId": 323,
+				"parentAreaId": 20,
+				"name": "崇左市",
+				"shortName": "崇左",
+				"urlDomain": "chongzuo",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 21,
+		"parentAreaId": 0,
+		"name": "海南省",
+		"shortName": "海南",
+		"urlDomain": "hainan",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 324,
+				"parentAreaId": 21,
+				"name": "海口市",
+				"shortName": "海口",
+				"urlDomain": "haikou",
+				"level": 3
+			},
+			{
+				"areaId": 325,
+				"parentAreaId": 21,
+				"name": "三亚市",
+				"shortName": "三亚",
+				"urlDomain": "sanya",
+				"level": 3
+			},
+			{
+				"areaId": 326,
+				"parentAreaId": 21,
+				"name": "五指山市",
+				"shortName": "五指山",
+				"urlDomain": "wzs",
+				"level": 3
+			},
+			{
+				"areaId": 327,
+				"parentAreaId": 21,
+				"name": "琼海市",
+				"shortName": "琼海",
+				"urlDomain": "qionghai",
+				"level": 3
+			},
+			{
+				"areaId": 328,
+				"parentAreaId": 21,
+				"name": "儋州市",
+				"shortName": "儋州",
+				"urlDomain": "zhanzhou",
+				"level": 3
+			},
+			{
+				"areaId": 329,
+				"parentAreaId": 21,
+				"name": "文昌市",
+				"shortName": "文昌",
+				"urlDomain": "wenchang",
+				"level": 3
+			},
+			{
+				"areaId": 330,
+				"parentAreaId": 21,
+				"name": "万宁市",
+				"shortName": "万宁",
+				"urlDomain": "wanning",
+				"level": 3
+			},
+			{
+				"areaId": 331,
+				"parentAreaId": 21,
+				"name": "东方市",
+				"shortName": "东方",
+				"urlDomain": "dongfang",
+				"level": 3
+			},
+			{
+				"areaId": 332,
+				"parentAreaId": 21,
+				"name": "定安县",
+				"shortName": "定安",
+				"urlDomain": "dingan",
+				"level": 3
+			},
+			{
+				"areaId": 333,
+				"parentAreaId": 21,
+				"name": "屯昌县",
+				"shortName": "屯昌",
+				"urlDomain": "tunchang",
+				"level": 3
+			},
+			{
+				"areaId": 334,
+				"parentAreaId": 21,
+				"name": "澄迈县",
+				"shortName": "澄迈",
+				"urlDomain": "chengmai",
+				"level": 3
+			},
+			{
+				"areaId": 335,
+				"parentAreaId": 21,
+				"name": "临高县",
+				"shortName": "临高",
+				"urlDomain": "lingao",
+				"level": 3
+			},
+			{
+				"areaId": 336,
+				"parentAreaId": 21,
+				"name": "白沙黎族自治县",
+				"shortName": "白沙",
+				"urlDomain": "baisha",
+				"level": 3
+			},
+			{
+				"areaId": 337,
+				"parentAreaId": 21,
+				"name": "昌江黎族自治县",
+				"shortName": "昌江",
+				"urlDomain": "changj",
+				"level": 3
+			},
+			{
+				"areaId": 338,
+				"parentAreaId": 21,
+				"name": "乐东黎族自治县",
+				"shortName": "乐东",
+				"urlDomain": "ledong",
+				"level": 3
+			},
+			{
+				"areaId": 339,
+				"parentAreaId": 21,
+				"name": "陵水黎族自治县",
+				"shortName": "陵水",
+				"urlDomain": "lingshui",
+				"level": 3
+			},
+			{
+				"areaId": 340,
+				"parentAreaId": 21,
+				"name": "保亭黎族苗族自治县",
+				"shortName": "保亭",
+				"urlDomain": "baoting",
+				"level": 3
+			},
+			{
+				"areaId": 341,
+				"parentAreaId": 21,
+				"name": "琼中黎族苗族自治县",
+				"shortName": "琼中",
+				"urlDomain": "qiongzh",
+				"level": 3
+			},
+			{
+				"areaId": 342,
+				"parentAreaId": 21,
+				"name": "西沙群岛",
+				"shortName": "西沙群岛",
+				"urlDomain": "xisha",
+				"level": 3
+			},
+			{
+				"areaId": 343,
+				"parentAreaId": 21,
+				"name": "南沙群岛",
+				"shortName": "南沙群岛",
+				"urlDomain": "nansha",
+				"level": 3
+			},
+			{
+				"areaId": 344,
+				"parentAreaId": 21,
+				"name": "中沙群岛的岛礁及其海域",
+				"shortName": "中沙群岛",
+				"urlDomain": "zhongsha",
+				"level": 3
+			},
+			{
+				"areaId": 5029,
+				"parentAreaId": 21,
+				"name": "三沙市",
+				"shortName": "三沙",
+				"urlDomain": "sansha",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 22,
+		"parentAreaId": 0,
+		"name": "重庆",
+		"shortName": "重庆",
+		"urlDomain": "chongqing",
+		"level": 2,
+		"childAreas": [{
+			"areaId": 62,
+			"parentAreaId": 22,
+			"name": "重庆市",
+			"shortName": "重庆",
+			"urlDomain": "cq",
+			"level": 3
+		}]
+	},
+	{
+		"areaId": 23,
+		"parentAreaId": 0,
+		"name": "四川省",
+		"shortName": "四川",
+		"urlDomain": "sichuan",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 385,
+				"parentAreaId": 23,
+				"name": "成都市",
+				"shortName": "成都",
+				"urlDomain": "chengdu",
+				"level": 3
+			},
+			{
+				"areaId": 386,
+				"parentAreaId": 23,
+				"name": "自贡市",
+				"shortName": "自贡",
+				"urlDomain": "zigong",
+				"level": 3
+			},
+			{
+				"areaId": 387,
+				"parentAreaId": 23,
+				"name": "攀枝花市",
+				"shortName": "攀枝花",
+				"urlDomain": "pzh",
+				"level": 3
+			},
+			{
+				"areaId": 388,
+				"parentAreaId": 23,
+				"name": "泸州市",
+				"shortName": "泸州",
+				"urlDomain": "luzhou",
+				"level": 3
+			},
+			{
+				"areaId": 389,
+				"parentAreaId": 23,
+				"name": "德阳市",
+				"shortName": "德阳",
+				"urlDomain": "deyang",
+				"level": 3
+			},
+			{
+				"areaId": 390,
+				"parentAreaId": 23,
+				"name": "绵阳市",
+				"shortName": "绵阳",
+				"urlDomain": "mianyang",
+				"level": 3
+			},
+			{
+				"areaId": 391,
+				"parentAreaId": 23,
+				"name": "广元市",
+				"shortName": "广元",
+				"urlDomain": "guangy",
+				"level": 3
+			},
+			{
+				"areaId": 392,
+				"parentAreaId": 23,
+				"name": "遂宁市",
+				"shortName": "遂宁",
+				"urlDomain": "suining",
+				"level": 3
+			},
+			{
+				"areaId": 393,
+				"parentAreaId": 23,
+				"name": "内江市",
+				"shortName": "内江",
+				"urlDomain": "neijiang",
+				"level": 3
+			},
+			{
+				"areaId": 394,
+				"parentAreaId": 23,
+				"name": "乐山市",
+				"shortName": "乐山",
+				"urlDomain": "leshan",
+				"level": 3
+			},
+			{
+				"areaId": 395,
+				"parentAreaId": 23,
+				"name": "南充市",
+				"shortName": "南充",
+				"urlDomain": "nanchong",
+				"level": 3
+			},
+			{
+				"areaId": 396,
+				"parentAreaId": 23,
+				"name": "眉山市",
+				"shortName": "眉山",
+				"urlDomain": "meishan",
+				"level": 3
+			},
+			{
+				"areaId": 397,
+				"parentAreaId": 23,
+				"name": "宜宾市",
+				"shortName": "宜宾",
+				"urlDomain": "yibin",
+				"level": 3
+			},
+			{
+				"areaId": 398,
+				"parentAreaId": 23,
+				"name": "广安市",
+				"shortName": "广安",
+				"urlDomain": "guangan",
+				"level": 3
+			},
+			{
+				"areaId": 399,
+				"parentAreaId": 23,
+				"name": "达州市",
+				"shortName": "达州",
+				"urlDomain": "dazhou",
+				"level": 3
+			},
+			{
+				"areaId": 400,
+				"parentAreaId": 23,
+				"name": "雅安市",
+				"shortName": "雅安",
+				"urlDomain": "yaan",
+				"level": 3
+			},
+			{
+				"areaId": 401,
+				"parentAreaId": 23,
+				"name": "巴中市",
+				"shortName": "巴中",
+				"urlDomain": "bazhong",
+				"level": 3
+			},
+			{
+				"areaId": 402,
+				"parentAreaId": 23,
+				"name": "资阳市",
+				"shortName": "资阳",
+				"urlDomain": "ziyang",
+				"level": 3
+			},
+			{
+				"areaId": 403,
+				"parentAreaId": 23,
+				"name": "阿坝藏族羌族自治州",
+				"shortName": "阿坝",
+				"urlDomain": "aba",
+				"level": 3
+			},
+			{
+				"areaId": 404,
+				"parentAreaId": 23,
+				"name": "甘孜藏族自治州",
+				"shortName": "甘孜",
+				"urlDomain": "ganzi",
+				"level": 3
+			},
+			{
+				"areaId": 405,
+				"parentAreaId": 23,
+				"name": "凉山彝族自治州",
+				"shortName": "凉山",
+				"urlDomain": "liangsh",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 24,
+		"parentAreaId": 0,
+		"name": "贵州省",
+		"shortName": "贵州",
+		"urlDomain": "guizhou",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 406,
+				"parentAreaId": 24,
+				"name": "贵阳市",
+				"shortName": "贵阳",
+				"urlDomain": "guiyang",
+				"level": 3
+			},
+			{
+				"areaId": 407,
+				"parentAreaId": 24,
+				"name": "六盘水市",
+				"shortName": "六盘水",
+				"urlDomain": "lpsh",
+				"level": 3
+			},
+			{
+				"areaId": 408,
+				"parentAreaId": 24,
+				"name": "遵义市",
+				"shortName": "遵义",
+				"urlDomain": "zunyi",
+				"level": 3
+			},
+			{
+				"areaId": 409,
+				"parentAreaId": 24,
+				"name": "安顺市",
+				"shortName": "安顺",
+				"urlDomain": "anshun",
+				"level": 3
+			},
+			{
+				"areaId": 410,
+				"parentAreaId": 24,
+				"name": "铜仁市",
+				"shortName": "铜仁",
+				"urlDomain": "tongren",
+				"level": 3
+			},
+			{
+				"areaId": 411,
+				"parentAreaId": 24,
+				"name": "黔西南布依族苗族自治州",
+				"shortName": "黔西南",
+				"urlDomain": "cxn",
+				"level": 3
+			},
+			{
+				"areaId": 412,
+				"parentAreaId": 24,
+				"name": "毕节市",
+				"shortName": "毕节",
+				"urlDomain": "bijie",
+				"level": 3
+			},
+			{
+				"areaId": 413,
+				"parentAreaId": 24,
+				"name": "黔东南苗族侗族自治州",
+				"shortName": "黔东南",
+				"urlDomain": "cdn",
+				"level": 3
+			},
+			{
+				"areaId": 414,
+				"parentAreaId": 24,
+				"name": "黔南布依族苗族自治州",
+				"shortName": "黔南",
+				"urlDomain": "cennan",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 25,
+		"parentAreaId": 0,
+		"name": "云南省",
+		"shortName": "云南",
+		"urlDomain": "yunnan",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 415,
+				"parentAreaId": 25,
+				"name": "昆明市",
+				"shortName": "昆明",
+				"urlDomain": "kunming",
+				"level": 3
+			},
+			{
+				"areaId": 416,
+				"parentAreaId": 25,
+				"name": "曲靖市",
+				"shortName": "曲靖",
+				"urlDomain": "qujing",
+				"level": 3
+			},
+			{
+				"areaId": 417,
+				"parentAreaId": 25,
+				"name": "玉溪市",
+				"shortName": "玉溪",
+				"urlDomain": "yuxi",
+				"level": 3
+			},
+			{
+				"areaId": 418,
+				"parentAreaId": 25,
+				"name": "保山市",
+				"shortName": "保山",
+				"urlDomain": "baoshan",
+				"level": 3
+			},
+			{
+				"areaId": 419,
+				"parentAreaId": 25,
+				"name": "昭通市",
+				"shortName": "昭通",
+				"urlDomain": "zhaotong",
+				"level": 3
+			},
+			{
+				"areaId": 420,
+				"parentAreaId": 25,
+				"name": "丽江市",
+				"shortName": "丽江",
+				"urlDomain": "lijiang",
+				"level": 3
+			},
+			{
+				"areaId": 421,
+				"parentAreaId": 25,
+				"name": "思茅市",
+				"shortName": "思茅",
+				"urlDomain": "simao",
+				"level": 3
+			},
+			{
+				"areaId": 422,
+				"parentAreaId": 25,
+				"name": "临沧市",
+				"shortName": "临沧",
+				"urlDomain": "lincang",
+				"level": 3
+			},
+			{
+				"areaId": 423,
+				"parentAreaId": 25,
+				"name": "楚雄彝族自治州",
+				"shortName": "楚雄",
+				"urlDomain": "chuxiong",
+				"level": 3
+			},
+			{
+				"areaId": 424,
+				"parentAreaId": 25,
+				"name": "红河哈尼族彝族自治州",
+				"shortName": "红河",
+				"urlDomain": "honghe",
+				"level": 3
+			},
+			{
+				"areaId": 425,
+				"parentAreaId": 25,
+				"name": "文山壮族苗族自治州",
+				"shortName": "文山",
+				"urlDomain": "wenshan",
+				"level": 3
+			},
+			{
+				"areaId": 426,
+				"parentAreaId": 25,
+				"name": "西双版纳傣族自治州",
+				"shortName": "西双版纳",
+				"urlDomain": "xsbn",
+				"level": 3
+			},
+			{
+				"areaId": 427,
+				"parentAreaId": 25,
+				"name": "大理白族自治州",
+				"shortName": "大理",
+				"urlDomain": "dali",
+				"level": 3
+			},
+			{
+				"areaId": 428,
+				"parentAreaId": 25,
+				"name": "德宏傣族景颇族自治州",
+				"shortName": "德宏",
+				"urlDomain": "dehong",
+				"level": 3
+			},
+			{
+				"areaId": 429,
+				"parentAreaId": 25,
+				"name": "怒江傈僳族自治州",
+				"shortName": "怒江",
+				"urlDomain": "nujiang",
+				"level": 3
+			},
+			{
+				"areaId": 430,
+				"parentAreaId": 25,
+				"name": "迪庆藏族自治州",
+				"shortName": "迪庆",
+				"urlDomain": "diqing",
+				"level": 3
+			},
+			{
+				"areaId": 5028,
+				"parentAreaId": 25,
+				"name": "普洱市",
+				"shortName": "普洱",
+				"urlDomain": "puer",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 26,
+		"parentAreaId": 0,
+		"name": "西藏自治区",
+		"shortName": "西藏",
+		"urlDomain": "xizang",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 431,
+				"parentAreaId": 26,
+				"name": "拉萨市",
+				"shortName": "拉萨",
+				"urlDomain": "lasa",
+				"level": 3
+			},
+			{
+				"areaId": 432,
+				"parentAreaId": 26,
+				"name": "昌都地区",
+				"shortName": "昌都",
+				"urlDomain": "chdd",
+				"level": 3
+			},
+			{
+				"areaId": 433,
+				"parentAreaId": 26,
+				"name": "山南地区",
+				"shortName": "山南",
+				"urlDomain": "shnd",
+				"level": 3
+			},
+			{
+				"areaId": 434,
+				"parentAreaId": 26,
+				"name": "日喀则地区",
+				"shortName": "日喀则",
+				"urlDomain": "rkzd",
+				"level": 3
+			},
+			{
+				"areaId": 435,
+				"parentAreaId": 26,
+				"name": "那曲地区",
+				"shortName": "那曲",
+				"urlDomain": "nqd",
+				"level": 3
+			},
+			{
+				"areaId": 436,
+				"parentAreaId": 26,
+				"name": "阿里地区",
+				"shortName": "阿里",
+				"urlDomain": "ald",
+				"level": 3
+			},
+			{
+				"areaId": 437,
+				"parentAreaId": 26,
+				"name": "林芝市",
+				"shortName": "林芝",
+				"urlDomain": "linzhi",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 27,
+		"parentAreaId": 0,
+		"name": "陕西省",
+		"shortName": "陕西",
+		"urlDomain": "shaanxi",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 438,
+				"parentAreaId": 27,
+				"name": "西安市",
+				"shortName": "西安",
+				"urlDomain": "xian",
+				"level": 3
+			},
+			{
+				"areaId": 439,
+				"parentAreaId": 27,
+				"name": "铜川市",
+				"shortName": "铜川",
+				"urlDomain": "tongch",
+				"level": 3
+			},
+			{
+				"areaId": 440,
+				"parentAreaId": 27,
+				"name": "宝鸡市",
+				"shortName": "宝鸡",
+				"urlDomain": "baoji",
+				"level": 3
+			},
+			{
+				"areaId": 441,
+				"parentAreaId": 27,
+				"name": "咸阳市",
+				"shortName": "咸阳",
+				"urlDomain": "xianyang",
+				"level": 3
+			},
+			{
+				"areaId": 442,
+				"parentAreaId": 27,
+				"name": "渭南市",
+				"shortName": "渭南",
+				"urlDomain": "weinan",
+				"level": 3
+			},
+			{
+				"areaId": 443,
+				"parentAreaId": 27,
+				"name": "延安市",
+				"shortName": "延安",
+				"urlDomain": "yanan",
+				"level": 3
+			},
+			{
+				"areaId": 444,
+				"parentAreaId": 27,
+				"name": "汉中市",
+				"shortName": "汉中",
+				"urlDomain": "hanzhong",
+				"level": 3
+			},
+			{
+				"areaId": 445,
+				"parentAreaId": 27,
+				"name": "榆林市",
+				"shortName": "榆林",
+				"urlDomain": "yul",
+				"level": 3
+			},
+			{
+				"areaId": 446,
+				"parentAreaId": 27,
+				"name": "安康市",
+				"shortName": "安康",
+				"urlDomain": "ankang",
+				"level": 3
+			},
+			{
+				"areaId": 447,
+				"parentAreaId": 27,
+				"name": "商洛市",
+				"shortName": "商洛",
+				"urlDomain": "shangluo",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 28,
+		"parentAreaId": 0,
+		"name": "甘肃省",
+		"shortName": "甘肃",
+		"urlDomain": "gansu",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 448,
+				"parentAreaId": 28,
+				"name": "兰州市",
+				"shortName": "兰州",
+				"urlDomain": "lanzhou",
+				"level": 3
+			},
+			{
+				"areaId": 449,
+				"parentAreaId": 28,
+				"name": "嘉峪关市",
+				"shortName": "嘉峪关",
+				"urlDomain": "jyg",
+				"level": 3
+			},
+			{
+				"areaId": 450,
+				"parentAreaId": 28,
+				"name": "金昌市",
+				"shortName": "金昌",
+				"urlDomain": "jinchang",
+				"level": 3
+			},
+			{
+				"areaId": 451,
+				"parentAreaId": 28,
+				"name": "白银市",
+				"shortName": "白银",
+				"urlDomain": "baiyin",
+				"level": 3
+			},
+			{
+				"areaId": 452,
+				"parentAreaId": 28,
+				"name": "天水市",
+				"shortName": "天水",
+				"urlDomain": "tianshui",
+				"level": 3
+			},
+			{
+				"areaId": 453,
+				"parentAreaId": 28,
+				"name": "武威市",
+				"shortName": "武威",
+				"urlDomain": "wuwei",
+				"level": 3
+			},
+			{
+				"areaId": 454,
+				"parentAreaId": 28,
+				"name": "张掖市",
+				"shortName": "张掖",
+				"urlDomain": "zhangye",
+				"level": 3
+			},
+			{
+				"areaId": 455,
+				"parentAreaId": 28,
+				"name": "平凉市",
+				"shortName": "平凉",
+				"urlDomain": "pingl",
+				"level": 3
+			},
+			{
+				"areaId": 456,
+				"parentAreaId": 28,
+				"name": "酒泉市",
+				"shortName": "酒泉",
+				"urlDomain": "jiuquan",
+				"level": 3
+			},
+			{
+				"areaId": 457,
+				"parentAreaId": 28,
+				"name": "庆阳市",
+				"shortName": "庆阳",
+				"urlDomain": "qingyang",
+				"level": 3
+			},
+			{
+				"areaId": 458,
+				"parentAreaId": 28,
+				"name": "定西市",
+				"shortName": "定西",
+				"urlDomain": "dingxi",
+				"level": 3
+			},
+			{
+				"areaId": 459,
+				"parentAreaId": 28,
+				"name": "陇南市",
+				"shortName": "陇南",
+				"urlDomain": "longnan",
+				"level": 3
+			},
+			{
+				"areaId": 460,
+				"parentAreaId": 28,
+				"name": "临夏回族自治州",
+				"shortName": "临夏",
+				"urlDomain": "linxia",
+				"level": 3
+			},
+			{
+				"areaId": 461,
+				"parentAreaId": 28,
+				"name": "甘南藏族自治州",
+				"shortName": "甘南",
+				"urlDomain": "gannan",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 29,
+		"parentAreaId": 0,
+		"name": "青海省",
+		"shortName": "青海",
+		"urlDomain": "qinghai",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 462,
+				"parentAreaId": 29,
+				"name": "西宁市",
+				"shortName": "西宁",
+				"urlDomain": "xining",
+				"level": 3
+			},
+			{
+				"areaId": 463,
+				"parentAreaId": 29,
+				"name": "海东市",
+				"shortName": "海东",
+				"urlDomain": "haidong",
+				"level": 3
+			},
+			{
+				"areaId": 464,
+				"parentAreaId": 29,
+				"name": "海北藏族自治州",
+				"shortName": "海北",
+				"urlDomain": "haibei",
+				"level": 3
+			},
+			{
+				"areaId": 465,
+				"parentAreaId": 29,
+				"name": "黄南藏族自治州",
+				"shortName": "黄南",
+				"urlDomain": "huangnan",
+				"level": 3
+			},
+			{
+				"areaId": 466,
+				"parentAreaId": 29,
+				"name": "海南藏族自治州",
+				"shortName": "海南",
+				"urlDomain": "hain",
+				"level": 3
+			},
+			{
+				"areaId": 467,
+				"parentAreaId": 29,
+				"name": "果洛藏族自治州",
+				"shortName": "果洛",
+				"urlDomain": "guoluo",
+				"level": 3
+			},
+			{
+				"areaId": 468,
+				"parentAreaId": 29,
+				"name": "玉树藏族自治州",
+				"shortName": "玉树",
+				"urlDomain": "yushu",
+				"level": 3
+			},
+			{
+				"areaId": 469,
+				"parentAreaId": 29,
+				"name": "海西蒙古族藏族自治州",
+				"shortName": "海西",
+				"urlDomain": "haixi",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 30,
+		"parentAreaId": 0,
+		"name": "宁夏回族自治区",
+		"shortName": "宁夏",
+		"urlDomain": "ningxia",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 470,
+				"parentAreaId": 30,
+				"name": "银川市",
+				"shortName": "银川",
+				"urlDomain": "yinchuan",
+				"level": 3
+			},
+			{
+				"areaId": 471,
+				"parentAreaId": 30,
+				"name": "石嘴山市",
+				"shortName": "石嘴山",
+				"urlDomain": "shzsh",
+				"level": 3
+			},
+			{
+				"areaId": 472,
+				"parentAreaId": 30,
+				"name": "吴忠市",
+				"shortName": "吴忠",
+				"urlDomain": "wuzhong",
+				"level": 3
+			},
+			{
+				"areaId": 473,
+				"parentAreaId": 30,
+				"name": "固原市",
+				"shortName": "固原",
+				"urlDomain": "guyuan",
+				"level": 3
+			},
+			{
+				"areaId": 474,
+				"parentAreaId": 30,
+				"name": "中卫市",
+				"shortName": "中卫",
+				"urlDomain": "zhongwei",
+				"level": 3
+			}
+		]
+	},
+	{
+		"areaId": 31,
+		"parentAreaId": 0,
+		"name": "新疆维吾尔自治区",
+		"shortName": "新疆",
+		"urlDomain": "xinjiang",
+		"level": 2,
+		"childAreas": [{
+				"areaId": 475,
+				"parentAreaId": 31,
+				"name": "乌鲁木齐市",
+				"shortName": "乌鲁木齐",
+				"urlDomain": "wlmq",
+				"level": 3
+			},
+			{
+				"areaId": 476,
+				"parentAreaId": 31,
+				"name": "克拉玛依市",
+				"shortName": "克拉玛依",
+				"urlDomain": "klmy",
+				"level": 3
+			},
+			{
+				"areaId": 477,
+				"parentAreaId": 31,
+				"name": "吐鲁番地区",
+				"shortName": "吐鲁番",
+				"urlDomain": "tlf",
+				"level": 3
+			},
+			{
+				"areaId": 478,
+				"parentAreaId": 31,
+				"name": "哈密地区",
+				"shortName": "哈密",
+				"urlDomain": "hami",
+				"level": 3
+			},
+			{
+				"areaId": 479,
+				"parentAreaId": 31,
+				"name": "昌吉回族自治州",
+				"shortName": "昌吉",
+				"urlDomain": "changji",
+				"level": 3
+			},
+			{
+				"areaId": 480,
+				"parentAreaId": 31,
+				"name": "博尔塔拉蒙古自治州",
+				"shortName": "博尔塔拉",
+				"urlDomain": "betl",
+				"level": 3
+			},
+			{
+				"areaId": 481,
+				"parentAreaId": 31,
+				"name": "巴音郭楞蒙古自治州",
+				"shortName": "巴音郭楞",
+				"urlDomain": "lygl",
+				"level": 3
+			},
+			{
+				"areaId": 482,
+				"parentAreaId": 31,
+				"name": "阿克苏地区",
+				"shortName": "阿克苏",
+				"urlDomain": "aks",
+				"level": 3
+			},
+			{
+				"areaId": 483,
+				"parentAreaId": 31,
+				"name": "克孜勒苏柯尔克孜自治州",
+				"shortName": "克孜勒苏",
+				"urlDomain": "kzls",
+				"level": 3
+			},
+			{
+				"areaId": 484,
+				"parentAreaId": 31,
+				"name": "喀什地区",
+				"shortName": "喀什",
+				"urlDomain": "kashi",
+				"level": 3
+			},
+			{
+				"areaId": 485,
+				"parentAreaId": 31,
+				"name": "和田地区",
+				"shortName": "和田",
+				"urlDomain": "hetian",
+				"level": 3
+			},
+			{
+				"areaId": 486,
+				"parentAreaId": 31,
+				"name": "伊犁哈萨克自治州",
+				"shortName": "伊犁",
+				"urlDomain": "yili",
+				"level": 3
+			},
+			{
+				"areaId": 487,
+				"parentAreaId": 31,
+				"name": "塔城地区",
+				"shortName": "塔城",
+				"urlDomain": "tacheng",
+				"level": 3
+			},
+			{
+				"areaId": 488,
+				"parentAreaId": 31,
+				"name": "阿勒泰地区",
+				"shortName": "阿勒泰",
+				"urlDomain": "aletai",
+				"level": 3
+			},
+			{
+				"areaId": 489,
+				"parentAreaId": 31,
+				"name": "石河子市",
+				"shortName": "石河子",
+				"urlDomain": "shihezi",
+				"level": 3
+			},
+			{
+				"areaId": 490,
+				"parentAreaId": 31,
+				"name": "阿拉尔市",
+				"shortName": "阿拉尔",
+				"urlDomain": "alaer",
+				"level": 3
+			},
+			{
+				"areaId": 491,
+				"parentAreaId": 31,
+				"name": "图木舒克市",
+				"shortName": "图木舒克",
+				"urlDomain": "tmshk",
+				"level": 3
+			},
+			{
+				"areaId": 492,
+				"parentAreaId": 31,
+				"name": "五家渠市",
+				"shortName": "五家渠",
+				"urlDomain": "wjq",
+				"level": 3
+			}
+		]
+	}
+]

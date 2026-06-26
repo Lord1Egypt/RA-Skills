@@ -1,0 +1,75 @@
+/**
+ * 数据看板模板
+ * 适用场景：数据统计、仪表盘
+ * 核心组件：Page + Service + Chart
+ */
+{
+  "type": "page",
+  "title": "数据看板",
+  "body": {
+    "type": "grid",
+    "columns": [
+      {
+        "type": "card",
+        "header": "总用户数",
+        "body": {
+          "type": "tpl",
+          "tpl": "<span class=\"text-2xl font-bold\">${totalUsers}</span>",
+          "className": "text-center"
+        }
+      },
+      {
+        "type": "card",
+        "header": "活跃用户",
+        "body": {
+          "type": "tpl",
+          "tpl": "<span class=\"text-2xl font-bold\">${activeUsers}</span>",
+          "className": "text-center"
+        }
+      },
+      {
+        "type": "card",
+        "header": "订单总数",
+        "body": {
+          "type": "tpl",
+          "tpl": "<span class=\"text-2xl font-bold\">${totalOrders}</span>",
+          "className": "text-center"
+        }
+      },
+      {
+        "type": "card",
+        "header": "收入",
+        "body": {
+          "type": "tpl",
+          "tpl": "<span class=\"text-2xl font-bold\">¥${revenue}</span>",
+          "className": "text-center"
+        }
+      }
+    ]
+  },
+  {
+    "type": "chart",
+    "initApi": "/api/dashboard/chart",
+    "name": "trendChart",
+    "height": 400,
+    "chartConfig": {
+      "title": {
+        "text": "趋势图"
+      },
+      "xAxis": {
+        "type": "category",
+        "data": ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+      },
+      "yAxis": {
+        "type": "value"
+      },
+      "series": [
+        {
+          "name": "销量",
+          "type": "line",
+          "data": [120, 200, 150, 80, 70, 110, 130]
+        }
+      ]
+    }
+  }
+}

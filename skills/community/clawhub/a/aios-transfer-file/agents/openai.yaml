@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIOS File Transfer"
+  short_description: "Transfer OpenClaw files through an S3 SDK"
+  default_prompt: "Use $aios-transfer-file to receive `file_input://...` URIs or upload a local file back to the user through an S3-compatible SDK."
+
+policy:
+  allow_implicit_invocation: true

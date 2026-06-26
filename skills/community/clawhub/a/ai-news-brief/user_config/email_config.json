@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "description": "邮件推送配置 - 请填写你的邮箱配置，或使用外部配置 ~/.openclaw/config/ai-news-email.json",
+  
+  "smtp_config": {
+    "enabled": false,
+    "smtp_server": "smtp.qq.com",
+    "smtp_port": 465,
+    "use_ssl": true,
+    "sender_email": "your_email@example.com",
+    "sender_password": "your_auth_code",
+    "sender_name": "AI资讯小助手"
+  },
+  
+  "recipient_config": {
+    "enabled": false,
+    "recipients": [
+      "recipient@example.com"
+    ]
+  },
+  
+  "email_template": {
+    "subject_prefix": "[AI资讯简报]",
+    "include_summary": true,
+    "include_key_points": true,
+    "include_source_credibility": true,
+    "max_articles": 15,
+    "format": "html"
+  }
+}

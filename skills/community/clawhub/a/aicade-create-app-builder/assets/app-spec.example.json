@@ -1,0 +1,99 @@
+{
+  "roleSetup": "You are a senior application engineer skilled in Node.js, npm, Vite, TypeScript, and Web3, and you write well-structured, well-documented, performance-conscious web applications.",
+  "projectName": "AI Event Assistant",
+  "projectGoal": "Based on the current aicade-ts-bootstrap project, build an aicade application for event registration, check-in, points display, and reward redemption.",
+  "basePromptSections": [
+    {
+      "title": "Target Users And Usage Context",
+      "items": [
+        "Event participants",
+        "General platform users who need to track activity progress and rewards",
+        "Browse recent events and event details",
+        "Complete registration, check-in, and reward-claim flows",
+        "Review point records and redemption status in the personal center"
+      ]
+    },
+    {
+      "title": "Page Structure And Information Architecture",
+      "items": [
+        "The home page shows the event list, featured events, and a points entry area",
+        "The event detail page shows time, location, rules, registration status, and the check-in entry",
+        "The personal center shows wallet address, points balance, registration records, and redemption records",
+        "The top area always shows the wallet address and points balance",
+        "Primary navigation includes Home, Events, and Personal Center"
+      ]
+    },
+    {
+      "title": "Core Features And User Flow",
+      "items": [
+        "Browse and filter the event list",
+        "Register for events and cancel registrations",
+        "Check in to events",
+        "Show points details",
+        "Redeem points into Aicade Points",
+        "After opening the app, users first browse the event list and then register from the detail page",
+        "After arriving at the event, users complete check-in from the detail page",
+        "Users review accumulated points for the current event and redeem them in the personal center"
+      ]
+    },
+    {
+      "title": "Business Rules And Interaction Requirements",
+      "items": [
+        "Only registered users can check in",
+        "Each user can check in only once per event",
+        "Successful check-in accrues event points",
+        "Redemption uses business-settlement points and must follow the platform's daily redemption cap",
+        "Registration, cancellation, check-in, and redemption all require clear user feedback",
+        "Empty, loading, and failure states must be fully handled",
+        "Mobile-first, while still supporting desktop display"
+      ]
+    }
+  ],
+  "platformIntegration": {
+    "scaffoldReadmePath": "README.md",
+    "scaffoldSdkDocPath": "doc/README.md",
+    "scaffoldAppGuidePath": "doc/AICreateApplication-EN.md",
+    "sdkAlreadyIntegrated": true,
+    "iframeSandbox": "allow-scripts allow-modals",
+    "baseRequirements": [
+      "Initialize AicadeSDK in the correct order with init(...), waitForReady(), and getModule(...).",
+      "Reuse SDK and module instances instead of recreating them repeatedly."
+    ],
+    "compatibilityRequirements": [
+      "Respect iframe sandbox restrictions and opaque-origin limitations.",
+      "Replace browser localStorage usage with LocalStorageTools."
+    ],
+    "requiredSdkModules": [
+      "Application",
+      "LocalStorageTools"
+    ],
+    "extensionModules": [
+      "AppScore",
+      "AicadeCurrency"
+    ],
+    "replaceLocalStorageWith": "LocalStorageTools",
+    "showWalletAddress": true,
+    "showPointBalance": true,
+    "pointBalanceLabel": "Points",
+    "exchange": {
+      "enabled": true,
+      "ratio": "100:1",
+      "dailyLimit": "100 Aicade Points",
+      "trigger": "On each business settlement"
+    },
+    "extraRequirements": [
+      "If the business flow involves account, points, or state changes, use event subscriptions to keep the UI in sync."
+    ]
+  },
+  "technicalRequirements": [
+    "Extend within the current project environment and do not rebuild the tech stack",
+    "Use clear module boundaries for pages, state, and business logic",
+    "Prefer a complete single-file implementation first, with only minimal splitting when necessary",
+    "Async requests and SDK calls must include explicit error handling"
+  ],
+  "outputRequirements": [
+    "Output complete runnable code",
+    "Ensure the aicade-ts-sdk call order is correct",
+    "Avoid leaving any browser-native localStorage calls behind"
+  ]
+}

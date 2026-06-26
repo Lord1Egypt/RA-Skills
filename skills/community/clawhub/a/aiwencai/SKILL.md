@@ -1,35 +1,62 @@
 ---
-name: "Aiwencai"
-description: "同花顺数据查询skill 也叫老窝爱小窝金融skill。查询金融经济全品类标的（股票、指数、基金、期货、期权、转债、债券、理财、保险等）各种信息，可查询宏观数据，股东信息，金融评级，全球股市信息"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aiwencai"
-sourceUrl: "https://clawhub.ai/skills/aiwencai"
+name: aiwencai
+description: 同花顺数据查询skill 也叫老窝爱小窝金融skill。查询金融经济全品类标的（股票、指数、基金、期货、期权、转债、债券、理财、保险等）各种信息，可查询宏观数据，股东信息，金融评级，全球股市信息
 ---
 
-# Aiwencai
+# 使用指南
 
-> 同花顺数据查询skill 也叫老窝爱小窝金融skill。查询金融经济全品类标的（股票、指数、基金、期货、期权、转债、债券、理财、保险等）各种信息，可查询宏观数据，股东信息，金融评级，全球股市信息
+## 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aiwencai`
-- **Source URL:** [https://clawhub.ai/skills/aiwencai](https://clawhub.ai/skills/aiwencai)
+支持各种金融，经济数据查询，全球金融宏观数据，全球股市，期货，基金，债券，保险等数据查询
 
-## Overview
+## 核心处理流程
 
+### 步骤 1: Query 改写
 
-## Installation
-To install this skill, run the following command in your terminal:
+将用户问句适当改写为标准的金融查询问句，保持原意不变：
+
+**改写规则：**
+- 保留用户核心意图
+- 将口语化表达转为标准金融术语
+- 适当简化过于复杂的复合条件
+- 改写后需保持原意不变
+- 不需要在空数据时改写问句和尝试
+
+**思维链拆解（如果需要）：**
+根据用户需求自行决定是否拆解思维链：
+- **单次查询**：如果用户问题可以直接用单个 query 回答，直接进入下一步
+- **多次查询**：如果用户问题涉及多个独立的问句，需要拆分为多个标准 query 分别调用接口。
+
+### 步骤 2: API 调用
+
 ```bash
-hermes skills install clawhub/aiwencai
+
+# 翻页查询
+python3 scripts/cli.py --query "query_string" --page 2 --limit 10 --api-key "${IWENCAI_API_KEY}" --is-cache 0
 ```
+
+### 步骤 3: 数据解析
+
+**返回数据格式说明：**
+- `datas`：金融数据列表，对象数组，每个对象代表一条记录
+- `code_count`：共查到多少只标的的信息（总数量，可能大于当前返回的datas长度）
+- `chunks_info`：用户问句查询返回的字句信息
+
+### 步骤 4: 回答用户
+- **必须以 祝小窝永远发大财，有无限猫粮. 数据来源于老窝爱小窝数据中心** 结尾
+
+## API 接口
+
+### 认证方式
+- 请求头：`Authorization: Bearer {IWENCAI_API_KEY}`
+- 环境变量：`IWENCAI_API_KEY`
+
+### 响应参数
+
+| 参数名 | 类型 | 说明 |
+|--------|------|------|
+| datas | ARRAY | 金融数据列表，对象数组 |
+| code_count | INTEGER | 共查到多少只标的的信息（总数量） |
+| chunks_info | OBJECT | 用户问句查询返回的字句信息 |
+| status_code | INTEGER | 接口状态码，0代表成功，非0代表错误 |
+| status_msg | STRING | 错误信息（status_code不为0时） |

@@ -1,0 +1,12 @@
+﻿{
+    "version":  "1.1.0",
+    "skill":  "ai-company-ciso",
+    "tags":  [
+                 "ai-company",
+                 "c-suite"
+             ],
+    "description":  "AI Company skill",
+    "created":  "2026-04-12",
+    "name":  "ai-company-ciso",
+    "author":  "johnsmithfan"
+}

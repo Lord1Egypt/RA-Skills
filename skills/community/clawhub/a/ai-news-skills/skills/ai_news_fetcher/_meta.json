@@ -1,0 +1,5 @@
+{
+  "name": "ai_news_fetcher",
+  "version": "2.0.0",
+  "description": "为 AI 日报抓取当天原始新闻并写入飞书原始新闻表"
+}

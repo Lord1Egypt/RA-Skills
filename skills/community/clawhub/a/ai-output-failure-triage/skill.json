@@ -1,0 +1,45 @@
+{
+  "slug": "ai-output-failure-triage",
+  "name": "AI Output Failure Triage",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Diagnose why an AI response failed, identify missing context, and prepare a safer retry prompt with acceptance checks and a go/no-go recommendation.",
+  "author": "OpenClaw Skill Library",
+  "license": "MIT-0",
+  "category": "AI Productivity / Literacy",
+  "target_user": "People who need to debug a weak or unsafe AI answer before retrying the task.",
+  "tags": [
+    "ai-productivity",
+    "ai-literacy",
+    "prompt-debugging",
+    "output-quality",
+    "verification"
+  ],
+  "trigger_keywords": [
+    "Why did this AI answer fail?",
+    "Fix my prompt",
+    "The AI gave me a bad response",
+    "Make this retry safer",
+    "How should I ask again?",
+    "Triage this output"
+  ],
+  "use_cases": [
+    "Diagnosing failed AI outputs",
+    "Rewriting prompts",
+    "Creating acceptance tests",
+    "Choosing whether to retry or escalate"
+  ],
+  "language": "en",
+  "hasExecutableCode": false,
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "runtime": "none",
+  "execution": "noExec",
+  "document_only": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

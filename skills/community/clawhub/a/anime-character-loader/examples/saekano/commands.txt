@@ -1,0 +1,25 @@
+# Saekano 双角色生成示例
+# 演示 MERGE 模式创建多角色 SOUL.md
+
+# ========== 第一步：生成加藤惠 ==========
+python load_character.py "加藤惠" --anime "Saekano"
+# 提示出现时选择：[2] MERGE
+# 输出：SOUL.generated.md (包含 Megumi Katou)
+
+# ========== 第二步：追加霞之丘诗羽 ==========
+python load_character.py "霞之丘诗羽" --anime "Saekano"
+# 提示出现时选择：[2] MERGE
+# 输出：SOUL.generated.md (包含双角色 + 选择指南)
+
+# ========== 可选：查看其他角色 ==========
+# python load_character.py "英梨々" --anime "Saekano"
+
+# ========== 失败示例（故意演示消歧）==========
+# 以下命令会失败，因为 "Sakura" 太常见：
+# python load_character.py "Sakura"
+# 
+# 正确做法：提供 anime 提示
+# python load_character.py "Sakura" --anime "Fate"
+
+# ========== 预览模式（不生成文件）==========
+# python load_character.py "加藤惠" --info

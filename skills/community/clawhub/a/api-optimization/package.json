@@ -1,0 +1,43 @@
+{
+  "name": "chenni-free-api",
+  "version": "1.0.0",
+  "description": "发现和配置免费/超低价 AI 模型，支持智能分流和无感降级",
+  "type": "module",
+  "main": "scripts/discover.js",
+  "scripts": {
+    "discover": "node scripts/discover.js --platform all",
+    "discover:openrouter": "node scripts/discover.js --platform openrouter",
+    "discover:siliconflow": "node scripts/discover.js --platform siliconflow",
+    "router": "node scripts/router.js",
+    "router:coding": "node scripts/router.js --task coding",
+    "router:reasoning": "node scripts/router.js --task reasoning",
+    "fallback:test": "node scripts/fallback.js --test",
+    "fallback:monitor": "node scripts/fallback.js --monitor",
+    "config:generate": "node scripts/fallback.js --generate-full-config",
+    "config:royal": "node scripts/fallback.js --generate-full-config --mode royal",
+    "config:balanced": "node scripts/fallback.js --generate-full-config --mode balanced",
+    "config:savings": "node scripts/fallback.js --generate-full-config --mode savings",
+    "config:royal:json": "node scripts/fallback.js --generate-full-config --mode royal > openclaw-royal.json",
+    "config:balanced:json": "node scripts/fallback.js --generate-full-config --mode balanced > openclaw-balanced.json",
+    "config:savings:json": "node scripts/fallback.js --generate-full-config --mode savings > openclaw-savings.json",
+    "modes": "node scripts/fallback.js --list-modes"
+  },
+  "keywords": [
+    "free-models",
+    "ai-agents",
+    "openclaw",
+    "siliconflow",
+    "openrouter",
+    "deepseek",
+    "cost-optimization",
+    "smart-routing",
+    "fallback"
+  ],
+  "author": "chenni",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

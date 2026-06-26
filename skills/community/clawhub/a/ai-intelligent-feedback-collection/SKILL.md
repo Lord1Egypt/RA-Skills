@@ -1,35 +1,51 @@
 ---
-name: "Ai Intelligent Feedback Collection"
-description: "用户反馈收集，问卷 + 分析 + 改进。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-intelligent-feedback-collection"
-sourceUrl: "https://clawhub.ai/skills/ai-intelligent-feedback-collection"
+name: ai-intelligent-feedback-collection
+version: 1.0.0
+description: 用户反馈收集，问卷 + 分析 + 改进。
+metadata:
+  openclaw:
+    emoji: "🤖"
+    requires:
+      bins: []
 ---
 
-# Ai Intelligent Feedback Collection
+# AI 智能反馈收集系统
 
-> 用户反馈收集，问卷 + 分析 + 改进。
+## 描述
+用户反馈收集，问卷 + 分析 + 改进。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-intelligent-feedback-collection`
-- **Source URL:** [https://clawhub.ai/skills/ai-intelligent-feedback-collection](https://clawhub.ai/skills/ai-intelligent-feedback-collection)
+## 功能
+- 反馈收集（多渠道）
+- 问卷设计（可视化设计）
+- 数据分析（自动分析）
+- 情感分析（情感识别）
+- 改进跟踪（问题跟踪）
 
-## Overview
+## 定价
+- 基础版：¥49/月（500 反馈/月）
+- 专业版：¥199/月（5000 反馈/月）
+- 企业版：¥799/月（无限反馈）
 
+## 适用场景
+- 客户反馈
+- 产品调研
+- 满意度调查
+- 用户体验
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 技术栈
+- Python + FastAPI
+- 问卷系统
+- 情感分析
+- 数据分析
+
+## 安装
 ```bash
-hermes skills install clawhub/ai-intelligent-feedback-collection
+git clone https://github.com/openclaw-skills/ai-intelligent-feedback-collection
+cd ai-intelligent-feedback-collection
+pip install -r requirements.txt
+python app.py
 ```
+
+---
+创建：2026-03-13
+作者：OpenClaw Skills Team

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI SaaS Demo Script"
+  short_description: "Structure scripts for AI SaaS demos"
+  default_prompt: "Use $ai-saas-demo-script to turn this AI SaaS feature into a concise product demo video script."

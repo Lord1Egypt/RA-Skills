@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Job Hunter Pro — Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --bg3: #1a1a26;
+  --border: #2a2a3a;
+  --text: #e8e8f0;
+  --text2: #9898aa;
+  --text3: #5a5a6e;
+  --accent: #6366f1;
+  --accent2: #818cf8;
+  --green: #22c55e;
+  --green-bg: rgba(34,197,94,0.1);
+  --amber: #f59e0b;
+  --amber-bg: rgba(245,158,11,0.1);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,0.1);
+  --blue: #3b82f6;
+  --blue-bg: rgba(59,130,246,0.1);
+  --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'DM Sans',system-ui,sans-serif; min-height:100vh; }
+
+.header {
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+.logo span { color: var(--accent); }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.header-time { font-size: 13px; color: var(--text2); font-family: 'JetBrains Mono', monospace; }
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn:hover { border-color: var(--accent); background: rgba(99,102,241,0.1); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent2); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 24px 32px; }
+
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.stat-label { font-size: 12px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.stat-value { font-size: 32px; font-weight: 700; letter-spacing: -1px; }
+.stat-sub { font-size: 12px; color: var(--text2); margin-top: 4px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.card-title { font-size: 14px; font-weight: 500; color: var(--text2); margin-bottom: 16px; }
+
+.job-list { max-height: 520px; overflow-y: auto; }
+.job-list::-webkit-scrollbar { width: 4px; }
+.job-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.job-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.job-item:hover { background: rgba(99,102,241,0.04); margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 8px; }
+.job-item:last-child { border-bottom: none; }
+.job-rank {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--bg3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--text2);
+  flex-shrink: 0;
+}
+.job-rank.top { background: rgba(99,102,241,0.15); color: var(--accent2); }
+.job-info { flex: 1; min-width: 0; }
+.job-title-text { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.job-company { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.job-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+.tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--bg3);
+  color: var(--text3);
+  white-space: nowrap;
+}
+.tag.ai { background: rgba(99,102,241,0.15); color: var(--accent2); }
+.tag.product { background: var(--green-bg); color: var(--green); }
+.tag.tech { background: var(--blue-bg); color: var(--blue); }
+.tag.domain { background: var(--amber-bg); color: var(--amber); }
+.job-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.score-high { color: var(--green); }
+.score-mid { color: var(--amber); }
+.score-low { color: var(--text3); }
+
+.score-bar { width: 48px; height: 4px; background: var(--bg3); border-radius: 2px; margin-top: 4px; }
+.score-bar-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease-out; }
+
+.funnel-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.funnel-item:last-child { border-bottom: none; }
+.funnel-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.funnel-label { flex: 1; font-size: 14px; }
+.funnel-count { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; }
+.funnel-rate { font-size: 11px; color: var(--text3); margin-left: 8px; }
+
+.chart-container { position: relative; height: 200px; }
+
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text3); }
+.empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+.empty-state p { font-size: 14px; line-height: 1.6; }
+
+.load-section { text-align: center; padding: 40px; }
+.file-input-label {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text2);
+  font-size: 14px;
+}
+.file-input-label:hover { border-color: var(--accent); color: var(--accent); }
+#file-input { display: none; }
+
+.refresh-info { font-size: 11px; color: var(--text3); font-family: 'JetBrains Mono', monospace; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.animate { animation: fadeIn 0.4s ease-out both; }
+.delay-1 { animation-delay: 0.05s; }
+.delay-2 { animation-delay: 0.1s; }
+.delay-3 { animation-delay: 0.15s; }
+.delay-4 { animation-delay: 0.2s; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">AI Job Hunter <span>Pro</span></div>
+  <div class="header-right">
+    <span class="refresh-info" id="data-status">No data loaded</span>
+    <label class="btn" for="file-input">Load JSON</label>
+    <input type="file" id="file-input" accept=".json">
+    <button class="btn btn-primary" id="refresh-btn" style="display:none" onclick="loadFromPath()">Refresh</button>
+  </div>
+</div>
+
+<div class="container" id="dashboard" style="display:none">
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-card animate delay-1">
+      <div class="stat-label">Total matched</div>
+      <div class="stat-value" id="stat-total">0</div>
+      <div class="stat-sub" id="stat-total-sub">jobs found</div>
+    </div>
+    <div class="stat-card animate delay-2">
+      <div class="stat-label">High match (≥0.4)</div>
+      <div class="stat-value" style="color:var(--green)" id="stat-high">0</div>
+      <div class="stat-sub" id="stat-high-sub">worth applying</div>
+    </div>
+    <div class="stat-card animate delay-3">
+      <div class="stat-label">Avg score</div>
+      <div class="stat-value" style="color:var(--accent)" id="stat-avg">0</div>
+      <div class="stat-sub">across all matches</div>
+    </div>
+    <div class="stat-card animate delay-4">
+      <div class="stat-label">Platforms</div>
+      <div class="stat-value" style="color:var(--amber)" id="stat-platforms">0</div>
+      <div class="stat-sub" id="stat-platforms-sub">sources</div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid-2">
+    <!-- Job List -->
+    <div class="card" style="grid-column: 1 / 2;">
+      <div class="card-title">Matched jobs (ranked by score)</div>
+      <div class="job-list" id="job-list"></div>
+    </div>
+
+    <!-- Right Column -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <!-- Score Distribution Chart -->
+      <div class="card">
+        <div class="card-title">Score distribution</div>
+        <div class="chart-container">
+          <canvas id="score-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Match Breakdown -->
+      <div class="card">
+        <div class="card-title">Match reasons breakdown</div>
+        <div class="chart-container">
+          <canvas id="reasons-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Top Companies -->
+      <div class="card">
+        <div class="card-title">Company locations</div>
+        <div id="location-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Empty State -->
+<div class="container" id="empty-state">
+  <div class="empty-state">
+    <div class="icon">🎯</div>
+    <p>Load your <code>jobs_scraped_matched.json</code> file to see the dashboard.<br>
+    File location: <code>~/.ai-job-hunter-pro/jobs_scraped_matched.json</code></p>
+    <br>
+    <label class="file-input-label" for="file-input">
+      Click to load JSON file
+    </label>
+  </div>
+</div>
+
+<script>
+let jobsData = [];
+let scoreChart = null;
+let reasonsChart = null;
+
+document.getElementById('file-input').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    try {
+      jobsData = JSON.parse(evt.target.result);
+      renderDashboard();
+    } catch(err) {
+      alert('Invalid JSON file: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+});
+
+function renderDashboard() {
+  if (!jobsData.length) return;
+
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+
+  const now = new Date().toLocaleString('zh-CN');
+  document.getElementById('data-status').textContent = jobsData.length + ' jobs | ' + now;
+
+  // Stats
+  const total = jobsData.length;
+  const highMatch = jobsData.filter(j => j.match_score >= 0.4).length;
+  const avgScore = (jobsData.reduce((s,j) => s + j.match_score, 0) / total).toFixed(3);
+  const platforms = [...new Set(jobsData.map(j => j.platform))];
+
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-high').textContent = highMatch;
+  document.getElementById('stat-avg').textContent = avgScore;
+  document.getElementById('stat-platforms').textContent = platforms.length;
+  document.getElementById('stat-platforms-sub').textContent = platforms.join(', ');
+
+  // Job list
+  const listEl = document.getElementById('job-list');
+  listEl.innerHTML = '';
+  const sorted = [...jobsData].sort((a,b) => b.match_score - a.match_score);
+
+  sorted.forEach((job, i) => {
+    const scoreClass = job.match_score >= 0.45 ? 'score-high' : job.match_score >= 0.35 ? 'score-mid' : 'score-low';
+    const scoreColor = job.match_score >= 0.45 ? 'var(--green)' : job.match_score >= 0.35 ? 'var(--amber)' : 'var(--text3)';
+    const rankClass = i < 3 ? 'top' : '';
+
+    const reasons = job.match_reasons || [];
+    let tagsHtml = '';
+    reasons.forEach(r => {
+      if (r.includes('AI/ML')) tagsHtml += '<span class="tag ai">AI/ML</span>';
+      else if (r.includes('Product')) tagsHtml += '<span class="tag product">Product</span>';
+      else if (r.includes('Technical')) tagsHtml += '<span class="tag tech">Tech</span>';
+      else if (r.includes('Domain')) tagsHtml += '<span class="tag domain">Domain</span>';
+    });
+
+    const url = job.url || '#';
+    listEl.innerHTML += `
+      <div class="job-item" onclick="window.open('${url}','_blank')">
+        <div class="job-rank ${rankClass}">${i+1}</div>
+        <div class="job-info">
+          <div class="job-title-text">${escHtml(job.title)}</div>
+          <div class="job-company">${escHtml(job.company)} · ${escHtml(job.location || '')}</div>
+          <div class="job-tags">${tagsHtml}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="job-score ${scoreClass}">${job.match_score.toFixed(3)}</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:${Math.round(job.match_score*100)}%;background:${scoreColor}"></div></div>
+        </div>
+      </div>`;
+  });
+
+  // Score distribution chart
+  renderScoreChart(sorted);
+  renderReasonsChart(sorted);
+  renderLocationList(sorted);
+}
+
+function renderScoreChart(jobs) {
+  const ctx = document.getElementById('score-chart').getContext('2d');
+  if (scoreChart) scoreChart.destroy();
+
+  const buckets = {'0.0-0.2':0, '0.2-0.3':0, '0.3-0.4':0, '0.4-0.5':0, '0.5+':0};
+  jobs.forEach(j => {
+    const s = j.match_score;
+    if (s >= 0.5) buckets['0.5+']++;
+    else if (s >= 0.4) buckets['0.4-0.5']++;
+    else if (s >= 0.3) buckets['0.3-0.4']++;
+    else if (s >= 0.2) buckets['0.2-0.3']++;
+    else buckets['0.0-0.2']++;
+  });
+
+  scoreChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(buckets),
+      datasets: [{
+        data: Object.values(buckets),
+        backgroundColor: ['#ef4444','#f59e0b','#eab308','#22c55e','#6366f1'],
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: '#5a5a6e', font: { family: 'JetBrains Mono', size: 11 } } },
+        y: { grid: { color: '#2a2a3a' }, ticks: { color: '#5a5a6e', stepSize: 1, font: { family: 'JetBrains Mono', size: 11 } } }
+      }
+    }
+  });
+}
+
+function renderReasonsChart(jobs) {
+  const ctx = document.getElementById('reasons-chart').getContext('2d');
+  if (reasonsChart) reasonsChart.destroy();
+
+  const cats = { 'AI/ML': 0, 'Product': 0, 'Technical': 0, 'Domain': 0, 'General': 0 };
+  jobs.forEach(j => {
+    (j.match_reasons || []).forEach(r => {
+      if (r.includes('AI/ML')) cats['AI/ML']++;
+      else if (r.includes('Product')) cats['Product']++;
+      else if (r.includes('Technical')) cats['Technical']++;
+      else if (r.includes('Domain')) cats['Domain']++;
+      else cats['General']++;
+    });
+  });
+
+  reasonsChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(cats),
+      datasets: [{
+        data: Object.values(cats),
+        backgroundColor: ['#6366f1','#22c55e','#3b82f6','#f59e0b','#5a5a6e'],
+        borderWidth: 0,
+        spacing: 2,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '65%',
+      plugins: {
+        legend: { position: 'right', labels: { color: '#9898aa', padding: 12, font: { family: 'DM Sans', size: 12 } } }
+      }
+    }
+  });
+}
+
+function renderLocationList(jobs) {
+  const el = document.getElementById('location-list');
+  const locs = {};
+  jobs.forEach(j => {
+    const city = (j.location || 'Unknown').split(',')[0].trim();
+    locs[city] = (locs[city] || 0) + 1;
+  });
+  const sorted = Object.entries(locs).sort((a,b) => b[1] - a[1]);
+
+  el.innerHTML = sorted.map(([city, count]) => {
+    const pct = Math.round(count / jobs.length * 100);
+    return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;">
+      <span style="flex:1;font-size:13px;color:var(--text)">${escHtml(city)}</span>
+      <span style="font-family:'JetBrains Mono';font-size:12px;color:var(--text2);width:30px;text-align:right">${count}</span>
+      <div style="width:80px;height:4px;background:var(--bg3);border-radius:2px;">
+        <div style="width:${pct}%;height:100%;background:var(--accent);border-radius:2px;"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function escHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+</script>
+</body>
+</html>

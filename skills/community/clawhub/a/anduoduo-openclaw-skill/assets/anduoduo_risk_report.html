@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>安多多平台 · 云资产风险分析报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- 固定模板骨架：保留本页结构、样式分区与图表位置；生成正式报告时，必须用当前查询结果替换页面中的占位值与 mock 示例，不得保留真实环境中的账号名、实例名、案例、链接或静态统计。Issue/issues/issus/问题 对外统一展示为 风险。 -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f0f2f5;color:#2c3e50}
+.header{background:linear-gradient(135deg,#1a2a4a 0%,#2c5282 60%,#2b6cb0 100%);padding:36px 40px;color:#fff}
+.header h1{font-size:26px;font-weight:700;letter-spacing:1px}
+.header p{margin-top:8px;opacity:.86;font-size:14px;line-height:1.7}
+.container{max-width:1300px;margin:0 auto;padding:24px 20px}
+.section-title{font-size:18px;font-weight:700;color:#1a2a4a;margin:32px 0 16px;padding-left:12px;border-left:4px solid #2b6cb0}
+.card-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:8px}
+.card{background:#fff;border-radius:12px;padding:24px 20px;box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center}
+.card .num{font-size:38px;font-weight:800;line-height:1.1}
+.card .label{font-size:13px;color:#718096;margin-top:6px}
+.card.critical{border-top:4px solid #8e44ad}.card.high{border-top:4px solid #e74c3c}
+.card.medium{border-top:4px solid #f39c12}.card.low{border-top:4px solid #27ae60}.card.total{border-top:4px solid #2b6cb0}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:8px}
+.chart-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.chart-card h3{font-size:14px;font-weight:700;color:#4a5568;margin-bottom:16px}
+.chart-wrap{position:relative;height:260px}
+.insight-box{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:8px}
+.insight-box h3{font-size:15px;font-weight:700;color:#1a2a4a;margin-bottom:12px}
+.insight-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;padding:10px 14px;border-radius:8px;background:#f7fafc}
+.insight-icon{font-size:20px;flex-shrink:0}
+.insight-text{font-size:13px;line-height:1.7;color:#4a5568}
+.table-wrap{border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:8px}
+table{width:100%;border-collapse:collapse;background:#fff}
+thead{background:#1a2a4a;color:#fff}
+thead th{padding:12px 14px;font-size:13px;text-align:left}
+tbody tr{border-bottom:1px solid #edf2f7;transition:background .15s}
+tbody tr:hover{background:#f7fafc}
+tbody td{padding:10px 14px;font-size:13px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;color:#fff;font-size:11px;font-weight:600}
+.status-open{background:#e74c3c}
+.bar-wrap{display:inline-block;width:120px;height:8px;background:#edf2f7;border-radius:4px;vertical-align:middle;margin-right:6px}
+.bar{height:8px;border-radius:4px}
+.case-card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:16px;overflow:hidden}
+.case-header{padding:14px 20px;background:#1a2a4a;display:flex;align-items:center;gap:12px}
+.case-num{background:#2b6cb0;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px}
+.case-title{flex:1;color:#fff;font-size:14px;font-weight:600}
+.case-body{padding:20px}
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.case-grid div{background:#f7fafc;border-radius:8px;padding:10px 14px}
+.case-grid label{display:block;font-size:11px;color:#718096;margin-bottom:3px}
+.case-grid span{font-size:13px;font-weight:600;color:#2d3748}
+.case-detail{border-top:1px solid #edf2f7;padding-top:14px}
+.case-section{margin-bottom:12px}
+.case-section b{font-size:13px;color:#1a2a4a;display:block;margin-bottom:6px}
+.case-section p{font-size:13px;color:#4a5568;line-height:1.8;background:#f7fafc;padding:10px 14px;border-radius:8px}
+.case-meta{font-size:13px;color:#4a5568;margin-top:8px;padding:8px 14px;background:#f7fafc;border-radius:8px}
+.footer{text-align:center;padding:32px;color:#718096;font-size:12px;line-height:1.8}
+.template-note{background:#fff7e6;border:1px solid #f6ad55;color:#7b341e;border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.7;margin-bottom:20px}
+@media(max-width:768px){.card-grid{grid-template-columns:repeat(2,1fr)}.chart-grid{grid-template-columns:1fr}.case-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🛡️ 安多多平台 · 云资产风险分析报告</h1>
+  <p>数据来源：OpenClaw API &nbsp;|&nbsp; 报告时间：__REPORT_TIME__ &nbsp;|&nbsp; 覆盖云厂商：__CLOUD_TYPES__ &nbsp;|&nbsp; 云账号总数：__ACCOUNT_SUMMARY__</p>
+</div>
+
+<div class="container">
+  <div class="template-note">
+    本文件是固定模板骨架。正式生成报告时，必须保留本页的版式结构、图表位置与章节顺序，并用当前查询结果替换所有以 <code>__...__</code> 标记的占位值；以下表格、案例和洞察仅为安全 mock 示例，不得把真实账号名、实例名、下载链接或静态示例统计原样带入最终交付。
+  </div>
+
+  <div class="section-title">📊 风险总览</div>
+  <div class="card-grid">
+    <div class="card total"><div class="num" style="color:#2b6cb0">__TOTAL_RISKS__</div><div class="label">风险总数</div></div>
+    <div class="card critical"><div class="num" style="color:#8e44ad">__CRITICAL_COUNT__</div><div class="label">严重风险</div></div>
+    <div class="card high"><div class="num" style="color:#e74c3c">__HIGH_COUNT__</div><div class="label">高危风险</div></div>
+    <div class="card medium"><div class="num" style="color:#f39c12">__MEDIUM_COUNT__</div><div class="label">中危风险</div></div>
+    <div class="card low"><div class="num" style="color:#27ae60">__LOW_COUNT__</div><div class="label">低危风险</div></div>
+  </div>
+
+  <div class="section-title">🔍 核心风险洞察</div>
+  <div class="insight-box">
+    <h3>基于当前查询结果的智能分析摘要</h3>
+    <div class="insight-item"><span class="insight-icon">🔴</span><div class="insight-text"><strong>__INSIGHT_1_TITLE__</strong>：__INSIGHT_1_BODY__</div></div>
+    <div class="insight-item"><span class="insight-icon">📊</span><div class="insight-text"><strong>__INSIGHT_2_TITLE__</strong>：__INSIGHT_2_BODY__</div></div>
+    <div class="insight-item"><span class="insight-icon">🧩</span><div class="insight-text"><strong>__INSIGHT_3_TITLE__</strong>：__INSIGHT_3_BODY__</div></div>
+    <div class="insight-item"><span class="insight-icon">🛠️</span><div class="insight-text"><strong>__INSIGHT_4_TITLE__</strong>：__INSIGHT_4_BODY__</div></div>
+  </div>
+
+  <div class="section-title">📈 多维度聚合分析</div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>风险严重度分布</h3><div class="chart-wrap"><canvas id="sevChart"></canvas></div></div>
+    <div class="chart-card"><h3>规则类型分布</h3><div class="chart-wrap"><canvas id="rtChart"></canvas></div></div>
+  </div>
+  <div class="chart-grid">
+    <div class="chart-card"><h3>受影响实例类型 TOPN</h3><div class="chart-wrap"><canvas id="itChart"></canvas></div></div>
+    <div class="chart-card">
+      <h3>风险主因 / 根因分布</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>主因</th><th>数量</th><th>占比</th></tr></thead>
+        <tbody>
+          <tr><td>__ROOT_CAUSE_1__</td><td><b>__ROOT_CAUSE_1_COUNT__</b></td><td>__ROOT_CAUSE_1_RATE__</td></tr>
+          <tr><td>__ROOT_CAUSE_2__</td><td><b>__ROOT_CAUSE_2_COUNT__</b></td><td>__ROOT_CAUSE_2_RATE__</td></tr>
+          <tr><td>__ROOT_CAUSE_3__</td><td><b>__ROOT_CAUSE_3_COUNT__</b></td><td>__ROOT_CAUSE_3_RATE__</td></tr>
+          <tr><td>__ROOT_CAUSE_4__</td><td><b>__ROOT_CAUSE_4_COUNT__</b></td><td>__ROOT_CAUSE_4_RATE__</td></tr>
+          <tr><td>__ROOT_CAUSE_5__</td><td><b>__ROOT_CAUSE_5_COUNT__</b></td><td>__ROOT_CAUSE_5_RATE__</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="section-title">⚠️ 高风险规则 TOPN</div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>规则标识</th><th>规则名称</th><th>严重度</th><th>影响资产数</th></tr></thead>
+    <tbody>
+      <tr><td>__TOP_RULE_1_ID__</td><td>__TOP_RULE_1_NAME__</td><td><span class="badge" style="background:#e74c3c">__TOP_RULE_1_SEVERITY__</span></td><td><b>__TOP_RULE_1_COUNT__</b></td></tr>
+      <tr><td>__TOP_RULE_2_ID__</td><td>__TOP_RULE_2_NAME__</td><td><span class="badge" style="background:#f39c12">__TOP_RULE_2_SEVERITY__</span></td><td><b>__TOP_RULE_2_COUNT__</b></td></tr>
+      <tr><td>__TOP_RULE_3_ID__</td><td>__TOP_RULE_3_NAME__</td><td><span class="badge" style="background:#27ae60">__TOP_RULE_3_SEVERITY__</span></td><td><b>__TOP_RULE_3_COUNT__</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="section-title">☁️ 云账号风险分布 TOPN</div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>账号名称</th><th>云厂商</th><th>账号状态</th><th>风险数量</th></tr></thead>
+    <tbody>
+      <tr><td>mock-account-01</td><td>tencent</td><td>VALID</td><td><b>__ACCOUNT_TOP_1_COUNT__</b></td></tr>
+      <tr><td>mock-account-02</td><td>aliyun</td><td>VALID</td><td><b>__ACCOUNT_TOP_2_COUNT__</b></td></tr>
+      <tr><td>mock-account-03</td><td>aws</td><td>VALID</td><td><b>__ACCOUNT_TOP_3_COUNT__</b></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="section-title">📋 风险明细数据（示意）</div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>资产名称</th><th>实例类型</th><th>云厂商</th><th>地域</th><th>规则名称</th><th>规则类型</th><th>严重度</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td>mock-web-01</td><td>CVM</td><td>tencent</td><td>Guangzhou</td><td>公网开放安全组规则过宽</td><td>风险</td><td><span class="badge" style="background:#e74c3c">高</span></td><td><span class="badge status-open">OPEN</span></td></tr>
+      <tr><td>mock-db-01</td><td>RDS</td><td>aliyun</td><td>Shanghai</td><td>数据库实例未启用关键安全配置</td><td>风险</td><td><span class="badge" style="background:#f39c12">中</span></td><td><span class="badge status-open">OPEN</span></td></tr>
+      <tr><td>__DETAIL_ASSET_3__</td><td>__DETAIL_TYPE_3__</td><td>__DETAIL_CLOUD_3__</td><td>__DETAIL_REGION_3__</td><td>__DETAIL_RULE_3__</td><td>风险</td><td><span class="badge" style="background:#27ae60">__DETAIL_SEVERITY_3__</span></td><td><span class="badge status-open">__DETAIL_STATUS_3__</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="section-title">🔬 典型高危风险案例深度解析</div>
+  <div class="case-card">
+    <div class="case-header"><span class="case-num">案例 1</span><span class="case-title">__CASE_1_TITLE__</span><span class="badge" style="background:#e74c3c">__CASE_1_SEVERITY__</span></div>
+    <div class="case-body">
+      <div class="case-grid">
+        <div><label>资产名称</label><span>mock-critical-asset-01</span></div>
+        <div><label>资产类型</label><span>__CASE_1_ASSET_TYPE__</span></div>
+        <div><label>云厂商</label><span>__CASE_1_CLOUD__</span></div>
+        <div><label>地域</label><span>__CASE_1_REGION__</span></div>
+        <div><label>规则名称</label><span>__CASE_1_RULE__</span></div>
+        <div><label>规则类型</label><span>风险</span></div>
+      </div>
+      <div class="case-detail">
+        <div class="case-section"><b>📋 规则描述</b><p>__CASE_1_DESC__</p></div>
+        <div class="case-section"><b>⚠️ 安全影响</b><p>__CASE_1_IMPACT__</p></div>
+        <div class='case-meta'><b>🛠️ 优先建议：</b>__CASE_1_FIX__</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>本报告由安多多平台 OpenClaw API 自动生成 &nbsp;|&nbsp; 数据截止时间：__REPORT_TIME__ &nbsp;|&nbsp; 风险数据仅供安全运营参考</p>
+    <p style="margin-top:6px">模板说明：正式交付时必须替换所有占位值，并确保最终 HTML 中不包含真实环境的示例快照、静态演示数据或未去敏信息。</p>
+  </div>
+</div>
+
+<script>
+const REPORT_CHART_DATA = {
+  severity: [0, 18, 47, 63],
+  ruleTypeLabels: ['MisConfig', '风险'],
+  ruleTypeValues: [96, 32],
+  instanceTypeLabels: ['CVM', 'RDS', 'COSBucket', 'CAMUser', 'Redis'],
+  instanceTypeValues: [42, 26, 18, 11, 9]
+};
+
+const sevCtx=document.getElementById('sevChart').getContext('2d');
+new Chart(sevCtx,{type:'doughnut',data:{labels:['严重','高危','中危','低危'],datasets:[{data:REPORT_CHART_DATA.severity,backgroundColor:['#8e44ad','#e74c3c','#f39c12','#27ae60'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}});
+const rtCtx=document.getElementById('rtChart').getContext('2d');
+new Chart(rtCtx,{type:'pie',data:{labels:REPORT_CHART_DATA.ruleTypeLabels,datasets:[{data:REPORT_CHART_DATA.ruleTypeValues,backgroundColor:['#e74c3c','#f39c12'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:12}}}}}});
+const itCtx=document.getElementById('itChart').getContext('2d');
+new Chart(itCtx,{type:'bar',data:{labels:REPORT_CHART_DATA.instanceTypeLabels,datasets:[{label:'风险数量',data:REPORT_CHART_DATA.instanceTypeValues,backgroundColor:'rgba(155,89,182,0.8)',borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
+</script>
+</body>
+</html>

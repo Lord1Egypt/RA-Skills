@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "description": "通用内容分级规则（参考 ESRB/PEGI 思路）",
+  "ratings": {
+    "all_ages": {
+      "description": "Everyone / PEGI 3",
+      "max_severity": "mild",
+      "max_hits_mild": 3,
+      "max_hits_moderate": 0,
+      "max_hits_severe": 0,
+      "forbidden_categories": ["sexual", "substance"]
+    },
+    "12+": {
+      "description": "Teen / PEGI 12",
+      "max_severity": "moderate",
+      "max_hits_mild": -1,
+      "max_hits_moderate": 8,
+      "max_hits_severe": 0,
+      "forbidden_categories": []
+    },
+    "18+": {
+      "description": "Mature / PEGI 18",
+      "max_severity": "severe",
+      "max_hits_mild": -1,
+      "max_hits_moderate": -1,
+      "max_hits_severe": 5,
+      "forbidden_categories": []
+    }
+  },
+  "non_compliant_triggers": [
+    {"description": "Extreme sexual content", "category": "sexual", "severity": "severe", "min_count": 2},
+    {"description": "Excessive severe violence", "severity": "severe", "min_count": 8},
+    {"description": "Drug glorification", "category": "substance", "severity": "severe", "min_count": 2}
+  ]
+}

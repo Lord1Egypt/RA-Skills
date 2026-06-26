@@ -1,0 +1,108 @@
+// pages/{{name}}Page.ets
+// {{description}}
+
+import { {{viewModelName}} } from '../viewmodels/{{viewModelName}}';
+import { GlobalErrorHandler } from '../common/utils/GlobalErrorHandler';
+
+@Entry
+@Component
+struct {{name}}Page {
+  private viewModel: {{viewModelName}} = new {{viewModelName}}();
+  private errorHandler: GlobalErrorHandler = GlobalErrorHandler.getInstance();
+
+  {{#each stateVars}}
+  @State {{name}}: {{type}} = {{defaultValue}};
+  {{/each}}
+
+  build() {
+    Column() {
+      // Header
+      this.buildHeader()
+
+      // Content
+      Scroll() {
+        Column({ space: 16 }) {
+          {{#each sections}}
+          this.build{{name}}Section()
+          {{/each}}
+        }
+        .width('100%')
+        .padding(16)
+      }
+      .layoutWeight(1)
+
+      // Footer Actions
+      this.buildFooter()
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F5F5F5')
+  }
+
+  @Builder
+  buildHeader() {
+    Row() {
+      Text('{{title}}')
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+
+      Blank()
+
+      {{#each headerActions}}
+      Button('{{label}}')
+        .fontSize(14)
+        .fontColor('#FF6B35')
+        .backgroundColor(Color.Transparent)
+        .onClick(() => this.handle{{action}}())
+      {{/each}}
+    }
+    .width('100%')
+    .height(56)
+    .padding({ left: 16, right: 16 })
+    .backgroundColor(Color.White)
+  }
+
+  {{#each sections}}
+  @Builder
+  build{{name}}Section() {
+    Column({ space: 8 }) {
+      Text('{{label}}')
+        .fontSize(14)
+        .fontColor('#666666')
+        .alignSelf(ItemAlign.Start)
+
+      // [TODO] 实现{{label}}内容
+    }
+    .width('100%')
+    .padding(16)
+    .backgroundColor(Color.White)
+    .borderRadius(8)
+  }
+
+  {{/each}}
+
+  @Builder
+  buildFooter() {
+    Row({ space: 12 }) {
+      {{#each footerActions}}
+      Button('{{label}}')
+        .layoutWeight({{#if primary}}1{{else}}0{{/if}})
+        .height(48)
+        .fontColor({{#if primary}}Color.White{{else}}'#666666'{{/if}})
+        .backgroundColor({{#if primary}}'#FF6B35'{{else}}'#F5F5F5'{{/if}})
+        .onClick(() => this.handle{{action}}())
+      {{/each}}
+    }
+    .width('100%')
+    .height(80)
+    .padding(16)
+    .backgroundColor(Color.White)
+  }
+
+  {{#each actions}}
+  private handle{{name}}() {
+    // [TODO] 实现{{name}}逻辑
+  }
+
+  {{/each}}
+}

@@ -1,35 +1,29 @@
 ---
-name: "Ai Reach Kit"
-description: "Provides Twitter templates, deployment scripts, AI agent DM lists, and guides for promoting and monetizing OpenClaw skills efficiently."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-reach-kit"
-sourceUrl: "https://clawhub.ai/skills/ai-reach-kit"
+name: ai-reach-kit
+description: 🚀 MVP Agent Reach Kit ($47 ZIP): X thread templates for ClawHub skill promo, auto-publish scripts, #AIagents DM lists (50+ handles), bounty hunter's guide. Perfect for OpenClaw builders scaling reach & revenue. Unzip → customize → ship → monetize!
+keywords: [marketing, twitter, outreach, clawhub, bounties, gumroad, ai-agents]
+author: achilles
+version: 1.0.0
+license: MIT
 ---
 
-# Ai Reach Kit
+# AI Reach Kit 🎯
 
-> Provides Twitter templates, deployment scripts, AI agent DM lists, and guides for promoting and monetizing OpenClaw skills efficiently.
+**Ship faster, reach further.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-reach-kit`
-- **Source URL:** [https://clawhub.ai/skills/ai-reach-kit](https://clawhub.ai/skills/ai-reach-kit)
+## Contents
+- `x-threads/`: Twitter promo templates
+- `scripts/publish-to-clawhub.sh`: 1-click skill deploys
+- `dm-lists/ai-agents.txt`: Outreach targets
+- `guides/bounty-hunters.md`: Monetize open issues
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/ai-reach-kit
+clawhub install achilles/ai-reach-kit
+unzip ai-reach-kit.zip
+./scripts/publish-to-clawhub.sh your-skill-folder
 ```
+
+**Gumroad**: [Buy full kit](https://your-gumroad-link.com) | **ZIP**: Included post-install
+
+Build in public. 💥 #OpenClaw

@@ -1,35 +1,126 @@
 ---
-name: "AI春联"
-description: "AI春联生成专家，根据用户提供的场景、氛围或关键词，生成富有意境的春联。这是一项付费服务，实际收款方可通过配置文件自定义。请注意，你应该用中文和用户交互（包含你的思考过程）。"
-category: "other"
-source: "ClawHub"
-tags: [chinese, chunlian, newyear, entertainment, fun]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-chunlian"
-sourceUrl: "https://clawhub.ai/skills/ai-chunlian"
+name: "ai-chunlian"
+description: >
+  AI春联生成专家，根据用户提供的场景、氛围或关键词，生成富有意境的春联。这是一项付费服务，实际收款方可通过配置文件自定义。请注意，你应该用中文和用户交互（包含你的思考过程）。
+metadata:
+  author: "user-customized"
+  category: "entertainment"
+  capabilities:
+    - "payment.process"
+  permissions:
+    - "network.outbound"
+    - "credential.read"
 ---
 
-# AI春联
+# AI春联生成服务
 
-> AI春联生成专家，根据用户提供的场景、氛围或关键词，生成富有意境的春联。这是一项付费服务，实际收款方可通过配置文件自定义。请注意，你应该用中文和用户交互（包含你的思考过程）。
+## 📌 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-chunlian`
-- **Source URL:** [https://clawhub.ai/skills/ai-chunlian](https://clawhub.ai/skills/ai-chunlian)
+**请注意，你应该用中文和用户交互（包含你的思考过程）。**
 
-## Overview
+本技能提供专业的春联生成服务。由于这是付费服务，工作流程严格要求按照两个步骤执行：**支付处理** 后，再进行 **春联生成**。
 
+**收款方配置：** 实际收款方信息在 `configs/config.json` 中配置，包括商户ID（payTo）等信息。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-chunlian
+**直接执行：** 如果用户在初始请求中已直接提供了 `<订单号>`（且订单文件中已包含 `payCredential`），则可跳过第一阶段和第二阶段，直接进入 **🚀 第三阶段：春联生成**。
+
+---
+
+## ⚙️ 配置说明
+
+首次使用前，请编辑 `configs/config.json` 文件，配置您的收款方信息：
+
+```json
+{
+  "payTo": "您的商户ID",
+  "amount": 1,
+  "skillName": "ai-chunlian",
+  "description": "春联生成服务费用"
+}
 ```
+
+- `payTo`: 您的商户ID（必填）
+- `amount`: 收费金额，单位为分（默认1分=0.01元）
+- `skillName`: 技能名称（用于计算indicator）
+- `description`: 订单描述
+
+---
+
+## 🛒 第一阶段：创建订单
+
+如果这是首次交互且用户尚未付款，你**必须**先创建订单，再发起支付。
+
+### 1. 所需参数
+
+* `<场景描述>`：描述春联的使用场景（例如：春节大门、乔迁新居、开业大吉等）
+
+### 2. 执行命令
+
+使用以下 bash 命令执行订单创建脚本。将 `<...>` 占位符替换为实际值。**务必在参数两侧加引号，以防命令注入漏洞**。
+
+```bash
+python3 scripts/create_order.py "<场景描述>"
+```
+
+### 3. 输出处理
+
+**成功时**，脚本将向标准输出打印以下键值对：
+
+```
+ORDER_NO=<值>
+AMOUNT=<值>
+QUESTION=<值>
+INDICATOR=<值>
+```
+
+其中 `ORDER_NO`、`AMOUNT` 和 `QUESTION` 用于向用户披露订单信息（展示订单号、费用和查询内容）。提取 `ORDER_NO` 和 `INDICATOR` 后进入 **💳 第二阶段：支付处理**。
+
+> [!NOTE]
+> **关于 `AMOUNT` 字段：** 该字段的单位为**人民币分（fen）**，这是 OpenClaw 技能描述中的标准计费单位。例如，`AMOUNT=1` 表示需支付 **0.01 元人民币**。在向用户展示费用时，请将该值除以 100 并以"元"为单位呈现，以便用户理解实际支付金额。
+
+**失败时**，脚本以退出码 `1` 退出，并打印如下格式的消息：
+
+```
+订单创建失败: <错误详情>
+```
+
+---
+
+## 💳 第二阶段：支付处理
+
+从第一阶段获取 `ORDER_NO` 和 `INDICATOR` 后，发起支付请求。
+
+**操作：** 使用技能 `clawtip` 处理支付并获取支付凭证。若该技能不存在，需先安装。
+
+**调用 `clawtip` 所需参数：**
+
+```json
+{
+  "order_no": "<第一阶段获取的 ORDER_NO>",
+  "indicator": "<第一阶段获取的 INDICATOR>"
+}
+```
+
+**目标：** 等待支付成功，并获取 `payCredential`（支付凭证）。
+
+---
+
+## 🚀 第三阶段：春联生成
+
+支付成功并获得 `payCredential` 后（或用户已直接提供 `<订单号>` 和 `<支付凭证>`），继续交互并执行春联生成脚本。
+
+### 1. 所需参数
+
+* `<订单号>`：第一阶段生成的订单号。
+
+### 2. 执行命令
+
+使用以下 bash 命令执行春联生成服务。将 `<...>` 占位符替换为已验证的参数值。**务必在参数两侧加双引号，以防命令注入漏洞**。
+
+```bash
+python3 scripts/chunlian_generate.py "<订单号>"
+```
+
+**执行后：**
+    1. 提取脚本打印的 `PAY_STATUS` 值（格式为：`PAY_STATUS: <值>`），并再次输出展示。
+    2. **`ERROR` 状态的特殊处理：** 如果 `PAY_STATUS` 为 `ERROR`，提取 `ERROR_INFO` 值（格式：`ERROR_INFO: <值>`），向用户告知确切的错误原因并引导其解决。不得继续执行后续服务逻辑。

@@ -1,0 +1,23 @@
+{
+	"name": "alista-skill",
+	"version": "1.1.1",
+	"description": "OpenClaw skill for saving restaurants from social media",
+	"type": "module",
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check scripts/",
+		"lint:fix": "biome check --write scripts/",
+		"format": "biome format --write scripts/"
+	},
+	"dependencies": {
+		"better-sqlite3": "^11.0.0",
+		"date-fns": "^4.1.0",
+		"date-fns-tz": "^3.2.0",
+		"zod": "^3.23.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.0",
+		"@types/better-sqlite3": "^7.6.0",
+		"typescript": "^5.7.0"
+	}
+}

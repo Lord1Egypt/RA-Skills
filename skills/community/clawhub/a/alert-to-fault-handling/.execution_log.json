@@ -1,0 +1,17 @@
+{
+  "executions": [
+    {
+      "timestamp": "2026-03-10T10:51:52Z",
+      "eventid": "32420610",
+      "ip": "192.168.3.137",
+      "script_id": 187,
+      "script_name": "nginx服务重启",
+      "status": "success",
+      "execution_id": 15440,
+      "user": "ou_db578a1d726251fd78f7d4eabdc98f54",
+      "consuming": 8,
+      "alert_closed": true
+    }
+  ],
+  "last_updated": "2026-03-10T10:51:52Z"
+}

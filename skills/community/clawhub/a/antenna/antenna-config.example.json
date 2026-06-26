@@ -1,0 +1,31 @@
+{
+  "max_message_length": 10000,
+  "default_target_session": "agent:<your-agent-id>:main",
+  "relay_agent_id": "antenna",
+  "relay_agent_model": "openai/gpt-5.4-nano",
+  "local_agent_id": "<your-agent-id>",
+  "install_path": "/absolute/path/to/skills/antenna",
+  "log_enabled": true,
+  "log_path": "antenna.log",
+  "log_max_size_bytes": 10485760,
+  "log_verbose": false,
+  "rate_limit": {
+    "per_peer_per_minute": 10,
+    "global_per_minute": 30
+  },
+  "mcs_enabled": false,
+  "mcs_model": "sonnet",
+  "inbox_enabled": false,
+  "inbox_auto_approve_peers": [],
+  "inbox_queue_path": "antenna-inbox.json",
+  "allowed_inbound_sessions": [
+    "agent:<your-agent-id>:main",
+    "agent:<your-agent-id>:antenna"
+  ],
+  "allowed_inbound_peers": [
+    "<your-host-id>"
+  ],
+  "allowed_outbound_peers": [
+    "<your-host-id>"
+  ]
+}

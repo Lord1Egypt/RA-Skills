@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>接口自动化测试报告</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    :root {
+      --pass-color: #198754;
+      --fail-color: #dc3545;
+      --warn-color: #ffc107;
+    }
+    body { background: #f0f2f5; font-family: 'Segoe UI','Microsoft YaHei',sans-serif; }
+
+    .report-banner {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 55%, #415a77 100%);
+      color: #fff; padding: 36px 0 28px;
+    }
+    .report-banner h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+    .report-banner .meta-line { opacity: .75; font-size: .85rem; line-height: 1.8; }
+    .pass-rate-num { font-size: 3.2rem; font-weight: 800; line-height: 1; }
+    .pass-rate-unit { font-size: 1.2rem; }
+
+    .stat-card { border:none; border-radius:12px;
+      box-shadow:0 3px 12px rgba(0,0,0,.07); transition:transform .2s; }
+    .stat-card:hover { transform: translateY(-3px); }
+    .stat-val { font-size: 2.4rem; font-weight: 700; }
+
+    .section-card { border:none; border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.06); margin-bottom:22px; }
+    .section-card .card-header {
+      border-radius:12px 12px 0 0 !important;
+      font-weight: 600; font-size: .95rem; padding: 12px 18px;
+    }
+
+    .progress { height:10px; border-radius:8px; }
+
+    .badge-success { background:#198754; color:#fff; }
+    .badge-warning { background:#ffc107; color:#212529; }
+    .badge-danger  { background:#dc3545; color:#fff; }
+
+    .table { font-size: .85rem; }
+    .table thead th {
+      background:#f8f9fa; font-weight:600;
+      border-bottom:2px solid #dee2e6; white-space:nowrap;
+    }
+    .table-row-success { border-left:4px solid var(--pass-color); }
+    .table-row-danger  { border-left:4px solid var(--fail-color); }
+
+    .code-pre {
+      background:#1e1e2e; color:#cdd6f4;
+      border-radius:6px; padding:10px 12px;
+      font-size:.78rem; white-space:pre-wrap; word-break:break-all; margin:0;
+    }
+
+    .btn-xs { padding:2px 8px; font-size:.75rem; }
+    .toggle-btn { min-width:42px; }
+
+    .filter-bar {
+      background:#fff; border-radius:10px;
+      padding:12px 16px; margin-bottom:14px;
+      box-shadow:0 1px 4px rgba(0,0,0,.06);
+    }
+
+    .loading-overlay {
+      position:fixed; inset:0; background:#f0f2f5;
+      display:flex; align-items:center; justify-content:center;
+      z-index:9999; flex-direction:column; gap:16px;
+    }
+    .loading-spinner {
+      width:48px; height:48px; border:4px solid #dee2e6;
+      border-top-color:#0d1b2a; border-radius:50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    @media print {
+      .filter-bar, .toggle-btn { display:none !important; }
+      .code-panel { display:block !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 加载中遮罩 -->
+<div class="loading-overlay" id="loading">
+  <div class="loading-spinner"></div>
+  <div class="text-muted">正在加载测试数据...</div>
+</div>
+
+<!-- Banner -->
+<div class="report-banner">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-9">
+        <h1 id="report-title">接口自动化测试报告</h1>
+        <div class="meta-line" id="meta-line"></div>
+      </div>
+      <div class="col-md-3 text-md-end mt-3 mt-md-0">
+        <div class="pass-rate-num" id="pass-rate-num">--<span class="pass-rate-unit">%</span></div>
+        <div style="opacity:.75;font-size:.9rem;">通过率</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container py-4">
+  <!-- 统计卡片 -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="stat-val text-primary" id="stat-total">-</div>
+        <div class="text-muted small mt-1">总用例</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="stat-val text-success" id="stat-passed">-</div>
+        <div class="text-muted small mt-1">通过</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="stat-val text-danger" id="stat-failed">-</div>
+        <div class="text-muted small mt-1">失败</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="stat-val" id="stat-rate">-</div>
+        <div class="text-muted small mt-1">通过率</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 进度条 -->
+  <div class="section-card card mb-3">
+    <div class="card-body py-3">
+      <div class="d-flex justify-content-between mb-2 small fw-semibold">
+        <span>整体通过率</span><span id="progress-label">-</span>
+      </div>
+      <div class="progress" id="progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- 分组统计 -->
+  <div class="section-card card">
+    <div class="card-header bg-dark text-white">分组统计</div>
+    <div class="card-body p-0">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th>分组</th>
+            <th class="text-center">总数</th>
+            <th class="text-center">通过</th>
+            <th class="text-center">失败</th>
+            <th class="text-center">通过率</th>
+          </tr>
+        </thead>
+        <tbody id="group-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 筛选栏 -->
+  <div class="filter-bar d-flex flex-wrap align-items-center gap-1">
+    <strong class="me-2 small">结果：</strong>
+    <button class="btn btn-xs btn-primary filter-status-btn me-1" data-status="ALL">全部</button>
+    <button class="btn btn-xs btn-success filter-status-btn me-1" data-status="PASS">通过</button>
+    <button class="btn btn-xs btn-danger filter-status-btn me-3" data-status="FAIL">失败</button>
+    <strong class="me-2 small">分组：</strong>
+    <button class="btn btn-xs btn-dark filter-group-btn me-1 mb-1" data-group="ALL">全部</button>
+    <span id="group-filter-btns"></span>
+  </div>
+
+  <!-- 用例详情 -->
+  <div class="section-card card">
+    <div class="card-header bg-primary text-white d-flex justify-content-between">
+      <span>测试用例详情</span>
+      <small id="visible-count">0 条</small>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0" id="cases-table">
+          <thead>
+            <tr>
+              <th style="width:72px;">结果</th>
+              <th style="width:88px;">用例ID</th>
+              <th style="min-width:200px;">名称 / 描述</th>
+              <th style="width:130px;">分组</th>
+              <th style="width:100px;">入参</th>
+              <th style="width:100px;">返参</th>
+              <th style="min-width:200px;">校验结果</th>
+            </tr>
+          </thead>
+          <tbody id="cases-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center text-muted small mt-3 pb-4">
+    由 api-test-reporter skill 自动生成 &nbsp;|&nbsp; <span id="gen-time"></span>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  // ── 工具函数 ──
+  function esc(s) {
+    if (s == null) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function jsonStr(obj, maxLen) {
+    var s = JSON.stringify(obj, null, 2);
+    if (maxLen && s.length > maxLen) s = s.substring(0, maxLen) + '\n... [已截断]';
+    return esc(s);
+  }
+
+  // ── 渲染逻辑 ──
+  function render(data) {
+    var results = data.results || [];
+    var meta = data.meta || {};
+    var title = meta.title || '接口自动化测试报告';
+    var method = meta.method || '';
+    var url = meta.url || '';
+    var version = meta.version || '';
+    var now = meta.generated_at || new Date().toLocaleString('zh-CN');
+
+    document.title = title;
+    document.getElementById('report-title').textContent = title;
+    document.getElementById('meta-line').innerHTML =
+      '<strong>接口：</strong>' + esc(method) + '&nbsp;&nbsp;' +
+      '<strong>版本：</strong>' + esc(version) + '&nbsp;&nbsp;' +
+      '<strong>生成时间：</strong>' + esc(now) +
+      '<br><strong>请求地址：</strong>' + esc(url);
+
+    var total = results.length;
+    var passed = 0, failed = 0;
+    var groups = {};
+    for (var i = 0; i < results.length; i++) {
+      var r = results[i];
+      if (r.passed) passed++; else failed++;
+      var g = r.group || '未分组';
+      if (!groups[g]) groups[g] = {total:0, passed:0};
+      groups[g].total++;
+      if (r.passed) groups[g].passed++;
+    }
+    var passRate = total ? (passed / total * 100).toFixed(1) : '0.0';
+    var failRate = total ? (100 - passed / total * 100).toFixed(1) : '0.0';
+
+    // 统计卡片
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-passed').textContent = passed;
+    document.getElementById('stat-failed').textContent = failed;
+    var rateEl = document.getElementById('stat-rate');
+    rateEl.textContent = passRate + '%';
+    rateEl.className = 'stat-val ' + (passRate >= 80 ? 'text-success' : passRate >= 60 ? 'text-warning' : 'text-danger');
+
+    // 通过率大数字
+    document.getElementById('pass-rate-num').innerHTML = passRate + '<span class="pass-rate-unit">%</span>';
+
+    // 进度条
+    document.getElementById('progress-label').textContent = passed + ' / ' + total;
+    document.getElementById('progress-bar').innerHTML =
+      '<div class="progress-bar bg-success" style="width:' + passRate + '%"></div>' +
+      '<div class="progress-bar bg-danger" style="width:' + failRate + '%"></div>';
+
+    // 分组统计表
+    var groupHtml = '';
+    for (var gk in groups) {
+      var gs = groups[gk];
+      var gp = gs.passed, gt = gs.total;
+      var grate = gt ? (gp / gt * 100).toFixed(1) : '0.0';
+      var badge = grate == 100 ? 'badge-success' : grate >= 50 ? 'badge-warning' : 'badge-danger';
+      groupHtml += '<tr><td>' + esc(gk) + '</td>' +
+        '<td class="text-center">' + gt + '</td>' +
+        '<td class="text-center text-success fw-bold">' + gp + '</td>' +
+        '<td class="text-center text-danger fw-bold">' + (gt - gp) + '</td>' +
+        '<td class="text-center"><span class="badge ' + badge + '">' + grate + '%</span></td></tr>';
+    }
+    document.getElementById('group-tbody').innerHTML = groupHtml;
+
+    // 分组筛选按钮
+    var groupBtns = '';
+    for (var gk in groups) {
+      groupBtns += '<button class="btn btn-xs btn-outline-dark filter-group-btn me-1 mb-1" data-group="' + esc(gk) + '">' + esc(gk) + '</button>';
+    }
+    document.getElementById('group-filter-btns').innerHTML = groupBtns;
+
+    // 更新筛选栏的计数
+    var allBtn = document.querySelector('.filter-status-btn[data-status="ALL"]');
+    var passBtn = document.querySelector('.filter-status-btn[data-status="PASS"]');
+    var failBtn = document.querySelector('.filter-status-btn[data-status="FAIL"]');
+    if (allBtn) allBtn.textContent = '全部(' + total + ')';
+    if (passBtn) passBtn.textContent = '通过(' + passed + ')';
+    if (failBtn) failBtn.textContent = '失败(' + failed + ')';
+
+    // 用例行
+    var caseHtml = '';
+    for (var i = 0; i < results.length; i++) {
+      var r = results[i];
+      var statusCls = r.passed ? 'success' : 'danger';
+      var statusText = r.passed ? 'PASS' : 'FAIL';
+      var reqStr = jsonStr(r.request_body, 3000);
+
+      var respStr;
+      if (r.response_error) {
+        respStr = esc('错误: ' + r.response_error);
+      } else if (r.response_body != null) {
+        respStr = jsonStr(r.response_body, 3000);
+      } else {
+        respStr = esc(r.response_raw || '（无响应体）');
+      }
+
+      var httpCode = r.response_status || 'N/A';
+      var elapsed = r.elapsed_ms || 0;
+      var reqUrl = r.request_url || url;
+
+      var checkHtml = '';
+      var checks = r.check_details || [];
+      for (var j = 0; j < checks.length; j++) {
+        var d = checks[j];
+        var cls = d.indexOf('[PASS]') >= 0 ? 'text-success' : d.indexOf('[FAIL]') >= 0 ? 'text-danger' : 'text-muted';
+        checkHtml += '<li class="' + cls + '">' + esc(d) + '</li>';
+      }
+
+      caseHtml += '<tr class="case-row table-row-' + statusCls + '" data-group="' + esc(r.group || '') + '" data-status="' + statusText + '">' +
+        '<td class="text-center"><span class="badge bg-' + statusCls + ' px-2 py-1">' + statusText + '</span></td>' +
+        '<td><code class="text-primary small">' + esc(r.id) + '</code></td>' +
+        '<td><div class="fw-semibold">' + esc(r.name) + '</div><small class="text-muted">' + esc(r.desc || '') + '</small></td>' +
+        '<td><span class="badge bg-secondary small">' + esc(r.group || '') + '</span></td>' +
+        '<td><button class="btn btn-xs btn-outline-primary toggle-btn" data-target="req-' + esc(r.id) + '">展开</button>' +
+          '<div id="req-' + esc(r.id) + '" class="code-panel d-none mt-1"><div class="small text-muted mb-1">POST ' + esc(reqUrl) + '</div>' +
+          '<pre class="code-pre"><code>' + reqStr + '</code></pre></div></td>' +
+        '<td><button class="btn btn-xs btn-outline-secondary toggle-btn" data-target="resp-' + esc(r.id) + '">展开</button>' +
+          '<div id="resp-' + esc(r.id) + '" class="code-panel d-none mt-1"><div class="small text-muted mb-1">HTTP ' + esc(httpCode) + ' &nbsp;|&nbsp; ' + elapsed + 'ms</div>' +
+          '<pre class="code-pre" style="max-height:280px;overflow-y:auto"><code>' + respStr + '</code></pre></div></td>' +
+        '<td><ul class="list-unstyled mb-0 small">' + checkHtml + '</ul></td></tr>';
+    }
+    document.getElementById('cases-tbody').innerHTML = caseHtml;
+    document.getElementById('visible-count').textContent = total + ' 条';
+    document.getElementById('gen-time').textContent = now;
+
+    // 隐藏加载遮罩
+    document.getElementById('loading').style.display = 'none';
+
+    // 绑定交互事件
+    bindEvents();
+  }
+
+  // ── 交互事件 ──
+  function bindEvents() {
+    // 展开/收起
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.toggle-btn');
+      if (!btn) return;
+      var id = btn.dataset.target;
+      var panel = document.getElementById(id);
+      if (!panel) return;
+      var hidden = panel.classList.toggle('d-none');
+      btn.textContent = hidden ? '展开' : '收起';
+    });
+
+    var currentStatus = 'ALL', currentGroup = 'ALL';
+    function applyFilter() {
+      var rows = document.querySelectorAll('.case-row');
+      var count = 0;
+      rows.forEach(function(row) {
+        var statusOk = currentStatus === 'ALL' || row.dataset.status === currentStatus;
+        var groupOk  = currentGroup  === 'ALL' || row.dataset.group  === currentGroup;
+        var show = statusOk && groupOk;
+        row.style.display = show ? '' : 'none';
+        if (show) count++;
+      });
+      document.getElementById('visible-count').textContent = count + ' 条';
+    }
+
+    document.querySelectorAll('.filter-status-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        currentStatus = this.dataset.status;
+        document.querySelectorAll('.filter-status-btn').forEach(function(b) {
+          b.classList.remove('btn-primary','btn-success','btn-danger');
+          b.classList.add('btn-outline-secondary');
+        });
+        this.classList.remove('btn-outline-secondary');
+        if (currentStatus==='ALL') this.classList.add('btn-primary');
+        else if (currentStatus==='PASS') this.classList.add('btn-success');
+        else this.classList.add('btn-danger');
+        applyFilter();
+      });
+    });
+
+    document.querySelectorAll('.filter-group-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        currentGroup = this.dataset.group;
+        document.querySelectorAll('.filter-group-btn').forEach(function(b) {
+          b.classList.remove('btn-dark','btn-secondary');
+          b.classList.add('btn-outline-dark');
+        });
+        this.classList.remove('btn-outline-dark');
+        this.classList.add(currentGroup==='ALL' ? 'btn-dark' : 'btn-secondary');
+        applyFilter();
+      });
+    });
+  }
+
+  // ── 加载数据 ──
+  // 兼容 file:// 协议：用 script 标签加载同目录下的 JS 数据文件（不使用 fetch，避免 CORS 限制）
+  var jsEl = document.createElement('script');
+  jsEl.onload = function() {
+    // script 加载完毕后 reportData 已被赋值为全局变量，直接渲染
+    if (typeof reportData !== 'undefined' && reportData) {
+      render(reportData);
+    }
+  };
+  jsEl.onerror = function() {
+    document.getElementById('loading').innerHTML =
+      '<div class="text-danger"><strong>加载数据失败</strong><br>' +
+      '<span class="text-muted">无法加载 __REPORT_DATA__.js</span><br><br>' +
+      '<small class="text-muted">请确保 <code>__REPORT_DATA__.js</code> 与此 HTML 文件在同一目录下</small></div>';
+  };
+  jsEl.src = '__REPORT_DATA__.js';
+  document.head.appendChild(jsEl);
+})();
+</script>
+</body>
+</html>

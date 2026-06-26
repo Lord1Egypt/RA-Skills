@@ -1,0 +1,70 @@
+{
+  "flagship": {
+    "qwen-max": {
+      "name": "Qwen Max",
+      "description": "Most capable Qwen model",
+      "context_length": 32768
+    },
+    "qwen-plus": {
+      "name": "Qwen Plus",
+      "description": "Recommended balanced model",
+      "context_length": 131072
+    },
+    "qwen-flash": {
+      "name": "Qwen Flash",
+      "description": "Fast inference model",
+      "context_length": 131072
+    },
+    "qwen-coder-plus": {
+      "name": "Qwen Coder Plus",
+      "description": "Code generation and editing",
+      "context_length": 32768
+    }
+  },
+  "other": {
+    "deepseek-v3": {
+      "name": "DeepSeek V3",
+      "description": "DeepSeek general purpose",
+      "context_length": 64000
+    },
+    "deepseek-r1": {
+      "name": "DeepSeek R1",
+      "description": "DeepSeek reasoning model",
+      "context_length": 64000
+    },
+    "glm-4-plus": {
+      "name": "GLM-4 Plus",
+      "description": "Zhipu AI model",
+      "context_length": 128000
+    },
+    "moonshot-v1-32k": {
+      "name": "Moonshot V1 32K",
+      "description": "Moonshot AI model",
+      "context_length": 32000
+    }
+  },
+  "multimodal": {
+    "qwen-vl-max": {
+      "name": "Qwen VL Max",
+      "description": "Vision language model for image understanding",
+      "context_length": 32768
+    },
+    "qwen-audio-turbo": {
+      "name": "Qwen Audio Turbo",
+      "description": "Audio understanding model",
+      "context_length": 32768
+    },
+    "qwen2.5-vl-32b-instruct": {
+      "name": "Qwen2.5 VL 32B",
+      "description": "Qwen 2.5 vision language 32B model",
+      "context_length": 32768
+    }
+  },
+  "embedding": {
+    "text-embedding-v3": {
+      "name": "Text Embedding V3",
+      "description": "Text embedding vector model",
+      "dimensions": 1024
+    }
+  }
+}

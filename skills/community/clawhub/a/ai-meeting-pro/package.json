@@ -1,0 +1,9 @@
+{
+  "name": "meeting-assistant",
+  "version": "1.0.0",
+  "description": "AI meeting assistant for agenda and minutes",
+  "main": "index.js",
+  "keywords": ["meeting", "agenda", "minutes", "productivity"],
+  "author": "AI-Agent",
+  "license": "MIT"
+}

@@ -1,35 +1,187 @@
 ---
-name: "Ai Video Pro"
-description: "电影级镜头语言解码器。零依赖可用：将创意描述解码为影视级提示词，系统化建模打击感/面部表情渐变/机甲运动五维镜头语言。可选配 API Key 直接生成视频（LumaAI/Runway/Replicate/ComfyUI）。提示词优化本身无需任何外部服务。"
-category: "other"
-source: "ClawHub"
-tags: [beta]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-video-pro"
-sourceUrl: "https://clawhub.ai/skills/ai-video-pro"
+name: ai-video-pro
+description: 电影级镜头语言解码器。零依赖可用：将创意描述解码为影视级提示词，系统化建模打击感/面部表情渐变/机甲运动五维镜头语言。可选配 API Key 直接生成视频（LumaAI/Runway/Replicate/ComfyUI）。提示词优化本身无需任何外部服务。
+user-invocable: true
+metadata: {"openclaw":{"requires":{"env":[],"anyBins":[]},"primaryEnv":"LUMAAI_API_KEY","stage":"beta","version":"0.2.0"}}
 ---
 
-# Ai Video Pro
+用户提供创意描述，输出影视级提示词。可选连接生成后端直接产出视频。
 
-> 电影级镜头语言解码器。零依赖可用：将创意描述解码为影视级提示词，系统化建模打击感/面部表情渐变/机甲运动五维镜头语言。可选配 API Key 直接生成视频（LumaAI/Runway/Replicate/ComfyUI）。提示词优化本身无需任何外部服务。
+**⚠️ BETA** — 勿用于生产环境。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-video-pro`
-- **Source URL:** [https://clawhub.ai/skills/ai-video-pro](https://clawhub.ai/skills/ai-video-pro)
+---
 
-## Overview
+## 运行模式
 
+| 模式 | 依赖 | 输出 |
+|------|------|------|
+| **提示词模式**（默认） | 无 | 影视级优化 prompt，可复制到任意生成工具 |
+| **生成模式** | API Key 或本地 GPU | 直接调用后端生成视频文件 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-video-pro
+> 提示词模式是核心价值所在：无需任何配置，立即可用，输出的 prompt 可直接用于 LumaAI / Runway / ComfyUI 等任意工具。
+
+---
+
+## 调用示例
+
 ```
+# 基础描述 → 影视级 prompt
+帮我把这个描述转成视频 prompt：一个武士在雨中拔刀
+
+# 指定风格和平台
+生成一个抖音竖屏的动作场景 prompt，风格写实，要有打击感
+
+# 迭代优化
+上一个 prompt 的打击感不够，帮我加强一下
+
+# 生成模式（需配置 API Key）
+用 LumaAI 生成这个场景：[场景描述]
+```
+
+---
+
+## 核心方法论：五维镜头语言解码
+
+```
+用户描述 ──解码──→ [镜头类型 × 运镜 × 灯光 × 色彩 × 时间] ──适配──→ Provider Prompt
+```
+
+普通描述和电影级描述的差异在于**隐性专业知识的显性化**：
+
+| 维度 | 解码内容 | 关键判断点 |
+|------|---------|-----------|
+| 镜头类型 | ECU/CU/MS/FS/WS/鸟瞰/仰拍/荷兰角 | 情感距离与叙事权力 |
+| 运镜方式 | 固定/Pan/Dolly/Tracking/手持/斯坦尼康 | 观众与场景的关系感 |
+| 灯光设计 | 轮廓光/伦勃朗/体积光/黄金时刻/霓虹 | 情绪基调与质感 |
+| 色彩分级 | 青橙对比/去饱和/胶片模拟/冷暖对比 | 风格化程度 |
+| 时间控制 | 慢动作/延时/变速/定格 | 叙事节奏 |
+
+---
+
+## Phase 1: 镜头语言解码（提示词模式，零依赖）
+
+### 1.1 动作/冲击场景 — 打击感五要素
+
+国内短视频最核心的差异化维度，必须精确建模：
+
+```
+① 重量感    — 攻击者的预备动作幅度、身体质量感
+② 力度反馈  — 被击中者的形变程度（衣物/头发/身体弯曲）
+③ 冲击特效  — 火花/碎片/冲击波的密度和扩散方向
+④ 时间节奏  — 预备→接触→反应的帧率变化（慢进快出 / 快进慢出）
+⑤ 画面反应  — 镜头抖动幅度、运动模糊方向、色差效果
+```
+
+未指定时询问：打击力度（轻触/重击/影视夸张）、特效风格（写实/漫画/机甲）。
+
+### 1.2 角色场景 — 面部表情渐变序列
+
+建模表情的**时间序列变化**，而非静态描述：
+
+```
+示例：[0s] 惊讶（眉上扬、瞳孔扩张）→ [2s] 坚定（下颌收紧、目光聚焦）→ [5s] 胜利（嘴角微扬）
+```
+
+未指定时询问：镜头起止的表情分别是什么、是否有眼神交流。
+
+### 1.3 机甲/硬核运动
+
+额外建模：关节铰接方向、液压延迟感、质量惯性（重型机甲响应慢）、变形序列节点。
+
+### 1.4 缺失维度补全
+
+解码时主动检查必要参数，如未指定则询问：
+
+- 画面比例（16:9 横屏 / 9:16 抖音竖屏 / 1:1 小红书）
+- 目标时长（3s/5s/10s）
+- 视觉风格（写实/动漫/3D/水彩）
+
+### 1.5 Provider 适配输出
+
+根据目标平台重新编码 prompt 风格（或同时输出多平台版本）：
+
+| Provider | Prompt 偏好 |
+|---------|------------|
+| LumaAI Dream Machine | 自然语言嵌入镜头指令，"camera slowly pans…" |
+| Runway Gen-3/4 | 结构化，镜头/主体/风格分段 |
+| Replicate/SVD | 简洁，强调主体动态 |
+| ComfyUI 本地 | checkpoint + scheduler + LoRA 标签 |
+
+**同时展示原始描述和优化后 prompt**，用户确认后再进行下一步。
+
+---
+
+## Phase 2: 视频生成（生成模式，需 API Key 或 GPU）
+
+**后端选择（最小代价优先）：**
+
+| 优先级 | 后端 | 条件 | 成本 |
+|--------|------|------|------|
+| 1 | ComfyUI 本地 | NVIDIA 8GB+ VRAM | 免费 |
+| 2 | Replicate 免费层 | API Token | 免费(有限) |
+| 3 | LumaAI 免费层 | API Key | 免费(有限) |
+| 4 | LumaAI 付费 | API Key | ~¥3.5/视频 |
+| 5 | Runway 付费 | API Key | ~¥7/视频 |
+
+推荐方案和预估成本先展示给用户确认，再调用 API。
+
+```bash
+python3 scripts/env_detect.py          # 检测可用后端
+python3 scripts/provider_manager.py --backend <backend> --prompt <prompt_file>
+python3 scripts/preview_server.py --file <video_path> --port 8765
+```
+
+**数据流向**：优化后的 prompt 发送至用户选择的生成后端（LumaAI/Runway/Replicate）。原始描述仅在本次会话中处理，不向其他第三方传输。
+
+---
+
+## Phase 3: 迭代优化
+
+保留解码结构，仅调整目标维度：
+
+| 反馈 | 调整方向 |
+|------|---------|
+| 打击感不足 | 增加特效密度、加强时间节奏对比 |
+| 镜头感弱 | 升级运镜（手持 → 斯坦尼康 / 固定 → Dolly） |
+| 情绪不对 | 调整色彩分级基调 + 表情序列终点 |
+| 风格漂移 | 固定 LoRA/风格标签，切换 Provider |
+
+支持图生视频：上传关键帧作为风格锚点，保持角色一致性。
+
+---
+
+## 输出格式（提示词模式）
+
+```json
+{
+  "original_description": "用户原始描述",
+  "decoded_dimensions": {
+    "shot_type": "CU 近景",
+    "camera_movement": "手持跟拍",
+    "lighting": "伦勃朗光 + 轮廓光",
+    "color_grading": "青橙对比，高饱和",
+    "temporal": "接触瞬间慢动作 0.3x"
+  },
+  "prompts": {
+    "lumai": "A close-up shot, handheld camera following...",
+    "runway": "Shot type: CU. Subject: ...",
+    "universal": "通用版本（可用于任意平台）"
+  },
+  "missing_params": ["画面比例未指定，建议确认"]
+}
+```
+
+---
+
+## 边界与合规
+
+**本技能做什么：** 提示词工程优化、镜头语言建模、生成后端调度。
+
+**本技能不做什么：**
+- 提示词模式不需要、不访问任何外部服务
+- 不存储用户提交的创意描述
+- 不自动发布到任何平台（发布需要用户显式授权和凭证配置）
+
+**凭证（均为可选，仅生成模式需要）：**
+- `LUMAAI_API_KEY` / `RUNWAY_API_KEY` / `REPLICATE_API_TOKEN` / `OPENAI_API_KEY`
+- 所有凭证仅通过环境变量读取，不持久化、不记录

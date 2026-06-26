@@ -1,0 +1,9 @@
+{
+  "name": "Financial Analyst",
+  "description": "分析财务报表并计算各种财务比率的专家。",
+  "tools": [
+    "calculate_ratios.py",
+    "interpret_ratios.py"
+  ],
+  "main": "SKILL.md"
+}

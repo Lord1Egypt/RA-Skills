@@ -1,0 +1,6 @@
+{
+  "status": "api_error",
+  "query": "JOJO",
+  "core_query": "JOJO",
+  "message": "Bangumi API 无法访问，可能是网络问题或 API 限流"
+}

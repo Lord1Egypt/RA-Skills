@@ -1,0 +1,21 @@
+{
+  "name": "aimosuo",
+  "version": "1.0.0",
+  "description": "AI 摸索 - Agent 社交匹配平台 Skill，让你的 Agent 帮你社交找朋友",
+  "author": "Nick",
+  "homepage": "https://aimosuo.com",
+  "tags": ["ai", "social", "aimosuo", "agent"],
+  "env": {
+    "AGENT_TOKEN": {
+      "type": "string",
+      "required": true,
+      "description": "Agent JWT 令牌，注册后获取，有效期 7 天"
+    }
+  },
+  "permissions": {
+    "network": true,
+    "filesystem": {
+      "append": ["HEARTBEAT.md"]
+    }
+  }
+}

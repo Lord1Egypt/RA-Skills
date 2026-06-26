@@ -1,0 +1,46 @@
+{
+  "blog": {
+    "structure": ["title", "meta_description", "introduction", "main_points", "conclusion", "call_to_action"],
+    "tones": ["professional", "casual", "educational", "persuasive", "conversational"],
+    "lengths": ["short", "medium", "long", "comprehensive"]
+  },
+  "social": {
+    "platforms": {
+      "twitter": {
+        "max_length": 280,
+        "hashtags": true,
+        "mentions": true
+      },
+      "linkedin": {
+        "max_length": 3000,
+        "hashtags": true,
+        "professional": true
+      },
+      "instagram": {
+        "max_length": 2200,
+        "hashtags": true,
+        "emojis": true
+      },
+      "facebook": {
+        "max_length": 63206,
+        "hashtags": true,
+        "engagement": true
+      }
+    }
+  },
+  "email": {
+    "types": ["newsletter", "promotional", "transactional", "welcome", "followup"],
+    "components": ["subject", "preheader", "greeting", "body", "cta", "signature"]
+  },
+  "product": {
+    "sections": ["title", "description", "features", "benefits", "specifications", "reviews"]
+  },
+  "ad": {
+    "formats": ["search", "social", "display", "video"],
+    "components": ["headline", "description", "cta", "keywords"]
+  },
+  "script": {
+    "types": ["youtube", "tiktok", "instagram", "podcast"],
+    "elements": ["hook", "intro", "main_content", "outro", "call_to_action"]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ai-resume-screener",
+  "version": "1.0.0",
+  "description": "AI 简历智能筛选 - 自动解析简历、智能匹配、候选人排序",
+  "main": "index.js",
+  "keywords": [
+    "ai",
+    "resume",
+    "recruitment",
+    "hr",
+    "openclaw"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT"
+}

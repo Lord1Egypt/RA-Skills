@@ -1,0 +1,38 @@
+{
+  "date": "2026-02-28",
+  "title": "今日AI资讯速览",
+  "news": [
+    {
+      "headline": "OpenAI发布新版推理模型能力更新",
+      "summary": "新版本在复杂任务上提升稳定性并降低推理延迟。",
+      "source": "OpenAI Blog",
+      "tag": "模型"
+    },
+    {
+      "headline": "Google扩展Gemini企业集成能力",
+      "summary": "Workspace场景支持更多自动化流程与安全控制。",
+      "source": "Google",
+      "tag": "产品"
+    },
+    {
+      "headline": "Anthropic公布新一轮开发者生态计划",
+      "summary": "聚焦工具链支持与模型应用落地合作伙伴拓展。",
+      "source": "Anthropic",
+      "tag": "生态"
+    },
+    {
+      "headline": "多家AI创业公司获新融资进展",
+      "summary": "资本继续流向垂直场景与基础设施方向企业。",
+      "source": "TechCrunch",
+      "tag": "融资"
+    },
+    {
+      "headline": "欧盟更新生成式AI治理讨论进程",
+      "summary": "监管框架强调透明度与高风险应用责任边界。",
+      "source": "EU News",
+      "tag": "政策"
+    }
+  ],
+  "footer": "数据来源: 公开新闻整理",
+  "brand": "AI Daily"
+}

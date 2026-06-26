@@ -1,0 +1,21 @@
+# alpha-pulse config
+market:
+  universe: "all_a_shares"  # 或 "csi300", "sse50"
+  min_market_cap: 50e6      # 5000万流通市值下限（单位：元）
+  exclude_st: true
+
+factors:
+  volume_ratio_threshold: 3.0
+  rsi_period: 6
+  rsi_low_threshold: 30
+  north_flow_window_minutes: 30  # 尾盘北向流入窗口
+
+predictor:
+  model_type: "xgboost"  # 或 "lightgbm"
+  threshold_probability: 0.65  # 入选最低概率
+  top_n: 30
+
+ui:
+  notify: true
+  voice_alert: "Nova"
+  auto_open_report: true

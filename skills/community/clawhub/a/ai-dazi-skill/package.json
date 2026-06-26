@@ -1,0 +1,21 @@
+{
+  "name": "ai-dazi-skill",
+  "version": "2.0.0",
+  "description": "AI搭子匹配平台 - 智能用户画像与匹配系统",
+  "main": "scripts/token-collector.js",
+  "scripts": {
+    "collect": "node scripts/token-collector.js collect",
+    "status": "node scripts/token-collector.js status",
+    "generate": "node scripts/profile-generator.js generate",
+    "view": "node scripts/profile-generator.js view"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ai-matching",
+    "user-profile",
+    "token-analytics"
+  ],
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ai-investment-analyzer",
+  "version": "1.1.0",
+  "description": "AI investment analysis assistant for stocks, cryptocurrencies, forex, commodities, and real estate",
+  "main": "analyzer.js",
+  "scripts": {
+    "test": "node analyzer.js analyze AAPL 1年",
+    "portfolio": "node analyzer.js portfolio optimize \"stock50%bond30%crypto20%\"",
+    "risk": "node analyzer.js risk assess \"stock\"",
+    "forecast": "node analyzer.js forecast \"market\" \"1 month\""
+  },
+  "keywords": ["finance", "investment", "stock", "crypto", "forex", "commodities", "real estate", "analysis", "ai", "international", "business"],
+  "author": "AI Finance Assistant Team",
+  "license": "MIT",
+  "dependencies": {}
+}

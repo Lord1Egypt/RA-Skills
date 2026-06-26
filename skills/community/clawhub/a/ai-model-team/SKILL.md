@@ -1,35 +1,43 @@
 ---
-name: "AI Model Team"
-description: "AI Model Team - Multi-model prediction system (Kronos + Chronos-2 + TimesFM + VADER) for OKX crypto and US stocks. Features error handling, retry logic, HTTP..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-model-team"
-sourceUrl: "https://clawhub.ai/skills/ai-model-team"
+name: ai-model-team
+category: trading
+model: prediction
+description: AI Model Team - Multi-model prediction system (Kronos + Chronos-2 + TimesFM + VADER) for OKX crypto and US stocks. Features error handling, retry logic, HTTP caching, unit tests, and correct data source routing (OKX for crypto, Yahoo Finance for stocks).
+version: 2.9.0
 ---
 
 # AI Model Team
 
-> AI Model Team - Multi-model prediction system (Kronos + Chronos-2 + TimesFM + VADER) for OKX crypto and US stocks. Features error handling, retry logic, HTTP...
+Multi-model collaborative prediction system: Kronos + Chronos-2 + TimesFM + VADER FinBERT
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-model-team`
-- **Source URL:** [https://clawhub.ai/skills/ai-model-team](https://clawhub.ai/skills/ai-model-team)
+## Models
 
-## Overview
+- **Kronos-base**: K-line specialist (NeoQuasar)
+- **Chronos-2**: Macro cycle prediction (Amazon)
+- **TimesFM-2.5-200M**: General time series (Google)
+- **VADER FinBERT**: Financial sentiment (<1s load)
 
+## Supported Assets
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Type | Examples | Data Source |
+|------|----------|-------------|
+| Crypto | BTC, ETH, SOL | OKX API |
+| US Stocks | NVDA, AAPL, MSFT | Yahoo Finance |
+
+## Usage
+
 ```bash
-hermes skills install clawhub/ai-model-team
+# 4-model analysis
+python scripts/model_team.py BTC-USDT-SWAP --models kronos,chronos-2,timesfm,finbert
+
+# Run tests
+python -m pytest tests/ -v
 ```
+
+## Robustness
+
+- Full error handling (Kronos, Chronos, TimesFM)
+- Reddit API retry (3 retries, 429 handling)
+- HTTP caching (lru_cache, 60s TTL)
+- Yahoo Finance for US stocks
+- Unit tests (pytest, 9 tests)

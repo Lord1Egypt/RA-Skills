@@ -1,0 +1,42 @@
+{
+  "model_repo": "shibing624/text2vec-base-chinese",
+  "embedding_dim": 768,
+  "max_seq_length": 128,
+  "int8_accuracy_loss": "<1.5% cosine similarity (官方预量化)",
+
+  "files": [
+    {
+      "id": "model",
+      "desc": "INT8语义向量模型",
+      "candidate": "onnx/model_qint8_avx512_vnni.onnx",
+      "local_name": "model_qint8_avx512_vnni.onnx",
+      "size_mb": 98,
+      "required": true
+    }
+  ],
+
+  "sources": [
+    {
+      "name": "HF-Mirror",
+      "base_url": "https://hf-mirror.com/shibing624/text2vec-base-chinese/resolve/main",
+      "path_type": "repo"
+    },
+    {
+      "name": "腾讯云COS",
+      "base_url": "https://tools-1307431188.cos.ap-chongqing.myqcloud.com/model",
+      "path_type": "flat"
+    },
+    {
+      "name": "HuggingFace",
+      "base_url": "https://huggingface.co/shibing624/text2vec-base-chinese/resolve/main",
+      "path_type": "repo"
+    }
+  ],
+
+  "fallback": {
+    "method": "huggingface_hub",
+    "repo": "shibing624/text2vec-base-chinese"
+  },
+
+  "cos_note": "腾讯云COS仅需上传模型文件: model_qint8_avx512_vnni.onnx; vocab.txt/config.json/setting.json已内置不需上传"
+}

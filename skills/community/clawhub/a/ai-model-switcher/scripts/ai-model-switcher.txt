@@ -1,0 +1,423 @@
+# AI模型切换器 - OpenClaw技能执行脚本
+# 版本: 1.0.0
+# 作者: 小六管家
+# 创建时间: 2026-03-27
+
+param(
+    [string]$action = "help",
+    [string]$subAction = "",
+    [string]$param1 = "",
+    [string]$param2 = ""
+)
+
+# 配置路径
+$configDir = Join-Path $PSScriptRoot "..\config"
+$configFile = Join-Path $configDir "config.json"
+$logFile = Join-Path $configDir "switch.log"
+$statsFile = Join-Path $configDir "stats.json"
+
+# 确保配置目录存在
+if (-not (Test-Path $configDir)) {
+    New-Item -ItemType Directory -Path $configDir -Force | Out-Null
+}
+
+# 默认配置
+$defaultConfig = @{
+    version = "1.0.0"
+    models = @{
+        local = @{
+            id = "ollama:deepseek-r1:14b"
+            name = "本地模型"
+            type = "local"
+            cost = 0
+            enabled = $true
+        }
+        deepseek = @{
+            id = "deepseek/deepseek-chat"
+            name = "DeepSeek通用模型"
+            type = "cloud"
+            cost = 0.001
+            enabled = $true
+        }
+        reasoner = @{
+            id = "deepseek/deepseek-reasoner"
+            name = "DeepSeek推理模型"
+            type = "cloud"
+            cost = 0.002
+            enabled = $true
+        }
+        kimi = @{
+            id = "moonshot/kimi-k2.5"
+            name = "Kimi长文本模型"
+            type = "cloud"
+            cost = 0.003
+            enabled = $true
+        }
+    }
+    tasks = @{
+        chat = @{
+            name = "日常对话"
+            recommendedModel = "local"
+            description = "日常聊天、简单问答"
+        }
+        simple = @{
+            name = "简单问答"
+            recommendedModel = "local"
+            description = "信息查询、基础问题"
+        }
+        research = @{
+            name = "研究分析"
+            recommendedModel = "reasoner"
+            description = "复杂推理、研究任务"
+        }
+        longdoc = @{
+            name = "长文档处理"
+            recommendedModel = "kimi"
+            description = "长文本分析、多文件处理"
+        }
+        code = @{
+            name = "编程开发"
+            recommendedModel = "deepseek"
+            description = "代码生成、技术问题"
+        }
+        analysis = @{
+            name = "数据分析"
+            recommendedModel = "reasoner"
+            description = "数据分析、统计计算"
+        }
+        creative = @{
+            name = "创意写作"
+            recommendedModel = "deepseek"
+            description = "创意写作、内容生成"
+        }
+    }
+    costStrategy = "balanced"  # aggressive, balanced, performance
+    autoSwitch = $true
+    logSwitches = $true
+}
+
+# 加载配置
+function Load-Config {
+    if (Test-Path $configFile) {
+        try {
+            $content = Get-Content $configFile -Raw
+            return $content | ConvertFrom-Json -AsHashtable
+        } catch {
+            Write-Host "⚠️ 配置文件损坏，使用默认配置" -ForegroundColor Yellow
+            return $defaultConfig
+        }
+    } else {
+        return $defaultConfig
+    }
+}
+
+# 保存配置
+function Save-Config {
+    param([hashtable]$config)
+    $config | ConvertTo-Json -Depth 10 | Set-Content $configFile
+}
+
+# 记录日志
+function Log-Switch {
+    param(
+        [string]$fromModel,
+        [string]$toModel,
+        [string]$reason,
+        [string]$taskType = ""
+    )
+    
+    $config = Load-Config
+    if (-not $config.logSwitches) { return }
+    
+    $logEntry = @{
+        timestamp = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+        from = $fromModel
+        to = $toModel
+        reason = $reason
+        task = $taskType
+    }
+    
+    $logEntry | ConvertTo-Json -Compress | Add-Content $logFile
+}
+
+# 更新统计
+function Update-Stats {
+    param(
+        [string]$model,
+        [int]$tokensIn = 0,
+        [int]$tokensOut = 0
+    )
+    
+    $stats = @{}
+    if (Test-Path $statsFile) {
+        $stats = Get-Content $statsFile -Raw | ConvertFrom-Json -AsHashtable
+    }
+    
+    if (-not $stats.ContainsKey($model)) {
+        $stats[$model] = @{
+            switches = 0
+            tokensIn = 0
+            tokensOut = 0
+            totalCost = 0
+            lastUsed = ""
+        }
+    }
+    
+    $stats[$model].switches++
+    $stats[$model].tokensIn += $tokensIn
+    $stats[$model].tokensOut += $tokensOut
+    
+    $config = Load-Config
+    $modelCost = $config.models[$model].cost
+    $cost = ($tokensIn + $tokensOut) * $modelCost / 1000
+    $stats[$model].totalCost += $cost
+    $stats[$model].lastUsed = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    
+    $stats | ConvertTo-Json -Depth 10 | Set-Content $statsFile
+}
+
+# 显示帮助
+function Show-Help {
+    Write-Host "🎩 AI模型切换器 v1.0.0" -ForegroundColor Cyan
+    Write-Host "=========================================" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "📋 可用命令：" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "  status          查看当前状态" -ForegroundColor White
+    Write-Host "  stats           查看使用统计" -ForegroundColor White
+    Write-Host "  history         查看切换历史" -ForegroundColor White
+    Write-Host "  config          配置管理" -ForegroundColor White
+    Write-Host ""
+    Write-Host "🎯 模式切换：" -ForegroundColor Yellow
+    Write-Host "  chat            日常对话模式（本地模型）" -ForegroundColor White
+    Write-Host "  simple          简单问答模式（本地模型）" -ForegroundColor White
+    Write-Host "  research        研究分析模式（推理云模型）" -ForegroundColor White
+    Write-Host "  longdoc         长文档模式（Kimi云模型）" -ForegroundColor White
+    Write-Host "  code            编程开发模式（云模型）" -ForegroundColor White
+    Write-Host "  analysis        数据分析模式（推理云模型）" -ForegroundColor White
+    Write-Host "  creative        创意写作模式（云模型）" -ForegroundColor White
+    Write-Host ""
+    Write-Host "🔧 高级功能：" -ForegroundColor Yellow
+    Write-Host "  force <model>   强制切换到指定模型" -ForegroundColor White
+    Write-Host "  models          查看可用模型" -ForegroundColor White
+    Write-Host "  tasks           查看任务类型" -ForegroundColor White
+    Write-Host "  tokens          查看token消耗" -ForegroundColor White
+    Write-Host "  debug           调试模式" -ForegroundColor White
+    Write-Host "  logs            查看日志" -ForegroundColor White
+    Write-Host ""
+    Write-Host "💡 示例：" -ForegroundColor Green
+    Write-Host "  openclaw skill intelligent-model-switch status" -ForegroundColor Gray
+    Write-Host "  openclaw skill intelligent-model-switch chat" -ForegroundColor Gray
+    Write-Host "  openclaw skill intelligent-model-switch force local" -ForegroundColor Gray
+    Write-Host ""
+}
+
+# 显示状态
+function Show-Status {
+    $config = Load-Config
+    
+    Write-Host "🎩 AI模型切换器状态" -ForegroundColor Cyan
+    Write-Host "========================" -ForegroundColor Cyan
+    Write-Host ""
+    
+    # 获取当前OpenClaw配置
+    try {
+        $currentModel = openclaw config get model 2>$null
+        if ($currentModel) {
+            Write-Host "📊 当前模型: $currentModel" -ForegroundColor Green
+        } else {
+            Write-Host "📊 当前模型: 未知" -ForegroundColor Yellow
+        }
+    } catch {
+        Write-Host "📊 当前模型: 无法获取" -ForegroundColor Red
+    }
+    
+    Write-Host ""
+    Write-Host "🤖 可用模型：" -ForegroundColor Yellow
+    foreach ($key in $config.models.Keys) {
+        $model = $config.models[$key]
+        $status = if ($model.enabled) { "✅" } else { "❌" }
+        $cost = if ($model.cost -eq 0) { "免费" } else { "$$($model.cost)/1K tokens" }
+        Write-Host "  $status $($model.name) ($key)" -ForegroundColor White
+        Write-Host "     类型: $($model.type) | 成本: $cost" -ForegroundColor Gray
+    }
+    
+    Write-Host ""
+    Write-Host "🎯 成本策略: $($config.costStrategy)" -ForegroundColor Yellow
+    Write-Host "🔄 自动切换: $(if ($config.autoSwitch) { '启用' } else { '禁用' })" -ForegroundColor Yellow
+    Write-Host "📝 日志记录: $(if ($config.logSwitches) { '启用' } else { '禁用' })" -ForegroundColor Yellow
+}
+
+# 切换到指定模型
+function Switch-Model {
+    param(
+        [string]$modelKey,
+        [string]$reason = "手动切换",
+        [string]$taskType = ""
+    )
+    
+    $config = Load-Config
+    
+    if (-not $config.models.ContainsKey($modelKey)) {
+        Write-Host "❌ 未知模型: $modelKey" -ForegroundColor Red
+        return $false
+    }
+    
+    $model = $config.models[$modelKey]
+    if (-not $model.enabled) {
+        Write-Host "❌ 模型已禁用: $($model.name)" -ForegroundColor Red
+        return $false
+    }
+    
+    Write-Host "🔄 切换到: $($model.name)" -ForegroundColor Cyan
+    Write-Host "  模型ID: $($model.id)" -ForegroundColor Gray
+    Write-Host "  类型: $($model.type)" -ForegroundColor Gray
+    Write-Host "  成本: $(if ($model.cost -eq 0) { '免费' } else { '$$($model.cost)/1K tokens' })" -ForegroundColor Gray
+    
+    # 记录切换
+    try {
+        $currentModel = openclaw config get model 2>$null
+        Log-Switch -fromModel $currentModel -toModel $modelKey -reason $reason -taskType $taskType
+    } catch {
+        # 忽略获取当前模型的错误
+    }
+    
+    # 实际切换模型（需要OpenClaw支持）
+    Write-Host ""
+    Write-Host "💡 执行切换命令:" -ForegroundColor Yellow
+    Write-Host "  openclaw config set model `"$($model.id)`"" -ForegroundColor White
+    Write-Host ""
+    Write-Host "✅ 切换命令已生成" -ForegroundColor Green
+    Write-Host "📝 请手动执行以上命令完成切换" -ForegroundColor Yellow
+    
+    return $true
+}
+
+# 根据任务类型切换
+function Switch-By-Task {
+    param([string]$taskKey)
+    
+    $config = Load-Config
+    
+    if (-not $config.tasks.ContainsKey($taskKey)) {
+        Write-Host "❌ 未知任务类型: $taskKey" -ForegroundColor Red
+        Write-Host "💡 使用本地模型处理（默认）" -ForegroundColor Yellow
+        return Switch-Model -modelKey "local" -reason "未知任务类型，使用默认" -taskType $taskKey
+    }
+    
+    $task = $config.tasks[$taskKey]
+    $modelKey = $task.recommendedModel
+    
+    Write-Host "📋 任务类型: $($task.name)" -ForegroundColor Yellow
+    Write-Host "📝 描述: $($task.description)" -ForegroundColor Gray
+    Write-Host "🤖 推荐模型: $modelKey" -ForegroundColor Cyan
+    
+    return Switch-Model -modelKey $modelKey -reason "任务类型: $taskKey" -taskType $taskKey
+}
+
+# 显示使用统计
+function Show-Stats {
+    if (-not (Test-Path $statsFile)) {
+        Write-Host "📊 暂无使用统计" -ForegroundColor Yellow
+        return
+    }
+    
+    $stats = Get-Content $statsFile -Raw | ConvertFrom-Json -AsHashtable
+    $config = Load-Config
+    
+    Write-Host "📊 模型使用统计" -ForegroundColor Cyan
+    Write-Host "================" -ForegroundColor Cyan
+    Write-Host ""
+    
+    $totalSwitches = 0
+    $totalTokens = 0
+    $totalCost = 0
+    
+    foreach ($modelKey in $stats.Keys) {
+        $modelStats = $stats[$modelKey]
+        $modelName = if ($config.models.ContainsKey($modelKey)) { 
+            $config.models[$modelKey].name 
+        } else { 
+            $modelKey 
+        }
+        
+        Write-Host "🤖 $modelName" -ForegroundColor Yellow
+        Write-Host "  切换次数: $($modelStats.switches)" -ForegroundColor White
+        Write-Host "  输入token: $($modelStats.tokensIn)" -ForegroundColor Gray
+        Write-Host "  输出token: $($modelStats.tokensOut)" -ForegroundColor Gray
+        Write-Host "  总token: $($modelStats.tokensIn + $modelStats.tokensOut)" -ForegroundColor White
+        Write-Host "  总成本: $$($modelStats.totalCost.ToString('F4'))" -ForegroundColor $(if ($modelStats.totalCost -eq 0) { "Green" } else { "Yellow" })
+        Write-Host "  最后使用: $($modelStats.lastUsed)" -ForegroundColor Gray
+        Write-Host ""
+        
+        $totalSwitches += $modelStats.switches
+        $totalTokens += $modelStats.tokensIn + $modelStats.tokensOut
+        $totalCost += $modelStats.totalCost
+    }
+    
+    Write-Host "📈 总计" -ForegroundColor Cyan
+    Write-Host "  总切换次数: $totalSwitches" -ForegroundColor White
+    Write-Host "  总token数: $totalTokens" -ForegroundColor White
+    Write-Host "  总成本: $$($totalCost.ToString('F4'))" -ForegroundColor $(if ($totalCost -eq 0) { "Green" } else { "Yellow" })
+}
+
+# 主程序
+$config = Load-Config
+
+switch ($action) {
+    "help" {
+        Show-Help
+    }
+    
+    "status" {
+        Show-Status
+    }
+    
+    "stats" {
+        Show-Stats
+    }
+    
+    "history" {
+        if (Test-Path $logFile) {
+            Write-Host "📝 切换历史" -ForegroundColor Cyan
+            Write-Host "============" -ForegroundColor Cyan
+            Write-Host ""
+            Get-Content $logFile | ForEach-Object {
+                $log = $_ | ConvertFrom-Json
+                $time = $log.timestamp
+                $from = if ($log.from) { $log.from } else { "未知" }
+                $to = $log.to
+                $reason = $log.reason
+                $task = if ($log.task) { "($($log.task))" } else { "" }
+                Write-Host "[$time] $from → $to $task" -ForegroundColor White
+                Write-Host "    原因: $reason" -ForegroundColor Gray
+                Write-Host ""
+            }
+        } else {
+            Write-Host "📝 暂无切换历史" -ForegroundColor Yellow
+        }
+    }
+    
+    "config" {
+        Write-Host "⚙️ 配置管理" -ForegroundColor Cyan
+        Write-Host "===========" -ForegroundColor Cyan
+        Write-Host ""
+        Write-Host "配置文件: $configFile" -ForegroundColor White
+        Write-Host "配置大小: $(if (Test-Path $configFile) { "$((Get-Item $configFile).Length) 字节" } else { '未创建' })" -ForegroundColor White
+        Write-Host ""
+        Write-Host "📁 使用以下命令编辑配置:" -ForegroundColor Yellow
+        Write-Host "  notepad `"$configFile`"" -ForegroundColor Gray
+    }
+    
+    "models" {
+        Write-Host "🤖 可用模型" -ForegroundColor Cyan
+        Write-Host "===========" -ForegroundColor Cyan
+        Write-Host ""
+        foreach ($key in $config.models.Keys) {
+            $model = $config.models[$key]
+            $status = if ($model.enabled) { "✅" } else { "❌" }
+            Write-Host "$status $key" -ForegroundColor Yellow
+            Write-Host "  名称: $($model.name)" -ForegroundColor White
+            Write-Host "  ID: $($model.id)" -ForegroundColor Gray
+            Write-Host "  类型: $($model.type)" -ForegroundColor Gray
+            Write-Host "  成本: $(

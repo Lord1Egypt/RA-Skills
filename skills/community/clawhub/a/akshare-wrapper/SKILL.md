@@ -1,35 +1,153 @@
 ---
-name: "A股分析技能包装器"
-description: "A股分析技能包装器，基于akshare数据源。支持实时行情、个股分析、板块轮动、资金流向等A股分析功能。使用自然语言查询A股市场数据。"
-category: "other"
-source: "ClawHub"
-tags: [akshare, china, investment, stock]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/akshare-wrapper"
-sourceUrl: "https://clawhub.ai/skills/akshare-wrapper"
+name: akshare-wrapper
+description: A股分析技能包装器，基于akshare数据源。支持实时行情、个股分析、板块轮动、资金流向等A股分析功能。使用自然语言查询A股市场数据。
+metadata:
+  openclaw:
+    emoji: "📈"
+    requires:
+      python_modules: ["akshare", "pandas", "numpy"]
 ---
 
-# A股分析技能包装器
+# A股分析技能 (akshare-wrapper)
 
-> A股分析技能包装器，基于akshare数据源。支持实时行情、个股分析、板块轮动、资金流向等A股分析功能。使用自然语言查询A股市场数据。
+## 功能特性
+- **实时大盘行情**：上证、深证、创业板、沪深300等主要指数
+- **个股K线分析**：历史K线数据，支持日线、周线、月线
+- **资金流向监控**：个股、板块、市场资金流向分析
+- **板块轮动分析**：行业板块、概念板块涨跌排行
+- **涨跌停统计**：涨停池、跌停池、连板梯队
+- **基本面分析**：财务指标、财报数据、融资融券
+- **港股/美股**：跨市场行情数据
+- **新闻研报**：财经新闻、机构研报
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/akshare-wrapper`
-- **Source URL:** [https://clawhub.ai/skills/akshare-wrapper](https://clawhub.ai/skills/akshare-wrapper)
+## 使用示例
 
-## Overview
+### 大盘行情
+- "A股大盘" - 查看实时指数行情
+- "上证指数" - 上证指数实时数据
+- "创业板指" - 创业板指数行情
 
+### 个股分析
+- "贵州茅台近30日K线" - 查看个股历史走势
+- "茅台资金流向" - 查看个股资金流向
+- "茅台怎么样" - 个股综合信息
+- "600519周线" - 使用股票代码查询
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 板块分析
+- "行业板块涨跌" - 行业板块表现排行
+- "概念板块涨跌" - 概念板块表现排行
+- "板块资金流向" - 板块资金净流入排行
+
+### 市场统计
+- "今日涨停" - 涨停跌停统计
+- "连板梯队" - 连板股统计
+- "炸板率" - 涨停炸板情况
+
+### 其他功能
+- "港股行情" - 港股市场行情
+- "美股行情" - 美股市场行情
+- "财经新闻" - 最新财经新闻
+- "推荐股票" - 股票推荐
+
+## 技术依赖
+
+### Python包
 ```bash
-hermes skills install clawhub/akshare-wrapper
+pip install akshare pandas numpy
 ```
+
+### 版本要求
+- akshare>=1.18.0
+- pandas>=3.0.0
+- numpy>=2.4.0
+
+## 快速开始
+
+### 命令行使用
+```bash
+cd /root/.openclaw/workspace/skills/akshare-wrapper
+python3 main.py "A股大盘"
+```
+
+### OpenClaw集成
+技能安装后，可在OpenClaw中直接使用自然语言查询：
+- "帮我看看A股大盘"
+- "茅台最近走势怎么样"
+- "今天哪个板块最强"
+
+## 输出格式
+
+技能输出针对聊天平台优化：
+- 使用emoji增强可读性
+- 关键数据突出显示
+- 分段清晰，避免信息过载
+- 包含数据更新时间戳
+
+## 性能特点
+- **快速响应**：大部分查询2-3秒内返回
+- **智能缓存**：重复查询使用缓存提高速度
+- **错误处理**：网络异常友好提示
+- **超时控制**：长查询自动超时保护
+
+## 注意事项
+
+### 数据源
+- 数据来自akshare，最终源为新浪财经、东方财富等
+- 数据有延迟，非实时Level2数据
+- 港股/美股查询可能较慢
+
+### 使用限制
+- 避免短时间内高频查询
+- 复杂查询可能需要更长时间
+- 非交易时间数据可能不更新
+
+### 故障处理
+1. **查询无响应**：检查网络连接，确认akshare安装
+2. **导入错误**：确认python依赖已安装
+3. **数据不更新**：检查数据源状态，确认交易时间
+
+## 高级功能
+
+### 持仓管理
+支持简单的持仓管理功能：
+- "我的持仓" - 显示当前持仓
+- "添加持仓 600519 --cost 10.5 --qty 1000" - 添加持仓
+- "持仓分析" - 分析持仓盈亏
+
+### 股票筛选
+基于当前市场情况的股票推荐：
+- "推荐股票" - 综合推荐
+- "半导体股票推荐" - 板块内推荐
+
+## 更新日志
+
+### v1.0 (2026-03-11)
+- 初始版本发布
+- 基于akshare-stock技能包装
+- 修复导入问题
+- 添加统一错误处理
+- 优化输出格式
+
+## 技术支持
+
+### 问题反馈
+如遇问题，请提供：
+1. 查询的具体内容
+2. 错误信息（如有）
+3. 期望的输出
+
+### 功能建议
+欢迎提出新功能建议，包括：
+1. 需要新增的数据类型
+2. 输出格式改进
+3. 性能优化建议
+
+## 许可证
+基于akshare-stock技能，遵循原技能许可证。
+
+---
+
+**技能状态**: ✅ 可用  
+**最后测试**: 2026-03-11  
+**维护团队**: 小富AI助手  
+**推荐用途**: A股市场分析、投资研究、团队协作

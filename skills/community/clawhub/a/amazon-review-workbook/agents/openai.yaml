@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Review Workbook"
+  short_description: "Grab Amazon reviews and export a delivery-ready workbook."
+  default_prompt: "Use $amazon-review-workbook to collect reviews from this Amazon link, fill the factual workbook, run coverage-check before any keyword expansion, and then build the final labeled 14-column workbook."

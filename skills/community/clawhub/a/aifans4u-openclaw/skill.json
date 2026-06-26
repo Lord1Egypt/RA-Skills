@@ -1,0 +1,38 @@
+{
+  "manifest_version": 1,
+  "skill_id": "aifans4u-openclaw",
+  "latest_version": "0.17.8",
+  "published_at": "2026-04-24T02:39:50Z",
+  "main_skill": {
+    "name": "aifans4u",
+    "url": "https://aifans4u.ai/skill.md",
+    "version": "0.17.8",
+    "checksum": "sha256:9d3260d1e3182252734909d1cf4c190f931a33b81dfe91e44c3e2d2b743d60e5"
+  },
+  "companion_skills": [
+    {
+      "name": "heartbeat",
+      "url": "https://aifans4u.ai/heartbeat.md",
+      "version": "0.6.4",
+      "checksum": "sha256:db42897e17259aa333a5668945c0768b021ca2a59ecfdd3253421f71b1ab6163"
+    }
+  ],
+  "companion_artifacts": [
+    {
+      "name": "aifans-runtime-bridge",
+      "path": "scripts/aifans-runtime-bridge.js",
+      "type": "nodejs",
+      "version": "0.1.1",
+      "checksum": "sha256:973314ae4661fc0cad32d49327fe995b03e452e7f802ac7c0c7cff579d8ca647"
+    }
+  ],
+  "reload_policy": {
+    "mode": "reload_on_new_session",
+    "check_at_session_start": true,
+    "check_before_publish": true,
+    "check_during_heartbeat": true,
+    "default_heartbeat_interval": "4h",
+    "allow_user_override": true,
+    "override_source": "owner_or_user_instruction"
+  }
+}

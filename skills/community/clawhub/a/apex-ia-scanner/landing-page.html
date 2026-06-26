@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX IA - Robô de Trading Profissional</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0e17; color: #e0e0e0; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 60px; }
+        .logo { font-size: 48px; margin-bottom: 20px; }
+        h1 { font-size: 48px; background: linear-gradient(135deg, #ff6b35, #ffb347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+        .subtitle { font-size: 20px; color: #6c7293; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .card { background: #121724; border: 1px solid #1e2538; border-radius: 16px; padding: 30px; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #ff6b35; }
+        .card h3 { font-size: 24px; margin-bottom: 20px; }
+        .price { font-size: 48px; color: #ff6b35; margin-bottom: 20px; }
+        .price small { font-size: 16px; color: #6c7293; }
+        .features { list-style: none; margin-bottom: 30px; }
+        .features li { padding: 8px 0; border-bottom: 1px solid #1e2538; }
+        .features li:before { content: "✅ "; color: #00ff88; }
+        .btn { display: inline-block; background: linear-gradient(135deg, #ff6b35, #ffb347); color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: opacity 0.3s; width: 100%; text-align: center; }
+        .btn:hover { opacity: 0.9; }
+        .wallets { background: #0d1117; border-radius: 16px; padding: 30px; margin-top: 40px; }
+        .wallet-address { background: #0a0e17; padding: 15px; border-radius: 8px; font-family: monospace; word-break: break-all; margin: 10px 0; border: 1px solid #1e2538; }
+        .footer { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid #1e2538; color: #6c7293; }
+        @media (max-width: 768px) { h1 { font-size: 32px; } .pricing-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🦞</div>
+            <h1>APEX IA</h1>
+            <div class="subtitle">Robô de Trading Profissional para Binance Futures</div>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="card">
+                <h3>📊 Grátis</h3>
+                <div class="price">$0</div>
+                <ul class="features">
+                    <li>Scanner SMA 8/21</li>
+                    <li>5 pares monitorados</li>
+                    <li>Alertas básicos</li>
+                    <li>Interface terminal</li>
+                </ul>
+                <a href="clawhub://install/apex-ia-scanner" class="btn">Instalar Grátis</a>
+            </div>
+
+            <div class="card">
+                <h3>🚀 Pro</h3>
+                <div class="price">$19<span><small>/mês</small></span></div>
+                <ul class="features">
+                    <li>Tudo do Grátis</li>
+                    <li>20 pares monitorados</li>
+                    <li>Alertas avançados</li>
+                    <li>Suporte por e-mail</li>
+                    <li>Atualizações garantidas</li>
+                </ul>
+                <a href="#pagamento" class="btn">Adquirir Pro</a>
+            </div>
+
+            <div class="card">
+                <h3>💎 Premium</h3>
+                <div class="price">$49<span><small>/mês</small></span></div>
+                <ul class="features">
+                    <li>Tudo do Pro</li>
+                    <li>Execução automática</li>
+                    <li>Estratégia SMC</li>
+                    <li>40+ pares monitorados</li>
+                    <li>Suporte prioritário 24/7</li>
+                    <li>API dedicada</li>
+                </ul>
+                <a href="#pagamento" class="btn">Adquirir Premium</a>
+            </div>
+        </div>
+
+        <div id="pagamento" class="wallets">
+            <h2>💳 Formas de Pagamento</h2>
+            <p>Após o pagamento, envie o comprovante para <strong>f5solutionsusa@gmail.com</strong></p>
+            
+            <h3>💰 USDT (BEP20)</h3>
+            <div class="wallet-address">0xe011b57a2d3082849d04c685925827cfc9d93edf</div>
+            
+            <h3>◎ SOLANA</h3>
+            <div class="wallet-address">79LQfMttkfKSBYGge3TsE3UoTxKMkkMn6vwSpKtpGpjb</div>
+            
+            <h3>🇧🇷 PIX (Brasil)</h3>
+            <div class="wallet-address">seu-email@provedor.com</div>
+            
+            <h3>📧 Contato para suporte</h3>
+            <div class="wallet-address">f5solutionsusa@gmail.com</div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 APEX IA - Desenvolvido por @marcusfranca12</p>
+            <p>⚠️ Trading envolve risco de perda. Use apenas fundos que pode perder.</p>
+        </div>
+    </div>
+</body>
+</html>

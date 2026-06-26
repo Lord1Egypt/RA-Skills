@@ -1,35 +1,98 @@
 ---
-name: "AI创业MVP快造工厂"
-description: "AI创业MVP快造工厂 — 从需求分析到小程序上线的全链路自动化，每周即可完成一个MVP验证"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-startup-mvp-launcher"
-sourceUrl: "https://clawhub.ai/skills/ai-startup-mvp-launcher"
+name: ai-startup-mvp-launcher
+description: AI创业MVP快造工厂 — 从需求分析到小程序上线的全链路自动化，每周即可完成一个MVP验证
+category: AI|开发|自动化
+triggers: 创业, MVP, 产品原型, 小程序开发, 快速验证, 副业项目, 从0到1, 产品构思, 商业构思
 ---
 
 # AI创业MVP快造工厂
 
-> AI创业MVP快造工厂 — 从需求分析到小程序上线的全链路自动化，每周即可完成一个MVP验证
+从0到1，一周完成MVP验证的自动化流水线。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-startup-mvp-launcher`
-- **Source URL:** [https://clawhub.ai/skills/ai-startup-mvp-launcher](https://clawhub.ai/skills/ai-startup-mvp-launcher)
+## 概述
 
-## Overview
+将一个创业想法在**7天内**转化为可验证的MVP产品。全流程由AI驱动，自动编排4个专业Skill协同工作，大幅降低创业初期的试错成本。
 
+**解决问题**：
+- 有想法但不知道怎么开始
+- 缺乏技术能力，无法快速验证
+- 预算有限，不想一上来就招人开发
+- 想快速验证市场需求，避免闭门造车
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-startup-mvp-launcher
+## 工作流程
+
 ```
+[创业想法描述]
+     ↓
+miniapp-daily-generator  → 生成小程序完整产品方案
+         ↓
+project-mode              → 拆解任务 + 调度开发者 + 进度管理
+         ↓
+card-renderer             → 生成产品封面、品牌素材、推广卡片
+         ↓
+content-trend-weapon      → 自动追踪同类竞品 + 生成内容运营方案
+         ↓
+[交付物] 产品文档 + 代码框架 + 品牌素材 + 运营计划
+```
+
+## 使用方法
+
+### 第一步：描述你的创业想法
+
+告诉AI你遇到了什么问题，想做什么产品，目标用户是谁。
+
+**示例输入**：
+> 我想做一个小程序，帮助年轻人管理订阅服务，避免被自动续费套路。用户主要是25-35岁的都市白领。
+
+### 第二步：AI自动生成完整MVP方案
+
+系统自动调用 `miniapp-daily-generator`，输出：
+- 产品功能架构
+- 页面设计
+- 技术选型
+- 代码生成（带项目结构）
+
+### 第三步：项目启动与任务管理
+
+调用 `project-mode`：
+- 自动拆解开发任务
+- 调度虚拟开发团队执行
+- 追踪进度，生成周报
+
+### 第四步：品牌与运营素材
+
+`card-renderer` 生成：
+- 产品封面图
+- 功能介绍卡片
+- 社交媒体推广素材
+
+### 第五步：市场调研与竞品分析
+
+`content-trend-weapon` 自动：
+- 搜索同类产品
+- 分析竞品优缺点
+- 生成内容运营方案
+
+## 交付物清单
+
+| 交付物 | 说明 |
+|--------|------|
+| 产品需求文档 | 功能清单、页面结构、用户旅程 |
+| 小程序代码框架 | 完整项目结构，可直接运行 |
+| 品牌素材包 | 封面图、图标、推广卡片 |
+| 竞品分析报告 | 市场现状、差异化建议 |
+| 运营计划 | 内容选题、推广节奏 |
+
+## 适用场景
+
+- 创业者快速验证想法
+- 副业项目冷启动
+- 产品经理快速出原型
+- 学生创业项目
+- 内部创新项目立项
+
+## 限制说明
+
+- 代码框架基于小程序（适合轻量工具类应用）
+- AI生成代码需人工review后使用
+- 部分API需要自己申请（微信支付、地图等）

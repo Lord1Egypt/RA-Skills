@@ -1,0 +1,48 @@
+[
+  {
+    "instanceInfo": {
+      "id": "ci-mock-001",
+      "instanceId": "ins-mock-001",
+      "cloudAccountId": "ca-mock-001",
+      "name": "mock-web-01",
+      "cloudType": "tencent",
+      "instanceType": "CVM",
+      "regionName": "Guangzhou"
+    },
+    "rule": {
+      "uuid": "rule-mock-001",
+      "name": "公网开放安全组规则过宽",
+      "type": "风险",
+      "severity": "高"
+    },
+    "riskMapping": {
+      "id": "rm-mock-001",
+      "cloudInstanceId": "ci-mock-001",
+      "ruleId": "rule-mock-001",
+      "status": "OPEN"
+    }
+  },
+  {
+    "instanceInfo": {
+      "id": "ci-mock-002",
+      "instanceId": "ins-mock-002",
+      "cloudAccountId": "ca-mock-002",
+      "name": "mock-db-01",
+      "cloudType": "aliyun",
+      "instanceType": "RDS",
+      "regionName": "Shanghai"
+    },
+    "rule": {
+      "uuid": "rule-mock-002",
+      "name": "数据库实例未启用关键安全配置",
+      "type": "风险",
+      "severity": "中"
+    },
+    "riskMapping": {
+      "id": "rm-mock-002",
+      "cloudInstanceId": "ci-mock-002",
+      "ruleId": "rule-mock-002",
+      "status": "OPEN"
+    }
+  }
+]

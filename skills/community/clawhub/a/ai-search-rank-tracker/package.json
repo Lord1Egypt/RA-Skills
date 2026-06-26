@@ -1,0 +1,15 @@
+{
+  "name": "ai-search-rank-tracker",
+  "version": "0.1.0",
+  "description": "Track whether ChatGPT, Claude, Gemini, and Perplexity recommend your startup.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "run:starter": "node src/index.js prompts/starter.json"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.54.0",
+    "dotenv": "^16.4.5",
+    "openai": "^5.12.2"
+  }
+}

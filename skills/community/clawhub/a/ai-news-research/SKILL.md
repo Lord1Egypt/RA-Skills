@@ -1,35 +1,19 @@
 ---
-name: "AI行业新闻搜集小技能"
-description: "当需要梳理某段时间内AI行业重要新闻时，可以调用使用这个技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-news-research"
-sourceUrl: "https://clawhub.ai/skills/ai-news-research"
+name: AI-NEWS
+description: 当需要梳理某段时间内AI行业重要新闻时，可以调用使用这个技能。
 ---
 
-# AI行业新闻搜集小技能
+# AI-NEWS skill
 
-> 当需要梳理某段时间内AI行业重要新闻时，可以调用使用这个技能。
+## When to use this skill
+当需要梳理某段时间内AI行业细分领域重要新闻时，可以调用使用这个技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-news-research`
-- **Source URL:** [https://clawhub.ai/skills/ai-news-research](https://clawhub.ai/skills/ai-news-research)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-news-research
-```
+## How to extract text
+1. 从用户消息中提取 2 个核心信息：
+   - 查询时间段（用户指定的时间范围）；
+   - 特定板块（用户指定的某个细分领域，如“模型” /“算力”/“硬件”/“AI应用”等）；
+2. 用 web_fetch 直接抓的网页数据以收集并梳理指定时间段内特定AI行业细分领域重要新闻
+3. 整理数据并返回，格式要求：
+   - 开头明确“细分领域 + 时间”（如“算力 2026年2月16-22日 重要新闻”）；
+   - 核心信息：具体公司/领域、事项情况、预计影响；
+---

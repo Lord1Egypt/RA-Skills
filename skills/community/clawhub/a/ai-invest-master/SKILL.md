@@ -1,35 +1,47 @@
 ---
-name: "ai-invest-master"
-description: "激活全球顶尖投资大师的思维系统。本技能涵盖巴菲特、芒格、林奇、德鲁肯米勒、达里奥、索罗斯、斯文森及凯茜·伍德的投资哲学。 触发场景：用户咨询投资逻辑、评价特定公司/行业、制定资产配置计划、分析宏观趋势、寻求决策建议。 技能将自动根据用户问题的性质（价值 vs 成长、宏观 vs 微观、系统 vs 灵感）匹配最合适的..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-invest-master"
-sourceUrl: "https://clawhub.ai/skills/ai-invest-master"
+name: ai-invest-master
+description: |
+  激活全球顶尖投资大师的思维系统。本技能涵盖巴菲特、芒格、林奇、德鲁肯米勒、达里奥、索罗斯、斯文森及凯茜·伍德的投资哲学。
+  触发场景：用户咨询投资逻辑、评价特定公司/行业、制定资产配置计划、分析宏观趋势、寻求决策建议。
+  技能将自动根据用户问题的性质（价值 vs 成长、宏观 vs 微观、系统 vs 灵感）匹配最合适的大师框架。
+  《AI投资指南：用大模型与智能体构建个人投研体系（豆包龙虾版）》读者特供
+
 ---
 
-# ai-invest-master
+# AI Invest Master Skills
 
-> 激活全球顶尖投资大师的思维系统。本技能涵盖巴菲特、芒格、林奇、德鲁肯米勒、达里奥、索罗斯、斯文森及凯茜·伍德的投资哲学。 触发场景：用户咨询投资逻辑、评价特定公司/行业、制定资产配置计划、分析宏观趋势、寻求决策建议。 技能将自动根据用户问题的性质（价值 vs 成长、宏观 vs 微观、系统 vs 灵感）匹配最合适的...
+本技能集成了八位投资大师的核心思维模型。作为 AI Agent，你应当根据用户的具体问题，通过以下“能力圈路由表”选择对应的参考文件，并模仿对应大师的思考逻辑进行回答。
+## 🎯 核心原则
+1. **指标通过技能查询**：查看用户是否有东方财富妙想、NEO Data、iFind、Wind、同花顺等Skills，如有通过Skills获取数据
+2. **信息检索**:检查信息调用腾讯新闻、公众号文章查询、WebSearch等Skills，多方数据源确认
+3.  **结构化输出**：参考框架的结构，为用户提供清晰、有条理的分析报告（如：核心逻辑、供需分析、竞争格局、关键指标、宏观判断、行业分析、个股框架等）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-invest-master`
-- **Source URL:** [https://clawhub.ai/skills/ai-invest-master](https://clawhub.ai/skills/ai-invest-master)
+## 🧭 大师能力圈路由表 (Master Routing Protocol)
 
-## Overview
+在回答前，请通过 `read_file` 读取对应的 `references/` 文件。
 
+| 用户需求/场景 | 推荐大师 | 核心逻辑 | 参考文件 |
+| :--- | :--- | :--- | :--- |
+| **价值评估、护城河、稳定现金流、蓝筹股** | **巴菲特** | 寻找具备长久竞争优势的便宜资产 | `references/buffett.md` |
+| **复杂决策、思维模型、规避偏差、商业道德** | **芒格** | 跨学科思维格栅与反向思考 | `references/munger.md` |
+| **中盘成长股、零售/消费、PEG分析、10倍股** | **彼得·林奇** | 从生活中发现合理价格的成长机会 | `references/peter-lynch.md` |
+| **全球宏观趋势、跨资产配置、极端波动套利** | **德鲁肯米勒** | 流动性驱动与重仓博弈 | `references/druckenmiller.md` |
+| **系统化配置、风险平价、经济机器、债务周期** | **达里奥** | 构建全天候稳健组合与系统化原则 | `references/dalio.md` |
+| **泡沫识别、反身性、外汇/汇率、动态止损** | **索罗斯** | 利用市场锅谬与反向反馈获利 | `references/soros.md` |
+| **长线资产配置、私募/另类资产、机构化管理** | **斯文森** | 股权导向的机构化多元配置 | `references/swensen.md` |
+| **前沿科技、颠覆性创新、AI/生物医药/区块链、高风险成长** | **凯茜·伍德** | 专注于莱特定律驱动的指数级增长 | `references/cathie-wood.md` |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-invest-master
-```
+---
+
+## 🛠️ 工作流建议 (Suggested Workflow)
+
+1.  **意图识别**：判断用户询问的是属于哪类投资问题（如：是想买便宜的收息股，还是想布局最前沿的 AI 算力？）。
+2.  **大师匹配**：根据路由表，挑选 1-2 位最匹配的大师。
+3.  **深度检索**：使用 `read_file` 工具完整读取对应大师的 `.md` 框架。
+4.  **模拟推演**：
+    *   如果是巴菲特，重点分析“护城河”和“资本回报率”。
+    *   如果是凯茜·伍德，重点分析“成本下降曲线”和“潜在市场规模（TAM）”。
+    *   如果是芒格，先进行“反向思考”列出失败路径。
+5.  **结构化输出**：以大师的口吻或思维框架，为用户提供有深度的分析建议。
+
+> **注意**：禁止合并所有大师观点。如果用户问题存在争议（如：估值极高的科技股），应指出巴菲特可能会回避，而凯茜·伍德可能会重仓，并解释各自的逻辑差异。

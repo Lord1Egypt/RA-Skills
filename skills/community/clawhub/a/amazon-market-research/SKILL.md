@@ -1,35 +1,30 @@
 ---
-name: "Amazon Market Research"
-description: "Generate professional Amazon market research reports using a complete 18-step product development framework. Output is optimized for direct Feishu display wi..."
-category: "data-science"
-source: "ClawHub"
-tags: [amazon, amazon product-research market-analysis cross-border, analysis, ecommerce, market-research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amazon-market-research"
-sourceUrl: "https://clawhub.ai/skills/amazon-market-research"
+name: amazon-market-research
+description: Generate professional Amazon market research reports using a complete 18-step product development framework. Output is optimized for direct Feishu display with full report content.
 ---
 
 # Amazon Market Research
 
-> Generate professional Amazon market research reports using a complete 18-step product development framework. Output is optimized for direct Feishu display wi...
+Generate a professional Amazon market research report using a structured 18-step product development framework.
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amazon-market-research`
-- **Source URL:** [https://clawhub.ai/skills/amazon-market-research](https://clawhub.ai/skills/amazon-market-research)
+## Output
 
-## Overview
+This skill returns:
 
+1. Full 18-step report directly in Feishu
+2. Local markdown report file for reuse
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amazon-market-research
-```
+## Command
+
+bash ~/.openclaw/workspace/skills/amazon-market-research/run.sh "{{input}}"
+
+## Example
+
+/amazon-market-research 调研一下午餐盒在美国Amazon市场值不值得做
+/amazon-market-research 分析一下 pet water fountain 在美国 Amazon 市场
+
+## Notes
+
+- Output is optimized for Feishu direct display
+- Report is returned as final answer, not summary
+- Full report is also saved as a markdown file locally

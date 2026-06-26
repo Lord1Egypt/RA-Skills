@@ -1,35 +1,84 @@
 ---
-name: "Aliyun Aimiaobi Generate"
-description: "Use when managing Alibaba Cloud Quan Miao (AiMiaoBi) via OpenAPI/SDK, including the user asks for Alibaba Cloud MiaoBi content operations, including listing..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aliyun-aimiaobi-generate"
-sourceUrl: "https://clawhub.ai/skills/aliyun-aimiaobi-generate"
+name: aliyun-aimiaobi-generate
+description: Use when managing Alibaba Cloud Quan Miao (AiMiaoBi) via OpenAPI/SDK, including the user asks for Alibaba Cloud MiaoBi content operations, including listing resources, creating/updating configurations, querying runtime status, and diagnosing API or workflow failures.
+version: 1.0.0
 ---
 
-# Aliyun Aimiaobi Generate
+Category: service
 
-> Use when managing Alibaba Cloud Quan Miao (AiMiaoBi) via OpenAPI/SDK, including the user asks for Alibaba Cloud MiaoBi content operations, including listing...
+# Quan Miao
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aliyun-aimiaobi-generate`
-- **Source URL:** [https://clawhub.ai/skills/aliyun-aimiaobi-generate](https://clawhub.ai/skills/aliyun-aimiaobi-generate)
+Use Alibaba Cloud OpenAPI (RPC) with official SDKs or OpenAPI Explorer to manage resources for Quan Miao.
 
-## Overview
+## Workflow
 
+1) Confirm region, resource identifiers, and desired action.
+2) Discover API list and required parameters (see references).
+3) Call API with SDK or OpenAPI Explorer.
+4) Verify results with describe/list APIs.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## AccessKey priority (must follow)
+
+1) Environment variables: `ALICLOUD_ACCESS_KEY_ID` / `ALICLOUD_ACCESS_KEY_SECRET` / `ALICLOUD_REGION_ID`
+Region policy: `ALICLOUD_REGION_ID` is an optional default. If unset, decide the most reasonable region for the task; if unclear, ask the user.
+2) Shared config file: `~/.alibabacloud/credentials`
+
+## API discovery
+
+- Product code: `AiMiaoBi`
+- Default API version: `2023-08-01`
+- Use OpenAPI metadata endpoints to list APIs and get schemas (see references).
+
+## High-frequency operation patterns
+
+1) Inventory/list: prefer `List*` / `Describe*` APIs to get current resources.
+2) Change/configure: prefer `Create*` / `Update*` / `Modify*` / `Set*` APIs for mutations.
+3) Status/troubleshoot: prefer `Get*` / `Query*` / `Describe*Status` APIs for diagnosis.
+
+## Minimal executable quickstart
+
+Use metadata-first discovery before calling business APIs:
+
 ```bash
-hermes skills install clawhub/aliyun-aimiaobi-generate
+python scripts/list_openapi_meta_apis.py
 ```
+
+Optional overrides:
+
+```bash
+python scripts/list_openapi_meta_apis.py --product-code <ProductCode> --version <Version>
+```
+
+The script writes API inventory artifacts under the skill output directory.
+
+## Output policy
+
+If you need to save responses or generated artifacts, write them under:
+`output/aliyun-aimiaobi-generate/`
+
+## Validation
+
+```bash
+mkdir -p output/aliyun-aimiaobi-generate
+for f in skills/ai/content/aliyun-aimiaobi-generate/scripts/*.py; do
+  python3 -m py_compile "$f"
+done
+echo "py_compile_ok" > output/aliyun-aimiaobi-generate/validate.txt
+```
+
+Pass criteria: command exits 0 and `output/aliyun-aimiaobi-generate/validate.txt` is generated.
+
+## Output And Evidence
+
+- Save artifacts, command outputs, and API response summaries under `output/aliyun-aimiaobi-generate/`.
+- Include key parameters (region/resource id/time range) in evidence files for reproducibility.
+
+## Prerequisites
+
+- Configure least-privilege Alibaba Cloud credentials before execution.
+- Prefer environment variables: `ALICLOUD_ACCESS_KEY_ID`, `ALICLOUD_ACCESS_KEY_SECRET`, optional `ALICLOUD_REGION_ID`.
+- If region is unclear, ask the user before running mutating operations.
+
+## References
+
+- Sources: `references/sources.md`

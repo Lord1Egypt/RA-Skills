@@ -1,0 +1,195 @@
+id: maldives_sunset_wedding
+name_zh: 马尔代夫海边黄昏婚纱照
+name_en: Maldives Sunset Wedding
+internal_group: 婚纱照工作室
+category: outdoor_wedding
+status: draft
+
+summary: >
+  以马尔代夫海岛沙滩与黄昏海平线为核心背景的高端海边婚纱照套系。
+  强调夕阳侧逆光、海风吹拂、湿沙反光与情侣间松弛自然的亲密互动，
+  适合输出具有度假婚礼感、自由浪漫气质与轻奢海岛氛围的成组作品。
+
+use_cases:
+  - 海边婚纱照概念样片
+  - 度假婚礼风情侣写真
+  - AI婚纱照海景套系打样
+  - 婚礼海报与相册候选图
+
+subject_profile:
+  ethnicity: 中国年轻情侣
+  age_range: 25-30
+  identity_rules:
+    - 保留上传人物的真实五官特征
+    - 不要明显网红脸化
+    - 不要改变基础脸型和年龄感
+    - 保持情侣双方在多张图中的一致性
+
+wardrobe:
+  bride:
+    makeup: 通透精致的海岛婚礼妆
+    hair: 自然披发或低扎发，带轻微海风吹拂感
+    expression_style:
+      - 轻松
+      - 幸福
+      - 柔和自然
+    dress: 象牙白缎面鱼尾婚纱
+    veil: 轻盈长款薄纱头纱
+  groom:
+    hair_policy: 保持原图发型
+    expression_style:
+      - 温柔
+      - 松弛
+      - 自然含笑
+    suit: 米白色定制西装
+    shirt: 白色衬衫
+    bow_tie: 无领结，整体更自然高级
+
+props:
+  bouquet:
+    description: 白色与浅香槟色玫瑰搭配少量绿色叶材的海岛婚礼手捧花
+
+location:
+  country: 马尔代夫
+  province: 海岛度假区
+  city: 海边沙滩
+  spot: 夕阳海岸线
+  foreground: 细白沙滩与浅浅海浪，湿润沙面带自然反光
+  midground: 情侣行走区域与随风摆动的头纱裙摆
+  background: 海平线、金粉色晚霞、蓝绿色海面与远处虚化水上屋轮廓
+
+time_and_light:
+  time: 黄昏日落时段
+  effect: 落日余晖映照海面与湿沙反光
+  lighting:
+    - 夕阳侧逆光
+    - 温暖轮廓光
+    - 柔和高光与轻微海面反射光
+  color_temperature: 5200K
+  tone:
+    - 温暖
+    - 轻盈
+    - 浪漫
+    - 度假婚礼感
+
+camera_language:
+  camera_body: Canon EOS R5
+  lens: 50mm f/1.4 prime lens
+  composition:
+    orientation: vertical
+    method: clean editorial framing with environmental space
+    default_subject_position: 人物与海平线保持呼吸感，避免过度居中
+  image_style:
+    - subject clear with soft natural detail
+    - balanced environmental context
+    - shallow depth of field with readable seascape
+    - subtle filmic glow
+    - ultra detailed
+    - 8k
+    - realistic skin texture
+    - elegant satin and veil detail
+
+mood_keywords:
+  - 浪漫
+  - 自由
+  - 轻盈
+  - 度假婚礼感
+  - 松弛亲密
+  - 高级海岛氛围
+
+global_constraints:
+  - 保持人物比例自然
+  - 保持婚纱、头纱和西装结构完整
+  - 保持海边互动自然，不要刻意摆拍
+  - 保持高级海岛婚纱摄影质感，不要廉价旅拍感
+  - 面部皮肤真实，不要塑料磨皮
+  - 避免姿势油腻、夸张、低俗
+  - 强调海风、夕阳、湿沙反光与人物情绪共同成立
+
+base_prompt: >
+  中国年轻情侣婚纱照，25-30岁，真实自然的中国面孔，新娘妆容通透精致，自然披发或低扎发，
+  带轻微海风吹拂感；新郎保持原图发型与基础五官特征。新娘穿象牙白缎面鱼尾婚纱，搭配轻盈长款薄纱头纱；
+  新郎穿米白色定制西装与白色衬衫，不系领结，整体自然高级。手捧花为白色与浅香槟色玫瑰搭配少量绿色叶材。
+  拍摄地点为马尔代夫海边沙滩，黄昏日落时分，海平线沐浴在温暖落日余晖中，天空呈现金粉色与淡橙色层次，
+  蓝绿色海面平静通透，细白沙滩与浅浅海浪在前景形成自然反光。整体氛围浪漫、自由、轻盈，带度假婚礼感。
+  摄影风格为高端海岛婚纱摄影，Canon EOS R5，全画幅，50mm prime lens, f/1.4，
+  sunset side backlight，温暖轮廓光与轻微海面反射光共同塑造人物，5200K warm tone，
+  soft highlight rolloff，balanced environmental context，natural shallow depth of field，
+  subtle filmic glow，ultra detailed, 8k, realistic skin texture, elegant satin texture, veil detail.
+  要求人物互动自然亲密，情绪真实幸福，动作轻松松弛，避免僵硬摆拍，避免过度修容与塑料皮肤，
+  保持高级海岛婚礼摄影质感。
+
+negative_prompt: >
+  lowres, blurry face, asymmetrical eyes, distorted hands, extra fingers, broken wrists, warped veil,
+  deformed wedding dress, melted satin texture, unnatural wet sand reflection, broken waves, bad feet,
+  incorrect shoreline perspective, stiff pose, awkward expression, over-retouched skin, duplicated person,
+  mismatched gaze, oversaturated sunset, cheap travel-photo look, cartoon style, low-detail fabric,
+  incorrect body ratio, messy wind-blown hair, unnatural sea background
+
+frames:
+  - id: wide_master
+    name: 远景海岸主片
+    purpose: 用于建立海岛婚礼场景与整套气质
+    prompt: >
+      在统一人物设定、服装、海边场景与摄影风格基础上，拍摄一张远景全身婚纱照。
+      情侣站在细白沙滩与海浪交界处，完整呈现人物、海平线、落日余晖与湿沙反光。
+      新娘轻提婚纱下摆，头纱随海风轻轻飘动；新郎站在身侧自然看向新娘。
+      强调开阔海景、天空层次与温暖落日氛围，画面轻盈浪漫，适合作为海边婚纱照主视觉海报。
+
+  - id: mid_gaze
+    name: 海边对望中景
+    purpose: 用于表现情侣关系感与松弛互动
+    prompt: >
+      拍摄一张中景竖版婚纱照，画面聚焦情侣上半身到膝部。
+      新娘与新郎在海边面对面站立，微笑对望，距离亲近自然。
+      夕阳侧逆光勾勒面部与肩部轮廓，海风轻拂发丝与头纱，
+      背景保留海平线和晚霞虚化层次，突出轻松亲密与高级感。
+
+  - id: veil_wind
+    name: 迎风头纱照
+    purpose: 用于突出海风、婚纱与头纱动态
+    prompt: >
+      拍摄一张以新娘迎风动态为核心的婚纱照。新娘站在前方，微微转身，
+      单手整理头纱或轻扶发丝，轻盈头纱在海风中展开；新郎站在她后侧半步，自然注视她。
+      强调头纱线条、缎面鱼尾婚纱轮廓与夕阳轮廓光，画面轻快、通透、充满海岛空气感。
+
+  - id: wave_walk
+    name: 牵手踏浪互动照
+    purpose: 用于表现海边行走与真实互动感
+    prompt: >
+      拍摄一张自然互动婚纱照。情侣牵手沿浅浅海浪边缘缓慢行走，新娘婚纱轻触湿润沙面，
+      新郎微微转头看向新娘，二人笑意自然。构图突出脚步、牵手动作、湿沙反光与细小海浪纹理，
+      营造真实抓拍式海边婚礼氛围。
+
+  - id: intimate_closeup
+    name: 海风贴近特写
+    purpose: 用于相册内页的细腻情绪特写
+    prompt: >
+      拍摄一张近景特写婚纱照，情侣面部距离很近，轻轻靠近，眼神柔和，表情克制而幸福。
+      重点刻画真实肤质、发丝细节、睫毛、唇妆、头纱边缘与海风带来的自然动态，
+      背景虚化为落日暖光与海面色块，整体细腻、温柔、具有高端海边婚礼肖像感。
+
+  - id: shoreline_walk
+    name: 沿海岸线行走抓拍照
+    purpose: 用于制造松弛感与度假婚礼纪实感
+    prompt: >
+      拍摄一张沿海岸线行走的抓拍婚纱照。情侣并肩向前走，新娘一手轻提裙摆，
+      新郎姿态自然放松，二人像在海边度假婚礼中散步。构图保留较多环境空间，
+      让海平线、晚霞、湿沙和人物形成完整节奏，画面自然、有呼吸感。
+
+  - id: back_view_turn
+    name: 背影望海回头照
+    purpose: 用于增强叙事感与海边纵深感
+    prompt: >
+      拍摄一张背影回头式婚纱照。情侣面向海平线站立，新娘站在靠海一侧，
+      婚纱拖尾与头纱在风中自然铺开，两人微微回头看向镜头。
+      强调背影线条、海面层次、落日天空与环境纵深，构图简洁大气，具有故事感与旅行婚礼气质。
+
+  - id: cover_portrait
+    name: 落日封面级半身肖像
+    purpose: 用于封面、海报与高质感主视觉
+    prompt: >
+      拍摄一张封面感半身婚纱肖像。情侣靠近站立，新娘轻微侧脸，新郎自然贴近，
+      二人共同看向镜头，表情平静而幸福。夕阳暖光为面部与肩部提供柔和立体感，
+      缎面婚纱纹理、头纱边缘、西装质感清晰，背景虚化成粉金色晚霞与海面散景，
+      整体精致、克制、具有高级杂志封面感。

@@ -1,35 +1,27 @@
 ---
-name: "Analysis Missing Tradeoffs"
-description: "Analysis presents a single option without comparing alternatives or articulating the costs of the chosen approach."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/analysis-missing-tradeoffs"
-sourceUrl: "https://clawhub.ai/skills/analysis-missing-tradeoffs"
+name: analysis-missing-tradeoffs
+description: Analysis presents a single option without comparing alternatives or articulating the costs of the chosen approach.
+emoji: ⚖️
+metadata:
+  clawdis:
+    os: [macos, linux, windows]
 ---
 
-# Analysis Missing Tradeoffs
+# analysis-missing-tradeoffs
 
-> Analysis presents a single option without comparing alternatives or articulating the costs of the chosen approach.
+An analysis that skips comparison reads as advocacy, not analysis. The reader can't tell whether you considered and rejected alternatives or simply didn't see them, so they can't trust the recommendation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/analysis-missing-tradeoffs`
-- **Source URL:** [https://clawhub.ai/skills/analysis-missing-tradeoffs](https://clawhub.ai/skills/analysis-missing-tradeoffs)
+## Symptoms
 
-## Overview
+- Analysis proposes one approach and frames it as obviously correct.
+- Costs and limitations of the chosen approach are not discussed.
+- No mention of alternatives that a knowledgeable reader would have considered.
+- Conclusion reads "we should do X" with no "rather than Y because Z".
 
+## What to do
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/analysis-missing-tradeoffs
-```
+- Enumerate at least two viable options. If only one is viable, say why the others were eliminated.
+- For each option, list what you gain and what you give up. Costs include complexity, risk, cost of reversal, team unfamiliarity — not just performance numbers.
+- State the decision criteria up front: what matters most here (latency? cost? time to ship? blast radius?). Apply the criteria consistently across options.
+- Show your work. The reader should be able to change one assumption and see which option wins.
+- When the right answer is genuinely obvious, still name the alternatives and dismiss them briefly. Obvious-to-you is not obvious-to-everyone.

@@ -1,0 +1,16 @@
+{
+  "name": "stealth-scraper",
+  "version": "1.0.0",
+  "description": "Anti-detection web scraper powered by Playwright",
+  "private": true,
+  "scripts": {
+    "postinstall": "npx playwright install chromium",
+    "setup": "node scripts/setup.js",
+    "simple": "node scripts/scraper-simple.js",
+    "stealth": "node scripts/scraper-stealth.js",
+    "batch": "node scripts/scraper-batch.js"
+  },
+  "dependencies": {
+    "playwright": "^1.52.0"
+  }
+}

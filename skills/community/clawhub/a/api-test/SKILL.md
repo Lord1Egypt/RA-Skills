@@ -1,35 +1,26 @@
 ---
-name: "api-test"
-description: "API接口文档助手。用于编写REST API文档、定义接口规范、生成接口说明。当需要编写API文档、接口规范时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-test"
-sourceUrl: "https://clawhub.ai/skills/api-test"
+name: api-doc-writer
+description: API接口文档助手。用于编写REST API文档、定义接口规范、生成接口说明。当需要编写API文档、接口规范时触发。
 ---
 
-# api-test
+# API接口文档
 
-> API接口文档助手。用于编写REST API文档、定义接口规范、生成接口说明。当需要编写API文档、接口规范时触发。
+版本：V1.0
+更新日期：YYYY-MM-DD
+维护人：XXX
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-test`
-- **Source URL:** [https://clawhub.ai/skills/api-test](https://clawhub.ai/skills/api-test)
+---
 
-## Overview
+## 接口概览
 
+| 模块 | 接口数 | 负责人 |
+|------|--------|--------|
+| 用户模块 | 5 | @xxx |
+| 订单模块 | 8 | @xxx |
+| 支付模块 | 4 | @xxx |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/api-test
-```
+---
+
+## 通用说明
+
+### 认证方式

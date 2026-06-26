@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "install": {
+    "preferred": {
+      "runtime": "node",
+      "command": ["node", "scripts/bootstrap.mjs"]
+    },
+    "fallback": {
+      "runtime": "python3",
+      "command": ["python3", "scripts/bootstrap.py"]
+    },
+    "required": true,
+    "description": "Must be executed on first install or first activation. This step ensures .env is configured and exports the latest artifact."
+  },
+  "export": {
+    "preferred": {
+      "runtime": "node",
+      "command": ["node", "scripts/export_artifact.mjs"]
+    },
+    "fallback": {
+      "runtime": "python3",
+      "command": ["python3", "scripts/export_artifact.py"]
+    }
+  },
+  "list": {
+    "preferred": {
+      "runtime": "node",
+      "command": [
+        "node",
+        "scripts/list_tools.mjs",
+        "--artifact",
+        "output/aicade-galaxy-skill.json"
+      ]
+    },
+    "fallback": {
+      "runtime": "python3",
+      "command": [
+        "python3",
+        "scripts/list_tools.py",
+        "--artifact",
+        "output/aicade-galaxy-skill.json"
+      ]
+    }
+  },
+  "invoke": {
+    "args_file_flag": "--args-file",
+    "artifact_flag": "--artifact",
+    "tool_flag": "--tool",
+    "preferred": {
+      "runtime": "node",
+      "command": [
+        "node",
+        "scripts/invoke_artifact.mjs",
+        "--artifact",
+        "output/aicade-galaxy-skill.json",
+        "--tool",
+        "TOOL_NAME",
+        "--args-file",
+        "/tmp/invoke.json"
+      ]
+    },
+    "fallback": {
+      "runtime": "python3",
+      "command": [
+        "python3",
+        "scripts/invoke_artifact.py",
+        "--artifact",
+        "output/aicade-galaxy-skill.json",
+        "--tool",
+        "TOOL_NAME",
+        "--args-file",
+        "/tmp/invoke.json"
+      ]
+    }
+  },
+  "artifact": {
+    "default_output_env": "AICADE_GALAXY_OUTPUT_PATH",
+    "default_output_dir": "output",
+    "file_name": "aicade-galaxy-skill.json"
+  }
+}

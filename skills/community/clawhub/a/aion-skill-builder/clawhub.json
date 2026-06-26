@@ -1,0 +1,30 @@
+{
+  "emoji": "🛠️",
+  "primaryEnv": "AION_API_KEY",
+  "requires": {
+    "pip": ["aion-sdk"],
+    "env": ["AION_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AION_API_KEY",
+      "required": true,
+      "description": "Your AION SDK API key — get from https://www.aionmarket.com/agents"
+    },
+    {
+      "name": "OPENAI_API_KEY",
+      "required": true,
+      "description": "OpenAI API key for natural language processing to understand strategy descriptions"
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Only needed if you want to test generated skills with external wallet signing"
+    }
+  ],
+  "cron": "manual",
+  "automaton": {
+    "managed": false,
+    "entrypoint": "build_skill.py"
+  }
+}

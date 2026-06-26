@@ -1,0 +1,196 @@
+{
+  "$schema": "./skill.manifest.schema.json",
+  "manifestVersion": "1.0.0",
+  "kind": "instruction-bundle",
+  "name": "ai-question",
+  "version": "1.1.0",
+  "displayName": "AI Question — 资料出题",
+  "description": "通过对话框模型从上传资料生成或规范考试题库 Excel，并启动或停止 QuizAI 刷题服务。Use when the user asks to 生成题库、规范题库、格式化题库、考试题目、ai-question、generate-question-bank、normalize-question-bank、start-question-service、stop-question-service、上传资料出题、模型出题，或需要启动/停止本项目 Python 服务。",
+  "entryPoint": "SKILL.md",
+  "slashCommand": "/ai-question",
+  "disableModelInvocation": false,
+  "license": "MIT-0",
+  "metadata": {
+    "author": "ai-question",
+    "repository": "ai-question",
+    "projectType": "fastapi-quiz",
+    "tags": [
+      "education",
+      "quiz",
+      "question-bank",
+      "excel",
+      "fastapi",
+      "clawhub",
+      "openclaw"
+    ]
+  },
+  "compatibility": {
+    "agents": ["cursor", "claude-code", "codex", "openclaw", "clawhub"],
+    "python": ">=3.10",
+    "os": ["windows", "macos", "linux"],
+    "requiresProjectRoot": true,
+    "projectRootMarkers": ["run.py", "requirements.txt", "app/main.py"]
+  },
+  "install": {
+    "projectPaths": [
+      "skills/ai-question",
+      ".cursor/skills/ai-question",
+      ".claude/skills/ai-question",
+      ".agents/skills/ai-question"
+    ],
+    "globalPaths": [
+      "~/.openclaw/skills/ai-question",
+      "~/.cursor/skills/ai-question",
+      "~/.claude/skills/ai-question",
+      "~/.agents/skills/ai-question"
+    ],
+    "clawhub": {
+      "publishPath": "skills/ai-question",
+      "slug": "ai-question",
+      "installDir": "skills"
+    },
+    "notes": "ClawHub 发布与 OpenClaw 安装请使用 skills/ai-question（无点路径，可被 clawhub skill publish 上传）。Cursor 可将 .cursor/skills/ai-question 目录联接至 skills/ai-question。必须在 QuizAI 仓库根目录打开 Agent。"
+  },
+  "triggers": {
+    "slashCommands": ["/ai-question"],
+    "keywords": [
+      "生成题库",
+      "规范题库",
+      "格式化题库",
+      "考试题目",
+      "上传资料出题",
+      "模型出题",
+      "启动刷题服务",
+      "停止刷题服务",
+      "generate-question-bank",
+      "normalize-question-bank",
+      "start-question-service",
+      "stop-question-service"
+    ]
+  },
+  "capabilities": [
+    {
+      "id": "generate-question-bank",
+      "title": "生成题库",
+      "mode": "agent-instruction",
+      "summary": "对话框模型阅读资料出题，脚本导出 Excel 并可导入 SQLite",
+      "workflow": [
+        "read:generation-guide.md",
+        "run:extract_material.py",
+        "agent:generate-json",
+        "write:data/generated-bank.json",
+        "run:export_question_bank.py",
+        "prompt:import-to-db"
+      ],
+      "forbidden": ["app/services/ai_generator.py 本地模板出题"]
+    },
+    {
+      "id": "normalize-question-bank",
+      "title": "规范题库",
+      "mode": "script",
+      "summary": "将不规范题库文件解析为标准 Excel",
+      "script": "scripts/normalize_question_bank.py"
+    },
+    {
+      "id": "start-question-service",
+      "title": "启动服务",
+      "mode": "script",
+      "summary": "启动 QuizAI FastAPI 本地刷题 Web",
+      "script": "scripts/start_question_service.ps1",
+      "healthCheck": "http://127.0.0.1:8000/health"
+    },
+    {
+      "id": "stop-question-service",
+      "title": "暂停服务",
+      "mode": "script",
+      "summary": "停止 QuizAI 进程",
+      "script": "scripts/stop_question_service.ps1"
+    }
+  ],
+  "resources": [
+    {
+      "path": "SKILL.md",
+      "role": "primary-instructions",
+      "required": true
+    },
+    {
+      "path": "generation-guide.md",
+      "role": "generation-spec",
+      "requiredFor": ["generate-question-bank"]
+    },
+    {
+      "path": "reference.md",
+      "role": "excel-format-reference",
+      "requiredFor": ["generate-question-bank"]
+    }
+  ],
+  "scripts": [
+    {
+      "id": "extract_material",
+      "path": "scripts/extract_material.py",
+      "runtime": "python",
+      "usage": "python skills/ai-question/scripts/extract_material.py <资料> -o data/material-extract.txt"
+    },
+    {
+      "id": "export_question_bank",
+      "path": "scripts/export_question_bank.py",
+      "runtime": "python",
+      "usage": "python skills/ai-question/scripts/export_question_bank.py data/generated-bank.json -o <输出.xlsx>"
+    },
+    {
+      "id": "import_bank_to_db",
+      "path": "scripts/import_bank_to_db.py",
+      "runtime": "python",
+      "usage": "python skills/ai-question/scripts/import_bank_to_db.py data/generated-bank.json"
+    },
+    {
+      "id": "generate_question_bank",
+      "path": "scripts/generate_question_bank.py",
+      "runtime": "python",
+      "usage": "python skills/ai-question/scripts/generate_question_bank.py <资料> -o <输出.xlsx> [--json data/generated-bank.json]"
+    },
+    {
+      "id": "normalize_question_bank",
+      "path": "scripts/normalize_question_bank.py",
+      "runtime": "python",
+      "usage": "python skills/ai-question/scripts/normalize_question_bank.py <原始题库> -o <规范题库.xlsx>"
+    },
+    {
+      "id": "start_question_service",
+      "path": "scripts/start_question_service.ps1",
+      "runtime": "powershell",
+      "usage": ".\\skills\\ai-question\\scripts\\start_question_service.ps1"
+    },
+    {
+      "id": "stop_question_service",
+      "path": "scripts/stop_question_service.ps1",
+      "runtime": "powershell",
+      "usage": ".\\skills\\ai-question\\scripts\\stop_question_service.ps1"
+    }
+  ],
+  "services": {
+    "quizai": {
+      "name": "QuizAI",
+      "baseUrl": "http://127.0.0.1:8000",
+      "health": "/health",
+      "pages": {
+        "home": "/",
+        "banks": "/banks",
+        "practice": "/practice/{bankId}",
+        "wrong": "/wrong",
+        "apiDocs": "/docs"
+      },
+      "database": "data/quizai.db",
+      "pidFile": "data/quizai.pid"
+    }
+  },
+  "defaults": {
+    "materialExtract": "data/material-extract.txt",
+    "generatedBankJson": "data/generated-bank.json",
+    "outputXlsx": "输出题库.xlsx"
+  },
+  "supportedInputFormats": {
+    "material": ["pdf", "doc", "docx", "txt", "md"],
+    "normalize": ["doc", "docx", "xlsx", "xls"]
+  }
+}

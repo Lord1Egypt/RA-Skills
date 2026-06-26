@@ -1,0 +1,22 @@
+{
+  "name": "ai-crush-simulator",
+  "version": "1.0.0",
+  "description": "A fun, safe, youth-friendly skill that helps users analyze crush situations, decode texts, generate replies, and decide their next move.",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "cli": "tsx cli/main.ts",
+    "test": "tsx tests/scenarios.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["clawhub", "openclaw", "skill", "crush", "ai", "youth"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "AI项目估价助手",
+  "version": "1.0.0",
+  "description": "AI项目估价助手 - 基于真实成本数据，帮助评估AI项目报价",
+  "author": "JARVIS",
+  "tags": ["chinese", "pricing", "ai-project", "consulting", "cost-calculator"],
+  "license": "MIT",
+  "keywords": [
+    "AI估价",
+    "项目报价",
+    "成本计算",
+    "接单助手",
+    "DeepSeek",
+    "GPT-5",
+    "Claude"
+  ]
+}

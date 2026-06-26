@@ -1,0 +1,4 @@
+interface:
+  display_name: "/all-green"
+  short_description: "Open and drive PRs to green."
+  default_prompt: "Use $all-green to review my current changes, show me the review output before fixing anything, publish them as a PR after I approve, then address review feedback and failing checks until the PR is green."

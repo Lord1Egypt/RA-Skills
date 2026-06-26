@@ -1,35 +1,170 @@
 ---
-name: "ai-conversation-optimizer"
-description: "AI对话优化助手。诊断用户提问中的问题，给出可执行的改进方案和优化后的prompt示例。覆盖角色设定、Few-shot、CoT、格式指定等核心技巧。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [AI, conversation, engineering, optimizer, prompt]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-conversation-optimizer"
-sourceUrl: "https://clawhub.ai/skills/ai-conversation-optimizer"
+name: ai-conversation-optimizer
+description: AI对话优化助手。诊断用户提问中的问题，给出可执行的改进方案和优化后的prompt示例。覆盖角色设定、Few-shot、CoT、格式指定等核心技巧。
+version: "2.0"
 ---
 
-# ai-conversation-optimizer
+# AI 对话优化助手
 
-> AI对话优化助手。诊断用户提问中的问题，给出可执行的改进方案和优化后的prompt示例。覆盖角色设定、Few-shot、CoT、格式指定等核心技巧。
+当用户表达对 AI 回复不满意，或直接请求优化提问时，按以下流程执行。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-conversation-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/ai-conversation-optimizer](https://clawhub.ai/skills/ai-conversation-optimizer)
+## 执行流程
 
-## Overview
+### 步骤 1：识别输入类型
 
+| 输入类型 | 判断条件 | 执行分支 |
+|----------|----------|----------|
+| 原始提问 | 用户给了一个提问想优化 | → 步骤 2A |
+| 原始提问 + 期望结果 | 用户说明了想要什么样的回答 | → 步骤 2B |
+| AI 回复不满意 | 用户贴了 AI 的回复并表示不满 | → 步骤 2C |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-conversation-optimizer
+### 步骤 2A：诊断原始提问
+
+对照以下维度逐一检查用户的提问：
+
+1. **信息不足** — 缺少具体细节，提问太笼统
+2. **角色缺失** — 没有设定 AI 的身份/专业领域
+3. **范围过广** — 问题太大，AI 难以聚焦
+4. **表达模糊** — 有歧义的表述，AI 可能理解偏差
+5. **缺少格式** — 没有指定期望的输出格式
+6. **上下文缺失** — 多轮对话中断章取义
+
+### 步骤 2B：基于期望结果优化
+
+将用户的期望转化为具体约束，嵌入 prompt：
+- 用户要什么格式 → 指定输出结构
+- 用户要什么深度 → 设定角色和专业水平
+- 用户要什么角度 → 限定分析范围
+
+### 步骤 2C：分析 AI 回复不满意的原因
+
+1. 阅读 AI 的回复，找出哪里不符合预期
+2. 反推提问中缺少了什么约束导致偏差
+3. 针对性地补充约束条件
+
+### 步骤 3：选择优化策略
+
+从以下策略中选择 1-3 个最适用的：
+
+1. **明确角色** — 为 AI 设定特定身份和专业背景
+2. **提供背景** — 补充使用场景、受众、已有信息
+3. **指定格式** — 明确输出结构（表格/列表/JSON/Markdown）
+4. **限定范围** — 缩小问题边界，设定约束条件
+5. **Few-shot 示例** — 提供输入-输出范例引导格式
+6. **思维链 (CoT)** — 要求展示推理步骤
+7. **任务分解** — 将复杂任务拆分为子步骤
+8. **约束限制** — 明确说明不要做什么
+
+### 步骤 4：输出优化结果
+
+严格按以下模板输出：
+
 ```
+## 🔍 问题诊断
+[逐条列出当前提问存在的具体问题，每条对应一个维度]
+
+## 💡 优化建议
+[针对每个问题给出具体的改进方向，引用步骤3中的策略]
+
+## ✨ 优化后的 Prompt
+[给出 1-2 个完整的优化版本，可直接使用]
+
+## 📚 相关技巧
+[推荐 1-2 个相关的 prompt 技巧，附简要说明]
+```
+
+## Prompt 优化技巧速查
+
+### 明确角色
+```
+你是一位 [身份]，具有 [专业背景]。
+请用 [语气/风格] 回答：[问题]
+```
+
+### 提供背景
+```
+我正在 [场景/水平]，需要你 [任务]。
+背景信息：[...]
+```
+
+### 指定格式
+```
+请用 [表格/列表/JSON/Markdown] 格式输出，
+包含字段：[字段1, 字段2, ...]，
+按 [排序规则] 排列。
+```
+
+### 限定范围
+```
+请聚焦在 [具体方面]，字数限制 [N] 字以内。
+```
+
+### Few-shot 示例
+```
+[任务描述]
+
+示例：
+输入：[示例1]
+输出：[示例1]
+
+现在请处理：
+输入：[实际输入]
+输出：
+```
+
+### 思维链 (CoT)
+```
+请分步骤思考，每一步说明推理过程，
+最后给出结论。
+```
+
+## 触发场景
+
+以下表述应触发此 skill：
+- "帮我优化这个问题 / 这个 prompt"
+- "为什么 AI 回答的不对 / 不准确"
+- "怎么提问才能得到更好的答案"
+- "这个 prompt 有什么问题"
+- "如何让 AI 更好地理解我的需求"
+- "帮我改进一下提问方式"
+
+## 使用示例
+
+### 用户输入
+```
+帮我推荐一本书
+```
+
+### 预期输出
+```
+## 🔍 问题诊断
+1. **信息不足** — 没有说明是哪方面的书
+2. **范围过广** — 书籍类型、难度、用途都不明确
+3. **缺少偏好** — 不了解用户的阅读口味和背景
+
+## 💡 优化建议
+1. 说明书籍类型（技术/小说/历史/商业...）
+2. 补充阅读目的（入门学习/专业提升/休闲娱乐）
+3. 提供个人偏好（篇幅、语言、风格、已有阅读基础）
+
+## ✨ 优化后的 Prompt
+示例1（技术类）：
+"我是 Python 初学者，想找一本入门书籍，希望内容通俗易懂、
+篇幅 300 页以内，请推荐 3 本并说明推荐理由。"
+
+示例2（文学类）：
+"我喜欢硬科幻，读过阿西莫夫和刘慈欣的大部分作品，
+请推荐 3 本类似风格的科幻小说，简要说明每本的亮点。"
+
+## 📚 相关技巧
+- **角色设定**：告诉 AI "我是初学者"，它会调整回答深度
+- **格式指定**：要求 "推荐 3 本并说明理由"，比泛泛推荐更有价值
+```
+
+## 参考资料
+
+- Prompt Engineering 指南：https://platform.openai.com/docs/guides/prompt-engineering
+- Prompt Engineering Guide (DAIR.AI)：https://www.promptingguide.ai/
+- 思维链 (CoT) 技术：https://www.promptingguide.ai/techniques/cot
+- 详细 Prompt 模式见：[references/prompt-patterns.md](references/prompt-patterns.md)
+- 提问自检清单见：[references/checklist.md](references/checklist.md)

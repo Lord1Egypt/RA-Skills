@@ -1,0 +1,68 @@
+{
+  "timestamp": "2026-04-03T21:15:00Z",
+  "check_type": "quick",
+  "asins": {
+    "B0B1F5F3VR": {
+      "price": 6.79, "rating": 4.7, "ratingCount": 4735,
+      "bsr_pet": 1229, "bsr_sub": 3, "subcat": "Standard Dog Leashes",
+      "buyboxSeller": "Amazon.com",
+      "title": "Best Pet Supplies Voyager Reflective Dog Leash"
+    },
+    "B08PNWG993": {
+      "price": 9.99, "rating": 4.6, "ratingCount": 14592,
+      "bsr_pet": 1839, "bsr_sub": 12, "subcat": "Basic Dog Collars",
+      "buyboxSeller": "Ladoogo Direct",
+      "title": "ladoogo Reflective Dog Collar"
+    },
+    "B08NDFWQB1": {
+      "price": 14.99, "rating": 4.3, "ratingCount": 6763,
+      "bsr_pet": 2501, "bsr_sub": 29, "subcat": "Dog Vest Harnesses",
+      "buyboxSeller": "PupTeck",
+      "title": "PUPTECK Adjustable Dog Harness Collar and Leash Set"
+    },
+    "B004XNLCPC": {
+      "price": 26.99, "rating": 4.3, "ratingCount": 41226,
+      "bsr_pet": 2927, "bsr_sub": 2, "subcat": "Headcollars",
+      "buyboxSeller": "Amazon.com",
+      "title": "Halti Head Collar"
+    },
+    "B081YHK13N": {
+      "price": 6.55, "rating": 4.4, "ratingCount": 7985,
+      "bsr_pet": 3232, "bsr_sub": 14, "subcat": "Standard Dog Leashes",
+      "buyboxSeller": "AmaGoodSHIP",
+      "title": "AMAGOOD 6 FT Puppy Leash"
+    },
+    "B0CQ567YLN": {
+      "price": 24.49, "rating": 4.3, "ratingCount": 1749,
+      "bsr_pet": 3419, "bsr_sub": 47, "subcat": "Dog Vest Harnesses",
+      "buyboxSeller": "Lobeve-us",
+      "title": "Lobeve No Pull Dog Harness Set"
+    },
+    "B07DZBN74T": {
+      "price": 123.99, "rating": 4.2, "ratingCount": 4749,
+      "bsr_pet": 5478, "bsr_sub": 24, "subcat": "Electronic Training Collars",
+      "buyboxSeller": "Amazon.com",
+      "title": "SportDOG FieldTrainer 425X"
+    },
+    "B07DZ1752D": {
+      "price": 134.99, "rating": 4.1, "ratingCount": 2333,
+      "bsr_pet": 14384, "bsr_sub": 87, "subcat": "Electronic Training Collars",
+      "buyboxSeller": "Amazon.com",
+      "title": "SportDOG FieldTrainer 425XS"
+    }
+  },
+  "changes": {
+    "red_alerts": [],
+    "yellow_notices": [],
+    "green_minor": [
+      "B08PNWG993: BSR Pet 1841→1839 (-0.1%)",
+      "B08NDFWQB1: BSR Pet 2502→2501 (-0.04%), reviews 6759→6763 (+4)",
+      "B004XNLCPC: BSR Pet 2930→2927 (-0.1%), reviews 41225→41226 (+1)",
+      "B081YHK13N: BSR Pet 3233→3232 (-0.03%)",
+      "B0CQ567YLN: BSR Pet 3420→3419 (-0.03%)",
+      "B07DZ1752D: BSR Pet 14377→14384 (+0.05%)"
+    ]
+  },
+  "credits_consumed": 8,
+  "credits_remaining": 15289
+}

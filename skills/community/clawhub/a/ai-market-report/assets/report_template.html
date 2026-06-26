@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Companion Market Report</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+:root{--p:#4361ee;--a:#f72585;--bg:#f8fafc;--t:#1e293b;--m:#64748b;--b:#e2e8f0;--s:#10b981;--w:#f59e0b;--d:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans SC',sans-serif;font-size:14px;line-height:1.7;color:var(--t);background:var(--bg)}
+.cover{width:100%;min-height:100vh;background:linear-gradient(135deg,#4361ee 0%,#7c3aed 50%,#f72585 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px}
+.cover-badge{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:12px;font-weight:500;padding:6px 20px;border-radius:50px;margin-bottom:30px;letter-spacing:2px;text-transform:uppercase}
+.cover h1{font-size:48px;font-weight:700;color:#fff;text-align:center;margin-bottom:16px;line-height:1.3}
+.cover-sub{font-size:20px;color:rgba(255,255,255,.85);margin-bottom:50px;font-weight:300}
+.div{width:80px;height:4px;background:rgba(255,255,255,.5);border-radius:2px;margin:0 auto 40px}
+.cm{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.cm-item{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;padding:10px 22px;border-radius:12px;font-size:13px}
+.page{width:100%;min-height:100vh;padding:28px 48px;page-break-after:always;overflow:hidden}
+.page-white{background:#fff}
+.ph{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--b)}
+.cn{background:var(--p);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:6px;letter-spacing:1px}
+.ph h2{font-size:20px;font-weight:700;flex:1}
+.tag{background:var(--a);color:#fff;font-size:11px;padding:3px 10px;border-radius:50px;font-weight:600}
+.dt{width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.07);font-size:12px;margin-bottom:16px}
+.dt thead tr{background:var(--p);color:#fff}.dt thead th{padding:9px 11px;text-align:left;font-weight:600;font-size:11px}
+.dt tbody tr{background:#fff}.dt tbody tr:nth-child(even){background:#f8fafc}
+.dt tbody td{padding:7px 11px;border-bottom:1px solid var(--b);vertical-align:top}
+.dt tbody tr:hover td{background:#eef2ff}
+.cg{display:grid;gap:10px;margin-bottom:16px;box-sizing:border-box}
+.cg4{grid-template-columns:repeat(4,1fr)}.cg3{grid-template-columns:repeat(3,1fr)}.cg2{grid-template-columns:repeat(2,1fr)}
+.dc{background:#fff;border-radius:11px;padding:12px 14px;border:1px solid var(--b);box-shadow:0 2px 5px rgba(0,0,0,.04);box-sizing:border-box}
+.dc .lbl{font-size:10px;color:var(--m);font-weight:500;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.dc .val{font-size:22px;font-weight:700;color:var(--p);line-height:1.1;margin-bottom:4px}
+.dc .val.ac{color:var(--a)}.dc .val.su{color:var(--s)}.dc .val.wr{color:var(--w)}.dc .val.dr{color:var(--d)}
+.dc .note{font-size:10px;color:var(--m)}
+.tg{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:600}
+.tg-b{background:#dbeafe;color:#1d4ed8}.tg-g{background:#d1fae5;color:#065f46}
+.pc{background:#fff;border-radius:13px;padding:14px 16px;border:1px solid var(--b);margin-bottom:10px;box-shadow:0 2px 5px rgba(0,0,0,.04);box-sizing:border-box}
+.pc .phd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}.pc h3{font-size:14px;font-weight:700}
+.pc .rt{background:var(--p);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px}
+.pc .rt.hi{background:var(--s)}
+.pc .mr{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}.pc .mi{font-size:11px;color:var(--m)}.pc .mi strong{color:var(--t)}
+.pc p{font-size:12px;color:var(--m);line-height:1.5}
+.fl{list-style:none;margin-bottom:14px}.fl li{padding:6px 0 6px 18px;position:relative;font-size:12px;border-bottom:1px dashed var(--b)}
+.fl li:last-child{border-bottom:none}.fl li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;background:var(--p);border-radius:50%}
+.fl li strong{color:var(--t);font-weight:600}
+.cb{border-radius:8px;padding:10px 14px;margin-bottom:12px}
+.cb-i{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;border-left:4px solid var(--p)}
+.cb-w{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fde68a;border-left:4px solid var(--w)}
+.cb p{font-size:12px;color:var(--t);margin:0}
+.tc{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:start}
+.sec{font-size:14px;font-weight:700;color:var(--t);margin:16px 0 10px;padding-left:11px;border-left:4px solid var(--p)}
+.oc{background:#fff;border-radius:11px;padding:10px 13px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;border:1px solid var(--b);box-sizing:border-box}
+.on{width:22px;height:22px;background:var(--p);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.oc h4{font-size:12px;font-weight:700;color:var(--t);margin-bottom:2px}.oc p{font-size:11px;color:var(--m);line-height:1.5}
+.rc{background:#fff;border-radius:10px;padding:8px 11px;margin-bottom:7px;display:flex;gap:9px;align-items:flex-start;border:1px solid var(--b);box-sizing:border-box}
+.ri{font-size:15px;flex-shrink:0}.rc h4{font-size:12px;font-weight:700;color:var(--t);margin-bottom:2px}.rc p{font-size:11px;color:var(--m)}
+.ep{width:100%;min-height:100vh;background:linear-gradient(135deg,#4361ee 0%,#7c3aed 50%,#f72585 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px}
+.ep h2{font-size:30px;color:#fff;font-weight:700;margin-bottom:16px;text-align:center}
+.ep p{color:rgba(255,255,255,.8);font-size:13px;text-align:center;max-width:600px;line-height:1.8}
+@page{size:A4 landscape;margin:15mm}
+@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{padding:22px 40px}.cover,.ep,.dc,.oc,.rc,.pc{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <div class="cover-badge">📊 市场调研日报</div>
+  <div class="div"></div>
+  <h1>AI 陪伴软件<br>市场调研日报</h1>
+  <p class="cover-sub">全球产品数据 / 重点分析 / 市场格局 / 趋势洞察</p>
+  <div class="cm">
+    <div class="cm-item">📅 {{report_date}}</div>
+    <div class="cm-item">🌐 App Store + Tavily 实时数据</div>
+    <div class="cm-item">📱 {{product_count}} 款全球产品</div>
+  </div>
+</div>
+
+<!-- P01: 核心数据总览 -->
+<div class="page page-white">
+  <div class="ph"><span class="cn">第一章</span><h2>全球AI陪伴软件核心数据总览</h2></div>
+
+  <div class="cg cg4">
+    <div class="dc"><div class="lbl">市场规模（2025）</div><div class="val">{{mkt_2025}}</div><div class="note">Precedenceresearch</div></div>
+    <div class="dc"><div class="lbl">市场规模（2026）</div><div class="val ac">{{mkt_2026}}</div><div class="note">CAGR {{cagr}}</div></div>
+    <div class="dc"><div class="lbl">Character.AI 月访问</div><div class="val su">{{cai_vis}}</div><div class="note">DemandSage</div></div>
+    <div class="dc"><div class="lbl">Character.AI 下载量（2024）</div><div class="val wr">{{cai_dl}}</div><div class="note">Appfigures</div></div>
+  </div>
+
+  <div class="sec">📱 App Store 核心数据（iTunes API 实时）</div>
+  <table class="dt">
+    <thead><tr><th>产品</th><th>评分</th><th>评价数</th><th>分类</th><th>产品定位</th></tr></thead>
+    <tbody>{{app_table}}</tbody>
+  </table>
+
+  <div class="sec">💈 产品运营数据（Tavily 2025-2026）</div>
+  <table class="dt">
+    <thead><tr><th>产品</th><th>MAU</th><th>营收/ARR</th><th>估值/融资</th><th>日均时长</th><th>最新动态</th></tr></thead>
+    <tbody>{{ops_table}}</tbody>
+  </table>
+
+  <div class="cb cb-i">
+    <p><strong>数据说明：</strong>App Store 评分/评价数 = iTunes API 直接验证（★★★）；MAU/营收/估值 = 新闻报道（★★）；「未公开」严格禁绝编造。</p>
+  </div>
+</div>
+
+<!-- P02: 产品分析 -->
+<div class="page">
+  <div class="ph"><span class="cn">第二章</span><h2>重点产品深度分析</h2></div>
+  {{product_cards}}
+</div>
+
+<!-- P03: 中国市场 -->
+<div class="page page-white">
+  <div class="ph"><span class="cn">第三章</span><h2>中国市场格局</h2><span class="tag">HOT</span></div>
+
+  <!-- 三大产品指标 -->
+  <div class="cg cg3" style="margin-bottom:12px;">
+    <div class="dc"><div class="lbl">豆包 MAU</div><div class="val">120M</div><div class="note">字节 | 国内第一</div></div>
+    <div class="dc"><div class="lbl">猫箱 MAU</div><div class="val wr">{{mao_m}}</div><div class="note">字节 | 日均125分钟</div></div>
+    <div class="dc"><div class="lbl">星野 MAU</div><div class="val wr">{{xingye_m}}</div><div class="note">MiniMax</div></div>
+  </div>
+
+  <!-- 左：中国产品列表 | 右：全球区域格局 -->
+  <div class="tc">
+    <!-- 左：产品列表 -->
+    <div>
+      <div class="sec">💡 国内重点产品</div>
+      <ul class="fl">
+        <li><strong>豆包（字节）</strong> — MAU 1.2亿，国内第一，DAU 3135万</li>
+        <li><strong>猫箱（字节）</strong> — MAU {{mao_m}}，DAU 115万，日均125分钟</li>
+        <li><strong>星野（MiniMax）</strong> — MAU {{xingye_m}}，增长放缓</li>
+        <li><strong>海螺AI（MiniMax）</strong> — 营收占比 {{hailuo_m}}，迪士尼诉讼影响</li>
+        <li><strong>小冰</strong> — 累计融资$2.16亿，国内最早的AI陪伴产品</li>
+        <li><strong>MiniMax</strong> — 全球用户2.12亿，70%以上来自海外</li>
+      </ul>
+    </div>
+    <!-- 右：全球区域格局 -->
+    <div>
+      {{mkt_block}}
+    </div>
+  </div>
+
+  <!-- 近期动态（独立一行，不在右列内） -->
+  {{ev_table}}
+</div>
+
+<!-- P04: 市场格局 -->
+<div class="page">
+  <div class="ph"><span class="cn">第四章</span><h2>市场格局与关键变化</h2></div>
+  <div class="tc">
+    <div>{{mkt_block}}</div>
+    <div>
+      <div class="sec">📈 关键数据变化</div>
+      {{chg_block}}
+    </div>
+  </div>
+  {{or_block}}
+</div>
+
+<!-- P05: 策略建议 -->
+<div class="page">
+  <div class="ph"><span class="cn">第五章</span><h2>产品差异化切入建议</h2></div>
+  <div class="tc">
+    <div>
+      <div class="sec">🎯 产品策略</div>
+      {{str_block}}
+      <div class="sec">👤 用户画像</div>
+      {{per_block}}
+    </div>
+    <div>
+      <div class="sec">🌍 优先市场</div>
+      <div class="cg" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">
+        <div class="dc" style="border-top:3px solid #10b981">
+          <div class="lbl">首选</div>
+          <div style="font-size:13px;font-weight:700;color:#10b981;margin-bottom:4px">🌍 欧美</div>
+          <p style="font-size:11px;color:#64748b">付费意愿高，$7.99+/月</p>
+        </div>
+        <div class="dc" style="border-top:3px solid #f59e0b">
+          <div class="lbl">次选</div>
+          <div style="font-size:13px;font-weight:700;color:#f59e0b;margin-bottom:4px">🌏 东南亚</div>
+          <p style="font-size:11px;color:#64748b">MiniMax已验证模式</p>
+        </div>
+        <div class="dc" style="border-top:3px solid #94a3b8">
+          <div class="lbl">备选</div>
+          <div style="font-size:13px;font-weight:700;color:#64748b;margin-bottom:4px">🌐 中东/南美</div>
+          <p style="font-size:11px;color:#64748b">增速快但ARPU低</p>
+        </div>
+      </div>
+      <div class="sec">🚀 推广策略</div>
+      <ul class="fl">
+        <li><strong>SEO + 内容营销：</strong>Character.AI 直接流量占89%——品牌与关键词是核心</li>
+        <li><strong>社区运营：</strong>Reddit/Discord（Character.AI subreddit 200万+成员）</li>
+        <li><strong>付费推广：</strong>字节跳动模型——豆包是十亿美元级应用中CPA最低的</li>
+        <li><strong>应用商店：</strong>Replika放在健康与健身分类——避免红海品类</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 结尾页 -->
+<div class="ep">
+  <div class="div"></div>
+  <h2>感谢阅读</h2>
+  <p>数据来源：App Store iTunes API + Tavily Search（2025-2026）<br>{{report_date}} | AI 陪伴软件市场调研</p>
+</div>
+
+</body>
+</html>

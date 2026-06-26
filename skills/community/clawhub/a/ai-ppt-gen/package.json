@@ -1,0 +1,9 @@
+{
+  "name": "presentation-maker",
+  "version": "1.0.0",
+  "description": "AI presentation generator",
+  "main": "index.js",
+  "keywords": ["presentation", "slides", "ppt", "design"],
+  "author": "AI-Agent",
+  "license": "MIT"
+}

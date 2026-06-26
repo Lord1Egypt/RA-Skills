@@ -1,0 +1,28 @@
+{
+  "name": "ai-social-media-manager",
+  "version": "1.0.0",
+  "description": "AI-driven social media management skill with content calendar, auto-scheduling, engagement, and analytics",
+  "main": "src/index.js",
+  "bin": {
+    "ai-smm": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/test.js"
+  },
+  "keywords": [
+    "social-media",
+    "automation",
+    "content-calendar",
+    "analytics",
+    "ai",
+    "xiaohongshu",
+    "weibo",
+    "twitter"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

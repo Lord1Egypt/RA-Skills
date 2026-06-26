@@ -1,0 +1,22 @@
+{
+  "name": "ai-product-space",
+  "version": "1.0.0",
+  "description": "Generate full ecommerce assets from a single product photo — images, posters, copy, and video.",
+  "auth": {
+    "type": "oauth",
+    "authorizationUrl": "{APS_BASE_URL}/oauth/authorize",
+    "tokenUrl": "{APS_BASE_URL}/api/oauth/token",
+    "clientId": "openclaw",
+    "scopes": ["*"],
+    "pkce": true,
+    "codeChallengeMethod": "S256"
+  },
+  "config": {
+    "APS_BASE_URL": {
+      "type": "string",
+      "description": "AI Product Space instance URL",
+      "required": true,
+      "default": "https://renshevy.com"
+    }
+  }
+}

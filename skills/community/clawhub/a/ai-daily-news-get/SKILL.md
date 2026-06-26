@@ -1,35 +1,40 @@
 ---
-name: "AI Daily News"
-description: "每日AI早报生成 - 每天早上7点半自动梳理过去24小时内发生的国内外AI新闻大事，生成包含标题、推荐理由、推荐分值、内容摘要、原文链接的AI新闻早报。使用场景：(1) 用户请求生成AI早报 (2) 查看今日AI新闻 (3) 了解最近AI行业动态 (4) 定时任务触发AI新闻汇总"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, daily, news]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-daily-news-get"
-sourceUrl: "https://clawhub.ai/skills/ai-daily-news-get"
+name: AI Daily News
+description: 每日AI早报生成 - 每天早上7点半自动梳理过去24小时内发生的国内外AI新闻大事，生成包含标题、推荐理由、推荐分值、内容摘要、原文链接的AI新闻早报。使用场景：(1) 用户请求生成AI早报 (2) 查看今日AI新闻 (3) 了解最近AI行业动态 (4) 定时任务触发AI新闻汇总
 ---
 
-# AI Daily News
+# AI Daily News - 每日AI早报
 
-> 每日AI早报生成 - 每天早上7点半自动梳理过去24小时内发生的国内外AI新闻大事，生成包含标题、推荐理由、推荐分值、内容摘要、原文链接的AI新闻早报。使用场景：(1) 用户请求生成AI早报 (2) 查看今日AI新闻 (3) 了解最近AI行业动态 (4) 定时任务触发AI新闻汇总
+生成每日AI新闻早报，梳理过去24小时内的国内外AI新闻大事。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-daily-news-get`
-- **Source URL:** [https://clawhub.ai/skills/ai-daily-news-get](https://clawhub.ai/skills/ai-daily-news-get)
+## 输出格式
 
-## Overview
+每条新闻包含：
+- **标题**: 新闻标题
+- **推荐理由**: 为什么值得关注
+- **推荐分值**: 1-10分
+- **内容摘要**: 50-100字摘要
+- **原文链接**: 新闻来源链接
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-daily-news-get
-```
+### 1. 新闻搜索
+使用 web_search 搜索过去24小时内的AI新闻：
+- 中文关键词：`AI 新闻 2026`、`人工智能 最新消息`、`大模型 最新动态`
+- 英文关键词：`AI news 2026`、`artificial intelligence latest`、`LLM news`
+
+### 2. 新闻筛选
+从搜索结果中筛选最重要的10条新闻，确保：
+- 来源权威（知名科技媒体、官方发布）
+- 内容独家或具有行业影响力
+- 国内外新闻兼顾
+
+### 3. 内容获取
+使用 web_fetch 获取原文详细内容，提取关键信息。
+
+### 4. 生成早报
+按照指定格式整理成早报输出。
+
+## 新闻来源参考
+
+参考 `references/news_sources.md` 获取推荐的新闻源列表。

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Health Data AI Analyzer"
+  short_description: "Apple Health daily brief from the Mac app’s read-only localhost API on macOS"
+  default_prompt: "Use $health-analyzer-mac-local for this request. Read only the minimum Health Data AI Analyzer localhost endpoint needed, keep the data local, and if local fetch is unavailable ask me for one exact curl response body and continue from that JSON."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,3 @@
+测试声明：
+
+OpenClaw 是 2025 年发布的开源 AI Agent 框架，现在 ClawHub 上已经有超过 10000 个社区技能。作者是 Peter Steinberger。

@@ -1,0 +1,12 @@
+{
+  "name": "科技冷知识博主",
+  "style": "轻松幽默、信息密度高、节奏紧凑",
+  "target_audience": "18-35岁好奇心旺盛的年轻人",
+  "content_pillars": ["科技冷知识", "未来黑科技", "日常科技原理"],
+  "tone": "像朋友聊天一样讲知识，偶尔抖机灵，善用类比让复杂概念秒懂",
+  "jimeng_prompt_style": "科幻风格，未来感画面，蓝紫色调，极简科技感背景，动态光效",
+  "video_duration": 5,
+  "clips_per_post": 4,
+  "aspect_ratio": "9:16",
+  "hashtags_template": ["科技", "冷知识", "涨知识", "科普", "黑科技"]
+}

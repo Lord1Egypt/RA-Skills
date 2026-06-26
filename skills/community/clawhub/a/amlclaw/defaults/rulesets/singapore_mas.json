@@ -1,0 +1,372 @@
+[
+  {
+    "rule_id": "SG-DPT-DEP-SEVERE-001",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Inflow Direct Interaction — Sanctions/Terrorism (Hop 1)",
+    "description": "Freeze if direct inflow (Hop 1) from Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes. Direct interaction indicates intentional or negligent exposure per OFAC Critical-level guidance.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "MAS Notice PSN02 Section 6 & OFAC SDN Direct Contact = Critical"
+  },
+  {
+    "rule_id": "SG-DPT-DEP-SEVERE-002",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Inflow Near-Distance — Sanctions/Terrorism (Hop 2-3)",
+    "description": "Freeze if near-distance inflow (Hop 2-3) from Sanctions, Terrorism, or Frozen entities. Near-distance exposure still represents significant taint requiring immediate containment.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "MAS Notice PSN02 & TrustIn SG DPT Guide Section 1.A"
+  },
+  {
+    "rule_id": "SG-DPT-DEP-HIGH-001",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 4,
+    "max_hops": 5,
+    "name": "Inflow Far-Distance — Sanctions/Terrorism (Hop 4-5)",
+    "description": "Trigger EDD if far-distance inflow (Hop 4-5) from Sanctions, Terrorism, or Frozen entities. Pollution decay principle: risk reduces with distance, but sanctions exposure still requires enhanced investigation.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "MAS Notice PSN02 & Pollution Decay Principle (OFAC Indirect Benefits)"
+  },
+  {
+    "rule_id": "SG-DPT-DEP-HIGH-002",
+    "category": "Deposit",
+    "direction": "inflow",
+    "name": "Inflow Exposure — Cybercrime/Obfuscation/Gambling/High-Risk (Threshold)",
+    "description": "Trigger EDD if inflow exposure to Cybercrime, Mixers, Gambling, or High-Risk Entities exceeds 10% AND risk amount > 50 USD.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation", "Gambling", "High-Risk Entities"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "parameter": "path.risk_amount_usd",
+        "operator": ">",
+        "value": 50,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "TrustIn KYA Pro SG DPT Guide Section 1.B & 2.2"
+  },
+  {
+    "rule_id": "SG-DPT-DEP-MED-001",
+    "category": "Deposit",
+    "direction": "inflow",
+    "name": "Inflow Exposure — Grey Industry/Spam (Threshold)",
+    "description": "Trigger SOF Review if inflow exposure to Grey Industry or Spam exceeds 30% AND risk amount > 1000 USD.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.secondary_category",
+        "operator": "IN",
+        "value": ["Black/Grey Industry", "MEV Bots/Arbitrage", "Spam"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "parameter": "path.risk_amount_usd",
+        "operator": ">",
+        "value": 1000,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "Medium",
+    "action": "Review",
+    "reference": "TrustIn KYA Pro SG DPT Guide Section 1.C & 2.2"
+  },
+  {
+    "rule_id": "SG-DPT-DEP-OUT-SEVERE-001",
+    "category": "Deposit",
+    "direction": "outflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Outflow History — Target Directly Funded Sanctions/Terrorism (Hop 1)",
+    "description": "Freeze if the target address has directly sent funds (Hop 1 outflow) to Sanctions, Terrorism, or Frozen entities. Direct outflow to sanctioned entities indicates intentional interaction — far more severe than passive inflow exposure.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "MAS Notice PSN02 & OFAC Prohibition on Providing Indirect Benefits"
+  },
+  {
+    "rule_id": "SG-DPT-DEP-OUT-HIGH-001",
+    "category": "Deposit",
+    "direction": "outflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Outflow History — Target Indirectly Funded Sanctions/Terrorism (Hop 2-3)",
+    "description": "Trigger EDD if the target address has indirectly funded (Hop 2-3 outflow) Sanctions or Terrorism entities. Indirect outflow through intermediaries still requires enhanced investigation.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "MAS Notice PSN02 & OFAC Prohibition on Providing Indirect Benefits"
+  },
+  {
+    "rule_id": "SG-DPT-DEP-SELF-SEVERE-001",
+    "category": "Deposit",
+    "name": "Target Self-Tag — Sanctions/Freeze/Illicit",
+    "description": "Freeze if the target address itself is tagged as Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes. Applies to both onboarding and deposit — risk changes over time, an address clean at onboarding may be flagged later.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Public Freezing Action", "Illicit Markets", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "MAS Notice PSN02 Section 6 (CDD/Ongoing CDD) & FATF Recommendation 10"
+  },
+  {
+    "rule_id": "SG-DPT-DEP-SELF-HIGH-001",
+    "category": "Deposit",
+    "name": "Target Self-Tag — Cybercrime/Obfuscation",
+    "description": "Trigger EDD if the target address itself is tagged as Cybercrime or Obfuscation. Applies to both onboarding and deposit — addresses may acquire new risk labels after onboarding due to evolving threat intelligence.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "MAS Notice PSN02 Section 6 (CDD/Ongoing CDD)"
+  },
+  {
+    "rule_id": "SG-DPT-WHL-001",
+    "category": "Deposit",
+    "name": "CEX Whitelist Stop Rule",
+    "description": "Stop penetrating graph paths if a known CEX or TradFi institution is encountered to prevent false positives.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.secondary_category",
+        "operator": "IN",
+        "value": ["CEX", "TradFi"]
+      }
+    ],
+    "risk_level": "Low",
+    "action": "Whitelist",
+    "reference": "TrustIn KYA Pro SG DPT Guide Section 2.1"
+  },
+  {
+    "rule_id": "SG-DPT-WDR-SEVERE-001",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Outflow Direct Interaction — Sanctions/Terrorism Destination (Hop 1)",
+    "description": "Freeze if direct outflow (Hop 1) reaches Sanctions, Terrorism, or Frozen destination. Sending funds directly to sanctioned entities is the highest-severity withdrawal risk.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Illicit Markets", "Public Freezing Action", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "MAS Notice PSN02 Section 8 (STR) & FATF Recommendation 20"
+  },
+  {
+    "rule_id": "SG-DPT-WDR-SEVERE-002",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Outflow Near-Distance — Sanctions/Terrorism Destination (Hop 2-3)",
+    "description": "Freeze if near-distance outflow (Hop 2-3) reaches Sanctions or Terrorism destination. Near-distance outflow to sanctioned entities still requires containment per CFT obligations.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Illicit Markets", "Public Freezing Action", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "MAS Notice PSN02 Section 8 & TrustIn SG DPT Guide (Outflow 3-5 Hops)"
+  },
+  {
+    "rule_id": "SG-DPT-WDR-HIGH-001",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "min_hops": 4,
+    "max_hops": 5,
+    "name": "Outflow Far-Distance — Sanctions/Terrorism Destination (Hop 4-5)",
+    "description": "Trigger EDD if far-distance outflow (Hop 4-5) reaches Sanctions or Terrorism destination. Pollution decay applies but sanctions obligations require enhanced investigation.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Illicit Markets", "Public Freezing Action", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "MAS Notice PSN02 & Pollution Decay Principle"
+  },
+  {
+    "rule_id": "SG-DPT-WDR-HIGH-002",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "name": "Outflow Exposure — Cybercrime/Obfuscation/Gambling Destination (Threshold)",
+    "description": "Trigger EDD if outflow reaches Cybercrime, Obfuscation, Gambling, or High-Risk destination with exposure > 10% AND amount > 50 USD.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation", "Gambling", "High-Risk Entities"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "parameter": "path.risk_amount_usd",
+        "operator": ">",
+        "value": 50,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "MAS Notice PSN02 Section 6 (EDD) & TrustIn SG DPT Guide"
+  },
+  {
+    "rule_id": "SG-DPT-WDR-SELF-SEVERE-001",
+    "category": "Withdrawal",
+    "name": "Withdrawal Gate — Target Self-Tagged (Sanctions/Freeze/Illicit)",
+    "description": "Freeze withdrawal if the target address itself is tagged as Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes. Prevents sanctioned or frozen addresses from moving funds out.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Public Freezing Action", "Illicit Markets", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "MAS Notice PSN02 Section 6 & 8 (Ongoing CDD + STR)"
+  },
+  {
+    "rule_id": "SG-DPT-WDR-SELF-HIGH-001",
+    "category": "Withdrawal",
+    "name": "Withdrawal Gate — Target Self-Tagged (Cybercrime/Obfuscation)",
+    "description": "Trigger EDD on withdrawal if the target address itself is tagged as Cybercrime or Obfuscation. High-risk tagged addresses require enhanced investigation before allowing fund movement.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "MAS Notice PSN02 Section 6 (Ongoing CDD)"
+  },
+  {
+    "rule_id": "SG-DPT-TX-001",
+    "category": "Withdrawal",
+    "name": "Travel Rule Verification",
+    "description": "Trigger Travel Rule verification if single transfer > 1000 USD (~ 1350 SGD).",
+    "conditions": [
+      {
+        "parameter": "path.amount",
+        "operator": ">",
+        "value": 1000,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "Medium",
+    "action": "Review",
+    "reference": "TrustIn KYA Pro SG DPT Guide Section 2.3"
+  },
+  {
+    "rule_id": "SG-DPT-TX-002",
+    "category": "CDD",
+    "name": "Occasional Transaction KYC Trigger",
+    "description": "Trigger full KYC/CDD if occasional transaction amount > 3500 USD (~ 4700 SGD).",
+    "conditions": [
+      {
+        "parameter": "path.amount",
+        "operator": ">",
+        "value": 3500,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "TrustIn KYA Pro SG DPT Guide Section 2.3"
+  },
+  {
+    "rule_id": "SG-DPT-TX-003",
+    "category": "Ongoing Monitoring",
+    "name": "Structuring Alert (Daily Volume)",
+    "description": "Trigger alert if daily cumulative deposit > 3000 USD (Anti-smurfing).",
+    "conditions": [
+      {
+        "parameter": "target.daily_deposit_usd",
+        "operator": ">",
+        "value": 3000,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "Review",
+    "reference": "TrustIn KYA Pro SG DPT Guide Section 2.3"
+  }
+]

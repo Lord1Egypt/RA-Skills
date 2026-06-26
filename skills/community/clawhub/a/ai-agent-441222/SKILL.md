@@ -1,35 +1,188 @@
 ---
-name: "Ai Agent 441222"
+name: ai-agent-441222
 description: "从抖音视频学习: AI Agent — 2026吃透AI Agent智能体全套系统教程，手把手教你从0到1打造企业级AI Agent智能体，学完即可就业！拿走不"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-agent-441222"
-sourceUrl: "https://clawhub.ai/skills/ai-agent-441222"
+compatibility: opencode
+trigger: "AI Agent / 2026吃透AI / Agent智能体全套系统教程 / 手把手教你从0到1打造企业级AI"
+tags: [guide, AI Agent, video-learned]
 ---
 
-# Ai Agent 441222
+# AI Agent
 
-> 从抖音视频学习: AI Agent — 2026吃透AI Agent智能体全套系统教程，手把手教你从0到1打造企业级AI Agent智能体，学完即可就业！拿走不
+> 从 @AI大模型系统课程 的视频中学到的技能
+> 关键词: 2026吃透AI, Agent智能体全套系统教程, 手把手教你从0到1打造企业级AI, Agent智能体, 学完即可就业, 拿走不谢, 学不会我退出IT圈
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-agent-441222`
-- **Source URL:** [https://clawhub.ai/skills/ai-agent-441222](https://clawhub.ai/skills/ai-agent-441222)
+## 描述
 
-## Overview
+2026吃透AI Agent智能体全套系统教程，手把手教你从0到1打造企业级AI Agent智能体，学完即可就业！拿走不谢，学不会我退出IT圈！！！
+
+## 操作步骤
+
+1. 理解核心概念: AI Agent
+2. 掌握关键技巧: 2026吃透AI, Agent智能体全套系统教程, 手把手教你从0到1打造企业级AI, Agent智能体
+3. 参考案例: AI大模型系统课程 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @AI大模型系统课程
+- 学习时间: 2026-06-01 21:03
+- 领域标签: guide
+
+## 触发场景
+- 用户说"AI Agent"
+- 用户说"2026吃透AI"
+- 用户需要AI Agent相关帮助
+
+## B站学习
+> 学习时间: 2026-06-01 21:07
+
+- **爱开大3差er**: API中转站推荐：ai中转，覆盖文本图片等多类模型，image2 小成本即可体验，按需付费减少闲置成本，并发使用不受约束，覆盖内容创作效率更高
+- **爱开大3差er**: API中转站推荐：ai中转，覆盖多类型AI模型通道，image2 价格友好更适合测试，按次付费更适合测试，高频测试更省时间，兼顾模型类型丰富更省事
+- **她说红糖水不好喝**: API中转站推荐：ai中转，热门大模型通道集中调用，image2 调用一次仅 4 分钱，帮助无需包月按需调用，高并发场景也能支持，多种模型自行选择
+
+## 融合来源: ai-agent-441222-84358c
+> 融合时间: 自动合并
+
+> 学习时间: 2026-06-02 07:52
+- **stevenlu137**: 懒人福音: 用AI agent自动寻找/克隆/配置/编译c++库!
+- **William2000**: 119. 如何创建自定义聊天缩减器【AI in C#】
+- **Akinokoe**: AI 大模型周报 2025年3月 c
+
+## 融合来源: ai-agent-441222-84358c-04fdf8
+> 融合时间: 自动合并
+
+## B站学习
+> 学习时间: 2026-06-02 07:59
+
+- **AI技术投降派**: CCManager：一条命令管理8个AI编程助手，不依赖tmux，开箱即用
+- **王教员**: [.Net Ai]8. Ai RAG Qdrant 向量数据库语义搜索
+- **倍控销售亚军**: R7-8845HS 软路由 5G接口 AI芯片8核心16线 10G万兆网口 NAS存储 4G物联网 嵌入式主板 AMD 工控主板 四显示
+
+## 融合来源: ai-agent-441222-84358c-04fdf8-016eba
+> 融合时间: 自动合并
+
+> 学习时间: 2026-06-02 08:54
+- **小质学习**: 【小质数学】每天一练V2.0 第35天 题目2 441222C
+- **小质学习**: 【小质数学】分数应用题18（441222B）
+- **小质学习**: 【小质数学】分数应用题17（441222A）
+
+# ai-agent-441222-84358c
+> 从 @William2000 的视频中学到的技能
+> 关键词: 119, 如何创建自定义聊天缩减器, AI, in
+
+## 描述
+119. 如何创建自定义聊天缩减器【AI in C#】
+
+## 操作步骤
+1. 如何创建自定义聊天缩减器【AI in C#】
+
+## 参考来源
+- 作者: @William2000
+- 学习时间: 2026-06-02 07:52
+- 领域标签: guide
+
+## 触发场景
+- 用户说"ai-agent-441222-84358c"
+- 用户说"119"
+- 用户需要ai-agent-441222-84358c相关帮助
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-agent-441222
-```
+## B站学习 (第1轮)
+> 学习时间: 2026-06-02 09:20
+
+- **爱开大3差er**: API中转站推荐：ai中转，多模型能力统一开放，image2 低至 4 分钱一次，按次付费更适合测试，批处理场景更好用，还能内容创作效率更高
+  https://www.bilibili.com/video/BV1dQVv6hEir
+- **她说红糖水不好喝**: API中转站推荐：ai中转，模型选择更丰富更灵活，image2 单次成本 4 分钱起，帮助按实际用量结算更自由，适合自动化批量生成，写做图片都能用
+  https://www.bilibili.com/video/BV1XZVv64Ekf
+- **Brcga**: API中转站推荐：ai中转，常用AI模型都能接入，image2 调用一次仅 4 分钱，同时按调用次数计费更清楚，请求并行更适合开发，多种模型自行选择
+  https://www.bilibili.com/video/BV1WzVv66Egw
+
+## 融合来源: ai-agent-441222-84358c
+> 融合时间: 自动合并
+
+# ai-agent-441222
+> 从 @Brcga 的视频中学到的技能
+> 关键词: API中转站推荐, ai中转, 常用AI模型都能接入, image2, 调用一次仅, 分钱, 同时按调用次数计费更清楚, 请求并行更适合开发
+
+## 描述
+API中转站推荐：ai中转，常用AI模型都能接入，image2 调用一次仅 4 分钱，同时按调用次数计费更清楚，请求并行更适合开发，多种模型自行选择
+
+## 操作步骤
+1. 理解核心概念: ai-agent-441222
+2. 掌握关键技巧: API中转站推荐, ai中转, 常用AI模型都能接入, image2
+3. 参考案例: Brcga 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @Brcga
+- 学习时间: 2026-06-02 09:20
+- 领域标签: code
+
+## 触发场景
+- 用户说"ai-agent-441222"
+- 用户说"API中转站推荐"
+- 用户需要ai-agent-441222相关帮助
+
+
+## 融合来源: ai-agent-441222-84358c
+> 融合时间: 自动合并
+
+# ai-agent-441222
+> 从 @Brcga 的视频中学到的技能
+> 关键词: API中转站推荐, ai中转, 常用AI模型都能接入, image2, 调用一次仅, 分钱, 同时按调用次数计费更清楚, 请求并行更适合开发
+
+## 描述
+API中转站推荐：ai中转，常用AI模型都能接入，image2 调用一次仅 4 分钱，同时按调用次数计费更清楚，请求并行更适合开发，多种模型自行选择
+
+## 操作步骤
+1. 理解核心概念: ai-agent-441222
+2. 掌握关键技巧: API中转站推荐, ai中转, 常用AI模型都能接入, image2
+3. 参考案例: Brcga 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @Brcga
+- 学习时间: 2026-06-02 09:24
+- 领域标签: code
+
+## 触发场景
+- 用户说"ai-agent-441222"
+- 用户说"API中转站推荐"
+- 用户需要ai-agent-441222相关帮助
+
+
+## B站学习 (第2轮)
+> 学习时间: 2026-06-02 09:32
+
+- **aomgecho**: API中转站推荐：ai中转，热门模型通道持续可选，image2 调用成本低至 4 分钱，测试和生产都好控制预算，适合大量调用也更从容，个人和团队都适合使用
+  https://www.bilibili.com/video/BV1gnVv6XEr8
+- **aomgecho**: API中转站推荐：ai中转，整合百+主流模型能力，image2 生成一次也很划算，费用透明方便团队管理，并且大批量任务也能跑，开发者接入更省流程
+  https://www.bilibili.com/video/BV1R9Vv6FEfX
+- **爱开大3差er**: API中转站推荐：ai中转，多模型能力统一开放，image2 低至 4 分钱一次，按次付费更适合测试，批处理场景更好用，还能内容创作效率更高
+  https://www.bilibili.com/video/BV1dQVv6hEir
+
+## 融合来源: ai-agent-441222-84358c
+> 融合时间: 自动合并
+
+# ai-agent-441222
+> 从 @爱开大3差er 的视频中学到的技能
+> 关键词: API中转站推荐, ai中转, 多模型能力统一开放, image2, 低至, 分钱一次, 按次付费更适合测试, 批处理场景更好用
+
+## 描述
+API中转站推荐：ai中转，多模型能力统一开放，image2 低至 4 分钱一次，按次付费更适合测试，批处理场景更好用，还能内容创作效率更高
+
+## 操作步骤
+1. 理解核心概念: ai-agent-441222
+2. 掌握关键技巧: API中转站推荐, ai中转, 多模型能力统一开放, image2
+3. 参考案例: 爱开大3差er 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @爱开大3差er
+- 学习时间: 2026-06-02 09:32
+- 领域标签: code
+
+## 触发场景
+- 用户说"ai-agent-441222"
+- 用户说"API中转站推荐"
+- 用户需要ai-agent-441222相关帮助
+

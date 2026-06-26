@@ -1,35 +1,166 @@
----
-name: "Apifox Exporter"
-description: "导入 Apifox 导出的 OpenAPI JSON，递归展开引用，按模块分组整理并输出清晰的接口文档，支持多项目管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apifox-exporter"
-sourceUrl: "https://clawhub.ai/skills/apifox-exporter"
+# Apifox Exporter Skill
+
+**版本：** 2.0.0  
+**作者：** 果果 @ 婉秋  
+**描述：** 全自动从 Apifox 导出接口数据并整理成标准格式的文档
+
 ---
 
-# Apifox Exporter
+## ✨ v2.0.0 新特性
 
-> 导入 Apifox 导出的 OpenAPI JSON，递归展开引用，按模块分组整理并输出清晰的接口文档，支持多项目管理。
+**现在支持全自动浏览器自动化！**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apifox-exporter`
-- **Source URL:** [https://clawhub.ai/skills/apifox-exporter](https://clawhub.ai/skills/apifox-exporter)
+- ✅ **全自动模式**：一键完成所有操作（登录→选择团队→选择项目→导出→整理）
+- ✅ **登录状态保存**：首次登录后，后续无需重复登录
+- ✅ **多团队支持**：自动查找项目所在团队
+- ✅ **灵活的口令**：支持多种指定团队和项目的方式
+- ✅ **半自动模式**：保留原有手动导出方式作为备用
 
-## Overview
+---
 
+## 🚀 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apifox-exporter
+### 方式 1：全自动模式（推荐）
+
+**基础口令：**
 ```
+更新接口文档
+导出接口
+刷新 Apifox 接口
+```
+
+**指定项目（团队用默认）：**
+```
+更新接口文档，用商城项目
+更新接口文档 - 商城
+```
+
+**指定团队和项目：**
+```
+更新接口文档，团队是xxxx，项目是xxx
+更新接口文档 - 团队名 - 项目名
+```
+
+### 方式 2：半自动模式（备用）
+
+```
+半自动更新接口文档
+```
+
+需要手动从apifox点击导出按钮导出借楼json文件后存到  `~/.openclaw/workspace/script/apifox/source.json`，其他自动完成。
+
+---
+
+## 📋 配置默认值
+
+修改 `script/auto-export-playwright.js` 开头的默认配置：
+
+```javascript
+const DEFAULT_TEAM_NAME = '团队名';
+const DEFAULT_PROJECT_NAME = '项目名';
+```
+
+---
+
+## 📁 文件结构
+
+```
+apifox-exporter/
+├── SKILL.md                    # Skill 描述
+├── README.md                   # 详细文档
+├── skill.yaml                  # Skill 配置
+├── package.json                # 依赖配置
+├── script/
+│   ├── auto-export-playwright.js  # 全自动脚本（主入口）
+│   ├── auto-export.js             # 半自动脚本（备用）
+│   └── export.js                  # 核心处理脚本
+└── .gitignore
+```
+
+**运行时生成：**
+- `chrome-profile/` - 浏览器登录状态（首次运行后登录创建，一次登录后面就自动保存登录状态）
+- `source.json` - 下载的原始数据
+- `Apifox 接口导出.txt` - 最终输出（桌面）
+
+---
+
+## 🔧 安装方法
+
+### 方法 1：从 ClawHub 安装
+```bash
+openclaw skill install apifox-exporter
+```
+
+### 方法 2：手动安装
+1. 复制 skill 文件夹到 `~/.openclaw/workspace/skills/apifox-exporter/`
+2. 安装依赖：
+```bash
+cd ~/.openclaw/workspace/skills/apifox-exporter
+npm install
+npx playwright install chromium
+```
+
+---
+
+## 💡 首次使用
+
+1. **运行口令**：说"更新接口文档"
+2. **扫码登录**：浏览器会自动打开，扫码登录 Apifox
+3. **自动保存**：登录状态会保存，下次无需重新登录
+4. **自动导出**：脚本会自动完成后续所有操作
+
+---
+
+## 🎯 输出位置
+
+| 文件 | 位置 |
+|------|------|
+| 接口文档 | `桌面\Apifox 接口导出.txt` |
+| 原始数据 | `~/.openclaw/workspace/script/apifox/source.json` |
+
+---
+
+## ⚠️ 注意事项
+
+1. **首次使用需要登录**：登录状态会保存，后续无需重复登录
+2. **保持网络畅通**：需要访问 Apifox 云端
+3. **下载目录可访问**：下载的文件会保存到脚本目录
+4. **敏感数据安全**：导出的文档包含示例数据，注意不要包含真实密码
+
+---
+
+## 🐛 常见问题
+
+### Q: 登录状态失效了怎么办？
+A: 重新运行脚本，会提示你重新登录，登录后会自动保存新状态。
+
+### Q: 找不到项目怎么办？
+A: 脚本会自动尝试所有团队，如果还是找不到，可以手动在浏览器中进入项目。
+
+### Q: 下载的文件没找到？
+A: 检查下载事件监听是否正常，或查看 Chrome 默认下载路径。
+
+### Q: 想用回手动导出？
+A: 说"半自动更新接口文档"即可。
+
+---
+
+## 📝 更新日志
+
+### v2.0.0 (2026-03-19)
+- ✨ 新增 Playwright 全自动浏览器自动化
+- ✨ 支持多团队自动查找
+- ✨ 登录状态持久化保存
+- ✨ 灵活的命令行参数支持
+- ✨ 多种自然语言口令格式
+
+### v1.0.1 (2026-03-18)
+- 🔧 修复硬编码路径问题
+- 📝 明确说明需要手动导出
+
+### v1.0.0 (2026-03-18)
+- ✨ 初始版本发布
+
+---
+
+**Made with ❤️ by 果果**

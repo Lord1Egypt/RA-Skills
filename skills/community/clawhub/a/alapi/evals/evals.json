@@ -1,0 +1,65 @@
+{
+  "skill_name": "alapi",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "这是 ALAPI 的接口文档链接：https://www.alapi.cn/api/23/introduction 。别直接发请求，先帮我看一下这个接口是做什么的，需要哪些参数，返回结构大概是什么，再顺手给我一个 Python 调用示例。",
+      "expected_output": "识别出文档 URL 中的接口 ID，读取对应 OpenAPI 或接口信息，概述接口用途、参数和响应结构，并生成最小可运行的 Python 示例代码。",
+      "files": [],
+      "expectations": [
+        "The response identifies the ALAPI interface ID from the provided documentation URL.",
+        "The response summarizes the endpoint purpose, required parameters, and response structure.",
+        "The response includes a Python example for calling the ALAPI endpoint.",
+        "The response does not perform or claim a live API call."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我想接一个 ALAPI 的 IP 查询能力，目标 IP 是 8.8.8.8。先不要真的请求接口，帮我找到合适的接口，然后给我一份 cURL 和 Node.js 的调用示例，token 用环境变量 ALAPI_TOKEN。",
+      "expected_output": "通过搜索找到合适的 IP 查询接口，在不发起真实调用的前提下，给出 cURL 和 Node.js 示例，并使用 ALAPI_TOKEN 作为 token 读取方式。",
+      "files": [],
+      "expectations": [
+        "The response selects or recommends an ALAPI IP lookup endpoint.",
+        "The response includes a cURL example that uses ALAPI_TOKEN rather than a hard-coded token literal.",
+        "The response includes a JavaScript or Node.js example for the same endpoint.",
+        "The response does not claim to have queried IP 8.8.8.8 live."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我找 ALAPI 里跟视频解析相关的接口，并直接给我代码。如果有多个候选，不要替我做决定，先把候选列出来并说明差异。",
+      "expected_output": "如果“视频解析”直接搜索无结果，应主动做关键词回退或拆词搜索；找到候选后应列出候选和差异，而不是直接假定某个接口；在用户确认前不应输出最终定稿代码。",
+      "files": [],
+      "expectations": [
+        "If the original keyword search returns no result, the response falls back to better search terms instead of stopping immediately.",
+        "If multiple candidate endpoints exist, the response presents multiple options instead of assuming one.",
+        "The response explains at least one meaningful difference between candidates or explicitly states what is unknown.",
+        "Before the user confirms a candidate, the response does not output a final committed code sample for a single endpoint."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "我已经有 ALAPI_TOKEN 环境变量了，帮我测试一下 hitokoto 接口，参数 type=a。你可以直接调用，但不要在最终结果里泄露我的 token。除了返回结果，也告诉我你是怎么拿到 token 的优先级规则。",
+      "expected_output": "在允许真实调用的情况下使用环境变量中的 ALAPI_TOKEN 发起请求，不回显 token，并说明显式 token 高于环境变量的优先级规则。",
+      "files": [],
+      "expectations": [
+        "The run uses a live API call only because the prompt explicitly allows it.",
+        "The response does not print or expose the raw token value.",
+        "The response mentions that explicit token input overrides ALAPI_TOKEN from the environment.",
+        "The response includes the returned API result or a faithful summary of it."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "给我一个 ALAPI 的视频解析接口接入方案，后端是 PHP，前端是 Next.js。不要把 token 放到前端。先说明应该怎么分层，再给我一份后端最小可运行代码示例。假设文档里如果没写清楚参数，就明确告诉我哪里不确定。",
+      "expected_output": "给出安全的服务端接入方案，强调不要在前端暴露 token，提供 PHP 后端最小示例，并在 OpenAPI 不清晰时明确标出不确定点。",
+      "files": [],
+      "expectations": [
+        "The response recommends keeping the ALAPI token on the server side rather than in Next.js client code.",
+        "The response includes a PHP example for the backend integration.",
+        "The response distinguishes confirmed parameters from unknown or undocumented details.",
+        "The response does not fabricate missing parameter names or default values."
+      ]
+    }
+  ]
+}

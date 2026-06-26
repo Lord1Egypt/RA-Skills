@@ -1,0 +1,15 @@
+Objective:
+{{goal}}
+
+Top Priority Actions:
+1. {{action1}}
+2. {{action2}}
+3. {{action3}}
+
+Execution Steps:
+- Step 1: {{step1}}
+- Step 2: {{step2}}
+- Step 3: {{step3}}
+
+Immediate Next Step:
+{{next_step}}

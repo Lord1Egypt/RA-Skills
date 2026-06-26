@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "file_name": "image1.jpg",
+    "width": 640,
+    "height": 480
+  },
+  {
+    "id": 2,
+    "file_name": "image2.jpg",
+    "width": 800,
+    "height": 600
+  }
+]

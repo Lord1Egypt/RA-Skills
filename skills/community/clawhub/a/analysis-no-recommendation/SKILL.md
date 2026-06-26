@@ -1,35 +1,27 @@
 ---
-name: "Analysis No Recommendation"
-description: "Analysis compares options thoroughly but doesn't pick one — the decision is punted to the reader without guidance."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/analysis-no-recommendation"
-sourceUrl: "https://clawhub.ai/skills/analysis-no-recommendation"
+name: analysis-no-recommendation
+description: Analysis compares options thoroughly but doesn't pick one — the decision is punted to the reader without guidance.
+emoji: 🎯
+metadata:
+  clawdis:
+    os: [macos, linux, windows]
 ---
 
-# Analysis No Recommendation
+# analysis-no-recommendation
 
-> Analysis compares options thoroughly but doesn't pick one — the decision is punted to the reader without guidance.
+A comparison without a recommendation makes the reader do the work. It looks thorough but leaves the decision where it started, and often signals that the author didn't want to commit.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/analysis-no-recommendation`
-- **Source URL:** [https://clawhub.ai/skills/analysis-no-recommendation](https://clawhub.ai/skills/analysis-no-recommendation)
+## Symptoms
 
-## Overview
+- Analysis ends with "here are the options" and nothing further.
+- Recommendation buried in hedges: "it depends", "either could work", "teams may prefer".
+- Criteria listed but never applied to pick a winner.
+- Author avoids stating a view because they fear being wrong.
 
+## What to do
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/analysis-no-recommendation
-```
+- After the comparison, name the recommended option in one sentence. No hedging.
+- Give the one-line reason the recommendation wins under the stated criteria.
+- Call out the key uncertainty that would flip the recommendation — "if latency matters less than consistency, pick B instead".
+- If the right answer genuinely depends on context the author doesn't have, ask for that context rather than punting.
+- Being wrong with a specific recommendation is more useful than being vague. A wrong recommendation is correctable; a non-answer leaves the reader stuck.

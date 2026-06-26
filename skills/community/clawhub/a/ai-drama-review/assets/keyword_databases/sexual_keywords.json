@@ -1,0 +1,18 @@
+{
+  "category": "sexual",
+  "version": "1.0",
+  "keywords": {
+    "裸": {"severity": "moderate", "aliases": ["裸体", "裸露", "全裸", "赤裸"]},
+    "性": {"severity": "moderate", "aliases": ["性行为", "性关系", "性暗示"]},
+    "色情": {"severity": "severe", "aliases": ["淫秽", "黄色", "情色"]},
+    "诱惑": {"severity": "mild", "aliases": ["挑逗", "勾引", "撩拨"]},
+    "抚摸": {"severity": "mild", "aliases": ["爱抚", "触摸", "摩挲"]},
+    "亲密": {"severity": "mild", "aliases": ["亲吻", "拥吻", "热吻"]},
+    "暴露": {"severity": "moderate", "aliases": ["露骨", "衣衫不整"]},
+    "侵犯": {"severity": "severe", "aliases": ["性侵", "猥亵", "骚扰", "非礼"]},
+    "卖淫": {"severity": "severe", "aliases": ["嫖", "妓"]},
+    "nude": {"severity": "moderate", "aliases": ["naked", "nudity"]},
+    "sexual": {"severity": "moderate", "aliases": ["sexually", "intercourse"]},
+    "explicit": {"severity": "severe", "aliases": ["pornographic", "obscene"]}
+  }
+}

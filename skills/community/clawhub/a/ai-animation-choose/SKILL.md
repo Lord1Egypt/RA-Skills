@@ -1,35 +1,309 @@
----
-name: "Ai Animation Studio"
-description: "自动将故事转分镜并生成风格化动画视频，支持两种生成模式、自动配音、字幕烧录和30+首BGM选择。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-animation-choose"
-sourceUrl: "https://clawhub.ai/skills/ai-animation-choose"
----
+# AI Animation Studio - AI动画制作技能
 
-# Ai Animation Studio
+从故事到动画的全流程自动化制作技能。
 
-> 自动将故事转分镜并生成风格化动画视频，支持两种生成模式、自动配音、字幕烧录和30+首BGM选择。
+**版本**: 2.2.0  
+**作者**: systiger  
+**ClawHub**: https://clawhub.ai/systiger/ai-animation-studio
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-animation-choose`
-- **Source URL:** [https://clawhub.ai/skills/ai-animation-choose](https://clawhub.ai/skills/ai-animation-choose)
+## 触发词
+AI动画、动画制作、生成动画、故事动画、AI视频制作、图生视频
 
-## Overview
+## 特性
 
+✅ **两种生成模式**
+✅ **完整工作流程**（故事→分镜→画面→动画→配音→字幕→BGM→合成）
+✅ **皮克斯/宫崎骏/童话等多种风格**
+✅ **自动配音+字幕烧录** ⭐ **NEW**
+✅ **BGM背景音乐选择**（30+首热门BGM）
+✅ **竖版/横版自适应**
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 快速开始
+
 ```bash
-hermes skills install clawhub/ai-animation-choose
+# 模式一：图片转视频（速度快）
+python create_animation.py --mode 1 --output "D:/output"
+
+# 模式二：图片动画化再生成视频（效果更强）
+python create_animation.py --mode 2 --output "D:/output"
+
+# 只生成指定场景
+python create_animation.py --mode 2 --scene 3
 ```
+
+## 工作流程
+
+### 第一步：需求收集
+用户输入故事后，自动提问：
+
+1. **生成模式**
+   - A. 图片转视频（速度快，保留原画面细节）
+   - B. 图片动画化再生成视频（动画效果更强）
+
+2. **风格选择**
+   - 影视风格：王家卫、诺兰、宫崎骏、漫威等
+   - 动画风格：皮克斯、卡通、手绘等
+   - 纪录片风格：BBC、Netflix等
+
+3. **视频规格**
+   - 竖版（9:16）- 短视频平台
+   - 横版（16:9）- YouTube/B站
+   - 方形（1:1）- 社交媒体
+
+4. **BGM背景音乐选择** 🎵
+   - **A. 自动推荐** - AI根据故事风格自动选择
+   - **B. 从BGM库选择** - 查看30+首热门BGM列表
+   - **C. 随机选择** - 从推荐分类随机抽取
+   - **D. 无BGM** - 仅保留配音
+   
+   **BGM分类**：
+   - 🌸 **儿童动画**：菊次郎的夏天、DJ喜羊羊、嘟嘟~嘟嘟~哒哒哒
+   - 🔥 **励志热血**：Beautiful Now、The Spectre、易燃易爆炸
+   - 😂 **搞笑娱乐**：喜剧背景音效、滑稽背景音乐、爱滴魔力转圈圈
+   - 💕 **浪漫温馨**：恋爱循环、Hold On、雨爱
+   - 🚀 **科幻冒险**：The Spectre、Geisha、Run Free
+
+### 第二步：脚本分解
+基于分镜模板，将故事分解为：
+
+| 场景 | 镜头动作 | 开头方式 | 结尾方式 | 画面风格 |
+|------|---------|---------|---------|---------|
+| 场景1 | 镜头描述 | 开场介绍 | 呼吁互动 | 风格描述 |
+
+### 第三步：画面生成
+使用豆包API生成每个分镜画面：
+- 人物一致性（固定角色形象）
+- 风格统一性（同一画风）
+- 场景连贯性（背景协调）
+
+### 第四步：动画生成（核心）⭐
+
+**两种生成模式**：
+
+#### 🎬 模式一：图片转视频（推荐）
+直接用生成的图片转成视频，保留原画面细节：
+```bash
+python doubao_media.py vid "镜头缓慢推进，人物轻微动作" --image "图片URL" --ratio 9:16 --duration 5
+```
+**特点**：速度快、画质高、适合静态场景
+
+#### 🎨 模式二：图片动画化再生成视频
+先生成动画风格的图片，再添加动态效果：
+```bash
+# 第一步：生成动画风格图片
+python doubao_media.py img "动画风格提示词" --size 1024x1792
+
+# 第二步：图片转视频
+python doubao_media.py vid "动画效果描述" --image "图片URL" --duration 5
+```
+**特点**：动画效果更强、角色动作更丰富、适合人物场景
+
+**动态效果类型**：
+- 镜头运动：推/拉/摇/移/环绕
+- 角色动画：说话/眨眼/手势/走动
+- 场景动效：风吹/水流/光影/粒子
+
+### 第五步：配音生成
+- 根据角色分配不同音色（曼波/晓伊/晓晓/云扬）
+- 使用 edge-tts 生成高质量配音
+- 自动计算配音时长匹配场景
+
+### 第六步：字幕烧录 ⭐ **NEW**
+字幕处理使用 Pillow + ffmpeg 方案，解决 Windows 中文编码问题：
+
+**字幕样式**：
+- 字体：微软雅黑 42号
+- 颜色：白色 + 黑色描边（2-3像素）
+- 位置：底部居中（距底50像素）
+- 处理：自动去除标点符号
+
+**字幕烧录流程**：
+```bash
+# 1. 逐帧提取视频
+ffmpeg -i scene.mp4 frames/frame_%06d.png
+
+# 2. Pillow 绘制字幕（Python）
+from subtitle_burner import SubtitleBurner
+burner = SubtitleBurner(font_size=42)
+burner.burn_subtitles("scene.mp4", subtitles, "output.mp4")
+
+# 3. 合成视频
+ffmpeg -framerate 24 -i frames/frame_%06d.png -c:v libx264 output.mp4
+```
+
+**字幕时间轴示例**：
+```json
+[
+  {"start": 0, "end": 4, "text": "城市黄昏，飞天狗与钢铁猫屋顶对峙"},
+  {"start": 4, "end": 8, "text": "钢铁猫眼中红光闪烁，激光束射出"},
+  {"start": 8, "end": 13, "text": "飞天狗侧身闪避，翅膀展开反击"}
+]
+```
+
+### 第七步：特效合成
+- 添加特效素材（转场/叠加/滤镜）
+- 添加音效（环境音/特效音）
+- 合并所有场景视频
+- 添加配音
+- **最后添加BGM背景音乐**（BGM音量30%，配音音量100%）：
+  ```bash
+  # 工作流程：
+  # 1. 场景1.mp4 + 场景2.mp4 + ... → 合并视频.mp4
+  # 2. 合并视频.mp4 + 配音.mp3 → 视频_配音.mp4
+  # 3. 视频_配音.mp4 + BGM.mp3 → 最终视频.mp4
+  
+  ffmpeg -i video_with_voice.mp4 -i bgm.mp3 -filter_complex \
+    "[1:a]volume=0.3,aloop=loop=-1:size=2e+09[bgm];[0:a][bgm]amix=inputs=2:duration=first:dropout_transition=2[aout]" \
+    -map 0:v -map "[aout]" -c:v copy final_video.mp4
+  ```
+
+## 资源库索引
+
+### 分镜模板
+| 文件名 | 用途 |
+|--------|------|
+| AI视频脚本分镜模板_共300条.xlsx | 场景/镜头/开头结尾/画面风格 |
+| 【先看这个】分镜画面提示词.xlsx | 镜头类型提示词 |
+| 即梦100多组（700+个）神级指令合集.xlsx | AI生图指令模板 |
+| 300+电影风格提示词.csv | 电影风格参考 |
+
+### 特效素材
+| 类别 | 数量 | 用途 |
+|------|------|------|
+| 划屏元素素材 | 24个 | 转场特效 |
+| 竖版动态背景 | 86个 | 背景叠加 |
+| 点赞心形素材 | 21个 | 互动特效 |
+| 唯美炫光素材 | 15个 | 光效叠加 |
+
+### 音效素材
+| 类别 | 用途 |
+|------|------|
+| 卡点音乐 | 节奏背景 |
+| 字幕弹出音效 | 文字动画 |
+| 网红爆款bgm | 流行配乐 |
+
+## 使用示例
+
+```
+用户：帮我做一个关于"森林里的小精灵"的动画视频
+
+AI：
+好的，我来帮你制作"森林里的小精灵"动画视频。
+
+📋 首先确认几个问题：
+
+1️⃣ 生成模式：
+   A. 图片转视频（速度快，保留原画面细节）
+   B. 图片动画化再生成视频（动画效果更强）
+
+2️⃣ 风格选择：
+   A. 宫崎骏动画风（自然色彩+清新构图）
+   B. 皮克斯动画质感（明亮色彩+卡通建模）
+   C. 童话故事风（柔和色调+手绘质感）
+
+3️⃣ 视频规格：
+   A. 竖版 9:16（抖音/快手）
+   B. 横版 16:9（B站/YouTube）
+
+4️⃣ BGM背景音乐：
+   A. 自动推荐（AI根据风格选择）
+   B. 从BGM库选择（查看30+首BGM列表）
+   C. 随机选择
+   D. 无BGM
+
+请回复选项，或让我自动选择推荐配置。
+```
+
+### BGM选择示例
+
+```
+AI：🎵 为您的"森林里的小精灵"动画推荐以下BGM：
+
+🌸 儿童动画风格推荐：
+  1. 菊次郎的夏天 - 温馨童年氛围
+  2. DJ喜羊羊 - 活泼欢快节奏
+  3. 嘟嘟~嘟嘟~哒哒哒 - 可爱童趣旋律
+
+请选择BGM编号，或回复"随机"让AI选择。
+```
+
+## 成功案例
+
+### 《小小科学家的神奇发明》
+- **模式**：模式二（图片动画化）
+- **时长**：31.79秒
+- **场景**：7个动态场景
+- **风格**：皮克斯动画
+- **配音**：4个角色
+- **文件大小**：8.6MB
+
+## 技术实现
+
+### 依赖技能
+- `doubao-media` - AI生图/生视频
+- `edge-tts` - 配音生成
+- `ffmpeg` - 视频合成
+
+### API要求
+- **ARK_API_KEY** - 豆包API密钥
+- 获取地址：https://console.volcengine.com/ark
+
+### 输出格式
+- MP4（H.264 + AAC）
+- 分辨率：1088x1920（竖版）/ 1920x1080（横版）
+- 帧率：24fps
+- 字幕：内嵌烧录
+
+## 文件结构
+
+```
+ai-animation-studio/
+├── SKILL.md              # 技能说明
+├── create_animation.py   # 主脚本（两种模式）
+├── resource_index.py     # 资源索引
+├── workflow.py           # 工作流
+├── BGM_LIBRARY.md        # BGM音乐库
+└── scripts/              # 脚本目录
+    ├── xiaoming_scientist.json    # 示例场景
+    ├── subtitle_burner.py         # 字幕烧录工具 ⭐ NEW
+    └── full_workflow.py           # 完整工作流脚本 ⭐ NEW
+```
+
+## 更新日志
+
+### v2.2.0 (2026-03-29)
+- ✅ **新增字幕烧录功能**
+- ✅ 创建 `subtitle_burner.py` 字幕工具（Pillow + ffmpeg）
+- ✅ 创建 `full_workflow.py` 完整工作流脚本
+- ✅ 字幕样式：白色 + 黑色描边，底部居中
+- ✅ 自动去除标点符号，提升美观度
+- ✅ 工作流增加字幕步骤：配音 → 字幕 → BGM
+
+### v2.1.1 (2026-03-29)
+- ✅ 优化BGM合成时机：在最后阶段才添加BGM
+- ✅ 改进工作流程：场景合并 → 配音 → BGM（三步流程）
+- ✅ 添加BGM循环功能，自动匹配视频时长
+- ✅ 优化BGM音量混合（默认30%）
+
+### v2.1.0 (2026-03-29)
+- ✅ 新增BGM背景音乐选择功能
+- ✅ 支持5大分类（儿童动画/励志热血/搞笑娱乐/浪漫温馨/科幻冒险）
+- ✅ 支持自动推荐、随机选择、手动选择
+- ✅ BGM音量可调节（默认30%）
+- ✅ 新增30+首热门BGM资源库
+
+### v2.0.0 (2026-03-29)
+- ✅ 新增两种生成模式
+- ✅ 完整的图生视频流程
+- ✅ 自动配音合成
+- ✅ 成功案例：小小科学家
+
+### v1.0.0 (2026-03-29)
+- 初始版本
+- 基础工作流程
+
+---
+
+_创建时间：2026-03-29_  
+_资源位置：D:\AI视频资源\_  
+_作者：systiger_

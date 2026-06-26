@@ -1,0 +1,16 @@
+{
+  "name": "openclaw-aidex",
+  "version": "1.0.7",
+  "description": "OpenClaw skill for AIDEX aggregator on Ethereum",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "ethers": "6.16.0"
+  },
+  "optionalDependencies": {
+    "@napi-rs/keyring": "1.2.0"
+  }
+}

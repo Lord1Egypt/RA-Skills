@@ -1,35 +1,29 @@
----
-name: "Ai Tip From Hwchase17"
-description: "Provides AI learning tips by demonstrating how to create custom LangChain agents with structured outputs using Pydantic models."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-tip-from-hwchase17"
-sourceUrl: "https://clawhub.ai/skills/ai-tip-from-hwchase17"
----
+# AI Tip from @hwchase17
 
-# Ai Tip From Hwchase17
+## Description
+Automatically generated AI learning skill from curated web and social media sources.
 
-> Provides AI learning tips by demonstrating how to create custom LangChain agents with structured outputs using Pydantic models.
+## Steps
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-tip-from-hwchase17`
-- **Source URL:** [https://clawhub.ai/skills/ai-tip-from-hwchase17](https://clawhub.ai/skills/ai-tip-from-hwchase17)
+1. New in LangChain: You can now easily create custom agents with structured outputs!
+2. from langchain_core.pydantic_v1 import BaseModel, Field
+3. class Joke(BaseModel):
+4. setup: str = Field(description="question to set up a joke")
+5. punchline: str = Field(description="answer to resolve the joke")
+6. llm.with_structured_output(Joke)
 
-## Overview
+## Code Examples
 
+```python
+from langchain_core.pydantic_v1 import BaseModel, Field
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-tip-from-hwchase17
+class Joke(BaseModel):
+    setup: str = Field(description="question to set up a joke")
+    punchline: str = Field(description="answer to resolve the joke")
+
+llm.with_structured_output(Joke)
 ```
+
+## Dependencies
+- Python 3.8+
+- Relevant libraries (see code examples)

@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1778418804636,
+    "timestamp": "2026-05-10T13:13:24.636Z",
+    "date": "10/05/2026",
+    "time": "10:13:24",
+    "symbol": "BCHUSDT",
+    "timeframe": "5m",
+    "direction": "BUY",
+    "signalType": "⚡ CRUZAMENTO",
+    "price": 453.4,
+    "score": 100,
+    "status": "ativo"
+  },
+  {
+    "id": 1778418804660,
+    "timestamp": "2026-05-10T13:13:24.660Z",
+    "date": "10/05/2026",
+    "time": "10:13:24",
+    "symbol": "DOGEUSDT",
+    "timeframe": "5m",
+    "direction": "BUY",
+    "signalType": "⚡ CRUZAMENTO",
+    "price": 0.10818,
+    "score": 100,
+    "status": "ativo"
+  },
+  {
+    "id": 1778418804681,
+    "timestamp": "2026-05-10T13:13:24.681Z",
+    "date": "10/05/2026",
+    "time": "10:13:24",
+    "symbol": "BTCUSDT",
+    "timeframe": "15m",
+    "direction": "BUY",
+    "signalType": "🎯 TOQUE",
+    "price": 80902.79,
+    "score": 90,
+    "status": "ativo"
+  },
+  {
+    "id": 1778418804695,
+    "timestamp": "2026-05-10T13:13:24.695Z",
+    "date": "10/05/2026",
+    "time": "10:13:24",
+    "symbol": "BTCUSDT",
+    "timeframe": "1h",
+    "direction": "BUY",
+    "signalType": "🎯 TOQUE",
+    "price": 80902.79,
+    "score": 90,
+    "status": "ativo"
+  },
+  {
+    "id": 1778418804714,
+    "timestamp": "2026-05-10T13:13:24.714Z",
+    "date": "10/05/2026",
+    "time": "10:13:24",
+    "symbol": "ETHUSDT",
+    "timeframe": "1h",
+    "direction": "SELL",
+    "signalType": "🎯 TOQUE",
+    "price": 2325.76,
+    "score": 90,
+    "status": "ativo"
+  }
+]

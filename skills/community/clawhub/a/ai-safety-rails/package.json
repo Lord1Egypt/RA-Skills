@@ -1,0 +1,7 @@
+{
+  "name": "ai-safety-rails",
+  "version": "1.0.0", 
+  "description": "Auto-setup for trust ladder and prompt injection defense. 4 trust levels, approval queue, hard rules.",
+  "author": "TalonForge",
+  "license": "MIT"
+}

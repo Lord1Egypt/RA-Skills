@@ -1,0 +1,39 @@
+{
+    "name":  "amazon_order_details_fetcher",
+    "version":  "1.0.0",
+    "description":  "Fetches order detail data like ASIN and buy price.",
+    "allowedTools":  [
+                         "browser.get_dom",
+                         "browser.query"
+                     ],
+    "input_schema":  {
+                         "type":  "object",
+                         "properties":  {
+                                            "detailsUrl":  {
+                                                               "type":  "string"
+                                                           }
+                                        },
+                         "required":  [
+                                          "detailsUrl"
+                                      ]
+                     },
+    "output_schema":  {
+                          "type":  "object",
+                          "properties":  {
+                                             "asin":  {
+                                                          "type":  "string"
+                                                      },
+                                             "buy_price":  {
+                                                               "type":  "string"
+                                                           },
+                                             "items":  {
+                                                           "type":  "array",
+                                                           "items":  {
+                                                                         "type":  "object"
+                                                                     }
+                                                       }
+                                         }
+                      },
+    "notes":  "Playwright runtime reads order-details DOM in the active browser session. No Service Worker fetch path is used by this skill package.",
+    "id":  "amazon_order_details_fetcher"
+}

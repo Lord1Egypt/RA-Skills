@@ -1,0 +1,110 @@
+{
+  "name": "AI Startup MVP Factory",
+  "version": "1.0.0",
+  "description": "从创业想法到生产级容器化应用的端到端自动化工作流",
+  "workflow": {
+    "steps": [
+      {
+        "id": "prd_generation",
+        "name": "PRD 生成",
+        "skill": "prd-generator",
+        "input": {
+          "source": "user_idea"
+        },
+        "output": {
+          "artifacts": ["prd_document"],
+          "data": {
+            "features": "功能列表",
+            "tech_stack": "技术选型建议",
+            "api_design": "API设计方案",
+            "data_model": "数据模型"
+          }
+        },
+        "description": "接收用户的一句话创业想法，生成结构化产品需求文档，包含功能列表、技术选型、API 设计、数据模型"
+      },
+      {
+        "id": "mvp_code_generation",
+        "name": "MVP 代码生成",
+        "skill": "ai-startup-mvp-launcher",
+        "input": {
+          "prd_document": "${prd_generation.artifacts.prd_document}"
+        },
+        "output": {
+          "artifacts": ["project_code", "dockerfile", "docker_compose"],
+          "tech_stack": "选定技术栈"
+        },
+        "depends_on": ["prd_generation"],
+        "description": "基于 PRD 文档自动生成完整项目代码，包括前端、后端、数据库配置、Docker 环境"
+      },
+      {
+        "id": "code_quality_review",
+        "name": "代码质量审查",
+        "skill": "github-pr-knowledge-wiki-sync",
+        "input": {
+          "code": "${mvp_code_generation.artifacts.project_code}",
+          "prd": "${prd_generation.artifacts.prd_document}"
+        },
+        "output": {
+          "artifacts": ["code_review_report", "wiki_docs"],
+          "issues_fixed": "已修复的问题列表"
+        },
+        "depends_on": ["mvp_code_generation"],
+        "description": "自动创建 PR、AI Code Review 报告、代码质量修复、同步知识到 Wiki"
+      },
+      {
+        "id": "containerized_deployment",
+        "name": "容器化部署",
+        "skill": "docker-ci-release-pipeline",
+        "input": {
+          "code": "${code_quality_review.issues_fixed}",
+          "dockerfile": "${mvp_code_generation.artifacts.dockerfile}",
+          "docker_compose": "${mvp_code_generation.artifacts.docker_compose}"
+        },
+        "output": {
+          "artifacts": ["docker_image", "deployment_config", "release_notes"],
+          "registry": "镜像仓库地址"
+        },
+        "depends_on": ["code_quality_review"],
+        "description": "多阶段 Dockerfile 构建、镜像安全扫描、推送到镜像仓库、生成 docker-compose 部署文件"
+      }
+    ],
+    "inputs": {
+      "user_idea": {
+        "type": "string",
+        "description": "用户的一句话创业想法或产品需求描述",
+        "required": true,
+        "example": "我想做一个AI会议助手：自动录制会议音频、AI转写为文字、自动生成会议纪要和待办事项"
+      }
+    },
+    "outputs": {
+      "prd_document": {
+        "type": "file",
+        "description": "生成的 PRD 文档"
+      },
+      "project_code": {
+        "type": "directory",
+        "description": "完整的项目代码目录"
+      },
+      "docker_image": {
+        "type": "string",
+        "description": "构建好的 Docker 镜像名称和标签"
+      },
+      "deployment_config": {
+        "type": "file",
+        "description": "docker-compose.yml 和相关部署配置"
+      },
+      "code_review_report": {
+        "type": "file",
+        "description": "AI Code Review 报告"
+      }
+    }
+  },
+  "metadata": {
+    "author": "AI Startup MVP Factory Combo",
+    "created": "2026-06-04",
+    "tags": ["mvp", "startup", "prd", "docker", "ci-cd", "automation"],
+    "categories": ["开发", "自动化"],
+    "Complexity": "high",
+    "estimated_time": "1-3 小时（视项目规模而定）"
+  }
+}

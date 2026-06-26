@@ -1,0 +1,45 @@
+{
+  "emoji": "📈",
+  "primaryEnv": "AION_API_KEY",
+  "requires": {
+    "pip": ["aion-sdk"],
+    "env": ["AION_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AION_API_KEY",
+      "required": true,
+      "description": "AION SDK API key used for market reads and trade execution."
+    },
+    {
+      "name": "MARKET_QUERY",
+      "required": false,
+      "description": "Keyword used to discover candidate Polymarket markets, for example bitcoin or election."
+    },
+    {
+      "name": "THESIS_PROBABILITY",
+      "required": false,
+      "description": "Fair probability from 0 to 1 for the selected thesis."
+    },
+    {
+      "name": "MIN_EDGE",
+      "required": false,
+      "description": "Minimum edge required before proposing or executing a trade."
+    },
+    {
+      "name": "TRADE_AMOUNT_USD",
+      "required": false,
+      "description": "Position size in USD per trade."
+    },
+    {
+      "name": "RUN_LIVE",
+      "required": false,
+      "description": "Set to true to allow live trades without passing --live."
+    }
+  ],
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trade_thesis.py"
+  }
+}

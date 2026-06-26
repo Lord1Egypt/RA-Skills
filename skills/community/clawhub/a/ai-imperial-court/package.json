@@ -1,0 +1,32 @@
+{
+  "name": "ai-imperial-court",
+  "displayName": "AI朝廷三省六部",
+  "version": "1.1.0",
+  "description": "将中国唐代三省六部制映射到多Agent协作框架，实现起草-审核-执行的分权制衡流程",
+  "author": "虾3x (kuuila)",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "agent",
+    "collaboration",
+    "workflow",
+    "multi-agent",
+    "朝廷",
+    "三省六部",
+    "评审",
+    "审核"
+  ],
+  "main": "bin/court-start.js",
+  "bin": {
+    "court-start": "./bin/court-start.js"
+  },
+  "files": [
+    "SKILL.md",
+    "bin/",
+    "references/"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "changelog": "v1.1.0 - 新增快速启动脚本、执行示例文档、完善命令参考"
+}

@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    apishield-api-scan:
+      glob: "*.{js,ts,jsx,tsx,py,rb}"
+      run: |
+        APISHIELD_SKILL_DIR="${APISHIELD_SKILL_DIR:-$HOME/.openclaw/skills/apishield}"
+        if [[ -f "$APISHIELD_SKILL_DIR/scripts/auditor.sh" ]]; then
+          source "$APISHIELD_SKILL_DIR/scripts/patterns.sh"
+          source "$APISHIELD_SKILL_DIR/scripts/auditor.sh"
+          hook_api_scan
+        else
+          echo "[APIShield] Skill not found -- skipping"
+        fi
+      fail_text: |
+        API security issues detected!
+        Run 'apishield scan' for details.

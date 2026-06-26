@@ -1,0 +1,10 @@
+{
+  "name": "amazon-after-sales-flow-skillpack",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

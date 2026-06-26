@@ -1,0 +1,4 @@
+requests>=2.31.0
+alibabacloud_tea_openapi>=0.3.0
+alibabacloud_tea_util>=0.3.0
+alibabacloud_videoenhan20200320>=1.1.0

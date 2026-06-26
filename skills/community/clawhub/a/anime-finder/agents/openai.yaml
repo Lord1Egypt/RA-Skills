@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anime Finder"
+  short_description: "Find anime releases, follow updates, and handle downloads end to end"
+  default_prompt: "Use $anime-finder for 找番、追更、最新一集/最新一季、只要磁力、先搜别下、或查看刚才下载进度。"

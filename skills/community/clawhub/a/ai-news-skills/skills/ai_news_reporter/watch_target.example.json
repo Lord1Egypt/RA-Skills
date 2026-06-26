@@ -1,0 +1,15 @@
+{
+  "app_name": "AI日报关注清单",
+  "wiki_url": "YOUR_WIKI_URL",
+  "table_id": "YOUR_TABLE_ID",
+  "view_id": "YOUR_VIEW_ID",
+  "fields": {
+    "问题": "text",
+    "所属链路": "text",
+    "来源日报": "url",
+    "优先级": "single_select",
+    "状态": "single_select",
+    "回答摘要": "text",
+    "创建时间": "date_auto"
+  }
+}

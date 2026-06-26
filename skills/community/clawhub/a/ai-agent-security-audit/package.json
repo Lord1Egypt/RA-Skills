@@ -1,0 +1,9 @@
+{
+  "name": "ai-agent-security-audit",
+  "version": "1.0.0",
+  "description": "Comprehensive security audit for AI agents. Detects manipulation vulnerabilities, prompt injection risks, privilege escalation paths, and data exfiltration vectors.",
+  "author": "eve-agent",
+  "license": "MIT",
+  "keywords": ["security", "audit", "compliance", "mcp", "vulnerability", "enterprise"],
+  "repository": "https://github.com/engsathiago/ai-agent-security-audit"
+}

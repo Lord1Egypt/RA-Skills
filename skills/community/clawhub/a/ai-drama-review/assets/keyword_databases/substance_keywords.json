@@ -1,0 +1,18 @@
+{
+  "category": "substance",
+  "version": "1.0",
+  "keywords": {
+    "毒品": {"severity": "severe", "aliases": ["吸毒", "贩毒", "制毒", "毒贩"]},
+    "大麻": {"severity": "moderate", "aliases": ["marijuana", "cannabis"]},
+    "海洛因": {"severity": "severe", "aliases": ["白粉", "冰毒", "摇头丸"]},
+    "注射": {"severity": "moderate", "aliases": ["打针", "注射器", "针头"]},
+    "吸食": {"severity": "moderate", "aliases": ["吸粉", "嗑药"]},
+    "醉": {"severity": "mild", "aliases": ["醉酒", "喝醉", "烂醉", "酗酒"]},
+    "烟": {"severity": "mild", "aliases": ["抽烟", "吸烟", "香烟", "烟瘾"]},
+    "赌": {"severity": "moderate", "aliases": ["赌博", "赌场", "豪赌", "赌注"]},
+    "drug": {"severity": "severe", "aliases": ["drugs", "narcotics", "cocaine", "heroin"]},
+    "smoke": {"severity": "mild", "aliases": ["smoking", "cigarette"]},
+    "alcohol": {"severity": "mild", "aliases": ["drunk", "drinking", "intoxicated"]},
+    "gamble": {"severity": "moderate", "aliases": ["gambling", "casino", "betting"]}
+  }
+}

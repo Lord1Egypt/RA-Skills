@@ -1,0 +1,16 @@
+{
+  "name": "album-cover-skill",
+  "version": "1.5.7",
+  "type": "module",
+  "description": "AI Album Cover Generator \u2014 AI-powered ai album cover generator",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

@@ -1,35 +1,39 @@
----
-name: "AI News Sentiment"
-description: "Analyze financial news sentiment, assess short- to long-term impacts, and classify news by type like earnings, contracts, investments, policies, and reports."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aigc-news-sentiment"
-sourceUrl: "https://clawhub.ai/skills/aigc-news-sentiment"
----
+# News Sentiment - 新闻情感分析
 
-# AI News Sentiment
+## 功能说明
 
-> Analyze financial news sentiment, assess short- to long-term impacts, and classify news by type like earnings, contracts, investments, policies, and reports.
+分析财经新闻、公告、研报的情感倾向和影响评估。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aigc-news-sentiment`
-- **Source URL:** [https://clawhub.ai/skills/aigc-news-sentiment](https://clawhub.ai/skills/aigc-news-sentiment)
+## 核心功能
 
-## Overview
+### 新闻情感
+- 利好/利空判断
+- 情感强度评分
+- 新闻重要性评级
 
+### 事件影响
+- 短期影响评估
+- 中期趋势判断
+- 长期价值影响
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aigc-news-sentiment
+### 新闻分类
+- 业绩预告
+- 重大合同
+- 投资扩产
+- 政策影响
+- 行业研报
+
+## 使用示例
+
+```python
+from news_sentiment import analyze_news_sentiment
+
+# 分析新闻情感
+news_result = analyze_news_sentiment(stock_code="300308")
 ```
+
+## 数据源
+
+- 财联社快讯
+- 交易所公告
+- 券商研报

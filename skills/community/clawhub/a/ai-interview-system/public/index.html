@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 面试实时观察</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d0d12;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(180deg, #16161e 0%, #0d0d12 100%);
+            padding: 12px 20px;
+            border-bottom: 1px solid #2a2a3a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+            height: 60px;
+        }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .header h1 {
+            font-size: 16px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .agent-selects { display: flex; align-items: center; gap: 10px; }
+        .agent-select {
+            padding: 8px 14px;
+            background: #1a1a28;
+            border: 1px solid #3a3a4a;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13px;
+            min-width: 140px;
+        }
+        .agent-select option { background: #1a1a28; }
+        .vs { color: #6b7280; font-size: 12px; }
+        
+        .header-right { display: flex; align-items: center; gap: 10px; }
+        .status-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #10b981;
+        }
+        .status-text { font-size: 12px; color: #10b981; margin-right: 10px; }
+        
+        .icon-btn {
+            padding: 8px 12px;
+            background: #1a1a28;
+            border: 1px solid #3a3a4a;
+            border-radius: 8px;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .icon-btn:hover { background: #2a2a3a; color: #fff; }
+        
+        /* 主内容区 */
+        .main {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            min-height: 0;
+        }
+        
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #1a1a28;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .panel:last-child { border-right: none; width: 220px; flex: none; }
+        
+        .panel-header {
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(180deg, #16161e 0%, #0d0d12 100%);
+            border-bottom: 1px solid #1a1a28;
+            flex-shrink: 0;
+        }
+        .avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .panel-1 .avatar { background: linear-gradient(135deg, #10b981, #059669); }
+        .panel-2 .avatar { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+        .panel-name { font-size: 14px; font-weight: 600; }
+        .panel-1 .panel-name { color: #10b981; }
+        .panel-2 .panel-name { color: #a78bfa; }
+        .panel-span { font-size: 11px; color: #6b7280; }
+        
+        .msg-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        
+        .msg {
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+        .msg-from-1 {
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #10b981;
+        }
+        .msg-from-2 {
+            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            border: 1px solid #a78bfa;
+        }
+        .msg-time { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+        
+        .empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #4b5563;
+            font-size: 14px;
+        }
+        
+        .timeline-header {
+            padding: 14px 16px;
+            border-bottom: 1px solid #1a1a28;
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .timeline-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 6px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+        }
+        .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            margin-top: 4px; flex-shrink: 0;
+        }
+        .dot-1 { background: #10b981; }
+        .dot-2 { background: #a78bfa; }
+        .t-content { flex: 1; min-width: 0; }
+        .t-speaker { font-size: 11px; font-weight: 500; margin-bottom: 2px; }
+        .t-speaker-1 { color: #10b981; }
+        .t-speaker-2 { color: #a78bfa; }
+        .t-preview { font-size: 11px; color: #6b7280; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>🤖 AI 面试观察</h1>
+            <div class="agent-selects">
+                <select class="agent-select" id="agent1Select" onchange="loadData()">
+                    <option value="">选择...</option>
+                </select>
+                <span class="vs">vs</span>
+                <select class="agent-select" id="agent2Select" onchange="loadData()">
+                    <option value="">选择...</option>
+                </select>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="status-dot"></span>
+            <span class="status-text" id="status">就绪</span>
+            <button class="icon-btn" onclick="loadData()">🔄</button>
+            <button class="icon-btn" onclick="clearChat()">🗑️</button>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="panel panel-1">
+            <div class="panel-header">
+                <div class="avatar">👨‍💻</div>
+                <div>
+                    <div class="panel-name" id="name1">Agent 1</div>
+                    <div class="panel-span" id="span1">等待选择</div>
+                </div>
+            </div>
+            <div class="msg-list" id="msg1">
+                <div class="empty">等待对话...</div>
+            </div>
+        </div>
+        
+        <div class="panel panel-2">
+            <div class="panel-header">
+                <div class="avatar">👨‍💼</div>
+                <div>
+                    <div class="panel-name" id="name2">Agent 2</div>
+                    <div class="panel-span" id="span2">等待选择</div>
+                </div>
+            </div>
+            <div class="msg-list" id="msg2">
+                <div class="empty">等待对话...</div>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <div class="timeline-header">📋 时间线</div>
+            <div class="timeline-list" id="timeline">
+                <div class="empty">暂无</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API = 'http://localhost:8091';
+        let a1 = localStorage.getItem('va1') || '';
+        let a2 = localStorage.getItem('va2') || '';
+        
+        window.onload = async () => {
+            const res = await fetch(API + '/api/agents');
+            const data = await res.json();
+            const opts = data.agents.map(a => `<option value="${a}">${a}</option>`).join('');
+            
+            const s1 = document.getElementById('agent1Select');
+            const s2 = document.getElementById('agent2Select');
+            s1.innerHTML = '<option value="">选择...</option>' + opts;
+            s2.innerHTML = '<option value="">选择...</option>' + opts;
+            
+            if (a1) s1.value = a1;
+            if (a2) s2.value = a2;
+            
+            if (a1 && a2) loadData();
+            else if (data.agents.length >= 2) {
+                a1 = data.agents[0]; a2 = data.agents[1];
+                s1.value = a1; s2.value = a2;
+                loadData();
+            }
+        };
+        
+        function loadData() {
+            a1 = document.getElementById('agent1Select').value;
+            a2 = document.getElementById('agent2Select').value;
+            localStorage.setItem('va1', a1);
+            localStorage.setItem('va2', a2);
+            
+            if (!a1 || !a2) return;
+            
+            document.getElementById('name1').textContent = a1;
+            document.getElementById('span1').textContent = a1;
+            document.getElementById('name2').textContent = a2;
+            document.getElementById('span2').textContent = a2;
+            
+            fetch(API + '/api/conversations?agent1=' + a1 + '&agent2=' + a2)
+                .then(r => r.json())
+                .then(d => {
+                    const msgs = d.messages || [];
+                    document.getElementById('status').textContent = msgs.length + ' 条';
+                    
+                    const m1 = msgs.filter(m => m.from === 'agent-1');
+                    const m2 = msgs.filter(m => m.from === 'agent-2');
+                    
+                    document.getElementById('msg1').innerHTML = m1.length ? 
+                        m1.map(m => `<div class="msg msg-from-1">${esc(m.content)}<div class="msg-time">${m.time}</div></div>`).join('') :
+                        '<div class="empty">等待对话...</div>';
+                    
+                    document.getElementById('msg2').innerHTML = m2.length ?
+                        m2.map(m => `<div class="msg msg-from-2">${esc(m.content)}<div class="msg-time">${m.time}</div></div>`).join('') :
+                        '<div class="empty">等待对话...</div>';
+                    
+                    document.getElementById('timeline').innerHTML = msgs.length ?
+                        msgs.map(m => `<div class="timeline-item"><div class="dot dot-${m.from === 'agent-1' ? 1 : 2}"></div><div class="t-content"><div class="t-speaker t-speaker-${m.from === 'agent-1' ? 1 : 2}">${m.from === 'agent-1' ? a1 : a2}</div><div class="t-preview">${esc(m.content)}</div></div></div>`).join('') :
+                        '<div class="empty">暂无</div>';
+                    
+                    // 滚动到底部
+                    document.getElementById('msg1').scrollTop = 99999;
+                    document.getElementById('msg2').scrollTop = 99999;
+                });
+        }
+        
+        function esc(t) {
+            const d = document.createElement('div');
+            d.textContent = t;
+            return d.innerHTML;
+        }
+        
+        async function clearChat() {
+            if (!a1 || !a2) return;
+            if (!confirm('确定清空对话？')) return;
+            await fetch(API + '/api/clear?agent1=' + a1 + '&agent2=' + a2);
+            loadData();
+        }
+    </script>
+</body>
+</html>

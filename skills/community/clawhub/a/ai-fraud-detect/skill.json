@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-fraud-detection",
+  "version": "1.0.0",
+  "description": "AI 反欺诈检测 - 交易风控、身份验证",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "fraud", "security", "risk", "chinese"],
+  "category": "security",
+  "license": "MIT"
+}

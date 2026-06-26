@@ -1,0 +1,4 @@
+interface:
+  display_name: "ALAPI 接口助手"
+  short_description: "搜索 ALAPI 文档、提取参数并生成可直接使用的对接代码"
+  default_prompt: "Use $alapi to find the right ALAPI endpoint, summarize its parameters, and generate a working integration example."

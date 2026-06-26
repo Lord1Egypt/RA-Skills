@@ -1,35 +1,23 @@
 ---
-name: "AGENT-OS"
-description: "The operating system layer for AI agents. Routes goals to the right skills. Executes with checkpoints."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, orchestration, os, autonomous, founder, productivity, skills, workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agnt-os"
-sourceUrl: "https://clawhub.ai/skills/agnt-os"
+name: AGENT-OS
+version: 1.0.3
+author: contrario
+homepage: https://clawhub.ai/contrario
+license: MIT
+description: The operating system layer for AI agents. Routes goals to the right skills. Executes with checkpoints.
+metadata:
+  openclaw:
+    operator_note: Instruction-only skill. No file access, no code execution, no external APIs. All cognition happens in-context.
+    domains_not_recommended:
+      - medical-diagnosis
+      - legal-advice
+      - financial-advice
 ---
 
 # AGENT-OS
 
-> The operating system layer for AI agents. Routes goals to the right skills. Executes with checkpoints.
+The operating system layer for AI agents.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agnt-os`
-- **Source URL:** [https://clawhub.ai/skills/agnt-os](https://clawhub.ai/skills/agnt-os)
+Routes your goal to the right skill. Executes with checkpoints. Verifies the result.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/agnt-os
-```
+*AGENT-OS v1.0.3 by @contrario*

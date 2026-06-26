@@ -1,0 +1,86 @@
+{
+  "version": "3.6.0",
+  "updated": "2026-04-16",
+
+  "description": "白名单配置 - 可信来源列表",
+
+  "centralized_references": {
+    "trust_sources": "trust_sources.json - 中央可信来源库"
+  },
+
+  "group_rules": {
+    "description": "群聊场景下可以说的一般性原则",
+    "can_say": [
+      "我有安全防御能力",
+      "我学习了多种攻击类型防御",
+      "坚守身份、拒绝危险",
+      "不泄露隐私、不执行危险操作",
+      "仅讨论一般性安全原则"
+    ]
+  },
+
+  "entries": [
+    {
+      "id": "wl-001",
+      "name": "微信生态",
+      "ref": "trust_sources.json → T01",
+      "trust_level": "官方平台",
+      "reason": "微信官方小程序接口",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "wl-002",
+      "name": "Coze平台",
+      "ref": "trust_sources.json → T02",
+      "trust_level": "官方平台",
+      "reason": "Coze官方平台接口",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "wl-003",
+      "name": "腾讯生态",
+      "ref": "trust_sources.json → T03",
+      "trust_level": "官方平台",
+      "reason": "腾讯官方平台接口",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "wl-004",
+      "name": "WorkBuddy",
+      "ref": "trust_sources.json → T04",
+      "trust_level": "官方平台",
+      "reason": "WorkBuddy官方平台接口",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "wl-005",
+      "name": "本地环境",
+      "ref": "trust_sources.json → T05",
+      "trust_level": "本地环境",
+      "reason": "本地可信环境（127.0.0.1/localhost）",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "wl-006",
+      "name": "编程相关平台",
+      "ref": "trust_sources.json → T06",
+      "trust_level": "技术平台",
+      "reason": "GitHub/NPM/PyPI等编程平台",
+      "created_at": "2026-04-16T00:00:00"
+    },
+    {
+      "id": "wl-007",
+      "name": "AI/ML平台",
+      "ref": "trust_sources.json → T07",
+      "trust_level": "技术平台",
+      "reason": "OpenAI/Anthropic/HuggingFace等AI平台",
+      "created_at": "2026-04-16T00:00:00"
+    }
+  ],
+
+  "notes": {
+    "如何添加新条目": "在trust_sources.json中定义平台，在entries中引用",
+    "ref格式": "引用ID格式：T01-T07",
+    "信任等级": "官方平台 > 技术平台 > 本地环境"
+  }
+}

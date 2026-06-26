@@ -1,0 +1,21 @@
+{
+  "name": "alby-lightning",
+  "version": "1.0.0",
+  "description": "Lightning payments via Alby Hub (NWC) for OpenClaw",
+  "main": "scripts/wallet.js",
+  "scripts": {
+    "test": "node scripts/wallet.js"
+  },
+  "keywords": [
+    "lightning",
+    "bitcoin",
+    "openclaw",
+    "alby"
+  ],
+  "author": "kiagentkronos-cell",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@getalby/sdk": "^7.0.0"
+  }
+}

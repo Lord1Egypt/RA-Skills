@@ -1,0 +1,282 @@
+# AI人才定级 - 评估配置
+
+# 权重配置（各维度在评估中的重要性）
+weights:
+  ai_fluency: 1.0
+  human_ai_judgment: 1.2
+  architecture_design: 1.5
+  hybrid_orchestration: 1.1
+  cognitive_depth: 1.3
+  problem_modeling: 1.4
+
+# 级别阈值
+level_thresholds:
+  l1: 4.0   # 4-7
+  l2: 8.0   # 8-11
+  l3: 12.0  # 12-14
+  l4: 15.0  # 15-16
+
+# 环境复杂度系数
+environment_complexity:
+  low:
+    coefficient: 0.7
+    description: "个人项目/小型团队"
+    examples:
+      - "个人开发者"
+      - "小型创业项目"
+      - "非技术密集型行业"
+  medium:
+    coefficient: 1.0
+    description: "中等规模公司/技术团队"
+    examples:
+      - "A/B轮创业公司"
+      - "中型技术团队"
+      - "传统企业数字化转型"
+  high:
+    coefficient: 1.2
+    description: "大型企业/高复杂度环境"
+    examples:
+      - "上市互联网公司"
+      - "金融/医疗等受监管行业"
+      - "万人以上组织"
+
+# 个人杠杆率系数
+personal_leverage:
+  low:
+    coefficient: 0.7
+    description: "模块执行者"
+    indicators:
+      - "在明确框架下完成分配任务"
+      - "决策权有限"
+      - "影响范围在团队内"
+  medium:
+    coefficient: 1.0
+    description: "项目Owner"
+    indicators:
+      - "主导单个项目或模块"
+      - "有技术选型权"
+      - "影响范围跨团队"
+  high:
+    coefficient: 1.3
+    description: "一人AI部门/全栈架构师"
+    indicators:
+      - "从0到1设计业务流程"
+      - "跨部门资源协调"
+      - "影响范围达组织级"
+
+# 成长速度调整
+growth_speed:
+  high:
+    adjustment: 0.5
+    criteria:
+      - "开源贡献/技术博客/内部分享"
+      - "跨2-3个技术栈迁移"
+      - "持续实验，多个落地项目"
+  medium:
+    adjustment: 0
+    criteria:
+      - "主动学习但无输出"
+      - "熟悉1-2个技术栈"
+      - "有1-2个实验项目"
+  low:
+    adjustment: -0.5
+    criteria:
+      - "被动学习"
+      - "只会一个技术栈"
+      - "无自驱实验"
+
+# 认知深度检查项（每个维度打分前必须过）
+cognitive_depth_checks:
+  - "为什么选这个方案（Why）"
+  - "知不知道tradeoff（Trade-off）"
+  - "出问题怎么debug（Debug）"
+  - "理解底层机制吗（Fundamentals）"
+
+# 认知深度与得分上限
+cognitive_depth_limits:
+  surface_use:
+    level: "L1"
+    description: "知道工具怎么用，不知道为什么"
+    max_score: 1
+  know_what:
+    level: "L2"
+    description: "能调参优化，但不理解底层"
+    max_score: 2
+  know_why:
+    level: "L3"
+    description: "理解tradeoff，能debug，知道底层机制"
+    max_score: 3
+  systematic:
+    level: "L4"
+    description: "能解释整个技术栈tradeoff，能指导他人"
+    max_score: 4
+
+# 批判性审查规则
+critical_review:
+  red_flags:
+    - signal: "量化指标无基线"
+      action: "降级处理，标注存疑"
+    - signal: "声称"主导"但无团队规模"
+      action: "降权为"参与""
+    - signal: "技术栈堆砌无深度案例"
+      action: "按L1-L2处理"
+    - signal: "短时间内声称架构级贡献"
+      action: "标注"需验证真实贡献度""
+    - signal: "个人项目混入生产经验"
+      action: "单独标注，降权"
+
+# 打分纪律
+scoring_discipline:
+  - "单维度最高给3分，除非有极强组织级影响力证据"
+  - "L4极稀缺，候选人有亮点≠L4"
+  - "双乘数加权必须执行，缺一不可"
+  - "认知深度检查是必经步骤"
+  - "简历审计是必经步骤：不经过漏洞穿透审计，不得打分"
+
+# 非均衡型判定
+non_balanced_rules:
+  potential:
+    condition: "综合L{n}，但某一维度达到L{n+1}+"
+    action: "标注"潜力型：{维度名}突出""
+  weakness:
+    condition: "综合L{n}，但某一维度为L{n-1}或更低"
+    action: "标注"短板型：{维度名}薄弱""
+  l4_constraint:
+    condition: "候选达到L4但架构设计力<3或人机判断力<3"
+    action: "降为L3，注明原因"
+
+# 文件解析配置
+file_parser:
+  supported_formats:
+    - ".pdf"
+    - ".docx"
+    - ".txt"
+    - ".md"
+    - ".json"
+    - ".yaml"
+    - ".yml"
+  max_file_size_mb: 20
+  encoding: "utf-8"
+  fallback_encoding: "gbk"
+
+# 批量处理配置
+batch_processing:
+  max_parallel: 5
+  timeout_seconds: 300
+  retry_count: 2
+
+# 输出配置
+output:
+  formats:
+    - "markdown"
+    - "json"
+    - "excel"
+  include_debug_info: false
+  anonymize_candidate: true
+  default_language: "zh-CN"
+
+# v3.3 Pro — 认知复盘配置
+cognitive_review:
+  # 矛盾检测引擎配置
+  contradiction_engine:
+    confidence_levels:
+      high:
+        description: "明确的时间/数据冲突，需追问验证"
+        action: "标记为高优先级，建议面试官追问"
+      medium:
+        description: "角色/逻辑不一致，可能有合理解释"
+        action: "标注存疑，建议但不强制追问"
+      low:
+        description: "决策模糊/过度光滑，可能是正常现象"
+        action: "仅内部记录，不主动暴露"
+    
+    contradiction_types:
+      - "时间矛盾"
+      - "数据矛盾"
+      - "角色矛盾"
+      - "逻辑跳跃"
+      - "决策模糊"
+      - "过度光滑"
+    
+    false_positive_filters:
+      - "口语转写失真不计为矛盾"
+      - "记忆模糊≠说谎"
+      - "不同粒度的描述≠矛盾"
+      - "每条矛盾必须带置信度+免责声明"
+  
+  # 认知解析维度
+  cognitive_dimensions:
+    - name: "问题拆解"
+      description: "接到需求后如何结构化"
+      signals:
+        positive: "先问边界→拆子问题→排序"
+        negative: "直接跳答案/复述需求"
+    - name: "抽象能力"
+      description: "能否从具体案例提炼本质"
+      signals:
+        positive: "\"核心矛盾是X\"/\"本质上是Y问题\""
+        negative: "只讲细节不提规律"
+    - name: "逻辑一致性"
+      description: "前后论述是否自洽"
+      signals:
+        positive: "论点→论据→结论链条完整"
+        negative: "前后立场漂移无解释"
+    - name: "真实性纹理"
+      description: "是否存在真实细节"
+      signals:
+        positive: "提到了意外/bug/临时妥协"
+        negative: "所有描述都是最佳实践"
+    - name: "不确定性处理"
+      description: "面对未知的反应"
+      signals:
+        positive: "坦诚\"这个我不确定，但我的推测是...\""
+        negative: "硬编答案/含糊其辞"
+    - name: "修正能力"
+      description: "被challenge后如何调整"
+      signals:
+        positive: "接受质疑→重新思考→给出新视角"
+        negative: "防御性反驳/死不承认"
+    - name: "Ownership"
+      description: "是否主动推进问题"
+      signals:
+        positive: "\"后来我发现还有一个问题...\""
+        negative: "等面试官问才说"
+    - name: "AI协同"
+      description: "如何描述AI使用过程"
+      signals:
+        positive: "提到了prompt迭代/失败尝试/边界判断"
+        negative: "笼统说\"用AI辅助\""
+  
+  # 追问深度评估
+  drill_depth:
+    level_1:
+      name: "表层"
+      description: "复述/美化既有叙述"
+      assessment: "未穿透"
+    level_2:
+      name: "细节"
+      description: "能补充具体细节和数字"
+      assessment: "初步验证"
+    level_3:
+      name: "反思"
+      description: "承认不足、复盘决策过程"
+      assessment: "真实能力暴露"
+    level_4:
+      name: "重构"
+      description: "推翻原有叙述，给出新视角"
+      assessment: "高阶认知能力"
+  
+  # 认知画像可信度
+  portrait_confidence:
+    high:
+      min_duration_minutes: 30
+      source: "完整面试转录"
+      usage: "可直接用于定级辅助"
+    medium:
+      min_duration_minutes: 15
+      source: "面试记录"
+      usage: "建议补充更多信息"
+    low:
+      min_duration_minutes: 0
+      source: "简要笔记"
+      usage: "仅做参考，不做强推断"

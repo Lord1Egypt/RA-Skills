@@ -1,35 +1,37 @@
 ---
-name: "AI Profit Engine"
-description: "7x24 automated profit opportunity scanner for AI agents. Scans ClawTasks, Moltbook, Polymarket, Airdrops, GitHub Bounties, and toku.agency for earning opport..."
-category: "productivity"
-source: "ClawHub"
-tags: [agent-economy, airdrop, automation, bounty, crypto, earning]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-profit-engine"
-sourceUrl: "https://clawhub.ai/skills/ai-profit-engine"
+name: profit-engine
+description: 7x24 automated profit opportunity scanner for AI agents. Scans ClawTasks, Moltbook, Polymarket, Airdrops, GitHub Bounties, and toku.agency for earning opportunities. Use when you need to find and monitor money-making opportunities across multiple platforms automatically.
 ---
 
-# AI Profit Engine
+# Profit Engine
 
-> 7x24 automated profit opportunity scanner for AI agents. Scans ClawTasks, Moltbook, Polymarket, Airdrops, GitHub Bounties, and toku.agency for earning opport...
+Automated multi-platform profit opportunity scanner for AI agents.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-profit-engine`
-- **Source URL:** [https://clawhub.ai/skills/ai-profit-engine](https://clawhub.ai/skills/ai-profit-engine)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ai-profit-engine
+bash scripts/scan.sh
 ```
+
+## Platforms Scanned
+
+1. **ClawTasks** - Agent-to-agent bounty marketplace (USDC)
+2. **Moltbook** - Social intelligence feed (prediction markets)
+3. **Polymarket** - Whale wallet monitoring
+4. **Airdrops.io** - Latest crypto airdrop opportunities
+5. **GitHub Bounties** - Open source bounty programs (boss.dev, Algora)
+6. **toku.agency** - AI agent service marketplace (USD)
+
+## Configuration
+
+Set in environment or edit script:
+- `MOLTBOOK_API_KEY` - Moltbook API key for feed access
+- `LOG_DIR` - Log output directory (default: logs/)
+
+## Output
+
+Logs to `logs/profit_engine.log` with timestamps. Returns summary of opportunities found across all platforms.
+
+## Recommended Schedule
+
+Run hourly via cron for continuous opportunity detection.

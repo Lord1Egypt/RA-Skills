@@ -1,0 +1,22 @@
+name: airemove-watermark
+display_name: AI Remove Watermark
+version: 0.1.7
+description: Official Airemovewatermark skill for OpenClaw and ClawHub. Remove watermarks from local images or image URLs, poll async tasks, and optionally save completed output to the local artifact directory.
+author: isees
+license: MIT-0
+homepage: https://airemovewatermark.net/openclaw
+repository: https://github.com/isees/remove-watermark-skill
+entry: SKILL.md
+tags:
+  - media
+  - image-processing
+  - watermark-removal
+  - openclaw
+config:
+  env:
+    required:
+      - API_KEY
+    optional:
+      - API_BASE_URL
+  defaults:
+    API_BASE_URL: https://airemovewatermark.net

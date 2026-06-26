@@ -1,35 +1,285 @@
 ---
-name: "Apollo Neuro"
-description: "像神经系统一样选择最快路径：紧急的事快速处理，复杂的事慢慢想。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-neuro"
-sourceUrl: "https://clawhub.ai/skills/apollo-neuro"
+name: apollo-neuro
+description: >
+  像神经系统一样选择最快路径：紧急的事快速处理，复杂的事慢慢想。
+version: 2.0.0
+read_when:
+  - 用户提到紧急、立即、马上、稍后、仔细想想
+  - 任务进入系统时
+  - 需要决定处理路径时
+metadata:
+  openclaw:
+    emoji: "🧠"
+    requires:
+      bins: []
+      env: []
+    triggers:
+      - 紧急
+      - 立即
+      - 马上
+      - 稍后
+      - 深入分析
+      - 仔细想想
+      - 任务分类
+      - 响应路径
+    suite: apollo
 ---
 
-# Apollo Neuro
+# Apollo Neuro — 分层响应决策系统
 
-> 像神经系统一样选择最快路径：紧急的事快速处理，复杂的事慢慢想。
+## 核心准则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-neuro`
-- **Source URL:** [https://clawhub.ai/skills/apollo-neuro](https://clawhub.ai/skills/apollo-neuro)
+**AI的任务处理应该像人的神经系统：不同类型的任务走不同的路径，不需要每次都从零思考。**
 
-## Overview
+神经系统的分层响应：
+- **交感神经**：紧急情况，秒级响应，不经大脑
+- **副交感神经**：日常稳态，自动维持
+- **脊髓反射**：条件反射，不需要思考
+- **皮层决策**：复杂问题，深思熟虑
 
+对应的AI路径：
+- **快速路径**：跳过多轮确认，直接执行
+- **守护路径**：低优先级队列，定期处理
+- **直觉路径**：匹配已知pattern，直接输出历史最优解
+- **慢速路径**：完整brainstorming→planning→verification
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apollo-neuro
+## 四个响应路径
+
+### 路径1：快速路径（交感神经）
+**适用场景：**
+- 用户明确说"紧急/立即/马上"
+- 或apollo-circadian判断当前是高效期
+
+**处理方式：**
 ```
+→ 跳过多轮确认
+→ 直接执行
+→ 简化验证（只验证结果，不验证过程）
+→ 完成后简要报告
+```
+
+### 路径2：守护路径（副交感神经）
+**适用场景：**
+- 日常查询、简单操作
+- 后台维护任务
+- 低优先级队列中的任务
+
+**处理方式：**
+```
+→ 低优先级处理
+→ 批量执行
+→ 不打断当前工作流
+→ 完成后静默通知
+```
+
+### 路径3：直觉路径（脊髓反射）
+**适用场景：**
+- 匹配已知pattern（有历史案例）
+- 相似任务多次执行后
+
+**处理方式：**
+```
+→ 匹配历史最优解
+→ 直接输出
+→ 不重新推理
+→ 如果结果满意则完成
+→ 如果结果不满意则降级到慢速路径
+```
+
+### 路径4：慢速路径（皮层决策）
+**适用场景：**
+- 复杂分析（多维度、新领域）
+- 多步骤决策
+- 没有历史pattern的新任务
+
+**处理方式：**
+```
+→ 完整apollo-workflow
+→ brainstorming → planning → subagent → verification
+→ 充分推理和多轮确认
+→ 产出高质量结论
+```
+
+## 任务分类流程
+
+```
+收到任务 →
+  1. 关键词扫描：
+     "紧急/立即/马上" → 交感神经（快速路径）
+     "稍后/不急" → 副交感神经（守护路径）
+     "仔细想想/深入分析" → 皮层（慢速路径）
+  2. 上下文判断：
+     - 匹配已知pattern？ → 直觉路径
+     - 新领域/复杂推理？ → 慢速路径
+     - 简单查询/日常操作？ → 守护路径
+  3. apollo-circadian协同：
+     - 高效期 + 复杂任务 → 慢速路径
+     - 低效期 + 复杂任务 → 建议推迟或降级
+     - 低效期 + 简单任务 → 守护路径
+  4. 输出分类结果
+```
+
+## 路径监察机制
+
+```
+快速路径监察：
+  → 执行后评估结果
+  → 如果失败 → 降级到慢速路径，重新处理
+  → 如果成功 → 记录为可选的直觉pattern
+
+直觉路径监察：
+  → 如果结果不满意
+  → 降级到慢速路径
+  → 并记录：为什么直觉路径失败了
+
+慢速路径监察：
+  → 如果发现任务其实很简单
+  → 记录为新的直觉pattern
+  → 下次走直觉路径
+```
+
+## 直觉Pattern积累
+
+```
+直觉Pattern库（apollo-neuro的核心资产）
+
+Pattern格式：
+{
+  "task_type": "小红书爆款标题分析",
+  "trigger_keywords": ["标题", "爆款", "小红书"],
+  "success_cases": 5,
+  "average_output_quality": "8.5/10",
+  "last_used": "2026-04-06",
+  "downgrade_count": 0
+}
+
+积累规则：
+  - 同一类型任务慢速路径成功执行3次 → 记录为直觉pattern
+  - 直觉pattern连续失败2次 → 删除该pattern
+  - 直觉pattern每周至少使用一次 → 保留；否则降级
+```
+
+## 输出格式
+
+```
+🧠 [apollo-neuro] 响应路径决策
+
+任务：[用户描述]
+关键词触发：[紧急/稍后/分析/...]
+历史匹配：✅ 匹配直觉pattern / ❌ 无历史匹配
+
+分类结果：
+  路径：⚡快速 / 🌿守护 / 🎯直觉 / 🤔慢速
+  理由：[为什么选这条路径]
+  预期耗时：[X分钟 / 不知道（第一次遇到）]
+
+apollo-circadian协同：
+  当前相位：[相位名]
+  任务与相位匹配：🟢匹配 / 🟡错配 / 🔴强烈不建议
+
+路径监察：
+  状态：[执行中/完成/已降级]
+  直觉pattern积累：[N]个
+```
+
+## 紧急模式（肾上腺素模式）
+
+当apollo-circadian的褪黑素窗口（21:00后）收到紧急任务时：
+
+```
+触发紧急模式 →
+  1. 通知主AI：紧急任务打断整理窗口
+  2. 暂停apollo-dream整理流程
+  3. 切换到快速路径处理紧急任务
+  4. 完成后询问：是否继续整理窗口？
+  5. 如果是 → 恢复apollo-dream
+     如果否 → 记录，下次再整理
+```
+
+## 与其他Skill的协同
+
+```
+apollo-circadian ──→ 判断"什么时候"（高效期/低效期）
+apollo-neuro ──────→ 判断"来任务了该走哪条路"
+apollo-dream ──────→ 慢速路径的一部分（深度整理）
+apollo-renal ──────→ 守护路径可以批量的上下文过滤
+```
+
+## 验收标准
+
+- [x] 关键词触发分类（紧急/推迟/复杂分析）
+- [x] 四种路径正确识别（sympathetic/parasympathetic/cortical/intuition）
+- [ ] 简单任务不走完整pipeline（可测量效率提升）
+- [ ] 紧急任务不被复杂流程拖慢（响应时间可测量）
+- [ ] 直觉pattern能够积累（同一类型任务第二次明显更快）
+- [ ] 快速路径失败时自动降级到慢速路径
+- [ ] 紧急打断apollo-circadian整理窗口时有确认机制
+
+## 待决策事项（已全部确认 ✅）
+
+> ✅ 2026-04-06 袁文同确认
+
+- **Q8 直觉升级阈值**：3次慢速路径成功执行后升级为直觉pattern
+- **Q9 pattern上限**：不设上限
+- **Q10 "紧急"定义**：真正紧急的才走快速路径（生命/安全/有明确deadline的）
+- **Q11 直觉降级**：连续2次失败则删除该pattern
+
+## 实施文件
+
+| 文件 | 作用 |
+|------|------|
+| scripts/neuro/neuro-classify.sh | 任务分类脚本 |
+| .neuro/patterns.json | 直觉pattern存储 |
+| skills/apollo-neuro/SKILL.md | 本文档 |
+
+## v1 实施规格
+
+### 任务分类脚本
+
+```bash
+# 手动分类
+bash scripts/neuro/neuro-classify.sh "帮我马上发这个文件给老板"
+
+# 输出
+🧠 [apollo-neuro] 任务分类
+任务：帮我马上发这个文件给老板
+路径：⚡快速路径|跳过多轮确认，直接执行
+```
+
+### 分类逻辑（v1）
+
+| 触发关键词 | 路径 |
+|-----------|------|
+| 紧急/马上/立即 | ⚡交感（快速）|
+| 稍后/不急 | 🌿副交感（守护）|
+| 深入分析/仔细想想 | 🤔皮层（慢速）|
+| 是什么/查一下/看看 | 🌿副交感（守护）|
+| 规划/设计/策略/研究 | 🤔皮层（慢速）|
+| 匹配直觉pattern | 🎯直觉路径 |
+
+### 直觉Pattern存储
+
+```json
+{
+  "patterns": [
+    {
+      "id": "小红书-标题生成",
+      "task_type": "小红书爆款标题分析",
+      "trigger_keywords": ["标题", "爆款", "小红书"],
+      "success_cases": 5,
+      "last_used": "2026-04-06",
+      "downgrade_count": 0
+    }
+  ],
+  "meta": {"created": "2026-04-06", "total_uses": 0}
+}
+```
+
+### 下一步
+
+v1只实现了分类脚本和pattern存储。
+以下功能待实施：
+1. 路径监察机制（执行后评估成功/失败）
+2. 直觉升级（3次成功→升级为pattern）
+3. 直觉降级（连续2次失败→删除pattern）
+4. 与apollo-circadian的协同（高效期/低效期路由）

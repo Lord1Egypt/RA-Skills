@@ -1,35 +1,142 @@
 ---
-name: "Ai Companion Diet"
-description: "基于热量差=目标步数的核心理念，通过定时提醒、饮食打卡、步数督促、数据分析、激励机制陪伴用户健康减肥。支持8+16断食、加餐记录、平台期解释、体重趋势预测和多轮对话优化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-companion-diet"
-sourceUrl: "https://clawhub.ai/skills/ai-companion-diet"
+name: ai-companion-diet
+version: 1.0.0
+title: AI智能陪伴减肥助手
+description: 基于热量差=目标步数的核心理念，通过定时提醒、饮食打卡、步数督促、数据分析、激励机制陪伴用户健康减肥。支持8+16断食、加餐记录、平台期解释、体重趋势预测和多轮对话优化。
+author: joe
+runtime: bash
+tags:
+  - health
+  - fitness
+  - weight-loss
+  - diet
+  - ai-companion
+  - productivity
+dependencies: []
 ---
 
-# Ai Companion Diet
+# AI智能陪伴减肥助手
 
-> 基于热量差=目标步数的核心理念，通过定时提醒、饮食打卡、步数督促、数据分析、激励机制陪伴用户健康减肥。支持8+16断食、加餐记录、平台期解释、体重趋势预测和多轮对话优化。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-companion-diet`
-- **Source URL:** [https://clawhub.ai/skills/ai-companion-diet](https://clawhub.ai/skills/ai-companion-diet)
+这是一个专为健康减肥设计的AI陪伴技能，通过科学的热量差计算、智能提醒机制和数据分析，帮助用户建立健康的生活习惯。
 
-## Overview
+## 核心功能
 
+### 1. 热量差智能计算
+- 基于用户基础数据（身高、体重、年龄、性别）计算基础代谢率（BMR）
+- 结合活动系数计算每日总能量消耗（TDEE）
+- 自动计算目标热量差和对应所需步数
+- 支持8+16断食模式时间规划
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 2. 定时提醒机制
+- 早餐提醒（7:30-8:30）
+- 午餐提醒（11:30-12:30）
+- 晚餐提醒（17:30-18:30）
+- 步数督促提醒（10:00、15:00、20:00）
+- 睡前总结提醒（22:00）
+
+### 3. 饮食打卡与分析
+- 支持拍照识别食物热量
+- 支持手动输入食物名称和重量
+- 自动计算每餐热量和营养成分
+- 生成每日营养摄入分析报告
+- 支持加餐记录和统计
+
+### 4. 体重管理与趋势分析
+- 自动记录每日体重数据
+- 生成体重趋势图表
+- 平台期智能识别与解释
+- 基于历史数据预测减重趋势
+- 计算BMI并给出健康建议
+
+### 5. 激励机制
+- 每日达成目标后的正向反馈
+- 周度总结与进步表彰
+- 连续打卡奖励机制
+- 个性化鼓励话语生成
+
+## 使用方法
+
+### 开始使用
 ```bash
-hermes skills install clawhub/ai-companion-diet
+# 初始化用户基础数据
+init-user-data
+
+# 开始今日减肥计划
+start-daily-plan
 ```
+
+### 日常操作
+```bash
+# 记录早餐
+record-breakfast "食物描述" [重量]
+
+# 记录午餐  
+record-lunch "食物描述" [重量]
+
+# 记录晚餐
+record-dinner "食物描述" [重量]
+
+# 记录加餐
+record-snack "食物描述" [重量]
+
+# 记录今日步数
+record-steps 步数
+
+# 记录今日体重
+record-weight 体重(kg)
+
+# 查看今日总结
+daily-summary
+```
+
+### 数据分析
+```bash
+# 查看体重趋势
+weight-trend
+
+# 查看本周分析
+weekly-analysis
+
+# 查看平台期分析
+plateau-analysis
+
+# 预测减重趋势
+predict-weight-loss
+```
+
+## 配置说明
+
+### 用户基础数据配置
+用户需要提供以下基础数据以获得更精准的计算：
+- 性别
+- 年龄
+- 身高（cm）
+- 初始体重（kg）
+- 目标体重（kg）
+- 日常活动水平（久坐/轻度/中度/重度）
+
+### 提醒时间配置
+可根据用户作息调整提醒时间，支持自定义提醒频率。
+
+## 数据存储
+- 用户基础数据：`user_data.json`
+- 每日记录：`daily_records/{YYYYMMDD}.json`
+- 体重历史：`weight_history.json`
+- 步数历史：`steps_history.json`
+
+## 注意事项
+1. 本技能提供的减肥建议仅供参考，不构成医疗建议
+2. 如有特殊健康状况，请在医生指导下使用
+3. 建议每周减重不超过0.5-1kg，避免过度节食
+4. 充足的睡眠和水分摄入对减肥同样重要
+
+## 更新日志
+
+### v1.0.0 (2026-05-18)
+- 初始版本发布
+- 实现核心功能：热量计算、提醒机制、饮食打卡、体重管理
+- 支持8+16断食模式
+- 添加平台期分析功能
+- 实现体重趋势预测

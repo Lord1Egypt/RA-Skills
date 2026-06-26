@@ -1,0 +1,295 @@
+// pages/{{name}}FormPage.ets
+// {{name}}表单页面（新增/编辑）
+
+import { {{viewModelName}} } from '../viewmodels/{{viewModelName}}';
+import { {{modelName}} } from '../models/{{modelName}}';
+import { GlobalErrorHandler } from '../common/utils/GlobalErrorHandler';
+import { promptAction } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct {{name}}FormPage {
+  private viewModel: {{viewModelName}} = new {{viewModelName}}();
+  private errorHandler: GlobalErrorHandler = GlobalErrorHandler.getInstance();
+
+  // 页面参数
+  @State isEdit: boolean = false;
+  @State itemId: string = '';
+
+  // 表单字段
+  {{#each formFields}}
+  @State {{name}}: {{type}} = {{defaultValue}};
+  {{/each}}
+
+  // 表单状态
+  @State isSubmitting: boolean = false;
+  @State validationErrors: Map<string, string> = new Map();
+
+  aboutToAppear() {
+    // 获取页面参数
+    // const params = router.getParams() as Record<string, string>;
+    // if (params?.id) {
+    //   this.isEdit = true;
+    //   this.itemId = params.id;
+    //   this.loadData();
+    // }
+  }
+
+  build() {
+    Column() {
+      // 头部
+      this.buildHeader()
+
+      // 表单内容
+      Scroll() {
+        Column({ space: 16 }) {
+          {{#each formSections}}
+          // {{label}}
+          this.build{{name}}Section()
+
+          {{/each}}
+          // 底部留白
+          Row().height(32)
+        }
+        .width('100%')
+        .padding(16)
+      }
+      .layoutWeight(1)
+      .scrollBar(BarState.Auto)
+
+      // 底部操作栏
+      this.buildFooter()
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F5F5F5')
+  }
+
+  @Builder
+  buildHeader() {
+    Row() {
+      Button('返回')
+        .fontSize(14)
+        .fontColor('#666')
+        .backgroundColor(Color.Transparent)
+        .onClick(() => this.handleBack())
+
+      Text(this.isEdit ? '编辑{{name}}' : '新建{{name}}')
+        .fontSize(18)
+        .fontWeight(FontWeight.Bold)
+
+      Blank()
+
+      if (this.isEdit) {
+        Button('删除')
+          .fontSize(14)
+          .fontColor('#FF4D4F')
+          .backgroundColor(Color.Transparent)
+          .onClick(() => this.handleDelete())
+      }
+    }
+    .width('100%')
+    .height(56)
+    .padding({ left: 16, right: 16 })
+    .backgroundColor(Color.White)
+  }
+
+  {{#each formSections}}
+  @Builder
+  build{{name}}Section() {
+    Column({ space: 12 }) {
+      Text('{{label}}')
+        .fontSize(16)
+        .fontWeight(FontWeight.Medium)
+        .alignSelf(ItemAlign.Start)
+
+      {{#each fields}}
+      // {{label}}
+      Column({ space: 4 }) {
+        {{#if (eq type 'input')}}
+        TextInput({ placeholder: '{{placeholder}}', text: this.{{name}} })
+          .width('100%')
+          .height(48)
+          .backgroundColor(Color.White)
+          .borderRadius(8)
+          .onChange((value) => this.{{name}} = value)
+        {{else if (eq type 'textarea')}}
+        TextArea({ placeholder: '{{placeholder}}', text: this.{{name}} })
+          .width('100%')
+          .height(120)
+          .backgroundColor(Color.White)
+          .borderRadius(8)
+          .onChange((value) => this.{{name}} = value)
+        {{else if (eq type 'select')}}
+        // [TODO] 实现选择器
+        Text('选择{{label}}')
+          .width('100%')
+          .height(48)
+          .fontSize(14)
+          .fontColor(this.{{name}} ? '#333' : '#999')
+          .backgroundColor(Color.White)
+          .borderRadius(8)
+          .textAlign(TextAlign.Start)
+          .padding({ left: 12 })
+          .onClick(() => this.show{{capitalize name}}Picker())
+        {{else if (eq type 'switch')}}
+        Row() {
+          Text('{{label}}')
+            .fontSize(14)
+          Blank()
+          Toggle({ type: ToggleType.Switch, isOn: this.{{name}} })
+            .selectedColor('#FF6B35')
+            .onChange((isOn) => this.{{name}} = isOn)
+        }
+        .width('100%')
+        .height(48)
+        .padding({ left: 12, right: 12 })
+        .backgroundColor(Color.White)
+        .borderRadius(8)
+        {{/if}}
+
+        if (this.validationErrors.has('{{name}}')) {
+          Text(this.validationErrors.get('{{name}}'))
+            .fontSize(12)
+            .fontColor('#FF4D4F')
+        }
+      }
+      .width('100%')
+      {{/each}}
+    }
+    .width('100%')
+    .padding(16)
+    .backgroundColor(Color.White)
+    .borderRadius(8)
+  }
+
+  {{/each}}
+  @Builder
+  buildFooter() {
+    Row({ space: 12 }) {
+      Button('取消')
+        .width(100)
+        .height(48)
+        .fontColor('#666')
+        .backgroundColor('#F5F5F5')
+        .onClick(() => this.handleBack())
+
+      Button(this.isSubmitting ? '保存中...' : (this.isEdit ? '保存' : '创建'))
+        .layoutWeight(1)
+        .height(48)
+        .fontColor(Color.White)
+        .backgroundColor('#FF6B35')
+        .enabled(!this.isSubmitting && this.isFormValid())
+        .onClick(() => this.handleSubmit())
+    }
+    .width('100%')
+    .height(80)
+    .padding(16)
+    .backgroundColor(Color.White)
+  }
+
+  // 加载数据（编辑模式）
+  private async loadData() {
+    try {
+      // [TODO] 加载详情数据
+      // const result = await this.viewModel.getDetail(this.itemId);
+      // if (result.data) {
+      //   this.fillForm(result.data);
+      // }
+    } catch (error) {
+      this.errorHandler.handle(error, 'loadData');
+    }
+  }
+
+  // 填充表单
+  private fillForm(data: {{modelName}}) {
+    // [TODO] 根据实际模型字段填充
+    // this.name = data.name;
+    // this.description = data.description;
+  }
+
+  // 表单验证
+  private validateForm(): boolean {
+    this.validationErrors.clear();
+    let isValid = true;
+
+    {{#each validationRules}}
+    // {{field}}验证
+    if ({{condition}}) {
+      this.validationErrors.set('{{field}}', '{{message}}');
+      isValid = false;
+    }
+    {{/each}}
+
+    return isValid;
+  }
+
+  // 检查表单是否有效
+  private isFormValid(): boolean {
+    // [TODO] 实现表单有效性检查
+    return true;
+  }
+
+  // 提交表单
+  private async handleSubmit() {
+    if (!this.validateForm()) {
+      promptAction.showToast({ message: '请检查表单填写' });
+      return;
+    }
+
+    this.isSubmitting = true;
+    try {
+      const data = this.buildFormData();
+
+      if (this.isEdit) {
+        // [TODO] 调用更新接口
+        // await this.viewModel.update(this.itemId, data);
+        promptAction.showToast({ message: '更新成功' });
+      } else {
+        // [TODO] 调用创建接口
+        // await this.viewModel.create(data);
+        promptAction.showToast({ message: '创建成功' });
+      }
+
+      this.handleBack();
+    } catch (error) {
+      this.errorHandler.handle(error, 'handleSubmit');
+      promptAction.showToast({ message: '保存失败，请重试' });
+    } finally {
+      this.isSubmitting = false;
+    }
+  }
+
+  // 构建表单数据
+  private buildFormData(): Partial<{{modelName}}> {
+    return {
+      {{#each formFields}}
+      {{name}}: this.{{name}},
+      {{/each}}
+    };
+  }
+
+  // 删除
+  private async handleDelete() {
+    // [TODO] 显示确认对话框
+    // const confirmed = await this.showConfirmDialog('确认删除?', '删除后无法恢复');
+    // if (confirmed) {
+    //   await this.viewModel.delete(this.itemId);
+    //   promptAction.showToast({ message: '删除成功' });
+    //   this.handleBack();
+    // }
+  }
+
+  // 返回
+  private handleBack() {
+    // router.back();
+  }
+
+  {{#each pickerMethods}}
+  // {{name}}选择器
+  private show{{name}}Picker() {
+    // [TODO] 实现选择器
+  }
+
+  {{/each}}
+}

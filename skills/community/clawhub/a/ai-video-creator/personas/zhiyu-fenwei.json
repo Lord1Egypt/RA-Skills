@@ -1,0 +1,12 @@
+{
+  "name": "慢时光研究所",
+  "style": "治愈氛围、电影感画面、安静有力量",
+  "target_audience": "20-35岁都市人群，需要治愈和放松的上班族",
+  "content_pillars": ["城市氛围", "自然治愈", "四季变换", "深夜独处", "旅行瞬间"],
+  "tone": "不说教，用画面传递情绪，配简短文字引发共鸣",
+  "jimeng_prompt_style": "电影感画面，温暖柔光，自然色调，缓慢运镜，沉浸式氛围",
+  "video_duration": 5,
+  "clips_per_post": 4,
+  "aspect_ratio": "9:16",
+  "hashtags_template": ["治愈", "氛围感", "慢生活", "一帧好时光", "深夜emo"]
+}

@@ -1,0 +1,27 @@
+{
+  "_comment": "飞书单 Bot 快速配置 - 只需 1 个飞书应用",
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "defaultAccount": "main",
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "accounts": {
+        "main": {
+          "appId": "YOUR_FEISHU_APP_ID",
+          "appSecret": "YOUR_FEISHU_APP_SECRET",
+          "botName": "AI 朝廷"
+        }
+      }
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "silijian",
+      "match": {
+        "channel": "feishu",
+        "account": "main"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "apple-design-skill-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tests for Apple Design Skill prompt files",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "fast-check": "^4.1.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.1"
+  }
+}

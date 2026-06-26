@@ -1,0 +1,56 @@
+{
+  "pas": [
+    {
+      "name": "Aria",
+      "phone": "+1XXXXXXXXXX",
+      "owner": "Jane Smith",
+      "owner_phone": "+1XXXXXXXXXX",
+      "owner_role": "VP Product",
+      "owner_email": "jane@company.com",
+      "status": "active",
+      "notes": ""
+    },
+    {
+      "name": "Rex",
+      "phone": "+1XXXXXXXXXX",
+      "owner": "John Doe",
+      "owner_phone": "+1XXXXXXXXXX",
+      "owner_role": "CTO",
+      "owner_email": "john@company.com",
+      "status": "active",
+      "notes": ""
+    }
+  ],
+  "groups": [
+    {
+      "name": "PA Coordination",
+      "jid": "XXXXXXXXXXX@g.us",
+      "purpose": "pa_coordination"
+    },
+    {
+      "name": "PA Onboarding",
+      "jid": "XXXXXXXXXXX@g.us",
+      "purpose": "onboarding"
+    }
+  ],
+  "owners": [
+    {
+      "name": "Jane Smith",
+      "phone": "+1XXXXXXXXXX",
+      "role": "VP Product",
+      "email": "jane@company.com",
+      "pa": "Aria",
+      "pa_phone": "+1XXXXXXXXXX",
+      "contact_preference": "pa_first"
+    },
+    {
+      "name": "John Doe",
+      "phone": "+1XXXXXXXXXX",
+      "role": "CTO",
+      "email": "john@company.com",
+      "pa": "Rex",
+      "pa_phone": "+1XXXXXXXXXX",
+      "contact_preference": "pa_only"
+    }
+  ]
+}

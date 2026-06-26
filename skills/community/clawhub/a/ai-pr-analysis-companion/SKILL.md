@@ -1,35 +1,145 @@
 ---
-name: "ai-pr-analysis-companion"
-description: "AI 智能代码变更分析助手 — 自动分析 GitHub PR 改动范围、技术债务、测试覆盖风险，生成结构化评审报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-pr-analysis-companion"
-sourceUrl: "https://clawhub.ai/skills/ai-pr-analysis-companion"
+name: ai-pr-analysis-companion
+description: AI 智能代码变更分析助手 — 自动分析 GitHub PR 改动范围、技术债务、测试覆盖风险，生成结构化评审报告
+category: AI|开发|自动化
+triggers: 分析PR, 代码变更分析, PR评审, GitHub审查, 技术债分析, 代码审查, PR风险评估, 改动范围分析
 ---
 
-# ai-pr-analysis-companion
+# AI 智能代码变更分析助手
 
-> AI 智能代码变更分析助手 — 自动分析 GitHub PR 改动范围、技术债务、测试覆盖风险，生成结构化评审报告
+> GitHub PR 链接 → 自动抓取代码变更 → AI 结构化分析 → 技术债务识别 + 风险评估 + 评审建议 → 飞书报告输出
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-pr-analysis-companion`
-- **Source URL:** [https://clawhub.ai/skills/ai-pr-analysis-companion](https://clawhub.ai/skills/ai-pr-analysis-companion)
+## 🎯 解决痛点
 
-## Overview
+- ❌ PR 代码量大时，人工 review 精力有限，容易遗漏关键问题
+- ❌ 改动涉及多个模块，不知道哪些地方需要重点关注
+- ❌ 新人 review 不熟悉代码库，很难判断改动的影响范围
+- ❌ 评审没有结构性，全凭个人经验，结果参差不齐
+- ❌ 技术债务无法量化，项目越来越难维护
 
+## 💡 解决方案
 
-## Installation
-To install this skill, run the following command in your terminal:
+```
+[GitHub PR URL]
+          ↓
+┌──────────────────────┐
+│  github             │ → 抓取 PR diff、文件列表、评论历史
+└────────┬─────────────┘
+         │ PR 元数据 + 变更摘要
+   ┌─────▼──────────┐
+   │  summarize     │ → AI 结构化分析：改动类型/影响范围/风险点
+   └─────┬──────────┘
+         │ 分析结果
+   ┌─────▼──────────────────┐
+   │  code-review-skill      │ → 聚焦代码质量问题、测试覆盖、潜在 Bug
+   └─────┬──────────────────┘
+         │ 评审结论
+   ┌─────▼──────────┐
+   │  feishu_doc    │ → 生成结构化报告，发布至飞书文档
+   └───────────────┘
+```
+
+## 📦 包含 Skills
+
+| Skill | 作用 | 调用时机 |
+|-------|------|---------|
+| github | 抓取 PR diff、文件列表、评论历史 | Step 1 |
+| summarize | AI 结构化分析：改动类型、影响范围、风险点识别 | Step 2 |
+| code-review-skill | 聚焦代码质量、测试覆盖、潜在 Bug 检测 | Step 3 |
+| feishu_doc | 生成结构化报告并发布至飞书文档 | Step 4 |
+
+## 🔧 前置要求
+
+1. **github CLI**：已配置 `gh auth login`
+2. **飞书机器人**：已配置 feishu_doc 写入权限
+
+## 📝 使用方法
+
+### 触发方式
+
+```
+分析PR <GitHub PR URL>
+代码变更分析 <PR链接>
+PR评审 <PR地址>
+```
+
+### 完整示例
+
+**输入：**
+```
+分析PR https://github.com/owner/repo/pull/123
+```
+
+**执行流程：**
+
+1. **Step 1 PR 数据抓取（github）**
+   - `gh pr view 123 --repo owner/repo --json title,body,files,additions,deletions,changedFiles`
+   - `gh pr diff 123 --repo owner/repo` 获取完整 diff
+   - `gh api repos/owner/repo/pulls/123/comments` 抓取历史评论
+
+2. **Step 2 结构化分析（summarize）**
+   - 分析改动的模块和文件，识别影响范围
+   - 识别高风险改动：数据库迁移、认证逻辑、并发处理、API 契约变更
+   - 量化改动规模：文件数、行数增删、涉及语言/框架
+
+3. **Step 3 代码质量评审（code-review-skill）**
+   - 分析代码风格、命名规范、安全隐患
+   - 评估测试覆盖是否充分
+   - 指出潜在 Bug、性能问题、边界 case 遗漏
+   - 识别技术债务：重复代码、硬编码、缺少注释
+
+4. **Step 4 报告生成与发布（feishu_doc）**
+   - 生成结构化评审报告，包含：
+     - PR 基本信息摘要
+     - 改动范围量化
+     - 风险评级（高/中/低）
+     - 问题清单与修复建议
+     - 技术债务评估
+   - 发布至飞书文档，支持团队协作评论
+
+## 📊 报告模板
+
+```markdown
+# PR 评审报告
+
+## 基本信息
+- **PR 标题**：xxx
+- **作者**：xxx
+- **改动规模**：+xxx/-xxx 行，xx 个文件
+- **评审时间**：yyyy-mm-dd
+
+## 改动范围摘要
+[AI 提取的核心改动说明]
+
+## 风险评级
+🟡 中等风险
+- 涉及认证模块改动
+- 缺少新增功能的单元测试
+
+## 问题清单
+1. **[高]** xxx 文件第 xx 行：潜在空指针风险
+2. **[中]** xxx 文件：硬编码配置应抽取至配置文件
+
+## 技术债务
+- 发现 2 处重复代码，建议抽取为公共方法
+- xxx 模块缺少注释，建议补充文档
+
+## 总结建议
+[综合评价与合并建议]
+```
+
+## 风险评级标准
+
+| 级别 | 说明 | 触发条件 |
+|------|------|---------|
+| 🔴 高风险 | 需重点审查，可能影响线上稳定性 | 涉及 DB 迁移、认证/鉴权、支付、并发 |
+| 🟡 中风险 | 建议关注，可能存在隐藏问题 | 涉及核心业务逻辑、公共模块改动 |
+| 🟢 低风险 | 改动较小或仅有文档/测试更新 | 仅文档修改、测试补充、依赖更新 |
+
+## ⚙️ 配置说明
+
+如需分析私有仓库 PR，需确保：
 ```bash
-hermes skills install clawhub/ai-pr-analysis-companion
+gh auth login --hostname github.com
+gh auth status
 ```

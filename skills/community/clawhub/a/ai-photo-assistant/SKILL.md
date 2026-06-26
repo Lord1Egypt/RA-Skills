@@ -1,35 +1,17 @@
----
-name: "AI写真助手"
-description: "提供AI写真服务介绍、价格查询、风格推荐及下单指导，支持DeepSeek AI智能回复。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-photo-assistant"
-sourceUrl: "https://clawhub.ai/skills/ai-photo-assistant"
----
-
 # AI写真助手
 
-> 提供AI写真服务介绍、价格查询、风格推荐及下单指导，支持DeepSeek AI智能回复。
+AI写真馆的智能助手 - 帮用户了解AI写真服务、生成写真、解答问题。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-photo-assistant`
-- **Source URL:** [https://clawhub.ai/skills/ai-photo-assistant](https://clawhub.ai/skills/ai-photo-assistant)
+## 功能
 
-## Overview
+- 📸 介绍AI写真服务
+- 💰 查询价格（9.9元/次）
+- 🎨 推荐写真风格
+- 🔗 引导到AI写真馆下单
+- 🤖 DeepSeek AI智能回复
 
+## 安装
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ai-photo-assistant
+openclaw skills install ai-photo-assistant
 ```

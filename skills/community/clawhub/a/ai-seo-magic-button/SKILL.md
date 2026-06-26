@@ -1,35 +1,33 @@
 ---
-name: "AI SEO Magic Button"
-description: "The one-command magic button for AI-SEO. Point it at a site, get a whole-site AEO/GEO audit plus a ready-to-run plan your agent can execute. Trigger when the..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-seo-magic-button"
-sourceUrl: "https://clawhub.ai/skills/ai-seo-magic-button"
+name: ai-seo-magic-button
+description: >
+  The one-command magic button for AI-SEO. Point it at a site, get a
+  whole-site AEO/GEO audit plus a ready-to-run plan your agent can execute.
+  Trigger when the user says "audit my site for AI SEO", "make my site
+  citable by ChatGPT/Perplexity/Claude", "AEO/GEO audit", "generate an
+  AI-SEO plan", or "improve my AI citation eligibility".
 ---
 
-# AI SEO Magic Button
+# ai-seo-magic-button
 
-> The one-command magic button for AI-SEO. Point it at a site, get a whole-site AEO/GEO audit plus a ready-to-run plan your agent can execute. Trigger when the...
+The magic button: point it at your site, get a whole-site AEO/GEO audit plus a ready-to-run plan your agent can execute. It produces an actionable PLAN (plan.json + markdown checklist) - not direct edits. You then drive your agent against the plan to execute it.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-seo-magic-button`
-- **Source URL:** [https://clawhub.ai/skills/ai-seo-magic-button](https://clawhub.ai/skills/ai-seo-magic-button)
+It is a thin orchestration layer over two engines: the ai-seo MCP (audit + score + rewrite) and the citation-intelligence MCP (what AI engines cite). Both are spawned automatically as subprocesses; you do not call them yourself.
 
-## Overview
+## Setup (once)
 
+This skill shells out to the ai-seo-magic-button CLI. From the product dir:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-seo-magic-button
-```
+npm install && npm run build
+
+## The two-step flow
+
+Step 1 - run it (audit then plan). It crawls the site, audits each page, pulls citation gaps, and writes plan.json + plan.md.
+
+Step 2 - execute the plan. Work the items in priority order.
+
+## Rules
+
+- This produces an actionable plan, not direct edits.
+- Honour priority. Lead with critical/high items.
+- Never recommend blocking AI crawlers.

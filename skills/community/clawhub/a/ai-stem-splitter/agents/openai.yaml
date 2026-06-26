@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Stem Splitter"
+  short_description: "Split songs into clean stems"
+  default_prompt: "Use $ai-stem-splitter to separate this audio into vocals, drums, bass, guitar, piano, and other stems."

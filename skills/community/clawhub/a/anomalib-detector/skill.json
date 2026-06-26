@@ -1,0 +1,147 @@
+{
+  "name": "anomalib-detector",
+  "display_name": "Anomalib 工业异常检测",
+  "version": "1.1.0",
+  "description": "基于 Intel anomalib 的工业视觉异常检测 Skill，支持 20+ 种检测模型，可用于产品缺陷检测、质量控制等场景",
+  "author": {
+    "name": "Coze AI Agent",
+    "contact": ""
+  },
+  "category": "computer-vision",
+  "tags": [
+    "anomaly-detection",
+    "defect-detection",
+    "industrial-qc",
+    "machine-vision",
+    "deep-learning"
+  ],
+  "platform": "coze",
+  "license": "MIT-0",
+  "repository": "",
+  "documentation": "./README.md",
+  "readme": "./README.md",
+  "requirements": {
+    "python": ">=3.9",
+    "packages": [
+      "anomalib>=2.3.0",
+      "torch>=2.0.0",
+      "torchvision>=0.15.0",
+      "opencv-python>=4.8.0",
+      "pillow>=10.0.0",
+      "numpy>=1.24.0"
+    ]
+  },
+  "installation": {
+    "method": "pip",
+    "commands": [
+      "pip install anomalib",
+      "pip install \"anomalib[cpu]\"",
+      "pip install \"anomalib[cu130]\""
+    ],
+    "options": [
+      {
+        "name": "CPU 模式",
+        "command": "pip install \"anomalib[cpu]\"",
+        "description": "无 GPU 环境使用"
+      },
+      {
+        "name": "GPU CUDA 13.0",
+        "command": "pip install \"anomalib[cu130]\"",
+        "description": "NVIDIA GPU 加速"
+      },
+      {
+        "name": "OpenVINO",
+        "command": "pip install \"anomalib[openvino]\"",
+        "description": "Intel 硬件加速"
+      }
+    ]
+  },
+  "capabilities": {
+    "detection": {
+      "supported": [
+        "single-image-anomaly",
+        "batch-anomaly",
+        "heatmap-generation",
+        "segmentation"
+      ]
+    },
+    "models": [
+      "Patchcore",
+      "Padim",
+      "EfficientAd",
+      "DRAEM",
+      "GANomaly",
+      "DFKD",
+      "CFA",
+      "FastFlow"
+    ],
+    "datasets": [
+      "MVTecAD",
+      "Folder",
+      "VisA",
+      "KolektorSDD"
+    ],
+    "export_formats": [
+      "PyTorch",
+      "ONNX",
+      "OpenVINO"
+    ]
+  },
+  "usage_example": {
+    "python": "from anomalib.data import MVTecAD; from anomalib.models import Patchcore; from anomalib.engine import Engine",
+    "code": "model = Patchcore(); engine = Engine(); engine.fit(model=model, datamodule=MVTecAD(category='bottle'))"
+  },
+  "pricing": {
+    "type": "subscription",
+    "plans": [
+      {
+        "name": "基础版",
+        "price": 29,
+        "currency": "USD",
+        "period": "month",
+        "features": ["单图检测", "热力图输出", "Patchcore模型", "100次/月"]
+      },
+      {
+        "name": "专业版",
+        "price": 49,
+        "currency": "USD",
+        "period": "month",
+        "features": ["批量检测", "热力图+分割", "所有模型", "无限次", "优先支持"]
+      },
+      {
+        "name": "企业版",
+        "price": 199,
+        "currency": "USD",
+        "period": "month",
+        "features": ["私有部署", "自定义模型训练", "API接入", "专属支持", "SLA保障"]
+      }
+    ],
+    "pay_per_use": {
+      "price": 9,
+      "currency": "USD",
+      "description": "单次检测，适合偶尔使用"
+    },
+    "free_tier": {
+      "description": "每月前5次检测免费",
+      "limit": 5
+    }
+  },
+  "changelog": {
+    "1.1.0": [
+      "支持 anomalib v2.3.3",
+      "新增 CFA、FastFlow 模型",
+      "优化内存占用"
+    ],
+    "1.0.0": [
+      "初始版本发布",
+      "支持 Patchcore、Padim、EfficientAd"
+    ]
+  },
+  "metadata": {
+    "created_at": "2026-04-18",
+    "updated_at": "2026-04-18",
+    "downloads": 0,
+    "rating": 0,
+    "reviews": 0
+  }
+}

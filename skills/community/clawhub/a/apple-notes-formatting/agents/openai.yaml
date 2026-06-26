@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple Notes Formatting"
+  short_description: "Turn drafts into clean, structured Apple Notes"
+  default_prompt: "Use $apple-notes-formatting to turn this draft into a clean Apple Notes note."

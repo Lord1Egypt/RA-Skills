@@ -1,0 +1,21 @@
+{
+  "name": "ai-content-tailor",
+  "version": "1.0.0",
+  "description": "一篇文章快速拆分成多个平台版本（公众号/小红书/知乎/抖音）",
+  "author": "小叮当",
+  "license": "MIT",
+  "tags": ["content", "social-media", "repurpose", "writing"],
+  "requirements": ["openai>=1.0.0", "python-dotenv>=1.0.0"],
+  "env_vars": {
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for GPT-4o",
+      "required": true
+    }
+  },
+  "scripts": {
+    "install": "install.sh",
+    "uninstall": "uninstall.sh"
+  },
+  "source": "source/repurpose.py",
+  "expose": ["ai-content-tailor"]
+}

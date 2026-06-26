@@ -1,35 +1,42 @@
----
-name: "Api Gateway Starter"
-description: "Production-ready API Gateway supporting JWT, OAuth2, API keys, rate limiting, caching with Redis, monitoring, load balancing, and automatic SSL management."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-gateway-starter"
-sourceUrl: "https://clawhub.ai/skills/api-gateway-starter"
----
+# API Gateway Starter
 
-# Api Gateway Starter
+Production-ready API Gateway with everything you need.
 
-> Production-ready API Gateway supporting JWT, OAuth2, API keys, rate limiting, caching with Redis, monitoring, load balancing, and automatic SSL management.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-gateway-starter`
-- **Source URL:** [https://clawhub.ai/skills/api-gateway-starter](https://clawhub.ai/skills/api-gateway-starter)
+- **Authentication** - JWT, OAuth2, API keys
+- **Rate Limiting** - Per-user, per-endpoint
+- **Caching** - Redis integration
+- **Monitoring** - Request logs, metrics
+- **Load Balancing** - Multiple upstream support
+- **SSL/TLS** - Automatic cert management
 
-## Overview
+## Quick Start
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/api-gateway-starter
+# Start gateway
+./gateway.sh start
+
+# Add upstream
+./gateway.sh add http://localhost:3000
+
+# Configure auth
+./gateway.sh auth jwt --secret your-secret
 ```
+
+## Configuration
+
+Edit `config.yaml` to customize:
+- Ports
+- Upstreams
+- Auth methods
+- Rate limits
+
+## Requirements
+
+- Node.js 18+
+- Redis (optional)
+
+## Author
+
+Sunshine-del-ux

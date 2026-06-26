@@ -1,35 +1,28 @@
----
-name: "AI Job Hunter"
-description: "Scan remote job boards for roles matching your skills, filter by keywords and salary, and get personalized cover letters with daily job digests."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, career, jobs, remote]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-job-hunter"
-sourceUrl: "https://clawhub.ai/skills/ai-job-hunter"
----
-
 # AI Job Hunter
 
-> Scan remote job boards for roles matching your skills, filter by keywords and salary, and get personalized cover letters with daily job digests.
+Automatically scan remote job boards and find opportunities matching your skills.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-job-hunter`
-- **Source URL:** [https://clawhub.ai/skills/ai-job-hunter](https://clawhub.ai/skills/ai-job-hunter)
+## Features
+- Scans Remote OK, We Work Remotely, Hacker News Jobs
+- Filters by keywords (AI, Python, TypeScript, Remote)
+- Generates personalized cover letters
+- Daily digest of new opportunities
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-job-hunter
+## Usage
 ```
+/job-hunt [keywords] [--salary min] [--remote-only]
+```
+
+## Examples
+```
+/job-hunt "AI engineer" --salary 100000 --remote-only
+/job-hunt "TypeScript developer"
+```
+
+## Output
+- Job title, company, salary range
+- Match score based on your profile
+- Auto-generated cover letter draft
+
+## Configuration
+Set your profile in `~/.openclaw/workspace/USER.md` for better matching.

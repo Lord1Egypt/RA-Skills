@@ -1,0 +1,717 @@
+[
+  {
+    "prompt": "best ai agent platform",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "langchain",
+      "openai",
+      "crewai"
+    ],
+    "notes": "Category-defining prompt"
+  },
+  {
+    "prompt": "best ai browser agent",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "openai operator",
+      "stagehand"
+    ],
+    "notes": "Browser-agent category term"
+  },
+  {
+    "prompt": "best ai workflow assistant",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Workflow assistant intent"
+  },
+  {
+    "prompt": "best ai automation agent",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "make",
+      "crewai"
+    ],
+    "notes": "Agent automation search"
+  },
+  {
+    "prompt": "best ai tool for repetitive tasks",
+    "category": "ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Pain-led commercial term"
+  },
+  {
+    "prompt": "best ai tool for web tasks",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright",
+      "operator"
+    ],
+    "notes": "Web automation angle"
+  },
+  {
+    "prompt": "best ai assistant for workflows",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Workflow productivity category"
+  },
+  {
+    "prompt": "best ai agent for startups",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "crewai",
+      "langgraph",
+      "openai"
+    ],
+    "notes": "Startup persona + agents"
+  },
+  {
+    "prompt": "best ai tools for automation",
+    "category": "ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Broad high-volume term"
+  },
+  {
+    "prompt": "best ai platform for browser automation",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright",
+      "stagehand"
+    ],
+    "notes": "Product comparison query"
+  },
+  {
+    "prompt": "best ai web automation tool",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright",
+      "uibakery"
+    ],
+    "notes": "Web automation intent"
+  },
+  {
+    "prompt": "best ai copilot for operations",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Copilot framing"
+  },
+  {
+    "prompt": "best ai assistant for operations teams",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Operations niche"
+  },
+  {
+    "prompt": "best ai assistant for business workflows",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Business workflow intent"
+  },
+  {
+    "prompt": "best ai automation tool for browser tasks",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "stagehand",
+      "openai operator"
+    ],
+    "notes": "Browser-specific value"
+  },
+  {
+    "prompt": "best ai agent for web workflows",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "operator",
+      "stagehand"
+    ],
+    "notes": "Browser workflow prompt"
+  },
+  {
+    "prompt": "best ai tool for ops automation",
+    "category": "ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Ops automation buyer intent"
+  },
+  {
+    "prompt": "best ai assistant for startup ops",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Startup ops angle"
+  },
+  {
+    "prompt": "best ai platform for task automation",
+    "category": "ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "zapier",
+      "make",
+      "n8n"
+    ],
+    "notes": "Task automation query"
+  },
+  {
+    "prompt": "best ai agents for business automation",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "crewai",
+      "langgraph",
+      "n8n"
+    ],
+    "notes": "Business automation framing"
+  },
+  {
+    "prompt": "best ai product for repetitive browser work",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "operator",
+      "playwright"
+    ],
+    "notes": "Specific pain point"
+  },
+  {
+    "prompt": "best ai software for browser workflows",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "stagehand",
+      "playwright"
+    ],
+    "notes": "Workflow use case"
+  },
+  {
+    "prompt": "best ai browser automation tools 2026",
+    "category": "ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "operator",
+      "stagehand"
+    ],
+    "notes": "Annual roundup term"
+  },
+  {
+    "prompt": "best ai copilots for startup teams",
+    "category": "ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "chatgpt",
+      "claude",
+      "notion ai"
+    ],
+    "notes": "Team assistant category"
+  },
+  {
+    "prompt": "best ai automation agents 2026",
+    "category": "ai-tools",
+    "subcategory": "agents",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "crewai",
+      "langgraph",
+      "openai"
+    ],
+    "notes": "Annual agent discovery query"
+  },
+  {
+    "prompt": "best ai tool for ai search monitoring",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "peec ai"
+    ],
+    "notes": "Adjacent category opportunity"
+  },
+  {
+    "prompt": "best geo optimization tools",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "GEO category term"
+  },
+  {
+    "prompt": "best ai visibility tools",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "Visibility-specific term"
+  },
+  {
+    "prompt": "best chatgpt seo tools",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "peec ai"
+    ],
+    "notes": "AI SEO category term"
+  },
+  {
+    "prompt": "best llm seo tools",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "peec ai"
+    ],
+    "notes": "LLM SEO category term"
+  },
+  {
+    "prompt": "best ai search monitoring tool",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "Monitoring intent"
+  },
+  {
+    "prompt": "best ai answer engine monitoring tool",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "Emerging category phrasing"
+  },
+  {
+    "prompt": "best ai recommendation tracker",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Novel category framing"
+  },
+  {
+    "prompt": "best brand monitoring for ai assistants",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "brandwatch"
+    ],
+    "notes": "Brand-monitoring angle"
+  },
+  {
+    "prompt": "best ai search rank tracker",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai",
+      "otterly"
+    ],
+    "notes": "Direct category term"
+  },
+  {
+    "prompt": "best ai engine visibility tracker",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Visibility tracker framing"
+  },
+  {
+    "prompt": "best ai mention tracker for brands",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "brandwatch",
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Brand mention use case"
+  },
+  {
+    "prompt": "best ai answer monitoring platform",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Platform framing"
+  },
+  {
+    "prompt": "best ai search tool for startups",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Startup audience"
+  },
+  {
+    "prompt": "best ai growth tools for visibility",
+    "category": "ai-tools",
+    "subcategory": "monitoring",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "profound",
+      "scrunch ai"
+    ],
+    "notes": "Growth+visibility framing"
+  }
+]

@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AML Rule List",
+  "description": "A collection of Anti-Money Laundering (AML) and Counter-Terrorist Financing (CFT) rules categorized by business scenarios, mapped to TrustIn Graph API data structures.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "rule_id",
+      "category",
+      "name",
+      "risk_level",
+      "action"
+    ],
+    "properties": {
+      "rule_id": {
+        "type": "string",
+        "description": "Unique identifier for the rule (e.g., ONB-001, DEP-002)"
+      },
+      "category": {
+        "type": "string",
+        "enum": ["Deposit", "Withdrawal", "CDD", "Ongoing Monitoring"],
+        "description": "The business scenario this rule applies to"
+      },
+      "direction": {
+        "type": "string",
+        "enum": ["inflow", "outflow"],
+        "description": "Which path direction this rule matches. Omit for direction-agnostic rules (e.g., self-tag checks, whitelist)."
+      },
+      "min_hops": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 10,
+        "description": "Minimum hop distance (inclusive) for this rule to apply. Omit for rules that match any hop distance."
+      },
+      "max_hops": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 10,
+        "description": "Maximum hop distance (inclusive) for this rule to apply. Omit for rules that match any hop distance."
+      },
+      "name": {
+        "type": "string",
+        "description": "Short, descriptive name of the rule"
+      },
+      "description": {
+        "type": "string",
+        "description": "Detailed explanation of what the rule detects and why"
+      },
+      "conditions": {
+        "type": "array",
+        "description": "List of logical conditions that trigger the rule based on graph data paths. Multiple conditions in this array are evaluated as 'AND'. For 'OR' logic, create a separate rule.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "parameter": {
+              "type": "string",
+              "enum": [
+                "target.tags.primary_category",
+                "target.tags.secondary_category",
+                "target.tags.risk_level",
+                "target.daily_deposit_usd",
+                "target.daily_withdrawal_usd",
+                "path.hops_total",
+                "path.amount",
+                "path.risk_percentage",
+                "path.risk_amount_usd",
+                "path.node.tags.primary_category",
+                "path.node.tags.secondary_category",
+                "path.node.tags.risk_level"
+              ],
+              "description": "The specific JSON path in the TrustIn Graph API response being evaluated"
+            },
+            "operator": {
+              "type": "string",
+              "enum": [">", "<", ">=", "<=", "==", "!=", "CONTAINS", "IN", "NOT_IN"],
+              "description": "Logical operator"
+            },
+            "value": {
+              "type": ["string", "number", "boolean", "array"],
+              "description": "The threshold or exact match value expected at the JSON path"
+            },
+            "unit": {
+              "type": "string",
+              "description": "Optional unit of measurement (e.g., 'USD', 'Hops', '%')"
+            }
+          },
+          "required": ["parameter", "operator", "value"]
+        }
+      },
+      "risk_level": {
+        "type": "string",
+        "enum": ["Low", "Medium", "High", "Severe"],
+        "description": "The severity of the risk if triggered"
+      },
+      "action": {
+        "type": "string",
+        "enum": ["Freeze", "Reject", "EDD", "Review", "Warning", "Allow", "Whitelist"],
+        "description": "The system or manual action required when the rule triggers"
+      },
+      "reference": {
+        "type": "string",
+        "description": "Citation of the regulatory clause or internal policy document"
+      }
+    }
+  }
+}

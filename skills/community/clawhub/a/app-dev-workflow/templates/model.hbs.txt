@@ -1,0 +1,35 @@
+// models/{{name}}.ts
+// {{description}}
+
+export interface {{name}} {
+  id: string;
+  {{#each fields}}
+  {{name}}: {{type}};
+  {{/each}}
+  createdAt: number;
+  updatedAt?: number;
+}
+
+{{#each enums}}
+export enum {{name}} {
+  {{#each values}}
+  {{key}} = '{{value}}',
+  {{/each}}
+}
+
+{{/each}}
+
+export interface {{name}}Request {
+  {{#each requestFields}}
+  {{name}}: {{type}};
+  {{/each}}
+}
+
+export interface {{name}}Response {
+  success: boolean;
+  data?: {{name}};
+  error?: {
+    code: string;
+    message: string;
+  };
+}

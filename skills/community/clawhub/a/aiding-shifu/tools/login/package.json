@@ -1,0 +1,17 @@
+{
+  "name": "aiding-shifu-login",
+  "version": "1.0.0",
+  "description": "艾登师傅微信扫码登录工具",
+  "main": "login.js",
+  "scripts": {
+    "login": "node login.js",
+    "login-browser": "node login.js --open-browser"
+  },
+  "keywords": [
+    "aiding-shifu",
+    "wechat-login",
+    "qrcode"
+  ],
+  "author": "艾登软件",
+  "license": "MIT"
+}

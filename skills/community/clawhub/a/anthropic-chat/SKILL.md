@@ -1,35 +1,18 @@
----
-name: "Anthropic Chat"
-description: "Interact directly with Claude via Anthropic Messages API using your own API key to send and receive natural language tasks and responses."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anthropic-chat"
-sourceUrl: "https://clawhub.ai/skills/anthropic-chat"
----
+# anthropic-chat — Anthropic Messages API 调用
 
-# Anthropic Chat
+## 功能
+直接通过 Anthropic Messages API 与 Claude 对话。
 
-> Interact directly with Claude via Anthropic Messages API using your own API key to send and receive natural language tasks and responses.
+## 环境变量
+- `ANTHROPIC_API_KEY` — Anthropic API key（必填）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anthropic-chat`
-- **Source URL:** [https://clawhub.ai/skills/anthropic-chat](https://clawhub.ai/skills/anthropic-chat)
+## 调用方式
+- `sessions_spawn` + `runtime=acp`，在 `task` 里写自然语言描述任务
+- Skill 会自动使用 Messages API 发送请求并返回结果
 
-## Overview
+## 认证
+直接使用用户已有的 API key，不需要额外认证。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anthropic-chat
-```
+## 示例任务
+- "让 anthropic-chat 用 Claude Opus 4 解释量子纠缠"
+- "调用 anthropic-chat，用 Sonnet 4 写一首关于月亮的诗"

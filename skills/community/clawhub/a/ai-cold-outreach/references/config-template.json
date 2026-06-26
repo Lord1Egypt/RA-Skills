@@ -1,0 +1,28 @@
+{
+  "apollo": {
+    "api_key": "YOUR_APOLLO_API_KEY",
+    "plan": "basic",
+    "credits_per_month": 2500
+  },
+  "saleshandy": {
+    "api_key": "YOUR_SALESHANDY_API_KEY",
+    "base_url": "https://open-api.saleshandy.com"
+  },
+  "sending_domains": [
+    {
+      "domain": "getYOURDOMAIN.com",
+      "accounts": [
+        "sender1@getYOURDOMAIN.com",
+        "sender2@getYOURDOMAIN.com"
+      ],
+      "provider": "gsuite",
+      "notes": "Use 'get' prefix to protect your main domain"
+    }
+  ],
+  "warmup": {
+    "min_score_to_send": 85,
+    "warmup_days_recommended": 14,
+    "daily_limit_start": 15,
+    "daily_limit_target": 50
+  }
+}

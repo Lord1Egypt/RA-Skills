@@ -1,0 +1,24 @@
+{
+  "name": "anomaly-watcher",
+  "version": "1.0.0",
+  "description": "Continuous behavioral monitoring for OpenClaw agents. Detect anomalies in command patterns, resource usage, and skill invocations against established baselines.",
+  "author": "arhadnane",
+  "license": "MIT",
+  "emoji": "👁️",
+  "category": "blue-team",
+  "capabilities": [
+    "behavioral-baseline",
+    "anomaly-detection",
+    "statistical-analysis",
+    "threat-signature-matching",
+    "alert-generation"
+  ],
+  "monitoredMetrics": [
+    "command-frequency",
+    "file-access-patterns",
+    "skill-invocation-rate",
+    "error-rate",
+    "memory-write-patterns",
+    "cross-session-messages"
+  ]
+}

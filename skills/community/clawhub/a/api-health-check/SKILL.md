@@ -1,35 +1,51 @@
 ---
-name: "API Health Check"
-description: "Check the health and status of popular AI APIs and services — OpenAI, Anthropic, Pollinations, OpenRouter, Gemini, and more. Use when the user wants to know..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-health-check"
-sourceUrl: "https://clawhub.ai/skills/api-health-check"
+name: api-health-check
+description: Check the health and status of popular AI APIs and services — OpenAI, Anthropic, Pollinations, OpenRouter, Gemini, and more. Use when the user wants to know if an API is down, verify service status, or troubleshoot connectivity issues.
 ---
 
 # API Health Check
 
-> Check the health and status of popular AI APIs and services — OpenAI, Anthropic, Pollinations, OpenRouter, Gemini, and more. Use when the user wants to know...
+Quickly checks if major AI APIs and services are operational. Perfect for troubleshooting or verifying service availability.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-health-check`
-- **Source URL:** [https://clawhub.ai/skills/api-health-check](https://clawhub.ai/skills/api-health-check)
+## APIs Checked
 
-## Overview
+- OpenAI (api.openai.com)
+- Anthropic (api.anthropic.com)
+- Google Gemini (generativelanguage.googleapis.com)
+- Pollinations (image.pollinations.ai, text.pollinations.ai)
+- OpenRouter (openrouter.ai)
+- Stability AI (api.stability.ai)
+- Groq (api.groq.com)
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/api-health-check
+```
+check api status
+is openai down?
+check pollinations health
+```
+
+## How it works
+
+1. Makes lightweight HEAD/GET requests to API endpoints
+2. Checks HTTP status codes and response times
+3. Reports status: ✅ UP, ❌ DOWN, ⚠️ SLOW
+4. Returns summary table of all services
+
+## Script
+
+```
+python scripts/check_apis.py [specific_api_name]
+```
+
+Without arguments, checks all APIs. With argument, checks only that service.
+
+## Output Example
+
+```
+API Health Status:
+✅ OpenAI      - UP (234ms)
+✅ Anthropic   - UP (189ms)
+❌ Pollinations - DOWN (timeout)
+✅ OpenRouter  - UP (412ms)
 ```

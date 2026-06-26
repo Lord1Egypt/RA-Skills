@@ -1,0 +1,37 @@
+{
+  "slug": "api-contract-auditor",
+  "title": "API 契约审计器",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "directory_audit",
+  "summary": "审查 API 文档、示例和字段定义是否一致，输出 breaking change 风险。",
+  "inputHint": "API 文档目录、OpenAPI 文本或示例",
+  "sections": [
+    "扫描概览",
+    "字段一致性风险",
+    "示例覆盖度",
+    "breaking change 风险",
+    "建议修复",
+    "验证清单"
+  ],
+  "useCases": [
+    "接口评审",
+    "版本发布",
+    "联调前检查"
+  ],
+  "positiveExamples": [
+    "检查 API 文档和示例是否一致",
+    "找 breaking change 风险"
+  ],
+  "negativeExamples": [
+    "不要直接改线上接口",
+    "不要替代契约测试平台"
+  ],
+  "risk": "默认以只读审查方式输出报告。",
+  "tags": [
+    "api",
+    "contract",
+    "audit",
+    "breaking-change"
+  ]
+}

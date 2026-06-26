@@ -1,0 +1,38 @@
+{
+  "_comment": "App Builder 模型配置示例",
+  "_instructions": "复制此文件到 ~/.config/app-builder/models.json 并填入你的 API Keys",
+  
+  "default": "claude-code",
+  "models": {
+    "claude-code": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-20250514",
+      "apiKey": "sk-ant-your-key-here",
+      "priority": 1,
+      "capabilities": ["code", "design", "debug"]
+    },
+    "qwen": {
+      "provider": "aliyun",
+      "model": "qwen-max",
+      "apiKey": "sk-your-key-here",
+      "priority": 2,
+      "capabilities": ["code", "design"]
+    },
+    "gemini": {
+      "provider": "google",
+      "model": "gemini-2.0-pro",
+      "apiKey": "AIza-your-key-here",
+      "priority": 3,
+      "capabilities": ["code", "multimodal"]
+    },
+    "glm": {
+      "provider": "zhipu",
+      "model": "glm-4-plus",
+      "apiKey": "sk-your-key-here",
+      "priority": 4,
+      "capabilities": ["code"]
+    }
+  },
+  "fallback": true,
+  "maxRetries": 3
+}

@@ -1,0 +1,7 @@
+# Amazon Market Research env template
+# 请填写你自己的模型配置
+# 推荐使用 OpenAI-compatible chat completions 接口
+
+MARKET_API_KEY=
+MARKET_BASE_URL=https://api.moonshot.cn/v1
+MARKET_MODEL=kimi-k2.5

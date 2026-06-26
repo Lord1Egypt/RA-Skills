@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Quality Check"
+  short_description: "Check coding API quality and drift"
+  default_prompt: "Use $api-quality-check to smoke-test or baseline/detect quality drift for coding-model APIs."

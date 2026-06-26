@@ -1,0 +1,106 @@
+{
+  "name": "ai-dev-release-helper",
+  "version": "1.0.0",
+  "description": "AI开发者发布助手 — 竞品调研 → 封面图生成 → 公众号文章发布",
+  "author": "openclaw-agent",
+  "license": "MIT",
+  "comboType": "sequential",
+  "input": {
+    "project": "string (required)",
+    "tagline": "string (required)",
+    "github": "string (required)",
+    "features": "string[] (optional)",
+    "output": "string (default: ./output)"
+  },
+  "steps": [
+    {
+      "id": "step1",
+      "name": "竞品与行业调研",
+      "skill": "brave-search",
+      "description": "搜索同类型开源项目，输出竞品分析摘要",
+      "input": {
+        "query": "${project} ${tagline} open source AI alternative GitHub",
+        "count": 8
+      },
+      "output": {
+        "competitorAnalysis": "${output}/competitor_analysis.md",
+        "summary": "竞品对比表（名称/Stars/特色功能/优缺点）"
+      },
+      "timeout": 30,
+      "continueOnError": true
+    },
+    {
+      "id": "step2",
+      "name": "项目视觉资产生成",
+      "skill": "nano-banana-pro",
+      "description": "AI 生成项目封面图 + 功能亮点图",
+      "input": {
+        "prompt": "A hero product showcase image for ${project}: ${tagline}. Modern tech aesthetic, dark theme with blue and purple gradient accents, futuristic UI elements, professional software product screenshot mockup style, clean and minimal design. High quality, 2K resolution.",
+        "size": "2K",
+        "aspectRatio": "16:9",
+        "outputFile": "${output}/${project}-cover.png"
+      },
+      "output": {
+        "coverImage": "${output}/${project}-cover.png",
+        "featureImage": "${output}/${project}-feature.png"
+      },
+      "timeout": 60,
+      "dependsOn": ["step1"]
+    },
+    {
+      "id": "step3",
+      "name": "公众号深度文章生成",
+      "skill": "wechat-article-pro",
+      "description": "基于竞品分析生成 3000-5000 字技术分析文",
+      "input": {
+        "topic": "${project} 正式发布：${tagline}",
+        "style": "刘润风格",
+        "wordCount": 4500,
+        "generateImages": true,
+        "autoTypeset": true,
+        "includeSections": [
+          "市场背景",
+          "产品解析",
+          "竞品对比",
+          "团队故事",
+          "未来路线图"
+        ],
+        "referenceFiles": [
+          "${output}/competitor_analysis.md"
+        ],
+        "coverImage": "${output}/${project}-cover.png",
+        "featureImage": "${output}/${project}-feature.png"
+      },
+      "output": {
+        "article": "${output}/article.md",
+        "wordCount": 4500,
+        "estimatedReadTime": "9 分钟"
+      },
+      "timeout": 180,
+      "dependsOn": ["step1", "step2"]
+    }
+  ],
+  "errorHandling": {
+    "retryCount": 2,
+    "retryDelay": 5000,
+    "onError": "continue",
+    "fallbackOutputs": {
+      "step1": { "competitorAnalysis": "" },
+      "step2": { "coverImage": null, "featureImage": null }
+    }
+  },
+  "notifications": {
+    "onSuccess": true,
+    "onFailure": true,
+    "channel": "feishu"
+  },
+  "output": {
+    "description": "生成封面图、竞品分析、公众号文章",
+    "files": [
+      "${output}/competitor_analysis.md",
+      "${output}/${project}-cover.png",
+      "${output}/${project}-feature.png",
+      "${output}/article.md"
+    ]
+  }
+}

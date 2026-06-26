@@ -1,35 +1,15 @@
 ---
-name: "Anki Connect"
-description: "Interact with Anki flashcard decks via the AnkiConnect REST API. Use when the user wants to create, update, search, or manage Anki cards, decks, notes, or models."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anki-connect"
-sourceUrl: "https://clawhub.ai/skills/anki-connect"
+name: anki-connect-skill
+description: Interact with Anki flashcard decks via the AnkiConnect REST API. Use when the user wants to create, update, search, or manage Anki cards, decks, notes, or models.
+compatibility: Requires Anki running with the AnkiConnect plugin installed.
 ---
 
-# Anki Connect
+# AnkiConnect Skill
 
-> Interact with Anki flashcard decks via the AnkiConnect REST API. Use when the user wants to create, update, search, or manage Anki cards, decks, notes, or models.
+This skill provides integration with [AnkiConnect](https://foosoft.net/projects/anki-connect/), a plugin for Anki that exposes a REST API for interacting with Anki from external applications.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anki-connect`
-- **Source URL:** [https://clawhub.ai/skills/anki-connect](https://clawhub.ai/skills/anki-connect)
+## Setup
 
-## Overview
+For installation and usage instructions, refer to the AnkiConnect documentation:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/anki-connect
-```
+https://git.sr.ht/~foosoft/anki-connect/blob/master/README.md

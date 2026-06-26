@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anime Social Portrait"
+  short_description: "Turn a real photo into a custom anime-style avatar, Moments cover, or Twitter/X header"
+  default_prompt: "Use $anime-social-portrait to turn my uploaded photo into a custom anime-style avatar, Moments cover, or Twitter/X header."

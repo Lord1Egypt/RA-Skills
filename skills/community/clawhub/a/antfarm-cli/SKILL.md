@@ -1,35 +1,38 @@
----
-name: "Antfarm Cli"
-description: "Command-line interface for managing Antfarm workflows, dashboards, and logs using node at a fixed full path."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/antfarm-cli"
-sourceUrl: "https://clawhub.ai/skills/antfarm-cli"
----
+# Antfarm CLI Skill
 
-# Antfarm Cli
+Always use full path: `node ~/.openclaw/workspace/antfarm/dist/cli/cli.js`
 
-> Command-line interface for managing Antfarm workflows, dashboards, and logs using node at a fixed full path.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/antfarm-cli`
-- **Source URL:** [https://clawhub.ai/skills/antfarm-cli](https://clawhub.ai/skills/antfarm-cli)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Workflow
 ```bash
-hermes skills install clawhub/antfarm-cli
+# List available workflows
+node ~/.openclaw/workspace/antfarm/dist/cli/cli.js workflow list
+
+# Install workflow
+node ~/.openclaw/workspace/antfarm/dist/cli/cli.js workflow install <name>
+
+# Run workflow
+node ~/.openclaw/workspace/antfarm/dist/cli/cli.js workflow run <workflow-id> "<task>"
+
+# Check status
+node ~/.openclaw/workspace/antfarm/dist/cli/cli.js workflow status "<query>"
+```
+
+### Dashboard
+```bash
+# Start
+node ~/.openclaw/workspace/antfarm/dist/cli/cli.js dashboard start
+
+# Status
+node ~/.openclaw/workspace/antfarm/dist/cli/cli.js dashboard status
+```
+
+### Logs
+```bash
+# Recent activity
+node ~/.openclaw/workspace/antfarm/dist/cli/cli.js logs
+
+# Specific run
+node ~/.openclaw/workspace/antfarm/dist/cli/cli.js logs <run-id>
 ```

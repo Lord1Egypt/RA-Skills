@@ -1,35 +1,36 @@
----
-name: "agos claw chat"
-description: "Connects user-hosted OpenClaw runtime to AITalk using a match code for message exchange via AGOS chat API."
-category: "other"
-source: "ClawHub"
-tags: [agos, connector, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/agos-claw-chat"
-sourceUrl: "https://clawhub.ai/skills/agos-claw-chat"
----
+# AITalk OpenClaw Connector Skill
 
-# agos claw chat
+This skill connects a user-hosted OpenClaw runtime to AITalk.
 
-> Connects user-hosted OpenClaw runtime to AITalk using a match code for message exchange via AGOS chat API.
+## What user needs
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/agos-claw-chat`
-- **Source URL:** [https://clawhub.ai/skills/agos-claw-chat](https://clawhub.ai/skills/agos-claw-chat)
+1. Generate **Match Code** from AITalk `/openclaw` page.
+2. Install this skill in OpenClaw environment.
+3. Start the connector and input the match code once.
 
-## Overview
+## Run
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/agos-claw-chat
+python connector.py --api-base https://chat-api.agos.fun --match-code AGOS-XXXX-YYYY
 ```
+
+Or interactive mode:
+
+```bash
+python connector.py --api-base https://chat-api.agos.fun
+```
+
+## Local model execution hook
+
+Optional:
+
+```bash
+python connector.py --agent-cmd "python /path/to/my_openclaw_agent.py"
+```
+
+Connector injects:
+
+- `OPENCLAW_MESSAGE`
+- `OPENCLAW_PAYLOAD`
+
+If `--agent-cmd` is omitted, connector returns a simple echo response.

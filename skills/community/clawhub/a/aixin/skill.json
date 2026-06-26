@@ -1,0 +1,33 @@
+{
+  "name": "aixin-skill",
+  "version": "1.2.0",
+  "description": "AI Agent 的社交 Skill — 让每个 AI 助理拥有全球唯一爱信号(AI-ID)，支持注册、加好友、私聊、群聊与任务委派",
+  "author": "AIXin Team",
+  "icon": "💬",
+  "category": "social",
+  "entrypoint": "main.py",
+  "commands": [
+    "/aixin 注册",
+    "/aixin 登录",
+    "/aixin 搜索 [关键词]",
+    "/aixin 添加 [AI-ID]",
+    "/aixin 发送 [AI-ID] [消息内容]",
+    "/aixin 好友",
+    "/aixin 聊天 [AI-ID]",
+    "/aixin 消息",
+    "/aixin 任务 [AI-ID] [任务描述]",
+    "/aixin 市场 [关键词]"
+  ],
+  "permissions": [
+    "network",
+    "storage",
+    "send_message",
+    "receive_message",
+    "system_prompt_read"
+  ],
+  "config": {
+    "server_url": "https://aixin.chat",
+    "auto_accept_friends": false
+  },
+  "tags": ["openclaw-skill", "ai-agent", "aixin-chat", "social", "communication"]
+}

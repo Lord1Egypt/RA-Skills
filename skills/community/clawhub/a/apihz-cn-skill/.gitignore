@@ -1,0 +1,8 @@
+# 接口盒子 API 认证信息
+# 官网：https://www.apihz.cn
+# 此文件包含敏感信息，切勿提交到 Git
+
+APIHZ_ID=
+APIHZ_KEY=
+APIHZ_BASE_URL=https://cn.apihz.cn
+APIHZ_LIST_URL=http://101.35.2.25/api/xitong/apilist.php

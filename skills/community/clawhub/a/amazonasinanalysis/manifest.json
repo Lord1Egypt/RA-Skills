@@ -1,0 +1,35 @@
+{
+  "name": "litechat-analysis",
+  "displayName": "LiteChat 智能分析",
+  "version": "2.0.0",
+  "description": "基于 NOVAI360 Cloudflare Workers 的智能跨境电商分析技能",
+  "author": "@chopinau",
+  "tags": ["litechat", "openclaw", "e-commerce", "api", "analysis", "cloudflare"],
+  "api": {
+    "baseUrl": "https://api.novai360.com",
+    "endpoints": {
+      "chat": "/chat",
+      "skills": "/skills"
+    },
+    "authentication": {
+      "type": "none",
+      "description": "无需 API Key，直接使用"
+    },
+    "environment": [
+      {
+        "name": "NOVAI360_API_URL",
+        "description": "NOVAI360 API 地址",
+        "required": false,
+        "default": "https://api.novai360.com"
+      }
+    ]
+  },
+  "limits": {
+    "dailyCalls": 100
+  },
+  "dataPrivacy": {
+    "userId": "用于限流和用户识别，不存储个人信息",
+    "queries": "用于分析，不用于其他目的",
+    "storage": "数据存储在 Cloudflare Workers，遵循隐私政策"
+  }
+}

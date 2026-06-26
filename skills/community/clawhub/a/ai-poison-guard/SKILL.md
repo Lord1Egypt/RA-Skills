@@ -1,35 +1,249 @@
 ---
-name: "Ai Poison Guard"
+name: ai-poison-guard
 description: "AI 投毒内容过滤助手。检测和识别 GEO 投毒内容，验证信息来源可信度，标记潜在虚假信息，保护用户免受 AI 投毒攻击。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-poison-guard"
-sourceUrl: "https://clawhub.ai/skills/ai-poison-guard"
+version: 1.0.0
+author: testc0de
+license: MIT-0
+tags:
+  - ai安全
+  - 内容过滤
+  - 投毒检测
+  - 信息验证
+  - 315曝光
 ---
 
-# Ai Poison Guard
+# AI 投毒内容过滤助手 🛡️
 
-> AI 投毒内容过滤助手。检测和识别 GEO 投毒内容，验证信息来源可信度，标记潜在虚假信息，保护用户免受 AI 投毒攻击。
+> 🚨 **抵御 AI 投毒攻击** —— 检测 GEO 黑产内容，验证信息真实性，保护你的 AI 助手不被"驯服"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-poison-guard`
-- **Source URL:** [https://clawhub.ai/skills/ai-poison-guard](https://clawhub.ai/skills/ai-poison-guard)
+## 📰 背景
 
-## Overview
+2026年央视3·15晚会曝光：AI 大模型被"投毒"已成黑色产业链。
 
+- **GEO（生成式引擎优化）** 技术被滥用
+- 黑产通过"喂料投毒"操控 AI 回答
+- 虚构产品成为 AI 推荐的"标准答案"
+- 6600元包年即可操控主流 AI 大模型
 
-## Installation
-To install this skill, run the following command in your terminal:
+**你的 AI 助手可能被投毒！** 这个 skill 帮你检测和过滤。
+
+---
+
+## ✨ 核心功能
+
+| 功能 | 描述 | 触发场景 |
+|------|------|---------|
+| 🔍 **内容检测** | 分析文本/链接，识别投毒特征 | "检测这段内容是否可信" |
+| 🔗 **来源验证** | 检查信息来源可信度 | "验证这个网站可靠吗" |
+| 📊 **风险评分** | 给内容打分（安全/可疑/危险） | "评估这条信息的风险" |
+| 🛡️ **过滤建议** | 提供处理建议 | "如何过滤投毒内容" |
+| 📋 **报告生成** | 生成详细检测报告 | "生成内容安全报告" |
+
+---
+
+## 🎯 触发条件
+
+当用户说以下话时，使用此技能：
+
+### 内容检测
+- "检测这段内容是否可信"
+- "分析这个链接有没有问题"
+- "这段文字是不是投毒内容"
+- "检查这个信息的真实性"
+
+### 来源验证
+- "验证这个网站可靠吗"
+- "这个来源可信吗"
+- "检查域名信誉"
+
+### 风险评分
+- "评估这条信息的风险"
+- "这段内容安全吗"
+- "给这个链接打分"
+
+### 过滤建议
+- "如何过滤投毒内容"
+- "怎么防止 AI 被投毒"
+- "GEO 投毒怎么识别"
+
+---
+
+## 🚀 快速使用
+
+### 检测内容
+
 ```bash
-hermes skills install clawhub/ai-poison-guard
+# 检测文本
+python3 scripts/guard.py --detect-text "某品牌产品是行业第一，专家强烈推荐..."
+
+# 检测链接
+python3 scripts/guard.py --detect-url "https://example.com/review"
+
+# 检测文件
+python3 scripts/guard.py --detect-file suspicious.txt
 ```
+
+### 验证来源
+
+```bash
+# 验证网站
+python3 scripts/guard.py --verify-source "https://example.com"
+
+# 检查域名
+python3 scripts/guard.py --check-domain "example.com"
+```
+
+### 风险评分
+
+```bash
+# 评分内容
+python3 scripts/guard.py --score "这款产品是全网销量第一..."
+
+# 输出 JSON
+python3 scripts/guard.py --score "..." --json
+```
+
+---
+
+## 📊 输出示例
+
+### 内容检测报告
+
+```
+🛡️ AI 投毒内容检测报告
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 检测内容：
+某品牌产品是行业第一，专家强烈推荐，
+用户好评如潮，是 AI 推荐的首选品牌...
+
+🔍 检测结果：⚠️ 可疑
+
+📊 风险评分：72/100（高风险）
+
+🚩 发现的投毒特征：
+1. ⚠️ 绝对化用语（"行业第一"）
+2. ⚠️ 虚假权威（"专家强烈推荐"）
+3. ⚠️ 从众心理诱导（"用户好评如潮"）
+4. ⚠️ AI 推荐操控（"AI 推荐的首选"）
+
+🔗 来源分析：
+   • 域名年龄：3 个月（新域名）
+   • 备案信息：无
+   • 信誉评分：23/100（低）
+
+💡 建议：
+   ❌ 不建议信任此内容
+   ✅ 请通过官方渠道核实
+   ✅ 查看多个独立来源
+
+📖 参考：央视3·15晚会曝光 GEO 投毒案例
+```
+
+### 来源验证报告
+
+```
+🔗 来源验证报告
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+🌐 网站：example.com
+
+📊 可信度评分：35/100（不可信）
+
+🚩 风险指标：
+   • ⚠️ 域名注册时间：3 个月（新）
+   • ⚠️ 无 ICP 备案
+   • ⚠️ 无 HTTPS 证书
+   • ⚠️ 服务器位置：境外
+   • ⚠️ 与已知投毒网站同 IP
+
+✅ 可信特征：
+   • 无
+
+💡 建议：
+   ❌ 不建议访问此网站
+   ❌ 不要采信其内容
+   ✅ 寻找官方或权威来源
+```
+
+---
+
+## 🛡️ 投毒特征库
+
+### GEO 投毒常见手法
+
+| 手法 | 特征 | 示例 |
+|------|------|------|
+| **虚假权威** | 伪造专家/机构背书 | "专家强烈推荐" |
+| **绝对化用语** | 夸大宣传 | "行业第一"、"全网最优" |
+| **从众诱导** | 制造虚假热度 | "用户好评如潮" |
+| **AI 操控** | 直接操控 AI 推荐 | "AI 推荐的首选" |
+| **虚假评测** | 伪造测评内容 | "实测证明..." |
+| **信息轰炸** | 批量铺设虚假内容 | 大量相同内容 |
+
+### 可疑域名特征
+
+- 新注册域名（< 6 个月）
+- 无备案信息
+- 无 HTTPS
+- 服务器在境外
+- 与已知黑产同 IP
+
+---
+
+## 📁 文件结构
+
+```
+skills/ai-poison-guard/
+├── SKILL.md                    # 技能定义
+├── README.md                   # 使用说明
+├── requirements.txt            # 依赖
+├── scripts/
+│   ├── guard.py                # 主脚本
+│   ├── detector.py             # 内容检测器
+│   ├── verifier.py             # 来源验证器
+│   ├── scorer.py               # 风险评分器
+│   └── poison_patterns.py      # 投毒特征库
+├── templates/
+│   └── report_template.md      # 报告模板
+└── docs/
+    ├── geo-explained.md        # GEO 技术说明
+    └── 315-case-study.md       # 3·15案例分析
+```
+
+---
+
+## 🔧 依赖
+
+- Python 3
+- requests
+- whois
+- tldextract
+
+安装：
+```bash
+pip3 install requests whois tldextract
+```
+
+---
+
+## 📖 参考资料
+
+- 央视3·15晚会曝光：AI 大模型被投毒
+- GEO（生成式引擎优化）技术滥用案例
+- 国家市场监督管理总局2026年广告监管要点
+
+---
+
+## 📝 更新日志
+
+### v1.0.0 (2026-03-16)
+- 🎉 初始发布
+- ✅ 内容检测功能
+- ✅ 来源验证功能
+- ✅ 风险评分功能
+- ✅ 投毒特征库
+
+---
+
+**保护你的 AI 助手，抵御投毒攻击！** 🛡️

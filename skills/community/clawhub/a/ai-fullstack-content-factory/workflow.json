@@ -1,0 +1,117 @@
+{
+  "name": "AI全链路内容创作工厂",
+  "version": "1.0.0",
+  "description": "从热点发现到多平台发布，一站式AI内容生产工作流",
+  "skills": [
+    {
+      "name": "Agent-Reach",
+      "location": "workspace/skills/Agent-Reach/SKILL.md",
+      "role": "热点发现",
+      "step": 1,
+      "inputs": ["用户指定关键词或主题"],
+      "outputs": ["热点列表、核心话题、参考资料"]
+    },
+    {
+      "name": "公众号助手",
+      "location": "workspace/skills/wechat-article-pro/SKILL.md",
+      "role": "文章创作",
+      "step": 2,
+      "inputs": ["热点话题、写作风格、关键词"],
+      "outputs": ["3000-5000字深度文章、封面图链接"]
+    },
+    {
+      "name": "nano-banana-pro",
+      "location": "workspace/skills/nano-banana-pro/SKILL.md",
+      "role": "封面/配图生成",
+      "step": 3,
+      "inputs": ["文章主题、封面尺寸（900x383公众号 / 3:4小红书）"],
+      "outputs": ["高质量封面图 base64/data URI"]
+    },
+    {
+      "name": "card-renderer",
+      "location": "workspace/skills/card-renderer/SKILL.md",
+      "role": "知识卡片渲染",
+      "step": 4,
+      "inputs": ["Markdown 文案、风格选择（Mac Pro/赛博朋克/包豪斯）"],
+      "outputs": ["风格化知识卡片图片"]
+    },
+    {
+      "name": "xiaohongshu-mcp",
+      "location": "workspace/skills/xiaohongshu-mcp/SKILL.md",
+      "role": "小红书发布",
+      "step": 5,
+      "inputs": ["公众号文章改写版、配图、话题标签"],
+      "outputs": ["小红书帖子链接"]
+    }
+  ],
+  "workflow": {
+    "type": "linear",
+    "steps": [
+      {
+        "id": 1,
+        "name": "热点发现",
+        "skill": "Agent-Reach",
+        "action": "search",
+        "prompt": "搜索 {user_topic} 相关热点，返回核心话题和参考资料",
+        "next": "user_confirm",
+        "user_intervention": true,
+        "intervention_point": "选题确认"
+      },
+      {
+        "id": 2,
+        "name": "文章创作",
+        "skill": "公众号助手",
+        "action": "generate_article",
+        "prompt": "基于选定热点撰写 {word_count} 字深度文章",
+        "next": 3
+      },
+      {
+        "id": 3,
+        "name": "封面生成",
+        "skill": "nano-banana-pro",
+        "action": "generate_image",
+        "prompt": "生成文章封面图，尺寸 900x383px",
+        "next": 4
+      },
+      {
+        "id": 4,
+        "name": "知识卡片渲染",
+        "skill": "card-renderer",
+        "action": "render",
+        "prompt": "渲染 {style} 风格知识卡片作为文内附图",
+        "next": 5,
+        "optional": true
+      },
+      {
+        "id": 5,
+        "name": "小红书发布",
+        "skill": "xiaohongshu-mcp",
+        "action": "publish",
+        "prompt": "改写文章为小红书图文并发布",
+        "next": "complete"
+      }
+    ]
+  },
+  "triggers": [
+    "写文章",
+    "创作内容",
+    "热点文章",
+    "小红书文章",
+    "公众号文章",
+    "内容工厂",
+    "AI内容",
+    "帮我写文章"
+  ],
+  "output_formats": {
+    "wechat_article": {
+      "format": "markdown + 封面图",
+      "word_count": "3000-5000",
+      "style": "刘润公众号风格"
+    },
+    "xiaohongshu": {
+      "format": "图文帖子",
+      "aspect_ratio": "3:4",
+      "max_images": 9
+    }
+  }
+}

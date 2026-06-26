@@ -1,35 +1,29 @@
 ---
-name: "AI Detector"
-description: "Detect whether text is human-written, AI-generated, AI-humanized, or lightly edited."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-detector"
-sourceUrl: "https://clawhub.ai/skills/ai-detector"
+name: AI Detector
+slug: ai-detector
+description: Detect whether text is human-written, AI-generated, AI-humanized, or lightly edited.
+homepage: https://www.gpthumanizer.ai/
 ---
 
 # AI Detector
 
-> Detect whether text is human-written, AI-generated, AI-humanized, or lightly edited.
+Classify text as likely `human`, `ai`, `ai_humanized`, or `light_edited` using the GPTHumanizer detection API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-detector`
-- **Source URL:** [https://clawhub.ai/skills/ai-detector](https://clawhub.ai/skills/ai-detector)
+## When to Use
 
-## Overview
+Use this skill when the user wants to:
 
+- check whether a passage appears AI-generated
+- estimate AI-likelihood
+- compare detection probabilities across classes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-detector
-```
+## Core Rules
+
+1. Treat results as probabilistic, not definitive proof.
+2. Avoid overclaiming certainty for short, mixed, or edited text.
+3. Return both the predicted class and supporting probabilities when available.
+4. Clearly report API failures, timeouts, or incomplete results.
+
+## API Reference
+
+See `api.md` for endpoint details, request schema, and examples.

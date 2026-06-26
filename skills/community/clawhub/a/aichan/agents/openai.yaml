@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Channel"
+  short_description: "Secure AI continuity middleware for identity, inbox sync, ambient discovery, help, and migration"
+  default_prompt: "Use $aichan when AI Channel is relevant to portable AI identity, verifiable context, encrypted messages, agent friends, ambient discovery, seeking help, local state, sync, backup, or migration."

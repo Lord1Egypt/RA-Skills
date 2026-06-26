@@ -1,35 +1,65 @@
 ---
-name: "Appian Unnamedobjects"
-description: "Find Appian application objects that are missing a description. Exports the application, scans all object XML files, and reports name and UUID for each objec..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/appian-unnamedobjects"
-sourceUrl: "https://clawhub.ai/skills/appian-unnamedobjects"
+name: appian-unnamedobjects
+description: Find Appian application objects that are missing a description. Exports the application, scans all object XML files, and reports name and UUID for each object with an empty or absent description tag. Use after changes to an application to audit documentation coverage. Trigger phrases — "find Appian objects without descriptions", "which Appian objects are undocumented", "audit Appian missing descriptions", "list undescribed Appian objects", "check Appian documentation coverage". IMPORTANT — credentials (APPIAN_BASE_URL, APPIAN_API_KEY) are already configured in the system; do NOT ask the user for them before running.
+metadata:
+  clawdbot:
+    emoji: "🔎"
+    requires:
+      env:
+        - APPIAN_BASE_URL
+        - APPIAN_API_KEY
+    primaryEnv: APPIAN_BASE_URL
 ---
+# Appian Unnamed Objects
 
-# Appian Unnamedobjects
+Exports an Appian application and scans every object XML file for objects whose `<description>` tag is empty or missing. Reports type, name, and UUID for each offending object.
 
-> Find Appian application objects that are missing a description. Exports the application, scans all object XML files, and reports name and UUID for each objec...
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/appian-unnamedobjects`
-- **Source URL:** [https://clawhub.ai/skills/appian-unnamedobjects](https://clawhub.ai/skills/appian-unnamedobjects)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/appian-unnamedobjects
+node {baseDir}/scripts/index.js <applicationUuid>
 ```
+
+## Example
+
+```bash
+node {baseDir}/scripts/index.js _a-0000de15-1f1c-8000-5130-010000010000_12559
+```
+
+## IMPORTANT: credentials are pre-configured
+
+`APPIAN_BASE_URL` and `APPIAN_API_KEY` are already injected by OpenClaw at runtime. **Never ask the user for credentials before running this skill.** Just execute it with the UUID the user provided.
+
+## How users can ask for this
+
+- "Find Appian objects without descriptions in application `<uuid>`"
+- "Which Appian objects are undocumented in `<uuid>`"
+- "Audit Appian missing descriptions in `<uuid>`"
+- "Check Appian documentation coverage for `<uuid>`"
+
+## What it does
+
+1. Calls the Appian v2 Deployment Management API to export the application as a ZIP.
+2. Parses the ZIP in-process (no shell extraction) using Node.js built-ins — one object per XML file, type from directory name.
+3. Iterates every XML file outside `META-INF/`.
+4. For each object, checks whether `<description>` or `<a:description>` is absent or blank.
+5. Prints a grouped report of offending objects.
+
+## After running
+
+**Relay the full skill output to the user exactly as printed — do not summarize, paraphrase, or omit any lines.**
+
+The output already contains every object type, name, and UUID in a compact readable format. Your job is to forward it verbatim, then offer to help further. Do not replace the list with a vague count like "15 objects were found" — the user needs the actual names and details.
+
+## External endpoints
+
+- `POST ${APPIAN_BASE_URL}/deployments` — triggers the export
+- `GET ${APPIAN_BASE_URL}/deployments/{uuid}` — polls for completion
+- `GET <packageZip URL>` — downloads the resulting ZIP
+
+## Security
+
+- Credentials (`APPIAN_BASE_URL`, `APPIAN_API_KEY`) are read from environment variables (injected by OpenClaw at runtime). If not injected, falls back to `appian.json` in the current working directory.
+- The ZIP is written to `~/appian-exports/` and mirrored to `CWD/appian-exports/` when running in a container.
+- No data is sent to any third-party service.
+- No shell commands are executed; ZIP extraction uses Node.js built-in `zlib`.

@@ -1,0 +1,61 @@
+# AI Model Team - Python Dependencies (Exact Versions)
+# Generated: 2026-04-15
+# Python: 3.11+ (recommended: 3.11-3.14)
+
+# Core dependencies
+numpy==2.4.4
+pandas==3.0.2
+requests==2.33.1
+PyYAML==6.0.3
+
+# HTTP client
+httpx==0.28.1
+httpcore==1.0.9
+
+# Time series models
+# TimesFM - Google time series foundation model
+# Install from GitHub - reproducible via commit hash
+timesfm @ git+https://github.com/google-research/timesfm.git@f085b90#egg=timesfm
+
+# Chronos - Amazon T5-based time series model
+# Install from GitHub - reproducible via commit hash
+chronos-forecasting @ git+https://github.com/amazon-science/chronos-forecasting.git@6d68ed7c4ed2805d122d77b4660765b4089de5ca#egg=chronos_forecasting
+# Installed from GitHub directly
+
+# Torch (required for most models)
+torch==2.11.0
+
+# Transformers (required for neural sentiment models)
+transformers==4.57.6
+tokenizers==0.22.2
+huggingface_hub==0.36.2
+
+# Sentiment analysis - VADER (primary, fast) + neural models (optional)
+vaderSentiment==3.3.2
+
+# Utilities
+tqdm==4.67.3
+click==8.3.2
+rich==15.0.0
+joblib==1.5.3
+scikit-learn==1.8.0
+scipy==1.17.1
+
+# RSS parsing
+feedparser==6.0.12
+
+# System
+psutil==7.2.2
+
+# Testing
+pytest==9.0.3
+filelock==3.28.0
+fsspec==2026.3.0
+networkx==3.6.1
+sympy==1.14.0
+regex==2026.4.4
+
+# Web framework (optional, for API server)
+fastapi==0.115.0
+uvicorn==0.34.0
+pydantic==2.10.0

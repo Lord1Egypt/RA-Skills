@@ -1,35 +1,248 @@
 ---
-name: "Apollo Autophagy"
-description: "彻底删除不需要的东西，释放空间。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-autophagy"
-sourceUrl: "https://clawhub.ai/skills/apollo-autophagy"
+name: apollo-autophagy
+description: >
+  彻底删除不需要的东西，释放空间。
+version: 2.0.0
+read_when:
+  - 用户提到清理、删除、重置、清空、销毁
+  - Token > 90%（绝对硬阈值）
+  - 上下文严重损坏时
+metadata:
+  openclaw:
+    emoji: "🔥"
+    requires:
+      bins: []
+      env: []
+    triggers:
+      - 清理
+      - 删除
+      - 重置
+      - 清空
+      - 销毁
+      - 彻底删除
+      - 上下文崩溃
+      - 自噬
+    suite: apollo
 ---
 
-# Apollo Autophagy
+# Apollo Autophagy — 破坏性清理系统
 
-> 彻底删除不需要的东西，释放空间。
+## 核心准则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-autophagy`
-- **Source URL:** [https://clawhub.ai/skills/apollo-autophagy](https://clawhub.ai/skills/apollo-autophagy)
+**AI的清理应该是细胞自噬：不是整理，而是彻底销毁。是排毒，不是减肥。**
 
-## Overview
+apollo-dream = 睡觉做梦（整理+强化+关联）→ 保守，有选择性保留
+apollo-renal = 肾脏过滤（选择性保留+实时过滤）→ 中间态
+apollo-autophagy = 自噬（溶酶体降解）→ 激进，彻底删除，不保留结构
 
+使用场景：
+- 上下文已严重损坏（矛盾、混乱、无法恢复）
+- 用户主动要求彻底清理
+- Token > 90%且apollo-renal无法有效过滤
+- 系统需要"重启"而不是"整理"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apollo-autophagy
+## 三个清理层级
+
+### 层级1：小自噬（可恢复）
+**清理对象：**
+- 临时文件：`*.tmp`, `*.log`, `__pycache__/`, `*.pyc`
+- 过时缓存：心跳日志超过30天的条目
+- 中间产物：编译产物、备份文件
+
+**触发条件：** 用户确认后即可执行
+**可逆性：** 高（文件可从备份恢复）
+
+### 层级2：中度自噬（部分可逆）
+**清理对象：**
+- 损坏文件：检测到内容损坏的文件
+- 错误记忆：MEMORY.md中标记为"过时"的条目
+- 失效临时状态：过期的任务提醒文件
+
+**触发条件：** 明确用户确认
+**可逆性：** 中（记忆内容可能无法恢复）
+
+### 层级3：大自噬（不可逆）
+**清理对象：**
+- 整个对话上下文
+- 当前会话的所有上下文状态
+
+**触发条件：** 双重确认 + Token > 95%自动预警
+**可逆性：** 零（除非有外部备份）
+
+## 清理决策流程
+
 ```
+收到清理请求 →
+  1. 自噬类型判断：
+     - 用户说"清理缓存/临时文件" → 小自噬
+     - 用户说"删除记忆/清理错误" → 中度自噬
+     - 用户说"重置/清空上下文" → 大自噬
+     - Token > 90% → 自动触发中度自噬预警
+     - Token > 95% → 自动触发大自噬预警
+
+  2. 对象识别（扫描）：
+     - 列出可清理对象
+     - 确认保留对象（核心记忆/进行中任务）
+
+  3. 风险评估：
+     - 小自噬：🟢 低风险
+     - 中度自噬：🟡 中风险（需确认清单）
+     - 大自噬：🔴 高风险（需双重确认）
+
+  4. 执行清理：
+     - 写入预清理快照（万一需要回滚）
+     - 执行删除
+     - 验证删除结果
+     - 写入清理日志
+
+  5. 清理后：
+     - 通知主AI：上下文已重置
+     - 报告：清理了什么，保留了什么
+```
+
+## 保留清单（任何层级都必须保留）
+
+```
+✅ 任何情况下都不删除：
+  - MEMORY.md（长期记忆）
+  - 进行中任务的状态（.dream/task-state.json）
+  - 用户偏好记录
+  - 技能/Skill相关文档
+  - 未完成且无法重建的工作成果
+```
+
+## 清理前快照机制
+
+```
+大自噬执行前必须：
+  1. 写入快照文件：/tmp/autophagy-snapshot-[timestamp].json
+     内容：当前所有上下文的关键摘要
+  2. 快照保留期限：7天
+  3. 通知用户：快照保存位置和保留期限
+  4. 用户确认后才执行删除
+```
+
+## 输出格式
+
+```
+🔥 [apollo-autophagy] 自噬清理报告
+
+清理类型：🗑️小自噬 / 🧹中度清理 / 💥大自噬
+风险等级：🟢低 / 🟡中 / 🔴高
+
+清理对象：
+  - 损坏/冗余文件：X个
+  - 过时缓存：X个
+  - 错误记忆：X条
+  - 会话上下文：X条
+
+保留内容：
+  - 核心记忆：[保留项摘要]
+  - 进行中任务：[任务名列表]
+  - 用户偏好：[偏好摘要]
+
+清理时间：YYYY-MM-DD HH:MM
+快照文件：[文件名，7天后自动删除]
+
+⚠️ 大自噬不可逆，中度自噬部分内容无法恢复
+```
+
+## 与apollo-renal/apollo-dream的协作边界
+
+| 场景 | 先跑 | 后跑 |
+|------|------|------|
+| 上下文略长，需要清理 | apollo-renal | — |
+| 上下文很长，需要深度整理 | apollo-renal | apollo-dream |
+| 上下文已损坏，必须删除 | apollo-autophagy | — |
+| Token > 90%，renal无效 | apollo-autophagy | — |
+| 用户主动要求重置 | apollo-autophagy | — |
+
+**优先级：autophagy > renal > dream**
+- 如果需要删除，先跑autophagy
+- 如果需要整理，先跑renal
+- 如果需要巩固，先跑dream
+
+## 清理日志
+
+所有清理操作必须记录到 `/root/.openclaw/workspace/.autophagy/cleanup-log.md`：
+
+```
+## [YYYY-MM-DD HH:MM] 清理记录
+类型：🗑️小 / 🧹中 / 💥大
+清理了什么：[清单]
+保留了什么：[清单]
+触发原因：[用户要求/自动/硬阈值]
+快照文件：[文件名]
+操作者：[系统/用户确认]
+```
+
+## 验收标准
+
+- [ ] 任何清理前都有用户确认（或硬阈值自动触发）
+- [ ] 大自噬有双重确认机制
+- [ ] 核心记忆和进行中任务在任何情况下都不被删除
+- [ ] 清理后有完整日志记录
+- [ ] 大自噬前有快照保留机制
+- [ ] 快照7天后自动清理
+
+## 待决策事项
+
+## 待决策事项（已全部确认 ✅）
+
+> ✅ 2026-04-06 袁文同确认
+
+- **Q12 大自噬触发**：只有用户主动要求才触发（不自动触发）
+- **Q13 错误记忆**：用户预先标记 + AI判断（两者结合）
+- **Q14 快照期限**：7天
+- **Q15 权限**：主Agent和子Agent都可以触发小自噬
+
+## 实施文件
+
+| 文件 | 作用 |
+|------|------|
+| scripts/autophagy/autophagy.sh | 清理脚本（small/medium/large/status） |
+| .autophagy/cleanup-log.md | 清理日志 |
+| .autophagy/snapshots/ | 快照目录（7天后自动清理） |
+| skills/apollo-autophagy/SKILL.md | 本文档 |
+
+## v1 实施规格
+
+### 清理脚本
+
+```bash
+# 查看可清理对象
+bash scripts/autophagy/autophagy.sh status
+
+# 小自噬（清理临时文件）
+bash scripts/autophagy/autophagy.sh small
+
+# 中自噬（清理错误记忆，需用户确认）
+bash scripts/autophagy/autophagy.sh medium
+
+# 大自噬（清空上下文，需双重确认）
+bash scripts/autophagy/autophagy.sh large
+```
+
+### 三层清理定义
+
+| 层级 | 触发条件 | 需确认 | 可逆性 |
+|------|---------|--------|--------|
+| 小自噬 | 用户说"清理缓存/临时文件" | 否 | 高 |
+| 中自噬 | 用户指定错误记忆 | 是 | 中 |
+| 大自噬 | 用户双重确认"确认大自噬" | 双重 | 无 |
+
+### 已确认规则
+
+- **Q12 大自噬触发**：只有用户主动要求，不自动触发 ✅
+- **Q13 错误记忆**：用户预先标记 + AI判断 ✅
+- **Q14 快照期限**：7天 ✅
+- **Q15 权限**：主Agent和子Agent都可以触发小自噬 ✅
+
+### v1 验收标准
+
+- [x] 小自噬可执行（临时文件清理）
+- [x] 状态查看可执行
+- [ ] 中自噬需要用户确认哪些是错误记忆
+- [ ] 大自噬需要双重确认机制
+- [ ] 快照7天后自动清理
+- [ ] 清理日志记录完整

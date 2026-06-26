@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "starting_at": "2026-03-11T00:00:00Z",
+      "ending_at": "2026-03-12T00:00:00Z",
+      "results": [
+        {
+          "model": "claude-opus-4-5",
+          "uncached_input_tokens": 80000,
+          "cache_read_input_tokens": 40000,
+          "output_tokens": 15000,
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 8000,
+            "ephemeral_5m_input_tokens": 2000
+          },
+          "server_tool_use": {
+            "web_search_requests": 2
+          }
+        },
+        {
+          "model": "claude-haiku-3-5",
+          "uncached_input_tokens": 20000,
+          "cache_read_input_tokens": 10000,
+          "output_tokens": 5000,
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 2000,
+            "ephemeral_5m_input_tokens": 3000
+          },
+          "server_tool_use": {
+            "web_search_requests": 1
+          }
+        }
+      ]
+    }
+  ],
+  "has_more": false,
+  "next_page": null
+}

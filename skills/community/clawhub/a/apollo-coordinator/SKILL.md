@@ -1,35 +1,92 @@
 ---
-name: "Apollo Coordinator"
-description: "复杂任务交给多个小助手同时做，最后帮你汇总结果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-coordinator"
-sourceUrl: "https://clawhub.ai/skills/apollo-coordinator"
+name: apollo-coordinator
+description: >
+  复杂任务交给多个小助手同时做，最后帮你汇总结果。
+version: 2.0.0
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🤖",
+      "trigger": ["协调任务", "分配任务给多个Agent", "多任务并行", "任务分发", "Hub+Spoke"],
+      "requires": {}
+    }
+  }
 ---
 
-# Apollo Coordinator
+# Apollo 协调器
 
-> 复杂任务交给多个小助手同时做，最后帮你汇总结果。
+## 触发场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-coordinator`
-- **Source URL:** [https://clawhub.ai/skills/apollo-coordinator](https://clawhub.ai/skills/apollo-coordinator)
+当用户提到"多任务并行"、"分解任务"、"分配给多个Agent"、"Hub+Spoke"、"协调子Agent"时激活。
 
-## Overview
+## 核心概念
 
+**Hub（协调者）：** 负责任务分解、结果汇总、最终交付，不做具体执行
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apollo-coordinator
+**Spoke（执行者）：** 负责具体执行，独立完成各自子任务
+
+## 工作流程
+
 ```
+用户输入复杂任务
+      ↓
+Hub 分解任务为 N 个独立子任务
+      ↓
+并行分配给 N 个 Spoke（独立Agent）
+      ↓
+每个 Spoke 执行并返回结果
+      ↓
+Hub 汇总结果，处理冲突
+      ↓
+最终交付给用户
+```
+
+## 分解原则
+
+1. **独立性**：每个Spoke能独立完成，不依赖其他Spoke
+2. **粒度合适**：一个Spoke的工作量控制在10-30分钟
+3. **格式统一**：每个Spoke返回结构化结果，方便Hub汇总
+
+## 推荐子任务数量
+
+| 任务复杂度 | 子任务数量 |
+|-----------|-----------|
+| 简单任务 | 2个 |
+| 中等任务 | 3-4个 |
+| 复杂任务 | 最多5个 |
+
+## 超时处理
+
+- 单个子任务超时 → 标记"超时"，继续其他任务
+- 汇总时说明哪些超时了
+
+## 冲突处理
+
+- 多个Spoke返回冲突信息 → Hub标注冲突，让用户判断
+
+## 输出格式
+
+### 任务分解（Hub给出）
+```
+【任务分解】
+主任务：{用户原始任务}
+分解为 {N} 个子任务：
+
+任务1：{描述}
+- 目标：{具体目标}
+- 输出格式：{结构化格式}
+```
+
+### 结果返回（Spoke给出）
+```
+【任务 {N} 结果】
+状态：成功/超时/失败
+输出：
+{结构化内容}
+```
+
+## 注意事项
+
+- Hub本身不执行具体工作，只做协调
+- 如果用户要求一个人完成，不要强行分解
+- Spoke之间不直接通信，都通过Hub中转

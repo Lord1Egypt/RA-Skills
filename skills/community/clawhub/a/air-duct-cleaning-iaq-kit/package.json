@@ -1,0 +1,56 @@
+{
+  "name": "air-duct-cleaning-iaq-kit",
+  "version": "1.0.0",
+  "description": "Air Duct Cleaning & IAQ Marketing Kit — 7-Moat Compliance System. Generates legally compliant, scientifically accurate marketing content for NADCA-certified air duct cleaning and indoor air quality contractors.",
+  "skillId": "air-duct-cleaning-iaq-kit",
+  "skillNumber": 194,
+  "bundle": "home-services-trades-v2",
+  "bundleSkillCount": 35,
+  "author": "max_0x1",
+  "license": "MIT-0",
+  "tags": [
+    "duct-cleaning",
+    "air-duct-cleaning",
+    "NADCA",
+    "IAQ",
+    "indoor-air-quality",
+    "HVAC",
+    "EPA",
+    "FIFRA",
+    "mold",
+    "home-services",
+    "compliance",
+    "nevada",
+    "marketing"
+  ],
+  "complianceMoats": [
+    "NADCA ACR 2021 — Certification gate ('EPA certified' permanently blocked; NADCA member # required; ASCS cert required)",
+    "EPA 402-K-97-002 — IAQ guidance accuracy ('improves air quality' permanently blocked without pre/post IAQ test data)",
+    "NADCA ACR 2021 Section 5 — Source removal method gate (brush-and-blow as NADCA-compliant permanently blocked; negative air + HEPA required)",
+    "EPA FIFRA 7 USC §136 + NADCA Policy — Biocide/chemical compliance (antimicrobial claims require FIFRA Reg #; informed consent required)",
+    "EPA Mold Guidelines + IICRC S520 — Mold claim accuracy ('mold found' without documented inspection permanently blocked; Clark County >10 sq ft NRS 624 required)",
+    "NRS 624 C-21 HVAC-R — Contractor license gate for modifications (UV lights, duct sealing, duct board replacement permanently blocked without C-21)",
+    "FTC 16 CFR Part 255 + Magnuson-Moss 15 USC §2301 + TCPA 47 USC §227 — Advertising compliance ('HVAC warranty requires cleaning' permanently blocked; MERV-13 ≠ HEPA enforced)"
+  ],
+  "prompts": [
+    "prompts/01-seasonal-campaign.md",
+    "prompts/02-service-pages-schema.md",
+    "prompts/03-reputation-referral.md",
+    "prompts/04-digital-ads-local-seo.md"
+  ],
+  "examples": [
+    "examples/nevada-air-solutions-henderson-nv.md"
+  ],
+  "pricing": {
+    "free": "$0 — Prompt 1 only",
+    "standard": "$29 one-time — All 4 prompts + example",
+    "dfy": "$97/project — Max runs all content for your contractor"
+  },
+  "targetMarket": [
+    "NADCA-member residential air duct cleaning companies",
+    "HVAC contractors adding duct cleaning as a service line",
+    "Commercial HVAC maintenance companies (ASHRAE 180)",
+    "IAQ assessment and remediation firms",
+    "Marketing agencies serving duct cleaning contractors"
+  ]
+}

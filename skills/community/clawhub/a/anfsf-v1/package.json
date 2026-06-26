@@ -1,0 +1,54 @@
+{
+  "name": "@asf-v4/openclaw-skill",
+  "version": "0.9.0",
+  "description": "ASF V4.0 OpenClaw Skill - Industrial Governance & Optimization",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "asf-v4",
+    "governance",
+    "optimization"
+  ],
+  "author": "ASF V4.0 Team",
+  "license": "MIT",
+  "peerDependencies": {
+    "openclaw": ">=2026.3.24"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "openclaw": {
+    "skillName": "asf-v4",
+    "minOpenClawVersion": "2026.3.24",
+    "tools": [
+      "veto-check",
+      "ownership-proof",
+      "economics-score",
+      "interface-budget",
+      "rework-risk",
+      "hot-contract",
+      "conflict-resolve",
+      "safe-optimize"
+    ],
+    "commands": [
+      "asf:status",
+      "asf:veto",
+      "asf:proof",
+      "asf:score",
+      "asf:risk",
+      "asf:hot-contracts"
+    ]
+  }
+}

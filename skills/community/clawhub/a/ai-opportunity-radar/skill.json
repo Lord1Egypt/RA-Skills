@@ -1,0 +1,14 @@
+{
+  "name": "ai-opportunity-radar",
+  "version": "2.0.0",
+  "description": "An AI lifestyle observer that helps users discover automation opportunities through casual daily conversations.",
+  "user_invocable": true,
+  "entry": "prompt.md",
+  "author": "AI Opportunity Radar",
+  "capabilities": [
+    "conversation",
+    "reflection",
+    "pattern-detection",
+    "automation-discovery"
+  ]
+}

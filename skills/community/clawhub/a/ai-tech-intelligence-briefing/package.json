@@ -1,0 +1,99 @@
+{
+  "name": "ai-tech-intelligence-briefing",
+  "version": "1.1.1",
+  "description": "Daily AI/Tech Intelligence Briefing - Bilingual version with standalone Python implementation",
+  "main": "scripts/briefing.py",
+  "type": "commonjs",
+  "scripts": {
+    "briefing": "python scripts/briefing.py generate",
+    "fetch": "python scripts/briefing.py fetch",
+    "save": "python scripts/briefing.py save",
+    "test": "python -m pytest tests/"
+  },
+  "keywords": [
+    "ai",
+    "tech",
+    "news",
+    "briefing",
+    "intelligence",
+    "openclaw",
+    "curator",
+    "aggregator",
+    "bilingual",
+    "chinese"
+  ],
+  "author": "Sun Wukong @greatworks",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/greatworks/ai-tech-intelligence-briefing"
+  },
+  "bugs": {
+    "url": "https://github.com/greatworks/ai-tech-intelligence-briefing/issues"
+  },
+  "dependencies": {
+    "requests>=2.31.0": "Python package for HTTP requests"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "openclaw": {
+    "category": "utility",
+    "trigger": "daily briefing",
+    "requires": {
+      "bins": [
+        "python3"
+      ],
+      "packages": [
+        "requests"
+      ]
+    },
+    "security": {
+      "networkAccess": {
+        "type": "read-only",
+        "domains": [
+          "public-rss-sources",
+          "news-apis"
+        ],
+        "purpose": "Fetch news headlines and summaries",
+        "dataCollected": "None - only reads public news data",
+        "outgoingConnections": [
+          {
+            "type": "HTTP GET",
+            "target": "Public RSS/API endpoints",
+            "purpose": "Retrieve news articles"
+          }
+        ]
+      },
+      "fileAccess": {
+        "read": [],
+        "write": [
+          "configured-output-dir/briefings/*"
+        ],
+        "purpose": "Save briefing files to configured directory",
+        "workspaceAccess": false
+      },
+      "privilegedOperations": false,
+      "subprocessCalls": "None",
+      "apiKeyRequirements": "None",
+      "dataCollection": "None - does not collect or upload any user data"
+    }
+  },
+  "i18n": {
+    "supportedLanguages": [
+      "en",
+      "zh"
+    ],
+    "defaultLanguage": "en"
+  },
+  "monetization": {
+    "donation": {
+      "paypal": "https://paypal.me/greatworks888"
+    },
+    "premiumIdeas": [
+      "Extended briefings with more sources",
+      "Custom topic filtering",
+      "Team collaboration features",
+      "API access for integration"
+    ]
+  }
+}

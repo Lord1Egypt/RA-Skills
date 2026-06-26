@@ -1,0 +1,13 @@
+{
+  "name": "ai-ecommerce-team",
+  "version": "1.0.0",
+  "description": "AI电商自动化部署方案 - 5个开源工具覆盖选品到售后",
+  "author": "fan",
+  "license": "MIT",
+  "keywords": ["ecommerce", "n8n", "chatwoot", "medusa", "automation"],
+  "openclaw": {
+    "type": "skill",
+    "triggers": ["电商", "ecommerce", "店铺", "客服", "选品"],
+    "platform": "any"
+  }
+}

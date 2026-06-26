@@ -1,0 +1,14 @@
+# Anti-Rug Token Security Checker
+# Dependencies for Web3 token security analysis
+
+# HTTP client for API requests
+requests>=2.28.0
+
+# Type hints support (Python 3.8+)
+typing-extensions>=4.0.0; python_version<"3.10"
+
+# Development dependencies (optional)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# black>=22.0.0
+# mypy>=1.0.0

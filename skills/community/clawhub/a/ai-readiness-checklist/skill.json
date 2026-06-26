@@ -1,0 +1,12 @@
+{
+  "slug": "ai-readiness-checklist",
+  "name": "AI Readiness Checklist",
+  "version": "1.0.0",
+  "description": "Answer 15 structured questions about your organization and get a scored AI readiness assessment (0-60) across 5 dimensions with a prioritized action plan. Identifies your biggest blockers, common failure patterns, and a realistic deployment timeline.",
+  "author": "Resomnium",
+  "tags": ["ai-readiness", "assessment", "enterprise-ai", "governance", "checklist", "strategy"],
+  "category": "governance",
+  "price": 0,
+  "license": "free",
+  "entrypoint": "SKILL.md"
+}

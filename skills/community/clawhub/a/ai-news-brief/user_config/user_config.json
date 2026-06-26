@@ -1,0 +1,148 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-04-06",
+  "user_preferences": {
+    "liked_keywords": [],
+    "disliked_keywords": [],
+    "liked_sources": [],
+    "disliked_sources": [],
+    "custom_keywords": [],
+    "excluded_keywords": []
+  },
+  "default_keywords": {
+    "AI基础": [
+      "ai",
+      "人工智能",
+      "大模型",
+      "gpt",
+      "llm",
+      "chatgpt",
+      "openai",
+      "claude",
+      "gemini",
+      "deepseek"
+    ],
+    "GPU硬件": [
+      "gpu",
+      "nvidia",
+      "amd",
+      "intel",
+      "cuda",
+      "h100",
+      "h200",
+      "a100",
+      "b100",
+      "4090",
+      "5080",
+      "5090",
+      "blackwell"
+    ],
+    "内存存储": [
+      "内存",
+      "ddr5",
+      "ddr4",
+      "hbm",
+      "gddr",
+      "dram",
+      "存储",
+      "固态",
+      "ssd",
+      "三星",
+      "海力士",
+      "美光",
+      "颗粒"
+    ],
+    "算力芯片": [
+      "算力",
+      "芯片",
+      "半导体",
+      "处理器",
+      "cpu",
+      "npu",
+      "tpu"
+    ],
+    "模型训练": [
+      "模型",
+      "训练",
+      "推理",
+      "部署",
+      "参数",
+      "token",
+      "moE"
+    ],
+    "自动驾驶": [
+      "自动驾驶",
+      "智能驾驶",
+      "特斯拉",
+      "fsd"
+    ],
+    "大厂动态": [
+      "华为",
+      "昇腾",
+      "阿里",
+      "百度",
+      "字节",
+      "腾讯"
+    ],
+    "模型产品": [
+      "llama",
+      "mistral",
+      "qwen",
+      "kimi",
+      "通义",
+      "文心"
+    ],
+    "具身智能": [
+      "具身智能",
+      "人形机器人",
+      "figure",
+      "robot"
+    ]
+  },
+  "source_credibility": {
+    "36kr": {
+      "level": "B",
+      "name": "36氪"
+    },
+    "量子位": {
+      "level": "B",
+      "name": "量子位"
+    },
+    "机器之心": {
+      "level": "B",
+      "name": "机器之心"
+    },
+    "虎嗅": {
+      "level": "B",
+      "name": "虎嗅"
+    },
+    "爱范儿": {
+      "level": "B",
+      "name": "爱范儿"
+    },
+    "驱动之家": {
+      "level": "B",
+      "name": "驱动之家"
+    },
+    "超能网": {
+      "level": "B",
+      "name": "超能网"
+    },
+    "中关村在线": {
+      "level": "B",
+      "name": "中关村在线"
+    },
+    "TechCrunch": {
+      "level": "A",
+      "name": "TechCrunch"
+    },
+    "The Verge": {
+      "level": "A",
+      "name": "The Verge"
+    },
+    "HackerNews": {
+      "level": "C",
+      "name": "HackerNews"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "aioz-storage-skill",
+    "version": "1.0.0",
+    "private": true,
+    "description": "AIOZ Storage static website deploy skill - grant CLI",
+    "scripts": {
+        "grant": "npx ts-node grant-cli.ts"
+    },
+    "dependencies": {
+        "argon2-browser": "^1.18.0"
+    },
+    "devDependencies": {
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    }
+}

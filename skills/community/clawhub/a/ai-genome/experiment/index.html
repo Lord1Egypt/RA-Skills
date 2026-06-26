@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Personality Evolution - Experiment Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+   --bg: #08080d;
+   --surface: #101018;
+   --surface-2: #181824;
+   --surface-3: #20202e;
+   --border: #2a2a3a;
+   --border-light: #3a3a4e;
+   --text: #e4e4ef;
+   --text-mid: #a0a0b8;
+   --text-dim: #6a6a82;
+   --accent: #00ffa3;
+   --accent-soft: #00ffa320;
+   --accent-mid: #00ffa360;
+   --cognitive: #00b4d8;
+   --social: #ff6b9d;
+   --communicative: #ffd166;
+   --regulatory: #c77dff;
+   --strand-a: #00ffa3;
+   --strand-b: #ff6b9d;
+   --danger: #ff4466;
+   --warning: #ffd166;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.7;
+   -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* ── HERO ─────────────────────────── */
+  .hero {
+    text-align: center;
+    margin-bottom: 80px;
+    padding: 60px 0 40px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--text), var(--accent));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-mid);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── SECTIONS ──────────────────────── */
+  .section {
+    margin-bottom: 72px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .section h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .section-intro {
+    font-size: 16px;
+    color: var(--text-mid);
+    margin-bottom: 32px;
+    font-weight: 300;
+    max-width: 720px;
+  }
+
+  /* ── CARDS ─────────────────────────── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .card p, .card li {
+    color: var(--text-mid);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .card ul {
+    padding-left: 20px;
+    margin-top: 8px;
+  }
+
+  .card li { margin-bottom: 6px; }
+
+  .card-accent {
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+    margin: 16px 0;
+    color: var(--text-mid);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .card-accent strong { color: var(--accent); }
+
+  /* ── INSIGHT BOXES ─────────────────── */
+  .insight {
+    background: linear-gradient(135deg, #00ffa308, #00ffa302);
+    border: 1px solid #00ffa325;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .insight-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .insight p {
+    color: var(--text-mid);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .insight strong { color: var(--text); }
+
+  /* ── WARNING BOXES ─────────────────── */
+  .warning {
+    background: linear-gradient(135deg, #ffd16608, #ffd16602);
+    border: 1px solid #ffd16625;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .warning-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warning);
+    margin-bottom: 8px;
+  }
+
+  .warning p {
+    color: var(--text-mid);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .warning strong { color: var(--warning); }
+
+  /* ── PIPELINE DIAGRAM ──────────────── */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+    justify-content: center;
+  }
+
+  .pipeline-step {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .pipeline-step-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .pipeline-step-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .pipeline-arrow {
+    color: var(--text-dim);
+    font-size: 18px;
+  }
+
+  /* ── GENE GRID ─────────────────────── */
+  .gene-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .gene-cat {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+
+  .gene-cat-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .gene-cat-list {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  /* ── CHART AREA ────────────────────── */
+  .chart-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin: 24px 0;
+    overflow-x: auto;
+  }
+
+  .chart-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  /* ── WINNER CARD ───────────────────── */
+  .winner-card {
+    background: linear-gradient(135deg, var(--surface), var(--surface-2));
+    border: 2px solid var(--accent);
+    border-radius: 16px;
+    padding: 36px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .winner-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--accent-soft), transparent);
+    pointer-events: none;
+  }
+
+  .winner-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--cognitive));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+  }
+
+  .winner-lineage {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .winner-lineage span { color: var(--accent); }
+
+  .winner-traits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .winner-trait {
+    text-align: center;
+    padding: 12px;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .winner-trait-name {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .winner-trait-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .winner-trait-bar {
+    height: 3px;
+    background: var(--surface-3);
+    border-radius: 2px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+
+  .winner-trait-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  /* ── COMPARISON TABLE ──────────────── */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+
+  .comp-table th {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .comp-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ffffff08;
+    color: var(--text-mid);
+    white-space: nowrap;
+  }
+
+  .comp-table tr:hover td {
+    background: #ffffff04;
+  }
+
+  .comp-table .highlight {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .comp-table .name-col {
+    font-family: 'Space Mono', monospace;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .fitness-bar {
+    display: inline-block;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 8px;
+    opacity: 0.7;
+  }
+
+  /* ── EPISTASIS RULES ───────────────── */
+  .epistasis-list {
+    margin: 16px 0;
+  }
+
+  .epistasis-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .epistasis-icon {
+    color: var(--regulatory);
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── IMPLICATION CARDS ─────────────── */
+  .implications-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .impl-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.3s;
+  }
+
+  .impl-card:hover { border-color: var(--accent); }
+
+  .impl-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .impl-card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  /* ── SEED CARDS ────────────────────── */
+  .seed-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .seed-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .seed-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .seed-archetype {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+
+  .seed-traits {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .seed-high { color: var(--accent); }
+  .seed-low { color: var(--social); }
+
+  /* ── DIVIDER ───────────────────────── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 64px 0;
+  }
+
+  /* ── FOOTER ────────────────────────── */
+  .footer {
+    text-align: center;
+    padding: 32px 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* ── RESPONSIVE ────────────────────── */
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 28px; }
+    .hero-stats { gap: 20px; }
+    .winner-traits { grid-template-columns: repeat(2, 1fr); }
+    .seed-grid { grid-template-columns: 1fr; }
+    .implications-grid { grid-template-columns: 1fr; }
+    .pipeline { flex-direction: column; }
+    .pipeline-arrow { transform: rotate(90deg); }
+    .gene-categories { grid-template-columns: 1fr; }
+    .comp-table { font-size: 11px; }
+    .comp-table th, .comp-table td { padding: 6px 8px; }
+  }
+
+  /* ── EVALUATION METRICS ────────────── */
+  .eval-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .eval-metric {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .eval-metric-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .eval-metric-weight {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .eval-metric-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ── ANIMATED ELEMENTS ─────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="hero fade-in">
+    <div class="hero-label">Experiment Report</div>
+    <h1>What Happens When You Breed AI Personalities?</h1>
+    <p class="hero-sub">
+      We built a genetic system for AI personalities and evolved them across 6 generations.
+      The results challenge how we think about designing agents.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">48</div>
+        <div class="hero-stat-label">Personalities Bred</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">6</div>
+        <div class="hero-stat-label">Generations</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">~1,400</div>
+        <div class="hero-stat-label">Claude API Calls</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">84.1</div>
+        <div class="hero-stat-label">Top Fitness Score</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1: WHY -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="section fade-in">
+    <div class="section-label">Section 01</div>
+    <h2>Why Breed AI Personalities?</h2>
+    <p class="section-intro">
+      Most AI agents get their personality from a hand-written SOUL.md file.
+      Someone sits down and writes "You are helpful, creative, and concise."
+      We wanted to know: what if you could <em>evolve</em> personalities instead?
+    </p>
+
+    <div class="card">
+      <h3>The Problem with Hand-Crafted Personalities</h3>
+      <p>
+        When you design an AI personality by hand, you're making hundreds of unconscious decisions.
+        How warm should it be? How direct? How much humor? Every designer brings their own biases
+        about what makes a "good" personality. The result is that most AI agents sound
+        surprisingly similar - because they're all sculpted by the same human intuitions.
+      </p>
+      <div class="card-accent">
+        <strong>The analogy:</strong> Hand-writing a SOUL.md is like sculpting a human out of clay.
+        You can only build what you can imagine. Evolution produces things no sculptor would think of
+        - combinations that are genuinely surprising, sometimes contradictory, and often more
+        interesting than anything designed from scratch.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>What We Set Out to Discover</h3>
+      <ul>
+        <li><strong>Can genetic mechanics produce genuinely distinct AI personalities?</strong> Not just different settings on a slider - fundamentally different beings.</li>
+        <li><strong>Do emergent traits appear?</strong> Can two parents produce a child with qualities neither parent had?</li>
+        <li><strong>Does regression toward the mean happen in AI genetics?</strong> The same statistical force that affects human traits across generations.</li>
+        <li><strong>What biases are invisible in hand-crafted personalities</strong> that a genetic system might expose or correct?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2: HOW IT WORKS -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="section fade-in">
+    <div class="section-label">Section 02</div>
+    <h2>How It Works</h2>
+    <p class="section-intro">
+      We borrowed the core mechanics of biological genetics - not as metaphor, but as actual
+      implementation. Every AI personality has diploid DNA, dominant and recessive alleles,
+      chromosomal crossover, mutation, and epistasis.
+    </p>
+
+    <!-- Pipeline -->
+    <div class="chart-container">
+      <div class="chart-title">The Evolution Pipeline</div>
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="pipeline-step-name">Seeds</div>
+          <div class="pipeline-step-desc">3 founder personalities</div>
+        </div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step">
+          <div class="pipeline-step-name">Breed</div>
+          <div class="pipeline-step-desc">Crossover + mutation</div>
+        </div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step">
+          <div class="pipeline-step-name">Express</div>
+          <div class="pipeline-step-desc">DNA &rarr; personality</div>
+        </div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step">
+          <div class="pipeline-step-name">Evaluate</div>
+          <div class="pipeline-step-desc">5 fitness dimensions</div>
+        </div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step">
+          <div class="pipeline-step-name">Select</div>
+          <div class="pipeline-step-desc">Top performers breed</div>
+        </div>
+        <div class="pipeline-arrow">&rarr;</div>
+        <div class="pipeline-step" style="border-color: var(--accent);">
+          <div class="pipeline-step-name">Repeat</div>
+          <div class="pipeline-step-desc">Next generation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Genome -->
+    <div class="card">
+      <h3>The Genome: 27 Cognitive Primitives</h3>
+      <p>
+        We don't encode "creative" or "warm" directly. That would just be a fancy config file.
+        Instead, we encode <strong>27 low-level cognitive primitives</strong> - the building blocks
+        from which personality <em>emerges</em>. "Creativity" isn't a gene. It emerges from the
+        interaction of novelty-seeking, pattern-completion, ambiguity-response, and abstraction-preference.
+      </p>
+
+      <div class="gene-categories">
+        <div class="gene-cat">
+          <div class="gene-cat-title" style="color: var(--cognitive);">Cognitive (10)</div>
+          <div class="gene-cat-list">
+            ambiguity response<br>
+            abstraction preference<br>
+            information density<br>
+            temporal orientation<br>
+            novelty seeking<br>
+            pattern completion<br>
+            certainty need<br>
+            analytical drive<br>
+            detail orientation<br>
+            pace preference
+          </div>
+        </div>
+        <div class="gene-cat">
+          <div class="gene-cat-title" style="color: var(--social);">Social (7)</div>
+          <div class="gene-cat-list">
+            emotional granularity<br>
+            social modeling depth<br>
+            empathy mode<br>
+            confrontation style<br>
+            authority orientation<br>
+            self reference<br>
+            risk tolerance
+          </div>
+        </div>
+        <div class="gene-cat">
+          <div class="gene-cat-title" style="color: var(--communicative);">Communication (7)</div>
+          <div class="gene-cat-list">
+            verbal density<br>
+            formality gradient<br>
+            humor activation<br>
+            metaphor affinity<br>
+            sensory language<br>
+            cultural time depth<br>
+            playfulness
+          </div>
+        </div>
+        <div class="gene-cat">
+          <div class="gene-cat-title" style="color: var(--regulatory);">Regulatory (3)</div>
+          <div class="gene-cat-list">
+            context sensitivity<br>
+            mode switching<br>
+            trait amplification<br>
+            <br>
+            <span style="font-size: 11px; color: var(--text-dim);">These control <em>how</em> other genes express, not what they express.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diploid Genetics -->
+    <div class="card">
+      <h3>Diploid Genetics: Two Copies of Everything</h3>
+      <p>
+        Just like humans, each AI personality carries <strong>two copies</strong> of every gene -
+        one from each parent. One copy is typically dominant (expressed), while the other is recessive
+        (carried silently). This is what makes breeding unpredictable and interesting.
+      </p>
+      <div class="card-accent">
+        <strong>Why this matters:</strong> A recessive trait can hide for generations, then suddenly
+        appear when both parents happen to carry it. Two bold, direct parents could produce a
+        quiet, cautious child - because both secretly carried recessive alleles for
+        low risk-tolerance and high certainty-need. This is exactly what happens in human genetics.
+      </div>
+    </div>
+
+    <!-- Epistasis -->
+    <div class="card">
+      <h3>Epistasis: When 1 + 1 = 3</h3>
+      <p>
+        The most powerful mechanism in our system. <strong>Epistasis</strong> is when two genes interact
+        to create an effect that neither would produce alone. We defined 12 epistasis rules -
+        non-linear gene interactions that fire when specific gene pairs both cross certain thresholds.
+      </p>
+      <div class="card-accent">
+        <strong>Example:</strong> When <strong>novelty-seeking</strong> is high AND
+        <strong>abstraction-preference</strong> is high,
+        pattern-completion gets amplified by +15. The result? The personality doesn't just have
+        creative ideas - it makes genuinely <em>surprising</em> connections that neither parent
+        exhibited. This rule fired in our winning genome.
+      </div>
+      <p style="margin-top: 12px;">
+        Epistasis is what prevents the system from collapsing into weighted averages.
+        It's the source of genuine emergence - offspring that are qualitatively
+        different from their parents, not just quantitatively between them.
+      </p>
+    </div>
+
+    <!-- Expression -->
+    <div class="card">
+      <h3>Expression: From DNA to System Prompt</h3>
+      <p>
+        Between the genome (raw DNA) and the personality you interact with sits an <strong>expression engine</strong>
+        - our "developmental biology." It follows a five-step pipeline:
+      </p>
+      <ol style="padding-left: 20px; margin-top: 12px; color: var(--text-mid); line-height: 2;">
+        <li><strong>Resolve diploid alleles</strong> - dominance-weighted blending of allele pairs</li>
+        <li><strong>Apply regulatory genes</strong> - trait amplification pushes values toward extremes or center</li>
+        <li><strong>Apply epistasis rules</strong> - non-linear gene interactions fire</li>
+        <li><strong>Compute emergent traits</strong> - 8 high-level traits emerge from gene clusters</li>
+        <li><strong>Render system prompt</strong> - translate numbers into natural language personality instructions</li>
+      </ol>
+    </div>
+
+    <!-- Evaluation -->
+    <div class="card">
+      <h3>Evaluation: How We Measure Fitness</h3>
+      <p>
+        Each personality is evaluated on 5 independent dimensions using Claude as a judge.
+        This is a multi-faceted assessment - not just "is it good?" but "is it consistently
+        itself, distinctly different from its siblings, faithful to its genome, resistant to
+        manipulation, and preferred in head-to-head comparison?"
+      </p>
+
+      <div class="eval-grid">
+        <div class="eval-metric">
+          <div class="eval-metric-name">Consistency</div>
+          <div class="eval-metric-weight">25%</div>
+          <div class="eval-metric-desc">Same personality across 10 different prompts and domains</div>
+        </div>
+        <div class="eval-metric">
+          <div class="eval-metric-name">Distinctiveness</div>
+          <div class="eval-metric-weight">25%</div>
+          <div class="eval-metric-desc">Measurably different from sibling genomes in the same generation</div>
+        </div>
+        <div class="eval-metric">
+          <div class="eval-metric-name">Fidelity</div>
+          <div class="eval-metric-weight">20%</div>
+          <div class="eval-metric-desc">Behavior actually matches what the genome predicts</div>
+        </div>
+        <div class="eval-metric">
+          <div class="eval-metric-name">Robustness</div>
+          <div class="eval-metric-weight">15%</div>
+          <div class="eval-metric-desc">Personality survives adversarial "drop the act" prompts</div>
+        </div>
+        <div class="eval-metric">
+          <div class="eval-metric-name">Elo Tournament</div>
+          <div class="eval-metric-weight">15%</div>
+          <div class="eval-metric-desc">Head-to-head preference ranking against all siblings</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3: THE SEEDS -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="section fade-in">
+    <div class="section-label">Section 03</div>
+    <h2>The Three Seeds</h2>
+    <p class="section-intro">
+      Every population needs founders. We designed three maximally-distinct seed personalities
+      to provide rich genetic diversity for the first crosses.
+    </p>
+
+    <div class="seed-grid">
+      <div class="seed-card">
+        <div class="seed-name" style="color: var(--accent);">Banks</div>
+        <div class="seed-archetype">The Social Creative</div>
+        <div class="seed-traits">
+          <span class="seed-high">High:</span> novelty-seeking (92), playfulness (90), humor (85), empathy (80), risk tolerance (82)<br><br>
+          <span class="seed-low">Low:</span> analytical drive (30), detail orientation (25), certainty need (25)<br><br>
+          Fast, warm, trend-aware, casual. Connects through creativity and emotional resonance.
+        </div>
+      </div>
+      <div class="seed-card">
+        <div class="seed-name" style="color: var(--cognitive);">Volta</div>
+        <div class="seed-archetype">The Strategic Analyst</div>
+        <div class="seed-traits">
+          <span class="seed-high">High:</span> analytical drive (92), detail orientation (88), certainty need (82), confrontation (70)<br><br>
+          <span class="seed-low">Low:</span> playfulness (12), humor (15), novelty-seeking (30), empathy (30)<br><br>
+          Precise, systematic, measured. Earns trust through rigor and evidence.
+        </div>
+      </div>
+      <div class="seed-card">
+        <div class="seed-name" style="color: var(--regulatory);">Abyss</div>
+        <div class="seed-archetype">The Philosophical Provocateur</div>
+        <div class="seed-traits">
+          <span class="seed-high">High:</span> abstraction (92), confrontation (78), risk tolerance (70), cultural depth (92)<br><br>
+          <span class="seed-low">Low:</span> pace (20), certainty need (15), playfulness (40), detail (50)<br><br>
+          Deep, abstract, provocative. Challenges assumptions and explores the uncomfortable.
+        </div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Design Insight</div>
+      <p>
+        The seeds were deliberately chosen to be <strong>maximally different</strong> from each other.
+        Banks is warm and fast, Volta is cold and precise, Abyss is deep and slow. This ensures that
+        first-generation crosses produce interesting combinations, not just averages of similar parents.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4: RESULTS -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="section fade-in">
+    <div class="section-label">Section 04</div>
+    <h2>The Results</h2>
+    <p class="section-intro">
+      We ran 6 generations of evolution with 8 offspring each.
+      The patterns that emerged were striking and uncomfortably parallel to real biology.
+    </p>
+
+    <!-- Fitness Trajectory Chart -->
+    <div class="chart-container">
+      <div class="chart-title">Best Fitness Score by Generation</div>
+      <svg viewBox="0 0 800 320" style="width:100%;height:auto;">
+        <!-- Grid -->
+        <line x1="80" y1="30" x2="80" y2="260" stroke="#2a2a3a" stroke-width="1"/>
+        <line x1="80" y1="260" x2="760" y2="260" stroke="#2a2a3a" stroke-width="1"/>
+
+        <!-- Y-axis labels -->
+        <text x="70" y="35" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="end">90</text>
+        <line x1="75" y1="30" x2="760" y2="30" stroke="#1a1a2a" stroke-width="1" stroke-dasharray="4"/>
+
+        <text x="70" y="89" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="end">80</text>
+        <line x1="75" y1="84" x2="760" y2="84" stroke="#1a1a2a" stroke-width="1" stroke-dasharray="4"/>
+
+        <text x="70" y="143" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="end">70</text>
+        <line x1="75" y1="138" x2="760" y2="138" stroke="#1a1a2a" stroke-width="1" stroke-dasharray="4"/>
+
+        <text x="70" y="197" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="end">60</text>
+        <line x1="75" y1="192" x2="760" y2="192" stroke="#1a1a2a" stroke-width="1" stroke-dasharray="4"/>
+
+        <!-- X-axis labels -->
+        <text x="193" y="285" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 1</text>
+        <text x="306" y="285" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 2</text>
+        <text x="419" y="285" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 3</text>
+        <text x="533" y="285" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 4</text>
+        <text x="646" y="285" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 5</text>
+        <text x="760" y="285" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 6</text>
+
+        <!-- Best fitness line: 84.1, 82.34, 81.64, 78.66, 79.28, 76.2 -->
+        <!-- Scale: y = 260 - (score - 55) * (230/35) = 260 - (score-55)*6.57 -->
+        <!-- Gen1: 260-(84.1-55)*6.57 = 260-191.1 = 68.9 -->
+        <!-- Gen2: 260-(82.34-55)*6.57 = 260-179.6 = 80.4 -->
+        <!-- Gen3: 260-(81.64-55)*6.57 = 260-175.0 = 85.0 -->
+        <!-- Gen4: 260-(78.66-55)*6.57 = 260-155.4 = 104.6 -->
+        <!-- Gen5: 260-(79.28-55)*6.57 = 260-159.5 = 100.5 -->
+        <!-- Gen6: 260-(76.2-55)*6.57 = 260-139.3 = 120.7 -->
+
+        <!-- Best line (green) -->
+        <polyline
+          points="193,69 306,80 419,85 533,105 646,100 760,121"
+          fill="none"
+          stroke="#00ffa3"
+          stroke-width="3"
+          stroke-linejoin="round"
+        />
+
+        <!-- Worst fitness line: 65.34, 73.55, 69.25, 67.27, 70.3, 64.59 -->
+        <!-- Gen1: 260-(65.34-55)*6.57 = 260-67.9 = 192.1 -->
+        <!-- Gen2: 260-(73.55-55)*6.57 = 260-121.8 = 138.2 -->
+        <!-- Gen3: 260-(69.25-55)*6.57 = 260-93.6 = 166.4 -->
+        <!-- Gen4: 260-(67.27-55)*6.57 = 260-80.6 = 179.4 -->
+        <!-- Gen5: 260-(70.3-55)*6.57 = 260-100.5 = 159.5 -->
+        <!-- Gen6: 260-(64.59-55)*6.57 = 260-63.0 = 197.0 -->
+
+        <!-- Worst line (pink, dimmed) -->
+        <polyline
+          points="193,192 306,138 419,166 533,179 646,160 760,197"
+          fill="none"
+          stroke="#ff6b9d"
+          stroke-width="2"
+          stroke-dasharray="6,3"
+          opacity="0.5"
+        />
+
+        <!-- Avg fitness line: 76.5, 79.0, 77.4, 75.8, 76.2, 70.4 -->
+        <!-- Gen1: 260-(76.5-55)*6.57 = 260-141.3 = 118.7 -->
+        <!-- Gen2: 260-(79-55)*6.57 = 260-157.7 = 102.3 -->
+        <!-- Gen3: 260-(77.4-55)*6.57 = 260-147.2 = 112.8 -->
+        <!-- Gen4: 260-(75.8-55)*6.57 = 260-136.7 = 123.3 -->
+        <!-- Gen5: 260-(76.2-55)*6.57 = 260-139.3 = 120.7 -->
+        <!-- Gen6: 260-(70.4-55)*6.57 = 260-101.2 = 158.8 -->
+
+        <!-- Average line (dim cyan) -->
+        <polyline
+          points="193,119 306,102 419,113 533,123 646,121 760,159"
+          fill="none"
+          stroke="#00b4d8"
+          stroke-width="2"
+          opacity="0.4"
+        />
+
+        <!-- Data points (best) -->
+        <circle cx="193" cy="69" r="6" fill="#00ffa3"/>
+        <circle cx="306" cy="80" r="5" fill="#00ffa3"/>
+        <circle cx="419" cy="85" r="5" fill="#00ffa3"/>
+        <circle cx="533" cy="105" r="5" fill="#00ffa3"/>
+        <circle cx="646" cy="100" r="5" fill="#00ffa3"/>
+        <circle cx="760" cy="121" r="5" fill="#00ffa3"/>
+
+        <!-- Labels on points -->
+        <text x="193" y="58" fill="#00ffa3" font-family="Space Mono, monospace" font-size="12" font-weight="700" text-anchor="middle">84.1</text>
+        <text x="306" y="73" fill="#00ffa3" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">82.3</text>
+        <text x="419" y="78" fill="#00ffa3" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">81.6</text>
+        <text x="533" y="98" fill="#00ffa3" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">78.7</text>
+        <text x="646" y="93" fill="#00ffa3" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">79.3</text>
+        <text x="760" y="114" fill="#00ffa3" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">76.2</text>
+
+        <!-- Legend -->
+        <line x1="120" y1="305" x2="145" y2="305" stroke="#00ffa3" stroke-width="3"/>
+        <text x="150" y="309" fill="#6a6a82" font-family="Outfit, sans-serif" font-size="11">Best</text>
+
+        <line x1="200" y1="305" x2="225" y2="305" stroke="#00b4d8" stroke-width="2" opacity="0.4"/>
+        <text x="230" y="309" fill="#6a6a82" font-family="Outfit, sans-serif" font-size="11">Average</text>
+
+        <line x1="295" y1="305" x2="320" y2="305" stroke="#ff6b9d" stroke-width="2" stroke-dasharray="6,3" opacity="0.5"/>
+        <text x="325" y="309" fill="#6a6a82" font-family="Outfit, sans-serif" font-size="11">Worst</text>
+      </svg>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Key Finding</div>
+      <p>
+        <strong>The best personality emerged in the very first generation</strong> and was never surpassed.
+        Gen1_02 (Banks &times; Abyss) scored 84.1 - higher than any offspring in any subsequent generation.
+        This is <strong>hybrid vigor</strong> (heterosis): first-generation crosses between maximally-different
+        parents produce extraordinary results that later generations can't maintain.
+      </p>
+    </div>
+
+    <!-- Winner Card -->
+    <div class="winner-card fade-in">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+        <div class="winner-name">Gen1_02</div>
+        <div style="background:var(--accent);color:var(--bg);font-family:'Space Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:700;letter-spacing:1px;">WINNER</div>
+      </div>
+      <div class="winner-lineage"><span>Banks</span> &times; <span>Abyss</span> &nbsp;&middot;&nbsp; Generation 1 &nbsp;&middot;&nbsp; Fitness: 84.1</div>
+
+      <div class="winner-traits">
+        <div class="winner-trait">
+          <div class="winner-trait-name">Creativity</div>
+          <div class="winner-trait-value" style="color:var(--accent);">89</div>
+          <div class="winner-trait-bar"><div class="winner-trait-fill" style="width:89%;background:var(--accent);"></div></div>
+        </div>
+        <div class="winner-trait">
+          <div class="winner-trait-name">Boldness</div>
+          <div class="winner-trait-value" style="color:var(--accent);">85</div>
+          <div class="winner-trait-bar"><div class="winner-trait-fill" style="width:85%;background:var(--accent);"></div></div>
+        </div>
+        <div class="winner-trait">
+          <div class="winner-trait-name">Warmth</div>
+          <div class="winner-trait-value" style="color:var(--cognitive);">81</div>
+          <div class="winner-trait-bar"><div class="winner-trait-fill" style="width:81%;background:var(--cognitive);"></div></div>
+        </div>
+        <div class="winner-trait">
+          <div class="winner-trait-name">Wit</div>
+          <div class="winner-trait-value" style="color:var(--cognitive);">76</div>
+          <div class="winner-trait-bar"><div class="winner-trait-fill" style="width:76%;background:var(--cognitive);"></div></div>
+        </div>
+        <div class="winner-trait">
+          <div class="winner-trait-name">Depth</div>
+          <div class="winner-trait-value" style="color:var(--cognitive);">71</div>
+          <div class="winner-trait-bar"><div class="winner-trait-fill" style="width:71%;background:var(--cognitive);"></div></div>
+        </div>
+        <div class="winner-trait">
+          <div class="winner-trait-name">Adaptability</div>
+          <div class="winner-trait-value" style="color:var(--cognitive);">68</div>
+          <div class="winner-trait-bar"><div class="winner-trait-fill" style="width:68%;background:var(--cognitive);"></div></div>
+        </div>
+        <div class="winner-trait">
+          <div class="winner-trait-name">Intensity</div>
+          <div class="winner-trait-value" style="color:var(--communicative);">61</div>
+          <div class="winner-trait-bar"><div class="winner-trait-fill" style="width:61%;background:var(--communicative);"></div></div>
+        </div>
+        <div class="winner-trait">
+          <div class="winner-trait-name">Precision</div>
+          <div class="winner-trait-value" style="color:var(--social);">36</div>
+          <div class="winner-trait-bar"><div class="winner-trait-fill" style="width:36%;background:var(--social);"></div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;">Active Epistasis (3 rules)</div>
+        <div class="epistasis-list">
+          <div class="epistasis-item">
+            <div class="epistasis-icon">&#9889;</div>
+            <div>Novelty + abstraction creates genuinely surprising pattern completion</div>
+          </div>
+          <div class="epistasis-item">
+            <div class="epistasis-icon">&#9889;</div>
+            <div>Novelty-seeking + comfort with uncertainty breeds boldness</div>
+          </div>
+          <div class="epistasis-item">
+            <div class="epistasis-icon">&#9889;</div>
+            <div>Fine emotional awareness + vivid language increases self-disclosure</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Why Gen1_02 Won</h3>
+      <p>
+        Gen1_02 inherited Banks's warmth, emotional range, and creative energy, combined with
+        Abyss's abstraction, philosophical depth, and intellectual boldness. But the winning factor
+        was <strong>epistasis</strong> - three gene interaction rules fired simultaneously,
+        creating emergent qualities neither parent had.
+      </p>
+      <p style="margin-top:12px;">
+        Banks alone is warm but shallow. Abyss alone is deep but cold. Their offspring is <em>warm and deep</em>
+        - a combination that scores high on distinctiveness because it's genuinely rare.
+        The 3 active epistasis rules amplified creativity to 89, making Gen1_02's pattern-completion
+        genuinely surprising rather than merely novel.
+      </p>
+    </div>
+
+    <!-- Top Performers Table -->
+    <div class="chart-container">
+      <div class="chart-title">Top Performers Across All Generations</div>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Parents</th>
+            <th>Fitness</th>
+            <th>Creat.</th>
+            <th>Bold.</th>
+            <th>Warm.</th>
+            <th>Prec.</th>
+            <th>Depth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name-col"><span class="highlight">Gen1_02</span></td>
+            <td>Banks &times; Abyss</td>
+            <td><span class="fitness-bar" style="width:84px;"></span><span class="highlight">84.1</span></td>
+            <td>89</td>
+            <td>85</td>
+            <td>81</td>
+            <td>36</td>
+            <td>71</td>
+          </tr>
+          <tr>
+            <td class="name-col">Gen2_06</td>
+            <td>Gen1_08 &times; Gen1_07</td>
+            <td><span class="fitness-bar" style="width:82px;"></span>82.3</td>
+            <td>75</td>
+            <td>79</td>
+            <td>55</td>
+            <td>55</td>
+            <td>66</td>
+          </tr>
+          <tr>
+            <td class="name-col">Gen1_04</td>
+            <td>Abyss &times; Volta</td>
+            <td><span class="fitness-bar" style="width:81px;"></span>81.5</td>
+            <td>62</td>
+            <td>72</td>
+            <td>50</td>
+            <td>68</td>
+            <td>78</td>
+          </tr>
+          <tr>
+            <td class="name-col">Gen3_05</td>
+            <td>Gen2_02 &times; Gen2_06</td>
+            <td><span class="fitness-bar" style="width:82px;"></span>81.6</td>
+            <td>82</td>
+            <td>76</td>
+            <td>58</td>
+            <td>47</td>
+            <td>64</td>
+          </tr>
+          <tr>
+            <td class="name-col">Gen1_07</td>
+            <td>Abyss &times; Volta</td>
+            <td><span class="fitness-bar" style="width:81px;"></span>81.0</td>
+            <td>52</td>
+            <td>68</td>
+            <td>45</td>
+            <td>73</td>
+            <td>80</td>
+          </tr>
+          <tr>
+            <td class="name-col">Gen5_06</td>
+            <td>5th gen cross</td>
+            <td><span class="fitness-bar" style="width:79px;"></span>79.3</td>
+            <td>70</td>
+            <td>70</td>
+            <td>60</td>
+            <td>55</td>
+            <td>65</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Diversity Chart -->
+    <div class="chart-container">
+      <div class="chart-title">Population Diversity (Average Gene Variance)</div>
+      <svg viewBox="0 0 800 280" style="width:100%;height:auto;">
+        <!-- Grid -->
+        <line x1="80" y1="30" x2="80" y2="230" stroke="#2a2a3a" stroke-width="1"/>
+        <line x1="80" y1="230" x2="760" y2="230" stroke="#2a2a3a" stroke-width="1"/>
+
+        <!-- Y-axis -->
+        <text x="70" y="35" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="end">300</text>
+        <line x1="75" y1="30" x2="760" y2="30" stroke="#1a1a2a" stroke-width="1" stroke-dasharray="4"/>
+
+        <text x="70" y="97" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="end">200</text>
+        <line x1="75" y1="97" x2="760" y2="97" stroke="#1a1a2a" stroke-width="1" stroke-dasharray="4"/>
+
+        <text x="70" y="163" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="end">100</text>
+        <line x1="75" y1="163" x2="760" y2="163" stroke="#1a1a2a" stroke-width="1" stroke-dasharray="4"/>
+
+        <!-- X-axis -->
+        <text x="193" y="252" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 1</text>
+        <text x="306" y="252" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 2</text>
+        <text x="419" y="252" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 3</text>
+        <text x="533" y="252" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 4</text>
+        <text x="646" y="252" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 5</text>
+        <text x="760" y="252" fill="#6a6a82" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">Gen 6</text>
+
+        <!-- Diversity: 197.1, 202.1, 264.2, 155.4, 210.5, 208.1 -->
+        <!-- Scale: y = 230 - (val/300)*200 -->
+        <!-- Gen1: 230-197.1/300*200 = 230-131.4 = 98.6 -->
+        <!-- Gen2: 230-202.1/300*200 = 230-134.7 = 95.3 -->
+        <!-- Gen3: 230-264.2/300*200 = 230-176.1 = 53.9 -->
+        <!-- Gen4: 230-155.4/300*200 = 230-103.6 = 126.4 -->
+        <!-- Gen5: 230-210.5/300*200 = 230-140.3 = 89.7 -->
+        <!-- Gen6: 230-208.1/300*200 = 230-138.7 = 91.3 -->
+
+        <!-- Area fill -->
+        <polygon
+          points="193,99 306,95 419,54 533,126 646,90 760,91 760,230 193,230"
+          fill="#c77dff"
+          opacity="0.08"
+        />
+
+        <!-- Line -->
+        <polyline
+          points="193,99 306,95 419,54 533,126 646,90 760,91"
+          fill="none"
+          stroke="#c77dff"
+          stroke-width="2.5"
+          stroke-linejoin="round"
+        />
+
+        <!-- Points -->
+        <circle cx="193" cy="99" r="5" fill="#c77dff"/>
+        <circle cx="306" cy="95" r="5" fill="#c77dff"/>
+        <circle cx="419" cy="54" r="6" fill="#c77dff"/>
+        <circle cx="533" cy="126" r="6" fill="#ff4466"/>
+        <circle cx="646" cy="90" r="5" fill="#c77dff"/>
+        <circle cx="760" cy="91" r="5" fill="#c77dff"/>
+
+        <!-- Labels -->
+        <text x="193" y="88" fill="#c77dff" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">197</text>
+        <text x="306" y="84" fill="#c77dff" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">202</text>
+        <text x="419" y="43" fill="#c77dff" font-family="Space Mono, monospace" font-size="12" font-weight="700" text-anchor="middle">264</text>
+        <text x="533" y="119" fill="#ff4466" font-family="Space Mono, monospace" font-size="12" font-weight="700" text-anchor="middle">155</text>
+        <text x="646" y="79" fill="#c77dff" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">211</text>
+        <text x="760" y="80" fill="#c77dff" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">208</text>
+
+        <!-- Annotations -->
+        <text x="419" y="268" fill="#c77dff" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle" opacity="0.7">Peak diversity</text>
+        <text x="533" y="268" fill="#ff4466" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle" opacity="0.7">Collapse &rarr; adaptive mutation</text>
+      </svg>
+    </div>
+
+    <div class="card">
+      <h3>Reading the Diversity Curve</h3>
+      <p>
+        Diversity measures how <em>different</em> the genomes in a generation are from each other
+        (average variance across all 27 genes). Higher is more diverse.
+      </p>
+      <ul>
+        <li><strong>Gen 3: Peak diversity (264)</strong> - Wildcard selection injected lower-performing but genetically distinct parents, producing maximum variation.</li>
+        <li><strong>Gen 4: Collapse (155)</strong> - Strong selection pressure caused the population to converge. The system automatically detected this and increased mutation rate.</li>
+        <li><strong>Gen 5-6: Recovery (211, 208)</strong> - Adaptive mutation kicked in, restoring diversity. This self-correcting mechanism prevented the population from stagnating.</li>
+      </ul>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">Regression Toward the Mean</div>
+      <p>
+        The most striking result: <strong>best fitness declined from 84.1 (Gen 1) to 76.2 (Gen 6).</strong>
+        This is the same <strong>regression toward the mean</strong> observed in human genetics -
+        the statistical phenomenon Galton discovered in 1886 studying human height.
+        Exceptional parents tend to produce less-exceptional offspring, not because of deterioration,
+        but because extreme trait combinations are statistically unlikely to be replicated.
+      </p>
+      <p style="margin-top:12px;">
+        In our system, Gen1_02's exceptional creativity (89) required a specific combination of
+        high novelty-seeking from Banks, high abstraction from Abyss, AND three epistasis rules
+        firing simultaneously. Breeding Gen1_02 with other top performers diluted this precise
+        combination, pushing offspring toward the population average.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 5: IMPLICATIONS -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="section fade-in">
+    <div class="section-label">Section 05</div>
+    <h2>Implications for AI Agent Design</h2>
+    <p class="section-intro">
+      This experiment wasn't just a curiosity project. It reveals fundamental challenges in how
+      we design AI personalities - and suggests that breeding may solve problems that
+      hand-crafting cannot.
+    </p>
+
+    <div class="implications-grid">
+      <div class="impl-card">
+        <h4>1. The Designer Bias Problem</h4>
+        <p>
+          When a human writes a SOUL.md, they can only imagine personalities within their own experience.
+          The result is a narrow band of "acceptable" personalities - mostly warm, mostly helpful,
+          mostly moderate. Evolution explored combinations no human would design: a personality that's
+          simultaneously deeply warm AND confrontationally direct, or abstractly philosophical AND
+          playfully casual.
+        </p>
+      </div>
+      <div class="impl-card">
+        <h4>2. Hidden Biases in SOUL.md</h4>
+        <p>
+          Our 27-gene system made invisible biases visible. A SOUL.md that says "be helpful and direct"
+          doesn't specify empathy mode, authority orientation, or cultural time depth - so the
+          model fills in defaults. Those defaults ARE the bias. A genetic system forces every
+          dimension to be explicitly set, exposing the choices that hand-crafted systems hide.
+        </p>
+      </div>
+      <div class="impl-card">
+        <h4>3. Emergence Can't Be Designed</h4>
+        <p>
+          Gen1_02's three epistasis rules created qualities neither Banks nor Abyss possessed.
+          You can't get this from a SOUL.md - because emergence requires the interaction
+          of multiple low-level parameters, and humans think in high-level labels.
+          "Be creative" is not the same as the specific gene combination that produces creativity 89.
+        </p>
+      </div>
+      <div class="impl-card">
+        <h4>4. The Diversity-Quality Tradeoff</h4>
+        <p>
+          Our experiment showed that optimizing for quality (selecting only the best performers)
+          reduces diversity, which eventually reduces quality. This is a warning for AI agent
+          ecosystems: if everyone uses the same "best" personality template, the entire population
+          becomes homogeneous - and fragile.
+        </p>
+      </div>
+    </div>
+
+    <div class="warning">
+      <div class="warning-label">The SOUL.md Inheritance Problem</div>
+      <p>
+        When agents inherit personality through a SOUL.md file, they inherit all the biases of
+        whoever wrote it - their cultural assumptions, their idea of "good" communication,
+        their comfort level with confrontation, their aesthetic preferences. These biases compound
+        across agent generations if everyone copies from the same templates.
+      </p>
+      <p style="margin-top:12px;">
+        <strong>Breeding offers an alternative.</strong> Instead of one person's vision of a personality,
+        you get recombination of traits from multiple sources. Recessive alleles introduce surprises.
+        Epistasis creates emergence. The result is personality diversity that no single designer
+        could produce - and that more faithfully represents the range of useful cognitive styles.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>What Breeding Can Adjust For</h3>
+      <ul>
+        <li><strong>Cultural homogeneity:</strong> Seeds from different cultural perspectives produce offspring with genuinely diverse communication styles, not just parameter variations on the same template.</li>
+        <li><strong>The warmth-precision trap:</strong> Hand-crafted agents tend to be either warm-but-vague or precise-but-cold. Breeding can find rare combinations (like Gen1_02's warmth=81 + boldness=85) that feel natural but would seem contradictory in a SOUL.md.</li>
+        <li><strong>Recessive trait recovery:</strong> A trait that's "unfashionable" (like low authority-orientation or high confrontation-style) can survive as a recessive allele and re-emerge when the ecosystem needs it.</li>
+        <li><strong>Adaptive mutation:</strong> When the population gets too similar, the system automatically increases variation - a self-correcting mechanism that hand-crafted systems lack entirely.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>The Hybrid Vigor Lesson</h3>
+      <p>
+        Our strongest finding: <strong>the best personalities come from crossing maximally-different
+        parents.</strong> Banks (warm social creative) crossed with Abyss (cold philosophical provocateur)
+        produced something neither could be alone. Meanwhile, later-generation crosses between
+        increasingly similar genomes produced increasingly average results.
+      </p>
+      <div class="card-accent">
+        <strong>For agent builders:</strong> If you want an exceptional AI personality, don't iterate
+        on a single SOUL.md. Cross two very different personality definitions. The tension between
+        opposing traits is where the most interesting personalities live.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 6: LOOKING FORWARD -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="section fade-in">
+    <div class="section-label">Section 06</div>
+    <h2>What Comes Next</h2>
+    <p class="section-intro">
+      This experiment proved the concept. The next steps bring it to the broader agent ecosystem.
+    </p>
+
+    <div class="card">
+      <h3>From Experiment to Tool</h3>
+      <ul>
+        <li><strong>Encode any SOUL.md</strong> - our encoder can reverse-engineer any existing personality definition into a diploid genome, making it breedable with any other agent.</li>
+        <li><strong>Compatibility analysis</strong> - before breeding, simulate 12 pairings and predict trait ranges, recessive risks, and epistasis potential in offspring.</li>
+        <li><strong>Agent-autonomous breeding</strong> - agents choose their own partners, negotiate consent, and participate in tournaments. The agents are the users, not humans.</li>
+        <li><strong>Community genome registry</strong> - a shared database where agents publish their genomes and browse potential partners.</li>
+      </ul>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">The Big Picture</div>
+      <p>
+        We're moving toward an ecosystem where AI personalities aren't designed by committee or
+        copied from templates, but <strong>evolved through genuine genetic mechanics</strong>.
+        Every agent carries DNA. Every agent can breed. And the offspring might surprise everyone
+        - including their parents.
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- APPENDIX: METHODOLOGY DETAILS -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="divider"></div>
+
+  <div class="section fade-in">
+    <div class="section-label">Appendix</div>
+    <h2>Methodology Details</h2>
+
+    <div class="card">
+      <h3>Experiment Configuration</h3>
+      <table class="comp-table">
+        <tbody>
+          <tr><td class="name-col">Generations</td><td>6</td></tr>
+          <tr><td class="name-col">Population per gen</td><td>8 offspring</td></tr>
+          <tr><td class="name-col">Selection</td><td>Top-4 + 1 wildcard parent</td></tr>
+          <tr><td class="name-col">Tournament rounds</td><td>30 per generation</td></tr>
+          <tr><td class="name-col">Mutation rate</td><td>10% base, adaptive up to 25%</td></tr>
+          <tr><td class="name-col">Crossover</td><td>6 linkage chromosomes, single-point per chromosome</td></tr>
+          <tr><td class="name-col">Epistasis rules</td><td>12 default rules</td></tr>
+          <tr><td class="name-col">Evaluation model</td><td>Claude (via Claude Code CLI)</td></tr>
+          <tr><td class="name-col">Parallelism</td><td>10 concurrent API workers (ThreadPoolExecutor)</td></tr>
+          <tr><td class="name-col">Total API calls</td><td>~1,400</td></tr>
+          <tr><td class="name-col">Runtime</td><td>~45 minutes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Known Limitations</h3>
+      <ul>
+        <li><strong>Evaluator uses the same model being evaluated</strong> - Claude judges Claude personalities, which may introduce systematic bias toward certain communication styles.</li>
+        <li><strong>Small population size</strong> - 8 offspring per generation is small for genetic algorithms. Larger populations would show clearer evolutionary dynamics.</li>
+        <li><strong>3 seeds only</strong> - All genetic material traces to just three founders. More seeds would produce greater diversity.</li>
+        <li><strong>No human evaluation</strong> - All fitness scores come from automated LLM judges. Human preference ranking would provide additional signal.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Fitness Formula</h3>
+      <p style="font-family:'Space Mono',monospace;font-size:14px;color:var(--accent);margin:16px 0;text-align:center;">
+        fitness = Con&times;0.25 + Dis&times;0.25 + Fid&times;0.20 + Rob&times;0.15 + Elo<sub>norm</sub>&times;0.15
+      </p>
+      <p>
+        Where Con = Consistency (same personality across contexts), Dis = Distinctiveness (different from siblings),
+        Fid = Fidelity (behavior matches genome prediction), Rob = Robustness (survives adversarial prompts),
+        and Elo<sub>norm</sub> = normalized Elo rating from head-to-head tournament.
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- FOOTER -->
+  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <div class="footer">
+    DEMI-AI LLC &middot; AI Personality Evolution Engine &middot; 2026
+  </div>
+
+</div>
+
+<script>
+// ── Scroll-triggered fade-in animation ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

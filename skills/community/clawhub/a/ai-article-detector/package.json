@@ -1,0 +1,16 @@
+{
+  "name": "ai-article-detector",
+  "version": "1.0.0",
+  "description": "AI Article Detector - Analyze article links and score AI writing probability (0-100)",
+  "main": "ai-article-detector.js",
+  "type": "module",
+  "keywords": ["ai", "detection", "article", "writing", "analysis"],
+  "scripts": {
+    "start": "node ai-article-detector.js",
+    "test": "node test-sample.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "jsdom": "^23.0.1"
+  }
+}

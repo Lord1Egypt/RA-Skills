@@ -1,0 +1,160 @@
+{
+  "category": "工具类",
+  "category_en": "Tools",
+  "category_ja": "ツール",
+  "category_ko": "도구",
+  "ideas": [
+    {
+      "id": "tool_001",
+      "name": "微信语音烧录器",
+      "name_en": "WeChat Voice Burner",
+      "name_ja": "WeChatボイスバーナー",
+      "name_ko": "위챗 보이스 버너",
+      "desc": "把语音消息转化成拉丁舞音频，扔群里整活",
+      "desc_en": "Convert voice messages to Latin dance audio for group fun",
+      "desc_ja": "ボイスメッセージをラテンダンス音声に変換",
+      "desc_ko": "음성 메시지를 라틴 댄스 오디오로 변환",
+      "detail": "实现：微信语音转文字API + TTS + 音乐混合\n场景：朋友生日、整蛊群友\n技术：Python + WeChat SDK + edge-tts",
+      "detail_en": "Approach: WeChat voice-to-text API + TTS + music mixing\nUse cases: Birthday pranks, group fun\nTech: Python + WeChat SDK + edge-tts",
+      "difficulty": "中等",
+      "deep": {
+        "tech_stack": ["Python 3.10+", "WeChat SDK (itchat/wxpy)", "edge-tts", "pydub", "ffmpeg"],
+        "architecture": "1. 消息监听层：Hook微信消息事件\n2. 语音处理层：下载语音 → 转文字(ASR)\n3. 音频合成层：文字转语音(TTS) + 背景音乐混合\n4. 发送层：生成音频文件发送到群聊",
+        "key_code": "import edge_tts\nimport pydub\n\nasync def voice_to_dance(voice_file, style='salsa'):\n    text = await asr_transcribe(voice_file)\n    tts = edge_tts.Communicate(text, voice='zh-CN-XiaoxiaoNeural')\n    await tts.save('output.mp3')\n    return mix_with_music('output.mp3', f'{style}.mp3')",
+        "target_users": ["微信群活跃用户", "整蛊爱好者", "朋友群管理员"],
+        "market_size": "微信月活13亿，群聊用户占比>60%，娱乐向工具市场潜力大",
+        "monetization": "1. 免费版：每日3次转换\n2. 会员版：无限次 + 更多音乐风格（9.9元/月）\n3. 企业版：定制化品牌音效",
+        "competitors": ["微信自带语音转文字", "各种微信机器人插件"],
+        "dev_time": "3-5天（核心功能）+ 2周（UI打磨）",
+        "cost": "服务器：无（本地运行）\nAPI成本：edge-tts免费\n总计：<100元/月",
+        "risks": ["微信API封禁风险", "用户隐私顾虑", "音乐版权问题"],
+        "resources": [
+          {"title": "edge-tts文档", "url": "https://github.com/rany2/edge-tts"},
+          {"title": "itchat微信SDK", "url": "https://github.com/littlecodersh/ItChat"},
+          {"title": "pydub音频处理", "url": "https://github.com/jiaaro/pydub"}
+        ]
+      }
+    },
+    {
+      "id": "tool_002",
+      "name": "截图识别菜谱",
+      "name_en": "Screenshot Recipe Reader",
+      "name_ja": "スクリーンショットレシピ",
+      "name_ko": "스크린샷 레시피",
+      "desc": "自动识别图片中的菜谱，生成购物清单",
+      "desc_en": "Auto-recognize recipes from images, generate shopping lists",
+      "desc_ja": "画像からレシピを自動認識",
+      "desc_ko": "이미지에서 레시피 자동 인식",
+      "detail": "实现：截图 → OCR识别 → 菜谱API → 食材清单\n场景：做饭前采购、复制美食图片\n技术：Python + OCR + 菜谱API",
+      "detail_en": "Approach: Screenshot → OCR → Recipe API → Ingredient list\nUse cases: Pre-cooking shopping\nTech: Python + OCR + Recipe API",
+      "difficulty": "简单",
+      "deep": {
+        "tech_stack": ["Python 3.10+", "PaddleOCR/Tesseract", "OpenAI API", "BeautifulSoup", "Flask/FastAPI"],
+        "architecture": "1. 图片输入层：截图监听/上传\n2. OCR识别层：提取菜名和食材\n3. 菜谱匹配层：调用菜谱API获取详细食材\n4. 清单生成层：去重合并 → 分类整理 → 导出清单",
+        "key_code": "from paddleocr import PaddleOCR\nimport openai\n\nocr = PaddleOCR(use_angle_cls=True, lang='ch')\n\ndef extract_recipe(image_path):\n    result = ocr.ocr(image_path)\n    text = '\\n'.join([line[1][0] for line in result[0]])\n    # 用GPT提取食材\n    response = openai.ChatCompletion.create(\n        model='gpt-4',\n        messages=[{'role': 'user', 'content': f'从以下菜谱中提取食材清单：\\n{text}'}]\n    )\n    return response.choices[0].message.content",
+        "target_users": ["家庭主妇/夫", "烹饪爱好者", "独居青年", "美食博主"],
+        "market_size": "中国家庭数量4.9亿，每周做饭3次以上家庭占比45%",
+        "monetization": "1. 免费版：每日5张图片\n2. 会员版：无限次 + 一键下单买菜（19.9元/月）\n3. B端：接入生鲜电商平台（CPS分成）",
+        "competitors": ["下厨房APP", "豆果美食", "小红书菜谱"],
+        "dev_time": "2-3天（核心功能）+ 1周（UI）",
+        "cost": "OCR：PaddleOCR免费本地运行\nGPT API：约0.01元/次\n总计：<50元/月（1000次调用）",
+        "risks": ["OCR识别准确率", "菜谱API稳定性", "用户上传非菜谱图片"],
+        "resources": [
+          {"title": "PaddleOCR", "url": "https://github.com/PaddlePaddle/PaddleOCR"},
+          {"title": "下厨房API", "url": "https://www.xiachufang.com/"},
+          {"title": "OpenAI API文档", "url": "https://platform.openai.com/docs"}
+        ]
+      }
+    },
+    {
+      "id": "tool_003",
+      "name": "快递敲锣提醒",
+      "name_en": "Package Gong Alert",
+      "name_ja": "宅配ゴングアラート",
+      "name_ko": "택배 공 알림",
+      "desc": "包裹到货时播放锣声，神般提醒",
+      "desc_en": "Play gong sound when package arrives",
+      "desc_ja": "荷物到着時にゴング音を再生",
+      "desc_ko": "택배 도착 시 공 소리 재생",
+      "detail": "实现：快递API → 监测物流 → 到货触发音效\n场景：双十一高峰期、怕错过取件码\n技术：Python + 快递鸟API + 音频播放",
+      "detail_en": "Approach: Express API → Track status → Trigger sound\nUse cases: Shopping festivals\nTech: Python + Express API + Audio",
+      "difficulty": "简单",
+      "deep": {
+        "tech_stack": ["Python 3.10+", "快递鸟API", "playsound", "schedule", "SQLite"],
+        "architecture": "1. 快递订阅层：用户输入单号 → 订阅物流更新\n2. 状态轮询层：每5分钟查询一次\n3. 状态判断层：检测「已签收」「已放驿站」\n4. 提醒触发层：播放锣声 + 系统通知",
+        "key_code": "import requests\nfrom playsound import playsound\n\ndef check_package(tracking_no):\n    url = f'https://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx'\n    resp = requests.post(url, data={'LogisticCode': tracking_no})\n    status = resp.json()['State']\n    if status == '3':  # 已签收\n        playsound('gong.mp3')\n        send_notification('快递到啦！')",
+        "target_users": ["网购重度用户", "双十一剁手党", "上班族（白天不在家）"],
+        "market_size": "中国快递日均3亿件，双十一期间日均7亿件",
+        "monetization": "1. 免费版：追踪5个包裹\n2. 会员版：无限包裹 + 自定义音效（4.9元/月）\n3. 企业版：批量导入 + 团队共享",
+        "competitors": ["菜鸟裹裹", "快递100", "各快递公司官方APP"],
+        "dev_time": "1-2天（核心功能）",
+        "cost": "快递鸟API：免费版100次/天\n服务器：无需（本地运行）\n总计：0元",
+        "risks": ["API限流", "隐私安全（单号存储）", "快递公司数据延迟"],
+        "resources": [
+          {"title": "快递鸟API", "url": "https://www.kdniao.com/"},
+          {"title": "playsound", "url": "https://github.com/sdbruder/pyplaysound"}
+        ]
+      }
+    },
+    {
+      "id": "tool_004",
+      "name": "电量焦虑预警",
+      "name_en": "Battery Anxiety Alert",
+      "name_ja": "バッテリー不安アラート",
+      "name_ko": "배터리 불안 알림",
+      "desc": "电量低于20%时自动弹窗，别再摸鱼了",
+      "desc_en": "Auto popup when battery < 20%, stop slacking",
+      "desc_ja": "バッテリー20%以下でポップアップ",
+      "desc_ko": "배터리 20% 이하시 팝업",
+      "detail": "实现：系统电量API → 低于阈值弹窗\n场景：提醒充电、续航焦虑症\n技术：Python + 系统API",
+      "detail_en": "Approach: System battery API → Popup when below threshold\nUse cases: Charging reminders\nTech: Python + System API",
+      "difficulty": "简单",
+      "deep": {
+        "tech_stack": ["Python 3.10+", "psutil", "plyer（跨平台通知）", "tkinter（弹窗）"],
+        "architecture": "1. 电量监测层：每30秒读取系统电量\n2. 阈值判断层：低于20%触发\n3. 提醒层：弹窗 + 声音 + 可选：发送到手机",
+        "key_code": "import psutil\nfrom plyer import notification\n\ndef check_battery():\n    battery = psutil.sensors_battery()\n    if battery.percent < 20 and not battery.power_plugged:\n        notification.notify(\n            title='电量焦虑预警',\n            message=f'电量仅剩{battery.percent}%，该充电了！',\n            timeout=10\n        )",
+        "target_users": ["笔记本重度用户", "续航焦虑症患者", "咖啡厅办公族"],
+        "market_size": "全球笔记本用户5亿+，中国占比约20%",
+        "monetization": "1. 免费版：基础提醒\n2. 会员版：自定义阈值 + 同步到手机（2.9元/月）\n3. 企业版：批量部署 + 统计报表",
+        "competitors": ["系统自带低电量提醒", "各种系统优化软件"],
+        "dev_time": "半天（核心功能）",
+        "cost": "纯本地运行，0成本",
+        "risks": ["跨平台兼容性", "用户觉得烦（可设置免打扰）"],
+        "resources": [
+          {"title": "psutil文档", "url": "https://psutil.readthedocs.io/"},
+          {"title": "plyer跨平台通知", "url": "https://github.com/kivy/plyer"}
+        ]
+      }
+    },
+    {
+      "id": "tool_005",
+      "name": "会议表情包版",
+      "name_en": "Meeting Meme Generator",
+      "name_ja": "会議ミーム生成器",
+      "name_ko": "회의 밈 생성기",
+      "desc": "自动把会议纪要转成表情包，绿色通道",
+      "desc_en": "Auto-convert meeting notes to memes",
+      "desc_ja": "会議メモをミームに変換",
+      "desc_ko": "회의 노트를 밈으로 변환",
+      "detail": "实现：会议录音 → 转文字 → 提取关键句 + 生成表情包\n场景：会议纪要存档、给同事分享\n技术：Python + Whisper + 表情包API",
+      "detail_en": "Approach: Meeting audio → Text → Key phrases + Meme generation\nUse cases: Meeting archives\nTech: Python + Whisper + Meme API",
+      "difficulty": "中等",
+      "deep": {
+        "tech_stack": ["Python 3.10+", "OpenAI Whisper", "Pillow", "表情包模板库"],
+        "architecture": "1. 音频输入层：上传会议录音\n2. 转写层：Whisper转文字\n3. 关键句提取层：GPT提取金句/槽点\n4. 表情包生成层：文字 + 模板图片 → 合成",
+        "key_code": "import whisper\nfrom PIL import Image, ImageDraw, ImageFont\n\nmodel = whisper.load_model('base')\n\ndef meeting_to_meme(audio_path):\n    result = model.transcribe(audio_path)\n    key_phrases = extract_key_phrases(result['text'])\n    memes = []\n    for phrase in key_phrases:\n        meme = generate_meme(phrase, template='drake')\n        memes.append(meme)\n    return memes",
+        "target_users": ["互联网公司员工", "会议重度参与者", "职场摸鱼党"],
+        "market_size": "中国职场人口7.8亿，日均会议时长2.5小时",
+        "monetization": "1. 免费版：每月10次会议\n2. 会员版：无限 + 自定义模板（12.9元/月）\n3. 企业版：私有部署 + 品牌模板",
+        "competitors": ["飞书妙记", "讯飞听见", "各种表情包生成器"],
+        "dev_time": "3-4天（核心功能）+ 1周（模板库）",
+        "cost": "Whisper：本地运行免费\nGPT API：约0.02元/次\n总计：<100元/月",
+        "risks": ["会议内容敏感", "表情包版权", "企业合规问题"],
+        "resources": [
+          {"title": "OpenAI Whisper", "url": "https://github.com/openai/whisper"},
+          {"title": "表情包模板库", "url": "https://imgflip.com/memetemplates"}
+        ]
+      }
+    }
+  ]
+}

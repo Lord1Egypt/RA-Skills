@@ -1,0 +1,17 @@
+interface:
+  display_name: "AIGroup Markdown to Word MCP"
+  short_description: "Markdown-to-docx conversion with tables and formulas"
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#7C3AED"
+  default_prompt: "Use $aigroup-mdtoword-mcp to turn Markdown into a polished .docx document with styling and formulas."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "aigroup-mdtoword-mcp"
+      description: "Markdown to Word conversion server with styling and formula support"
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: true

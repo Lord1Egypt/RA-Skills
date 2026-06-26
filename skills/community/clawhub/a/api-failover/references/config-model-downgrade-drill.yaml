@@ -1,0 +1,56 @@
+providers:
+  custom-ai-td-ee-primary-broken:
+    type: openai-compatible
+    base_url: https://127.0.0.1:9/v1
+    api_key_env: PRIMARY_API_KEY
+    timeout_ms: 1000
+    inherit_from_openclaw: custom-ai-td-ee
+    models:
+      default: gpt-5.4
+
+  custom-ai-td-ee-degraded:
+    type: openai-compatible
+    base_url: https://ai.td.ee/v1
+    api_key_env: PRIMARY_API_KEY
+    timeout_ms: 15000
+    inherit_from_openclaw: custom-ai-td-ee
+    models:
+      cheap: gpt-5.4-mini
+      nano: gpt-5.4-nano
+
+  local:
+    type: openai-compatible
+    base_url: http://127.0.0.1:11434/v1
+    api_key_env: OLLAMA_DUMMY_KEY
+    timeout_ms: 5000
+    models:
+      default: qwen2.5:latest
+
+task_profiles:
+  default:
+    routes:
+      - provider: custom-ai-td-ee-primary-broken
+        model: default
+      - provider: custom-ai-td-ee-degraded
+        model: cheap
+      - provider: custom-ai-td-ee-degraded
+        model: nano
+      - provider: local
+        model: default
+
+retry:
+  max_attempts_per_route: 1
+  backoff_ms: [100]
+  retry_on:
+    - RATE_LIMIT
+    - TIMEOUT
+    - SERVER_ERROR
+    - NETWORK_ERROR
+    - MODEL_UNAVAILABLE
+    - UNKNOWN_TRANSIENT
+
+circuit_breaker:
+  open_after_failures: 1
+  cooldown_seconds: 30
+  half_open_max_probes: 1
+  close_after_successes: 1

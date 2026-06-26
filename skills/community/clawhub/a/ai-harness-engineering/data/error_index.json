@@ -1,0 +1,47 @@
+{
+  "errors": [
+    {
+      "error_id": "HE-20260401-0001",
+      "timestamp": "2026-04-01T16:43:23.239820",
+      "error_type": "代码错误",
+      "level": "中",
+      "fix_status": "已修复",
+      "tags": [
+        "代码",
+        "Python",
+        "编码"
+      ]
+    },
+    {
+      "error_id": "HE-20260401-0002",
+      "timestamp": "2026-04-01T18:30:37.694178",
+      "error_type": "事实错误",
+      "level": "高",
+      "fix_status": "已修复",
+      "tags": []
+    },
+    {
+      "error_id": "HE-20260401-0001",
+      "timestamp": "2026-04-01T18:51:13.879621",
+      "error_type": "事实错误",
+      "level": "中",
+      "fix_status": "未修复",
+      "tags": []
+    }
+  ],
+  "stats": {
+    "total": 3,
+    "by_type": {
+      "代码错误": 1,
+      "事实错误": 2
+    },
+    "by_level": {
+      "中": 2,
+      "高": 1
+    },
+    "by_status": {
+      "已修复": 2,
+      "未修复": 1
+    }
+  }
+}

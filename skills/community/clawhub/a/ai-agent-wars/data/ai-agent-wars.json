@@ -1,0 +1,906 @@
+{
+  "skill": "ai-agent-wars",
+  "last_updated": "2026-06-08",
+  "market_overview": {
+    "total_agents_2026": "500万+（全球已部署Agent实例）",
+    "market_size_2026": "285亿美元（Agent平台+工具市场）",
+    "market_size_2030": "1200亿美元（预测）",
+    "key_trend": "OpenAI Codex整合ChatGPT后，Agent从开发者工具变为全民应用",
+    "growing_segments": [
+      "企业自动化",
+      "个人助手",
+      "代码Agent",
+      "电商Agent",
+      "医疗Agent"
+    ]
+  },
+  "platforms": [
+    {
+      "name": "OpenAI Codex Agent",
+      "parent": "OpenAI",
+      "launch": "2026-06-02",
+      "integration": "ChatGPT内置（10亿周活用户零门槛）",
+      "pricing": "Pro $200/月含Agent，Enterprise定制",
+      "key_capabilities": [
+        "多步推理",
+        "浏览器操控",
+        "代码执行",
+        "文件操作",
+        "API调用链"
+      ],
+      "competitive_edge": "史上最大规模Agent分发（10亿用户）",
+      "concerns": "闭源锁定风险，企业数据安全疑虑"
+    },
+    {
+      "name": "Kimi Agent (月之暗面)",
+      "parent": "Moonshot AI",
+      "launch": "2026-03",
+      "pricing": "免费版+Pro ¥68/月",
+      "key_capabilities": [
+        "超长上下文（1000万token）",
+        "文档深度分析",
+        "联网搜索Agent",
+        "代码解释器"
+      ],
+      "users_cn": "3500万MAU",
+      "competitive_edge": "中国最强长上下文Agent，论文/合同分析无敌"
+    },
+    {
+      "name": "扣子 (Coze)",
+      "parent": "字节跳动",
+      "launch": "2024-02（国际版）",
+      "pricing": "免费+Pro版",
+      "key_capabilities": [
+        "拖拽式Bot构建",
+        "插件市场（1000+）",
+        "知识库+RAG",
+        "多平台发布（飞书/微信/Discord）"
+      ],
+      "bot_count": "200万+已创建Bot",
+      "competitive_edge": "零代码Agent构建，企业微信/飞书深度集成"
+    },
+    {
+      "name": "Dify",
+      "parent": "Dify.AI（开源）",
+      "launch": "2023-05",
+      "pricing": "开源免费 / Cloud $59/月起",
+      "key_capabilities": [
+        "可视化工作流",
+        "LLMOps全栈",
+        "RAG Pipeline",
+        "Agent多工具编排"
+      ],
+      "github_stars": "65K+",
+      "competitive_edge": "开源生态最大，私有化部署首选",
+      "enterprise_customers": [
+        "中国移动",
+        "安克创新",
+        "SHEIN"
+      ]
+    },
+    {
+      "name": "阿里百炼 Agent (Tongyi)",
+      "parent": "阿里巴巴",
+      "launch": "2025-09",
+      "pricing": "按API调用量计费",
+      "key_capabilities": [
+        "Qwen3.7+驱动",
+        "钉钉深度集成",
+        "企业数据安全",
+        "多Agent协作"
+      ],
+      "enterprise_customers": [
+        "钉钉500万+企业用户"
+      ],
+      "competitive_edge": "钉钉生态独占，500万企业零门槛接入"
+    },
+    {
+      "name": "LangChain / LangGraph",
+      "parent": "LangChain Inc",
+      "launch": "2022-10",
+      "pricing": "开源免费 / LangSmith $39/月起",
+      "key_capabilities": [
+        "Agent框架标杆",
+        "状态图编排",
+        "多Agent监督",
+        "200+集成"
+      ],
+      "github_stars": "110K+",
+      "competitive_edge": "开发者首选框架，LangGraph定义Agent编排标准"
+    },
+    {
+      "name": "Anthropic Claude Agent (MCP)",
+      "parent": "Anthropic",
+      "launch": "2025-11 (MCP协议)",
+      "pricing": "Claude Pro $20/月",
+      "key_capabilities": [
+        "MCP标准协议",
+        "Claude Code",
+        "Computer Use",
+        "Tool Use"
+      ],
+      "competitive_edge": "MCP成为Agent互联事实标准，开放协议生态",
+      "mcp_servers": "5000+社区MCP服务器"
+    },
+    {
+      "name": "Microsoft Copilot Studio",
+      "parent": "Microsoft",
+      "launch": "2023-11",
+      "pricing": "$200/月/租户起",
+      "key_capabilities": [
+        "M365深度集成",
+        "Teams/Outlook/Excel Agent",
+        "Power Platform低代码"
+      ],
+      "enterprise_customers": [
+        "70%财富500强有Copilot许可"
+      ],
+      "competitive_edge": "Office生态锁定，2亿M365用户池"
+    }
+  ],
+  "agent_frameworks_comparison": {
+    "dimensions": [
+      "多Agent协作",
+      "工具调用",
+      "记忆/上下文",
+      "安全护栏",
+      "可观测性",
+      "部署方式"
+    ],
+    "scores": {
+      "OpenAI Codex": [
+        9,
+        9,
+        7,
+        8,
+        6,
+        "仅云端"
+      ],
+      "LangGraph": [
+        10,
+        9,
+        8,
+        7,
+        9,
+        "云+自托管"
+      ],
+      "Dify": [
+        7,
+        8,
+        8,
+        7,
+        8,
+        "云+私有化"
+      ],
+      "扣子Coze": [
+        6,
+        7,
+        6,
+        5,
+        5,
+        "仅云端"
+      ],
+      "CrewAI": [
+        8,
+        7,
+        5,
+        4,
+        5,
+        "自托管"
+      ],
+      "AutoGen (MS)": [
+        9,
+        8,
+        7,
+        8,
+        7,
+        "自托管"
+      ]
+    }
+  },
+  "enterprise_adoption_2026": {
+    "industries": [
+      {
+        "industry": "金融",
+        "use_case": "智能投研Agent、合规审查Agent",
+        "adoption_rate": "65%",
+        "roi": "平均节省40%人工工时"
+      },
+      {
+        "industry": "电商",
+        "use_case": "智能客服、商品上架、营销文案",
+        "adoption_rate": "72%",
+        "roi": "客服成本降60%"
+      },
+      {
+        "industry": "医疗",
+        "use_case": "病历整理、影像报告Agent",
+        "adoption_rate": "35%",
+        "roi": "报告出具时间缩短70%"
+      },
+      {
+        "industry": "制造",
+        "use_case": "产线排程Agent、质量检测Agent",
+        "adoption_rate": "45%",
+        "roi": "排程效率提升50%"
+      },
+      {
+        "industry": "教育",
+        "use_case": "学情分析Agent、智能批改",
+        "adoption_rate": "55%",
+        "roi": "教师工作量减少35%"
+      },
+      {
+        "industry": "法律",
+        "use_case": "合同审查Agent、判例检索",
+        "adoption_rate": "30%",
+        "roi": "合同审查速度提升80%"
+      }
+    ]
+  },
+  "agent_use_cases_by_sector": {
+    "金融": [
+      {
+        "case": "智能研报Agent",
+        "platform": "Dify + DeepSeek",
+        "outcome": "中信证券研报撰写从3天→4小时",
+        "roi": "效率提升18x"
+      },
+      {
+        "case": "合规审查Agent",
+        "platform": "阿里百炼",
+        "outcome": "某银行合规审查从5天→1天",
+        "roi": "人工成本降70%"
+      },
+      {
+        "case": "量化交易Agent",
+        "platform": "LangGraph + 多Agent",
+        "outcome": "幻方量化多Agent协同交易",
+        "roi": "年化超额收益+3.2%"
+      },
+      {
+        "case": "信贷审批Agent",
+        "platform": "扣子Coze",
+        "outcome": "微众银行小微企业贷款审批5分钟→30秒",
+        "roi": "坏账率降0.3%"
+      },
+      {
+        "case": "反洗钱Agent",
+        "platform": "OpenAI Codex (私有部署)",
+        "outcome": "汇丰银行可疑交易识别准确率从78%→96%",
+        "roi": "误报率降85%"
+      },
+      {
+        "case": "客户画像Agent",
+        "platform": "Dify + RAG",
+        "outcome": "招商银行360度客户画像实时生成",
+        "roi": "理财转化率+22%"
+      }
+    ],
+    "电商": [
+      {
+        "case": "智能客服Agent",
+        "platform": "扣子Coze",
+        "outcome": "拼多多客服Agent处理80%咨询量",
+        "roi": "人工客服成本降65%"
+      },
+      {
+        "case": "商品上架Agent",
+        "platform": "阿里百炼",
+        "outcome": "淘宝商家1小时上架→3分钟",
+        "roi": "商品描述质量评分+30%"
+      },
+      {
+        "case": "营销文案Agent",
+        "platform": "Dify + DeepSeek",
+        "outcome": "SHEIN多语言营销文案自动生成",
+        "roi": "覆盖150个国家/地区"
+      },
+      {
+        "case": "库存预测Agent",
+        "platform": "LangGraph",
+        "outcome": "京东库存周转从31天→25天",
+        "roi": "库存成本降$2亿/年"
+      },
+      {
+        "case": "竞品监控Agent",
+        "platform": "Custom + web agents",
+        "outcome": "实时追踪竞品价格/促销/新品",
+        "roi": "响应速度从24h→5min"
+      },
+      {
+        "case": "评论分析Agent",
+        "platform": "Dify + 情感分析",
+        "outcome": "千万级评论自动分类/情感标注",
+        "roi": "产品改进周期缩短60%"
+      }
+    ],
+    "医疗": [
+      {
+        "case": "影像报告Agent",
+        "platform": "医院私有化部署",
+        "outcome": "肺部CT报告从20分钟→2分钟",
+        "roi": "放射科产能提升10x"
+      },
+      {
+        "case": "电子病历Agent",
+        "platform": "阿里百炼医疗版",
+        "outcome": "病历结构化录入准确率95%",
+        "roi": "医生文书时间减少70%"
+      },
+      {
+        "case": "药物研发Agent",
+        "platform": "Custom Agent",
+        "outcome": "药明康德分子筛选提速100x",
+        "roi": "候选分子发现周期从月→天"
+      },
+      {
+        "case": "随访Agent",
+        "platform": "扣子Coze",
+        "outcome": "术后患者智能随访覆盖率从30%→95%",
+        "roi": "再入院率降25%"
+      },
+      {
+        "case": "临床决策Agent",
+        "platform": "OpenAI Codex + 知识图谱",
+        "outcome": "梅奥诊所罕见病诊断准确率+18%",
+        "roi": "平均确诊时间缩短40%"
+      }
+    ],
+    "制造": [
+      {
+        "case": "产线排程Agent",
+        "platform": "LangGraph",
+        "outcome": "特斯拉工厂排程优化，OEE从78%→89%",
+        "roi": "产能+14%不增加设备"
+      },
+      {
+        "case": "质量检测Agent",
+        "platform": "多模态Agent + 视觉",
+        "outcome": "比亚迪电池缺陷检测从人工→99.7%自动",
+        "roi": "漏检率从0.5%→0.05%"
+      },
+      {
+        "case": "预测维护Agent",
+        "platform": "私有化Agent",
+        "outcome": "西门子设备故障预测提前48小时",
+        "roi": "非计划停机减少60%"
+      },
+      {
+        "case": "供应链Agent",
+        "platform": "Dify + 多Agent",
+        "outcome": "华为供应链风险预警实时化",
+        "roi": "供应中断响应从周→小时"
+      },
+      {
+        "case": "数字孪生Agent",
+        "platform": "NVIDIA Omniverse Agent",
+        "outcome": "宝马工厂数字孪生仿真提速50x",
+        "roi": "新产线调试时间从月→天"
+      }
+    ],
+    "法律": [
+      {
+        "case": "合同审查Agent",
+        "platform": "Kimi Agent (1000万token)",
+        "outcome": "金杜律所300页合同审查30分钟→8分钟",
+        "roi": "审查速度提升3.75x"
+      },
+      {
+        "case": "判例检索Agent",
+        "platform": "Dify + RAG",
+        "outcome": "千万级判例库秒级语义检索",
+        "roi": "法律检索时间从4h→30秒"
+      },
+      {
+        "case": "法律文书Agent",
+        "platform": "阿里百炼",
+        "outcome": "起诉书/答辩状自动生成，合规率92%",
+        "roi": "初稿撰写从2h→5min"
+      },
+      {
+        "case": "尽调Agent",
+        "platform": "Multi-Agent协作",
+        "outcome": "IPO尽调文档审查从3周→3天",
+        "roi": "尽调效率提升7x"
+      },
+      {
+        "case": "合规监控Agent",
+        "platform": "Custom + 法规库",
+        "outcome": "实时追踪全球法规变更并预警",
+        "roi": "合规风险响应从月→日"
+      }
+    ],
+    "教育": [
+      {
+        "case": "学情分析Agent",
+        "platform": "扣子Coze",
+        "outcome": "学而思百万学生学情实时画像",
+        "roi": "个性化学习路径推荐准确率82%"
+      },
+      {
+        "case": "智能批改Agent",
+        "platform": "Kimi Agent",
+        "outcome": "作文批改从10分钟→30秒",
+        "roi": "教师批改量提升20x"
+      },
+      {
+        "case": "题库生成Agent",
+        "platform": "Dify + DeepSeek",
+        "outcome": "根据知识点秒级生成千人千面习题",
+        "roi": "题目去重率100%"
+      },
+      {
+        "case": "互动教学Agent",
+        "platform": "阿里百炼",
+        "outcome": "AI助教解答学生问题，响应<1秒",
+        "roi": "课堂参与度提升45%"
+      },
+      {
+        "case": "留学规划Agent",
+        "platform": "Custom",
+        "outcome": "基于学生画像+全球院校库自动匹配",
+        "roi": "申请成功率提升25%"
+      }
+    ]
+  },
+  "agent_types_taxonomy": {
+    "types": [
+      {
+        "type": "对话Agent (Conversational Agent)",
+        "description": "面向终端用户的多轮对话助手",
+        "examples": [
+          "ChatGPT",
+          "Kimi",
+          "文心一言",
+          "Claude"
+        ],
+        "maturity": "成熟（Level 4/5）",
+        "market_share": "35%"
+      },
+      {
+        "type": "任务Agent (Task Agent)",
+        "description": "自主完成多步骤任务的Agent",
+        "examples": [
+          "OpenAI Codex Agent",
+          "AutoGPT",
+          "CrewAI",
+          "Claude Computer Use"
+        ],
+        "maturity": "快速增长（Level 3/5）",
+        "market_share": "25%"
+      },
+      {
+        "type": "RAG Agent (检索增强Agent)",
+        "description": "基于知识库的问答和检索Agent",
+        "examples": [
+          "Dify RAG",
+          "扣子知识库Bot",
+          "阿里百炼RAG"
+        ],
+        "maturity": "成熟（Level 5/5）",
+        "market_share": "20%"
+      },
+      {
+        "type": "代码Agent (Coding Agent)",
+        "description": "代码生成、审查、调试、重构Agent",
+        "examples": [
+          "GitHub Copilot",
+          "Cursor Agent",
+          "DeepSeek-Coder",
+          "Claude Code"
+        ],
+        "maturity": "成熟（Level 4/5）",
+        "market_share": "10%"
+      },
+      {
+        "type": "多Agent系统 (Multi-Agent System)",
+        "description": "多个Agent协作完成复杂任务",
+        "examples": [
+          "LangGraph Supervisor",
+          "AutoGen",
+          "CrewAI",
+          "OpenAI Swarm"
+        ],
+        "maturity": "早期（Level 2/5）",
+        "market_share": "10%"
+      }
+    ],
+    "evolution_path": "聊天机器人(2022) → RAG Chatbot(2023) → 单步Agent(2024) → 多步Agent(2025) → 多Agent协作(2026) → 自主Agent生态(2027预测)"
+  },
+  "agent_safety_governance": {
+    "key_issues": [
+      {
+        "issue": "Agent越权操作",
+        "severity": "高",
+        "examples": "Agent删除生产数据库、发送错误邮件给全公司",
+        "mitigation": "权限沙箱、操作确认流、回滚机制"
+      },
+      {
+        "issue": "提示注入攻击",
+        "severity": "高",
+        "examples": "隐藏指令诱导Agent泄露数据或执行恶意操作",
+        "mitigation": "输入净化、上下文隔离"
+      },
+      {
+        "issue": "Agent幻觉放大",
+        "severity": "中",
+        "examples": "Agent基于错误信息做出连锁错误决策",
+        "mitigation": "事实核查层、置信度阈值"
+      },
+      {
+        "issue": "供应链攻击",
+        "severity": "中",
+        "examples": "恶意MCP服务器/插件窃取数据",
+        "mitigation": "插件审核、权限最小化"
+      },
+      {
+        "issue": "责任归属",
+        "severity": "高",
+        "examples": "Agent造成损失时谁负责（开发者/平台/用户）",
+        "mitigation": "监管框架建设中"
+      }
+    ],
+    "regulations": [
+      {
+        "region": "EU",
+        "regulation": "EU AI Act (2026生效)",
+        "requires": "高风险Agent需CE认证，透明性声明"
+      },
+      {
+        "region": "中国",
+        "regulation": "生成式AI服务管理办法 + 深度合成管理规定",
+        "requires": "算法备案、安全评估、标识要求"
+      },
+      {
+        "region": "美国",
+        "regulation": "各州立法碎片化 + 联邦AI行政令",
+        "requires": "加州SB-1047要求大模型安全测试"
+      },
+      {
+        "region": "全球",
+        "regulation": "Bletchley宣言 + 首尔AI峰会",
+        "requires": "前沿AI安全测试国际标准制定中"
+      }
+    ]
+  },
+  "agent_company_funding": [
+    {
+      "company": "OpenAI",
+      "valuation": "$852B",
+      "latest_round": "2026-04 $40B",
+      "agent_revenue_share": "估计25%"
+    },
+    {
+      "company": "Anthropic",
+      "valuation": "$150B",
+      "latest_round": "2026-03 $8B",
+      "agent_revenue_share": "估计30% (Claude Code/Computer Use)"
+    },
+    {
+      "company": "月之暗面 (Kimi)",
+      "valuation": "$40B",
+      "latest_round": "2025-12 $5B",
+      "agent_revenue_share": "估计15%"
+    },
+    {
+      "company": "LangChain Inc",
+      "valuation": "$8.5B",
+      "latest_round": "2026-01 $300M",
+      "agent_revenue_share": "100% (核心Agent业务)"
+    },
+    {
+      "company": "Dify.AI",
+      "valuation": "$2B",
+      "latest_round": "2025-11 $150M",
+      "agent_revenue_share": "100%"
+    },
+    {
+      "company": "字节跳动 (扣子)",
+      "valuation": "$420B (母公司)",
+      "latest_round": "N/A",
+      "agent_revenue_share": "待拆分"
+    },
+    {
+      "company": "CrewAI",
+      "valuation": "$1.2B",
+      "latest_round": "2025-09 $80M",
+      "agent_revenue_share": "100%"
+    },
+    {
+      "company": "Aippy (AI游戏)",
+      "valuation": "$2.5B",
+      "latest_round": "2026-06 $数千万",
+      "agent_revenue_share": "100%"
+    }
+  ],
+  "agent_developer_toolchain": {
+    "frameworks": [
+      {
+        "name": "LangGraph",
+        "language": "Python/JS",
+        "stars": "110K",
+        "pros": "最成熟的Agent编排框架",
+        "cons": "学习曲线陡峭"
+      },
+      {
+        "name": "CrewAI",
+        "language": "Python",
+        "stars": "28K",
+        "pros": "角色扮演式多Agent易用",
+        "cons": "生产级可靠性待验证"
+      },
+      {
+        "name": "AutoGen (MS)",
+        "language": "Python/.NET",
+        "stars": "42K",
+        "pros": "微软背书，对话式Agent",
+        "cons": "生态偏向Azure"
+      },
+      {
+        "name": "Agno",
+        "language": "Python",
+        "stars": "18K",
+        "pros": "轻量高效Agent框架",
+        "cons": "社区较小"
+      },
+      {
+        "name": "OpenAI Agents SDK",
+        "language": "Python",
+        "stars": "35K (Swarm + Agents)",
+        "pros": "官方支持，与GPT深度集成",
+        "cons": "供应商锁定"
+      },
+      {
+        "name": "Semantic Kernel (MS)",
+        "language": "C#/Python/Java",
+        "stars": "25K",
+        "pros": "企业级SDK",
+        "cons": "微软生态绑定"
+      }
+    ],
+    "observability_tools": [
+      "LangSmith",
+      "Weights & Biases Weave",
+      "Arize Phoenix",
+      "Braintrust",
+      "MLflow"
+    ],
+    "eval_benchmarks": [
+      "SWE-bench Verified (代码)",
+      "GAIA (通用Agent)",
+      "WebArena (网页)",
+      "OSWorld (桌面)",
+      "τ-bench (工具调用)"
+    ]
+  },
+  "competitive_intelligence": {
+    "openai_agent_strategy": {
+      "codex_integration": "2026-06-02将Codex Agent整合进ChatGPT，10亿周活用户零门槛获得Agent能力",
+      "agentic_os": "OpenAI正开发Agentic OS，计划2026 Q3发布，定位为AI原生操作系统",
+      "pricing_strategy": "Codex Agent免费（基础）+ Pro $200/月（高级Agent）",
+      "key_move": "收购Rockset(2024)和Multi(2025)补强Agent数据层和协作能力",
+      "weakness": "闭源锁定争议，企业客户担心供应商锁定风险"
+    },
+    "anthropic_agent_strategy": {
+      "mcp_protocol": "MCP(Model Context Protocol)已成为Agent互操作事实标准",
+      "mcp_ecosystem": "5000+社区MCP服务器，覆盖文件系统/数据库/API/浏览器",
+      "computer_use": "Claude可操控桌面电脑（移动鼠标/键盘），定位办公自动化",
+      "claude_code": "终端内Agent，直接读写代码+执行命令+Git操作",
+      "strategy": "不做Super App，做Agent基础设施协议层"
+    },
+    "google_agent_strategy": {
+      "gemini_agentspace": "Google推出AgentSpace，整合Gemini+Workspace+Cloud",
+      "project_mariner": "Chrome内置Agent，可自主浏览网页完成任务",
+      "advantage": "搜索/地图/YouTube/Gmail数据壁垒",
+      "weakness": "产品过于分散，Agent体验不统一"
+    },
+    "microsoft_agent_strategy": {
+      "copilot_studio": "低代码Agent构建，7000万M365企业用户池",
+      "autoGen": "开源多Agent框架，企业自建Agent首选之一",
+      "integration": "Teams/Outlook/Excel/Word全Agent化",
+      "advantage": "在企业赛道无可匹敌的分发渠道",
+      "weakness": "Agent能力严重依赖OpenAI模型，自主性受限"
+    },
+    "chinese_agent_landscape": {
+      "leader": "字节跳动(扣子)+阿里(百炼)+月之暗面(Kimi)三国杀",
+      "differentiator": "中国Agent市场更强调企业微信/钉钉/飞书生态绑定",
+      "regulation": "算法备案+安全评估，国外Agent进中国有合规门槛",
+      "trend": "2026年中国Agent市场呈平台化：大厂做平台，ISV做垂直Agent"
+    }
+  },
+  "agent_benchmark_leaderboard": {
+    "GAIA (通用Agent能力)": [
+      {
+        "rank": 1,
+        "system": "Claude Agent (MCP)",
+        "score": "Level 1: 94.2%"
+      },
+      {
+        "rank": 2,
+        "system": "OpenAI Codex Agent",
+        "score": "Level 1: 92.8%"
+      },
+      {
+        "rank": 3,
+        "system": "LangGraph + GPT-4o",
+        "score": "Level 1: 89.5%"
+      },
+      {
+        "rank": 4,
+        "system": "Kimi Agent",
+        "score": "Level 1: 85.3%"
+      },
+      {
+        "rank": 5,
+        "system": "Dify + DeepSeek-V4",
+        "score": "Level 1: 82.1%"
+      }
+    ],
+    "SWE-bench Verified (代码修复)": [
+      {
+        "rank": 1,
+        "system": "Claude Code",
+        "score": "67.5%"
+      },
+      {
+        "rank": 2,
+        "system": "Devin (Cognition)",
+        "score": "64.3%"
+      },
+      {
+        "rank": 3,
+        "system": "OpenAI Codex Agent",
+        "score": "61.2%"
+      },
+      {
+        "rank": 4,
+        "system": "DeepSeek-Coder-V2 Agent",
+        "score": "58.7%"
+      },
+      {
+        "rank": 5,
+        "system": "Factory AI",
+        "score": "55.1%"
+      }
+    ],
+    "WebArena (网页任务)": [
+      {
+        "rank": 1,
+        "system": "OpenAI Operator (CUA)",
+        "score": "58.1%"
+      },
+      {
+        "rank": 2,
+        "system": "Google Mariner",
+        "score": "53.5%"
+      },
+      {
+        "rank": 3,
+        "system": "Claude Computer Use",
+        "score": "49.2%"
+      },
+      {
+        "rank": 4,
+        "system": "BrowserBase Agent",
+        "score": "44.8%"
+      }
+    ],
+    "OSWorld (桌面任务)": [
+      {
+        "rank": 1,
+        "system": "Claude Computer Use",
+        "score": "22.0%"
+      },
+      {
+        "rank": 2,
+        "system": "OpenAI CUA",
+        "score": "19.5%"
+      },
+      {
+        "rank": 3,
+        "system": "UI-TARS (字节)",
+        "score": "17.3%"
+      }
+    ]
+  },
+  "predictions_2026_2027": [
+    {
+      "prediction": "2026年底全球AI Agent市场突破300亿美元",
+      "confidence": "90%"
+    },
+    {
+      "prediction": "OpenAI Codex Agent将占据Agent市场份额30%+",
+      "confidence": "75%"
+    },
+    {
+      "prediction": "多Agent协作(MAS)生产级部署将从2026年底开始爆发",
+      "confidence": "85%"
+    },
+    {
+      "prediction": "至少1家Agent公司2026年IPO（LangChain最可能）",
+      "confidence": "60%"
+    },
+    {
+      "prediction": "Agent安全事故将引发全球首个Agent监管法案",
+      "confidence": "70%"
+    },
+    {
+      "prediction": "2027年50%的企业软件将内置Agent功能",
+      "confidence": "80%"
+    },
+    {
+      "prediction": "MCP将进化为ISO标准Agent互联协议",
+      "confidence": "65%"
+    },
+    {
+      "prediction": "端侧Agent(手机/PC本地运行)将在2027年成为标配",
+      "confidence": "85%"
+    }
+  ],
+  "agent_protocols_and_standards": {
+    "mcp": {
+      "full_name": "Model Context Protocol",
+      "creator": "Anthropic",
+      "status": "事实标准（5000+服务器）",
+      "purpose": "Agent与外部工具/数据源的标准接口"
+    },
+    "a2a": {
+      "full_name": "Agent-to-Agent Protocol",
+      "creator": "Google",
+      "status": "提案阶段",
+      "purpose": "多Agent之间的标准通信协议"
+    },
+    "openapi_agents": {
+      "full_name": "OpenAPI for Agents",
+      "creator": "OpenAI",
+      "status": "集成进Codex Agent",
+      "purpose": "Agent调用第三方API标准"
+    },
+    "skill_marketplaces": [
+      "扣子插件市场(1000+)",
+      "Dify插件",
+      "MCP服务器市场",
+      "OpenAI GPTs(300万+)"
+    ]
+  },
+  "monthly_timeline_2026": [
+    {
+      "month": "2026-01",
+      "event": "LangGraph发布0.3版本，引入Supervisor Agent"
+    },
+    {
+      "month": "2026-02",
+      "event": "Dify完成$150M融资，估值$2B",
+      "impact": "开源Agent平台最大单笔融资"
+    },
+    {
+      "month": "2026-03",
+      "event": "Anthropic发布Claude Computer Use 2.0，可操控桌面应用",
+      "impact": "Agent从信息处理进入行动执行"
+    },
+    {
+      "month": "2026-04",
+      "event": "阿里百炼Agent接入钉钉500万企业",
+      "impact": "中国最大企业Agent分发"
+    },
+    {
+      "month": "2026-05",
+      "event": "Kimi Agent月活突破3500万",
+      "impact": "中文Agent最高用户量"
+    },
+    {
+      "month": "2026-06",
+      "event": "OpenAI Codex整合进ChatGPT，10亿用户获Agent能力",
+      "impact": "Agent第二天即有超1亿用户使用"
+    },
+    {
+      "month": "2026-07(预计)",
+      "event": "Google AgentSpace正式商用"
+    },
+    {
+      "month": "2026-09(预计)",
+      "event": "Apple Intelligence Agent SDK开放"
+    }
+  ]
+}

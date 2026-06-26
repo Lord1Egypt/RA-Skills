@@ -1,35 +1,34 @@
 ---
-name: "alphaear-reporter"
-description: "Plan, write, and edit professional financial reports; generate finance chart configurations. Use when condensing finance analysis into a structured output."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alphaear-reporter"
-sourceUrl: "https://clawhub.ai/skills/alphaear-reporter"
+name: alphaear-reporter
+slug: alphaear-reporter
+version: 1.0.0
+description: Plan, write, and edit professional financial reports; generate finance chart configurations. Use when condensing finance analysis into a structured output.
 ---
 
-# alphaear-reporter
-
-> Plan, write, and edit professional financial reports; generate finance chart configurations. Use when condensing finance analysis into a structured output.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alphaear-reporter`
-- **Source URL:** [https://clawhub.ai/skills/alphaear-reporter](https://clawhub.ai/skills/alphaear-reporter)
+# AlphaEar Reporter Skill
 
 ## Overview
 
+This skill provides a structured workflow for generating professional financial reports. It includes planning, writing, editing, and creating visual aids (charts).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/alphaear-reporter
-```
+## Capabilities
+
+## Capabilities
+
+### 1. Generate Structured Reports (Agentic Workflow)
+
+**YOU (the Agent)** are the Report Generator. Use the prompts in `references/PROMPTS.md` to progressively build the report.
+
+**Workflow:**
+1.  **Cluster Signals**: Read input signals and use the **Cluster Signals Prompt** to group them.
+2.  **Write Sections**: For each cluster, use the **Write Section Prompt** to generate analysis.
+3.  **Assemble**: Use the **Final Assembly Prompt** to compile the report.
+
+### 2. Visualization Tools
+
+Use `scripts/visualizer.py` to generate chart configurations if needed manually, though the Writer Prompt usually handles this via `json-chart` blocks.
+
+## Dependencies
+
+-   `sqlite3` (built-in)
+

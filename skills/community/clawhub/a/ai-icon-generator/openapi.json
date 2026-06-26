@@ -1,0 +1,25 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AI Icon Generator",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/generate-icons": {
+      "post": {
+        "summary": "Generate Icons",
+        "operationId": "generate_icons_generate_icons_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

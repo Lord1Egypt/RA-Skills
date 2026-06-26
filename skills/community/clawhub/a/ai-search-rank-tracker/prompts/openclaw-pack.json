@@ -1,0 +1,6 @@
+{
+  "brand": "clawlite.ai",
+  "aliases": ["clawlite", "claw lite", "clawlite ai"],
+  "promptPack": "openclaw-ecosystem",
+  "engines": ["chatgpt", "claude", "gemini", "perplexity"]
+}

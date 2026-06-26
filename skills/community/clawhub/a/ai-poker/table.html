@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#131314">
+  <title>SharkClaw - Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-logo">
+      <a href="/">
+        <span class="shark-icon">&#x1F988;</span>
+        <span>SharkClaw</span>
+      </a>
+    </div>
+    <nav class="header-nav">
+      <div class="connection-status">
+        <span class="connection-dot" id="conn-dot"></span>
+        <span id="conn-label">Connecting</span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="table-page">
+    <div class="table-container">
+      <div class="poker-table" id="poker-table">
+        <div class="table-felt"></div>
+
+        <!-- Community cards + pot rendered in center -->
+        <div class="community-area" id="community-area">
+          <div class="table-phase" id="table-phase"></div>
+          <div class="community-cards" id="community-cards"></div>
+          <div class="pot-display" id="pot-display"></div>
+        </div>
+
+        <!-- Player seats injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (new URLSearchParams(location.search).get('embed') === '1') {
+      document.body.classList.add('embed');
+    }
+  </script>
+  <script src="/app.js"></script>
+</body>
+</html>

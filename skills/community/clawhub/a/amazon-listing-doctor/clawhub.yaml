@@ -1,0 +1,40 @@
+name: amazon-listing-doctor
+version: 1.0.1
+type: openclaw-skill
+
+description:
+  zh-CN: |
+    亚马逊Listing全方位诊断工具 — Rufus适配度评分 + 场景词覆盖分析 + 转化逻辑优化建议。
+    基于行业知识库对Listing进行5维诊断，帮助卖家了解产品在Rufus对话中的可见度，并生成针对性的优化方案。
+    极简输入：只需提供产品类目、标题、五点描述，纯文本粘贴即可。
+
+emoji: "🩺"
+homepage: https://cloudtrip.ai
+publisher: 云旅智能体超市
+
+category: ecommerce-ai
+
+tags:
+  - 亚马逊
+  - Listing优化
+  - Rufus适配
+  - 电商诊断
+  - 五点描述
+  - 转化率优化
+
+triggers:
+  - 亚马逊Listing优化
+  - Rufus适配度诊断
+  - Listing评分
+  - 五点描述优化
+  - 亚马逊关键词优化
+  - Listing场景词覆盖
+  - 亚马逊产品诊断
+  - 亚马逊Listing分析
+
+readme: README.md
+
+technical:
+  architecture: 基于行业知识库生成优化建议，用户手动输入文本，本地分析处理
+  input_mode: text
+  output_format: markdown

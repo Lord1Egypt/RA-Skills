@@ -1,0 +1,4 @@
+.env
+.aim-secret-key.local
+__pycache__/
+*.pyc

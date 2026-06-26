@@ -1,0 +1,22 @@
+{
+  "name": "ai-cardiac-rehab",
+  "version": "1.0.0",
+  "description": "AI 心脏康复管理系统 — 基于 ACC/AHA 指南的安全增强型康复管理 Web 应用",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py"
+  },
+  "dependencies": {
+    "flask": ">=2.0"
+  },
+  "keywords": [
+    "cardiac",
+    "rehab",
+    "health",
+    "medical",
+    "heart",
+    "ACC",
+    "AHA"
+  ],
+  "license": "MIT"
+}

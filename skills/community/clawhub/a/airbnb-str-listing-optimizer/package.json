@@ -1,0 +1,18 @@
+{
+  "name": "airbnb-str-listing-optimizer",
+  "version": "1.0.0",
+  "description": "ClawHub skill: airbnb-str-listing-optimizer",
+  "license": "MIT-0",
+  "main": "SKILL.md",
+  "author": "max_0x1",
+  "clawhub": {
+    "skill": true,
+    "category": "real-estate",
+    "price": 29,
+    "currency": "USD",
+    "pricingModel": "one-time",
+    "prompts": 4,
+    "freePrompts": 1,
+    "freePrompt": "prompts/01-listing-headline-description.md"
+  }
+}

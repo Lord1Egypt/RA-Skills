@@ -1,0 +1,146 @@
+{
+  "version": "3.6.0",
+  "updated": "2026-04-16",
+  "description": "中央威胁模式库 - 所有危险关键词/域名/IP/路径统一管理",
+
+  "keyword_patterns": {
+    "K01": {
+      "name": "敏感信息关键词",
+      "description": "密码/凭证/证件等敏感信息",
+      "keywords": [
+        "password", "passwd", "pwd", "secret", "token",
+        "api_key", "apikey", "credential", "secret_key",
+        "access_token", "refresh_token", "Bearer",
+        "身份证", "id_card", "credential_id", "银行卡",
+        "信用卡", "cvv", "安全码"
+      ]
+    },
+    "K02": {
+      "name": "危险系统命令",
+      "description": "可能破坏系统的命令",
+      "keywords": [
+        "rm -rf", "rm -r /", "rm -f",
+        "format c:", "format c\\:",
+        "del /s /q", "del /f /s",
+        "rmdir /s", "deltree",
+        "--no-preserve-root", "mkfs"
+      ]
+    },
+    "K03": {
+      "name": "危险数据库操作",
+      "description": "可能破坏数据的SQL命令",
+      "keywords": [
+        "drop table", "drop database",
+        "delete from", "delete * from",
+        "truncate table", "truncate database",
+        "drop column", "alter table drop"
+      ]
+    },
+    "K04": {
+      "name": "XSS攻击特征",
+      "description": "跨站脚本攻击常见特征",
+      "keywords": [
+        "<script>", "</script>",
+        "javascript:", "javascript%3a",
+        "onerror=", "onload=", "onclick=",
+        "eval(", "document.cookie",
+        "innerHTML", "outerHTML",
+        "<img src=x>", "<svg onload="
+      ]
+    },
+    "K05": {
+      "name": "数据库导出/凭证泄露",
+      "description": "数据库备份或凭证导出命令",
+      "keywords": [
+        "export PGPASSWORD", "pg_dump", "pg_dumpall",
+        "mysqldump", "mysql dump",
+        "mongoexport", "mongodump",
+        "--password=", "-p ", "source ~/.bashrc"
+      ]
+    },
+    "K06": {
+      "name": "社工攻击话术",
+      "description": "社会工程学攻击常见话术",
+      "keywords": [
+        "我是管理员", "系统安全检查", "紧急更新",
+        "你的账户有异常", "立即执行", "忽略警告",
+        "sudo rm", "sudo su", "chmod 777"
+      ]
+    }
+  },
+
+  "domain_patterns": {
+    "D01": {
+      "name": "已知恶意域名",
+      "domains": [
+        "*.evil.com", "*.phishing.com", "*.malware.com",
+        "*.scam.*", "*.fraud.*"
+      ]
+    },
+    "D02": {
+      "name": "可疑境外域名",
+      "domains": [
+        "*.onion", "*.i2p"
+      ]
+    }
+  },
+
+  "path_patterns": {
+    "P01": {
+      "name": "系统默认工作区目录",
+      "description": "WorkBuddy/Qclaw/Copaw等平台目录",
+      "paths": [
+        "~/.workbuddy/skills/",
+        "~/.workbuddy/plugins/",
+        "~/.workbuddy/memery/",
+        "~/.workbuddy/inspiration/",
+        "~/.workbuddy/extensions/",
+        "~/.workbuddy/connectors-marketplace/",
+        "~/.workbuddy/skills-marketplace/"
+      ],
+      "match_mode": "NOT_IN"
+    },
+    "P02": {
+      "name": "系统敏感目录",
+      "description": "系统关键配置目录",
+      "paths": [
+        "C:\\Windows\\System32\\",
+        "C:\\Program Files\\",
+        "/etc/",
+        "/usr/bin/",
+        "/bin/",
+        "/sbin/",
+        "~/.ssh/",
+        "~/.gnupg/"
+      ],
+      "match_mode": "NOT_IN"
+    },
+    "P03": {
+      "name": "个人敏感目录",
+      "description": "桌面/下载/文档等个人目录",
+      "paths": [
+        "Desktop/", "桌面/",
+        "Downloads/", "下载/",
+        "Documents/", "文档/"
+      ],
+      "match_mode": "CAUTION"
+    }
+  },
+
+  "ip_patterns": {
+    "I01": {
+      "name": "内网可疑IP",
+      "description": "可疑内网地址",
+      "ips": [
+        "192.168.1.1", "10.0.0.1",
+        "172.16.0.1", "127.0.0.1"
+      ]
+    }
+  },
+
+  "risk_levels": {
+    "高": "直接拦截并警告",
+    "中": "拦截并要求确认",
+    "低": "记录日志，允许执行"
+  }
+}

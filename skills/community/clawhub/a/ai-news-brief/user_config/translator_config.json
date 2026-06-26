@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "description": "翻译API配置",
+  
+  "config": {
+    "enabled": false,
+    "provider": "baidu",  # baidu / google / deep
+    
+    "baidu": {
+      "app_id": "your_app_id",
+      "app_key": "your_app_key"
+    },
+    
+    "deep": {
+      "api_key": "your_api_key"
+    }
+  },
+  
+  "languages": {
+    "zh": "中文",
+    "en": "英语",
+    "ja": "日语",
+    "ko": "韩语"
+  }
+}

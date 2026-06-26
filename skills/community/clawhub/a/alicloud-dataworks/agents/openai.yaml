@@ -1,0 +1,4 @@
+interface:
+  display_name: "Alibaba Cloud DataWorks"
+  short_description: "Dynamic API discovery + SDK-first approach for all DataWorks operations"
+  default_prompt: "Use $dataworks-open-api to complete this data development/operations task on Alibaba Cloud DataWorks."

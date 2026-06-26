@@ -1,35 +1,220 @@
----
-name: "Amazon Review Advisor"
-description: "帮助亚马逊卖家分类评论情绪，提供差评合规应对方案，优化好评邀请，提炼产品改进和运营策略。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amazon-review-advisor"
-sourceUrl: "https://clawhub.ai/skills/amazon-review-advisor"
+# Amazon Review Advisor（亚马逊评论应对助手）
+
+## 定位声明
+
+**不是删评工具**，而是卖家的**情绪免疫系统**与**品牌护盾**。
+
+帮助卖家合规应对差评、分析产品反馈、提炼改进方向，让评论区成为品牌资产的增值地，而非噩梦源头。
+
 ---
 
-# Amazon Review Advisor
+## 核心功能
 
-> 帮助亚马逊卖家分类评论情绪，提供差评合规应对方案，优化好评邀请，提炼产品改进和运营策略。
+### 功能1：评论情绪分类
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amazon-review-advisor`
-- **Source URL:** [https://clawhub.ai/skills/amazon-review-advisor](https://clawhub.ai/skills/amazon-review-advisor)
+**输入**：评论文本（单条或批量）
 
-## Overview
+**输出**：
+- 情绪标注：🟢正面 / 🔴负面 / 🟡中性
+- 投诉焦点分类：
+  - 📦 物流问题（配送慢、破损、丢件）
+  - 🔧 质量问题（故障、不耐用、描述不符）
+  - 📐 尺寸问题（偏差大、选错规格）
+  - 🎁 包装问题（简陋、异味、礼盒损坏）
+  - 👤 客服问题（响应慢、态度差、推诿）
+- 问题严重度：🔴高 / 🟡中 / 🟢低
+- **需重点关注的异常模式标注**
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amazon-review-advisor
+### 功能2：分类应对方案
+
+#### A. 真实体验型差评（值得尊重的反馈）
+
+**输出**：
+1. **给内部团队的改进建议**
+   - 工厂端：具体工艺/材料问题
+   - 运营端：详情页描述优化点
+   - 物流端：包装加固方案
+
+2. **公开回复模板**（英文/中文双版）
+   - 诚恳道歉 + 具体解决方案
+   - 引导私信联系（避免评论区过多交涉）
+   - 语气：专业、不卑不亢、不甩锅
+
+3. **产品改进方向提炼**
+   - 高频问题优先级排序
+   - v2.0 版本迭代建议
+
+#### B. 异常评论（需合规应对）
+
+**识别要素**：
+- 人身攻击/侮辱性语言
+- 隐私泄露（真实姓名、地址、电话）
+- 与产品无关（水军/恶意竞争）
+- 明显虚假信息（从未购买/内容不符）
+
+**输出**：
+1. **违规要素梳理**
+2. **合规申诉路径指引**
+   - Amazon Seller Central → Contact Us → "Review Reporting"
+   - 需要的证据材料清单
+3. **申诉话术建议**（强调"请求评估"而非"要求删除"）
+
+> ⚠️ 注意：本技能提供的是**合理申诉指导**，非删差评服务。是否通过由平台判定。
+
+---
+
+### 功能3：评价邀请指导
+
+**核心原则**：通过亚马逊官方渠道，对所有已完成订单的买家发送客观公正的评价邀请，建立完整的评价档案。
+
+> 所有评价邀请**仅使用亚马逊官方 "Request a Review" 功能**，不筛选、不区分买家满意度。
+
+#### 评价邀请最佳时机
+- ⏰ **黄金窗口**：订单送达后 **3-7 天**
+- 太早：买家还未使用，无法给出真实评价
+- 太晚：热情消退，遗忘细节
+
+#### 邀请话术模板
+
+**英文版（通过 Amazon 官方请求）**：
 ```
+Subject: How's your experience with [Product Name]?
+
+Hi [Buyer Name],
+
+Thank you for your recent purchase! We'd love to hear about your experience.
+
+If you have a moment, we'd appreciate it if you could share your thoughts by clicking "Request a Review" on your order page.
+
+Your feedback helps us improve and assists other shoppers in making informed decisions.
+
+Best regards,
+[Store Name]
+```
+
+#### 差评应对策略
+- 第一时间公开回复差评（展示重视态度）
+- 通过亚马逊站内信联系买家（提供解决方案）
+- **重要**：如需退款或补偿，必须在买家主动提出申请后处理，禁止以任何利益交换为条件诱导买家修改评价
+
+---
+
+### 功能4：评论趋势梳理
+
+**输入**：一段时间内的评论数据（可粘贴评论列表）
+
+**输出**：
+1. **问题频率统计**
+   - 按类型汇总投诉数量
+   - 识别"集体投诉"模式（同一批次问题）
+
+2. **同类产品对比发现**
+   - 买家常提及的对比品牌
+   - 同类产品优势/劣势分析
+
+3. **运营优化建议**
+   - 详情页优化优先级
+   - 库存/物流方案调整
+   - 客服响应SLA制定
+
+4. **产品迭代方向**
+   - 基于真实用户反馈的改款建议
+   - 新品开发灵感
+
+---
+
+## 输入格式
+
+```
+产品信息：[ASIN / 产品名称 / 产品描述]
+
+待分析评论：[粘贴评论内容]
+
+关注点（可选）：[具体想解决的问题，如"物流投诉多"]
+```
+
+**示例输入**：
+```
+产品信息：无线蓝牙耳机，型号X1，支持降噪
+
+待分析评论：
+1. "Sound quality is amazing but the earbuds fell out easily during workouts." - 3 stars
+2. "Battery lasted only 2 hours, not 8 as advertised." - 1 star
+3. "Perfect gift for my husband! Fast shipping too!" - 5 stars
+
+关注点：想了解产品质量问题类型
+```
+
+---
+
+## 输出示例
+
+### 评论情绪分类结果
+| 评论 | 情绪 | 焦点 | 严重度 |
+|------|------|------|--------|
+| #1 | 🟡 中性偏正面 | 佩戴舒适度 | 🟡 中 |
+| #2 | 🔴 负面 | 续航/虚假宣传 | 🔴 高 |
+| #3 | 🟢 正面 | 无投诉 | 🟢 低 |
+
+### 应对建议
+**评论#2 改进建议**：
+- 工厂端：核实电池容量标注
+- 运营端：详情页明确实际续航测试数据
+- 客服端：主动联系买家，解释实际使用情况
+
+**评论#2 公开回复**：
+> Thank you for your feedback. We're sorry the battery life didn't meet your expectations. The actual playtime can vary based on volume levels and features used. We'd love to discuss this further - please reach us at [support email].
+
+---
+
+## 合规声明
+
+1. 本技能提供**合规申诉指导**，不保证评论移除结果
+2. 严禁使用本技能进行虚假评论、刷单等违规行为
+3. 平台政策随时更新，请以 Amazon 官方最新指南为准
+4. **所有评价邀请仅使用亚马逊官方 "Request a Review" 功能**，禁止任何形式的诱导性索评
+5. **禁止以补偿、退款、赔偿等任何利益交换为条件，诱导买家修改或删除评价**
+6. **评价邀请应对所有买家一视同仁**，不得仅针对满意买家发送邀请
+
+---
+
+## 适用场景
+
+- 差评突然增多，需要快速分析问题根源
+- 想优化产品，但不确定从哪里入手
+- 需要给团队提供具体改进方向
+- 想制定系统化的评论管理SOP
+
+---
+
+## 交付标准
+
+优秀的输出应该让你一眼看到：
+
+- 回复模板保持同理心和专业性的平衡
+- 评价邀请流程说明符合亚马逊官方规定
+- 申诉建议有完整的证据框架
+- 标注不同星级评论的处理策略差异
+- 考虑平台政策的合规性要求
+
+如果输出缺少以上任何一项，建议补充后再交付。
+
+## 不适用场景
+
+本技能专注于亚马逊评论分析与应对建议，以下场景请使用其他技能：
+
+- 需要批量自动联系买家（合规要求仅使用官方索评功能，不涉及主动联系买家）
+- 广告出价优化与ACoS控制（请用amazon-ads-optimizer或miaoji-bid-guard）
+- 差评预防性优化Listing（请用amazon-listing-doctor）
+- 非亚马逊平台的评论管理（各平台评论机制和政策不同）
+
+---
+
+## 相关技能推荐
+
+- **miaoji-bid-guard**：差评多往往导致广告ACoS飙升，bid-guard帮助在广告层面做护栏保护
+- **amazon-listing-doctor**：差评暴露的痛点需要在Listing中针对性防御
+- **miaoji-compliance-copy**：差评中常反映"描述不符"问题，compliance-copy帮助检查文案是否夸大或误导
+- **miaoji-asin-clinic**：评论中反映的产品问题可能是ASIN定位问题，asin-clinic帮助审视产品改进方向

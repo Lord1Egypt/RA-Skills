@@ -1,0 +1,15 @@
+{
+  "name": "amazon-review-reveyes",
+  "version": "1.0.0",
+  "description": "Fetch Amazon product reviews via Reveyes API. Supports 20 marketplaces, star filtering, and critical review summaries.",
+  "author": "reveyes",
+  "homepage": "https://www.reveyes.cn",
+  "repository": "https://github.com/zhuojiuya/Amazon-Review",
+  "license": "MIT",
+  "tags": ["amazon", "ecommerce", "review", "scraping", "cross-border"],
+  "requires": {
+    "env": ["REVEYES_API_KEY"],
+    "pip": ["reveyes>=0.1.2"]
+  },
+  "entry": "SKILL.md"
+}

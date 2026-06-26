@@ -1,35 +1,22 @@
+# AI 数据可视化工具
+
+**定价**：¥199-999/月
+
+## 功能
+- 自动化生成/处理
+- AI 智能分析
+- 多格式输出
+- 批量处理
+
+## 目标客户
+- 企业用户
+- 自由职业者
+- 开发者/运营
+
+## ROI 分析
+- 效率提升：+300-800%
+- 成本节省：80-95%
+- **平均 ROI：50-200 倍**
+
 ---
-name: "Ai Data Visualization"
-description: "提供自动化AI分析与多格式批量处理，显著提升数据可视化效率，节省成本，适用企业和个人用户。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-data-visualization"
-sourceUrl: "https://clawhub.ai/skills/ai-data-visualization"
----
-
-# Ai Data Visualization
-
-> 提供自动化AI分析与多格式批量处理，显著提升数据可视化效率，节省成本，适用企业和个人用户。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-data-visualization`
-- **Source URL:** [https://clawhub.ai/skills/ai-data-visualization](https://clawhub.ai/skills/ai-data-visualization)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-data-visualization
-```
+创建时间：2026-03-13

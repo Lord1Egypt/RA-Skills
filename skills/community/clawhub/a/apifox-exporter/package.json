@@ -1,0 +1,24 @@
+{
+  "name": "apifox-exporter",
+  "version": "2.0.0",
+  "description": "全自动从 Apifox 导出接口数据并整理成标准格式的文档",
+  "main": "script/auto-export-playwright.js",
+  "scripts": {
+    "start": "node script/auto-export-playwright.js",
+    "install-playwright": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "keywords": [
+    "apifox",
+    "api",
+    "export",
+    "openapi",
+    "documentation",
+    "playwright",
+    "automation"
+  ],
+  "author": "果果 @ 婉秋",
+  "license": "MIT"
+}

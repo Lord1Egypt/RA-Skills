@@ -1,0 +1,10 @@
+# AI Density 依赖 / Dependencies
+# 核心功能基于 Python 标准库，无需额外依赖 / Core functionality uses Python standard library only
+
+# 可选依赖 - 用于高级文本分析功能 / Optional for advanced text analysis
+# numpy>=1.21.0
+# scikit-learn>=1.0.0
+
+# 开发依赖 / Development dependencies
+# pytest>=7.0.0
+# pytest-cov>=4.0.0

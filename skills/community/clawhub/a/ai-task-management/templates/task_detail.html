@@ -1,0 +1,164 @@
+{{define "content"}}
+<div class="task-detail">
+    <div class="page-header">
+        <h1>{{.Title}}</h1>
+        <a href="/tasks" class="btn btn-secondary">返回列表</a>
+    </div>
+
+    <div class="task-info">
+        <div class="info-row">
+            <strong>状态:</strong>
+            <span class="badge badge-{{.Status}}">{{.Status}}</span>
+        </div>
+        <div class="info-row">
+            <strong>项目:</strong> {{if .Project}}<span class="badge badge-project">{{.Project}}</span>{{else}}-{{end}}
+        </div>
+        <div class="info-row">
+            <strong>父任务:</strong> {{if .ParentUUID}}<a href="/tasks/{{.ParentUUID}}">{{.ParentUUID}}</a>{{else}}-{{end}}
+        </div>
+        <div class="info-row">
+            <strong>优先级:</strong> P{{.Priority}}
+        </div>
+        <div class="info-row">
+            <strong>负责人:</strong> {{if .Assignee}}{{.Assignee}}{{else}}-{{end}}
+        </div>
+        <div class="info-row">
+            <strong>标签:</strong> {{if .Tags}}{{.Tags}}{{else}}-{{end}}
+        </div>
+        <div class="info-row">
+            <strong>创建时间:</strong> {{formatDate .CreatedAt}}
+        </div>
+        <div class="info-row">
+            <strong>更新时间:</strong> {{formatDate .UpdatedAt}}
+        </div>
+    </div>
+
+    {{if .Description}}
+    <div class="task-description">
+        <h3>描述</h3>
+        <p>{{.Description}}</p>
+    </div>
+    {{end}}
+
+    <div class="task-actions">
+        <h3>操作</h3>
+        <div id="actionButtons"></div>
+        <p class="help-text">💡 状态流转：待办 → Agent 工作中 → Agent 审核 → 人工审核 → 完成</p>
+    </div>
+
+    {{if .ReviewComment}}
+    <div class="task-review-comment">
+        <h3>审核意见</h3>
+        <div class="review-comment-box">{{.ReviewComment}}</div>
+    </div>
+    {{end}}
+</div>
+
+<script>
+// 根据当前状态显示可用的操作按钮
+const currentStatus = '{{.Status}}';
+const uuid = '{{.UUID}}';
+const actionButtons = document.getElementById('actionButtons');
+
+const statusActions = {
+    'pending': [
+        { status: 'cancelled', text: '取消任务', className: 'btn btn-danger' }
+    ],
+    'agent_working': [
+        { status: 'cancelled', text: '取消任务', className: 'btn btn-danger' }
+    ],
+    'agent_review': [
+        { status: 'cancelled', text: '取消任务', className: 'btn btn-danger' }
+    ],
+    'human_review': [
+        { status: 'done', text: '✓ 审核通过', className: 'btn btn-success', showComment: false },
+        { status: 'pending', text: '✗ 不通过，返回待办', className: 'btn btn-warning', showComment: true }
+    ],
+    'done': [
+        { status: 'pending', text: '重新打开', className: 'btn btn-info' }
+    ],
+    'cancelled': [
+        { status: 'pending', text: '重新打开', className: 'btn btn-info' }
+    ]
+};
+
+const actions = statusActions[currentStatus] || [];
+if (actions.length > 0) {
+    let html = '<div class="button-group">';
+    actions.forEach((action, index) => {
+        html += `<button class="${action.className}" onclick="handleAction('${uuid}', '${action.status}', ${action.showComment || false})">${action.text}</button>`;
+    });
+    html += '</div>';
+    
+    // 如果是人工审核且不通过，添加意见输入框
+    if (currentStatus === 'human_review') {
+        html += `
+            <div id="commentInput" style="display:none; margin-top: 15px;">
+                <div class="form-group">
+                    <label>审核意见 *</label>
+                    <textarea id="reviewComment" class="form-control" rows="3" placeholder="请输入审核意见，说明不通过的原因..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="submitWithComment()">提交</button>
+                    <button class="btn btn-secondary" onclick="cancelComment()">取消</button>
+                </div>
+            </div>
+        `;
+    }
+    
+    actionButtons.innerHTML = html;
+} else {
+    actionButtons.innerHTML = '<p>暂无可用操作</p>';
+}
+
+let pendingAction = null;
+
+function handleAction(uuid, status, needComment) {
+    if (needComment) {
+        pendingAction = status;
+        document.getElementById('commentInput').style.display = 'block';
+    } else {
+        updateStatus(uuid, status);
+    }
+}
+
+function submitWithComment() {
+    const comment = document.getElementById('reviewComment').value.trim();
+    if (!comment) {
+        alert('请输入审核意见');
+        return;
+    }
+    
+    if (!pendingAction) return;
+    
+    fetch(`/api/tasks/${uuid}/status`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            new_status: pendingAction,
+            review_comment: comment
+        })
+    }).then(() => {
+        window.location.reload();
+    });
+}
+
+function cancelComment() {
+    pendingAction = null;
+    document.getElementById('commentInput').style.display = 'none';
+    document.getElementById('reviewComment').value = '';
+}
+
+function updateStatus(uuid, status) {
+    if (!confirm(`确定要将任务标记为"${status}"吗？`)) return;
+    
+    fetch(`/api/tasks/${uuid}/status`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({new_status: status})
+    }).then(() => {
+        window.location.reload();
+    });
+}
+</script>
+{{end}}

@@ -1,0 +1,25 @@
+{
+  "normalized_terms": [
+    {
+      "original": "荆",
+      "normalized": ["楚", "荆楚"],
+      "type": "state_name",
+      "note": "先秦文献中常以“荆”指称楚。",
+      "confidence": 0.72
+    },
+    {
+      "original": "隐公",
+      "normalized": ["鲁隐公"],
+      "type": "ruler_name",
+      "note": "可作为鲁国纪年线索。",
+      "confidence": 0.81
+    },
+    {
+      "original": "晋",
+      "normalized": ["晋"],
+      "type": "unknown",
+      "note": "",
+      "confidence": 0.65
+    }
+  ]
+}

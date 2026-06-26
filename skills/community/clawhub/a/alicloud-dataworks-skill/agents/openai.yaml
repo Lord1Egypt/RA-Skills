@@ -1,0 +1,4 @@
+interface:
+  display_name: "Alibaba Cloud DataWorks"
+  short_description: "DataWorks data development and operations workflows"
+  default_prompt: "Use $alicloud-dataworks to complete this data development/operations task on Alibaba Cloud DataWorks."

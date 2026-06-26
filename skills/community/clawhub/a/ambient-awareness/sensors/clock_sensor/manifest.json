@@ -1,0 +1,9 @@
+{
+  "id": "clock.local.basic",
+  "name": "Local Clock Sensor",
+  "version": "0.1.0",
+  "capabilities": ["time", "elapsed_time"],
+  "permission_class": 0,
+  "poll_interval_seconds": 1,
+  "entrypoint": "sensor.py:ClockSensor"
+}

@@ -1,0 +1,31 @@
+{
+  "platform": "xiaohongshu",
+  "display_name": "小红书",
+  "video": {
+    "max_resolution": {"width": 1080, "height": 1440},
+    "max_file_size_mb": 100,
+    "max_duration_seconds": 900,
+    "supported_aspect_ratios": ["3:4", "1:1", "9:16"],
+    "preferred_aspect_ratio": "3:4",
+    "format": "mp4",
+    "video_codec": "libx264",
+    "audio_codec": "aac",
+    "audio_bitrate": "128k",
+    "fps": 30,
+    "crf": 23,
+    "preset": "medium"
+  },
+  "cover": {
+    "required": true,
+    "recommended_size": {"width": 1080, "height": 1440},
+    "format": "jpg"
+  },
+  "api": {
+    "base_url": null,
+    "auth_type": "cookie",
+    "env_var": "XHS_COOKIE",
+    "warning": "小红书无官方开放 API，使用 Cookie 模拟发布存在 TOS 违规风险。建议导出发布就绪文件后手动上传。",
+    "doc_url": "https://www.xiaohongshu.com/"
+  },
+  "ffmpeg_command": "ffmpeg -i {input} -c:v libx264 -preset medium -crf 23 -c:a aac -b:a 128k -movflags +faststart -vf \"scale=1080:1440:force_original_aspect_ratio=decrease,pad=1080:1440:-1:-1:black\" {output}"
+}

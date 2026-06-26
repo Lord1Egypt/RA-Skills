@@ -1,0 +1,78 @@
+providers:
+  primary-openai:
+    type: openai-compatible
+    base_url: https://api.example.com/v1
+    api_key_env: OPENAI_API_KEY
+    timeout_ms: 30000
+    models:
+      default: gpt-5.4
+      cheap: gpt-4o
+
+  backup-anthropic:
+    type: anthropic
+    base_url: https://api.anthropic.com
+    api_key_env: ANTHROPIC_API_KEY
+    timeout_ms: 30000
+    models:
+      default: claude-opus-4-6
+      cheap: claude-sonnet
+
+  emergency-local:
+    type: openai-compatible
+    base_url: http://127.0.0.1:11434/v1
+    api_key_env: DUMMY_KEY
+    timeout_ms: 45000
+    models:
+      default: qwen2.5:latest
+
+task_profiles:
+  default:
+    routes:
+      - provider: primary-openai
+        model: default
+      - provider: backup-anthropic
+        model: default
+      - provider: primary-openai
+        model: cheap
+      - provider: emergency-local
+        model: default
+
+  cheap:
+    routes:
+      - provider: primary-openai
+        model: cheap
+      - provider: emergency-local
+        model: default
+      - provider: backup-anthropic
+        model: cheap
+
+  critical:
+    routes:
+      - provider: backup-anthropic
+        model: default
+      - provider: primary-openai
+        model: default
+      - provider: primary-openai
+        model: cheap
+
+retry:
+  max_attempts_per_route: 2
+  backoff_ms: [500, 1500]
+  retry_on:
+    - RATE_LIMIT
+    - TIMEOUT
+    - SERVER_ERROR
+    - NETWORK_ERROR
+    - MODEL_UNAVAILABLE
+    - UNKNOWN_TRANSIENT
+
+circuit_breaker:
+  open_after_failures: 3
+  cooldown_seconds: 90
+  half_open_max_probes: 1
+  close_after_successes: 1
+
+provider_overrides:
+  emergency-local:
+    open_after_failures: 5
+    cooldown_seconds: 20

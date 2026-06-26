@@ -1,0 +1,1 @@
+"""AniList source adapter scaffold."""

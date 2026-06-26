@@ -1,35 +1,55 @@
 ---
-name: "AI Builder Signal Digest (Transparent + Sourced)"
-description: "Create a transparent, sourced “Top 3–5” AI builder signal digest (weekly or date-range) from a list of links or from a local signals log; includes a short “w..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agents, ai, digest, mcp, memory, rag]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-builder-signal-digest"
-sourceUrl: "https://clawhub.ai/skills/ai-builder-signal-digest"
+name: ai-builder-signal-digest
+description: Create a transparent, sourced “Top 3–5” AI builder signal digest (weekly or date-range) from a list of links or from a local signals log; includes a short “why care” line per item and explicit maturity/adoption notes (e.g., GitHub stars/forks, paper-only). Use when preparing ClawHub Skill content or posts for the AI agent/tooling community.
 ---
 
-# AI Builder Signal Digest (Transparent + Sourced)
+Generate short, post-ready digests that answer: **what is it, why should builders care, and how mature is it**.
 
-> Create a transparent, sourced “Top 3–5” AI builder signal digest (weekly or date-range) from a list of links or from a local signals log; includes a short “w...
+## Rules (non-negotiable)
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-builder-signal-digest`
-- **Source URL:** [https://clawhub.ai/skills/ai-builder-signal-digest](https://clawhub.ai/skills/ai-builder-signal-digest)
+- **Source-first:** every item must include a primary link.
+- **No speculation:** don’t claim adoption, performance, or production readiness unless the source states it.
+- **Transparent maturity:**
+  - GitHub repos → include **stars/forks** (or “unknown” if you can’t fetch).
+  - Papers → label as **paper** and prefer quoting the headline quantitative claim from the abstract.
+  - Very early repos (low stars/forks) → explicitly call it out (“early / reference implementation”).
 
-## Overview
+## Preferred output shape
 
+Title + 3–5 numbered bullets.
 
-## Installation
-To install this skill, run the following command in your terminal:
+Each bullet:
+- **Name** — one-liner (what it is)
+- **Why care:** one sentence (builder-relevant benefit)
+- **Maturity:** one short clause (e.g., “early repo (~X★, Y forks)” or “paper + open-source link”)
+- Link
+
+Keep it tight. If a digest needs nuance, add a single “Notes” line at the end.
+
+## Use the bundled script (recommended)
+
+If you have a local JSONL signals log (e.g., `memory/edge-signal-miner.normalized.jsonl`), use:
+
 ```bash
-hermes skills install clawhub/ai-builder-signal-digest
+python3 skills/ai-builder-signal-digest/scripts/make_digest.py \
+  --input memory/edge-signal-miner.normalized.jsonl \
+  --since 2026-03-05 \
+  --until 2026-03-19 \
+  --top 5 \
+  --category "Secure Cognitive / CDS" \
+  --out /tmp/digest.md
 ```
+
+If you already have curated links, you can pass them directly:
+
+```bash
+python3 skills/ai-builder-signal-digest/scripts/make_digest.py \
+  --links https://github.com/Kailash-Sankar/PocketMCP https://arxiv.org/abs/2603.04428 \
+  --out /tmp/digest.md
+```
+
+## What to do if GitHub stats fetch fails
+
+- Keep the item.
+- Replace maturity with: `Maturity: GitHub stats unavailable (rate-limit/blocked).`
+- Do **not** guess.

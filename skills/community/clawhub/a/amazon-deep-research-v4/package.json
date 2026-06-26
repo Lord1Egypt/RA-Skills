@@ -1,0 +1,12 @@
+{
+  "name": "amazon-deep-research-v4",
+  "version": "1.0.0-beta.1",
+  "description": "Amazon deep research skill",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["amazon", "research"],
+  "author": "",
+  "license": "ISC"
+}

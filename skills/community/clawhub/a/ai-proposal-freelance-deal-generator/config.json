@@ -1,0 +1,186 @@
+{
+  "skill_id": "ai-proposal-freelance-deal-generator",
+  "version": "1.0.0",
+  "input_schema": {
+    "fields": [
+      {
+        "id": "service_offered",
+        "label": "Service Offered",
+        "type": "text",
+        "placeholder": "e.g., Shopify store design, Facebook Ads management, video editing, SEO copywriting",
+        "required": true,
+        "max_length": 200,
+        "help_text": "Be specific. The more detail you give, the more targeted your proposal will be."
+      },
+      {
+        "id": "target_client",
+        "label": "Target Client",
+        "type": "text",
+        "placeholder": "e.g., A SaaS startup wanting to redesign their homepage to increase signups",
+        "required": true,
+        "max_length": 300,
+        "help_text": "Describe who the client is, what their business does, and what they seem to care about."
+      },
+      {
+        "id": "job_description",
+        "label": "Client Request / Job Description",
+        "type": "textarea",
+        "placeholder": "Paste the full job post, brief, or description of what the client asked for...",
+        "required": false,
+        "max_length": 2000,
+        "help_text": "Paste the actual job post or client message if you have it. This dramatically improves personalization. If not available, describe the project in your own words."
+      },
+      {
+        "id": "experience_level",
+        "label": "Your Experience Level",
+        "type": "select",
+        "required": true,
+        "default": "Intermediate",
+        "options": [
+          {
+            "value": "Beginner",
+            "label": "Beginner — Less than 1 year, few or no past clients"
+          },
+          {
+            "value": "Intermediate",
+            "label": "Intermediate — 1-3 years, some proven results"
+          },
+          {
+            "value": "Expert",
+            "label": "Expert — 3+ years, strong portfolio and testimonials"
+          },
+          {
+            "value": "Agency",
+            "label": "Agency — Team-based, positioning for enterprise or high-ticket clients"
+          }
+        ],
+        "help_text": "This affects how your credibility is framed in the proposal."
+      },
+      {
+        "id": "pricing_range",
+        "label": "Your Pricing / Rate",
+        "type": "text",
+        "placeholder": "e.g., $500-$1,500 project fee | $75/hr | $3,000/month retainer",
+        "required": true,
+        "max_length": 100,
+        "help_text": "Include the format (project / hourly / monthly) and the range you're targeting."
+      },
+      {
+        "id": "tone",
+        "label": "Proposal Tone",
+        "type": "select",
+        "required": true,
+        "default": "Professional",
+        "options": [
+          {
+            "value": "Professional",
+            "label": "Professional — Polished, confident, business-appropriate"
+          },
+          {
+            "value": "Friendly",
+            "label": "Friendly — Warm, approachable, human-first"
+          },
+          {
+            "value": "Bold",
+            "label": "Bold — Direct, no-fluff, alpha energy"
+          },
+          {
+            "value": "Conversational",
+            "label": "Conversational — Casual, like texting a colleague"
+          },
+          {
+            "value": "Premium",
+            "label": "Premium — Elevated, luxury positioning, high-ticket feel"
+          }
+        ],
+        "help_text": "Match this to how you naturally communicate and what your target client responds to."
+      },
+      {
+        "id": "unique_angle",
+        "label": "Your Unique Angle or Differentiator (optional)",
+        "type": "text",
+        "placeholder": "e.g., I specialize only in DTC brands. I've built 40+ Shopify stores. I offer a results guarantee.",
+        "required": false,
+        "max_length": 300,
+        "help_text": "What makes you different from every other freelancer? If blank, the AI will infer one from your other inputs."
+      },
+      {
+        "id": "past_result",
+        "label": "A Relevant Past Result (optional)",
+        "type": "text",
+        "placeholder": "e.g., Increased a client's conversion rate from 1.2% to 3.8% in 6 weeks",
+        "required": false,
+        "max_length": 300,
+        "help_text": "One specific, concrete result you've achieved for a similar client. Specificity = trust."
+      },
+      {
+        "id": "tier",
+        "label": "Skill Tier",
+        "type": "select",
+        "required": true,
+        "default": "PRO",
+        "options": [
+          {
+            "value": "FREE",
+            "label": "FREE — Short proposal only"
+          },
+          {
+            "value": "PRO",
+            "label": "PRO — Short + Long proposals, Pricing Strategy, Objection Handler"
+          },
+          {
+            "value": "GROWTH",
+            "label": "GROWTH — PRO + Follow-Up Sequence + A/B Variations"
+          },
+          {
+            "value": "PREMIUM",
+            "label": "PREMIUM — Everything + Upsell Scripts + Retainer Pitch + Agency Positioning"
+          }
+        ]
+      }
+    ]
+  },
+  "output_schema": {
+    "sections": {
+      "FREE": [
+        { "id": "short_proposal", "label": "Short Proposal" }
+      ],
+      "PRO": [
+        { "id": "short_proposal", "label": "Short Proposal" },
+        { "id": "long_proposal", "label": "Long Proposal" },
+        { "id": "pricing_strategy", "label": "Pricing Strategy" },
+        { "id": "objection_handler", "label": "Objection Handler" }
+      ],
+      "GROWTH": [
+        { "id": "short_proposal", "label": "Short Proposal" },
+        { "id": "long_proposal", "label": "Long Proposal" },
+        { "id": "pricing_strategy", "label": "Pricing Strategy" },
+        { "id": "objection_handler", "label": "Objection Handler" },
+        { "id": "follow_up_sequence", "label": "Follow-Up Sequence (3 messages)" },
+        { "id": "ab_variations", "label": "A/B Proposal Variations" }
+      ],
+      "PREMIUM": [
+        { "id": "short_proposal", "label": "Short Proposal" },
+        { "id": "long_proposal", "label": "Long Proposal" },
+        { "id": "pricing_strategy", "label": "Pricing Strategy" },
+        { "id": "objection_handler", "label": "Objection Handler" },
+        { "id": "follow_up_sequence", "label": "Follow-Up Sequence (3 messages)" },
+        { "id": "ab_variations", "label": "A/B Proposal Variations" },
+        { "id": "upsell_retainer", "label": "Upsell & Retainer Scripts" }
+      ]
+    },
+    "format": "markdown"
+  },
+  "model_settings": {
+    "model": "claude-sonnet-4-20250514",
+    "max_tokens": 4000,
+    "temperature": 0.75
+  },
+  "ui_settings": {
+    "enable_copy_button": true,
+    "enable_download_as_pdf": true,
+    "enable_download_as_docx": true,
+    "section_collapsible": true,
+    "show_tier_badge": true
+  }
+}

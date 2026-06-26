@@ -1,0 +1,7 @@
+interface:
+  display_name: "ALab Global Admin"
+  short_description: "Administer ALab homes and root operations"
+  default_prompt: "Use $alab-global-admin to initialize or maintain an ALab home, manage root-level resources, and hand project work to $alab-project-controller or experiment worktree work to $alab-experiment-worker with least-privilege credentials."
+
+policy:
+  allow_implicit_invocation: true

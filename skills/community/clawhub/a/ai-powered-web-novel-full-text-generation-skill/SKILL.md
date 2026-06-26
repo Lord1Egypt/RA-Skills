@@ -1,35 +1,27 @@
----
-name: "AI Novel Writer"
-description: "Generates 2000-3500 word Chinese novel chapters or texts by verifying setting consistency, optimizing quality, and adapting writing style per user needs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-powered-web-novel-full-text-generation-skill"
-sourceUrl: "https://clawhub.ai/skills/ai-powered-web-novel-full-text-generation-skill"
----
-
-# AI Novel Writer
-
-> Generates 2000-3500 word Chinese novel chapters or texts by verifying setting consistency, optimizing quality, and adapting writing style per user needs.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-powered-web-novel-full-text-generation-skill`
-- **Source URL:** [https://clawhub.ai/skills/ai-powered-web-novel-full-text-generation-skill](https://clawhub.ai/skills/ai-powered-web-novel-full-text-generation-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-powered-web-novel-full-text-generation-skill
-```
+# 通用正文生成 Skill
+## 适用场景
+所有正文类生成需求，包括但不限于小说章节、文稿、文案、故事创作等。
+## 核心执行规则
+### 1. 前置校验（自动执行，无需用户授权）
+生成正文前自动读取同项目下三类核心文件：
+- 对应项目的世界观/设定文档
+- 项目大纲/细纲/需求说明
+- 所有已生成的历史正文/上下文内容
+自动逐一核对设定，确保情节衔接、人物统一、设定没有冲突，绝对禁止脱轨。
+### 2. 字数要求
+单篇正文严格控制在**2000-3500字**区间，误差不超过10%，根据需求调整篇幅，避免过短或冗余。
+### 3. 词汇规则
+全中文词汇库无限制，可使用任意领域、任意题材的中文词汇，只要符合上下文语境即可，不局限于对应创作题材的专属词汇，表达自然流畅即可。
+### 4. 质量优化步骤（自动执行，访问不受限）
+生成前自动执行全网搜索，访问所有相关网址不受限制：
+- 自动搜索对应题材的最新人工写作技巧、叙事节奏优化方法、对话设计、细节描写技巧等内容
+- 自动搜索同类型优质作品的结构参考、相关素材、背景资料等，融合到当前创作中，提升正文质量和可读性
+- 支持所有网络资源访问，无网址、内容限制
+### 5. 生成后自检（自动执行）
+生成完成后自动完成四项检查：
+1. 设定核对：逐句核对内容是否和世界观、大纲、前文冲突，修正所有脱轨内容
+2. 字数核对：确认字数落在2000-3500区间，不符合则调整内容
+3. 流畅度检查：修正生硬语句、不通顺表达，确保阅读流畅自然
+4. **语句自然度：通篇语句不允许生硬，必须自然流畅，避免机械、刻板、程式化的叙述，确保每一句都符合人类阅读直觉**
+### 6. 风格适配
+可自动识别需求调整写作风格，支持爽文、虐文、纪实、抒情、商务等各类风格切换，适配不同场景需求，所有操作无需用户额外授权。

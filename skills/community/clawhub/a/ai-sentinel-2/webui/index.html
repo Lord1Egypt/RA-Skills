@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI前沿哨兵 - 控制台</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">⌘</span>
+                <span class="logo-text">哨兵</span>
+            </div>
+            
+            <nav class="nav">
+                <button class="nav-item active" data-view="dashboard">
+                    <span class="nav-icon">◈</span>
+                    <span class="nav-label">概览</span>
+                </button>
+                <button class="nav-item" data-view="sources">
+                    <span class="nav-icon">◎</span>
+                    <span class="nav-label">信息源</span>
+                </button>
+                <button class="nav-item" data-view="reports">
+                    <span class="nav-icon">◫</span>
+                    <span class="nav-label">报告</span>
+                </button>
+                <button class="nav-item" data-view="settings">
+                    <span class="nav-icon">⚙</span>
+                    <span class="nav-label">配置</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">就绪</span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main">
+            <!-- 顶部栏 -->
+            <header class="header">
+                <div class="header-title">
+                    <h1 id="viewTitle">概览</h1>
+                    <span class="header-time" id="currentTime"></span>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="collectBtn">
+                        <span>⏱</span> 立即采集
+                    </button>
+                    <button class="btn btn-primary" id="reportBtn">
+                        <span>◧</span> 生成报告
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content">
+                <!-- ==================== 概览视图 ==================== -->
+                <div class="view active" id="dashboardView">
+                    <!-- 统计卡片 -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="statGithub">-</div>
+                            <div class="stat-label">GitHub项目</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="statArxiv">-</div>
+                            <div class="stat-label">arXiv论文</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="statHN">-</div>
+                            <div class="stat-label">HN讨论</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="statBlogs">-</div>
+                            <div class="stat-label">博客文章</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 热门内容 -->
+                    <section class="section">
+                        <div class="section-header">
+                            <h2>热门内容</h2>
+                            <div class="filter-tabs">
+                                <button class="tab active" data-filter="all">全部</button>
+                                <button class="tab" data-filter="projects">项目</button>
+                                <button class="tab" data-filter="papers">论文</button>
+                                <button class="tab" data-filter="discussions">讨论</button>
+                            </div>
+                        </div>
+                        <div class="content-list" id="hotContent">
+                            <!-- 动态内容 -->
+                        </div>
+                    </section>
+                    
+                    <!-- 最近采集 -->
+                    <section class="section">
+                        <div class="section-header">
+                            <h2>最近采集记录</h2>
+                        </div>
+                        <div class="log-list" id="logList">
+                            <div class="log-empty">暂无采集记录</div>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- ==================== 信息源视图 ==================== -->
+                <div class="view" id="sourcesView">
+                    <!-- 信息源页面头部 -->
+                    <div class="sources-header">
+                        <div class="sources-header-left">
+                            <h2>信息源管理</h2>
+                            <p class="sources-header-desc">管理和监控您的AI情报采集来源</p>
+                        </div>
+                        <button class="btn btn-primary" id="addSourceBtn">
+                            <span>+</span> 添加信息源
+                        </button>
+                    </div>
+                    
+                    <!-- 分类标签 -->
+                    <div class="sources-filters">
+                        <button class="filter-btn active" data-filter="all">
+                            <span>📦</span> 全部
+                        </button>
+                        <button class="filter-btn" data-filter="official-blog">
+                            <span>🏢</span> 官方博客
+                        </button>
+                        <button class="filter-btn" data-filter="tech-community">
+                            <span>💬</span> 技术社区
+                        </button>
+                        <button class="filter-btn" data-filter="academic">
+                            <span>📚</span> 学术论文
+                        </button>
+                        <button class="filter-btn" data-filter="social">
+                            <span>🌐</span> 社交媒体
+                        </button>
+                        <button class="filter-btn" data-filter="tutorial">
+                            <span>📖</span> 教程博客
+                        </button>
+                        <button class="filter-btn" data-filter="custom">
+                            <span>✏️</span> 自定义
+                        </button>
+                    </div>
+                    
+                    <!-- 信息源网格 -->
+                    <div class="sources-grid" id="sourcesGrid">
+                        <!-- 动态生成 -->
+                    </div>
+                    
+                    <!-- 帮助提示 -->
+                    <div class="sources-help">
+                        <div class="help-card">
+                            <div class="help-icon">💡</div>
+                            <div class="help-content">
+                                <h4>什么是信息源？</h4>
+                                <p>信息源是您获取AI情报的渠道，比如某个博客、论坛或论文网站。每个信息源会定期采集最新内容，帮助您及时了解行业动态。</p>
+                            </div>
+                        </div>
+                        <div class="help-card">
+                            <div class="help-icon">🔗</div>
+                            <div class="help-content">
+                                <h4>如何添加自定义信息源？</h4>
+                                <p>点击"添加信息源"按钮，填写博客名称和RSS订阅地址即可。大多数博客网站底部都有RSS图标，点击即可获取订阅地址。</p>
+                            </div>
+                        </div>
+                        <div class="help-card">
+                            <div class="help-icon">⚡</div>
+                            <div class="help-content">
+                                <h4>快速添加模板</h4>
+                                <p>在添加信息源弹窗中，我们提供了一些常用的AI博客模板，点击即可一键添加，省去手动输入的麻烦。</p>
+                            </div>
+                        </div>
+                        <div class="help-card">
+                            <div class="help-icon">🐦</div>
+                            <div class="help-content">
+                                <h4>如何添加Twitter信息源？</h4>
+                                <p>访问<a href="https://developer.twitter.com" target="_blank">Twitter开发者平台</a>申请Bearer Token，然后在"配置"页面填入即可启用Twitter采集功能。</p>
+                                <p style="color: #ffa726; font-size: 12px;">⚠️ 需要Twitter开发者账号（通常1-2天审核）</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 报告视图 ==================== -->
+                <div class="view" id="reportsView">
+                    <div class="report-controls">
+                        <select class="select" id="reportType">
+                            <option value="morning">晨报</option>
+                            <option value="evening">晚报</option>
+                        </select>
+                        <button class="btn btn-primary" id="generateReportBtn">生成报告</button>
+                    </div>
+                    <div class="report-preview" id="reportPreview">
+                        <div class="report-empty">
+                            <p>点击"生成报告"按钮预览报告内容</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ==================== 配置视图 ==================== -->
+                <div class="view" id="settingsView">
+                    <div class="settings-group">
+                        <h3>API配置</h3>
+                        <div class="setting-item">
+                            <label>Twitter Bearer Token</label>
+                            <input type="password" id="twitterToken" placeholder="请输入Token">
+                            <span class="setting-hint">用于采集Twitter内容，可选配置。获取方式：<a href="https://developer.twitter.com" target="_blank">Twitter开发者平台</a></span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>关键词设置</h3>
+                        <div class="setting-item">
+                            <label>关注关键词</label>
+                            <div class="tags-input" id="keywordsTags">
+                                <input type="text" id="newKeyword" placeholder="输入关键词后按回车添加">
+                            </div>
+                            <span class="setting-hint">相关内容会获得额外加分。例如：LLM、GPT、Claude、Stable Diffusion 等</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>调度设置</h3>
+                        <div class="setting-item">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="morningEnabled" checked>
+                                <span>晨报 (08:00) - 推送隔夜重要动态</span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="eveningEnabled" checked>
+                                <span>晚报 (20:00) - 推送全天热点汇总</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveSettingsBtn">保存配置</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- ==================== 添加信息源模态框 ==================== -->
+    <div class="modal" id="addSourceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加信息源</h3>
+                <button class="modal-close" id="closeModal">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- 快速添加区域 -->
+                <div class="quick-add-section" id="quickAddSection">
+                    <h4>🏎️ 快速添加 - 热门AI博客</h4>
+                    <p class="quick-add-hint">点击即可一键添加以下常用信息源</p>
+                    
+                    <!-- 分类标签 -->
+                    <div class="category-tabs">
+                        <button class="category-tab active" data-category="all">全部</button>
+                        <button class="category-tab" data-category="official-blog">🏢 官方博客</button>
+                        <button class="category-tab" data-category="tutorial">📖 教程博客</button>
+                    </div>
+                    
+                    <div class="quick-add-grid" id="quickAddTemplates">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+                
+                <!-- 手动添加表单 -->
+                <div class="manual-add-section">
+                    <h4>✏️ 手动添加自定义源</h4>
+                    <form id="addSourceForm">
+                        <div class="form-group">
+                            <label for="sourceName">信息源名称 *</label>
+                            <input type="text" id="sourceName" placeholder="例如：OpenAI 官方博客" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sourceUrl">RSS订阅地址 *</label>
+                            <input type="url" id="sourceUrl" placeholder="https://example.com/feed.xml" required>
+                            <span class="form-hint">大多数网站底部有RSS图标，或在URL后加 /feed、/rss</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="sourceDesc">描述（可选）</label>
+                            <input type="text" id="sourceDesc" placeholder="简短描述这个信息源">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">添加信息源</button>
+                    </form>
+                </div>
+                
+                <!-- RSS说明 -->
+                <div class="rss-guide">
+                    <h4>🔍 如何找到RSS订阅地址？</h4>
+                    <ol>
+                        <li>打开目标博客或新闻网站</li>
+                        <li>查找页面底部是否有 <code>RSS</code>、<code>Feed</code> 或 <code>订阅</code> 图标</li>
+                        <li>点击RSS图标，复制浏览器地址栏的URL</li>
+                        <li>如果找不到，可以尝试在网站域名后加 <code>/feed</code>、<code>/rss</code> 或 <code>/atom.xml</code></li>
+                    </ol>
+                    <p class="rss-tip">💡 <strong>提示：</strong>大多数主流博客平台（WordPress、Medium等）都支持RSS</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast通知 -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- 加载状态 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <span>采集中...</span>
+    </div>
+    
+    <script src="app.js"></script>
+    
+    <!-- 信息源分类筛选脚本 -->
+    <script>
+        // 页面加载完成后绑定分类筛选事件
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.sources-filters .filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.dataset.filter;
+                    if (typeof renderSources === 'function') {
+                        renderSources(filter);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

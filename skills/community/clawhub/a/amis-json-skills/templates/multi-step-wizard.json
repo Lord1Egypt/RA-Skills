@@ -1,0 +1,72 @@
+/**
+ * 多步骤向导模板
+ * 适用场景：多步骤流程（注册、申请、审批等）
+ * 核心组件：Wizard
+ */
+{
+  "type": "page",
+  "title": "向导示例",
+  "body": {
+    "type": "wizard",
+    "api": "post:/api/submit",
+    "steps": [
+      {
+        "title": "基本信息",
+        "controls": [
+          {
+            "type": "text",
+            "name": "name",
+            "label": "姓名",
+            "required": true
+          },
+          {
+            "type": "text",
+            "name": "email",
+            "label": "邮箱",
+            "required": true
+          }
+        ]
+      },
+      {
+        "title": "详细信息",
+        "controls": [
+          {
+            "type": "text",
+            "name": "company",
+            "label": "公司"
+          },
+          {
+            "type": "text",
+            "name": "position",
+            "label": "职位"
+          }
+        ]
+      },
+      {
+        "title": "确认提交",
+        "controls": [
+          {
+            "type": "static",
+            "name": "name",
+            "label": "姓名"
+          },
+          {
+            "type": "static",
+            "name": "email",
+            "label": "邮箱"
+          },
+          {
+            "type": "static",
+            "name": "company",
+            "label": "公司"
+          },
+          {
+            "type": "static",
+            "name": "position",
+            "label": "职位"
+          }
+        ]
+      }
+    ]
+  }
+}

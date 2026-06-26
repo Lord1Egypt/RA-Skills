@@ -1,0 +1,21 @@
+{
+  "name": "github-bounty-hunter",
+  "version": "1.0.0",
+  "description": "Automatically search for low-competition GitHub bounty tasks",
+  "main": "scripts/search.js",
+  "scripts": {
+    "search": "node scripts/search.js"
+  },
+  "keywords": [
+    "github",
+    "bounty",
+    "hunting",
+    "automation",
+    "search"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bin": {
+    "github-bounty-hunter": "scripts/search.js"
+  }
+}

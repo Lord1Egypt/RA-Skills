@@ -1,0 +1,8 @@
+pandas
+requests
+openai
+anthropic
+chromadb
+pypdf
+beautifulsoup4
+lxml

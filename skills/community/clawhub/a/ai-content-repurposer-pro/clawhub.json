@@ -1,0 +1,65 @@
+{
+  "name": "AI Content Repurposer",
+  "version": "1.0.0",
+  "description": "Transform long-form content into multiple formats: YouTube→TikTok/Shorts, Blog→Twitter/LinkedIn, Podcast→Transcripts/Summaries",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "category": "Content Creation",
+  "tags": [
+    "content",
+    "repurposing",
+    "youtube",
+    "tiktok",
+    "twitter",
+    "linkedin",
+    "podcast",
+    "ai",
+    "automation",
+    "social-media"
+  ],
+  "pricing": {
+    "type": "subscription",
+    "amount": 79,
+    "currency": "USD",
+    "period": "month",
+    "trial_days": 7
+  },
+  "requirements": {
+    "node": ">=18.0.0",
+    "env": [
+      "OPENAI_API_KEY"
+    ]
+  },
+  "features": [
+    "YouTube to TikTok/Shorts/Reels conversion",
+    "Blog to Twitter thread conversion",
+    "Blog to LinkedIn post conversion",
+    "Podcast transcript formatting",
+    "Podcast summary generation",
+    "Batch processing",
+    "API access",
+    "Interactive mode"
+  ],
+  "use_cases": [
+    "Content creators scaling output",
+    "Marketing teams repurposing campaigns",
+    "Podcasters creating show notes",
+    "Agencies serving multiple clients"
+  ],
+  "roi": {
+    "time_saved_per_piece": "2-3 hours",
+    "monthly_savings_at_50_per_hr": "$921-7,421",
+    "cost": "$79/month"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/ai-content-repurposer"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/ai-content-repurposer/issues"
+  },
+  "homepage": "https://clawhub.ai/skills/ai-content-repurposer",
+  "documentation": "SKILL.md",
+  "entry_point": "bin/cli.js",
+  "main": "src/converter.js"
+}

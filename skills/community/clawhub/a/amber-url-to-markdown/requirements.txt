@@ -1,0 +1,28 @@
+# Amber Url to Markdown - 依赖列表（V3.1 完整版）
+# 安装：pip install -r requirements.txt
+
+# 核心依赖
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+markdownify>=0.11.0
+
+# 编码检测（V3.1 新增）
+chardet>=5.0.0
+
+# 异步批量处理（V3.1 新增）
+aiohttp>=3.9.0
+
+# 浏览器自动化（首选方案）
+playwright>=1.40.0
+
+# 备选方案（可选）
+scrapling>=0.4.0
+
+# 动态页面支持（可选）
+requests-html>=0.10.0
+
+# 开发依赖
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0

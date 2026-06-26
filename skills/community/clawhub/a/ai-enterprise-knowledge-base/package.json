@@ -1,0 +1,19 @@
+{
+  "name": "ai-enterprise-knowledge-base",
+  "version": "1.0.0",
+  "description": "企业 AI 知识库 - 5分钟搭建企业内部问答系统，支持文档上传、智能检索、权限管理",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "ai",
+    "knowledge-base",
+    "enterprise",
+    "openclaw",
+    "rag",
+    "qa"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT"
+}

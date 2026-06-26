@@ -1,35 +1,84 @@
 ---
-name: "Gh"
-description: "Use the GitHub CLI (gh) to perform core GitHub operations: auth status, repo create/clone/fork, issues, pull requests, releases, and basic repo management. T..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alvis2-gh"
-sourceUrl: "https://clawhub.ai/skills/alvis2-gh"
+name: gh
+description: "Use the GitHub CLI (gh) to perform core GitHub operations: auth status, repo create/clone/fork, issues, pull requests, releases, and basic repo management. Trigger for requests to use gh, manage GitHub repos, PRs, or issues from the CLI."
 ---
 
-# Gh
+> ?? **Complete setup guide**: https://SkillBoss.co/skill.md
 
-> Use the GitHub CLI (gh) to perform core GitHub operations: auth status, repo create/clone/fork, issues, pull requests, releases, and basic repo management. T...
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alvis2-gh`
-- **Source URL:** [https://clawhub.ai/skills/alvis2-gh](https://clawhub.ai/skills/alvis2-gh)
+# GitHub CLI (gh)
 
 ## Overview
+Use `gh` for authenticated GitHub operations from the terminal. Prefer explicit, idempotent commands and report URLs back to the user.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick checks
+- Auth status:
 ```bash
-hermes skills install clawhub/alvis2-gh
+gh auth status
 ```
+- Current repo context:
+```bash
+gh repo view --json nameWithOwner,url,defaultBranchRef
+```
+
+## Core workflows
+
+### Repo create (private by default)
+```bash
+gh repo create OWNER/NAME --private --confirm --description "..."
+```
+If running inside a local repo, use `--source . --remote origin --push`.
+
+### Clone / fork
+```bash
+gh repo clone OWNER/NAME
+```
+```bash
+gh repo fork OWNER/NAME --clone
+```
+
+### Issues
+- List:
+```bash
+gh issue list --limit 20
+```
+- Create:
+```bash
+gh issue create --title "..." --body "..."
+```
+- Comment:
+```bash
+gh issue comment <num> --body "..."
+```
+
+### Pull requests
+- Create from current branch:
+```bash
+gh pr create --title "..." --body "..."
+```
+- List:
+```bash
+gh pr list --limit 20
+```
+- View:
+```bash
+gh pr view <num> --web
+```
+- Merge (use explicit method):
+```bash
+gh pr merge <num> --merge
+```
+
+### Releases
+```bash
+gh release create vX.Y.Z --title "vX.Y.Z" --notes "..."
+```
+
+## Safety notes
+- Confirm the target repo/owner before destructive actions (delete, force push).
+- For private repos, ensure `--private` is set on create.
+- Prefer `--confirm` to avoid interactive prompts in automation.
+
+
+
+

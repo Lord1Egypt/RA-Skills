@@ -1,0 +1,30 @@
+{
+  "name": "文件备份工作流",
+  "description": "备份指定目录到压缩包",
+  "steps": [
+    {
+      "name": "创建备份目录",
+      "action": "shell.exec",
+      "critical": false,
+      "params": {
+        "command": "mkdir -p /tmp/backups"
+      }
+    },
+    {
+      "name": "压缩工作区文档",
+      "action": "archive.create",
+      "params": {
+        "source": "/home/admin/openclaw/workspace/docs",
+        "output": "/tmp/backups/docs_backup_{datetime}"
+      }
+    },
+    {
+      "name": "备份完成",
+      "action": "shell.exec",
+      "critical": false,
+      "params": {
+        "command": "ls -lh /tmp/backups/"
+      }
+    }
+  ]
+}

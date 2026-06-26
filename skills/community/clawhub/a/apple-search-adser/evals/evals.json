@@ -1,0 +1,20 @@
+{
+  "skill_name": "asa",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我的健身 App FitFlow 准备第一次跑 Apple Search Ads，每天预算大概 50 美金，不知道怎么开始搭建 campaign，也不确定该选哪些关键词。",
+      "expected_output": "先做诊断确认 checkpoint（新用户、从零开始），给出 2-4 个关键词预览作为甜头，等用户确认后读取 campaign-structure.md 和 keyword-strategy.md，输出完整的四 campaign 架构 + 具体关键词列表 + 预算分配方案。"
+    },
+    {
+      "id": 2,
+      "prompt": "我的 App 跑了两个月 ASA，CPA 从最开始的 $8 涨到现在的 $22，预算每天 $200，主要跑的是 generic 和 competitor campaign。不知道为什么 CPA 越来越高，怎么办？",
+      "expected_output": "诊断 CPA 飙升原因（竞争加剧 / 关键词疲劳 / 没有负词导致浪费 / 没有 discovery campaign 补充新词），给出具体的排查步骤和优化方案，读取 bidding-optimization.md 和 performance-metrics.md。"
+    },
+    {
+      "id": 3,
+      "prompt": "我现在 ASA CPA $6，目标 $10，每天花大约 $150，想把 installs 从每天 25 个扩大到每天 100 个，预算可以加。怎么在保持 CPA 的情况下规模化？",
+      "expected_output": "识别这是 scaling 场景（CPA 健康，需要放量），读取 bidding-optimization.md，给出具体的 scaling 步骤：预算增加节奏、关键词扩张路径、从 discovery 挖新词的流程，以及如何协同 ASO 降低付费依赖。"
+    }
+  ]
+}

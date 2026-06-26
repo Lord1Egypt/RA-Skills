@@ -1,35 +1,120 @@
 ---
-name: "API Merchant Fee"
-description: "商户费率查询 API。当用户提到查询商户费率、商户信息、贷记卡费率、借记卡费率、扫码费率、商户管理费，或需要查询某个商户的费率信息时触发。触发词包括：查询商户费率、商户费率、商户费率查询、merchant fee。"
-category: "software-development"
-source: "ClawHub"
-tags: [api, finance]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-merchant-fee"
-sourceUrl: "https://clawhub.ai/skills/api-merchant-fee"
+name: api-merchant-fee
+description: 商户费率查询 API。当用户提到查询商户费率、商户信息、贷记卡费率、借记卡费率、扫码费率、商户管理费，或需要查询某个商户的费率信息时触发。触发词包括：查询商户费率、商户费率、商户费率查询、merchant fee。
 ---
 
-# API Merchant Fee
+# 商户费率查询
 
-> 商户费率查询 API。当用户提到查询商户费率、商户信息、贷记卡费率、借记卡费率、扫码费率、商户管理费，或需要查询某个商户的费率信息时触发。触发词包括：查询商户费率、商户费率、商户费率查询、merchant fee。
+## 请求参数
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-merchant-fee`
-- **Source URL:** [https://clawhub.ai/skills/api-merchant-fee](https://clawhub.ai/skills/api-merchant-fee)
+| 参数 | 含义 | 说明 |
+|------|------|------|
+| agentNo | 代理商号 | 32位字符串 |
+| apikey | API密钥 | AES加密密钥（Base64编码） |
+| userId | 商户编号 | 32位字符串，必须为请求代理商直属或团队商户 |
+| tusn | SN编号 | 终端SN编号 |
 
-## Overview
+## 认证信息管理
 
+agentNo 和 apikey 会自动保存到本地文件（`scripts/.auth.json`），后续查询如不更换代理商可直接复用。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/api-merchant-fee
+**更换代理商时**：提供新的 agentNo + apikey 即可。
+
+## 使用方式
+
+### 首次查询（或更换代理商）
+
+提供完整的四个参数：
+
 ```
+查询商户费率，代理商号 Ag21000030，apikey xxx，用户编号 BOSSPOS_230228172135uimbcv07，SN编号 00007302499999000232
+```
+
+### 同一代理商后续查询
+
+只提供 userId 和 tusn：
+
+```
+查询商户 BOSSPOS_230228172135uimbcv07 的费率，SN编号 00007302499999000232
+```
+
+### 更换代理商
+
+提供新的 agentNo + apikey：
+
+```
+查询商户费率，代理商号 Ag21000031，apikey yyy，用户编号 BOSSPOS_230228172135uimbcv07，SN编号 00007302499999000232
+```
+
+## 参数判断规则
+
+1. 用户提供 4 个参数（agentNo + apikey + userId + tusn）→ 直接使用，保存认证信息
+2. 用户只提供 2 个参数（userId + tusn）→ 读取本地保存的 agentNo + apikey
+3. 用户提供 3 个参数 → 询问是否缺少 agentNo/apikey
+4. 认证信息不存在且只提供 userId/tusn → 提示先提供 agentNo + apikey
+
+## 执行流程
+
+1. 解析用户输入，判断是否提供完整参数
+2. 如缺少 agentNo/apikey，从 `scripts/.auth.json` 读取
+3. 调用 `scripts/query_fee.py` 执行 API 请求
+4. 解析响应结果并格式化输出
+
+## 输出格式
+
+### 查询成功
+
+```
+✅ 商户费率信息
+
+**商户编号**：BOSSPOS_230228172135uimbcv07
+**商户名称**：XXX 商户
+**所属代理**：代理名称（编号）
+
+━━ 费率详情 ━━
+**贷记卡基础费率**：0.55%
+**借记卡费率**：0.45%
+**借记卡封顶手续费**：25元
+**云闪付费率**：0.38%
+**支付宝龙舟计划费率**：0.38%
+**扫码费率**（微信/支付宝）：0.38%
+**出款服务费**：1元
+**商户管理费1**：0.1%
+**商户管理费2**：0.05%
+
+**绑定终端**：SN123456, SN654321
+```
+
+### 查询失败
+
+```
+❌ 查询失败
+
+**返回码**：9999
+**原因**：商户未配置费率
+```
+
+### 参数缺失
+
+```
+⚠️ 参数不完整
+
+缺少以下必填参数：
+- agentNo（代理商号）
+- apikey（API密钥）
+
+请提供完整信息后重试，格式示例：
+查询商户费率，代理商号 XXX，apikey XXX，用户编号 XXX，SN编号 XXX
+```
+
+## 错误处理
+
+- **网络错误**：提示检查网络或 API 服务
+- **认证失败（401/403）**：提示检查 API Key 配置
+- **业务失败（非0000）**：显示具体错误码和原因
+- **商户不属于该代理**：提示用户检查商户编号是否正确
+
+## 注意事项
+
+- 永远不要在响应中暴露 API Key
+- 费率单位：百分比格式（如 0.55%），封顶手续费单位为元

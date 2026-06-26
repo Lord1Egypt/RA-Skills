@@ -1,0 +1,77 @@
+{
+  "character": "Eriri Spencer Sawamura",
+  "work": "Saekano",
+  "source_type": "mixed",
+  "source_url": "",
+  "quotes": [
+    {
+      "text": "Sketching a scene as you see it gives you a sense of being there, that's totally different from painting a copy of a photograph.",
+      "speaker": "Eriri Spencer Sawamura",
+      "context": "Saenai Heroine no Sodatekata",
+      "section": "",
+      "quote_id": "505c2f77",
+      "confidence": 0.95,
+      "source_url": "https://yurippe.vercel.app/api/quotes?character=Eriri%20Spencer%20Sawamura",
+      "source_type": "yurippe",
+      "is_original_quote": true
+    },
+    {
+      "text": "Eriri is a model and sophisticated young lady at school. Because of her manners, she is respected and idolized by other students at the school. When nobody is around, she reverts into a hardcore otaku just likeTomoya Aki. However, almost none of them know about her otaku side.",
+      "speaker": "unknown",
+      "context": "Fandom角色描述",
+      "section": "Personality[]",
+      "quote_id": "04d68f1f",
+      "confidence": 0.6,
+      "source_url": "",
+      "source_type": "excerpt",
+      "is_original_quote": false
+    },
+    {
+      "text": "She is famous for being classy and independent, but she really is emotional and ferocious, as described by Tomoya. She is very hardworking as her occupation as an artist and with the support from Tomoya.",
+      "speaker": "unknown",
+      "context": "Fandom角色描述",
+      "section": "Personality[]",
+      "quote_id": "17b795ae",
+      "confidence": 0.6,
+      "source_url": "",
+      "source_type": "excerpt",
+      "is_original_quote": false
+    },
+    {
+      "text": "She is very determined at times. WhenAkane Kosakainsulted her drawing skills and said that they were mediocre, Eriri was very offended and drove herself to produce more art to prove Akane wrong, subsequently pulling herself out of her art slump.",
+      "speaker": "unknown",
+      "context": "Fandom角色描述",
+      "section": "Personality[]",
+      "quote_id": "3243171c",
+      "confidence": 0.6,
+      "source_url": "",
+      "source_type": "excerpt",
+      "is_original_quote": false
+    },
+    {
+      "text": "Eriri is the daughter ofMr. Spencer(a British father) andSayuri Sawamura(a Japanese mother). Eriri andTomoya Akiare childhood friends. It is also shown that since Eriri was very little, she had always brought up Tomoya's name and that she only drew drawings leaving her studies aside.",
+      "speaker": "unknown",
+      "context": "Fandom角色描述",
+      "section": "Background[]",
+      "quote_id": "0db141fc",
+      "confidence": 0.6,
+      "source_url": "",
+      "source_type": "excerpt",
+      "is_original_quote": false
+    },
+    {
+      "text": "Since elementary school, she's done nothing but focus on her drawings in stony silence, as if she wanted to forget something or to overcome something. Then, she recently started bringing up conversations about Tomoya, still a very little, but she seemed happy.",
+      "speaker": "unknown",
+      "context": "Fandom角色描述",
+      "section": "Background[]",
+      "quote_id": "a7591633",
+      "confidence": 0.6,
+      "source_url": "",
+      "source_type": "excerpt",
+      "is_original_quote": false
+    }
+  ],
+  "fetched_at": 1772453314.859623,
+  "quote_count": 6,
+  "note": "来源: yurippe, excerpt | 原始台词: 1条 | 角色描述: 5条\n⚠️ 注意：包含角色描述摘录（非原始台词），仅用于辅助理解角色背景"
+}

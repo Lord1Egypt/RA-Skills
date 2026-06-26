@@ -1,0 +1,42 @@
+{
+  "weekdays": ["Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο", "Κυριακή"],
+
+  "note_title":      "Ημερολόγιο υγείας GTR3",
+  "callout_title":   "Αυτόματη δημιουργία",
+  "callout_body":    "Αυτή η σημείωση δημιουργήθηκε αυτόματα από τα δεδομένα του Amazfit GTR3 μέσω HCGateway.",
+
+  "summary_heading": "Σύνοψη",
+  "col_metric":      "Μέτρηση",
+  "col_value":       "Τιμή",
+  "row_steps":       "Βήματα",
+  "row_distance":    "Απόσταση",
+  "row_sleep_dur":   "Διάρκεια ύπνου",
+  "row_resting_hr":  "Καρδ. συχν. ηρεμίας",
+  "row_spo2":        "SpO2 (μέσος)",
+
+  "sleep_heading":   "Ύπνος",
+  "sleep_period":    "Περίοδος",
+  "sleep_duration":  "Διάρκεια",
+  "sleep_no_data":   "Δεν υπάρχουν δεδομένα ύπνου για αυτή την ημερομηνία.",
+  "col_stage":       "Φάση",
+  "col_minutes":     "Λεπτά",
+  "stage_deep":      "Βαθύς",
+  "stage_rem":       "REM",
+  "stage_light":     "Ελαφρύς",
+  "stage_awake":     "Ξύπνιος",
+
+  "hr_heading":      "Καρδιακός ρυθμός",
+  "hr_avg":          "Μέσος",
+  "hr_resting":      "Καρδ. συχν. ηρεμίας",
+
+  "spo2_heading":    "SpO2",
+  "spo2_avg":        "Μέση κορεσμός οξυγόνου",
+
+  "nav_yesterday":   "Χθες",
+  "nav_tomorrow":    "Αύριο",
+
+  "fm_weekday_key":  "ημέρα",
+  "fm_source":       "HCGateway / Amazfit GTR3",
+  "tag_health":      "υγεία",
+  "tag_auto":        "αυτόματο"
+}

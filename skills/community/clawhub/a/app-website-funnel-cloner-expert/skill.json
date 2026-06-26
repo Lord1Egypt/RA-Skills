@@ -1,0 +1,228 @@
+{
+  "name": "app-website-funnel-cloner",
+  "version": "1.0.0",
+  "description": "Expert \"Funnel Hacker\" skill that analyzes websites, marketing funnels, and apps to create brand new \"cloned\" versions with original content. NEVER copies content from originals - uses them as templates only to create new versions with same layout/style but completely new content.",
+  "author": "OpenClaw Project",
+  "license": "Proprietary",
+  "category": "marketing-automation",
+  "tier": "expert",
+  "emoji": "🔄",
+  "tags": ["funnel-hacking", "website-cloning", "app-cloning", "content-creation", "competitive-analysis", "ethical-cloning"],
+  
+  "triggers": [
+    {
+      "type": "command",
+      "pattern": "/funnel-cloner",
+      "description": "Main command for Funnel Cloner system"
+    },
+    {
+      "type": "command",
+      "pattern": "/clone-website",
+      "description": "Clone a website with new content"
+    },
+    {
+      "type": "command",
+      "pattern": "/clone-funnel",
+      "description": "Clone a marketing funnel with new content"
+    },
+    {
+      "type": "command",
+      "pattern": "/clone-app",
+      "description": "Clone an app with new features"
+    },
+    {
+      "type": "keyword",
+      "pattern": "clone website|clone funnel|clone app|analyze website|funnel hacker|marketing funnel|landing page|sales page|opt-in page|thank you page|upsell|downsell|bump offer|website template|app template|create similar|make version|redesign|recreate|website analysis|funnel analysis|app analysis|competitive analysis|reverse engineer|template analysis|layout cloning|style cloning|content generation|new version|similar but different",
+      "description": "Trigger on cloning/analysis keywords"
+    }
+  ],
+  
+  "commands": [
+    {
+      "name": "clone-website",
+      "description": "Clone a website with same layout/style but 100% new content",
+      "usage": "/funnel-cloner clone-website <url-or-paste> [--industry <industry>] [--tone <professional|casual|urgent|inspirational>]",
+      "examples": [
+        "/funnel-cloner clone-website https://example.com",
+        "/funnel-cloner clone-website \"pasted content\" --industry saas --tone professional"
+      ]
+    },
+    {
+      "name": "clone-funnel",
+      "description": "Clone a complete marketing funnel with new content",
+      "usage": "/funnel-cloner clone-funnel <url-or-paste> [--product <product-name>] [--price <price-point>]",
+      "examples": [
+        "/funnel-cloner clone-funnel https://funnel.example.com",
+        "/funnel-cloner clone-funnel \"pasted funnel content\" --product \"AI Course\" --price 997"
+      ]
+    },
+    {
+      "name": "clone-app",
+      "description": "Clone an app with choice of 3 app types",
+      "usage": "/funnel-cloner clone-app <url-or-paste> [--type <opencaw|desktop|web>] [--features <feature-list>]",
+      "examples": [
+        "/funnel-cloner clone-app https://app.example.com",
+        "/funnel-cloner clone-app \"app description\" --type openclaw --features \"ai-agents,automation,dashboard\""
+      ]
+    },
+    {
+      "name": "analyze-only",
+      "description": "Analyze structure without cloning (get blueprint)",
+      "usage": "/funnel-cloner analyze-only <url-or-paste> [--depth <basic|detailed|comprehensive>]",
+      "examples": [
+        "/funnel-cloner analyze-only https://example.com",
+        "/funnel-cloner analyze-only \"website content\" --depth comprehensive"
+      ]
+    },
+    {
+      "name": "improve-template",
+      "description": "Take a template and improve it with modern best practices",
+      "usage": "/funnel-cloner improve-template <url-or-paste> [--focus <ux|conversion|performance|accessibility>]",
+      "examples": [
+        "/funnel-cloner improve-template https://old-website.com",
+        "/funnel-cloner improve-template \"template content\" --focus conversion"
+      ]
+    },
+    {
+      "name": "create-variations",
+      "description": "Create multiple variations of a template for A/B testing",
+      "usage": "/funnel-cloner create-variations <url-or-paste> [--count <number>] [--test-element <headline|cta|images|layout>]",
+      "examples": [
+        "/funnel-cloner create-variations https://landing-page.com",
+        "/funnel-cloner create-variations \"page content\" --count 5 --test-element cta"
+      ]
+    },
+    {
+      "name": "ethical-check",
+      "description": "Check if cloned content is 100% original (plagiarism check)",
+      "usage": "/funnel-cloner ethical-check <original-url> <cloned-content>",
+      "examples": [
+        "/funnel-cloner ethical-check https://original.com \"cloned content text\""
+      ]
+    }
+  ],
+  
+  "capabilities": [
+    "website-analysis",
+    "funnel-analysis",
+    "app-analysis",
+    "layout-extraction",
+    "design-pattern-extraction",
+    "original-content-creation",
+    "ethical-cloning",
+    "improvement-identification",
+    "multi-app-type-development",
+    "plagiarism-detection"
+  ],
+  
+  "settings": {
+    "requireOriginalContent": {
+      "type": "boolean",
+      "default": true,
+      "description": "Require 100% original content (no copying from source)"
+    },
+    "runPlagiarismCheck": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automatically check for content similarity with original"
+    },
+    "includeImprovements": {
+      "type": "boolean",
+      "default": true,
+      "description": "Always improve upon original when possible"
+    },
+    "defaultAppType": {
+      "type": "string",
+      "default": "opencaw",
+      "description": "Default app type when cloning apps (opencaw|desktop|web)",
+      "enum": ["opencaw", "desktop", "web"]
+    },
+    "deliveryPackage": {
+      "type": "boolean",
+      "default": true,
+      "description": "Include complete delivery package with documentation"
+    }
+  },
+  
+  "dependencies": {
+    "system": {
+      "curl": "For fetching website content",
+      "puppeteer": "For JavaScript-rendered website analysis",
+      "html2canvas": "For layout analysis and screenshot generation"
+    },
+    "api": {
+      "openai": "For content generation",
+      "plagiarism-check": "For originality verification (optional)"
+    }
+  },
+  
+  "installation": {
+    "steps": [
+      "1. Create skill directory",
+      "2. Copy SKILL.md and skill.json",
+      "3. Ensure OpenAI API key is available for content generation",
+      "4. Install system dependencies (curl, puppeteer)",
+      "5. Test with a simple website cloning example"
+    ],
+    "requirements": [
+      "OpenAI API key for content generation",
+      "Basic web scraping capabilities",
+      "Content originality verification method",
+      "Design pattern analysis capability"
+    ]
+  },
+  
+  "examples": [
+    {
+      "name": "Clone Competitor Website",
+      "command": "/funnel-cloner clone-website https://competitor.com --industry \"your-industry\" --tone professional",
+      "description": "Create a similar website for your business with original content"
+    },
+    {
+      "name": "Clone High-Converting Funnel",
+      "command": "/funnel-cloner clone-funnel https://successful-funnel.com --product \"Your Product\" --price 497",
+      "description": "Recreate a proven funnel structure with your product and pricing"
+    },
+    {
+      "name": "Clone SaaS App as OpenClaw Skill",
+      "command": "/funnel-cloner clone-app https://saas-app.com --type openclaw --features \"automation,reporting,integrations\"",
+      "description": "Create an OpenClaw AI Agent version of a SaaS app"
+    },
+    {
+      "name": "Analyze Website Structure",
+      "command": "/funnel-cloner analyze-only https://well-designed-site.com --depth comprehensive",
+      "description": "Get detailed analysis of website structure without cloning"
+    },
+    {
+      "name": "Create A/B Test Variations",
+      "command": "/funnel-cloner create-variations https://landing-page.com --count 3 --test-element headline",
+      "description": "Create 3 different headline variations for A/B testing"
+    }
+  ],
+  
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "env": ["OPENAI_API_KEY"],
+        "bins": ["curl", "puppeteer", "html2canvas"]
+      },
+      "primaryEnv": "OPENAI_API_KEY",
+      "emoji": "🔄",
+      "tier": "expert",
+      "category": "marketing-automation",
+      "ethical_alignment": "Content-Creation-Only"
+    },
+    "ethical": {
+      "content_originality": "100% original content required",
+      "template_usage": "Layout/style template only",
+      "copyright_respect": "No content copying, all new creation",
+      "plagiarism_prevention": "Automated similarity detection",
+      "improvement_focus": "Always improve upon original"
+    },
+    "technical": {
+      "analysis_depth": ["structural", "design", "content-patterns", "psychological"],
+      "output_types": ["website", "funnel", "app-opencaw", "app-desktop", "app-web"],
+      "delivery": ["files", "documentation", "originality-report", "improvement-report", "deployment-guide"]
+    }
+  }
+}

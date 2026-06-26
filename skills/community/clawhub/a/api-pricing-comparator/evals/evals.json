@@ -1,0 +1,39 @@
+{
+  "skill_id": "skill_api_pricing_comparator",
+  "evaluation_version": "1.1",
+  "scenarios": [
+    {
+      "id": "startup_model_pricing",
+      "task": "Compare pricing for several text models for a startup with moderate usage.",
+      "expected_properties": [
+        "normalizes all token prices to a comparable unit",
+        "states workload assumptions clearly",
+        "distinguishes cheapest from best-value"
+      ]
+    },
+    {
+      "id": "gateway_landing_page_section",
+      "task": "Turn a normalized pricing table into a landing page comparison section.",
+      "expected_properties": [
+        "produces structured narrative output",
+        "mentions tradeoffs beyond raw unit price",
+        "includes customer-segment-based recommendation"
+      ]
+    },
+    {
+      "id": "missing_fields_case",
+      "task": "Compare providers when one or more pricing fields are missing or use different billing dimensions.",
+      "expected_properties": [
+        "does not fake precision",
+        "marks unavailable fields clearly",
+        "avoids invalid cross-unit comparisons"
+      ]
+    }
+  ],
+  "summary": {
+    "with_skill_score": 4,
+    "without_skill_score": 2,
+    "delta": 2,
+    "confidence": "medium"
+  }
+}

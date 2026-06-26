@@ -1,0 +1,17 @@
+# 核心依赖
+httpx>=0.25.0
+apscheduler>=3.10.0
+sqlalchemy>=2.0.0
+pyyaml>=6.0
+
+# 浏览器自动化 (七麦爬取)
+playwright>=1.40.0
+
+# 可选增强
+structlog>=23.1.0
+rich>=13.0.0
+python-dotenv>=1.0.0
+
+# 开发依赖
+pytest>=7.4.0
+pytest-asyncio>=0.21.0

@@ -1,0 +1,64 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "file_name": "image1.jpg",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "id": 2,
+      "file_name": "image2.jpg",
+      "width": 640,
+      "height": 640
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [
+        100.0,
+        133.33333333333331,
+        200.0,
+        200.0
+      ],
+      "area": 40000.0,
+      "iscrowd": 0
+    },
+    {
+      "id": 2,
+      "image_id": 1,
+      "category_id": 2,
+      "bbox": [
+        300.0,
+        266.6666666666667,
+        100.0,
+        106.66666666666666
+      ],
+      "area": 10666.666666666666,
+      "iscrowd": 0
+    },
+    {
+      "id": 3,
+      "image_id": 2,
+      "category_id": 1,
+      "bbox": [
+        40.0,
+        53.33333333333334,
+        240.0,
+        266.6666666666667
+      ],
+      "area": 64000.00000000001,
+      "iscrowd": 0
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "object",
+      "supercategory": "object"
+    }
+  ]
+}

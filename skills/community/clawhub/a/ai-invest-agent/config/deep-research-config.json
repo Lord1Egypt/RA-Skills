@@ -1,0 +1,72 @@
+# AI 投资 Agent - 网页搜索首选配置
+
+## 配置说明
+
+本文件设置 AI 投资 agent 的网页搜索能力优先使用 deep-research-pro 技能。
+
+## deep-research-pro 配置
+
+```json
+{
+  "name": "deep-research-pro",
+  "version": "1.0.0",
+  "description": "多源深度研究 agent，用于投资行情分析",
+  "homepage": "https://github.com/paragshah/deep-research-pro",
+  "searchProvider": "duckduckgo",
+  "maxSources": 50,
+  "searchQueries": {
+    "max": 10,
+    "news": 5,
+    "web": 5
+  },
+  "sources": {
+    "preferred": [
+      "东方财富网",
+      "新浪财经",
+      "财联社",
+      "华尔街见闻",
+      "雪球"
+    ],
+    "exclude": [
+      "论坛帖子",
+      "未经证实的消息",
+      "营销号内容"
+    ]
+  },
+  "analysis": {
+    "framework": "四步复盘法",
+    "steps": [
+      "宏观分析",
+      "板块分析",
+      "温度计计算",
+      "标的评估"
+    ],
+    "temperatureFormula": "PE 历史分位 × 100",
+    "operationRanges": {
+      "buy": "0-30℃",
+      "hold": "30-50℃",
+      "sell": "50-100℃"
+    }
+  }
+}
+```
+
+## 使用场景
+
+- 投资行情分析
+- 宏观政策研究
+- 板块轮动跟踪
+- 指数估值评估
+- 个股深度分析
+
+## 输出格式
+
+- Markdown 详细报告
+- 简版摘要
+- 结构化表格
+- 温度仪表盘
+
+---
+
+**配置时间**：2026-03-04
+**配置人**：AI 投资 Agent 助手

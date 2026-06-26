@@ -1,0 +1,17 @@
+interface:
+  display_name: "AIGroup FMP MCP"
+  short_description: "Listed-equity quotes, statements, and market snapshots"
+  icon_small: "./assets/logo.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $aigroup-fmp-mcp to research a public company with quotes, financials, and market context."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "aigroup-fmp-mcp"
+      description: "Financial Modeling Prep market data server"
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: false

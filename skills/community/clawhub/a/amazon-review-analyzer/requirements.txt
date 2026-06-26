@@ -1,0 +1,14 @@
+# Amazon评论深度分析助手 - Python依赖
+
+# LLM API调用
+requests>=2.31.0
+
+# HTML解析（如需爬取评论）
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# 数据处理
+pandas>=2.0.0  # 可选，用于数据导出
+
+# 可选：反爬代理支持
+# requests-proxies>=0.2.0

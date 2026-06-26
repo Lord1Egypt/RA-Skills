@@ -1,0 +1,43 @@
+{
+  "site": {
+    "base_url": "https://alphapai-web.rabyte.cn",
+    "login_url": "https://alphapai-web.rabyte.cn/login",
+    "target_url": "https://alphapai-web.rabyte.cn/reading/home/comment",
+    "token_storage_key": "USER_AUTH_TOKEN"
+  },
+  "auth": {
+    "methods": ["storage_state", "token", "cookies", "credentials", "profile"],
+    "token_file": "config/token.local.json",
+    "cookies_file": "config/cookies.local.json",
+    "credentials_file": "config/credentials.local.json",
+    "username": "",
+    "password": ""
+  },
+  "browser": {
+    "headless": true,
+    "launch_strategy": ["ephemeral", "profile"],
+    "profile_user_data_dir": "~/Library/Application Support/Google/Chrome",
+    "profile_name": "Default"
+  },
+  "scrape": {
+    "default_lookback_hours": 1,
+    "max_items": 60,
+    "max_scroll_rounds": 20
+  },
+  "output": {
+    "base_dir": "~/.openclaw/data/alphapai-scraper",
+    "raw_format": "md",
+    "report_format": "md"
+  },
+  "feishu": {
+    "enabled": false,
+    "webhook_url": "",
+    "title_prefix": "Alpha派摘要"
+  },
+  "ai": {
+    "model": "pixcode/pa/claude-sonnet-4-6",
+    "max_input_chars": 20000,
+    "target_length_chars": 1000,
+    "custom_requirements": ""
+  }
+}

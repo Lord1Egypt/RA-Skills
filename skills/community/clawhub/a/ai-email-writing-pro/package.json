@@ -1,0 +1,9 @@
+{
+  "name": "ai-email-master",
+  "version": "1.1.0",
+  "description": "Professional email writing assistant with tone adjustment and templates",
+  "main": "index.js",
+  "keywords": ["email", "writing", "communication", "business"],
+  "author": "AI-Agent",
+  "license": "MIT"
+}

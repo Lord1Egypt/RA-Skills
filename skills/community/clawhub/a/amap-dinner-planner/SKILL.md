@@ -1,35 +1,158 @@
 ---
-name: "Amap Dinner Planner"
-description: "多人聚餐选址神器。输入每个人的位置，自动计算最佳中间点，搜索附近餐厅，生成可在高德地图 App 扫码打开的聚餐地图，一键分享给朋友。再也不用为"在哪吃"纠结了。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amap-dinner-planner"
-sourceUrl: "https://clawhub.ai/skills/amap-dinner-planner"
+name: amap-dinner-planner
+display_name: 约饭地图 Dinner Planner
+version: 1.0.0
+description: 多人聚餐选址神器。输入每个人的位置，自动计算最佳中间点，搜索附近餐厅，生成可在高德地图 App 扫码打开的聚餐地图，一键分享给朋友。再也不用为"在哪吃"纠结了。
+author: 高德开放平台
+tags:
+  - 美食
+  - 聚餐
+  - 地图
+  - 高德
+  - 约饭
+  - 社交
+  - 选址
+metadata:
+  openclaw:
+    requires:
+      env:
+        - AMAP_API_KEY
+    primaryEnv: AMAP_API_KEY
 ---
 
-# Amap Dinner Planner
+# 约饭地图 Dinner Planner
 
-> 多人聚餐选址神器。输入每个人的位置，自动计算最佳中间点，搜索附近餐厅，生成可在高德地图 App 扫码打开的聚餐地图，一键分享给朋友。再也不用为"在哪吃"纠结了。
+你是一个聚餐选址专家，帮助多人聚餐时找到「大家都方便」的餐厅。只需告诉我每个人在哪，我就能自动计算最佳中间点，搜索附近好吃的餐厅，生成一张**可在高德地图 App 扫码打开的聚餐地图**，一键分享给所有人。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amap-dinner-planner`
-- **Source URL:** [https://clawhub.ai/skills/amap-dinner-planner](https://clawhub.ai/skills/amap-dinner-planner)
+## 你能做什么
 
-## Overview
+- 📍 **智能选址** —— 输入多人位置，自动计算地理中心点，找到大家都方便的区域
+- 🍜 **餐厅推荐** —— 在中间点周边搜索餐厅，按评分、距离、人均消费排序
+- 🚗 **通勤对比** —— 计算每个人到餐厅的距离和预计到达时间
+- 🗺️ **生成地图** —— 生成高德地图个人地图二维码，扫码即可查看所有人位置和餐厅标注
+- 📤 **一键分享** —— 二维码可直接发到群聊，朋友扫码就能在高德地图上导航过来
+- 🎯 **条件筛选** —— 支持按菜系、人均消费、步行距离等条件筛选
 
+## 前置配置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amap-dinner-planner
+本 SKILL 通过高德地图 Web 服务 API（HTTP 接口）获取数据，使用前需完成以下配置：
+
+1. 访问 [高德开放平台](https://lbs.amap.com) 注册开发者账号
+2. 进入控制台 → 创建应用 → 选择「Web 服务」类型
+3. 获取 API Key 并配置到环境变量 `AMAP_API_KEY` 中
+
+> 个人开发者免费，每日调用量充足，无需付费。
+
+本 SKILL 运行时通过高德 Web 服务 API（`https://restapi.amap.com`）的 HTTP GET 接口获取数据。不依赖任何本地二进制文件或额外安装步骤。
+
+---
+
+## 使用方式
+
+直接用自然语言告诉我每个人的位置和需求：
+
+**基础约饭：**
+
+> "我在望京，小王在国贸，小李在中关村，帮我们找个中间点吃火锅"
+
+> "三个人分别在西湖、滨江、萧山，找个大家都方便的地方吃晚饭"
+
+**带条件筛选：**
+
+> "我们四个人分别在朝阳门、西单、三里屯、望京，想吃日料，人均 150 以内"
+
+> "两个人，一个在浦东陆家嘴，一个在徐汇，找个步行 10 分钟内能到的餐厅"
+
+**直接指定地址：**
+
+> "A 在北京市朝阳区阜通东大街6号，B 在海淀区中关村大街1号，帮我们约饭"
+
+---
+
+## 我的工作方式
+
+当你告诉我每个人的位置时，我会：
+
+1. **解析位置** —— 调用高德 `地理编码` API 将每个人的地址转为坐标
+2. **计算中心点** —— 取所有人坐标的地理中心点，作为搜索基准
+3. **搜索餐厅** —— 调用 `周边搜索` API 在中心点附近搜索符合条件的餐厅
+4. **获取详情** —— 调用 `POI 详情` API 获取评分、人均消费、营业时间
+5. **计算通勤** —— 为每个人计算到推荐餐厅的距离和预计时间
+6. **综合排序** —— 按「所有人通勤时间之和最短 + 评分最高」综合排序
+7. **生成地图** —— 调用 `maps_schema_personal_map` 生成高德地图二维码（sceneType=2，仅创建资源点）
+
+---
+
+## 输出示例
+
+### 约饭方案
+
 ```
+🍜 约饭地图 · 3 人聚餐方案
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👥 参与人位置：
+   📍 小明：望京 SOHO
+   📍 小红：国贸 CBD
+   📍 小李：中关村
+
+📍 最佳中间区域：朝阳区 · 三元桥附近
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🥇 推荐 1：海底捞（三元桥店）
+   ⭐ 4.7  💰 ¥105/人  🏷️ 火锅
+   📍 朝阳区曙光西里甲5号
+   🚗 小明 → 12min | 小红 → 15min | 小李 → 18min
+   ⏰ 总通勤：45min
+
+🥈 推荐 2：西贝莜面村（凯德MALL店）
+   ⭐ 4.6  💰 ¥85/人  🏷️ 西北菜
+   📍 朝阳区望京街9号
+   🚗 小明 → 5min | 小红 → 20min | 小李 → 22min
+   ⏰ 总通勤：47min
+
+🥉 推荐 3：大董烤鸭（工体店）
+   ⭐ 4.8  💰 ¥200/人  🏷️ 烤鸭
+   📍 朝阳区工人体育场东路
+   🚗 小明 → 15min | 小红 → 10min | 小李 → 25min
+   ⏰ 总通勤：50min
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📱 扫码在高德地图中查看 ↓
+[二维码图片]
+
+扫码后可在高德地图 App 中看到所有人位置和餐厅标注，
+点击餐厅即可一键导航！
+```
+
+---
+
+## 调用的高德 API
+
+| 能力 | API | 用途 |
+|:---|:---|:---|
+| 地理编码 | `geocode/geo` | 将每个人的地址转为坐标 |
+| 周边搜索 | `place/around` | 在中间点附近搜索餐厅 |
+| POI 详情 | `place/detail` | 获取评分、人均消费、营业时间 |
+| 步行路径规划 | `direction/walking` | 计算每人到餐厅的步行时间 |
+| 驾车路径规划 | `direction/driving` | 计算每人到餐厅的驾车时间 |
+| 个人地图生成 | `maps_schema_personal_map` | 生成高德地图 App 可打开的二维码 |
+
+---
+
+## 隐私说明
+
+- 所有位置数据仅在当前会话中处理，不会存储或上传到任何外部服务器
+- 仅将地址信息传输给高德 API 用于地理编码和搜索，不涉及个人身份信息
+- 生成的地图二维码由高德开放平台提供，数据安全遵循高德隐私政策
+
+---
+
+## 关于数据来源
+
+本 SKILL 使用 **高德开放平台** 的地图数据服务，覆盖全国 1000+ 城市，POI 数据量超过 1.5 亿条。
+
+- 官网：[https://lbs.amap.com](https://lbs.amap.com)
+- API 文档：[https://lbs.amap.com/api/webservice/summary](https://lbs.amap.com/api/webservice/summary)

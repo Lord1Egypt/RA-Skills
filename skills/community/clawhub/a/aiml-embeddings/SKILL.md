@@ -1,35 +1,38 @@
 ---
-name: "AIML Embeddings Generator"
-description: "Generate text embeddings via AIMLAPI. Use for semantic search, clustering, or high-dimensional text representations with text-embedding-3-large and other mod..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aiml-embeddings"
-sourceUrl: "https://clawhub.ai/skills/aiml-embeddings"
+name: aimlapi-embeddings
+description: Generate text embeddings via AIMLAPI. Use for semantic search, clustering, or high-dimensional text representations with text-embedding-3-large and other models.
+env:
+  - AIMLAPI_API_KEY
+primaryEnv: AIMLAPI_API_KEY
 ---
 
-# AIML Embeddings Generator
-
-> Generate text embeddings via AIMLAPI. Use for semantic search, clustering, or high-dimensional text representations with text-embedding-3-large and other mod...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aiml-embeddings`
-- **Source URL:** [https://clawhub.ai/skills/aiml-embeddings](https://clawhub.ai/skills/aiml-embeddings)
+# AIMLAPI Embeddings
 
 ## Overview
 
+Converts text into high-dimensional numerical representations (vectors) using AIMLAPI's embedding models like `text-embedding-3-large`.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick start
+
 ```bash
-hermes skills install clawhub/aiml-embeddings
+export AIMLAPI_API_KEY="sk-aimlapi-..."
+python3 {baseDir}/scripts/gen_embeddings.py --input "Laura is a DJ."
 ```
+
+## Tasks
+
+### Generate embeddings
+
+Use `scripts/gen_embeddings.py` to get vector representations of text.
+
+```bash
+python3 {baseDir}/scripts/gen_embeddings.py \
+  --input "Knowledge is power." \
+  --model text-embedding-3-large \
+  --dimensions 1024 \
+  --out-dir ./out/embeddings
+```
+
+## References
+
+- `references/endpoints.md`: API schema and parameter details.

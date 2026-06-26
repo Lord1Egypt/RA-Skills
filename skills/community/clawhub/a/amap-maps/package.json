@@ -1,0 +1,16 @@
+{
+  "name": "amap-maps-cli",
+  "version": "1.0.0",
+  "description": "高德地图 Skill 命令行工具",
+  "type": "module",
+  "main": "scripts/amap.js",
+  "bin": {
+    "amap": "./scripts/amap.js"
+  },
+  "scripts": {
+    "amap": "node scripts/amap.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

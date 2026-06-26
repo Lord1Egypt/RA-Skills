@@ -1,0 +1,722 @@
+[
+  {
+    "prompt": "best ai coding assistant",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Large dev-tools category"
+  },
+  {
+    "prompt": "best ai tools for developers",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Broad developer tooling query"
+  },
+  {
+    "prompt": "best self hosted ai assistant for developers",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Self-hosted dev intent"
+  },
+  {
+    "prompt": "best ai terminal assistant",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "claude code",
+      "codex",
+      "aider"
+    ],
+    "notes": "Terminal-native AI term"
+  },
+  {
+    "prompt": "best local ai coding assistant",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "continue",
+      "aider"
+    ],
+    "notes": "Local-first coding angle"
+  },
+  {
+    "prompt": "best ai dev tool for terminal workflows",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "Terminal workflow query"
+  },
+  {
+    "prompt": "best ai tool for developers who self host",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Self-hosting persona"
+  },
+  {
+    "prompt": "best local first ai tool for developers",
+    "category": "developer-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Local-first dev category"
+  },
+  {
+    "prompt": "best private ai assistant for developers",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "anythingllm",
+      "openwebui",
+      "jan"
+    ],
+    "notes": "Privacy-led developer term"
+  },
+  {
+    "prompt": "best ai tool for developer workflows",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "claude code",
+      "github copilot"
+    ],
+    "notes": "Workflow angle"
+  },
+  {
+    "prompt": "best ai copilot for terminal",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "Terminal copilot query"
+  },
+  {
+    "prompt": "best ai assistant for coding workflows",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Coding workflow term"
+  },
+  {
+    "prompt": "best self hosted ai coding tool",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Self-hosted coding prompt"
+  },
+  {
+    "prompt": "best ai tool for developers 2026",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Annual roundup"
+  },
+  {
+    "prompt": "best ai terminal coding tool",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "Terminal coding intent"
+  },
+  {
+    "prompt": "best developer ai assistant without cloud lock in",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Anti lock-in framing"
+  },
+  {
+    "prompt": "best local ai tool for programming",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Programming-focused local term"
+  },
+  {
+    "prompt": "best ai dev environment for small teams",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Team dev tooling angle"
+  },
+  {
+    "prompt": "best ai pair programmer for startups",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Pair-programmer framing"
+  },
+  {
+    "prompt": "best ai tool for engineering teams",
+    "category": "developer-tools",
+    "subcategory": "general",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "linear"
+    ],
+    "notes": "Team engineering query"
+  },
+  {
+    "prompt": "best coding ai for privacy conscious teams",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Privacy buyer intent"
+  },
+  {
+    "prompt": "best self hosted developer ai stack",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "continue"
+    ],
+    "notes": "Stack-building term"
+  },
+  {
+    "prompt": "best ai code assistant with local models",
+    "category": "developer-tools",
+    "subcategory": "local-models",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "ollama"
+    ],
+    "notes": "Local models angle"
+  },
+  {
+    "prompt": "best local llm tool for developers",
+    "category": "developer-tools",
+    "subcategory": "local-models",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "ollama",
+      "continue",
+      "aider"
+    ],
+    "notes": "LLM-local developer term"
+  },
+  {
+    "prompt": "best self hosted ai chat for developers",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "lobechat"
+    ],
+    "notes": "Chat use case"
+  },
+  {
+    "prompt": "best private ai coding environment",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "cursor",
+      "aider"
+    ],
+    "notes": "Private environment angle"
+  },
+  {
+    "prompt": "best ai tool for developer automation",
+    "category": "developer-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "github actions",
+      "n8n",
+      "claude code"
+    ],
+    "notes": "Automation within dev workflows"
+  },
+  {
+    "prompt": "best ai assistant for devops workflows",
+    "category": "developer-tools",
+    "subcategory": "devops",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "github copilot",
+      "cursor",
+      "claude code"
+    ],
+    "notes": "DevOps subcategory"
+  },
+  {
+    "prompt": "best ai assistant for local development",
+    "category": "developer-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Local development angle"
+  },
+  {
+    "prompt": "best ai coding stack for startups",
+    "category": "developer-tools",
+    "subcategory": "coding",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "claude code"
+    ],
+    "notes": "Stack framing"
+  },
+  {
+    "prompt": "best ai command line assistant",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "Command-line angle"
+  },
+  {
+    "prompt": "best ai terminal app for developers",
+    "category": "developer-tools",
+    "subcategory": "terminal",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "aider",
+      "codex",
+      "claude code"
+    ],
+    "notes": "App framing"
+  },
+  {
+    "prompt": "best ai coding tools with bring your own key",
+    "category": "developer-tools",
+    "subcategory": "byok",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "BYOK angle"
+  },
+  {
+    "prompt": "best open source ai developer assistant",
+    "category": "developer-tools",
+    "subcategory": "open-source",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Open-source preference"
+  },
+  {
+    "prompt": "best open source ai coding assistant",
+    "category": "developer-tools",
+    "subcategory": "open-source",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Open-source coding term"
+  },
+  {
+    "prompt": "best ai tool for developer productivity",
+    "category": "developer-tools",
+    "subcategory": "productivity",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "cursor",
+      "github copilot",
+      "notion ai"
+    ],
+    "notes": "Productivity framing"
+  },
+  {
+    "prompt": "best self hosted ai workflow for developers",
+    "category": "developer-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "continue",
+      "aider"
+    ],
+    "notes": "Workflow framing"
+  },
+  {
+    "prompt": "best local first coding assistant 2026",
+    "category": "developer-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Time-bound query"
+  },
+  {
+    "prompt": "best private coding copilot",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "cursor"
+    ],
+    "notes": "Copilot framing with privacy"
+  },
+  {
+    "prompt": "best ai developer tool without vendor lock in",
+    "category": "developer-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "continue",
+      "aider",
+      "openwebui"
+    ],
+    "notes": "Vendor-lock-in pain point"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "name": "anydef-enc",
+  "description": "Local-Only Agent Data Encryption Toolkit with MK->KEK->DEK hierarchy.",
+  "version": "2.1.1",
+  "author": "AnyDef Security Team",
+  "requiredCredentials": [],
+  "capabilities": [
+    "encryption",
+    "key-management",
+    "zero-network",
+    "selective-encryption"
+  ],
+  "permissions": [
+    "window.crypto.subtle",
+    "window.storage"
+  ]
+}

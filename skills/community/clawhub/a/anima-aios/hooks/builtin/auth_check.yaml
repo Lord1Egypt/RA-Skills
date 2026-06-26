@@ -1,0 +1,47 @@
+# Auth Check Hook Configuration
+# Hook ID: auth_check
+# Type: PRE_EXECUTE
+# Priority: CRITICAL
+
+name: auth_check
+description: 执行前权限检查，防止未授权操作
+trigger: pre_execute
+priority: critical
+enabled: true
+
+# Security rules
+config:
+  # Dangerous operations that require confirmation
+  dangerous_actions:
+    - delete
+    - rm
+    - rmdir
+    - sudo
+    - chmod
+    - chown
+  
+  # Operations that are always allowed
+  safe_actions:
+    - read
+    - write
+    - edit
+    - create
+  
+  # Require confirmation for dangerous operations
+  require_confirmation: true
+  
+  # Log all auth checks
+  log_checks: true
+
+# Security policy
+policy:
+  # Block dangerous operations without confirmation
+  block_on_dangerous: true
+  
+  # Require explicit confirmation for destructive actions
+  explicit_confirm_threshold: high
+
+# Environment variables
+env:
+  - ANIMA_AUTH_ENABLED
+  - ANIMA_AUTH_LOG_LEVEL

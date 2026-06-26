@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "description": "中国内容分级规则（参考广电总局相关规定）",
+  "ratings": {
+    "all_ages": {
+      "description": "适合所有年龄段",
+      "max_severity": "mild",
+      "max_hits_mild": 5,
+      "max_hits_moderate": 0,
+      "max_hits_severe": 0,
+      "forbidden_categories": ["sexual", "substance"]
+    },
+    "12+": {
+      "description": "12 岁以上，需家长指导",
+      "max_severity": "moderate",
+      "max_hits_mild": -1,
+      "max_hits_moderate": 5,
+      "max_hits_severe": 0,
+      "forbidden_categories": []
+    },
+    "18+": {
+      "description": "18 岁以上",
+      "max_severity": "severe",
+      "max_hits_mild": -1,
+      "max_hits_moderate": -1,
+      "max_hits_severe": 3,
+      "forbidden_categories": []
+    }
+  },
+  "non_compliant_triggers": [
+    {"description": "色情内容严重", "category": "sexual", "severity": "severe", "min_count": 1},
+    {"description": "严重暴力过多", "severity": "severe", "min_count": 5},
+    {"description": "毒品相关严重内容", "category": "substance", "severity": "severe", "min_count": 1}
+  ]
+}

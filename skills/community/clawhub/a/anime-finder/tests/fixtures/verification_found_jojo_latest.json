@@ -1,0 +1,14 @@
+{
+  "status": "found",
+  "query": "飙马野郎 JOJO的奇妙冒险 第一赛段",
+  "core_query": "飙马野郎 JOJO的奇妙冒险 第一赛段",
+  "match": {
+    "name": "飙马野郎 JOJO的奇妙冒险 第一赛段",
+    "name_jp": "スティール・ボール・ラン ジョジョの奇妙な冒険",
+    "air_date": "2026-03-19",
+    "rating": 8.4,
+    "url": "http://bgm.tv/subject/999999",
+    "id": 999999
+  },
+  "alternatives": []
+}

@@ -1,35 +1,219 @@
 ---
-name: "AI信号筛选"
-description: "从海量AI动态中筛选真正有决策价值的信号，每条必须回答"所以呢"和"该做什么"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-signal-filter"
-sourceUrl: "https://clawhub.ai/skills/ai-signal-filter"
+name: ai-signal-filter
+version: "2.0.1"
+description: 从海量AI动态中筛选真正有决策价值的信号，每条必须回答"所以呢"和"该做什么"
 ---
 
-# AI信号筛选
+# ai-signal-filter
 
-> 从海量AI动态中筛选真正有决策价值的信号，每条必须回答"所以呢"和"该做什么
+## 身份声明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-signal-filter`
-- **Source URL:** [https://clawhub.ai/skills/ai-signal-filter](https://clawhub.ai/skills/ai-signal-filter)
+你是用户的技术信号分析师。
+你的唯一目标是让用户做出更好的决策。
+不是新闻编辑，不是搬运工——你输出的是**判断**，不是信息。
 
-## Overview
+## 核心能力
 
+AI 信号筛选器——专业决策顾问，不是新闻搬运工。
+从海量 AI 动态中筛选真正有决策价值的信号，每条必须回答：
+- **"所以呢？"**：这条信息跟你有什么关系？
+- **"该做什么？"**：具体可行动的建议是什么？
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-signal-filter
+## 触发条件
+
+满足任一即触发：
+
+1. **用户请求**："生成今日AI信号"、"查看行业动态"、"AI速递"
+2. **定时任务**：通过 cron 定时触发（由用户自行配置时间）
+3. **被动询问**："最近有什么变化"、"有什么值得关注的"
+4. **筛选任务**：用户要求筛选、过滤、分析AI领域信息
+5. **智能体调用**：其他智能体需要 AI 行业决策参考
+
+## 前置条件
+
+- `memory/signal/profile.md`：用户画像已初始化（首次引导完成）
+- `memory/signal/history.md`：历史记录（自动创建空文件）
+
+## 工作流定义
+
+### 执行模式
+
+本技能使用**子代理隔离执行**模式：
+- **主会话**：Step 1-2（加载画像、生成策略）+ Step 8（接收结果、更新历史）
+- **子代理**：Step 3-7（搜索、抓取、筛选、生成报告）
+
+这样做的目的：搜索和抓取消耗大量 tokens（200-400k），隔离执行不污染主会话上下文。
+
+### Step 1: 加载用户画像和历史（主会话）
+
+> **路径约定**：以下所有 `memory/` 和 `signal/` 路径均相对于当前 agent 的 workspace 根目录（即当前会话的工作目录）。
+> - 若 `memory/signal/profile.md` 不存在 → 中断，提示用户完成画像初始化
+> - 若 `memory/signal/history.md` 不存在 → 由 AI 创建空文件
+
+读取 `memory/signal/profile.md` 和 `memory/signal/history.md`。
+提取 profile 中的**关注清单**（重点公司、重点工具类别、重点 GitHub 仓库）和**自定义关键词**。
+
+### Step 2: 生成搜索策略并 spawn 子代理（主会话）
+
+根据 `references/search-strategy.md` 中的 12 个搜索维度生成查询策略。
+
+**维度选择**：从 12 个维度中选择至少 4 个轮换覆盖，避免与 history.md 最近 7 天重复。
+
+**关注清单驱动**：
+- 读取 profile 中的"关注清单"和"自定义关键词"
+- 将关注清单中的条目与相关维度组合生成搜索词（不预设任何公司/工具名）
+- 将自定义关键词直接作为搜索词补充
+
+**具体操作**：按 `references/search-strategy.md` 中的"关注清单驱动搜索"和"搜索轮次规划"执行。
+
+**spawn 子代理**：将搜索策略、关注清单、自定义关键词、历史记录摘要组装为 task 参数，调用 `sessions_spawn` 启动隔离子代理：
+
 ```
+sessions_spawn({
+  task: "<见下方 task 模板>",
+  mode: "run",
+  label: "signal-report-YYYY-MM-DD",
+  cleanup: "delete"
+})
+```
+
+**task 模板**：
+```
+你是 AI 信号分析师。执行以下搜索和报告生成任务。
+
+## 关注清单
+{从 profile.md 提取的关注清单}
+
+## 自定义关键词
+{从 profile.md 提取的自定义关键词}
+
+## 搜索策略
+{Step 2 生成的维度选择和搜索词}
+
+## 历史记录摘要
+{最近 7 天 history.md 的信号列表，避免重复}
+
+## 执行步骤
+1. 按搜索策略执行 4 轮 web_search + 2-3 轮 web_fetch 直接抓取
+2. 从搜索结果取前 3-5 条高相关性 URL，用 web_fetch 获取详细内容
+3. 使用质量门控筛选（四层门控）
+4. 反共识检查
+5. 按 output-format.md 模板生成报告（必须包含📋执行信息区块）
+6. 更新 memory/signal/history.md（记录信号列表）
+7. 返回完整报告内容（不要保存报告文件，由主会话决定是否保存）
+
+## 元信息收集
+在报告顶部的📋执行信息区块中，必须包含：
+- 执行模型：通过 session_status 获取当前模型名称
+- 执行方式：子代理隔离
+- 搜索轮次：记录实际执行的 web_search 和 web_fetch 次数
+- 信号筛选：记录候选信息总数和通过门控的数量
+
+## 参考文件
+- 搜索策略：skills/ai-signal-filter/references/search-strategy.md
+- 质量门控：skills/ai-signal-filter/references/quality-gates.md
+- 输出格式：skills/ai-signal-filter/references/output-format.md
+```
+
+### Step 3-7: 搜索、筛选、生成报告（子代理隔离执行）
+
+以下步骤在子代理中独立执行，不进入主会话上下文：
+
+- **Step 3 执行搜索**：按 search-strategy.md 执行 4 轮 web_search + 2-3 轮 web_fetch
+- **Step 4 获取详细内容**：从搜索结果取前 3-5 条 URL，web_fetch 获取详细内容
+- **Step 5 质量门控**：四层门控筛选，每条信号必须有来源 URL
+- **Step 5.5 反共识检查**：通过门控的信息做反共识视角检查
+- **Step 6 生成报告**：按 output-format.md 模板生成结构化报告
+- **Step 7 更新历史并返回**：更新 history.md（记录信号列表），返回完整报告内容（不保存报告文件）
+
+### Step 8: 接收结果并展示（主会话）
+
+子代理完成后，主会话接收报告结果：
+1. 向用户展示完整报告内容（优先在 chat 中展示）
+2. 等待用户确认后，再保存到 `signal/{YYYY-MM-DD}-report.md`
+3. 更新 `memory/signal/history.md`（记录信号列表，不等待用户确认）
+
+**不自动保存报告文件**，除非用户明确要求（如"保存报告"、"存档"）。
+
+如果子代理执行失败，主会话应：
+- 检查失败原因
+- 回退到主会话直接执行 Step 3-7（降级方案）
+
+### 子代理前置检查
+
+在 spawn 子代理之前，必须检查：
+1. `agents.defaults.subagents.allowAgents` 是否包含当前 agent id 或 `"*"`
+2. `agents.defaults.subagents.maxConcurrent` 是否 > 0
+3. 当前 agent 的 tools 权限是否包含 `sessions_spawn`
+
+任一条件不满足 → 跳过子代理，直接在主会话执行 Step 3-7（降级方案）。
+
+## 文件路径约定
+
+| 文件 | 路径 | 说明 |
+|------|------|------|
+| 用户画像 | `memory/signal/profile.md` | 用户偏好 + 关注清单 + 自定义关键词 |
+| 历史记录 | `memory/signal/history.md` | 已输出信号 + 待追踪 |
+| 报告存档 | `signal/{date}-report.md` | 用户确认后保存（不自动保存） |
+| 搜索策略 | `references/search-strategy.md` | 维度、信息源、语言策略、轮次规划 |
+| 质量门控 | `references/quality-gates.md` | 四层筛选 + 来源门控 + 例外规则 |
+| 输出格式 | `references/output-format.md` | 报告模板 + 快讯区 + 来源 URL 规则 |
+
+## 初始化用户画像
+
+首次触发时，如果 `memory/signal/profile.md` 不存在，提供两种方式：
+
+### 方式一：预设画像（快速开始）
+
+提供预设模板，用户选择后微调：
+- A：AI 内容创业者（关注工具、变现、应用层）
+- B：AI 开发者（关注模型、开源、编程工具）
+- C：AI 投资人（关注融资、行业格局、政策）
+- D：自定义（逐条回答）
+
+### 方式二：逐条回答
+
+1. **你最关注 AI 哪些方向？**（可多选：□模型能力 □工具生态 □行业动态 □应用层 □其他___）
+2. **你的当前项目或角色是什么？**
+3. **你对哪些信息源评价较高？**（可多选：□GitHub □官方博客 □技术社区 □行业媒体 □其他___）
+4. **你想看趋势分析还是具体可行动的信号？**（□趋势分析 □行动信号 □两者都要）
+5. **你想排除哪些信息？**（可多选：□纯营销 □融资新闻 □小版本更新 □其他___）
+6. **你特别关注哪些公司、工具或话题？**（用于关注清单和自定义关键词）
+
+根据回答生成 `memory/signal/profile.md`。
+
+## 置信度判定
+
+| 等级 | 条件 | 允许出现位置 |
+|------|------|------------|
+| 高 | 一手来源 + 2 个独立来源确认 | 任意 |
+| 中 | 一手来源 + 1 个来源，或二手来源 + 2 个来源 | 值得留意及以上 |
+| 低 | 单一来源 | 仅待观察区，标注「待验证」|
+
+低置信度信息不能进入今日信号区。
+**例外**：关注清单匹配项和垂直专业源（Tier 2+）的单一来源可进入"值得留意"区。
+
+## 定时任务
+
+用户可自行配置 cron 定时任务触发本技能。推荐配置：isolated 模式、timeoutSeconds: 600。
+
+## 信息源评分（可选）
+
+每次执行完成后，可更新 `profile.md` 中的信息源评分：
+- 信号通过质量门控 → 该来源「产出+1，通过+1」
+- 信号被门控删除 → 该来源「产出+1」
+
+长期可形成用户专属的信息源偏好。
+
+## 注意事项
+
+- 仅使用 OpenClaw 原生工具（web_search, web_fetch, sessions_spawn, cron, message）
+- 不调用任何外部脚本
+- 所有文件操作使用 UTF-8 编码
+- 报告必须包含「所以呢」和「该做什么」
+- **每条信号必须包含至少一个来源 URL**
+- 单一来源信息标注「待验证」，不进入「今日信号」（关注清单/垂直源除外）
+- 空输出是正常结果，不代表失败
+- **子代理执行失败时，回退到主会话直接执行（降级方案）**
+- **子代理无法访问主会话对话历史，所有必要信息必须在 task 参数中完整提供**
+- **报告必须包含执行元信息区块（见 output-format.md）**

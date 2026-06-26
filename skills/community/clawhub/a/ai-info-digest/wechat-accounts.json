@@ -1,0 +1,88 @@
+{
+  "accounts": [
+    {
+      "name": "新智元",
+      "zhihu": "https://www.zhihu.com/org/xin-zhi-yuan-88-3/posts",
+      "website": "",
+      "priority": "high",
+      "note": "官方机构专栏，AI产业与技术动态"
+    },
+    {
+      "name": "创业邦",
+      "zhihu": "https://zhuanlan.zhihu.com/chuangyebang",
+      "website": "",
+      "priority": "normal",
+      "note": "官方机构专栏，创业与投资"
+    },
+    {
+      "name": "运筹OR帷幄",
+      "zhihu": "https://zhuanlan.zhihu.com/operations-research",
+      "website": "",
+      "priority": "normal",
+      "note": "官方机构专栏，大数据人工智能时代的运筹学"
+    },
+    {
+      "name": "刘聪NLP",
+      "zhihu": "https://www.zhihu.com/people/LiuCongNLP",
+      "website": "",
+      "priority": "normal",
+      "note": "个人主页，所有文章均发布于此"
+    },
+    {
+      "name": "量子位",
+      "zhihu": "https://zhuanlan.zhihu.com/qbitai",
+      "website": "qbitai.com",
+      "priority": "high",
+      "note": "官方机构专栏，AI前沿科技"
+    },
+    {
+      "name": "机器之心",
+      "zhihu": "https://zhuanlan.zhihu.com/jiqizhixin",
+      "website": "jiqizhixin.com",
+      "priority": "high",
+      "note": "官方机构专栏，含aixiv学术专栏"
+    },
+    {
+      "name": "集智俱乐部",
+      "zhihu": "https://zhuanlan.zhihu.com/swarma",
+      "website": "",
+      "priority": "normal",
+      "note": "官方机构专栏，复杂科学与AI"
+    },
+    {
+      "name": "数字生命卡兹克",
+      "zhihu": "https://www.zhihu.com/people/Khazix",
+      "website": "",
+      "priority": "normal",
+      "note": "个人主页，无单独专栏"
+    },
+    {
+      "name": "PaperWeekly",
+      "zhihu": "https://zhuanlan.zhihu.com/paperweekly",
+      "website": "",
+      "priority": "normal",
+      "note": "官方机构专栏，AI论文解读"
+    },
+    {
+      "name": "AI科技评论",
+      "zhihu": "https://zhuanlan.zhihu.com/leiphone",
+      "website": "leiphone.com",
+      "priority": "normal",
+      "note": "雷锋网官方专栏，AI科技评论旗下品牌"
+    },
+    {
+      "name": "AI前线",
+      "zhihu": "https://zhuanlan.zhihu.com/infoq",
+      "website": "infoq.cn",
+      "priority": "normal",
+      "note": "InfoQ官方专栏，AI前线旗下品牌"
+    },
+    {
+      "name": "AINLP",
+      "zhihu": "",
+      "website": "",
+      "priority": "high",
+      "note": "暂无已知知乎专栏，使用WebSearch兜底"
+    }
+  ]
+}

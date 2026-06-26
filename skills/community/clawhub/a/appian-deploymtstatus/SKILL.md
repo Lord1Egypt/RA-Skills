@@ -1,35 +1,48 @@
 ---
-name: "Appian Deploymtstatus"
-description: "Check the status of an Appian deployment by UUID and optionally download its artifacts (log, package ZIP). Use after appian-export or appian-deploy to monito..."
-category: "other"
-source: "ClawHub"
-tags: [appian, appian claw, cowboy ai, low code, no code, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/appian-deploymtstatus"
-sourceUrl: "https://clawhub.ai/skills/appian-deploymtstatus"
+name: appian-deploymtstatus
+description: Check the status of an Appian deployment by UUID and optionally download its artifacts (log, package ZIP). Use after appian-export or appian-deploy to monitor progress or retrieve results.
+metadata:
+  clawdbot:
+    emoji: "📡"
+    requires:
+      env:
+        - APPIAN_BASE_URL
+        - APPIAN_API_KEY
+    primaryEnv: APPIAN_BASE_URL
 ---
+# Appian Status
 
-# Appian Deploymtstatus
+Retrieves the current status and artifact URLs for any Appian deployment using the [v2 Deployment Management API](https://docs.appian.com/suite/help/25.4/Get_Deployment_Results_API.html). Supports optional polling and artifact download.
 
-> Check the status of an Appian deployment by UUID and optionally download its artifacts (log, package ZIP). Use after appian-export or appian-deploy to monito...
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/appian-deploymtstatus`
-- **Source URL:** [https://clawhub.ai/skills/appian-deploymtstatus](https://clawhub.ai/skills/appian-deploymtstatus)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/appian-deploymtstatus
+node {baseDir}/scripts/index.js <deploymentUuid> [--wait] [--download-log] [--download-zip]
 ```
+
+| Flag | Description |
+|---|---|
+| `--wait` | Poll until a terminal status is reached |
+| `--download-log` | Save the deployment log to `~/appian-exports/` |
+| `--download-zip` | Save the package ZIP (export deployments only) to `~/appian-exports/` |
+
+## Examples
+
+```bash
+# Check immediately
+node {baseDir}/scripts/index.js 208d489c-6f74-45f7-a48a-f0887fefeca9
+
+# Wait for completion and download log
+node {baseDir}/scripts/index.js 208d489c-6f74-45f7-a48a-f0887fefeca9 --wait --download-log
+```
+
+## External endpoints
+
+- `GET ${APPIAN_BASE_URL}/deployments/{uuid}` — fetches deployment status
+- Artifact URLs returned by the API (log, ZIP) — downloaded only when flags are passed
+
+## Security
+
+- Credentials (`APPIAN_BASE_URL`, `APPIAN_API_KEY`) are read from environment variables (injected by OpenClaw at runtime). If not injected, the script falls back to an `appian.json` file in the current working directory.
+- Artifacts are saved only to `~/appian-exports/` — nothing is uploaded or sent to third parties.
+- No shell commands are executed; all operations use Node.js built-in APIs.

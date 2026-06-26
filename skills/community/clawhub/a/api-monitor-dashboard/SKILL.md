@@ -1,35 +1,50 @@
----
-name: "Api Monitor Dashboard"
-description: "Real-time monitoring dashboard for API uptime, response times, error rates, custom health checks, and alert notifications via email or Slack."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/api-monitor-dashboard"
-sourceUrl: "https://clawhub.ai/skills/api-monitor-dashboard"
----
+# API Monitor Dashboard
 
-# Api Monitor Dashboard
+Real-time API monitoring and alerting system.
 
-> Real-time monitoring dashboard for API uptime, response times, error rates, custom health checks, and alert notifications via email or Slack.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/api-monitor-dashboard`
-- **Source URL:** [https://clawhub.ai/skills/api-monitor-dashboard](https://clawhub.ai/skills/api-monitor-dashboard)
+- Real-time uptime monitoring
+- Response time tracking
+- Error rate alerts
+- Custom health checks
+- Email/Slack notifications
+- Historical data
+- Auto-recovery detection
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/api-monitor-dashboard
+# Start monitoring
+./monitor.sh start
+
+# Add endpoint
+./monitor.sh add https://api.example.com/health
+
+# Check status
+./monitor.sh status
 ```
+
+## Dashboard
+
+Open browser to view dashboard:
+```
+http://localhost:3000
+```
+
+## Configuration
+
+Edit `config.json` to customize:
+- Check intervals
+- Timeout settings
+- Alert thresholds
+- Notification channels
+
+## Requirements
+
+- Node.js 18+
+- Docker (optional)
+
+## Author
+
+Sunshine-del-ux

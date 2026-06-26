@@ -1,0 +1,9 @@
+{
+  "name": "amazon-review-monitor",
+  "displayName": "Amazon Review Monitor",
+  "version": "1.0.0",
+  "summary": "Monitor Amazon product reviews — rating distribution, sentiment analysis, negative review alerts, AI-drafted seller responses. Track any ASIN. Pure Python, zero dependencies.",
+  "author": "avmw2025",
+  "tags": ["amazon", "reviews", "sentiment", "monitor", "ecommerce", "seller", "feedback", "alerts", "free"],
+  "license": "MIT"
+}

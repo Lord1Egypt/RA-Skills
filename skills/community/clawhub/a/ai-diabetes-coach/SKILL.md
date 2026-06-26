@@ -1,35 +1,63 @@
 ---
-name: "ai-diabetes-coach"
+name: ai-diabetes-coach
 description: "AI 糖尿病康复管理助手 — 血糖记录、风险分级、个体化饮食/运动建议、胰岛素参考计算。基于 ADA 2025 指南。安全增强设计。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-diabetes-coach"
-sourceUrl: "https://clawhub.ai/skills/ai-diabetes-coach"
 ---
 
-# ai-diabetes-coach
+# AI 糖尿病康复管理助手 (AI Diabetes Coach)
 
-> AI 糖尿病康复管理助手 — 血糖记录、风险分级、个体化饮食/运动建议、胰岛素参考计算。基于 ADA 2025 指南。安全增强设计。
+基于 ADA 2025 指南的糖尿病康复管理工具。安全优先设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-diabetes-coach`
-- **Source URL:** [https://clawhub.ai/skills/ai-diabetes-coach](https://clawhub.ai/skills/ai-diabetes-coach)
+## 功能
 
-## Overview
+- 血糖记录与实时建议（危急值自动阻断，强制就医引导）
+- 个体化饮食建议（基于当前血糖和三餐类型）
+- 运动安全建议（依据血糖水平分档）
+- 胰岛素参考剂量计算（含低血糖风险动态修正）
+- 7天风险评估报告（低血糖/高血糖频率分析）
+- 用户个体化参数管理（目标血糖/校正因子/碳水比）
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ai-diabetes-coach
+# 1. 设置 API 密钥（必须）
+export API_KEY=your_strong_secret_key
+
+# 2. 安装依赖
+pip install flask
+
+# 3. 启动服务
+python app.py
+
+# 服务运行在 http://localhost:5000
+# 所有请求需在 Header 添加 X-API-Key: your_strong_secret_key
 ```
+
+> **启动前必须先设置 `API_KEY` 环境变量，否则服务拒绝启动。**
+> 数据存储在内存中，重启后丢失。
+> 默认监听 `127.0.0.1:5000`，生产部署配合反向代理。
+
+## API 概览
+
+| 路径 | 方法 | 说明 |
+|------|------|------|
+| `/health` | GET | 健康检查 |
+| `/profile` | GET/POST | 获取/更新用户参数 |
+| `/record` | POST | 添加血糖记录 |
+| `/advice` | POST | 实时血糖建议 |
+| `/insulin` | POST | 胰岛素剂量计算 |
+| `/risk/<uid>` | GET | 风险报告 |
+| `/summary/<uid>` | GET | 最近记录与建议 |
+
+## 安全特性
+
+1. 危急血糖值（<2.8 或 >20.0 mmol/L）拒绝生成常规建议，强制要求就医
+2. 所有胰岛素建议包含低血糖风险动态修正
+3. 输入白名单与严格类型校验
+4. 敏感操作记录审计日志
+5. 用户参数范围裁剪
+6. 所有响应附带医疗免责声明
+7. API 可选密钥鉴权（生产环境启用）
+
+## 合规声明
+
+本工具不提供医疗诊断，所有输出必须经医生审核后使用。

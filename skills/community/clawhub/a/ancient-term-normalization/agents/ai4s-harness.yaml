@@ -1,0 +1,10 @@
+name: ancient-term-normalization
+description: |
+  AI4S Harness integration for the ancient term normalisation skill. Defines the
+  entry script, language runtime and schemas for the agent platform.
+entrypoint: scripts/normalize_terms.py
+language: python
+runtime: python3.10
+requirements_file: scripts/requirements.txt
+input_schema: assets/schemas/recognized_chars.schema.json
+output_schema: assets/schemas/normalized_terms.schema.json

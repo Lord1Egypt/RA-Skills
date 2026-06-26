@@ -1,0 +1,25 @@
+{
+  "name": "airs-embodied-intelligence-research-skills",
+  "version": "1.0.1",
+  "description": "AIRS 具身智能产业研究 Skills",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "search": "node src/search_companies.js",
+    "crawl": "node src/crawl_bidding.js",
+    "crawl:incremental": "node src/crawl_incremental.js",
+    "crawl:rawcontent": "node src/crawl_raw_content.js",
+    "extract": "node src/extract_cases.js",
+    "extract:rerun-rejected": "node src/extract_cases.js --rerun-rejected",
+    "ingest": "node src/ingest_verify.js",
+    "quality:review": "node src/ingest_verify.js",
+    "verify": "node src/verify_thirdparty.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.0.0",
+    "xlsx": "^0.18.5",
+    "csv-writer": "^1.6.0",
+    "csv-parse": "^5.6.0",
+    "winston": "^3.17.0"
+  }
+}

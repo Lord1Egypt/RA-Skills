@@ -1,0 +1,35 @@
+{
+  "technicians": {
+    "ช่างโต้": {
+      "device_number": "7028888047",
+      "device_id": "OBD-88047", 
+      "vehicle": "รถกระบะโต้",
+      "skills": ["กล้องวงจรปิด", "ระบบเครือข่าย", "WiFi", "Smart Home"],
+      "phone": "0XX-XXX-XXXX",
+      "status": "active"
+    },
+    "ช่างรุ่ง": {
+      "device_number": "TO_BE_ADDED",
+      "device_id": "OBD-XXXX",
+      "vehicle": "รถกระบะรุ่ง", 
+      "skills": ["ระบบเครือข่าย", "WiFi", "Server", "โทรศัพท์ IP"],
+      "phone": "0XX-XXX-XXXX",
+      "status": "active"
+    },
+    "ช่างเม่ง": {
+      "device_number": "TO_BE_ADDED",
+      "device_id": "OBD-XXXX",
+      "vehicle": "รถกระบะเม่ง",
+      "skills": ["กล้องวงจรปิด", "ระบบเสียง", "WiFi"],
+      "phone": "0XX-XXX-XXXX", 
+      "status": "active"
+    }
+  },
+  "aika_integration": {
+    "server_primary": "http://www.aika168.com",
+    "server_alternative": "http://en.aika168.com",
+    "login_method": "web_scraping",
+    "data_format": "lat_long",
+    "update_interval": "5_minutes"
+  }
+}

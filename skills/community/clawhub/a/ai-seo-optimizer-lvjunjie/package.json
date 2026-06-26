@@ -1,0 +1,52 @@
+{
+  "name": "ai-seo-optimizer",
+  "version": "1.0.0",
+  "description": "企业级 SEO 分析与优化引擎 - 关键词研究、内容优化、排名追踪、内链建议",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "lint": "eslint src/",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "seo",
+    "optimization",
+    "keyword-research",
+    "content-analysis",
+    "rank-tracking",
+    "internal-linking",
+    "digital-marketing"
+  ],
+  "author": "小龙",
+  "license": "Commercial",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/ai-seo-optimizer"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {},
+  "pricing": {
+    "model": "subscription",
+    "amount": 129,
+    "currency": "USD",
+    "period": "month",
+    "trial_days": 7
+  },
+  "categories": [
+    "marketing",
+    "seo",
+    "content",
+    "analytics",
+    "business"
+  ],
+  "features": [
+    "关键词研究和竞争分析",
+    "内容优化建议",
+    "排名追踪和报告",
+    "自动内链建议"
+  ]
+}

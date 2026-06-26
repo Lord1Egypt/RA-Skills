@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-content-generation",
+  "version": "1.0.0",
+  "description": "AI 内容生成助手 - 文章生成、图片生成、视频生成",
+  "author": "yang1002378395-cmyk", 
+  "tags": ["ai", "content", "generation", "writing", "chinese"],
+  "category": "content",
+  "license": "MIT"
+}

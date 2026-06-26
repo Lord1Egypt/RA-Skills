@@ -1,0 +1,19 @@
+rss:
+  feeds:
+    - https://hnrss.org/frontpage
+    - https://feeds.bbci.co.uk/news/technology/rss.xml
+    - https://www.techcrunch.com/feed/
+    - https://feeds.reuters.com/reuters/technologyNews
+  max_articles: 10
+  language: en
+
+summarize:
+  model: gpt-4o-mini
+  max_length: 300
+  style: bullet_points
+
+feishu:
+  wiki_space_id: "${FEISHU_WIKI_SPACE_ID}"
+  parent_node_token: "${FEISHU_PARENT_NODE}"
+  title_prefix: "📰 AI日报"
+  time_format: "%Y年%m月%d日"

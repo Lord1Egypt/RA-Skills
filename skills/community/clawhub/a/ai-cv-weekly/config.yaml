@@ -1,0 +1,60 @@
+# LunaClaw Brief — Global Configuration
+# Sensitive info goes in config.local.yaml (gitignored)
+
+brand:
+  name: "ClawCat"
+  full_name: "ClawCat Brief"
+  tagline: "AI-Powered Report Engine"
+  author: "by llx & Luna"
+
+llm:
+  base_url: "https://coding.dashscope.aliyuncs.com/v1"
+  model: "kimi-k2.5"
+  validator_model: ""  # 数值校验用的小模型（如 qwen-turbo），留空则用主模型
+  timeout: 180
+  # api_key: put in config.local.yaml or env BAILIAN_API_KEY
+
+github:
+  token: ""  # put in config.local.yaml or env GITHUB_TOKEN
+
+proxy:
+  enabled: false
+  http: ""     # e.g. "http://127.0.0.1:7890" — DuckDuckGo 等国际搜索源在国内需要代理
+  https: ""    # 同上，设置后 duckduckgo adapter 会自动使用
+
+# Data source configuration
+sources_config:
+  rss:
+    max_per_feed: 10
+    feeds:
+      # Tech
+      - url: "https://feeds.arstechnica.com/arstechnica/technology-lab"
+        label: "Ars Technica"
+      - url: "https://www.wired.com/feed/rss"
+        label: "Wired"
+      - url: "https://techcrunch.com/feed/"
+        label: "TechCrunch"
+      - url: "https://www.theverge.com/rss/index.xml"
+        label: "The Verge"
+      - url: "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
+        label: "NYT Tech"
+      # Finance (enriched via openclaw-feeds catalog)
+      - url: "https://feeds.bloomberg.com/markets/news.rss"
+        label: "Bloomberg"
+      - url: "https://feeds.content.dowjones.io/public/rss/mw_topstories"
+        label: "MarketWatch"
+      - url: "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+        label: "CNBC"
+      - url: "https://www.ft.com/?format=rss"
+        label: "Financial Times"
+      - url: "https://feeds.reuters.com/reuters/businessNews"
+        label: "Reuters Business"
+email:
+  smtp_host: "smtp.qq.com"
+  smtp_port: 465
+  sender_email: ""
+  password: ""       # put in config.local.yaml or env EMAIL_PASSWORD
+  to_emails: []
+
+eval:
+  enabled: false

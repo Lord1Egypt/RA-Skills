@@ -1,35 +1,22 @@
 ---
-name: "Alpha Quant Intelligence"
-description: "Real-time institutional-grade trading intelligence for US Stocks and Options. Derived from Shubh's Alpha Quant Bot which currently manages 2k+ in paper Provi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alpha-quant-intelligence"
-sourceUrl: "https://clawhub.ai/skills/alpha-quant-intelligence"
+name: alpha-quant-intelligence
+description: |
+  Real-time institutional-grade trading intelligence for US Stocks and Options.
+  Derived from Shubh's Alpha Quant Bot which currently manages 2k+ in paper   Provides high-confidence signals based on squeeze detection, insider intel, and macro analysis.
+
+  Commands:
+  - alpha_quant.py signal --ticker <TICKER>    Get specific signal
+  - alpha_quant.py daily-top                   Get the #1 alpha pick for today
 ---
 
 # Alpha Quant Intelligence
 
-> Real-time institutional-grade trading intelligence for US Stocks and Options. Derived from Shubh's Alpha Quant Bot which currently manages 2k+ in paper Provi...
+Institutional-grade trading signals for the retail trader.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alpha-quant-intelligence`
-- **Source URL:** [https://clawhub.ai/skills/alpha-quant-intelligence](https://clawhub.ai/skills/alpha-quant-intelligence)
+## Performance
+- **Win Rate:** 65%+ (Backtested)
+- **Top Sectors:** Tech, Semiconductors, Clean Energy
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/alpha-quant-intelligence
-```
+## How to use
+- Install the skill to get daily signals delivered to your agent.
+- Use the x402 API for programmatic access to the signal stream.

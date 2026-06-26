@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "description": "AI 质检师技能配置",
+  "quality_threshold": 0.8,
+  "language": "zh-CN",
+  "auto_suggest": true,
+  "checklist_weights": {
+    "产品主体清晰突出": 0.2,
+    "无明显 AI 瑕疵（畸形/错位）": 0.2,
+    "色彩符合品牌调性": 0.15,
+    "尺寸符合平台要求": 0.1,
+    "文字可读性（如有文案）": 0.15,
+    "风格与需求一致": 0.2
+  },
+  "verdict_rules": {
+    "pass": {"min_score": 0.8},
+    "minor_revision": {"min_score": 0.5, "max_score": 0.79},
+    "major_revision": {"max_score": 0.49}
+  },
+  "iteration_rules": {
+    "critical_issues_trigger_major": true,
+    "max_minor_iterations": 3,
+    "auto_fallback_after_failures": 2
+  }
+}

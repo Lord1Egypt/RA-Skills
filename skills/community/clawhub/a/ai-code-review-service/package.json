@@ -1,0 +1,1 @@
+{"name": "ai-code-review", "version": "1.1.0", "description": "AI-powered code review service with voice transcription, Discord notifications, and ClawHub integration", "main": "SKILL.md", "keywords": ["code-review", "ai", "voice-transcription", "discord", "openai"], "license": "MIT"}

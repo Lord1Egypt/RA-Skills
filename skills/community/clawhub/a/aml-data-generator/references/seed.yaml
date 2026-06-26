@@ -1,0 +1,3708 @@
+meta:
+  id: finance-bp-060-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-060
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:18.242568+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  upgraded_from: finance-bp-060-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:11.565905+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-060--AMLSim/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-060--AMLSim/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-REGTECH-001
+  title: Missing attribute initialization on data structures
+  description: 'When loading account lists or creating entity dictionaries, failing to initialize required list/dict attributes
+    (e.g., normal_models, statement IDs) causes KeyError or ValueError at runtime. The code path that reads these structures
+    assumes they exist, but the initialization path omits them. Consequence: pipeline crashes or data loss for affected entities.'
+  project_source: finance-bp-060--AMLSim, finance-bp-071--opensanctions
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-002
+  title: Self-loops in transaction graphs violate domain rules
+  description: 'When generating directed transaction graphs or AML typologies, allowing source == destination edges creates
+    self-loops. In AML simulation, self-loops represent accounts sending money to themselves, which is not a valid money laundering
+    pattern. In fire-sale models, self-loops cause undefined behavior. Consequence: corrupted graph topology and invalid typology
+    validation.'
+  project_source: finance-bp-060--AMLSim, finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-003
+  title: Unvalidated floating-point inputs cause runtime crashes
+  description: 'When parsing CSV files or computing statistical functions on raw data, failing to validate inputs against
+    acceptable ranges (e.g., DDP near 0 or 1 for norm.ppf, unvalidated floats from CSV) causes ValueError or infinite/NaN
+    values. Consequence: entire model crashes before simulation or corrupted downstream calculations.'
+  project_source: finance-bp-062--ifrs9, finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-004
+  title: Division by zero in financial calculations produces inf/NaN
+  description: 'When calculating ratios like DDP (downgrade observations / total observations) or price impact denominators
+    (total_quantities), zero-denominator cases are not guarded. The resulting inf/NaN propagates through all downstream calculations,
+    corrupting CCI, ECL, or market clearing. Consequence: systematic data corruption across the entire calculation pipeline.'
+  project_source: finance-bp-062--ifrs9, finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-005
+  title: Incorrect amortization windows violate IFRS 9 compliance
+  description: 'Stage 1 ECL requires exactly 12-month amortization (11 zero-indexed iterations) while Stage 2/3 requires full
+    remaining tenor (tenor-1 iterations). Using identical windows for all stages causes ECL over/understatement. Consequence:
+    regulatory non-compliance and materially incorrect loan loss provisions.'
+  project_source: finance-bp-062--ifrs9
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-006
+  title: Wrong leverage formula in threshold-based decisions
+  description: 'Computing leverage as equity-to-liabilities (E/L) instead of equity-to-assets (E/A) produces different values.
+    This causes deleveraging triggers and insolvency detection to fire at wrong thresholds. Consequence: zombie banks continue
+    operating with negative equity, or healthy banks unnecessarily deleverage.'
+  project_source: finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-007
+  title: Confusing deleveraging buffer threshold with insolvency threshold
+  description: 'Banks below 3% leverage are insolvent and must default, but deleveraging should trigger at 4% buffer. Using
+    the same threshold eliminates the buffer zone, causing immediate default with no intermediate corrective action. Consequence:
+    excessive bank failures amplify systemic contagion.'
+  project_source: finance-bp-067--firesale_stresstest
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-008
+  title: Cache keys omit request body for state-changing methods
+  description: 'Using only URL for cache fingerprints on POST/PATCH requests means different request bodies return identical
+    cached content. This causes stale data, missing entities, and data corruption in compliance screening pipelines. Consequence:
+    sanctions matches missed or false positives from stale entity data.'
+  project_source: finance-bp-071--opensanctions
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-009
+  title: ID collision in entity construction creates false sanctions matches
+  description: 'When constructing entity IDs from source identifiers, insufficient identifying attributes cause different
+    real-world entities to receive identical IDs. The database then merges them into one entity. Consequence: a sanctioned
+    entity''s ID matches an innocent entity, causing false positive compliance alerts.'
+  project_source: finance-bp-071--opensanctions
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-010
+  title: Incorrect cumulative PD ordering corrupts lifetime ECL term structure
+  description: 'Using cumprod(1-conPD) without shift(1) and fillna(1) produces corrupted first-period survival probability.
+    This cascades into all subsequent marginal and cumulative PD calculations, violating IFRS 9 lifetime ECL requirements.
+    Consequence: systematically incorrect provisions across all remaining tenor periods.'
+  project_source: finance-bp-062--ifrs9
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-011
+  title: Mismatched configuration parameters across coupled components
+  description: 'When TransactionGenerator and Nominator use different degree_threshold values, Nominator identifies hub accounts
+    using different criteria than TransactionGenerator. This causes incorrect fan-in/fan-out candidate selection. Consequence:
+    AML typology patterns placed on wrong accounts, invalidating simulation results.'
+  project_source: finance-bp-060--AMLSim
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-012
+  title: Reverse property assignment corrupts entity construction
+  description: 'Stub (reverse) properties represent inverse relationships and raise InvalidData when directly assigned. Attempting
+    to add values to stub properties instead of forward properties causes ValueError, aborting entity construction. Consequence:
+    entities lost from output, incomplete compliance datasets.'
+  project_source: finance-bp-071--opensanctions
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-013
+  title: Order-dependent execution creates first-mover advantage bias
+  description: 'Without separating step() and act() phases, first-acting banks sell assets before others decide, creating
+    systematic first-mover advantage. This distorts the competitive equilibrium and fire-sale dynamics. Consequence: unreliable
+    systemic risk estimates that understate contagion for late-acting banks.'
+  project_source: finance-bp-067--firesale_stresstest
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-014
+  title: Immediate asset sales cause double-selling and undefined state
+  description: 'Executing asset sales immediately rather than queuing them to a buffer allows multiple banks holding the same
+    asset to sell simultaneously without accounting for concurrent intentions. Consequence: undefined price impact and incorrect
+    cash transfers in market clearing.'
+  project_source: finance-bp-067--firesale_stresstest
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+- id: AP-REGTECH-015
+  title: Missing EAD component in ECL formula produces incomplete provisions
+  description: 'IFRS 9 requires ECL = PD x LGD x EAD. When the EAD module is missing or not integrated, the ECL calculation
+    is incomplete and unusable for provisioning. Consequence: regulatory rejection of ECL calculations, blocking of provisioning
+    and reporting processes.'
+  project_source: finance-bp-062--ifrs9
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - regtech-compliance
+  _source_file: anti-patterns/regtech.yaml
+cross_project_wisdom:
+- wisdom_id: CW-REGTECH-001
+  source_project: finance-bp-062--ifrs9, finance-bp-067--firesale_stresstest
+  pattern_name: Input bounds validation before statistical computation
+  description: Statistical functions like norm.ppf() and cumprod() have strict input requirements that, if violated, produce
+    infinite or NaN values corrupting entire pipelines. Always validate inputs against domain constraints (DDP in (0,1), counts
+    > 0) before passing to statistical functions. Apply to any statistical or inverse-CDF computation.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-002
+  source_project: finance-bp-060--AMLSim, finance-bp-067--firesale_stresstest
+  pattern_name: Graph/topology invariant verification before construction
+  description: 'Before constructing graph structures (transaction networks, transition matrices), verify invariants: sum(in-degrees)
+    = sum(out-degrees), matrix row sums = 1.0, degree sequence length divisibility. This catches data corruption early before
+    expensive graph construction operations. Apply to any bipartite or directed graph generation.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-003
+  source_project: finance-bp-062--ifrs9
+  pattern_name: Regulatory amortization window discipline
+  description: 'IFRS 9 mandates different ECL calculation windows: exactly 12-month for Stage 1 (11 zero-indexed iterations),
+    full remaining tenor for Stage 2/3. Mixing these up violates compliance requirements. Always encode stage-specific window
+    logic explicitly rather than reusing a single loop variable across stages.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-004
+  source_project: finance-bp-071--opensanctions
+  pattern_name: Fingerprint composition must include all request dimensions
+  description: 'Cache keys must include all request parameters that affect response content: URL, HTTP method, authentication
+    headers, and request body for state-changing methods. POST requests with different bodies returning identical cache is
+    a silent data corruption bug. Always compose fingerprints from the union of all content-affecting parameters.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-005
+  source_project: finance-bp-067--firesale_stresstest
+  pattern_name: Floating-point zero-equivalence with explicit epsilon tolerance
+  description: IEEE 754 floating-point precision causes exact zero comparisons to fail in financial calculations. Always use
+    eps=1e-9 tolerance for zero-equivalence checks in market clearing, leverage ratios, and price impact calculations. This
+    prevents division-by-zero crashes and incorrect cash transfers.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-006
+  source_project: finance-bp-062--ifrs9
+  pattern_name: Stage classification threshold ordering enforcement
+  description: 'IFRS 9 SICR thresholds must be ordered: BUCKETS 2-3 trigger Stage 2, BUCKETS >=4 trigger Stage 3. Applying
+    thresholds in wrong order or omitting absolute DPD triggers causes material ECL misstatement. Validate threshold ordering
+    and document bucket-to-stage mapping explicitly.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-007
+  source_project: finance-bp-067--firesale_stresstest
+  pattern_name: Initialization-before-use dependency ordering
+  description: 'Operational dependencies must initialize before dependent objects use them: AssetMarket before bank registration,
+    CSV file existence before parsing, entity ID before statement addition. Violations cause AttributeError or FileNotFoundError
+    that abort entire initialization. Always encode dependency ordering explicitly in initialization sequences.'
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-008
+  source_project: finance-bp-071--opensanctions
+  pattern_name: Sufficient entity ID collision prevention
+  description: Entity IDs must include enough identifying attributes (dataset prefix, source, identifier type, document number)
+    to guarantee uniqueness. Collisions create false equivalence between unrelated entities, directly causing false positive
+    sanctions matches. Include the maximum available discriminating attributes in ID construction.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-009
+  source_project: finance-bp-060--AMLSim
+  pattern_name: Hub selection with candidate removal before addition
+  description: When selecting hub accounts for typology placement, always call remove_typology_candidate BEFORE add_node for
+    each selected account. Reversing this order causes hub self-selection (accounts choosing themselves) and duplicate assignment
+    across overlapping patterns. Apply to any allocation algorithm with candidate pooling.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+- wisdom_id: CW-REGTECH-010
+  source_project: finance-bp-067--firesale_stresstest
+  pattern_name: Insolvency detection before operational decisions
+  description: Banks below the insolvency threshold (3% leverage) must trigger default immediately, not enter the deleveraging
+    decision logic. Checking operational thresholds before insolvency creates zombie banks with negative equity. Always gate
+    operational decisions on prior insolvency state.
+  applicable_to_activity: regtech-compliance
+  _source_file: cross-project-wisdom/regtech.yaml
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: scripts/convert_logs.py
+  business_problem: Convert transaction log files into synthetic AML simulation data for testing anti-money laundering detection
+    systems
+  intent_keywords:
+  - convert logs
+  - synthetic data
+  - AML simulation
+  - generate transaction logs
+  - test data generation
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-102
+  source_file: scripts/split_accounts_bank.py
+  business_problem: Partition account CSV files by bank identifier for bank-specific analysis and processing
+  intent_keywords:
+  - split accounts
+  - bank ID
+  - partition data
+  - bank filtering
+  - account grouping
+  stage: data_collection
+  data_domain: holding_data
+  type: data_pipeline
+- kuc_id: KUC-103
+  source_file: scripts/combine_data.py
+  business_problem: Aggregate multiple AMLSim output files into a consolidated dataset for comprehensive analysis
+  intent_keywords:
+  - combine outputs
+  - merge data
+  - AMLSim aggregation
+  - consolidate simulation results
+  - dataset assembly
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-104
+  source_file: scripts/transaction_graph_generator.py
+  business_problem: Generate the base transaction network graph used as input for AML simulation, defining account relationships
+    and transaction patterns
+  intent_keywords:
+  - transaction graph
+  - network generation
+  - graph topology
+  - AMLSim input
+  - account relationships
+  stage: data_collection
+  data_domain: trading_data
+  type: data_pipeline
+- kuc_id: KUC-105
+  source_file: scripts/generate_scalefree.py
+  business_problem: Generate scale-free network graphs using Kronecker graph algorithm for research on network topology and
+    distribution analysis
+  intent_keywords:
+  - scale-free
+  - Kronecker graph
+  - network topology
+  - degree distribution
+  - graph generation research
+  stage: network_generation
+  data_domain: market_data
+  type: research_analysis
+- kuc_id: KUC-106
+  source_file: scripts/visualize/plot_alert_pattern_subgraphs.py
+  business_problem: Visualize alert pattern subgraphs showing which accounts and transactions are involved in each generated
+    alert for debugging and validation
+  intent_keywords:
+  - alert visualization
+  - subgraph plot
+  - alert debugging
+  - pattern inspection
+  - AMLSim validation
+  stage: validation
+  data_domain: trading_data
+  type: monitoring
+- kuc_id: KUC-107
+  source_file: scripts/visualize/plot_distributions.py
+  business_problem: Generate statistical distribution plots (degree, amount, frequency) from transaction graphs for analysis
+    and reporting
+  intent_keywords:
+  - distribution plot
+  - statistics
+  - degree distribution
+  - amount analysis
+  - transaction visualization
+  stage: validation
+  data_domain: trading_data
+  type: reporting
+- kuc_id: KUC-108
+  source_file: scripts/amlsim/random_amount.py
+  business_problem: Generate random transaction amounts within configurable min/max bounds for transaction simulation
+  intent_keywords:
+  - random amount
+  - transaction generator
+  - random number
+  - amount range
+  - simulation utility
+  stage: factor_computation
+  data_domain: trading_data
+  type: builtin_factor
+- kuc_id: KUC-109
+  source_file: scripts/amlsim/nominator.py
+  business_problem: Select appropriate accounts for different transaction types (fan-in, fan-out, single, mutual, periodical)
+    based on network degree thresholds
+  intent_keywords:
+  - account selection
+  - nominator
+  - transaction routing
+  - fan-in fan-out
+  - network degree
+  stage: factor_computation
+  data_domain: holding_data
+  type: builtin_factor
+- kuc_id: KUC-110
+  source_file: scripts/amlsim/rounded_amount.py
+  business_problem: Generate rounded transaction amounts (e.g., 100, 500, 1000) to simulate realistic human transaction patterns
+  intent_keywords:
+  - rounded amount
+  - realistic transaction
+  - human pattern
+  - currency rounding
+  - simulation utility
+  stage: factor_computation
+  data_domain: trading_data
+  type: builtin_factor
+- kuc_id: KUC-111
+  source_file: scripts/amlsim/normal_model.py
+  business_problem: Define and manage normal (non-suspicious) account behavior models including main accounts and member accounts
+    for transaction simulation
+  intent_keywords:
+  - normal model
+  - behavior model
+  - account group
+  - main account
+  - member account
+  stage: factor_computation
+  data_domain: holding_data
+  type: builtin_factor
+- kuc_id: KUC-112
+  source_file: scripts/validation/network_analytics.py
+  business_problem: Load AMLSim outputs and analyze transaction network characteristics including degree distribution, connected
+    components, and graph properties
+  intent_keywords:
+  - network analysis
+  - graph analytics
+  - validation
+  - topology analysis
+  - degree analysis
+  stage: validation
+  data_domain: trading_data
+  type: monitoring
+- kuc_id: KUC-113
+  source_file: scripts/validation/validate_alerts.py
+  business_problem: Validate generated alerts against expected alert parameters to ensure AML simulation produces correct
+    alert patterns and amounts
+  intent_keywords:
+  - validate alerts
+  - alert verification
+  - simulation accuracy
+  - alert parameters
+  - SAR validation
+  stage: validation
+  data_domain: trading_data
+  type: monitoring
+component_capability_map:
+  project: finance-bp-060--AMLSim
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 5
+    total_classes: 20
+    total_functions: 0
+    total_stages: 5
+  modules:
+    graph_construction:
+      class_count: 5
+      stage_id: graph_construction
+      stage_order: 1
+      responsibility: Builds a directed transaction graph from account lists and degree sequences using configuration-model
+        random graphs. This is the foundation layer that creates the network topology for each downstream processing.
+      classes:
+      - name: TransactionGenerator.generate_normal_transactions
+        file: graph_construction/transactiongenerator-generate-normal-tra.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: TransactionGenerator.build_normal_models
+        file: graph_construction/transactiongenerator-build-normal-models.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Nominator.place_normal_models
+        file: graph_construction/nominator-place-normal-models.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: AmountGenerator
+        file: graph_construction/amountgenerator.py
+        line: 0
+        kind: replaceable_point
+      - name: NormalModelType
+        file: graph_construction/normalmodeltype.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 5
+    alert_pattern_generation:
+      class_count: 3
+      stage_id: alert_pattern_generation
+      stage_order: 2
+      responsibility: Injects suspicious AML typology patterns (fan-in, fan-out, cycle, scatter-gather) into the base transaction
+        graph. These represent the ground-truth alerts that validation will later detect.
+      classes:
+      - name: TransactionGenerator.add_aml_typology
+        file: alert_pattern_generation/transactiongenerator-add-aml-typology.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: AMLTypology.add_transaction
+        file: alert_pattern_generation/amltypology-add-transaction.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: AlertPattern
+        file: alert_pattern_generation/alertpattern.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    log_conversion:
+      class_count: 5
+      stage_id: log_conversion
+      stage_order: 3
+      responsibility: Transforms simulator output into standardized database schema format (Neo4j, JanusGraph). Applies Faker-generated
+        names, computes party relationships, and formats timestamps.
+      classes:
+      - name: LogConverter.convert
+        file: log_conversion/logconverter-convert.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Schema.get_tx_row
+        file: log_conversion/schema-get-tx-row.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Schema.get_account_row
+        file: log_conversion/schema-get-account-row.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FakerLocale
+        file: log_conversion/fakerlocale.py
+        line: 0
+        kind: replaceable_point
+      - name: OutputFormat
+        file: log_conversion/outputformat.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    alert_validation:
+      class_count: 5
+      stage_id: alert_validation
+      stage_order: 4
+      responsibility: Validates that generated alert patterns match their expected typology parameters. Checks account counts,
+        amounts, periods, and structural properties like cycle ordering and scatter-gather chronology.
+      classes:
+      - name: AlertValidator.validate_all
+        file: alert_validation/alertvalidator-validate-all.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: satisfies_params
+        file: alert_validation/satisfies-params.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: is_cycle
+        file: alert_validation/is-cycle.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: is_scatter_gather
+        file: alert_validation/is-scatter-gather.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: PatternValidator
+        file: alert_validation/patternvalidator.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    data_combination:
+      class_count: 2
+      stage_id: data_combination
+      stage_order: 5
+      responsibility: Merges multiple simulation outputs into a single dataset. Aggregates degrees and appends output CSVs
+        for multi-simulation batch runs, enabling large-scale dataset creation.
+      classes:
+      - name: Combiner.combine
+        file: data_combination/combiner-combine.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Combiner.merge_schemas
+        file: data_combination/combiner-merge-schemas.py
+        line: 0
+        kind: required_method
+        signature: ''
+      design_decision_count: 1
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.1590909090909091
+    evidence_invalid: 74
+    evidence_verified: 14
+    evidence_auto_fixed: 0
+    audit_coverage: 38/38 (100%)
+    audit_pass_rate: 1/38 (2%)
+    audit_fail_total: 22
+    audit_finance_universal:
+      pass: 1
+      warn: 9
+      fail: 10
+    audit_subdomain_totals:
+      pass: 0
+      warn: 6
+      fail: 12
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-060. Evidence verify ratio
+    = 15.9% and audit fail total = 22. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-060-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc:
+  - UC-108
+  - UC-109
+  - UC-110
+  - UC-111
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Convert Logs to AML Simulation Data
+    positive_terms:
+    - convert logs
+    - synthetic data
+    - AML simulation
+    - generate transaction logs
+    - test data generation
+    data_domain: mixed
+    negative_terms:
+    - live trading
+    - real-time data
+    - production alerts
+    - screening
+    ambiguity_question: Are you generating synthetic test data for simulation, or processing real transaction logs for analysis?
+  - uc_id: UC-102
+    name: Split Accounts by Bank ID
+    positive_terms:
+    - split accounts
+    - bank ID
+    - partition data
+    - bank filtering
+    - account grouping
+    data_domain: holding_data
+    negative_terms:
+    - alert generation
+    - transaction simulation
+    - network graph
+    ambiguity_question: Do you need to split existing account data by bank, or are you looking for transaction graph generation?
+  - uc_id: UC-103
+    name: Combine AML Simulation Outputs
+    positive_terms:
+    - combine outputs
+    - merge data
+    - AMLSim aggregation
+    - consolidate simulation results
+    - dataset assembly
+    data_domain: mixed
+    negative_terms:
+    - live trading
+    - real-time processing
+    - screening alerts
+    ambiguity_question: Are you combining simulation outputs into one dataset, or running the simulation itself?
+  - uc_id: UC-104
+    name: Generate Transaction Graph
+    positive_terms:
+    - transaction graph
+    - network generation
+    - graph topology
+    - AMLSim input
+    - account relationships
+    data_domain: trading_data
+    negative_terms:
+    - visualize graph
+    - plot distributions
+    - alert analysis
+    ambiguity_question: Do you need to create/generate a new transaction network, or analyze/visualize an existing one?
+  - uc_id: UC-105
+    name: Generate Scale-Free Network Graph
+    positive_terms:
+    - scale-free
+    - Kronecker graph
+    - network topology
+    - degree distribution
+    - graph generation research
+    data_domain: market_data
+    negative_terms:
+    - AML simulation
+    - alert generation
+    - transaction data
+    ambiguity_question: Are you generating mathematical network graphs for research, or creating transaction networks for
+      AML simulation?
+  - uc_id: UC-106
+    name: Plot Alert Pattern Subgraphs
+    positive_terms:
+    - alert visualization
+    - subgraph plot
+    - alert debugging
+    - pattern inspection
+    - AMLSim validation
+    data_domain: trading_data
+    negative_terms:
+    - generate alerts
+    - create transactions
+    - distributions
+    ambiguity_question: Are you visualizing existing alerts, or generating new transaction patterns and alerts?
+  - uc_id: UC-107
+    name: Plot Transaction Distributions
+    positive_terms:
+    - distribution plot
+    - statistics
+    - degree distribution
+    - amount analysis
+    - transaction visualization
+    data_domain: trading_data
+    negative_terms:
+    - alert generation
+    - transaction simulation
+    - network construction
+    ambiguity_question: Are you plotting statistics from existing transaction data, or generating new transactions for simulation?
+  - uc_id: UC-108
+    name: Random Amount Generator
+    positive_terms:
+    - random amount
+    - transaction generator
+    - random number
+    - amount range
+    - simulation utility
+    data_domain: trading_data
+    negative_terms:
+    - fixed amount
+    - rounded amount
+    - real data
+    ambiguity_question: Do you need random amounts with uniform distribution, or rounded/specific amounts for transactions?
+  - uc_id: UC-109
+    name: Account Nominator for Transaction Selection
+    positive_terms:
+    - account selection
+    - nominator
+    - transaction routing
+    - fan-in fan-out
+    - network degree
+    data_domain: holding_data
+    negative_terms:
+    - alert generation
+    - visualization
+    - data loading
+    ambiguity_question: Are you selecting accounts for transaction routing, or generating/analyzing alerts?
+  - uc_id: UC-110
+    name: Rounded Amount Generator
+    positive_terms:
+    - rounded amount
+    - realistic transaction
+    - human pattern
+    - currency rounding
+    - simulation utility
+    data_domain: trading_data
+    negative_terms:
+    - random precise
+    - exact amount
+    - real data
+    ambiguity_question: Do you need realistic rounded amounts, or precise random amounts for transactions?
+  - uc_id: UC-111
+    name: Normal Account Behavior Model
+    positive_terms:
+    - normal model
+    - behavior model
+    - account group
+    - main account
+    - member account
+    data_domain: holding_data
+    negative_terms:
+    - SAR
+    - suspicious activity
+    - alert
+    ambiguity_question: Are you defining normal transaction behavior patterns, or working with suspicious activity (SAR) alerts?
+  - uc_id: UC-112
+    name: Analyze Transaction Networks
+    positive_terms:
+    - network analysis
+    - graph analytics
+    - validation
+    - topology analysis
+    - degree analysis
+    data_domain: trading_data
+    negative_terms:
+    - generate network
+    - create transactions
+    - simulation
+    ambiguity_question: Are you analyzing existing network properties, or generating new transaction networks?
+  - uc_id: UC-113
+    name: Validate AML Simulation Alerts
+    positive_terms:
+    - validate alerts
+    - alert verification
+    - simulation accuracy
+    - alert parameters
+    - SAR validation
+    data_domain: trading_data
+    negative_terms:
+    - generate alerts
+    - create transactions
+    - visualization
+    ambiguity_question: Are you validating that alerts match expected parameters, or generating new alerts?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 114
+    fatal_constraints_count: 54
+    non_fatal_constraints_count: 129
+    use_cases_count: 13
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions:
+    - id: BD-062
+      type: B/DK
+      summary: Graphviz layout for alert subgraph visualization
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 33 source groups: account_attribute(1),
+        account_classification(1), account_config(1), account_initialization(1), alert_pattern_generation(17), alert_validation(10),
+        and 27 more.'
+      key_decisions: 113 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-035
+      type: B/BA
+      summary: Gender assigned with 50/50 probability (Male/Female)
+    - id: BD-036
+      type: B/BA
+      summary: Account type assigned 50/50 (individual vs organization)
+    - id: BD-043
+      type: B/BA
+      summary: 'Initial balance range: min=50000, max=100000'
+    - id: BD-028
+      type: B/BA
+      summary: Account balance generated with uniform distribution between min_balance and max_balance
+    - id: BD-006
+      type: B
+      summary: AML typologies use hub accounts as main nodes
+    - id: BD-007
+      type: B
+      summary: Accounts removed from hub pool after being selected
+    - id: BD-008
+      type: BA/M
+      summary: Alert types encoded as integer model IDs
+    - id: BD-024
+      type: B/BA
+      summary: Transaction amounts rounded to psychologically appealing values (multiples of 10, 100, 1000)
+    - id: BD-025
+      type: B/BA
+      summary: 'Step size selection: find power of ten giving 7-30 slots in range'
+    - id: BD-046
+      type: B/BA
+      summary: 'Fan-in pattern: multiple originators send to single main account'
+    - id: BD-047
+      type: B
+      summary: 'Fan-out pattern: single main account sends to multiple beneficiaries'
+    - id: BD-048
+      type: B
+      summary: 'Bipartite pattern: split accounts evenly between originators and beneficiaries'
+    - id: BD-049
+      type: B
+      summary: 'Stack pattern: divide accounts into thirds for originator/intermediate/beneficiary'
+    - id: BD-050
+      type: B/BA
+      summary: 'Cycle pattern: transactions form ring using modulo arithmetic, margin decrements amount'
+    - id: BD-051
+      type: B/BA
+      summary: 'Scatter-gather: split at midpoint date, scatter (orig->mid) then gather (mid->bene)'
+    - id: BD-052
+      type: B/BA
+      summary: 'Gather-scatter: collect from origins to mid at midpoint, then distribute to beneficiaries'
+    - id: BD-060
+      type: B/RC
+      summary: Random amount generation using uniform distribution
+    - id: BD-069
+      type: DK/B
+      summary: Nominator uses circular iterator pattern with manual index wrapping - next_node_id() resets index to 0 on IndexError
+    - id: BD-074
+      type: M/DK
+      summary: Schema classes use factory pattern via get_*_row() methods - row builders take **attrs for extensible columns
+    - id: BD-077
+      type: DK
+      summary: Nominator state machine uses increment_type_index() round-robin across types - assumes balanced workload but
+        allows type starvation
+    - id: BD-082
+      type: BA/DK
+      summary: RoundedAmount implements adaptive step size algorithm (7-30 slots per range) - non-uniform distribution favoring
+        round numbers
+    - id: BD-012
+      type: B
+      summary: Validation uses graph-theoretic properties rather than regex/text matching
+    - id: BD-013
+      type: BA
+      summary: Ordered patterns check chronological sequencing of transactions
+    - id: BD-014
+      type: B
+      summary: Scatter-gather requires intermediate amounts to decrease
+    - id: BD-018
+      type: B
+      summary: In-degree and out-degree sequences must have equal sums
+    - id: BD-019
+      type: B/BA
+      summary: Total accounts must be multiple of degree sequence length
+    - id: BD-030
+      type: B/DK
+      summary: SAR flag marks accounts involved in suspicious activity reports
+    - id: BD-053
+      type: B/BA
+      summary: 'Alert validation checks: number of accounts, amount range, period range'
+    - id: BD-054
+      type: B
+      summary: 'Cycle pattern validation: single cycle, chronological ordering, unique amounts'
+    - id: BD-055
+      type: B
+      summary: 'Scatter-gather validation: intermediate degree=1, amounts decrease, chronological order'
+    - id: BD-064
+      type: B
+      summary: Alert is_sar checked with > 0 comparison (sar_id > 0)
+    - id: BD-037
+      type: B/BA
+      summary: Powerlaw distribution fitting for degree distribution visualization
+    - id: BD-GAP-001
+      type: T
+      summary: Transaction generator uses INI configuration files to define test scenarios, enabling non-technical users to
+        create fraud test data without modifying code
+    - id: BD-031
+      type: B
+      summary: External (inter-bank) transactions allowed when multiple banks exist and bank_id is empty
+    - id: BD-GAP-002
+      type: B/BA
+      summary: Suspicious account classification uses boolean flags (country_risk, business_risk) rather than continuous risk
+        scores, forcing discrete categorization
+    - id: BD-GAP-003
+      type: B/BA
+      summary: AML rule engine combines multiple indicators (amount, frequency, country, business) into single rule definitions,
+        treating them as conjunction requirements
+    - id: BD-GAP-005
+      type: BA
+      summary: Fraud patterns are explicitly typed (fan_in, fan_out, dense, mixed, stack) rather than emerging from configuration,
+        encoding domain expertise about common laundering techniques
+    - id: BD-044
+      type: B/BA
+      summary: Cash-in normal interval=100, fraud interval=50; cash-out reversed
+    - id: BD-045
+      type: B/BA
+      summary: Cash-in normal amount=50-100, fraud=500-1000; cash-out reversed
+    - id: BD-017
+      type: B
+      summary: Environment variable RANDOM_SEED overrides config file random seed
+    - id: BD-056
+      type: B/BA
+      summary: Degree threshold of 4 for hub account selection
+    - id: BD-015
+      type: BA
+      summary: Schema loaded from first input and reused for all
+    - id: BD-033
+      type: B
+      summary: Transaction deduplication using (orig_id, dest_id, type, amount, date) tuple
+    - id: BD-034
+      type: B/DK
+      summary: Faker library (en_US locale) generates account names and addresses
+    - id: BD-063
+      type: B/DK
+      summary: Address retry loop ensures valid US address format
+    - id: BD-GAP-004
+      type: B
+      summary: Transaction network generation models hub accounts as high-degree vertices with preferential attachment, reflecting
+        real-world concentration of transaction volume
+    - id: BD-067
+      type: BA
+      summary: DEFAULT_MARGIN_RATIO=0.1 encodes business assumption that intermediaries retain 10% of funds in cycle/scatter-gather
+        patterns
+    - id: BD-073
+      type: DK
+      summary: 'base_date inconsistency: conf.json and convert_logs.py use ''2017-01-01'' but network_analytics.py uses ''1970-01-01'''
+    - id: BD-078
+      type: BA/M
+      summary: schedule_id defaults to 1 for normal models (hardcoded) vs AML typologies using schedule parameter from CSV
+    - id: BD-083
+      type: DK
+      summary: 'degree_threshold test/production mismatch: conf.json uses threshold=10 but test fixtures use threshold=3'
+    - id: BD-058
+      type: B/DK
+      summary: Active edge marking for normal model subgraph edges
+    - id: BD-084
+      type: B/BA
+      summary: 'INTERACTION: BD-066 × BD-072 → Initialization sequence violations cause Nominator AttributeError cascades'
+    - id: BD-085
+      type: BA
+      summary: 'INTERACTION: BD-073 × BD-038 → Inconsistent base dates (2017-01-01 vs 1970-01-01) corrupt temporal calculations
+        across pipeline boundaries'
+    - id: BD-086
+      type: B/BA
+      summary: 'INTERACTION: BD-083 × BD-003 → Test/production threshold mismatch causes false confidence in hub detection
+        validation'
+    - id: BD-087
+      type: B/BA
+      summary: 'INTERACTION: BD-006 × BD-007 → Hub main node selection conflicts with account pool depletion under high alert
+        volumes'
+    - id: BD-088
+      type: BA
+      summary: 'INTERACTION: BD-012 × BD-079 → Graph-theoretic validation amplifies maintenance burden and detection divergence
+        risk'
+    - id: BD-089
+      type: BA
+      summary: 'INTERACTION: BD-021 × BD-050 × BD-051 → Margin ratio creates detectable signature across cycle and scatter-gather
+        patterns'
+    - id: BD-090
+      type: B
+      summary: 'INTERACTION: BD-080 × BD-018 → Graph construction constraints formalize flow conservation requirements'
+    - id: BD-091
+      type: BA
+      summary: 'INTERACTION: BD-009 × BD-015 → Schema-driven mapping enables multi-format support but assumes consistency
+        across combined data'
+    - id: BD-092
+      type: B/BA
+      summary: 'RISK CASCADE: BD-066 → BD-071 → BD-027 → BD-003 → BD-006 → BD-046/BD-047 → BD-005/BD-059 → Alert pipeline
+        failure'
+    - id: BD-093
+      type: BA/M
+      summary: 'RISK CASCADE: BD-073 → BD-010 → BD-029 → BD-053 → BD-013 → Incorrect temporal validation'
+    - id: BD-094
+      type: B/BA
+      summary: 'CONTRADICTION: BD-015 assumes schema consistency while BD-009 enables schema evolution - these create conflicting
+        requirements'
+    - id: BD-095
+      type: BA/M
+      summary: 'CONTRADICTION: BD-078 hardcodes schedule_id=1 for normal models while AML typologies use dynamic CSV scheduling'
+    - id: BD-001
+      type: B
+      summary: Directed configuration model avoids self-loops by swapping IDs
+    - id: BD-002
+      type: B
+      summary: Degree sequences are repeated to fill total account count
+    - id: BD-003
+      type: B/BA
+      summary: Hub nodes defined by degree_threshold crossing either in OR out degree
+    - id: BD-004
+      type: BA
+      summary: Nominator uses degree-based candidate sorting
+    - id: BD-005
+      type: BA
+      summary: Fan breakdown algorithm can steal nodes from existing clumps
+    - id: BD-016
+      type: B
+      summary: Use directed configuration model to generate transaction graphs from degree sequences
+    - id: BD-039
+      type: B
+      summary: Weakly connected components analyzed for network structure
+    - id: BD-040
+      type: B/BA
+      summary: Clustering coefficient computed at intervals (default 30 steps) for performance
+    - id: BD-GAP-006
+      type: DK
+      summary: 'Missing: Timezone explicit annotation + UTC normalization'
+    - id: BD-GAP-007
+      type: M
+      summary: 'Missing: Convergence criteria explicit declaration'
+    - id: BD-GAP-008
+      type: DK
+      summary: 'Missing: Point-in-Time data availability'
+    - id: BD-GAP-009
+      type: DK
+      summary: 'Missing: Stale data detection and expiry policy'
+    - id: BD-GAP-010
+      type: B
+      summary: 'Missing: Train/test time split integrity'
+    - id: BD-GAP-011
+      type: DK
+      summary: 'Missing: Model and data version snapshot binding'
+    - id: BD-GAP-012
+      type: RC
+      summary: 'Missing: Settlement and delivery time convention'
+    - id: BD-GAP-013
+      type: B
+      summary: 'Missing: 模糊匹配算法与阈值（Jaro-Winkler/Levenshtein）'
+    - id: BD-GAP-014
+      type: RC
+      summary: 'Missing: 误报率监控与模型治理'
+    - id: BD-GAP-015
+      type: B
+      summary: 'Missing: ** "Implement immutable audit logging with cryptographic hash chains and append-only storage'
+    - id: BD-GAP-016
+      type: RC
+      summary: 'Missing: ** "Add Decimal type for each currency amounts (balance, transaction amounts) instead of float/double'
+    - id: BD-GAP-017
+      type: B
+      summary: 'Missing: ** "Implement jurisdiction-specific CTR/SAR threshold configuration with audit trail'
+    - id: BD-GAP-018
+      type: DK
+      summary: 'Missing: ** "Add run_id/experiment_id for reproducible simulation snapshots'
+    - id: BD-GAP-019
+      type: M
+      summary: 'Missing: Convergence criteria explicit declaration'
+    - id: BD-020
+      type: B/BA
+      summary: Hub accounts selected as accounts with degree >= degree_threshold
+    - id: BD-070
+      type: B/BA
+      summary: ResultGraphLoader overrides count_hub_accounts() but calls super() then extends - inheritance creates dual
+        counting behavior
+    - id: BD-068
+      type: T
+      summary: degree_threshold MUST be consistent between TransactionGenerator and Nominator - both receive identical value
+        at construction
+    - id: BD-071
+      type: RC
+      summary: Each account node MUST have 'normal_models' list attribute initialized at add_account() time for Nominator
+        graph lookups
+    - id: BD-076
+      type: DK/B
+      summary: fan_in/fan_out candidates are mutually exclusive after first assignment - node removed from opposite list on
+        first use
+    - id: BD-080
+      type: T
+      summary: 'Directed graph degree sequences MUST satisfy: sum(in_deg) == sum(out_deg) and num_accounts % len(sequence)
+        == 0'
+    - id: BD-009
+      type: BA
+      summary: Schema drives each column mappings via dataType annotations
+    - id: BD-010
+      type: B/DK
+      summary: Days converted to UTC ISO 8601 via base_date offset
+    - id: BD-011
+      type: BA
+      summary: SAR accounts extracted via org_type lookup
+    - id: BD-038
+      type: B/BA
+      summary: Base date (2017-01-01) plus days offset for transaction timestamps
+    - id: BD-027
+      type: B/BA
+      summary: Nominator uses degree_threshold to determine fan_in/fan_out candidates
+    - id: BD-057
+      type: B
+      summary: Nominator tracks remaining/used counts per type for model assignment
+    - id: BD-059
+      type: B/BA
+      summary: 'Fan breakdown candidates: subtract existing fan nodes, fill if below threshold'
+    - id: BD-026
+      type: B
+      summary: 'Normal model types: single, fan_in, fan_out, forward, mutual, periodical'
+    - id: BD-065
+      type: B/BA
+      summary: Normal model type count initialized from normalModels.csv
+    - id: BD-061
+      type: B/BA
+      summary: Normal model schedule_id defaults to 2
+    - id: BD-066
+      type: B/BA
+      summary: 'TransactionGenerator init sequence MUST be: set_num_accounts -> generate_normal_transactions -> load_account_list
+        -> load_normal_models -> build_normal_models -> set_main_acct_candidates -> load_alert'
+    - id: BD-072
+      type: B
+      summary: remove_typology_candidate MUST be called BEFORE add_node in each AML typology generators - order matters for
+        hub accounting
+    - id: BD-075
+      type: BA
+      summary: scatter_gather pattern requires scatter_date < gather_date AND scatter_amount > gather_amount - two independent
+        ordering constraints
+    - id: BD-081
+      type: B
+      summary: normal_models list must be written AFTER mark_active_edges sets edge attributes - active flag drives CSV export
+        filter
+    - id: BD-041
+      type: B/BA
+      summary: Simulation total_steps=150, base_date=2017-01-01, random_seed=0
+    - id: BD-079
+      type: M
+      summary: validation/ module implements independent alert pattern detection (is_cycle, is_scatter_gather, is_gather_scatter)
+        mirroring graph generator
+    - id: BD-029
+      type: B/BA
+      summary: Transaction dates distributed uniformly within [start_date, end_date] inclusive
+    - id: BD-021
+      type: B/BA
+      summary: Default margin ratio of 0.1 (10%) for intermediate accounts
+    - id: BD-042
+      type: B/BA
+      summary: 'Transaction amount range: min=100, max=1000'
+    - id: BD-032
+      type: B/BA
+      summary: Cash transactions identified by type in CASH_TYPES set ("CASH-IN", "CASH-OUT")
+    - id: BD-022
+      type: B
+      summary: 'AML typology types: fan_in, fan_out, cycle, bipartite, stack, random, scatter_gather, gather_scatter'
+    - id: BD-023
+      type: B
+      summary: 'Alert type ID mapping: fan_out=1, fan_in=2, cycle=3, bipartite=4, stack=5, random=6, scatter_gather=7, gather_scatter=8'
+resources:
+  packages:
+  - name: numpy
+    version_pin: latest
+  - name: networkx
+    version_pin: latest
+  - name: matplotlib
+    version_pin: latest
+  - name: pygraphviz
+    version_pin: latest
+  - name: powerlaw
+    version_pin: latest
+  - name: python-dateutil
+    version_pin: latest
+  - name: Faker
+    version_pin: latest
+  - name: MASON
+    version_pin: latest
+  - name: JSON in Java
+    version_pin: latest
+  - name: WebGraph
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install numpy
+    - python3 -m pip install networkx
+    - python3 -m pip install matplotlib
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When implementing directed_configuration_model graph generation
+    action: Enforce sum of in-degrees equals sum of out-degrees before edge creation
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid degree sequences will produce an inconsistent directed graph where some nodes have unmatched incoming/outgoing
+      edges, corrupting the transaction network topology for AML analysis
+    stage_ids:
+    - graph_construction
+  - id: finance-C-002
+    when: When loading account lists via load_account_list_param
+    action: Initialize normal_models as empty list for every account node
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing normal_models attribute causes KeyError when Nominator methods attempt to access it during fan_in_breakdown
+      and fan_out_breakdown operations, breaking the entire normal model generation pipeline
+    stage_ids:
+    - graph_construction
+  - id: finance-C-003
+    when: When loading raw account lists via load_account_list_raw
+    action: Initialize normal_models as empty list for every account node attribute dictionary
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Raw account loading path does not include normal_models initialization, causing KeyError when downstream
+      Nominator code attempts to append to the missing attribute during normal model construction
+    stage_ids:
+    - graph_construction
+  - id: finance-C-004
+    when: When constructing directed graphs from degree sequences
+    action: Swap IDs to eliminate self-loops when source equals destination after shuffling
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Self-loops in the transaction graph would represent accounts sending money to themselves, which violates
+      AML domain requirements and corrupts downstream fan-in/fan-out pattern analysis
+    stage_ids:
+    - graph_construction
+  - id: finance-C-005
+    when: When parsing degree distribution CSV files
+    action: Verify in-degree sequence length equals out-degree sequence length
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Mismatched sequence lengths produce a graph where the number of accounts with incoming edges differs from
+      those with outgoing edges, corrupting the bipartite degree sequence matching for directed configuration model
+    stage_ids:
+    - graph_construction
+  - id: finance-C-006
+    when: When scaling degree sequences to match account count
+    action: Require num_accounts to be evenly divisible by degree sequence length
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Non-divisible account count causes incomplete graph scaling where some accounts lack degree assignments,
+      resulting in orphaned nodes with undefined transaction patterns in the AML simulation
+    stage_ids:
+    - graph_construction
+  - id: finance-C-008
+    when: When instantiating TransactionGenerator and Nominator classes
+    action: Pass identical degree_threshold value to both TransactionGenerator and Nominator
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mismatched degree_threshold causes Nominator to identify hub accounts using different criteria than TransactionGenerator,
+      leading to incorrect fan-in/fan-out candidate selection and corrupted AML pattern generation
+    stage_ids:
+    - graph_construction
+  - id: finance-C-014
+    when: When loading account data from aggregated CSV files
+    action: Expand degree sequence entries by the repeat count before graph construction
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without proper expansion, degree sequences remain at sample size causing graph topology to be incorrect for
+      the full account set, with accounts receiving incorrect transaction pattern assignments
+    stage_ids:
+    - graph_construction
+  - id: finance-C-015
+    when: When implementing scatter_gather pattern generation
+    action: verify scatter transactions occur before gather transactions (scatter_date < gather_date)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Scatter-gather pattern validation will fail if scatter_date >= gather_date, breaking the chronological ordering
+      required for AML typology verification
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-016
+    when: When implementing scatter_gather pattern generation
+    action: verify scatter_amount exceeds gather_amount for each intermediate account
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Validation will reject scatter-gather patterns if scatter_amount <= gather_amount, as the margin must be
+      retained by intermediate accounts
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-017
+    when: When loading margin_ratio configuration
+    action: verify margin_ratio value is within the valid range [0.0, 1.0]
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid margin_ratio will cause ValueError during pattern generation, preventing any AML typology from being
+      placed in the transaction graph
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-018
+    when: When implementing cycle pattern generation
+    action: verify cycle transactions are chronologically ordered with decreasing amounts
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Validation will reject cycle patterns if transaction dates are not strictly increasing or amounts are not
+      strictly decreasing, breaking the expected money laundering funnel pattern
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-019
+    when: When adding transaction edges in AML typologies
+    action: create self-loops where originator equals beneficiary account
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Self-loops are not valid transaction patterns for AML detection systems and will cause ValueError to be raised
+      during edge creation
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-020
+    when: When creating AML typology patterns
+    action: call remove_typology_candidate BEFORE add_node for each selected account
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Reversing this order causes hub self-selection and duplicate account assignment across overlapping alert
+      patterns, corrupting the generated transaction graph
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-021
+    when: When selecting hub accounts for AML typologies
+    action: validate hub pool is non-empty before calling add_main_acct
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Calling add_main_acct with empty hub pool raises ValueError and stops all further typology generation, preventing
+      alert pattern placement
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-025
+    when: When generating scatter_gather patterns
+    action: apply margin_ratio to intermediate account amounts correctly (gather_amount = scatter_amount - scatter_amount
+      * margin_ratio)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect margin application violates the scatter_amount > gather_amount invariant required for validation,
+      causing pattern rejection
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-038
+    when: When converting simulator day offsets to timestamps
+    action: Append 'Z' suffix to mark UTC timezone in ISO 8601 format
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Database imports fail or misattribute transaction times to wrong timezone, causing incorrect AML alert sequencing
+      and compliance violations
+    stage_ids:
+    - log_conversion
+  - id: finance-C-039
+    when: When parsing SAR flag from input CSV files
+    action: Convert SAR flag to lowercase string 'true'/'false' for consistent CSV output
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Alert filtering logic in downstream analytics fails silently because case-sensitive comparisons miss SAR
+      transactions, causing compliance detection gaps
+    stage_ids:
+    - log_conversion
+  - id: finance-C-041
+    when: When outputting transaction rows with date valueType
+    action: Apply days2date conversion to each date-typed columns before writing CSV rows
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: CSV columns contain raw day integers instead of ISO timestamps, causing database schema violations and failed
+      imports for Neo4j/JanusGraph
+    stage_ids:
+    - log_conversion
+  - id: finance-C-042
+    when: When parsing alert transactions for SAR extraction
+    action: Verify alert_id exists in self.reports dictionary before calling get_reason()
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Python raises AttributeError when accessing get_reason() on None, causing transaction conversion to abort
+      and leaving incomplete CSV outputs
+    stage_ids:
+    - log_conversion
+  - id: finance-C-044
+    when: When converting raw transaction logs to CSV format
+    action: Execute convert_alert_members() before convert_acct_tx() to populate self.reports
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Alert transaction extraction fails with NoneType errors because reports dictionary is empty, preventing SAR
+      case generation
+    stage_ids:
+    - log_conversion
+  - id: finance-C-045
+    when: When loading schema.json for column mapping
+    action: Parse dataType annotations to determine field roles (account_id, timestamp, sar_flag, alert_id)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Schema-driven field mapping fails, causing wrong columns to populate critical identifiers and preventing
+      join operations across CSV outputs
+    stage_ids:
+    - log_conversion
+  - id: finance-C-053
+    when: When validating cycle alert patterns
+    action: check that the alert subgraph contains exactly one closed loop detectable by nx.simple_cycles
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Cycle patterns with zero or multiple closed loops will pass validation incorrectly, causing invalid AML typologies
+      to be treated as legitimate alerts
+    stage_ids:
+    - alert_validation
+  - id: finance-C-054
+    when: When validating ordered scatter-gather alert patterns
+    action: check that scatter_date is chronologically before gather_date for each intermediate accounts
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Scatter-gather patterns with transactions in reverse chronological order will be incorrectly validated, breaking
+      the fundamental fan-out then fan-in structure of the AML typology
+    stage_ids:
+    - alert_validation
+  - id: finance-C-055
+    when: When validating ordered scatter-gather alert patterns
+    action: check that scatter_amount exceeds gather_amount for each intermediate account to verify margin extraction
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Scatter-gather patterns where intermediate accounts do not receive margin will be incorrectly validated,
+      failing to detect money laundering via fee extraction
+    stage_ids:
+    - alert_validation
+  - id: finance-C-056
+    when: When validating ordered cycle patterns
+    action: check that cycle transaction amounts are strictly monotonically decreasing in chronological order
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Cycle patterns with unordered transaction amounts will be incorrectly validated, breaking the margin extraction
+      chain in circular fund movements
+    stage_ids:
+    - alert_validation
+  - id: finance-C-057
+    when: When validating ordered cycle patterns
+    action: check that cycle transaction dates are chronologically ordered and successor edge connects from predecessor's
+      beneficiary
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Cycle patterns with unordered transaction dates or broken chain connections will be incorrectly validated,
+      failing to represent legitimate circular fund flow
+    stage_ids:
+    - alert_validation
+  - id: finance-C-063
+    when: When validating gather-scatter patterns
+    action: check that gather transactions complete before scatter transactions commence chronologically
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Gather-scatter patterns where scatter occurs before gather completes violate the fundamental fan-in then
+      fan-out structure of this AML typology
+    stage_ids:
+    - alert_validation
+  - id: finance-C-064
+    when: When validating gather-scatter patterns
+    action: check that scatter amounts do not exceed the average gathered amount per beneficiary account
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Gather-scatter patterns where scatter amounts exceed gathered amounts indicate impossible fund flows that
+      should not pass validation
+    stage_ids:
+    - alert_validation
+  - id: finance-C-065
+    when: When modifying alert pattern validation rules
+    action: modify validation rules in isolation without synchronizing changes to transaction_graph_generator.py
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Desynchronization between generation and validation rules will cause valid generated patterns to fail validation
+      or invalid patterns to pass
+    stage_ids:
+    - alert_validation
+  - id: finance-C-066
+    when: When loading alert parameter CSV files
+    action: 'parse each required columns: count, type, schedule_id, min_accounts, max_accounts, min_amount, max_amount, min_period,
+      max_period, bank_id, is_sar'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing column indices will cause KeyError exceptions during parameter loading, preventing alert validation
+      from executing
+    stage_ids:
+    - alert_validation
+  - id: finance-C-067
+    when: When loading alert transaction CSV files
+    action: construct a directed graph with edges containing amount and date attributes for each transaction
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Directed graph without proper edge attributes will cause KeyError exceptions during pattern validation when
+      accessing date or amount properties
+    stage_ids:
+    - alert_validation
+  - id: finance-C-072
+    when: When validating alert patterns against typology specifications
+    action: only pass validation if the alert subgraph matches at least one parameter set with matching alert_type
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Alert patterns matched against wrong typology parameters will produce incorrect validation results, compromising
+      the integrity of generated simulation data
+    stage_ids:
+    - alert_validation
+  - id: finance-C-079
+    when: When combining multiple simulation outputs into a single dataset
+    action: use only input simulations that share the same schema structure as the first input
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Combined CSV files will have mismatched column counts and names, causing downstream alert validation and
+      ML training pipelines to fail with column index errors
+    stage_ids:
+    - data_combination
+  - id: finance-C-080
+    when: When appending output data from each input simulation
+    action: offset each account IDs by the cumulative account ID offset from previous simulations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Account IDs will collide across combined simulations, causing referential integrity failures when transactions
+      reference accounts that appear in multiple simulations
+    stage_ids:
+    - data_combination
+  - id: finance-C-081
+    when: When appending output data from each input simulation
+    action: offset each transaction IDs by the cumulative transaction ID offset from previous simulations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Transaction IDs will duplicate across combined simulations, breaking alert-to-transaction joins and creating
+      false-positive SAR identifications
+    stage_ids:
+    - data_combination
+  - id: finance-C-082
+    when: When appending output data from each input simulation
+    action: offset each alert IDs by the cumulative alert ID offset from previous simulations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Alert IDs will duplicate across combined simulations, causing alert_members and alert_transactions to join
+      incorrectly and corrupt suspicious activity reports
+    stage_ids:
+    - data_combination
+  - id: finance-C-083
+    when: When combining transaction outputs from multiple simulations
+    action: offset both orig_id and dest_id (account references) by the cumulative account ID offset
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Transaction sender/receiver references will point to wrong accounts across simulation boundaries, corrupting
+      the transaction graph and breaking downstream graph analytics
+    stage_ids:
+    - data_combination
+  - id: finance-C-084
+    when: When combining alert member outputs from multiple simulations
+    action: offset account_id references within alert_members by the cumulative account ID offset
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Alert-to-account mappings will reference incorrect accounts, causing investigators to examine wrong accounts
+      when reviewing alerts
+    stage_ids:
+    - data_combination
+  - id: finance-C-085
+    when: When combining alert transaction outputs from multiple simulations
+    action: offset tx_id, orig_id, and dest_id references within alert_transactions by cumulative offsets
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Alert transactions will reference non-existent transactions and accounts, breaking the link between suspicious
+      activity alerts and the underlying transaction records
+    stage_ids:
+    - data_combination
+  - id: finance-C-088
+    when: When writing output CSV headers for combined files
+    action: use the output schema column names (acct_names, tx_names, alert_acct_names, alert_tx_names)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Column headers in combined CSVs will not match the schema definition, causing downstream parsers to misidentify
+      columns and corrupt data loading
+    stage_ids:
+    - data_combination
+  - id: finance-C-096
+    when: When configuring the degree sequence for directed graph generation
+    action: Verify the sum of in-degrees equals the sum of out-degrees
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Directed configuration model will raise NetworkXError, causing the entire transaction graph generation pipeline
+      to fail
+  - id: finance-C-098
+    when: When outputting alert members CSV from alert_pattern_generation
+    action: Include the alertID column that uniquely identifies each AML typology
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Log converter cannot link alert transactions to their corresponding typology members, breaking the SAR reporting
+      chain
+  - id: finance-C-100
+    when: When generating hub account candidates for AML typologies
+    action: Select accounts with degree exceeding the degree_threshold configuration parameter
+    severity: fatal
+    kind: operational_lesson
+    modality: must
+    consequence: Alert generation will fail with ValueError when no hub accounts exist, halting simulation
+  - id: finance-C-103
+    when: When combining multiple simulation outputs in data_combination
+    action: Offset account IDs by the maximum ID from previously combined simulations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Account ID collisions will cause incorrect transaction linkage in downstream analysis, producing invalid
+      money laundering patterns
+  - id: finance-C-104
+    when: When combining multiple simulation outputs in data_combination
+    action: Offset alert IDs by the maximum alert ID from previously combined simulations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Alert ID collisions will merge distinct SAR cases in the alert database, corrupting compliance investigation
+      workflows
+  - id: finance-C-105
+    when: When mapping transaction originator and beneficiary IDs during combination
+    action: Apply account ID offset to both orig_id and dest_id fields in transactions
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Transaction sender/receiver relationships will be incorrectly attributed, breaking transaction graph topology
+      for AML analysis
+  - id: finance-C-120
+    when: When generating directed graphs from degree sequences
+    action: Validate that sum of in-degrees equals sum of out-degrees before graph construction
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: NetworkXError raised during graph generation causes simulation failure; uncaught exception crashes the pipeline
+      and loses all generated data
+  - id: finance-C-121
+    when: When loading degree sequences for directed graph generation
+    action: Validate that number of total accounts is divisible by the degree sequence length
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: ValueError raised when degree sequence cannot evenly tile the account graph; simulation fails to initialize
+      the transaction network
+  - id: finance-C-130
+    when: When using AMLSim in any production or compliance context
+    action: Treat synthetic AML alerts as regulatory-grade findings or use them to satisfy AML compliance obligations
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Non-compliant AML program may face regulatory sanctions, fines, or enforcement actions from financial regulators;
+      synthetic data does not satisfy reporting requirements
+  - id: finance-C-131
+    when: When deploying AMLSim for real-time financial operations
+    action: Connect AMLSim outputs to real-time transaction processing, payment systems, or live financial infrastructure
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Synthetic transaction data injected into live systems may trigger incorrect fraud alerts, freeze legitimate
+      customer accounts, or corrupt financial databases with fabricated records
+  - id: finance-C-138
+    when: When implementing account creation logic in AML transaction graph simulation
+    action: Initialize 'normal_models' as an empty list attribute for each account node at add_account() time — accounts must
+      have this attribute before any Nominator graph operations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Accounts added without normal_models initialization cause AttributeError during Nominator operation when
+      pattern generators attempt to extend the list, breaking graph construction and preventing alert generation
+    derived_from_bd_id: BD-071
+  - id: finance-C-160
+    when: When implementing timestamp conversion and temporal validation logic
+    action: Mix epoch-based timestamps (Unix epoch 1970-01-01) with date-string-based timestamps (2017-01-01 base) in temporal
+      validation — verify each timestamps use consistent reference dates throughout the pipeline from generation (BD-073)
+      through conversion (BD-010), distribution logic (BD-029), alert validation (BD-053), and chronological ordering (BD-013)
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: The RISK CASCADE causes transactions generated with 2017-01-01 base dates to be interpreted relative to 1970-01-01
+      Unix epoch, making period range validation produce incorrect results that either accept invalid patterns or reject valid
+      ones, corrupting downstream analytics
+    derived_from_bd_id: BD-093
+  - id: finance-C-161
+    when: When validating transaction temporal ranges against configured time periods
+    action: Implement centralized date constant management — use a single source of truth for base_date (e.g., BASE_DATE =
+      datetime(2017, 1, 1)) imported consistently across timestamp generation (BD-073), UTC conversion (BD-010), uniform distribution
+      (BD-029), alert validation (BD-053), and chronological ordering (BD-013) modules
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without centralized date management, the base_date inconsistency (2017-01-01 vs 1970-01-01) propagates through
+      each transformation stage, causing period validation to incorrectly compare timestamps against the wrong epoch and produce
+      systematically wrong results
+    derived_from_bd_id: BD-093
+  regular:
+  - id: finance-C-007
+    when: When using AMLSim for transaction graph generation
+    action: Use networkx version other than 1.11 for large graph generation
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: NetworkX version 2.* exhibits severe performance degradation when creating large transaction graphs, causing
+      exponential slowdown in graph generation for datasets with 10K+ accounts
+    stage_ids:
+    - graph_construction
+  - id: finance-C-009
+    when: When implementing hub node identification logic
+    action: Identify hub accounts using OR semantics for in/out degree threshold crossing
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using AND instead of OR semantics excludes pure senders or pure receivers from hub identification, breaking
+      the AML typology design where both fan-in aggregators and fan-out distributors serve as main accounts
+    stage_ids:
+    - graph_construction
+  - id: finance-C-010
+    when: When validating transaction graph generation outputs
+    action: Verify that at least one hub account exists before proceeding to model building
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Proceeding without hub accounts causes AML typology generation to fail when trying to assign main accounts,
+      requiring users to reconfigure degree_threshold with no clear error message
+    stage_ids:
+    - graph_construction
+  - id: finance-C-011
+    when: When generating directed configuration model graphs
+    action: Use the same random seed across TransactionGenerator and Nominator for reproducibility
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Different random seeds cause shuffled degree lists to produce different graph topologies between graph generation
+      and model assignment, breaking reproducibility of AML simulation runs
+    stage_ids:
+    - graph_construction
+  - id: finance-C-012
+    when: When presenting AMLSim generated data as research or compliance evidence
+    action: Claim generated transaction graphs represent real financial transaction data
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting synthetic AML simulation data as real transactions violates research integrity and could lead
+      to regulatory compliance violations if used in actual AML investigations without proper disclosure
+    stage_ids:
+    - graph_construction
+  - id: finance-C-013
+    when: When evaluating graph generation quality or AML detection accuracy
+    action: Assume backtest performance on synthetic data predicts live AML detection effectiveness
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Synthetic transaction patterns may not capture real-world evasion techniques, data quality issues, or temporal
+      dynamics, leading to over-optimistic evaluation of detection algorithms that fail on actual financial crime data
+    stage_ids:
+    - graph_construction
+  - id: finance-C-022
+    when: When generating alert subgroups
+    action: assign sequential alert_id values and store subgraph under correct alert_id key
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Alert IDs in transaction log must match alert_members.csv for joinability in downstream validation; mismatched
+      IDs break data integrity for alert correlation
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-023
+    when: When placing AML typology accounts
+    action: use hub accounts (high-degree vertices) as main accounts for pattern centroids
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-hub main accounts create highly anomalous patterns that stand out artificially, defeating the purpose
+      of realistic AML simulation
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-024
+    when: When implementing ordered pattern types
+    action: verify transaction dates fall within the generated start_date and end_date range
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Out-of-range dates cause validation failures and create invalid temporal patterns that do not match the intended
+      alert typology period
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-026
+    when: When generating cycle patterns
+    action: apply margin_ratio to transfer amounts sequentially through each account in the cycle
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without sequential margin deduction, cycle amounts would remain constant instead of decreasing, violating
+      the expected money laundering funnel behavior
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-027
+    when: When selecting accounts for AML typology members
+    action: allow hub accounts to be selected as main accounts for multiple patterns
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Hub account reuse across patterns causes overlapping suspicious activity that inflates detection metrics
+      and creates duplicate SAR assignments
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-028
+    when: When running AMLSim with large transaction graphs
+    action: use networkx version 2.* or later
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: NetworkX 2.* has significant performance issues with large graph creation, causing excessive runtime or memory
+      exhaustion during transaction graph generation
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-029
+    when: When configuring AML typology generation
+    action: verify sufficient hub account candidates exist relative to pattern count
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Insufficient hub accounts relative to alert pattern count causes ValueError at check_hub_exists and stops
+      all pattern generation; solution requires lowering degree_threshold
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-030
+    when: When generating external-bank AML patterns
+    action: verify sub-bank has sufficient candidate accounts before attempting selection
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Pattern generation silently returns without placing the pattern if insufficient accounts exist in the target
+      bank, causing incomplete alert coverage
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-031
+    when: When presenting AMLSim output data
+    action: claim synthetic AML patterns represent real-world money laundering behavior
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting synthetic transaction patterns as real AML cases misleads stakeholders about the system's actual
+      detection capability on genuine suspicious activity
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-032
+    when: When using AMLSim validation results
+    action: present validation success rates as indicators of real-world detection performance
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: AMLSim validates that generated patterns match their parameters, but this does not guarantee equivalent detection
+      rates on real financial crime patterns which have different characteristics
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-033
+    when: When loading typology pattern names
+    action: verify typology name is one of the supported alert_types keys
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Unknown typology names are skipped with a warning but the pattern count for that row is not retried, potentially
+      leaving alert coverage below intended levels
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-034
+    when: When marking accounts involved in alert patterns
+    action: set IS_SAR_KEY attribute to True for each vertices participating in alert typologies
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing IS_SAR_KEY flag causes SAR account list generation to miss alerted accounts, breaking downstream
+      compliance reporting requirements
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-035
+    when: When specifying external-bank typology requirements
+    action: require at least 2 banks to exist when bank_id is empty in pattern configuration
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Attempting external transactions without multiple banks causes KeyError when checking if bank exists, terminating
+      pattern generation
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-036
+    when: When implementing bipartite and stack patterns
+    action: calculate originator and beneficiary account counts correctly (num_orig_accts = num_accounts // 2 for bipartite,
+      num_accounts // 3 for stack)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect account count allocation causes insufficient accounts for one partition, breaking the expected
+      multi-layer transaction structure
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-037
+    when: When implementing gather_scatter pattern
+    action: accumulate amounts from origin accounts and distribute equal amounts to beneficiary accounts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-equal distribution breaks the expected gather-scatter money flow pattern and causes validation failures
+    stage_ids:
+    - alert_pattern_generation
+  - id: finance-C-040
+    when: When configuring the base_date parameter
+    action: Set base_date to '2017-01-01' to match hardcoded fallback in days2date calculation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Transaction timestamps drift by years, causing all AML alert correlations to reference wrong date ranges
+      and invalidating historical pattern analysis
+    stage_ids:
+    - log_conversion
+  - id: finance-C-043
+    when: When determining account organization type for SAR routing
+    action: Return 'INDIVIDUAL' for account type 'I' and 'COMPANY' for each other types
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: SAR accounts misrouted to wrong entity tables, causing party enrichment queries to return empty results for
+      legitimate SAR investigations
+    stage_ids:
+    - log_conversion
+  - id: finance-C-046
+    when: When generating Faker-based personal attributes
+    action: Use 'en_US' locale for consistent US-style name and address generation
+    severity: medium
+    kind: resource_boundary
+    modality: should
+    consequence: Mixed locale attributes cause address parsing failures and inconsistent naming conventions across account
+      records
+    stage_ids:
+    - log_conversion
+  - id: finance-C-047
+    when: When validating transaction log row integrity
+    action: Skip rows with fewer columns than expected header to prevent index out of bounds errors
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: CSV reader raises IndexError on malformed rows, causing transaction conversion to crash with incomplete output
+    stage_ids:
+    - log_conversion
+  - id: finance-C-048
+    when: When presenting AMLSim converted outputs
+    action: Claim synthetic transaction data represents real-world AML patterns or compliance-ready alerts
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Regulatory bodies may take enforcement action if synthetic data is presented as validated AML intelligence
+      without proper disclosure
+    stage_ids:
+    - log_conversion
+  - id: finance-C-049
+    when: When outputting Faker-generated personal information
+    action: Present Faker-generated names and SSNs as real personal identification data
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Data misuse if synthetic personal data is mistaken for actual PII, violating data handling policies and privacy
+      expectations
+    stage_ids:
+    - log_conversion
+  - id: finance-C-050
+    when: When handling is_sar boolean to string conversion
+    action: Write 'YES'/'NO' strings to IS_SAR column in sar_accounts.csv (not 'true'/'false')
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: SAR filtering in downstream dashboards fails because 'YES'/'NO' values are expected but 'true'/'false' are
+      written, causing zero SAR alerts detected
+    stage_ids:
+    - log_conversion
+  - id: finance-C-051
+    when: When reading prior_sar_count boolean field from accounts CSV
+    action: Map prior_sar_count boolean through AccountDataTypeLookup.inputType before writing to output
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: SAR history field mismatches schema expectations, causing account risk scoring algorithms to receive invalid
+      boolean values
+    stage_ids:
+    - log_conversion
+  - id: finance-C-052
+    when: When generating Python Faker instance for name anonymization
+    action: Seed Faker with deterministic value (Faker.seed(0)) for reproducible name generation
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Different Faker outputs across runs cause non-deterministic account names, breaking regression tests and
+      reproducibility requirements
+    stage_ids:
+    - log_conversion
+  - id: finance-C-058
+    when: When validating alert subgraph structures
+    action: check that the number of accounts falls within the specified min_accounts to max_accounts range
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Alert patterns with incorrect account counts will be incorrectly validated, causing the generated simulation
+      to deviate from specified typology parameters
+    stage_ids:
+    - alert_validation
+  - id: finance-C-059
+    when: When validating alert subgraph structures
+    action: check that the initial transaction amount falls within the specified min_amount to max_amount range
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Alert patterns with incorrect transaction amounts will be incorrectly validated, causing AML typologies to
+      violate financial thresholds specified in simulation parameters
+    stage_ids:
+    - alert_validation
+  - id: finance-C-060
+    when: When validating alert subgraph structures
+    action: check that the transaction period falls within the specified min_period to max_period range
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Alert patterns with incorrect transaction periods will be incorrectly validated, causing temporal characteristics
+      of AML typologies to deviate from simulation parameters
+    stage_ids:
+    - alert_validation
+  - id: finance-C-061
+    when: When implementing or extending pattern validation logic
+    action: introduce custom validation rules that diverge from the graph-theoretic property-based approach
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Text-based or regex matching approaches are less robust than graph-theoretic validation and may produce false
+      positives or negatives in pattern matching
+    stage_ids:
+    - alert_validation
+  - id: finance-C-062
+    when: When validating scatter-gather patterns
+    action: check that intermediate accounts have exactly one incoming edge and one outgoing edge (degree 1)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Intermediate accounts with incorrect vertex degrees indicate malformed scatter-gather structures that should
+      not pass validation
+    stage_ids:
+    - alert_validation
+  - id: finance-C-068
+    when: When parsing schedule_id from alert parameter CSV
+    action: 'convert schedule_id to boolean ordered flag: schedule_id > 0 means ordered, schedule_id == 0 means unordered'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect conversion of schedule_id will cause ordered vs unordered validation checks to be applied incorrectly,
+      either missing required checks or adding invalid ones
+    stage_ids:
+    - alert_validation
+  - id: finance-C-069
+    when: When running the AlertValidator class
+    action: validate alerts before alert_transactions.csv has been generated by the transaction simulator
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Attempting to validate non-existent transaction files will cause FileNotFoundError and validation will fail
+      without producing results
+    stage_ids:
+    - alert_validation
+  - id: finance-C-070
+    when: When validating individual alerts via AlertValidator.validate_single
+    action: raise KeyError if the requested alert_id does not exist in the loaded alert graphs
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Silent failure to handle non-existent alert IDs may cause misleading validation results in batch processing
+    stage_ids:
+    - alert_validation
+  - id: finance-C-071
+    when: When validating alert subgraph structures
+    action: extract the initial amount from the transaction occurring on the start_date (earliest transaction)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using the wrong transaction for initial amount comparison will cause amount range validation to fail for
+      valid patterns or pass for invalid ones
+    stage_ids:
+    - alert_validation
+  - id: finance-C-073
+    when: When reporting validation results
+    action: log both successful matches with parameter line number and failed matches with mismatch reason
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Missing diagnostic information will make it difficult to debug validation failures and identify which parameter
+      constraints were violated
+    stage_ids:
+    - alert_validation
+  - id: finance-C-074
+    when: When calculating transaction period for alert validation
+    action: compute period as the number of days between start_date and end_date inclusive
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect period calculation (e.g., exclusive end_date) will cause valid patterns to fail or invalid patterns
+      to pass validation
+    stage_ids:
+    - alert_validation
+  - id: finance-C-075
+    when: When validating alert patterns
+    action: claim that validation results prove real-world AML detection effectiveness
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting synthetic simulation validation as evidence of real-world AML detection capability misrepresents
+      the system's limitations
+    stage_ids:
+    - alert_validation
+  - id: finance-C-076
+    when: When generating validation reports
+    action: present validation results as proof of financial crime detection capability
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: AML typology pattern validation only confirms synthetic data generation parameters, not the system's ability
+      to detect actual money laundering
+    stage_ids:
+    - alert_validation
+  - id: finance-C-077
+    when: When interpreting validation failure messages
+    action: dismiss validation failures as simulation artifacts rather than investigating root causes
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Attributing validation failures to simulation quirks without investigation may mask genuine bugs in pattern
+      generation or validation logic
+    stage_ids:
+    - alert_validation
+  - id: finance-C-078
+    when: When extending AML typology support
+    action: skip adding corresponding validation logic for newly added pattern types
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Unvalidated pattern types will allow invalid synthetic data to be generated, compromising the integrity of
+      downstream ML training and evaluation
+    stage_ids:
+    - alert_validation
+  - id: finance-C-086
+    when: When using the combine_data script for batch combination runs
+    action: provide an even number of command-line arguments (InputConfJSON and Repetitions pairs)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Script will exit with error code 1 and no data combination occurs, leaving incomplete datasets
+    stage_ids:
+    - data_combination
+  - id: finance-C-087
+    when: When aggregating degree statistics across multiple simulations
+    action: accumulate degree counts from each simulation using Counter addition
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Degree distribution statistics will be incomplete, causing graph analysis tools to miscalculate node connectivity
+      and miss high-degree suspicious accounts
+    stage_ids:
+    - data_combination
+  - id: finance-C-089
+    when: When processing the first alert member row in each simulation
+    action: initialize last_alert_id to 0 before processing if it is None
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Alert ID offsetting will use None as offset, causing TypeError exceptions or silent ID corruption
+    stage_ids:
+    - data_combination
+  - id: finance-C-090
+    when: When skipping CSV header rows during data combination
+    action: call next(reader) once before processing each input CSV file
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Header rows will be included as data rows, corrupting aggregated statistics and causing type conversion errors
+    stage_ids:
+    - data_combination
+  - id: finance-C-091
+    when: When validating combined dataset outputs for research purposes
+    action: claim that combined synthetic data represents real-world transaction patterns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Research results trained on synthetic AMLSim data will not generalize to real AML detection, potentially
+      wasting investigation resources on patterns that do not exist in actual financial crime
+    stage_ids:
+    - data_combination
+  - id: finance-C-092
+    when: When combining simulations that were generated with different random seeds
+    action: expect the combined dataset to maintain temporal ordering across simulation boundaries
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Transaction timestamps from later simulations may overlap with or precede those from earlier simulations,
+      breaking time-series analysis assumptions
+    stage_ids:
+    - data_combination
+  - id: finance-C-093
+    when: When using combine_data.py for very large-scale dataset creation
+    action: load entire output CSV files into memory during append operations
+    severity: medium
+    kind: resource_boundary
+    modality: should_not
+    consequence: Memory consumption will grow linearly with combined dataset size, potentially causing OutOfMemoryError for
+      multi-million row combinations
+    stage_ids:
+    - data_combination
+  - id: finance-C-094
+    when: When interpreting combined alert outputs for downstream AML analysis
+    action: assume that alert_id uniqueness alone guarantees cross-simulation alert attribution
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Alert type, schedule_id, and bank_id fields from different simulations may reference the same conceptual
+      alert pattern with different IDs after offset, causing analysis tools to miss related alerts
+    stage_ids:
+    - data_combination
+  - id: finance-C-095
+    when: When combining simulation outputs with repetitions parameter
+    action: load each input simulation configuration exactly N times as specified by the repetitions argument
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Combined dataset will have incorrect simulation count, skewing statistical properties and reducing dataset
+      diversity
+    stage_ids:
+    - data_combination
+  - id: finance-C-097
+    when: When passing account IDs from graph_construction to alert_pattern_generation
+    action: Allow duplicate account IDs across different banks within the same simulation
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Alert validation will produce false matches when comparing transaction subgraphs against parameter definitions
+  - id: finance-C-099
+    when: When converting transaction timestamps from days to ISO format
+    action: Use the base_date configuration parameter as the reference epoch (2017-01-01 default)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Alert validation will compute incorrect transaction periods, causing false negatives in pattern matching
+  - id: finance-C-101
+    when: When reading alert transactions CSV in alert_validation
+    action: Parse date strings with ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Date parsing will raise ValueError, preventing validation from executing on any alert subgraph
+  - id: finance-C-102
+    when: When loading alert transaction subgraphs for validation
+    action: Construct NetworkX DiGraph with edge attributes containing both amount and date fields
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Pattern validation functions will raise KeyError when accessing edge attributes for cycle/scatter-gather
+      checks
+  - id: finance-C-106
+    when: When referencing degree sequences during alert validation
+    action: Use degree.csv from the same simulation run as the alert parameter file
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Structural validation will compare alerts against mismatched degree distributions, producing false validation
+      failures
+  - id: finance-C-107
+    when: When using Python NetworkX library for graph operations
+    action: Use networkx version 2.x due to performance issues with large-scale graph creation
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Graph construction will become extremely slow or run out of memory for large transaction networks (10K+ accounts)
+  - id: finance-C-108
+    when: When configuring the number of members in AML typologies
+    action: Specify member count greater than 1 to avoid degenerate single-account patterns
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Typology generation will raise ValueError for insufficient member count, breaking the alert generation pipeline
+  - id: finance-C-109
+    when: When presenting backtest simulation results
+    action: Claim that simulated transaction patterns represent real-world money laundering behavior
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Compliance teams may make incorrect regulatory decisions based on unrealistic synthetic data
+  - id: finance-C-110
+    when: When validating alert patterns against simulation parameters
+    action: Assume that generated alerts perfectly match parameter specifications due to random sampling
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Validation will report false mismatches for edge cases in random amount generation and temporal scheduling
+  - id: finance-C-114
+    when: When generating synthetic transaction data for AML analysis
+    action: Present the generated synthetic data as real-world financial transaction data or claim it reflects actual banking
+      activity
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users or organizations may use synthetic data in regulatory submissions or compliance reports, misrepresenting
+      the nature of the dataset and violating financial reporting standards
+  - id: finance-C-115
+    when: When using AMLSim for compliance or regulatory purposes
+    action: Claim that AMLSim-generated alerts or SAR flags are equivalent to real Suspicious Activity Reports or regulatory
+      compliance findings
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Regulatory filings based on synthetic alerts may be rejected by authorities, leading to compliance violations
+      and potential legal liability for the filing organization
+  - id: finance-C-116
+    when: When integrating AMLSim into operational transaction monitoring systems
+    action: Use AMLSim outputs as inputs to real-time transaction monitoring, alerting, or blocking systems
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Real-time monitoring systems receiving synthetic data may generate false alerts, fail to detect actual suspicious
+      activity, or block legitimate transactions based on simulated patterns
+  - id: finance-C-117
+    when: When interpreting simulation results for machine learning model training
+    action: Claim that ML detection models trained on AMLSim synthetic data will perform equivalently on real-world transaction
+      data without validation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: ML models may exhibit significant performance degradation when deployed on real data, leading to missed detections
+      of actual money laundering activity and regulatory non-compliance
+  - id: finance-C-118
+    when: When converting transaction logs to CSV outputs
+    action: Output SAR flag values as lowercase string 'true' or 'false' (matching the schema specification)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Alert downstream processing systems expecting lowercase boolean strings may fail to correctly identify SAR-flagged
+      transactions, causing incorrect compliance categorization
+  - id: finance-C-119
+    when: When representing in-memory transaction graphs
+    action: Use NetworkX DiGraph class for each in-memory graph representations (accounts as nodes, transactions as directed
+      edges)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using MultiDiGraph for the main transaction graph may cause duplicate edge handling inconsistencies, while
+      using undirected graphs loses transaction directionality critical for AML typology detection
+  - id: finance-C-122
+    when: When configuring the AMLSim system
+    action: Set degree_threshold identically in both TransactionGenerator and Nominator instances
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mismatched degree thresholds cause incorrect identification of main account candidates; fan-in/fan-out patterns
+      are misclassified, corrupting AML typology simulation results
+  - id: finance-C-123
+    when: When initializing account nodes in the transaction graph
+    action: Initialize each account vertex with a 'normal_models' list attribute
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: KeyError raised when Nominator methods attempt to access 'normal_models' attribute for filtering; AML typology
+      assignment fails for accounts without initialized normal_models
+  - id: finance-C-124
+    when: When assigning AML typology roles to account candidates
+    action: Remove assigned nodes from the opposite candidate list (fan-in assigned nodes must be removed from fan-out candidates)
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Same account may be assigned multiple conflicting AML typology roles; simulation generates invalid nested
+      or circular transaction patterns that do not match parameter definitions
+  - id: finance-C-125
+    when: When initializing the TransactionGenerator for simulation
+    action: 'Execute initialization methods in the specified order: set_num_accounts -> generate_normal_transactions -> load_account_list
+      -> load_normal_models -> build_normal_models -> set_main_acct_candidates -> load_alert_patterns -> mark_active_edges'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Dependency violations cause AttributeError or KeyError exceptions; for example, generating transactions before
+      setting account count creates mismatched graph topology
+  - id: finance-C-126
+    when: When interpreting timestamp values in simulator outputs
+    action: Treat each timestamp values as days offset from base_date (default 2017-01-01), not as absolute dates or Unix
+      timestamps
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Misinterpretation of day offsets as Unix timestamps produces dates in year 1970 or beyond year 4000; misinterpretation
+      as absolute dates produces incorrect temporal ordering of transactions
+  - id: finance-C-127
+    when: When joining transaction and alert member datasets
+    action: Verify Alert IDs in transaction log match those in alert_members.csv for joinability
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: SQL or pandas join operations fail to match alert transactions with alert members; downstream compliance
+      analysis cannot correlate transactions to suspicious accounts
+  - id: finance-C-128
+    when: When configuring AMLSim Python dependencies
+    action: Use networkx version 1.11 specifically (version 2.* is not supported due to performance issues with large graph
+      creation)
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Using networkx 2.* causes severe performance degradation or out-of-memory errors when generating transaction
+      graphs with thousands of accounts; simulation may not complete
+  - id: finance-C-129
+    when: When creating base transaction graphs from degree sequences
+    action: Use MultiDiGraph as intermediate representation in directed_configuration_model, then convert to DiGraph for TransactionGenerator
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Skipping MultiDiGraph intermediate step may cause NetworkX API incompatibilities; duplicate edges in MultiDiGraph
+      are lost when converted to simple DiGraph, affecting transaction multiplicity
+  - id: finance-C-132
+    when: When validating alert transaction subgraphs
+    action: Match generated alert subgraphs against parameter definitions to detect structural inconsistencies
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Undetected inconsistencies between generated patterns and parameter files produce invalid typologies; ML
+      training data contains incorrectly structured transaction sequences
+  - id: finance-C-133
+    when: When implementing or refactoring the directed transaction graph generation logic
+    action: Maintain the self-loop avoidance logic that swaps IDs to prevent self-referential edges in the generated graph
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Removing self-loop swap logic causes artificial self-loops in transaction graphs, distorting AML pattern
+      analysis and producing unrealistic account-to-account relationships that bias detection algorithms toward false positives
+      or negatives
+    derived_from_bd_id: BD-001
+  - id: finance-C-134
+    when: When implementing hub node identification logic in AML transaction graph analysis
+    action: Use OR semantics when checking if degree_threshold is crossed (check if in_degree >= threshold OR out_degree >=
+      threshold) — must NOT use AND semantics that requires both in and out degree to exceed threshold
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using AND semantics for hub detection excludes legitimate one-sided hub accounts (high senders or high receivers
+      only), reducing AML pattern coverage and missing detection opportunities for one-sided transaction patterns common in
+      layering and structuring schemes
+    derived_from_bd_id: BD-003
+  - id: finance-C-135
+    when: When implementing fan-in or fan-out alert pattern generation in the Nominator
+    action: Verify candidate sorting uses degree-based selection (out-degree for fan-in collection points, in-degree for fan-out
+      distribution points) — verify that high-activity nodes are prioritized as aggregation points rather than using random
+      selection
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using random selection instead of degree-based sorting creates unrealistic aggregation points with no outbound
+      capability, generating AML alerts that appear anomalous to reviewers and reducing backtest fidelity for pattern detection
+      systems
+    derived_from_bd_id: BD-004
+  - id: finance-C-136
+    when: When implementing amount rounding logic for transaction generation
+    action: Implement the adaptive step size algorithm (7-30 slots per range) to create non-uniform distribution favoring
+      round numbers — verify step_size is between 7 and 30, and amounts align to step boundaries
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using uniform distribution or step sizes below 7 produces unrealistic transaction amounts that lack the natural
+      clustering around round figures, causing generated AML alerts to appear artificial and fail pattern authenticity validation
+    derived_from_bd_id: BD-082
+  - id: finance-C-137
+    when: When modifying pattern detection logic (cycle, scatter_gather, gather_scatter) in either the graph generator or
+      validation module
+    action: Verify identical pattern detection logic is maintained in both validation/validate_alerts.py and the graph generator
+      — apply changes to both modules simultaneously to maintain detection consistency
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Modifying pattern detection in only one module creates divergence where validation flags patterns the generator
+      missed or vice versa, causing inconsistent alert classification and breaking the independent verification capability
+    derived_from_bd_id: BD-079
+  - id: finance-C-139
+    when: When performing cross-module date arithmetic involving logs and analytics
+    action: Normalize base_date to a single consistent value before performing date arithmetic across modules; do not mix
+      conf.json/convert_logs.py (2017-01-01) with network_analytics.py (1970-01-01) without explicit conversion
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using inconsistent base dates across modules produces incorrect duration calculations, causing transaction
+      age and risk scoring errors that accumulate silently across pipeline boundaries
+    derived_from_bd_id: BD-073
+  - id: finance-C-140
+    when: When implementing scatter-gather pattern validation logic
+    action: Validate scatter-gather patterns with degree exactly 1 for intermediate nodes (neither sending nor receiving additional
+      transactions), monotonically decreasing amounts through the chain, and chronological transaction order within each phase
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Loose validation accepts malformed scatter-gather patterns that don't represent real money laundering schemes,
+      causing false positive alerts that waste investigation resources and dilute detection signal
+    derived_from_bd_id: BD-055
+  - id: finance-C-141
+    when: When implementing model assignment logic for AML typology simulation
+    action: Track remaining and used counts per typology type to verify specified model quantities match allocation, preventing
+      over or under-assignment of patterns to simulation accounts
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Random assignment without per-type counters produces uncontrolled pattern distributions unsuitable for testing,
+      causing validation failures and unreliable detection algorithm assessment
+    derived_from_bd_id: BD-057
+  - id: finance-C-142
+    when: When implementing suspicious activity report (SAR) status checking logic
+    action: Check alert is_sar status using sar_id > 0 comparison (positive integer), where sar_id equals 0 indicates no SAR
+      filed and positive values indicate filed report IDs
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using zero check (sar_id == 0) instead of positive integer check incorrectly marks null-SAR accounts as having
+      filed suspicious activity reports, violating database nullable integer semantics and causing compliance violations
+    derived_from_bd_id: BD-064
+  - id: finance-C-143
+    when: When implementing AML typology graph generation with hub accounting
+    action: Call remove_typology_candidate BEFORE add_node in each typology generator - this ordering ensures hub accounting
+      tracks candidates before node registration
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Reversing the order causes hub accounts to be miscounted and alerts to reference unregistered nodes, corrupting
+      the transaction graph structure and breaking alert correlation logic
+    derived_from_bd_id: BD-072
+  - id: finance-C-144
+    when: When implementing normal model account population for CSV export
+    action: Populate normal_models list AFTER mark_active_edges sets edge attributes - the active flag drives CSV export filter
+      and must be set before population
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Writing normal_models before mark_active_edges includes inactive accounts in exports, causing data quality
+      issues where CSV files contain accounts without valid transaction patterns
+    derived_from_bd_id: BD-081
+  - id: finance-C-145
+    when: When configuring cash transaction amount ranges for AML simulation
+    action: Set cash-in amounts with normal range 50-100 and fraud range 500-1000 (10x normal), and reverse the ranges for
+      cash-out - these thresholds create multi-dimensional fraud signatures essential for detection
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using uniform amount ranges for both normal and fraud transactions eliminates the characteristic volume increase
+      signature, making transactions indistinguishable from legitimate cash activity and breaking detection algorithms
+    derived_from_bd_id: BD-045
+  - id: finance-C-146
+    when: When implementing fan-in pattern generation for structuring detection
+    action: Configure fan-in pattern with multiple originators sending to a single main account - this models smurfing schemes
+      where individuals make sub-threshold deposits to avoid reporting
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using fan-out pattern (single originator to multiple destinations) instead reverses the money flow direction,
+      causing detection algorithms to look for opposite convergence patterns and miss actual structuring activity
+    derived_from_bd_id: BD-046
+  - id: finance-C-147
+    when: When implementing cycle pattern generation for sophisticated laundering detection
+    action: Form transactions into ring structures using modulo arithmetic for deterministic paths, and decrement amounts
+      at each hop via margin extraction to verify final amounts differ from initial
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Random cycle paths without modulo arithmetic or missing margin decrements cause funds to return unchanged
+      to origin, misrepresenting laundering fund degradation through layering stages
+    derived_from_bd_id: BD-050
+  - id: finance-C-148
+    when: When implementing scatter-gather pattern generation with temporal segmentation
+    action: Split scatter-gather at midpoint date with scatter phase (originators to intermediaries) executing before gather
+      phase (intermediaries to beneficiaries) - this creates two-phase temporal signature
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Implementing single-phase patterns instead of two-phase scatter-gather eliminates the temporal evasion dimension,
+      causing detection systems to miss timing-based evasion techniques that rely on phase delays
+    derived_from_bd_id: BD-051
+  - id: finance-C-149
+    when: When implementing gather-scatter pattern generation with reversed phase order
+    action: Execute gather phase (originators to intermediaries) first, then scatter phase (intermediaries to beneficiaries)
+      - the phase order is critical for creating mirror pattern to scatter-gather
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Reversing to scatter-first order makes the pattern identical to scatter-gather, creating a detection blind
+      spot where collection-first schemes are not identified regardless of phase order
+    derived_from_bd_id: BD-052
+  - id: finance-C-150
+    when: When implementing graph construction logic in amlsim.nominator (Nominator stage)
+    action: 'Maintain flow conservation invariants: in-degree sum must equal out-degree sum for every vertex, and num_accounts
+      % len(sequence) == 0 must hold; graph construction must fail-fast if these constraints are violated'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Violating flow conservation invariants causes Nominator failures (BD-071) and prevents directed graph generation
+      entirely; backtest pipeline halts without generating transaction networks
+    derived_from_bd_id: BD-090
+  - id: finance-C-151
+    when: When implementing multi-jurisdiction AML compliance reporting
+    action: Assume the framework provides configurable CTR/SAR threshold handling per jurisdiction — the framework uses hardcoded
+      thresholds that cannot accommodate jurisdictional variations
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Hardcoded CTR/SAR thresholds prevent deployment across multiple jurisdictions with different regulatory requirements,
+      causing compliance violations in production environments where thresholds differ from the hardcoded values
+    derived_from_bd_id: BD-GAP-017
+  - id: finance-C-152
+    when: When configuring AML threshold parameters for compliance reporting
+    action: Implement jurisdiction-specific CTR/SAR threshold configuration with audit trail — externalize thresholds to configuration
+      files with jurisdiction codes and maintain change history for regulatory audit purposes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without configurable thresholds, organizations cannot meet multi-jurisdiction AML requirements where CTR
+      limits vary (e.g., FinCEN $3000 vs UK £500) and regulators require documented threshold changes
+    derived_from_bd_id: BD-GAP-017
+  - id: finance-C-153
+    when: When initializing the TransactionGraphGenerator component
+    action: 'Execute initialization sequence exactly as: set_num_accounts -> generate_normal_transactions -> load_account_list
+      -> load_normal_models -> build_normal_models -> set_main_acct_candidates -> load_alert_patterns -> mark_active_edges'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Violating the initialization order causes Nominator graph lookups to fail when normal_models lists are missing
+      or accounts are uninitialized, leading to AttributeError cascades in the alert generation pipeline
+    derived_from_bd_id: BD-066
+  - id: finance-C-154
+    when: When using ResultGraphLoader.count_hub_accounts() for analytics reporting
+    action: Verify that the dual counting behavior (base + extension) is expected for the use case — callers should not assume
+      this returns a simple hub account count as it includes both parent implementation and extended analytics counting
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Callers expecting a single hub account count will misinterpret the inflated value from dual counting, causing
+      metric discrepancies in downstream reporting and potentially incorrect AML alert prioritization
+    derived_from_bd_id: BD-070
+  - id: finance-C-155
+    when: When testing hub detection patterns at different threshold values
+    action: Verify test configurations match production threshold values — validate that tests run with threshold=10 (production
+      value) to guarantee correct behavior for hub-based pattern assignment
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Tests passing at threshold=3 do not guarantee correct behavior at threshold=10, creating false confidence
+      where insufficient candidate pools for pattern assignment go undetected until production
+    derived_from_bd_id: BD-086
+  - id: finance-C-156
+    when: When running alert generation under high volume conditions
+    action: Monitor hub pool depletion rates and verify fallback behavior produces acceptable results — when hub pool exhausts,
+      the fallback to lower-degree accounts may violate realism requirements for pattern blending
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Under high alert volumes, hub pool depletion causes fallback to lower-degree accounts that violate the realism
+      requirement, creating obvious anomalies that real-world AML systems would detect and reject
+    derived_from_bd_id: BD-087
+  - id: finance-C-157
+    when: When combining simulation runs with different schema versions
+    action: Combine data from runs with varying schema versions without schema validation — BD-015 enforces consistency while
+      BD-009 enables evolution, creating silent misinterpretation when schemas differ
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Schema evolution enabled by BD-009 combines with BD-015 consistency enforcement, causing silent data misinterpretation
+      when simulation runs with different schema versions are combined
+    derived_from_bd_id: BD-094
+  - id: finance-C-158
+    when: When implementing suspicious account classification for tiered AML monitoring
+    action: Verify that boolean risk flags (country_risk, business_risk) are sufficient for the AML rule engine — if nuanced
+      risk levels are needed, the architecture requires redesign as the system only supports discrete thresholds
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Boolean risk classification forces discrete categorization that breaks when nuanced risk levels (medium-high)
+      are required for tiered monitoring, potentially missing suspicious activity that falls between binary thresholds
+    derived_from_bd_id: BD-GAP-002
+  - id: finance-C-159
+    when: When implementing hub account detection logic using degree threshold
+    action: Verify that degree_threshold=4 matches the actual statistical outliers in degree distribution for the specific
+      dataset being analyzed; adjust threshold based on the actual degree distribution rather than using the default value
+      blindly
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using degree_threshold=4 without verification may identify incorrect hub accounts; in money laundering detection,
+      misidentified hubs cause both false positives (unnecessary investigations) and false negatives (missed consolidation
+      points), violating FATF compliance requirements
+    derived_from_bd_id: BD-020
+  - id: finance-C-162
+    when: When using the framework's default margin ratio parameter for transaction amount generation
+    action: Verify that DEFAULT_MARGIN_RATIO=0.1 matches the actual intermediary fee structure in the target laundering scenario,
+      and adjust to reflect specific layering scheme economics if needed
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using 10% margin creates detectable decrement patterns across multi-hop chains; if actual intermediary fees
+      differ, the generated transaction amounts will exhibit unrealistic margins that either over or understate laundering
+      costs, compromising detection validation
+    derived_from_bd_id: BD-021
+  - id: finance-C-163
+    when: When implementing transaction amount generation logic
+    action: Verify that transaction amount rounding follows psychologically appealing patterns (multiples of 10, 100, 1000)
+      as configured, and confirm the rounding strategy matches the target scenario's behavioral assumptions
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Rounding to round numbers creates realistic launderer behavior patterns that avoid obvious structuring thresholds;
+      removing this rounding produces either unnaturally distributed amounts or constant-amount chains that fail to represent
+      real transaction patterns
+    derived_from_bd_id: BD-024
+  - id: finance-C-164
+    when: When implementing normal model subgraph edge generation
+    action: Mark subgraph edges as active when they represent current-period transactions — active edges must be distinguishable
+      from dormant historical edges to enable downstream pattern detection filtering
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without active edge marking, dormant historical transactions incorrectly match against current-period alert
+      patterns, causing false positive alerts that trigger unnecessary investigator review and dilute detection system effectiveness
+    derived_from_bd_id: BD-058
+  - id: finance-C-165
+    when: When implementing SAR account extraction logic during log conversion
+    action: Use org_type lookup to classify SAR accounts before schema routing — verify individual and organizational SAR
+      accounts are routed to their respective schemas to comply with reporting requirements
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Failing to classify SAR accounts by org_type causes schema routing violations where individual accounts receive
+      organizational schemas or vice versa, resulting in non-compliant SAR reports that regulatory authorities will reject
+    derived_from_bd_id: BD-011
+  - id: finance-C-166
+    when: When implementing alert validation logic that checks transaction patterns for AML detection
+    action: Verify that the validation framework enforces strict chronological ordering of transactions — verify transaction
+      sequence is validated as a temporal dependency, not just as data presence
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without chronological ordering enforcement, AML typologies like layering sequences are not detected correctly;
+      alerts for time-sensitive patterns generate false negatives, allowing suspicious transactions to pass undetected
+    derived_from_bd_id: BD-013
+  - id: finance-C-167
+    when: When routing normal model alerts through the scheduling system
+    action: Assume normal model alerts use the same dynamic CSV scheduling as AML typology patterns — normal model distribution
+      is hardcoded to schedule_id=1 regardless of CSV parameters
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Hardcoded schedule_id=1 prevents multi-schedule simulation scenarios where normal activity distribution differs;
+      analysts cannot route normal model alerts to alternative schedules, limiting backtesting flexibility for schedule-dependent
+      strategies
+    derived_from_bd_id: BD-095
+  - id: finance-C-168
+    when: When implementing schedule routing configuration for pattern distribution
+    action: Use dynamic CSV scheduling configuration for AML typology patterns while acknowledging normal models require hardcoded
+      schedule_id=1 — do not attempt to override normal model schedule routing via CSV
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Attempting to route normal model alerts through dynamic CSV causes routing conflicts; normal model alerts
+      always default to schedule 1, so configuration changes for normal models in CSV have no effect
+    derived_from_bd_id: BD-095
+  - id: finance-C-169
+    when: When processing transaction timestamps during graph_construction
+    action: Assume the framework handles timezone conversion or UTC normalization automatically — timestamps are not explicitly
+      annotated with timezone and may be treated as naive
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit timezone annotation, transactions across multiple timezones are incorrectly sequenced in
+      the graph; UTC-based systems may misalign events by hours, causing cycle detection algorithms to miss or incorrectly
+      flag temporal patterns
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-170
+    when: When constructing transaction graphs from multiple data sources with timestamps
+    action: Annotate each timestamps with explicit timezone identifiers and normalize to UTC before graph construction — convert
+      local timestamps using source timezone metadata and store as UTC-aware datetime objects
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing UTC normalization causes cross-timezone transaction graphs to have incorrect temporal ordering; alerts
+      relying on chronological sequences may trigger at wrong times or miss detection windows entirely
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-171
+    when: When selecting historical data snapshots for graph_construction
+    action: Assume the framework provides point-in-time data availability — historical queries return current-state data,
+      not the state that existed at the query timestamp
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without point-in-time data, backtests use current entity states that include future changes unknown at the
+      historical timestamp; this introduces look-ahead bias where alerts reference accounts or entities modified after the
+      backtest date
+    derived_from_bd_id: BD-GAP-008
+  - id: finance-C-172
+    when: When running historical backtests or validating alerts against past timestamps
+    action: Query data using point-in-time semantics — use temporal query methods that return the entity state as it existed
+      at the specified timestamp, filtering out records created or modified after that point
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using current-state data for historical backtests causes false positive alerts; entities that were valid
+      at the historical timestamp but were subsequently closed or flagged appear as suspicious when they were not at that
+      time
+    derived_from_bd_id: BD-GAP-008
+  - id: finance-C-173
+    when: When implementing pattern validation logic for AML alert detection
+    action: Use graph-theoretic algorithms (such as NetworkX simple_cycles for cycle detection) rather than regex or text-based
+      pattern matching — validate patterns based on transaction graph structure
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Regex-based validation can be evaded by simple field value changes or formatting variations; suspicious transactions
+      that modify field contents bypass detection while still exhibiting structurally suspicious patterns
+    derived_from_bd_id: BD-012
+  - id: finance-C-174
+    when: When combining multiple data inputs in the data_combination pipeline
+    action: Verify that each combined inputs share the same schema structure before processing — if schemas differ, the framework
+      will silently load schema from the first input only and may misinterpret subsequent data fields
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Silent schema mismatch causes the framework to load structure from the first input only, potentially misinterpreting
+      field names and types in subsequent inputs and corrupting the combined dataset without raising errors
+    derived_from_bd_id: BD-015
+  - id: finance-C-175
+    when: When using the framework's DEFAULT_MARGIN_RATIO parameter for transaction cycle simulation
+    action: Verify that DEFAULT_MARGIN_RATIO=0.1 (10% fund retention) matches the actual regulatory requirement for intermediaries
+      in cycle/scatter-gather patterns, and adjust if the mandated retention ratio differs in the target jurisdiction
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Hardcoded 0.1 margin ratio causes the simulation to under-flag or over-flag transaction cycles if the actual
+      regulatory retention requirement differs, leading to validation results that don't match compliance expectations
+    derived_from_bd_id: BD-067
+  - id: finance-C-176
+    when: When processing data in the graph_construction stage
+    action: Assume the framework implements stale data detection or automatic data expiry — the framework does not include
+      staleness checks; expired or outdated data is processed as current without warning
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without stale data detection, the framework processes outdated data as current, causing downstream analysis
+      to use stale values and producing unreliable results in production systems
+    derived_from_bd_id: BD-GAP-009
+  - id: finance-C-177
+    when: When managing data feeds in the graph_construction stage
+    action: Implement a data staleness policy with configurable TTL (time-to-live) — add a timestamp or version field to each
+      data record, and mark records as expired when current_time - timestamp exceeds the configured TTL threshold
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without a staleness policy, stale data continues to flow through the pipeline causing downstream systems
+      to make decisions based on outdated information
+    derived_from_bd_id: BD-GAP-009
+  - id: finance-C-178
+    when: When managing model and data artifacts in production systems
+    action: Assume the framework enforces model-data version consistency — the framework does not implement snapshot binding
+      between model versions and their corresponding training/inference data versions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without version snapshot binding, models trained on old data can run against new data without validation,
+      causing prediction quality degradation that accumulates silently in production
+    derived_from_bd_id: BD-GAP-011
+  - id: finance-C-179
+    when: When registering or loading model artifacts in the graph_construction stage
+    action: Implement version snapshot binding by storing model_version and data_version metadata together in the artifact
+      registry, and validate that loaded model artifacts' data_version matches the target dataset's version before inference
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without version binding, models trained on outdated data continue serving predictions against new data distributions,
+      causing prediction quality degradation that remains undetected until significant business impact occurs
+    derived_from_bd_id: BD-GAP-011
+  - id: finance-C-180
+    when: When generating synthetic transaction data with cycle patterns or scatter-gather patterns for AML system training
+    action: Introduce randomized margin ratios instead of fixed DEFAULT_MARGIN_RATIO=0.1; vary margin ratio stochastically
+      (e.g., uniform[0.05, 0.15] or normally distributed) to prevent uniform 10% decrement signature detection
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Fixed 10% margin ratio creates uniform decrement signature across cycle and scatter-gather patterns; adversaries
+      can identify synthetic data origin by the consistent 0.1 ratio, compromising AML system training validity
+    derived_from_bd_id: BD-089
+  - id: finance-C-181
+    when: When combining data from multiple input sources or simulation runs in the fraud detection pipeline
+    action: Verify that each combined inputs share the same schema version before processing; implement schema validation
+      checks that detect drift between the first-loaded schema and subsequent inputs
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: When inputs have different schema versions, the framework silently applies the first-loaded schema to all
+      combined data, misinterpreting fields in subsequent inputs and causing silent data corruption in aggregated alerts
+    derived_from_bd_id: BD-091
+  - id: finance-C-182
+    when: When implementing graph analysis algorithms for money laundering detection
+    action: Use weakly connected component analysis to identify isolated transaction clusters representing distinct money
+      laundering networks — do not replace with strongly connected components alone
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Replacing weakly connected components with strongly connected components misses direction-agnostic connectivity
+      patterns in undirected graph views, causing isolated shell company networks and segmented operations to remain invisible
+      to detection algorithms
+    derived_from_bd_id: BD-039
+  - id: finance-C-183
+    when: When implementing money laundering pattern detection in transaction graphs
+    action: Use deterministic fan-out pattern where a single main account sends to multiple beneficiaries — do not replace
+      with random distribution recipients
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Replacing deterministic fan-out with random distribution breaks the reproducible test case structure and
+      misses the single-source multi-destination anomalies that model the final laundering distribution stage
+    derived_from_bd_id: BD-047
+  - id: finance-C-184
+    when: When implementing peer-to-peer layering pattern detection in transaction graphs
+    action: Use even split between originators and beneficiaries in bipartite patterns — do not use uneven splits that create
+      obvious hub accounts
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using uneven splits creates obvious hub accounts detectable by simple degree thresholds, breaking the balanced
+      bipartite subgraphs that obscure the overall laundering flow by distributing activity symmetrically
+    derived_from_bd_id: BD-048
+  - id: finance-C-185
+    when: When implementing three-tier layering pattern generation in transaction graphs
+    action: Divide accounts into equal thirds for originator, intermediate, and beneficiary roles — do not use variable tier
+      sizes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using variable tiers blurs the distinct role boundaries between placement, layering, and integration stages,
+      causing the recognizable tiered structures representing classic three-tier laundering to become unrecognizable
+    derived_from_bd_id: BD-049
+  - id: finance-C-186
+    when: When implementing alert validation for cycle pattern detection
+    action: 'Enforce cycle-specific validation constraints: single cycle topology, chronological transaction ordering, and
+      unique transaction amounts — do not use generic validation that lacks topological and temporal constraints'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using generic validation produces malformed synthetic cycles that do not match real-world ring structure
+      characteristics, causing false-positive detections in money laundering cycle alerts
+    derived_from_bd_id: BD-054
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-060 / Convert Logs to AML Simulation Data
+    version: v5.3
+    intent_keywords:
+    - convert logs
+    - synthetic data
+    - AML simulation
+    - generate transaction logs
+    - test data generation
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (5 distinct values, balanced distribution)
+      groups:
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 4
+        ucs:
+        - uc_id: UC-101
+          name: Convert Logs to AML Simulation Data
+          short_description: Convert transaction log files into synthetic AML simulation data for testing anti-money laundering
+            detection systems
+          sample_triggers:
+          - convert logs
+          - synthetic data
+          - AML simulation
+        - uc_id: UC-102
+          name: Split Accounts by Bank ID
+          short_description: Partition account CSV files by bank identifier for bank-specific analysis and processing
+          sample_triggers:
+          - split accounts
+          - bank ID
+          - partition data
+        - uc_id: UC-103
+          name: Combine AML Simulation Outputs
+          short_description: Aggregate multiple AMLSim output files into a consolidated dataset for comprehensive analysis
+          sample_triggers:
+          - combine outputs
+          - merge data
+          - AMLSim aggregation
+        - uc_id: UC-104
+          name: Generate Transaction Graph
+          short_description: Generate the base transaction network graph used as input for AML simulation, defining account
+            relationships and transaction patterns
+          sample_triggers:
+          - transaction graph
+          - network generation
+          - graph topology
+      - group_id: research_analysis
+        name: Research Analysis
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-105
+          name: Generate Scale-Free Network Graph
+          short_description: Generate scale-free network graphs using Kronecker graph algorithm for research on network topology
+            and distribution analysis
+          sample_triggers:
+          - scale-free
+          - Kronecker graph
+          - network topology
+      - group_id: monitoring
+        name: Monitoring
+        description: ''
+        emoji: 📦
+        uc_count: 3
+        ucs:
+        - uc_id: UC-106
+          name: Plot Alert Pattern Subgraphs
+          short_description: Visualize alert pattern subgraphs showing which accounts and transactions are involved in each
+            generated alert for debugging and validation
+          sample_triggers:
+          - alert visualization
+          - subgraph plot
+          - alert debugging
+        - uc_id: UC-112
+          name: Analyze Transaction Networks
+          short_description: Load AMLSim outputs and analyze transaction network characteristics including degree distribution,
+            connected components, and graph properties
+          sample_triggers:
+          - network analysis
+          - graph analytics
+          - validation
+        - uc_id: UC-113
+          name: Validate AML Simulation Alerts
+          short_description: Validate generated alerts against expected alert parameters to ensure AML simulation produces
+            correct alert patterns and amounts
+          sample_triggers:
+          - validate alerts
+          - alert verification
+          - simulation accuracy
+      - group_id: reporting
+        name: Reporting
+        description: ''
+        emoji: 📋
+        uc_count: 1
+        ucs:
+        - uc_id: UC-107
+          name: Plot Transaction Distributions
+          short_description: Generate statistical distribution plots (degree, amount, frequency) from transaction graphs for
+            analysis and reporting
+          sample_triggers:
+          - distribution plot
+          - statistics
+          - degree distribution
+      - group_id: builtin_factor
+        name: Builtin Factor
+        description: ''
+        emoji: 🧮
+        uc_count: 4
+        ucs:
+        - uc_id: UC-108
+          name: Random Amount Generator
+          short_description: Generate random transaction amounts within configurable min/max bounds for transaction simulation
+          sample_triggers:
+          - random amount
+          - transaction generator
+          - random number
+        - uc_id: UC-109
+          name: Account Nominator for Transaction Selection
+          short_description: Select appropriate accounts for different transaction types (fan-in, fan-out, single, mutual,
+            periodical) based on network degree thresholds
+          sample_triggers:
+          - account selection
+          - nominator
+          - transaction routing
+        - uc_id: UC-110
+          name: Rounded Amount Generator
+          short_description: Generate rounded transaction amounts (e.g., 100, 500, 1000) to simulate realistic human transaction
+            patterns
+          sample_triggers:
+          - rounded amount
+          - realistic transaction
+          - human pattern
+        - uc_id: UC-111
+          name: Normal Account Behavior Model
+          short_description: Define and manage normal (non-suspicious) account behavior models including main accounts and
+            member accounts for transaction simulation
+          sample_triggers:
+          - normal model
+          - behavior model
+          - account group
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try convert logs to aml simulation data
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try split accounts by bank id
+      auto_selected: true
+    - uc_id: UC-103
+      beginner_prompt: Try combine aml simulation outputs
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 13 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Combine AML Simulation Outputs
+    - Split Accounts by Bank ID
+    - Convert Logs to AML Simulation Data
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

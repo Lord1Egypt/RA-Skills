@@ -1,0 +1,156 @@
+project:
+  name: "ai_news_workflow"
+  version: "0.1.1"
+  timezone: "Asia/Shanghai"
+  language: "zh"
+
+paths:
+  company_file: "./input/企业名单.xlsx"
+  source_file: "./input/source_config.xlsx"
+  output_excel_dir: "./output/excel"
+  output_word_dir: "./output/word"
+  log_dir: "./logs"
+  db_file: "./data/history.db"
+  cache_dir: "./data/cache"
+  temp_dir: "./data/temp"
+  excel_template: "./templates/excel_template.xlsx"
+  word_template: "./templates/briefing_template.docx"
+  web_source_file: "./input/web_source_config.xlsx"
+
+schedule:
+  enabled: true
+  run_hour: 23
+  run_minute: 0
+
+time_window:
+  mode: "previous_day"
+  start_inclusive: false
+  end_inclusive: true
+  fallback_if_publish_time_missing: "manual_review"
+
+output:
+  excel_filename_prefix: "AI资讯信息表"
+  word_filename_prefix: "AI资讯简报"
+  date_format: "%Y%m%d"
+  datetime_format: "%Y-%m-%d %H:%M:%S"
+
+features:
+  enable_global_ai: true
+  enable_company_news: true
+  enable_excel_export: true
+  enable_word_export: true
+  enable_dedup: true
+  enable_summary: true
+  enable_importance_score: true
+
+crawler:
+  request_timeout_seconds: 20
+  max_retries: 2
+  retry_interval_seconds: 2
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+  verify_ssl: true
+
+filter_rules:
+  min_title_length: 8
+  min_content_length: 50
+  require_source_url: true
+  allowed_languages:
+    - "zh"
+    - "en"
+
+dedup:
+  title_similarity_threshold: 90
+  content_hash_enabled: true
+  url_normalization_enabled: true
+  keep_priority_order:
+    - "official"
+    - "government"
+    - "tier1_media"
+    - "industry_media"
+    - "other"
+
+importance_rules:
+  high_keywords:
+    - "融资"
+    - "并购"
+    - "收购"
+    - "重大发布"
+    - "新模型"
+    - "国家战略"
+    - "监管"
+    - "法案"
+    - "funding"
+    - "acquisition"
+    - "investment"
+    - "launch"
+    - "regulation"
+    - "policy"
+  medium_keywords:
+    - "合作"
+    - "成立子公司"
+    - "认证"
+    - "合作协议"
+    - "partnership"
+    - "certification"
+    - "approval"
+
+categories:
+  level_1:
+    - "全球AI产业动态"
+    - "名单企业动态"
+
+  level_2:
+    - "企业重大动态"
+    - "行业大事件"
+    - "政策动态"
+    - "融资"
+    - "投资/并购"
+    - "成立新企业"
+    - "产品发布"
+    - "获得认证"
+    - "其他"
+
+source_priority:
+  official: 1
+  government: 2
+  tier1_media: 3
+  industry_media: 4
+  other: 5
+
+briefing:
+  max_highlights: 5
+  max_items_per_section: 10
+  include_source_name: true
+  include_judgement_section: true
+
+logging:
+  level: "INFO"
+  rotation: "10 MB"
+  retention: "30 days"
+  encoding: "utf-8"
+
+openai:
+  api_key: ""
+  summary_model: "gpt-4.1-mini"
+
+ark:
+  api_key: ""
+  base_url: "https://ark.cn-beijing.volces.com/api/v3"
+  summary_model: ""
+
+crawler:
+  request_timeout_seconds: 20
+  rss_lookback_days: 3
+  web_lookback_days: 30
+
+time_window:
+  mode: "previous_day"          # previous_day / rolling_days
+  timezone: "Asia/Shanghai"
+
+  # mode = previous_day 时使用
+  start_hour: 0
+  end_hour: 0
+  lookback_days: 3
+
+  # mode = rolling_days 时使用
+  #lookback_days: 3

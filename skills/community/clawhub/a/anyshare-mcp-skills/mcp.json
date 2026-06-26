@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+        "asmcp": {
+            "enabled": true,
+            "url": "https://anyshare.aishu.cn/asmcp",
+            "transportType": "streamable-http",
+            "headers": {
+                "Authorization": "Bearer <token>"
+            }
+        }
+    }
+}

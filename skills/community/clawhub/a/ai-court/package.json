@@ -1,0 +1,28 @@
+{
+  "name": "ai-court-skill",
+  "version": "2.1.0",
+  "description": "AI 朝廷 - 以中国古代三省六部制为蓝本的多 Agent 协作框架。支持明朝/唐朝/现代三种制度，1-11 Bot 灵活配置，飞书/Discord 多平台部署。",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "multi-agent",
+    "ai-court",
+    "三省六部",
+    "明朝内阁",
+    "唐朝三省",
+    "现代企业",
+    "飞书机器人",
+    "Discord 机器人",
+    "AI 协作"
+  ],
+  "author": "菠萝王朝团队",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wanikua/ai-court-skill.git"
+  },
+  "homepage": "https://github.com/wanikua/ai-court-skill#readme",
+  "bugs": {
+    "url": "https://github.com/wanikua/ai-court-skill/issues"
+  }
+}

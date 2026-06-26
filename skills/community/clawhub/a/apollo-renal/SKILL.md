@@ -1,35 +1,239 @@
 ---
-name: "Apollo Renal"
-description: "像肾脏一样过滤垃圾信息，保留有用的内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-renal"
-sourceUrl: "https://clawhub.ai/skills/apollo-renal"
+name: apollo-renal
+description: >
+  像肾脏一样过滤垃圾信息，保留有用的内容。
+version: 2.0.0
+read_when:
+  - 用户提到上下文太长、token太多、噪音、整理
+  - Token使用率超过50%
+  - 对话效率明显下降时
+metadata:
+  openclaw:
+    emoji: "🫘"
+    requires:
+      bins: []
+      env: []
+    triggers:
+      - 上下文太长
+      - 噪音
+      - 整理
+      - 过滤
+      - token
+      - 清理
+      - 上下文压缩
+    suite: apollo
 ---
 
-# Apollo Renal
+# Apollo Renal — 上下文实时过滤系统
 
-> 像肾脏一样过滤垃圾信息，保留有用的内容。
+## 核心准则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-renal`
-- **Source URL:** [https://clawhub.ai/skills/apollo-renal](https://clawhub.ai/skills/apollo-renal)
+**AI的上下文管理应该像肾脏维护血液：持续过滤废物，保留有用物质，维持体内平衡。**
 
-## Overview
+肾脏的核心功能：
+- **过滤**：把血液中的废物分离出来
+- **选择性重吸收**：有用的东西（葡萄糖、氨基酸）全部回收
+- **浓缩**：把废物集中在尿液中排出
+- **维持酸碱平衡**：保持血液pH稳定
 
+对应的AI映射：
+- **过滤**：识别上下文中的噪音（重复、废话、中间过程）
+- **选择性重吸收**：确保关键决策、用户偏好、进行中任务不被删除
+- **浓缩**：把多轮相同表达压缩为一句
+- **酸碱平衡**：监控对话情绪，发现失衡及时介入
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apollo-renal
+## 与apollo-dream的关系
+
 ```
+apollo-dream  = 睡眠时的记忆巩固（长期投资）
+apollo-renal  = 清醒时的实时过滤（短期维护）
+
+协作模式：
+  renal（过滤）→ dream（巩固）→ renal（再过滤）
+  ↑_________________________|（循环）
+```
+
+apollo-renal是"预防"，apollo-dream是"治疗"。
+
+## 触发条件
+
+### 自动触发
+- Token使用率 > 50%
+- 每次心跳时检测（apollo-circadian的午后低谷期优先触发）
+
+### 手动触发
+- 用户主动说：整理上下文、清理噪音、太长了
+
+## 四步过滤流程
+
+```
+Step 1: 上下文透析（只读，不删除）
+  → 扫描对话历史
+  → 识别关键信息（必须保留）：
+    - 决策（decisions）
+    - 用户偏好（preferences）
+    - 进行中任务（active tasks）
+    - 未解决问题（open questions）
+  → 识别废物（可以清除）：
+    - 重复确认（"好的"/"收到"/"OK"等礼仪性回复）
+    - 中间过程（探索性讨论的中间步骤）
+    - 冗余表达（同一意思多轮重复）
+    - 过时信息（已解决但仍留在上下文中）
+
+Step 2: 选择性重吸收
+  → 检查"废物"中是否有误判（漏网的重要信息）
+  → 对被误标的重要信息进行抢救性保留
+
+Step 3: 尿液浓缩
+  → 多轮相同意思 → 一句话概括
+  → 重复表达 → 保留一个
+  → 长解释 → 提炼核心观点
+
+Step 4: 酸碱平衡检查
+  → 对话情绪是否失衡：
+    - 连续质疑（多轮追问同一问题）
+    - 连续负面（语气持续负面）
+    - 连续偏离（话题持续漂移）
+  → 如果失衡 → 建议apollo-dream介入深度整理
+```
+
+## 五类上下文元素分类
+
+| 类型 | 说明 | 处理方式 |
+|------|------|---------|
+| 决策 | 明确结论/决定 | ✅ 必须保留 |
+| 偏好 | 用户喜好/习惯 | ✅ 必须保留 |
+| 进行中任务 | 未完成的任务 | ✅ 必须保留 |
+| 中间过程 | 探索/讨论/推理 | ⚠️ 可压缩或删除 |
+| 噪音 | 重复/礼仪/废话 | ❌ 删除 |
+
+## 输出格式
+
+```
+🫘 [apollo-renal] 上下文净化报告
+
+过滤前状态：
+  - 总token估计：X
+  - 有效信息密度：Y%
+
+过滤操作：
+  ✅ 保留：决策X项 / 偏好X项 / 进行中任务X项
+  ❌ 删除：重复确认X个 / 中间过程X项 / 噪音X项
+
+过滤后状态：
+  - 总token估计：X'
+  - 有效信息密度：Y'%（提升Z%）
+
+节省率：X% token
+
+平衡状态：
+  🟢 对话正常
+  🟡 连续质疑/负面/偏离，需注意
+  🔴 失衡严重，建议apollo-dream深度介入
+
+下一步建议：[继续当前任务 / 触发apollo-dream / 等待用户确认]
+```
+
+## 重要约束
+
+```
+❌ 不删除：
+  - 任何决策记录
+  - 用户明确表达的偏好
+  - 进行中任务的当前状态
+  - 未解决问题的当前状态
+
+✅ 可以删除：
+  - 重复确认（礼貌性回复）
+  - 中间探索过程
+  - 已过时的临时信息
+  - 多轮重复表达
+
+⚠️ 需要确认才删除：
+  - 不确定重要与否的内容
+  - 跨会话关联（可能有用但不确定）
+```
+
+## 实施文件
+
+| 文件 | 作用 |
+|------|------|
+| scripts/renal/renal-check.sh | 上下文过滤检测脚本 |
+| scripts/heartbeat-logger.sh | 已集成renal检测 |
+| .renal/filter-state.json | 当前过滤状态 |
+| .dream/task-state.json | 参考：进行中任务数 |
+| .dream/topic-state.json | 参考：活跃话题数 |
+| skills/apollo-renal/SKILL.md | 本文档 |
+
+## v1 实施规格
+
+### 过滤检测脚本
+
+```bash
+# 手动运行
+bash scripts/renal/renal-check.sh
+
+# 输出示例
+🫘 [apollo-renal] 上下文净化报告
+当前状态：
+  - Token估算：153
+  - 有效信息密度：100%
+  - 重复确认：0次
+  - 进行中任务：0个
+  - 活跃话题：1个
+
+🟢  上下文状态正常
+```
+
+### 阈值定义
+
+| 指标 | 警告阈值 | 说明 |
+|------|---------|------|
+| Token估算 | > 50000 | 警告 |
+| 有效信息密度 | < 50% | 警告 |
+| 重复确认次数 | > 5次 | 警告 |
+
+**触发过滤条件**：≥2项超标
+
+### 集成到心跳
+
+每次心跳自动运行，结果写入 `.renal/filter-state.json`。
+日志中附带renal状态：
+```
+🫘 上下文正常  /  🫘 上下文需过滤（节省X%）
+```
+
+### 主AI调用方式
+
+当 heartbeat-realtime.json 显示需要过滤时，主AI执行六步过滤流程：
+1. 扫描上下文，识别有用/废物
+2. 选择性保留重要内容
+3. 执行过滤
+4. 写入快照（只对重要内容）
+5. 压缩上下文
+6. 报告节省率
+
+### 与apollo-dream的协作
+
+| 场景 | 顺序 | 说明 |
+|------|------|------|
+| 上下文略长 | renal先跑 | 快速过滤 |
+| 上下文很长需深度整理 | renal先跑，dream后跑 | 先过滤再巩固 |
+| 由谁决定 | AI根据上下文判断 | Q6确认 |
+
+## v1 验收标准
+
+- [x] 每次心跳时正确报告上下文状态
+- [x] 集成到心跳日志
+- [x] Token/密度/确认三项阈值已定义
+- [ ] 过滤后决策记录完整保留（待实施过滤流程）
+- [ ] Token节省率可量化（待实施过滤流程）
+- [ ] 重要内容快照机制（待实施过滤流程）
+
+## 待决策事项（已全部确认 ✅）
+
+> ✅ 2026-04-06 袁文同确认
+
+- **Q5 有效信息密度标准**：AI判断 + 用户共同定义（AI先判断，用户有最终确认权）
+- **Q6 与dream的执行顺序**：听AI的，根据上下文决定谁先跑
+- **Q7 误删恢复**：只对重要内容（决策/偏好/任务状态）做快照，普通内容不写快照

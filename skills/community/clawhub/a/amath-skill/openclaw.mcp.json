@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "amath-skill": {
+      "transport": "stdio",
+      "command": "/absolute/path/to/amath_skill/run_openclaw.sh",
+      "cwd": "/absolute/path/to/amath_skill",
+      "env": {
+        "AMATH_BASE_URL": "https://amath.socthink.cn",
+        "AMATH_API_PREFIX": "/api",
+        "AMATH_TIMEOUT_SECONDS": "30",
+        "AMATH_VERIFY_SSL": "true",
+        "AMATH_DEFAULT_SYSTEM_NAME": "奥数探险课"
+      }
+    }
+  }
+}

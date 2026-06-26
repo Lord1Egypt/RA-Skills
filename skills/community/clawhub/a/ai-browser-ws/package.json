@@ -1,0 +1,14 @@
+{
+  "name": "ai-browser-skill",
+  "version": "2.0.0",
+  "description": "AI 可控的 WebSocket 浏览器，基于 Puppeteer",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "install-deps": "npm install puppeteer ws"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "ws": "^8.14.0"
+  }
+}

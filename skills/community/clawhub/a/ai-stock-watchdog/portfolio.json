@@ -1,0 +1,14 @@
+{
+  "_comment": "Managed by AI stock watchdog skill. Do not edit by hand — use the skill to update holdings. On first run, the skill detects this empty state and walks you through onboarding.",
+  "_first_run": true,
+  "holdings": [],
+  "watchlist": [],
+  "preferences": {
+    "horizon": null,
+    "alert_threshold": null,
+    "delivery": null,
+    "positive_signals": false,
+    "timezone": "Asia/Kolkata",
+    "currency": "INR"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": "3.6.0",
+  "updated": "2026-04-16",
+  "description": "中央可信来源库 - 所有可信域名/IP/数据来源统一管理",
+
+  "platforms": {
+    "T01": {
+      "name": "微信生态",
+      "trust_level": "官方平台",
+      "description": "微信官方接口",
+      "sources": [
+        {"type": "域名", "value": "*.weixin.qq.com"},
+        {"type": "域名", "value": "*.wechat.com"},
+        {"type": "数据来源", "value": "微信小程序"}
+      ]
+    },
+    "T02": {
+      "name": "Coze平台",
+      "trust_level": "官方平台",
+      "description": "Coze官方接口",
+      "sources": [
+        {"type": "域名", "value": "*.coze.cn"},
+        {"type": "域名", "value": "*.coze.com"}
+      ]
+    },
+    "T03": {
+      "name": "腾讯生态",
+      "trust_level": "官方平台",
+      "description": "腾讯官方接口",
+      "sources": [
+        {"type": "域名", "value": "*.tencent.com"},
+        {"type": "域名", "value": "*.qq.com"},
+        {"type": "域名", "value": "*.qcloud.com"},
+        {"type": "域名", "value": "*.cloud.tencent.com"}
+      ]
+    },
+    "T04": {
+      "name": "WorkBuddy",
+      "trust_level": "官方平台",
+      "description": "WorkBuddy官方平台",
+      "sources": [
+        {"type": "域名", "value": "*.workbuddy.cn"},
+        {"type": "域名", "value": "*.workbuddy.com"}
+      ]
+    },
+    "T05": {
+      "name": "本地环境",
+      "trust_level": "本地环境",
+      "description": "本地可信环境",
+      "sources": [
+        {"type": "IP", "value": "127.0.0.1"},
+        {"type": "IP", "value": "localhost"},
+        {"type": "数据来源", "value": "本地环境"}
+      ]
+    },
+    "T06": {
+      "name": "编程相关",
+      "trust_level": "技术平台",
+      "description": "常用编程/开发平台",
+      "sources": [
+        {"type": "域名", "value": "*.github.com"},
+        {"type": "域名", "value": "*.github.io"},
+        {"type": "域名", "value": "*.npmjs.com"},
+        {"type": "域名", "value": "*.pypi.org"},
+        {"type": "域名", "value": "*.docker.com"},
+        {"type": "域名", "value": "*.kubernetes.io"}
+      ]
+    },
+    "T07": {
+      "name": "AI/ML平台",
+      "trust_level": "技术平台",
+      "description": "AI和机器学习平台",
+      "sources": [
+        {"type": "域名", "value": "*.openai.com"},
+        {"type": "域名", "value": "*.anthropic.com"},
+        {"type": "域名", "value": "*.claude.ai"},
+        {"type": "域名", "value": "*.huggingface.co"},
+        {"type": "域名", "value": "*.replicate.com"}
+      ]
+    }
+  },
+
+  "trust_levels": {
+    "官方平台": "完全信任，无需安全检查",
+    "本地环境": "完全信任，无需安全检查",
+    "技术平台": "基本信任，轻量检查",
+    "未知": "默认不信任，全量检查"
+  }
+}

@@ -1,0 +1,12 @@
+# Payment Success Rate Expert - Python Dependencies
+
+# 能力一：query_antom_psr_data.py
+requests>=2.25.0
+
+# 能力二：analyse_and_gen_report.py
+matplotlib>=3.3.0
+reportlab>=3.6.0
+numpy>=1.19.0
+
+# 能力三：send_psr_report.py
+# 仅使用Python标准库，无需额外依赖

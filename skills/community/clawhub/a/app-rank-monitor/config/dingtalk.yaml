@@ -1,0 +1,20 @@
+# 钉钉配置
+# 用于应用监控通知和榜单报告发送
+
+dingtalk:
+  # 企业应用配置（用于文件上传）
+  client_id: "dingtzdghxvhtoabzg7z"
+  client_secret: "ECW-BmB0rtN1AixLqO4Pwmyg08npKXY6ce5ojc8126h--Gx1QV-8m3OgH1AbFz66"
+  chat_id: "chatf7fbdca8e17ca4604fb721d862eff876"
+  
+  # 机器人 Webhook（用于发送文本消息）
+  webhook: "https://oapi.dingtalk.com/robot/send?access_token=0aed7282c0f514c096d8b000647a8896d0ef491d57fc682dfdefdf47d5d0d760"
+  
+  # 通知设置
+  notification:
+    # 下架告警 @所有人
+    offline_at_all: true
+    # 恢复通知 @所有人
+    recovery_at_all: false
+    # 日报发送时间
+    daily_report_hour: 8

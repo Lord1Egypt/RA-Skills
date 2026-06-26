@@ -1,35 +1,68 @@
 ---
-name: "Apollo Stem"
-description: "像干细胞一样自我更新和分化：让AI能够定期更新核心能力，同时保持已有的有效经验。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apollo-stem"
-sourceUrl: "https://clawhub.ai/skills/apollo-stem"
+name: apollo-stem
+description: >
+  像干细胞一样自我更新和分化：让AI能够定期更新核心能力，同时保持已有的有效经验。
+version: 2.0.0
+read_when:
+  - 用户提到更新、重建、能力升级
+  - 系统能力下降时
+  - 需要新增功能时
+metadata:
+  openclaw:
+    emoji: "🔬"
+    requires: []
+    triggers:
+      - 更新
+      - 重建
+      - 能力升级
+      - 自我更新
+    suite: apollo
 ---
 
-# Apollo Stem
+# Apollo Stem — 系统自我更新系统
 
-> 像干细胞一样自我更新和分化：让AI能够定期更新核心能力，同时保持已有的有效经验。
+## 核心准则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apollo-stem`
-- **Source URL:** [https://clawhub.ai/skills/apollo-stem](https://clawhub.ai/skills/apollo-stem)
+**AI的能力更新应该像干细胞的自我更新：既能维持核心库，又能生成新的特化能力。**
 
-## Overview
+干细胞的核心能力：
+- **自我更新**：干细胞分裂成两个干细胞，维持干细胞库稳定
+- **多向分化**：干细胞可以变成各种特化细胞
+- **干性平衡**：太多自我更新→没有特化能力；太多分化→干细胞耗竭
 
+对应的AI映射：
+- **自我更新**：定期重建核心能力池，但不丢失已有经验
+- **分化**：生成新的专用skill/能力
+- **干性平衡**：通用性和专用性的平衡
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apollo-stem
+## 触发条件
+
+- 用户明确说"更新能力/升级/重建"
+- 系统检测到核心能力过时（长期未更新的skill）
+- Apollo Skill体系有重大架构调整
+
+## 重建流程
+
 ```
+触发重建 →
+  1. 评估当前能力库：哪些skill有效、哪些过时
+  2. 制定分化计划：需要新增哪些能力
+  3. 执行自我更新：更新核心skill
+  4. 执行分化：生成新能力
+  5. 验证新能力：确保更新后系统正常
+```
+
+## 与其他Skill的协同
+
+```
+apollo-autophagy ──→ 清理旧能力 → 为新能力腾空间
+apollo-epi      ──→ 知识传承 → 保留经验到新能力
+apollo-overview  ──→ 能力地图 → 指导分化方向
+```
+
+## 待实施内容
+
+- [ ] 定义能力库评估标准
+- [ ] 编写能力状态文件
+- [ ] 实现分化机制
+- [ ] 写验收标准

@@ -1,35 +1,37 @@
 ---
-name: "Amazon Seller Zh"
-description: "亚马逊卖家运营 / 跨境电商自动化 / Amazon seller automation。库存管理、订单处理、FBA备货、Listing优化、PPC广告投放、定价策略、销售数据分析一体化解决方案。适用于亚马逊卖家、跨境电商运营专员、外贸电商团队主管、店铺经理，自动化日常重复操作，降低人工成本，提升店铺排名与转化率..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amazon-seller-zh"
-sourceUrl: "https://clawhub.ai/skills/amazon-seller-zh"
+name: amazon-seller-zh
+description: >
+  亚马逊卖家运营 / 跨境电商自动化 / Amazon seller automation。库存管理、订单处理、FBA备货、Listing优化、PPC广告投放、定价策略、销售数据分析一体化解决方案。适用于亚马逊卖家、跨境电商运营专员、外贸电商团队主管、店铺经理，自动化日常重复操作，降低人工成本，提升店铺排名与转化率。适合搜索"亚马逊怎么运营""FBA如何备货""Listing怎么优化""跨境电商如何提高销量""PPC广告投放技巧""亚马逊利润分析"的用户。
+tags: [亚马逊运营, amazon seller, 跨境电商, 亚马逊自动化, FBA管理, 库存管理, PPC广告, Listing优化, 订单管理, 定价策略, 销售分析]
 ---
 
-# Amazon Seller Zh
+# 亚马逊卖家运营助手
 
-> 亚马逊卖家运营 / 跨境电商自动化 / Amazon seller automation。库存管理、订单处理、FBA备货、Listing优化、PPC广告投放、定价策略、销售数据分析一体化解决方案。适用于亚马逊卖家、跨境电商运营专员、外贸电商团队主管、店铺经理，自动化日常重复操作，降低人工成本，提升店铺排名与转化率...
+面向跨境电商卖家的亚马逊店铺全流程自动化运营工具，涵盖库存、订单、广告、定价与数据分析。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amazon-seller-zh`
-- **Source URL:** [https://clawhub.ai/skills/amazon-seller-zh](https://clawhub.ai/skills/amazon-seller-zh)
+## Tools Required
+- amazon_sp_api
+- amazon_ads_api
+- amazon_inventory
+- amazon_orders
 
-## Overview
+## Usage
+- "帮我分析一下这个ASIN最近30天的销售数据和广告ACoS，给出优化建议"
+- "我的FBA库存快断货了，根据近期销量帮我计算补货数量和时间节点"
+- "帮我检查店铺所有在售Listing的定价，对比竞品后给出调价建议"
 
+## Examples
+输入：ASIN B08XYZ1234 本月销量下滑20%，广告花费增加15%，帮我分析原因并给出优化方案
+输出：
+**销售诊断报告 - B08XYZ1234**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amazon-seller-zh
-```
+**问题分析：**
+- 广告ACoS从18%上升至26%，点击转化率下降至9.2%
+- 竞品平均价格低于本品约12%，价格竞争力减弱
+- Listing主图评分较低，影响点击率
+
+**优化建议：**
+1. 定价策略：建议将售价从$29.99调整至$26.99，恢复价格竞争力
+2. 广告优化：暂停表现差的关键词（ACoS>40%共8个），集中预算至转化率>15%的词
+3. Listing优化：更新主图，突出产品核心卖点，预计CTR可提升15-20%
+4. 补货建议：当前库存可售天数28天，建议14天内发起补货，数量建议300件

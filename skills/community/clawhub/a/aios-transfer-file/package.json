@@ -1,0 +1,10 @@
+{
+  "name": "aios-transfer-file",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1045.0",
+    "dayjs": "^1.11.21",
+    "pino": "^10.3.1"
+  }
+}

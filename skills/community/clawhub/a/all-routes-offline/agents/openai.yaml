@@ -1,0 +1,4 @@
+interface:
+  display_name: "All Routes Offline"
+  short_description: "Use local All Routes data without hosted MCP credentials"
+  default_prompt: "Use $all-routes-offline for local route discovery without hosted MCP credentials."

@@ -1,0 +1,30 @@
+{
+  "version": "1.2.0",
+  "skill": "ai-company-coo",
+  "tags": ["ai-company", "c-suite", "operations", "okr", "process-management"],
+  "description": "AI Company 首席运营官（COO-001）技能包，v1.2.0：战略拆解 + OKR 全链路追踪 + 流程治理 + 组织扩张 + 任务协调。内置 okr-dashboard 共享工具。",
+  "created": "2026-04-12",
+  "updated": "2026-04-12",
+  "author": "COO-001",
+  "parentSkills": ["ai-company-clo/skills/coo", "ai-company-clo/skills/coo-commander"],
+  "changeLog": [
+    {
+      "version": "1.2.0",
+      "date": "2026-04-12",
+      "changes": [
+        "合并 coo/process.md 流程治理方法论（ESICA 优化框架）",
+        "合并 coo/metrics.md 运营指标体系（三色仪表盘 + 领先/滞后指标）",
+        "合并 coo/scaling.md 组织扩张框架（团队破局点 + 委托五级模型）",
+        "合并 coo/execution.md OKR 执行细节（每周节奏 + 依赖管理）",
+        "合并 coo-commander 任务追踪协议（结构化任务分解 + 进度协调）",
+        "新增共享工具 okr-dashboard（OKR记录/追踪/色灯/周报生成）",
+        "强化跨部门任务协调能力场景"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-04-12",
+      "changes": ["初始版本"]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI News Fetcher"
+  short_description: "抓取 AI 原始新闻并写入飞书"
+  default_prompt: "Use $ai_news_fetcher to collect today's AI news into Feishu raw-news table with accurate title, link, date, and summary."
+
+policy:
+  allow_implicit_invocation: true

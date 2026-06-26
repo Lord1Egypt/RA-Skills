@@ -1,0 +1,79 @@
+{
+  "name": "amazon-fba-finder",
+  "version": "1.0.0",
+  "description": "Amazon FBA 高利润产品发现与分析工具 - 产品发现、竞争分析、供应商推荐、利润计算",
+  "author": "小龙",
+  "license": "MIT",
+  "keywords": [
+    "amazon",
+    "fba",
+    "ecommerce",
+    "product-research",
+    "seller-tools",
+    "profit-calculator",
+    "competition-analysis",
+    "dropshipping",
+    "private-label"
+  ],
+  "category": "ecommerce",
+  "price": {
+    "amount": 149,
+    "currency": "USD",
+    "billing": "monthly"
+  },
+  "main": "src/main.py",
+  "type": "python",
+  "engines": {
+    "python": ">=3.9.0"
+  },
+  "dependencies": [
+    "requests",
+    "beautifulsoup4",
+    "pandas",
+    "numpy",
+    "python-dotenv",
+    "aiohttp"
+  ],
+  "features": [
+    "高利润产品发现",
+    "市场竞争分析",
+    "供应商推荐",
+    "FBA 利润计算",
+    "一站式完整分析"
+  ],
+  "marketplaces": [
+    "US",
+    "UK",
+    "DE",
+    "JP",
+    "CA",
+    "AU"
+  ],
+  "documentation": "README.md",
+  "examples": [],
+  "tests": [
+    "tests/test_profit_calculator.py"
+  ],
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-15",
+      "changes": [
+        "初始版本发布",
+        "实现产品发现算法",
+        "实现竞争分析引擎",
+        "实现供应商推荐系统",
+        "实现 FBA 利润计算器"
+      ]
+    }
+  },
+  "support": {
+    "email": "support@amazonfbafinder.com",
+    "discord": "https://discord.gg/amazon-fba-finder",
+    "docs": "https://github.com/openclaw-workspace/amazon-fba-finder"
+  },
+  "screenshots": [],
+  "video": null,
+  "rating": null,
+  "downloads": 0,
+  "published": false
+}

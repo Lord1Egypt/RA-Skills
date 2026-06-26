@@ -1,0 +1,75 @@
+# Error Handler Hook Configuration
+# Hook ID: error_handler
+# Type: ON_ERROR
+# Priority: CRITICAL
+
+name: error_handler
+description: 错误时自动记录和重试
+trigger: on_error
+priority: critical
+enabled: true
+
+# Error handling configuration
+config:
+  # Retry configuration
+  retry:
+    enabled: true
+    max_retries: 3
+    backoff_factor: 2  # Exponential backoff
+    retryable_errors:
+      - TimeoutError
+      - ConnectionError
+      - RateLimitError
+  
+  # Non-retryable errors (will fail immediately)
+  non_retryable_errors:
+    - ValueError
+    - TypeError
+    - PermissionError
+    - FileNotFoundError
+  
+  # Error logging
+  logging:
+    enabled: true
+    log_file: ~/.anima/logs/errors.log
+    log_format: "[{timestamp}] {error_type}: {error_message}\nContext: {context}"
+  
+  # Error categorization
+  categorize:
+    enabled: true
+    categories:
+      timeout: TimeoutError, asyncio.TimeoutError
+      network: ConnectionError, ConnectionRefusedError
+      io: FileNotFoundError, PermissionError
+      validation: ValueError, TypeError
+      system: OSError, RuntimeError
+
+# Recovery strategies
+recovery:
+  # Strategies by error category
+  by_category:
+    timeout:
+      - retry
+      - increase_timeout
+      - fallback_to_cache
+    
+    network:
+      - retry
+      - wait_and_retry
+      - use_offline_mode
+    
+    io:
+      - check_permissions
+      - create_parent_dirs
+      - notify_user
+    
+    validation:
+      - log_and_skip
+      - notify_user
+      - rollback_change
+
+# Alerting
+alerting:
+  enabled: false
+  alert_on_retry_exhausted: true
+  alert_channel: log  # log, email, webhook

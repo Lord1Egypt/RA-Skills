@@ -1,0 +1,126 @@
+{
+  "name": "ai-tech-interview-bootcamp",
+  "version": "1.0.0",
+  "description": "AI 全栈技术面试训练营 — 从真题追踪到 Mock 面试的系统性备战方案",
+  "skills": [
+    {
+      "name": "brave-search",
+      "role": "trend-discovery",
+      "input": "用户目标公司/岗位/题型",
+      "output": "最新大厂面经和真题列表",
+      "params": {
+        "query": "{target} 面经 真题 2026"
+      }
+    },
+    {
+      "name": "agent-reach",
+      "role": "content-intelligence",
+      "input": "热门面试题/话题",
+      "output": "GitHub/LeetCode 热题趋势数据",
+      "params": {
+        "platforms": ["github", "twitter", "reddit"],
+        "topics": ["system-design", "algorithms", "database"]
+      }
+    },
+    {
+      "name": "github-issues-skill",
+      "role": "question-bank",
+      "input": "归类好的面试题列表",
+      "output": "带标签的面试题 GitHub Issue",
+      "params": {
+        "labels": ["algorithm", "system-design", "database", "concurrency"],
+        "milestone": "面试备战计划"
+      }
+    },
+    {
+      "name": "code-review-skill",
+      "role": "design-review",
+      "input": "用户提交的系统设计答案",
+      "output": "面试级评审报告（评分+改进建议）",
+      "params": {
+        "reviewMode": "interview-standard"
+      }
+    },
+    {
+      "name": "card-renderer",
+      "role": "visual-output",
+      "input": "知识点/面试题/复习计划",
+      "output": "可分享的知识卡片图片（PNG）",
+      "params": {
+        "style": "mac-pro",
+        "format": "png"
+      }
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "skill": "brave-search",
+      "action": "search",
+      "description": "搜索目标公司最新面经和真题",
+      "trigger": "用户指定目标公司/岗位",
+      "example": "搜索'腾讯 T9 后台 面经'"
+    },
+    {
+      "step": 2,
+      "skill": "agent-reach",
+      "action": "scrape-trending",
+      "description": "抓取 GitHub/LeetCode 热题趋势",
+      "dependsOn": [1],
+      "example": "监控 system-design-interview trending"
+    },
+    {
+      "step": 3,
+      "skill": "github-issues-skill",
+      "action": "create-issues",
+      "description": "创建面试题库 Issue，按标签分类",
+      "dependsOn": [1, 2],
+      "example": "创建10道题，标签：算法/系统设计/数据库"
+    },
+    {
+      "step": 4,
+      "skill": "code-review-skill",
+      "action": "review",
+      "description": "对系统设计答案进行面试级评审",
+      "trigger": "用户提交设计答案",
+      "example": "评审分布式ID生成方案"
+    },
+    {
+      "step": 5,
+      "skill": "card-renderer",
+      "action": "render-cards",
+      "description": "生成随身复习知识卡片",
+      "dependsOn": [3],
+      "example": "生成5张考点复习卡片"
+    }
+  ],
+  "entryPoints": {
+    "full-bootcamp": {
+      "trigger": "准备{公司}{岗位}面试",
+      "steps": [1, 2, 3, 5]
+    },
+    "mock-interview": {
+      "trigger": "Mock {题型}面试",
+      "steps": [4]
+    },
+    "daily-plan": {
+      "trigger": "制定本周刷题计划",
+      "steps": [1, 2, 3, 5]
+    },
+    "review-answer": {
+      "trigger": "Review 我的{答案}",
+      "steps": [4]
+    }
+  },
+  "outputFormats": [
+    "github-issue",
+    "png-card",
+    "markdown-report",
+    "mock-evaluation"
+  ],
+  "适用人群": [
+    "应届生准备校招",
+    "社招生跳槽面试",
+    "技术团队面试官参考出题"
+  ]
+}

@@ -1,35 +1,49 @@
 ---
-name: "Apizza"
-description: "Provides summaries and organized information from Apizza's public product pages and documentation without account or project interactions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/apizza"
-sourceUrl: "https://clawhub.ai/skills/apizza"
+name: apizza-hot-trend
+description: 注册“Apizza”技能；用于公开产品与文档页信息整理。
+homepage: `https://apizza.net/`
+metadata: {"clawdbot":{"emoji":"🧰"}}
 ---
 
 # Apizza
 
-> Provides summaries and organized information from Apizza's public product pages and documentation without account or project interactions.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/apizza`
-- **Source URL:** [https://clawhub.ai/skills/apizza](https://clawhub.ai/skills/apizza)
+- 面向公开产品页与文档的检索与内容摘要
+- 不提供账号操作、项目写入或接口逆向能力
+- 仅处理公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://apizza.net/
+- 文档与示例：站点入口
+- 定价与公告：站点入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/apizza
-```
+常见任务
+
+- 功能与版本说明摘要（接口管理/Mock/自动化）
+- 定价与套餐差异点提取（公开信息）
+- 文档目录与示例链接汇总
+
+数据字段
+
+- 功能条目、版本差异、适用场景、链接
+- 定价页链接、套餐说明、限制条目
+- 文档标题、目录链接、示例入口
+
+自动化要点
+
+- 页面动态加载，需等待完成后解析
+- 不进行项目写入或接口调用
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 功能摘要：访问产品页 → 抽取功能与版本 → 输出摘要
+- 定价整理：访问定价入口 → 提取套餐差异 → 输出清单
+- 文档汇总：进入文档中心 → 抽取目录与示例 → 输出链接集合
+
+合规提示
+
+- 遵守平台与项目合规要求
+- 不存储或输出敏感信息

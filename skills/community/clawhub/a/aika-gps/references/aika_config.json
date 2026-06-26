@@ -1,0 +1,70 @@
+{
+  "aika_settings": {
+    "server_url": "https://www.aika168.com",
+    "alternative_url": "http://www.aika168.com",
+    "mobile_url": "https://m.aika168.com",
+    "login_endpoint": "/login",
+    "gps_endpoint": "/api/gps",
+    "timeout": 30,
+    "mobile_optimized": true
+  },
+  "devices": {
+    "7028888047": {
+      "device_id": "OBD-88047",
+      "device_number": "7028888047", 
+      "device_name": "รถช่าง / ไทรทัน",
+      "iccid": "896603252520506488678F",
+      "device_type": "OBD",
+      "validity": "lifelong",
+      "timezone": "(UTC+07:00) Bangkok",
+      "driver": "ช่างโต้",
+      "vehicle": "รถช่าง (ไทรทัน)",
+      "skills": ["กล้องวงจรปิด", "ระบบเครือข่าย", "WiFi", "Smart Home"],
+      "status": "active_with_gps",
+      "mobile_app": true
+    },
+    "DEVICE_NUMBER_RUNG": {
+      "device_id": "OBD-RUNG",
+      "device_number": "DEVICE_NUMBER_RUNG",
+      "driver": "ช่างรุ่ง", 
+      "vehicle": "รถกระบะรุ่ง",
+      "skills": ["ระบบเครือข่าย", "WiFi", "Server", "โทรศัพท์ IP"],
+      "status": "pending_device_id"
+    },
+    "DEVICE_NUMBER_MENG": {
+      "device_id": "OBD-MENG",
+      "device_number": "DEVICE_NUMBER_MENG",
+      "driver": "ช่างเม่ง",
+      "vehicle": "รถกระบะเม่ง", 
+      "skills": ["กล้องวงจรปิด", "ระบบเสียง", "WiFi"],
+      "status": "pending_device_id"
+    },
+    "DEVICE_NUMBER_CHANA": {
+      "device_id": "OBD-CHANA",
+      "device_number": "DEVICE_NUMBER_CHANA", 
+      "driver": "ช่างชนะ",
+      "vehicle": "รถกระบะชนะ",
+      "skills": ["กล้องวงจรปิด", "ระบบเครือข่าย", "WiFi"],
+      "status": "pending_device_id"
+    }
+  },
+  "authentication": {
+    "username": "7028888047",
+    "password": "123456", 
+    "session_timeout": 3600,
+    "auto_refresh": true,
+    "demo_mode": false,
+    "ready_for_production": true,
+    "credentials_status": "complete"
+  },
+  "location_settings": {
+    "update_interval": 300,
+    "cache_duration": 60,
+    "accuracy_threshold": 100
+  },
+  "geofence": {
+    "default_radius": 0.5,
+    "job_fence_prefix": "job_",
+    "notification_delay": 30
+  }
+}

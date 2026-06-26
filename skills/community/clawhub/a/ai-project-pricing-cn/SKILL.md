@@ -1,35 +1,41 @@
----
-name: "Ai Project Pricing Cn"
-description: "基于真实成本和市场行情，计算AI项目API成本，给出合理报价建议并推荐性价比最高的模型组合。"
-category: "other"
-source: "ClawHub"
-tags: [chinese, pricing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-project-pricing-cn"
-sourceUrl: "https://clawhub.ai/skills/ai-project-pricing-cn"
----
+# AI 项目估价助手
 
-# Ai Project Pricing Cn
+> 基于 DeepSeek/GPT-5/Claude 真实成本数据，帮助评估 AI 项目报价
 
-> 基于真实成本和市场行情，计算AI项目API成本，给出合理报价建议并推荐性价比最高的模型组合。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-project-pricing-cn`
-- **Source URL:** [https://clawhub.ai/skills/ai-project-pricing-cn](https://clawhub.ai/skills/ai-project-pricing-cn)
+- 📊 **成本计算**：输入项目描述，计算各模型 API 成本
+- 💰 **报价建议**：根据成本 + 市场行情，给出合理报价区间
+- ⚡ **模型推荐**：推荐最优性价比模型组合
+- 📋 **提案生成**：生成项目提案模板
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-project-pricing-cn
 ```
+用户：帮我看这个项目的报价：一个智能客服系统，每天 1000 次对话，每次约 500 tokens
+
+Agent：
+📊 成本分析：
+- DeepSeek V3：¥0.014/万tokens × 500 tokens × 1000 次/天 = ¥0.70/天
+- GPT-5 mini：¥0.18/万tokens × 500 tokens × 1000 次/天 = ¥9/天
+- Claude Sonnet：¥1.12/万tokens × 500 tokens × 1000 次/天 = ¥56/天
+
+💰 报价建议：
+- 成本：¥21/月 (DeepSeek) / ¥270/月 (GPT-5 mini)
+- 建议报价：¥500-1500/月（3-5倍成本）
+- 年付优惠：¥5000-12000/年
+
+⚡ 推荐模型：DeepSeek V3（成本最低，性能足够）
+```
+
+## 数据来源
+
+- 官方 API 定价（已验证）
+- 2026-03 实测数据
+- 市场调研报告
+
+## 触发词
+
+- 估价、报价、定价
+- 成本计算、利润分析
+- AI 项目、接单

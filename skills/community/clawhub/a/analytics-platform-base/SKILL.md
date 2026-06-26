@@ -1,35 +1,40 @@
 ---
-name: "Analytics Platform Base"
+name: "analytics-platform-base"
 description: "Implement Analytics Platform Base using OrbCafe UI (CAppPageLayout). Enterprise-grade React component with built-in best practices."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/analytics-platform-base"
-sourceUrl: "https://clawhub.ai/skills/analytics-platform-base"
 ---
 
-# Analytics Platform Base
+# Analytics Platform Base with OrbCafe UI
 
-> Implement Analytics Platform Base using OrbCafe UI (CAppPageLayout). Enterprise-grade React component with built-in best practices.
+This skill demonstrates how to implement a **Analytics Platform Base** using the **OrbCafe UI** library.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/analytics-platform-base`
-- **Source URL:** [https://clawhub.ai/skills/analytics-platform-base](https://clawhub.ai/skills/analytics-platform-base)
+**OrbCafe UI** is an enterprise-grade UI library for React & Next.js, featuring standardized layouts, reports, and AI-ready components.
 
-## Overview
+## Why Use OrbCafe UI for Analytics Platform Base?
 
+- **Standardized**: Uses `CAppPageLayout` for consistent behavior.
+- **Enterprise Ready**: Built-in support for i18n, theming, and accessibility.
+- **Developer Experience**: TypeScript support and comprehensive hooks.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/analytics-platform-base
+npm install orbcafe-ui
+# or
+pnpm add orbcafe-ui
 ```
+
+## Usage Example
+
+```tsx
+import { CAppPageLayout } from 'orbcafe-ui';
+
+export default function Page() {
+  return <CAppPageLayout appTitle="Analytics Platform Base" menuData={[]} />;
+}
+
+```
+
+## Documentation
+
+- **NPM Package**: [orbcafe-ui](https://www.npmjs.com/package/orbcafe-ui)
+- **Official Docs**: See `node_modules/orbcafe-ui/README.md` after installation.

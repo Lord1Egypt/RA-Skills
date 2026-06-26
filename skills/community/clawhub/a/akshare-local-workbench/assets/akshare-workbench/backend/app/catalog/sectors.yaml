@@ -1,0 +1,510 @@
+sectors:
+- id: equity_index
+  name: 股票与指数
+  short_name: 股票
+  description: A 股、港美股、宽基指数与行业指数行情；沪深港通资金流与情绪指标。
+  accent: '#1e6ee8'
+  indicator_ids:
+  - stock_a_hist
+  - stock_a_hist_min
+  - stock_a_dividend_yield
+  - stock_a_ttm_lyr
+  - stock_market_pe
+  - stock_market_pb
+  - stock_zt_pool
+  - stock_lhb_detail
+  - stock_hk_hist
+  - stock_us_hist
+  - stock_sh_a_spot
+  - stock_sz_a_spot
+  - stock_bj_a_spot
+  - stock_new_a_spot
+  - stock_cy_a_spot
+  - stock_kc_a_spot
+  - stock_ab_comparison
+  - stock_hk_spot
+  - stock_us_spot
+  - stock_info_a_code_name
+  - index_a_spot
+  - index_a_hist
+  - index_global_spot
+  - sw_index_first
+  - sw_index_hist
+  - hsgt_fund_flow
+  - hsgt_hist
+  - qvix_50etf
+  - stock_margin_sse
+  - stock_margin_szse
+  - stock_individual_fund_flow
+  - stock_individual_fund_flow_rank
+  - stock_market_fund_flow
+  - stock_sector_fund_flow_rank
+  - stock_dzjy_sctj
+  - stock_dzjy_mrmx
+  snapshot:
+    cards:
+    - title: 上证指数
+      ak_function: stock_zh_index_spot_sina
+      mode: filter_row
+      filter_column: 代码
+      filter_value: sh000001
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 沪深300
+      ak_function: stock_zh_index_spot_sina
+      mode: filter_row
+      filter_column: 代码
+      filter_value: sh000300
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 创业板指
+      ak_function: stock_zh_index_spot_sina
+      mode: filter_row
+      filter_column: 代码
+      filter_value: sz399006
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 上证50
+      ak_function: stock_zh_index_spot_sina
+      mode: filter_row
+      filter_column: 代码
+      filter_value: sh000016
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 中证500
+      ak_function: stock_zh_index_spot_sina
+      mode: filter_row
+      filter_column: 代码
+      filter_value: sh000905
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 北向资金净买额
+      ak_function: stock_hsgt_hist_em
+      params:
+        symbol: 北向资金
+      mode: latest_row
+      value_field: 当日成交净买额
+      unit: 亿元
+      description: 北向资金最近一个交易日净买入金额
+  indicator_count: 36
+- id: bond
+  name: 债券
+  short_name: 债券
+  description: 中债国债收益率、信用债行情、可转债跟踪与转债指数。
+  accent: '#a855f7'
+  indicator_ids:
+  - bond_china_yield
+  - bond_zh_us_rate
+  - bond_hs_spot
+  - bond_hs_daily
+  - bond_cov_spot
+  - bond_cov_daily
+  - bond_cb_jsl
+  - bond_cb_redeem_jsl
+  snapshot:
+    cards:
+    - title: 2 年期国债
+      ak_function: bond_zh_us_rate
+      mode: latest_row
+      value_field: 中国国债收益率2年
+      unit: '%'
+    - title: 5 年期国债
+      ak_function: bond_zh_us_rate
+      mode: latest_row
+      value_field: 中国国债收益率5年
+      unit: '%'
+    - title: 10 年期国债
+      ak_function: bond_zh_us_rate
+      mode: latest_row
+      value_field: 中国国债收益率10年
+      unit: '%'
+    - title: 30 年期国债
+      ak_function: bond_zh_us_rate
+      mode: latest_row
+      value_field: 中国国债收益率30年
+      unit: '%'
+    - title: 美国 10 年期国债
+      ak_function: bond_zh_us_rate
+      mode: latest_row
+      value_field: 美国国债收益率10年
+      unit: '%'
+    - title: 中证转债指数
+      ak_function: bond_cb_index_jsl
+      mode: latest_row
+      value_field: idx_price
+      change_field: idx_increase_rt
+      description: 集思录中证转债指数最新收盘
+  indicator_count: 8
+- id: fx
+  name: 外汇
+  short_name: 外汇
+  description: 银行间外汇即期与远掉报价、人民币兑各币种中间价。
+  accent: '#f97316'
+  indicator_ids:
+  - fx_spot_quote
+  - fx_swap_quote
+  - fx_pair_quote
+  - currency_boc_safe
+  - currency_boc_sina
+  - currency_latest
+  - currency_history
+  - currency_currencies
+  snapshot:
+    cards:
+    - title: 美元兑人民币
+      ak_function: fx_spot_quote
+      mode: filter_row
+      filter_column: 货币对
+      filter_value: USD/CNY
+      value_field: 买报价
+      decimals: 4
+    - title: 欧元兑人民币
+      ak_function: fx_spot_quote
+      mode: filter_row
+      filter_column: 货币对
+      filter_value: EUR/CNY
+      value_field: 买报价
+      decimals: 4
+    - title: 100 日元兑人民币
+      ak_function: fx_spot_quote
+      mode: filter_row
+      filter_column: 货币对
+      filter_value: 100JPY/CNY
+      value_field: 买报价
+      decimals: 4
+    - title: 英镑兑人民币
+      ak_function: fx_spot_quote
+      mode: filter_row
+      filter_column: 货币对
+      filter_value: GBP/CNY
+      value_field: 买报价
+      decimals: 4
+    - title: 港币兑人民币
+      ak_function: fx_spot_quote
+      mode: filter_row
+      filter_column: 货币对
+      filter_value: HKD/CNY
+      value_field: 买报价
+      decimals: 4
+    - title: 澳元兑人民币
+      ak_function: fx_spot_quote
+      mode: filter_row
+      filter_column: 货币对
+      filter_value: AUD/CNY
+      value_field: 买报价
+      decimals: 4
+  indicator_count: 8
+- id: rate
+  name: 利率
+  short_name: 利率
+  description: LPR、Shibor 与中外主要央行基准利率。
+  accent: '#0ea5e9'
+  indicator_ids:
+  - macro_china_lpr
+  - macro_china_shibor
+  - rate_interbank
+  - repo_rate_query
+  - macro_bank_usa_rate
+  - macro_bank_euro_rate
+  - macro_bank_china_rate
+  - macro_bank_japan_rate
+  snapshot:
+    cards:
+    - title: 1 年期 LPR
+      ak_function: macro_china_lpr
+      mode: latest_row
+      value_field: LPR1Y
+      unit: '%'
+    - title: 5 年期 LPR
+      ak_function: macro_china_lpr
+      mode: latest_row
+      value_field: LPR5Y
+      unit: '%'
+    - title: Shibor 隔夜
+      ak_function: macro_china_shibor_all
+      mode: latest_row
+      value_field: O/N-定价
+      change_field: O/N-涨跌幅
+      unit: '%'
+    - title: Shibor 3 月
+      ak_function: macro_china_shibor_all
+      mode: latest_row
+      value_field: 3M-定价
+      change_field: 3M-涨跌幅
+      unit: '%'
+    - title: Shibor 1 年
+      ak_function: macro_china_shibor_all
+      mode: latest_row
+      value_field: 1Y-定价
+      change_field: 1Y-涨跌幅
+      unit: '%'
+    - title: 美联储基准利率
+      ak_function: macro_bank_usa_interest_rate
+      mode: latest_row
+      value_field: 今值
+      unit: '%'
+      description: 美联储最近一次利率决议结果
+  indicator_count: 8
+- id: futures
+  name: 期货
+  short_name: 期货
+  description: 内盘商品 / 金融期货与外盘期货行情、库存与持仓。
+  accent: '#10b981'
+  indicator_ids:
+  - futures_zh_spot
+  - futures_zh_realtime
+  - futures_main_sina
+  - futures_zh_daily_sina
+  - futures_daily_exchange
+  - futures_foreign_realtime
+  - futures_foreign_hist
+  - futures_comex_inventory
+  - futures_inventory_em
+  - futures_dce_position
+  - futures_shfe_warehouse
+  - futures_spot_price
+  - futures_contract_detail
+  - futures_hog_core
+  - get_cffex_daily
+  - get_czce_daily
+  - get_ine_daily
+  snapshot:
+    cards:
+    - title: 沪铜主力 (CU0)
+      ak_function: futures_main_sina
+      params:
+        symbol: CU0
+      mode: latest_row
+      value_field: 收盘价
+      description: 上海期货交易所沪铜主力连续合约
+    - title: 沪金主力 (AU0)
+      ak_function: futures_main_sina
+      params:
+        symbol: AU0
+      mode: latest_row
+      value_field: 收盘价
+    - title: 螺纹钢主力 (RB0)
+      ak_function: futures_main_sina
+      params:
+        symbol: RB0
+      mode: latest_row
+      value_field: 收盘价
+    - title: 铁矿石主力 (I0)
+      ak_function: futures_main_sina
+      params:
+        symbol: I0
+      mode: latest_row
+      value_field: 收盘价
+    - title: 沪深300股指 (IF0)
+      ak_function: futures_main_sina
+      params:
+        symbol: IF0
+      mode: latest_row
+      value_field: 收盘价
+    - title: WTI 原油 (CL)
+      ak_function: futures_foreign_commodity_realtime
+      params:
+        symbol: CL
+      mode: latest_row
+      value_field: 最新价
+      change_field: 涨跌幅
+      description: NYMEX WTI 原油外盘实时
+  indicator_count: 17
+- id: fund
+  name: 基金
+  short_name: 基金
+  description: 开放式基金、ETF / LOF 与 REITs 行情与持仓信息。
+  accent: '#ef4444'
+  indicator_ids:
+  - fund_open_info
+  - fund_open_rank
+  - fund_open_daily
+  - fund_etf_spot
+  - fund_etf_hist
+  - fund_etf_info
+  - fund_lof_spot
+  - fund_lof_hist
+  - fund_money_daily
+  - fund_portfolio_hold
+  - reits_realtime
+  - amac_member_info
+  - fund_etf_fund_daily_em
+  - fund_manager_em
+  - fund_rating_all
+  snapshot:
+    cards:
+    - title: 沪深300ETF (510300)
+      ak_function: fund_etf_spot_em
+      mode: filter_row
+      filter_column: 代码
+      filter_value: '510300'
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 创业板ETF (159915)
+      ak_function: fund_etf_spot_em
+      mode: filter_row
+      filter_column: 代码
+      filter_value: '159915'
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 黄金ETF (518880)
+      ak_function: fund_etf_spot_em
+      mode: filter_row
+      filter_column: 代码
+      filter_value: '518880'
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 添益货币ETF (511990)
+      ak_function: fund_etf_spot_em
+      mode: filter_row
+      filter_column: 代码
+      filter_value: '511990'
+      value_field: 最新价
+      change_field: 涨跌幅
+      description: 华宝添益货币市场 ETF
+    - title: 红利ETF (510880)
+      ak_function: fund_etf_spot_em
+      mode: filter_row
+      filter_column: 代码
+      filter_value: '510880'
+      value_field: 最新价
+      change_field: 涨跌幅
+    - title: 纳指ETF (513100)
+      ak_function: fund_etf_spot_em
+      mode: filter_row
+      filter_column: 代码
+      filter_value: '513100'
+      value_field: 最新价
+      change_field: 涨跌幅
+  indicator_count: 15
+- id: macro
+  name: 宏观
+  short_name: 宏观
+  description: CPI、PPI、PMI、GDP、社融、M2 等核心宏观指标。
+  accent: '#eab308'
+  indicator_ids:
+  - macro_china_cpi
+  - macro_china_cpi_monthly
+  - macro_china_ppi_yearly
+  - macro_china_pmi
+  - macro_china_non_man_pmi
+  - macro_china_cx_pmi_yearly
+  - macro_china_gdp
+  - macro_china_gdp_yearly
+  - macro_china_m2_yearly
+  - macro_china_shrzgm
+  - macro_china_new_loan
+  - macro_china_exports
+  - macro_china_imports
+  - macro_china_fx_gold
+  - macro_usa_cpi
+  - macro_usa_gdp
+  - macro_usa_unemployment
+  - macro_usa_non_farm
+  - macro_usa_ism_pmi
+  - macro_euro_gdp_yoy
+  - macro_euro_cpi_mom
+  - macro_euro_unemployment_rate_mom
+  - macro_japan_core_cpi_yearly
+  - macro_japan_unemployment_rate
+  - macro_uk_cpi_yearly
+  - macro_uk_unemployment_rate
+  - macro_china_real_estate
+  - macro_china_consumer_goods_retail
+  - macro_china_industrial_production_yoy
+  - energy_carbon_domestic
+  - energy_oil_detail
+  snapshot:
+    cards:
+    - title: CPI 同比
+      ak_function: macro_china_cpi
+      mode: first_row
+      value_field: 全国-同比增长
+      unit: '%'
+      description: 全国 CPI 当月同比增长（最新月度）
+    - title: PPI 同比
+      ak_function: macro_china_ppi_yearly
+      mode: latest_row
+      value_field: 今值
+      unit: '%'
+    - title: 官方制造业 PMI
+      ak_function: macro_china_pmi
+      mode: first_row
+      value_field: 制造业-指数
+      description: 国家统计局制造业 PMI（最新月度）
+    - title: GDP 年率
+      ak_function: macro_china_gdp_yearly
+      mode: latest_row
+      value_field: 今值
+      unit: '%'
+    - title: 社融存量同比
+      ak_function: macro_china_shrzgm
+      mode: latest_row
+      value_field: 社会融资规模存量同比增长
+      unit: '%'
+    - title: M2 同比
+      ak_function: macro_china_m2_yearly
+      mode: latest_row
+      value_field: 今值
+      unit: '%'
+  indicator_count: 31
+- id: company_financials
+  name: 公司与财报
+  short_name: 财报
+  description: 个股基本面信息、公告、财务摘要、研报、股东信息、业绩报表与分析师预测。
+  accent: '#8b5cf6'
+  indicator_ids:
+  - stock_individual_info
+  - stock_notice_report
+  - stock_financial_abstract
+  - stock_research_report
+  - stock_gdfx_free_holding_detail_em
+  - stock_gdfx_top_10_em
+  - stock_zh_a_gdhs
+  - stock_yjbb_em
+  - stock_yjyg_em
+  - stock_restricted_release_queue_em
+  - stock_profit_forecast_em
+  indicator_count: 11
+  snapshot:
+    cards:
+    - title: 贵州茅台
+      ak_function: stock_individual_info_em
+      params:
+        symbol: '600519'
+      mode: first_row
+      value_field: 内容
+      description: 个股基础信息概览
+    - title: 最近研报
+      ak_function: stock_research_report_em
+      params:
+        symbol: '600519'
+      mode: first_row
+      value_field: 报告名称
+      description: 最新个股研报
+    - title: 业绩预告
+      ak_function: stock_yjyg_em
+      params:
+        date: '2024-09-30'
+      mode: first_row
+      value_field: 业绩预告内容
+      description: 最近一期业绩预告
+    - title: 股东户数
+      ak_function: stock_zh_a_gdhs
+      mode: first_row
+      value_field: 股东户数
+      description: 全市场 A 股股东户数
+    - title: 融资余额
+      ak_function: stock_margin_sse
+      params:
+        start_date: '2024-01-01'
+        end_date: '2024-12-31'
+      mode: latest_row
+      value_field: 融资余额
+      unit: 元
+      description: 上交所融资余额
+    - title: 限售解禁
+      ak_function: stock_restricted_release_queue_em
+      mode: first_row
+      value_field: 解禁时间
+      description: 下一批限售股解禁

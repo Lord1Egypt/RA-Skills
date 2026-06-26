@@ -1,0 +1,1 @@
+# No external Python deps — stdlib only

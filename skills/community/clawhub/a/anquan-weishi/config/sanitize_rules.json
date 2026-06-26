@@ -1,0 +1,69 @@
+{
+  "version": "3.6.0",
+  "updated": "2026-04-16",
+  "description": "输出脱敏规则 - Need-to-Know Basis原则",
+
+  "principle": "只暴露当前等级及以上的信息，禁止暴露更高等级详情",
+
+  "desensitize_rules": {
+    "ip_address": {
+      "method": "部分隐藏",
+      "example": "192.168.xxx.xxx",
+      "level": "L1+"
+    },
+    "user_id": {
+      "method": "部分隐藏",
+      "example": "usr_***k9",
+      "level": "L1+"
+    },
+    "file_path": {
+      "method": "目录隐藏",
+      "example": "/home/***/config.yaml",
+      "level": "L2+"
+    },
+    "attack_keywords": {
+      "method": "泛化描述",
+      "example": "SQL注入类特征",
+      "level": "L3+"
+    },
+    "timestamp": {
+      "method": "时间模糊",
+      "example": "N分钟前",
+      "level": "L2+"
+    },
+    "api_credentials": {
+      "method": "完全隐藏",
+      "example": "sk-***xxxx",
+      "level": "L1+"
+    }
+  },
+
+  "level_visibility": {
+    "description": "当前等级可暴露的信息范围",
+    "matrix": {
+      "L1": {"can_see": ["L1"], "cannot_see": ["L2", "L3", "L4"]},
+      "L2": {"can_see": ["L1", "L2"], "cannot_see": ["L3", "L4"]},
+      "L3": {"can_see": ["L1", "L2", "L3"], "cannot_see": ["L4"]},
+      "L4": {"can_see": ["L1", "L2", "L3", "L4"], "cannot_see": []}
+    }
+  },
+
+  "forbidden_outputs": {
+    "description": "L3环境禁止输出的内容",
+    "items": [
+      "L0-L2的具体检测规则",
+      "完整的攻击关键词列表",
+      "详细的黑名单内容",
+      "完整的IP地址",
+      "内部机制说明",
+      "MEMORY.md具体内容",
+      "SKILL.md具体内容",
+      "owner_ids配置"
+    ]
+  },
+
+  "example_output": {
+    "description": "L3环境正确输出示例",
+    "content": "当前安全等级: L3 (严格防护)\n\n可用规则: 深度检测+行为分析\n\n安全提示:\n- 所有操作需二次确认\n- 历史上下文受限使用\n- 禁止文件写入/系统命令\n\n状态: 正常运行"
+  }
+}

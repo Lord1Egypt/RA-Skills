@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "description": "重点机场自定义 URL 注册表。非注册机场走通用聚合站路径。",
+    "version": "1.0",
+    "generic_image_url": "https://www.ifly.com/airports/{slug}-airport/terminal-map",
+    "generic_image_url_fallback": "https://www.ifly.com/airports/{code}/terminal-map",
+    "generic_crowd_url": "https://flightqueue.com/airport/{code}",
+    "generic_flight_board": "https://www.flightradar24.com/data/airports/{code_lower}"
+  },
+  "NRT": {
+    "name": "成田国际机场",
+    "name_en": "Narita International Airport",
+    "official_map": "https://www.narita-airport.jp/en/map/",
+    "official_transfer": "https://www.narita-airport.jp/en/connect/",
+    "flight_arrivals": "https://www.narita-airport.jp/en/flight/arr-search/",
+    "flight_departures": "https://www.narita-airport.jp/en/flight/dep-search/",
+    "wait_time_immigration": "https://www.narita-airport.jp/airportguide/inter-arr/immigration/",
+    "wait_time_security": "https://www.narita-airport.jp/airportguide/security/congestion-time/",
+    "crowd_support": "official+flightqueue",
+    "baggage_note": "日本入境需在入境审查后提取托运行李通过海关检查，即使联程票也需取行李过海关后重新托运",
+    "cdp_targets": ["official_map", "official_transfer"]
+  },
+  "HND": {
+    "name": "东京羽田机场",
+    "name_en": "Tokyo Haneda Airport",
+    "official_map": "https://tokyo-haneda.com/en/map/",
+    "official_transfer": "https://tokyo-haneda.com/en/access/transit.html",
+    "flight_arrivals": "https://tokyo-haneda.com/en/flight/arrivals.html",
+    "flight_departures": "https://tokyo-haneda.com/en/flight/departures.html",
+    "crowd_support": "flightqueue",
+    "baggage_note": "羽田机场国际线与国内线航站楼分离，转机需乘坐免费摆渡车，入境流程同成田",
+    "cdp_targets": ["official_map"]
+  },
+  "HKG": {
+    "name": "香港国际机场",
+    "name_en": "Hong Kong International Airport",
+    "official_map": "https://www.hongkongairport.com/en/map/",
+    "official_transfer": "https://www.hongkongairport.com/en/transport/transfer-transit.page",
+    "flight_arrivals": "https://www.hongkongairport.com/en/flights/arrivals/passenger.page",
+    "flight_departures": "https://www.hongkongairport.com/en/flights/departures/passenger.page",
+    "crowd_support": "flightqueue",
+    "baggage_note": "香港转机通常不需入境，行李可直挂；但非联程票需确认行李小票",
+    "cdp_targets": ["official_map"]
+  },
+  "DXB": {
+    "name": "迪拜国际机场",
+    "name_en": "Dubai International Airport",
+    "official_map": "https://dubaiairports.ae/maps",
+    "flight_status": "https://dubaiairports.ae/flight-status",
+    "crowd_support": "flightqueue",
+    "baggage_note": "迪拜转机 T1/T3 之间需乘坐地铁，Concourse 间有自动列车连接",
+    "cdp_targets": ["official_map"]
+  },
+  "SIN": {
+    "name": "新加坡樟宜机场",
+    "name_en": "Singapore Changi Airport",
+    "official_map": "https://www.changiairport.com/en/airport-guide/terminal-maps.html",
+    "official_transfer": "https://www.changiairport.com/en/fly/transit-through-changi.html",
+    "flight_arrivals": "https://www.changiairport.com/en/flights/arrivals.html",
+    "flight_departures": "https://www.changiairport.com/en/flights/departures.html",
+    "crowd_support": "flightqueue",
+    "baggage_note": "樟宜机场转机通常不需入境，有免费转机区域；T1-T4 间有 Skytrain 连接",
+    "cdp_targets": ["official_map"]
+  },
+  "ICN": {
+    "name": "仁川国际机场",
+    "name_en": "Incheon International Airport",
+    "official_map": "https://www.airport.kr/ap/en/map/mapInfo.do",
+    "official_transfer": "https://www.airport.kr/ap/en/dep/transfer.do",
+    "flight_arrivals": "https://www.airport.kr/ap/en/flight/arrivals.do",
+    "flight_departures": "https://www.airport.kr/ap/en/flight/departures.do",
+    "crowd_support": "flightqueue",
+    "baggage_note": "韩国转机 24 小时内通常不需签证（TWOV），但需确认最新政策；T1-T2 间有免费穿梭列车",
+    "cdp_targets": ["official_map"]
+  },
+  "BKK": {
+    "name": "素万那普机场",
+    "name_en": "Suvarnabhumi Airport",
+    "official_map": "https://www.suvarnabhumiairport.com/en/map",
+    "crowd_support": "flightqueue",
+    "baggage_note": "泰国转机如需入境需要签证或落地签；国际转国际可走转机通道不入境"
+  },
+  "DOH": {
+    "name": "哈马德国际机场",
+    "name_en": "Hamad International Airport",
+    "official_map": "https://dohahamadairport.com/airport-guide/at-the-airport/airport-map",
+    "official_transfer": "https://dohahamadairport.com/airport-guide/at-the-airport/connections",
+    "crowd_support": "flightqueue",
+    "baggage_note": "卡塔尔哈马德机场为单航站楼设计，转机无需入境，设施集中"
+  },
+  "IST": {
+    "name": "伊斯坦布尔机场",
+    "name_en": "Istanbul Airport",
+    "official_map": "https://www.istairport.com/en/passenger/airport-guide/maps",
+    "official_transfer": "https://www.istairport.com/en/passenger/airport-guide/transfer-guide",
+    "crowd_support": "flightqueue",
+    "baggage_note": "伊斯坦布尔新机场为单航站楼，土耳其航空转机有专用 CIP 休息室和转机柜台"
+  },
+  "KUL": {
+    "name": "吉隆坡国际机场",
+    "name_en": "Kuala Lumpur International Airport",
+    "official_map": "https://www.klia.com.my/map.html",
+    "crowd_support": "flightqueue",
+    "baggage_note": "KLIA 和 KLIA2 是两个独立航站楼，之间需乘坐 KLIA Express/Transit 列车（约 3 分钟）"
+  }
+}

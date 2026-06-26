@@ -1,35 +1,58 @@
 ---
-name: "Ai Report Generator"
-description: "根据飞书表格中的小红书数据，生成运营报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-report-generator"
-sourceUrl: "https://clawhub.ai/skills/ai-report-generator"
+name: ai-report-generator
+description: 根据飞书表格中的小红书数据，生成运营报告
 ---
 
-# Ai Report Generator
+# AI 运营报告生成器
 
-> 根据飞书表格中的小红书数据，生成运营报告
+从飞书表格读取数据，生成小红书运营分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-report-generator`
-- **Source URL:** [https://clawhub.ai/skills/ai-report-generator](https://clawhub.ai/skills/ai-report-generator)
+## 功能
 
-## Overview
+1. **读取数据** - 从飞书 Bitable 获取笔记数据
+2. **数据分析** - 计算关键指标（阅读量、互动率、涨粉等）
+3. **生成报告** - 输出运营分析和建议
 
+## 数据来源
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-report-generator
+飞书表格字段：
+- 笔记标题
+- 发布时间
+- 浏览量
+- 点赞数
+- 收藏数
+- 评论数
+- 分享数
+
+## 输出报告结构
+
+```markdown
+# 小红书运营周报
+
+## 数据概览
+- 本周发布：X 篇
+- 总曝光：X
+- 总互动：X
+- 互动率：X%
+
+## 爆款分析
+- 最佳笔记：标题
+- 最高互动：X
+
+## 问题诊断
+- 低互动原因分析
+
+## 优化建议
+- 下周计划
 ```
+
+## 使用方式
+
+```
+生成上周的小红书运营报告
+```
+
+## 前提条件
+
+- 飞书表格已创建并有数据
+- 应用有 Bitable 读取权限

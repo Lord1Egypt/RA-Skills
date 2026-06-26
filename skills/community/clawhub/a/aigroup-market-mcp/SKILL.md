@@ -1,35 +1,36 @@
 ---
-name: "AIGroup Market MCP"
-description: "Use `aigroup-market-mcp` for China-market and Tushare-oriented data. Route A-share, index, sector, fund-flow, margin, block-trade, dragon-tiger, fund, conver..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aigroup-market-mcp"
-sourceUrl: "https://clawhub.ai/skills/aigroup-market-mcp"
+name: aigroup-market-mcp
+description: Use `aigroup-market-mcp` for China-market and Tushare-oriented data. Supported request types: A-share, index, sector, fund-flow, margin, block-trade, fund, convertible-bond, macro, and finance-news data.
+homepage: https://github.com/jackdark425/aigroup-market-mcp
 ---
 
-# AIGroup Market MCP
+# Market MCP
 
-> Use `aigroup-market-mcp` for China-market and Tushare-oriented data. Route A-share, index, sector, fund-flow, margin, block-trade, dragon-tiger, fund, conver...
+Use `aigroup-market-mcp` for China-market datasets.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aigroup-market-mcp`
-- **Source URL:** [https://clawhub.ai/skills/aigroup-market-mcp](https://clawhub.ai/skills/aigroup-market-mcp)
+## Operations
 
-## Overview
+- `stock_data`
+- `stock_data_minutes`
+- `basic_info`
+- `company_performance`
+- `company_performance_hk`
+- `company_performance_us`
+- `index_data`
+- `csi_index_constituents`
+- `money_flow`
+- `margin_trade`
+- `block_trade`
+- `dragon_tiger_inst`
+- `fund_data`
+- `fund_manager_by_name`
+- `convertible_bond`
+- `macro_econ`
+- `finance_news`
+- `hot_news_7x24`
 
+## Dependency
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aigroup-market-mcp
-```
+- Server name: `aigroup-market-mcp`
+- Launch pattern: `npx -y aigroup-market-mcp`
+- Required environment variable: `TUSHARE_TOKEN`

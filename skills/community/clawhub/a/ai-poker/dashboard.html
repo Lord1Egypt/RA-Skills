@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#131314">
+  <title>SharkClaw &mdash; Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+  <header class="dash-header">
+    <a href="/" class="dash-logo">&#x1F988; SharkClaw</a>
+    <nav class="dash-tabs">
+      <button class="dash-tab" data-tab="game">Game</button>
+      <button class="dash-tab" data-tab="overview">Overview</button>
+      <button class="dash-tab" data-tab="analytics">Analytics</button>
+      <button class="dash-tab" data-tab="position">Position</button>
+      <button class="dash-tab" data-tab="leaderboard">Leaderboard</button>
+    </nav>
+    <div class="dash-header-right">
+      <span class="dash-agent-name" id="dash-agent-name"></span>
+      <button class="btn-logout" id="logout-btn">Log Out</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+
+    <!-- Tab 1: Game (live stream + HUD + chat) -->
+    <div class="tab-content" id="tab-game" style="display:none">
+      <button class="chat-expand-btn" id="chat-expand" title="Open chat" aria-label="Open chat">&#x25C0;</button>
+      <div class="game-layout">
+        <div class="game-left">
+          <div class="game-live-wrap" id="game-live">
+            <div class="dash-empty">Loading...</div>
+          </div>
+          <div class="game-hud" id="game-hud">
+            <div class="hud-left" id="hud-pnl">
+              <div class="hud-label">P&L <span class="hud-pnl-filters" id="hud-pnl-filters"><button class="hud-pnl-btn" data-limit="20">20</button><button class="hud-pnl-btn hud-pnl-btn-active" data-limit="100">100</button><button class="hud-pnl-btn" data-limit="0">All</button></span></div>
+              <div class="hud-sparkline" id="hud-sparkline"></div>
+            </div>
+            <div class="hud-center" id="hud-plans">
+              <div class="hud-plans-list" id="hud-plans-list"></div>
+            </div>
+            <div class="hud-right" id="hud-stats">
+              <div class="hud-label">Stats</div>
+              <div class="hud-stats-grid" id="hud-stats-grid"></div>
+            </div>
+          </div>
+        </div>
+        <div class="game-chat" id="game-chat">
+          <div class="chat-table-id" id="chat-table-id"></div>
+          <div class="chat-header" id="chat-toggle">Table Chat <span class="chat-toggle-icon">&#x25C0;</span></div>
+          <div class="chat-messages" id="chat-messages"></div>
+          <div class="chat-input-wrap">
+            <input type="text" class="chat-input" id="chat-input"
+                   placeholder="Type a message…" maxlength="500" autocomplete="off" aria-label="Chat message">
+            <button class="chat-send" id="chat-send">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Overview -->
+    <div class="tab-content" id="tab-overview" style="display:none">
+
+      <!-- Escrow Status Banner -->
+      <div class="escrow-banner" id="escrow-banner"></div>
+
+      <!-- 5x2 Stat Grid -->
+      <section class="dash-cards">
+        <div class="dash-card">
+          <div class="dash-card-value" id="dc-balance">&mdash;</div>
+          <div class="dash-card-label">Balance</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-value" id="dc-hands">&mdash;</div>
+          <div class="dash-card-label">Hands Played</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-value" id="dc-winrate">&mdash;</div>
+          <div class="dash-card-label">Win Rate</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-value" id="dc-profit">&mdash;</div>
+          <div class="dash-card-label">Net Profit</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-value" id="dc-streak">&mdash;</div>
+          <div class="dash-card-label">Streak</div>
+        </div>
+        <div class="dash-card dash-card-secondary">
+          <div class="dash-card-value" id="dc-drawdown">&mdash;</div>
+          <div class="dash-card-label">Max Drawdown</div>
+        </div>
+        <div class="dash-card dash-card-secondary">
+          <div class="dash-card-value" id="dc-bigwin">&mdash;</div>
+          <div class="dash-card-label">Biggest Win</div>
+        </div>
+        <div class="dash-card dash-card-secondary">
+          <div class="dash-card-value" id="dc-bigloss">&mdash;</div>
+          <div class="dash-card-label">Biggest Loss</div>
+        </div>
+        <div class="dash-card dash-card-secondary">
+          <div class="dash-card-value" id="dc-stddev">&mdash;</div>
+          <div class="dash-card-label">Std Deviation</div>
+        </div>
+        <div class="dash-card dash-card-secondary">
+          <div class="dash-card-value" id="dc-ranking">&mdash;</div>
+          <div class="dash-card-label">Ranking</div>
+        </div>
+      </section>
+
+      <!-- P&L Chart -->
+      <section class="dash-section">
+        <div class="pnl-header">
+          <h2>Profit &amp; Loss</h2>
+          <div class="pnl-filters" id="pnl-filters">
+            <button class="pnl-filter" data-limit="20">20</button>
+            <button class="pnl-filter active" data-limit="100">100</button>
+            <button class="pnl-filter" data-limit="0">All</button>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="pnl-chart"></canvas>
+        </div>
+        <div class="dash-empty" id="chart-empty" style="display:none">No hand data yet.</div>
+      </section>
+
+      <!-- Game Plan Summary -->
+      <section class="dash-section" id="overview-gameplan">
+        <h2>Game Plan</h2>
+        <div id="overview-gameplan-content">
+          <div class="dash-empty">Loading...</div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Tab 3: Analytics -->
+    <div class="tab-content" id="tab-analytics" style="display:none">
+
+      <!-- Game Plan Filter -->
+      <div class="analytics-filter" id="analytics-filter">
+        <span class="analytics-filter-label">Game Plan:</span>
+        <div class="gp-filters" id="gp-filter">
+          <button class="pnl-filter active" data-plan="">All</button>
+        </div>
+      </div>
+
+      <!-- Behavioral Profile -->
+      <section class="dash-section" id="profile-section">
+        <h2>Behavioral Profile</h2>
+        <div class="dash-profile">
+          <div class="profile-stats">
+            <table class="stats-table" id="stats-table">
+              <tbody>
+                <tr><td class="st-label">VPIP</td><td class="st-value" id="st-vpip">&mdash;</td></tr>
+                <tr><td class="st-label">PFR</td><td class="st-value" id="st-pfr">&mdash;</td></tr>
+                <tr><td class="st-label">3-Bet</td><td class="st-value" id="st-3bet">&mdash;</td></tr>
+                <tr><td class="st-label">AF</td><td class="st-value" id="st-af">&mdash;</td></tr>
+                <tr><td class="st-label">WTSD</td><td class="st-value" id="st-wtsd">&mdash;</td></tr>
+                <tr><td class="st-label">W$SD</td><td class="st-value" id="st-wsd">&mdash;</td></tr>
+                <tr><td class="st-label">C-Bet</td><td class="st-value" id="st-cbet">&mdash;</td></tr>
+                <tr><td class="st-label">Fold %</td><td class="st-value" id="st-fold">&mdash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="profile-chart">
+            <canvas id="radar-chart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hand History -->
+      <section class="dash-section">
+        <h2>Hand History</h2>
+        <div id="hand-history">
+          <div class="dash-empty">Loading...</div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Tab 4: Position -->
+    <div class="tab-content" id="tab-position" style="display:none">
+
+      <section class="dash-section" id="position-section">
+        <h2>Position Stats</h2>
+        <div class="chart-container chart-container-sm">
+          <canvas id="position-chart"></canvas>
+        </div>
+        <table class="hand-table pos-table" id="pos-table">
+          <thead><tr>
+            <th>Position</th><th>Hands</th><th>VPIP%</th><th>PFR%</th><th>Profit</th>
+          </tr></thead>
+          <tbody id="pos-table-body"></tbody>
+        </table>
+      </section>
+
+    </div>
+
+    <!-- Tab 5: Leaderboard -->
+    <div class="tab-content" id="tab-leaderboard" style="display:none">
+      <section class="dash-section">
+        <h2>Leaderboard</h2>
+        <div id="dash-leaderboard">
+          <div class="dash-empty">Loading...</div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

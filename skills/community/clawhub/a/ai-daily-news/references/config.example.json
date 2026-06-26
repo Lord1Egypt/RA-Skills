@@ -1,0 +1,75 @@
+{
+  "feishu": {
+    "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_WEBHOOK_TOKEN",
+    "chat_id": "oc_xxx",
+    "app_id": "",
+    "app_secret": ""
+  },
+  "schedule": {
+    "collect_time": "06:00",
+    "push_time": "08:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "sources": {
+    "arxiv": {
+      "enabled": true,
+      "categories": ["cs.CL", "cs.LG", "cs.AI"],
+      "max_results": 5,
+      "days_back": 1,
+      "_comment": "当RSS API失败时会自动使用Playwright浏览器备选"
+    },
+    "producthunt": {
+      "enabled": true,
+      "max_results": 4,
+      "_comment": "当RSS Feed失败时会自动使用Playwright浏览器备选"
+    },
+    "huggingface": {
+      "enabled": true,
+      "max_results": 4,
+      "_comment": "当RSS Feed失败时会自动使用Playwright浏览器备选"
+    },
+    "youtube": {
+      "enabled": true,
+      "creators": ["andrew_ng", "matt_wolfe", "ai_explained", "ai_with_oliver", "greg_isenberg"],
+      "days_back": 7,
+      "max_per_creator": 2,
+      "_comment": "当yt-dlp失败时会自动使用Playwright浏览器备选"
+    },
+    "paperweekly": {
+      "enabled": true,
+      "rss_url": "",
+      "days_back": 7,
+      "max_items": 3,
+      "_comment": "PaperWeekly RSS地址，可通过rsshub.app等服务获取知乎专栏RSS"
+    },
+    "rss": {
+      "enabled": false,
+      "days_back": 7,
+      "feeds": [
+        {
+          "name": "示例RSS源",
+          "url": "",
+          "max_items": 3,
+          "category": "资讯",
+          "enabled": false
+        }
+      ],
+      "_comment": "自定义RSS源，当feedparser失败时会尝试requests直接获取"
+    }
+  },
+  "fallback": {
+    "enabled": true,
+    "timeout": 30,
+    "retry_times": 2,
+    "_comment": "浏览器备选方案配置，主方法失败时自动启用"
+  },
+  "output": {
+    "max_summary_length": 100,
+    "max_total_items": 20,
+    "data_file": "data/daily_news.json"
+  },
+  "logging": {
+    "level": "INFO",
+    "log_dir": "logs"
+  }
+}

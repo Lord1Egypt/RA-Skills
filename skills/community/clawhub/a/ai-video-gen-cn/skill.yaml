@@ -1,0 +1,35 @@
+name: ai-video-gen
+version: 1.0.0
+description: 端到端AI视频生成 - 从文本创建视频，支持图片生成、视频合成、配音、剪辑。
+author: clawd
+homepage: https://clawhub.com/skills/ai-video-gen
+
+triggers:
+  - 生成视频
+  - AI视频
+  - 文生视频
+  - 视频制作
+  - generate video
+  - ai video
+
+config:
+  OPENAI_API_KEY:
+    type: string
+    secret: true
+    description: OpenAI API密钥(可选)
+  REPLICATE_API_KEY:
+    type: string
+    secret: true
+    description: Replicate API密钥(可选)
+
+features:
+  - 文本生成视频
+  - 图片生成(OpenAI DALL-E)
+  - 视频合成(Replicate/LumaAI/Runway)
+  - 自动配音
+  - FFmpeg视频剪辑
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

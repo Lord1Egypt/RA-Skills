@@ -1,35 +1,65 @@
 ---
-name: "AOI Starter Pack"
-description: "Install a curated starter pack of @edmonddantesj ClawHub skills (security, stability, memory, ops) in one command via the ClawHub CLI. Use when a user asks t..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aoineco-starter-pack"
-sourceUrl: "https://clawhub.ai/skills/aoineco-starter-pack"
+name: aoineco-starter-pack
+description: Install a curated starter pack of @edmonddantesj ClawHub skills (security, stability, memory, ops) in one command via the ClawHub CLI. Use when a user asks to install all/most AOI/Aoineco skills at once, wants a beginner-friendly recommended bundle, or needs minimal/core/full install options.
 ---
 
-# AOI Starter Pack
+# AOI / Aoineco Starter Pack
 
-> Install a curated starter pack of @edmonddantesj ClawHub skills (security, stability, memory, ops) in one command via the ClawHub CLI. Use when a user asks t...
+Install a curated bundle of skills from the ClawHub profile `edmonddantesj`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aoineco-starter-pack`
-- **Source URL:** [https://clawhub.ai/skills/aoineco-starter-pack](https://clawhub.ai/skills/aoineco-starter-pack)
+## What this does
 
-## Overview
+- Installs multiple skills via `clawhub install ...` in one run
+- Offers 3 pack modes:
+  - `minimal`: 2 essentials
+  - `core`: recommended for beginners
+  - `full`: all published utilities
 
+Skill list reference: `references/skill_list.md`
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Prereqs
+
+1) Have `clawhub` CLI available
+2) Be logged in:
+
 ```bash
-hermes skills install clawhub/aoineco-starter-pack
+clawhub login
+clawhub whoami
+```
+
+## Install (fast path)
+
+1) Install this pack:
+
+```bash
+clawhub install aoineco-starter-pack
+```
+
+2) Run the recommended bundle (`core`):
+
+```bash
+bash skills/aoineco-starter-pack/scripts/run.sh core
+```
+
+Other modes:
+
+```bash
+bash skills/aoineco-starter-pack/scripts/run.sh minimal
+bash skills/aoineco-starter-pack/scripts/run.sh full
+```
+
+## Windows (PowerShell)
+
+```powershell
+clawhub install aoineco-starter-pack
+powershell -ExecutionPolicy Bypass -File .\skills\aoineco-starter-pack\scripts\install_pack.ps1 core
+```
+
+## Notes
+
+- This is an installer pack. It does not enable/auto-configure risky automations.
+- If you need to update later:
+
+```bash
+clawhub update
 ```

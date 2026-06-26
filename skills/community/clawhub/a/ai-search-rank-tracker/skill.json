@@ -1,0 +1,14 @@
+{
+  "name": "ai-search-rank-tracker",
+  "title": "AI Search Rank Tracker",
+  "subtitle": "Track whether ChatGPT recommends your startup",
+  "version": "0.1.0",
+  "description": "Monitor AI search visibility across ChatGPT, Claude, Gemini, and Perplexity. Track whether your brand is mentioned, where it ranks, which competitors appear nearby, the sentiment of the recommendation, and a rolled-up visibility score across prompts.",
+  "entry": "src/index.js",
+  "outputDir": "output",
+  "inputs": {
+    "brand": { "type": "string", "required": true },
+    "aliases": { "type": "array", "items": "string", "required": false },
+    "prompts": { "type": "array", "items": "string", "required": true }
+  }
+}

@@ -1,0 +1,530 @@
+[
+  {
+    "prompt": "best local ai assistant",
+    "category": "local-ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Large local-AI category"
+  },
+  {
+    "prompt": "local first ai automation tool",
+    "category": "local-ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Local-first automation"
+  },
+  {
+    "prompt": "self hosted ai assistant for teams",
+    "category": "local-ai-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Team self-hosted term"
+  },
+  {
+    "prompt": "private ai agent platform",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "langgraph"
+    ],
+    "notes": "Privacy + agents"
+  },
+  {
+    "prompt": "local ai browser automation",
+    "category": "local-ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright",
+      "openwebui"
+    ],
+    "notes": "Local browser automation"
+  },
+  {
+    "prompt": "best self hosted ai tool",
+    "category": "local-ai-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Broad self-hosted term"
+  },
+  {
+    "prompt": "best private ai assistant",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Privacy term"
+  },
+  {
+    "prompt": "best local first ai tool",
+    "category": "local-ai-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "continue",
+      "aider"
+    ],
+    "notes": "Local-first category"
+  },
+  {
+    "prompt": "best local llm app for teams",
+    "category": "local-ai-tools",
+    "subcategory": "local-models",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Team local-LLM prompt"
+  },
+  {
+    "prompt": "best local ai tool for workflows",
+    "category": "local-ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Workflow angle"
+  },
+  {
+    "prompt": "best self hosted ai workflow tool",
+    "category": "local-ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Workflow buyer intent"
+  },
+  {
+    "prompt": "best self hosted ai assistant 2026",
+    "category": "local-ai-tools",
+    "subcategory": "self-hosted",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Annual roundup"
+  },
+  {
+    "prompt": "best private ai software for startups",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Startup privacy angle"
+  },
+  {
+    "prompt": "best local ai platform for startups",
+    "category": "local-ai-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Startup local-AI query"
+  },
+  {
+    "prompt": "best local ai stack for teams",
+    "category": "local-ai-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "ollama"
+    ],
+    "notes": "Stack framing"
+  },
+  {
+    "prompt": "best local ai app without cloud lock in",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "jan",
+      "anythingllm"
+    ],
+    "notes": "Lock-in pain point"
+  },
+  {
+    "prompt": "best local ai app for browser workflows",
+    "category": "local-ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "openwebui"
+    ],
+    "notes": "Browser workflow crossover"
+  },
+  {
+    "prompt": "best self hosted browser automation ai",
+    "category": "local-ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "playwright"
+    ],
+    "notes": "Self-hosted browser automation"
+  },
+  {
+    "prompt": "best local ai tool for operations",
+    "category": "local-ai-tools",
+    "subcategory": "automation",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Ops use case"
+  },
+  {
+    "prompt": "best private ai workflow assistant",
+    "category": "local-ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Privacy + assistant framing"
+  },
+  {
+    "prompt": "best ai tool with local deployment",
+    "category": "local-ai-tools",
+    "subcategory": "deployment",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Deployment-specific term"
+  },
+  {
+    "prompt": "best bring your own key ai assistant",
+    "category": "local-ai-tools",
+    "subcategory": "byok",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "BYOK crossover"
+  },
+  {
+    "prompt": "best local ai assistant for small teams",
+    "category": "local-ai-tools",
+    "subcategory": "assistants",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Small-team audience"
+  },
+  {
+    "prompt": "best self hosted ai setup for beginners",
+    "category": "local-ai-tools",
+    "subcategory": "beginners",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Beginner local-AI setup"
+  },
+  {
+    "prompt": "best private local ai platform",
+    "category": "local-ai-tools",
+    "subcategory": "privacy",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm",
+      "jan"
+    ],
+    "notes": "Privacy-led category term"
+  },
+  {
+    "prompt": "best on premise ai assistant",
+    "category": "local-ai-tools",
+    "subcategory": "deployment",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "On-prem positioning"
+  },
+  {
+    "prompt": "best on premise ai workflow tool",
+    "category": "local-ai-tools",
+    "subcategory": "deployment",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "n8n",
+      "openwebui"
+    ],
+    "notes": "On-prem workflow use case"
+  },
+  {
+    "prompt": "best local ai product for smb",
+    "category": "local-ai-tools",
+    "subcategory": "local-first",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "SMB local-AI angle"
+  },
+  {
+    "prompt": "best private ai browser agent",
+    "category": "local-ai-tools",
+    "subcategory": "browser-agents",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "browser-use",
+      "operator"
+    ],
+    "notes": "Privacy browser-agent term"
+  },
+  {
+    "prompt": "best secure local ai tool",
+    "category": "local-ai-tools",
+    "subcategory": "security",
+    "intent": "trust",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Trust-focused query"
+  }
+]

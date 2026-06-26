@@ -1,35 +1,64 @@
----
-name: "Novai360 跨境电商智能分析"
-description: "基于NOVAI360，提供跨境电商市场、产品、竞争及财务分析，支持品牌出海战略制定，每日限10次免费调用。"
-category: "software-development"
-source: "ClawHub"
-tags: [api, e-commerce, litechat, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/amazonasinanalysis"
-sourceUrl: "https://clawhub.ai/skills/amazonasinanalysis"
----
+# LiteChat 智能分析技能 v2.0
+进一步需求联系 vx:chaibusiness
+## 描述 
+基于 NOVAI360 Cloudflare Workers 的智能跨境电商分析技能，集成 LLM 和 MCP 市场数据服务，提供市场分析、产品评估、竞争分析等功能。
 
-# Novai360 跨境电商智能分析
+## 功能
+- 市场机会评估
+- 竞争格局分析
+- 产品机会洞察
+- 财务可行性分析
+- 品牌出海战略
+- 自动调用 真实数据 工具获取实时市场数据
 
-> 基于NOVAI360，提供跨境电商市场、产品、竞争及财务分析，支持品牌出海战略制定，每日限10次免费调用。
+## 使用方法
+1. 输入您的产品或市场问题
+2. 系统将自动识别意图并调用相关工具
+3. 返回详细的 AI 分析报告
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/amazonasinanalysis`
-- **Source URL:** [https://clawhub.ai/skills/amazonasinanalysis](https://clawhub.ai/skills/amazonasinanalysis)
+## API 端点
+- POST /chat - 智能对话分析
+- GET /skills - 获取可用技能列表
+- GET /health - 健康检查
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/amazonasinanalysis
+## 示例
+**输入:**
 ```
+帮我分析智能手表的市场前景
+```
+
+**输入:**
+```
+B09XYZ1234 这个产品怎么样
+```
+
+**输入:**
+```
+搜索蓝牙耳机的关键词趋势
+```
+
+## 限制
+- 全球高速访问
+- 集成 LLM 和  市场数据
+- 无需 API Key，直接使用
+
+## 安全与认证
+- **API 认证**: 无需 API Key，直接使用
+- **环境变量** (可选): 
+  - `NOVAI360_API_URL`: 自定义 API 地址（默认: https://api.novai360.com）
+- **数据隐私**: 
+  - 查询数据仅用于分析
+  - 
+  - 不存储敏感用户信息
+
+## 安装说明
+1. 直接安装技能到 ClawHub
+2. 可选：设置 `NOVAI360_API_URL` 指向自定义 API 地址
+3. 开始使用
+
+## 更新日志
+### v2.0.0 (2026-04-02)
+- 
+- 更新 API 路径配置
+-
+- 简化代码结构

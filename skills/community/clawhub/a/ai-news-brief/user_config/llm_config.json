@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "description": "大模型API配置",
+  "config": {
+    "enabled": false,
+    "provider": "deepseek",
+    "deepseek": {
+      "api_key": "",
+      "api_url": "https://api.deepseek.com/v1/chat/completions",
+      "model": "deepseek-chat"
+    },
+    "qwen": {
+      "api_key": "",
+      "api_url": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+      "model": "qwen-plus"
+    },
+    "openai": {
+      "api_key": "",
+      "api_url": "https://api.openai.com/v1/chat/completions",
+      "model": "gpt-3.5-turbo"
+    }
+  },
+  "prompt_template": "请为以下文章生成50字以内的核心摘要：\n标题：{title}\n内容：{content}\n摘要："
+}

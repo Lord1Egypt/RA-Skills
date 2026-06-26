@@ -1,0 +1,19 @@
+name: alphalens-api
+version: 2.1.1
+author: walidmustapha
+description: Use this skill whenever the user wants to find companies, discover products, or research competitors using AlphaLens. Triggers on: any explicit mention of 'AlphaLens'; requests like 'find companies like X', 'similar companies to', 'who funds these companies', 'investor network analysis', 'company screening using AlphaLens', 'AlphaLens sourcing', 'enrich with AlphaLens', 'AlphaLens enrichment pipeline', 'add to AlphaLens pipeline', 'peer benchmark', 'compare companies by headcount or funding', 'competitive landscape using AlphaLens', 'market map with AlphaLens', 'white space analysis', 'blue ocean analysis'; or bottom-up deep dives on a specific company. Do NOT fire on generic mentions of 'market map', 'competitive landscape', 'screening', 'sourcing', 'pipeline', or 'enrich' without an AlphaLens context marker.
+license: MIT-0
+
+config:
+  ALPHALENS_API_KEY:
+    type: string
+    required: true
+    description: "API key for AlphaLens"
+    secret: true
+
+metadata:
+  openclaw:
+    requires:
+      env: ["ALPHALENS_API_KEY"]
+    primaryEnv: ALPHALENS_API_KEY
+    homepage: https://alphalens.ai

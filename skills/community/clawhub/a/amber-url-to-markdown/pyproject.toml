@@ -1,0 +1,61 @@
+# Amber Url to Markdown - 项目配置
+
+[tool.black]
+line-length = 120
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | __pycache__
+)/
+'''
+
+[tool.flake8]
+max-line-length = 120
+exclude = [
+    "__pycache__",
+    "venv",
+    ".venv",
+    "build",
+    "dist",
+]
+ignore = [
+    "E203",  #  whitespace before ':'
+    "W503",  #  line break before binary operator
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.poetry]
+name = "amber-url-to-markdown"
+version = "3.0.0"
+description = "智能 URL 转 Markdown 工具，支持多网站识别和自动降级"
+authors = ["小文"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.0"
+markdownify = "^0.11.0"
+playwright = "^1.40.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+black = "^23.0.0"
+flake8 = "^6.0.0"

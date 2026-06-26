@@ -1,35 +1,72 @@
 ---
-name: "Ai Cli Architecture"
-description: "AI CLI 产品的工程架构与迭代策略。当需要设计、开发、或迭代 AI 命令行工具类产品时使用，包括：功能模块化设计、渐进式版本规划、Feature Flag 机制、多后端适配、权限系统、Hook 系统、上下文管理、会话恢复、诊断工具、审计追责、可观测性、信任链设计、状态机思维等。触发场景：构建 AI CLI、规..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-cli-architecture"
-sourceUrl: "https://clawhub.ai/skills/ai-cli-architecture"
+name: ai-cli-architecture
+description: AI CLI 产品的工程架构与迭代策略。当需要设计、开发、或迭代 AI 命令行工具类产品时使用，包括：功能模块化设计、渐进式版本规划、Feature Flag 机制、多后端适配、权限系统、Hook 系统、上下文管理、会话恢复、诊断工具、审计追责、可观测性、信任链设计、状态机思维等。触发场景：构建 AI CLI、规划产品路线图、设计架构方案、分析竞品工程实现。
 ---
 
-# Ai Cli Architecture
+# AI CLI 工程架构与迭代策略
 
-> AI CLI 产品的工程架构与迭代策略。当需要设计、开发、或迭代 AI 命令行工具类产品时使用，包括：功能模块化设计、渐进式版本规划、Feature Flag 机制、多后端适配、权限系统、Hook 系统、上下文管理、会话恢复、诊断工具、审计追责、可观测性、信任链设计、状态机思维等。触发场景：构建 AI CLI、规...
+## 核心原则（10条）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-cli-architecture`
-- **Source URL:** [https://clawhub.ai/skills/ai-cli-architecture](https://clawhub.ai/skills/ai-cli-architecture)
+1. **定义产品本体**：先确定是 chat tool / agent runtime / 任务系统，再设计界面
+2. **会话引擎和执行循环分层**：TaskSessionEngine 管状态，ExecutionLoop 管推进
+3. **上下文是可编排输入层**：不是 prompt 文案，是结构化注入
+4. **工具受控暴露**：动态由任务阶段决定，不是静态权限矩阵
+5. **权限结构性兜底**：白名单 + 审批链 + 信任链
+6. **长任务能力 Day 1 设计**：token budget / compact / checkpoint / recover
+7. **中断/恢复/回放原生支持**：部分完成 + 可恢复 > 成功/失败
+8. **压缩是一等能力**：结构化摘要，用户和 agent 都可读
+9. **审计与可观测性 Day 1**：每个 action 可追溯，技术债难还
+10. **约束清晰带来真正智能**：不是堆功能，是边界+上下文+工具+状态
 
-## Overview
+---
 
+## 架构参考
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-cli-architecture
-```
+详细 patterns 和示例见 [references/patterns.md](references/patterns.md)：
+
+| 主题 | 内容 |
+|------|------|
+| 渐进式开发 | V1→V4 阶段模型与决策框架 |
+| Feature Flag | 环境变量控制、条件灰度、克制原则 |
+| 多后端兼容 | Anthropic/Bedrock/Vertex/Azure 适配器 |
+| 模块化架构 | entrypoints/core/tools/adapters/hooks/repl |
+| Hook 系统 | pre/post tool 生命周期钩子 |
+| 权限系统 | manual/plan/auto/yolo 四种模式 + 信任链 |
+| 上下文管理 | 自动压缩策略与优先级 + 任务阶段动态暴露 |
+| 会话恢复 | checkpoint 与 resume 机制 |
+| 诊断系统 | Doctor 检查清单设计 |
+| 审计追责 | 执行证据页设计 |
+| 可观测性 | 每个 action 可追溯 |
+| 状态机思维 | 状态流转 vs 页面集合 |
+
+---
+
+## 快速检查清单
+
+### 新功能接入
+
+- [ ] 确定功能状态：`✅`/`⚠️`/`❌`
+- [ ] 是否需要 Feature Flag 控制
+- [ ] 是否需要 Hook 扩展点
+- [ ] 平台兼容性检查（Windows/Linux/macOS）
+- [ ] 工具暴露是动态还是静态？
+- [ ] 信任链是否设计？
+
+### 架构评审
+
+- [ ] 分层是否清晰（状态 vs 推进）？
+- [ ] 模块边界是否清晰？
+- [ ] 错误处理是否完整？
+- [ ] 权限控制是否合理？
+- [ ] 会话状态是否可恢复？
+- [ ] 可观测性是否覆盖？
+- [ ] Flag 是否有 owner 和退出条件？
+
+### 发布前检查
+
+- [ ] 所有 `✅` 功能测试通过
+- [ ] `⚠️` 功能有条件说明
+- [ ] 类型检查全部通过
+- [ ] 文档与代码同步
+- [ ] 状态机是否完整？
+- [ ] 审计链路是否完整？

@@ -1,0 +1,70 @@
+/**
+ * 编辑弹层模板
+ * 适用场景：编辑单条数据
+ * 核心组件：Dialog + Form
+ */
+{
+  "type": "page",
+  "body": {
+    "type": "button",
+    "label": "编辑",
+    "actionType": "dialog",
+    "dialog": {
+      "title": "编辑数据",
+      "size": "md",
+      "body": {
+        "type": "form",
+        "api": "put:/api/data/${id}",
+        "initApi": "/api/data/${id}",
+        "controls": [
+          {
+            "type": "text",
+            "name": "name",
+            "label": "名称",
+            "required": true
+          },
+          {
+            "type": "email",
+            "name": "email",
+            "label": "邮箱",
+            "required": true
+          },
+          {
+            "type": "text",
+            "name": "phone",
+            "label": "电话"
+          },
+          {
+            "type": "select",
+            "name": "status",
+            "label": "状态",
+            "options": [
+              {"label": "启用", "value": "1"},
+              {"label": "禁用", "value": "0"}
+            ]
+          },
+          {
+            "type": "textarea",
+            "name": "description",
+            "label": "描述",
+            "rows": 3
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "button",
+          "label": "取消",
+          "actionType": "cancel"
+        },
+        {
+          "type": "button",
+          "label": "提交",
+          "level": "primary",
+          "actionType": "submit",
+          "close": true
+        }
+      ]
+    }
+  }
+}

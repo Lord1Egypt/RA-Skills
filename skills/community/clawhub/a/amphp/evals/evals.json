@@ -1,0 +1,111 @@
+{
+  "skill_name": "amphp",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Напиши HTTP сервер на AMPHP с двумя маршрутами: GET /users возвращает JSON-список пользователей из MySQL, POST /users создаёт нового пользователя. Используй amphp/http-server, amphp/http-server-router и amphp/mysql. Добавь middleware для логирования времени выполнения каждого запроса.",
+      "expected_output": "Рабочий PHP-файл с SocketHttpServer, Router, MysqlConnectionPool, LoggingMiddleware. Корректные импорты, AsyncTestCase не нужен. Graceful shutdown через trapSignal.",
+      "assertions": [
+        {
+          "text": "Код использует SocketHttpServer::createForDirectAccess() или createForBehindProxy()",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Используется Router из amphp/http-server-router с addRoute()",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "MysqlConnectionPool создаётся через MysqlConfig, запросы через execute() с параметрами",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Middleware реализует интерфейс Middleware и применяется через stackMiddleware()",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Есть trapSignal() и $server->stop() для graceful shutdown",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Все namespace импорты корректны (Amp\\Http\\Server, Amp\\Http\\Server\\Router, Amp\\Mysql)",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Есть массив из 200 URL для скачивания. Напиши async PHP скрипт на AMPHP который скачивает их параллельно, но не более 10 одновременно. Если скачивание занимает больше 5 секунд — пропустить. Результаты сохранить в файлы через amphp/file.",
+      "expected_output": "Скрипт использует LocalSemaphore(10) для ограничения, TimeoutCancellation(5.0) для таймаута, Amp\\File для записи. Правильная обработка CancelledException.",
+      "assertions": [
+        {
+          "text": "Используется LocalSemaphore с лимитом 10",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Используется TimeoutCancellation(5.0) или аналог для таймаута",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "CancelledException перехватывается корректно (пропуск URL при таймауте)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "lock->release() вызывается в блоке finally",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Используется Future\\all() или аналог для ожидания всех задач",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Запись файлов через Amp\\File\\write() или openFile()",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Напиши тест для async функции которая делает HTTP запрос и парсит JSON. Функция принимает URL и Cancellation, возвращает массив. Покрой тесты: успешный запрос, таймаут, HTTP ошибка 404.",
+      "expected_output": "Тест-класс расширяет AsyncTestCase, три тест-метода, правильная обработка TimeoutCancellation в тесте на таймаут.",
+      "assertions": [
+        {
+          "text": "Тест-класс расширяет Amp\\PHPUnit\\AsyncTestCase (не TestCase)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Есть минимум три тест-метода (success, timeout, 404/error)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Тест на таймаут использует TimeoutCancellation или expectException(CancelledException)",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Нет вызовов await() вне тест-методов или setUp()",
+          "passed": null,
+          "evidence": null
+        },
+        {
+          "text": "Указана команда запуска тестов с флагами -dzend.assertions=1 -dassert.exception=1",
+          "passed": null,
+          "evidence": null
+        }
+      ]
+    }
+  ]
+}

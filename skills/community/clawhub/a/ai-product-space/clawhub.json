@@ -1,0 +1,43 @@
+{
+  "name": "AI Product Space",
+  "tagline": "一张白底产品图，AI 自动生成电商全套素材 — 主图、场景图、海报、文案、视频",
+  "description": "AI Product Space 将一张产品白底图转化为完整的电商素材包。覆盖商品主图（8+ 风格）、真实场景图、卖点海报、多语言营销文案和 8 秒展示视频。\n\n支持 10 种输出语言（中/英/日/韩/法/德/西/葡/阿/俄），一次流水线即可批量生成 20+ 张商品图和多段文案。\n\n通过 OAuth 一键授权连接你的 AI Product Space 账户，无需手动配置 API Key。支持单张图片自定义生成、视频生成、资产管理等高级能力。",
+  "category": "creative",
+  "tags": [
+    "ecommerce",
+    "product-images",
+    "ai-generation",
+    "marketing",
+    "video",
+    "poster",
+    "copywriting",
+    "电商",
+    "商品图",
+    "素材生成"
+  ],
+  "version": "1.0.4",
+  "license": "MIT",
+  "pricing": "freemium",
+  "support_url": "https://github.com/renshevy/ai-product-space/issues",
+  "homepage": "https://renshevy.com",
+  "repository": "https://github.com/renshevy/ai-product-space",
+  "icon": "icon.png",
+  "screenshots": [
+    {
+      "path": "screenshots/01-pipeline-complete.png",
+      "caption": "一键生成电商全套素材：主图、场景图、卖点海报、营销文案"
+    },
+    {
+      "path": "screenshots/02-video-generation.png",
+      "caption": "从商品图自动生成 8 秒展示视频"
+    },
+    {
+      "path": "screenshots/03-oauth-authorize.png",
+      "caption": "OAuth 一键授权，无需手动配置"
+    }
+  ],
+  "permissions_justification": {
+    "network": "所有工具需要通过 HTTPS 调用 AI Product Space API 完成素材生成、上传图片、轮询任务状态等操作。不会访问任何其他外部服务。",
+    "filesystem": "upload_product_image 工具在用户提供本地文件路径时需要读取本地图片文件。仅读取用户明确指定的图片文件，不会写入或修改任何本地文件。"
+  }
+}

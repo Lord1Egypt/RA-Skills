@@ -1,0 +1,9 @@
+{
+  "name": "news-sentiment",
+  "version": "1.0.0",
+  "description": "新闻情感分析 - 财经新闻/公告/研报情感分析",
+  "main": "news_sentiment.py",
+  "exports": ["analyze_news_sentiment", "impact_assessment"],
+  "dependencies": ["akshare", "pandas", "requests"],
+  "targetAgents": ["ainewsfinance", "ainews"]
+}

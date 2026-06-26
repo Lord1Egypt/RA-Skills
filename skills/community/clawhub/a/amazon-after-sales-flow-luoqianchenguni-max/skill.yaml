@@ -1,0 +1,57 @@
+﻿name: amazon-after-sales-flow
+version: 0.1.1
+description: Automate Amazon after-sales end-to-end: open 2025 orders, open order details, run contact flow, and draft/send seller messages with explicit send confirmation.
+author: easybuy
+
+skills:
+  - name: hello
+    description: Natural-language entry for Amazon full-flow automation
+    entry: skills/hello/skill.js
+  - name: order_reader
+    description: Wrapper for dist/skills/order_reader.json
+    entry: skills/order_reader/skill.js
+  - name: evidence_builder
+    description: Wrapper for dist/skills/evidence_builder.json
+    entry: skills/evidence_builder/skill.js
+  - name: message_drafter
+    description: Wrapper for dist/skills/message_drafter.json
+    entry: skills/message_drafter/skill.js
+  - name: form_filler
+    description: Wrapper for dist/skills/form_filler.json
+    entry: skills/form_filler/skill.js
+  - name: amazon_product_detector
+    description: Wrapper for dist/skills/amazon_product_detector.json
+    entry: skills/amazon_product_detector/skill.js
+  - name: amazon_orders_scraper
+    description: Wrapper for dist/skills/amazon_orders_scraper.json
+    entry: skills/amazon_orders_scraper/skill.js
+  - name: amazon_orders_opener
+    description: Wrapper for dist/skills/amazon_orders_opener.json
+    entry: skills/amazon_orders_opener/skill.js
+  - name: amazon_order_details_fetcher
+    description: Wrapper for dist/skills/amazon_order_details_fetcher.json
+    entry: skills/amazon_order_details_fetcher/skill.js
+  - name: amazon_price_checker
+    description: Wrapper for dist/skills/amazon_price_checker.json
+    entry: skills/amazon_price_checker/skill.js
+  - name: amazon_review_scraper
+    description: Wrapper for dist/skills/amazon_review_scraper.json
+    entry: skills/amazon_review_scraper/skill.js
+  - name: amazon_contact_flow
+    description: Wrapper for dist/skills/amazon_contact_flow.json
+    entry: skills/amazon_contact_flow/skill.js
+  - name: message_monitor
+    description: Wrapper for dist/skills/message_monitor.json
+    entry: skills/message_monitor/skill.js
+  - name: price_alert_manager
+    description: Wrapper for dist/skills/price_alert_manager.json
+    entry: skills/price_alert_manager/skill.js
+  - name: case_exporter
+    description: Wrapper for dist/skills/case_exporter.json
+    entry: skills/case_exporter/skill.js
+
+
+
+
+
+

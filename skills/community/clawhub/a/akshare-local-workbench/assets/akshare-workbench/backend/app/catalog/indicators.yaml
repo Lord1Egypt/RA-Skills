@@ -1,0 +1,2347 @@
+indicators:
+- id: stock_a_hist
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 历史行情
+  name: A 股历史行情
+  ak_function: stock_zh_a_hist
+  description: 获取单只 A 股日 / 周 / 月频历史行情，支持前复权、后复权。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id24
+  params:
+  - name: symbol
+    label: 股票代码
+    type: string
+    required: true
+    default: '000001'
+    placeholder: 例如 000001
+    description: 不带交易所前缀的六位股票代码。
+  - name: period
+    label: 周期
+    type: select
+    required: true
+    default: daily
+    options:
+    - daily
+    - weekly
+    - monthly
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  - name: adjust
+    label: 复权
+    type: select
+    required: false
+    default: ''
+    options:
+    - ''
+    - qfq
+    - hfq
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: stock_a_hist_min
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 分时行情
+  name: A 股分时行情
+  ak_function: stock_zh_a_hist_min_em
+  description: 获取单只 A 股 1/5/15/30/60 分钟分时行情。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id30
+  params:
+  - name: symbol
+    label: 股票代码
+    type: string
+    required: true
+    default: '000001'
+  - name: start_date
+    label: 开始时间
+    type: string
+    required: true
+    default: '2024-12-01 09:30:00'
+    placeholder: YYYY-MM-DD HH:MM:SS
+  - name: end_date
+    label: 结束时间
+    type: string
+    required: true
+    default: '2024-12-31 15:00:00'
+  - name: period
+    label: 分钟级别
+    type: select
+    required: true
+    default: '5'
+    options:
+    - '1'
+    - '5'
+    - '15'
+    - '30'
+    - '60'
+  - name: adjust
+    label: 复权
+    type: select
+    required: false
+    default: ''
+    options:
+    - ''
+    - qfq
+    - hfq
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: stock_individual_info
+  level1: 公司与财报
+  level2: 公司基本面
+  level3: 基础信息
+  name: 个股基础信息
+  ak_function: stock_individual_info_em
+  description: 查询个股的基础资料（总股本、流通股、行业、上市日期等）。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id48
+  params:
+  - name: symbol
+    label: 股票代码
+    type: string
+    required: true
+    default: '603777'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: stock_notice_report
+  level1: 公司与财报
+  level2: 公司基本面
+  level3: 公告
+  name: 个股公告
+  ak_function: stock_notice_report
+  description: 获取个股全部类型公告，可按公告日期筛选。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id151
+  params:
+  - name: symbol
+    label: 公告类型
+    type: select
+    required: true
+    default: 全部
+    options:
+    - 全部
+    - 重大事项
+    - 财务报告
+    - 融资公告
+    - 风险提示
+    - 资产重组
+    - 信息变更
+    - 持股变动
+  - name: date
+    label: 日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: stock_financial_abstract
+  level1: 公司与财报
+  level2: 公司基本面
+  level3: 财务摘要
+  name: 个股财务摘要
+  ak_function: stock_financial_abstract
+  description: 获取个股的核心财务指标历史摘要。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id100
+  params:
+  - name: symbol
+    label: 股票代码
+    type: string
+    required: true
+    default: '600004'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: quarterly
+- id: stock_a_dividend_yield
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 股息率
+  name: A 股股息率历史
+  ak_function: stock_a_gxl_lg
+  description: 上证 A 股 / 深证 A 股 / 沪深 300 股息率历史。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id275
+  params:
+  - name: symbol
+    label: 范围
+    type: select
+    required: true
+    default: 上证A股
+    options:
+    - 上证A股
+    - 深证A股
+    - 沪深300
+  source: legulegu
+  source_name: 乐咕乐股
+  update_frequency: daily
+- id: stock_research_report
+  level1: 公司与财报
+  level2: 公司基本面
+  level3: 研报
+  name: 个股研报
+  ak_function: stock_research_report_em
+  description: 获取个股的卖方研究报告列表。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id132
+  params:
+  - name: symbol
+    label: 股票代码
+    type: string
+    required: true
+    default: '000001'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: stock_a_ttm_lyr
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 估值
+  name: A 股整体股息率
+  ak_function: stock_a_ttm_lyr
+  description: 沪深 A 股整体 TTM 与 LYR 股息率历史。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id274
+  params: []
+  source: legulegu
+  source_name: 乐咕乐股
+  update_frequency: daily
+- id: stock_market_pe
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 估值
+  name: A 股市盈率历史
+  ak_function: stock_market_pe_lg
+  description: 上证 / 深证等市场整体市盈率历史。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id277
+  params:
+  - name: symbol
+    label: 市场
+    type: select
+    required: true
+    default: 上证
+    options:
+    - 上证
+    - 深证
+    - 创业板
+    - 科创版
+  source: legulegu
+  source_name: 乐咕乐股
+  update_frequency: daily
+- id: stock_market_pb
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 估值
+  name: A 股市净率历史
+  ak_function: stock_market_pb_lg
+  description: 上证 / 深证等市场整体市净率历史。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id278
+  params:
+  - name: symbol
+    label: 市场
+    type: select
+    required: true
+    default: 上证
+    options:
+    - 上证
+    - 深证
+    - 创业板
+    - 科创版
+  source: legulegu
+  source_name: 乐咕乐股
+  update_frequency: daily
+- id: stock_zt_pool
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 涨停板
+  name: 涨停股池
+  ak_function: stock_zt_pool_em
+  description: 当日涨停股池数据，包含连板数、封板资金等。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id186
+  params:
+  - name: date
+    label: 日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: stock_lhb_detail
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 龙虎榜
+  name: 龙虎榜每日详情
+  ak_function: stock_lhb_detail_em
+  description: 沪深龙虎榜每日明细，包含买卖前五席位金额。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id210
+  params:
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-12-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: stock_hk_spot
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: 港股实时行情
+  ak_function: stock_hk_spot_em
+  description: 获取港股市场实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id71
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: stock_hk_hist
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 历史行情
+  name: 港股历史行情
+  ak_function: stock_hk_hist
+  description: 获取单只港股日 / 周 / 月历史行情。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id76
+  params:
+  - name: symbol
+    label: 港股代码
+    type: string
+    required: true
+    default: '00700'
+  - name: period
+    label: 周期
+    type: select
+    required: true
+    default: daily
+    options:
+    - daily
+    - weekly
+    - monthly
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  - name: adjust
+    label: 复权
+    type: select
+    default: ''
+    options:
+    - ''
+    - qfq
+    - hfq
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: stock_us_spot
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: 美股实时行情
+  ak_function: stock_us_spot_em
+  description: 获取美股市场实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id62
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: stock_us_hist
+  level1: 股票与指数
+  level2: 历史行情
+  level3: 历史行情
+  name: 美股历史行情
+  ak_function: stock_us_hist
+  description: 获取单只美股日 / 周 / 月历史行情，代码示例 105.MSFT。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id66
+  params:
+  - name: symbol
+    label: 美股代码
+    type: string
+    required: true
+    default: 105.MSFT
+  - name: period
+    label: 周期
+    type: select
+    required: true
+    default: daily
+    options:
+    - daily
+    - weekly
+    - monthly
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  - name: adjust
+    label: 复权
+    type: select
+    default: ''
+    options:
+    - ''
+    - qfq
+    - hfq
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: index_a_spot
+  level1: 股票与指数
+  level2: 指数与行业
+  level3: 实时快照
+  name: A 股指数实时行情
+  ak_function: stock_zh_index_spot_sina
+  description: 获取 A 股主要股票指数实时行情。
+  docs_url: https://akshare.akfamily.xyz/data/index/index.html#id1
+  params: []
+  source: sina
+  source_name: 新浪财经
+  update_frequency: realtime
+- id: index_a_hist
+  level1: 股票与指数
+  level2: 指数与行业
+  level3: 历史行情
+  name: A 股指数历史行情
+  ak_function: stock_zh_index_daily_em
+  description: 获取指定 A 股指数的历史日频行情。
+  docs_url: https://akshare.akfamily.xyz/data/index/index.html#id6
+  params:
+  - name: symbol
+    label: 指数代码
+    type: string
+    required: true
+    default: sh000001
+    placeholder: 例如 sh000001
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: index_global_spot
+  level1: 股票与指数
+  level2: 指数与行业
+  level3: 全球指数
+  name: 全球指数实时行情
+  ak_function: index_global_spot_em
+  description: 获取全球主要股指（道指、标普、纳指、日经、富时等）实时行情。
+  docs_url: https://akshare.akfamily.xyz/data/index/index.html#id59
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: sw_index_first
+  level1: 股票与指数
+  level2: 指数与行业
+  level3: 申万行业
+  name: 申万一级行业实时行情
+  ak_function: sw_index_first_info
+  description: 申万一级行业实时行情列表。
+  docs_url: https://akshare.akfamily.xyz/data/index/index.html#id39
+  params: []
+  source: swindex
+  source_name: 申万宏源
+  update_frequency: daily
+- id: sw_index_hist
+  level1: 股票与指数
+  level2: 指数与行业
+  level3: 申万行业
+  name: 申万指数历史行情
+  ak_function: index_hist_sw
+  description: 获取申万指数（一级 / 二级 / 三级）历史日频行情。
+  docs_url: https://akshare.akfamily.xyz/data/index/index.html#id42
+  params:
+  - name: symbol
+    label: 申万指数代码
+    type: string
+    required: true
+    default: '801030'
+    placeholder: 例如 801030
+  - name: period
+    label: 周期
+    type: select
+    required: true
+    default: day
+    options:
+    - day
+    - week
+    - month
+  source: swindex
+  source_name: 申万宏源
+  update_frequency: daily
+- id: hsgt_fund_flow
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 沪深港通
+  name: 沪深港通资金流向汇总
+  ak_function: stock_hsgt_fund_flow_summary_em
+  description: 沪深港通当日资金流向汇总（北向 / 南向）。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id185
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: hsgt_hist
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 沪深港通
+  name: 沪深港通历史持股
+  ak_function: stock_hsgt_hist_em
+  description: 北向 / 南向资金的历史每日流入与累计持股数据。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id183
+  params:
+  - name: symbol
+    label: 资金类型
+    type: select
+    required: true
+    default: 北向资金
+    options:
+    - 北向资金
+    - 沪股通
+    - 深股通
+    - 南向资金
+    - 港股通沪
+    - 港股通深
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: qvix_50etf
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 期权波动率
+  name: 50ETF 期权波动率指数
+  ak_function: index_option_50etf_qvix
+  description: 上证 50ETF 期权波动率指数（QVIX）历史数据。
+  docs_url: https://akshare.akfamily.xyz/data/option/option_finance.html#id3
+  params: []
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+- id: bond_china_yield
+  level1: 债券
+  level2: 利率债
+  level3: 国债收益率
+  name: 中债国债收益率曲线
+  ak_function: bond_china_yield
+  description: 中国国债收益率曲线历史数据，覆盖 3M 到 30Y。
+  docs_url: https://akshare.akfamily.xyz/data/bond/bond.html#id3
+  params:
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: cmec
+  source_name: 中债登
+  update_frequency: daily
+- id: bond_zh_us_rate
+  level1: 债券
+  level2: 利率债
+  level3: 中美国债
+  name: 中美国债收益率历史
+  ak_function: bond_zh_us_rate
+  description: 中国与美国 2/5/10/30 年期国债收益率历史对照。
+  docs_url: https://akshare.akfamily.xyz/data/bond/bond.html#id5
+  params:
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2020-01-01'
+  source: legulegu
+  source_name: 乐咕乐股
+  update_frequency: daily
+- id: bond_hs_spot
+  level1: 债券
+  level2: 信用债
+  level3: 交易所债券
+  name: 沪深债券实时行情
+  ak_function: bond_zh_hs_spot
+  description: 沪深交易所债券实时行情（分页加载）。
+  docs_url: https://akshare.akfamily.xyz/data/bond/bond.html#id20
+  params:
+  - name: start_page
+    label: 开始页码
+    type: string
+    required: true
+    default: '1'
+  - name: end_page
+    label: 结束页码
+    type: string
+    required: true
+    default: '5'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: bond_hs_daily
+  level1: 债券
+  level2: 信用债
+  level3: 交易所债券
+  name: 沪深债券历史行情
+  ak_function: bond_zh_hs_daily
+  description: 单只沪深交易所债券的日频历史行情。
+  docs_url: https://akshare.akfamily.xyz/data/bond/bond.html#id21
+  params:
+  - name: symbol
+    label: 债券代码
+    type: string
+    required: true
+    default: sh010107
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: bond_cov_spot
+  level1: 债券
+  level2: 可转债
+  level3: 沪深可转债
+  name: 沪深可转债实时行情
+  ak_function: bond_zh_hs_cov_spot
+  description: 沪深交易所可转债实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/bond/bond.html#id22
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: bond_cov_daily
+  level1: 债券
+  level2: 可转债
+  level3: 沪深可转债
+  name: 沪深可转债历史行情
+  ak_function: bond_zh_hs_cov_daily
+  description: 单只沪深可转债的日频历史行情。
+  docs_url: https://akshare.akfamily.xyz/data/bond/bond.html#id23
+  params:
+  - name: symbol
+    label: 转债代码
+    type: string
+    required: true
+    default: sh113542
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: bond_cb_jsl
+  level1: 债券
+  level2: 可转债
+  level3: 集思录
+  name: 集思录可转债比较
+  ak_function: bond_cb_jsl
+  description: 集思录可转债比较数据（含溢价率、剩余年限、税前 YTM 等）。
+  docs_url: https://akshare.akfamily.xyz/data/bond/bond.html#id26
+  params: []
+  source: jsl
+  source_name: 集思录
+  update_frequency: daily
+- id: bond_cb_redeem_jsl
+  level1: 债券
+  level2: 可转债
+  level3: 集思录
+  name: 集思录可转债强赎
+  ak_function: bond_cb_redeem_jsl
+  description: 集思录可转债强赎统计与触发情况。
+  docs_url: https://akshare.akfamily.xyz/data/bond/bond.html#id27
+  params: []
+  source: jsl
+  source_name: 集思录
+  update_frequency: daily
+- id: fx_spot_quote
+  level1: 外汇
+  level2: 即期与远掉
+  level3: 银行间即期
+  name: 银行间外汇即期报价
+  ak_function: fx_spot_quote
+  description: 银行间外汇市场主要货币对即期买卖报价。
+  docs_url: https://akshare.akfamily.xyz/data/fx/fx.html#id1
+  params: []
+  source: cfdc
+  source_name: 中国外汇交易中心
+  update_frequency: realtime
+- id: fx_swap_quote
+  level1: 外汇
+  level2: 即期与远掉
+  level3: 银行间远掉
+  name: 银行间外汇远掉报价
+  ak_function: fx_swap_quote
+  description: 银行间外汇市场远期与掉期报价。
+  docs_url: https://akshare.akfamily.xyz/data/fx/fx.html#id2
+  params: []
+  source: cfdc
+  source_name: 中国外汇交易中心
+  update_frequency: realtime
+- id: fx_pair_quote
+  level1: 外汇
+  level2: 即期与远掉
+  level3: 外币对即期
+  name: 外币对即期报价
+  ak_function: fx_pair_quote
+  description: 银行间外汇市场外币对（非人民币）即期报价。
+  docs_url: https://akshare.akfamily.xyz/data/fx/fx.html#id3
+  params: []
+  source: cfdc
+  source_name: 中国外汇交易中心
+  update_frequency: realtime
+- id: currency_boc_safe
+  level1: 外汇
+  level2: 中间价
+  level3: 人民币中间价
+  name: 人民币兑各币种中间价
+  ak_function: currency_boc_safe
+  description: 国家外汇管理局发布的人民币对各主要币种中间价。
+  docs_url: https://akshare.akfamily.xyz/data/fx/fx.html#id5
+  params: []
+  source: safe
+  source_name: 国家外汇管理局
+  update_frequency: daily
+- id: currency_boc_sina
+  level1: 外汇
+  level2: 中间价
+  level3: 中间价历史
+  name: 人民币汇率中间价历史
+  ak_function: currency_boc_sina
+  description: 历史每日人民币中间价（按币种查询）。
+  docs_url: https://akshare.akfamily.xyz/data/fx/fx.html#id6
+  params:
+  - name: symbol
+    label: 币种
+    type: select
+    required: true
+    default: 美元
+    options:
+    - 美元
+    - 欧元
+    - 日元
+    - 港元
+    - 英镑
+    - 澳元
+    - 加元
+    - 新加坡元
+    - 瑞士法郎
+    - 林吉特
+    - 卢布
+    - 兰特
+    - 韩元
+    - 沙特里亚尔
+    - 阿联酋迪拉姆
+    - 新西兰元
+    - 泰铢
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: sina
+  source_name: 新浪财经
+  update_frequency: daily
+- id: currency_latest
+  level1: 外汇
+  level2: 国际汇率
+  level3: 最新汇率
+  name: 国际外汇最新汇率
+  ak_function: currency_latest
+  description: 国际外汇市场基准货币对所有币种的最新汇率。
+  docs_url: https://akshare.akfamily.xyz/data/fx/fx.html#id10
+  params:
+  - name: base
+    label: 基准货币
+    type: string
+    required: true
+    default: USD
+  source: akshare
+  source_name: AKShare
+  update_frequency: realtime
+- id: currency_history
+  level1: 外汇
+  level2: 国际汇率
+  level3: 历史汇率
+  name: 国际外汇历史汇率
+  ak_function: currency_history
+  description: 国际外汇某一天的历史汇率快照。
+  docs_url: https://akshare.akfamily.xyz/data/fx/fx.html#id11
+  params:
+  - name: base
+    label: 基准货币
+    type: string
+    required: true
+    default: USD
+  - name: date
+    label: 日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+- id: currency_currencies
+  level1: 外汇
+  level2: 国际汇率
+  level3: 货币基础信息
+  name: 货币基础信息查询
+  ak_function: currency_currencies
+  description: 国际外汇市场支持的法币与加密币基础信息。
+  docs_url: https://akshare.akfamily.xyz/data/fx/fx.html#id12
+  params:
+  - name: c_type
+    label: 类型
+    type: select
+    required: true
+    default: fiat
+    options:
+    - fiat
+    - crypto
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+- id: macro_china_lpr
+  level1: 利率
+  level2: 国内基准
+  level3: 贷款市场报价利率
+  name: 中国 LPR 历史
+  ak_function: macro_china_lpr
+  description: 1 年与 5 年期 LPR 历史报价及贷款基准利率。
+  docs_url: https://akshare.akfamily.xyz/data/interest_rate/interest_rate.html#id1
+  params: []
+  source: pbc
+  source_name: 中国人民银行
+  update_frequency: monthly
+- id: macro_china_shibor
+  level1: 利率
+  level2: 国内基准
+  level3: Shibor
+  name: Shibor 历史
+  ak_function: macro_china_shibor_all
+  description: 上海银行间同业拆放利率 O/N - 1Y 历史数据。
+  docs_url: https://akshare.akfamily.xyz/data/interest_rate/interest_rate.html#id3
+  params: []
+  source: pbc
+  source_name: 中国人民银行
+  update_frequency: daily
+- id: rate_interbank
+  level1: 利率
+  level2: 国内基准
+  level3: 同业拆借
+  name: 银行间同业拆借利率
+  ak_function: rate_interbank
+  description: 上海 / 香港 / 伦敦银行间同业拆借利率历史。
+  docs_url: https://akshare.akfamily.xyz/data/interest_rate/interest_rate.html#id4
+  params:
+  - name: market
+    label: 市场
+    type: select
+    required: true
+    default: 上海银行同业拆借市场
+    options:
+    - 上海银行同业拆借市场
+    - 中国银行同业拆借市场
+    - 香港银行同业拆借市场
+    - 伦敦银行同业拆借市场
+    - 欧洲银行同业拆借市场
+    - 新加坡银行同业拆借市场
+  - name: symbol
+    label: 货币 / 标的
+    type: string
+    required: true
+    default: Shibor人民币
+  - name: indicator
+    label: 期限
+    type: string
+    required: true
+    default: 隔夜
+    placeholder: 隔夜 / 1周 / 1月 / 3月 / 1年
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+- id: repo_rate_query
+  level1: 利率
+  level2: 国内基准
+  level3: 回购定盘利率
+  name: 回购定盘利率近期
+  ak_function: repo_rate_query
+  description: 银行间回购定盘利率（FR007 等）近期数据。
+  docs_url: https://akshare.akfamily.xyz/data/interest_rate/interest_rate.html#id6
+  params:
+  - name: symbol
+    label: 类型
+    type: select
+    required: true
+    default: 回购定盘利率
+    options:
+    - 回购定盘利率
+  source: pbc
+  source_name: 中国人民银行
+  update_frequency: daily
+- id: macro_bank_usa_rate
+  level1: 利率
+  level2: 海外央行
+  level3: 美联储
+  name: 美联储利率决议历史
+  ak_function: macro_bank_usa_interest_rate
+  description: 美联储历次利率决议结果及前值 / 预测值。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_usa.html#id20
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_bank_euro_rate
+  level1: 利率
+  level2: 海外央行
+  level3: 欧央行
+  name: 欧央行利率决议历史
+  ak_function: macro_bank_euro_interest_rate
+  description: 欧洲央行历次利率决议结果。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_euro.html#id1
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_bank_china_rate
+  level1: 利率
+  level2: 海外央行
+  level3: 中国央行
+  name: 中国央行利率决议
+  ak_function: macro_bank_china_interest_rate
+  description: 中国人民银行历次利率决议结果。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id20
+  params: []
+  source: pbc
+  source_name: 中国人民银行
+  update_frequency: monthly
+- id: macro_bank_japan_rate
+  level1: 利率
+  level2: 海外央行
+  level3: 日本央行
+  name: 日本央行利率决议
+  ak_function: macro_bank_japan_interest_rate
+  description: 日本央行历次利率决议结果。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_japan.html#id1
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: futures_zh_spot
+  level1: 期货
+  level2: 内盘行情
+  level3: 实时行情
+  name: 国内期货实时行情
+  ak_function: futures_zh_spot
+  description: 国内主要期货合约实时行情。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id55
+  params:
+  - name: symbol
+    label: 合约代码
+    type: string
+    required: true
+    default: V2309
+  - name: market
+    label: 市场
+    type: select
+    required: true
+    default: CF
+    options:
+    - CF
+    - FF
+    - DC
+    - SF
+    - INE
+    - GF
+  - name: adjust
+    label: 复权
+    type: select
+    required: false
+    default: '0'
+    options:
+    - '0'
+    - '1'
+  source: sina
+  source_name: 新浪财经
+  update_frequency: realtime
+- id: futures_zh_realtime
+  level1: 期货
+  level2: 内盘行情
+  level3: 实时行情
+  name: 期货实时行情（品种）
+  ak_function: futures_zh_realtime
+  description: 按品种获取国内期货实时行情。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id56
+  params:
+  - name: symbol
+    label: 品种
+    type: string
+    required: true
+    default: PTA
+  source: sina
+  source_name: 新浪财经
+  update_frequency: realtime
+- id: futures_main_sina
+  level1: 期货
+  level2: 内盘行情
+  level3: 主力连续
+  name: 主力连续合约历史
+  ak_function: futures_main_sina
+  description: 主力连续合约的历史日频行情（开高低收、成交量、持仓量）。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id14
+  params:
+  - name: symbol
+    label: 合约代码
+    type: string
+    required: true
+    default: RB0
+    placeholder: 例如 RB0、CU0、AU0
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: sina
+  source_name: 新浪财经
+  update_frequency: daily
+- id: futures_zh_daily_sina
+  level1: 期货
+  level2: 内盘行情
+  level3: 历史行情
+  name: 期货合约历史行情
+  ak_function: futures_zh_daily_sina
+  description: 单一期货合约的日频历史行情。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id15
+  params:
+  - name: symbol
+    label: 合约代码
+    type: string
+    required: true
+    default: RB0
+  source: sina
+  source_name: 新浪财经
+  update_frequency: daily
+- id: futures_daily_exchange
+  level1: 期货
+  level2: 内盘行情
+  level3: 交易所日线
+  name: 期货日线（交易所）
+  ak_function: get_futures_daily
+  description: 上海 / 大连 / 郑商 / 中金 / 能源所发布的期货日线数据。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id59
+  params:
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-12-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  - name: market
+    label: 交易所
+    type: select
+    required: true
+    default: CFFEX
+    options:
+    - CFFEX
+    - SHFE
+    - DCE
+    - CZCE
+    - INE
+    - GFEX
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: futures_foreign_realtime
+  level1: 期货
+  level2: 外盘行情
+  level3: 实时行情
+  name: 外盘期货实时
+  ak_function: futures_foreign_commodity_realtime
+  description: 外盘期货实时行情（CL、GC、SI、HG 等）。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id61
+  params:
+  - name: symbol
+    label: 合约代码
+    type: string
+    required: true
+    default: CL
+    placeholder: 例如 CL、GC、SI、HG
+  source: sina
+  source_name: 新浪财经
+  update_frequency: realtime
+- id: futures_foreign_hist
+  level1: 期货
+  level2: 外盘行情
+  level3: 历史行情
+  name: 外盘期货历史
+  ak_function: futures_foreign_hist
+  description: 外盘期货合约的历史日频行情。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id62
+  params:
+  - name: symbol
+    label: 合约代码
+    type: string
+    required: true
+    default: ZSD
+  source: sina
+  source_name: 新浪财经
+  update_frequency: daily
+- id: futures_comex_inventory
+  level1: 期货
+  level2: 外盘行情
+  level3: COMEX库存
+  name: COMEX 库存
+  ak_function: futures_comex_inventory
+  description: COMEX 黄金 / 白银 / 铜库存数据。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id63
+  params:
+  - name: symbol
+    label: 品种
+    type: select
+    required: true
+    default: 黄金
+    options:
+    - 黄金
+    - 白银
+    - 铜
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: futures_inventory_em
+  level1: 期货
+  level2: 库存与持仓
+  level3: 期货库存
+  name: 期货库存（东财）
+  ak_function: futures_inventory_em
+  description: 国内期货品种库存数据（东财来源）。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id72
+  params:
+  - name: symbol
+    label: 品种代码
+    type: string
+    required: true
+    default: a
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: futures_dce_position
+  level1: 期货
+  level2: 库存与持仓
+  level3: 持仓排名
+  name: 大商所持仓排名
+  ak_function: futures_dce_position_rank
+  description: 大连商品交易所每日会员持仓排名。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id39
+  params:
+  - name: date
+    label: 日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: dce
+  source_name: 大商所
+  update_frequency: daily
+- id: futures_shfe_warehouse
+  level1: 期货
+  level2: 库存与持仓
+  level3: 仓单
+  name: 上期所仓单日报
+  ak_function: futures_shfe_warehouse_receipt
+  description: 上海期货交易所每日仓单日报。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id38
+  params:
+  - name: date
+    label: 日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: shfe
+  source_name: 上期所
+  update_frequency: daily
+- id: futures_spot_price
+  level1: 期货
+  level2: 现货与指数
+  level3: 现货基差
+  name: 现货价格与基差
+  ak_function: futures_spot_price
+  description: 各品种期货合约现货价格与基差数据。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id43
+  params:
+  - name: date
+    label: 日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+- id: futures_contract_detail
+  level1: 期货
+  level2: 现货与指数
+  level3: 合约详情
+  name: 期货合约详情
+  ak_function: futures_contract_detail
+  description: 单个期货合约的基础详情（交易所、单位、保证金、涨跌停板等）。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id7
+  params:
+  - name: symbol
+    label: 合约代码
+    type: string
+    required: true
+    default: AP2101
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+- id: futures_hog_core
+  level1: 期货
+  level2: 现货与指数
+  level3: 生猪价格
+  name: 生猪价格指数
+  ak_function: futures_hog_core
+  description: 全国生猪价格指数及主要省份现货价格。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html#id74
+  params:
+  - name: symbol
+    label: 品种
+    type: select
+    required: true
+    default: 外三元
+    options:
+    - 外三元
+    - 内三元
+    - 土杂猪
+    - 仔猪
+    - 二元母猪
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+- id: fund_open_info
+  level1: 基金
+  level2: 开放式基金
+  level3: 净值走势
+  name: 开放式基金净值走势
+  ak_function: fund_open_fund_info_em
+  description: 单只开放式基金单位净值、累计净值、收益率走势。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id3
+  params:
+  - name: symbol
+    label: 基金代码
+    type: string
+    required: true
+    default: '000001'
+  - name: indicator
+    label: 指标
+    type: select
+    required: true
+    default: 单位净值走势
+    options:
+    - 单位净值走势
+    - 累计净值走势
+    - 累计收益率走势
+    - 同类排名走势
+    - 同类排名百分比
+    - 分红送配详情
+    - 拆分详情
+  - name: period
+    label: 周期
+    type: select
+    required: true
+    default: 成立来
+    options:
+    - 成立来
+    - 1月
+    - 3月
+    - 6月
+    - 1年
+    - 3年
+    - 5年
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: fund_open_rank
+  level1: 基金
+  level2: 开放式基金
+  level3: 业绩排行
+  name: 开放式基金排行
+  ak_function: fund_open_fund_rank_em
+  description: 按业绩排行的开放式基金列表。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id5
+  params:
+  - name: symbol
+    label: 范围
+    type: select
+    required: true
+    default: 全部
+    options:
+    - 全部
+    - 股票型
+    - 混合型
+    - 债券型
+    - 指数型
+    - QDII
+    - LOF
+    - FOF
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: fund_open_daily
+  level1: 基金
+  level2: 开放式基金
+  level3: 实时数据
+  name: 开放式基金实时数据
+  ak_function: fund_open_fund_daily_em
+  description: 当前交易日全市场开放式基金实时净值估算。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id4
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: fund_etf_spot
+  level1: 基金
+  level2: ETF与LOF
+  level3: ETF实时
+  name: ETF 基金实时行情
+  ak_function: fund_etf_spot_em
+  description: 全市场 ETF 基金实时行情。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id8
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: fund_etf_hist
+  level1: 基金
+  level2: ETF与LOF
+  level3: ETF历史
+  name: ETF 基金历史行情
+  ak_function: fund_etf_hist_em
+  description: 单只 ETF 基金历史日频行情。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id9
+  params:
+  - name: symbol
+    label: ETF代码
+    type: string
+    required: true
+    default: '510300'
+  - name: period
+    label: 周期
+    type: select
+    required: true
+    default: daily
+    options:
+    - daily
+    - weekly
+    - monthly
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  - name: adjust
+    label: 复权
+    type: select
+    required: false
+    default: ''
+    options:
+    - ''
+    - qfq
+    - hfq
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: fund_etf_info
+  level1: 基金
+  level2: ETF与LOF
+  level3: ETF信息
+  name: ETF 基金信息查询
+  ak_function: fund_etf_fund_info_em
+  description: 单只 ETF 基金的历史净值与基础信息。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id10
+  params:
+  - name: fund
+    label: 基金代码
+    type: string
+    required: true
+    default: '511280'
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: fund_lof_spot
+  level1: 基金
+  level2: ETF与LOF
+  level3: LOF实时
+  name: LOF 基金实时行情
+  ak_function: fund_lof_spot_em
+  description: 全市场 LOF 基金实时行情。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id12
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: fund_lof_hist
+  level1: 基金
+  level2: ETF与LOF
+  level3: LOF历史
+  name: LOF 基金历史行情
+  ak_function: fund_lof_hist_em
+  description: 单只 LOF 基金历史日频行情。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id13
+  params:
+  - name: symbol
+    label: LOF代码
+    type: string
+    required: true
+    default: '166009'
+  - name: period
+    label: 周期
+    type: select
+    required: true
+    default: daily
+    options:
+    - daily
+    - weekly
+    - monthly
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+  - name: adjust
+    label: 复权
+    type: select
+    required: false
+    default: ''
+    options:
+    - ''
+    - qfq
+    - hfq
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: fund_money_daily
+  level1: 基金
+  level2: 货币与持仓
+  level3: 货币基金
+  name: 货币基金日报
+  ak_function: fund_money_fund_daily_em
+  description: 全市场货币基金当日 7 日年化等指标。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id14
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+- id: fund_portfolio_hold
+  level1: 基金
+  level2: 货币与持仓
+  level3: 持仓明细
+  name: 基金持仓明细
+  ak_function: fund_portfolio_hold_em
+  description: 单只基金的年度 / 半年度持仓明细。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id15
+  params:
+  - name: symbol
+    label: 基金代码
+    type: string
+    required: true
+    default: '000001'
+  - name: date
+    label: 年份
+    type: string
+    required: true
+    default: '2024'
+    placeholder: 年份，如 2024
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: quarterly
+- id: reits_realtime
+  level1: 基金
+  level2: REITs与私募
+  level3: REITs实时
+  name: REITs 实时行情
+  ak_function: reits_realtime_em
+  description: 公募 REITs 实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id16
+  params: []
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+- id: amac_member_info
+  level1: 基金
+  level2: REITs与私募
+  level3: 私募名录
+  name: 私募基金管理人
+  ak_function: amac_member_info
+  description: 中国证券投资基金业协会私募管理人名录。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id22
+  params: []
+  source: amac
+  source_name: 中国基金业协会
+  update_frequency: daily
+- id: macro_china_cpi
+  level1: 宏观
+  level2: 物价指数
+  level3: CPI
+  name: 中国 CPI 月度
+  ak_function: macro_china_cpi
+  description: 全国 / 城市 / 农村 CPI 当月、同比、环比、累计数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id1
+  params: []
+  source: nbs
+  source_name: 国家统计局
+  update_frequency: monthly
+- id: macro_china_cpi_monthly
+  level1: 宏观
+  level2: 物价指数
+  level3: CPI
+  name: 中国 CPI 月率历史
+  ak_function: macro_china_cpi_monthly
+  description: 中国 CPI 月率（同比）历次发布历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id2
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_china_ppi_yearly
+  level1: 宏观
+  level2: 物价指数
+  level3: PPI
+  name: 中国 PPI 月率
+  ak_function: macro_china_ppi_yearly
+  description: 中国 PPI 年率历次发布历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id3
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_china_pmi
+  level1: 宏观
+  level2: PMI
+  level3: 官方PMI
+  name: 官方制造业 PMI
+  ak_function: macro_china_pmi
+  description: 国家统计局制造业与非制造业 PMI 月度数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#pmi
+  params: []
+  source: nbs
+  source_name: 国家统计局
+  update_frequency: monthly
+- id: macro_china_non_man_pmi
+  level1: 宏观
+  level2: PMI
+  level3: 官方PMI
+  name: 官方非制造业 PMI
+  ak_function: macro_china_non_man_pmi
+  description: 国家统计局非制造业 PMI 历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id5
+  params: []
+  source: nbs
+  source_name: 国家统计局
+  update_frequency: monthly
+- id: macro_china_cx_pmi_yearly
+  level1: 宏观
+  level2: PMI
+  level3: 财新PMI
+  name: 财新制造业 PMI
+  ak_function: macro_china_cx_pmi_yearly
+  description: 财新中国制造业 PMI 月率历次发布。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id7
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_china_gdp
+  level1: 宏观
+  level2: 经济总量
+  level3: GDP
+  name: 中国 GDP 季度
+  ak_function: macro_china_gdp
+  description: 国家统计局公布的中国季度 GDP 总量与同比。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#gdp
+  params: []
+  source: nbs
+  source_name: 国家统计局
+  update_frequency: quarterly
+- id: macro_china_gdp_yearly
+  level1: 宏观
+  level2: 经济总量
+  level3: GDP
+  name: 中国 GDP 年率
+  ak_function: macro_china_gdp_yearly
+  description: 中国 GDP 年率历次发布历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id8
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: quarterly
+- id: macro_china_m2_yearly
+  level1: 宏观
+  level2: 货币金融
+  level3: M2
+  name: 中国 M2 货币供应
+  ak_function: macro_china_m2_yearly
+  description: 中国 M2 货币供应量年率历次发布。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#m2
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_china_shrzgm
+  level1: 宏观
+  level2: 货币金融
+  level3: 社融
+  name: 社会融资规模存量
+  ak_function: macro_china_shrzgm
+  description: 中国社会融资规模存量与各分项数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id12
+  params: []
+  source: pbc
+  source_name: 中国人民银行
+  update_frequency: monthly
+- id: macro_china_new_loan
+  level1: 宏观
+  level2: 货币金融
+  level3: 信贷
+  name: 新增人民币贷款
+  ak_function: macro_china_new_financial_credit
+  description: 新增人民币贷款月度历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id14
+  params: []
+  source: pbc
+  source_name: 中国人民银行
+  update_frequency: monthly
+- id: macro_china_exports
+  level1: 宏观
+  level2: 对外经济
+  level3: 进出口
+  name: 中国出口年率（美元）
+  ak_function: macro_china_exports_yoy
+  description: 以美元计价的中国出口年率历次发布。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id16
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_china_imports
+  level1: 宏观
+  level2: 对外经济
+  level3: 进出口
+  name: 中国进口年率（美元）
+  ak_function: macro_china_imports_yoy
+  description: 以美元计价的中国进口年率历次发布。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id17
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_china_fx_gold
+  level1: 宏观
+  level2: 对外经济
+  level3: 外汇储备
+  name: 中国外汇储备
+  ak_function: macro_china_foreign_exchange_gold
+  description: 中国外汇储备与黄金储备历史月度数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_china.html#id19
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_usa_cpi
+  level1: 宏观
+  level2: 海外宏观
+  level3: 美国CPI
+  name: 美国 CPI 月率
+  ak_function: macro_usa_cpi_monthly
+  description: 美国 CPI 月率历次发布历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_usa.html#cpi
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_usa_gdp
+  level1: 宏观
+  level2: 海外宏观
+  level3: 美国GDP
+  name: 美国 GDP 月度
+  ak_function: macro_usa_gdp_monthly
+  description: 美国 GDP 月率历次发布历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_usa.html#gdp
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_usa_unemployment
+  level1: 宏观
+  level2: 海外宏观
+  level3: 美国就业
+  name: 美国失业率
+  ak_function: macro_usa_unemployment_rate
+  description: 美国失业率月度历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_usa.html#id4
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_usa_non_farm
+  level1: 宏观
+  level2: 海外宏观
+  level3: 美国就业
+  name: 美国非农就业
+  ak_function: macro_usa_non_farm
+  description: 美国非农就业人数变动历次发布。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_usa.html#id5
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: macro_usa_ism_pmi
+  level1: 宏观
+  level2: 海外宏观
+  level3: 美国PMI
+  name: 美国 ISM 制造业 PMI
+  ak_function: macro_usa_ism_pmi
+  description: 美国 ISM 制造业 PMI 月度历史。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro_usa.html#ism
+  params: []
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+- id: stock_margin_sse
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 融资融券
+  name: 上交所融资融券汇总
+  ak_function: stock_margin_sse
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 上海证券交易所融资融券每日汇总数据，包含融资余额与融券余额。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id172
+  params:
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+- id: stock_margin_szse
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 融资融券
+  name: 深交所融资融券汇总
+  ak_function: stock_margin_szse
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 深圳证券交易所融资融券每日汇总数据。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id172
+  params:
+  - name: start_date
+    label: 开始日期
+    type: date
+    required: true
+    default: '2024-01-01'
+  - name: end_date
+    label: 结束日期
+    type: date
+    required: true
+    default: '2024-12-31'
+- id: stock_individual_fund_flow
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 个股资金流
+  name: 个股资金流向
+  ak_function: stock_individual_fund_flow
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 查询指定个股的每日资金流入流出明细。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id179
+  params:
+  - name: stock
+    label: 股票代码
+    type: string
+    required: true
+    placeholder: 例如 600519
+    default: '600519'
+  - name: market
+    label: 市场
+    type: select
+    required: true
+    options:
+    - sh
+    - sz
+    default: sh
+- id: stock_individual_fund_flow_rank
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 资金流排名
+  name: 个股资金流排名
+  ak_function: stock_individual_fund_flow_rank
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 全市场个股资金流排名，可筛选不同时间周期。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id180
+  params:
+  - name: indicator
+    label: 周期
+    type: select
+    required: true
+    options:
+    - 今日
+    - 3日
+    - 5日
+    - 10日
+    default: 今日
+- id: stock_market_fund_flow
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 大盘资金流
+  name: 大盘资金流向
+  ak_function: stock_market_fund_flow
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: A 股大盘资金流向历史数据，含超大单/大单/中单/小单净流入。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id181
+  params: []
+- id: stock_sector_fund_flow_rank
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 板块资金流
+  name: 板块资金流排名
+  ak_function: stock_sector_fund_flow_rank
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 行业或概念板块资金流入排名。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id182
+  params:
+  - name: indicator
+    label: 周期
+    type: select
+    required: true
+    options:
+    - 今日
+    - 3日
+    - 5日
+    - 10日
+    default: 今日
+  - name: sector_type
+    label: 板块类型
+    type: select
+    required: true
+    options:
+    - 行业资金流
+    - 概念资金流
+    - 地域资金流
+    default: 行业资金流
+- id: stock_dzjy_sctj
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 大宗交易
+  name: 大宗交易统计
+  ak_function: stock_dzjy_sctj
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 大宗交易市场统计数据。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id92
+  params: []
+- id: stock_dzjy_mrmx
+  level1: 股票与指数
+  level2: 资金与情绪
+  level3: 大宗交易
+  name: 大宗交易每日明细
+  ak_function: stock_dzjy_mrmx
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 指定日期的大宗交易明细数据，含成交价、折溢价率。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id92
+  params:
+  - name: date
+    label: 日期
+    type: date
+    required: true
+    default: '2024-12-31'
+- id: stock_gdfx_free_holding_detail_em
+  level1: 公司与财报
+  level2: 股东信息
+  level3: 十大股东
+  name: 十大流通股东明细
+  ak_function: stock_gdfx_free_holding_detail_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: quarterly
+  description: 查询指定机构或个人作为十大流通股东的持仓明细。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id223
+  params:
+  - name: date
+    label: 报告期
+    type: date
+    required: true
+    default: '2024-09-30'
+- id: stock_gdfx_top_10_em
+  level1: 公司与财报
+  level2: 股东信息
+  level3: 个股股东
+  name: 个股十大股东
+  ak_function: stock_gdfx_top_10_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: quarterly
+  description: 查询指定个股的十大股东持仓变动。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id222
+  params:
+  - name: stock
+    label: 股票代码
+    type: string
+    required: true
+    placeholder: 例如 600519
+    default: '600519'
+- id: stock_zh_a_gdhs
+  level1: 公司与财报
+  level2: 股东信息
+  level3: 股东户数
+  name: A 股股东户数
+  ak_function: stock_zh_a_gdhs
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 全市场 A 股股东户数变动统计。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id235
+  params: []
+- id: stock_yjbb_em
+  level1: 公司与财报
+  level2: 财报数据
+  level3: 业绩报表
+  name: 业绩报表
+  ak_function: stock_yjbb_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: quarterly
+  description: A 股上市公司业绩报表汇总，含营收、净利润等。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id148
+  params:
+  - name: date
+    label: 报告期
+    type: date
+    required: true
+    default: '2024-09-30'
+- id: stock_yjyg_em
+  level1: 公司与财报
+  level2: 财报数据
+  level3: 业绩预告
+  name: 业绩预告
+  ak_function: stock_yjyg_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: quarterly
+  description: 上市公司业绩预告汇总。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id150
+  params:
+  - name: date
+    label: 报告期
+    type: date
+    required: true
+    default: '2024-09-30'
+- id: stock_restricted_release_queue_em
+  level1: 公司与财报
+  level2: 财报数据
+  level3: 限售解禁
+  name: 限售解禁日历
+  ak_function: stock_restricted_release_queue_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: A 股限售股解禁日历，含解禁日期和市值。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id245
+  params: []
+- id: stock_profit_forecast_em
+  level1: 公司与财报
+  level2: 分析师
+  level3: 盈利预测
+  name: 个股盈利预测
+  ak_function: stock_profit_forecast_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 机构对指定个股的盈利预测汇总。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id266
+  params:
+  - name: stock
+    label: 股票代码
+    type: string
+    required: true
+    placeholder: 例如 600519
+    default: '600519'
+- id: stock_info_a_code_name
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 股票列表
+  name: A 股列表
+  ak_function: stock_info_a_code_name
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 全部 A 股股票代码与名称列表。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id252
+  params: []
+- id: macro_euro_gdp_yoy
+  level1: 宏观
+  level2: 海外宏观
+  level3: 欧元区
+  name: 欧元区 GDP 年率
+  ak_function: macro_euro_gdp_yoy
+  source: jin10
+  source_name: 金十数据
+  update_frequency: quarterly
+  description: 欧元区 GDP 同比增速历史数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_euro_cpi_mom
+  level1: 宏观
+  level2: 海外宏观
+  level3: 欧元区
+  name: 欧元区 CPI 月率
+  ak_function: macro_euro_cpi_mom
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+  description: 欧元区消费者物价指数月率。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_euro_unemployment_rate_mom
+  level1: 宏观
+  level2: 海外宏观
+  level3: 欧元区
+  name: 欧元区失业率
+  ak_function: macro_euro_unemployment_rate_mom
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+  description: 欧元区失业率月度数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_japan_core_cpi_yearly
+  level1: 宏观
+  level2: 海外宏观
+  level3: 日本
+  name: 日本核心 CPI 年率
+  ak_function: macro_japan_core_cpi_yearly
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+  description: 日本核心消费者物价指数年率。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_japan_unemployment_rate
+  level1: 宏观
+  level2: 海外宏观
+  level3: 日本
+  name: 日本失业率
+  ak_function: macro_japan_unemployment_rate
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+  description: 日本失业率月度数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_uk_cpi_yearly
+  level1: 宏观
+  level2: 海外宏观
+  level3: 英国
+  name: 英国 CPI 年率
+  ak_function: macro_uk_cpi_yearly
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+  description: 英国消费者物价指数年率。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_uk_unemployment_rate
+  level1: 宏观
+  level2: 海外宏观
+  level3: 英国
+  name: 英国失业率
+  ak_function: macro_uk_unemployment_rate
+  source: jin10
+  source_name: 金十数据
+  update_frequency: monthly
+  description: 英国失业率月度数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_china_real_estate
+  level1: 宏观
+  level2: 中国宏观
+  level3: 房地产
+  name: 中国房地产数据
+  ak_function: macro_china_real_estate
+  source: nbs
+  source_name: 国家统计局
+  update_frequency: monthly
+  description: 中国房地产投资、销售、新开工等月度数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_china_consumer_goods_retail
+  level1: 宏观
+  level2: 中国宏观
+  level3: 消费
+  name: 社会消费品零售总额
+  ak_function: macro_china_consumer_goods_retail
+  source: nbs
+  source_name: 国家统计局
+  update_frequency: monthly
+  description: 中国社会消费品零售总额月度数据。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: macro_china_industrial_production_yoy
+  level1: 宏观
+  level2: 中国宏观
+  level3: 工业
+  name: 工业增加值同比
+  ak_function: macro_china_industrial_production_yoy
+  source: nbs
+  source_name: 国家统计局
+  update_frequency: monthly
+  description: 中国规模以上工业增加值同比增速。
+  docs_url: https://akshare.akfamily.xyz/data/macro/macro.html
+  params: []
+- id: fund_etf_fund_daily_em
+  level1: 基金
+  level2: ETF与LOF
+  level3: ETF信息
+  name: ETF 基金申赎
+  ak_function: fund_etf_fund_daily_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: ETF 基金每日申赎和份额变动数据。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#etf
+  params: []
+- id: fund_manager_em
+  level1: 基金
+  level2: 基金经理
+  level3: 经理排行
+  name: 基金经理排行
+  ak_function: fund_manager_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 基金经理综合排行，含管理规模与业绩表现。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html#id40
+  params: []
+- id: fund_rating_all
+  level1: 基金
+  level2: 基金评级
+  level3: 评级查询
+  name: 基金评级（全部）
+  ak_function: fund_rating_all
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: daily
+  description: 全市场基金评级查询。
+  docs_url: https://akshare.akfamily.xyz/data/fund/fund_public.html
+  params: []
+- id: get_cffex_daily
+  level1: 期货
+  level2: 内盘行情
+  level3: 交易所日线
+  name: 中金所期货日线
+  ak_function: get_cffex_daily
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+  description: 中国金融期货交易所（中金所）期货日线行情。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html
+  params: []
+- id: get_czce_daily
+  level1: 期货
+  level2: 内盘行情
+  level3: 交易所日线
+  name: 郑商所期货日线
+  ak_function: get_czce_daily
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+  description: 郑州商品交易所（郑商所）期货日线行情。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html
+  params: []
+- id: get_ine_daily
+  level1: 期货
+  level2: 内盘行情
+  level3: 交易所日线
+  name: 上期能源期货日线
+  ak_function: get_ine_daily
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+  description: 上海国际能源交易中心（上期能源）期货日线行情。
+  docs_url: https://akshare.akfamily.xyz/data/futures/futures.html
+  params: []
+- id: energy_carbon_domestic
+  level1: 宏观
+  level2: 另类数据
+  level3: 碳排放
+  name: 国内碳交易行情
+  ak_function: energy_carbon_domestic
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+  description: 国内碳排放权交易行情数据。
+  docs_url: https://akshare.akfamily.xyz/data/energy/energy.html
+  params: []
+- id: energy_oil_detail
+  level1: 宏观
+  level2: 另类数据
+  level3: 能源
+  name: 原油价格详情
+  ak_function: energy_oil_detail
+  source: akshare
+  source_name: AKShare
+  update_frequency: daily
+  description: 全球主要原油品种价格详情（WTI/Brent/Dubai 等）。
+  docs_url: https://akshare.akfamily.xyz/data/energy/energy.html
+  params: []
+- id: stock_sh_a_spot
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: 沪 A 股实时行情
+  ak_function: stock_sh_a_spot_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+  description: 获取上海证券交易所沪 A 股实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id15
+  params: []
+- id: stock_sz_a_spot
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: 深 A 股实时行情
+  ak_function: stock_sz_a_spot_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+  description: 获取深圳证券交易所深 A 股实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id16
+  params: []
+- id: stock_bj_a_spot
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: 京 A 股实时行情
+  ak_function: stock_bj_a_spot_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+  description: 获取北京证券交易所京 A 股实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id17
+  params: []
+- id: stock_new_a_spot
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: 新股实时行情
+  ak_function: stock_new_a_spot_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+  description: 获取新股实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id18
+  params: []
+- id: stock_cy_a_spot
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: 创业板实时行情
+  ak_function: stock_cy_a_spot_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+  description: 获取创业板实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id19
+  params: []
+- id: stock_kc_a_spot
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: 科创板实时行情
+  ak_function: stock_kc_a_spot_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+  description: 获取科创板实时行情快照。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#id20
+  params: []
+- id: stock_ab_comparison
+  level1: 股票与指数
+  level2: 实时行情
+  level3: 实时快照
+  name: AB 股比价
+  ak_function: stock_zh_ab_comparison_em
+  source: eastmoney
+  source_name: 东方财富
+  update_frequency: realtime
+  description: 获取沪深京个股 AB 股比价数据。
+  docs_url: https://akshare.akfamily.xyz/data/stock/stock.html#ab
+  params: []

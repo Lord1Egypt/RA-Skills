@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-3d-model-generation",
+  "version": "1.0.0", 
+  "description": "AI 3D模型生成 - 文生3D、图片转3D模型",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "3d", "generation", "creative", "chinese"],
+  "category": "creative",
+  "license": "MIT"
+}

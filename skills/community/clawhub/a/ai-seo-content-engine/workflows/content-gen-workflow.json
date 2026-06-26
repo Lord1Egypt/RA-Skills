@@ -1,0 +1,285 @@
+{
+  "name": "Content Engine — Daily SaaS Review Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 12
+            }
+          ]
+        }
+      },
+      "id": "n1",
+      "name": "Daily Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Keyword research: Rotating content types and SaaS categories\nconst categories = [\n  { type: 'best-of', template: 'Best {tool_category} for {audience} in 2026', category: 'Best Of' },\n  { type: 'comparison', template: '{tool_a} vs {tool_b}: Which Is Better in 2026?', category: 'Comparisons' },\n  { type: 'review', template: '{tool_name} Review 2026: Pricing, Features, and Honest Take', category: 'Reviews' },\n  { type: 'guide', template: 'How to Set Up {tool_name} for {use_case}', category: 'Guides' }\n];\n\nconst tools = [\n  { name: 'HubSpot CRM', category: 'CRM', audience: 'small business', affiliate: 'hubspot' },\n  { name: 'Notion', category: 'Project Management', audience: 'teams', affiliate: 'notion' },\n  { name: 'Pipedrive', category: 'CRM', audience: 'sales teams', affiliate: 'pipedrive' },\n  { name: 'Monday.com', category: 'Project Management', audience: 'agencies', affiliate: 'monday' },\n  { name: 'ClickUp', category: 'Project Management', audience: 'startups', affiliate: 'clickup' },\n  { name: 'Freshworks', category: 'CRM', audience: 'growing businesses', affiliate: 'freshworks' },\n  { name: 'ConvertKit', category: 'Email Marketing', audience: 'creators', affiliate: 'convertkit' },\n  { name: 'Mailchimp', category: 'Email Marketing', audience: 'small business', affiliate: 'mailchimp' },\n  { name: 'Zapier', category: 'Automation', audience: 'non-technical users', affiliate: 'zapier' },\n  { name: 'Make', category: 'Automation', audience: 'power users', affiliate: 'make' },\n  { name: 'n8n', category: 'Automation', audience: 'developers', affiliate: 'n8n' },\n  { name: 'Airtable', category: 'Database', audience: 'teams', affiliate: 'airtable' },\n  { name: 'Slack', category: 'Communication', audience: 'remote teams', affiliate: 'slack' },\n  { name: 'Linear', category: 'Issue Tracking', audience: 'dev teams', affiliate: 'linear' },\n  { name: 'Vercel', category: 'Hosting', audience: 'developers', affiliate: 'vercel' },\n  { name: 'Cloudflare', category: 'CDN & Security', audience: 'businesses', affiliate: 'cloudflare' },\n  { name: 'Supabase', category: 'Backend', audience: 'developers', affiliate: 'supabase' },\n  { name: 'Stripe', category: 'Payments', audience: 'SaaS founders', affiliate: 'stripe' }\n];\n\n// Pick a random content type and tool\nconst contentType = categories[Math.floor(Math.random() * categories.length)];\nconst tool = tools[Math.floor(Math.random() * tools.length)];\n\n// For comparisons, pick a second tool from same category\nlet tool_b = null;\nif (contentType.type === 'comparison') {\n  const sameCategory = tools.filter(t => t.category === tool.category && t.name !== tool.name);\n  if (sameCategory.length > 0) {\n    tool_b = sameCategory[Math.floor(Math.random() * sameCategory.length)];\n  } else {\n    // Fallback to review if no comparison partner\n    contentType.type = 'review';\n    contentType.template = '{tool_name} Review 2026: Pricing, Features, and Honest Take';\n    contentType.category = 'Reviews';\n  }\n}\n\n// Build the title\nlet title = contentType.template\n  .replace('{tool_name}', tool.name)\n  .replace('{tool_category}', tool.category + ' Tools')\n  .replace('{audience}', tool.audience)\n  .replace('{use_case}', tool.audience)\n  .replace('{tool_a}', tool.name)\n  .replace('{tool_b}', tool_b ? tool_b.name : '');\n\n// Build slug\nconst slug = title.toLowerCase()\n  .replace(/[^a-z0-9\\s-]/g, '')\n  .replace(/\\s+/g, '-')\n  .replace(/-+/g, '-')\n  .replace(/^-|-$/g, '');\n\nreturn [{\n  json: {\n    title,\n    slug,\n    content_type: contentType.type,\n    category: contentType.category,\n    tool_name: tool.name,\n    tool_category: tool.category,\n    tool_audience: tool.audience,\n    tool_affiliate: tool.affiliate,\n    tool_b_name: tool_b ? tool_b.name : null,\n    tool_b_affiliate: tool_b ? tool_b.affiliate : null,\n    date: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "n2",
+      "name": "Keyword & Topic Selector",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are an expert SaaS reviewer and SEO content writer. You write honest, detailed, experience-based reviews of business software tools. Your tone is direct, practical, and opinionated — you tell readers what's actually good and what isn't. You always include pricing, pros/cons, and a clear recommendation. Include an affiliate disclosure at the top. Format output as clean Markdown suitable for a Hugo blog post. Do NOT include frontmatter — just the article body starting with the first heading."
+            },
+            {
+              "role": "user",
+              "content": "Write a comprehensive, SEO-optimized article with this title: \"{{ $json.title }}\"\n\nContent type: {{ $json.content_type }}\nPrimary tool: {{ $json.tool_name }} ({{ $json.tool_category }})\nTarget audience: {{ $json.tool_audience }}\n{{ $json.tool_b_name ? 'Comparison tool: ' + $json.tool_b_name : '' }}\n\nRequirements:\n- 1500-2500 words\n- Include H2 and H3 headings for SEO\n- Include a TL;DR summary at the top\n- Include pricing tables where relevant\n- Include pros/cons lists\n- Include a 'Who Should Use This' section\n- Include a 'Who Should NOT Use This' section\n- Include a clear verdict/recommendation at the end\n- Write from first-person experience ('we tested', 'in our experience')\n- Be opinionated — readers want clear recommendations, not wishy-washy 'it depends'\n- Mention specific features, not marketing fluff\n- Include an affiliate disclosure paragraph at the very top"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 4000
+        }
+      },
+      "id": "n3",
+      "name": "Generate Article",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1,
+      "position": [
+        660,
+        300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst topic = $('Keyword & Topic Selector').first().json;\n\n// Extract the generated article text\nconst articleBody = input.text || input.message?.content || '';\n\n// Build Hugo frontmatter\nconst frontmatter = `---\ntitle: \"${topic.title}\"\ndate: ${topic.date}\ndraft: false\ndescription: \"${topic.title.replace(/\"/g, \"'\")}\"\ncategories: [\"${topic.category}\"]\ntags: [\"${topic.tool_name.toLowerCase().replace(/\\s+/g, '-')}\", \"${topic.tool_category.toLowerCase().replace(/\\s+/g, '-')}\", \"${topic.content_type}\", \"saas-review\"]\nimage: \"\"\naffiliate_links:\n  ${topic.tool_affiliate}: \"\"\n${topic.tool_b_affiliate ? '  ' + topic.tool_b_affiliate + ': \"\"' : ''}\n---\n\n`;\n\nconst fullPost = frontmatter + articleBody;\n\nreturn [{\n  json: {\n    slug: topic.slug,\n    title: topic.title,\n    content: fullPost,\n    category: topic.category,\n    tool_name: topic.tool_name,\n    date: topic.date\n  }\n}];"
+      },
+      "id": "n4",
+      "name": "Format Hugo Post",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://YOUR_BLOG_ADMIN_HOST:3000/api/posts",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ slug: $json.slug, lang: 'en', frontmatter: {}, body: $json.content, raw: true }) }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "={{ $env.NICHE_BLOG_ADMIN_API_KEY || 'YOUR_BLOG_ADMIN_API_KEY' }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "n5",
+      "name": "Publish to Blog",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_TRACKER_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "slug": "={{ $json.slug }}",
+            "source": "niche-blog",
+            "date": "={{ $json.date }}",
+            "category": "={{ $json.category }}",
+            "tool": "={{ $json.tool_name }}",
+            "status": "published"
+          },
+          "matchingColumns": [
+            "slug",
+            "source"
+          ],
+          "schema": [
+            {
+              "id": "slug",
+              "displayName": "slug",
+              "required": false,
+              "defaultMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": true
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "tool",
+              "displayName": "tool",
+              "required": false,
+              "defaultMatch": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "n6",
+      "name": "Track in Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1320,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "YOUR_NOTIFICATION_EMAIL",
+        "subject": "=New article published: {{ $('Format Hugo Post').first().json.title }}",
+        "message": "=<h3>New Article Published</h3><p><strong>Title:</strong> {{ $('Format Hugo Post').first().json.title }}</p><p><strong>Slug:</strong> {{ $('Format Hugo Post').first().json.slug }}</p><p><strong>Category:</strong> {{ $('Format Hugo Post').first().json.category }}</p><p><strong>Tool:</strong> {{ $('Format Hugo Post').first().json.tool_name }}</p><p>Review and add affiliate links, then trigger cross-posting.</p>",
+        "options": {}
+      },
+      "id": "n7",
+      "name": "Notify Owner",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1320,
+        500
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily Trigger": {
+      "main": [
+        [
+          {
+            "node": "Keyword & Topic Selector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keyword & Topic Selector": {
+      "main": [
+        [
+          {
+            "node": "Generate Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Article": {
+      "main": [
+        [
+          {
+            "node": "Format Hugo Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Hugo Post": {
+      "main": [
+        [
+          {
+            "node": "Publish to Blog",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publish to Blog": {
+      "main": [
+        [
+          {
+            "node": "Track in Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify Owner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

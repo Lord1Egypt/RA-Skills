@@ -1,0 +1,39 @@
+# Learning Logger Hook Configuration
+# Hook ID: learning_logger
+# Type: POST_EXECUTE
+# Priority: HIGH
+
+name: learning_logger
+description: 自动记录学习行为到 .learnings/ 目录
+trigger: post_execute
+priority: high
+enabled: true
+
+# Hook behavior configuration
+config:
+  # Categories to log
+  categories:
+    - correction
+    - insight
+    - error
+    - best_practice
+  
+  # Minimum confidence threshold (0-1)
+  min_confidence: 0.6
+  
+  # Auto-extract from memory files
+  auto_extract: true
+  
+  # Sync to .learnings/ directory (compatible with self-improving-agent)
+  sync_to_learnings_dir: true
+  
+  # Learning file path
+  learnings_file: ~/.anima/learnings/LEARNINGS.md
+  
+  # Compatibility directory
+  compat_dir: ~/.anima/.learnings/
+
+# Environment variables used
+env:
+  - ANIMA_LEARNING_ENABLED
+  - ANIMA_LEARNING_DIR

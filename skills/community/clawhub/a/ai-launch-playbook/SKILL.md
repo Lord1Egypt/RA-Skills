@@ -1,35 +1,88 @@
 ---
-name: "AI Launch Playbook — Multi-Channel GTM for AI Products"
-description: "Launch your AI product to global attention — the playbook behind Manus, Devin, and AFFiNE's breakout launches. Covers AI-specific GTM strategy, hype cycle ma..."
-category: "other"
-source: "ClawHub"
-tags: [ai-launch, ai-product, beta-launch, bootstrapped, first-users, indie-maker, launch-checklist, launch-week, mvp-launch, one-person-startup, quick-start, solo-founder, sprint, traction, waitlist]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-launch-playbook"
-sourceUrl: "https://clawhub.ai/skills/ai-launch-playbook"
+name: "AI Product Global Launch Playbook"
+version: 1.0.0
+description: Launch your AI product to global attention — the playbook behind Manus, Devin, and AFFiNE's breakout launches. Covers AI-specific GTM strategy, hype cycle management, waitlist tactics, and multi-market rollout for maximum day-one impact.
+author: Gingiris
+tags:
+  - ai
+  - launch
+  - startup
+  - global
+  - product-launch
+  - go-to-market
+  - gtm
+  - startup-launch
+  - startup-marketing
+  - saas
+  - ai-tools
+  - claude-code
+  - ai-agent-skill
+  - waitlist
+  - latest
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/ai-launch-playbook
 ---
 
-# AI Launch Playbook — Multi-Channel GTM for AI Products
+## 📦 Install
 
-> Launch your AI product to global attention — the playbook behind Manus, Devin, and AFFiNE's breakout launches. Covers AI-specific GTM strategy, hype cycle ma...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-launch-playbook`
-- **Source URL:** [https://clawhub.ai/skills/ai-launch-playbook](https://clawhub.ai/skills/ai-launch-playbook)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ai-launch-playbook
+clawhub install ai-launch-playbook
 ```
+
+**What you get after installing:**
+- AI-specific GTM strategy with hype cycle management and waitlist tactics
+- Multi-market rollout playbook for maximum day-one global impact
+- Real case studies from Manus, Devin, and AFFiNE breakout launches
+
+---
+
+# AI Product Launch Playbook
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+> Complete guide for launching AI products globally, with real case studies.
+
+## What You Get
+
+- AI product positioning strategies
+- Global launch timing and market selection
+- KOL and influencer outreach for AI products
+- Community building in AI/ML spaces
+- Case studies: Manus, Devin, AFFiNE
+
+## 📚 Free Resources
+
+**GitHub Playbook (Free):**
+- [Gingiris Launch Playbook](https://github.com/Gingiris/gingiris-launch) - Complete launch strategy
+- [Gingiris Open Source Marketing](https://github.com/Gingiris/gingiris-opensource) - OSS marketing tactics
+
+## 💎 Premium Resources
+
+**Gumroad Products:**
+- [AI Product Global Launch Guide](https://gingiris.gumroad.com/l/nxkifd) - Deep-dive with case studies
+- [Complete Launch Bundle](https://gingiris.gumroad.com/l/gingiris-complete-global-launch-bundle) - All playbooks in one
+
+## 🎯 Need Expert Help?
+
+**1-on-1 Consulting with Iris (30x PH #1 Winner, AFFiNE Co-founder):**
+- 30 min session: ¥800
+- 60 min session: ¥1500
+- Monthly retainer: ¥7000
+
+👉 **Book now: [gingiris.com/services](https://gingiris.com/zh/services)**
+
+---
+
+Keywords: AI launch, AI product launch, launching AI product, AI startup launch, AI go-to-market, AI GTM strategy
+
+
+---
+
+## 🔗 About the Author
+
+**Iris Wei** — Growth consultant for 150+ AI startups. Ex-COO at AFFiNE (69K GitHub stars).
+
+- 🐦 Twitter: [@WeiYipei](https://twitter.com/WeiYipei) — Daily growth tactics
+- 💬 Consulting: [@Iris_carrot on Telegram](https://t.me/Iris_carrot)
+- 🛒 Premium Bundle (all 5 playbooks + templates): [Get on Gumroad ($249)](https://gingiris.gumroad.com/l/gingiris-complete-global-launch-bundle)
+- 📚 40+ Free Playbooks: [gingiris.tools/skills](https://gingiris.tools/skills/)
+

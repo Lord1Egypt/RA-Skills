@@ -1,0 +1,33 @@
+{
+  "name": "api3-feed-manager-readonly-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only OpenClaw skill and bundled CLI for Api3 feed discovery, readiness classification, browser planning, and exact contract-call preparation without transaction submission.",
+  "type": "commonjs",
+  "bin": {
+    "api3-feed-manager-readonly": "scripts/bin/api3-feed-manager-readonly.js"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts"
+  ],
+  "keywords": [
+    "openclaw",
+    "skill",
+    "api3",
+    "oracle",
+    "feeds",
+    "readonly"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node --check scripts/api3-feed-manager-readonly.js && node --check scripts/bin/api3-feed-manager-readonly.js"
+  },
+  "dependencies": {
+    "@api3/contracts": "^37.0.0",
+    "@api3/dapi-management": "^4.13.0",
+    "ethers": "^6.15.0"
+  }
+}

@@ -1,35 +1,22 @@
 ---
-name: "XHS Layout"
-description: "小红书图文排版生成，JSON 入参。Use when: 用户要生成小红书风格多页图文、排版。"
-category: "other"
-source: "ClawHub"
-tags: [layout, tianshu, xhs]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aiznt-xhs"
-sourceUrl: "https://clawhub.ai/skills/aiznt-xhs"
+name: aiznt-xhs
+description: >
+  小红书图文排版生成，JSON 入参。Use when: 用户要生成小红书风格多页图文、排版。
+metadata:
+  openclaw:
+    primaryEnv: TS_TOKEN
+    requires:
+      env:
+        - AIZNT_PROXY_URLS
 ---
 
-# XHS Layout
+# 小红书图文 (aiznt-xhs)
 
-> 小红书图文排版生成，JSON 入参。Use when: 用户要生成小红书风格多页图文、排版。
+服务端将 JSON 转为 form-urlencoded 调上游。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aiznt-xhs`
-- **Source URL:** [https://clawhub.ai/skills/aiznt-xhs](https://clawhub.ai/skills/aiznt-xhs)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/aiznt-xhs
+node scripts/xhs.js --body '{"user_text":"标题与正文","page_count":3}'
+node scripts/xhs.js
 ```
+
+URL 键：`xhs_generate`。配置见 TsClaw「同步天树凭证」。

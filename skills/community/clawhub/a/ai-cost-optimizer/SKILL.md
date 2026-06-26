@@ -1,35 +1,72 @@
----
-name: "Ai Cost Optimizer"
-description: "提供基于预算和任务需求的AI模型成本优化方案，计算节省并指导OpenClaw配置与模型切换策略。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-cost-optimizer"
-sourceUrl: "https://clawhub.ai/skills/ai-cost-optimizer"
----
+# Skill: OpenClaw 成本优化顾问
 
-# Ai Cost Optimizer
+## 触发词
+- AI 成本
+- 模型成本
+- API 成本优化
+- 省钱模型
 
-> 提供基于预算和任务需求的AI模型成本优化方案，计算节省并指导OpenClaw配置与模型切换策略。
+## 使用场景
+用户想知道如何选择最便宜的 AI 模型，优化 API 成本。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-cost-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/ai-cost-optimizer](https://clawhub.ai/skills/ai-cost-optimizer)
+## 核心数据（2026-03-12 已验证）
 
-## Overview
+| 模型 | 输入价格/百万 tokens | 输出价格/百万 tokens | 人民币/万 tokens |
+|------|---------------------|---------------------|-----------------|
+| DeepSeek-V3.2 | ¥0.27 | ¥1.08 | ¥0.014 |
+| GPT-5 mini | $0.25 | $2 | ¥0.18 |
+| GPT-5.4 | $2.50 | $15 | ¥1.40-1.75 |
+| Claude Sonnet 4.6 | $3 | $15 | ¥0.99-1.26 |
+| Claude Opus 4.6 | $5 | $25 | ¥1.75-2.10 |
 
+**差价：DeepSeek vs Opus = 150 倍**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-cost-optimizer
+## 执行步骤
+
+1. **询问用户需求**
+   - 月预算？
+   - 任务类型（对话/代码/分析）？
+   - 性能要求（速度/质量）？
+
+2. **推荐方案**
+   - 预算 < ¥100 → DeepSeek-V3.2
+   - 预算 ¥100-500 → GPT-5 mini + DeepSeek 混合
+   - 预算 > ¥500 → GPT-5.4/Claude Sonnet
+
+3. **计算节省**
+   - 对比用户当前成本
+   - 展示优化后成本
+   - 计算节省比例
+
+4. **提供配置指南**
+   - OpenClaw 配置文件
+   - BYOK（自带 API Key）
+   - 模型切换策略
+
+## 输出格式
+
 ```
+💰 成本优化方案
+
+当前方案：
+- 模型：[用户当前模型]
+- 月成本：¥[X]
+
+推荐方案：
+- 模型：[推荐模型]
+- 月成本：¥[Y]
+- 节省：¥[X-Y]（[Z]%）
+
+配置步骤：
+1. [步骤1]
+2. [步骤2]
+
+预期效果：
+- 成本降低 [Z]%
+- 性能保持 [质量等级]
+```
+
+## 定价建议
+- 免费咨询
+- 企业方案定制：¥999
+- 长期优化服务：¥2999/月

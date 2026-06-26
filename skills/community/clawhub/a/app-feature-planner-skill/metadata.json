@@ -1,0 +1,19 @@
+{
+  "slug": "app-feature-planner-skill",
+  "name": "App Feature Planner Skill",
+  "version": "0.1.0",
+  "tags": [
+    "app-feature-planner",
+    "openclaw",
+    "product",
+    "templates"
+  ],
+  "category": "Product & Apps",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-22",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

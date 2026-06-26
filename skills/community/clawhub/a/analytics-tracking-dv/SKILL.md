@@ -1,35 +1,45 @@
 ---
-name: "Analytics & Tracking Setup"
-description: "Track events and user behavior using Segment."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/analytics-tracking-dv"
-sourceUrl: "https://clawhub.ai/skills/analytics-tracking-dv"
+id: 'analytics-tracking'
+name: 'Analytics Tracking'
+description: 'Track events and user behavior using Segment.'
+version: '1.0.0'
+author: 'DaVinci'
+last_amended_at: null
+trigger_patterns: []
+pre_conditions:
+  git_repo_required: false
+  tools_available: []
+expected_output_format: 'natural_language'
 ---
 
-# Analytics & Tracking Setup
+# Analytics Tracking
 
-> Track events and user behavior using Segment.
+Track events and user behavior using Segment.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/analytics-tracking-dv`
-- **Source URL:** [https://clawhub.ai/skills/analytics-tracking-dv](https://clawhub.ai/skills/analytics-tracking-dv)
+## Usage
 
-## Overview
+### Track an event
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/analytics-tracking-dv
+analytics-tracking track \
+  --event "Signed Up" \
+  --user-id "user-123" \
+  --properties '{"plan":"Pro"}'
+```
+
+### Identify a user
+
+```bash
+analytics-tracking identify \
+  --user-id "user-123" \
+  --traits '{"name":"John Doe","email":"john.doe@example.com"}'
+```
+
+### Create a group
+
+```bash
+analytics-tracking group \
+  --user-id "user-123" \
+  --group-id "group-abc" \
+  --traits '{"name":"Acme Inc."}'
 ```

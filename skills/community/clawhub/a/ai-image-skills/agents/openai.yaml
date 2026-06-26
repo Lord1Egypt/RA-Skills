@@ -1,0 +1,4 @@
+interface:
+  display_name: "ai-image-skills"
+  short_description: "Access the world's leading models in one place to produce images"
+  default_prompt: "Use $ai-image-skills to create images of {subject}."

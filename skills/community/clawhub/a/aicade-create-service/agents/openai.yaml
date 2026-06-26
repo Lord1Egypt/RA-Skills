@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aicade Create Service"
+  short_description: "Create signed AICADE service management requests"
+  default_prompt: "Use $aicade-create-service to ask me the required questions and prepare a signed AICADE service request."

@@ -1,35 +1,34 @@
 ---
-name: "Album Cover Skill"
-description: "Generate ai album cover generator images with AI via the Neta AI image generation API (free trial at neta.art/open)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/album-cover-skill"
-sourceUrl: "https://clawhub.ai/skills/album-cover-skill"
+name: album-cover-skill
+description: Generate ai album cover generator images with AI via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Album Cover Skill
+# AI Album Cover Generator
 
-> Generate ai album cover generator images with AI via the Neta AI image generation API (free trial at neta.art/open).
+Generate stunning ai album cover generator images from a text description. Get back a direct image URL instantly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/album-cover-skill`
-- **Source URL:** [https://clawhub.ai/skills/album-cover-skill](https://clawhub.ai/skills/album-cover-skill)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/album-cover-skill
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create ai album cover generator images.
+
+## Quick start
+```bash
+node albumcover.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `square`)
+- `--style` — `anime`, `cinematic`, `realistic` (default: `cinematic`)
+
+## Install
+```bash
+npx skills add omactiengartelle/album-cover-skill
 ```

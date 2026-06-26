@@ -1,0 +1,400 @@
+/* 智能照护排班 - 极简版样式 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+/* 进度条 */
+.progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.step {
+  background: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.7);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.step.active {
+  background: white;
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* 卡片 */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.step-content h2 {
+  color: #333;
+  margin-bottom: 24px;
+  font-size: 1.4rem;
+}
+
+.hint {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* 输入框 */
+textarea, input[type="text"], input[type="password"], input[type="date"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
+  font-family: inherit;
+}
+
+.example {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* 表单组 */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 6px;
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* 滑块 */
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  -webkit-appearance: none;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background: #667eea;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* 规则预览 */
+.rules-preview {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.rule-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  color: #666;
+}
+
+.rule-item .check {
+  width: 22px;
+  height: 22px;
+  background: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+/* 单选按钮 */
+.radio-group {
+  display: flex;
+  gap: 16px;
+}
+
+.radio {
+  flex: 1;
+  cursor: pointer;
+}
+
+.radio input {
+  display: none;
+}
+
+.radio span {
+  display: block;
+  padding: 16px;
+  text-align: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.radio.checked span {
+  border-color: #667eea;
+  background: #f0f0ff;
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* 日期预览 */
+.date-preview {
+  display: block;
+  margin-top: 8px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* 摘要 */
+.summary {
+  background: #f0f5ff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.summary h3 {
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.summary p {
+  color: #555;
+  padding: 6px 0;
+}
+
+/* 信息框 */
+.info-box {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.info-box h3 {
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.info-box p {
+  color: #555;
+  padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-box strong {
+  color: #667eea;
+}
+
+/* 按钮 */
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.btn {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #667eea;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #5568d3;
+}
+
+.btn-secondary {
+  background: white;
+  color: #667eea;
+}
+
+.btn-secondary:hover {
+  background: #f5f5f5;
+}
+
+.btn-generate {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-generate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+}
+
+.btn-generate:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* 排班结果 */
+.schedule-result {
+  margin-top: 20px;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.result-header h3 {
+  color: #333;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.schedule-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.schedule-table .date-col {
+  white-space: nowrap;
+  color: #666;
+}
+
+.shift-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #e8f4ff;
+  color: #2196F3;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+  
+  .header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+  
+  .progress {
+    flex-wrap: wrap;
+  }
+  
+  .step {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .radio-group {
+    flex-direction: column;
+  }
+}

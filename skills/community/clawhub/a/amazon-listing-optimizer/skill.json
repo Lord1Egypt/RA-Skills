@@ -1,0 +1,10 @@
+{
+  "name": "amazon-listing-optimizer",
+  "displayName": "Amazon Listing Optimizer",
+  "version": "1.0.0",
+  "summary": "Free Amazon listing analysis, keyword research, and competitor spy. Score any ASIN, find long-tail keywords via Amazon autocomplete, analyze top competitors. Zero API keys, zero cost. Helium 10 alternative for OpenClaw agents.",
+  "description": "Analyze any Amazon product listing and get a quality score (Title, Bullets, Images, Reviews). Extract hundreds of keyword opportunities using Amazon's own autocomplete API with alphabet expansion. Spy on competitors by searching any niche and finding weak listings to outrank. Pure Python, no dependencies, no API keys needed.",
+  "author": "avmw2025",
+  "tags": ["amazon", "fba", "listing", "seo", "keywords", "ecommerce", "seller", "optimization", "free", "research"],
+  "license": "MIT"
+}

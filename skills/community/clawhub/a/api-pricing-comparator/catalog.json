@@ -1,0 +1,13 @@
+{
+  "skill_id": "skill_api_pricing_comparator",
+  "slug": "api-pricing-comparator",
+  "title": "API Pricing Comparator",
+  "summary": "Compare AI API or model pricing across providers and generate structured summaries for product pages, articles, and buyer guides using explicit normalization rules.",
+  "category": "pricing",
+  "archetype": "comparison_assistant",
+  "variant": "api_cost_analysis",
+  "version": "0.2.0",
+  "tags": ["pricing", "comparison", "models", "crazyrouter", "cost-analysis"],
+  "status": "draft",
+  "visibility": "internal"
+}

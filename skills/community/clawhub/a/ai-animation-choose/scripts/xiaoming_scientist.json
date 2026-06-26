@@ -1,0 +1,147 @@
+{
+  "story": "小小科学家的神奇发明",
+  "config": {
+    "style": "皮克斯动画风 - 明亮色彩+卡通建模+温馨氛围+科技感",
+    "aspect_ratio": "9:16",
+    "duration": "30s",
+    "target_audience": "儿童"
+  },
+  "scenes": [
+    {
+      "scene_id": 1,
+      "content": "小明是个爱发明的小男孩，他的房间里堆满了各种零件和工具。",
+      "narration": "小明是个爱发明的小男孩，他的房间里堆满了各种零件和工具。",
+      "shot_type": "全景镜头",
+      "shot_motion": "缓慢推进",
+      "style_prompt": "皮克斯动画风格，明亮温暖的儿童房，阳光透过窗户洒进来，房间里有各种齿轮、螺丝、电线，墙上贴着科学海报，蓝色和橙色主色调，3D卡通渲染",
+      "character": "小明（背景中）",
+      "duration": 4
+    },
+    {
+      "scene_id": 2,
+      "content": "小明眼睛闪闪发亮，手里拿着图纸说：我要做一个能帮妈妈做家务的机器人！",
+      "narration": "",
+      "dialogue": {
+        "character": "小明",
+        "text": "我要做一个能帮妈妈做家务的机器人！"
+      },
+      "shot_type": "特写镜头",
+      "shot_motion": "镜头推进到脸部",
+      "style_prompt": "皮克斯动画风格，8岁小男孩特写，戴着圆圆的眼镜，眼睛闪闪发光充满兴奋，手里拿着画满图纸的纸，背景虚化，温暖的光线，卡通3D渲染",
+      "character": "小明",
+      "duration": 4
+    },
+    {
+      "scene_id": 3,
+      "content": "小明找来了旧闹钟、吸尘器、还有妈妈的围裙，认真地组装起来。",
+      "narration": "他找来了旧闹钟、吸尘器、还有妈妈的围裙。",
+      "shot_type": "中景镜头",
+      "shot_motion": "跟随动作",
+      "style_prompt": "皮克斯动画风格，小男孩在工作室里忙碌，桌上摆放着旧闹钟、吸尘器零件、彩色围裙，小男孩拿着螺丝刀专注工作，背景有散落的零件，温馨的灯光，3D卡通渲染",
+      "character": "小明",
+      "duration": 4
+    },
+    {
+      "scene_id": 4,
+      "content": "组装完成！机器人晃晃悠悠地站起来，发出嘀嘀嘀的声音。",
+      "narration": "组装完成！启动！",
+      "dialogue": {
+        "character": "小明",
+        "text": "组装完成！启动！"
+      },
+      "shot_type": "全景镜头",
+      "shot_motion": "从下往上仰拍",
+      "style_prompt": "皮克斯动画风格，可爱的机器人站在房间中央，身体由闹钟和吸尘器组成，穿着花围裙，头顶有小灯泡闪闪发光，眼睛是两个圆圆的表盘，充满童趣，背景是小明兴奋的表情，明亮色彩，3D卡通渲染",
+      "character": "机器人、小明",
+      "duration": 5
+    },
+    {
+      "scene_id": 5,
+      "content": "机器人开口说话：嘀嘀嘀，家务机器人一号，为您服务！",
+      "narration": "",
+      "dialogue": {
+        "character": "机器人",
+        "text": "嘀嘀嘀，家务机器人一号，为您服务！"
+      },
+      "shot_type": "特写镜头",
+      "shot_motion": "轻微晃动",
+      "style_prompt": "皮克斯动画风格，可爱的机器人特写，圆形表盘眼睛眨呀眨，嘴巴是个小喇叭，头顶灯泡闪烁，金属质感但柔和可爱，背景是温馨的家，3D卡通渲染",
+      "character": "机器人",
+      "duration": 4
+    },
+    {
+      "scene_id": 6,
+      "content": "妈妈下班回家，惊喜地发现家里干干净净，抱住小明说：哇，小明真棒！",
+      "narration": "妈妈下班回家，惊喜地发现家里干干净净。",
+      "dialogue": {
+        "character": "妈妈",
+        "text": "哇，小明真棒！"
+      },
+      "shot_type": "中景镜头",
+      "shot_motion": "温馨拉近",
+      "style_prompt": "皮克斯动画风格，温馨的客厅，地板闪闪发光，妈妈穿着职业装刚进门，惊讶又开心的表情，小明站在旁边自豪地笑，机器人站在一旁鞠躬，温暖的橙黄色调，3D卡通渲染",
+      "character": "妈妈、小明、机器人",
+      "duration": 5
+    },
+    {
+      "scene_id": 7,
+      "content": "小明嘿嘿笑着说：我还要发明更多有用的东西！",
+      "narration": "每个孩子心里，都有一个改变世界的梦想。",
+      "shot_type": "全景镜头",
+      "shot_motion": "缓慢拉远",
+      "style_prompt": "皮克斯动画风格，小男孩站在房间中央自信地笑，身后是各种发明图纸，旁边是可爱的机器人，窗外是星空和月亮，充满希望和梦想的氛围，温暖的蓝紫色调，3D卡通渲染，结尾画面",
+      "character": "小明、机器人",
+      "duration": 4
+    }
+  ],
+  "voices": {
+    "旁白": {
+      "voice": "zh-CN-YunyangNeural",
+      "pitch": "default",
+      "rate": "-10%",
+      "style": "温暖沉稳"
+    },
+    "小明": {
+      "voice": "zh-CN-XiaoyiNeural",
+      "pitch": "+15%",
+      "rate": "+10%",
+      "style": "活泼童趣"
+    },
+    "机器人": {
+      "voice": "zh-CN-YunxiNeural",
+      "pitch": "-5%",
+      "rate": "-20%",
+      "style": "机械感但可爱"
+    },
+    "妈妈": {
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "pitch": "default",
+      "rate": "default",
+      "style": "温柔亲切"
+    }
+  },
+  "effects": {
+    "transitions": [
+      "淡入淡出",
+      "平滑切换",
+      "旋转过渡",
+      "放大渐变",
+      "模糊过渡",
+      "滑动切换"
+    ],
+    "overlays": [
+      "科技感光效",
+      "星星闪烁"
+    ]
+  },
+  "audio": {
+    "bgm": "欢快儿童音乐，节奏轻快",
+    "sfx": [
+      "螺丝刀拧螺丝声",
+      "机器人启动声",
+      "灯泡亮起声",
+      "开门声",
+      "欢呼声"
+    ]
+  }
+}

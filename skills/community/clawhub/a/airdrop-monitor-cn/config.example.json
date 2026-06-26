@@ -1,0 +1,17 @@
+{
+  "projects": [
+    {
+      "name": "ExampleProject",
+      "sources": [
+        {
+          "name": "Official Announcement",
+          "url": "https://example.com/announcements"
+        },
+        {
+          "name": "Docs",
+          "url": "https://example.com/docs"
+        }
+      ]
+    }
+  ]
+}

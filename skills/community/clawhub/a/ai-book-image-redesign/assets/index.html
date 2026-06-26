@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 书稿图片重设计 · 一键改写排版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1625;
+  --paper: #faf9f7;
+  --warm: #f5f0eb;
+  --accent: #c8553d;
+  --accent-soft: rgba(200,85,61,0.08);
+  --accent-hover: #b04a35;
+  --sage: #5a7a6b;
+  --sage-soft: rgba(90,122,107,0.08);
+  --muted: #8c8697;
+  --border: #e8e4df;
+  --card: #ffffff;
+  --shadow: 0 2px 12px rgba(26,22,37,0.06);
+  --shadow-lg: 0 8px 32px rgba(26,22,37,0.1);
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans SC', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+.hero {
+  padding: 48px 24px 40px;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, var(--warm) 0%, var(--paper) 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--sage), var(--accent));
+}
+.hero-badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-soft);
+  padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 42px); font-weight: 700;
+  line-height: 1.2; margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--ink) 40%, var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: 15px; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+.hero-features {
+  display: flex; gap: 24px; justify-content: center; margin-top: 24px; flex-wrap: wrap;
+}
+.hero-feat {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--sage); font-weight: 500;
+}
+.hero-feat::before { content: '✦'; color: var(--accent); font-size: 10px; }
+.container { max-width: 880px; margin: 0 auto; padding: 0 20px 60px; }
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; margin-bottom: 20px;
+  box-shadow: var(--shadow); transition: box-shadow .2s;
+}
+.card-title {
+  font-size: 14px; font-weight: 600; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+.card-title .tag {
+  font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;
+  padding: 2px 8px; border-radius: 4px; margin-left: auto;
+}
+.tag-free { background: var(--sage-soft); color: var(--sage); }
+.tag-used { background: #fef3c7; color: #92400e; }
+.quota-bar {
+  background: var(--warm); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px 18px; margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.quota-info { font-size: 13px; color: var(--muted); }
+.quota-info strong { color: var(--ink); }
+.quota-count {
+  font-size: 24px; font-weight: 700; color: var(--accent);
+  font-family: 'Playfair Display', serif;
+}
+.quota-label { font-size: 11px; color: var(--muted); text-align: center; }
+.drop-zone {
+  display: block; border: 2px dashed var(--border); border-radius: var(--radius);
+  padding: 36px 20px; text-align: center; cursor: pointer;
+  transition: all .25s; background: var(--paper);
+}
+.drop-zone:hover, .drop-zone.over { border-color: var(--accent); background: var(--accent-soft); }
+.drop-icon { font-size: 36px; margin-bottom: 8px; filter: grayscale(.3); }
+.drop-title { font-size: 14px; font-weight: 500; color: var(--ink); }
+.drop-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.thumb-strip {
+  display: flex; gap: 10px; margin-top: 16px; overflow-x: auto;
+  padding-bottom: 8px; scroll-snap-type: x mandatory;
+}
+.thumb {
+  flex-shrink: 0; position: relative; width: 120px; height: 80px;
+  border-radius: 8px; overflow: hidden; cursor: pointer;
+  border: 2px solid transparent; transition: all .2s; scroll-snap-align: start;
+}
+.thumb:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.thumb.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb .badge {
+  position: absolute; top: 4px; left: 4px;
+  font-size: 9px; font-weight: 700; letter-spacing: .3px; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 3px; color: #fff;
+}
+.thumb .idx {
+  position: absolute; bottom: 4px; right: 4px;
+  font-size: 10px; font-weight: 700; color: #fff;
+  background: rgba(0,0,0,.5); padding: 1px 5px; border-radius: 3px;
+}
+.btn-row { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.btn {
+  padding: 10px 22px; border: none; border-radius: 8px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: all .15s; display: inline-flex; align-items: center; gap: 6px;
+}
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-accent:hover:not(:disabled) { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(200,85,61,.25); }
+.btn-sage { background: var(--sage); color: #fff; }
+.btn-sage:hover:not(:disabled) { background: #4e6d5f; }
+.btn-ghost { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
+.btn-ghost:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.btn-danger { background: #ef4444; color: #fff; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+.compare-panel { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--paper); }
+.compare-label {
+  padding: 8px 14px; font-size: 11px; font-weight: 600; letter-spacing: .5px;
+  text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border);
+  background: var(--warm);
+}
+.compare-panel img { width: 100%; display: block; }
+.compare-placeholder {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 180px; color: var(--muted); font-size: 13px; text-align: center; padding: 20px;
+}
+.log-box {
+  background: var(--ink); color: #b8c0cc; border-radius: 8px;
+  padding: 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px;
+  line-height: 1.7; max-height: 180px; overflow-y: auto; white-space: pre-wrap; word-break: break-all;
+}
+.stats-row {
+  display: flex; gap: 20px; justify-content: center; padding: 14px 0;
+  font-size: 12px; color: var(--muted);
+}
+.paywall {
+  text-align: center; padding: 40px 20px;
+  background: linear-gradient(135deg, var(--warm), #fff);
+  border-radius: var(--radius); border: 1px solid var(--border);
+}
+.paywall h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; }
+.paywall p { font-size: 13px; color: var(--muted); margin-bottom: 20px; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+.paywall .price { font-size: 36px; font-weight: 700; color: var(--accent); font-family: 'Playfair Display', serif; }
+.prompt-box, .input-box {
+  width: 100%; min-height: 48px; padding: 12px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 13px; line-height: 1.6; resize: vertical;
+  font-family: inherit; color: var(--ink); outline: none; background: var(--paper);
+}
+.prompt-box { min-height: 80px; }
+.prompt-box:focus, .input-box:focus { border-color: var(--accent); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.hint { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+.footer { text-align: center; padding: 24px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
+@media (max-width: 600px) {
+  .compare { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 26px; }
+  .thumb { width: 90px; height: 60px; }
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-badge">AI Powered · Nano Banana Pro</div>
+  <h1>书稿图片 AI 重设计</h1>
+  <p>上传书稿中的信息图、流程图、表格等图片，AI 自动理解内容并重新设计排版，保持语义一致但表达全新。</p>
+  <div class="hero-features">
+    <div class="hero-feat">内容改写不重复</div>
+    <div class="hero-feat">纯白背景专业排版</div>
+    <div class="hero-feat">尺寸比例自动匹配</div>
+    <div class="hero-feat">免费体验 1 张</div>
+  </div>
+</div>
+<div class="container">
+  <div class="quota-bar" id="quotaBar">
+    <div><div class="quota-info">免费额度</div><div class="quota-info"><strong>每位用户可免费生成 1 张</strong></div></div>
+    <div style="text-align:center;"><div class="quota-count" id="quotaCount">1</div><div class="quota-label">剩余次数</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔐 API 设置</div>
+    <div class="form-grid">
+      <div>
+        <input id="apiBaseInput" class="input-box" placeholder="API Base URL，例如 https://api.apimart.ai">
+      </div>
+      <div>
+        <input id="apiKeyInput" class="input-box" placeholder="请输入 API Key" type="password">
+      </div>
+      <div>
+        <input id="modelInput" class="input-box" placeholder="Model，例如 gemini-3-pro-image-preview">
+      </div>
+      <div>
+        <input id="pollPathInput" class="input-box" placeholder="异步轮询路径，可留空，例如 /v1/tasks/{id}">
+      </div>
+    </div>
+    <div class="hint">用户可自行输入接口地址、API Key、模型名。支持同步返回结果；如果接口先返回任务 id，也支持按轮询路径继续查询结果。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📝 设计要求</div>
+    <textarea id="userPrompt" class="prompt-box"></textarea>
+  </div>
+  <div class="card">
+    <div class="card-title">📤 上传图片 <span class="tag tag-free" id="uploadTag">免费 1 张</span></div>
+    <input id="fileInput" type="file" accept="image/*" multiple style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;z-index:-1;">
+    <label for="fileInput" class="drop-zone" id="dropZone">
+      <div class="drop-icon">📄</div>
+      <div class="drop-title">点击选择图片，或拖拽到此处</div>
+      <div class="drop-sub">支持 JPG / PNG / WEBP · 最多 10 张批量处理</div>
+    </label>
+    <div class="thumb-strip" id="thumbStrip"></div>
+    <div class="btn-row" id="actionBtns"></div>
+  </div>
+  <div class="card" id="detailCard" style="display:none;"></div>
+  <div class="card" id="logCard" style="display:none;"><div class="card-title">📋 处理日志</div><div class="log-box" id="logBox"></div></div>
+  <div class="stats-row" id="statsBar" style="display:none;"></div>
+  <div class="card" id="paywallCard" style="display:none;">
+    <div class="paywall">
+      <h3>免费额度已用完</h3>
+      <p>您已使用完 1 次免费生成机会。升级后可无限次使用，享受批量处理、4K 输出等专业功能。</p>
+      <div class="price">¥9.9<span style="font-size:14px; font-weight:400; color:#8c8697;">/月</span></div>
+      <div style="font-size:12px; color:#8c8697; margin-bottom:20px;">不限次数 · 批量10张 · 4K分辨率</div>
+      <button class="btn btn-accent" onclick="alert('升级功能开发中，敬请期待！')">🚀 立即升级</button>
+    </div>
+  </div>
+</div>
+<div class="footer">AI 书稿图片重设计 · Powered by Gemini 3 Pro Image · APIMart</div>
+<script>
+const DEFAULT_API_BASE = 'https://api.apimart.ai';
+const DEFAULT_MODEL = 'gemini-3-pro-image-preview';
+const FREE_LIMIT = 1;
+const STORAGE_KEY = 'book_redesign_used';
+const API_BASE_STORAGE_KEY = 'book_redesign_api_base';
+const API_KEY_STORAGE_KEY = 'book_redesign_api_key';
+const MODEL_STORAGE_KEY = 'book_redesign_model';
+const POLL_PATH_STORAGE_KEY = 'book_redesign_poll_path';
+const DEFAULT_PROMPT = `对图片内容进行重新设计，具体要求如下：
+1. 内容理解与改写：深入理解原文字含义，在保留核心语义的前提下，用不同的表达方式进行重新阐述，避免与原文字面重复。
+2. 视觉风格：背景使用纯白色。
+3. 排版与布局：根据内容的逻辑结构和层次关系，选择最优排版方式，确保视觉清晰、阅读流畅，文字不被任何元素遮挡。
+4. 尺寸一致：输出尺寸与原图完全一致。
+最终结果需做到：布局精美、层次分明、逻辑通顺。不要出现中文幻觉，不要加logo。如果文本有边框，不要跑出边框外。`;
+let images = [];
+let selectedId = null;
+let logs = [];
+document.getElementById('userPrompt').value = DEFAULT_PROMPT;
+const apiBaseInput = document.getElementById('apiBaseInput');
+const apiKeyInput = document.getElementById('apiKeyInput');
+const modelInput = document.getElementById('modelInput');
+const pollPathInput = document.getElementById('pollPathInput');
+apiBaseInput.value = localStorage.getItem(API_BASE_STORAGE_KEY) || DEFAULT_API_BASE;
+apiKeyInput.value = localStorage.getItem(API_KEY_STORAGE_KEY) || '';
+modelInput.value = localStorage.getItem(MODEL_STORAGE_KEY) || DEFAULT_MODEL;
+pollPathInput.value = localStorage.getItem(POLL_PATH_STORAGE_KEY) || '';
+apiBaseInput.addEventListener('change', () => localStorage.setItem(API_BASE_STORAGE_KEY, apiBaseInput.value.trim()));
+apiKeyInput.addEventListener('change', () => localStorage.setItem(API_KEY_STORAGE_KEY, apiKeyInput.value.trim()));
+modelInput.addEventListener('change', () => localStorage.setItem(MODEL_STORAGE_KEY, modelInput.value.trim()));
+pollPathInput.addEventListener('change', () => localStorage.setItem(POLL_PATH_STORAGE_KEY, pollPathInput.value.trim()));
+function getApiBase(){ return (apiBaseInput.value || '').trim() || DEFAULT_API_BASE; }
+function getApiKey(){ return (apiKeyInput.value || '').trim(); }
+function getModel(){ return (modelInput.value || '').trim() || DEFAULT_MODEL; }
+function getPollPath(){ return (pollPathInput.value || '').trim(); }
+function getUsedCount(){ try { return parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10); } catch { return 0; } }
+function setUsedCount(n){ try { localStorage.setItem(STORAGE_KEY, String(n)); } catch {} }
+function getRemainingQuota(){ return Math.max(0, FREE_LIMIT - getUsedCount()); }
+function refreshQuota(){
+  const remaining = getRemainingQuota();
+  document.getElementById('quotaCount').textContent = remaining;
+  document.getElementById('uploadTag').textContent = remaining > 0 ? `免费 ${remaining} 张` : '已用完';
+  document.getElementById('paywallCard').style.display = remaining > 0 ? 'none' : '';
+}
+function addLog(msg){
+  const t = new Date().toLocaleTimeString();
+  logs.push(`${t} | ${msg}`);
+  const box = document.getElementById('logBox');
+  box.textContent = logs.join('\n');
+  document.getElementById('logCard').style.display = '';
+  box.scrollTop = box.scrollHeight;
+}
+async function fileToDataUrl(file){
+  return await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error('图片读取失败'));
+    reader.readAsDataURL(file);
+  });
+}
+function extractImageUrlFromResponse(data){
+  const candidates = [
+    data?.data?.[0]?.url,
+    data?.data?.[0]?.b64_json ? `data:image/png;base64,${data.data[0].b64_json}` : null,
+    data?.images?.[0]?.url,
+    data?.images?.[0]?.image_url,
+    data?.images?.[0]?.b64_json ? `data:image/png;base64,${data.images[0].b64_json}` : null,
+    data?.output?.[0]?.url,
+    data?.output?.[0]?.image_url,
+    data?.result?.url,
+    data?.result?.image_url,
+    data?.result?.b64_json ? `data:image/png;base64,${data.result.b64_json}` : null,
+    data?.url,
+    data?.image_url,
+    data?.b64_json ? `data:image/png;base64,${data.b64_json}` : null,
+  ].filter(Boolean);
+  return candidates[0] || null;
+}
+function handleFiles(fileList){
+  const remaining = getRemainingQuota();
+  if (remaining <= 0) { refreshQuota(); return; }
+  const files = Array.from(fileList).filter(f => f.type.startsWith('image/')).slice(0, 10);
+  images = files.map((f, i) => ({ id: Date.now()+i, file: f, preview: URL.createObjectURL(f), status: 'queued', resultUrl: '', error: '', taskId: '' }));
+  selectedId = images[0]?.id || null;
+  addLog(`已上传 ${images.length} 张图片`);
+  renderThumbs();
+  renderActions();
+  renderDetail();
+}
+function renderThumbs(){
+  const statusMap = { queued:['等待','#94a3b8'], processing:['处理中','var(--accent)'], done:['完成','#10b981'], error:['失败','#ef4444'] };
+  const el = document.getElementById('thumbStrip');
+  el.innerHTML = images.map((img, i) => {
+    const [label,color] = statusMap[img.status] || statusMap.queued;
+    return `<div class="thumb ${selectedId===img.id?'active':''}" onclick="selectImg(${img.id})"><img src="${img.preview}"><div class="badge" style="background:${color}">${label}</div><div class="idx">${i+1}</div></div>`;
+  }).join('');
+}
+function renderActions(){
+  const el = document.getElementById('actionBtns');
+  if (!images.length) { el.innerHTML = ''; return; }
+  const hasDone = images.some(i => i.status === 'done' && i.resultUrl);
+  const firstDone = images.find(i => i.status==='done' && i.resultUrl);
+  el.innerHTML = `<button class="btn btn-accent" onclick="processAllImages()">🚀 开始处理 (${images.length}张)</button><button class="btn btn-ghost" onclick="clearAll()">清空</button>${hasDone ? `<a class="btn btn-sage" href="${firstDone?.resultUrl}" download="redesign-result.png">💾 下载首张结果</a>` : ''}`;
+}
+function renderDetail(){
+  const img = images.find(i => i.id === selectedId);
+  const el = document.getElementById('detailCard');
+  if (!img) { el.style.display = 'none'; return; }
+  el.style.display = '';
+  const right = img.resultUrl
+    ? `<img src="${img.resultUrl}">`
+    : `<div class="compare-placeholder">${img.status === 'error' ? `处理失败：${img.error || '未知错误'}` : img.status === 'processing' ? `正在处理中${img.taskId ? `\n任务ID：${img.taskId}` : ''}` : '填写 URL、API Key、模型名后，上传图片即可直接使用。支持同步返回与异步轮询。'}</div>`;
+  el.innerHTML = `<div class="card-title">🖼️ 当前图片</div><div class="compare"><div class="compare-panel"><div class="compare-label">原图</div><img src="${img.preview}"></div><div class="compare-panel"><div class="compare-label">生成结果</div>${right}</div></div>`;
+}
+function selectImg(id){ selectedId = id; renderThumbs(); renderDetail(); }
+function clearAll(){ images = []; selectedId = null; document.getElementById('thumbStrip').innerHTML = ''; document.getElementById('actionBtns').innerHTML=''; document.getElementById('detailCard').style.display='none'; }
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+function extractTaskId(data){
+  return data?.task_id || data?.taskId || data?.id || data?.data?.id || data?.result?.task_id || null;
+}
+function buildPollUrl(apiBase, taskId){
+  const custom = getPollPath();
+  if (custom) {
+    const path = custom.includes('{id}') ? custom.replaceAll('{id}', taskId) : custom.replace(/\/$/, '') + '/' + taskId;
+    return path.startsWith('http://') || path.startsWith('https://') ? path : `${apiBase}${path.startsWith('/') ? '' : '/'}${path}`;
+  }
+  return `${apiBase}/v1/tasks/${taskId}`;
+}
+async function parseJsonSafe(res){
+  const text = await res.text();
+  try { return text ? JSON.parse(text) : {}; } catch { return { raw: text }; }
+}
+async function pollTaskUntilDone(apiBase, apiKey, taskId, current){
+  const pollUrl = buildPollUrl(apiBase, taskId);
+  for (let i = 0; i < 20; i++) {
+    addLog(`轮询任务：${pollUrl}（第 ${i+1} 次）`);
+    const res = await fetch(pollUrl, { headers: { 'Authorization': `Bearer ${apiKey}` } });
+    const data = await parseJsonSafe(res);
+    if (!res.ok) throw new Error(data?.error?.message || data?.message || `轮询失败（${res.status}）`);
+    const resultUrl = extractImageUrlFromResponse(data);
+    if (resultUrl) return resultUrl;
+    const status = String(data?.status || data?.data?.status || data?.result?.status || '').toLowerCase();
+    if (['failed','error','cancelled'].includes(status)) throw new Error(data?.error?.message || data?.message || `任务失败：${status}`);
+    if (['succeeded','success','done','completed'].includes(status) && !resultUrl) throw new Error('任务已完成，但未返回图片结果');
+    await sleep(3000);
+    current.taskId = taskId;
+    renderDetail();
+  }
+  throw new Error('轮询超时，请稍后重试');
+}
+async function processOneImage(current, index, total){
+  const apiBase = getApiBase().replace(/\/$/, '');
+  const apiKey = getApiKey();
+  const model = getModel();
+  const prompt = (document.getElementById('userPrompt').value || DEFAULT_PROMPT).trim();
+  current.status = 'processing';
+  current.error = '';
+  current.taskId = '';
+  renderThumbs();
+  renderDetail();
+  addLog(`开始处理第 ${index+1}/${total} 张：${apiBase}/v1/images/generations`);
+  const imageDataUrl = await fileToDataUrl(current.file);
+  const payload = { model, prompt, image: imageDataUrl, response_format: 'b64_json' };
+  const res = await fetch(`${apiBase}/v1/images/generations`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+    body: JSON.stringify(payload)
+  });
+  const data = await parseJsonSafe(res);
+  if (!res.ok) throw new Error(data?.error?.message || data?.message || `请求失败（${res.status}）`);
+  let resultUrl = extractImageUrlFromResponse(data);
+  if (!resultUrl) {
+    const taskId = extractTaskId(data);
+    if (!taskId) throw new Error('接口未直接返回图片，也未返回任务ID');
+    current.taskId = taskId;
+    addLog(`已拿到任务 ID：${taskId}`);
+    resultUrl = await pollTaskUntilDone(apiBase, apiKey, taskId, current);
+  }
+  current.resultUrl = resultUrl;
+  current.status = 'done';
+  addLog(`第 ${index+1}/${total} 张处理完成`);
+}
+async function processAllImages(){
+  if (!images.length) return;
+  const apiBase = getApiBase().replace(/\/$/, '');
+  const apiKey = getApiKey();
+  const model = getModel();
+  if (!apiBase || !apiKey || !model) { addLog('请先输入 API Base URL、API Key 和模型名'); return; }
+  let success = 0;
+  for (let i = 0; i < images.length; i++) {
+    const current = images[i];
+    try {
+      await processOneImage(current, i, images.length);
+      success += 1;
+    } catch (err) {
+      current.status = 'error';
+      current.error = err.message || '请求失败';
+      addLog(`第 ${i+1}/${images.length} 张失败：${current.error}`);
+    }
+    renderThumbs();
+    renderActions();
+    renderDetail();
+  }
+  if (success > 0) {
+    setUsedCount(getUsedCount()+1);
+    refreshQuota();
+  }
+  addLog(`批量任务结束：成功 ${success} 张，失败 ${images.length - success} 张`);
+}
+const fileInput = document.getElementById('fileInput');
+const dropZone = document.getElementById('dropZone');
+fileInput.addEventListener('change', function(){ if (this.files?.length) { handleFiles(this.files); this.value=''; } });
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('over'); });
+dropZone.addEventListener('dragleave', e => { e.preventDefault(); dropZone.classList.remove('over'); });
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('over'); if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files); });
+refreshQuota();
+</script>
+</body>
+</html>
+

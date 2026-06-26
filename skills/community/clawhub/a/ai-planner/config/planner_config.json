@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "description": "AI 策划师技能配置",
+  "language": "zh-CN",
+  "output_format": "brief",
+  "auto_ask_clarification": true,
+  "prompt_templates": {
+    "default": "{产品}，{风格}，{场景}",
+    "ecommerce": "{产品}，{风格}，{场景}，{要点}",
+    "detailed": "{产品}，{风格}，{场景}，{要点}，目标人群：{人群}"
+  },
+  "tool_selection_rules": {
+    "default": "jimeng",
+    "by_product_type": {
+      "服装": "liblib",
+      "食品": "jimeng",
+      "数码": "jimeng",
+      "美妆": "liblib",
+      "家居": "jimeng"
+    },
+    "by_scenario": {
+      "主图": "liblib",
+      "详情页": "liblib",
+      "海报": "jimeng",
+      "社交媒体": "jimeng"
+    }
+  },
+  "clarification_threshold": {
+    "min_confidence": 0.6,
+    "required_fields": ["product_type", "scenario"]
+  }
+}

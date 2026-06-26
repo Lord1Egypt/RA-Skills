@@ -1,0 +1,4 @@
+interface:
+  display_name: "外贸资讯查询"
+  short_description: "查询最近1~3天外贸相关资讯，返回AI生成的标题和摘要"
+  default_prompt: "查询最近的外贸资讯动态，以结构化格式展示给用户。"

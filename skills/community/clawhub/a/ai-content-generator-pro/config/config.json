@@ -1,0 +1,24 @@
+{
+  "openai": {
+    "apiKey": "",
+    "model": "gpt-4"
+  },
+  "anthropic": {
+    "apiKey": "",
+    "model": "claude-3-opus"
+  },
+  "xai": {
+    "apiKey": "",
+    "model": "grok-beta"
+  },
+  "defaultModel": "openai",
+  "tone": "professional",
+  "seo": {
+    "enabled": true,
+    "keywords": []
+  },
+  "brandVoice": {
+    "enabled": false,
+    "samples": []
+  }
+}

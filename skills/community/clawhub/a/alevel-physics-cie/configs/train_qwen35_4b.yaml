@@ -1,0 +1,40 @@
+# MLX LoRA fine-tuning config for Qwen3.5-9B
+# Usage: mlx_lm.lora --config configs/train_qwen35_4b.yaml --train
+#
+# Prerequisites:
+#   pip install mlx mlx-lm
+#   Data: data/sft/train.jsonl, data/sft/valid.jsonl (from scripts/build_sft.py)
+
+model: "Qwen/Qwen3-4B-MLX-4bit"
+train: true
+data: "data/sft"
+seed: 42
+
+# LoRA
+fine_tune_type: "lora"
+num_layers: 16
+lora_parameters:
+  rank: 8
+  dropout: 0.05
+  scale: 20.0
+
+# Completions format: {"prompt": "...", "completion": "..."}
+prompt_feature: "prompt"
+completion_feature: "completion"
+mask_prompt: true
+
+# Training
+batch_size: 1
+iters: 1500
+learning_rate: 1.0e-5
+val_batches: 25
+steps_per_report: 10
+steps_per_eval: 100
+save_every: 100
+max_seq_length: 2048
+grad_accumulation_steps: 4
+grad_checkpoint: true
+
+# Output
+adapter_path: "adapters"
+resume_adapter_file: null

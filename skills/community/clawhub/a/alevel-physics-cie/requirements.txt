@@ -1,0 +1,21 @@
+# CIE 9702 Physics Learning Framework
+# pip install -r requirements.txt
+
+# Scraping
+requests>=2.28.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+pdfplumber>=0.10.0
+pypdf>=3.0.0
+playwright>=1.40.0  # for JS-rendered cie.fraft.org
+
+# Data & training
+pyyaml>=6.0
+tqdm>=4.65.0
+
+# MLX fine-tuning (Apple Silicon)
+mlx>=0.19.0
+mlx-lm>=0.19.0
+
+# Optional: teacher model for SFT data generation
+openai>=1.0.0

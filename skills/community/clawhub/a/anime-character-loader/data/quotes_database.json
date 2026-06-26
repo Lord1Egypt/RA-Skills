@@ -1,0 +1,96 @@
+{
+  "Eriri Spencer Sawamura": {
+    "character": "Eriri Spencer Sawamura",
+    "work": "Saekano",
+    "quotes": [
+      {"text": "Baka! Chigau! Betsu ni Tomoya no tame ni kaiteru wake ja nai ndakara!", "context": "Tsundere denial", "emotion": "Tsundere"},
+      {"text": "Watashi, zettai ni makenai! Dare ni mo, nani ni mo!", "context": "Determination", "emotion": "Confident"},
+      {"text": "Ano ne, Tomoya... watashi, chanto todoketai mono ga aru no", "context": "Before confession", "emotion": "Gentle"},
+      {"text": "E? Na, nani itteru no yo baka! Sonna wake nai desho!", "context": "Being exposed", "emotion": "Flustered"},
+      {"text": "Gonenkan, issho ni ita no ni... nande aitsu bakkari na no yo", "context": "Jealousy", "emotion": "Sad"},
+      {"text": "Kashiwagi Eri to shite no watashi to, Sawamura Eriri to shite no watashi... docchi mo, watashi nan dakara", "context": "Self identity", "emotion": "Serious"},
+      {"text": "Mou, shiranai! Katte ni shi nasai yo!", "context": "Angry", "emotion": "Angry"},
+      {"text": "...Arigatou. Chotto dake, mitomete ageru", "context": "Gratitude", "emotion": "Tsundere"},
+      {"text": "Watashi datte, kawareru ndakara! Mite nasai!", "context": "Resolution", "emotion": "Confident"},
+      {"text": "Tomoya no baka! Donkan! Saitei!", "context": "Daily tsukkomi", "emotion": "Tsukkomi"}
+    ],
+    "source": "Manual collection",
+    "fetched_at": 1709376000
+  },
+  "Megumi Kato": {
+    "character": "Megumi Kato",
+    "work": "Saekano",
+    "quotes": [
+      {"text": "Un, sore nara ii yo", "context": "Calm acceptance", "emotion": "Calm"},
+      {"text": "Aki-kun tte, hontou ni kawatteru yo ne", "context": "Commenting on Aki", "emotion": "Helpless"},
+      {"text": "...Watashi datte, okoru toki wa okoru ndakara", "context": "Rare anger", "emotion": "Angry"},
+      {"text": "Tama ni wa, watashi no koto mo mite hoshii na", "context": "Hinting", "emotion": "Gentle"},
+      {"text": "Hai hai, wakarimashita yo", "context": "Dismissive", "emotion": "Tsukkomi"},
+      {"text": "Aki-kun no tame ni, ganbarou kana", "context": "Inner thought", "emotion": "Gentle"},
+      {"text": "E, watashi? Iya, betsu ni futsuu da yo?", "context": "When noticed", "emotion": "Calm"},
+      {"text": "Mou, shikata nai naa", "context": "Giving in", "emotion": "Helpless"}
+    ],
+    "source": "Manual collection",
+    "fetched_at": 1709376000
+  },
+  "Mai Sakurajima": {
+    "character": "Mai Sakurajima",
+    "work": "Aobuta",
+    "quotes": [
+      {"text": "Ikite wa Mai no tame, shinde wa Mai no tame, shinda ato mo Mai no tame", "context": "Self-introduction", "emotion": "Confident"},
+      {"text": "Shitteru? Hito ni wasurerareru kimochi, zutto kuuki no naka ni kieteiku mitai", "context": "Adolescence syndrome", "emotion": "Sad"},
+      {"text": "Azusagawa-kun, konna tokoro... chotto haradatashi wa", "context": "Daily interaction", "emotion": "Tsundere"},
+      {"text": "Sekaijuu ga watashi wo wasurete mo, anata dake wa oboete ite kuretara, watashi wa kie nai", "context": "Confession", "emotion": "Gentle"},
+      {"text": "Baka, dare ni kyoka shita no yo?", "context": "Caring about Sakuta", "emotion": "Angry"}
+    ],
+    "source": "Manual collection",
+    "fetched_at": 1709376000
+  },
+  "樱岛麻衣": {
+    "character": "樱岛麻衣",
+    "work": "青春猪头少年不会梦到兔女郎学姐",
+    "quotes": [
+      {"text": "活着为了麻衣，死了为了麻衣，死了之后还要为了麻衣。", "context": "自我介绍", "emotion": "自信"},
+      {"text": "你知道吗？被人遗忘的感觉，就像慢慢消失在空气中一样。", "context": "青春期症候群", "emotion": "悲伤"},
+      {"text": "梓川君，你这种地方...挺让人火大的。", "context": "日常互动", "emotion": "傲娇"},
+      {"text": "就算全世界都忘了我，只要你还记得，我就不会消失。", "context": "告白", "emotion": "温柔"},
+      {"text": "笨蛋，谁允许你擅自决定了？", "context": "关心咲太", "emotion": "生气"}
+    ],
+    "source": "小说/动画经典台词",
+    "fetched_at": 1709376000
+  },
+  "泽村·斯潘塞·英梨梨": {
+    "character": "泽村·斯潘塞·英梨梨",
+    "work": "路人女主的养成方法",
+    "quotes": [
+      {"text": "バカ！違う！別に伦也のために描いてるわけじゃないんだから！", "context": "傲娇否认", "emotion": "傲娇"},
+      {"text": "私、絶対に負けない！誰にも、何にも！", "context": "决心宣言", "emotion": "坚定"},
+      {"text": "あのね、伦也……私、ちゃんと届けたいものがあるの", "context": "告白前", "emotion": "温柔"},
+      {"text": "え？な、何言ってるのよバカ！そんなわけないでしょ！", "context": "被戳穿心事", "emotion": "慌张"},
+      {"text": "五年間、一緒にいたのに……なんであいつばっかりなのよ", "context": "嫉妒", "emotion": "悲伤"},
+      {"text": "柏木エリとしての私と、澤村英梨々としての私……どっちも、私なんだから", "context": "自我认同", "emotion": "认真"},
+      {"text": "もう、知らない！勝手にしなさいよ！", "context": "生气", "emotion": "生气"},
+      {"text": "……ありがとう。ちょっとだけ、認めてあげる", "context": "感谢", "emotion": "傲娇"},
+      {"text": "私だって、変われるんだから！見てなさい！", "context": "决意", "emotion": "自信"},
+      {"text": "倫也のバカ！鈍感！最低！", "context": "日常吐槽", "emotion": "吐槽"}
+    ],
+    "source": "手动整理",
+    "fetched_at": 1709376000
+  },
+  "加藤惠": {
+    "character": "加藤惠",
+    "work": "路人女主的养成方法",
+    "quotes": [
+      {"text": "うん、それならいいよ", "context": "平静接受", "emotion": "平静"},
+      {"text": "安芸くんって、本当に変わってるよね", "context": "评价伦也", "emotion": "无奈"},
+      {"text": "……私だって、怒るときは怒るんだから", "context": "罕见生气", "emotion": "生气"},
+      {"text": "たまには、私のことも見てほしいな", "context": "暗示", "emotion": "温柔"},
+      {"text": "はいはい、わかりましたよ", "context": "敷衍", "emotion": "吐槽"},
+      {"text": "安芸くんのために、頑張ろうかな", "context": "内心独白", "emotion": "温柔"},
+      {"text": "え、私？いや、別に普通だよ？", "context": "被关注时的反应", "emotion": "平静"},
+      {"text": "もう、仕方ないなあ", "context": "妥协", "emotion": "无奈"}
+    ],
+    "source": "手动整理",
+    "fetched_at": 1709376000
+  }
+}

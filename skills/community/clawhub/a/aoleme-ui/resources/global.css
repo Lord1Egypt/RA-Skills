@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====================================
+   Color Variables
+   ==================================== */
+:root {
+  --bg-primary: #020105;
+  --bg-secondary: #050508;
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+  --primary: #722dcd;
+  --primary-glow: #a855f7;
+  --primary-dark: #5a189a;
+  --merit-gold: #ffb703;
+  --merit-gold-glow: #ffd700;
+  --health-green: #4ade80;
+  --health-green-glow: #34d399;
+  --danger-red: #ef4444;
+  --danger-red-dark: #7f1d1d;
+}
+
+/* ====================================
+   Global Resets & Base Styles
+   ==================================== */
+body {
+  background-color: var(--bg-primary);
+  margin: 0;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* ====================================
+   Glassmorphism System
+   ==================================== */
+.glass-panel {
+  background: rgba(20, 20, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* GPU Acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.glass-morphism {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.frosted-overlay {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* ====================================
+   Liquid Components
+   ==================================== */
+.glass-tube {
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.liquid-fill {
+  background: linear-gradient(90deg, #5a189a, #9d4edd);
+  box-shadow:
+    0 0 15px rgba(157, 78, 221, 0.5),
+    inset 0 2px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-fill.healing {
+  background: linear-gradient(90deg, #34d399, #9d4edd);
+  box-shadow:
+    0 0 15px rgba(52, 211, 153, 0.5),
+    inset 0 2px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.liquid-danger {
+  background: linear-gradient(90deg, #3f0a0a, #7f1d1d, #ef4444);
+  box-shadow:
+    0 0 15px rgba(239, 68, 68, 0.6),
+    inset 0 2px 3px rgba(255, 100, 100, 0.3),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ====================================
+   Visual Effects
+   ==================================== */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.flame-pulse {
+  box-shadow: 0 0 35px 12px rgba(140, 43, 238, 0.7);
+}
+
+.scanner-beam {
+  background: linear-gradient(to bottom, transparent, #8c2bee, transparent);
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: scan 3s ease-in-out infinite;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.text-glow-red {
+  text-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+}
+
+/* ====================================
+   Performance Optimization Classes
+   ==================================== */
+.gpu-accelerated,
+.animate-float,
+.animate-pulse,
+.animate-spin,
+.glass-panel {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ====================================
+   Animations
+   ==================================== */
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(400px); }
+}
+
+@keyframes liquid-shimmer {
+  0% { transform: skewX(-20deg) translateX(-150%); }
+  100% { transform: skewX(-20deg) translateX(150%); }
+}

@@ -1,35 +1,100 @@
 ---
-name: "AIDraw批量图生图"
-description: "AIDraw批量图生图自动化工具。用于腾讯混元AI(timiai.woa.com)的批量参考生图任务。当用户需要批量上传参考图片、自动生成AI图片并下载时使用此skill。支持自定义关键词、每张图片多次生成、自动命名保存。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aidraw-batch-img2img"
-sourceUrl: "https://clawhub.ai/skills/aidraw-batch-img2img"
+name: AIDraw-batch-img2img
+description: AIDraw批量图生图自动化工具。用于腾讯混元AI(timiai.woa.com)的批量参考生图任务。当用户需要批量上传参考图片、自动生成AI图片并下载时使用此skill。支持自定义关键词、每张图片多次生成、自动命名保存。
 ---
 
-# AIDraw批量图生图
+# AIDraw批量图生图自动化工具
 
-> AIDraw批量图生图自动化工具。用于腾讯混元AI(timiai.woa.com)的批量参考生图任务。当用户需要批量上传参考图片、自动生成AI图片并下载时使用此skill。支持自定义关键词、每张图片多次生成、自动命名保存。
+此Skill用于自动化腾讯混元AI平台(timiai.woa.com)的批量参考生图流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aidraw-batch-img2img`
-- **Source URL:** [https://clawhub.ai/skills/aidraw-batch-img2img](https://clawhub.ai/skills/aidraw-batch-img2img)
+## 使用场景
 
-## Overview
+当用户需要：
+- 批量处理多张参考图片生成AI图片
+- 每张参考图生成多次（如生成2个变体）
+- 自动下载生成的图片到指定文件夹
+- 自定义生成关键词和风格描述
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **配置参数**
+   - 源文件夹路径（包含参考图片）
+   - 保存文件夹路径（自动命名：`源文件夹名_日期AI`）
+   - 生成关键词（风格描述）
+   - 每张图片生成次数（默认2次）
+
+2. **自动化步骤**（对每张参考图重复执行）
+   - 步骤1：切换到"参考生图"模式
+   - 步骤2：清空旧的参考图片
+   - 步骤3：上传新的参考图片
+   - 步骤4：输入关键词
+   - 步骤5：选择图片比例（自适应）
+   - 步骤6：选择清晰度（2K高清）
+   - 步骤7：点击生成按钮
+   - 步骤8：等待图片生成完成
+   - 步骤9：自动下载生成的图片
+   - 步骤10：验证下载的图片
+
+3. **输出结果**
+   - 所有生成的图片保存在指定文件夹
+   - 文件命名格式：`原文件名_序号.png`
+
+## 使用方法
+
+执行主脚本：
+
 ```bash
-hermes skills install clawhub/aidraw-batch-img2img
+python scripts/batch_img2img.py
 ```
+
+脚本会提示用户输入：
+- 源文件夹路径
+- 生成关键词（可选，有默认值）
+- 每张图片生成次数（可选，默认2次）
+
+## 依赖要求
+
+- Python 3.8+
+- playwright
+- requests
+
+安装依赖：
+```bash
+pip install playwright requests
+playwright install chromium
+```
+
+## 注意事项
+
+1. **登录状态**：首次使用需要手动在浏览器中登录timiai.woa.com，脚本会保存登录状态
+2. **网络要求**：需要能够访问腾讯内网
+3. **生成时间**：每张图片生成约需30-180秒，请耐心等待
+4. **浏览器窗口**：脚本运行时会打开浏览器窗口，请勿关闭
+
+## 参数配置
+
+在脚本中可修改以下参数：
+
+```python
+# 源文件夹（包含参考图片）
+source_folder = r"路径\到\你的\参考图片文件夹"
+
+# 生成关键词
+keyword = """你的风格描述关键词"""
+
+# 每张图片生成次数
+generations_per_image = 2
+```
+
+## 文件说明
+
+- `scripts/batch_img2img.py` - 主执行脚本
+- `references/keyword-templates.md` - 关键词模板参考
+
+## 错误处理
+
+脚本包含完善的错误处理：
+- 自动重试机制
+- 超时检测（最大等待180秒）
+- 图片验证（检查文件大小）
+- 失败时自动跳过继续下一张

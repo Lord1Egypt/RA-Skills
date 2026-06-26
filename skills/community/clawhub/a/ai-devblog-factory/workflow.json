@@ -1,0 +1,148 @@
+{
+  "name": "AI DevBlog Factory",
+  "version": "1.0.0",
+  "description": "GitHub Trending + 技术资讯 → AI 分析 → 结构化技术博客 → 飞书文档",
+  "combo_id": "ai-devblog-factory",
+
+  "inputs": {
+    "language": {
+      "type": "string",
+      "default": "all",
+      "description": "GitHub Trending 语言过滤: all/python/typescript/rust/go/java 等"
+    },
+    "since": {
+      "type": "string",
+      "default": "daily",
+      "description": "时间范围: daily/weekly/monthly"
+    },
+    "rss_sources": {
+      "type": "array",
+      "default": [
+        "https://dev.to/feed",
+        "https://news.ycombinator.com/rss"
+      ],
+      "description": "RSS 订阅源列表"
+    },
+    "feishu_folder": {
+      "type": "string",
+      "default": "",
+      "description": "飞书目标文件夹 token（可选，不填则创建在根目录）"
+    },
+    "article_title": {
+      "type": "string",
+      "default": "GitHub Trending {{date}} | 技术周报",
+      "description": "文章标题模板"
+    },
+    "draft": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否仅生成草稿（不发布到飞书）"
+    },
+    "notify": {
+      "type": "boolean",
+      "default": false,
+      "description": "生成后是否发送飞书通知"
+    }
+  },
+
+  "steps": [
+    {
+      "id": "step1_fetch",
+      "name": "抓取 GitHub Trending 和技术资讯",
+      "skill": "Agent-Reach",
+      "input": {
+        "action": "search",
+        "query": "GitHub trending {{inputs.language}} since {{inputs.since}}",
+        "source": "github"
+      },
+      "output": {
+        "trending_data": "${step1.trending_raw}",
+        "news_data": "${step1.news_raw}"
+      }
+    },
+    {
+      "id": "step2_analyze",
+      "name": "AI 分析趋势和要点",
+      "skill": "summarize",
+      "input": {
+        "url": "",
+        "path": "${step1.trending_data}",
+        "tasks": ["analyze_trends", "extract_key_insights", "identify_notable_projects"],
+        "outputFormat": "structured",
+        "maxChars": 50000
+      },
+      "output": {
+        "analysis": "${step2.analysis}",
+        "insights": "${step2.insights}"
+      }
+    },
+    {
+      "id": "step3_generate",
+      "name": "生成技术博客文章",
+      "skill": "wechat-article-pro",
+      "input": {
+        "topic": "${inputs.article_title}",
+        "content_source": "${step2.analysis}",
+        "style": "技术博客风格",
+        "wordCount": 3500,
+        "generateImages": false,
+        "include_sections": [
+          "trending_overview",
+          "top_projects",
+          "trend_analysis",
+          "recommended_learning"
+        ]
+      },
+      "output": {
+        "article": "${step3.article_md}",
+        "title": "${step3.article_title}"
+      }
+    },
+    {
+      "id": "step4_publish",
+      "name": "发布至飞书文档",
+      "skill": "feishu_doc",
+      "condition": "!${inputs.draft}",
+      "input": {
+        "action": "create",
+        "title": "${step3.article_title}",
+        "content": "${step3.article_md}",
+        "folder_token": "${inputs.feishu_folder}",
+        "grant_to_requester": true
+      },
+      "output": {
+        "doc_url": "${step4.docUrl}",
+        "doc_id": "${step4.docId}"
+      }
+    }
+  ],
+
+  "output": {
+    "doc_url": "${step4.doc_url}",
+    "doc_id": "${step4.doc_id}",
+    "article_title": "${step3.article_title}",
+    "article_content": "${step3.article_md}",
+    "analysis_summary": "${step2.insights}",
+    "trending_count": "${step1.trending_count}"
+  },
+
+  "error_handling": {
+    "retry": {
+      "max_attempts": 2,
+      "delay_ms": 5000
+    },
+    "fallback": {
+      "step1": "使用 clawhub trending API 备用数据源",
+      "step2": "返回原始内容，不做 AI 分析",
+      "step4": "输出 markdown 内容，不发布"
+    }
+  },
+
+  "metadata": {
+    "author": "zhonglongshen",
+    "created": "2026-04-15",
+    "tags": ["github", "trending", "tech-blog", "automation", "feishu"],
+    "category": "AI",
+    "skills_count": 4
+  }
+}

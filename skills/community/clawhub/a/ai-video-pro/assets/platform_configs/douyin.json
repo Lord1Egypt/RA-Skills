@@ -1,0 +1,27 @@
+{
+  "platform": "douyin",
+  "display_name": "抖音",
+  "video": {
+    "max_resolution": {"width": 1080, "height": 1920},
+    "max_file_size_mb": 128,
+    "max_duration_seconds": 900,
+    "supported_aspect_ratios": ["9:16"],
+    "preferred_aspect_ratio": "9:16",
+    "format": "mp4",
+    "video_codec": "libx264",
+    "audio_codec": "aac",
+    "audio_bitrate": "128k",
+    "fps": 30,
+    "crf": 23,
+    "preset": "medium"
+  },
+  "api": {
+    "base_url": "https://open.douyin.com/",
+    "upload_endpoint": "api/douyin/v1/video/upload/",
+    "publish_endpoint": "api/douyin/v1/video/create/",
+    "auth_type": "oauth2",
+    "env_var": "DOUYIN_ACCESS_TOKEN",
+    "doc_url": "https://developer.open-douyin.com/"
+  },
+  "ffmpeg_command": "ffmpeg -i {input} -c:v libx264 -preset medium -crf 23 -c:a aac -b:a 128k -movflags +faststart -vf \"scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:-1:-1:black\" {output}"
+}

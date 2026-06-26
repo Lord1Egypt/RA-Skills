@@ -1,0 +1,25 @@
+{
+  "vision": {
+    "provider": "",
+    "baseUrl": "",
+    "apiKey": "",
+    "model": ""
+  },
+  "safety": {
+    "max_duration_min": 5,
+    "max_actions": 100,
+    "confirm_before": ["delete", "format", "rm", "sudo", "payment"],
+    "screenshot_log": true,
+    "auto_stop_on_error": true
+  },
+  "performance": {
+    "screenshot_interval_sec": 1.0,
+    "diff_threshold": 0.02,
+    "wait_after_action_sec": 1.0,
+    "max_retries": 3
+  },
+  "display": {
+    "resolution": "1024x768",
+    "display_id": ""
+  }
+}

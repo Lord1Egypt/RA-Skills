@@ -1,0 +1,53 @@
+{
+  "name": "ai-stock-watchdog",
+  "displayName": "AI stock watchdog",
+  "version": "2.2.0",
+  "description": "Daily monitoring for Indian equity holdings (NSE/BSE) using a documented severity rubric. Silent by default — surfaces Sev-1 events only. Quarterly checks, conglomerate segment view, guidance tracking. Informational only.",
+  "author": "daveanandraj",
+  "license": "MIT-0",
+  "homepage": "https://github.com/daveanandraj/indian-stock-monitor-clawhub",
+  "repository": "https://github.com/daveanandraj/indian-stock-monitor-clawhub",
+  "keywords": [
+    "stocks",
+    "investing",
+    "india",
+    "nse",
+    "bse",
+    "portfolio",
+    "alerts",
+    "earnings",
+    "fundamentals",
+    "monitoring",
+    "promoter-pledge",
+    "cash-flow-analysis",
+    "governance",
+    "conglomerate"
+  ],
+  "type": "skill",
+  "entryPoint": "SKILL.md",
+  "requires": {
+    "tools": [
+      "WebSearch",
+      "Read",
+      "Write",
+      "Edit",
+      "AskUserQuestion"
+    ],
+    "optional": [
+      "mcp__scheduled-tasks__create_scheduled_task"
+    ]
+  },
+  "dataFiles": [
+    "portfolio.json",
+    "competitors.json",
+    "severity-rubric.md",
+    "sources.md"
+  ],
+  "stateDir": "state/",
+  "outputDir": "alerts/",
+  "compatibility": {
+    "platforms": ["openclaw", "claude-code", "codex", "copilot"]
+  },
+  "categories": ["finance", "personal-productivity", "monitoring"],
+  "disclaimer": "Informational only. NOT investment advice. The author is not a SEBI-registered investment advisor. Stock investments are subject to market risk."
+}

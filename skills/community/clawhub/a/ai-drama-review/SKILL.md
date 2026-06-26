@@ -1,35 +1,167 @@
 ---
-name: "Ai Drama Review"
-description: "AI短剧内容基因检测。零依赖可用：AI直接分析版权疑似、年龄分级违规、小说魔改程度，输出结构化风险图谱。可选配 Python 环境启用三重相似度算法（n-gram / 编辑距离 / TF-IDF）提升精度。结果仅供内容审核参考，不构成法律意见。"
-category: "other"
-source: "ClawHub"
-tags: [beta]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-drama-review"
-sourceUrl: "https://clawhub.ai/skills/ai-drama-review"
+name: ai-drama-review
+description: AI短剧内容基因检测。零依赖可用：AI直接分析版权疑似、年龄分级违规、小说魔改程度，输出结构化风险图谱。可选配 Python 环境启用三重相似度算法（n-gram / 编辑距离 / TF-IDF）提升精度。结果仅供内容审核参考，不构成法律意见。
+user-invocable: true
+metadata: {"openclaw":{"requires":{"env":[],"anyBins":[]},"stage":"beta","version":"0.3.0"}}
 ---
 
-# Ai Drama Review
+用户提供剧本文本、台词或字幕文件，输出结构化风险图谱。
 
-> AI短剧内容基因检测。零依赖可用：AI直接分析版权疑似、年龄分级违规、小说魔改程度，输出结构化风险图谱。可选配 Python 环境启用三重相似度算法（n-gram / 编辑距离 / TF-IDF）提升精度。结果仅供内容审核参考，不构成法律意见。
+**⚠️ BETA** — 检测结果仅供内容审核参考，不构成法律意见，高风险内容请结合专业法律咨询。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-drama-review`
-- **Source URL:** [https://clawhub.ai/skills/ai-drama-review](https://clawhub.ai/skills/ai-drama-review)
+---
 
-## Overview
+## 运行模式
 
+| 模式 | 依赖 | 适用场景 |
+|------|------|---------|
+| **纯推理模式**（默认） | 无 | Agent / API 调用、快速扫描 |
+| **增强模式** | Python 3.8+ | 精确算法检测，适合批量处理 |
+| **深度模式** | Python + API Key | 算法 + AI 语义双重确认，最高精度 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-drama-review
+> 纯推理模式：AI 直接对文本进行分析，无需任何安装。
+> 增强/深度模式：可选，通过 `python3 scripts/text_similarity.py` 等脚本提升算法精度。
+
+---
+
+## 调用示例
+
 ```
+# 完整审查
+审查这个剧本：[粘贴文本]
+
+# 单项检测
+检测这段台词是否存在版权问题：[文本]
+判断这个剧本的年龄分级：[文本]
+
+# 改编对比
+对比原著和改编版本的偏离程度：
+原著：[文本]
+改编：[文本]
+```
+
+---
+
+## 核心方法论：内容基因检测三角
+
+```
+版权基因          年龄分级基因        改编偏离基因
+   │                  │                  │
+文本相似度        语义风险密度        结构对齐偏差
+   │                  │                  │
+└──────────── 综合风险指数 ────────────┘
+```
+
+所有检测遵循：**先快速定位嫌疑区，再上下文确认消除误报**。
+
+---
+
+## Phase 1: 版权相似度检测
+
+对输入文本按段落执行相似度分析，标记疑似侵权段落。
+
+**三重互补算法（增强/深度模式）：**
+
+```
+综合得分 = 0.3 × Jaccard(n-gram) + 0.3 × (1 - 归一化编辑距离) + 0.4 × TF-IDF余弦
+阈值：综合得分 > 0.7 → 标记疑似侵权
+```
+
+| 算法 | 检测侧重 |
+|------|---------|
+| n-gram Jaccard | 局部词汇重复、直接抄录 |
+| 归一化编辑距离 | 轻微改写、同义替换 |
+| TF-IDF余弦 | 主题语义相似、结构性借用 |
+
+**纯推理模式**：AI 直接分析段落，识别明显的情节/台词重复、标志性表达借用，给出风险评估和可疑片段标注。
+
+**数据流向**：文本内容仅在本次会话中处理。深度模式下，疑似段落发送至配置的 AI API（OpenAI/Anthropic）进行语义确认。不向任何第三方传输原始文本。
+
+---
+
+## Phase 2: 年龄分级基因扫描
+
+对文本按内容类别扫描风险信号，给出分级建议。
+
+**类别与严重度：**
+
+| 类别 | 严重度级别 |
+|------|-----------|
+| 暴力/血腥 | mild / moderate / severe |
+| 性暗示/色情 | mild / moderate / severe |
+| 恐怖/惊悚 | mild / moderate / severe |
+| 脏话/侮辱 | mild / moderate / severe |
+| 毒品/违禁品 | mild / moderate / severe |
+
+上下文确认原则：命中词不等于违规，需排除否定语境（"不允许暴力"）、文学修辞、历史引用等误报。
+
+| 分级 | 判定说明 |
+|------|---------|
+| 全年龄 | 无违规内容 |
+| 12+ | 轻度冲突，需家长指导 |
+| 18+ | 较强暴力/成人主题 |
+| 不合规 | 超出可接受范围，建议修改 |
+
+---
+
+## Phase 3: 改编偏离度评分
+
+对比原著与改编版本，量化"魔改程度"。输入：原著文本 + 改编版本文本。
+
+**偏离度公式：**
+
+```
+偏离度 = 结构对齐偏差 × 40% + 角色设定偏差 × 35% + 核心情节偏差 × 25%
+```
+
+| 偏离度 | 分类 | 操作建议 |
+|--------|------|---------|
+| 0–30 | 忠实改编 | 低风险，正常推进 |
+| 30–60 | 合理改编 | 建议与版权方沟通确认 |
+| 60–100 | 严重魔改 | 高风险，建议法律审查后再发布 |
+
+---
+
+## 输出格式
+
+```json
+{
+  "overall_risk": "中",
+  "copyright": {
+    "risk_level": "高",
+    "suspicious_paragraphs": [
+      {"index": 3, "score": 0.83, "reason": "与《XX》第7章高度相似"}
+    ]
+  },
+  "age_rating": {
+    "suggested_rating": "12+",
+    "hits": [
+      {"category": "暴力", "severity": "mild", "count": 4, "locations": [22, 45]}
+    ]
+  },
+  "adaptation": {
+    "deviation_score": 61,
+    "classification": "严重魔改",
+    "key_changes": ["主角性格完全反转", "结局改动超出原著核心"]
+  },
+  "recommendations": [
+    "第3、7段建议改写或获取书面授权",
+    "第22段暴力描写建议降级处理"
+  ]
+}
+```
+
+---
+
+## 边界与合规
+
+**本技能做什么：** 内容风险识别、分级建议、改编偏离量化、整改方向指引。
+
+**本技能不做什么：**
+- 不提供法律意见，不替代版权律师的专业判断
+- 不保证零漏报（算法和 AI 均存在误判可能）
+- 不联网检索版权数据库（使用本地参考库）
+
+**凭证（均为可选）：**
+- `OPENAI_API_KEY` 或 `ANTHROPIC_API_KEY` — 启用深度语义确认
+- 所有凭证仅通过环境变量读取，不持久化、不记录、不传输

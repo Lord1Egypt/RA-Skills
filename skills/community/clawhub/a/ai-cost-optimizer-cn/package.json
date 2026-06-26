@@ -1,0 +1,37 @@
+{
+  "name": "ai-cost-optimizer",
+  "version": "1.0.0",
+  "description": "AI 模型成本优化器 - 对比 DeepSeek/智谱/通义/GPT 价格，推荐最优模型",
+  "main": "compare.js",
+  "bin": {
+    "ai-cost-compare": "./compare.js",
+    "ai-cost-calc": "./calculate.js",
+    "ai-cost-rec": "./recommend.js"
+  },
+  "scripts": {
+    "compare": "node compare.js",
+    "calculate": "node calculate.js",
+    "recommend": "node recommend.js"
+  },
+  "keywords": [
+    "ai",
+    "cost",
+    "optimization",
+    "deepseek",
+    "zhipu",
+    "qwen",
+    "gpt",
+    "claude",
+    "pricing",
+    "calculator"
+  ],
+  "author": "OpenClaw CN",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-cn/ai-cost-optimizer"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

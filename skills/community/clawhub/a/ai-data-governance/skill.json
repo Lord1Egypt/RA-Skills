@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-data-governance",
+  "version": "1.0.0",
+  "description": "AI 数据治理 - 数据质量、数据安全",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "data", "governance", "chinese"],
+  "category": "data",
+  "license": "MIT"
+}

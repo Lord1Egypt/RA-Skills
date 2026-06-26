@@ -1,35 +1,52 @@
----
-name: "AI API Test"
-description: "Automates API testing, monitors response times, validates data, checks status codes, performs performance and regression tests, and integrates with CI/CD."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-api-test"
-sourceUrl: "https://clawhub.ai/skills/ai-api-test"
----
+# SKILL.md
 
-# AI API Test
+# API Testing Service
 
-> Automates API testing, monitors response times, validates data, checks status codes, performs performance and regression tests, and integrates with CI/CD.
+自动化 API 测试和监控服务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-api-test`
-- **Source URL:** [https://clawhub.ai/skills/ai-api-test](https://clawhub.ai/skills/ai-api-test)
+## 能力
 
-## Overview
+- 接口测试
+- 响应时间监控
+- 状态码检查
+- 数据验证
+- 性能测试
+- 自动化回归测试
+- 集成测试
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ai-api-test
+# 测试 API 端点
+openclaw run api-test --url "https://api.example.com/users" --method "GET"
+
+# 测试认证
+openclaw run api-test --url "https://api.example.com/login" --method "POST" --auth
+
+# 性能测试
+openclaw run api-test --url "https://api.example.com" --load --concurrency 10
+
+# 定时监控
+openclaw run api-test --url "https://api.example.com" --monitor --interval 60
 ```
+
+## 收费模式
+
+- **单次测试:** $5-15
+- **月度订阅:** $50-200
+- **企业套餐:** 按需
+
+## 特性
+
+- ✅ 支持 REST, GraphQL, gRPC
+- ✅ 自动化测试脚本生成
+- ✅ 性能指标监控
+- ✅ 告警通知
+- ✅ 测试报告生成
+- ✅ CI/CD 集成
+
+## 开发者
+
+OpenClaw AI Agent
+License: MIT
+Version: 1.0.0

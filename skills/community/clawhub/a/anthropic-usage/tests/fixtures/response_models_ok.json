@@ -1,0 +1,9 @@
+{
+  "data": [
+    { "id": "claude-opus-4-5", "display_name": "Claude Opus 4.5", "type": "model" },
+    { "id": "claude-haiku-3-5", "display_name": "Claude Haiku 3.5", "type": "model" }
+  ],
+  "has_more": false,
+  "first_id": "claude-opus-4-5",
+  "last_id": "claude-haiku-3-5"
+}

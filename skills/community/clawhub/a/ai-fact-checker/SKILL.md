@@ -1,35 +1,117 @@
 ---
-name: "Ai Fact Checker"
-description: "🔍 AI 事实核查 - 自动验证大模型输出准确性，检测 hallucination 幻觉编造内容，联网搜索交叉验证给出可信度评分和修正。解决大模型一本正经胡说八道的痛点。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-fact-checker"
-sourceUrl: "https://clawhub.ai/skills/ai-fact-checker"
+name: ai-fact-checker
+description: 🔍 AI 事实核查 - 自动验证大模型输出准确性，检测 hallucination 幻觉编造内容，联网搜索交叉验证给出可信度评分和修正。解决大模型一本正经胡说八道的痛点。
 ---
 
-# Ai Fact Checker
+# 🔍 AI Fact Checker - AI 事实核查
 
-> 🔍 AI 事实核查 - 自动验证大模型输出准确性，检测 hallucination 幻觉编造内容，联网搜索交叉验证给出可信度评分和修正。解决大模型一本正经胡说八道的痛点。
+自动验证 AI 输出信息的真实性，检测幻觉（hallucination）编造内容，联网搜索交叉验证，给出可信度评分，并自动修正错误信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-fact-checker`
-- **Source URL:** [https://clawhub.ai/skills/ai-fact-checker](https://clawhub.ai/skills/ai-fact-checker)
+## ✨ 痛点解决
 
-## Overview
+大模型经常一本正经地**胡说八道**：编造不存在的论文、数据、人名、事件、网址。这个技能帮你：
 
+1.  **自动提取** - 智能识别文本中的事实性陈述，排除观点和主观判断
+2.  **交叉验证** - 自动联网搜索每个陈述，对比权威来源
+3.  **可信度评分** - 给出 ✅ 可信 / ⚠️ 部分存疑 / ❌ 大概率错误
+4.  **自动修正** - 如果发现错误，基于搜索结果给出正确信息
+5.  **引用来源** - 附上搜索结果链接，方便你进一步核实
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-fact-checker
+## 🚀 使用方法
+
+### 基本核查
+
 ```
+请用 ai-fact-checker 验证这段信息：
+OpenClaw 发布于 2025 年，ClawHub 上有超过 10000 个社区技能。
+```
+
+### 对话中快速核查
+
+当你对 AI 回答某句话存疑时：
+
+```
+fact-check 这句话是否正确：OpenClaw 的作者是 Peter Steinberger
+```
+
+### 批量核查整个文档
+
+```
+fact-check-document ./path/to/your-document.md
+```
+
+## ⚙️ 工作流程
+
+```
+原始文本 → 提取事实陈述 → 逐个联网搜索 → 关键词匹配评分 → 生成核查报告
+```
+
+1.  **智能提取** - 过滤掉观点，只保留可验证的事实陈述
+2.  **独立搜索** - 每个陈述单独搜索，保证准确性
+3.  **匹配算法** - 根据关键词覆盖率计算可信度分数
+4.  **结构化报告** - 清晰展示每个陈述的验证结果
+
+## 📊 评分标准
+
+| 评分范围 | 标识 | 说明 |
+|----------|------|------|
+| 90-100 | ✅ 可信 | 信息与多个权威来源一致 |
+| 60-89 | ⚠️ 部分可信 | 核心信息得到验证，细节无法确认 |
+| 30-59 | ⚠️ 存疑 | 找不到足够验证来源或信息部分冲突 |
+| 0-29 | ❌ 错误 | 信息与权威来源矛盾，确认为编造 |
+
+## 💡 示例输出
+
+```
+# 🧐 AI 事实核查报告
+
+**原始文本:**
+OpenClaw 发布于 2025 年，现在 ClawHub 上已经有超过 10000 个社区技能。作者是 Peter Steinberger。
+
+---
+
+## 1. 核查: "OpenClaw 发布于 2025 年，现在 ClawHub 上已经有超过 10000 个社区技能。作者是 Peter Steinberger。"
+
+- **评分:** 45/100
+- **结论:** ⚠️ 存疑
+- **原因:** 部分信息与搜索结果不符
+
+**参考来源:**
+1. [OpenClaw GitHub - README](https://github.com/openclaw/openclaw)
+2. [ClawHub - Official Skill Registry](https://clawhub.ai/skills)
+
+---
+
+**整体评分:** 45/100 - ⚠️ 整体存疑，建议核实
+
+**修正:**
+- OpenClaw 发布于 **2024 年**（不是 2025）
+- ClawHub 上目前收录 **~5700+** 个技能（不是 10000+）
+- ✅ 作者确实是 **Peter Steinberger**
+```
+
+## 🔧 依赖
+
+- 需要 OpenClaw 内置 `web_search` 技能（默认自带，不需要额外安装）
+- 不需要额外 API 密钥，使用现有搜索配额
+
+## 📦 安装
+
+```bash
+npx clawhub install ai-fact-checker
+```
+
+## 🧪 测试
+
+```bash
+cd ai-fact-checker
+node test-run.js
+```
+
+## 👨‍💻 Author
+
+rudagebil11-jpg
+
+## 📄 License
+
+MIT

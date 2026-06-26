@@ -1,0 +1,56 @@
+Antekirt Skill - Quick Guide (Discord)
+======================================
+
+Who is this for:
+- Team members using Discord/OpenClaw who want to generate visual content via Antekirt.
+
+What you need first:
+1) Antekirt API key
+2) Environment variable configured:
+   ANTEKIRT_API_KEY=your_key_here
+3) Skill files present in workspace:
+   - SKILL.md
+   - scripts/antekirt.js
+   - references/api-endpoints.md
+
+Core commands:
+
+1. List artists with thumbnails
+   node skills/antekirt/scripts/antekirt.js artists
+
+2. Search artists
+   node skills/antekirt/scripts/antekirt.js artists --search "retro"
+
+3. Generate image (interactive picker)
+   node skills/antekirt/scripts/antekirt.js image --pick --prompt "friendly owl mascot"
+
+4. Generate image (by artist name)
+   node skills/antekirt/scripts/antekirt.js image --artist "artist name" --prompt "editorial illustration"
+
+5. Generate image (by artist UUID)
+   node skills/antekirt/scripts/antekirt.js image --artist-id <uuid> --prompt "editorial illustration"
+
+6. Convert generation to SVG
+   node skills/antekirt/scripts/antekirt.js svg --generation-id <uuid> --image-index 0
+
+7. Generate video from generation
+   node skills/antekirt/scripts/antekirt.js video --generation-id <uuid> --prompt "subtle motion" --duration 4
+
+How artist picker works:
+- Shows artist name
+- Shows artist ID
+- Shows thumbnail URL (or "No thumbnail")
+- You can select by number, name, or id (depending on command mode)
+
+Troubleshooting:
+- "Missing ANTEKIRT_API_KEY": set API key in env first.
+- "Artist not found": try --search and copy exact name/id.
+- "Generation failed": verify credits and prompt.
+- "Timed out": rerun with --timeout 300.
+
+Recommended workflow:
+1) artists --search
+2) image --pick --prompt
+3) svg (optional)
+4) video (optional)
+

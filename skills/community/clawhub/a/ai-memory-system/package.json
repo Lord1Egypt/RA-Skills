@@ -1,0 +1,7 @@
+{
+  "name": "ai-memory-system",
+  "version": "1.0.0",
+  "description": "Auto-setup for the 3-layer OpenClaw memory architecture. MEMORY.md, daily notes, nightly extraction.",
+  "author": "TalonForge",
+  "license": "MIT"
+}

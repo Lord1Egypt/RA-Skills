@@ -1,0 +1,64 @@
+{
+  "name": "ai-social-media-manager",
+  "version": "1.0.0",
+  "description": "AI-driven social media management with content calendar, auto-scheduling, engagement, and analytics",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "keywords": [
+    "social-media",
+    "automation",
+    "content-calendar",
+    "analytics",
+    "ai",
+    "xiaohongshu",
+    "weibo",
+    "twitter",
+    "marketing"
+  ],
+  "category": "automation",
+  "price": {
+    "amount": 99,
+    "currency": "USD",
+    "period": "monthly"
+  },
+  "main": "src/index.js",
+  "bin": "src/cli.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "features": [
+    "内容日历自动生成",
+    "最佳发布时间推荐",
+    "自动回复和互动",
+    "表现分析和优化",
+    "多平台支持 (6+)",
+    "智能情感分析",
+    "AI 驱动优化建议"
+  ],
+  "platforms": [
+    "xiaohongshu",
+    "weibo",
+    "twitter",
+    "linkedin",
+    "instagram",
+    "wechat"
+  ],
+  "screenshots": [
+    "screenshots/calendar.png",
+    "screenshots/analytics.png",
+    "screenshots/reply.png"
+  ],
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-15",
+      "changes": [
+        "初始版本发布",
+        "支持 6 个社交媒体平台",
+        "内容日历自动生成",
+        "最佳发布时间推荐",
+        "自动回复和互动",
+        "表现分析和优化建议"
+      ]
+    }
+  }
+}

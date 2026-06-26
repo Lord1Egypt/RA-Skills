@@ -1,0 +1,15 @@
+---
+name: anti-hype-filter
+description: Detect hype triggers and neutralize them by rewriting claims into verifiable structures with explicit uncertainty and risk.
+version: 2.0.0
+display_name: "Anti-Hype Filter"
+triggers:
+  - hype
+  - anti hype
+  - moon
+  - guaranteed
+  - 100x
+  - urgency
+  - alpha
+---
+

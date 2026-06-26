@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-face-recognition",
+  "version": "1.0.0",
+  "description": "AI 人脸识别 - 人脸检测、比对、搜索",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "face", "recognition", "security", "chinese"],
+  "category": "security",
+  "license": "MIT"
+}

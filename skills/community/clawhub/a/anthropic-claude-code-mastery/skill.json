@@ -1,0 +1,18 @@
+{
+  "slug": "anthropic-claude-code-mastery",
+  "name": "Claude Code Mastery",
+  "version": "1.0.0",
+  "description": "Complete guide to mastering Claude Code CLI \u2014 installation to production workflows",
+  "author": "Abhinas Neupane",
+  "tags": [
+    "claude-code",
+    "ai-coding",
+    "mcp",
+    "developer-tools",
+    "productivity"
+  ],
+  "pricing": {
+    "type": "one-time",
+    "value": 49
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "api_key": "hms_live_W4Ux8LHAJzQ6AsIf0raCxI1F93QBi8qkCkLHB2PBpBc",
+  "keyword": "dog collar leash",
+  "category": "Pet Supplies,Dogs,Collars, Harnesses & Leashes",
+  "tracked_asins": [
+    "B0B1F5F3VR",
+    "B08PNWG993",
+    "B08NDFWQB1",
+    "B004XNLCPC",
+    "B081YHK13N",
+    "B0CQ567YLN",
+    "B07DZBN74T",
+    "B07DZ1752D"
+  ],
+  "asin_labels": {
+    "B0B1F5F3VR": "Best Pet Supplies - Voyager 反光牵引绳",
+    "B08PNWG993": "ladoogo - 反光项圈",
+    "B08NDFWQB1": "PUPTECK - 套装",
+    "B004XNLCPC": "Halti - 头带项圈",
+    "B081YHK13N": "AMAGOOD - 基础牵引绳",
+    "B0CQ567YLN": "Lobeve - 防拉套装",
+    "B07DZBN74T": "SportDOG - 电子训练项圈 425X",
+    "B07DZ1752D": "SportDOG - 电子训练项圈 425XS"
+  },
+  "alert_thresholds": {
+    "price_change_pct": 5,
+    "bsr_change_pct": 20
+  },
+  "created_at": "2026-04-03T09:14:00Z"
+}

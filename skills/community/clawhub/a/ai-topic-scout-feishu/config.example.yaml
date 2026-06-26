@@ -1,0 +1,80 @@
+# AI Topic Scout 配置文件
+# 复制为 config.yaml 并填写你的数据源
+
+# YouTube 数据源
+youtube:
+  sources:
+    - channel_id: "@AndrewYNg"
+      name: "Andrew Ng"
+    - channel_id: "@lexfridman"
+      name: "Lex Fridman"
+    - channel_id: "@3blue1brown"
+      name: "3Blue1Brown"
+  
+  # 可选: YouTube Data API v3 密钥
+  # api_key: "YOUR_API_KEY"
+
+# Twitter/X 数据源
+twitter:
+  sources:
+    - username: "karpathy"
+      name: "Andrej Karpathy"
+    - username: "OpenAI"
+      name: "OpenAI"
+    - username: "ylecun"
+      name: "Yann LeCun"
+  
+  # 可选: Twitter API Bearer Token
+  # bearer_token: "YOUR_BEARER_TOKEN"
+
+# 抓取设置
+fetch:
+  # 抓取最近 N 天的内容
+  days: 7
+  
+  # 单次抓取数量限制
+  max_items_per_source: 20
+
+# 分析设置
+analysis:
+  # 使用的 LLM 模型
+  model: "opus"  # flash / gpt / opus
+  
+  # 主题相似度阈值 (0-1, 越高越严格)
+  similarity_threshold: 0.75
+  
+  # 最少关键词数量
+  min_keywords: 3
+  max_keywords: 5
+
+# 飞书多维表格设置
+feishu:
+  # 多维表格名称
+  app_name: "AI 选题追踪"
+  
+  # 文件夹 token (可选，不填则创建在「我的空间」)
+  # folder_token: "fldfxxxxxxxxxxxxxx"
+  
+  # 是否自动创建表格 (首次运行)
+  auto_create: true
+
+# 热度评分权重
+scoring:
+  # 平台权重
+  platform_weight:
+    youtube: 1.2
+    twitter: 1.0
+  
+  # 时间衰减系数
+  time_decay:
+    0-7: 1.0    # 7天内
+    7-14: 0.7   # 7-14天
+    14-30: 0.4  # 14-30天
+  
+  # 互动数据权重
+  engagement_weight:
+    views: 0.3      # YouTube 观看数
+    likes: 0.4      # 点赞数
+    comments: 0.3   # 评论数
+    retweets: 0.5   # Twitter 转发
+    replies: 0.2    # 回复

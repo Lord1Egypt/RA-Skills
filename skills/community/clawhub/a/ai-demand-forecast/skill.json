@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-demand-forecasting",
+  "version": "1.0.0",
+  "description": "AI 需求预测 - 销售预测、补货计划",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "forecasting", "sales", "inventory", "chinese"],
+  "category": "analytics",
+  "license": "MIT"
+}

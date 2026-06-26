@@ -1,0 +1,13 @@
+{
+  "name": "ai-fact-checker",
+  "version": "1.0.0",
+  "description": "AI 事实核查技能，自动验证大模型输出信息的准确性",
+  "main": "scripts/fact-check.js",
+  "scripts": {
+    "check": "node scripts/fact-check.js"
+  },
+  "keywords": ["fact-check", "hallucination", "verification", "ai-trust", "accuracy"],
+  "author": "rudagebil11-jpg",
+  "license": "MIT",
+  "type": "commonjs"
+}

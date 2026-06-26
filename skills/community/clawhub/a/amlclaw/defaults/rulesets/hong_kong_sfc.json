@@ -1,0 +1,347 @@
+[
+  {
+    "rule_id": "HK-SFC-DEP-SEVERE-001",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Inflow Direct Interaction — Sanctions/Terrorism (Hop 1)",
+    "description": "Freeze if direct inflow (Hop 1) from Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes. Direct contact with sanctioned entities is Critical-level per OFAC guidance.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "SFC AML Guideline 4.1.9 & 12.7 & OFAC SDN Direct Contact = Critical"
+  },
+  {
+    "rule_id": "HK-SFC-DEP-SEVERE-002",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Inflow Near-Distance — Sanctions/Terrorism (Hop 2-3)",
+    "description": "Freeze if near-distance inflow (Hop 2-3) from Sanctions, Terrorism, or Frozen entities. Layered funds from sanctioned sources within 3 hops still represent direct taint.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "SFC AML Guideline 4.1.9 & 12.7"
+  },
+  {
+    "rule_id": "HK-SFC-DEP-HIGH-001",
+    "category": "Deposit",
+    "direction": "inflow",
+    "min_hops": 4,
+    "max_hops": 5,
+    "name": "Inflow Far-Distance — Sanctions/Terrorism (Hop 4-5)",
+    "description": "Trigger EDD if far-distance inflow (Hop 4-5) from Sanctions, Terrorism, or Frozen entities. SFC requires 5-hop inflow penetration; far-distance exposure warrants enhanced investigation but reduced action severity.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "SFC AML Guideline 12.15.2 & Pollution Decay Principle"
+  },
+  {
+    "rule_id": "HK-SFC-DEP-HIGH-002",
+    "category": "Deposit",
+    "direction": "inflow",
+    "name": "Inflow Exposure — Cybercrime/Obfuscation (Zero-Tolerance)",
+    "description": "Reject deposits with any exposure (>0%) to Cybercrime or Obfuscation (Mixers, Darknet). SFC mandates zero-tolerance for these categories regardless of hop distance.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 0,
+        "unit": "%"
+      }
+    ],
+    "risk_level": "High",
+    "action": "Reject",
+    "reference": "SFC AML Guideline 12.15.2"
+  },
+  {
+    "rule_id": "HK-SFC-DEP-HIGH-003",
+    "category": "Deposit",
+    "direction": "inflow",
+    "name": "Inflow Exposure — Gambling/High-Risk Entities (Threshold)",
+    "description": "Trigger EDD if inflow exposure to Gambling or High-Risk Entities exceeds 30% AND risk amount > 1000 USD.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Gambling", "High-Risk Entities"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 30,
+        "unit": "%"
+      },
+      {
+        "parameter": "path.risk_amount_usd",
+        "operator": ">",
+        "value": 1000,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "TrustIn HK VATP Guide Section 2.1"
+  },
+  {
+    "rule_id": "HK-SFC-DEP-OUT-SEVERE-001",
+    "category": "Deposit",
+    "direction": "outflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Outflow History — Target Directly Funded Sanctions/Terrorism (Hop 1)",
+    "description": "Freeze if the target address has directly sent funds (Hop 1 outflow) to Sanctions, Terrorism, or Frozen entities. Direct outflow to sanctioned entities demonstrates intentional interaction — stronger risk signal than passive inflow exposure.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "SFC AML Guideline 4.1.9 & OFAC Prohibition on Providing Indirect Benefits"
+  },
+  {
+    "rule_id": "HK-SFC-DEP-OUT-HIGH-001",
+    "category": "Deposit",
+    "direction": "outflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Outflow History — Target Indirectly Funded Sanctions/Terrorism (Hop 2-3)",
+    "description": "Trigger EDD if the target address has indirectly funded (Hop 2-3 outflow) Sanctions or Terrorism entities through intermediaries.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Other Financial Crimes", "Public Freezing Action", "Illicit Markets"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "SFC AML Guideline 12.15.2 & OFAC Indirect Benefits Prohibition"
+  },
+  {
+    "rule_id": "HK-SFC-DEP-SELF-SEVERE-001",
+    "category": "Deposit",
+    "name": "Target Self-Tag — Sanctions/Freeze/Illicit",
+    "description": "Freeze if the target address itself is tagged as Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes. Applies to both onboarding and deposit — risk changes over time, an address clean at onboarding may be flagged later.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Public Freezing Action", "Illicit Markets", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "SFC AML Guideline 4.1.9 (CDD/Ongoing CDD) & FATF Recommendation 10"
+  },
+  {
+    "rule_id": "HK-SFC-DEP-SELF-HIGH-001",
+    "category": "Deposit",
+    "name": "Target Self-Tag — Cybercrime/Obfuscation",
+    "description": "Trigger EDD if the target address itself is tagged as Cybercrime or Obfuscation. Applies to both onboarding and deposit — addresses may acquire new risk labels after onboarding due to evolving threat intelligence.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "SFC AML Guideline 12.15.2 (CDD/Ongoing CDD)"
+  },
+  {
+    "rule_id": "HK-SFC-WHL-001",
+    "category": "Deposit",
+    "name": "CEX & TradFi Whitelist",
+    "description": "Stop penetrating graph paths if a compliant Centralized Exchange or TradFi institution is encountered.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.secondary_category",
+        "operator": "IN",
+        "value": ["CEX", "TradFi"]
+      }
+    ],
+    "risk_level": "Low",
+    "action": "Whitelist",
+    "reference": "TrustIn HK VATP Guide Section 2.1"
+  },
+  {
+    "rule_id": "HK-SFC-WDR-SEVERE-001",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "min_hops": 1,
+    "max_hops": 1,
+    "name": "Outflow Direct Interaction — Sanctions/Terrorism Destination (Hop 1)",
+    "description": "Freeze if direct outflow (Hop 1) reaches Sanctions, Terrorism, or Frozen destination. SFC outflow monitoring focuses on direct and near-distance (2-3 hops) interaction.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Illicit Markets", "Public Freezing Action", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "SFC AML Guideline 4.1.9 & 12.7 (Outflow Hop 1)"
+  },
+  {
+    "rule_id": "HK-SFC-WDR-SEVERE-002",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "min_hops": 2,
+    "max_hops": 3,
+    "name": "Outflow Near-Distance — Sanctions/Terrorism Destination (Hop 2-3)",
+    "description": "Freeze if near-distance outflow (Hop 2-3) reaches Sanctions or Terrorism destination. SFC guidance recommends 2-3 hop outflow monitoring depth for CFT compliance.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Illicit Markets", "Public Freezing Action", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "SFC AML Guideline 4.1.9 & 12.7 (Outflow Hop 2-3)"
+  },
+  {
+    "rule_id": "HK-SFC-WDR-HIGH-001",
+    "category": "Withdrawal",
+    "direction": "outflow",
+    "name": "Outflow Exposure — Cybercrime/Obfuscation/Gambling Destination (Threshold)",
+    "description": "Trigger EDD if outflow reaches Cybercrime, Obfuscation, Gambling, or High-Risk destination with exposure > 10% AND amount > 100 USD.",
+    "conditions": [
+      {
+        "parameter": "path.node.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation", "Gambling", "High-Risk Entities"]
+      },
+      {
+        "parameter": "path.risk_percentage",
+        "operator": ">",
+        "value": 10,
+        "unit": "%"
+      },
+      {
+        "parameter": "path.risk_amount_usd",
+        "operator": ">",
+        "value": 100,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "SFC AML Guideline 12.15.2 (Outflow EDD)"
+  },
+  {
+    "rule_id": "HK-SFC-WDR-SELF-SEVERE-001",
+    "category": "Withdrawal",
+    "name": "Withdrawal Gate — Target Self-Tagged (Sanctions/Freeze/Illicit)",
+    "description": "Freeze withdrawal if the target address itself is tagged as Sanctions, Terrorism Financing, Public Freezing Action, Illicit Markets, or Other Financial Crimes. Prevents sanctioned or frozen addresses from moving funds out.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Sanctions", "Terrorism Financing", "Public Freezing Action", "Illicit Markets", "Other Financial Crimes"]
+      }
+    ],
+    "risk_level": "Severe",
+    "action": "Freeze",
+    "reference": "SFC AML Guideline 4.1.9 & 12.7 (Ongoing CDD)"
+  },
+  {
+    "rule_id": "HK-SFC-WDR-SELF-HIGH-001",
+    "category": "Withdrawal",
+    "name": "Withdrawal Gate — Target Self-Tagged (Cybercrime/Obfuscation)",
+    "description": "Trigger EDD on withdrawal if the target address itself is tagged as Cybercrime or Obfuscation. High-risk tagged addresses require enhanced investigation before allowing fund movement.",
+    "conditions": [
+      {
+        "parameter": "target.tags.primary_category",
+        "operator": "IN",
+        "value": ["Cybercrime", "Obfuscation"]
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "SFC AML Guideline 12.15.2 (Ongoing CDD)"
+  },
+  {
+    "rule_id": "HK-SFC-TX-001",
+    "category": "Withdrawal",
+    "name": "Travel Rule / Unhosted Wallet Trigger",
+    "description": "Trigger Travel Rule and Unhosted Wallet Proof of Ownership for amounts > 1000 USD (~7800 HKD).",
+    "conditions": [
+      {
+        "parameter": "path.amount",
+        "operator": ">",
+        "value": 1000,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "Medium",
+    "action": "Review",
+    "reference": "SFC AML Guideline 12.11 & 12.14"
+  },
+  {
+    "rule_id": "HK-SFC-CDD-HIGH-001",
+    "category": "CDD",
+    "name": "Single Transaction KYC Trigger (>1000 USD)",
+    "description": "Trigger full KYC/CDD verification if a single transaction exceeds 1000 USD (~7800 HKD) per SFC unhosted wallet threshold.",
+    "conditions": [
+      {
+        "parameter": "path.amount",
+        "operator": ">",
+        "value": 1000,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "EDD",
+    "reference": "SFC AML Guideline 12.11 (CDD for unhosted wallets)"
+  },
+  {
+    "rule_id": "HK-SFC-TX-002",
+    "category": "Ongoing Monitoring",
+    "name": "Structuring / Anti-Smurfing Alert",
+    "description": "Trigger STR review if daily accumulation > 10000 USD to prevent evading the HKD 8000 Travel Rule limit.",
+    "conditions": [
+      {
+        "parameter": "target.daily_deposit_usd",
+        "operator": ">",
+        "value": 10000,
+        "unit": "USD"
+      }
+    ],
+    "risk_level": "High",
+    "action": "Review",
+    "reference": "SFC AML Guideline 5.10 (Structuring)"
+  }
+]

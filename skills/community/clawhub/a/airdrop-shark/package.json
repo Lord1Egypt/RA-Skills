@@ -1,0 +1,34 @@
+{
+  "name": "airdrop-shark",
+  "version": "0.1.0",
+  "description": "🪂 AirdropAlert - 空投提醒，追踪潜在空投资格",
+  "main": "scripts/airdrop.mjs",
+  "type": "module",
+  "scripts": {
+    "airdrop": "node scripts/airdrop.mjs",
+    "eligibility": "node scripts/eligibility.mjs",
+    "reminder": "node scripts/reminder.mjs",
+    "test": "node scripts/airdrop.mjs"
+  },
+  "keywords": [
+    "airdrop",
+    "crypto",
+    "eligibility",
+    "snapshot",
+    "reminder",
+    "layerzero",
+    "zksync"
+  ],
+  "author": "@gztanht",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gztanht/airdrop-alert"
+  },
+  "homepage": "https://clawhub.com/skills/airdrop-alert",
+  "funding": {
+    "type": "crypto",
+    "usdt": "0x33f943e71c7b7c4e88802a68e62cca91dab65ad9",
+    "usdc": "0xcb5173e3f5c2e32265fbbcaec8d26d49bf290e44"
+  }
+}

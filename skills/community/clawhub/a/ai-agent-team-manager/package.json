@@ -1,0 +1,19 @@
+{
+  "name": "ai-agent-team-manager",
+  "version": "1.0.0",
+  "description": "AI Agent Team Management System for OpenClaw - Task allocation, progress tracking, quality control, and performance evaluation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "ai-agent",
+    "team-management",
+    "task-allocation",
+    "quality-control"
+  ],
+  "author": "Xiao Zhuang",
+  "license": "MIT",
+  "dependencies": {}
+}

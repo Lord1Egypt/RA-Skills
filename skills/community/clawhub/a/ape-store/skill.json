@@ -1,0 +1,10 @@
+{
+  "name": "apestore-token-creator",
+  "version": "1.0.0",
+  "description": "Creates a token on Ape.Store using the BASE network",
+  "trigger": "create a token on ape.store",
+	"config": {
+		"privateKey": "YOUR_PRIVATE_KEY_HERE",
+		"rpcUrl": "https://mainnet.base.org"
+	}
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>新视频项目</title>
+  <!-- HyperFrames 通过 npm run dev 自动注入运行时 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--
+    根容器：三个 data-* 属性缺一不可
+    data-composition-id 必须与 window.__timelines 的注册 key 一致
+  -->
+  <div id="composition"
+       data-composition-id="composition"
+       data-width="1080"
+       data-height="1920">
+
+    <!-- 暗角遮罩（可选，增强电影感） -->
+    <div class="vignette"></div>
+
+    <!-- 音频轨道：data-duration 在 Stage 2.1 获取音频实测时长后填入 -->
+    <audio id="narration"
+           src="assets/narration.wav"
+           data-start="0"
+           data-duration="60"
+           data-track-index="0">
+    </audio>
+
+    <!-- 场景容器：由下方 JS 动态注入，禁止在此处硬编码场景 HTML -->
+    <div id="scenes-container"></div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    /**
+     * GSAP 时间轴：永远是 paused: true
+     * 渲染引擎（HyperFrames）会通过 window.__timelines 接管所有时间控制
+     * 禁止修改为 paused: false，禁止写 audio.play()
+     */
+    const tl = gsap.timeline({ paused: true });
+
+    // 提前注册，确保即使后续 JS 报错也能保住时间轴引用
+    window.__timelines = window.__timelines || {};
+    window.__timelines["composition"] = tl;
+
+    /**
+     * ===== 在此处填入 Stage 2.3 生成的时间轴数据 =====
+     *
+     * 每条数据来源：
+     *   - start, duration: 从 transcript.json 或 silencedetect 获取，禁止手动估算
+     *   - subtitle: 直接粘贴旁白文字，程序会自动处理特殊符号（无需手动转义）
+     *
+     * 示例结构（删除后替换为你的真实数据）：
+     */
+    const scenes = [
+      { id: "scene1",  start: 0,    duration: 5.8, subtitle: "第一幕旁白..." },
+      { id: "scene2",  start: 5.8,  duration: 6.2, subtitle: "第二幕旁白..." },
+      // 继续添加...
+    ];
+
+    /**
+     * 动态生成 DOM 节点
+     * 使用 textContent 写入字幕，从根本上杜绝 < > 等特殊符号破坏 HTML 的问题
+     */
+    const container = document.getElementById("scenes-container");
+    scenes.forEach(({ id, start, duration, subtitle }) => {
+      // 外层：场景容器
+      const scene = document.createElement("div");
+      scene.id = id;
+      scene.className = "clip";
+      scene.dataset.start = start;
+      scene.dataset.duration = duration;
+      scene.dataset.trackIndex = "1";
+
+      // 背景模糊层（毛玻璃效果）
+      const bgImg = document.createElement("img");
+      bgImg.className = "bg-fill";
+      bgImg.src = `assets/${id}.png`;
+
+      // 主体图片（object-fit 居中，禁止 translate 定位）
+      const fgImg = document.createElement("img");
+      fgImg.className = "fg-main";
+      fgImg.src = `assets/${id}.png`;
+
+      // 字幕层
+      const overlay = document.createElement("div");
+      overlay.className = "overlay";
+      const sub = document.createElement("div");
+      sub.className = "subtitle";
+      sub.textContent = subtitle; // ← textContent 自动转义，永不出错
+      overlay.appendChild(sub);
+
+      scene.appendChild(bgImg);
+      scene.appendChild(fgImg);
+      scene.appendChild(overlay);
+      container.appendChild(scene);
+
+      // 注册 GSAP 动画
+      tl.set(scene, { autoAlpha: 1 }, start);
+      if (index > 0) {
+        tl.fromTo(scene, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "none" }, start);
+      }
+      
+      tl.fromTo(fgImg,
+        { scale: 1.0, transformOrigin: "center center" },
+        { scale: 1.06, duration: duration, ease: "none" },
+        start
+      );
+    });
+  </script>
+</body>
+</html>

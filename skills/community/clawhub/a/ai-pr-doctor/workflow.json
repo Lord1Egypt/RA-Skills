@@ -1,0 +1,186 @@
+{
+  "name": "AI PR 医生",
+  "version": "1.0.0",
+  "description": "GitHub PR → AI 5维度审查 → 自动修复 → 合并 → 飞书诊疗报告",
+  "combo_id": "ai-pr-doctor",
+
+  "inputs": {
+    "pr": {
+      "type": "string",
+      "required": true,
+      "description": "PR 链接或编号，格式：https://github.com/owner/repo/pull/123 或 123"
+    },
+    "repo": {
+      "type": "string",
+      "required": false,
+      "description": "仓库名称，格式：owner/repo（从 PR URL 自动提取，可手动指定）"
+    },
+    "test_command": {
+      "type": "string",
+      "default": "npm test",
+      "description": "测试命令，用于 auto-pr-merger 重跑测试"
+    },
+    "auto_merge": {
+      "type": "boolean",
+      "default": true,
+      "description": "测试通过后是否自动合并"
+    },
+    "notify_feishu": {
+      "type": "boolean",
+      "default": true,
+      "description": "完成后是否发布飞书诊疗报告"
+    },
+    "feishu_folder": {
+      "type": "string",
+      "default": "",
+      "description": "飞书目标文件夹 token（可选）"
+    },
+    "severity_threshold": {
+      "type": "number",
+      "default": 50,
+      "description": "严重问题阈值分数（0-100），超过此分数的问题需人工复核"
+    }
+  },
+
+  "steps": [
+    {
+      "id": "step1_fetch_pr",
+      "name": "获取 PR 信息",
+      "skill": "github",
+      "input": {
+        "action": "pr view",
+        "pr": "${inputs.pr}",
+        "repo": "${inputs.repo}",
+        "json": true
+      },
+      "output": {
+        "pr_title": "${step1.title}",
+        "pr_body": "${step1.body}",
+        "pr_state": "${step1.state}",
+        "pr_author": "${step1.user.login}",
+        "changed_files": "${step1.changed_files}",
+        "additions": "${step1.additions}",
+        "deletions": "${step1.deletions}",
+        "head_ref": "${step1.head.ref}",
+        "base_ref": "${step1.base.ref}"
+      }
+    },
+    {
+      "id": "step2_code_review",
+      "name": "AI 5维度代码审查",
+      "skill": "code-review-skill",
+      "input": {
+        "pr_url": "${inputs.pr}",
+        "review_dimensions": [
+          "CLAUDE.md 合规性审查",
+          "浅层 Bug 扫描",
+          "Git 历史上下文分析",
+          "过往 PR 评论对照",
+          "代码注释合规检查"
+        ],
+        "severity_threshold": "${inputs.severity_threshold}",
+        "output_format": "structured_json"
+      },
+      "output": {
+        "critical_issues": "${step2.critical}",
+        "medium_issues": "${step2.medium}",
+        "low_issues": "${step2.low}",
+        "review_summary": "${step2.summary}",
+        "false_positive_count": "${step2.false_positives}"
+      }
+    },
+    {
+      "id": "step3_auto_fix",
+      "name": "自动修复 + 测试 + 合并",
+      "skill": "auto-pr-merger",
+      "condition": "${inputs.auto_merge} AND ${step2.critical} == 0",
+      "input": {
+        "pr": "${inputs.pr}",
+        "test": "${inputs.test_command}",
+        "retries": 2,
+        "auto_merge_if_passed": true
+      },
+      "output": {
+        "fixed_files": "${step3.fixed}",
+        "test_passed": "${step3.test_passed}",
+        "merge_result": "${step3.merge_state}",
+        "retry_count": "${step3.retries_used}"
+      }
+    },
+    {
+      "id": "step4_report",
+      "name": "生成飞书诊疗报告",
+      "skill": "feishu_doc",
+      "condition": "${inputs.notify_feishu}",
+      "input": {
+        "action": "create",
+        "title": "🔬 PR 诊疗报告 | ${step1.pr_title}",
+        "content": "${report_markdown}",
+        "folder_token": "${inputs.feishu_folder}",
+        "grant_to_requester": true
+      },
+      "output": {
+        "doc_url": "${step4.docUrl}",
+        "doc_id": "${step4.docId}"
+      }
+    }
+  ],
+
+  "report_template": {
+    "title": "🔬 PR 诊疗报告 | {{pr_title}}",
+    "sections": [
+      {
+        "name": "概览",
+        "fields": ["仓库", "作者", "状态", "文件变更", "审查时间"]
+      },
+      {
+        "name": "AI 审查结果",
+        "subsections": [
+          { "name": "严重问题", "severity": "critical", "icon": "🔴" },
+          { "name": "中等问题", "severity": "medium", "icon": "🟡" },
+          { "name": "低优先级", "severity": "low", "icon": "🟢" }
+        ]
+      },
+      {
+        "name": "自动修复记录",
+        "fields": ["文件", "修复内容", "状态"]
+      },
+      {
+        "name": "合并结果",
+        "fields": ["自动合并", "CI状态", "审查轮次", "合并时间"]
+      }
+    ]
+  },
+
+  "output": {
+    "doc_url": "${step4.doc_url}",
+    "doc_id": "${step4.doc_id}",
+    "pr_title": "${step1.pr_title}",
+    "pr_state": "${step3.merge_result}",
+    "critical_issues_count": "${step2.critical_count}",
+    "fixed_files_count": "${step3.fixed_count}",
+    "review_summary": "${step2.review_summary}"
+  },
+
+  "error_handling": {
+    "retry": {
+      "max_attempts": 2,
+      "delay_ms": 5000
+    },
+    "fallback": {
+      "step1": "返回错误：PR 信息获取失败，请检查 URL 格式",
+      "step2": "跳过 AI 审查，直接进入自动修复步骤",
+      "step3": "标记需要人工审查，生成报告时注明",
+      "step4": "输出 markdown 内容到终端，不发布飞书"
+    }
+  },
+
+  "metadata": {
+    "author": "openclaw-agent",
+    "created": "2026-04-25",
+    "tags": ["github", "code-review", "pr", "automation", "ai-review", "feishu"],
+    "category": "AI",
+    "skills_count": 4,
+    "skills": ["github", "code-review-skill", "auto-pr-merger", "feishu_doc"]
+  }
+}

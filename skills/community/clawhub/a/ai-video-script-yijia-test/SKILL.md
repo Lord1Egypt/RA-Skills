@@ -1,35 +1,152 @@
 ---
-name: "AI Video Script Generator (Yijia Test)"
-description: "生成 AI 短视频脚本、镜头拆解、画面提示词、字幕文案与可直接进入视频生成测试的 prompt。用于把一个主题快速整理成可执行的视频方案，尤其适合：短视频选题、分镜脚本、AI 视频提示词、Yijia/Sora/Grok 文生视频测试、图生视频测试、爆款短视频结构化策划。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-video-script-yijia-test"
-sourceUrl: "https://clawhub.ai/skills/ai-video-script-yijia-test"
+name: ai-video-script
+description: 生成 AI 短视频脚本、镜头拆解、画面提示词、字幕文案与可直接进入视频生成测试的 prompt。用于把一个主题快速整理成可执行的视频方案，尤其适合：短视频选题、分镜脚本、AI 视频提示词、Yijia/Sora/Grok 文生视频测试、图生视频测试、爆款短视频结构化策划。
 ---
 
-# AI Video Script Generator (Yijia Test)
+# AI Video Script Generator
 
-> 生成 AI 短视频脚本、镜头拆解、画面提示词、字幕文案与可直接进入视频生成测试的 prompt。用于把一个主题快速整理成可执行的视频方案，尤其适合：短视频选题、分镜脚本、AI 视频提示词、Yijia/Sora/Grok 文生视频测试、图生视频测试、爆款短视频结构化策划。
+把一个模糊主题整理成**可执行的视频脚本包**：
+- 标题与定位
+- 时长建议
+- 分镜表
+- 逐镜头提示词
+- 旁白/字幕文案
+- 可直接用于 Yijia 测试的视频总 prompt
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-video-script-yijia-test`
-- **Source URL:** [https://clawhub.ai/skills/ai-video-script-yijia-test](https://clawhub.ai/skills/ai-video-script-yijia-test)
+## 输出目标
 
-## Overview
+默认输出 5 个部分：
 
+1. **视频概述**
+   - 标题
+   - 目标受众
+   - 风格
+   - 建议时长
+2. **分镜表**
+   - 时间段
+   - 画面
+   - 镜头运动
+   - 情绪/节奏
+3. **逐镜头提示词**
+   - 画面主体
+   - 场景环境
+   - 光线与镜头语言
+   - 风格关键词
+4. **文案层**
+   - 开头钩子
+   - 旁白
+   - 字幕
+   - 结尾 CTA
+5. **生成测试 prompt**
+   - 一段适合直接送入 Yijia/Sora/Grok 的整合版 prompt
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-video-script-yijia-test
+## 推荐工作流
+
+### 场景 A：先做脚本
+
+当用户只说主题时，按下面顺序输出：
+
+1. 先定义视频定位
+2. 再给 3-5 个分镜
+3. 再给每镜头提示词
+4. 再给字幕与旁白
+5. 最后给一段**可直接生成视频**的主 prompt
+
+### 场景 B：直接为 AI 视频生成服务
+
+如果目标是直接测试文生视频/图生视频：
+
+- 优先输出 **8秒 / 10秒 / 15秒** 版本
+- 画面描述要具体
+- 避免镜头过多
+- 强调主体、动作、场景、镜头、光线、风格、画质
+- 结尾给一个**压缩后的单段 prompt**，便于直接粘贴到视频生成器
+
+### 场景 C：适配短视频平台
+
+短视频优先结构：
+- 0-2 秒：钩子
+- 2-6 秒：核心动作/反差
+- 6-8 秒或 6-10 秒：结果/反转/记忆点
+
+## 适配 Yijia 的写法
+
+当目标是 Yijia 测试时，优先遵循：
+
+- 单视频只保留一个核心主体
+- 动作描述清晰，不要多事件并发
+- 场景尽量单一
+- 镜头运动只选 1-2 个
+- 风格关键词不超过 6 个
+- 避免过长抽象说明
+
+推荐总 prompt 结构：
+
+```text
+主体 + 动作 + 场景 + 镜头运动 + 光线/氛围 + 风格 + 画质
 ```
+
+示例：
+
+```text
+一只橘猫坐在雨后窗边慢慢转头看向镜头，桌上有一杯冒着热气的咖啡，镜头缓慢推进，室内暖色傍晚光线，治愈、细腻、电影感，竖屏，高清
+```
+
+## 建议输出模板
+
+```markdown
+# 标题
+
+## 概述
+- 时长：8秒 / 10秒 / 15秒
+- 风格：
+- 受众：
+- 目标：
+
+## 分镜
+### 镜头1
+- 时间：0-2秒
+- 画面：
+- 镜头：
+- 提示词：
+- 配音/字幕：
+
+### 镜头2
+...
+
+## 完整旁白
+
+## 字幕版文案
+
+## Yijia 测试总 Prompt
+
+## 可选变体
+- 轻松版
+- 电影感版
+- 爆款钩子版
+```
+
+## 快速模板
+
+### 1) 萌宠治愈类
+
+```text
+主体可爱、动作简单、场景温暖、镜头缓慢、光线柔和、情绪治愈
+```
+
+### 2) 搞笑反转类
+
+```text
+前半段正常，后半段出现反差动作，结尾有记忆点，节奏快，画面明确
+```
+
+### 3) 解压沉浸类
+
+```text
+主体重复性动作，特写，慢节奏，细节质感强，ASMR 氛围明显
+```
+
+## 参考
+
+若要把脚本直接接到 creator 测试流程，读取：
+- `references/yijia-test-workflow.md`

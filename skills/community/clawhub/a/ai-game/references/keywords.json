@@ -1,0 +1,144 @@
+{
+  "global_filter": {
+    "description": "判断一条资讯是否跟'游戏×AI'相关。Layer 1 游戏专业源只需判断是否含 AI 元素；Layer 2 通用源需要游戏+AI 双重命中。",
+    "core_keywords": [
+      "游戏AI", "AI游戏", "游戏+大模型", "游戏AIGC", "AI NPC",
+      "game AI", "gaming AI", "AI in gaming", "AI-native game",
+      "AI原生游戏", "游戏+LLM", "智能NPC", "AI驱动玩法",
+      "AI game", "AI gaming", "GamePartner", "AIGC游戏",
+      "Unity AI", "Unity Muse", "Unity Sentis", "Unity ML-Agents",
+      "Unreal AI", "MetaHuman", "Nanite+AI",
+      "Inworld", "Convai", "Scenario.gg", "Rosebud AI",
+      "Ludo.ai", "Modl.ai", "AI Dungeon",
+      "DLSS", "NVIDIA ACE", "NVIDIA NeMo+game",
+      "游戏+人工智能", "游戏+机器学习", "游戏+深度学习",
+      "PCG+AI", "程序化生成+AI", "procedural+AI",
+      "game+machine learning", "game+deep learning", "game+reinforcement learning",
+      "游戏+生成式", "游戏+Agent", "NPC+大模型", "NPC+LLM",
+      "游戏世界模型", "world model+game"
+    ],
+    "context_game": [
+      "游戏", "game", "gaming", "小游戏", "手游", "端游", "主机游戏",
+      "游戏引擎", "Unity", "Unreal", "Roblox", "Steam", "Epic Games",
+      "米哈游", "腾讯游戏", "网易游戏", "游戏中心", "微信游戏",
+      "PlayStation", "Xbox", "Nintendo", "Switch",
+      "游戏开发", "game dev", "indie game", "独立游戏",
+      "GDC", "游戏工委", "游戏产业", "游戏厂商",
+      "Inworld", "Convai", "GamesBeat", "GameLook",
+      "玩家", "player", "gamer", "NPC", "开放世界",
+      "虚幻引擎", "关卡", "level design", "quest",
+      "角色", "character", "boss", "mob",
+      "电竞", "esports", "休闲游戏", "超休闲",
+      "Supercell", "miHoYo", "HoYoverse", "NetEase",
+      "EA", "Ubisoft", "Activision", "Blizzard",
+      "游戏陀螺", "游戏葡萄", "触乐", "机核"
+    ],
+    "context_ai": [
+      "AI", "人工智能", "机器学习", "深度学习", "大模型", "LLM",
+      "AIGC", "生成式", "GPT", "Claude", "Gemini", "DeepSeek",
+      "神经网络", "强化学习", "扩散模型", "transformer",
+      "NLP", "计算机视觉", "多模态", "智能体", "agent",
+      "AI驱动", "AI赋能", "AI辅助", "AI生成",
+      "Stable Diffusion", "Midjourney", "DALL-E",
+      "Copilot", "代码生成", "自动化",
+      "ChatGPT", "大语言模型", "Foundation Model",
+      "embedding", "fine-tune", "微调", "推理",
+      "neural", "deep learning", "machine learning",
+      "generative", "diffusion", "reinforcement learning"
+    ],
+    "layer1_ai_keywords": [
+      "AI", "人工智能", "机器学习", "深度学习", "大模型", "LLM",
+      "AIGC", "生成式", "GPT", "神经网络", "强化学习",
+      "智能", "自动", "算法", "NPC智能", "程序化生成",
+      "PCG", "procedural", "neural", "generative",
+      "Copilot", "AI辅助", "AI驱动", "AI生成",
+      "machine learning", "deep learning", "artificial intelligence"
+    ]
+  },
+  "category_keywords": {
+    "creation": [
+      "AIGC", "AI生成", "AI作画", "AI绘画", "3D生成", "AI音乐", "AI音效",
+      "程序化生成", "PCG", "纹理生成", "AI配音", "AI剧情", "AI写作",
+      "MOD", "UGC", "玩家创作", "Scenario", "Luma", "Meshy",
+      "AI asset", "procedural generation", "content generation",
+      "AI art", "AI texture", "AI model generation",
+      "Stable Diffusion", "Midjourney", "AI建模", "AI动画",
+      "AI音频", "AI素材", "AI材质", "AI地形",
+      "Rosebud", "生成资产", "自动生成"
+    ],
+    "in-game": [
+      "NPC", "AI驱动", "世界模型", "行为树", "AI原生", "个性化体验",
+      "Inworld", "Convai", "AI对话", "AI互动", "AI玩法",
+      "智能NPC", "AI角色", "AI companion", "AI opponent",
+      "dynamic narrative", "adaptive gameplay", "AI behavior",
+      "world model", "AI-native", "AI Dungeon",
+      "对话系统", "情感计算", "记忆系统", "AI陪伴",
+      "自适应难度", "动态叙事", "涌现行为",
+      "AI剧情", "AI叙事", "AI生成剧情", "AI原生游戏",
+      "token收费", "词元收费", "AI对战", "AI对手",
+      "智能体验", "AI旁白", "AI配音演员",
+      "Realtime TTS", "AI voice", "AI语音",
+      "智能体", "游戏内AI", "in-game AI"
+    ],
+    "dev-tools": [
+      "开发工具", "AI编程", "自动测试", "QA", "Bug检测",
+      "Unity Muse", "Unity Sentis", "ML-Agents",
+      "Copilot", "代码生成", "引擎", "AI中间件", "SDK",
+      "AI plugin", "game engine", "workflow", "工作流",
+      "性能优化", "自动化", "AI辅助开发", "AI coding",
+      "Modl.ai", "自动化测试", "智能调试",
+      "Cursor", "Claude Code", "AI编码"
+    ],
+    "ops": [
+      "推荐", "分发", "买量", "素材", "反作弊", "反外挂",
+      "智能客服", "LTV", "用户分群", "个性化推荐", "动态定价",
+      "营销", "广告", "投放", "ROI", "留存", "付费率",
+      "matchmaking", "monetization", "anti-cheat",
+      "AI运营", "智能推荐", "广告素材AI", "A/B测试",
+      "ROAS", "AI买量", "AI客服", "AI审核",
+      "玩家分群", "智能推送", "精准营销",
+      "流失预测", "付费预测", "用户画像",
+      "AI分发", "AI推荐算法", "智能匹配",
+      "churn prediction", "player segmentation", "AI marketing"
+    ],
+    "industry": [
+      "投融资", "融资", "收购", "战略", "布局", "财报",
+      "市场份额", "政策", "监管", "版号", "出海",
+      "小游戏", "微信", "腾讯", "网易", "米哈游",
+      "IPO", "市值", "人事", "裁员", "招聘",
+      "acquisition", "funding", "market share", "regulation",
+      "合作", "partnership", "发行", "代理"
+    ],
+    "research": [
+      "论文", "paper", "研究", "GDC", "SIGGRAPH", "arXiv",
+      "强化学习", "世界模型", "benchmark", "开源模型",
+      "IEEE", "ACM", "实验", "算法", "数据集",
+      "research", "study", "survey", "state of the art",
+      "IEEE CoG", "DiGRA", "AAAI", "学术", "课题"
+    ]
+  },
+  "entity_tags": {
+    "description": "实体标签库，用于给条目打实体标签（公司/产品/技术）",
+    "companies": [
+      "Unity", "Epic Games", "Unreal Engine", "NVIDIA", "Google DeepMind", "DeepMind",
+      "Inworld", "Convai", "Rosebud", "Scenario", "Modl.ai", "Ludo.ai",
+      "腾讯", "网易", "米哈游", "HoYoverse", "字节跳动",
+      "艺电", "Ubisoft", "Activision", "Blizzard", "Sony", "Microsoft",
+      "Supercell", "中手游", "莉莉丝", "沐瞳",
+      "OpenAI", "Anthropic", "Meta", "Valve", "Steam", "Neowiz"
+    ],
+    "products": [
+      "Unity Muse", "Unity Sentis", "ML-Agents", "MetaHuman",
+      "DLSS", "NVIDIA ACE", "Omniverse",
+      "AI Dungeon", "GamePartner.AI",
+      "Stable Diffusion", "Midjourney", "DALL-E", "Sora",
+      "GPT", "Claude", "Gemini", "DeepSeek"
+    ],
+    "technologies": [
+      "NPC", "PCG", "强化学习", "世界模型", "扩散模型",
+      "大模型", "LLM", "embedding", "fine-tune",
+      "transformer", "GAN", "NeRF", "行为树",
+      "程序化生成", "动态叙事", "情感计算"
+    ]
+  }
+}

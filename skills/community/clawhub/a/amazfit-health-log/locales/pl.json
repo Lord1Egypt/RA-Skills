@@ -1,0 +1,42 @@
+{
+  "weekdays": ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"],
+
+  "note_title":      "Dziennik zdrowia GTR3",
+  "callout_title":   "Wygenerowano automatycznie",
+  "callout_body":    "Ta notatka została utworzona automatycznie na podstawie danych Amazfit GTR3 za pośrednictwem HCGateway.",
+
+  "summary_heading": "Podsumowanie",
+  "col_metric":      "Metryka",
+  "col_value":       "Wartość",
+  "row_steps":       "Kroki",
+  "row_distance":    "Dystans",
+  "row_sleep_dur":   "Czas snu",
+  "row_resting_hr":  "Tętno spoczynkowe",
+  "row_spo2":        "SpO2 (śr.)",
+
+  "sleep_heading":   "Sen",
+  "sleep_period":    "Okres",
+  "sleep_duration":  "Czas trwania",
+  "sleep_no_data":   "Brak danych o śnie dla tej daty.",
+  "col_stage":       "Faza",
+  "col_minutes":     "Minuty",
+  "stage_deep":      "Głęboki",
+  "stage_rem":       "REM",
+  "stage_light":     "Lekki",
+  "stage_awake":     "Przebudzenie",
+
+  "hr_heading":      "Tętno",
+  "hr_avg":          "Śr.",
+  "hr_resting":      "Tętno spoczynkowe",
+
+  "spo2_heading":    "SpO2",
+  "spo2_avg":        "Średnie nasycenie krwi tlenem",
+
+  "nav_yesterday":   "Wczoraj",
+  "nav_tomorrow":    "Jutro",
+
+  "fm_weekday_key":  "dzień",
+  "fm_source":       "HCGateway / Amazfit GTR3",
+  "tag_health":      "zdrowie",
+  "tag_auto":        "auto-generowany"
+}

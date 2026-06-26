@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-knowledge-qa",
+  "version": "1.0.0",
+  "description": "AI 知识问答 - FAQ、智能检索、AI问答",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "knowledge", "qa", "chinese"],
+  "category": "productivity",
+  "license": "MIT"
+}

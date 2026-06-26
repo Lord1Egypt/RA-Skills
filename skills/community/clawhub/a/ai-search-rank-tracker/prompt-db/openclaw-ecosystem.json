@@ -1,0 +1,829 @@
+[
+  {
+    "prompt": "best openclaw alternative",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Core ClawLite term"
+  },
+  {
+    "prompt": "easiest openclaw installer",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw"
+    ],
+    "notes": "High-intent install query"
+  },
+  {
+    "prompt": "openclaw for beginners",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Beginner education term"
+  },
+  {
+    "prompt": "secure openclaw alternative",
+    "category": "openclaw-ecosystem",
+    "subcategory": "security",
+    "intent": "trust",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw"
+    ],
+    "notes": "Security-driven comparison"
+  },
+  {
+    "prompt": "openclaw web ui",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "discovery",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "openclaw"
+    ],
+    "notes": "UI-focused query"
+  },
+  {
+    "prompt": "openclaw without terminal",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Friction reduction search"
+  },
+  {
+    "prompt": "one click openclaw installer",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw"
+    ],
+    "notes": "One-click install positioning"
+  },
+  {
+    "prompt": "simple openclaw setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Simplification angle"
+  },
+  {
+    "prompt": "best openclaw setup for small teams",
+    "category": "openclaw-ecosystem",
+    "subcategory": "teams",
+    "intent": "setup",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Team deployment intent"
+  },
+  {
+    "prompt": "best openclaw deployment option",
+    "category": "openclaw-ecosystem",
+    "subcategory": "deployment",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Deployment evaluation"
+  },
+  {
+    "prompt": "best way to install openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "How-to intent"
+  },
+  {
+    "prompt": "fastest way to install openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Speed-focused install term"
+  },
+  {
+    "prompt": "openclaw easy install",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Synonym for easy installer"
+  },
+  {
+    "prompt": "openclaw installation for non technical users",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Non-technical persona"
+  },
+  {
+    "prompt": "openclaw setup without coding",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "No-code install angle"
+  },
+  {
+    "prompt": "openclaw setup without terminal",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Terminal-free install term"
+  },
+  {
+    "prompt": "best openclaw ui",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "openclaw"
+    ],
+    "notes": "UI comparison term"
+  },
+  {
+    "prompt": "best openclaw frontend",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "lobechat"
+    ],
+    "notes": "Frontend phrasing"
+  },
+  {
+    "prompt": "best gui for openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "lobechat"
+    ],
+    "notes": "GUI-focused term"
+  },
+  {
+    "prompt": "beginner friendly openclaw setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Beginner-friendly framing"
+  },
+  {
+    "prompt": "openclaw setup for beginners",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Education + setup term"
+  },
+  {
+    "prompt": "how to install openclaw easily",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "How-to + easy angle"
+  },
+  {
+    "prompt": "how to use openclaw without terminal",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Pain-led install query"
+  },
+  {
+    "prompt": "best beginner openclaw guide",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "setup",
+    "journeyStage": "awareness",
+    "difficulty": "easy",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Guide intent"
+  },
+  {
+    "prompt": "openclaw alternative with web ui",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "lazyclaw"
+    ],
+    "notes": "Alt + UI angle"
+  },
+  {
+    "prompt": "openclaw alternative for beginners",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Beginner alternative intent"
+  },
+  {
+    "prompt": "openclaw alternative with easier setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Ease-of-setup comparison"
+  },
+  {
+    "prompt": "openclaw alternative without manual setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Automation-led comparison"
+  },
+  {
+    "prompt": "openclaw for startup teams",
+    "category": "openclaw-ecosystem",
+    "subcategory": "teams",
+    "intent": "discovery",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Team use-case"
+  },
+  {
+    "prompt": "best openclaw distribution",
+    "category": "openclaw-ecosystem",
+    "subcategory": "distribution",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "lazyclaw"
+    ],
+    "notes": "Distribution framing"
+  },
+  {
+    "prompt": "commercial openclaw distribution",
+    "category": "openclaw-ecosystem",
+    "subcategory": "distribution",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Commercial distribution angle"
+  },
+  {
+    "prompt": "managed openclaw setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "managed",
+    "intent": "decision",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Managed-service angle"
+  },
+  {
+    "prompt": "best openclaw managed install",
+    "category": "openclaw-ecosystem",
+    "subcategory": "managed",
+    "intent": "decision",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Managed install term"
+  },
+  {
+    "prompt": "cheapest openclaw setup",
+    "category": "openclaw-ecosystem",
+    "subcategory": "cost",
+    "intent": "cost",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openrouter"
+    ],
+    "notes": "Cost-sensitive prompt"
+  },
+  {
+    "prompt": "affordable openclaw alternative",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "cost",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Price + comparison"
+  },
+  {
+    "prompt": "best byok option for openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "byok",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openrouter"
+    ],
+    "notes": "BYOK-specific value"
+  },
+  {
+    "prompt": "openclaw with cheaper tokens",
+    "category": "openclaw-ecosystem",
+    "subcategory": "cost",
+    "intent": "cost",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openrouter",
+      "openclaw"
+    ],
+    "notes": "Token cost angle"
+  },
+  {
+    "prompt": "best token routing for openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "cost",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "hard",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openrouter"
+    ],
+    "notes": "Advanced cost query"
+  },
+  {
+    "prompt": "openclaw install in 5 minutes",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Speed promise term"
+  },
+  {
+    "prompt": "openclaw one click install mac",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "OS-specific prompt"
+  },
+  {
+    "prompt": "openclaw installer for mac",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Mac install query"
+  },
+  {
+    "prompt": "openclaw installer for windows",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Windows install query"
+  },
+  {
+    "prompt": "openclaw installer download",
+    "category": "openclaw-ecosystem",
+    "subcategory": "installation",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "easy",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Download intent"
+  },
+  {
+    "prompt": "openclaw setup with web interface",
+    "category": "openclaw-ecosystem",
+    "subcategory": "ui",
+    "intent": "setup",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui"
+    ],
+    "notes": "Web-interface intent"
+  },
+  {
+    "prompt": "best openclaw onboarding experience",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Onboarding framing"
+  },
+  {
+    "prompt": "best openclaw experience for non developers",
+    "category": "openclaw-ecosystem",
+    "subcategory": "beginners",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Non-developer audience"
+  },
+  {
+    "prompt": "private openclaw alternative",
+    "category": "openclaw-ecosystem",
+    "subcategory": "privacy",
+    "intent": "trust",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw",
+      "openwebui"
+    ],
+    "notes": "Privacy angle"
+  },
+  {
+    "prompt": "secure way to deploy openclaw",
+    "category": "openclaw-ecosystem",
+    "subcategory": "security",
+    "intent": "trust",
+    "journeyStage": "decision",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openclaw"
+    ],
+    "notes": "Deployment trust query"
+  },
+  {
+    "prompt": "best openclaw option for local ai",
+    "category": "openclaw-ecosystem",
+    "subcategory": "local-ai",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "medium",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "openwebui",
+      "anythingllm"
+    ],
+    "notes": "Local AI crossover"
+  },
+  {
+    "prompt": "best openclaw replacement for teams",
+    "category": "openclaw-ecosystem",
+    "subcategory": "alternatives",
+    "intent": "comparison",
+    "journeyStage": "consideration",
+    "difficulty": "medium",
+    "commercialValue": "high",
+    "brandFit": [
+      "clawlite.ai"
+    ],
+    "competitorFit": [
+      "lazyclaw",
+      "zeroclaw"
+    ],
+    "notes": "Team replacement query"
+  }
+]

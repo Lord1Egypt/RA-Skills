@@ -1,0 +1,4 @@
+interface:
+  display_name: "Researcher Alpha Copilot"
+  short_description: "Daily top-5 coin research leaderboard with content drafts"
+  default_prompt: "Generate today's priority leaderboard with 5 coins, fundamentals, liquidity, risk summaries, and publish-ready drafts for X, groups, and quick briefs."

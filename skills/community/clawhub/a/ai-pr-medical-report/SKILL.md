@@ -1,35 +1,83 @@
 ---
-name: "AI医学报告解读助手"
-description: "AI 医学报告解读助手 — 上传检验报告 PDF，AI 自动解读关键指标，查询最新医学文献，生成结构化健康解读报告并支持一键发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-pr-medical-report"
-sourceUrl: "https://clawhub.ai/skills/ai-pr-medical-report"
+name: ai-pr-medical-report
+description: AI 医学报告解读助手 — 上传检验报告 PDF，AI 自动解读关键指标，查询最新医学文献，生成结构化健康解读报告并支持一键发布。
+category: AI|医疗|自动化
+triggers: 解读报告, 医学分析, 检验报告, 指标解读, 健康分析
 ---
 
-# AI医学报告解读助手
+# AI-PR-医学报告解读助手
 
-> AI 医学报告解读助手 — 上传检验报告 PDF，AI 自动解读关键指标，查询最新医学文献，生成结构化健康解读报告并支持一键发布。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-pr-medical-report`
-- **Source URL:** [https://clawhub.ai/skills/ai-pr-medical-report](https://clawhub.ai/skills/ai-pr-medical-report)
+上传检验报告（血液、尿液、影像等），AI 自动识别关键指标，对比医学参考范围，查询最新医学文献，生成通俗易懂的结构化健康解读报告。
 
-## Overview
+## 适用场景
 
+- 拿到体检报告看不懂指标含义
+- 需要了解指标异常的可能原因和最新治疗方案
+- 希望生成可视化健康报告分享给家人
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-pr-medical-report
+## 工作流程
+
 ```
+[上传 PDF 检验报告]
+        ↓
+[nano-pdf 提取报告文本]
+        ↓
+[AI 分析关键指标 + 标注异常项]
+        ↓
+[brave-search 查询最新医学文献]
+        ↓
+[AI 生成结构化健康解读报告]
+        ↓
+[card-renderer 生成可视化知识卡片]
+        ↓
+[可选：公众号助手/小红书内容发布]
+```
+
+## 使用方法
+
+### 第一步：上传报告并解读
+
+用户提供检验报告 PDF，助手自动：
+1. 使用 nano-pdf 提取报告文本内容
+2. 识别检验项目、指标数值、单位、参考范围
+3. 标注异常项目（↑升高/↓降低）
+4. 生成通俗易懂的结构化报告
+
+### 第二步：查询医学文献（如需要）
+
+使用 brave-search 查询：
+- 某指标异常的医学解释
+- 最新临床指南
+- 治疗/调理建议
+
+### 第三步：生成可视化输出
+
+- 使用 card-renderer 生成健康知识卡片
+- 可选发布到公众号/小红书
+
+## 输出示例
+
+```
+【血常规报告解读】
+
+✅ 正常指标：血红蛋白、血小板计数、白细胞计数
+⚠️ 异常指标：
+  • 甘油三酯 2.8 mmol/L ↑（参考值 <1.7）
+    → 可能提示代谢综合征风险，建议低脂饮食
+  • 幽门螺杆菌抗体 阳性 (+)
+    → 建议消化科门诊随访，幽门螺杆菌感染与胃炎、胃溃疡相关
+
+📚 最新医学文献：
+  • 2024年《中国血脂管理指南》：甘油三酯>2.3需干预
+  • 研究显示幽门螺杆菌根除治疗可降低胃癌风险
+
+💡 建议：挂内分泌科复查，日常减少油腻饮食
+```
+
+## 注意事项
+
+- 本工具仅供健康信息参考，不构成医疗诊断
+- 具体诊疗请遵医嘱
+- 文献检索结果代表当前医学共识，可能随研究进展更新

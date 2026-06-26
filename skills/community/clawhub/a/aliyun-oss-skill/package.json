@@ -1,0 +1,17 @@
+{
+  "name": "aliyun-oss-skill",
+  "version": "1.0.0",
+  "description": "阿里云 OSS 对象存储技能",
+  "main": "scripts/oss_node.mjs",
+  "type": "module",
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "test": "node scripts/oss_node.mjs test-connection"
+  },
+  "dependencies": {
+    "ali-oss": "^6.21.0"
+  },
+  "keywords": ["aliyun", "oss", "cloud", "storage", "openclaw", "skill"],
+  "author": "33",
+  "license": "MIT"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "query": "I need to build a PHP HTTP server that handles thousands of concurrent connections without blocking. I want to use fibers and the revolt event loop. How do I structure this?",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm getting 'Call to undefined function Amp\\async()' when running my amphp script. I'm on PHP 8.1 and have amphp/amp ^3 installed. What's wrong?",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I make parallel HTTP requests in PHP without blocking? I want to fire off 50 requests simultaneously and collect the results. Currently using curl_multi but it's messy.",
+    "should_trigger": true
+  },
+  {
+    "query": "I want to add a WebSocket endpoint to my existing amphp/http-server application. Users connect and I push live stock price updates every second to all connected clients.",
+    "should_trigger": true
+  },
+  {
+    "query": "my amphp mysql query is hanging the whole server when the db is slow. i think it's blocking but im not sure how to make it non-blocking. using amphp/mysql ^2 with a connection pool",
+    "should_trigger": true
+  },
+  {
+    "query": "write a PHP script that reads 1000 files concurrently using AMPHP, processes each one, and writes results to redis. it should limit concurrency to 20 at a time",
+    "should_trigger": true
+  },
+  {
+    "query": "I'm migrating a PHP app from amphp v2 to v3. We have a lot of `yield` and `Coroutine` usage throughout. How do I convert these to the new async/await syntax?",
+    "should_trigger": true
+  },
+  {
+    "query": "need help implementing a rate-limited queue in amphp — process jobs from a Queue pipeline with max 5 concurrent workers and 100ms minimum delay between each",
+    "should_trigger": true
+  },
+  {
+    "query": "how do i gracefully shut down an amphp http server on SIGTERM? i want to finish in-flight requests before stopping",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a TCP proxy in PHP that accepts connections and forwards them to a backend server. Should handle TLS on the frontend. I'm using amphp/socket.",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I write a REST API in PHP using Laravel? I want to add authentication with JWT and connect to MySQL.",
+    "should_trigger": false
+  },
+  {
+    "query": "I need to run some PHP scripts in parallel using pcntl_fork(). Can you help me set up a process pool that forks child processes to handle tasks?",
+    "should_trigger": false
+  },
+  {
+    "query": "What's the best way to implement async/await in JavaScript with Promises? I'm building a Node.js API that calls multiple services in parallel.",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I add WebSocket support to my Python FastAPI app? I need to broadcast messages to all connected clients using asyncio.",
+    "should_trigger": false
+  },
+  {
+    "query": "I want to parse a large XML file in PHP and extract certain nodes. The file is 500MB. What's the most memory-efficient approach using XMLReader?",
+    "should_trigger": false
+  },
+  {
+    "query": "my PHP app is slow when querying MySQL, the queries take 2-3 seconds each. Should I add indexes or use query caching? using Eloquent ORM in Laravel 10",
+    "should_trigger": false
+  },
+  {
+    "query": "how do i send HTTP requests in PHP? i just need to call a REST api from my wordpress plugin and get back some json",
+    "should_trigger": false
+  },
+  {
+    "query": "I'm building a Go service that needs to handle 10,000 concurrent connections using goroutines. How do I structure the connection pool and avoid goroutine leaks?",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a PHP CLI script that downloads a file from a URL using file_get_contents() and saves it to disk. The files are small, about 1MB each.",
+    "should_trigger": false
+  },
+  {
+    "query": "I have a PHP queue worker using Horizon/Redis queues in Laravel. Jobs are taking too long and timing out. How do I optimize job processing?",
+    "should_trigger": false
+  }
+]

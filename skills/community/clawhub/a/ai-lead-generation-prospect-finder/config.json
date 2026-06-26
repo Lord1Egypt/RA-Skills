@@ -1,0 +1,114 @@
+{
+  "input_fields": [
+    {
+      "id": "industry",
+      "label": "Industry",
+      "type": "text",
+      "placeholder": "e.g. B2B SaaS, Fintech, Healthcare IT, E-commerce, Cybersecurity",
+      "required": true,
+      "max_length": 200,
+      "hint": "Be specific. 'SaaS' is better than 'tech'. 'HR Tech for mid-market' is best."
+    },
+    {
+      "id": "target_role",
+      "label": "Target Role",
+      "type": "text",
+      "placeholder": "e.g. VP of Sales, CTO, Head of Marketing, Operations Manager",
+      "required": true,
+      "max_length": 200,
+      "hint": "Who is the person who would buy your product? Include their title and function."
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "type": "text",
+      "placeholder": "e.g. United States, North America, EMEA, Global, New York + San Francisco",
+      "required": true,
+      "max_length": 200,
+      "hint": "Where are your ideal prospects located? Narrower = more actionable results."
+    },
+    {
+      "id": "product",
+      "label": "Your Product / Service",
+      "type": "textarea",
+      "placeholder": "e.g. AI-powered sales coaching platform that helps sales managers improve rep performance and reduce ramp time by 40%",
+      "required": true,
+      "max_length": 500,
+      "hint": "Describe what you sell and the core value it delivers. Include the outcome, not just the feature."
+    },
+    {
+      "id": "goal",
+      "label": "Your Goal",
+      "type": "text",
+      "placeholder": "e.g. Book 20 qualified demos in 30 days, Build a list of 500 targeted prospects, Close 3 enterprise deals this quarter",
+      "required": true,
+      "max_length": 300,
+      "hint": "What specific outcome do you want from this prospecting effort? Be concrete."
+    },
+    {
+      "id": "company_size",
+      "label": "Target Company Size (Optional)",
+      "type": "select",
+      "required": false,
+      "default": "",
+      "options": [
+        { "value": "", "label": "Let AI infer the best fit" },
+        { "value": "1-10", "label": "Micro (1–10 employees)" },
+        { "value": "11-50", "label": "Startup (11–50 employees)" },
+        { "value": "51-200", "label": "Small (51–200 employees)" },
+        { "value": "201-500", "label": "Mid-Market (201–500 employees)" },
+        { "value": "501-1000", "label": "Upper Mid-Market (501–1,000 employees)" },
+        { "value": "1001-5000", "label": "Enterprise (1,001–5,000 employees)" },
+        { "value": "5000+", "label": "Large Enterprise (5,000+ employees)" }
+      ],
+      "hint": "Filter by company headcount. Smaller companies = faster sales cycles. Enterprise = bigger deals."
+    },
+    {
+      "id": "revenue_range",
+      "label": "Target Company Revenue Range (Optional)",
+      "type": "select",
+      "required": false,
+      "default": "",
+      "options": [
+        { "value": "", "label": "Let AI infer the best fit" },
+        { "value": "pre-revenue", "label": "Pre-revenue / Early stage" },
+        { "value": "under-1m", "label": "Under $1M ARR" },
+        { "value": "1m-10m", "label": "$1M – $10M ARR" },
+        { "value": "10m-50m", "label": "$10M – $50M ARR" },
+        { "value": "50m-250m", "label": "$50M – $250M ARR" },
+        { "value": "250m-1b", "label": "$250M – $1B revenue" },
+        { "value": "1b+", "label": "$1B+ revenue" }
+      ],
+      "hint": "Revenue range helps identify budget availability and deal size potential."
+    },
+    {
+      "id": "tech_stack",
+      "label": "Target Tech Stack (Optional)",
+      "type": "text",
+      "placeholder": "e.g. Salesforce, HubSpot, Slack, AWS, Shopify, Stripe",
+      "required": false,
+      "max_length": 300,
+      "hint": "Tools your ideal prospect uses. Helps identify them via LinkedIn, G2, and enrichment tools."
+    },
+    {
+      "id": "excluded_segments",
+      "label": "Excluded Segments (Optional)",
+      "type": "text",
+      "placeholder": "e.g. Agencies, freelancers, non-profits, companies under 10 employees, competitors",
+      "required": false,
+      "max_length": 300,
+      "hint": "Who should NOT be on your list? This sharpens the output and saves you time."
+    }
+  ],
+  "output_format": {
+    "sections": true,
+    "copy_buttons": true,
+    "export_options": ["csv", "notion", "google_sheets"]
+  },
+  "settings": {
+    "enforce_specificity": true,
+    "commercial_focus": true,
+    "include_tool_recommendations": true,
+    "include_sample_lead_rows": true
+  }
+}

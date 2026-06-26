@@ -1,0 +1,351 @@
+# alevel-physics-cie — routing triggers for Clawhub / OpenClaw
+# One phrase per line. Lines starting with # are comments (ignored).
+
+# --- English ---
+CIE 9702 physics
+Cambridge 9702 physics
+Cambridge International A-Level Physics
+A-Level Physics CIE
+AL physics CIE 9702
+9702 past paper
+9702 physics past paper
+9702 paper 2
+9702 paper 4
+9702 paper 5
+CIE physics exam question
+CIE physics structured question
+CIE physics data response
+CIE physics planning question
+answer template for physics
+physics answer framework
+physics exam answer structure
+how to structure a physics answer
+mark scheme style physics
+physics given required formulae steps
+learning framework physics
+revision framework A-Level physics
+explain how to answer this physics question
+break down this 9702 question
+solve approach CIE physics
+derive show that explain describe physics
+physics calculation template
+definition question physics A-Level
+numerical physics problem CIE
+quantitative physics problem template
+past paper physics Cambridge
+cie.fraft.org physics
+Fraft CIE physics papers
+Cambridge International Physics specimen
+AS Level physics CIE
+A2 physics CIE
+9702 syllabus
+9702 topic questions
+mechanics CIE physics template
+kinematics answer structure
+forces moments torque template
+work energy power template
+waves interference diffraction template
+superposition CIE physics
+electricity circuit internal resistance template
+capacitance RC circuit template
+magnetic fields induction template
+electromagnetic induction template
+thermal physics specific heat latent heat
+ideal gas pV nRT equation
+quantum photoelectric uncertainty template
+nuclear decay half-life binding energy
+gravitational electric field potential
+circular motion centripetal template
+simple harmonic motion template
+astro cosmology redshift template
+experiment practical uncertainty template
+fine-tuned physics tutor 9702
+MLX LoRA physics model
+Qwen physics answer template
+OpenClaw physics skill CIE
+Clawhub physics exam prep
+generate answer template verified physics
+adversarial robustness physics MC
+plain text equations physics output
+no LaTeX physics tutoring
+student revision aid physics
+exam technique A-Level physics
+structured answer bullets given required check
+formulae and principles section
+answer frame numbered steps
+question type classification physics
+specific heat capacity template
+latent heat of fusion vaporisation
+internal energy first law thermodynamics
+moments equilibrium pivot
+centre of gravity centre of mass
+vector components SUVAT
+projectile motion maximum height
+conservation of momentum collision
+conservation of energy roller coaster
+gravitational potential kinetic energy
+potential divider circuit
+terminal velocity drag
+terminal p.d. terminal voltage
+oscilloscope trace frequency
+standing wave wavelength two fixed ends
+Young double slit formula
+diffraction grating orders
+Malus law polarisation
+transformer efficiency power
+Faraday Lenz law induced emf
+Lenz law direction of induced current
+Hall probe flux density
+alpha beta gamma penetration
+binding energy per nucleon graph
+radioactive decay exponential model
+astrophysics Stefan Boltzmann
+Hubble law cosmology
+percentage uncertainty combination
+systematic random errors physics practical
+alevel-physics-cie skill
+skill name alevel-physics-cie
+generate_template inference physics
+generate_template_verified physics
+physics template with check section
+what formulae for this question
+outline the method physics exam
+six section answer template
+given required formulae answer frame check
+Paper 2 Cambridge International Physics
+Paper 4 A2 physics data
+Paper 5 practical planning analysis
+structured questions long answer physics
+extended response physics A-Level
+data booklet values physics
+use data booklet A-Level physics
+significant figures CIE physics
+SI units base derived physics
+vector scalar distinction template
+displacement versus distance exam answer
+velocity versus speed clarify
+acceleration from graph gradient
+area under graph impulse work
+spring constant Hooke law energy stored
+elastic potential energy spring
+couples torque rotational equilibrium
+density upthrust Archimedes
+continuity equation fluid optional topic
+Doppler effect sound astronomy
+polarisation intensity Malus
+photon energy hf electronvolt
+work function threshold frequency
+photoelectric stopping potential
+de Broglie wavelength electron
+energy levels fluorescence line spectrum
+pair production annihilation basics
+Rutherford scattering evidence
+half-life decay constant relation
+exponential decay activity Becquerel
+fusion fission energy release
+electric field uniform plates
+parallel plates capacitance geometry
+point charge field inverse square
+potential gradient field strength
+magnetic force moving charge F B q v
+right hand rule Fleming
+alternating current rms peak
+phasor optional not core
+transformer turns ratio
+self-induction mutual induction basics
+Hall effect charge carriers
+linear accelerator cyclotron sketch
+geostationary orbit period radius
+escape speed orbital speed planet
+gravitational field strength g
+radial electric field point charge
+capacitor discharge time constant
+CR circuit growth decay
+LDR thermistor sensor circuit
+potential divider sensor
+count rate detector GM tube
+background radiation correction
+isotopes same proton number
+nuclide notation AZ X
+pair of forces Newton third law
+conservation laws momentum energy charge
+path difference phase coherence
+two-source interference pattern
+single slit diffraction width
+double slit maxima minima condition
+refraction Snell law critical angle
+total internal reflection fibre optic
+diffraction grating spectrometer
+progressive stationary wave differences
+longitudinal transverse wave list
+intensity amplitude squared relation
+root mean square alternating current
+power in resistor alternating
+lost volts internal resistance formula
+load resistance maximum power sketch
+potential along uniform wire potentiometer
+Wheatstone bridge balanced
+oscilloscope timebase y-gain calibrate
+
+# --- 中文 ---
+剑桥国际 A-Level 物理
+CIE 物理 9702
+9702 物理
+A-Level 物理 CIE
+剑桥 9702 试卷
+9702 真题
+9702 物理真题
+9702 Paper 2
+9702 Paper 4
+9702 Paper 5
+CIE 物理考试题
+CIE 物理结构化大题
+CIE 物理实验设计题
+物理答题模板
+物理作答框架
+物理考试答题结构
+物理大题怎么写
+物理得分点框架
+已知量 求什么 公式 步骤
+物理学习框架
+A-Level 物理复习框架
+这道题物理怎么答
+拆解答题思路 物理
+9702 解题套路
+推导 说明 描述 解释 物理
+物理计算题模板
+物理定义题怎么写
+剑桥物理 past paper
+CIE 物理历年卷
+力学 答题模板
+运动学 解题步骤
+力 力矩 扭矩 模板
+功 能 功率 模板
+波 干涉 衍射 模板
+叠加 驻波 CIE
+电路 内阻 模板
+电容 RC 电路 模板
+磁场 电磁感应 模板
+热学 比热容 潜热
+理想气体 pV nRT
+量子 光电效应 德布罗意
+核物理 半衰期 结合能
+引力场 电场 电势
+圆周运动 向心力
+简谐运动 SHM
+宇宙学 红移
+实验 不确定度 误差条
+本地 MLX 物理微调
+Qwen 物理答题模板
+OpenClaw 物理技能
+Clawhub 物理备考
+自验证 物理答题
+对抗评测 物理模板
+纯文本公式 不用 LaTeX
+不要用美元符号写公式
+学生备考 A-Level 物理
+考试技巧 物理
+分题型 给定 所求 检查
+公式与原理
+分步答题框
+物理题型识别
+比热容 答题模板
+熔化热 汽化潜热
+热力学第一定律 内能
+力矩平衡 支点
+重心 质心
+矢量分解 SUVAT
+抛体运动 最大高度
+动量守恒 碰撞
+机械能守恒
+重力势能 动能
+分压电路 电位器
+收尾速度 空气阻力
+路端电压 端电压
+示波器 波形 频率
+驻波 波长 两端固定
+杨氏双缝 公式
+光栅 衍射级次
+马吕斯定律 偏振
+变压器 效率 功率
+法拉第定律 电磁感应
+楞次定律 感应电流方向
+霍尔探头 磁通密度
+α β γ 穿透性
+比结合能 曲线
+放射性衰变 指数模型
+天体物理 斯特藩
+哈勃定律 宇宙学
+不确定度 百分比 合成
+系统误差 偶然误差 实验
+alevel-physics-cie 技能
+生成答题模板 Python MLX
+generate_template 物理
+自验证 generate_template_verified
+带检查项 的 答题模板
+这道题用什么公式
+物理解题方法 提纲
+六段式 答题模板
+给定 所求 公式 答题框 检查
+9702 Paper 2 结构化
+9702 Paper 4 A2 数据题
+9702 Paper 5 实验 规划
+物理长问答 大题
+数据手册 物理常量
+有效数字 CIE
+国际单位制 SI
+矢量 标量 辨析
+位移 路程 答题
+速度 速率 区分
+加速度 图像 斜率
+图像面积 冲量 功
+劲度系数 胡克定律 弹性势能
+力偶 转动平衡
+密度 浮力 阿基米德
+多普勒效应
+偏振 马吕斯 光强
+光子能量 hf
+逸出功 截止频率
+光电效应 遏止电压
+德布罗意波长
+能级 谱线
+半衰期 衰变常数
+指数衰变 活度
+裂变 聚变 放能
+匀强电场 平行板
+点电荷 平方反比场
+电势梯度 场强
+洛伦兹力 左手 右手
+交流电 有效值 峰值
+理想变压器 匝数比
+霍尔效应 载流子
+同步轨道 周期
+逃逸速度 环绕速度
+引力场强 g
+电容器 时间常数 RC
+电容器 充放电
+光敏电阻 热敏电阻 传感
+分压 传感器
+计数率 盖格计数器
+本底辐射 修正
+同位素 质子数相同
+核素符号 质量数 电荷数
+作用力与反作用力 牛顿第三定律
+守恒律 动量 能量 电荷
+光程差 相位 相干
+双光源干涉 图样
+单缝衍射 宽度
+双缝 明纹 暗纹 条件
+折射 斯涅尔定律 临界角
+全反射 光纤
+光栅 分光计
+行波 驻波 区别
+纵波 横波
+强度 振幅 平方
+交流电 方均根
+电阻 交流 功率
+损耗电压 内阻
+负载 匹配
+电位差计 均匀电阻丝
+惠斯通电桥 平衡
+示波器 时基 增益 校准

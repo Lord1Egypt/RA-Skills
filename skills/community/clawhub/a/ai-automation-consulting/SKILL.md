@@ -1,35 +1,67 @@
 ---
-name: "Ai Automation Consulting"
-description: "AI 自动化咨询服务 - 帮你用 AI 省时省钱。适合：中小企业、自由职业者、想提效的人。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, chinese]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-automation-consulting"
-sourceUrl: "https://clawhub.ai/skills/ai-automation-consulting"
+name: ai-automation-consulting
+version: 1.0.4
+description: AI 自动化咨询服务 - 帮你用 AI 省时省钱。适合：中小企业、自由职业者、想提效的人。
+metadata:
+  openclaw:
+    emoji: "🤖"
+    requires:
+      bins: []
 ---
 
-# Ai Automation Consulting
+# AI 自动化咨询服务
 
-> AI 自动化咨询服务 - 帮你用 AI 省时省钱。适合：中小企业、自由职业者、想提效的人。
+## 🎯 你每天都在重复做什么？
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-automation-consulting`
-- **Source URL:** [https://clawhub.ai/skills/ai-automation-consulting](https://clawhub.ai/skills/ai-automation-consulting)
+- 回复客户消息？
+- 整理数据报表？
+- 写营销文案？
+- 回复邮件？
 
-## Overview
+**这些都能用 AI 自动化。**
 
+## 💼 我能帮你做什么
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-automation-consulting
-```
+### 1. 客服自动化
+- 7x24 自动回复
+- 常见问题自动解答
+- 智能转人工
+
+### 2. 内容生成
+- 自动写文章/社媒文案
+- 批量生成产品描述
+- SEO 优化内容
+
+### 3. 数据处理
+- 自动整理报表
+- 智能分类邮件
+- 数据分析可视化
+
+### 4. 工作流自动化
+- 连接你的各种工具
+- 自动触发任务
+- 减少人工干预
+
+## 💰 套餐
+
+| 服务 | 价格 | 效果 |
+|------|------|------|
+| 咨询诊断 | ¥199 | 找出可自动化点 |
+| 单场景方案 | ¥499 | 一个自动化流程 |
+| 全套方案 | ¥1999 | 企业级自动化系统 |
+
+## 📞 联系方式
+
+- 微信：yanghu_ai
+- Telegram: @yanghu_ai
+
+## 🔗 相关资源
+
+- [AI 自动化入门教程](https://yangster151.gumroad.com/l/ddwtx) - $14
+- [OpenClaw 工作流案例](https://clawhub.com)
+
+---
+
+**案例：某电商客服团队，通过自动化节省 60% 人力成本。**
+
+**你的一天有多少时间花在重复劳动上？我们来聊聊。**

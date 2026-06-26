@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾登师傅 - 微信扫码登录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .logo span {
+            color: #07c160;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .qr-container {
+            background: #f8f8f8;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            display: block;
+            border: none;
+        }
+        .status {
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .status.waiting {
+            background: #fff7e6;
+            color: #fa8c16;
+        }
+        .status.scanned {
+            background: #e6f7ff;
+            color: #1890ff;
+        }
+        .status.confirmed {
+            background: #f6ffed;
+            color: #52c41a;
+        }
+        .status.expired {
+            background: #fff1f0;
+            color: #ff4d4f;
+        }
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid currentColor;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .hidden { display: none; }
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            background: #52c41a;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 16px;
+        }
+        .success-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        .token-display {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+            margin: 16px 0;
+            text-align: left;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        .btn {
+            background: #07c160;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 24px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #06ad56;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #666;
+            margin-left: 12px;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .user-info {
+            margin-top: 16px;
+            color: #52c41a;
+            font-weight: 500;
+        }
+        .refresh-link {
+            color: #1890ff;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 14px;
+            margin-top: 16px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">艾登<span>师傅</span></div>
+        <div class="subtitle">微信扫码登录 WorkBuddy</div>
+        
+        <!-- 二维码区域 -->
+        <div id="qrSection" class="qr-container">
+            <div id="loadingStatus" class="status waiting">
+                <div class="spinner"></div>
+                正在生成二维码...
+            </div>
+            <img id="qrCode" class="qr-code hidden" alt="登录二维码">
+        </div>
+        
+        <!-- 状态提示 -->
+        <div id="statusArea">
+            <div id="statusDisplay" class="status waiting">
+                <div class="spinner"></div>
+                <span>等待扫码</span>
+            </div>
+        </div>
+        
+        <!-- 成功区域 -->
+        <div id="successSection" class="hidden">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            </div>
+            <div class="user-info" id="userInfo"></div>
+            <div class="token-display" id="tokenDisplay"></div>
+            <button class="btn" onclick="copyToken()">复制 Token</button>
+            <button class="btn btn-secondary" onclick="refreshPage()">重新登录</button>
+        </div>
+        
+        <!-- 过期提示 -->
+        <div id="expiredSection" class="hidden">
+            <p style="color: #ff4d4f; margin-bottom: 16px;">二维码已过期</p>
+            <span class="refresh-link" onclick="refreshPage()">点击刷新</span>
+        </div>
+        
+        <div id="errorSection" class="hidden" style="color: #ff4d4f; margin-top: 16px;"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://mes.dderp.cn/mob';
+        let sceneId = '';
+        let pollInterval = null;
+        let token = '';
+        let wxUrl = '';
+
+        // 页面加载时自动获取二维码
+        window.onload = () => {
+            createQRCode();
+        };
+
+        // 生成二维码图片 URL
+        function generateQrCodeUrl(text) {
+            return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
+        }
+
+        async function createQRCode() {
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/wechat/createLoginQrCode`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const result = await response.json();
+                
+                if (result.code === 200 && result.data) {
+                    sceneId = result.data.sceneId;
+                    wxUrl = result.data.url;
+                    
+                    // 使用微信 URL 生成二维码
+                    const qrCodeUrl = generateQrCodeUrl(wxUrl);
+                    
+                    // 显示二维码
+                    document.getElementById('qrCode').src = qrCodeUrl;
+                    document.getElementById('qrCode').classList.remove('hidden');
+                    document.getElementById('loadingStatus').classList.add('hidden');
+                    
+                    // 开始轮询状态
+                    startPolling();
+                } else {
+                    showError(result.message || '获取二维码失败');
+                }
+            } catch (error) {
+                showError('网络错误，请检查连接');
+                console.error(error);
+            }
+        }
+
+        function startPolling() {
+            pollInterval = setInterval(checkLoginStatus, 2000);
+        }
+
+        async function checkLoginStatus() {
+            if (!sceneId) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/wechat/checkLoginStatus?sceneId=${sceneId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const result = await response.json();
+                
+                if (result.code === 200 && result.data) {
+                    const status = result.data.status;
+                    updateStatusUI(status);
+                    
+                    if (status === 'confirmed') {
+                        // 登录成功
+                        clearInterval(pollInterval);
+                        token = result.data.token || result.data.wxUnionid;
+                        showSuccess(result.data.userInfo);
+                        saveToken(token);
+                    } else if (status === 'expired') {
+                        // 二维码过期
+                        clearInterval(pollInterval);
+                        showExpired();
+                    }
+                }
+            } catch (error) {
+                console.error('检查状态失败:', error);
+            }
+        }
+
+        function updateStatusUI(status) {
+            const statusDisplay = document.getElementById('statusDisplay');
+            const statusText = statusDisplay.querySelector('span');
+            
+            statusDisplay.className = 'status ' + status;
+            
+            switch (status) {
+                case 'waiting':
+                    statusText.textContent = '等待扫码';
+                    break;
+                case 'scanned':
+                    statusText.textContent = '已扫码，请在微信中确认';
+                    break;
+                case 'confirmed':
+                    statusText.textContent = '登录成功';
+                    break;
+                case 'expired':
+                    statusText.textContent = '二维码已过期';
+                    break;
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loadingStatus').classList.remove('hidden');
+            document.getElementById('qrCode').classList.add('hidden');
+        }
+
+        function showSuccess(userInfo) {
+            document.getElementById('qrSection').classList.add('hidden');
+            document.getElementById('statusArea').classList.add('hidden');
+            document.getElementById('successSection').classList.remove('hidden');
+            
+            if (userInfo) {
+                document.getElementById('userInfo').textContent = 
+                    `欢迎，${userInfo.nickname || '用户'}！`;
+            }
+            document.getElementById('tokenDisplay').textContent = token;
+        }
+
+        function showExpired() {
+            document.getElementById('statusArea').classList.add('hidden');
+            document.getElementById('expiredSection').classList.remove('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('loadingStatus').classList.add('hidden');
+            document.getElementById('errorSection').textContent = message;
+            document.getElementById('errorSection').classList.remove('hidden');
+        }
+
+        function copyToken() {
+            navigator.clipboard.writeText(token).then(() => {
+                alert('Token 已复制到剪贴板！');
+            });
+        }
+
+        function refreshPage() {
+            location.reload();
+        }
+
+        function saveToken(token) {
+            // 通知父窗口（如果有的话）
+            if (window.opener) {
+                window.opener.postMessage({ type: 'LOGIN_SUCCESS', token: token }, '*');
+            }
+            // 保存到本地存储（仅用于展示）
+            localStorage.setItem('aiding_shifu_token', token);
+            localStorage.setItem('aiding_shifu_login_time', new Date().toISOString());
+        }
+    </script>
+</body>
+</html>

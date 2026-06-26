@@ -1,35 +1,31 @@
 ---
-name: "Volcseed"
-description: "即梦 Volcseed 智能修图。Use when: 用户要按提示词改图、需提交参考图 URL 与轮询任务。"
-category: "creative"
-source: "ClawHub"
-tags: [image, tianshu, volcseed]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aiznt-volcseed"
-sourceUrl: "https://clawhub.ai/skills/aiznt-volcseed"
+name: aiznt-volcseed
+description: >
+  即梦 Volcseed 智能修图。Use when: 用户要按提示词改图、需提交参考图 URL 与轮询任务。
+metadata:
+  openclaw:
+    primaryEnv: TS_TOKEN
+    requires:
+      env:
+        - AIZNT_PROXY_URLS
 ---
 
-# Volcseed
+# 即梦 Volcseed (aiznt-volcseed)
 
-> 即梦 Volcseed 智能修图。Use when: 用户要按提示词改图、需提交参考图 URL 与轮询任务。
+通过天树 `ts_xxx` 与凭证中的 `aiznt_proxy_urls` 调用 **volcseededit** 提交与查询。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aiznt-volcseed`
-- **Source URL:** [https://clawhub.ai/skills/aiznt-volcseed](https://clawhub.ai/skills/aiznt-volcseed)
+## 配置
 
-## Overview
+与 `aiznt-images` 等同类技能相同：`TS_TOKEN`、`AIZNT_PROXY_URLS`（JSON）。TsClaw **Skills** 页「同步天树凭证」会批量写入。
 
+## 命令
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/aiznt-volcseed
+node scripts/volcseed.js submit --prompt "改成水彩风" --image-urls '["https://example.com/a.png"]'
+node scripts/volcseed.js fetch --task-id <task_id>
 ```
+
+## URL 键
+
+- `volcseededit_submit`
+- `volcseededit_fetch`（`{task_id}`）

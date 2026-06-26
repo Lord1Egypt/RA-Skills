@@ -1,0 +1,72 @@
+{
+  "full_name": "Your Name",
+  "email": "your.email@example.com",
+  "phone": "+86-xxx-xxxx-xxxx",
+  "location": "Shanghai, China",
+  "linkedin_url": "https://linkedin.com/in/yourprofile",
+  "resume_path": "~/Documents/resume.pdf",
+  "years_experience": 3,
+  "authorized_to_work": true,
+  "requires_sponsorship": false,
+
+  "target_roles": [
+    "AI Product Manager",
+    "Product Manager",
+    "Technical Product Manager"
+  ],
+  "target_locations": [
+    "Shanghai",
+    "Beijing",
+    "Remote"
+  ],
+  "salary_range": {
+    "min": 300000,
+    "max": 500000,
+    "currency": "CNY"
+  },
+  "job_type": "full-time",
+  "experience_level": "mid",
+
+  "skills": [
+    "Product Management",
+    "Agile/Scrum",
+    "SQL",
+    "Python",
+    "Data Analysis",
+    "AI/ML",
+    "Prompt Engineering",
+    "RAG",
+    "LLM",
+    "API Design"
+  ],
+
+  "platforms": {
+    "linkedin": {
+      "enabled": true,
+      "easy_apply_only": false
+    },
+    "boss_zhipin": {
+      "enabled": true,
+      "auto_greet": false
+    },
+    "indeed": {
+      "enabled": true
+    },
+    "glassdoor": {
+      "enabled": false
+    }
+  },
+
+  "preferences": {
+    "max_daily_applications": 20,
+    "min_match_score": 0.75,
+    "require_confirmation": true,
+    "dry_run": true,
+    "auto_cover_letter": true,
+    "ats_optimization": true,
+    "daily_report": true,
+    "report_channel": "whatsapp"
+  },
+
+  "cover_letter_notes": "I am transitioning from traditional product management to AI product management. Highlight my data science background (UCL MSc) and hands-on AI project experience."
+}

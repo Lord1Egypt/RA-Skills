@@ -1,0 +1,14 @@
+{
+  "accessKeyId": "你的AccessKey ID",
+  "accessKeySecret": "你的AccessKey Secret",
+  "bucket": "你的存储桶名称",
+  "region": "oss-cn-hangzhou",
+  "domain": "https://你的域名.com",
+  "options": {
+    "secure": true,
+    "timeout": 60000,
+    "upload_threshold": 1048576,
+    "chunk_size": 1048576,
+    "retry_times": 3
+  }
+}

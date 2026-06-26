@@ -1,0 +1,18 @@
+name: amazon-seasonal-planner
+version: 1.0.0
+description: "亚马逊旺季作战手册 — Prime Day/黑五/圣诞三场大考的全年备战指南。帮助卖家告别旺季手忙脚乱的焦虑，提供从年初到年末的完整旺季规划、备货节奏、广告策略和库存管理。"
+tags:
+  - amazon
+  - seasonal
+  - prime-day
+  - black-friday
+  - holiday
+  - ecommerce
+  - q4
+author:
+  name: WangM-A3
+  homepage: https://github.com/amazon-ops
+license: MIT
+homepage: https://github.com/amazon-ops/amazon-seasonal-planner
+repository: https://github.com/amazon-ops/amazon-seasonal-planner
+issues: https://github.com/amazon-ops/amazon-seasonal-planner/issues

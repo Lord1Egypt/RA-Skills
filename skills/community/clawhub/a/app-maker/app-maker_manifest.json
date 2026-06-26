@@ -1,0 +1,27 @@
+{
+  "skill_name": "app-maker",
+  "version": "1.0.0",
+  "package_date": "2026-03-16T23:46:54.104768",
+  "file_count": 13,
+  "package_file": "app-maker_20260316_234654.zip",
+  "files_included": [
+    "SKILL.md",
+    "README.md",
+    "QUICKSTART.md",
+    "SCREENSHOTS.md",
+    "DEMO_VIDEO.md",
+    "UPLOAD.md",
+    "package.json",
+    "_meta.json",
+    "config.example.json",
+    "LICENSE",
+    "scripts/",
+    ".clawhub/"
+  ],
+  "upload_instructions": [
+    "1. Go to https://clawhub.ai/skills/create",
+    "2. Fill in the form (see UPLOAD.md for details)",
+    "3. Upload this ZIP file",
+    "4. Submit for review"
+  ]
+}

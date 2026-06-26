@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AML Screening Result Specification",
+  "description": "Schema for the results returned by the TrustIn API and local amlclaw screening engine",
+  "type": "object",
+  "properties": {
+    "chain": {
+      "type": "string",
+      "description": "Blockchain network name (e.g., Tron, Ethereum)"
+    },
+    "address": {
+      "type": "string",
+      "description": "Wallet address that was screened"
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["inflow", "outflow", "all"],
+      "description": "Direction of the trace calculation"
+    },
+    "risk_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Calculated risk score based on path/tags priority"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High", "Severe"],
+      "description": "Categorical representation of the risk_score"
+    },
+    "recommendation": {
+      "type": "string",
+      "description": "Human-readable action recommendation"
+    },
+    "triggered_rules": {
+      "type": "array",
+      "description": "List of user-defined custom rules from rules.json that were triggered by the address graph data",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule_id": { "type": "string" },
+          "name": { "type": "string" },
+          "action": { "type": "string", "enum": ["Review", "EDD", "Reject", "Freeze", "Whitelist"] },
+          "risk_level": { "type": "string" }
+        }
+      }
+    }
+  }
+}

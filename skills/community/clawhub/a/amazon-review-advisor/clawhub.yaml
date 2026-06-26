@@ -1,0 +1,101 @@
+name: amazon-review-advisor
+version: "1.0.1"
+tagline: 亚马逊评论情绪免疫系统 | 合规应对差评 · 分析反馈 · 提炼改进方向
+description: 
+  zh: >
+    🔰 定位：卖家的「情绪免疫系统」与「品牌护盾」
+
+    核心价值：
+    • 评论情绪分类 — 识别投诉焦点，标注异常模式
+    • 分类应对方案 — 真实差评给改进建议，异常评论引导合规申诉
+    • 评价邀请指导 — 官方渠道 + 最佳时机建议 + 话术模板
+    • 评论趋势梳理 — 提炼产品/运营优化方向
+
+    ⚠️ 重要提醒：
+    • 本技能不提供删评服务，只提供合规应对指导
+    • 评价邀请仅使用官方功能，对所有买家一视同仁
+    • 禁止以任何利益交换诱导买家修改评价
+    
+  en: >
+    🔰 Positioning: Seller's "Emotional Immune System" & Brand Shield
+    
+    Core Features:
+    • Review sentiment classification — Identify complaint focus, flag anomalies
+    • Categorized response strategies — Real negative feedback → improvement suggestions; Abnormal reviews → compliant appeal guidance
+    • Review invitation guidance — Official channels + timing recommendations + template scripts
+    • Review trend analysis — Extract product/operation optimization directions
+    
+    ⚠️ Disclaimer:
+    • This skill does NOT provide review removal services, only compliant response guidance
+    • All review invitations use official Amazon features, treating all buyers equally
+    • Prohibited: offering compensation/incentives in exchange for review modifications
+    
+keywords:
+  - amazon
+  - review management
+  - seller tools
+  - product reviews
+  - customer feedback
+  - e-commerce
+  - review response
+  - 亚马逊
+  - 评论管理
+  - 差评应对
+  - 评价邀请
+  - 卖家工具
+
+category: e-commerce
+
+author:
+  name: ClawHub
+  email: skill@clawhub.com
+  website: https://clawhub.com
+
+homepage: https://clawhub.com/skills/amazon-review-advisor
+repository: https://github.com/clawhub/amazon-review-advisor
+
+license: MIT
+
+platform:
+  - coze
+
+language: 
+  - zh
+  - en
+
+tags:
+  - amazon seller
+  - review response
+  - customer service
+  - product improvement
+  - compliance
+
+compatibility:
+  coze:
+    min_version: "1.0.0"
+    
+readme: README.md
+
+files:
+  - SKILL.md
+  - README.md
+  - clawhub.yaml
+  - references/response-templates.md
+
+changelog:
+  - version: "1.0.1"
+    date: "2025-01-14"
+    changes:
+      - Fix: removed review-manipulation-adjacent guidance
+      - Fix: removed review-gating-adjacent guidance
+      - Fix: aligned all review invitation guidance with Amazon review policies
+      - Updated: renamed "好评邀请策略" to "评价邀请指导"
+      - Updated: added explicit prohibition on compensation for review modifications
+  - version: "1.0.0"
+    date: "2025-01-13"
+    changes:
+      - Initial release
+      - Added review sentiment classification
+      - Added categorized response strategies
+      - Added review invitation templates
+      - Added review trend analysis

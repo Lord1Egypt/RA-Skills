@@ -1,0 +1,221 @@
+{
+  "date": "2026-05-12",
+  "generated_at": "2026-05-12T14:07:55Z",
+  "total_count": 14,
+  "items": [
+    {
+      "title": "Blender Tool For Real-Time Procedural Surface Fracturing",
+      "url": "https://80.lv/articles/blender-tool-for-real-time-procedural-surface-fracturing/",
+      "summary": "Arriving \"hopefully this month.\"",
+      "source": "80 Level",
+      "published_at": "2026-05-12T13:36:00Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [],
+      "recommendation": "游戏行业 AI 战略动向",
+      "source_type": "primary"
+    },
+    {
+      "title": "Blender Studio Releases Its First 4K HDR Short Film, Singularity",
+      "url": "https://80.lv/articles/blender-studio-releases-its-first-4k-hdr-short-film-singularity/",
+      "summary": "Check out how Blender Studio combines a watercolor-inspired visual style with generative simulations in this compelling story about a little creature lost in space.",
+      "source": "80 Level",
+      "published_at": "2026-05-12T10:56:00Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [],
+      "recommendation": "新产品/功能发布，可能影响行业格局",
+      "source_type": "primary"
+    },
+    {
+      "title": "国产 AI 游戏《历史模拟器：崇祯》“本体买断、词元收费”引争议，官方回应称将开放自行接入模型",
+      "url": "https://www.ithome.com/0/949/477.htm",
+      "summary": "IT之家 5 月 12 日消息，近期一款国产游戏《历史模拟器：崇祯》引发玩家争议，本作使用 AI 生成剧情，采用“本体买断，词元（Token）收费”制度，也就是玩家花费 48 元购买游戏后，如果需要持续推进游戏过程，就需要额外付费购买词元。对此，官方目前发布公告，声称将开放“自定义 API”与“创意工坊”功能。玩家未来可以自行接入支持范围内的大模型服务，自由选择模型并控制成本。与此同时，游戏还将同步上线创意工坊功能，允许玩家基于《历史模拟器：崇祯》的核心框架，自行创作剧本、规则以及玩法内容。官方强调，具体的上线时间、支持模型范围以及上传审核规则，后续会以正式功能公告的形式公开。",
+      "source": "IT之家",
+      "published_at": "2026-05-12T10:48:00Z",
+      "category": "in-game",
+      "category_secondary": null,
+      "tags": [
+        "大模型"
+      ],
+      "recommendation": "新产品/功能发布，可能影响行业格局",
+      "source_type": "secondary",
+      "trace_note": "此条来自聚合/转载媒体，建议追溯原始来源后再展示"
+    },
+    {
+      "title": "Darkest Dungeon Creator Won't Replace Late Narrator with AI Despite His Permission",
+      "url": "https://80.lv/articles/darkest-dungeon-creator-won-t-replace-late-narrator-with-ai-despite-his-permission/",
+      "summary": "Wayne June will live in our memories.",
+      "source": "80 Level",
+      "published_at": "2026-05-12T09:34:00Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [],
+      "recommendation": "游戏行业 AI 战略动向",
+      "source_type": "primary"
+    },
+    {
+      "title": "《匹诺曹的谎言》开发商 Neowiz 布局生成式 AI，招聘 AI 创意设计师",
+      "url": "https://www.ithome.com/0/949/307.htm",
+      "summary": "《匹诺曹的谎言》开发商Neowiz正积极布局生成式AI，旗下Round8工作室新设\"AI创意设计师\"岗位。该岗位需使用Midjourney、Stable Diffusion等工具进行角色与概念原画创作，并负责训练定制化AI模型。公司旨在将AI深度融入开发流程，搭建高效美术创作流水线以压缩周期，并计划将生成式AI推广为内部美术人员的常规工作方式，由该设计师指导其他员工。当前游戏行业普遍应用AI优化流程，但生成式AI在美术创作领域的应用仍面临玩家接受度挑战。",
+      "source": "IT之家（RSS）",
+      "source_via": "AI HOT",
+      "published_at": "2026-05-12T07:03:21.000Z",
+      "category": "creation",
+      "category_secondary": "industry",
+      "tags": [
+        "Neowiz",
+        "Stable Diffusion",
+        "Midjourney"
+      ],
+      "recommendation": "关注 AI 如何改变游戏内容生产流程",
+      "source_type": "secondary",
+      "trace_note": "此条来自聚合/转载媒体，建议追溯原始来源后再展示"
+    },
+    {
+      "title": "反思与转变：一位AI创作者的流量套路自省与价值回归",
+      "url": "https://x.com/AYi_AInotes/status/2053900819557494823",
+      "summary": "一位AI内容创作者在获得业界关注的同时，因受到严厉批评而深刻反思。他承认自己为追求流量，将\"卧槽\"开头等技巧变成了令人反感的套路，并违背了不分享未经验证项目的原则。他宣布即刻停止使用此类套路，并呼吁模仿者一同摒弃。核心反思在于，内容创作不应以流量为终局，而应专注于输出有价值的思考。引用的批评指出，其分享的AI游戏工作室项目思路存在根本缺陷，仍以人类岗位划分限制AI Agent的全局能力，同时尖锐批评了其浮夸文风。",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_via": "AI HOT",
+      "published_at": "2026-05-11T18:11:29.000Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [],
+      "recommendation": "游戏行业 AI 战略动向",
+      "source_type": "primary"
+    },
+    {
+      "title": "大语言模型规模越大，综合能力越强",
+      "url": "https://x.com/emollick/status/2053899147422396614",
+      "summary": "大语言模型（LLM）的一个重要特性是，更新、更大的模型在所有方面都表现更优。AI实验室正将大量资源投入编程等经济价值高的领域，但更大的模型在谈判、对齐、诗歌创作等广泛任务上同样更具优势。例如，在PACT基准测试的数千场模拟谈判中，GPT-5.5在买卖双方多轮议价游戏中取得了最佳成绩，这印证了模型规模与综合能力提升的正相关关系。",
+      "source": "X：Ethan Mollick (@emollick)",
+      "source_via": "AI HOT",
+      "published_at": "2026-05-11T18:04:51.000Z",
+      "category": "research",
+      "category_secondary": null,
+      "tags": [
+        "GPT",
+        "LLM"
+      ],
+      "recommendation": "前沿研究可能影响未来游戏形态",
+      "source_type": "primary"
+    },
+    {
+      "title": "大语言模型代理中的\"记忆诅咒\"",
+      "url": "https://x.com/omarsar0/status/2053863994499408214",
+      "summary": "研究发现，长历史记录会在大语言模型（LLM）代理中引发\"记忆诅咒\"，导致其过度遵循历史、规避风险，从而削弱合作能力。该结论基于7个LLM和4个社会困境游戏的实验，在28个模型-游戏组合中，有18个因历史扩展而合作退化。机制分析表明，长历史侵蚀了模型的前瞻性意图，使其更关注过去的冲突而非未来收益。通过仅在前瞻性轨迹上训练的LoRA适配器可缓解此问题，且能零样本迁移至新游戏。实验证明，触发因素是历史内容而非长度，而消除显式思维链通常能减轻合作崩溃。",
+      "source": "X：Elvis Saravia (@omarsar0, DAIR.AI)",
+      "source_via": "AI HOT",
+      "published_at": "2026-05-11T15:45:09.000Z",
+      "category": "research",
+      "category_secondary": "industry",
+      "tags": [
+        "LLM"
+      ],
+      "recommendation": "大厂联手布局，行业风向标",
+      "source_type": "primary"
+    },
+    {
+      "title": "MiniMax 启动\"10x Team\"合作计划，提供无限的 Token",
+      "url": "https://www.ithome.com/0/949/029.htm",
+      "summary": "MiniMax宣布启动\"10x Team\"合作计划，旨在邀请各行业顶尖专业人士共同推动AI模型在特定领域的深度优化与十倍增长。该计划面向具备行业积累、能自主参与问题定义与工作流搭建的专业人士，提供无限Token、完整多模态模型能力及研发资源。合作采用全职入职或不少于四个月的Fellowship短期协作模式，办公地点覆盖上海、北京、香港、旧金山及伦敦。合作成果将开源并用于模型迭代，参与者可获得具国际竞争力的薪酬、股票激励及学术成果共享权益。此前，MiniMax已在工业软件、游戏引擎等多个领域与专家展开合作验证。",
+      "source": "IT之家（RSS）",
+      "source_via": "AI HOT",
+      "published_at": "2026-05-11T15:13:16.000Z",
+      "category": "dev-tools",
+      "category_secondary": null,
+      "tags": [],
+      "recommendation": "开源项目，团队可直接试用评估",
+      "source_type": "secondary",
+      "trace_note": "此条来自聚合/转载媒体，建议追溯原始来源后再展示"
+    },
+    {
+      "title": "Sony maps out how first-party PlayStation studios are utilising AI tools during development",
+      "url": "https://www.gamesindustry.biz/sony-maps-out-how-first-party-playstation-studios-are-utilising-ai-tools-during-development",
+      "summary": "Sony has detailed its plans to expand AI integration throughout its organisation, including game development. Read more",
+      "source": "GamesIndustry.biz",
+      "published_at": "2026-05-11T13:36:22Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [
+        "Sony"
+      ],
+      "recommendation": "游戏行业 AI 战略动向",
+      "source_type": "primary"
+    },
+    {
+      "title": "大神用Claude Code复刻完整游戏开发工作室，48个AI智能体覆盖全岗位",
+      "url": "https://x.com/AYi_AInotes/status/2053709074466824688",
+      "summary": "开源项目Claude Code Game Studios利用Claude Code构建了完整的虚拟游戏开发工作室。该项目包含48个AI智能体，1：1还原从创意总监到关卡设计师等全部岗位，覆盖游戏开发全流程。系统提供36条斜杠指令一键启动工作流，适配Godot、Unity、Unreal三大游戏引擎，并集成自动化校验钩子及28套行业标准文档模板。所有AI仅负责梳理方案，最终决策权由用户掌握。项目采用MIT开源协议，可免费商用，克隆仓库即可快速部署。",
+      "source": "X：阿易 AI Notes (@AYi_AInotes)",
+      "source_via": "AI HOT",
+      "published_at": "2026-05-11T05:29:34.000Z",
+      "category": "dev-tools",
+      "category_secondary": null,
+      "tags": [
+        "Unity",
+        "Claude"
+      ],
+      "recommendation": "开源项目，团队可直接试用评估",
+      "source_type": "primary"
+    },
+    {
+      "title": "‘Your Career Starts at the Beginning of the AI Revolution,’ NVIDIA CEO Tells Graduates",
+      "url": "https://blogs.nvidia.com/blog/nvidia-ceo-carnegie-mellon-commencement-address/",
+      "summary": "“You are entering the world at an extraordinary moment,” NVIDIA founder and CEO Jensen Huang told graduates as he delivered the keynote address at Carnegie Mellon University&#8217;s 128th commencement ceremony on Sunday. “A new industry is being born. A new era of science and discovery is beginning.",
+      "source": "NVIDIA Blog",
+      "published_at": "2026-05-10T22:00:50Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [
+        "NVIDIA"
+      ],
+      "recommendation": "游戏行业 AI 战略动向",
+      "source_type": "primary"
+    },
+    {
+      "title": "尽管裁员千人，Epic 仍表示 AI 不会取代游戏从业者",
+      "url": "https://www.ithome.com/0/948/483.htm",
+      "summary": "Epic公司高管表示，人工智能不会取代游戏行业工作岗位，而是用于提升效率、减轻繁重工作负担。尽管该公司在2026年裁员1000人，但坚称裁员与AI无关。Epic正在探索AI工具以支持游戏开发，未来将应用于艺术创意领域，并强调《堡垒之夜》开发中的AI使用由公司统一管控，合作方不得擅自使用。这一立场与索尼、艺电等企业相似，但外界对其\"AI不危及就业\"的说法仍存质疑。",
+      "source": "IT之家（RSS）",
+      "source_via": "AI HOT",
+      "published_at": "2026-05-10T08:12:22.000Z",
+      "category": "industry",
+      "category_secondary": null,
+      "tags": [
+        "艺电"
+      ],
+      "recommendation": "大厂联手布局，行业风向标",
+      "source_type": "secondary",
+      "trace_note": "此条来自聚合/转载媒体，建议追溯原始来源后再展示"
+    },
+    {
+      "title": "Building with Gemini Embedding 2: Agentic multimodal RAG and beyond",
+      "url": "https://developers.googleblog.com/building-with-gemini-embedding-2/",
+      "summary": "Google has announced the general availability of Gemini Embedding 2, a unified model that maps text, images, video, audio, and documents into a single semantic space. This model allows developers to process interleaved multimodal inputs in a single request, significantly improving performance for ta",
+      "source": "Google Developers Blog",
+      "published_at": null,
+      "category": "creation",
+      "category_secondary": null,
+      "tags": [
+        "Gemini",
+        "embedding"
+      ],
+      "recommendation": "关注 AI 如何改变游戏内容生产流程",
+      "source_type": "primary"
+    }
+  ],
+  "stats": {
+    "raw_count": 242,
+    "after_relevance_filter": 15,
+    "after_dedup": 14,
+    "by_category": {
+      "industry": 7,
+      "in-game": 1,
+      "creation": 2,
+      "research": 2,
+      "dev-tools": 2
+    }
+  }
+}

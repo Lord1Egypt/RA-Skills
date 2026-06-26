@@ -1,35 +1,142 @@
 ---
-name: "Aicodem skill"
-description: "生成 XMind 格式的测试用例思维导图文件。基于测试用例数据自动生成结构化的 XMind 文件，支持电商消费券、登录、注册、下单等多种测试场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/aicodem-xmind-testcase"
-sourceUrl: "https://clawhub.ai/skills/aicodem-xmind-testcase"
+name: aicodem-xmind-testcase
+description: 生成 XMind 格式的测试用例思维导图文件。基于测试用例数据自动生成结构化的 XMind 文件，支持电商消费券、登录、注册、下单等多种测试场景。
+author: Aicodem
+version: 1.0.0
+license: MIT
+metadata: {"openclaw":{"emoji":"📊","category":"productivity","tags":["testing","xmind","test-case","automation"]}}
 ---
 
-# Aicodem skill
+# AICodeM XMind 测试用例生成器
 
-> 生成 XMind 格式的测试用例思维导图文件。基于测试用例数据自动生成结构化的 XMind 文件，支持电商消费券、登录、注册、下单等多种测试场景。
+生成 XMind 格式的测试用例思维导图文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/aicodem-xmind-testcase`
-- **Source URL:** [https://clawhub.ai/skills/aicodem-xmind-testcase](https://clawhub.ai/skills/aicodem-xmind-testcase)
+## 功能
 
-## Overview
+- 根据测试用例数据自动生成 XMind 文件
+- 支持多层级结构（模块 → 测试点 → 用例 → 详情）
+- 每条用例包含：前置条件、测试步骤、预期结果、优先级
+- 输出文件兼容 XMind、MindManager、FreeMind 等工具
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/aicodem-xmind-testcase
+### 方式 1：直接调用技能
+
+```json
+{
+  "skill": "aicodem-xmind-testcase",
+  "input": {
+    "test_data": {
+      "模块名称": [
+        {
+          "测试点": "功能点名称",
+          "cases": [
+            {
+              "用例名称": "TC_001-用例描述",
+              "前置条件": "执行前的环境状态",
+              "步骤": ["步骤 1", "步骤 2"],
+              "预期结果": "期望的输出结果",
+              "优先级": "高 | 中 | 低"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
 ```
+
+### 方式 2：命令行执行
+
+```bash
+cd skills/aicodem-xmind-testcase
+python3 scripts/generate_xmind.py
+```
+
+## 输入数据格式
+
+```json
+{
+  "模块名称": [
+    {
+      "测试点": "功能点名称",
+      "cases": [
+        {
+          "用例名称": "TC_001-用例描述",
+          "前置条件": "执行前的环境状态",
+          "步骤": ["步骤 1", "步骤 2"],
+          "预期结果": "期望的输出结果",
+          "优先级": "高 | 中 | 低"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## 输出文件结构
+
+```
+测试用例
+├── 模块 1
+│   ├── 测试点 1
+│   │   └── TC_001-用例名称 [优先级]
+│   │       ├── 前置条件：...
+│   │       ├── 测试步骤
+│   │       │   ├── 1. 步骤 1
+│   │       │   └── 2. 步骤 2
+│   │       └── 预期结果：...
+│   └── 测试点 2
+└── 模块 2
+```
+
+## 示例
+
+### 电商消费券测试用例
+
+```json
+{
+  "1-领取功能测试": [
+    {"测试点": "正常领取流程", "cases": [
+      {"用例名称": "TC_RECV_001-正常领取", "前置条件": "用户已登录", "步骤": ["点击领取"], "预期结果": "领取成功", "优先级": "高"}
+    ]},
+    {"测试点": "限领规则", "cases": [
+      {"用例名称": "TC_RECV_002-超限领取", "前置条件": "已达限领上限", "步骤": ["点击领取"], "预期结果": "提示已超限", "优先级": "高"}
+    ]}
+  ],
+  "2-使用功能测试": [
+    {"测试点": "门槛验证", "cases": [
+      {"用例名称": "TC_USE_001-满足门槛", "前置条件": "订单金额达标", "步骤": ["选择消费券"], "预期结果": "抵扣成功", "优先级": "高"}
+    ]}
+  ]
+}
+```
+
+## 依赖
+
+- Python 3.6+
+- 标准库 `zipfile` (无需额外安装)
+
+## 文件说明
+
+```
+aicodem-xmind-testcase/
+├── SKILL.md              # 技能说明文档（本文件）
+├── skill.yaml            # 技能配置文件
+├── scripts/
+│   └── generate_xmind.py # 生成脚本入口
+├── examples/
+│   └── coupon_test.json  # 示例输入数据
+└── LICENSE               # MIT License
+```
+
+## 注意事项
+
+1. 生成的 `.xmind` 文件是标准 ZIP 格式，可直接用 XMind 打开
+2. 如果 XMind 打不开，可尝试导入 OPML 格式（需额外配置）
+3. 用例名称建议包含 TC 编号，便于追踪管理
+4. 优先级字段可选，默认显示为"中"
+
+## 版本历史
+
+- **v1.0.0** (2026-03-13): 初始版本，支持基础 XMind 生成

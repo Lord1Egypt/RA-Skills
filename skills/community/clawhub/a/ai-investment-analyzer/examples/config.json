@@ -1,0 +1,62 @@
+{
+  "API配置示例": {
+    "说明": "在实际使用时，需要配置以下API密钥",
+    "股票API": {
+      "推荐": "Yahoo Finance API",
+      "备选": "Alpha Vantage",
+      "免费API": "TradingView API"
+    },
+    "加密货币API": {
+      "推荐": "Coinbase API",
+      "备选": "Binance API",
+      "免费API": "CoinGecko API"
+    },
+    "房地产数据": {
+      "推荐": "Zillow API",
+      "备选": "Redfin API",
+      "中国市场": "链家API"
+    },
+    "宏观经济数据": {
+      "推荐": "美联储API",
+      "中国": "中国人民银行API",
+      "免费": "IMF API"
+    }
+  },
+  
+  "使用示例": [
+    {
+      "资产类型": "股票",
+      "命令": "ai-investment analyze \"AAPL\" \"1年\"",
+      "输出示例": {
+        "asset": "AAPL",
+        "currentPrice": "$180.25",
+        "trend": "上涨趋势",
+        "riskLevel": "中等",
+        "recommendation": "建议买入",
+        "roi": "预计年回报率15%"
+      }
+    },
+    {
+      "资产类型": "加密货币",
+      "命令": "ai-investment analyze \"BTC\" \"3个月\"",
+      "输出示例": {
+        "asset": "BTC",
+        "currentPrice": "$45,000",
+        "trend": "震荡调整",
+        "riskLevel": "高风险",
+        "recommendation": "谨慎观望",
+        "roi": "预计年回报率±30%"
+      }
+    },
+    {
+      "资产类型": "投资组合",
+      "命令": "ai-investment portfolio optimize \"股票50%债券30%比特币20%\"",
+      "输出示例": {
+        "originalPortfolio": "股票50%债券30%比特币20%",
+        "optimizedPortfolio": "股票40%债券25%比特币15%房地产10%现金10%",
+        "expectedROI": "13.5%",
+        "riskLevel": "中等风险"
+      }
+    }
+  ]
+}

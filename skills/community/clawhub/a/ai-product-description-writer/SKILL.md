@@ -1,35 +1,58 @@
 ---
-name: "Ai Product Description Writer"
-description: "Generate product descriptions in 4 styles (professional, casual, luxury, SEO) from product name and features using Grok AI. Requires XAI_API_KEY. Use when wr..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-product-description-writer"
-sourceUrl: "https://clawhub.ai/skills/ai-product-description-writer"
+name: ai-product-description-writer
+description: "Generate product descriptions in 4 styles (professional, casual, luxury, SEO) from product name and features using Grok AI. Requires XAI_API_KEY. Use when writing e-commerce listings, creating Shopify/Amazon copy, drafting product marketing content, or generating multi-style product text."
+version: "2.0.1"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+tags: [ecommerce, product, copywriting, description, grok]
+env:
+  - name: XAI_API_KEY
+    required: true
+    description: "Grok API key from console.x.ai"
 ---
 
-# Ai Product Description Writer
+# AI Product Description Writer
 
-> Generate product descriptions in 4 styles (professional, casual, luxury, SEO) from product name and features using Grok AI. Requires XAI_API_KEY. Use when wr...
+Generate product descriptions in 4 styles from a product name and feature list using Grok AI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-product-description-writer`
-- **Source URL:** [https://clawhub.ai/skills/ai-product-description-writer](https://clawhub.ai/skills/ai-product-description-writer)
+## What This Skill Owns
+- Multi-style description generation: professional, casual, luxury, SEO-optimized
+- Input: product name + comma-separated features
+- Output: ready-to-publish copy for e-commerce listings
 
-## Overview
+## What This Skill Does Not Cover
+- Image-based description (use ai-product-description-from-image)
+- Bulk/batch processing
+- Publishing to Shopify/WooCommerce directly
 
+## Credentials
 
-## Installation
-To install this skill, run the following command in your terminal:
+| Variable | Required | Description |
+|----------|----------|-------------|
+| XAI_API_KEY | **Yes** | Grok API key from console.x.ai |
+
+## Commands
+
+### write
+Generate descriptions from product name and features.
+
 ```bash
-hermes skills install clawhub/ai-product-description-writer
+XAI_API_KEY=your-key bash scripts/script.sh write --product "Wireless Headphones" --features "noise cancelling, 30h battery, foldable"
+XAI_API_KEY=your-key bash scripts/script.sh write --product "Running Shoes" --features "lightweight, breathable" --style seo
 ```
+
+## Styles
+- **professional** — Formal, B2B-ready copy
+- **casual** — Friendly, conversational tone
+- **luxury** — Premium, aspirational language
+- **seo** — Keyword-rich for search ranking
+- **all** — Generate all 4 styles (default)
+
+## Requirements
+- python3 (standard library only)
+- Internet connection (calls api.x.ai)
+
+## Feedback
+https://bytesagain.com/feedback/
+Powered by BytesAgain | bytesagain.com

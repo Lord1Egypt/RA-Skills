@@ -1,0 +1,7 @@
+{
+  "app_name": "YOUR_APP_NAME",
+  "app_token": "YOUR_APP_TOKEN",
+  "table_name": "YOUR_TABLE_NAME",
+  "table_id": "YOUR_TABLE_ID",
+  "url": "https://YOUR_FEISHU_HOST/base/YOUR_APP_TOKEN"
+}

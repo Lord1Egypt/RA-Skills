@@ -1,0 +1,79 @@
+{
+  "skill_name": "AI Governance & Safety Intelligence",
+  "slug": "ai-governance-intel",
+  "version": "1.0.0",
+  "data_sources": {
+    "regulatory_frameworks": [
+      {"name": "EU AI Act Tracker", "url": "https://artificialintelligenceact.eu/", "type": "ongoing", "coverage": "EU AI Act implementation timeline, banned practices, high-risk categories"},
+      {"name": "OECD AI Policy Observatory", "url": "https://oecd.ai/en/", "type": "ongoing", "coverage": "70+ countries AI policies, live database"},
+      {"name": "NIST AI Risk Management Framework", "url": "https://www.nist.gov/itl/ai-risk-management-framework", "type": "ongoing", "coverage": "US voluntary RMF, AI 100-1"},
+      {"name": "China AI Governance", "url": "https://www.cac.gov.cn/", "type": "ongoing", "coverage": "Generative AI Measures, Algorithm Registry, Deep Synthesis rules"},
+      {"name": "UK AI Safety Institute (AISI)", "url": "https://www.aisi.gov.uk/", "type": "ongoing", "coverage": "UK frontier model evaluations"},
+      {"name": "CAIDP (Center for AI & Digital Policy)", "url": "https://www.caidp.org/", "type": "ongoing", "coverage": "AI policy tracker, country rankings"},
+      {"name": "Stanford HAI Policy", "url": "https://hai.stanford.edu/policy", "type": "ongoing", "coverage": "US AI legislative tracker"},
+      {"name": "BlueDot Impact AI Governance", "url": "https://aisafety.com/governance/", "type": "ongoing", "coverage": "global AI governance landscape"}
+    ],
+    "ai_safety_incidents": [
+      {"name": "AI Incident Database (AIID)", "url": "https://incidentdatabase.ai/", "type": "real-time", "coverage": "3,000+ AI incidents classified by harm type"},
+      {"name": "OECD AI Incidents Monitor (AIM)", "url": "https://oecd.ai/en/incidents", "type": "ongoing", "coverage": "verified AI incident reports"},
+      {"name": "MIT AI Risk Repository", "url": "https://airisk.mit.edu/", "type": "ongoing", "coverage": "taxonomy of 777 AI risks, 43 risk domains"}
+    ],
+    "technical_safety_research": [
+      {"name": "Anthropic Alignment Research", "url": "https://www.anthropic.com/research", "type": "ongoing", "coverage": "RLHF, constitutional AI, mechanistic interpretability"},
+      {"name": "DeepMind Safety Research", "url": "https://deepmind.google/research/", "type": "ongoing", "coverage": "frontier safety, AGI evaluation"},
+      {"name": "OpenAI Preparedness Framework", "url": "https://openai.com/safety/", "type": "ongoing", "coverage": "CBRN, cybersecurity, persuasion, autonomy evaluations"},
+      {"name": "ARC Evals", "url": "https://evals.alignment.org/", "type": "ongoing", "coverage": "autonomous replication evaluation methodology"},
+      {"name": "METR (Model Evaluation & Threat Research)", "url": "https://metr.org/", "type": "ongoing", "coverage": "AI capability evaluation benchmarks"},
+      {"name": "Epoch AI", "url": "https://epochai.org/", "type": "ongoing", "coverage": "compute trends, scaling laws, AI macro trajectory"},
+      {"name": "Center for AI Safety (CAIS)", "url": "https://www.safe.ai/", "type": "ongoing", "coverage": "x-risk research, ML safety benchmarks"},
+      {"name": "Redwood Research", "url": "https://www.redwoodresearch.org/", "type": "ongoing", "coverage": "alignment, interpretability research"}
+    ],
+    "standards_and_certification": [
+      {"name": "ISO/IEC 42001:2023 AI Management System", "url": "https://www.iso.org/standard/81230.html", "type": "standard", "coverage": "first global AI management standard"},
+      {"name": "ISO/IEC 23894 AI Risk Management", "url": "https://www.iso.org/standard/77306.html", "type": "standard", "coverage": "AI-specific risk management guidelines"},
+      {"name": "IEEE 7000 Series Ethics in Design", "url": "https://ethicsinaction.ieee.org/", "type": "standard", "coverage": "ethical AI design standards"},
+      {"name": "CEN-CENELEC JTC 21 (European AI)", "url": "https://www.cencenelec.eu/", "type": "ongoing", "coverage": "harmonized EU AI standards"},
+      {"name": "BSI AI Standards Hub", "url": "https://www.bsigroup.com/en-GB/industries-and-sectors/artificial-intelligence/", "type": "ongoing", "coverage": "UK AI standards landscape"}
+    ],
+    "international_cooperation": [
+      {"name": "UN AI Advisory Body", "url": "https://www.un.org/ai-advisory-body", "type": "ongoing", "coverage": "Governing AI for Humanity report"},
+      {"name": "AI Safety Summit Series", "url": "https://www.aisafetysummit.gov.uk/", "type": "periodic", "coverage": "Bletchley 2023, Seoul 2024, Paris 2025, India 2026"},
+      {"name": "G7 Hiroshima AI Process", "url": "https://www.soumu.go.jp/hiroshima_aiprocess/", "type": "ongoing", "coverage": "G7 code of conduct for advanced AI"},
+      {"name": "Global AI Safety Institutes Network", "url": "https://www.gov.uk/government/publications/ai-safety-summit-2024", "type": "ongoing", "coverage": "US AISI, UK AISI, Japan AISI, Singapore AISI, Canada AISI, Korea AISI, EU AI Office, France, Germany, Italy, Australia"}
+    ],
+    "digital_rights_and_ethics": [
+      {"name": "Access Now AI & Human Rights", "url": "https://www.accessnow.org/issue/ai/", "type": "ongoing", "coverage": "facial recognition bans, predictive policing"},
+      {"name": "AlgorithmWatch", "url": "https://algorithmwatch.org/", "type": "ongoing", "coverage": "automated decision-making systems auditing"},
+      {"name": "Surveillance Technology Oversight Project (STOP)", "url": "https://www.stopspying.org/", "type": "ongoing", "coverage": "surveillance tech regulation"}
+    ]
+  },
+  "regulatory_timeline_milestones": [
+    {"date": "2024-08", "event": "EU AI Act enters into force", "impact": "first comprehensive AI law globally"},
+    {"date": "2025-02", "event": "EU AI Act: Prohibited AI practices ban takes effect", "impact": "social scoring, real-time biometric surveillance banned"},
+    {"date": "2025-08", "event": "EU AI Act: GPAI rules take effect", "impact": "general-purpose AI transparency requirements"},
+    {"date": "2025-10", "event": "US White House AI Executive Order 14110 implementation deadline", "impact": "federal agency AI governance"},
+    {"date": "2026-08", "event": "EU AI Act: High-risk AI systems obligations", "impact": "conformity assessment, risk management mandatory"},
+    {"date": "2026-Q4", "event": "India AI Safety Summit (proposed)", "impact": "global AI safety framework expansion"},
+    {"date": "2027-01", "event": "EU AI Act: Full enforcement", "impact": "all provisions in effect including Article 6 high-risk"}
+  ],
+  "model_capability_thresholds": {
+    "frontier_model_registries": ["US AISI Mandatory Reporting (proposed)", "EU AI Act GPAI Code of Practice", "China Generative AI Filing System"],
+    "evaluation_categories": ["CBRN risk (chemical, biological, radiological, nuclear)", "Cybersecurity offensive capability", "Autonomous replication & adaptation", "Persuasion & manipulation", "Situational awareness & deceptive alignment", "Long-horizon planning", "Code generation & self-improvement"],
+    "risk_level_frameworks": ["OpenAI Preparedness (low/medium/high/critical)", "Anthropic RSP (ASL-1 to ASL-4)", "DeepMind Frontier Safety Framework", "METR Autonomy Evaluation Rubric"]
+  },
+  "ai_governance_hot_topics_2026": [
+    "Open-weight model release governance (Llama, Mistral, Qwen debates)",
+    "Compute governance (GPU export controls, chip tracking)",
+    "AI-generated content labeling (C2PA watermarking, deepfake detection)",
+    "AI in military/defense (LAWS - lethal autonomous weapons)",
+    "AI and elections integrity (2024-2026 global election cycle)",
+    "AI labor displacement monitoring (entry-level developer jobs -20%)",
+    "Training data copyright and opt-out regimes",
+    "AI liability frameworks (developer vs. deployer vs. user)",
+    "Open-source AI definition debate (OSI vs. EU AI Act)",
+    "Sovereign AI capacity building (Global South compute access)",
+    "AI assessment market (third-party auditors, red-teaming-as-a-service)",
+    "Agentic AI safety (tool use, recursive improvement, multi-agent systems)"
+  ]
+}
+（内容由AI生成，仅供参考）

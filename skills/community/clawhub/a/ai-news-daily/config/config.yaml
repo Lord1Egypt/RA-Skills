@@ -1,0 +1,50 @@
+# AI 新闻日报配置
+# 修改后无需重启，下次运行自动生效
+
+# 抓取配置
+fetch:
+  max_workers: 4              # 并发线程数
+  request_timeout: 15         # 请求超时（秒）
+  max_retries: 3              # 失败重试次数
+  retry_delay: 2              # 重试间隔（秒）
+  
+# 新闻筛选
+date_range:
+  days_back: 1                # 抓取几天内的新闻（默认1天）
+  
+# 输出配置
+output:
+  top_n: 10                   # 每天推送几条
+  save_raw_content: true      # 保存原始正文（用于生成摘要）
+  raw_content_length: 3000    # 保存原始内容长度
+  
+# 摘要配置
+summary:
+  target_min: 200             # 摘要最小字数
+  target_max: 250             # 摘要最大字数
+  generate_by: ai             # ai = 由AI生成, script = 由脚本生成
+  
+# 推送配置
+push:
+  openclaw:
+    enabled: true
+    output_file: data/openclaw_message.txt
+    format: markdown          # markdown / html / text
+    auto_push: true           # 自动生成摘要并推送
+    target: webchat           # 推送目标: webchat / telegram / discord
+    
+  telegram:
+    enabled: false
+    bot_token: ""             # 从环境变量 TELEGRAM_BOT_TOKEN 读取
+    channel_id: ""            # 从环境变量 TELEGRAM_CHANNEL_ID 读取
+    
+  discord:
+    enabled: false
+    webhook_url: ""           # 从环境变量 DISCORD_WEBHOOK_URL 读取
+
+# 日志配置
+logging:
+  level: INFO                 # DEBUG / INFO / WARNING / ERROR
+  file: data/fetch.log
+  max_size_mb: 10
+  backup_count: 5

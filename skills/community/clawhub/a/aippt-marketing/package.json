@@ -1,0 +1,24 @@
+{
+  "name": "aippt-marketing",
+  "version": "1.2.9",
+  "description": "使用小方同学生成营销方案 PPT。输入主题，AI 自动完成 Brief 分析、目录生成、策略推导、执行铺排、文稿撰写、美化出图全流程。",
+  "license": "MIT-0",
+  "author": "aippt@openclaw",
+  "homepage": "https://www.aippt.cn",
+  "keywords": [
+    "aippt",
+    "marketing",
+    "营销方案",
+    "PPT",
+    "策划",
+    "openclaw",
+    "skill"
+  ],
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "baseUrl": "https://www.aippt.cn/api/marketing",
+    "requires": {
+      "browser": true
+    }
+  }
+}

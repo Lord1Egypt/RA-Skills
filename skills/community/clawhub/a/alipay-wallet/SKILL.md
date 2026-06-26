@@ -1,35 +1,26 @@
 ---
 name: "Alipay Wallet"
 description: "提供支付宝资产管理、卡包及收支分析指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alipay-wallet"
-sourceUrl: "https://clawhub.ai/skills/alipay-wallet"
 ---
 
-# Alipay Wallet
+# 支付宝钱包
 
-> 提供支付宝资产管理、卡包及收支分析指引。
+## 筛选项
+- 资产类别（现金/基金/股票/理财/保险）
+- 风险等级（低/中/高风险/保障型）
+- 周期/流动性（T+0/定期/活期/长期）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alipay-wallet`
-- **Source URL:** [https://clawhub.ai/skills/alipay-wallet](https://clawhub.ai/skills/alipay-wallet)
+## 返回字段
+- 资产总额/每日盈亏/年化收益参考
+- 交易流水/对账单导出/税费明细
+- 风险测评状态/持仓分析/资产配置建议
 
-## Overview
+## 示例请求
+- “如何快速使用 支付宝钱包 处理 [具体场景任务] ？”
+- “支付宝钱包 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 每日跟随市场行情与个人账单变更进行亚小时级同步
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/alipay-wallet
-```
+## 注意事项
+- 投资有风险，决策需谨慎；涉及大额转账请务必进行双重身份验证。

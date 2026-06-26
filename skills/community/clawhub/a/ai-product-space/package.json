@@ -1,0 +1,59 @@
+{
+  "name": "@ai-product-space/openclaw-skill",
+  "version": "1.0.4",
+  "description": "OpenClaw skill for AI Product Space — generate ecommerce assets from a single product photo",
+  "author": "ai-product-space",
+  "homepage": "https://renshevy.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renshevy/ai-product-space"
+  },
+  "bugs": {
+    "url": "https://github.com/renshevy/ai-product-space/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "claw.json",
+    "clawhub.json",
+    "openclaw.plugin.json",
+    "instructions.md",
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "icon.png",
+    "screenshots/",
+    "examples/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "validate": "openclaw skill validate .",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "clawhub",
+    "skill",
+    "ecommerce",
+    "ai",
+    "product-image",
+    "product-video",
+    "marketing",
+    "电商素材",
+    "商品图",
+    "AI生图"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "extensions": ["./dist/index.js"]
+  }
+}

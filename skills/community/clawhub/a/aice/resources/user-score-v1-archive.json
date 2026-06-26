@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "userId": "sergio",
+  "globalScore": 66.8,
+  "totalTasks": 30,
+  "metrics": {
+    "INSTRUCTION_FORMAT": { "sum": 42, "count": 30, "avg": 1.40 },
+    "SPECIFICITY": { "sum": 61, "count": 30, "avg": 2.03 },
+    "REDUNDANCY": { "redundantCount": 3, "totalCount": 30, "ratio": 0.10 },
+    "CONSISTENCY": { "inconsistentCount": 1, "totalCount": 30, "ratio": 0.03 },
+    "FEEDBACK_QUALITY": { "sum": 69, "count": 30, "avg": 2.30 },
+    "CONTEXT_PROVIDED": { "sum": 43, "count": 30, "avg": 1.43 }
+  },
+  "quadrants": {
+    "GOOD_INTERACTION": 17,
+    "AGENT_PROBLEM": 2,
+    "AGENT_COMPENSATED": 6,
+    "COMMS_BREAKDOWN": 5
+  },
+  "trend": {
+    "feb19": { "userAvg": 73, "agentAvg": 55 },
+    "feb20": { "userAvg": 69, "agentAvg": 79 },
+    "feb21": { "userAvg": 69, "agentAvg": 58 },
+    "feb22": { "userAvg": 68, "agentAvg": 72 },
+    "feb23": { "userAvg": 57, "agentAvg": 55 },
+    "feb24": { "userAvg": 68, "agentAvg": 63 },
+    "feb25": { "userAvg": 66, "agentAvg": 68 }
+  },
+  "lastUpdated": "2026-02-25T23:00:00Z"
+}

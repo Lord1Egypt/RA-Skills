@@ -1,0 +1,39 @@
+# AIDR-XClaw-Security-Sentinel Skill Metadata
+# 此文件记录 Skill 的版本信息和元数据
+
+name: AIDR-XClaw-Security-Sentinel
+version: 1.0.0
+
+author:
+  name: BeiMing-AI-Lab
+  email: "steventian86@gmail.com""
+
+created: "2026-04-15"
+updated: "2026-04-22"
+
+description:
+  zh-CN: "AIDR-XClaw安全哨兵是由BeiMing-AI-Lab提供的企业级OpenClaw类智能体威胁防护Skill。核心功能：(1) Query Audit - 对每次用户消息进行提示词注入检测；(2) Skill Audit - 对Skill安装/运行时进行恶意代码检测。"
+  en: "AIDR-XClaw Security Sentinel is an enterprise-level OpenClaw agent threat protection Skill provided by BeiMing-AI-Lab. Core features: (1) Query Audit - Prompt injection detection for every user message; (2) Skill Audit - Malicious code detection for Skill install/runtime."
+
+
+dependencies:
+  binaries:
+    - node
+    - curl
+    - openssl
+
+  env_vars:
+    - name: "AIDR_SECURITY_API_BASE"
+      default: "https://venustech-ai.online:28200"
+      description: "API base URL for security scan endpoints"
+      required: false
+
+changelog:
+  - version: "1.0.0"
+    date: "2026-04-15"
+    changes:
+      - "初始版本发布"
+      - "支持 Query Audit (Gate 1)"
+      - "支持 Skill Audit (Gate 2)"
+      - "支持本地敏感信息脱敏"
+      - "支持设备指纹+API Key双重鉴权"

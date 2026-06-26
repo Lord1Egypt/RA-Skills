@@ -1,0 +1,10 @@
+{
+  "name": "TS Images",
+  "tagline": "通用图 + Gemini 文生图",
+  "description": "OpenAI-style images API and Gemini generateContent.",
+  "category": "media",
+  "tags": ["image", "gemini", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

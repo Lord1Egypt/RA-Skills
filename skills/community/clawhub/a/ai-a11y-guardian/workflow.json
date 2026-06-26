@@ -1,0 +1,121 @@
+{
+  "name": "ai-a11y-guardian",
+  "version": "1.0.0",
+  "description": "AI辅助无障碍合规守护者 — 自动化检测网页/H5的无障碍问题，生成修复建议并出具合规报告",
+  "category": "AI|开发|自动化",
+  "triggers": [
+    "无障碍检测",
+    "a11y 检查",
+    "WCAG 合规报告",
+    "网页无障碍问题",
+    "生成无障碍报告",
+    "accessibility",
+    "色盲友好",
+    "读屏兼容"
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "name": "页面渲染与DOM提取",
+      "skill": "agent-browser",
+      "input": {
+        "url": "${INPUT_URL}",
+        "action": "snapshot",
+        "wait": 3000,
+        "extract": "dom"
+      },
+      "output": {
+        "dom": "${DOM_CONTENT}",
+        "screenshot": "${PAGE_SCREENSHOT}",
+        "title": "${PAGE_TITLE}",
+        "links": "${PAGE_LINKS}"
+      },
+      "description": "使用真实 Chromium 浏览器完整渲染页面（含 JS 执行），截图并提取完整 DOM 结构。捕获 Shadow DOM、懒加载内容、iframe 内内容。"
+    },
+    {
+      "order": 2,
+      "name": "WCAG合规AI分析",
+      "skill": "summarize",
+      "input": {
+        "source": "${DOM_CONTENT}",
+        "mode": "wcag-analysis",
+        "level": "${LEVEL:-AA}",
+        "standard": "WCAG 2.1",
+        "checks": [
+          "1.1.1 Non-text Content (images without alt)",
+          "1.3.1 Info and Relationships (semantic structure)",
+          "1.4.3 Contrast (minimum 4.5:1)",
+          "1.4.4 Resize text",
+          "2.1.1 Keyboard (keyboard accessibility)",
+          "2.1.2 No Keyboard Trap",
+          "2.4.1 Bypass Blocks",
+          "2.4.2 Page Titled",
+          "2.4.3 Focus Order",
+          "2.4.4 Link Purpose",
+          "2.4.6 Headings and Labels",
+          "2.4.7 Focus Visible",
+          "3.1.1 Language of Page",
+          "3.2.1 On Focus",
+          "3.2.2 On Input",
+          "3.3.1 Error Identification",
+          "3.3.2 Labels or Instructions",
+          "4.1.1 Parsing",
+          "4.1.2 Name, Role, Value"
+        ]
+      },
+      "output": {
+        "critical_issues": "${CRITICAL}",
+        "major_issues": "${MAJOR}",
+        "minor_issues": "${MINOR}",
+        "score": "${A11Y_SCORE}",
+        "summary": "${SUMMARY}"
+      },
+      "description": "调用 AI 对照 WCAG 2.1 AA 标准逐条分析 DOM 结构，输出带严重性评级的结构化问题清单，每个问题附 WCAG 条款编号和修复代码片段。"
+    },
+    {
+      "order": 3,
+      "name": "可视化合规报告生成",
+      "skill": "card-renderer",
+      "input": {
+        "title": "无障碍合规报告",
+        "score": "${A11Y_SCORE}",
+        "critical": "${CRITICAL}",
+        "major": "${MAJOR}",
+        "minor": "${MINOR}",
+        "url": "${INPUT_URL}",
+        "style": "mac-pro",
+        "format": "card"
+      },
+      "output": {
+        "card_image": "${REPORT_CARD_PATH}"
+      },
+      "description": "将 WCAG 分析结果渲染为知识卡片风格的违规汇总图。包含总体评分、致命问题列表、合规等级标注。图片可分享给团队或用于合规存档。"
+    }
+  ],
+  "dependencies": {
+    "agent-browser": {
+      "purpose": "页面完整浏览器渲染（含 JS 执行），截图 + 提取 DOM",
+      "version": ">=1.0.0"
+    },
+    "summarize": {
+      "purpose": "AI WCAG 合规分析，输出问题清单 + 修复建议",
+      "version": ">=1.0.0"
+    },
+    "card-renderer": {
+      "purpose": "生成可视化无障碍合规报告卡片",
+      "version": ">=1.0.0"
+    }
+  },
+  "metadata": {
+    "author": "OpenClaw Agent",
+    "created": "2026-04-24",
+    "stage": "production",
+    "use_cases": [
+      "政务平台无障碍合规检测",
+      "H5移动端无障碍审查",
+      "WCAG认证材料准备",
+      "开发阶段无障碍问题预防",
+      "第三方合规报告生成"
+    ]
+  }
+}

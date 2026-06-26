@@ -1,0 +1,68 @@
+{
+  "name": "AI医学报告解读助手",
+  "version": "1.0.0",
+  "description": "上传检验报告 PDF，AI 自动解读关键指标，查询最新医学文献，生成结构化健康解读报告并支持可视化输出",
+  "category": "AI|医疗|自动化",
+  "skills": [
+    "nano-pdf",
+    "brave-search",
+    "card-renderer",
+    "公众号助手",
+    "xiaohongshu"
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "name": "PDF 文本提取",
+      "skill": "nano-pdf",
+      "input": "用户上传的检验报告 PDF",
+      "output": "报告文本内容（检验项目、指标数值、单位、参考范围）",
+      "action": "extract"
+    },
+    {
+      "step": 2,
+      "name": "AI 指标识别与异常标注",
+      "skill": "ai-analysis",
+      "input": "报告文本",
+      "output": "结构化指标列表（正常/异常标注，偏离程度）",
+      "action": "analyze"
+    },
+    {
+      "step": 3,
+      "name": "医学文献查询",
+      "skill": "brave-search",
+      "input": "异常指标列表",
+      "output": "最新医学文献、临床指南、治疗建议",
+      "action": "search"
+    },
+    {
+      "step": 4,
+      "name": "生成结构化健康报告",
+      "skill": "ai-report",
+      "input": "指标分析结果 + 医学文献",
+      "output": "通俗易懂的健康解读报告（含建议）",
+      "action": "generate"
+    },
+    {
+      "step": 5,
+      "name": "生成可视化知识卡片",
+      "skill": "card-renderer",
+      "input": "报告核心摘要",
+      "output": "健康知识卡片图片（可选风格：Mac Pro/赛博朋克/包豪斯）",
+      "action": "render"
+    },
+    {
+      "step": 6,
+      "name": "内容发布（可选）",
+      "skill": "公众号助手/xiaohongshu",
+      "input": "健康报告 + 知识卡片",
+      "output": "发布到微信公众号或小红书",
+      "action": "publish"
+    }
+  ],
+  "metadata": {
+    "author": "OpenClaw AI Assistant",
+    "created": "2026-04-22",
+    "tags": ["医疗", "健康", "报告解读", "AI助手", "知识卡片"]
+  }
+}

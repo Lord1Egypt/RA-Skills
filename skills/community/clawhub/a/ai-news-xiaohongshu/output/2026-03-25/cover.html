@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 日报 - 03/25</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: #0a0a0f;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .container { width: 1080px; margin: 0 auto; }
+    
+    .page {
+      width: 1080px;
+      height: 1440px;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+    
+    /* ========== 第 1 页：封面 ========== */
+    .page-1 {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 35%, #d946ef 100%);
+      padding: 80px 60px;
+    }
+    
+    .header { text-align: center; margin-bottom: 60px; }
+    .header h1 {
+      font-size: 96px;
+      color: #fff;
+      font-weight: 900;
+      text-shadow: 0 4px 30px rgba(99, 102, 241, 0.4);
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+    .date {
+      font-size: 48px;
+      color: rgba(255,255,255,0.95);
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    
+    .highlight-box {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 50px;
+      margin-bottom: 50px;
+      border: 2px solid rgba(255,255,255,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .highlight-title { font-size: 36px; color: rgba(255,255,255,0.85); margin-bottom: 20px; font-weight: 600; }
+    .highlight-content { font-size: 44px; color: #fff; font-weight: 700; line-height: 1.4; }
+    
+    .news-preview { background: rgba(255,255,255,0.12); border-radius: 25px; padding: 40px; }
+    .news-item { display: flex; align-items: center; padding: 25px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    .news-item:last-child { border-bottom: none; }
+    .news-emoji { font-size: 36px; margin-right: 25px; }
+    .news-text { font-size: 32px; color: #fff; flex: 1; font-weight: 500; }
+    
+    .footer {
+      position: absolute;
+      bottom: 60px;
+      left: 60px;
+      right: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer span { font-size: 28px; color: rgba(255,255,255,0.9); font-weight: 500; }
+    
+    /* ========== 详细资讯页 ========== */
+    .page-detail {
+      background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+      padding: 80px 60px;
+    }
+    
+    .section-title {
+      font-size: 64px;
+      color: #1e293b;
+      font-weight: 800;
+      margin-bottom: 50px;
+      text-align: center;
+      letter-spacing: -1px;
+    }
+    
+    .news-list { display: flex; flex-direction: column; gap: 25px; }
+    
+    .news-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      border-left: 6px solid #6366f1;
+      break-inside: avoid;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.15);
+    }
+    
+    .news-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .news-number {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    .news-time { font-size: 22px; color: #64748b; font-weight: 500; }
+    
+    .news-card-title {
+      font-size: 32px;
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+    .news-card-source {
+      font-size: 22px;
+      color: #6366f1;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    
+    .page-hint {
+      text-align: center;
+      font-size: 24px;
+      color: #64748b;
+      margin-top: 35px;
+      opacity: 0.8;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    
+    /* ========== 最后一页：观点 ========== */
+    .page-last {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      padding: 80px 60px;
+    }
+    .page-last .section-title { color: #f1f5f9; }
+    
+    .opinion-box {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 50px;
+      margin-bottom: 50px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .opinion-box p { font-size: 36px; color: #f1f5f9; margin-bottom: 25px; line-height: 1.5; font-weight: 400; }
+    
+    .cta-box {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 25px;
+      padding: 50px;
+      text-align: center;
+      margin-bottom: 50px;
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+    }
+    .cta-text { font-size: 48px; color: #fff; font-weight: 700; margin-bottom: 15px; }
+    .cta-sub { font-size: 32px; color: rgba(255,255,255,0.95); font-weight: 500; }
+    
+    .tags { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+    .tags span {
+      background: rgba(99, 102, 241, 0.2);
+      color: #e0e7ff;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 24px;
+      font-weight: 600;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+    
+    /* ========== 分页分隔线 ========== */
+    .page-break {
+      height: 12px;
+      background: repeating-linear-gradient(
+        45deg,
+        #6366f1,
+        #6366f1 15px,
+        #8b5cf6 15px,
+        #8b5cf6 30px
+      );
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="page page-1">
+      <div class="header">
+        <h1>🔥 AI 日报</h1>
+        <div class="date">2026.03/25</div>
+      </div>
+      
+      <div class="highlight-box">
+        <div class="highlight-title">今日重磅</div>
+        <div class="highlight-content">OpenAI 视频生成器即将关闭</div>
+      </div>
+      
+      <div class="news-preview">
+        
+          <div class="news-item">
+            <span class="news-emoji">📌</span>
+            <span class="news-text">OpenAI 视频生成器即将关闭</span>
+          </div>
+        
+          <div class="news-item">
+            <span class="news-emoji">📌</span>
+            <span class="news-text">Arm AGI CPU 最多 136 核心</span>
+          </div>
+        
+          <div class="news-item">
+            <span class="news-emoji">📌</span>
+            <span class="news-text">Anthropic 与五角大楼法庭对峙</span>
+          </div>
+        
+      </div>
+      
+      <div class="footer">
+        <span>共 10 条资讯</span>
+        <span>滑动查看更多 →</span>
+      </div>
+    </div>
+  <div class="page-break"></div>
+      <div class="page page-2 page-detail">
+        <div class="section-title">📊 详细资讯 1-5 / 10</div>
+        
+        <div class="news-list">
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">1</span>
+                <span class="news-time">1 天前</span>
+              </div>
+              <div class="news-card-title">OpenAI 视频生成器即将关闭</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">2</span>
+                <span class="news-time">1 天前</span>
+              </div>
+              <div class="news-card-title">Arm AGI CPU 最多 136 核心</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">3</span>
+                <span class="news-time">1 天前</span>
+              </div>
+              <div class="news-card-title">Anthropic 与五角大楼法庭对峙</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">4</span>
+                <span class="news-time">1 天前</span>
+              </div>
+              <div class="news-card-title">Nvidia 黄仁勋：实现 AGI</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">5</span>
+                <span class="news-time">2 天前</span>
+              </div>
+              <div class="news-card-title">OpenAI 想收购 Helion</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+        </div>
+        
+        <div class="page-hint">↓ 继续滑动查看更多 ↓</div>
+      </div>
+    <div class="page-break"></div>
+      <div class="page page-3 page-detail">
+        <div class="section-title">📊 详细资讯 6-10 / 10</div>
+        
+        <div class="news-list">
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">6</span>
+                <span class="news-time">1 天前</span>
+              </div>
+              <div class="news-card-title">Beehiiv 接入 AI 机器人</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">7</span>
+                <span class="news-time">2 天前</span>
+              </div>
+              <div class="news-card-title">Photoshop AI 旋转功能</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">8</span>
+                <span class="news-time">2 天前</span>
+              </div>
+              <div class="news-card-title">AI 音乐欺诈案 800 万</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">9</span>
+                <span class="news-time">2 天前</span>
+              </div>
+              <div class="news-card-title">Grammarly 模仿记者</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-card-header">
+                <span class="news-number">10</span>
+                <span class="news-time">1 天前</span>
+              </div>
+              <div class="news-card-title">WebinarTV 窃取 Zoom</div>
+              <div class="news-card-source">The Verge</div>
+            </div>
+          
+        </div>
+        
+        
+      </div>
+    <div class="page-break"></div>
+    <div class="page page-4 page-last">
+      <div class="section-title">💡 我的观点</div>
+      
+      <div class="opinion-box">
+        <p>2026 年 AI 竞争进入白热化阶段</p>
+        <p>开源 vs 闭源，谁能笑到最后？</p>
+        <p>你觉得哪个模型最强？</p>
+      </div>
+      
+      <div class="cta-box">
+        <div class="cta-text">👇 评论区聊聊</div>
+        <div class="cta-sub">关注我，每日更新 AI 前沿</div>
+      </div>
+      
+      <div class="tags">
+        <span>#AI</span>
+        <span>#大模型</span>
+        <span>#人工智能</span>
+        <span>#科技资讯</span>
+      </div>
+    </div>
+  
+  </div>
+</body>
+</html>

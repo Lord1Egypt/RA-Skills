@@ -1,0 +1,65 @@
+{
+  "name": "AI Animation Studio",
+  "version": "2.2.0",
+  "description": "AI动画制作技能 - 从故事到动画的全流程自动化。支持两种生成模式、BGM背景音乐选择、自动配音字幕烧录。",
+  "author": "systiger",
+  "tags": [
+    "animation",
+    "video",
+    "ai-video",
+    "image-to-video",
+    "doubao",
+    "tts",
+    "bgm",
+    "storytelling",
+    "pixar",
+    "ghibli"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/systiger/ai-animation-studio"
+  },
+  "keywords": [
+    "AI动画",
+    "图生视频",
+    "动画制作",
+    "故事动画",
+    "豆包视频",
+    "配音",
+    "BGM"
+  ],
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "dependencies": {
+    "skills": [
+      "doubao-media",
+      "edge-tts"
+    ]
+  },
+  "config": {
+    "bgm_library": {
+      "categories": [
+        "儿童动画",
+        "励志热血",
+        "搞笑娱乐",
+        "浪漫温馨",
+        "科幻冒险"
+      ],
+      "default_volume": 0.3
+    },
+    "animation_modes": [
+      {
+        "id": 1,
+        "name": "图片转视频",
+        "description": "速度快，保留原画面细节"
+      },
+      {
+        "id": 2,
+        "name": "图片动画化再生成视频",
+        "description": "动画效果更强，角色动作丰富"
+      }
+    ]
+  }
+}

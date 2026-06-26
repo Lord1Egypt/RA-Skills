@@ -1,0 +1,106 @@
+{
+  "name": "@clawhub/app-maker",
+  "version": "1.0.0",
+  "description": "Full-stack app development skill that automates the complete workflow from UI design, database schema, code generation to deployment",
+  "skill": {
+    "name": "app-maker",
+    "displayName": "App Maker",
+    "category": "development",
+    "tags": [
+      "app-development",
+      "full-stack",
+      "code-generation",
+      "ai-assistant",
+      "react",
+      "nodejs",
+      "database-design",
+      "deployment",
+      "claude",
+      "multi-model",
+      "visual-debugging",
+      "mvp",
+      "rapid-prototyping"
+    ],
+    "author": "OpenClaw Workspace",
+    "license": "MIT",
+    "homepage": "https://clawhub.ai/skills/app-maker",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/openclaw/clawhub.git",
+      "directory": "skills/app-maker"
+    },
+    "bugs": {
+      "url": "https://github.com/openclaw/clawhub/issues"
+    },
+    "requirements": {
+      "python": [
+        "httpx>=0.24.0"
+      ],
+      "node": ">=16.0.0",
+      "env": [
+        "CLAUDE_API_KEY (optional)",
+        "QWEN_API_KEY (optional)",
+        "GEMINI_API_KEY (optional)",
+        "GLM_API_KEY (optional)"
+      ]
+    },
+    "capabilities": [
+      "requirements-analysis",
+      "ui-design",
+      "database-design",
+      "code-generation",
+      "visual-debugging",
+      "deployment-automation"
+    ],
+    "supportedModels": [
+      {
+        "id": "claude-code",
+        "provider": "Anthropic",
+        "default": true
+      },
+      {
+        "id": "qwen",
+        "provider": "Alibaba Cloud"
+      },
+      {
+        "id": "gemini",
+        "provider": "Google"
+      },
+      {
+        "id": "glm",
+        "provider": "Zhipu AI"
+      }
+    ],
+    "supportedStacks": {
+      "frontend": ["react", "vue", "flutter"],
+      "backend": ["nodejs", "python", "go"],
+      "database": ["postgresql", "mongodb", "mysql"],
+      "deploy": ["vercel", "aliyun", "docker", "kubernetes"]
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "QUICKSTART.md",
+    "SCREENSHOTS.md",
+    "DEMO_VIDEO.md",
+    "_meta.json",
+    "config.example.json",
+    "scripts/",
+    ".clawhub/"
+  ],
+  "scripts": {
+    "prepublish": "node scripts/validate.js",
+    "test": "python -m pytest tests/",
+    "lint": "eslint scripts/ && python -m black scripts/"
+  },
+  "keywords": [
+    "clawhub",
+    "skill",
+    "app-builder",
+    "ai",
+    "code-generation",
+    "full-stack",
+    "development"
+  ]
+}

@@ -1,35 +1,49 @@
 ---
-name: "Ansible Ui"
+version: "2.0.0"
+name: Semaphore
 description: "Modern UI and powerful API for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps t ansible-ui, go, ansible, awx, ci, cicd."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ansible-ui"
-sourceUrl: "https://clawhub.ai/skills/ansible-ui"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
 
-# Ansible Ui
+# Semaphore
 
-> Modern UI and powerful API for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps t ansible-ui, go, ansible, awx, ci, cicd.
+Modern UI and powerful API for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps tools. ## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ansible-ui`
-- **Source URL:** [https://clawhub.ai/skills/ansible-ui](https://clawhub.ai/skills/ansible-ui)
+- `help` - Help
+- `run` - Run
+- `info` - Info
+- `status` - Status
 
-## Overview
+## Features
 
+- Core functionality from ansible-uiui/ansible-ui
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
+Run any command: `ansible-ui <command> [args]`
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/ansible-ui
+# Show help
+ansible-ui help
+
+# Run
+ansible-ui run
 ```
+
+- Run `ansible-ui help` for commands
+- No API keys needed
+
+- Run `ansible-ui help` for all commands
+
+- Run `ansible-ui help` for all commands
+
+## Configuration
+
+Set `ANSIBLE_UI_DIR` to change data directory. Default: `~/.local/share/ansible-ui/`

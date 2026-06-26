@@ -1,0 +1,4 @@
+interface:
+  display_name: "Alibaba Cloud Network CDN"
+  short_description: "CDN domain, cache, HTTPS, and monitoring API workflows"
+  default_prompt: "Use $alicloud-network-cdn to complete this network/cdn task on Alibaba Cloud."

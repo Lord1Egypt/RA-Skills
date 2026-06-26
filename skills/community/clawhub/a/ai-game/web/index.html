@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏 × AI 资讯</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #fafafa;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  /* Header */
+  .header {
+    margin-bottom: 32px;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .header .date-range {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+  }
+  /* Summary */
+  .summary {
+    background: #f5f5f5;
+    border-left: 3px solid #999;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.8;
+  }
+  .summary .label {
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  /* Filter tabs */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+    position: sticky;
+    top: 0;
+    background: #fafafa;
+    padding: 12px 0;
+    z-index: 10;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .filter-tab {
+    padding: 6px 14px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .filter-tab:hover {
+    border-color: #999;
+    color: #1a1a1a;
+  }
+  .filter-tab.active {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+  }
+  /* Category section */
+  .category-section {
+    margin-bottom: 36px;
+  }
+  .category-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  /* News item */
+  .news-item {
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .news-item:last-child {
+    border-bottom: none;
+  }
+  .item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .item-number {
+    font-size: 13px;
+    color: #999;
+    min-width: 24px;
+  }
+  .item-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+  }
+  .item-date {
+    font-weight: 400;
+    color: #888;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .item-source {
+    font-size: 12px;
+    color: #999;
+    margin-left: 34px;
+    margin-bottom: 8px;
+  }
+  .item-desc {
+    font-size: 14px;
+    color: #444;
+    margin-left: 34px;
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+  .item-reason {
+    font-size: 14px;
+    color: #666;
+    margin-left: 34px;
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+  .item-reason .reason-label {
+    color: #888;
+  }
+  .item-link {
+    margin-left: 34px;
+  }
+  .item-link a {
+    font-size: 13px;
+    color: #4a7dbd;
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .item-link a:hover {
+    text-decoration: underline;
+    color: #2a5d9d;
+  }
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    color: #aaa;
+    text-align: center;
+  }
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px; }
+    .header h1 { font-size: 22px; }
+    .category-title { font-size: 18px; }
+    .item-title { font-size: 15px; }
+    .filter-tab { font-size: 12px; padding: 4px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>游戏 × AI 资讯</h1>
+    <div class="date-range">2026.5.5 — 5.12 周报 / 共 15 条精选</div>
+  </div>
+
+  <div class="summary">
+    <div class="label">本周总结</div>
+    游戏行业的 AI 叙事正在从「技术探索」转向「商业落地 + 伦理争议」。三个信号：DeepMind 入股 EVE 开发商，AI 研究从棋盘游戏升级到 MMO 社会模拟；《崇祯》Token 收费翻车，AI 原生游戏的商业模式还没人跑通；Sony/Epic/Xbox 三巨头同周表态，「全面用」vs「不替人」vs「先收缩」，态度各异。
+  </div>
+
+  <div class="filter-bar" id="filterBar"></div>
+  <div id="content"></div>
+
+  <div class="footer">
+    游戏 × AI 资讯 · 数据来源：游戏行业媒体 RSS + AI HOT API · by veenuszhu
+  </div>
+</div>
+
+<script>
+const DATA = {
+  categories: [
+    { key: "all", label: "全部" },
+    { key: "行业与公司", label: "行业与公司" },
+    { key: "游戏内AI体验", label: "游戏内AI体验" },
+    { key: "开发与工具", label: "开发与工具" },
+    { key: "AI生成与创作", label: "AI生成与创作" },
+    { key: "前沿与研究", label: "前沿与研究" },
+    { key: "运营与商业化", label: "运营与商业化" }
+  ],
+  items: [
+    {
+      id: 1,
+      title: "Google DeepMind 入股《星战前夜 EVE Online》开发商，用 MMO 攻克 AI 长期规划",
+      date: "5.6",
+      source: "The Decoder",
+      category: "行业与公司",
+      description: "DeepMind 将 EVE Online 作为 AI 研究测试平台，研究复杂社会系统中的长期规划与多智能体协作。DeepMind CEO Demis Hassabis 亲自宣布。",
+      reason: "继 AlphaGo 下围棋后，DeepMind 瞄准了 MMO 这个更复杂的 AI 研究场景，游戏作为 AI 训练场的价值被再次验证。",
+      url: "https://the-decoder.com/google-deepmind-takes-a-stake-in-eve-online-studio-to-test-ai-models"
+    },
+    {
+      id: 2,
+      title: "Sony 公布旗下 PlayStation 工作室 AI 工具使用路线图",
+      date: "5.11",
+      source: "GamesIndustry.biz",
+      category: "行业与公司",
+      description: "索尼详细规划 AI 如何整合进第一方工作室的游戏开发全流程。",
+      reason: "主机三巨头之一首次系统性公开 AI 开发战略，对整个行业有风向标意义。",
+      url: "https://www.gamesindustry.biz/sony-maps-out-how-first-party-playstation-studios-are-utilising-ai-tools-during-development"
+    },
+    {
+      id: 3,
+      title: "索尼 AI 新专利：自动记录/制作游戏高光时刻",
+      date: "5.8",
+      source: "@kimmonismus via X",
+      category: "行业与公司",
+      description: "两条索尼动态：新专利让 AI 自动识别并剪辑玩家精彩操作；同时与万代南梦宫合作将 AI 引入开发流程。",
+      reason: "AI 从开发侧延伸到玩家体验侧，索尼在两端同时布局。",
+      url: "https://x.com/kimmonismus/status/2052881118395830326"
+    },
+    {
+      id: 4,
+      title: "Epic 高管表态：AI 不会取代游戏岗位，尽管刚裁员千人",
+      date: "5.10",
+      source: "Epic Games 官方",
+      category: "行业与公司",
+      description: "CEO Tim Sweeney 声明裁员与 AI 无关。同时透露 85% QA 工作已用 AI 工具完成。",
+      reason: "引擎巨头的官方口径，但「裁员千人」与「AI 不替人」的矛盾值得关注。",
+      url: "https://www.epicgames.com/site/news/todays-layoffs"
+    },
+    {
+      id: 5,
+      title: "Xbox 主动收缩 AI 助手战线，叫停 Copilot AI 开发",
+      date: "5.6",
+      source: "Dexerto",
+      category: "行业与公司",
+      description: "微软游戏 AI 助手 Copilot 遇冷，Xbox 新 CEO 重组管理层。",
+      reason: "大厂 AI 助手在游戏场景的首个「踩坑」案例，用户不买账时该如何收场。",
+      url: "https://www.dexerto.com/gaming/xbox-ceo-ends-copilot-ai-development-overhauls-leadership-3361353"
+    },
+    {
+      id: 6,
+      title: "育碧回应《刺客信条》网传新作截图：可能是 AI 生成的",
+      date: "5.6",
+      source: "IT之家",
+      category: "行业与公司",
+      description: "育碧表示泄露截图可能是 AI 改的，但项目确实在推进中。",
+      reason: "AI 生成图已经到了能以假乱真、搅动舆论的程度，对游戏营销和社区管理提出新挑战。",
+      url: "https://www.ithome.com/0/946/982.htm"
+    },
+    {
+      id: 7,
+      title: "国产 AI 原生游戏《历史模拟器：崇祯》Token 收费引争议",
+      date: "5.12",
+      source: "TapTap 官方公告",
+      category: "游戏内AI体验",
+      description: "LLM 驱动全部剧情对话，48 元买断 + Token 内购制。官方回应将开放自定义 API 接入和创意工坊。",
+      reason: "国产 AI 原生游戏的首个商业模式实验，「AI 功能如何向玩家收费」是整个行业都要面对的问题。",
+      url: "https://www.taptap.cn/moment/802332763658127245"
+    },
+    {
+      id: 8,
+      title: "《暗黑地牢》制作人拒绝用 AI 复刻已故旁白演员",
+      date: "5.12",
+      source: "80 Level",
+      category: "游戏内AI体验",
+      description: "尽管已获已故旁白 Wayne June 生前许可，Red Hook Studios 仍决定不用 AI 替代。",
+      reason: "行业对「AI 复刻已故演员」的伦理边界表态，玩家社区普遍支持该决定。",
+      url: "https://80.lv/articles/darkest-dungeon-creator-won-t-replace-late-narrator-with-ai-despite-his-permission/"
+    },
+    {
+      id: 9,
+      title: "Inworld AI 发布新一代实时对话语音模型 Realtime TTS-2",
+      date: "5.5",
+      source: "@testingcatalog via X",
+      category: "游戏内AI体验",
+      description: "专为游戏 NPC 设计的实时语音合成，延迟更低、情感表达更丰富。",
+      reason: "AI NPC 语音从「能说话」到「说得像真人」的关键技术进展。",
+      url: "https://x.com/testingcatalog/status/2051705563403198511"
+    },
+    {
+      id: 10,
+      title: "开源：Claude Code Game Studios，48 个 AI 智能体复刻完整游戏工作室",
+      date: "5.11",
+      source: "@AYi_AInotes via X",
+      category: "开发与工具",
+      description: "MIT 协议开源，适配 Godot/Unity/Unreal 三大引擎，GitHub 1.8 万 stars。所有 AI 只梳理方案，决策权归用户。",
+      reason: "开源可直接 clone 试用，作为游戏团队 AI 辅助开发的参考架构有很高的实践价值。",
+      url: "https://x.com/AYi_AInotes/status/2053709074466824688"
+    },
+    {
+      id: 11,
+      title: "MiniMax 启动「10x Team」合作计划，游戏引擎为首批落地方向",
+      date: "5.11",
+      source: "MiniMax 官方",
+      category: "开发与工具",
+      description: "提供无限 Token 和研发资源，面向全球垂直领域专家，游戏引擎已有合作验证。",
+      reason: "大模型厂主动找游戏引擎方向专家合作，说明赛道被资本和技术方共同看好。",
+      url: "https://news.qq.com/rain/a/20260511A0507800"
+    },
+    {
+      id: 12,
+      title: "字节跳动 Doubao-Seed-2.0-Lite 集成 AI 电竞教练框架",
+      date: "5.6",
+      source: "@karminski3 via X",
+      category: "开发与工具",
+      description: "豆包模型轻量版接入电竞教练场景。",
+      reason: "国内大模型厂开始切入游戏垂直场景，字节在电竞方向先落子。",
+      url: "https://x.com/karminski3/status/2052156563029385600"
+    },
+    {
+      id: 13,
+      title: "《匹诺曹的谎言》开发商 Neowiz 招聘 AI 创意设计师",
+      date: "5.12",
+      source: "Insider Gaming",
+      category: "AI生成与创作",
+      description: "Round8 工作室新设 AI Creator 岗位，要求 3 年以上 Midjourney/SD 经验，负责训练定制 AI 模型并推广为团队常规工作方式。",
+      reason: "中型 3A 厂正式将 AI 美术写入岗位编制，从「实验性探索」变为「制度化执行」。",
+      url: "https://insider-gaming.com/lies-of-p-dev-is-hiring-a-generative-ai-creator/"
+    },
+    {
+      id: 14,
+      title: "Astrocade 获 5600 万美元融资，用 AI 赋能游戏创作",
+      date: "5.5",
+      source: "@drfeifei via X",
+      category: "前沿与研究",
+      description: "斯坦福 AI 教授李飞飞转发关注，Astrocade 获大额融资建设 AI 游戏创作平台。",
+      reason: "资本持续涌入「AI + 游戏创作」赛道，李飞飞的关注说明学术界也在看这个方向。",
+      url: "https://x.com/drfeifei/status/2051710871601356965"
+    },
+    {
+      id: 15,
+      title: "论文：LLM Agent 的「记忆诅咒」——长历史记录削弱合作能力",
+      date: "5.11",
+      source: "@omarsar0 (DAIR.AI) via X",
+      category: "前沿与研究",
+      description: "7 个 LLM 和 4 个社会困境游戏的实验，28 个模型-游戏组合中 18 个因长历史导致合作退化。通过 LoRA 适配器可零样本迁移修复。",
+      reason: "直接影响游戏中 AI NPC 的长期交互设计，记忆越长 NPC 越「自私」，对 AI 原生游戏开发者是必读。",
+      url: "https://x.com/omarsar0/status/2053863994499408214"
+    }
+  ]
+};
+
+// Category order for display
+const CATEGORY_ORDER = ["行业与公司", "游戏内AI体验", "开发与工具", "AI生成与创作", "前沿与研究", "运营与商业化"];
+
+let currentFilter = "all";
+
+function renderFilterBar() {
+  const bar = document.getElementById("filterBar");
+  bar.innerHTML = DATA.categories.map(c => {
+    const count = c.key === "all" ? DATA.items.length : DATA.items.filter(i => i.category === c.key).length;
+    if (c.key !== "all" && count === 0) return "";
+    return '<span class="filter-tab' + (currentFilter === c.key ? ' active' : '') + '" data-key="' + c.key + '">' + c.label + (count > 0 ? ' (' + count + ')' : '') + '</span>';
+  }).join("");
+
+  bar.querySelectorAll(".filter-tab").forEach(tab => {
+    tab.addEventListener("click", function() {
+      currentFilter = this.dataset.key;
+      renderFilterBar();
+      renderContent();
+    });
+  });
+}
+
+function renderContent() {
+  const container = document.getElementById("content");
+  let filtered = currentFilter === "all" ? DATA.items : DATA.items.filter(i => i.category === currentFilter);
+
+  // Group by category
+  let grouped = {};
+  filtered.forEach(item => {
+    if (!grouped[item.category]) grouped[item.category] = [];
+    grouped[item.category].push(item);
+  });
+
+  let html = "";
+  let num = 1;
+
+  CATEGORY_ORDER.forEach(cat => {
+    if (!grouped[cat] || grouped[cat].length === 0) return;
+    html += '<div class="category-section">';
+    html += '<div class="category-title">' + cat + '</div>';
+    grouped[cat].forEach(item => {
+      html += '<div class="news-item">';
+      html += '<div class="item-header">';
+      html += '<span class="item-number">' + num + '.</span>';
+      html += '<span class="item-title">' + item.title + ' <span class="item-date">(' + item.date + ')</span></span>';
+      html += '</div>';
+      html += '<div class="item-source">' + item.source + '</div>';
+      html += '<div class="item-desc">' + item.description + '</div>';
+      html += '<div class="item-reason"><span class="reason-label">推荐原因：</span>' + item.reason + '</div>';
+      html += '<div class="item-link"><a href="' + item.url + '" target="_blank" rel="noopener">' + item.url + '</a></div>';
+      html += '</div>';
+      num++;
+    });
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+renderFilterBar();
+renderContent();
+</script>
+</body>
+</html>

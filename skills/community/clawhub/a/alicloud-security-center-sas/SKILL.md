@@ -1,35 +1,84 @@
 ---
-name: "Alicloud Security Center Sas"
-description: "Manage Alibaba Cloud Security Center (Sas) via OpenAPI/SDK. Use whenever the user needs Security Center resource operations, configuration updates, status qu..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/alicloud-security-center-sas"
-sourceUrl: "https://clawhub.ai/skills/alicloud-security-center-sas"
+name: alicloud-security-center-sas
+description: Manage Alibaba Cloud Security Center (Sas) via OpenAPI/SDK. Use whenever the user needs Security Center resource operations, configuration updates, status queries, and troubleshooting Sas API or security workflow issues.
+version: 1.0.0
 ---
 
-# Alicloud Security Center Sas
+Category: service
 
-> Manage Alibaba Cloud Security Center (Sas) via OpenAPI/SDK. Use whenever the user needs Security Center resource operations, configuration updates, status qu...
+# Security Center
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/alicloud-security-center-sas`
-- **Source URL:** [https://clawhub.ai/skills/alicloud-security-center-sas](https://clawhub.ai/skills/alicloud-security-center-sas)
+Use Alibaba Cloud OpenAPI (RPC) with official SDKs or OpenAPI Explorer to manage resources for Security Center.
 
-## Overview
+## Workflow
 
+1) Confirm region, resource identifiers, and desired action.
+2) Discover API list and required parameters (see references).
+3) Call API with SDK or OpenAPI Explorer.
+4) Verify results with describe/list APIs.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## AccessKey priority (must follow)
+
+1) Environment variables: `ALICLOUD_ACCESS_KEY_ID` / `ALICLOUD_ACCESS_KEY_SECRET` / `ALICLOUD_REGION_ID`
+Region policy: `ALICLOUD_REGION_ID` is an optional default. If unset, decide the most reasonable region for the task; if unclear, ask the user.
+2) Shared config file: `~/.alibabacloud/credentials`
+
+## API discovery
+
+- Product code: `Sas`
+- Default API version: `2021-01-14`
+- Use OpenAPI metadata endpoints to list APIs and get schemas (see references).
+
+## High-frequency operation patterns
+
+1) Inventory/list: prefer `List*` / `Describe*` APIs to get current resources.
+2) Change/configure: prefer `Create*` / `Update*` / `Modify*` / `Set*` APIs for mutations.
+3) Status/troubleshoot: prefer `Get*` / `Query*` / `Describe*Status` APIs for diagnosis.
+
+## Minimal executable quickstart
+
+Use metadata-first discovery before calling business APIs:
+
 ```bash
-hermes skills install clawhub/alicloud-security-center-sas
+python scripts/list_openapi_meta_apis.py
 ```
+
+Optional overrides:
+
+```bash
+python scripts/list_openapi_meta_apis.py --product-code <ProductCode> --version <Version>
+```
+
+The script writes API inventory artifacts under the skill output directory.
+
+## Output policy
+
+If you need to save responses or generated artifacts, write them under:
+`output/alicloud-security-center-sas/`
+
+## Validation
+
+```bash
+mkdir -p output/alicloud-security-center-sas
+for f in skills/security/host/alicloud-security-center-sas/scripts/*.py; do
+  python3 -m py_compile "$f"
+done
+echo "py_compile_ok" > output/alicloud-security-center-sas/validate.txt
+```
+
+Pass criteria: command exits 0 and `output/alicloud-security-center-sas/validate.txt` is generated.
+
+## Output And Evidence
+
+- Save artifacts, command outputs, and API response summaries under `output/alicloud-security-center-sas/`.
+- Include key parameters (region/resource id/time range) in evidence files for reproducibility.
+
+## Prerequisites
+
+- Configure least-privilege Alibaba Cloud credentials before execution.
+- Prefer environment variables: `ALICLOUD_ACCESS_KEY_ID`, `ALICLOUD_ACCESS_KEY_SECRET`, optional `ALICLOUD_REGION_ID`.
+- If region is unclear, ask the user before running mutating operations.
+
+## References
+
+- Sources: `references/sources.md`

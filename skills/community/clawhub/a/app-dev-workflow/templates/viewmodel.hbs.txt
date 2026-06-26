@@ -1,0 +1,42 @@
+// viewmodels/{{name}}.ts
+// {{description}}
+
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG = '{{name}}';
+const DOMAIN = 0x0001;
+
+@ObservedV2
+export class {{name}} {
+  {{#each observableFields}}
+  @observable {{name}}: {{type}} = {{defaultValue}};
+  {{/each}}
+
+  {{#each computedFields}}
+  @computed get {{name}}(): {{returnType}} {
+    {{#if logic}}
+    {{logic}}
+    {{else}}
+    return {{defaultReturn}};
+    {{/if}}
+  }
+
+  {{/each}}
+
+  {{#each actions}}
+  @action {{name}}(): void {
+    hilog.info(DOMAIN, TAG, '{{name}} called');
+    {{#if logic}}
+    {{logic}}
+    {{/if}}
+  }
+
+  {{/each}}
+
+  @action reset(): void {
+    {{#each observableFields}}
+    this.{{name}} = {{defaultValue}};
+    {{/each}}
+    hilog.info(DOMAIN, TAG, 'State reset');
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Self-Improving Agent",
+  "description": "AI自我改进与记忆系统 - 自动捕获错误、用户纠正、最佳实践和知识盲区，转化为长期记忆，让AI越用越聪明。支持模糊检索、去重、优先级排序。",
+  "version": "2.0.0",
+  "identifier": "self-improving-agent-cn",
+  "author": "Andy",
+  "category": "meta",
+  "tags": ["memory", "self-improving", "learning", "error-tracking", "best-practices"],
+  "tools": [
+    {
+      "name": "check_memory",
+      "file": "check_memory.py",
+      "description": "执行前检查相关记忆，支持模糊匹配和相关性评分"
+    },
+    {
+      "name": "log_error",
+      "file": "log_error.py",
+      "description": "记录命令执行错误和修复方案"
+    },
+    {
+      "name": "log_correction",
+      "file": "log_correction.py",
+      "description": "记录用户纠正，自动去重和计数"
+    },
+    {
+      "name": "log_best_practice",
+      "file": "log_best_practice.py",
+      "description": "记录最佳实践和更优做法"
+    },
+    {
+      "name": "log_knowledge_gap",
+      "file": "log_knowledge_gap.py",
+      "description": "记录知识盲区和过时信息"
+    },
+    {
+      "name": "manage_memory",
+      "file": "manage_memory.py",
+      "description": "记忆管理：统计、清理、去重、索引、导出、搜索"
+    }
+  ],
+  "triggers": {
+    "auto": [
+      "命令执行失败时自动记录错误",
+      "检测到用户纠正信号时自动记录",
+      "发现更优做法时自动记录最佳实践",
+      "发现过时知识时自动记录知识盲区"
+    ],
+    "keywords": [
+      "不对", "错了", "应该", "不是这样",
+      "更好的", "更高效", "最优", "推荐",
+      "过时了", "已废弃", "新版是", "变更了",
+      "我说过", "之前告诉你", "又忘了"
+    ]
+  }
+}

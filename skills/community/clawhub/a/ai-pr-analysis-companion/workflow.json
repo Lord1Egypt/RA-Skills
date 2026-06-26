@@ -1,0 +1,103 @@
+{
+  "name": "ai-pr-analysis-companion",
+  "version": "1.0.0",
+  "description": "AI 智能代码变更分析助手 — 自动分析 GitHub PR 改动范围、技术债务、测试覆盖风险，生成结构化评审报告",
+  "category": "AI|开发|自动化",
+  "skills": [
+    {
+      "name": "github",
+      "role": "data_collection",
+      "description": "抓取 GitHub PR 的元数据、diff 内容和历史评论"
+    },
+    {
+      "name": "summarize",
+      "role": "structural_analysis",
+      "description": "AI 结构化分析：改动类型、影响范围、风险点识别"
+    },
+    {
+      "name": "code-review-skill",
+      "role": "quality_review",
+      "description": "代码质量专项评审：风格、潜在 Bug、测试覆盖、技术债务"
+    },
+    {
+      "name": "feishu_doc",
+      "role": "report_output",
+      "description": "生成结构化评审报告并发布至飞书文档"
+    }
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "skill": "github",
+      "input": "GitHub PR URL",
+      "output": "PR 元数据（标题/描述/文件列表/行数增删）+ 完整 diff + 历史评论",
+      "commands": [
+        "gh pr view {pr_number} --repo {owner}/{repo} --json title,body,files,additions,deletions,changedFiles,state,author",
+        "gh pr diff {pr_number} --repo {owner}/{repo}",
+        "gh api repos/{owner}/{repo}/pulls/{pr_number}/comments"
+      ]
+    },
+    {
+      "step": 2,
+      "skill": "summarize",
+      "input": "PR diff + 元数据 + 历史评论",
+      "output": "结构化分析结果：改动类型 | 影响范围 | 高风险点 | 改动规模量化",
+      "prompt_template": "请分析以下 GitHub PR 的代码变更内容：\n\n【PR 信息】\n标题：{title}\n描述：{body}\n改动规模：+{additions}/-{deletions} 行，{changedFiles} 个文件\n作者：{author}\n\n\n【文件变更列表】\n{files_list}\n\n【完整 Diff】\n{diff}\n\n请输出：\n1. 改动类型识别（功能新增/缺陷修复/代码重构/依赖更新/配置变更）\n2. 影响范围评估（涉及哪些模块，模块间依赖关系）\n3. 高风险点识别（重点关注：安全漏洞、并发问题、数据一致性、API 契约变更）\n4. 改动规模量化总结"
+    },
+    {
+      "step": 3,
+      "skill": "code-review-skill",
+      "input": "PR diff + 结构化分析结果",
+      "output": "代码质量评审结论：问题清单 | 风险评级 | 技术债务 | 修复建议",
+      "focus_areas": [
+        "代码风格与命名规范",
+        "潜在 Bug 与异常处理",
+        "测试覆盖度评估",
+        "技术债务识别（重复代码/硬编码/缺少注释）",
+        "安全隐患扫描"
+      ]
+    },
+    {
+      "step": 4,
+      "skill": "feishu_doc",
+      "input": "PR 元数据 + 结构化分析结果 + 代码评审结论",
+      "output": "飞书评审报告文档",
+      "document_title": "PR 评审报告 | {pr_number} | {title}",
+      "sections": [
+        "基本信息（PR 标题/作者/改动规模/评审时间）",
+        "改动范围摘要",
+        "风险评级（高/中/低）",
+        "问题清单与修复建议",
+        "技术债务评估",
+        "总结建议"
+      ]
+    }
+  ],
+  "risk_levels": {
+    "HIGH": {
+      "label": "🔴 高风险",
+      "conditions": ["数据库迁移", "认证/鉴权逻辑", "支付模块", "并发处理", "API 契约变更"],
+      "action": "需重点审查，可能影响线上稳定性"
+    },
+    "MEDIUM": {
+      "label": "🟡 中风险",
+      "conditions": ["核心业务逻辑", "公共模块改动", "数据模型变更"],
+      "action": "建议关注，可能存在隐藏问题"
+    },
+    "LOW": {
+      "label": "🟢 低风险",
+      "conditions": ["文档修改", "测试补充", "依赖更新", "仅配置调整"],
+      "action": "改动较小或影响范围可控"
+    }
+  },
+  "triggers": [
+    "分析PR",
+    "代码变更分析",
+    "PR评审",
+    "GitHub审查",
+    "技术债分析",
+    "代码审查",
+    "PR风险评估",
+    "改动范围分析"
+  ]
+}

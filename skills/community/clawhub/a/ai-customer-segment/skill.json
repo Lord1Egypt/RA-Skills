@@ -1,0 +1,9 @@
+{
+  "name": "ai-intelligent-customer-segmentation",
+  "version": "1.0.0",
+  "description": "AI 客户分层 - RFM分析、精准营销",
+  "author": "yang1002378395-cmyk",
+  "tags": ["ai", "customer", "segmentation", "marketing", "chinese"],
+  "category": "marketing",
+  "license": "MIT"
+}

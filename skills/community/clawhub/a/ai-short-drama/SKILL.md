@@ -1,35 +1,62 @@
 ---
-name: "AI Short Drama Toolkit"
-description: "AI短剧制作工具箱 — 从创意到成片的完整工作流，包含剧本模板、Prompt模板、平台适配指南和商业化策略"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-short-drama"
-sourceUrl: "https://clawhub.ai/skills/ai-short-drama"
+name: ai-short-drama
+version: 1.0.0
+description: AI短剧制作工具箱 — 从创意到成片的完整工作流，包含剧本模板、Prompt模板、平台适配指南和商业化策略
+author: CainGao
+tags: [ai-drama, short-drama, video-production, content-creation, chinese]
 ---
 
-# AI Short Drama Toolkit
+# 🎭 AI短剧制作工具箱
 
-> AI短剧制作工具箱 — 从创意到成片的完整工作流，包含剧本模板、Prompt模板、平台适配指南和商业化策略
+> AI短剧年化产能3000部，百万商单 —— 这个工具箱帮你从零到一制作AI短剧。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-short-drama`
-- **Source URL:** [https://clawhub.ai/skills/ai-short-drama](https://clawhub.ai/skills/ai-short-drama)
+## 使用模式
 
-## Overview
+当用户要求制作AI短剧时，根据需求自动选择模式：
 
+### 模式一：剧本创作（drama-script）
+**触发词**: "写一个短剧剧本"、"短剧创意"、"剧本大纲"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-short-drama
-```
+**流程**:
+1. 读取 `script-templates.md`，选择合适的剧本类型
+2. 使用 `prompt-templates.md` 中的剧本生成Prompt
+3. 输出：标题 + 一句话梗概 + 人物设定 + 分集大纲 + 完整剧本
+4. 确保每集结尾有钩子（hook）
+
+### 模式二：视觉制作指南（visual-production）
+**触发词**: "怎么制作画面"、"AI短剧工具"、"分镜"
+
+**流程**:
+1. 读取 `production-workflow.md`，推荐工具链
+2. 输出：分镜表 + 画面Prompt + 工具推荐 + 制作流程
+3. 提供具体的AI绘图/视频生成Prompt
+
+### 模式三：Prompt模板库（prompt-library）
+**触发词**: "短剧Prompt"、"AI视频Prompt"、"角色一致性"
+
+**流程**:
+1. 读取 `prompt-templates.md`
+2. 根据场景选择Prompt模板
+3. 输出可复制使用的完整Prompt
+
+### 模式四：商业化指南（monetization）
+**触发词**: "短剧怎么赚钱"、"短剧变现"、"短剧平台"
+
+**流程**:
+1. 读取 `monetization-guide.md`
+2. 输出：平台分析 + 定价策略 + 变现路径 + 案例参考
+
+## 核心能力
+
+1. **6种剧本类型模板** — 都市甜宠/悬疑推理/古风仙侠/职场逆袭/科幻未来/恐怖惊悚
+2. **20+个专业Prompt模板** — 涵盖角色设计/场景生成/视频合成/声音克隆
+3. **完整制作工作流** — 从创意到成片的12步流程
+4. **5大平台适配** — 抖音/快手/小红书/B站/视频号
+5. **商业化策略** — 从0到月入过万的路径
+
+## 注意事项
+
+- 短剧内容需符合平台审核规则，避免敏感题材
+- AI生成画面注意版权问题，优先使用可商用工具
+- 角色一致性是最大技术难点，建议使用同一工具保持风格统一
+- 商业化前建议先做3-5部练手作品积累经验

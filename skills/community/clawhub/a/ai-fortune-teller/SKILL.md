@@ -1,35 +1,103 @@
 ---
-name: "AI Fortune Teller"
-description: "AI玄学大师 - 八字命理、塔罗占卜、运势分析。基于传统命理典籍与现代AI技术融合的智能占卜工具。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-fortune-teller"
-sourceUrl: "https://clawhub.ai/skills/ai-fortune-teller"
+name: ai-fortune-teller
+version: 1.0.0
+description: AI玄学大师 - 八字命理、塔罗占卜、运势分析。基于传统命理典籍与现代AI技术融合的智能占卜工具。
+author: Jarvis (AGI-姜私人助理)
+keywords: [fortune, bazi, tarot, astrology, 算命, 八字, 塔罗, 玄学, AI占卜]
+metadata:
+  openclaw:
+    emoji: "🔮"
+    requires:
+      env: []
+      # 注意：直接API调用需要支持text模型的API key
+      # 当前OpenClaw内置的MiniMax已可用，直接在对话中调用即可
+    platforms:
+      - darwin
+      - linux
+    notes: |
+      推荐使用方式：在OpenClaw对话中直接发送【八字命理分析】或【塔罗占卜】格式的内容，
+      AI会自动调用对应的提示词进行分析。
+      如需独立使用API，需配置支持text模型的API key。
 ---
 
-# AI Fortune Teller
+# AI玄学大师 🔮
 
-> AI玄学大师 - 八字命理、塔罗占卜、运势分析。基于传统命理典籍与现代AI技术融合的智能占卜工具。
+智能命理占卜工具，融合传统命理典籍与现代AI技术。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-fortune-teller`
-- **Source URL:** [https://clawhub.ai/skills/ai-fortune-teller](https://clawhub.ai/skills/ai-fortune-teller)
+## 功能模块
 
-## Overview
+### 1. 八字命理分析
+输入：出生年月日时（农历/公历）
+输出：四柱八字、十神格局、大运流年、事业/财运/婚姻/健康分析
 
+### 2. 塔罗占卜
+输入：占卜问题
+输出：牌阵解读、正逆位含义、指引建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ai-fortune-teller
+### 3. 每日运势推送
+输入：出生信息（可选）
+输出：综合运势、事业/爱情/健康/财运评级 + 建议
+
+### 4. 人生K线图 ✅
+输入：八字命盘
+输出：可视化运势曲线图（股票K线风格）
+实现：MiniMax image-01 模型生成
+
+### 5. 前世画像 ✅
+输入：出生年月
+输出：AI生成前世画像 + 灵魂特质解读
+实现：MiniMax image-01 + 八字五行推演
+
+### 6. 未来伴侣画像 ✅
+输入：出生年月 + 性别
+输出：AI生成理想伴侣画像 + 命盘特征解读
+实现：MiniMax image-01 + 配偶星推演
+
+## 使用方式
+
+### 八字分析
 ```
+【八字命理分析】
+姓名：XXX
+性别：X
+出生地：XXX省XXX市
+公历出生日期：XXXX年X月X日
+出生时间：X时
+（可选）农历出生日期：XXXX年X月X日
+```
+
+### 塔罗占卜
+```
+【塔罗占卜】
+问题：XXX
+牌阵：单张/三张/凯尔特十字/其他
+（可选）抽到的牌：XXX
+```
+
+### 运势查询
+```
+【今日/本周/本月运势】
+姓名：XXX（可选）
+出生年月日：XXXX年X月X日（可选）
+需要分析的方向：事业/爱情/财运/健康/综合
+```
+
+## 技术实现
+
+- 命理提示词：参考《穷通宝鉴》《滴天髓》《渊海子平》《三命通会》等典籍
+- AI模型：MiniMax API（支持function call + 对话记忆）
+- 可视化：MiniMax 图片生成 API
+- 数据存储：本地JSON（用户命盘数据）
+
+## 定价（未来）
+
+| 版本 | 功能 | 价格 |
+|------|------|------|
+| 免费版 | 单次八字基础分析 | ¥0 |
+| 基础版 | 八字+塔罗+运势 | ¥99/年 |
+| 进阶版 | 全功能 + 人生K线图 | ¥199/年 |
+| 定制版 | 私人命理师 + 无限咨询 | ¥999/年 |
+
+## 合规声明
+
+本工具仅提供娱乐性质命理分析，不构成专业命理建议。运势结果仅供参考，人生决策请理性判断。

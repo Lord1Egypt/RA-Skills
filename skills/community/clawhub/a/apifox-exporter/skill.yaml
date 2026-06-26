@@ -1,0 +1,109 @@
+# Skill 元数据
+name: apifox-exporter
+version: 2.0.0
+description: 从 Apifox 全自动导出接口数据并整理成标准格式的文档（支持浏览器自动化）
+author: 果果 @ 婉秋
+license: MIT
+
+# 分类
+category: developer-tools
+tags:
+  - apifox
+  - api
+  - export
+  - openapi
+  - documentation
+  - playwright
+  - automation
+
+# 入口文件
+main: script/auto-export-playwright.js
+
+# 依赖
+dependencies:
+  - playwright
+
+# 口令/命令
+commands:
+  # 全自动模式（推荐）
+  - trigger: "更新接口文档"
+    description: "全自动导出默认团队的默认项目接口文档"
+    action: "node script/auto-export-playwright.js"
+  
+  - trigger: "导出接口"
+    description: "全自动导出默认团队的默认项目接口文档"
+    action: "node script/auto-export-playwright.js"
+  
+  - trigger: "刷新 Apifox 接口"
+    description: "重新导出接口文档"
+    action: "node script/auto-export-playwright.js"
+  
+  - trigger: "更新接口文档，用 (.+)"
+    description: "导出指定项目的接口文档（团队用默认）"
+    action: "node script/auto-export-playwright.js --project=$1"
+    params:
+      - name: project
+        type: string
+        description: "项目名称"
+  
+  - trigger: "更新接口文档，团队是 (.+)，项目是 (.+)"
+    description: "导出指定团队和项目的接口文档"
+    action: "node script/auto-export-playwright.js --team=$1 --project=$2"
+    params:
+      - name: team
+        type: string
+        description: "团队名称"
+      - name: project
+        type: string
+        description: "项目名称"
+  
+  - trigger: "更新接口文档 - (.+)"
+    description: "导出指定项目的接口文档（简写）"
+    action: "node script/auto-export-playwright.js --project=$1"
+    params:
+      - name: project
+        type: string
+        description: "项目名称"
+  
+  - trigger: "更新接口文档 - (.+) - (.+)"
+    description: "导出指定团队和项目的接口文档（简写）"
+    action: "node script/auto-export-playwright.js --team=$1 --project=$2"
+    params:
+      - name: team
+        type: string
+        description: "团队名称"
+      - name: project
+        type: string
+        description: "项目名称"
+  
+  # 半自动模式（备用）
+  - trigger: "半自动更新接口文档"
+    description: "半自动导出（需要手动点击导出按钮）"
+    action: "node script/auto-export.js"
+
+# 文件结构
+files:
+  - SKILL.md
+  - README.md
+  - package.json
+  - script/auto-export-playwright.js
+  - script/auto-export.js
+  - script/export.js
+
+# 系统要求
+requirements:
+  - nodejs: ">=16.0.0"
+  - playwright: ">=1.40.0"
+  - openclaw: ">=2026.3.0"
+
+# 输出位置
+output:
+  - path: "~/Desktop/Apifox 接口导出.txt"
+    description: "导出的接口文档"
+  - path: "~/.openclaw/workspace/script/apifox/source.json"
+    description: "原始 OpenAPI 数据"
+
+# 环境变量
+env:
+  APIFOX_DEFAULT_TEAM: "媲美智能语音"
+  APIFOX_DEFAULT_PROJECT: "媲美科技 - 短剧（公司）"

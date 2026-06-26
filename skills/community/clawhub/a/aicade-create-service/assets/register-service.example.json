@@ -1,0 +1,79 @@
+{
+  "serviceId": "svc-weather-demo",
+  "serviceName": "Weather Demo",
+  "endpointUrl": "http://apis.example.com/simpleWeather/query",
+  "requestMethod": "GET",
+  "authType": "API_KEY",
+  "authLocation": "QUERY",
+  "outboundAuth": {
+    "type": "API_KEY",
+    "apiKey": {
+      "location": "QUERY",
+      "queryParam": "key",
+      "value": "${UPSTREAM_API_KEY}"
+    }
+  },
+  "routePath": "/pay-weather",
+  "stripPrefix": 0,
+  "routeOrder": 0,
+  "timeoutMs": 5000,
+  "enabled": true,
+  "description": "Weather query service exposed through the aicade gateway.",
+  "tags": ["weather", "demo"],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "city": {
+        "type": "string",
+        "description": "City name"
+      }
+    },
+    "required": ["city"]
+  },
+  "outputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "reason": { "type": "string" },
+      "result": {
+        "type": "object",
+        "properties": {
+          "city": { "type": "string" },
+          "realtime": {
+            "type": "object",
+            "properties": {
+              "temperature": { "type": "string" },
+              "humidity": { "type": "string" },
+              "info": { "type": "string" },
+              "wid": { "type": "string" },
+              "direct": { "type": "string" },
+              "power": { "type": "string" },
+              "aqi": { "type": "string" }
+            }
+          },
+          "future": {
+            "type": "array",
+            "items": { "type": "object" }
+          }
+        }
+      },
+      "error_code": { "type": "integer" }
+    }
+  },
+  "billing": {
+    "billingType": "PER_REQUEST",
+    "flowType": "INCOME",
+    "status": "ACTIVE",
+    "fallbackStrategy": "REJECT",
+    "currency": "AGS",
+    "pricePerRequest": 10
+  },
+  "rateLimits": [
+    {
+      "limitDimension": "SERVICE",
+      "qps": 10,
+      "rpm": 600,
+      "rpd": 10000
+    }
+  ]
+}

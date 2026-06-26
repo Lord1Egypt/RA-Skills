@@ -1,35 +1,39 @@
 ---
-name: "AI-Cardiac-Rehab"
+name: ai-cardiac-rehab
 description: "AI 心脏康复管理系统 — 基于 ACC/AHA 指南的安全增强型康复管理 Web 应用。症状预警、风险分层、个体化运动处方、药物依从性提醒。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ai-cardiac-rehab"
-sourceUrl: "https://clawhub.ai/skills/ai-cardiac-rehab"
 ---
 
-# AI-Cardiac-Rehab
+# AI 心脏康复管理系统 (AI Cardiac Rehab)
 
-> AI 心脏康复管理系统 — 基于 ACC/AHA 指南的安全增强型康复管理 Web 应用。症状预警、风险分层、个体化运动处方、药物依从性提醒。
+基于 ACC/AHA 指南的心脏康复安全管理系统。病人安全优先设计。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ai-cardiac-rehab`
-- **Source URL:** [https://clawhub.ai/skills/ai-cardiac-rehab](https://clawhub.ai/skills/ai-cardiac-rehab)
+## 功能
 
-## Overview
+- 患者档案管理（心脏病诊断、EF值、合并症、药物）
+- AI 安全决策引擎（绝对禁忌阻断、风险分层）
+- 风险三档：高（EF<30）/ 中（EF 30-50）/ 低（EF>50）
+- 基于 β 阻滞剂使用的靶心率动态调整
+- 症状红色预警（胸痛/呼吸困难/晕厥）自动阻断
+- 每日记录 + 7天心率趋势图
+- 运动处方生成 + 药物依从性提醒
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ai-cardiac-rehab
+pip install flask
+python app.py
 ```
+
+浏览器打开 `http://localhost:5000`，注册后使用。
+
+## 安全特性
+
+1. 绝对禁忌条件：EF<30%、不稳定心绞痛、急性心梗1月内、高危症状 → 自动阻断运动，强制就医
+2. 所有临床输入范围校验（心率/血压/年龄/EF）
+3. 数据存储在本地 SQLite，不上传云端
+4. 前端验证+后端校验双重保障
+5. 所有建议基于 ACC/AHA 临床指南
+
+## 合规声明
+
+本工具不提供医疗诊断，所有康复方案必须经心脏科医生审核后执行。

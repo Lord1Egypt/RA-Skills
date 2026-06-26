@@ -1,0 +1,10 @@
+{
+  "name": "Volcseed",
+  "tagline": "即梦 Volcseed 修图",
+  "description": "Volcseed submit/fetch with TS_TOKEN and AIZNT_PROXY_URLS.",
+  "category": "media",
+  "tags": ["volcseed", "image", "tianshu"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free"
+}

@@ -1,0 +1,120 @@
+{
+  "input_fields": [
+    {
+      "id": "product_service",
+      "label": "Product / Service",
+      "type": "text",
+      "placeholder": "e.g. Annual SaaS subscription at $1,200/year, 1:1 business coaching at $3,000/month, custom website design at $5,000",
+      "required": true,
+      "max_length": 300,
+      "hint": "Be specific about what you are selling and its core outcome. Include the price tier if relevant."
+    },
+    {
+      "id": "customer_type",
+      "label": "Customer Type",
+      "type": "text",
+      "placeholder": "e.g. Marketing manager at a 50-person SaaS company, solo e-commerce founder, enterprise procurement at a Fortune 500",
+      "required": true,
+      "max_length": 200,
+      "hint": "Who is the buyer? Their role and company context help tailor the tone and argument."
+    },
+    {
+      "id": "customer_message",
+      "label": "Customer's Last Message or Objection",
+      "type": "textarea",
+      "placeholder": "Paste their exact message here. e.g. 'It looks interesting but $1,200 is a lot. We're already using a free tool. Can you do anything on price?' — or — 'I need to think about it' — or — 'Let me run it by my boss first'",
+      "required": true,
+      "max_length": 1000,
+      "hint": "The more exact their words, the more targeted the response. Paste their actual message if possible."
+    },
+    {
+      "id": "price",
+      "label": "Your Price / Pricing Structure",
+      "type": "text",
+      "placeholder": "e.g. $1,200/year ($100/month) — or — $3,000 one-time — or — $500/month, minimum 3 months",
+      "required": true,
+      "max_length": 200,
+      "hint": "Include all pricing tiers if you have them. This helps build the anchoring and discount strategy."
+    },
+    {
+      "id": "goal",
+      "label": "Your Goal",
+      "type": "select",
+      "required": true,
+      "default": "close_today",
+      "options": [
+        { "value": "close_today", "label": "Close today — get them to say yes right now" },
+        { "value": "book_call", "label": "Book a call — get them on the phone to close" },
+        { "value": "get_reply", "label": "Get a reply — they have gone silent" },
+        { "value": "handle_objection", "label": "Handle the objection — overcome their specific pushback" },
+        { "value": "send_proposal", "label": "Send a proposal — design a formal offer" },
+        { "value": "upsell", "label": "Upsell — move existing customer to higher plan or add-on" },
+        { "value": "prevent_churn", "label": "Prevent churn — stop a customer from cancelling" }
+      ]
+    },
+    {
+      "id": "tone",
+      "label": "Closing Tone",
+      "type": "select",
+      "required": true,
+      "default": "confident_direct",
+      "options": [
+        {
+          "value": "confident_direct",
+          "label": "Confident & Direct — assumptive, bold, built for decisive buyers (recommended)"
+        },
+        {
+          "value": "warm_consultative",
+          "label": "Warm & Consultative — empathetic, trust-first, built for relationship-driven sales"
+        },
+        {
+          "value": "logical_roi",
+          "label": "Logical & ROI-Led — data and numbers, built for analytical or procurement buyers"
+        },
+        {
+          "value": "urgency_scarcity",
+          "label": "Urgency & Scarcity — genuine reason to act now, built for fence-sitters"
+        }
+      ]
+    },
+    {
+      "id": "deal_context",
+      "label": "Deal Context (Optional)",
+      "type": "textarea",
+      "placeholder": "e.g. We have been talking for 3 weeks. They tried a free trial. They loved the demo but went quiet after I sent the proposal. This is my second follow-up.",
+      "required": false,
+      "max_length": 500,
+      "hint": "How long has the deal been going? What has already been said? Prior objections raised? This adds precision to the output."
+    },
+    {
+      "id": "customer_priority",
+      "label": "What Does the Customer Care About Most? (Optional)",
+      "type": "text",
+      "placeholder": "e.g. Saving time, reducing cost, looking good to their boss, ease of implementation, proven ROI",
+      "required": false,
+      "max_length": 200,
+      "hint": "If you know their primary motivation, the closing argument will be tailored to it."
+    },
+    {
+      "id": "competitor",
+      "label": "Competitor They Mentioned (Optional)",
+      "type": "text",
+      "placeholder": "e.g. They mentioned they are also looking at HubSpot, or currently using a free tool like Notion",
+      "required": false,
+      "max_length": 200,
+      "hint": "If they are comparing you to someone, add it here so the output handles that comparison directly."
+    }
+  ],
+  "output_format": {
+    "sections": true,
+    "copy_buttons": true,
+    "character_count": true
+  },
+  "settings": {
+    "human_tone_check": true,
+    "enforce_brevity": true,
+    "commercial_focus": true,
+    "max_closing_message_words": 100,
+    "max_objection_response_words": 60
+  }
+}

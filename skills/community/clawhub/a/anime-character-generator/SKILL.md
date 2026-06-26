@@ -1,35 +1,34 @@
 ---
-name: "Anime Character Generator"
-description: "Generate stunning full-body anime characters with custom outfits, hairstyles, and poses. Perfect for OC creation, fan art, visual novels, profile avatars, an..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/anime-character-generator"
-sourceUrl: "https://clawhub.ai/skills/anime-character-generator"
+name: anime-character-generator
+description: Generate stunning full-body anime characters with custom outfits, hairstyles, and poses. Perfect for OC creation, fan art, visual novels, profile avatars, and anime-style portraits. Supports kawaii, shonen, shojo, and isekai aesthetics via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Anime Character Generator
 
-> Generate stunning full-body anime characters with custom outfits, hairstyles, and poses. Perfect for OC creation, fan art, visual novels, profile avatars, an...
+Generate stunning full-body anime characters with custom outfits, hairstyles, and poses. Perfect for OC creation, fan art, visual novels, profile avatars, and anime-style portraits. Supports kawaii, shonen, shojo, and isekai aesthetics.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/anime-character-generator`
-- **Source URL:** [https://clawhub.ai/skills/anime-character-generator](https://clawhub.ai/skills/anime-character-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/anime-character-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create anime character generator images.
+
+## Quick start
+```bash
+node animecharactergenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/anime-character-generator
 ```

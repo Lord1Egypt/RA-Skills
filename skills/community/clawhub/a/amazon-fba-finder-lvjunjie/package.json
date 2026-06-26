@@ -1,0 +1,77 @@
+{
+  "name": "amazon-fba-finder",
+  "version": "1.0.0",
+  "description": "Amazon FBA 高利润产品发现与分析工具 - 产品发现、竞争分析、供应商推荐、利润计算",
+  "keywords": [
+    "amazon",
+    "fba",
+    "ecommerce",
+    "product-research",
+    "seller-tools",
+    "profit-calculator",
+    "competition-analysis",
+    "dropshipping",
+    "private-label"
+  ],
+  "author": "小龙",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw-workspace/amazon-fba-finder#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openclaw-workspace/amazon-fba-finder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw-workspace/amazon-fba-finder/issues"
+  },
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "requirements.txt",
+    "src/",
+    "tests/"
+  ],
+  "scripts": {
+    "test": "pytest tests/",
+    "lint": "flake8 src/",
+    "format": "black src/",
+    "dev": "python -m src.main"
+  },
+  "openclaw": {
+    "type": "skill",
+    "category": "ecommerce",
+    "version": "1.0.0",
+    "minOpenClawVersion": "2026.1.0",
+    "skills": [
+      {
+        "name": "amazon-fba-finder",
+        "path": "SKILL.md",
+        "description": "Amazon FBA 高利润产品发现引擎 - 产品发现、竞争分析、供应商推荐、利润计算"
+      }
+    ],
+    "pricing": {
+      "subscription": {
+        "price": 149,
+        "currency": "USD",
+        "period": "month",
+        "description": "专业版 - 无限产品搜索 + 完整分析 + 供应商推荐"
+      }
+    },
+    "features": [
+      "高利润产品发现",
+      "市场竞争分析",
+      "供应商推荐",
+      "FBA 利润计算",
+      "一站式完整分析"
+    ],
+    "marketplace_support": [
+      "US",
+      "UK",
+      "DE",
+      "JP",
+      "CA",
+      "AU"
+    ]
+  }
+}

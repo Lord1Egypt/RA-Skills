@@ -1,0 +1,16 @@
+name: amazon-ads-optimizer
+version: 1.0.0
+description: AI利润操盘手 - 出价护栏+飞轮效应+视频脚本，让广告费花在刀刃上，守住每一分利润
+tags:
+  - amazon
+  - advertising
+  - bid-guardrails
+  - flywheel-effect
+  - amazon-ads
+  - profit-optimizer
+  - video-ads
+author: "@WangM-A3"
+homepage: https://xiaping.coze.site
+license: MIT
+minAppVersion: "1.0.0"
+platform: "*"

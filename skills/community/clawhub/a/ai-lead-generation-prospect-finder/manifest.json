@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "id": "ai-lead-generation-prospect-finder",
+  "name": "AI Lead Generation & Prospect Finder",
+  "version": "1.0.0",
+  "description": "Generate ideal customer profiles, LinkedIn and Google search formulas, structured lead lists, and cold outreach strategies for B2B sales prospecting.",
+  "author": {
+    "name": "ClawHub Skill Publisher"
+  },
+  "category": "Sales & Marketing",
+  "tags": [
+    "lead generation",
+    "prospecting",
+    "ICP",
+    "B2B",
+    "sales",
+    "LinkedIn",
+    "outbound",
+    "pipeline",
+    "GTM"
+  ],
+  "icon": "radar",
+  "license": "MIT-0",
+  "input_config": "config.json",
+  "prompt_file": "prompt.txt",
+  "pricing_tier": "free",
+  "visibility": "public",
+  "created_at": "2026-03-22",
+  "updated_at": "2026-03-22"
+}

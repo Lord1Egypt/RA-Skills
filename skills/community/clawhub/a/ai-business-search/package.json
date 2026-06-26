@@ -1,0 +1,25 @@
+{
+  "name": "ai-business-search",
+  "version": "1.0.0",
+  "description": "Help local businesses optimize their presence in AI search results through strategic media content creation",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai-search",
+    "business-search", 
+    "local-seo",
+    "media-content",
+    "chinese-local-business",
+    "clawhub"
+  ],
+  "author": "LiuYiHao",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "business",
+    "tags": ["local-seo", "ai-search", "media-publishing", "chinese-market", "business-search"],
+    "requires": []
+  }
+}

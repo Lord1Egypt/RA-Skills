@@ -1,0 +1,25 @@
+{
+  "name": "aigroup-browser-skill",
+  "version": "0.1.1",
+  "private": false,
+  "description": "OpenClaw skill for real-browser CN/global routing on spark.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackdark425/aigroup-browser-skill.git"
+  },
+  "homepage": "https://github.com/jackdark425/aigroup-browser-skill#readme",
+  "bugs": {
+    "url": "https://github.com/jackdark425/aigroup-browser-skill/issues"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "browser",
+    "automation",
+    "cdp",
+    "routing",
+    "china",
+    "typescript"
+  ]
+}

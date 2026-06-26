@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NormalizedTerms",
+  "type": "object",
+  "required": ["normalized_terms"],
+  "properties": {
+    "normalized_terms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["original", "normalized", "type", "note", "confidence"],
+        "properties": {
+          "original": { "type": "string" },
+          "normalized": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "type": { "type": "string" },
+          "note": { "type": "string" },
+          "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI-Native Founder Playbook / AI 原生创业者手册"
+  short_description: "Bilingual PMF, GTM, moat, and agent workflows for AI-native startups."
+  default_prompt: "Use $ai-native-founder-playbook to pressure-test my idea, MVP, PMF, GTM, risks, and next actions. / 使用 $ai-native-founder-playbook 判断我的创业想法、MVP、PMF、GTM、风险和下一步。"

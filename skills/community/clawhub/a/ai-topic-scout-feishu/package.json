@@ -1,0 +1,52 @@
+{
+  "name": "ai-topic-scout-feishu",
+  "version": "1.0.0",
+  "displayName": "AI Topic Scout (Feishu)",
+  "description": "AI短视频选题追踪系统（飞书版）。自动抓取 YouTube 和 Twitter 内容，分析热门主题，生成选题建议，结果写入飞书多维表格。",
+  "author": "Adapted for Feishu Bitable",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "topic",
+    "scout",
+    "选题",
+    "youtube",
+    "twitter",
+    "feishu",
+    "bitable",
+    "多维表格",
+    "content-analysis"
+  ],
+  "triggers": [
+    "抓取选题",
+    "分析选题",
+    "选题scout",
+    "AI选题追踪",
+    "更新选题表",
+    "创建选题追踪表",
+    "查看选题分析",
+    "添加YouTube频道",
+    "添加Twitter账号",
+    "禁用数据源",
+    "启用数据源"
+  ],
+  "dependencies": {
+    "tools": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field",
+      "feishu_bitable_app_table_record",
+      "web_search",
+      "exec"
+    ],
+    "optional": [
+      "yt-dlp",
+      "curl",
+      "jq"
+    ]
+  },
+  "config": {
+    "template": "config.example.yaml",
+    "required": false
+  }
+}

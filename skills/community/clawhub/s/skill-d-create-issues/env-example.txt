@@ -1,0 +1,12 @@
+# Gitea
+GITEA_BASE_URL=http://43.156.243.152:3000
+GITEA_TOKEN_BOT=your_aifusionbot_access_token_here
+
+# 元信息仓库（用于统一日志）
+AIFUSION_META_REPO=HKU-AIFusion/aifusion-meta
+
+# Webhook 服务端口（Gitea webhook 回调地址需与此一致）
+WEBHOOK_PORT=8765
+
+# Webhook secret（在 Gitea 配置 webhook 时填写的 secret，留空则不验签）
+WEBHOOK_SECRET=

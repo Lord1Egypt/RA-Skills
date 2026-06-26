@@ -1,0 +1,24 @@
+{
+  "name": "self-improving-agent",
+  "version": "1.0.0",
+  "description": "Self-improving agent system for OpenClaw",
+  "main": "src/__init__.py",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "test": "pytest tests/"
+  },
+  "keywords": [
+    "openclaw",
+    "self-improving",
+    "learning",
+    "agent",
+    "skill"
+  ],
+  "author": "PocketAI for Leo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leohuang8688/self-improving-agent.git"
+  }
+}

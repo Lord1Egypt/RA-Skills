@@ -1,35 +1,25 @@
----
-name: "my_skill"
-description: "Proficient in problem solving, programming (Python, JavaScript, C++), web development, data analysis, and project management with a focus on continuous learn..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-0232"
-sourceUrl: "https://clawhub.ai/skills/skill-0232"
----
+# SKILL
 
-# my_skill
+## 🧠 Core Skills
+- Problem Solving
+- Critical Thinking
+- Communication
+- Time Management
 
-> Proficient in problem solving, programming (Python, JavaScript, C++), web development, data analysis, and project management with a focus on continuous learn...
+## 💻 Technical Skills
+- Programming: Python / JavaScript / C++
+- Web Development: HTML, CSS, React
+- Tools: Git, Docker, VS Code
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-0232`
-- **Source URL:** [https://clawhub.ai/skills/skill-0232](https://clawhub.ai/skills/skill-0232)
+## 📊 Professional Skills
+- Data Analysis
+- Project Management
+- Documentation Writing
 
-## Overview
+## 🌱 Learning Goals
+- Improve system design ability
+- Deepen understanding of algorithms
+- Build more real-world projects
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-0232
-```
+## 📌 Notes
+持续学习，定期复盘，不断优化自己的技能结构。

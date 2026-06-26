@@ -1,0 +1,64 @@
+{
+  "name": "sahabat-bumil",
+  "version": "1.0.0",
+  "description": "Indonesian Pregnancy Guide - Nutrition, wellness, and support for Indonesian moms",
+  "author": "Bowo (Fajrizky) <dev.fajrizky@gmail.com>",
+  "category": "Health & Wellness",
+  "tags": [
+    "pregnancy",
+    "indonesian",
+    "nutrition",
+    "mom",
+    "baby",
+    "bumil",
+    "kehamilan",
+    "health",
+    "young-mom"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/defzky/openclaw-sahabat-bumil",
+  "requirements": [
+    "requests>=2.28.0"
+  ],
+  "features": [
+    "Indonesian foods safe for pregnancy",
+    "Traditional Indonesian recipes",
+    "Morning sickness management",
+    "Young mom nutrition (age 22-30)",
+    "Warung/restaurant safety guide",
+    "Pregnancy tracking",
+    "Hospital bag checklist",
+    "BPJS coverage guide",
+    "Financial planning for Indonesian hospitals"
+  ],
+  "roadmap": {
+    "v1.1.0": {
+      "status": "released",
+      "date": "2026-04-07",
+      "features": [
+        "Contraction timer for labor tracking",
+        "Kick counter for baby movement tracking",
+        "When to go to hospital guidance",
+        "All v1.0.0 features"
+      ]
+    },
+    "v1.2.0": {
+      "status": "coming_soon",
+      "features": [
+        "Hospital database (Jakarta, Bandung, Surabaya)",
+        "Prenatal class finder",
+        "Weight tracker with charts",
+        "Symptom tracker"
+      ]
+    },
+    "v1.3.0": {
+      "status": "future",
+      "features": [
+        "Baby name generator (Indonesian names)",
+        "Community features",
+        "Expert Q&A sessions",
+        "Postpartum support"
+      ]
+    }
+  }
+}

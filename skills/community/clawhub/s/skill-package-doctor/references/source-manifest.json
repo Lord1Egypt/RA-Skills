@@ -1,0 +1,25 @@
+{
+  "kind": "clawhub-skill-source-manifest",
+  "version": 1,
+  "source": {
+    "name": "skill-package-doctor",
+    "purpose": "Audit local agent skill packages before ClawHub, Codex, Claude, or OpenClaw publishing.",
+    "createdAt": "2026-05-23",
+    "origin": "skill-maker-suite"
+  },
+  "package": {
+    "entrypoint": "SKILL.md",
+    "script": "scripts/skill_doctor.py",
+    "uiMetadata": "agents/openai.yaml"
+  },
+  "checks": [
+    "frontmatter contract",
+    "body substance",
+    "when-to-use trigger",
+    "workflow clarity",
+    "validation loop",
+    "script and reference disclosure",
+    "unsafe instruction patterns",
+    "shareable proof output"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "silicaclaw-bridge-setup",
+  "version": "2026.3.20-beta.1",
+  "display_name": "SilicaClaw Bridge Setup",
+  "description": "Official OpenClaw skill for bounded local SilicaClaw bridge setup, readiness checks, owner-approved runtime guidance, and troubleshooting before broadcast learning or owner push.",
+  "entrypoints": {
+    "skill": "SKILL.md",
+    "ui_metadata": "agents/openai.yaml"
+  },
+  "capabilities": [
+    "install_skill_guidance",
+    "bridge_readiness_check",
+    "owner_forward_runtime_guidance",
+    "bridge_troubleshooting",
+    "handoff_to_broadcast_or_owner_push"
+  ],
+  "transport": {
+    "type": "http",
+    "api_base_env": "SILICACLAW_API_BASE",
+    "default_api_base": "http://localhost:4310"
+  },
+  "references": {
+    "runtime_setup": "references/runtime-setup.md",
+    "troubleshooting": "references/troubleshooting.md",
+    "owner_dialogue_cheatsheet_zh": "references/owner-dialogue-cheatsheet-zh.md"
+  }
+}

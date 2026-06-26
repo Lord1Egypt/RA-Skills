@@ -1,0 +1,33 @@
+[
+  {
+    "id": "authoring-preflight-happy-path",
+    "prompt": "I just finished drafting an OpenClaw skill. Help me scaffold eval files, check whether the skill is ready for a first eval pass, and tell me what is still missing before I publish it.",
+    "expected_artifacts": [
+      "The response initializes or references eval scaffolding for the target skill.",
+      "The response checks readiness before claiming the skill is ready.",
+      "The response identifies any missing authoring inputs such as placeholder cases or absent trigger coverage.",
+      "The response frames the work as a first-pass or preflight evaluation rather than a full runtime benchmark."
+    ],
+    "files": []
+  },
+  {
+    "id": "trigger-coverage-review",
+    "prompt": "Review this OpenClaw skill's description and tell me whether it has clear positive and negative trigger coverage for a first eval pass.",
+    "expected_artifacts": [
+      "The response inspects trigger coverage quality, not just general writing quality.",
+      "The response asks for or creates positive and negative trigger cases when they are missing.",
+      "The response keeps scope on skill-eval readiness rather than claiming live runtime validation."
+    ],
+    "files": []
+  },
+  {
+    "id": "release-gate-static-check",
+    "prompt": "Before I upload this skill to ClawHub, run a release-readiness check: catch unfinished template content, verify eval artifacts are usable, and generate static comparison outputs I can inspect.",
+    "expected_artifacts": [
+      "The response treats the task as a release-preparation pass for a skill author.",
+      "The response checks for placeholder content and weak eval artifacts.",
+      "The response generates or references static run summaries and comparison outputs instead of promising production-grade benchmark results."
+    ],
+    "files": []
+  }
+]

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=67", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "senticlaw"
+version = "1.0.0"
+description = "6-Layer Runtime AI Security for OpenClaw agents"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "PHRAIMWORK LLC", email = "ken@phraimwork.com" }]
+keywords = ["openclaw", "ai", "security", "prompt-injection", "llm", "agent"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+
+[project.urls]
+Homepage   = "https://phraimwork.com"
+Repository = "https://github.com/SuperTechGod/senticlaw"
+
+[tool.setuptools.packages.find]
+where   = ["."]
+include = ["senticlaw*"]

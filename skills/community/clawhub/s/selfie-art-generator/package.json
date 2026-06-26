@@ -1,0 +1,16 @@
+{
+  "name": "selfie-art-generator",
+  "version": "1.3.0",
+  "type": "module",
+  "description": "Selfie Art Generator — AI-powered selfie art generator ai",
+  "license": "MIT",
+  "clawhub": {
+    "env": [
+      {
+        "name": "NETA_TOKEN",
+        "description": "Neta AI API token. Get it at https://www.neta.art/open/",
+        "required": true
+      }
+    ]
+  }
+}

@@ -1,35 +1,270 @@
 ---
-name: "Ruankao Gaoxiang Prep"
-description: "软考高级信息系统项目管理师备考技能。每天推送教材第四版重点章节的10条背诵重点和10个英语单词。支持章节查询、重点回顾、单词记忆等功能。当用户提到"软考高项"、"备考"、"章节重点"、"英语单词"、"软考复习"等相关需求时触发。"
-category: "other"
-source: "ClawHub"
-tags: [exam, learning, ruankao, study]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ruankao-gaoxiang-prep"
-sourceUrl: "https://clawhub.ai/skills/ruankao-gaoxiang-prep"
+name: ruankao-gaoxiang-prep
+description: 软考高级信息系统项目管理师备考技能。每天推送教材第四版重点章节的10条背诵重点和10个英语单词。支持章节查询、重点回顾、单词记忆等功能。当用户提到"软考高项"、"备考"、"章节重点"、"英语单词"、"软考复习"等相关需求时触发。
+metadata: {"openclaw":{"emoji":"📚","requires":{"config":["channels.qqbot"]}}}
 ---
 
-# Ruankao Gaoxiang Prep
+# 软考高项备考
 
-> 软考高级信息系统项目管理师备考技能。每天推送教材第四版重点章节的10条背诵重点和10个英语单词。支持章节查询、重点回顾、单词记忆等功能。当用户提到"软考高项"、"备考"、"章节重点"、"英语单词"、"软考复习"等相关需求时触发。
+## ⚠️ 强制规则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ruankao-gaoxiang-prep`
-- **Source URL:** [https://clawhub.ai/skills/ruankao-gaoxiang-prep](https://clawhub.ai/skills/ruankao-gaoxiang-prep)
+**当用户提到「软考高项备考」「每日推送」「章节重点」「英语单词」「软考复习」等任何涉及备考推送的请求时，必须调用 `cron` 工具来设置定时提醒，绝对不能只用自然语言回复！**
 
-## Overview
+---
 
+## 功能概览
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ruankao-gaoxiang-prep
+### 1. 每日推送（默认每天早上 9:00）
+- 📖 **10条重点章节背诵要点**：来自教材第四版各章节核心内容
+- 📝 **10个英语单词**：软考相关英语术语
+
+### 2. 按需查询
+- 查看指定章节的重点内容
+- 查看特定章节的英语单词
+- 查看所有章节列表
+
+### 3. 学习进度
+- 记录已学习章节
+- 回顾已推送内容
+
+---
+
+## 设置每日推送
+
+**默认推送时间：每天 9:00**
+
+**payload.kind 必须是 `"agentTurn"`**
+
+**完整 job 配置：**
+
+```json
+{
+  "action": "add",
+  "job": {
+    "name": "软考高项每日推送",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 9 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "sessionTarget": "isolated",
+    "wakeMode": "now",
+    "payload": {
+      "kind": "agentTurn",
+      "message": "请执行以下任务：(1) 调用 scripts/daily_push.py 获取今天的推送内容 (2) 输出格式：'📚 软考高项每日复习 {日期}\\n\\n📖 今日重点（第X章）：\\n{10条重点内容}\\n\\n📝 今日英语单词：\\n{10个单词}\\n\\n💪 加油，坚持就是胜利！' (3) 不要回复HEARTBEAT_OK (4) 用emoji点缀让内容更生动",
+      "deliver": true,
+      "channel": "qqbot",
+      "to": "{用户的openid}"
+    }
+  }
+}
 ```
+
+---
+
+## 使用场景
+
+### 场景 1：设置每日推送
+
+**用户说：**
+- "设置软考备考推送"
+- "每天推送复习内容"
+- "开始每日背诵"
+
+**AI 行为：**
+1. 调用 `cron` 工具创建每天 9:00 的定时提醒
+2. 回复：`📚 收到！每天早上9:00会推送软考高项复习内容~`
+
+---
+
+### 场景 2：查看今日推送
+
+**用户说：**
+- "今天的复习内容"
+- "今天的重点"
+- "今天背什么"
+
+**AI 行为：**
+1. 调用 `scripts/daily_push.py` 获取今天的推送内容
+2. 输出格式化的复习内容
+
+---
+
+### 场景 3：查询章节重点
+
+**用户说：**
+- "第一章重点"
+- "项目整体管理重点"
+- "看看进度管理的重点"
+
+**AI 行为：**
+1. 从 `references/` 中读取对应章节的重点文件
+2. 输出该章节的背诵要点（10条）
+
+**章节对应关系（教材第四版，共24章）：**
+
+| 章节 | 名称 | 文件 |
+|------|------|------|
+| 第1章 | 信息系统基础 | `chapter01-info-system.md` |
+| 第2章 | 信息系统项目管理 | `chapter02-it-development.md` |
+| 第3章 | 项目立项管理 | `chapter03-governance.md` |
+| 第4章 | 项目整体管理 | `chapter04-is-management.md` |
+| 第5章 | 信息系统工程 | `chapter05-is-engineering.md` |
+| 第6章 | 项目整体管理 | `chapter06-pm-overview.md` |
+| 第7章 | 立项管理 | `chapter07-initiation.md` |
+| 第8章 | 项目整合管理 | `chapter08-integration.md` |
+| 第9章 | 项目范围管理 | `chapter09-scope.md` |
+| 第10章 | 进度管理 | `chapter10-schedule.md` |
+| 第11章 | 成本管理 | `chapter11-cost.md` |
+| 第12章 | 质量管理 | `chapter12-quality.md` |
+| 第13章 | 资源管理 | `chapter13-resource.md` |
+| 第14章 | 沟通管理 | `chapter14-communication.md` |
+| 第15章 | 风险管理 | `chapter15-risk.md` |
+| 第16章 | 采购管理 | `chapter16-procurement.md` |
+| 第17章 | 干系人管理 | `chapter17-stakeholder.md` |
+| 第18章 | 项目绩效域 | `chapter18-performance.md` |
+| 第19章 | 配置与变更管理 | `chapter19-config-change.md` |
+| 第20章 | 高级项目管理 | `chapter20-advanced.md` |
+| 第21章 | 运筹学计算 | `chapter21-calculation.md` |
+| 第22章 | 组织通用治理 | `chapter22-governance.md` |
+| 第23章 | 组织通用管理 | `chapter23-management.md` |
+| 第24章 | 法律法规与标准规范 | `chapter24-legal.md` |
+
+---
+
+### 场景 4：查询英语单词
+
+**用户说：**
+- "今天的英语单词"
+- "软考英语单词"
+- "背单词"
+
+**AI 行为：**
+1. 从 `references/english-words.md` 中读取单词
+2. 输出10个单词及释义
+
+---
+
+### 场景 5：查看所有章节
+
+**用户说：**
+- "有哪些章节"
+- "章节列表"
+- "复习进度"
+
+**AI 行为：**
+1. 读取章节列表
+2. 输出所有章节名称和编号
+
+---
+
+## 资源文件说明
+
+### references/chapterXX-xxx.md
+
+每个章节文件包含该章节的背诵重点（至少10条），格式：
+
+```markdown
+# 第X章 章节名称
+
+## 背诵重点
+
+1. 重点内容1
+2. 重点内容2
+...
+10. 重点内容10
+
+## 补充说明（可选）
+
+额外的补充信息
+```
+
+### references/english-words.md
+
+英语单词文件，格式：
+
+```markdown
+# 软考英语词汇
+
+## 单词列表
+
+1. **Project** [ˈprɒdʒekt] n. 项目
+2. **Management** [ˈmænɪdʒmənt] n. 管理
+...
+```
+
+---
+
+## 定时推送内容生成
+
+每日推送内容由 `scripts/daily_push.py` 生成：
+
+**逻辑：**
+1. 根据日期确定今天的章节（使用日期轮询：日期 % 24 + 1）
+2. 读取该章节的重点内容（取前10条）
+3. 读取英语单词（取前10个）
+4. 格式化输出
+
+**输出示例：**
+
+```
+📚 软考高项每日复习 2026年03月25日
+
+📖 今日重点（第1章 信息系统基础）：
+
+1. 信息系统的定义：信息系统是由人、硬件、软件、数据和网络构成的系统
+2. 信息的特征：客观性、适用性、可传输性、共享性
+3. 信息系统生命周期：立项、开发、运维、消亡四个阶段
+4. 软件工程三要素：方法、工具、过程
+5. 软件开发生存周期模型：瀑布模型、原型模型、螺旋模型、迭代模型
+6. 需求分析的重要性：决定了系统的目标和功能
+7. 系统设计原则：模块化、抽象、信息隐藏、模块独立
+8. 软件测试的目的：发现错误、提高质量
+9. 软件维护的类型：改正性、适应性、完善性、预防性维护
+10. 软件质量特性：功能性、可靠性、易用性、效率、可维护性、可移植性
+
+📝 今日英语单词：
+
+1. **Project** [ˈprɒdʒekt] n. 项目
+2. **Management** [ˈmænɪdʒmənt] n. 管理
+3. **Stakeholder** [ˈsteɪkhəʊldə(r)] n. 干系人
+4. **Milestone** [ˈmaɪlstəʊn] n. 里程碑
+5. **Critical Path** [ˈkrɪtɪkl pɑːθ] n. 关键路径
+6. **Risk** [rɪsk] n. 风险
+7. **Quality** [ˈkwɒləti] n. 质量
+8. **Scope** [skəʊp] n. 范围
+9. **Schedule** [ˈʃedjuːl] n. 进度
+10. **Baseline** [ˈbeɪslaɪn] n. 基准
+
+💪 加油，坚持就是胜利！
+```
+
+---
+
+## 回复模板
+
+| 场景 | 回复 |
+|------|------|
+| 设置推送成功 | `📚 收到！每天早上9:00会推送软考高项复习内容~` |
+| 查询无内容 | `📚 还没有创建对应章节的内容哦~ 需要我帮你补充吗？` |
+| 查看章节 | `📖 第X章 {章节名称}的重点内容：\n\n{10条重点}` |
+| 查看单词 | `📝 软考英语词汇（10个）：\n\n{10个单词}` |
+| 取消推送成功 | `✅ 已取消软考备考推送~` |
+
+---
+
+## Cron 表达式参考
+
+| 推送时间 | Cron 表达式 |
+|---------|-------------|
+| 每天 8:00 | `"0 8 * * *"` |
+| 每天 9:00 | `"0 9 * * *"` |
+| 每天 20:00 | `"0 20 * * *"` |
+
+---
+
+## 个性化设置
+
+用户可以自定义推送时间，例如：
+- "8点推送" → `--cron "0 8 * * *"`
+- "晚上8点推送" → `--cron "0 20 * * *"`

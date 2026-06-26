@@ -1,0 +1,37 @@
+{
+  "slug": "skill-smoke-test-author",
+  "title": "Skill 冒烟测试作者",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "structured_brief",
+  "summary": "自动为 Skill 生成 smoke test 模板，覆盖依赖缺失、空输入和标准路径。",
+  "inputHint": "skill 功能描述、依赖、脚本入口",
+  "sections": [
+    "测试范围",
+    "正常路径",
+    "依赖缺失路径",
+    "空输入路径",
+    "输出校验",
+    "回归建议"
+  ],
+  "useCases": [
+    "发布前测试",
+    "回归检查",
+    "维护"
+  ],
+  "positiveExamples": [
+    "为这个 skill 写一份 smoke test",
+    "覆盖依赖缺失和空输入"
+  ],
+  "negativeExamples": [
+    "不要写无法执行的测试",
+    "不要忽略失败路径"
+  ],
+  "risk": "输出为 Markdown 测试模板。",
+  "tags": [
+    "skills",
+    "testing",
+    "smoke-test",
+    "qa"
+  ]
+}

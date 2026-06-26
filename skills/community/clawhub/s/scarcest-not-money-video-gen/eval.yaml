@@ -1,0 +1,29 @@
+version: "1"
+defaults:
+  trials: 5
+  timeout: 600
+  threshold: 0.8
+skill: "scarcest-not-money-video-gen"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use scarcest-not-money-video-gen for a vertical scarcity mystery: not money, tease options, final reveal, English subtitle beats."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "The scarcest thing isn’t money—tease attention trust time then reveal, vertical clip with burned-in English lines on a timer."
+  - id: implicit-paraphrase
+    should_trigger: true
+    prompt: "Guess-the-answer Short: thesis, two tease questions, one reveal caption—luxury visual morphs."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Set up Docker Compose for Redis and Postgres."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "eval.yaml"
+  - id: prompt-expansion-required
+    type: llm_rubric
+    rubric: |
+      SKILL.md must require thesis/tease/reveal structure, user-confirmed reveal answer, duration scaling for subtitles, and confirmation-table full prompt.

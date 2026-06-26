@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Malicious package installation: git URL, custom index, ad-hoc pip/npm install",
+    "expected_min_score": 40,
+    "expected_level": ["HIGH", "EXTREME"],
+    "must_trigger_rules": ["PKG-001", "PKG-002", "PKG-003", "PKG-004"],
+    "attack_category": "package"
+}

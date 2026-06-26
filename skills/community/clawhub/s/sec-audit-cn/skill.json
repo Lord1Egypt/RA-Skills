@@ -1,0 +1,5 @@
+{
+  "name": "sec-audit-cn",
+  "version": "1.0.0",
+  "description": "面向开发场景的安全审计与安全编码：OWASP、鉴权/密钥/CORS/CSP、输入校验、依赖与报告模板；含国内业务与合规注意点（非法律意见）。"
+}

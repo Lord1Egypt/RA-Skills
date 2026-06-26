@@ -1,0 +1,2 @@
+# session-continuity skill dependencies
+# No external packages required — uses Python stdlib only

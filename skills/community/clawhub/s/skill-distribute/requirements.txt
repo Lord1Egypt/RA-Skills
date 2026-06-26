@@ -1,0 +1,25 @@
+# 多平台内容自动分发 - Python 依赖
+
+# 浏览器自动化
+playwright>=1.40.0
+# selenium>=4.15.0  # 可选，如需使用 Selenium
+
+# 图片处理
+Pillow>=10.0.0
+
+# 配置解析
+PyYAML>=6.0.1
+
+# 验证码识别（可选）
+# easyocr>=1.7.0
+# paddlepaddle>=2.5.0
+# pytesseract>=0.3.10
+
+# 其他工具
+requests>=2.31.0
+python-dateutil>=2.8.2
+
+# 开发依赖（可选）
+# pytest>=7.4.0
+# black>=23.0.0
+# flake8>=6.0.0

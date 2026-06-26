@@ -1,0 +1,118 @@
+{
+  "baseUrl": "https://test-apisix-gateway.shuzhi.shuqinkeji.cn",
+  "appKey": "",
+  "appSecret": "",
+  
+  "products": {
+    "chain": {
+      "name": "区块链API服务",
+      "chains": ["tritium", "conflux"],
+      "status": {
+        "0": "上链失败",
+        "1": "上链成功",
+        "2": "等待上链"
+      },
+      "endpoints": {
+        "upload": {
+          "path": "/2036009920811413506",
+          "productId": "",
+          "description": "数据上链"
+        },
+        "queryResult": {
+          "path": "/2036010888269574146",
+          "productId": "",
+          "description": "批量查询上链结果"
+        }
+      }
+    },
+    
+    "evidence": {
+      "name": "自动化取证",
+      "productId": "",
+      "types": {
+        "1": "拼多多电商取证",
+        "3": "淘宝电商取证",
+        "4": "抖音电商取证",
+        "12": "公众号取证"
+      },
+      "batchStatus": {
+        "NEW": "新建",
+        "ASSIGNED": "已分配",
+        "LOGIN": "账号登录中",
+        "CHECKING": "账号自检中",
+        "CHECKED": "账号自检完成",
+        "UNDERWAY": "取证中",
+        "SUCCESSED": "取证成功",
+        "FAILED": "取证失败"
+      },
+      "taskStatus": {
+        "NEW": "新建",
+        "RUNNING": "执行中",
+        "SUCCESSED": "成功",
+        "FAILED": "失败"
+      },
+      "endpoints": {
+        "createTask": "/1864501867832590338",
+        "queryBatch": "/1869632051095191554",
+        "queryTask": "/1869632633247809538",
+        "downloadZip": "/1871136405706948610",
+        "createWechatTask": "/1934901092301066241",
+        "checkDevice": "/1869193676039045121",
+        "assignDevice": "/1869194087395409922"
+      }
+    },
+    
+    "certificate": {
+      "name": "CAP-保管单组件",
+      "productId": "",
+      "endpoints": {
+        "create": "/2035964880718311426",
+        "download": "/2035966403556847618",
+        "listTemplates": "/2035964431437049858"
+      }
+    },
+    
+    "sign": {
+      "name": "电子签章",
+      "productId": "",
+      "enums": {
+        "enterpriseSealType": {
+          "0": "模板印章",
+          "1": "自定义印章"
+        }
+      },
+      "endpoints": {
+        "fileUpload": "/1939939844717101058",
+        "wordToPdf": "/1942487146770022401",
+        "fileDownload": "/1939940842202284033",
+        "sealFileUpload": "/1939941330071142402",
+        "fileDetail": "/1939941885120167937",
+        "enterpriseCreate": "/1939942440815116290",
+        "enterpriseList": "/1947556996631351298",
+        "enterpriseDetail": "/1939942904034050049",
+        "enterpriseDelete": "/1939943360546291713",
+        "personCreate": "/1939944063343869953",
+        "personList": "/1947552623800995841",
+        "personDetail": "/1939944413270458370",
+        "personDelete": "/1939944954960625665",
+        "enterpriseSealCreate": "/1939945266308005890",
+        "enterpriseSealDetail": "/1939945814935552002",
+        "enterpriseSealList": "/1939946352716627969",
+        "enterpriseSealDelete": "/1939947036048441346",
+        "personSealCreate": "/1939947647133368321",
+        "personSealDetail": "/1939948122104741889",
+        "personSealList": "/1939948731725856770",
+        "personSealDelete": "/1939949215664652289",
+        "templateCreate": "/1939949740388859906",
+        "templateDetail": "/1952183563027537922",
+        "templatePreview": "/1939950972654403586",
+        "templateDelete": "/1939951572360183809",
+        "signFlowCreate": "/1939952221487448066",
+        "signFlowDetail": "/1939953420018204673",
+        "signFlowPreview": "/1939953748759363586",
+        "signFlowFiles": "/1939954027504418817",
+        "signFlowSigners": "/1942050249623027714"
+      }
+    }
+  }
+}

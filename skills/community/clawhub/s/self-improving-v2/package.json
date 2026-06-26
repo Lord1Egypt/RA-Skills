@@ -1,0 +1,46 @@
+{
+  "name": "self-improving",
+  "version": "2.0.0",
+  "description": "Self-Improving Agent - 每日自动反思 + 对话保存 + 记忆管理",
+  "main": "scripts/memory_manager.py",
+  "scripts": {
+    "reflect": "python scripts/memory_manager.py reflect",
+    "save": "python scripts/memory_manager.py save",
+    "organize": "python scripts/memory_manager.py organize",
+    "cleanup": "python scripts/memory_manager.py cleanup"
+  },
+  "keywords": [
+    "self-improving",
+    "memory",
+    "reflection",
+    "learning",
+    "openclaw",
+    "skill"
+  ],
+  "author": "Jarvis",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/self-improving"
+  },
+  "homepage": "https://clawhub.com/skills/self-improving",
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.8.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "scripts/",
+    "cron/"
+  ],
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["memory", "reflection", "learning", "automation"],
+    "featured": true
+  }
+}

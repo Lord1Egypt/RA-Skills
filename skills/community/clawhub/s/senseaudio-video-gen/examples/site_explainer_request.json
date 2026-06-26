@@ -1,0 +1,37 @@
+{
+  "goal": "website-to-video explainer",
+  "input": {
+    "url": "https://www.anthropic.com/",
+    "brief": "用中文介绍官网中的产品、研究、安全和企业能力。"
+  },
+  "video": {
+    "duration": 14,
+    "fps": 24,
+    "style_preset": "editorial-pro",
+    "render": true,
+    "inspect": true,
+    "frame_quality_audit": true
+  },
+  "planning": {
+    "llm": "audioclaw",
+    "env": "AUDIOCLAW_LLM_API_KEY",
+    "config": "local AudioClaw config file",
+    "fallback": "heuristic"
+  },
+  "media": {
+    "provider": "senseaudio",
+    "env": "SENSEAUDIO_API_KEY",
+    "narration": true,
+    "music": true,
+    "music_fallback": "local ambient bed if SenseAudio task has no audio_url"
+  },
+  "outputs": [
+    "index.html",
+    "senseframe.json",
+    "assets/site-profile.json",
+    "assets/narration.mp3",
+    "assets/final-audio.m4a",
+    "renders/final.mp4",
+    "pipeline-report.json"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "shadow-binance-bot",
+  "version": "1.3.3",
+  "description": "AI-powered read-only trading analysis coach that simulates alternative strategies against your Binance trade history.",
+  "main": "src/index.cjs",
+  "scripts": {
+    "start": "node src/index.cjs",
+    "test": "node tests/analyzer.test.cjs && node tests/shadowSim.test.cjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "binance",
+    "trading",
+    "analysis",
+    "ai",
+    "coach",
+    "shadow-trading",
+    "crypto",
+    "backtesting",
+    "trading-analytics",
+    "trading-coach",
+    "futures",
+    "spot",
+    "risk-management"
+  ],
+  "author": "acevod",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acevod/Shadow-Binance-Bot"
+  }
+}

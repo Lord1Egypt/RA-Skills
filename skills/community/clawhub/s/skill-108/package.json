@@ -1,0 +1,7 @@
+{
+  "name": "platform-engineering-fundamentals",
+  "version": "1.0.0",
+  "description": "Platform Engineering Fundamentals - building internal platforms for developer experience, self-service, and observability",
+  "author": "OpenClaw",
+  "license": "MIT"
+}

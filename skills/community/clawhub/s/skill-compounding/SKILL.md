@@ -1,35 +1,141 @@
----
-name: "Skill Compounding"
-description: "识别并提取可复用的解决方案为团队技能，实现经验积累与复利，避免重复摸索相同问题。"
-category: "other"
-source: "ClawHub"
-tags: [local, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-compounding"
-sourceUrl: "https://clawhub.ai/skills/skill-compounding"
+﻿# skill-compounding
+
+> **借鉴来源**：Multica (multica-ai/multica) 的 Reusable Skills 机制
+>
+> 每一个成功的解决方案，都应该成为团队未来可复用的技能。
+> 技能随使用次数增加而积累，形成团队能力的复利。
+>
+> **核心理念**：不要每次遇到相同问题都重新摸索。
+
 ---
 
-# Skill Compounding
+## 触发条件
 
-> 识别并提取可复用的解决方案为团队技能，实现经验积累与复利，避免重复摸索相同问题。
+满足以下任一场景时激活：
+- 成功解决了一个非平凡问题
+- 发现了一个通用的解决方案（可以跨项目复用）
+- 用户明确要求"把这个流程固化下来"
+- 某个模式出现了 2 次以上
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-compounding`
-- **Source URL:** [https://clawhub.ai/skills/skill-compounding](https://clawhub.ai/skills/skill-compounding)
+---
 
-## Overview
+## 工作流程
 
+### Phase A：识别可复用的模式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-compounding
+问自己：
 ```
+[compounding-check]
+- 这个问题未来还会出现吗？
+- 这个解决方案是否可以泛化？
+- 这个流程是否有其他人需要？
+- 沉淀为 Skill 的成本 vs 收益？
+```
+
+如果 >= 2 个"是"，就值得沉淀。
+
+### Phase B：提取为 Skill
+
+创建 Skill 目录结构：
+
+```
+skills/<skill-name>/
+├── SKILL.md          # 核心文档（必须）
+├── examples/         # 示例（可选）
+├── templates/        # 模板（可选）
+└── TOOLS.md         # 工具配置（可选）
+```
+
+SKILL.md 必须包含：
+
+```markdown
+# <Skill 名称>
+
+## 何时使用
+[一句话描述触发条件]
+
+## 工作流程
+[步骤 1]
+[步骤 2]
+[...]
+
+## 输入/输出
+- 输入：
+- 输出：
+
+## 限制与注意事项
+[任何已知限制]
+
+## 触发命令
+[触发这个 Skill 的用户说法示例]
+```
+
+### Phase C：注册到 Skill 索引
+
+将新 Skill 添加到 `skills/quick-reference.md`（如果有），或者在 `SOUL.md` 的技能分层架构中声明。
+
+### Phase D：持续迭代
+
+每次使用这个 Skill：
+- 如果发现问题 → 更新 SKILL.md
+- 如果有新场景 → 扩展 SKILL.md
+- 如果发现更优解 → 重写对应部分
+
+---
+
+## Skill 生命周期
+
+```
+发现 → 提取 → 使用 → 迭代 → 传播
+  ↑_____________________________|
+        反馈驱动改进
+```
+
+---
+
+## 质量标准
+
+一个好的 Skill 应该满足：
+
+| 标准 | 描述 |
+|------|------|
+| **可独立运行** | 不依赖其他 Skill 的上下文 |
+| **触发条件明确** | 用户能说清楚什么时候该用它 |
+| **验收标准清晰** | 完成后有可验证的结果 |
+| **限制已说明** | 已知的不适用场景 |
+| **有真实案例** | 至少验证过 1 次真实使用 |
+
+---
+
+## 与 Multica Skills 的对比
+
+| 维度 | Multica | OpenClaw |
+|------|---------|----------|
+| 存储位置 | 云端/团队共享 | 工作区 skills/ |
+| 触发方式 | Issue 路由 | Skill 索引 + 手动 |
+| 复用方式 | 团队共享 | 本地/可导出 |
+| 积累可见性 | 团队面板 | quick-reference.md |
+
+**OpenClaw 的优势**：更轻量，不需要服务器，直接文件系统管理。
+
+---
+
+## 触发命令
+
+"把这个沉淀为 Skill"、"把这个流程记下来，以后复用"、"以后遇到 XXX 就用这个方案"
+
+## 下一跳（Skill 链式调用）
+
+skill-compounding 是**技能沉淀技能**，通常在其他技能链末端触发：
+
+`
+skill-compounding → 沉淀完成后回到原技能链
+`
+
+**典型触发路径**：
+- rainstorming Step 4 完成后 → 检查是否值得沉淀
+- conductor Implement 阶段交付后 → 检查是否有可复用成果
+- gent-teams 审查后发现通用模式 → 沉淀为 Skill
+- efactoring 重构完成后 → 沉淀重构后的模式
+
+**不适用**：纯一次性任务、商业敏感内容、个人偏好类内容。

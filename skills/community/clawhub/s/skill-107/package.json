@@ -1,0 +1,7 @@
+{
+  "name": "distributed-system-patterns",
+  "version": "1.0.0",
+  "description": "Distributed System Patterns & Design - replication, partitioning, consensus, and failure recovery",
+  "author": "OpenClaw",
+  "license": "MIT"
+}

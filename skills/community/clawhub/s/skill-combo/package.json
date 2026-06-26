@@ -1,0 +1,19 @@
+{
+  "name": "skill-combo-skill",
+  "version": "1.0.0",
+  "description": "Skill Combo - 技能组合器",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "publish": "claw skill publish"
+  },
+  "keywords": [
+    "combo",
+    "multi-skill",
+    "collaboration",
+    "openclaw-skill"
+  ],
+  "author": "Spark",
+  "license": "MIT"
+}

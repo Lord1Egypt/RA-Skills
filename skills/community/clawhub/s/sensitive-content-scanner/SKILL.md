@@ -1,35 +1,185 @@
 ---
-name: "敏感内容扫描器"
-description: "专业的敏感内容扫描器，支持 PII 检测（身份证/手机号/银行卡/邮箱/IP）、敏感词检测、置信度评分、多格式报告生成。适用于文档审查、安全审计、内容合规检查、隐私保护等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sensitive-content-scanner"
-sourceUrl: "https://clawhub.ai/skills/sensitive-content-scanner"
+name: 敏感内容扫描器
+description: This skill should be used when the user needs to scan documents for sensitive content, prohibited words, or PII. Use for document review, security audits, content compliance checks, or privacy protection tasks. Simply attach a document and say "scan" or provide keywords to check. Supports three modes: (1) scan with built-in rules, (2) scan with custom keywords, (3) scan with data dictionary file. No technical knowledge required.
 ---
 
 # 敏感内容扫描器
 
-> 专业的敏感内容扫描器，支持 PII 检测（身份证/手机号/银行卡/邮箱/IP）、敏感词检测、置信度评分、多格式报告生成。适用于文档审查、安全审计、内容合规检查、隐私保护等场景。
+## 🎯 一句话说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sensitive-content-scanner`
-- **Source URL:** [https://clawhub.ai/skills/sensitive-content-scanner](https://clawhub.ai/skills/sensitive-content-scanner)
+帮您检查文档中是否有敏感内容（身份证、手机号、密码等）或违禁词。
 
-## Overview
+## 👤 适用人群
 
+办公室文员、行政人员、文档审核人员 —— **无需技术背景**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sensitive-content-scanner
+---
+
+## 🚀 三种傻瓜式用法
+
+### 方式一：快速扫描（内置规则）
+
+**操作**：
+1. 附件：您的文档文件（如 `.docx`、`.txt`、`.pdf`）
+2. 说：**"扫描"**
+
+**示例**：
+> 用户：帮我扫描这份文档
+> [附件：年度报告.docx]
+
+**会检测**：
+- 🔒 身份证号
+- 📱 手机号码
+- 💳 银行卡号
+- ✉️ 邮箱地址
+- 🌐 IP 地址
+- 🔑 密码/密钥等敏感词
+
+---
+
+### 方式二：自定义关键词扫描
+
+**操作**：
+1. 附件：您的文档文件
+2. 说：**"扫描"**，然后告诉我要检查的关键词
+
+**示例**：
+> 用户：扫描这份文档，检查这些词：密码、密钥、机密、内部
+> [附件：技术文档.docx]
+
+**支持的表达**：
+- `"检查这些词：密码、密钥"`
+- `"扫描并检查：机密、绝密"`
+- `"用关键词 密码 密钥 机密 扫描"`
+
+---
+
+### 方式三：使用数据字典文件扫描
+
+**操作**：
+1. 附件1：您的文档文件
+2. 附件2：数据字典文件（CSV 格式）
+3. 说：**"用数据字典扫描"**
+
+**数据字典格式**（CSV）：
+
+| 关键词 | 权重分 | 类别 |
+|--------|--------|------|
+| 密码 | 10 | 技术敏感词 |
+| 密钥 | 10 | 技术敏感词 |
+| 机密 | 8 | 密级 |
+| 内部 | 5 | 内部信息 |
+
+**示例**：
+> 用户：用数据字典扫描这份文档
+> [附件1：项目文档.docx]
+> [附件2：敏感词字典.csv]
+
+---
+
+## 📋 扫描结果说明
+
+扫描完成后，会生成 **HTML 格式报告**（浏览器直接打开查看）：
+
+| 结果 | 含义 | 建议 |
+|------|------|------|
+| ✅ 安全（绿色） | 未发现敏感内容 | 可以放心使用 |
+| ⚠️ 低风险（浅绿） | 发现轻微问题 | 可选处理或忽略 |
+| ⚠️ 中风险（黄色） | 发现少量敏感内容 | 建议人工复核 |
+| 🚨 高风险（红色） | 发现严重敏感内容 | 需要立即处理 |
+
+**报告特性**：
+- 📊 可视化仪表盘——统计卡片 + 风险指示条
+- 🎨 精美排版——响应式设计，手机也能看
+- 🔍 详情展开——每个文件的问题逐一列出
+- 🏷️ 置信度标注——高/中/低三色区分
+
+> 也可通过 `-f markdown` 输出 Markdown 格式。
+
+---
+
+## 🎨 数据字典模板
+
+如果您需要自定义数据字典，可以下载这个模板：
+
+**文件名**：`敏感词字典模板.csv`
+
+**内容格式**：
+```csv
+关键词,权重分,类别
+密码,10,技术敏感词
+密钥,10,技术敏感词
+机密,8,密级
+绝密,10,密级
+内部,5,内部信息
+公司名,5,商业信息
 ```
+
+**权重分说明**：
+- 10分：极高敏感度（如：密码、密钥）
+- 5-9分：高敏感度（如：机密、内部）
+- 1-4分：一般敏感度（如：内部资料）
+
+---
+
+## 📁 支持的文件格式
+
+| 类型 | 格式 | 支持情况 |
+|------|------|----------|
+| Word 文档 | .docx | ✅ 完全支持 |
+| 纯文本 | .txt | ✅ 完全支持 |
+| Markdown | .md | ✅ 完全支持 |
+| Excel | .xlsx | ✅ 完全支持 |
+| PDF | .pdf | ⚠️ 文本型支持，扫描版不支持 |
+
+---
+
+## ❓ 常见问题
+
+**Q: 扫描需要多久？**
+A: 一般文档几秒钟，大文档（100页以上）可能需要1-2分钟。
+
+**Q: 我的文档会被保存吗？**
+A: 不会。扫描过程在本地完成，不会上传您的文档。
+
+**Q: 扫描结果保存在哪里？**
+A: 默认生成 `report.html`，浏览器直接打开即可查看精美报告。
+
+**Q: 可以输出其他格式吗？**
+A: 可以。`-f html`（默认，推荐）、`-f markdown`、`-f json`。
+
+**Q: 什么是权重分？**
+A: 权重分表示敏感词的严重程度。分数越高，越需要关注。
+
+---
+
+## 💡 提示
+
+1. **定期扫描**：重要文档发布前建议扫描
+2. **关键词定制**：根据公司要求设置检查的敏感词
+3. **数据字典共享**：可以创建公司统一的敏感词字典，大家一起用
+4. **结果保存**：扫描报告建议保存，方便后续查阅
+5. **详细指南**：查看 `用户操作指南.md` 获取更详细的使用说明
+
+---
+
+## 🔧 技术信息（可选了解）
+
+**扫描脚本**：`scripts/scan_sensitive.py`
+
+**命令行参考**（如有需要）：
+```bash
+# 快速扫描
+python3 scan_sensitive.py 文档.docx
+
+# 自定义关键词
+python3 scan_sensitive.py 文档.docx -k "密码" -k "密钥"
+
+# 使用数据字典
+python3 scan_sensitive.py 文档.docx --dict-csv 敏感词字典.csv
+```
+
+---
+
+**版本**：3.1.2
+**更新日期**：2026-04-21

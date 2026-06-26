@@ -1,0 +1,19 @@
+{
+  "name": "scenique-context-frame",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Scenique Context Frame skill: detect topic switches and manage conversation context frames (Pomodoro-aware).",
+  "main": "preload.py",
+  "tools": [
+    {
+      "name": "context_simulate",
+      "description": "Run a simulated conversation to demonstrate context frame creation.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "mode": { "type": "string", "enum": ["demo","live"], "default": "demo" }
+        }
+      }
+    }
+  ]
+}

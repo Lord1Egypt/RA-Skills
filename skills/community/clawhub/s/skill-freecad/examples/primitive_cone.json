@@ -1,0 +1,11 @@
+{
+  "operation": "create_primitive",
+  "parameters": {
+    "type": "cone",
+    "radius1": 30,
+    "radius2": 10,
+    "height": 50,
+    "name": "MyCone",
+    "position": [0, 0, 0]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "slug": "secondhand-furniture-listing-check",
+  "name": "Secondhand Furniture Listing Check",
+  "displayName": "Secondhand Furniture Listing Check",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Review a used-furniture listing with seller questions, photo requests, dimension checks, transport planning, hygiene and pest warnings, recall reminders, and safer pickup guidance.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Home, Shopping, and Admin",
+  "triggerKeywords": [
+    "used furniture buying checklist",
+    "secondhand couch inspection",
+    "marketplace furniture questions",
+    "used dresser pickup checklist",
+    "secondhand furniture listing",
+    "furniture pickup plan",
+    "used furniture pest check",
+    "used crib recall check",
+    "online furniture listing review",
+    "furniture photo checklist"
+  ],
+  "tags": [
+    "secondhand-shopping",
+    "furniture",
+    "marketplace",
+    "home-admin",
+    "pickup-safety",
+    "checklist"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

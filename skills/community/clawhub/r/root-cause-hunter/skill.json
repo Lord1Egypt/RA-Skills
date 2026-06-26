@@ -1,0 +1,7 @@
+{
+  "name": "root-cause-hunter",
+  "description": "根因猎人技能。遇到问题时严格走五阶段根因调查流程，禁止随机修复。触发词：诊断、帮我调试、帮我分析原因、排查问题。",
+  "version": "1.0.0",
+  "author": "大鱼 Cyrus & 双鱼座005",
+  "publish": ""
+}

@@ -1,0 +1,68 @@
+{
+  "deps": [
+    {
+      "body": "Leg_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Leg_FR",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BL",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BR",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Top",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "LS_Front",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "LS_Back",
+      "ref": "Leg_BL"
+    },
+    {
+      "body": "SS_Left",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "SS_Right",
+      "ref": "Leg_FR"
+    },
+    {
+      "body": "Deadman",
+      "ref": "LS_Front"
+    },
+    {
+      "body": "Vise_Chop",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Vise_Screw",
+      "ref": "Vise_Chop"
+    },
+    {
+      "body": "Vise_Handle",
+      "ref": "Vise_Screw"
+    },
+    {
+      "body": "Vise_Guide",
+      "ref": "Vise_Chop"
+    },
+    {
+      "body": "LSPinL_0",
+      "ref": "LS_Front"
+    },
+    {
+      "body": "SSPinF_0",
+      "ref": "SS_Left"
+    }
+  ]
+}

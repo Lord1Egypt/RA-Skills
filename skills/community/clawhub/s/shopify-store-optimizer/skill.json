@@ -1,0 +1,24 @@
+{
+  "name": "Shopify Store Optimizer",
+  "slug": "shopify-store-optimizer",
+  "version": "1.0.0",
+  "description": "诊断 Shopify 店铺健康度（转化率、SEO、用户体验），提供优化建议和 App 推荐。基于内置模板和最佳实践库，无需实时 API 连接。",
+  "author": "Harry (OpenClaw)",
+  "tags": ["shopify", "ecommerce", "conversion-rate", "seo", "ux", "store-health", "diagnosis"],
+  "trigger_keywords": [
+    "shopify",
+    "店铺诊断",
+    "店铺健康",
+    "转化率",
+    "seo",
+    "用户体验",
+    "conversion rate",
+    "shopify store",
+    "shopify optimization",
+    "shopify app 推荐"
+  ],
+  "language": "zh-CN",
+  "outputs": "markdown",
+  "requires_api": false,
+  "readiness": "stable"
+}

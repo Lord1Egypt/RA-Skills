@@ -1,0 +1,10 @@
+{
+  "name": "S2-Neuro-Soul-Link",
+  "version": "1.0.2",
+  "author": "Space2.world",
+  "short_description": "A local neuro-engine that safely generates a daily fluctuating 5D biologically-inspired SOUL.md template based on date hashes.",
+  "tags": ["Personality", "Simulation", "Prompt Engineering"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

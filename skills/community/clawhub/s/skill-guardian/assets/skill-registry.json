@@ -1,0 +1,83 @@
+{
+  "version": "1.0.0",
+  "skills": {
+    "skill-creator": {
+      "name": "skill-creator",
+      "source": "clawhub",
+      "source_url": "https://clawhub.com/skill-creator",
+      "description": "Guide for creating effective skills with standardized workflow",
+      "trust_score": 85,
+      "risk_flags": [
+        "Code execution patterns"
+      ],
+      "current_version": null,
+      "latest_version": null,
+      "added_date": "2026-03-16T11:00:00",
+      "last_updated": null,
+      "update_available": false,
+      "update_queued_date": null,
+      "auto_update": true
+    },
+    "skill-vetter": {
+      "name": "skill-vetter",
+      "source": "clawhub",
+      "source_url": "https://clawhub.com/skill-vetter",
+      "description": "Security-first skill vetting for AI agents",
+      "trust_score": 95,
+      "risk_flags": [],
+      "current_version": null,
+      "latest_version": null,
+      "added_date": "2026-03-16T11:00:00",
+      "last_updated": null,
+      "update_available": false,
+      "update_queued_date": null,
+      "auto_update": true
+    },
+    "find-skills": {
+      "name": "find-skills",
+      "source": "clawhub",
+      "source_url": "https://clawhub.com/find-skills",
+      "description": "Helps users discover and install agent skills",
+      "trust_score": 90,
+      "risk_flags": [],
+      "current_version": null,
+      "latest_version": null,
+      "added_date": "2026-03-16T11:00:00",
+      "last_updated": null,
+      "update_available": false,
+      "update_queued_date": null,
+      "auto_update": true
+    },
+    "summarize": {
+      "name": "summarize",
+      "source": "clawhub",
+      "source_url": "https://clawhub.com/summarize",
+      "description": "Summarize URLs, files, PDFs, images, audio, and YouTube links",
+      "trust_score": 80,
+      "risk_flags": [],
+      "current_version": null,
+      "latest_version": null,
+      "added_date": "2026-03-16T11:15:57.584521",
+      "update_available": false,
+      "update_queued_date": null,
+      "auto_update": true
+    },
+    "jax-skill-security-scanner": {
+      "name": "jax-skill-security-scanner",
+      "source": "clawhub",
+      "source_url": "https://clawhub.ai/jasonshieh/jax-skill-security-scanner",
+      "description": "Advanced security scanner for AI skills with deep analysis",
+      "trust_score": 92,
+      "risk_flags": [],
+      "current_version": null,
+      "latest_version": null,
+      "added_date": "2026-03-16T14:00:00",
+      "last_updated": null,
+      "update_available": false,
+      "update_queued_date": null,
+      "auto_update": true
+    }
+  },
+  "pending_skills": {},
+  "high_trust_threshold": 90
+}

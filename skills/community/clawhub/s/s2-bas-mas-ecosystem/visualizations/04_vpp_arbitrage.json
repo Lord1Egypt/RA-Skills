@@ -1,0 +1,8 @@
+{
+  "component": "S2-Dashboard-Renderer",
+  "props": {
+    "title": "S2-Microgrid-Agent | VPP 虚拟电厂能源套利指挥舱",
+    "theme": "cyber-dark",
+    "prompt": "Create an interactive dashboard. Inputs: Dropdown '电网电价时段' (谷电0.3, 平电0.7, 峰电1.3). Sliders for '大楼负荷(kW)', '光伏发电(kW)', '电池SOC(%)'. Visualization: Dynamic power flow diagram or stacked bar showing Source (PV + Grid + Battery Discharge) meeting the Load. Logic: If PEAK, battery discharges max to avoid buying grid power. If VALLEY, battery charges from grid. Output Panel: Show exactly how much CNY is saved/arbitraged in the current hour. Button '💰 授权套利调度'."
+  }
+}

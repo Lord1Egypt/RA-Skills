@@ -1,35 +1,27 @@
 ---
-name: "Shuf Tool"
-description: "Randomly shuffle lines of text input. Use for random sampling, data randomization, and selection tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shuf-tool"
-sourceUrl: "https://clawhub.ai/skills/shuf-tool"
+name: shuf-tool
+description: Randomly shuffle lines of text input. Use for random sampling, data randomization, and selection tasks.
 ---
+# Shuf - Random Line Permutation
 
-# Shuf Tool
+Randomize the order of input lines. Supports random selection of N lines and sampling with or without replacement for statistical tasks.
 
-> Randomly shuffle lines of text input. Use for random sampling, data randomization, and selection tasks.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shuf-tool`
-- **Source URL:** [https://clawhub.ai/skills/shuf-tool](https://clawhub.ai/skills/shuf-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/shuf-tool
+shuf-tool [options] [file]
+```
+
+## Options
+
+- `-n N`: Output only N random lines
+- `-i LO-HI`: Treat each number LO..HI as an input line
+- `-r`: Allow repeated output (sampling with replacement)
+- `-e`: Treat each argument as an input line
+
+## Examples
+
+```bash
+shuf-tool names.txt
+shuf-tool -n 5 data.txt
+shuf-tool -i 1-100
 ```

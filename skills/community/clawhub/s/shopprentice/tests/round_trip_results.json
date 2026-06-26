@@ -1,0 +1,1247 @@
+{
+  "fixture_brep_face_sketch": {
+    "passed": true,
+    "details": {
+      "name": "fixture_brep_face_sketch",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 9.7
+        },
+        {
+          "step": "capture_original",
+          "time": 4.0
+        },
+        {
+          "step": "export_script",
+          "time": 4.2
+        },
+        {
+          "step": "execute_export",
+          "time": 2.1
+        },
+        {
+          "step": "capture_replica",
+          "time": 3.8
+        }
+      ],
+      "originalBodies": {
+        "Rail": 288.0
+      },
+      "exportedLines": 289,
+      "replicaBodies": {
+        "Rail": 288.0
+      },
+      "comparisons": [
+        {
+          "body": "Rail",
+          "original": 288.0,
+          "replica": 288.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_combine": {
+    "passed": true,
+    "details": {
+      "name": "fixture_combine",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 1.8
+        },
+        {
+          "step": "capture_original",
+          "time": 5.1
+        },
+        {
+          "step": "export_script",
+          "time": 5.7
+        },
+        {
+          "step": "execute_export",
+          "time": 2.2
+        },
+        {
+          "step": "capture_replica",
+          "time": 5.4
+        }
+      ],
+      "originalBodies": {
+        "Board": 210.0
+      },
+      "exportedLines": 319,
+      "replicaBodies": {
+        "Board": 210.0
+      },
+      "comparisons": [
+        {
+          "body": "Board",
+          "original": 210.0,
+          "replica": 210.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_component": {
+    "passed": true,
+    "details": {
+      "name": "fixture_component",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 2.6
+        },
+        {
+          "step": "export_script",
+          "time": 2.4
+        },
+        {
+          "step": "execute_export",
+          "time": 2.1
+        },
+        {
+          "step": "capture_replica",
+          "time": 2.6
+        }
+      ],
+      "originalBodies": {
+        "Base": 160.0,
+        "Post": 90.0
+      },
+      "exportedLines": 283,
+      "replicaBodies": {
+        "Base": 160.0,
+        "Post": 90.0
+      },
+      "comparisons": [
+        {
+          "body": "Base",
+          "original": 160.0,
+          "replica": 160.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Post",
+          "original": 90.0,
+          "replica": 90.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_construction_axis": {
+    "passed": true,
+    "details": {
+      "name": "fixture_construction_axis",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 1.8
+        },
+        {
+          "step": "capture_original",
+          "time": 2.5
+        },
+        {
+          "step": "export_script",
+          "time": 2.3
+        },
+        {
+          "step": "execute_export",
+          "time": 2.0
+        },
+        {
+          "step": "capture_replica",
+          "time": 2.3
+        }
+      ],
+      "originalBodies": {
+        "Pin": 0.5655,
+        "Pin (1)": 0.5655,
+        "Pin (2)": 0.5655
+      },
+      "exportedLines": 204,
+      "replicaBodies": {
+        "Pin": 0.5655,
+        "Pin (1)": 0.5655,
+        "Pin (2)": 0.5655
+      },
+      "comparisons": [
+        {
+          "body": "Pin",
+          "original": 0.5655,
+          "replica": 0.5655,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Pin (1)",
+          "original": 0.5655,
+          "replica": 0.5655,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Pin (2)",
+          "original": 0.5655,
+          "replica": 0.5655,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_construction_plane": {
+    "passed": true,
+    "details": {
+      "name": "fixture_construction_plane",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 2.7
+        },
+        {
+          "step": "export_script",
+          "time": 2.4
+        },
+        {
+          "step": "execute_export",
+          "time": 2.2
+        },
+        {
+          "step": "capture_replica",
+          "time": 2.5
+        }
+      ],
+      "originalBodies": {
+        "Plate1": 48.0,
+        "Plate2": 48.0
+      },
+      "exportedLines": 287,
+      "replicaBodies": {
+        "Plate1": 48.0,
+        "Plate2": 48.0
+      },
+      "comparisons": [
+        {
+          "body": "Plate1",
+          "original": 48.0,
+          "replica": 48.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Plate2",
+          "original": 48.0,
+          "replica": 48.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_construction_plane_angle": {
+    "passed": true,
+    "details": {
+      "name": "fixture_construction_plane_angle",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.2
+        },
+        {
+          "step": "capture_original",
+          "time": 2.6
+        },
+        {
+          "step": "export_script",
+          "time": 2.6
+        },
+        {
+          "step": "execute_export",
+          "time": 2.1
+        },
+        {
+          "step": "capture_replica",
+          "time": 2.5
+        }
+      ],
+      "originalBodies": {
+        "Base": 240.0,
+        "Wedge": 48.0
+      },
+      "exportedLines": 297,
+      "replicaBodies": {
+        "Base": 240.0,
+        "Wedge": 48.0
+      },
+      "comparisons": [
+        {
+          "body": "Base",
+          "original": 240.0,
+          "replica": 240.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Wedge",
+          "original": 48.0,
+          "replica": 48.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_construction_plane_midplane": {
+    "passed": true,
+    "details": {
+      "name": "fixture_construction_plane_midplane",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 1.8
+        },
+        {
+          "step": "capture_original",
+          "time": 0.7
+        },
+        {
+          "step": "export_script",
+          "time": 0.8
+        },
+        {
+          "step": "execute_export",
+          "time": 1.8
+        },
+        {
+          "step": "capture_replica",
+          "time": 0.9
+        }
+      ],
+      "originalBodies": {
+        "MidPlate": 24.0
+      },
+      "exportedLines": 217,
+      "replicaBodies": {
+        "MidPlate": 24.0
+      },
+      "comparisons": [
+        {
+          "body": "MidPlate",
+          "original": 24.0,
+          "replica": 24.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_extrude": {
+    "passed": true,
+    "details": {
+      "name": "fixture_extrude",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.1
+        },
+        {
+          "step": "capture_original",
+          "time": 5.2
+        },
+        {
+          "step": "export_script",
+          "time": 5.0
+        },
+        {
+          "step": "execute_export",
+          "time": 2.4
+        },
+        {
+          "step": "capture_replica",
+          "time": 5.3
+        }
+      ],
+      "originalBodies": {
+        "Block": 425.6456,
+        "SymBody": 16.0
+      },
+      "exportedLines": 367,
+      "replicaBodies": {
+        "Block": 425.6456,
+        "SymBody": 16.0
+      },
+      "comparisons": [
+        {
+          "body": "Block",
+          "original": 425.6456,
+          "replica": 425.6456,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "SymBody",
+          "original": 16.0,
+          "replica": 16.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_face_arch_cut": {
+    "passed": true,
+    "details": {
+      "name": "fixture_face_arch_cut",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.1
+        },
+        {
+          "step": "capture_original",
+          "time": 4.1
+        },
+        {
+          "step": "export_script",
+          "time": 3.9
+        },
+        {
+          "step": "execute_export",
+          "time": 2.2
+        },
+        {
+          "step": "capture_replica",
+          "time": 4.0
+        }
+      ],
+      "originalBodies": {
+        "Beam": 472.7124
+      },
+      "exportedLines": 370,
+      "replicaBodies": {
+        "Beam": 472.7124
+      },
+      "comparisons": [
+        {
+          "body": "Beam",
+          "original": 472.7124,
+          "replica": 472.7124,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_fillet_chamfer": {
+    "passed": true,
+    "details": {
+      "name": "fixture_fillet_chamfer",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 3.1
+        },
+        {
+          "step": "export_script",
+          "time": 3.1
+        },
+        {
+          "step": "execute_export",
+          "time": 1.9
+        },
+        {
+          "step": "capture_replica",
+          "time": 3.4
+        }
+      ],
+      "originalBodies": {
+        "Box": 189.3217
+      },
+      "exportedLines": 248,
+      "replicaBodies": {
+        "Box": 189.3217
+      },
+      "comparisons": [
+        {
+          "body": "Box",
+          "original": 189.3217,
+          "replica": 189.3217,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_mirror": {
+    "passed": true,
+    "details": {
+      "name": "fixture_mirror",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 1.9
+        },
+        {
+          "step": "capture_original",
+          "time": 2.4
+        },
+        {
+          "step": "export_script",
+          "time": 2.5
+        },
+        {
+          "step": "execute_export",
+          "time": 2.1
+        },
+        {
+          "step": "capture_replica",
+          "time": 3.4
+        }
+      ],
+      "originalBodies": {
+        "Leg_L": 108.0,
+        "Leg_R": 108.0
+      },
+      "exportedLines": 230,
+      "replicaBodies": {
+        "Leg_L": 108.0,
+        "Leg_R": 108.0
+      },
+      "comparisons": [
+        {
+          "body": "Leg_L",
+          "original": 108.0,
+          "replica": 108.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Leg_R",
+          "original": 108.0,
+          "replica": 108.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_move": {
+    "passed": true,
+    "details": {
+      "name": "fixture_move",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 2.4
+        },
+        {
+          "step": "export_script",
+          "time": 2.5
+        },
+        {
+          "step": "execute_export",
+          "time": 1.8
+        },
+        {
+          "step": "capture_replica",
+          "time": 2.6
+        }
+      ],
+      "originalBodies": {
+        "Box": 64.0
+      },
+      "exportedLines": 204,
+      "replicaBodies": {
+        "Box": 64.0
+      },
+      "comparisons": [
+        {
+          "body": "Box",
+          "original": 64.0,
+          "replica": 64.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_pattern": {
+    "passed": true,
+    "details": {
+      "name": "fixture_pattern",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 2.6
+        },
+        {
+          "step": "export_script",
+          "time": 2.5
+        },
+        {
+          "step": "execute_export",
+          "time": 1.9
+        },
+        {
+          "step": "capture_replica",
+          "time": 2.4
+        }
+      ],
+      "originalBodies": {
+        "Peg": 2.3562,
+        "Peg (1)": 2.3562,
+        "Peg (2)": 2.3562,
+        "Peg (3)": 2.3562
+      },
+      "exportedLines": 207,
+      "replicaBodies": {
+        "Peg": 2.3562,
+        "Peg (1)": 2.3562,
+        "Peg (2)": 2.3562,
+        "Peg (3)": 2.3562
+      },
+      "comparisons": [
+        {
+          "body": "Peg",
+          "original": 2.3562,
+          "replica": 2.3562,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Peg (1)",
+          "original": 2.3562,
+          "replica": 2.3562,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Peg (2)",
+          "original": 2.3562,
+          "replica": 2.3562,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Peg (3)",
+          "original": 2.3562,
+          "replica": 2.3562,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_pattern_cut": {
+    "passed": true,
+    "details": {
+      "name": "fixture_pattern_cut",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.9
+        },
+        {
+          "step": "capture_original",
+          "time": 10.4
+        },
+        {
+          "step": "export_script",
+          "time": 10.6
+        },
+        {
+          "step": "execute_export",
+          "time": 3.2
+        },
+        {
+          "step": "capture_replica",
+          "time": 10.7
+        }
+      ],
+      "originalBodies": {
+        "Board": 200.0,
+        "Domino0": 6.0,
+        "Domino1": 6.0,
+        "Domino2": 6.0
+      },
+      "exportedLines": 496,
+      "replicaBodies": {
+        "Board": 200.0,
+        "Domino0": 6.0,
+        "Domino1": 6.0,
+        "Domino2": 6.0
+      },
+      "comparisons": [
+        {
+          "body": "Board",
+          "original": 200.0,
+          "replica": 200.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Domino0",
+          "original": 6.0,
+          "replica": 6.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Domino1",
+          "original": 6.0,
+          "replica": 6.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Domino2",
+          "original": 6.0,
+          "replica": 6.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_projection": {
+    "passed": true,
+    "details": {
+      "name": "fixture_projection",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.3
+        },
+        {
+          "step": "capture_original",
+          "time": 4.0
+        },
+        {
+          "step": "export_script",
+          "time": 4.0
+        },
+        {
+          "step": "execute_export",
+          "time": 2.1
+        },
+        {
+          "step": "capture_replica",
+          "time": 4.3
+        }
+      ],
+      "originalBodies": {
+        "Rail": 297.0
+      },
+      "exportedLines": 370,
+      "replicaBodies": {
+        "Rail": 297.0
+      },
+      "comparisons": [
+        {
+          "body": "Rail",
+          "original": 297.0,
+          "replica": 297.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_raw_sketch": {
+    "passed": true,
+    "details": {
+      "name": "fixture_raw_sketch",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 0.9
+        },
+        {
+          "step": "export_script",
+          "time": 0.8
+        },
+        {
+          "step": "execute_export",
+          "time": 1.9
+        },
+        {
+          "step": "capture_replica",
+          "time": 0.8
+        }
+      ],
+      "originalBodies": {
+        "Arch": 219.3982
+      },
+      "exportedLines": 200,
+      "replicaBodies": {
+        "Arch": 219.3982
+      },
+      "comparisons": [
+        {
+          "body": "Arch",
+          "original": 219.3982,
+          "replica": 219.3982,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_sketch_proj": {
+    "passed": true,
+    "details": {
+      "name": "fixture_sketch_proj",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 1.8
+        },
+        {
+          "step": "capture_original",
+          "time": 3.1
+        },
+        {
+          "step": "export_script",
+          "time": 3.5
+        },
+        {
+          "step": "execute_export",
+          "time": 2.2
+        },
+        {
+          "step": "capture_replica",
+          "time": 3.2
+        }
+      ],
+      "originalBodies": {
+        "Plank": 360.0
+      },
+      "exportedLines": 286,
+      "replicaBodies": {
+        "Plank": 360.0
+      },
+      "comparisons": [
+        {
+          "body": "Plank",
+          "original": 360.0,
+          "replica": 360.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_split_body": {
+    "passed": true,
+    "details": {
+      "name": "fixture_split_body",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.1
+        },
+        {
+          "step": "capture_original",
+          "time": 4.2
+        },
+        {
+          "step": "export_script",
+          "time": 4.0
+        },
+        {
+          "step": "execute_export",
+          "time": 2.1
+        },
+        {
+          "step": "capture_replica",
+          "time": 4.2
+        }
+      ],
+      "originalBodies": {
+        "Bottom": 24.0,
+        "Middle": 72.0,
+        "Top": 24.0
+      },
+      "exportedLines": 278,
+      "replicaBodies": {
+        "Bottom": 24.0,
+        "Middle": 72.0,
+        "Top": 24.0
+      },
+      "comparisons": [
+        {
+          "body": "Bottom",
+          "original": 24.0,
+          "replica": 24.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Middle",
+          "original": 72.0,
+          "replica": 72.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Top",
+          "original": 24.0,
+          "replica": 24.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_sweep": {
+    "passed": true,
+    "details": {
+      "name": "fixture_sweep",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 2.5
+        },
+        {
+          "step": "export_script",
+          "time": 2.4
+        },
+        {
+          "step": "execute_export",
+          "time": 2.2
+        },
+        {
+          "step": "capture_replica",
+          "time": 2.5
+        }
+      ],
+      "originalBodies": {
+        "Rail": 180.0,
+        "Bead": 15.708
+      },
+      "exportedLines": 247,
+      "replicaBodies": {
+        "Rail": 180.0,
+        "Bead": 15.708
+      },
+      "comparisons": [
+        {
+          "body": "Bead",
+          "original": 15.708,
+          "replica": 15.708,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Rail",
+          "original": 180.0,
+          "replica": 180.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_sweep_partial": {
+    "passed": true,
+    "details": {
+      "name": "fixture_sweep_partial",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 2.4
+        },
+        {
+          "step": "export_script",
+          "time": 2.5
+        },
+        {
+          "step": "execute_export",
+          "time": 2.2
+        },
+        {
+          "step": "capture_replica",
+          "time": 2.3
+        }
+      ],
+      "originalBodies": {
+        "Bar": 270.0,
+        "Bead": 11.3097
+      },
+      "exportedLines": 247,
+      "replicaBodies": {
+        "Bar": 270.0,
+        "Bead": 11.3097
+      },
+      "comparisons": [
+        {
+          "body": "Bar",
+          "original": 270.0,
+          "replica": 270.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        },
+        {
+          "body": "Bead",
+          "original": 11.3097,
+          "replica": 11.3097,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_two_side_extrude": {
+    "passed": true,
+    "details": {
+      "name": "fixture_two_side_extrude",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 1.9
+        },
+        {
+          "step": "capture_original",
+          "time": 0.9
+        },
+        {
+          "step": "export_script",
+          "time": 1.0
+        },
+        {
+          "step": "execute_export",
+          "time": 1.9
+        },
+        {
+          "step": "capture_replica",
+          "time": 0.9
+        }
+      ],
+      "originalBodies": {
+        "Web": 453.7086
+      },
+      "exportedLines": 200,
+      "replicaBodies": {
+        "Web": 453.7086
+      },
+      "comparisons": [
+        {
+          "body": "Web",
+          "original": 453.7086,
+          "replica": 453.7086,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_xz_face_sketch": {
+    "passed": true,
+    "details": {
+      "name": "fixture_xz_face_sketch",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 1.9
+        },
+        {
+          "step": "capture_original",
+          "time": 4.0
+        },
+        {
+          "step": "export_script",
+          "time": 4.6
+        },
+        {
+          "step": "execute_export",
+          "time": 2.0
+        },
+        {
+          "step": "capture_replica",
+          "time": 4.1
+        }
+      ],
+      "originalBodies": {
+        "Slab": 438.0
+      },
+      "exportedLines": 288,
+      "replicaBodies": {
+        "Slab": 438.0
+      },
+      "comparisons": [
+        {
+          "body": "Slab",
+          "original": 438.0,
+          "replica": 438.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  },
+  "fixture_yz_face_sketch": {
+    "passed": true,
+    "details": {
+      "name": "fixture_yz_face_sketch",
+      "steps": [
+        {
+          "step": "execute_fixture",
+          "time": 2.0
+        },
+        {
+          "step": "capture_original",
+          "time": 4.5
+        },
+        {
+          "step": "export_script",
+          "time": 4.0
+        },
+        {
+          "step": "execute_export",
+          "time": 2.2
+        },
+        {
+          "step": "capture_replica",
+          "time": 4.2
+        }
+      ],
+      "originalBodies": {
+        "Post": 231.0
+      },
+      "exportedLines": 289,
+      "replicaBodies": {
+        "Post": 231.0
+      },
+      "comparisons": [
+        {
+          "body": "Post",
+          "original": 231.0,
+          "replica": 231.0,
+          "deltaPct": 0.0,
+          "bbDelta": 0.0,
+          "bbStatus": "OK",
+          "status": "OK"
+        }
+      ]
+    }
+  }
+}

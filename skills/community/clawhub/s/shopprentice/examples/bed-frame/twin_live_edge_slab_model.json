@@ -1,0 +1,58 @@
+{
+  "deps": [
+    {
+      "body": "Post_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Post_FR",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Post_BL",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Post_BR",
+      "ref": "Post_FR"
+    },
+    {
+      "body": "Rail_Left",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Rail_Right",
+      "ref": "Rail_Left"
+    },
+    {
+      "body": "Rail_Foot",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Rail_Back",
+      "ref": "Post_BL"
+    },
+    {
+      "body": "Ledger_Left",
+      "ref": "Rail_Left"
+    },
+    {
+      "body": "Ledger_Right",
+      "ref": "Rail_Left"
+    },
+    {
+      "body": "Slab",
+      "ref": "Post_BL"
+    },
+    {
+      "body": "BT_1",
+      "ref": "Slab",
+      "replicas": "BT_*"
+    },
+    {
+      "body": "Slat_1",
+      "ref": "Ledger_Left",
+      "replicas": "Slat_*"
+    }
+  ]
+}

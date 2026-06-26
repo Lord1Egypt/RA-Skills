@@ -1,0 +1,304 @@
+{
+  "data": [
+    {
+      "id": "082641a6-5669-4a9c-ba49-022fd257a957-1--233906-1773596743",
+      "type": "on_call_resources",
+      "attributes": {
+        "escalation_policy_id": "082641a6-5669-4a9c-ba49-022fd257a957",
+        "escalation_policy_name": "Core Platform Escalation Policy",
+        "escalation_level": 1,
+        "schedule_id": "b970e79d-db97-4a9d-bbee-81e1615ecdb6",
+        "schedule_name": "Core Platform Primary",
+        "user_id": 233906,
+        "starts_at": "2026-03-15T00:00:00.000-04:00",
+        "ends_at": "2026-03-16T00:00:00.000-04:00"
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "id": "233906",
+            "type": "users"
+          }
+        },
+        "schedule": {
+          "data": {
+            "id": "b970e79d-db97-4a9d-bbee-81e1615ecdb6",
+            "type": "schedules"
+          }
+        },
+        "escalation_policy": {
+          "data": {
+            "id": "082641a6-5669-4a9c-ba49-022fd257a957",
+            "type": "escalation_policies"
+          }
+        }
+      }
+    },
+    {
+      "id": "082641a6-5669-4a9c-ba49-022fd257a957-2-b970e79d-db97-4a9d-bbee-81e1615ecdb6-233906-1773595026",
+      "type": "on_call_resources",
+      "attributes": {
+        "escalation_policy_id": "082641a6-5669-4a9c-ba49-022fd257a957",
+        "escalation_policy_name": "Core Platform Escalation Policy",
+        "escalation_level": 2,
+        "schedule_id": "b970e79d-db97-4a9d-bbee-81e1615ecdb6",
+        "schedule_name": "Core Platform Secondary",
+        "user_id": 233977,
+        "starts_at": "2026-03-15T00:00:00.000-04:00",
+        "ends_at": "2026-03-16T00:00:00.000-04:00"
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "id": "233977",
+            "type": "users"
+          }
+        },
+        "schedule": {
+          "data": {
+            "id": "b970e79d-db97-4a9d-bbee-81e1615ecdb6",
+            "type": "schedules"
+          }
+        },
+        "escalation_policy": {
+          "data": {
+            "id": "082641a6-5669-4a9c-ba49-022fd257a957",
+            "type": "escalation_policies"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "233906",
+      "type": "users",
+      "attributes": {
+        "name": "Nicole Bu",
+        "email": "oncall.engineer@example.com",
+        "phone": null,
+        "phone_2": null,
+        "first_name": "Nicole",
+        "last_name": "Bu",
+        "preferred_name": null,
+        "full_name": "Nicole Bu",
+        "full_name_with_team": "[Windriver] Nicole Bu",
+        "slack_id": null,
+        "time_zone": "America/New_York",
+        "updated_at": "2026-03-15T10:45:42.904-07:00",
+        "created_at": "2026-03-14T19:45:25.797-07:00"
+      },
+      "relationships": {
+        "email_addresses": {
+          "data": [
+            {
+              "id": "3c8d65a9-55f2-4a8e-b1c2-c46483ba7820",
+              "type": "user_email_addresses"
+            }
+          ]
+        },
+        "phone_numbers": {
+          "data": []
+        },
+        "devices": {
+          "data": []
+        },
+        "role": {
+          "data": {
+            "id": "18e84c14-fc7e-4928-abff-5639912a55e8",
+            "type": "roles"
+          }
+        },
+        "on_call_role": {
+          "data": {
+            "id": "24a80041-cf9d-4a84-b812-880a036c4fc8",
+            "type": "on_call_roles"
+          }
+        },
+        "teams": {
+          "data": []
+        },
+        "schedules": {
+          "data": []
+        },
+        "notification_rules": {
+          "data": [
+            {
+              "id": "34c859ca-8f45-4b25-8656-59a7a764439c",
+              "type": "user_notification_rules"
+            },
+            {
+              "id": "bcfd218b-5d46-4282-979d-638fad108623",
+              "type": "user_notification_rules"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "082641a6-5669-4a9c-ba49-022fd257a957",
+      "type": "escalation_policies",
+      "attributes": {
+        "name": "Core Platform Escalation Policy",
+        "description": "",
+        "repeat_count": 1,
+        "created_by_user_id": 233906,
+        "last_updated_by_user_id": 233906,
+        "group_ids": [
+          "33c8cd99-3d7f-414f-9cc3-7b96b73b762f",
+          "d2bf9ffd-acd9-4172-ade8-15b8ac9ceae8"
+        ],
+        "service_ids": [],
+        "business_hours": {
+          "time_zone": null,
+          "days": [
+            "F",
+            "M",
+            "T",
+            "R",
+            "W"
+          ],
+          "start_time": "09:00",
+          "end_time": "17:00"
+        },
+        "created_at": "2026-03-15T10:30:12.545-07:00",
+        "updated_at": "2026-03-15T10:30:12.545-07:00"
+      },
+      "relationships": {
+        "escalation_levels": {
+          "data": [
+            {
+              "id": "76ee2a87-39c3-4f59-ade3-31dfded1597b",
+              "type": "escalation_levels"
+            },
+            {
+              "id": "a1cfe634-72c3-45e6-acb4-22fb07332f1d",
+              "type": "escalation_levels"
+            }
+          ]
+        },
+        "escalation_paths": {
+          "data": [
+            {
+              "id": "e2a38f95-7a89-442a-9050-1500da62f242",
+              "type": "escalation_paths"
+            }
+          ]
+        },
+        "groups": {
+          "data": [
+            {
+              "id": "33c8cd99-3d7f-414f-9cc3-7b96b73b762f",
+              "type": "groups"
+            },
+            {
+              "id": "d2bf9ffd-acd9-4172-ade8-15b8ac9ceae8",
+              "type": "groups"
+            }
+          ]
+        },
+        "services": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": "b970e79d-db97-4a9d-bbee-81e1615ecdb6",
+      "type": "schedules",
+      "attributes": {
+        "name": "Core Platform On-call",
+        "description": null,
+        "all_time_coverage": true,
+        "slack_user_group": {},
+        "slack_channel": null,
+        "owner_user_id": 233906,
+        "owner_group_ids": [
+          "33c8cd99-3d7f-414f-9cc3-7b96b73b762f"
+        ],
+        "created_at": "2026-03-15T10:17:06.063-07:00",
+        "updated_at": "2026-03-15T10:17:06.063-07:00"
+      },
+      "relationships": {
+        "owner_user": {
+          "data": {
+            "id": "233906",
+            "type": "users"
+          }
+        },
+        "escalation_policies": {
+          "data": [
+            {
+              "id": "082641a6-5669-4a9c-ba49-022fd257a957",
+              "type": "escalation_policies"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "233977",
+      "type": "users",
+      "attributes": {
+        "name": "Jordan Patel",
+        "email": "secondary.oncall@example.com",
+        "phone": null,
+        "phone_2": null,
+        "first_name": "Jordan",
+        "last_name": "Patel",
+        "preferred_name": null,
+        "full_name": "Jordan Patel",
+        "full_name_with_team": "[Windriver] Jordan Patel",
+        "slack_id": null,
+        "time_zone": "America/New_York",
+        "updated_at": "2026-03-15T10:45:42.904-07:00",
+        "created_at": "2026-03-14T19:45:25.797-07:00"
+      },
+      "relationships": {
+        "email_addresses": {
+          "data": [
+            {
+              "id": "3c8d65a9-55f2-4a8e-b1c2-c46483ba7820",
+              "type": "user_email_addresses"
+            }
+          ]
+        },
+        "phone_numbers": {
+          "data": []
+        },
+        "devices": {
+          "data": []
+        },
+        "role": {
+          "data": {
+            "id": "18e84c14-fc7e-4928-abff-5639912a55e8",
+            "type": "roles"
+          }
+        },
+        "on_call_role": {
+          "data": {
+            "id": "24a80041-cf9d-4a84-b812-880a036c4fc8",
+            "type": "on_call_roles"
+          }
+        },
+        "teams": {
+          "data": []
+        },
+        "schedules": {
+          "data": []
+        },
+        "notification_rules": {
+          "data": [
+            {
+              "id": "34c859ca-8f45-4b25-8656-59a7a764439c",
+              "type": "user_notification_rules"
+            },
+            {
+              "id": "bcfd218b-5d46-4282-979d-638fad108623",
+              "type": "user_notification_rules"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

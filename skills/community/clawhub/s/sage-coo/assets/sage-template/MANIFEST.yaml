@@ -1,0 +1,41 @@
+schema_version: "0.1"
+language: "zh-CN"
+company_name: "待填写"
+company_short_name: "待填写"
+memory_home: ".sage"
+last_updated: "YYYY-MM-DD"
+
+startup_files:
+  - "INDEX.md"
+
+core_principles:
+  - "公司事实与 Agent 行为逻辑解耦"
+  - "先读索引，再按需读取细节"
+  - "未确认信息先进入 inbox，不直接写入正式档案"
+  - "保持轻量，优先让 1-30 人小公司真的愿意维护"
+
+domains:
+  company_profile: "公司基础信息、品牌、历史"
+  team_and_roles: "团队架构、成员、岗位职责"
+  products_and_services: "产品、服务、定价、交付内容"
+  operations_and_workflows: "运营规则、SOP、核心业务流程"
+  memory_and_insights: "近期决策、会议纪要、待跟进事项、业务洞察"
+  inbox: "临时收集、未确认信息、冲突信息"
+  config: "同步设置、隐私规则、多 Agent 协同规则"
+
+privacy_rules:
+  avoid_storing:
+    - "密码"
+    - "API Key"
+    - "银行账户"
+    - "身份证号"
+    - "私人住址"
+    - "未脱敏的访问链接"
+  contact_fields_are_optional: true
+
+update_policy:
+  ask_before_promoting_uncertain_facts: true
+  write_raw_notes_to: "inbox/capture.md"
+  write_conflicts_to: "inbox/unresolved.md"
+  keep_INDEX_short: true
+

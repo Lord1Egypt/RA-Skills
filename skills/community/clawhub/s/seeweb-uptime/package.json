@@ -1,0 +1,29 @@
+{
+  "name": "seeweb-uptime",
+  "version": "1.0.5",
+  "description": "Official SeeWeb Uptime skill for OpenClaw. Monitors the health of websites, APIs, and scheduled tasks (cron jobs) using the Watch.dog platform.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "seeweb-uptime": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "seeweb-uptime",
+    "monitoring",
+    "uptime",
+    "cron",
+    "mcp",
+    "openclaw",
+    "skill",
+    "clawhub"
+  ],
+  "author": "SeeWeb Uptime Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.22.0"
+  }
+}

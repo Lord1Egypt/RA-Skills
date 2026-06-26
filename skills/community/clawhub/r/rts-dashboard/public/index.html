@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ OPENCLAW 战术指挥中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0a0e14;
+            color: #c0ccdd;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* CRT扫描线效果 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                transparent 50%,
+                rgba(0, 255, 136, 0.05) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 1000;
+            pointer-events: none;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-rows: 60px 1fr 40px;
+            grid-template-columns: 240px 1fr 280px;
+            height: 100vh;
+            gap: 2px;
+            padding: 2px;
+        }
+
+        /* 顶部资源栏 */
+        .top-bar {
+            grid-column: 1 / 4;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff88;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
+            letter-spacing: 2px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 16px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-value {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .clock {
+            font-size: 16px;
+            color: #00ffee;
+        }
+
+        /* 左侧面板 */
+        .left-panel {
+            grid-row: 2;
+            grid-column: 1;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff88;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+        }
+
+        .panel-title {
+            color: #00ff88;
+            font-size: 16px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #00ff88;
+            padding-bottom: 5px;
+        }
+
+        .agents-list {
+            flex: 1;
+        }
+
+        .agent-item {
+            background: rgba(30, 40, 50, 0.7);
+            border: 1px solid #667788;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .agent-item:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+        }
+
+        .agent-item.active {
+            border-color: #00ff88;
+            background: rgba(0, 50, 30, 0.5);
+        }
+
+        .agent-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .pulse-bar {
+            height: 4px;
+            background: linear-gradient(to right, transparent, #00ff88, transparent);
+            border-radius: 2px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .agent-task {
+            font-size: 11px;
+            color: #667788;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .skills-list {
+            flex: 1;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 5px;
+            background: rgba(30, 40, 50, 0.7);
+            border: 1px solid #667788;
+            color: #c0ccdd;
+            margin-bottom: 10px;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            background: rgba(30, 40, 50, 0.7);
+            border: 1px solid #667788;
+            border-radius: 3px;
+            margin-bottom: 3px;
+            font-size: 12px;
+        }
+
+        .skill-category {
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: white;
+        }
+
+        .category-user { background: #aa66ff; }
+        .category-built-in { background: #0077ff; }
+        .category-extension { background: #ffaa00; }
+
+        /* 中央战术地图 */
+        .center-map {
+            grid-row: 2;
+            grid-column: 2;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff88;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .session-bar {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 6px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 4px;
+            overflow-y: auto;
+            max-height: 80%;
+        }
+        .session-bar::-webkit-scrollbar { width: 3px; }
+        .session-bar::-webkit-scrollbar-thumb { background: #004422; border-radius: 2px; }
+        .session-bar-label {
+            font-size: 13px;
+            color: #667788;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+        .session-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: default;
+            min-width: 56px;
+            transition: background 0.2s;
+            position: relative;
+        }
+        .session-icon:hover { background: rgba(0, 255, 136, 0.08); }
+        .session-icon .icon { font-size: 32px; }
+        .session-icon .label { font-size: 12px; color: #667788; white-space: nowrap; margin-top: 3px; }
+        .session-icon.active .icon { filter: drop-shadow(0 0 6px #00ff88); }
+        .session-icon.active .label { color: #00ff88; font-weight: bold; }
+        .session-icon .status-dot {
+            position: absolute;
+            top: 2px;
+            right: 6px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #334;
+        }
+        .session-icon.active .status-dot { background: #00ff88; box-shadow: 0 0 4px #00ff88; }
+        .session-icon.cooling .icon { filter: drop-shadow(0 0 4px #ffaa00); animation: pulse 2s infinite; }
+        .session-icon.cooling .label { color: #ffaa00; }
+        .session-icon.cooling .status-dot { background: #ffaa00; box-shadow: 0 0 4px #ffaa00; }
+
+        .canvas-wrapper { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+        .canvas-wrapper canvas { width: 100%; height: 100%; }
+
+        #map-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .radar-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .minimap { display:none; }
+        .legend { display:none; }
+
+        /* 右侧情报面板 */
+        
+        /* 网关操控面板 */
+        .gateway-panel {
+            display: none;
+            position: absolute;
+            z-index: 100;
+            background: rgba(10, 14, 20, 0.95);
+            border: 1px solid #00ff88;
+            border-radius: 4px;
+            padding: 16px;
+            min-width: 200px;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+        .gateway-panel.visible { display: block; }
+        .gateway-panel-title {
+            font-size: 13px;
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .gateway-panel-status {
+            font-size: 11px;
+            color: #c0ccdd;
+            margin-bottom: 12px;
+        }
+        .gateway-panel-status .online { color: #00ff88; }
+        .gateway-panel-status .offline { color: #ff3344; }
+        .gateway-btn {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            background: #1a2332;
+            border: 1px solid #1e2d3d;
+            color: #c0ccdd;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .gateway-btn:hover { border-color: #00ff88; color: #00ff88; box-shadow: 0 0 8px rgba(0,255,136,0.2); }
+        .gateway-btn.danger { border-color: #422; }
+        .gateway-btn.danger:hover { border-color: #ff3344; color: #ff3344; box-shadow: 0 0 8px rgba(255,51,68,0.2); }
+        .gateway-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .gateway-btn-confirm {
+            display: none;
+            font-size: 10px;
+            color: #ffaa00;
+            margin-top: -4px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .gateway-btn-confirm.visible { display: block; }
+        .gateway-btn-confirm button {
+            background: none; border: 1px solid #ffaa00; color: #ffaa00;
+            font-family: inherit; font-size: 10px; padding: 2px 8px; cursor: pointer; margin: 0 4px;
+        }
+        .gateway-btn-confirm button:hover { background: rgba(255,170,0,0.1); }
+        .gateway-btn-confirm button.cancel { border-color: #667788; color: #667788; }
+
+        .right-panel {
+            grid-row: 2;
+            grid-column: 3;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff88;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .info-section {
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            color: #00ff88;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 12px;
+            margin-bottom: 3px;
+            word-break: break-all;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #222;
+            border: 1px solid #667788;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #00ff88;
+            transition: width 0.3s ease;
+        }
+
+        .log-entry {
+            font-size: 11px;
+            margin-bottom: 2px;
+            padding: 2px;
+            border-left: 2px solid #00ff88;
+            padding-left: 5px;
+        }
+
+        /* 详情面板样式 */
+        .detail-section {
+            margin-bottom: 12px;
+            background: rgba(20, 30, 40, 0.5);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 4px;
+            padding: 8px;
+        }
+        .detail-header {
+            color: #00ff88;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        .detail-item {
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .detail-label {
+            color: #667788;
+            font-size: 10px;
+        }
+        .detail-value {
+            color: #c0ccdd;
+            font-size: 11px;
+        }
+        .detail-value.active { color: #00ff88; }
+        .detail-value.cooldown { color: #ffaa00; }
+        .task-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 170, 0, 0.2);
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 11px;
+            color: #c0ccdd;
+            line-height: 1.5;
+            max-height: 80px;
+            overflow-y: auto;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .skill-tag {
+            background: rgba(170, 102, 255, 0.2);
+            border: 1px solid rgba(170, 102, 255, 0.4);
+            color: #aa66ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        .skill-tag:hover {
+            background: rgba(170, 102, 255, 0.4);
+            border-color: #aa66ff;
+        }
+        .agent-tag {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: rgba(0, 255, 136, 0.4);
+            color: #00ff88;
+        }
+        .agent-tag:hover {
+            background: rgba(0, 255, 136, 0.4);
+            border-color: #00ff88;
+        }
+        .skill-count {
+            color: #667788;
+            font-size: 11px;
+            font-weight: normal;
+        }
+        .messages-container {
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        .msg-line {
+            font-size: 10px;
+            margin-bottom: 4px;
+            line-height: 1.4;
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .msg-line:last-child { border-bottom: none; }
+        .empty-state {
+            text-align: center;
+            padding: 20px 10px;
+            color: #667788;
+        }
+        
+
+
+        /* 底部命令栏 */
+        .bottom-bar {
+            grid-column: 1 / 4;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff88;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            gap: 10px;
+        }
+        .status-indicators {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .chat-bar {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex: 1;
+            max-width: 800px;
+            margin: 0 20px;
+        }
+        .chat-target-display {
+            min-width: 180px;
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chat-input-bar {
+            flex: 1;
+            min-width: 300px;
+        .chat-input-bar {
+            flex: 1;
+            min-width: 200px;
+        .chat-target-display {
+            background: rgba(0, 30, 30, 0.8);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: #00ffee;
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-size: 12px;
+            min-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chat-target-display.active {
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+        .chat-input-bar {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(30, 40, 50, 0.8);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: #c0ccdd;
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-size: 12px;
+            outline: none;
+        }
+        .chat-input-bar:focus {`n            border-color: #00ff88;`n        }`n        .chat-input-bar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn {
+            background: rgba(0, 50, 30, 0.5);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(0, 100, 60, 0.5);
+            box-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+        }
+
+        .status-indicators {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+        }
+
+        .indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff3344;
+        }
+
+        .indicator-dot.online {
+            background: #00ff88;
+            box-shadow: 0 0 5px #00ff88;
+        }
+
+        .cooldown {
+            color: #ffaa00;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.5; }
+        }
+
+        .selected-highlight {
+            border: 2px solid #ffaa00 !important;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.5) !important;
+        }
+
+        .crosshair {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .crosshair::before, .crosshair::after {
+            content: '';
+            position: absolute;
+            background: #ffaa00;
+        }
+
+        .crosshair::before {
+            width: 2px;
+            height: 20px;
+            left: 9px;
+        }
+
+        .crosshair::after {
+            width: 20px;
+            height: 2px;
+            top: 9px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 隐藏的SVG龙虾定义 -->
+    <svg id="lobster-svg" style="display: none;">
+        <symbol id="mechanical-lobster" viewBox="0 0 80 80">
+            <g stroke="#00aaff" stroke-width="2" fill="none">
+                <!-- 身体 -->
+                <ellipse cx="40" cy="40" rx="25" ry="15" fill="#1a3a5a" stroke="#00aaff"/>
+                
+                <!-- 钳子 -->
+                <path d="M15 35 Q5 30 15 25" stroke="#00ff88" stroke-width="3" fill="none"/>
+                <path d="M15 45 Q5 50 15 55" stroke="#00ff88" stroke-width="3" fill="none"/>
+                
+                <!-- 眼睛 -->
+                <circle cx="30" cy="35" r="3" fill="#00ff88" stroke="#00aaff"/>
+                <circle cx="50" cy="35" r="3" fill="#00ff88" stroke="#00aaff"/>
+                
+                <!-- 腿 -->
+                <line x1="20" y1="45" x2="10" y2="55" stroke="#00aaff"/>
+                <line x1="25" y1="48" x2="15" y2="58" stroke="#00aaff"/>
+                <line x1="30" y1="50" x2="20" y2="60" stroke="#00aaff"/>
+                <line x1="50" y1="50" x2="60" y2="60" stroke="#00aaff"/>
+                <line x1="55" y1="48" x2="65" y2="58" stroke="#00aaff"/>
+                <line x1="60" y1="45" x2="70" y2="55" stroke="#00aaff"/>
+                
+                <!-- 电路纹理 -->
+                <path d="M35 30 L38 28 L42 30 L45 28" stroke="#00ff88" stroke-width="1" fill="none"/>
+                <path d="M30 40 L35 38 L40 40 L45 38" stroke="#00ff88" stroke-width="1" fill="none"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <div class="dashboard-container">
+        <!-- 顶部资源栏 -->
+        <div class="top-bar">
+            <div class="logo">⚡ OPENCLAW 战术指挥中心</div>
+            <div class="stats">
+                <div class="stat-item">作战中: <span id="active-count" class="stat-value">0</span>/<span id="total-count" class="stat-value">0</span></div>
+                <div class="stat-item">健康分：<span id="health-score" class="stat-value">--</span></div>
+                <div class="stat-item">定时：<span id="cron-status" class="stat-value">--</span></div>
+                <div class="stat-item">CPU: <span id="cpu-percent" class="stat-value">0%</span></div>
+                <div class="stat-item">内存: <span id="mem-percent" class="stat-value">0%</span></div>
+                <div class="stat-item">网关: <span id="gateway-status" class="stat-value">离线</span></div>
+            </div>
+            <div class="clock" id="current-time">00:00:00</div>
+        </div>
+
+        <!-- 左侧面板 -->
+        <div class="left-panel">
+            <div class="agents-list">
+                <div class="panel-title">作战单位</div>
+                <div id="agents-container"></div>
+            </div>
+            
+            <div class="skills-list">
+                <div class="panel-title">技能库</div>
+                <input type="text" class="search-box" placeholder="搜索技能..." id="skill-search">
+                <div id="skills-container"></div>
+            </div>
+        </div>
+
+        <!-- 中央战术地图 -->
+        <div class="center-map">
+            <!-- Canvas 包装 -->
+            <div class="canvas-wrapper">
+                <!-- 会话状态栏（左侧竖排） -->
+                <div class="session-bar" id="session-bar">
+                    <span class="session-bar-label">💻 会话</span>
+                </div>
+                <canvas id="map-canvas"></canvas>
+                <!-- 网关操控面板 -->
+            <div class="gateway-panel" id="gateway-panel">
+                <div class="gateway-panel-title">⚙ OpenClaw 网关控制</div>
+                <div class="gateway-panel-status" id="gw-panel-status">状态：检测中...</div>
+                <button class="gateway-btn" id="gw-btn-restart" onclick="gatewayAction('restart')">🔄 重启网关</button>
+                <div class="gateway-btn-confirm" id="gw-confirm-restart">
+                    确认重启？<button onclick="gatewayExec('restart')">确认</button><button class="cancel" onclick="cancelGwAction()">取消</button>
+                </div>
+                <button class="gateway-btn danger" id="gw-btn-stop" onclick="gatewayAction('stop')">⏹ 关闭网关</button>
+                <div class="gateway-btn-confirm" id="gw-confirm-stop">
+                    ⚠ 确认关闭？所有 Agent 将停止工作！<button onclick="gatewayExec('stop')">确认</button><button class="cancel" onclick="cancelGwAction()">取消</button>
+                </div>
+            </div>
+            <div class="grid-lines" id="grid-lines" style="display: none;"></div>
+            <div class="radar-effect" id="radar-effect" style="display: none;"></div>
+            <div class="minimap" id="minimap"></div>
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background: #00ffee;"></div> 活跃单位</div>
+                <div class="legend-item"><div class="legend-color" style="background: #ffaa00;"></div> 冷却中</div>
+                <div class="legend-item"><div class="legend-color" style="background: #aa66ff;"></div> 已部署技能</div>
+                <div class="legend-item"><div class="legend-color" style="background: #00ff88;"></div> 网关</div>
+            </div>
+            </div><!-- canvas-wrapper end -->
+        </div>
+
+        <!-- 右侧情报面板 -->
+        <div class="right-panel">
+            <div class="info-section">
+                <div class="info-label">情报中心</div>
+                <div id="selection-info">
+                    <div class="info-value">请选择一个目标查看详情</div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-label">系统状态</div>
+                <div class="info-value">CPU: <span id="sys-cpu-detail">0%</span> (<span id="cpu-cores">0</span>核)</div>
+                <div class="progress-bar"><div class="progress-fill" id="cpu-progress" style="width: 0%;"></div></div>
+                
+                <div class="info-value">内存: <span id="sys-mem-used">0</span>MB / <span id="sys-mem-total">0</span>MB</div>
+                <div class="progress-bar"><div class="progress-fill" id="mem-progress" style="width: 0%;"></div></div>
+                
+                <div class="info-value">运行时间: <span id="sys-uptime">0</span></div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-label">网关</div>
+                <div class="info-value">状态: <span id="gw-status-detail">离线</span></div>
+            </div>
+            
+            <div class="info-section" id="event-log-section">
+                <div class="info-label">事件日志</div>
+                <div id="event-log"></div>
+            </div>
+            <div class="info-section" id="chat-history-section" style="display:none;flex:1;overflow:hidden;flex-direction:column;">
+                <div class="info-label" style="display:flex;justify-content:space-between;align-items:center;">
+                    <span id="chat-history-title">💬 聊天记录</span>
+                    <span style="cursor:pointer;color:#ffaa00;font-size:12px;" onclick="closeChatHistory()">✕ 关闭</span>
+                </div>
+                <div id="chat-history-content" style="flex:1;overflow-y:auto;max-height:calc(100vh - 500px);font-size:11px;line-height:1.6;"></div>
+            </div>
+        </div>
+
+        <!-- 底部命令栏 -->
+        <div class="bottom-bar">
+            <div class="controls">
+                <button class="btn" onclick="manualRefresh()">刷新</button>
+                <button class="btn" onclick="toggleRadar()">雷达</button>
+                <button class="btn" onclick="toggleGrid()">网格</button>
+                <button class="btn" onclick="toggleTrails()">轨迹</button>
+            </div>
+            
+            <!-- 对话输入框 -->
+            <div class="chat-bar">
+                <div id="chat-target-display" class="chat-target-display">未选择对话目标</div>
+                <input type="text" id="chat-input-bar" class="chat-input-bar" placeholder="输入消息..." onkeydown="if(event.key==='Enter')sendChatBarMessage()" disabled>
+                <button class="btn" id="chat-send-btn" onclick="sendChatBarMessage()" disabled>发送</button>
+            </div>
+            
+            <div class="status-indicators">
+                <div class="indicator">
+                    <div class="indicator-dot" id="gateway-indicator"></div>
+                    <span>网关</span>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-dot" id="websocket-indicator"></div>
+                    <span>WebSocket</span>
+                </div>
+                <div class="indicator">
+                    <span id="last-update">从未更新</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let state = {};
+        let ws = null;
+        let selectedAgent = null;
+        let selectedSkill = null;
+        let animationFrameId = null;
+        let lobsterImage = null;
+        let radarAngle = 0;
+        let showRadar = false;
+        let showGrid = false;
+        let showTrails = false;
+        let canvas = null;
+        let ctx = null;
+        let centerX, centerY;
+        const skillParticles = {};
+        const cronParticles = []; // 定时任务粒子
+        
+        // 缩放与平移
+        let zoomLevel = 1.0;
+        let panX = 0, panY = 0;
+        let panInitialized = false;
+        let isPanning = false;
+        let panStartX = 0, panStartY = 0; // { 'skills:agentId': [{name, baseAngle, baseDist, offsetX, offsetY, vx, vy}] }
+        
+        // 本地冷却倒计时缓存
+        const localCooldowns = {};
+        
+        // 每秒递减冷却计时
+        setInterval(() => {
+            const now = Date.now();
+            for (const [id, cd] of Object.entries(localCooldowns)) {
+                if (cd.seconds <= 0) { delete localCooldowns[id]; continue; }
+                const elapsed = Math.floor((now - cd.lastTick) / 1000);
+                if (elapsed >= 1) {
+                    cd.seconds = Math.max(0, cd.seconds - elapsed);
+                    cd.lastTick = now;
+                }
+            }
+        }, 1000);
+        
+        function syncCooldowns(sessions) {
+            if (!sessions) return;
+            const activeIds = new Set();
+            sessions.forEach(s => {
+                if (s.status === 'cooldown' && s.cooldownSeconds > 0) {
+                    const existing = localCooldowns[s.agent];
+                    if (!existing || Math.abs(existing.seconds - s.cooldownSeconds) > 5) {
+                        localCooldowns[s.agent] = { seconds: s.cooldownSeconds, lastTick: Date.now() };
+                    }
+                    activeIds.add(s.agent);
+                }
+            });
+            // 同步会话冷却（用后端返回的 cooldownSeconds）
+            if (state.allSessions) {
+                state.allSessions.forEach(sess => {
+                    const cdKey = 'sess:' + sess.id;
+                    if (sess.active && !sess.locked && sess.cooldownSeconds > 0) {
+                        const existing = localCooldowns[cdKey];
+                        if (!existing || Math.abs(existing.seconds - sess.cooldownSeconds) > 5) {
+                            localCooldowns[cdKey] = { seconds: sess.cooldownSeconds, lastTick: Date.now() };
+                        }
+                        activeIds.add(cdKey);
+                    } else if (sess.locked) {
+                        delete localCooldowns[cdKey];
+                    }
+                });
+            }
+            for (const id of Object.keys(localCooldowns)) {
+                if (!activeIds.has(id) && !id.startsWith('sess:')) delete localCooldowns[id];
+                // 会话冷却到 0 自动清除
+                if (id.startsWith('sess:') && localCooldowns[id] && localCooldowns[id].seconds <= 0) delete localCooldowns[id];
+            }
+        }
+        
+        function getCooldownDisplay(agentId) {
+            const cd = localCooldowns[agentId];
+            if (!cd || cd.seconds <= 0) return null;
+            const m = Math.floor(cd.seconds / 60);
+            const s = cd.seconds % 60;
+            return `${m}:${String(s).padStart(2, '0')}`;
+        }
+        
+        // 初始化
+        function init() {
+            canvas = document.getElementById('map-canvas');
+            ctx = canvas.getContext('2d');
+            
+            // 设置canvas大小
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // 鼠标滚轮缩放（以鼠标位置为中心）
+            canvas.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1; // 乘法缩放更平滑
+                const oldZoom = zoomLevel;
+                const newZoom = Math.max(0.3, Math.min(3.0, zoomLevel * delta));
+                
+                // 鼠标在 canvas 上的坐标
+                const rect = canvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                
+                // 鼠标在世界坐标中的位置（缩放前）
+                const worldX = (mx - panX) / oldZoom;
+                const worldY = (my - panY) / oldZoom;
+                
+                // 更新缩放
+                zoomLevel = newZoom;
+                
+                // 调整平移，使鼠标位置不变
+                panX = mx - worldX * zoomLevel;
+                panY = my - worldY * zoomLevel;
+            }, { passive: false });
+            
+            // 中键/右键拖拽平移
+            canvas.addEventListener('mousedown', (e) => {
+                if (e.button === 1 || e.button === 2) {
+                    isPanning = true;
+                    panStartX = e.clientX - panX;
+                    panStartY = e.clientY - panY;
+                    canvas.style.cursor = 'grabbing';
+                    e.preventDefault();
+                }
+            });
+            canvas.addEventListener('mousemove', (e) => {
+                if (isPanning) {
+                    panX = e.clientX - panStartX;
+                    panY = e.clientY - panStartY;
+                }
+            });
+            canvas.addEventListener('mouseup', () => {
+                isPanning = false;
+                canvas.style.cursor = 'default';
+            });
+            canvas.addEventListener('mouseleave', () => {
+                isPanning = false;
+                canvas.style.cursor = 'default';
+            });
+            canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+            
+            // 双击重置视图
+            canvas.addEventListener('dblclick', () => {
+                zoomLevel = 1.0;
+                panX = 0;
+                panY = 0;
+            });
+            
+            // 点击检测（网关球体 + Agent 节点）
+            canvas.addEventListener('click', (e) => {
+                if (isPanning) return;
+                const rect = canvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                // 转换到世界坐标
+                const wx = (mx - panX) / zoomLevel;
+                const wy = (my - panY) / zoomLevel;
+                
+                // 检测是否点击了网关球体（半径 32）
+                const gdx = wx - centerX;
+                const gdy = wy - centerY;
+                const gdist = Math.sqrt(gdx*gdx + gdy*gdy);
+                
+                // 检测是否点击了 Agent 节点（使用固定位置，忽略动画偏移）
+                let clickedAgent = null;
+                if (state.sessions && state.sessions.length > 0) {
+                    for (let i = 0; i < state.sessions.length; i++) {
+                        const session = state.sessions[i];
+                        const agent = state.agents?.find(a => a.id === session.agent);
+                        if (!agent) continue;
+                        const totalSessions = state.sessions.length;
+                        const angle = (i / totalSessions) * 2 * Math.PI;
+                        const baseDistance = Math.min(260, Math.max(200, 180 + totalSessions * 20));
+                        // 使用平均距离，忽略动画波动
+                        const ax = centerX + Math.cos(angle) * baseDistance;
+                        const ay = centerY + Math.sin(angle) * baseDistance;
+                        const adx = wx - ax;
+                        const ady = wy - ay;
+                        const adist = Math.sqrt(adx*adx + ady*ady);
+                        // 放宽检测半径到 60
+                        if (adist < 60) {
+                            clickedAgent = { agent, session };
+                            break;
+                        }
+                    }
+                }
+                
+                const gwPanel = document.getElementById('gateway-panel');
+                
+                if (gdist < 40) {
+                    // 点击了网关
+                    showGatewayPanel(mx, my);
+                } else if (clickedAgent) {
+                    // 点击了 Agent，加载聊天记录到右侧栏
+                    selectedAgent = { agent: clickedAgent.agent, session: clickedAgent.session };
+                    selectedSkill = null;
+                    setChatTarget(clickedAgent.agent, clickedAgent.session);
+                    updateSelectionInfo();
+                    loadChatHistory(clickedAgent.agent, clickedAgent.session);
+                } else {
+                    // 点击其他地方关闭面板
+                    gwPanel.classList.remove('visible');
+                    cancelGwAction();
+                }
+            });
+            
+            // 左键拖拽也支持平移（更直觉）
+            canvas.addEventListener('mousedown', (e) => {
+                if (e.button === 0 && !e.shiftKey) {
+                    isPanning = true;
+                    panStartX = e.clientX - panX;
+                    panStartY = e.clientY - panY;
+                    canvas.style.cursor = 'grabbing';
+                }
+            });
+            
+            // 加载龙虾SVG为图片对象
+            loadLobsterImage();
+            
+            // 初始化WebSocket
+            connectWebSocket();
+            
+            // 更新时钟
+            updateClock();
+            setInterval(updateClock, 1000);
+            
+            // 开始动画循环
+            startAnimation();
+        }
+        
+        function resizeCanvas() {
+            const wrapper = canvas.parentElement;
+            canvas.width = wrapper.offsetWidth;
+            canvas.height = wrapper.offsetHeight;
+            centerX = canvas.width / 2;
+            centerY = canvas.height / 2;
+        }
+        
+        function loadLobsterImage() {
+            const svgElement = document.querySelector('#mechanical-lobster');
+            const svgData = new XMLSerializer().serializeToString(document.querySelector('#lobster-svg'));
+            const blob = new Blob([svgData], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(blob);
+            
+            // 创建临时图片元素来加载SVG
+            const tempImg = document.createElement('img');
+            tempImg.onload = function() {
+                // 创建一个canvas来渲染SVG为位图
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = 80;
+                tempCanvas.height = 80;
+                const tempCtx = tempCanvas.getContext('2d');
+                
+                // 绘制SVG到临时canvas
+                tempCtx.drawImage(tempImg, 0, 0, 80, 80);
+                
+                // 将临时canvas转换为blob URL
+                tempCanvas.toBlob(function(blob) {
+                    if (blob) {
+                        const finalUrl = URL.createObjectURL(blob);
+                        const finalImg = new Image();
+                        finalImg.onload = function() {
+                            lobsterImage = finalImg;
+                            URL.revokeObjectURL(finalUrl);
+                        };
+                        finalImg.src = finalUrl;
+                    }
+                    URL.revokeObjectURL(url);
+                });
+            };
+            tempImg.src = url;
+        }
+        
+        function connectWebSocket() {
+            const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${location.host}`;
+            
+            ws = new WebSocket(wsUrl);
+            
+            ws.onopen = function(event) {
+                console.log('WebSocket连接已建立');
+                document.getElementById('websocket-indicator').classList.add('online');
+                addRealLog('实时连接已建立');
+            };
+            
+            ws.onmessage = function(event) {
+                try {
+                    const newState = JSON.parse(event.data);
+                    state = newState;
+                    syncCooldowns(state.sessions);
+                    updateUI();
+                    document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+                } catch (error) {
+                    console.error('解析WebSocket消息失败:', error);
+                }
+            };
+            
+            ws.onclose = function(event) {
+                console.log('WebSocket连接已关闭，尝试重连...');
+                document.getElementById('websocket-indicator').classList.remove('online');
+                addRealLog('连接断开，3秒后重连...');
+                setTimeout(connectWebSocket, 3000);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket错误:', error);
+                document.getElementById('websocket-indicator').classList.remove('online');
+            };
+        }
+        
+        function manualRefresh() {
+            fetch('/api/state')
+                .then(response => response.json())
+                .then(data => {
+                    state = data;
+                    updateUI();
+                    document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+                })
+                .catch(error => {
+                    console.error('手动刷新失败:', error);
+                });
+        }
+        
+        function toggleRadar() {
+            showRadar = !showRadar;
+            document.getElementById('radar-effect').style.display = showRadar ? 'block' : 'none';
+        }
+        
+        function toggleGrid() {
+            showGrid = !showGrid;
+            document.getElementById('grid-lines').style.display = showGrid ? 'block' : 'none';
+        }
+        
+        function toggleTrails() {
+            showTrails = !showTrails;
+        }
+        
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = 
+                now.toLocaleTimeString('zh-CN', { hour12: false });
+        }
+        
+        function updateUI() {
+            if (!state || Object.keys(state).length === 0) return;
+            
+            // 更新顶部统计
+            const activeAgents = state.sessions ? state.sessions.length : 0;
+            const totalAgents = state.agents ? state.agents.length : 0;
+            document.getElementById('active-count').textContent = activeAgents;
+            document.getElementById('total-count').textContent = totalAgents;
+            
+            // 计算健康分（借鉴 control-center）
+            let healthScore = 100;
+            if (state.vitals) {
+              if (state.vitals.cpuPercent > 80) healthScore -= 20;
+              else if (state.vitals.cpuPercent > 50) healthScore -= 10;
+              if (state.vitals.memPercent > 85) healthScore -= 20;
+              else if (state.vitals.memPercent > 65) healthScore -= 10;
+            }
+            if (!state.gateway || !state.gateway.online) healthScore -= 30;
+            if (state.cronJobs && state.cronJobs.length > 0) healthScore += 0; // 有定时任务不扣分
+            healthScore = Math.max(0, Math.min(100, healthScore));
+            const healthEl = document.getElementById('health-score');
+            healthEl.textContent = healthScore;
+            healthEl.style.color = healthScore >= 80 ? '#00ff88' : healthScore >= 50 ? '#ffaa00' : '#ff3344';
+            
+            // 定时任务状态
+            const cronCount = state.cronJobs ? state.cronJobs.length : 0;
+            const cronEl = document.getElementById('cron-status');
+            cronEl.textContent = cronCount > 0 ? `${cronCount} 个` : '无';
+            cronEl.style.color = cronCount > 0 ? '#00ff88' : '#667788';
+            
+            // 更新系统资源
+            if (state.vitals) {
+                document.getElementById('cpu-percent').textContent = `${Math.round(state.vitals.cpuPercent)}%`;
+                document.getElementById('mem-percent').textContent = `${Math.round(state.vitals.memPercent)}%`;
+                
+                // 更新详细系统信息
+                document.getElementById('sys-cpu-detail').textContent = `${Math.round(state.vitals.cpuPercent)}%`;
+                document.getElementById('cpu-cores').textContent = state.vitals.cpuCount;
+                document.getElementById('sys-mem-used').textContent = state.vitals.memUsed;
+                document.getElementById('sys-mem-total').textContent = state.vitals.memTotal;
+                document.getElementById('sys-uptime').textContent = formatUptime(state.vitals.uptime);
+                
+                // 更新进度条
+                document.getElementById('cpu-progress').style.width = `${state.vitals.cpuPercent}%`;
+                document.getElementById('mem-progress').style.width = `${state.vitals.memPercent}%`;
+            }
+            
+            // 更新网关状态
+            const gatewayOnline = state.gateway && state.gateway.online;
+            document.getElementById('gateway-status').textContent = gatewayOnline ? '在线' : '离线';
+            document.getElementById('gw-status-detail').textContent = gatewayOnline ? '在线' : '离线';
+            
+            if (gatewayOnline) {
+                document.getElementById('gateway-indicator').classList.add('online');
+            } else {
+                document.getElementById('gateway-indicator').classList.remove('online');
+            }
+            
+            // 更新代理列表
+            updateAgentsList();
+
+            // 更新会话栏
+            updateSessionBar();
+
+            // 更新技能列表
+            updateSkillsList();
+            
+            // 更新事件日志（真实事件）
+            updateEventLog();
+            
+            // 检测状态变化并记录
+            if (typeof updateUI._prevSessionCount === 'undefined') {
+                updateUI._prevSessionCount = 0;
+                updateUI._prevGwOnline = null;
+            }
+            const curCount = state.sessions?.length || 0;
+            if (curCount !== updateUI._prevSessionCount) {
+                if (curCount > updateUI._prevSessionCount) {
+                    const newSessions = state.sessions.slice(updateUI._prevSessionCount);
+                    newSessions.forEach(s => addRealLog(`Agent ${s.agent} 开始作战`));
+                } else if (updateUI._prevSessionCount > 0 && curCount < updateUI._prevSessionCount) {
+                    addRealLog(`有 Agent 停止作战 (${updateUI._prevSessionCount} → ${curCount})`);
+                }
+                updateUI._prevSessionCount = curCount;
+            }
+            const gwNow = state.gateway?.online;
+            if (updateUI._prevGwOnline !== null && gwNow !== updateUI._prevGwOnline) {
+                addRealLog(gwNow ? '网关恢复在线' : '⚠ 网关离线！');
+            }
+            updateUI._prevGwOnline = gwNow;
+        }
+        
+        function updateAgentsList() {
+            const container = document.getElementById('agents-container');
+            container.innerHTML = '';
+            
+            if (!state.agents) return;
+            
+            state.agents.forEach(agent => {
+                const isActive = state.sessions && state.sessions.some(session => session.agent === agent.id);
+                const session = isActive ? state.sessions.find(s => s.agent === agent.id) : null;
+                
+                const agentDiv = document.createElement('div');
+                agentDiv.className = `agent-item ${isActive ? 'active' : ''}`;
+                agentDiv.onclick = () => selectAgent(agent, session);
+                
+                let statusText = '待命';
+                let statusClass = '';
+                
+                if (isActive && session) {
+                    if (session.status === 'cooldown') {
+                        const cdDisplay = getCooldownDisplay(agent.id) || '0:00';
+                        statusText = `⏱ 冷却中 ${cdDisplay}`;
+                        statusClass = 'cooldown';
+                    } else {
+                        statusText = '⚡ 作战中';
+                    }
+                }
+                
+                agentDiv.innerHTML = `
+                    <div class="agent-status">
+                        <span>${agent.name || agent.id}</span>
+                        <span class="${statusClass}">${statusText}</span>
+                    </div>
+                    ${isActive && session?.currentTask ? `<div class="agent-task">${truncateText(session.currentTask, 50)}</div>` : ''}
+                    ${isActive ? '<div class="pulse-bar"></div>' : ''}
+                `;
+                
+                container.appendChild(agentDiv);
+            });
+        }
+        
+        function updateSessionBar() {
+            const bar = document.getElementById('session-bar');
+            if (!state.allSessions) return;
+            
+            bar.innerHTML = '<span class="session-bar-label">💻 会话</span>';
+            
+            state.allSessions.forEach(sess => {
+                const div = document.createElement('div');
+                const isCooling = sess.active && !sess.locked;
+                div.className = `session-icon ${sess.locked ? 'active' : ''} ${isCooling ? 'cooling' : ''}`;
+                
+                let timeText;
+                if (sess.locked) {
+                    timeText = '活跃';
+                } else if (sess.active) {
+                    // 活跃但没有 lock = 冷却中，用本地倒计时
+                    const cdKey = 'sess:' + sess.id;
+                    const cd = localCooldowns[cdKey];
+                    if (cd && cd.seconds > 0) {
+                        const m = Math.floor(cd.seconds / 60);
+                        const s = cd.seconds % 60;
+                        timeText = `冷却 ${m}:${String(s).padStart(2,'0')}`;
+                    } else {
+                        timeText = '冷却中';
+                    }
+                } else if (sess.minutesAgo < 60) {
+                    timeText = `${sess.minutesAgo}分前`;
+                } else if (sess.minutesAgo < 1440) {
+                    timeText = `${Math.floor(sess.minutesAgo / 60)}时前`;
+                } else {
+                    timeText = `${Math.floor(sess.minutesAgo / 1440)}天前`;
+                }
+                
+                const chTag = sess.channel && sess.channel !== '--' ? `·${sess.channel}` : '';
+                div.innerHTML = `
+                    <div class="status-dot"></div>
+                    <span class="icon">🖥️</span>
+                    <span class="label">${sess.agent}${chTag}·${timeText}</span>
+                `;
+                div.title = `${sess.agent} | ${sess.channel} | ${sess.id} | ${sess.sizeKB}KB`;
+                div.style.cursor = 'pointer';
+                div.onclick = () => {
+                    const agent = state.agents?.find(a => a.id === sess.agent);
+                    if (agent) setChatTarget(agent, sess);
+                };
+                bar.appendChild(div);
+            });
+        }
+        
+        function updateSkillsList() {
+            const container = document.getElementById('skills-container');
+            const searchInput = document.getElementById('skill-search');
+            
+            // 过滤技能
+            let filteredSkills = state.skills || [];
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            if (searchTerm) {
+                filteredSkills = filteredSkills.filter(skill => 
+                    skill.name.toLowerCase().includes(searchTerm) || 
+                    skill.id.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            container.innerHTML = '';
+            
+            filteredSkills.forEach(skill => {
+                const skillDiv = document.createElement('div');
+                skillDiv.className = 'skill-item';
+                skillDiv.onclick = () => selectSkill(skill);
+                
+                let categoryClass = 'category-user';
+                let categoryName = '用户';
+                
+                if (skill.category === '内置') {
+                    categoryClass = 'category-built-in';
+                    categoryName = '内置';
+                } else if (skill.category === '扩展') {
+                    categoryClass = 'category-extension';
+                    categoryName = '扩展';
+                }
+                
+                skillDiv.innerHTML = `
+                    <span>${skill.name || skill.id}</span>
+                    <span class="skill-category ${categoryClass}">${categoryName}</span>
+                `;
+                
+                container.appendChild(skillDiv);
+            });
+        }
+        
+        function truncateText(text, maxLength) {
+            if (!text) return '';
+            return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+        }
+        
+        function formatUptime(seconds) {
+            const d = Math.floor(seconds / 86400);
+            const h = Math.floor((seconds % 86400) / 3600);
+            const m = Math.floor((seconds % 3600) / 60);
+            if (d > 0) return `${d}天${h}时${m}分`;
+            if (h > 0) return `${h}时${m}分`;
+            return `${m}分钟`;
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function getSkillDescription(skillId) {
+            const descriptions = {
+                'android-adb': 'Android 设备控制和 UI 自动化，支持设备发现、应用管理、点击滑动等操作',
+                'baoyu-image-gen': 'AI 图像生成，支持文本生成图片、参考图、多种宽高比',
+                'douyin-video': '抖音无水印视频下载和文案提取',
+                'douyin-viral-content': '抖音爆款文案智能生成器，自动分析优化达到 5 星标准',
+                'find-skills': '帮助发现和安装 OpenClaw 技能',
+                'local-rag': '本地 RAG 检索增强生成系统，支持文档索引和语义检索',
+                'self-improving-agent': '自优化智能体，基于反馈自动优化 RAG 和 Agent 行为',
+                'scrapy-web-scraping': '使用 Scrapy 框架构建网络爬虫',
+                'semi-design-guide': 'Semi Design 组件使用指南和代码生成',
+                'voice-chat': '语音交互，支持语音输入和 TTS 输出'
+            };
+            return descriptions[skillId] || '暂无描述信息';
+        }
+        
+        function getSkillUsage(skillId) {
+            const usages = {
+                'android-adb': '• 移动应用测试自动化<br/>• Android 设备批量管理<br/>• UI 自动化操作',
+                'baoyu-image-gen': '• 生成社交媒体配图<br/>• 创作概念图<br/>• 快速原型设计',
+                'douyin-video': '• 保存抖音视频<br/>• 提取视频文案<br/>• 内容分析',
+                'douyin-viral-content': '• 创作短视频脚本<br/>• 生成带货文案<br/>• 批量生产内容',
+                'local-rag': '• 私有文档问答<br/>• 知识库检索<br/>• 隐私安全的 AI 助手',
+                'self-improving-agent': '• 持续优化的问答系统<br/>• 自适应 Agent 行为<br/>• 减少人工调优'
+            };
+            return usages[skillId] || '• 通用功能<br/>• 参考技能文档';
+        }
+        
+        function getRelatedAgents(skillId) {
+            // 从实际的 agents 数据中查找哪些 agent 部署了这个技能
+            const related = [];
+            if (state && state.agents) {
+                for (const agent of state.agents) {
+                    // 检查 agent 是否有 deployedSkills 配置
+                    if (agent.deployedSkills && agent.deployedSkills.includes(skillId)) {
+                        related.push(agent.name || agent.id);
+                    }
+                }
+            }
+            return related;
+        }
+        
+        function selectAgent(agent, session) {
+            selectedAgent = { agent, session };
+            selectedSkill = null;
+            
+            // 高亮选中的代理
+            document.querySelectorAll('.agent-item').forEach(item => {
+                item.classList.remove('selected-highlight');
+            });
+            event.target.closest('.agent-item').classList.add('selected-highlight');
+            
+            // 清除技能高亮
+            document.querySelectorAll('.skill-item').forEach(item => {
+                item.classList.remove('selected-highlight');
+            });
+            
+            // 设置为对话目标
+            setChatTarget(agent, session);
+            
+            updateSelectionInfo();
+        }
+        
+        function selectSkill(skill) {
+            selectedSkill = skill;
+            selectedAgent = null;
+            
+            // 高亮选中的技能
+            document.querySelectorAll('.skill-item').forEach(item => {
+                item.classList.remove('selected-highlight');
+            });
+            event.target.closest('.skill-item').classList.add('selected-highlight');
+            
+            // 清除代理高亮
+            document.querySelectorAll('.agent-item').forEach(item => {
+                item.classList.remove('selected-highlight');
+            });
+            
+            updateSelectionInfo();
+        }
+        
+                function updateSelectionInfo() {
+            const infoContainer = document.getElementById('selection-info');
+            
+            if (selectedAgent) {
+                const { agent, session } = selectedAgent;
+                const skillsList = (session?.skills && session.skills.length > 0) 
+                    ? session.skills.map(s => '<span class="skill-tag">' + s + '</span>').join('')
+                    : '<span style="color:#667788;font-size:11px">无</span>';
+                
+                const recentMsgs = (session?.recentMessages && session.recentMessages.length > 0)
+                    ? session.recentMessages.slice(-5).map(m => {
+                        const roleColor = m.role === 'user' ? '#ffaa00' : '#00ffee';
+                        const roleText = m.role === 'user' ? '👤 用户' : '🤖 AI';
+                        let text = escapeHtml(m.text).substring(0, 80);
+                        if (m.text.length > 80) text += '...';
+                        return '<div class="msg-line"><span style="color:' + roleColor + '">' + roleText + ':</span> ' + text + '</div>';
+                      }).join('')
+                    : '<div style="color:#667788;font-size:11px">暂无对话</div>';
+                
+                infoContainer.innerHTML = `
+                    <div class="detail-section">
+                        <div class="detail-header">📋 基本信息</div>
+                        <div class="detail-grid">
+                            <div class="detail-item"><span class="detail-label">名称</span> <span class="detail-value">${agent.name || agent.id}</span></div>
+                            <div class="detail-item"><span class="detail-label">状态</span> <span class="detail-value ${session?.status === 'cooldown' ? 'cooldown' : 'active'}">${session ? (session.status === 'cooldown' ? '🕐 冷却中' : '⚡ 执行中') : '⏸ 待命'}</span></div>
+                            <div class="detail-item"><span class="detail-label">模型</span> <span class="detail-value" style="font-size:10px">${agent.model || '--'}</span></div>
+                            <div class="detail-item"><span class="detail-label">渠道</span> <span class="detail-value">${session ? session.channel : '--'}</span></div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-header">📝 当前任务</div>
+                        <div class="task-box">${session?.currentTask ? escapeHtml(session.currentTask) : '<span style="color:#667788">暂无任务</span>'}</div>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-header">🔧 已部署技能 <span class="skill-count">(${session?.skills?.length || 0})</span></div>
+                        <div class="skills-container">${skillsList}</div>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-header">💬 最近对话</div>
+                        <div class="messages-container">${recentMsgs}</div>
+                    </div>
+                `;
+            } else if (selectedSkill) {
+                const skillDesc = getSkillDescription(selectedSkill.id);
+                const skillUsage = getSkillUsage(selectedSkill.id);
+                const relatedAgents = getRelatedAgents(selectedSkill.id);
+                
+                infoContainer.innerHTML = `
+                    <div class="detail-section">
+                        <div class="detail-header">📋 基本信息</div>
+                        <div class="detail-grid">
+                            <div class="detail-item"><span class="detail-label">名称</span> <span class="detail-value">${selectedSkill.name || selectedSkill.id}</span></div>
+                            <div class="detail-item"><span class="detail-label">分类</span> <span class="detail-value">${selectedSkill.category || '用户'}</span></div>
+                            <div class="detail-item"><span class="detail-label">ID</span> <span class="detail-value" style="font-size:10px;word-break:break-all">${selectedSkill.id}</span></div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-header">📖 描述</div>
+                        <div class="task-box">${skillDesc}</div>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-header">🎯 使用场景</div>
+                        <div class="task-box" style="font-size:10px;line-height:1.6">${skillUsage}</div>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-header">🤖 相关 Agent <span class="skill-count">(${relatedAgents.length})</span></div>
+                        <div class="skills-container">
+                            ${relatedAgents.length > 0 
+                                ? relatedAgents.map(a => '<span class="skill-tag agent-tag">' + a + '</span>').join('')
+                                : '<span style="color:#667788;font-size:11px">暂无</span>'}
+                        </div>
+                    </div>
+                `;
+            } else {
+                infoContainer.innerHTML = '<div class="empty-state"><div style="font-size:48px;margin-bottom:10px">🎯</div><div style="color:#667788;margin-bottom:5px">请选择一个目标查看详情</div><div style="color:#445566;font-size:12px">点击左侧 Agent 或技能<br/>或点击地图中的节点</div></div>';
+            }
+        }
+        
+        const realEventLogs = [];
+        
+        function addRealLog(msg) {
+            const time = new Date().toLocaleTimeString('zh-CN');
+            realEventLogs.unshift({ time, msg });
+            if (realEventLogs.length > 20) realEventLogs.pop();
+            renderEventLog();
+        }
+        
+        function renderEventLog() {
+            const logContainer = document.getElementById('event-log');
+            logContainer.innerHTML = '';
+            realEventLogs.forEach(log => {
+                const entry = document.createElement('div');
+                entry.className = 'log-entry';
+                entry.textContent = `[${log.time}] ${log.msg}`;
+                logContainer.appendChild(entry);
+            });
+        }
+        
+        async function loadChatHistory(agent, session) {
+            const logSection = document.getElementById('event-log-section');
+            const histSection = document.getElementById('chat-history-section');
+            const titleEl = document.getElementById('chat-history-title');
+            const contentEl = document.getElementById('chat-history-content');
+            
+            logSection.style.display = 'none';
+            histSection.style.display = 'flex';
+            titleEl.textContent = '💬 ' + (agent.name || agent.id) + ' 聊天记录';
+            contentEl.innerHTML = '<div style="color:#667788;padding:10px;">加载中...</div>';
+            
+            try {
+                const resp = await fetch('/api/session-history?agent=' + encodeURIComponent(session.agent) + '&sessionId=' + encodeURIComponent(session.sessionId));
+                const data = await resp.json();
+                if (!data.messages || data.messages.length === 0) {
+                    contentEl.innerHTML = '<div style="color:#667788;padding:10px;">暂无聊天记录</div>';
+                    return;
+                }
+                let html = '';
+                for (const msg of data.messages) {
+                    const roleColor = msg.role === 'user' ? '#ffaa00' : '#00ffee';
+                    const roleLabel = msg.role === 'user' ? '👤 用户' : '🤖 AI';
+                    const text = escapeHtml(msg.text).replace(/\n/g, '<br>');
+                    html += '<div style="margin-bottom:8px;padding:6px 8px;border-left:2px solid ' + roleColor + ';background:rgba(0,0,0,0.3);border-radius:0 4px 4px 0;">'
+                         + '<div style="color:' + roleColor + ';font-size:10px;margin-bottom:3px;font-weight:bold;">' + roleLabel + '</div>'
+                         + '<div style="color:#ccddeedd;word-break:break-word;">' + text + '</div>'
+                         + '</div>';
+                }
+                contentEl.innerHTML = html;
+                contentEl.scrollTop = contentEl.scrollHeight;
+            } catch (e) {
+                contentEl.innerHTML = '<div style="color:#ff4444;padding:10px;">加载失败: ' + escapeHtml(e.message) + '</div>';
+            }
+        }
+        
+        function closeChatHistory() {
+            document.getElementById('event-log-section').style.display = '';
+            document.getElementById('chat-history-section').style.display = 'none';
+        }
+        
+        function updateEventLog() {
+            // 基于真实状态变化生成日志（不再用模拟数据）
+            if (!state) return;
+            
+            // 首次加载
+            if (realEventLogs.length === 0) {
+                addRealLog('⚡ 战术指挥中心已上线');
+            }
+        }
+        
+        function startAnimation() {
+            animate();
+        }
+        
+        function animate() {
+            // 清除画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 初始化平移（首次居中）
+            if (!panInitialized) {
+                panX = 0;
+                panY = 0;
+                panInitialized = true;
+            }
+            
+            // 应用缩放和平移
+            ctx.save();
+            ctx.translate(panX, panY);
+            ctx.scale(zoomLevel, zoomLevel);
+            
+            // 更新中心点
+            centerX = canvas.width / 2;
+            centerY = canvas.height / 2;
+            
+            // 更新雷达角度
+            if (showRadar) {
+                radarAngle += 0.02;
+            }
+            
+            // 绘制雷达效果
+            if (showRadar) {
+                drawRadarEffect();
+            }
+            
+            // 绘制网关节点
+            drawGatewayNode();
+            
+            // 绘制定时任务（地图上部随机游走）
+            drawCronJobs();
+            
+            // 绘制活跃代理节点
+            if (state.sessions && state.sessions.length > 0) {
+                state.sessions.forEach((session, index) => {
+                    let agent = state.agents?.find(a => a.id === session.agent);
+                    // subagent 可能不在 agents 列表中，创建虚拟 agent 对象
+                    if (!agent) {
+                        agent = { id: session.agent, name: session.agent, model: session.model || '--' };
+                    }
+                    drawAgentNode(session, agent, index);
+                });
+            } else {
+                // 如果没有活跃代理，显示提示文字
+                ctx.fillStyle = '#667788';
+                ctx.font = '16px monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText('无活跃作战单位', centerX, centerY);
+            }
+            
+            // 继续动画循环
+            // 恢复变换
+            ctx.restore();
+            
+            // 缩放指示器（不受变换影响）
+            if (zoomLevel !== 1.0) {
+                ctx.fillStyle = 'rgba(0,255,136,0.5)';
+                ctx.font = '11px monospace';
+                ctx.textAlign = 'right';
+                ctx.fillText(`${Math.round(zoomLevel * 100)}%`, canvas.width - 10, 20);
+            }
+            
+            animationFrameId = requestAnimationFrame(animate);
+        }
+        
+        function drawCronJobs() {
+            const jobs = state.cronJobs || [];
+            if (jobs.length === 0) return;
+            
+            // 初始化/同步粒子
+            while (cronParticles.length < jobs.length) {
+                cronParticles.push({
+                    x: 100 + Math.random() * (canvas.width - 200),
+                    y: 30 + Math.random() * (canvas.height * 0.25),
+                    vx: (Math.random() - 0.5) * 0.8,
+                    vy: (Math.random() - 0.5) * 0.4
+                });
+            }
+            
+            const topBound = 20;
+            const bottomBound = canvas.height * 0.3;
+            const leftBound = 60;
+            const rightBound = canvas.width - 60;
+            
+            for (let i = 0; i < jobs.length; i++) {
+                const job = jobs[i];
+                const p = cronParticles[i];
+                
+                // 随机游走
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                // 边界反弹
+                if (p.x < leftBound || p.x > rightBound) p.vx *= -1;
+                if (p.y < topBound || p.y > bottomBound) p.vy *= -1;
+                p.x = Math.max(leftBound, Math.min(rightBound, p.x));
+                p.y = Math.max(topBound, Math.min(bottomBound, p.y));
+                
+                // 偶尔变方向
+                if (Math.random() < 0.005) { p.vx = (Math.random() - 0.5) * 0.8; p.vy = (Math.random() - 0.5) * 0.4; }
+                
+                const enabled = job.enabled !== false;
+                const color = enabled ? '#00ff88' : '#667788';
+                const bgColor = enabled ? 'rgba(0, 50, 30, 0.7)' : 'rgba(30, 30, 30, 0.7)';
+                
+                // 图标
+                ctx.font = '22px serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('⏰', p.x, p.y);
+                
+                // 任务名
+                ctx.font = '12px monospace';
+                ctx.fillStyle = color;
+                ctx.textAlign = 'center';
+                const name = job.name || 'unnamed';
+                ctx.fillText(name.length > 15 ? name.substring(0, 15) + '..' : name, p.x, p.y + 18);
+                
+                // 状态 + 调度信息
+                const statusText = enabled ? '✓ 启用' : '✗ 禁用';
+                const schedText = job.schedule || '--';
+                ctx.font = '10px monospace';
+                ctx.fillStyle = enabled ? 'rgba(0, 255, 136, 0.6)' : 'rgba(102, 119, 136, 0.6)';
+                ctx.fillText(statusText + ' · ' + schedText, p.x, p.y + 32);
+                
+                // 启用状态的微光效果
+                if (enabled) {
+                    const glowR = 20 + Math.sin(Date.now() / 1000 + i) * 3;
+                    const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
+                    glow.addColorStop(0, 'rgba(0, 255, 136, 0.08)');
+                    glow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                    ctx.fillStyle = glow;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+        
+        function drawRadarEffect() {
+            // 绘制同心圆
+            ctx.strokeStyle = 'rgba(0, 255, 136, 0.2)';
+            ctx.lineWidth = 1;
+            
+            for (let i = 1; i <= 5; i++) {
+                const radius = (canvas.width / 4) * i * 0.2;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+            
+            // 绘制旋转扫描线
+            ctx.strokeStyle = 'rgba(0, 255, 136, 0.6)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            const endX = centerX + Math.cos(radarAngle) * (canvas.width / 2);
+            const endY = centerY + Math.sin(radarAngle) * (canvas.height / 2);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+        }
+        
+        function drawGatewayNode() {
+            const x = centerX;
+            const y = centerY;
+            const gwOnline = state.gateway && state.gateway.online;
+            const baseColor = gwOnline ? [0, 255, 136] : [255, 51, 68]; // 绿/红
+            const R = 32; // 球体半径
+            const t = Date.now() / 1000;
+            
+            // === 伪 3D 球体 ===
+            // 球体主体（径向渐变模拟光照）
+            const sphereGrad = ctx.createRadialGradient(x - R*0.3, y - R*0.3, R*0.05, x, y, R);
+            sphereGrad.addColorStop(0, `rgba(${baseColor[0]+80},${Math.min(255,baseColor[1]+80)},${baseColor[2]+80},0.95)`); // 高光
+            sphereGrad.addColorStop(0.4, `rgba(${baseColor[0]},${baseColor[1]},${baseColor[2]},0.8)`); // 主色
+            sphereGrad.addColorStop(0.7, `rgba(${Math.floor(baseColor[0]*0.4)},${Math.floor(baseColor[1]*0.4)},${Math.floor(baseColor[2]*0.4)},0.85)`); // 暗部
+            sphereGrad.addColorStop(1, `rgba(${Math.floor(baseColor[0]*0.15)},${Math.floor(baseColor[1]*0.15)},${Math.floor(baseColor[2]*0.15)},0.6)`); // 边缘
+            
+            ctx.beginPath();
+            ctx.arc(x, y, R, 0, Math.PI * 2);
+            ctx.fillStyle = sphereGrad;
+            ctx.fill();
+            
+            // 球体表面经纬线（模拟 3D 旋转）
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(x, y, R, 0, Math.PI * 2);
+            ctx.clip();
+            
+            // 纬线（水平椭圆）
+            ctx.strokeStyle = `rgba(${baseColor[0]},${baseColor[1]},${baseColor[2]},0.15)`;
+            ctx.lineWidth = 0.8;
+            for (let lat = -2; lat <= 2; lat++) {
+                const ly = y + lat * R * 0.3;
+                const rx = Math.sqrt(Math.max(0, R*R - (ly-y)*(ly-y)));
+                if (rx > 2) {
+                    ctx.beginPath();
+                    ctx.ellipse(x, ly, rx, rx * 0.15, 0, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+            
+            // 经线（垂直椭圆，旋转）
+            for (let i = 0; i < 3; i++) {
+                const angle = t * 0.3 + i * Math.PI / 3;
+                ctx.beginPath();
+                ctx.ellipse(x, y, R * Math.abs(Math.cos(angle)), R, 0, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(${baseColor[0]},${baseColor[1]},${baseColor[2]},${0.08 + 0.05 * Math.abs(Math.cos(angle))})`;
+                ctx.stroke();
+            }
+            ctx.restore();
+            
+            // 高光点
+            const hlGrad = ctx.createRadialGradient(x - R*0.25, y - R*0.25, 0, x - R*0.25, y - R*0.25, R*0.35);
+            hlGrad.addColorStop(0, 'rgba(255,255,255,0.4)');
+            hlGrad.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.beginPath();
+            ctx.arc(x - R*0.25, y - R*0.25, R*0.35, 0, Math.PI * 2);
+            ctx.fillStyle = hlGrad;
+            ctx.fill();
+            
+            // 外圈光晕
+            const glowGrad = ctx.createRadialGradient(x, y, R, x, y, R + 15);
+            glowGrad.addColorStop(0, `rgba(${baseColor[0]},${baseColor[1]},${baseColor[2]},0.2)`);
+            glowGrad.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.beginPath();
+            ctx.arc(x, y, R + 15, 0, Math.PI * 2);
+            ctx.fillStyle = glowGrad;
+            ctx.fill();
+            
+            // 旋转光环（像土星环）
+            ctx.strokeStyle = `rgba(${baseColor[0]},${baseColor[1]},${baseColor[2]},0.25)`;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.ellipse(x, y, R + 18, (R + 18) * 0.3, t * 0.2, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // 脉冲外圈
+            const pulseR = R + 22 + Math.sin(t * 2) * 3;
+            ctx.strokeStyle = `rgba(${baseColor[0]},${baseColor[1]},${baseColor[2]},0.12)`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(x, y, pulseR, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // 标注
+            const statusText = gwOnline ? '● OpenClaw 在线' : '○ OpenClaw 离线';
+            ctx.fillStyle = `rgba(${baseColor[0]},${baseColor[1]},${baseColor[2]},0.9)`;
+            ctx.font = 'bold 11px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(statusText, x, y + R + 30);
+        }
+        
+        function drawAgentNode(session, agent, index) {
+            // 计算代理节点位置（围绕网关分布）
+            const totalSessions = state.sessions.length;
+            const angle = (index / totalSessions) * 2 * Math.PI;
+            const baseDistance = Math.min(260, Math.max(200, 180 + totalSessions * 20)); // agent 越多距离越远，最多260
+            const distance = baseDistance + Math.sin(Date.now() / 2000 + index) * 20; // 微漂移
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance;
+            
+            // 冷却状态检测（提前，供连接线使用）
+            const isCooldown = session.status === 'cooldown';
+            
+            // 绘制连接线（电子脉冲效果）
+            const dx = x - centerX, dy = y - centerY;
+            const lineLen = Math.sqrt(dx * dx + dy * dy);
+            const ux = dx / lineLen, uy = dy / lineLen; // 单位向量
+            
+            // 底层暗线
+            ctx.strokeStyle = 'rgba(0, 255, 238, 0.08)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            // 电子脉冲粒子（多个沿线移动）
+            const t = Date.now();
+            const pulseCount = 3;
+            for (let p = 0; p < pulseCount; p++) {
+                const phase = ((t / 800 + p / pulseCount) % 1); // 0~1 沿线位置
+                const px = centerX + dx * phase;
+                const py = centerY + dy * phase;
+                
+                // 脉冲光点
+                const pulseGrad = ctx.createRadialGradient(px, py, 0, px, py, 8);
+                pulseGrad.addColorStop(0, isCooldown ? 'rgba(255,170,0,0.8)' : 'rgba(0,255,238,0.8)');
+                pulseGrad.addColorStop(0.5, isCooldown ? 'rgba(255,170,0,0.2)' : 'rgba(0,255,238,0.2)');
+                pulseGrad.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = pulseGrad;
+                ctx.beginPath();
+                ctx.arc(px, py, 8, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 脉冲核心亮点
+                ctx.fillStyle = isCooldown ? '#ffaa00' : '#00ffee';
+                ctx.beginPath();
+                ctx.arc(px, py, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // 沿线的微光段（模拟电流流动）
+            const segLen = 20;
+            const segCount = Math.floor(lineLen / segLen);
+            for (let s = 0; s < segCount; s++) {
+                const phase = ((t / 1200 + s * 0.15) % 1);
+                const brightness = 0.05 + 0.15 * Math.sin(phase * Math.PI);
+                const sx1 = centerX + ux * s * segLen;
+                const sy1 = centerY + uy * s * segLen;
+                const sx2 = centerX + ux * Math.min((s + 0.6) * segLen, lineLen);
+                const sy2 = centerY + uy * Math.min((s + 0.6) * segLen, lineLen);
+                ctx.strokeStyle = isCooldown ? `rgba(255,170,0,${brightness})` : `rgba(0,255,238,${brightness})`;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(sx1, sy1);
+                ctx.lineTo(sx2, sy2);
+                ctx.stroke();
+            }
+            
+            // 如果是冷却状态，添加闪烁效果
+            if (isCooldown) {
+                const flashIntensity = 0.5 + 0.5 * Math.sin(Date.now() / 200);
+                ctx.shadowColor = `rgba(255, 170, 0, ${flashIntensity})`;
+                ctx.shadowBlur = 10;
+            }
+            
+            // 绘制 Agent 图标（🤖 emoji）
+            const size = isCooldown ? 24 : 20;
+            ctx.font = `${size * 2}px serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            if (isCooldown) {
+                ctx.globalAlpha = 0.5 + 0.5 * Math.sin(Date.now() / 200);
+            }
+            ctx.fillText(session.isSubagent ? '⚙️' : '🤖', x, y);
+            ctx.globalAlpha = 1;
+            
+            // 重置阴影
+            ctx.shadowBlur = 0;
+            
+            // 模型标签（图标正上方紧贴，🧠 + 模型名）
+            const _sm = session.model, _am = agent.model;
+            const modelRaw = (_sm && _sm !== '--') ? _sm : ((_am && _am !== '--') ? _am : '');
+            if (modelRaw) {
+                let modelShort = modelRaw.includes('/') ? modelRaw.split('/').pop() : modelRaw;
+                if (modelShort.length > 18) modelShort = modelShort.substring(0, 16) + '\u2026';
+                ctx.fillStyle = isCooldown ? '#ffaa00bb' : '#88ccffcc';
+                ctx.font = '10px monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText('\uD83E\uDDE0 ' + modelShort, x, y - size - 8);
+            }
+            
+            // Agent 名称（图标下方）
+            ctx.fillStyle = isCooldown ? '#ffaa00cc' : '#00ffeedd';
+            ctx.font = 'bold 13px monospace';
+            ctx.textAlign = 'center';
+            const displayName = session.isSubagent 
+                ? (agent.name || agent.id) + ' ← ' + (session.parentAgent || '?')
+                : (agent.name || agent.id);
+            ctx.fillText(displayName, x, y + size + 12);
+            
+            // 绘制技能点（全部显示，随机运动跟随 agent）
+            if (session.skills && session.skills.length > 0) {
+                const skills = session.skills;
+                const skillCount = skills.length;
+                
+                // 初始化技能粒子位置（每个 agent 的每个 skill 都有独立的偏移）
+                const agentSkillKey = 'skills:' + session.agent;
+                if (!skillParticles[agentSkillKey]) {
+                    skillParticles[agentSkillKey] = skills.map((sk, i) => {
+                        const angle = (i / skillCount) * Math.PI * 2 + Math.random() * 0.5;
+                        const dist = 55 + Math.random() * 60 + Math.floor(i / 8) * 25;
+                        return {
+                            name: sk,
+                            baseAngle: angle,
+                            baseDist: dist,
+                            offsetX: 0, offsetY: 0,
+                            vx: (Math.random() - 0.5) * 0.3,
+                            vy: (Math.random() - 0.5) * 0.3
+                        };
+                    });
+                }
+                
+                const particles = skillParticles[agentSkillKey];
+                // 更新名称（后端可能变化）
+                skills.forEach((sk, i) => { if (particles[i]) particles[i].name = sk; });
+                // 补充新增的
+                while (particles.length < skills.length) {
+                    const i = particles.length;
+                    const angle = (i / skillCount) * Math.PI * 2 + Math.random() * 0.5;
+                    const dist = 55 + Math.random() * 60 + Math.floor(i / 8) * 25;
+                    particles.push({ name: skills[i], baseAngle: angle, baseDist: dist, offsetX: 0, offsetY: 0, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3 });
+                }
+                
+                for (let i = 0; i < particles.length && i < skills.length; i++) {
+                    const p = particles[i];
+                    // 随机漂移
+                    p.offsetX += p.vx;
+                    p.offsetY += p.vy;
+                    // 边界弹回
+                    if (Math.abs(p.offsetX) > 8) p.vx *= -1;
+                    if (Math.abs(p.offsetY) > 8) p.vy *= -1;
+                    // 偶尔变方向
+                    if (Math.random() < 0.01) { p.vx = (Math.random()-0.5)*0.3; p.vy = (Math.random()-0.5)*0.3; }
+                    
+                    const angle = p.baseAngle;
+                    const dist = p.baseDist;
+                    const sx = x + Math.cos(angle) * dist + p.offsetX;
+                    const sy = y + Math.sin(angle) * dist + p.offsetY;
+                    
+                    // 连线到 agent
+                    ctx.strokeStyle = 'rgba(170, 102, 255, 0.08)';
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(sx, sy);
+                    ctx.stroke();
+                    
+                    // 技能图标（金色十字星 ✦）
+                    ctx.font = '14px serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = '#ffcc00';
+                    ctx.fillText('✦', sx, sy);
+                    
+                    // 技能名称
+                    ctx.fillStyle = '#aa66ff88';
+                    ctx.font = '10px monospace';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(p.name, sx, sy - 9);
+                }
+            }
+            
+            // 对话气泡显示框（在 Agent 名称上方）
+            const msgs = session.recentMessages || [];
+            if (msgs.length > 0) {
+                const bubbleLines = [];
+                for (const msg of msgs) {
+                    const prefix = msg.role === 'user' ? '👤 ' : '🤖 ';
+                    const fullText = prefix + msg.text;
+                    const maxCharsPerLine = 30;
+                    let remaining = fullText;
+                    while (remaining.length > 0) {
+                        bubbleLines.push({ text: remaining.substring(0, maxCharsPerLine), role: msg.role });
+                        remaining = remaining.substring(maxCharsPerLine);
+                    }
+                }
+                
+                if (bubbleLines.length > 0) {
+                    ctx.font = '10px monospace';
+                    const lineH = 14;
+                    const padX = 8, padY = 6;
+                    
+                    // 用 measureText 计算真实宽度
+                    let bubbleW = 0;
+                    for (const bl of bubbleLines) {
+                        const w = ctx.measureText(bl.text).width + padX * 2;
+                        if (w > bubbleW) bubbleW = w;
+                    }
+                    bubbleW = Math.max(bubbleW, 80);
+                    const bubbleH = bubbleLines.length * lineH + padY * 2;
+                    
+                    const bx = x - bubbleW / 2;
+                    const by = y - size - bubbleH - 35;
+                    
+                    // 圆角矩形背景
+                    const r = 4;
+                    ctx.fillStyle = 'rgba(10, 18, 20, 0.92)';
+                    ctx.beginPath();
+                    ctx.moveTo(bx + r, by);
+                    ctx.lineTo(bx + bubbleW - r, by);
+                    ctx.quadraticCurveTo(bx + bubbleW, by, bx + bubbleW, by + r);
+                    ctx.lineTo(bx + bubbleW, by + bubbleH - r);
+                    ctx.quadraticCurveTo(bx + bubbleW, by + bubbleH, bx + bubbleW - r, by + bubbleH);
+                    ctx.lineTo(bx + r, by + bubbleH);
+                    ctx.quadraticCurveTo(bx, by + bubbleH, bx, by + bubbleH - r);
+                    ctx.lineTo(bx, by + r);
+                    ctx.quadraticCurveTo(bx, by, bx + r, by);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    // 边框
+                    ctx.strokeStyle = 'rgba(0, 255, 136, 0.3)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    
+                    // 小三角指向 agent
+                    ctx.fillStyle = 'rgba(10, 18, 20, 0.92)';
+                    ctx.beginPath();
+                    ctx.moveTo(x - 5, by + bubbleH);
+                    ctx.lineTo(x + 5, by + bubbleH);
+                    ctx.lineTo(x, by + bubbleH + 6);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    // 文字
+                    ctx.textAlign = 'left';
+                    for (let mi = 0; mi < bubbleLines.length; mi++) {
+                        const bl = bubbleLines[mi];
+                        ctx.fillStyle = bl.role === 'user' ? '#ffaa00' : '#00ffeedd';
+                        ctx.fillText(bl.text, bx + padX, by + padY + (mi + 1) * lineH - 3);
+                    }
+                }
+            }
+            
+            // 如果是冷却状态，显示倒计时
+            if (isCooldown) {
+                const cdDisplay = getCooldownDisplay(session.agent) || '0:00';
+                ctx.fillStyle = '#ffaa00';
+                ctx.font = '10px monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText(`⏱ ${cdDisplay}`, x, y - size - 26);
+            }
+        }
+        
+        // === 网关操控面板 ===
+        function showGatewayPanel(mx, my) {
+            const panel = document.getElementById('gateway-panel');
+            const gwOnline = state.gateway && state.gateway.online;
+            // 更新状态
+            document.getElementById('gw-panel-status').innerHTML = gwOnline
+                ? '状态：<span class="online">● 在线</span>  端口：' + (state.gateway.port || '--')
+                : '状态：<span class="offline">○ 离线</span>';
+            // 按钮状态
+            document.getElementById('gw-btn-restart').disabled = false;
+            document.getElementById('gw-btn-stop').disabled = !gwOnline;
+            // 定位面板（在点击位置附近）
+            const mapRect = canvas.parentElement.getBoundingClientRect();
+            panel.style.left = Math.min(mx + 10, mapRect.width - 220) + 'px';
+            panel.style.top = Math.min(my - 60, mapRect.height - 200) + 'px';
+            panel.classList.add('visible');
+            cancelGwAction();
+        }
+        
+        let pendingGwAction = null;
+        
+        function gatewayAction(action) {
+            cancelGwAction();
+            pendingGwAction = action;
+            document.getElementById('gw-confirm-' + action).classList.add('visible');
+        }
+        
+        function cancelGwAction() {
+            pendingGwAction = null;
+            document.querySelectorAll('.gateway-btn-confirm').forEach(el => el.classList.remove('visible'));
+        }
+        
+        async function gatewayExec(action) {
+            cancelGwAction();
+            const btn = document.getElementById('gw-btn-' + action);
+            const origText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = '执行中...';
+            addRealLog(`正在${action === 'restart' ? '重启' : '关闭'}网关...`);
+            
+            try {
+                const resp = await fetch('/api/gateway/' + action, { method: 'POST' });
+                const data = await resp.json();
+                if (data.ok) {
+                    addRealLog(`✅ ${data.message}`);
+                } else {
+                    addRealLog(`⚠ ${data.message}`);
+                }
+            } catch (e) {
+                addRealLog(`❌ 操作失败: ${e.message}`);
+            }
+            
+            btn.textContent = origText;
+            btn.disabled = false;
+            // 2 秒后刷新状态
+            setTimeout(manualRefresh, 2000);
+        }
+        
+        // 页面加载完成后初始化
+        window.onload = init;
+        
+        // === 底部对话栏功能 ===
+        let chatTarget = null; // { type: 'agent'|'session', agent: {}, session: {} }
+        
+        // 更新对话目标显示
+        function updateChatTargetDisplay() {
+            const display = document.getElementById('chat-target-display');
+            const input = document.getElementById('chat-input-bar');
+            const sendBtn = document.getElementById('chat-send-btn');
+            
+            if (!display || !input || !sendBtn) return;
+            
+            if (chatTarget) {
+                if (chatTarget.type === 'session' && chatTarget.session) {
+                    const chTag = chatTarget.session.channel && chatTarget.session.channel !== '--' 
+                        ? `·${chatTarget.session.channel}` : '';
+                    display.textContent = `💬 ${chatTarget.agent.name || chatTarget.agent.id}${chTag}`;
+                } else {
+                    display.textContent = `🤖 ${chatTarget.agent.name || chatTarget.agent.id}`;
+                }
+                display.classList.add('active');
+                input.disabled = false;
+                sendBtn.disabled = false;
+                input.focus();
+            } else {
+                display.textContent = '未选择对话目标';
+                display.classList.remove('active');
+                input.disabled = true;
+                sendBtn.disabled = true;
+            }
+        }
+        
+        // 设置对话目标
+        function setChatTarget(agent, session) {
+            chatTarget = { type: session ? 'session' : 'agent', agent, session };
+            updateChatTargetDisplay();
+        }
+        
+        // 发送消息
+        function sendChatBarMessage() {
+            const input = document.getElementById('chat-input-bar');
+            const btn = document.querySelector('.chat-bar .btn');
+            const message = input.value.trim();
+            
+            if (!message || !chatTarget || !chatTarget.agent) {
+                if (!chatTarget || !chatTarget.agent) {
+                    alert('请先选择对话目标（点击左侧 Agent 或会话图标）');
+                }
+                return;
+            }
+            
+            const originalBtnText = btn.textContent;
+            btn.textContent = '发送中...';
+            btn.disabled = true;
+            
+            console.log('Sending to', chatTarget.agent.id, ':', message);
+            
+            // 调用 API 发送消息
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    agent: chatTarget.agent.id,
+                    sessionId: chatTarget.session ? chatTarget.session.sessionId : null,
+                    message: message
+                })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.ok) {
+                    console.log('Message sent via', data.method);
+                    input.value = '';
+                    btn.textContent = '✓ 已发送';
+                    setTimeout(() => { btn.textContent = originalBtnText; btn.disabled = false; }, 1500);
+                } else {
+                    console.error('Send failed:', data.error);
+                    btn.textContent = '✗ 失败';
+                    setTimeout(() => { btn.textContent = originalBtnText; btn.disabled = false; }, 2000);
+                }
+            })
+            .catch(e => {
+                console.error('Error:', e);
+                btn.textContent = '✗ 错误';
+                setTimeout(() => { btn.textContent = originalBtnText; btn.disabled = false; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+name: yunlv-price-monitor
+version: 1.0.2
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to monitor competitor pricing, track market price
+  trends, or analyze price changes. Use when setting up price alerts for specific
+  products or markets. Use when preparing pricing strategy reports for B2B export
+  businesses. Use when user mentions "竞品价格", "价格监控", "价格趋势", "定价策略", "市场价格", "价格分析",
+  "price monitoring", "competitive pricing".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI TradeGPT API
+  url: https://api.yunlvai.com
+  purpose: 价格数据分析和策略建议生成
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: data-analysis
+tags:
+- 竞品价格
+- 价格监控
+- 市场定价
+- 价格趋势
+- 定价策略
+- B2B定价
+- 市场情报
+triggers:
+- 竞品价格
+- 价格监控
+- 价格趋势
+- 定价策略
+- 市场价格
+- 价格分析
+- price monitoring
+- competitive pricing
+- price intelligence
+pricing:
+  free:
+    features:
+    - 每周手动查询5次
+    - 基础价格数据
+    - 单产品分析
+  basic:
+    price: 299
+    currency: CNY
+    period: month
+    features:
+    - 每日自动监控
+    - 10个竞品追踪
+    - 价格趋势图
+    - 邮件预警
+  pro:
+    price: 899
+    currency: CNY
+    period: month
+    features:
+    - 实时监控
+    - 无限竞品追踪
+    - 深度分析报告
+    - WhatsApp预警
+    - 定价建议

@@ -1,0 +1,13 @@
+{
+  "name": "walkie-talkie",
+  "displayName": "📻 对讲机风",
+  "description": "对讲机 Over 风格，简洁明确",
+  "template": "📻 {name} Over",
+  "emoji": "📻",
+  "seal": "",
+  "contextMode": {
+    "work": "📻 {name} Out",
+    "casual": "📻 {name} Over"
+  },
+  "preview": "📻 小橘 Over"
+}

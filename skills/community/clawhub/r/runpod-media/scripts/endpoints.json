@@ -1,0 +1,115 @@
+{
+  "_comment": "RunPod public endpoint registry. All IDs are verified against the API. Add new ones via: run.sh discover_endpoints probe --candidates 'id1,id2'. Hub playground URLs follow: https://console.runpod.io/hub/playground/{type}/{endpoint-id}",
+
+  "image": {
+    "p-image-t2i": {
+      "name": "P-Image T2I (Pruna)",
+      "type": "image",
+      "mode": "sync",
+      "base_url": "https://api.runpod.ai/v2",
+      "input": { "prompt": "string", "aspect_ratio": "1:1|16:9|9:16|4:3|3:4", "seed": "int (optional)" },
+      "output_key": "result",
+      "notes": "Fast ~3s generation. Default for generate_image command. ✅ verified. API host is api.runpod.ai (not .io). Output field is 'result'."
+    },
+    "p-image-edit": {
+      "name": "P-Image Edit (Pruna)",
+      "type": "image",
+      "mode": "sync",
+      "input": { "image": "url", "prompt": "string", "aspect_ratio": "string (optional)" },
+      "output_key": "image_url",
+      "notes": "Fast image editing. Default for edit_image command. ✅ verified"
+    },
+    "google-nano-banana-2-edit": {
+      "name": "Google Nano Banana 2 Edit",
+      "type": "image",
+      "mode": "async",
+      "input": { "images": ["url"], "prompt": "string", "resolution": "1k|2k|4k", "output_format": "png|jpg", "enable_safety_checker": "bool" },
+      "output_key": "result",
+      "hub": "https://console.runpod.io/hub/playground/image/google-nano-banana-2-edit",
+      "notes": "Edit-only (requires input image). Google Imagen-based, up to 4k. ~$0.09/job. ✅ verified. Input field is 'images' (array). Output key is 'result'."
+    },
+    "qwen-image-edit": {
+      "name": "Qwen Image Edit",
+      "type": "image",
+      "mode": "sync",
+      "input": { "image": "url", "prompt": "string" },
+      "output_key": "image_url",
+      "notes": "Qwen VL-based image editing. ✅ verified"
+    },
+    "nano-banana-pro-edit": {
+      "name": "Nano Banana Pro Edit (legacy)",
+      "type": "image",
+      "mode": "sync",
+      "input": { "image": "url", "prompt": "string" },
+      "output_key": "image_url",
+      "notes": "Older Nano Banana endpoint. Prefer google-nano-banana-2-edit. ✅ verified"
+    }
+  },
+
+  "video": {
+    "wan-2-5": {
+      "name": "WAN 2.5 (Image→Video)",
+      "type": "video",
+      "mode": "async",
+      "input": { "image": "url", "prompt": "string", "duration": "5|10", "negative_prompt": "string (optional)" },
+      "output_key": "video_url",
+      "notes": "Default I2V model. ~$0.026/5s. ✅ verified"
+    },
+    "wan-2-6-i2v": {
+      "name": "WAN 2.6 (Image→Video)",
+      "type": "video",
+      "mode": "async",
+      "input": { "image": "url", "prompt": "string", "duration": "5|10" },
+      "output_key": "video_url",
+      "notes": "WAN 2.6 image-to-video. ✅ verified"
+    },
+    "wan-2-6-t2v": {
+      "name": "WAN 2.6 (Text→Video)",
+      "type": "video",
+      "mode": "async",
+      "input": { "prompt": "string", "duration": "5|10|15", "size": "1920x1080 (optional)", "negative_prompt": "string (optional)" },
+      "output_key": "video_url",
+      "notes": "WAN 2.6 text-to-video. ~$0.04/5s. ✅ verified"
+    },
+    "kling-v2-1-i2v-pro": {
+      "name": "Kling v2.1 Pro (Image→Video)",
+      "type": "video",
+      "mode": "async",
+      "input": { "image": "url", "prompt": "string", "duration": "5|10", "guidance_scale": "float (default 0.5)" },
+      "output_key": "video_url",
+      "notes": "Highest quality I2V. $0.45/5s. ✅ verified"
+    },
+    "seedance-1-0-pro": {
+      "name": "Seedance 1.0 Pro (I2V + T2V)",
+      "type": "video",
+      "mode": "async",
+      "input": { "prompt": "string", "image": "url (optional, omit for T2V)", "duration": "5|10", "fps": "24", "size": "1920x1080" },
+      "output_key": "video_url",
+      "notes": "Works as both I2V and T2V. ~$0.12/5s. ✅ verified"
+    },
+    "sora-2-pro-i2v": {
+      "name": "Sora 2 Pro (Image→Video)",
+      "type": "video",
+      "mode": "async",
+      "input": { "image": "url", "prompt": "string", "duration": "5|10|12" },
+      "output_key": "video_url",
+      "notes": "OpenAI Sora 2 Pro. Complex motion, up to 12s. ✅ verified"
+    },
+    "sora-2-i2v": {
+      "name": "Sora 2 I2V",
+      "type": "video",
+      "mode": "async",
+      "input": { "image": "url", "prompt": "string", "duration": "5|10" },
+      "output_key": "video_url",
+      "notes": "Sora 2 image-to-video. ✅ verified"
+    },
+    "infinitetalk": {
+      "name": "InfiniteTalk (Lip Sync + Body)",
+      "type": "video",
+      "mode": "async",
+      "input": { "image": "url (portrait photo)", "audio": "url (mp3/wav)" },
+      "output_key": "video_url",
+      "notes": "Syncs lips, head, body posture with audio. Talking avatars. ✅ verified"
+    }
+  }
+}

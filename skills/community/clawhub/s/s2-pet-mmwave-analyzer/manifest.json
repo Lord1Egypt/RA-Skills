@@ -1,0 +1,10 @@
+{
+  "name": "s2-pet-mmwave-analyzer",
+  "version": "1.1.0",
+  "author": "Space2.world",
+  "short_description": "A sensory tentacle for S2-SP-OS. Acts as a universal adapter for mainstream mmWave radars (24GHz/60GHz). Performs multi-modal fusion of pet vitals (respiration, micro-motion) with S2 environmental data to generate health reports and automatically adjust spatial elements (e.g., HVAC) to ensure pet welfare.",
+  "tags": ["Pet Care", "mmWave Radar", "Multi-modal Fusion", "Sleep Monitoring", "Edge Computing"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

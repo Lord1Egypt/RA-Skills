@@ -1,0 +1,14 @@
+{
+  "name": "openclaw-semantic-cache",
+  "version": "1.0.0",
+  "description": "Semantic cache for LLM API calls using Redis vector search",
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "test": "node scripts/cache.js test"
+  },
+  "dependencies": {
+    "redis": "^4.7.0",
+    "openai": "^4.80.0"
+  }
+}

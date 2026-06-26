@@ -1,0 +1,123 @@
+{
+  "instanceId": "fr-sevo-p0-test-fix-20260524-001",
+  "projectSlug": "sevo-p0-test-fix",
+  "status": "created",
+  "statusHistory": [
+    {
+      "from": "none",
+      "to": "created",
+      "timestamp": "2026-05-24T01:22:45.193Z",
+      "trigger": "pipeline-create"
+    }
+  ],
+  "routingResult": {
+    "taskId": "from-sevo-p0-test-fix-implement-1779585764634",
+    "level": "L0",
+    "requiredStages": [
+      "implement",
+      "review",
+      "regression",
+      "verify",
+      "ledger"
+    ],
+    "skippedStages": [
+      {
+        "stage": "spec",
+        "reason": "L0 微小改动，直接进入 Implement"
+      },
+      {
+        "stage": "spec-review-gate",
+        "reason": "L0 无 Spec 阶段，无需 Spec Review Gate"
+      },
+      {
+        "stage": "test-case-authoring",
+        "reason": "L0 微小改动，无需独立测试用例编写"
+      },
+      {
+        "stage": "ux-acceptance-authoring",
+        "reason": "L0 微小改动，无需 UX 开箱即用评测"
+      },
+      {
+        "stage": "commercial-acceptance-authoring",
+        "reason": "L0 微小改动，无需商用评测"
+      },
+      {
+        "stage": "ux-interaction-design",
+        "reason": "L0 微小改动，无需 UX 交互设计"
+      },
+      {
+        "stage": "architecture-design",
+        "reason": "L0 微小改动，无需架构详设"
+      },
+      {
+        "stage": "contract",
+        "reason": "L0 微小改动，无需架构契约"
+      },
+      {
+        "stage": "contract-review-gate",
+        "reason": "L0 无 Contract 阶段，无需 Contract Review Gate"
+      },
+      {
+        "stage": "smoke-test",
+        "reason": "L0 微小改动，无需 Smoke Test"
+      },
+      {
+        "stage": "ux-acceptance",
+        "reason": "L0 微小改动，无需 UX 视觉验收"
+      },
+      {
+        "stage": "pm-commercial-review",
+        "reason": "L0 微小改动，无需 PM 商用就绪评审"
+      },
+      {
+        "stage": "publish-generalization-gate",
+        "reason": "L0 微小改动，无需发布通用化门禁"
+      },
+      {
+        "stage": "deploy",
+        "reason": "L0 微小改动，无需正式发布流程"
+      },
+      {
+        "stage": "post-release-validation",
+        "reason": "L0 微小改动，无需发布后验证"
+      },
+      {
+        "stage": "clean-install-verification",
+        "reason": "L0 微小改动，无需干净环境验证"
+      }
+    ],
+    "matchedRules": [],
+    "needsUxDesign": true,
+    "uxDesignReason": "LLM 判定失败，按安全默认值处理：LLM request failed (403): {\"error\":{\"code\":\"\",\"message\":\"This token has no access to model gpt-4o-mini (request id: 20260524012245813737988268d9d6GrwoqeSS)\",\"type\":\"new_api_error\"}}；项目允许 UI 时保守触发 UX Interaction Design",
+    "needsArchDesign": false,
+    "archDesignReason": "LLM 判定失败，按安全默认值处理：LLM request failed (403): {\"error\":{\"code\":\"\",\"message\":\"This token has no access to model gpt-4o-mini (request id: 20260524012245813737988268d9d6GrwoqeSS)\",\"type\":\"new_api_error\"}}；范围未显示多域、数据模型或多文件复杂变更，暂不触发 Architecture Design"
+  },
+  "directoryStructure": {
+    "projectRoot": "/root/.openclaw/workspace/projects/sevo/projects/sevo-p0-test-fix",
+    "createdDirs": [
+      "docs/architecture",
+      "docs/architecture/decisions",
+      "docs/test-cases",
+      "src",
+      "tests",
+      "skill",
+      "reports"
+    ],
+    "existingDirs": [
+      "docs",
+      "artifacts"
+    ],
+    "createdFiles": [
+      "README.md",
+      "LICENSE",
+      "package.json",
+      "tsconfig.json",
+      "docs/product-requirements.md",
+      "docs/architecture/arc42-architecture.md"
+    ],
+    "existingFiles": [],
+    "complete": true
+  },
+  "createdAt": "2026-05-24T01:22:45.193Z",
+  "updatedAt": "2026-05-24T01:22:45.193Z"
+}

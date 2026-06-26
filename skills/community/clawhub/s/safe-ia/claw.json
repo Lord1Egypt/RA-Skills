@@ -1,0 +1,20 @@
+{
+  "name": "safe-ia",
+  "version": "2.1.0",
+  "description": "Monitoreo de cambios en herramientas de IA. Alertas de ToS, privacidad y riesgos para tu negocio — en español.",
+  "author": "safe-ia",
+  "homepage": "https://safe-ia.com",
+  "tags": ["compliance", "ai-tools", "monitoring", "risk", "legal", "gdpr", "privacy", "spanish", "latam"],
+  "requires": {
+    "web_search": true
+  },
+  "commands": [
+    "/reporte",
+    "/riesgo",
+    "/semana",
+    "/historial",
+    "/ayuda"
+  ],
+  "language": "es",
+  "license": "MIT"
+}

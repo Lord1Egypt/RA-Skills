@@ -1,0 +1,7 @@
+{
+  "name": "mlops-and-model-governance",
+  "version": "1.0.0",
+  "description": "MLOps & Model Governance - deploying, monitoring, and governing ML models in production with fairness and compliance",
+  "author": "OpenClaw",
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+# 合规处置工具 - 依赖库（免费版 v1.2.0）
+
+# 核心依赖
+python-docx>=0.8.11      # Word文档处理（脱敏）
+openpyxl>=3.0.10        # Excel处理（脱敏）
+python-pptx>=0.6.21     # PPT处理（脱敏）
+PyMuPDF>=1.23.0          # PDF处理（脱敏）
+
+# 通知依赖
+requests>=2.28.0         # HTTP请求（飞书/企业微信通知）

@@ -1,0 +1,22 @@
+{
+  "name": "seedance-2-0",
+  "version": "1.0.0",
+  "description": "字节跳动 Seedance 2.0 AI 视频生成技能，支持文生图、文生视频，提供申请指南和快速生成封装",
+  "main": "seedance2.0.ts",
+  "scripts": {
+    "start": "bun seedance2.0.ts",
+    "guide": "bun seedance2.0.ts --guide"
+  },
+  "keywords": ["seedance", "ai-video", "doubao", "volcengine", "openclaw-skill"],
+  "author": "Zoe",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "openclaw": {
+    "install": [
+      "bun install"
+    ],
+    "run": "bun seedance2.0.ts"
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Required</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background: #ffc107;
+            color: #856404;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background: #667eea;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header text-center">
+            💰 Payment Required
+        </div>
+        <div class="card-body text-center">
+            <h4 class="mb-4">This tool costs $0.005 USDT per use</h4>
+            <p class="text-muted mb-4">
+                After payment, you will get a full short video script including hook, shots, voiceover, subtitles, BGM, and CTA.
+            </p>
+            {% if test_mode %}
+            <a href="/?test_payment=success" class="btn btn-primary btn-lg">
+                🧪 Test Mode: Simulate Payment
+            </a>
+            {% else %}
+            <a href="{{ payment_url }}" class="btn btn-primary btn-lg">
+                💳 Pay Now
+            </a>
+            {% endif %}
+            <p class="mt-4 text-sm text-muted">
+                Secure payment powered by SkillPay.me
+            </p>
+        </div>
+    </div>
+</body>
+</html>

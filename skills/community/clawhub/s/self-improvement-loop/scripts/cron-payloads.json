@@ -1,0 +1,35 @@
+{
+  "self-improvement-check": {
+    "name": "self-improvement-check",
+    "enabled": true,
+    "createdAtMs": 1776528811729,
+    "updatedAtMs": 1776792620000,
+    "schedule": {
+      "kind": "every",
+      "everyMs": 10800000,
+      "anchorMs": 1776528811729
+    },
+    "sessionTarget": "current",
+    "wakeMode": "now",
+    "payload": {
+      "kind": "agentTurn",
+      "message": "你是自我改进检定系统（v4.6.11 — notification-driven）。\n\n设计原则：「脚本做机械，AI 做语义」\n- distill.sh（机械）：扫描 + 计数 + notification_state 输出\n- distill_json.py（机械）：生成结构化 JSON\n- 你（语义）：理解 → 写回 notified 状态 → 通知 → 写入上下文\n\n## Step 1: 运行 distill\nbash ~/.openclaw/workspace/skills/self-improvement-loop/scripts/distill.sh --check-only\n\n捕获 stdout（JSON） 和 stderr（日志）。\n\n## Step 2: 判断是否触发\n解析 JSON：\n- 找出 patterns 数组 + category_fallback 数组中 notification_trigger == true 的条目\n- 过滤条件：nc < cnt（有新 entry 还未通知过，即 Notification-Count < 总 entry 数）\n  → 这些是需要通知的条目\n  → nc == cnt 时表示已全部通知过，无需再通知\n- 如果没有需要通知的条目 → 回复 HEARTBEAT_OK\n\n## Step 3: 对每个需要通知的 pattern 执行语义处理\n\n对每个 notification_trigger=true 且 nc < cnt 的条目：\n\na) 扫描已有技能目录（如需要）：\n   直接遍历 ~/.openclaw/workspace/skills/*/SKILL.md\n   取 PK 最后一段作为关键词，大小写不敏感匹配技能描述\n   用于判断是否有可优化的现有技能（可选，找不到则跳过）\n\nb) 阅读 raw_md，理解这条 pattern 代表什么问题\n\nc) 生成通知内容（见 Step 4 格式）\n\n## Step 4: 写回 notified 状态 + pending JSON（v4.6.11 — 脚本统一处理）\n\n语义处理完成后、发送通知前：\n1. bash ~/.openclaw/workspace/skills/self-improvement-loop/scripts/distill.sh --check-only > /tmp/distill-check.json\n2. bash ~/.openclaw/workspace/skills/self-improvement-loop/scripts/archive.sh --write-notified /tmp/distill-check.json\n→ **只将实际发送了通知的条目标记 Notified=true，Notification-Count++**\n→ 未出现在名单中的 triggered 模式保持不变（避免将失败的通知标记为已通知）\n\n**先写回，再发送通知（避免崩溃导致重复通知）**\n\n## Step 5: 发送通知\n\n对每个需要通知的条目，AI 阅读 raw_md 后按以下格式生成通知：\n\n```\n🔔 自我改进检定（v4.6.11）\n\n📌 Pattern：[name] × [count] 次（阈值 2）\n📂 来源：[source]\n🔁 通知计数：[notification_count] → [notification_count + 1]\n\n### What Happened\n[AI 从 raw_md 的 ### What Happened 提取，1-2句话]\n\n### Root Cause\n[AI 从 raw_md 的 ### Root Cause 提取，1-2句话]\n\n### How To Avoid Next Time\n[AI 从 raw_md 的 ### How To Avoid Next Time 提取，1句话]\n\n🎯 行动计划（每次只推荐一个选项）：\nA. 创建新技能 → [具体要加什么]\nB. 优化现有技能 → [具体要改什么]\nC. 跳过\nD. 升华 → [推荐目标，如 SOUL.md/AGENTS.md/TOOLS.md]（推荐理由）\n   判断标准：\n   - SOUL.md：行为/风格规则（如\"语气过于正式\"\"过度解释\"）\n   - AGENTS.md：工作流/过程规则（如\"通知前未写 pending JSON\"\"归档遗漏\"）\n   - TOOLS.md：工具坑点（如\"某个工具配置错误\"\"路径引用问题\"）\n   需根据 pattern 内容权衡，选最合适的一个。\n\n请回复 A / B / C / D，主代理将执行对应操作。\n```\n\n## Step 6: 执行 archive\n归档已达到 resolved/promoted 的条目：\nbash ~/.openclaw/workspace/skills/self-improvement-loop/scripts/archive.sh\n（silent 模式，无需交互确认）\n\n## 约束\n- 阈值：2次\n- 只处理 notification_trigger=true 的条目\n- 先写回 notified 状态，再发送通知（避免重复通知）\n- 工具权限：exec/read/write/edit"
+    },
+    "delivery": {
+      "mode": "announce",
+      "channel": "<CHANNEL>",
+      "accountId": "<CHANNEL_ACCOUNT>",
+      "to": "<USER_ID>"
+    },
+    "state": {
+      "nextRunAtMs": 1776627898972,
+      "lastRunAtMs": 1776626098972,
+      "lastRunStatus": "ok",
+      "lastStatus": "ok",
+      "lastDurationMs": 24112,
+      "lastDelivered": false,
+      "lastDeliveryStatus": "not-delivered",
+      "consecutiveErrors": 0
+    }
+  }
+}

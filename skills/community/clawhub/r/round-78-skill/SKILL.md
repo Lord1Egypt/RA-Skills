@@ -1,35 +1,36 @@
 ---
-name: "Round 78 Skill"
-description: "Round 78 verification skill for ClawHub publishing workflow testing. Demonstrates skill creation, packaging, and publication process."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/round-78-skill"
-sourceUrl: "https://clawhub.ai/skills/round-78-skill"
+name: round-78-skill
+description: Round 78 verification skill for ClawHub publishing workflow testing. Demonstrates skill creation, packaging, and publication process.
 ---
 
 # Round 78 Skill
 
-> Round 78 verification skill for ClawHub publishing workflow testing. Demonstrates skill creation, packaging, and publication process.
+This skill was created for Round 78 ClawHub publishing verification.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/round-78-skill`
-- **Source URL:** [https://clawhub.ai/skills/round-78-skill](https://clawhub.ai/skills/round-78-skill)
+## Purpose
 
-## Overview
+- Test ClawHub publish workflow
+- Verify skill packaging
+- Validate publication process
+- Track download metrics
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/round-78-skill
-```
+This is a demonstration skill for testing the ClawHub publishing pipeline.
+
+## Files
+
+- `SKILL.md` - This skill definition file
+- `README.md` - Documentation
+- `_meta.json` - Metadata (auto-generated on publish)
+
+## Version History
+
+### 1.0.0 (2026-03-21)
+- Initial release for Round 78 verification
+
+---
+
+**Created by:** wyblhl  
+**Round:** 78  
+**Purpose:** ClawHub publishing verification

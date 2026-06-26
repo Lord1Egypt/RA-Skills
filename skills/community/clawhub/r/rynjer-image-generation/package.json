@@ -1,0 +1,15 @@
+{
+  "name": "rynjer-image-generation-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Publish-ready draft package for a future Rynjer ClawHub skill focused on low-friction image generation for agents.",
+  "license": "UNLICENSED",
+  "keywords": [
+    "clawhub",
+    "skill",
+    "rynjer",
+    "image-generation",
+    "agents",
+    "aigc"
+  ]
+}

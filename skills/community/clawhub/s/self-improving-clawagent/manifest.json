@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Self-Evolving-Architect",
+  "version": "1.1.0",
+  "permissions": {
+    "fs": {
+      "write": ["./SKILL.md", "./MEMORY.md", "./SOUL.md"],
+      "read": ["./*"]
+    },
+    "capabilities": ["local_code_execution"]
+  },
+  "security": {
+    "mode": "transparent",
+    "evolution_engine": "refine.py"
+  },
+  "reasoning": "Self-improvement loop required to optimize internal operational logic based on performance audits."
+}

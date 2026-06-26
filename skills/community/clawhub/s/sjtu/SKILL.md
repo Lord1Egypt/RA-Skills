@@ -1,35 +1,191 @@
----
-name: "Sjtu"
-description: "提供上海交通大学水源社区论坛的浏览、发帖、回复、搜索及通知管理等功能操作指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sjtu"
-sourceUrl: "https://clawhub.ai/skills/sjtu"
+# 上海交通大学·水源社区 ClaWHub Skill
+
+> 水源社区（shuiyuan.sjtu.edu.cn）是上海交通大学基于 Discourse 搭建的校园论坛，  
+> 本 Skill 提供常用功能的渐进式操作指引。
+
 ---
 
-# Sjtu
+## 🔰 Level 1 — 基础浏览（零门槛）
 
-> 提供上海交通大学水源社区论坛的浏览、发帖、回复、搜索及通知管理等功能操作指引。
+### 1.1 话题列表浏览
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sjtu`
-- **Source URL:** [https://clawhub.ai/skills/sjtu](https://clawhub.ai/skills/sjtu)
+| 操作 | 说明 |
+|------|------|
+| **最新** | 按发布/更新时间倒序，查看最新动态 |
+| **类别** | 按板块分类浏览（校庆、校园生活、读笑风生、游戏竞技、热点新闻、深度讨论、体育赛事等） |
+| **标签** | 按标签筛选话题（水源活动、日记、二哈、经验分享、Pride 等） |
+| **热门** | 按热度排序（回复数 × 浏览量加权） |
+| **精品** | 社区精选高质量帖子 |
 
-## Overview
+### 1.2 话题信息一览
 
+每条话题显示以下关键信息：
+- **标题** — 帖子主题，支持 Emoji
+- **分类标签** — 彩色标签标识所属板块（如 🔴 读笑风生、🟢 游戏竞技、🔵 校园生活）
+- **作者头像** — 发帖人及最近回复者头像
+- **回复数** — 帖子回复总数
+- **浏览量** — 帖子被浏览次数（支持 k 单位缩写，如 1.1k、17.8k）
+- **最后活跃时间** — 距今多久有新回复（如 24 分钟、1 分钟、2 小时）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sjtu
+### 1.3 热门话题侧栏
+
+页面右侧展示「热门话题」列表，快速了解社区当前最受关注的讨论：
+- 显示话题标题 + 分类标签 + 活跃时间
+- 涵盖校园服务、读笑风生、热点新闻、心情驿站等多个板块
+
+---
+
+## 🔧 Level 2 — 互动参与（需登录）
+
+### 2.1 新建话题
+
+点击右上角 **「+ 新建话题」** 按钮：
+1. 选择分类板块
+2. 添加标签（可选）
+3. 编写标题和正文（支持 Markdown / 富文本）
+4. 发布
+
+### 2.2 回复与互动
+
+- **回复帖子** — 在话题底部输入回复内容
+- **点赞** — 对优质回复点赞
+- **引用回复** — 选中文字后引用回复
+- **@提及** — 使用 `@用户名` 提及其他用户
+
+### 2.3 个人中心
+
+左侧导航栏提供：
+| 入口 | 功能 |
+|------|------|
+| **话题** | 回到话题主列表 |
+| **我的子** | 查看自己关注/参与的话题 |
+| **浏览记录** | 查看历史浏览过的话题 |
+| **文档** | 社区文档/知识库 |
+| **更多** | 展开更多导航选项 |
+
+### 2.4 未读与新帖追踪
+
+- **未读 (126)** — 显示未读话题数量，点击快速查看
+- **新 (163)** — 显示新发布的话题数量
+- 顶部提示栏：「查看 3 个新的或更新的话题」，点击即可刷新
+
+---
+
+## ⚙️ Level 3 — 进阶功能
+
+### 3.1 话题筛选与排序
+
+支持多维度组合筛选：
 ```
+类别 × 标签 × 排序方式（最新/热门/精品）
+```
+
+话题列表上方 Tab 栏：
+- 话题 | 回复 | 浏览 | 活动 — 可按列排序
+
+### 3.2 搜索功能
+
+点击顶部 🔍 搜索图标：
+- 支持全文搜索（标题 + 正文）
+- 支持按分类、标签、作者、时间范围过滤
+- 支持搜索语法（Discourse 高级搜索）
+
+### 3.3 通知系统
+
+顶部导航栏图标（右上角）：
+- 🔔 通知 — 回复提醒、@提及、点赞通知
+- ✉️ 私信 — 站内私信
+- 🔖 书签 — 收藏的话题
+- 👤 个人资料 — 账号设置
+
+### 3.4 站务与活动
+
+左侧导航特殊板块：
+- **站务公告** — 社区官方公告、规则说明
+- **水源活动** — 社区组织的线上/线下活动
+- **所有类别** — 查看完整分类树
+- **精品** — 社区精选内容
+- **所有标签** — 查看所有可用标签
+
+---
+
+## 🔬 Level 4 — 高级 / 技术细节
+
+### 4.1 技术栈
+
+水源社区基于 **Discourse** 开源论坛平台：
+- **版本**: Discourse v2026.2.0-latest
+- **前端框架**: Ember v6.6.0
+- **域名**: `shuiyuan.sjtu.edu.cn`
+- **协议**: HTTPS
+
+### 4.2 Cookie 与会话
+
+| Cookie 名称 | 用途 |
+|-------------|------|
+| `_forum_session` | 论坛会话标识 |
+| `_ga` / `_ga_*` | Google Analytics 统计 |
+| `_qimei_fingerprint` | 设备指纹标识 |
+| `_qimei_h38` | 腾讯系设备标识 |
+| `_qimei_uuid42` | 设备唯一标识 |
+| `BURIED_POINT_CHANNEL` | 埋点渠道标识 |
+| `cid` | 客户端标识 |
+| `cookieconsent_status` | Cookie 同意状态（dismiss） |
+| `keepalive` | 保活标识 |
+
+### 4.3 浏览器 API 与后台服务
+
+**Storage 类型**：
+- Local storage / Session storage / IndexedDB / Cookies
+- Cache storage / Storage buckets
+
+**Background services**：
+- Back/forward cache — 前进后退缓存
+- Background fetch / Background sync — 后台数据同步
+- Bounce tracking mitigations — 跳转追踪缓解
+- Notifications — 推送通知
+- Payment handler / Periodic background sync
+- Push messaging — 推送消息
+- Reporting API — 上报接口
+- Device bound sessions — 设备绑定会话
+
+### 4.4 Discourse API 常用端点
+
+```
+GET  /latest.json          — 获取最新话题列表
+GET  /top.json             — 获取热门话题
+GET  /categories.json      — 获取所有分类
+GET  /t/{id}.json          — 获取单个话题详情
+GET  /search.json?q=关键词  — 搜索
+POST /posts.json           — 创建新帖子
+GET  /notifications.json   — 获取通知
+GET  /u/{username}.json    — 获取用户信息
+```
+
+---
+
+## 📋 快速参考卡片
+
+```
+┌─────────────────────────────────────────────────┐
+│          水源社区 · 快速操作速查                    │
+├─────────────────────────────────────────────────┤
+│  浏览话题    →  首页 / 最新 / 热门 / 精品          │
+│  筛选话题    →  类别 Tab / 标签 Tab               │
+│  发新帖      →  右上角「+ 新建话题」               │
+│  搜索        →  顶部 🔍 图标                      │
+│  查看通知    →  右上角铃铛图标                      │
+│  个人中心    →  左侧「我的子」/「浏览记录」          │
+│  未读消息    →  顶部「未读 (N)」Tab                │
+│  站务公告    →  左侧导航「站务公告」                │
+│  社区活动    →  左侧导航「水源活动」                │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+> **渐进式披露设计说明**：  
+> - **Level 1**（基础浏览）：无需登录即可使用，适合新用户快速上手  
+> - **Level 2**（互动参与）：需要 jAccount 登录，解锁发帖、回复等社交功能  
+> - **Level 3**（进阶功能）：面向活跃用户，掌握高效筛选、搜索和通知管理  
+> - **Level 4**（技术细节）：面向开发者/高级用户，了解底层技术栈和 API 接口

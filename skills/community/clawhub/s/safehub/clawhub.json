@@ -1,0 +1,12 @@
+{
+  "name": "SafeHub",
+  "tagline": "Scan OpenClaw skills for malware and security issues before you install them.",
+  "description": "SafeHub is an open source security scanner for OpenClaw skills. It runs Semgrep-based static analysis and optional Docker sandbox execution on any skill (by name, local path, or GitHub URL) and returns a trust score and a clear recommendation: safe to install, install with caution, or not safe. Use it to verify skills before installing from ClawHub or from third-party repos.",
+  "category": "utility",
+  "tags": ["security", "malware", "scanner", "semgrep", "clawhub", "openclaw"],
+  "version": "1.0.2",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/sumeetghimire/safehub/issues",
+  "homepage": "https://github.com/sumeetghimire/safehub"
+}

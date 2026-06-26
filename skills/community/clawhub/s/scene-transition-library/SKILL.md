@@ -1,35 +1,56 @@
 ---
-name: "Scene Transition Library"
-description: "场景转场参考库，为 AI 短剧/短视频创作者提供镜头转场的 prompt 写作指南。触发于：转场、镜头转换、过渡、场景切换、叠化、硬切、匹配剪辑、淡入淡出、划像、时间转场、空间转场、情绪转场、镜头衔接等需求。当用户需要描述两个镜头之间的过渡方式、或在分镜脚本中标注转场效果时，使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scene-transition-library"
-sourceUrl: "https://clawhub.ai/skills/scene-transition-library"
+name: scene-transition-library
+description: 场景转场参考库，为 AI 短剧/短视频创作者提供镜头转场的 prompt 写作指南。触发于：转场、镜头转换、过渡、场景切换、叠化、硬切、匹配剪辑、淡入淡出、划像、时间转场、空间转场、情绪转场、镜头衔接等需求。当用户需要描述两个镜头之间的过渡方式、或在分镜脚本中标注转场效果时，使用此技能。
 ---
 
 # Scene Transition Library
 
-> 场景转场参考库，为 AI 短剧/短视频创作者提供镜头转场的 prompt 写作指南。触发于：转场、镜头转换、过渡、场景切换、叠化、硬切、匹配剪辑、淡入淡出、划像、时间转场、空间转场、情绪转场、镜头衔接等需求。当用户需要描述两个镜头之间的过渡方式、或在分镜脚本中标注转场效果时，使用此技能。
+AI 短剧/短视频创作中的镜头转场参考库。提供五种核心转场类型的写作规范及常见场景的 prompt 模板。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scene-transition-library`
-- **Source URL:** [https://clawhub.ai/skills/scene-transition-library](https://clawhub.ai/skills/scene-transition-library)
+## 转场类型速览
 
-## Overview
+| 类型 | 符号 | 用途 | 典型场景 |
+|------|------|------|----------|
+| 叠化 Dissolve | ↔ | 并行场景、时间流逝 | 古钟 ↔ 水面，金字浮现 |
+| 硬切 Hard Cut | 下一秒 / 画面骤转 | 突发、强调、节奏突变 | 下一秒，画面切至审讯室 |
+| 匹配剪辑 Match Cut | 构图相似连接 | 平滑过渡、视觉呼应 | 握拳 ↔ 握枪（同景别） |
+| 淡入淡出 Fade | 渐显/渐隐 | 情绪收尾、章节分隔 | 淡出 → 淡入 |
+| 划像 Wipe | 屏幕方向运动 | 空间位移、视轴切换 | 从左向右划入新场景 |
 
+## 转场标注格式（分镜脚本用）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/scene-transition-library
+在 cinematic-storyboard-generator 风格的序列分镜中，转场标注遵循以下格式：
+
 ```
+[镜头A描述] → [转场词] → [镜头B描述]
+```
+
+**转场词规范：**
+
+- **叠化**：使用 `↔` 或 `叠化`，如 `古钟特写 ↔ 水面倒影`
+- **硬切**：使用 `下一秒` 或 `画面骤转`，如 `拳头落下，下一秒，画面切至医院走廊`
+- **匹配剪辑**：使用 `→` 并注明 `（匹配剪辑）`，如 `握紧的拳头 →（匹配剪辑）→ 握紧的枪柄`
+- **淡入淡出**：使用 `淡出` / `淡入`，如 `灯光熄灭，淡出`
+- **划像**：使用方向词，如 `←划入` `划出→` `↓划入`，如 `从左向右划入新场景`
+
+## Prompt 写作原则
+
+1. **转场词前置**：在描述镜头时，先写"从哪里来"，再写"到哪里去"
+2. **意象连接**：上下镜头的意象元素最好有视觉或语义上的呼应
+3. **情绪一致性**：转场方式应与当前叙事情绪匹配，不突兀
+4. **AI 视频适配**：转场描述需简洁具体，AI 模型对复杂转场理解有限
+
+## 详细参考
+
+- **五种转场类型详解** → 读取 [references/transition-types.md](references/transition-types.md)
+- **常见场景 prompt 示例** → 读取 [references/transition-prompts.md](references/transition-prompts.md)
+
+## 质量检查清单
+
+生成转场 prompt 后自检：
+
+- [ ] 转场类型与叙事目的匹配（硬切≠渐变，两者不能混用）
+- [ ] 上下镜头意象有呼应（叠化和匹配剪辑尤需注意）
+- [ ] AI 可执行：描述具体、无歧义、无多义动作词
+- [ ] 情绪节奏正确（快速转场=紧张，缓慢叠化=情绪铺垫）
+- [ ] 9:16 竖屏构图适合该转场（划像需留足屏幕边缘空间）

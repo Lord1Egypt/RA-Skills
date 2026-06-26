@@ -1,0 +1,683 @@
+{
+  "languages": ["zh-Hans", "zh-Hant", "en"],
+  "dimensionOrder": ["S1", "S2", "S3", "E1", "E2", "E3", "A1", "A2", "A3", "Ac1", "Ac2", "Ac3", "So1", "So2", "So3"],
+  "dimensionMeta": {
+    "S1": {
+      "modelName": { "zh-Hans": "自我模型", "zh-Hant": "自我模型", "en": "Self Model" },
+      "title": { "zh-Hans": "自尊自信", "zh-Hant": "自尊自信", "en": "Self-Esteem" },
+      "levels": {
+        "L": { "zh-Hans": "更容易自我怀疑，需要外部确认。", "zh-Hant": "更容易自我懷疑，需要外部確認。", "en": "You lean toward self-doubt and often need outside reassurance." },
+        "M": { "zh-Hans": "自信会随场景波动，但总体可稳住。", "zh-Hant": "自信會隨場景波動，但整體可穩住。", "en": "Your confidence shifts with context but usually stays functional." },
+        "H": { "zh-Hans": "你默认相信自己能处理局面。", "zh-Hant": "你默認相信自己能處理局面。", "en": "You default to believing that you can handle the situation." }
+      }
+    },
+    "S2": {
+      "modelName": { "zh-Hans": "自我模型", "zh-Hant": "自我模型", "en": "Self Model" },
+      "title": { "zh-Hans": "自我清晰", "zh-Hant": "自我清晰", "en": "Self-Clarity" },
+      "levels": {
+        "L": { "zh-Hans": "你常常说不清自己到底想要什么。", "zh-Hant": "你常常說不清自己到底想要什麼。", "en": "You often struggle to say what you really want." },
+        "M": { "zh-Hans": "你对自己有轮廓，但仍会摇摆。", "zh-Hant": "你對自己有輪廓，但仍會搖擺。", "en": "You have a rough sense of self, but some choices still blur." },
+        "H": { "zh-Hans": "你对自己的边界和偏好很明确。", "zh-Hant": "你對自己的邊界和偏好很明確。", "en": "You are clear about your preferences and boundaries." }
+      }
+    },
+    "S3": {
+      "modelName": { "zh-Hans": "自我模型", "zh-Hant": "自我模型", "en": "Self Model" },
+      "title": { "zh-Hans": "核心价值", "zh-Hant": "核心價值", "en": "Core Values" },
+      "levels": {
+        "L": { "zh-Hans": "你更容易顺着当下舒服走。", "zh-Hant": "你更容易順著當下舒服走。", "en": "You mostly follow immediate comfort." },
+        "M": { "zh-Hans": "你在舒服与目标之间找平衡。", "zh-Hant": "你在舒服與目標之間找平衡。", "en": "You balance comfort with long-term goals." },
+        "H": { "zh-Hans": "你有清楚想坚持的方向和标准。", "zh-Hant": "你有清楚想堅持的方向和標準。", "en": "You operate from clear standards and long-term aims." }
+      }
+    },
+    "E1": {
+      "modelName": { "zh-Hans": "情感模型", "zh-Hant": "情感模型", "en": "Emotional Model" },
+      "title": { "zh-Hans": "依恋安全", "zh-Hant": "依戀安全", "en": "Attachment Security" },
+      "levels": {
+        "L": { "zh-Hans": "你容易担心关系会突然出问题。", "zh-Hant": "你容易擔心關係會突然出問題。", "en": "You tend to worry that important relationships can break suddenly." },
+        "M": { "zh-Hans": "你既想靠近，也会保留一点观察。", "zh-Hant": "你既想靠近，也會保留一點觀察。", "en": "You can connect, though part of you stays watchful." },
+        "H": { "zh-Hans": "你通常相信关系可以稳定推进。", "zh-Hant": "你通常相信關係可以穩定推進。", "en": "You usually trust that a good relationship can stay steady." }
+      }
+    },
+    "E2": {
+      "modelName": { "zh-Hans": "情感模型", "zh-Hant": "情感模型", "en": "Emotional Model" },
+      "title": { "zh-Hans": "情感投入", "zh-Hant": "情感投入", "en": "Emotional Investment" },
+      "levels": {
+        "L": { "zh-Hans": "你进入情感前会先把自己收起来。", "zh-Hant": "你進入情感前會先把自己收起來。", "en": "You keep emotional distance until you feel very safe." },
+        "M": { "zh-Hans": "你会投入，但还保留理性刹车。", "zh-Hant": "你會投入，但還保留理性剎車。", "en": "You invest emotionally, but some rational braking stays on." },
+        "H": { "zh-Hans": "一旦投入，你会给得很满。", "zh-Hant": "一旦投入，你會給得很滿。", "en": "Once committed, you go in deeply." }
+      }
+    },
+    "E3": {
+      "modelName": { "zh-Hans": "情感模型", "zh-Hant": "情感模型", "en": "Emotional Model" },
+      "title": { "zh-Hans": "边界依赖", "zh-Hant": "邊界依賴", "en": "Boundaries" },
+      "levels": {
+        "L": { "zh-Hans": "你更容易和别人情绪缠在一起。", "zh-Hant": "你更容易和別人情緒纏在一起。", "en": "Your emotional boundaries tend to blur with other people." },
+        "M": { "zh-Hans": "你会在亲近和独立之间切换。", "zh-Hant": "你會在親近和獨立之間切換。", "en": "You move between closeness and independence depending on context." },
+        "H": { "zh-Hans": "你能亲近别人，也能守住自己的边界。", "zh-Hant": "你能親近別人，也能守住自己的邊界。", "en": "You can be close without losing your own boundary." }
+      }
+    },
+    "A1": {
+      "modelName": { "zh-Hans": "态度模型", "zh-Hant": "態度模型", "en": "Attitude Model" },
+      "title": { "zh-Hans": "世界观", "zh-Hant": "世界觀", "en": "Worldview" },
+      "levels": {
+        "L": { "zh-Hans": "你默认先看到风险、荒谬或坏消息。", "zh-Hant": "你默認先看到風險、荒謬或壞消息。", "en": "You naturally notice risk, absurdity, or the downside first." },
+        "M": { "zh-Hans": "你对世界既不浪漫，也不彻底失望。", "zh-Hant": "你對世界既不浪漫，也不徹底失望。", "en": "You read the world in a fairly balanced way." },
+        "H": { "zh-Hans": "你倾向相信事情值得去做、去修。", "zh-Hant": "你傾向相信事情值得去做、去修。", "en": "You tend to believe things are worth improving." }
+      }
+    },
+    "A2": {
+      "modelName": { "zh-Hans": "态度模型", "zh-Hant": "態度模型", "en": "Attitude Model" },
+      "title": { "zh-Hans": "规则灵活", "zh-Hant": "規則靈活", "en": "Rule Orientation" },
+      "levels": {
+        "L": { "zh-Hans": "规则更像建议，你先看有没有必要守。", "zh-Hant": "規則更像建議，你先看有沒有必要守。", "en": "Rules feel negotiable unless they clearly matter." },
+        "M": { "zh-Hans": "你愿意守规则，但会留后门。", "zh-Hant": "你願意守規則，但會留後門。", "en": "You respect rules, but you keep room for exceptions." },
+        "H": { "zh-Hans": "你更习惯按制度、流程和边界办事。", "zh-Hant": "你更習慣按制度、流程和邊界辦事。", "en": "You are comfortable operating through structure and process." }
+      }
+    },
+    "A3": {
+      "modelName": { "zh-Hans": "态度模型", "zh-Hant": "態度模型", "en": "Attitude Model" },
+      "title": { "zh-Hans": "人生意义", "zh-Hant": "人生意義", "en": "Sense of Meaning" },
+      "levels": {
+        "L": { "zh-Hans": "你容易觉得很多事都没差。", "zh-Hant": "你容易覺得很多事都沒差。", "en": "You often feel that many things do not matter that much." },
+        "M": { "zh-Hans": "你有目标，但不会一直把意义挂嘴边。", "zh-Hant": "你有目標，但不會一直把意義掛嘴邊。", "en": "You have goals, but meaning is not always front and center." },
+        "H": { "zh-Hans": "你需要做让自己觉得有意义的事。", "zh-Hant": "你需要做讓自己覺得有意義的事。", "en": "You need your actions to feel meaningful." }
+      }
+    },
+    "Ac1": {
+      "modelName": { "zh-Hans": "行动模型", "zh-Hant": "行動模型", "en": "Action Model" },
+      "title": { "zh-Hans": "动机导向", "zh-Hant": "動機導向", "en": "Motivation" },
+      "levels": {
+        "L": { "zh-Hans": "你会先躲损失，再想收益。", "zh-Hant": "你會先躲損失，再想收益。", "en": "You are more motivated by avoiding loss than chasing upside." },
+        "M": { "zh-Hans": "你会综合风险和收益再动。", "zh-Hant": "你會綜合風險和收益再動。", "en": "You move after weighing both upside and downside." },
+        "H": { "zh-Hans": "你会被机会、成长和成果感驱动。", "zh-Hant": "你會被機會、成長和成果感驅動。", "en": "You are strongly motivated by growth and upside." }
+      }
+    },
+    "Ac2": {
+      "modelName": { "zh-Hans": "行动模型", "zh-Hant": "行動模型", "en": "Action Model" },
+      "title": { "zh-Hans": "决策风格", "zh-Hant": "決策風格", "en": "Decision Style" },
+      "levels": {
+        "L": { "zh-Hans": "你常常卡在犹豫和反复确认。", "zh-Hant": "你常常卡在猶豫和反覆確認。", "en": "You often get stuck in hesitation and repeated checking." },
+        "M": { "zh-Hans": "你会想清楚再做，但不至于长期拖。", "zh-Hant": "你會想清楚再做，但不至於長期拖。", "en": "You like clarity before action, but you do not stall forever." },
+        "H": { "zh-Hans": "你做决定很快，也愿意承担后果。", "zh-Hant": "你做決定很快，也願意承擔後果。", "en": "You decide quickly and accept the consequences." }
+      }
+    },
+    "Ac3": {
+      "modelName": { "zh-Hans": "行动模型", "zh-Hant": "行動模型", "en": "Action Model" },
+      "title": { "zh-Hans": "执行模式", "zh-Hant": "執行模式", "en": "Execution Style" },
+      "levels": {
+        "L": { "zh-Hans": "你更容易拖到最后一刻。", "zh-Hant": "你更容易拖到最後一刻。", "en": "You are prone to delaying until the deadline gets loud." },
+        "M": { "zh-Hans": "你看任务大小决定要不要立刻开工。", "zh-Hant": "你看任務大小決定要不要立刻開工。", "en": "Whether you start quickly depends on the task." },
+        "H": { "zh-Hans": "你通常会尽快开始，把事往前推。", "zh-Hant": "你通常會盡快開始，把事往前推。", "en": "You usually start early and push things forward." }
+      }
+    },
+    "So1": {
+      "modelName": { "zh-Hans": "社交模型", "zh-Hant": "社交模型", "en": "Social Model" },
+      "title": { "zh-Hans": "社交主动", "zh-Hant": "社交主動", "en": "Social Initiative" },
+      "levels": {
+        "L": { "zh-Hans": "你更像等别人来找你。", "zh-Hant": "你更像等別人來找你。", "en": "You prefer others to initiate first." },
+        "M": { "zh-Hans": "熟了你会主动，不熟时会看情况。", "zh-Hant": "熟了你會主動，不熟時會看情況。", "en": "You can initiate, but familiarity helps." },
+        "H": { "zh-Hans": "你通常敢先开口、先组织、先推进。", "zh-Hant": "你通常敢先開口、先組織、先推進。", "en": "You are comfortable initiating and rallying people." }
+      }
+    },
+    "So2": {
+      "modelName": { "zh-Hans": "社交模型", "zh-Hant": "社交模型", "en": "Social Model" },
+      "title": { "zh-Hans": "人际边界", "zh-Hant": "人際邊界", "en": "Interpersonal Boundaries" },
+      "levels": {
+        "L": { "zh-Hans": "你容易为了关系而过度让步。", "zh-Hant": "你容易為了關係而過度讓步。", "en": "You often over-give to keep the relationship smooth." },
+        "M": { "zh-Hans": "你会照顾别人，但也会慢慢退回自己的线。", "zh-Hant": "你會照顧別人，但也會慢慢退回自己的線。", "en": "You try to care for people without fully losing yourself." },
+        "H": { "zh-Hans": "你知道哪里该说不。", "zh-Hant": "你知道哪裡該說不。", "en": "You know where your social line is and can hold it." }
+      }
+    },
+    "So3": {
+      "modelName": { "zh-Hans": "社交模型", "zh-Hant": "社交模型", "en": "Social Model" },
+      "title": { "zh-Hans": "表达真实", "zh-Hant": "表達真實", "en": "Authentic Expression" },
+      "levels": {
+        "L": { "zh-Hans": "你更常直给，不太包装。", "zh-Hant": "你更常直給，不太包裝。", "en": "You usually say things directly without much packaging." },
+        "M": { "zh-Hans": "你会视对象调整表达分寸。", "zh-Hant": "你會視對象調整表達分寸。", "en": "You adjust your tone depending on the audience." },
+        "H": { "zh-Hans": "你很会管理呈现方式，必要时会戴面具。", "zh-Hant": "你很會管理呈現方式，必要時會戴面具。", "en": "You are highly aware of presentation and can wear a social mask." }
+      }
+    }
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "dimension": "S1",
+      "text": { "zh-Hans": "刚到一个陌生场合时，你更接近哪种状态？", "zh-Hant": "剛到一個陌生場合時，你更接近哪種狀態？", "en": "When you enter a new social setting, what is your default state?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "先紧张，怕自己搞砸", "zh-Hant": "先緊張，怕自己搞砸", "en": "I tense up and assume I might mess it up." } },
+        { "value": 2, "text": { "zh-Hans": "先观察，再决定怎么做", "zh-Hant": "先觀察，再決定怎麼做", "en": "I observe first and then decide how to move." } },
+        { "value": 3, "text": { "zh-Hans": "默认觉得自己能应付", "zh-Hant": "默認覺得自己能應付", "en": "I assume I can handle it." } }
+      ]
+    },
+    {
+      "id": "q2",
+      "dimension": "S1",
+      "text": { "zh-Hans": "做一件你没完全把握的事时，你通常会？", "zh-Hant": "做一件你沒完全把握的事時，你通常會？", "en": "When facing something you are not fully sure about, you usually..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "先想自己可能不行", "zh-Hant": "先想自己可能不行", "en": "expect that I might not be good enough." } },
+        { "value": 2, "text": { "zh-Hans": "边试边看结果", "zh-Hant": "邊試邊看結果", "en": "test the waters and see what happens." } },
+        { "value": 3, "text": { "zh-Hans": "更容易先上手再修正", "zh-Hant": "更容易先上手再修正", "en": "jump in and correct along the way." } }
+      ]
+    },
+    {
+      "id": "q3",
+      "dimension": "S2",
+      "text": { "zh-Hans": "别人问你“你到底想要什么”时，你会？", "zh-Hant": "別人問你「你到底想要什麼」時，你會？", "en": "If someone asks what you really want, you..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "一时说不出来", "zh-Hant": "一時說不出來", "en": "struggle to answer clearly." } },
+        { "value": 2, "text": { "zh-Hans": "能说个大概方向", "zh-Hant": "能說個大概方向", "en": "can explain a rough direction." } },
+        { "value": 3, "text": { "zh-Hans": "通常说得很明确", "zh-Hant": "通常說得很明確", "en": "can usually answer quite clearly." } }
+      ]
+    },
+    {
+      "id": "q4",
+      "dimension": "S2",
+      "text": { "zh-Hans": "做重大选择时，你更像？", "zh-Hant": "做重大選擇時，你更像？", "en": "During major life choices, you are more likely to..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "很容易被别人的声音带走", "zh-Hant": "很容易被別人的聲音帶走", "en": "be pulled strongly by other people's opinions." } },
+        { "value": 2, "text": { "zh-Hans": "会参考别人，但还在找自己的答案", "zh-Hant": "會參考別人，但還在找自己的答案", "en": "take input while still searching for my answer." } },
+        { "value": 3, "text": { "zh-Hans": "即使参考别人，也知道自己要什么", "zh-Hant": "即使參考別人，也知道自己要什麼", "en": "consider others but still know my own direction." } }
+      ]
+    },
+    {
+      "id": "q5",
+      "dimension": "S3",
+      "text": { "zh-Hans": "面对舒服但没成长的路，你通常会？", "zh-Hant": "面對舒服但沒成長的路，你通常會？", "en": "When comfort conflicts with growth, you usually..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "先选舒服再说", "zh-Hant": "先選舒服再說", "en": "pick comfort first." } },
+        { "value": 2, "text": { "zh-Hans": "看代价值不值", "zh-Hant": "看代價值不值", "en": "weigh whether growth is worth the cost." } },
+        { "value": 3, "text": { "zh-Hans": "愿意为长期目标吃点苦", "zh-Hant": "願意為長期目標吃點苦", "en": "accept some pain for the long-term goal." } }
+      ]
+    },
+    {
+      "id": "q6",
+      "dimension": "S3",
+      "text": { "zh-Hans": "别人劝你“差不多就行”时，你会？", "zh-Hant": "別人勸你「差不多就行」時，你會？", "en": "When someone says 'good enough', you tend to..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "多数时候就这么算了", "zh-Hant": "多數時候就這麼算了", "en": "usually let it slide." } },
+        { "value": 2, "text": { "zh-Hans": "看事情重要不重要", "zh-Hant": "看事情重不重要", "en": "decide based on how much it matters." } },
+        { "value": 3, "text": { "zh-Hans": "如果不达标会很难受", "zh-Hant": "如果不達標會很難受", "en": "feel uneasy if the standard is not met." } }
+      ]
+    },
+    {
+      "id": "q7",
+      "dimension": "E1",
+      "text": { "zh-Hans": "当重要的人回复慢了，你第一反应更像？", "zh-Hant": "當重要的人回覆慢了，你第一反應更像？", "en": "If an important person replies slowly, your first reaction is more like..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "开始乱想是不是出问题", "zh-Hant": "開始亂想是不是出問題", "en": "I start wondering whether something is wrong." } },
+        { "value": 2, "text": { "zh-Hans": "有一点在意，但还能稳住", "zh-Hant": "有一點在意，但還能穩住", "en": "I notice it, but I can stay fairly calm." } },
+        { "value": 3, "text": { "zh-Hans": "默认对方只是忙", "zh-Hant": "默認對方只是忙", "en": "I assume they are just busy." } }
+      ]
+    },
+    {
+      "id": "q8",
+      "dimension": "E1",
+      "text": { "zh-Hans": "一段关系进入稳定期后，你通常会？", "zh-Hant": "一段關係進入穩定期後，你通常會？", "en": "Once a relationship becomes stable, you usually..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "还是担心它随时会变", "zh-Hant": "還是擔心它隨時會變", "en": "still worry it could change at any time." } },
+        { "value": 2, "text": { "zh-Hans": "放心一些，但保留观察", "zh-Hant": "放心一些，但保留觀察", "en": "relax more, though part of me keeps watching." } },
+        { "value": 3, "text": { "zh-Hans": "基本能安心相处", "zh-Hant": "基本能安心相處", "en": "feel mostly secure in it." } }
+      ]
+    },
+    {
+      "id": "q9",
+      "dimension": "E2",
+      "text": { "zh-Hans": "喜欢上一个人时，你更容易？", "zh-Hant": "喜歡上一個人時，你更容易？", "en": "When you like someone, you are more likely to..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "先收着，不让对方看出来", "zh-Hant": "先收著，不讓對方看出來", "en": "keep it hidden and controlled." } },
+        { "value": 2, "text": { "zh-Hans": "会表达，但还留余地", "zh-Hant": "會表達，但還留餘地", "en": "show it, but keep some reserve." } },
+        { "value": 3, "text": { "zh-Hans": "情绪会明显上头", "zh-Hant": "情緒會明顯上頭", "en": "feel it very strongly and visibly." } }
+      ]
+    },
+    {
+      "id": "q10",
+      "dimension": "E2",
+      "text": { "zh-Hans": "投入一段关系后，你一般会？", "zh-Hant": "投入一段關係後，你一般會？", "en": "After committing to a relationship, you generally..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "还是保留很多自己", "zh-Hant": "還是保留很多自己", "en": "keep a lot of yourself held back." } },
+        { "value": 2, "text": { "zh-Hans": "有投入，也会注意边界", "zh-Hant": "有投入，也會注意邊界", "en": "invest while trying to stay balanced." } },
+        { "value": 3, "text": { "zh-Hans": "很容易全情投入", "zh-Hant": "很容易全情投入", "en": "go all in emotionally." } }
+      ]
+    },
+    {
+      "id": "q11",
+      "dimension": "E3",
+      "text": { "zh-Hans": "身边人的情绪低落时，你通常会？", "zh-Hant": "身邊人的情緒低落時，你通常會？", "en": "When someone close is upset, you usually..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "很快被卷进去，一起乱", "zh-Hant": "很快被捲進去，一起亂", "en": "absorb it quickly and get pulled into it." } },
+        { "value": 2, "text": { "zh-Hans": "会陪，但也会提醒自己别陷太深", "zh-Hant": "會陪，但也會提醒自己別陷太深", "en": "support them while trying not to sink too far with them." } },
+        { "value": 3, "text": { "zh-Hans": "能共情，但能保持自己的状态", "zh-Hant": "能共情，但能保持自己的狀態", "en": "care without losing my own footing." } }
+      ]
+    },
+    {
+      "id": "q12",
+      "dimension": "E3",
+      "text": { "zh-Hans": "你在关系里最怕的是？", "zh-Hant": "你在關係裡最怕的是？", "en": "In close relationships, what are you most likely to fear?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "对方离开，所以会抓得更紧", "zh-Hant": "對方離開，所以會抓得更緊", "en": "Being left, so I may hold on too tightly." } },
+        { "value": 2, "text": { "zh-Hans": "太近太远都不舒服", "zh-Hant": "太近太遠都不舒服", "en": "Either too much distance or too much closeness." } },
+        { "value": 3, "text": { "zh-Hans": "失去自己原本的节奏", "zh-Hant": "失去自己原本的節奏", "en": "Losing my own rhythm and identity." } }
+      ]
+    },
+    {
+      "id": "q13",
+      "dimension": "A1",
+      "text": { "zh-Hans": "看新闻或社会事件时，你第一感觉常常是？", "zh-Hant": "看新聞或社會事件時，你第一感覺常常是？", "en": "When you read the news or watch society, your first impression is often..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "世界越来越离谱", "zh-Hant": "世界越來越離譜", "en": "the world is getting more absurd." } },
+        { "value": 2, "text": { "zh-Hans": "好坏都存在，先看事实", "zh-Hant": "好壞都存在，先看事實", "en": "there is good and bad; let me look at the facts." } },
+        { "value": 3, "text": { "zh-Hans": "虽然乱，但还是值得努力", "zh-Hant": "雖然亂，但還是值得努力", "en": "it is messy, but still worth trying to improve." } }
+      ]
+    },
+    {
+      "id": "q14",
+      "dimension": "A1",
+      "text": { "zh-Hans": "当计划被现实打断时，你更容易？", "zh-Hant": "當計畫被現實打斷時，你更容易？", "en": "When reality disrupts your plans, you are more likely to..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "觉得果然事情都会变烂", "zh-Hant": "覺得果然事情都會變爛", "en": "think, of course this would go badly." } },
+        { "value": 2, "text": { "zh-Hans": "骂一下，然后继续调整", "zh-Hant": "罵一下，然後繼續調整", "en": "be annoyed, then adapt." } },
+        { "value": 3, "text": { "zh-Hans": "默认还有办法修回来", "zh-Hant": "默認還有辦法修回來", "en": "assume there is still a way to fix it." } }
+      ]
+    },
+    {
+      "id": "q15",
+      "dimension": "A2",
+      "text": { "zh-Hans": "面对一条你觉得“不太合理”的规定时，你会？", "zh-Hant": "面對一條你覺得「不太合理」的規定時，你會？", "en": "When a rule seems unreasonable, you usually..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "先想怎么绕过去", "zh-Hant": "先想怎麼繞過去", "en": "look for a way around it." } },
+        { "value": 2, "text": { "zh-Hans": "大多守，但会判断值不值得例外", "zh-Hant": "大多守，但會判斷值不值得例外", "en": "mostly follow it, unless there is a good reason not to." } },
+        { "value": 3, "text": { "zh-Hans": "先照流程来，再找正式方式反馈", "zh-Hant": "先照流程來，再找正式方式反饋", "en": "follow the process first and then challenge it formally." } }
+      ]
+    },
+    {
+      "id": "q16",
+      "dimension": "A2",
+      "text": { "zh-Hans": "做团队事情时，你对流程的态度更像？", "zh-Hant": "做團隊事情時，你對流程的態度更像？", "en": "In team work, your attitude toward process is more like..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "流程太多会烦，能省就省", "zh-Hant": "流程太多會煩，能省就省", "en": "Too much process annoys me; I skip what I can." } },
+        { "value": 2, "text": { "zh-Hans": "有流程更稳，但也别太僵", "zh-Hant": "有流程更穩，但也別太僵", "en": "Process helps, as long as it stays flexible." } },
+        { "value": 3, "text": { "zh-Hans": "清晰规则会让我更安心高效", "zh-Hant": "清晰規則會讓我更安心高效", "en": "Clear process makes me calmer and more effective." } }
+      ]
+    },
+    {
+      "id": "q17",
+      "dimension": "A3",
+      "text": { "zh-Hans": "你做事时，会不会在意“这件事有什么意义”？", "zh-Hant": "你做事時，會不會在意「這件事有什麼意義」？", "en": "When you do things, how much do you care about whether they feel meaningful?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "很多时候无所谓，做完就行", "zh-Hant": "很多時候無所謂，做完就行", "en": "Not much. Getting it done is enough." } },
+        { "value": 2, "text": { "zh-Hans": "重要的事情才会想这个", "zh-Hant": "重要的事情才會想這個", "en": "Only for the things that matter a lot." } },
+        { "value": 3, "text": { "zh-Hans": "如果没意义，我会很难投入", "zh-Hant": "如果沒意義，我會很難投入", "en": "If it feels meaningless, I struggle to engage." } }
+      ]
+    },
+    {
+      "id": "q18",
+      "dimension": "A3",
+      "text": { "zh-Hans": "你更认同哪句话？", "zh-Hant": "你更認同哪句話？", "en": "Which line feels closest to you?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "人生很多事其实都差不多", "zh-Hant": "人生很多事其實都差不多", "en": "A lot of life is basically all the same." } },
+        { "value": 2, "text": { "zh-Hans": "意义要看阶段，不是时时刻刻都有", "zh-Hant": "意義要看階段，不是時時刻刻都有", "en": "Meaning comes in phases, not every minute." } },
+        { "value": 3, "text": { "zh-Hans": "我希望自己做的事能对我真的重要", "zh-Hant": "我希望自己做的事能對我真的重要", "en": "I want what I do to matter deeply to me." } }
+      ]
+    },
+    {
+      "id": "q19",
+      "dimension": "Ac1",
+      "text": { "zh-Hans": "做选择时，哪种力量更推动你？", "zh-Hant": "做選擇時，哪種力量更推動你？", "en": "What drives your choices more strongly?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "别出错、别亏、别翻车", "zh-Hant": "別出錯、別虧、別翻車", "en": "Avoiding mistakes, losses, or embarrassment." } },
+        { "value": 2, "text": { "zh-Hans": "风险和机会都要算", "zh-Hant": "風險和機會都要算", "en": "A balance of risk and opportunity." } },
+        { "value": 3, "text": { "zh-Hans": "成长、成果、机会", "zh-Hant": "成長、成果、機會", "en": "Growth, upside, and progress." } }
+      ]
+    },
+    {
+      "id": "q20",
+      "dimension": "Ac1",
+      "text": { "zh-Hans": "一个机会有风险，但上限很高时，你更可能？", "zh-Hant": "一個機會有風險，但上限很高時，你更可能？", "en": "If an opportunity is risky but has high upside, you are more likely to..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "先想算了，稳一点", "zh-Hant": "先想算了，穩一點", "en": "step back and choose the safer path." } },
+        { "value": 2, "text": { "zh-Hans": "看条件和准备程度", "zh-Hant": "看條件和準備程度", "en": "evaluate whether the setup is good enough." } },
+        { "value": 3, "text": { "zh-Hans": "如果值得，我愿意冲", "zh-Hant": "如果值得，我願意衝", "en": "go for it if the upside is worth it." } }
+      ]
+    },
+    {
+      "id": "q21",
+      "dimension": "Ac2",
+      "text": { "zh-Hans": "别人催你做决定时，你通常会？", "zh-Hant": "別人催你做決定時，你通常會？", "en": "When someone pushes you to decide, you usually..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "更容易卡住", "zh-Hant": "更容易卡住", "en": "freeze up even more." } },
+        { "value": 2, "text": { "zh-Hans": "想清楚关键点再答", "zh-Hant": "想清楚關鍵點再答", "en": "pause to check the key factors." } },
+        { "value": 3, "text": { "zh-Hans": "很快拍板", "zh-Hant": "很快拍板", "en": "make the call quickly." } }
+      ]
+    },
+    {
+      "id": "q22",
+      "dimension": "Ac2",
+      "text": { "zh-Hans": "你更像哪种决策者？", "zh-Hant": "你更像哪種決策者？", "en": "Which kind of decision-maker are you?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "总怕漏掉信息，所以迟迟不定", "zh-Hant": "總怕漏掉資訊，所以遲遲不定", "en": "I worry about missing information, so I delay." } },
+        { "value": 2, "text": { "zh-Hans": "够清楚了就会定", "zh-Hant": "夠清楚了就會定", "en": "I decide once it is clear enough." } },
+        { "value": 3, "text": { "zh-Hans": "我相信先定再调也行", "zh-Hant": "我相信先定再調也行", "en": "I trust that I can decide first and adjust later." } }
+      ]
+    },
+    {
+      "id": "q23",
+      "dimension": "Ac3",
+      "text": { "zh-Hans": "面对一项并不喜欢但必须做的任务，你通常会？", "zh-Hant": "面對一項並不喜歡但必須做的任務，你通常會？", "en": "When a necessary task is boring, you usually..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "拖到不能再拖", "zh-Hant": "拖到不能再拖", "en": "delay until I absolutely have to do it." } },
+        { "value": 2, "text": { "zh-Hans": "先看时间，再决定何时开工", "zh-Hant": "先看時間，再決定何時開工", "en": "check timing and choose a workable moment." } },
+        { "value": 3, "text": { "zh-Hans": "尽快开个头，免得压着", "zh-Hant": "盡快開個頭，免得壓著", "en": "start early so it stops weighing on me." } }
+      ]
+    },
+    {
+      "id": "q24",
+      "dimension": "Ac3",
+      "text": { "zh-Hans": "你和截止日期的关系更像？", "zh-Hant": "你和截止日期的關係更像？", "en": "Your relationship with deadlines is more like..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "没有临门一脚很难动", "zh-Hant": "沒有臨門一腳很難動", "en": "I need the pressure spike before I move." } },
+        { "value": 2, "text": { "zh-Hans": "会分情况，有时早有时晚", "zh-Hant": "會分情況，有時早有時晚", "en": "it depends on the task and the energy." } },
+        { "value": 3, "text": { "zh-Hans": "越早推进越安心", "zh-Hant": "越早推進越安心", "en": "the earlier I move, the calmer I feel." } }
+      ]
+    },
+    {
+      "id": "q25",
+      "dimension": "So1",
+      "text": { "zh-Hans": "聚会里如果大家还不熟，你通常会？", "zh-Hant": "聚會裡如果大家還不熟，你通常會？", "en": "At a gathering where people barely know each other, you usually..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "等别人先来找我", "zh-Hant": "等別人先來找我", "en": "wait for someone else to approach me." } },
+        { "value": 2, "text": { "zh-Hans": "看气氛，偶尔主动一下", "zh-Hant": "看氣氛，偶爾主動一下", "en": "read the room and maybe initiate a little." } },
+        { "value": 3, "text": { "zh-Hans": "我会主动开场或拉话题", "zh-Hant": "我會主動開場或拉話題", "en": "open the conversation myself." } }
+      ]
+    },
+    {
+      "id": "q26",
+      "dimension": "So1",
+      "text": { "zh-Hans": "组织朋友一起做事时，你更像？", "zh-Hant": "組織朋友一起做事時，你更像？", "en": "When friends need organizing, you are more like..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "谁组织我跟谁走", "zh-Hant": "誰組織我跟誰走", "en": "I follow whoever takes the lead." } },
+        { "value": 2, "text": { "zh-Hans": "必要时我能接一下", "zh-Hant": "必要時我能接一下", "en": "I can step in if needed." } },
+        { "value": 3, "text": { "zh-Hans": "我常常就是那个组织的人", "zh-Hant": "我常常就是那個組織的人", "en": "I am often the one who organizes it." } }
+      ]
+    },
+    {
+      "id": "q27",
+      "dimension": "So2",
+      "text": { "zh-Hans": "别人向你提不太合理的请求时，你常常会？", "zh-Hant": "別人向你提不太合理的請求時，你常常會？", "en": "If someone asks too much from you, you often..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "先答应，之后再难受", "zh-Hant": "先答應，之後再難受", "en": "say yes first and feel bad later." } },
+        { "value": 2, "text": { "zh-Hans": "会纠结，但不一定全接", "zh-Hant": "會糾結，但不一定全接", "en": "hesitate, but not always agree." } },
+        { "value": 3, "text": { "zh-Hans": "如果越界，我会明确拒绝", "zh-Hant": "如果越界，我會明確拒絕", "en": "say no clearly if it crosses my line." } }
+      ]
+    },
+    {
+      "id": "q28",
+      "dimension": "So2",
+      "text": { "zh-Hans": "你在人际关系里更容易？", "zh-Hant": "你在人際關係裡更容易？", "en": "In relationships, you are more likely to..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "为了和气一直让步", "zh-Hant": "為了和氣一直讓步", "en": "keep yielding to preserve harmony." } },
+        { "value": 2, "text": { "zh-Hans": "看对象和事情重要程度", "zh-Hant": "看對象和事情重要程度", "en": "adjust based on the person and the stakes." } },
+        { "value": 3, "text": { "zh-Hans": "关系再近也要保留底线", "zh-Hant": "關係再近也要保留底線", "en": "keep a line even with very close people." } }
+      ]
+    },
+    {
+      "id": "q29",
+      "dimension": "So3",
+      "text": { "zh-Hans": "说真心话这件事上，你更接近？", "zh-Hant": "說真心話這件事上，你更接近？", "en": "When it comes to saying what you really think, you are more like..." },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "我通常比较直，不太修饰", "zh-Hant": "我通常比較直，不太修飾", "en": "I am usually direct and lightly filtered." } },
+        { "value": 2, "text": { "zh-Hans": "会看人下菜碟", "zh-Hant": "會看人下菜碟", "en": "I tailor it to the audience." } },
+        { "value": 3, "text": { "zh-Hans": "我很会管理呈现，不一定全说真话", "zh-Hant": "我很會管理呈現，不一定全說真話", "en": "I manage my presentation carefully and do not always reveal everything." } }
+      ]
+    },
+    {
+      "id": "q30",
+      "dimension": "So3",
+      "text": { "zh-Hans": "社交时你更看重？", "zh-Hant": "社交時你更看重？", "en": "In social settings, what matters more to you?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "真实，哪怕有点冲", "zh-Hant": "真實，哪怕有點衝", "en": "Raw honesty, even if it lands hard." } },
+        { "value": 2, "text": { "zh-Hans": "真实和体面都要", "zh-Hant": "真實和體面都要", "en": "A balance of honesty and tact." } },
+        { "value": 3, "text": { "zh-Hans": "场面、效果和分寸更重要", "zh-Hant": "場面、效果和分寸更重要", "en": "Managing the tone and outcome matters more." } }
+      ]
+    }
+  ],
+  "specialQuestions": [
+    {
+      "id": "sq1",
+      "dimension": "SPECIAL",
+      "text": { "zh-Hans": "你平时喝酒吗？", "zh-Hant": "你平時喝酒嗎？", "en": "Do you drink alcohol?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "基本不喝", "zh-Hant": "基本不喝", "en": "Almost never." } },
+        { "value": 2, "text": { "zh-Hans": "偶尔会喝", "zh-Hant": "偶爾會喝", "en": "Sometimes." } },
+        { "value": 3, "text": { "zh-Hans": "常喝", "zh-Hant": "常喝", "en": "Often." } }
+      ]
+    },
+    {
+      "id": "sq2",
+      "dimension": "SPECIAL",
+      "text": { "zh-Hans": "如果是白酒，你的描述更像？", "zh-Hant": "如果是白酒，你的描述更像？", "en": "If the drink is strong liquor, which line fits you best?" },
+      "options": [
+        { "value": 1, "text": { "zh-Hans": "我不太行", "zh-Hant": "我不太行", "en": "I cannot really handle it." } },
+        { "value": 2, "text": { "zh-Hans": "看场合和状态", "zh-Hant": "看場合和狀態", "en": "Depends on the context." } },
+        { "value": 3, "text": { "zh-Hans": "像喝白开水一样", "zh-Hant": "像喝白開水一樣", "en": "Like drinking water." } }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "code": "CTRL",
+      "name": { "zh-Hans": "拿捏者", "zh-Hant": "拿捏者", "en": "Controller" },
+      "pattern": "HHH-HMH-MHH-HHH-MHM",
+      "description": { "zh-Hans": "你稳定、自信、擅长接管局面。", "zh-Hant": "你穩定、自信、擅長接管局面。", "en": "You are steady, self-assured, and comfortable taking control." },
+      "traits": ["confident", "decisive", "structured"],
+      "shareableText": { "zh-Hans": "我是 CTRL 拿捏者，场面一乱我就会自动上线。", "zh-Hant": "我是 CTRL 拿捏者，場面一亂我就會自動上線。", "en": "I am CTRL: once the room gets messy, I naturally take over." }
+    },
+    {
+      "code": "MALO",
+      "name": { "zh-Hans": "吗喽", "zh-Hant": "嗎嘍", "en": "Follower Gremlin" },
+      "pattern": "LLM-MLL-MLM-LLL-HLL",
+      "description": { "zh-Hans": "你很会跟随气氛，也容易被关系牵着走。", "zh-Hant": "你很會跟隨氣氛，也容易被關係牽著走。", "en": "You adapt to the crowd easily and can be pulled around by relationships." },
+      "traits": ["adaptive", "dependent", "reactive"],
+      "shareableText": { "zh-Hans": "我是 MALO，气氛往哪边走我就往哪边滑。", "zh-Hant": "我是 MALO，氣氛往哪邊走我就往哪邊滑。", "en": "I am MALO: wherever the vibe goes, I slide with it." }
+    },
+    {
+      "code": "FAKE",
+      "name": { "zh-Hans": "伪人", "zh-Hant": "偽人", "en": "Masker" },
+      "pattern": "MMM-MLH-HMM-MMM-HHH",
+      "description": { "zh-Hans": "你很会切换状态，社交呈现感很强。", "zh-Hant": "你很會切換狀態，社交呈現感很強。", "en": "You are highly adaptive and know how to manage your social presentation." },
+      "traits": ["performative", "smooth", "adaptive"],
+      "shareableText": { "zh-Hans": "我是 FAKE，真心有，但滤镜和人设也很足。", "zh-Hant": "我是 FAKE，真心有，但濾鏡和人設也很足。", "en": "I am FAKE: sincere underneath, curated on the surface." }
+    },
+    {
+      "code": "MUM",
+      "name": { "zh-Hans": "妈妈", "zh-Hant": "媽媽", "en": "Caretaker" },
+      "pattern": "MHH-HHL-MMH-MHM-HLL",
+      "description": { "zh-Hans": "你天然会照顾别人，经常把自己放后面。", "zh-Hant": "你天然會照顧別人，經常把自己放後面。", "en": "You naturally take care of people and often put yourself second." },
+      "traits": ["caring", "protective", "giving"],
+      "shareableText": { "zh-Hans": "我是 MUM，总有人会被我顺手照顾到。", "zh-Hant": "我是 MUM，總有人會被我順手照顧到。", "en": "I am MUM: someone always ends up cared for around me." }
+    },
+    {
+      "code": "LOVE-R",
+      "name": { "zh-Hans": "多情者", "zh-Hant": "多情者", "en": "Lover" },
+      "pattern": "MMH-HHL-MMH-MMH-MLL",
+      "description": { "zh-Hans": "你在关系里投入深，爱意上头很快。", "zh-Hant": "你在關係裡投入深，愛意上頭很快。", "en": "You invest deeply in relationships and feelings rise fast." },
+      "traits": ["romantic", "intense", "devoted"],
+      "shareableText": { "zh-Hans": "我是 LOVE-R，一动心就很难装作没事。", "zh-Hant": "我是 LOVE-R，一動心就很難裝作沒事。", "en": "I am LOVE-R: once I care, it shows." }
+    },
+    {
+      "code": "GOGO",
+      "name": { "zh-Hans": "行者", "zh-Hant": "行者", "en": "Mover" },
+      "pattern": "MMH-MMH-HMH-HHH-HMH",
+      "description": { "zh-Hans": "你很看重行动感，想法会尽快落地。", "zh-Hant": "你很看重行動感，想法會盡快落地。", "en": "You value momentum and like turning ideas into movement quickly." },
+      "traits": ["active", "bold", "forward"],
+      "shareableText": { "zh-Hans": "我是 GOGO，想明白一点就先开跑。", "zh-Hant": "我是 GOGO，想明白一點就先開跑。", "en": "I am GOGO: once it makes enough sense, I am already moving." }
+    },
+    {
+      "code": "SEXY",
+      "name": { "zh-Hans": "尤物", "zh-Hant": "尤物", "en": "Charmer" },
+      "pattern": "HHM-MMH-MMH-MMH-HMH",
+      "description": { "zh-Hans": "你有强烈的个人风格，存在感很高。", "zh-Hant": "你有強烈的個人風格，存在感很高。", "en": "You have noticeable personal style and strong social presence." },
+      "traits": ["magnetic", "stylish", "expressive"],
+      "shareableText": { "zh-Hans": "我是 SEXY，我走到哪儿都会自带一点存在感。", "zh-Hant": "我是 SEXY，我走到哪兒都會自帶一點存在感。", "en": "I am SEXY: I bring presence into the room by default." }
+    },
+    {
+      "code": "BOSS",
+      "name": { "zh-Hans": "领导者", "zh-Hant": "領導者", "en": "Boss" },
+      "pattern": "HHH-MHH-MHH-HHH-HHH",
+      "description": { "zh-Hans": "你天生偏管理位，喜欢明确边界和结果。", "zh-Hant": "你天生偏管理位，喜歡明確邊界和結果。", "en": "You naturally occupy the management seat and care about structure and outcomes." },
+      "traits": ["leader", "firm", "high-agency"],
+      "shareableText": { "zh-Hans": "我是 BOSS，控场不是兴趣，是本能。", "zh-Hant": "我是 BOSS，控場不是興趣，是本能。", "en": "I am BOSS: taking charge is less a hobby than a reflex." }
+    },
+    {
+      "code": "ATM-er",
+      "name": { "zh-Hans": "送钱者", "zh-Hant": "送錢者", "en": "Patron" },
+      "pattern": "MMM-HHL-MMH-MMH-HLL",
+      "description": { "zh-Hans": "你对在乎的人很舍得，常常给得太多。", "zh-Hant": "你對在乎的人很捨得，常常給得太多。", "en": "You are generous with people you care about and can over-give." },
+      "traits": ["generous", "soft-hearted", "helpful"],
+      "shareableText": { "zh-Hans": "我是 ATM-er，对自己抠，对熟人常常大方过头。", "zh-Hant": "我是 ATM-er，對自己摳，對熟人常常大方過頭。", "en": "I am ATM-er: strict with myself, overly generous with my people." }
+    },
+    {
+      "code": "THAN-K",
+      "name": { "zh-Hans": "感恩者", "zh-Hant": "感恩者", "en": "Grateful One" },
+      "pattern": "MMM-MMM-HMH-MMM-MMM",
+      "description": { "zh-Hans": "你比较知足，容易看到已经拥有的部分。", "zh-Hant": "你比較知足，容易看到已經擁有的部分。", "en": "You are relatively grounded and quick to notice what is already good." },
+      "traits": ["grounded", "warm", "steady"],
+      "shareableText": { "zh-Hans": "我是 THAN-K，很多时候先想到的是还好我已经拥有这些。", "zh-Hant": "我是 THAN-K，很多時候先想到的是還好我已經擁有這些。", "en": "I am THAN-K: I often start from what is already enough." }
+    },
+    {
+      "code": "OH-NO",
+      "name": { "zh-Hans": "哦不人", "zh-Hant": "哦不人", "en": "Oh-No" },
+      "pattern": "LLL-LLM-LLM-LLL-MLM",
+      "description": { "zh-Hans": "你对风险很敏感，容易提前焦虑。", "zh-Hant": "你對風險很敏感，容易提前焦慮。", "en": "You are highly sensitive to risk and often feel anxiety early." },
+      "traits": ["anxious", "sensitive", "cautious"],
+      "shareableText": { "zh-Hans": "我是 OH-NO，事情还没发生我脑内已经开了预演。", "zh-Hant": "我是 OH-NO，事情還沒發生我腦內已經開了預演。", "en": "I am OH-NO: my brain begins the crisis rehearsal before reality does." }
+    },
+    {
+      "code": "WOC!",
+      "name": { "zh-Hans": "握草人", "zh-Hant": "握草人", "en": "What-The-Hell" },
+      "pattern": "MML-HMH-LLM-HHM-HLM",
+      "description": { "zh-Hans": "你情绪起伏猛，常常反应很直接。", "zh-Hant": "你情緒起伏猛，常常反應很直接。", "en": "Your emotional surges are strong and your reactions tend to be immediate." },
+      "traits": ["volatile", "blunt", "energetic"],
+      "shareableText": { "zh-Hans": "我是 WOC!，情绪一来我会先把真实反应甩出来。", "zh-Hant": "我是 WOC!，情緒一來我會先把真實反應甩出來。", "en": "I am WOC!: when emotion hits, the reaction escapes first." }
+    },
+    {
+      "code": "THIN-K",
+      "name": { "zh-Hans": "思考者", "zh-Hant": "思考者", "en": "Thinker" },
+      "pattern": "MHH-LMH-HHH-MHM-LLM",
+      "description": { "zh-Hans": "你更信分析和结构，情绪不会轻易压过判断。", "zh-Hant": "你更信分析和結構，情緒不會輕易壓過判斷。", "en": "You trust analysis and structure, and emotion rarely outruns judgment." },
+      "traits": ["analytical", "composed", "clear"],
+      "shareableText": { "zh-Hans": "我是 THIN-K，先想透再动是我的默认设置。", "zh-Hant": "我是 THIN-K，先想透再動是我的默認設置。", "en": "I am THIN-K: my default mode is to understand first, then move." }
+    },
+    {
+      "code": "SHIT",
+      "name": { "zh-Hans": "愤世者", "zh-Hant": "憤世者", "en": "Doom Ranter" },
+      "pattern": "MML-MML-LLL-MHM-HHM",
+      "description": { "zh-Hans": "你对世界有明显的不耐烦和抵抗感。", "zh-Hant": "你對世界有明顯的不耐煩和抵抗感。", "en": "You carry visible impatience and resistance toward the world." },
+      "traits": ["cynical", "rebellious", "intense"],
+      "shareableText": { "zh-Hans": "我是 SHIT，对很多离谱现场已经懒得温柔。", "zh-Hant": "我是 SHIT，對很多離譜現場已經懶得溫柔。", "en": "I am SHIT: I have limited softness left for absurd situations." }
+    },
+    {
+      "code": "POOR",
+      "name": { "zh-Hans": "贫困者", "zh-Hant": "貧困者", "en": "Struggler" },
+      "pattern": "LLM-MLM-MMM-LLL-MML",
+      "description": { "zh-Hans": "你常觉得资源不够，但还是在硬撑前进。", "zh-Hant": "你常覺得資源不夠，但還是在硬撐前進。", "en": "You often feel under-resourced but keep dragging yourself forward." },
+      "traits": ["resilient", "strained", "earnest"],
+      "shareableText": { "zh-Hans": "我是 POOR，资源常常不够，但还在咬牙往前。", "zh-Hant": "我是 POOR，資源常常不夠，但還在咬牙往前。", "en": "I am POOR: I do not always have enough, but I keep pushing." }
+    },
+    {
+      "code": "ZZZZ",
+      "name": { "zh-Hans": "装死者", "zh-Hant": "裝死者", "en": "Ghost Mode" },
+      "pattern": "MMM-MLM-MLM-LLL-LLM",
+      "description": { "zh-Hans": "你在压力下容易隐身、拖延、降低存在感。", "zh-Hant": "你在壓力下容易隱身、拖延、降低存在感。", "en": "Under pressure, you disappear, delay, and lower your visibility." },
+      "traits": ["avoidant", "low-energy", "quiet"],
+      "shareableText": { "zh-Hans": "我是 ZZZZ，一有压力就想先静音一下世界。", "zh-Hant": "我是 ZZZZ，一有壓力就想先靜音一下世界。", "en": "I am ZZZZ: pressure makes me want to mute the world for a while." }
+    },
+    {
+      "code": "JOKE-R",
+      "name": { "zh-Hans": "小丑", "zh-Hant": "小丑", "en": "Joker" },
+      "pattern": "LMM-MMM-MML-MMM-HLH",
+      "description": { "zh-Hans": "你会把尴尬、难受和压力转成玩笑。", "zh-Hant": "你會把尷尬、難受和壓力轉成玩笑。", "en": "You convert awkwardness, pain, and pressure into humor." },
+      "traits": ["funny", "deflective", "social"],
+      "shareableText": { "zh-Hans": "我是 JOKE-R，越难受越能讲段子。", "zh-Hant": "我是 JOKE-R，越難受越能講段子。", "en": "I am JOKE-R: the worse I feel, the better the bit gets." }
+    },
+    {
+      "code": "OJBK",
+      "name": { "zh-Hans": "无所谓人", "zh-Hant": "無所謂人", "en": "Whatever" },
+      "pattern": "MMM-LLL-MLL-MLL-MML",
+      "description": { "zh-Hans": "你有种松散的钝感，很多事都懒得太在意。", "zh-Hant": "你有種鬆散的鈍感，很多事都懶得太在意。", "en": "You carry a loose, detached energy and often do not care much." },
+      "traits": ["detached", "easygoing", "blunt"],
+      "shareableText": { "zh-Hans": "我是 OJBK，不是没情绪，是很多事懒得起波澜。", "zh-Hant": "我是 OJBK，不是沒情緒，是很多事懶得起波瀾。", "en": "I am OJBK: not emotionless, just not easily stirred." }
+    },
+    {
+      "code": "SOLO",
+      "name": { "zh-Hans": "孤儿", "zh-Hant": "孤兒", "en": "Solo" },
+      "pattern": "MMM-MLH-MMM-MMM-LLH",
+      "description": { "zh-Hans": "你更习惯一个人消化，和别人保持距离。", "zh-Hant": "你更習慣一個人消化，和別人保持距離。", "en": "You process things alone and keep people at a distance." },
+      "traits": ["reserved", "independent", "distant"],
+      "shareableText": { "zh-Hans": "我是 SOLO，很多情绪我更习惯自己处理。", "zh-Hant": "我是 SOLO，很多情緒我更習慣自己處理。", "en": "I am SOLO: most feelings get processed offline." }
+    },
+    {
+      "code": "MONK",
+      "name": { "zh-Hans": "僧人", "zh-Hant": "僧人", "en": "Monk" },
+      "pattern": "MMH-LLH-HHH-MLM-LLH",
+      "description": { "zh-Hans": "你克制、清醒、边界感强，欲望管理能力高。", "zh-Hant": "你克制、清醒、邊界感強，慾望管理能力高。", "en": "You are restrained, clear-headed, and unusually good at holding your line." },
+      "traits": ["disciplined", "minimal", "contained"],
+      "shareableText": { "zh-Hans": "我是 MONK，很多诱惑在我这里会自动降噪。", "zh-Hant": "我是 MONK，很多誘惑在我這裡會自動降噪。", "en": "I am MONK: many temptations get auto-muted on arrival." }
+    },
+    {
+      "code": "IMSB",
+      "name": { "zh-Hans": "傻者", "zh-Hant": "傻者", "en": "Goof" },
+      "pattern": "LML-MMM-MMM-LMM-MMM",
+      "description": { "zh-Hans": "你带点天真和迟钝，也因此显得可爱。", "zh-Hant": "你帶點天真和遲鈍，也因此顯得可愛。", "en": "You carry some innocence and harmless slowness, which can be charming." },
+      "traits": ["naive", "gentle", "endearing"],
+      "shareableText": { "zh-Hans": "我是 IMSB，不一定快，但很多时候是真诚可爱那挂。", "zh-Hant": "我是 IMSB，不一定快，但很多時候是真誠可愛那掛。", "en": "I am IMSB: not the quickest, but often sincerely lovable." }
+    },
+    {
+      "code": "FUCK",
+      "name": { "zh-Hans": "草者", "zh-Hant": "草者", "en": "Chaos Goblin" },
+      "pattern": "MML-MMM-LLL-HHL-HLM",
+      "description": { "zh-Hans": "你容易被冲动带着跑，破坏力和快乐常常一起出现。", "zh-Hant": "你容易被衝動帶著跑，破壞力和快樂常常一起出現。", "en": "Impulse drives you hard; chaos and fun often arrive together." },
+      "traits": ["chaotic", "impulsive", "reckless"],
+      "shareableText": { "zh-Hans": "我是 FUCK，很多事先做了再说，后果之后聊。", "zh-Hant": "我是 FUCK，很多事先做了再說，後果之後聊。", "en": "I am FUCK: action first, consequences later." }
+    },
+    {
+      "code": "DEAD",
+      "name": { "zh-Hans": "死者", "zh-Hant": "死者", "en": "Dead Battery" },
+      "pattern": "LLL-LLL-LLL-LLL-LLL",
+      "description": { "zh-Hans": "你像长期低电量运行，什么都提不起劲。", "zh-Hant": "你像長期低電量運行，什麼都提不起勁。", "en": "You feel like you are operating on a long-term empty battery." },
+      "traits": ["drained", "flat", "numb"],
+      "shareableText": { "zh-Hans": "我是 DEAD，不是摆烂，是电量常年只剩 3%。", "zh-Hant": "我是 DEAD，不是擺爛，是電量常年只剩 3%。", "en": "I am DEAD: not lazy, just permanently on 3% battery." }
+    },
+    {
+      "code": "IMFW",
+      "name": { "zh-Hans": "废物", "zh-Hant": "廢物", "en": "Mess" },
+      "pattern": "LLL-MLM-LLM-LLL-MLL",
+      "description": { "zh-Hans": "你容易自暴自弃，对自己要求低到接近放弃。", "zh-Hant": "你容易自暴自棄，對自己要求低到接近放棄。", "en": "You can slide into self-dismissal and stop expecting much from yourself." },
+      "traits": ["self-defeating", "low-drive", "messy"],
+      "shareableText": { "zh-Hans": "我是 IMFW，对自己吐槽有时比行动还快。", "zh-Hant": "我是 IMFW，對自己吐槽有時比行動還快。", "en": "I am IMFW: self-roasting often arrives before self-improvement." }
+    },
+    {
+      "code": "Dior-s",
+      "name": { "zh-Hans": "屌丝", "zh-Hant": "屌絲", "en": "Underdog" },
+      "pattern": "LMM-MMM-MMH-MMH-MML",
+      "description": { "zh-Hans": "你总觉得自己起点一般，但还有一点想翻盘。", "zh-Hant": "你總覺得自己起點一般，但還有一點想翻盤。", "en": "You often feel average-positioned, but there is still a stubborn wish to level up." },
+      "traits": ["underdog", "persistent", "hopeful"],
+      "shareableText": { "zh-Hans": "我是 Dior-s，普通是底色，但我也没打算一直普通。", "zh-Hant": "我是 Dior-s，普通是底色，但我也沒打算一直普通。", "en": "I am Dior-s: average may be the starting point, not the ending." }
+    },
+    {
+      "code": "DRUNK",
+      "name": { "zh-Hans": "酒鬼", "zh-Hant": "酒鬼", "en": "Drunk Mode" },
+      "pattern": "MMM-MMM-MMM-MMM-MMM",
+      "description": { "zh-Hans": "隐藏人格触发。你不是被匹配出来的，是被酒精召唤出来的。", "zh-Hant": "隱藏人格觸發。你不是被匹配出來的，是被酒精召喚出來的。", "en": "Hidden type unlocked. You were not matched into this; you were summoned by alcohol." },
+      "traits": ["hidden", "chaotic", "easter-egg"],
+      "shareableText": { "zh-Hans": "我是 DRUNK，白酒像白开水，系统直接给我开彩蛋。", "zh-Hant": "我是 DRUNK，白酒像白開水，系統直接給我開彩蛋。", "en": "I am DRUNK: if strong liquor feels like water, the easter egg opens automatically." }
+    },
+    {
+      "code": "HHHH",
+      "name": { "zh-Hans": "傻乐者", "zh-Hant": "傻樂者", "en": "Wildcard HHHH" },
+      "pattern": "HHH-HHH-HHH-HHH-HHH",
+      "description": { "zh-Hans": "你和标准原型都差一点，系统把你判成野生快乐样本。", "zh-Hant": "你和標準原型都差一點，系統把你判成野生快樂樣本。", "en": "You do not fit any standard prototype closely enough, so the system marks you as a wildcard specimen." },
+      "traits": ["wildcard", "oddball", "fallback"],
+      "shareableText": { "zh-Hans": "我是 HHHH，主打一个不太像任何模板。", "zh-Hant": "我是 HHHH，主打一個不太像任何模板。", "en": "I am HHHH: proudly not a clean fit for any existing mold." }
+    }
+  ]
+}

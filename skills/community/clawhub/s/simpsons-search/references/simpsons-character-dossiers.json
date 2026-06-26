@@ -1,0 +1,3617 @@
+{
+  "characters": [
+    {
+      "name": "Homer Simpson",
+      "top_terms": [
+        "homer",
+        "simpson",
+        "marge",
+        "don",
+        "now",
+        "hey",
+        "know",
+        "well",
+        "one",
+        "right",
+        "bart",
+        "man",
+        "let",
+        "yeah",
+        "come",
+        "want",
+        "think",
+        "did",
+        "good",
+        "dad"
+      ],
+      "related_characters": [
+        {
+          "name": "Marge Simpson",
+          "count": 15
+        },
+        {
+          "name": "Ned Flanders",
+          "count": 9
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 5
+        },
+        {
+          "name": "Bart Simpson",
+          "count": 4
+        },
+        {
+          "name": "Chief Wiggum",
+          "count": 4
+        },
+        {
+          "name": "Lisa Simpson",
+          "count": 3
+        },
+        {
+          "name": "Moe Szyslak",
+          "count": 3
+        },
+        {
+          "name": "Principal Skinner",
+          "count": 2
+        },
+        {
+          "name": "Krusty the Clown",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Bart Gets an F",
+          "count": 1
+        },
+        {
+          "title": "1. Bart of Darkness",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Not Dead",
+          "count": 1
+        },
+        {
+          "title": "1. Beyond Blunderdome",
+          "count": 1
+        },
+        {
+          "title": "1. Bonfire of the Manatees",
+          "count": 1
+        },
+        {
+          "title": "1. Clown in the Dumps",
+          "count": 1
+        },
+        {
+          "title": "1. Elementary School Musical",
+          "count": 1
+        },
+        {
+          "title": "1. Every Man's Dream",
+          "count": 1
+        },
+        {
+          "title": "1. Habeas Tortoise",
+          "count": 1
+        },
+        {
+          "title": "1. He Loves To Fly And He D'ohs",
+          "count": 1
+        },
+        {
+          "title": "1. Homer the Whopper",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Barbershop Quartet",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Hey, Homer. Earlier and earlier, huh?"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[BROWN] The story Homer"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[BROWN] We followed Homer and soon"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "savagely Homer berated himself."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "So our Christmas plan for Homer is"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Homer's bad at choosing gifts"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "I think Homer's just"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "I feel a little weird signing for Homer."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "we could help Homer."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Homer, you're perfectly safe"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "but Homer was different."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Now then, Homer,"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Homer, look at me. Homer, look at me."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Homer refused to look at"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Homer, I'm going to help you become"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Homer, you're not Santa."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "And wake. Homer?"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Yes, \"Homer.\""
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Homer, you are not Santa."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Everywhere Homer went, they"
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "[Homer.]",
+          "count": 45
+        },
+        {
+          "line": "- Homer.",
+          "count": 31
+        },
+        {
+          "line": "- [Homer.]",
+          "count": 30
+        },
+        {
+          "line": "Hey, Homer.",
+          "count": 27
+        },
+        {
+          "line": "Homer Simpson.",
+          "count": 21
+        },
+        {
+          "line": "Oh, Homer.",
+          "count": 19
+        },
+        {
+          "line": "[ Homer .]",
+          "count": 17
+        },
+        {
+          "line": "[ Homer.]",
+          "count": 16
+        },
+        {
+          "line": "Come on, Homer.",
+          "count": 14
+        },
+        {
+          "line": "- [ Homer.]",
+          "count": 14
+        },
+        {
+          "line": "- Hey, Homer.",
+          "count": 13
+        },
+        {
+          "line": "Hello, Homer.",
+          "count": 10
+        },
+        {
+          "line": "- [ Homer .]",
+          "count": 10
+        },
+        {
+          "line": "Sorry, Homer.",
+          "count": 10
+        },
+        {
+          "line": "Homer J.",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "name": "Marge Simpson",
+      "top_terms": [
+        "marge",
+        "homer",
+        "don",
+        "know",
+        "now",
+        "one",
+        "well",
+        "good",
+        "right",
+        "want",
+        "simpson",
+        "never",
+        "think",
+        "hey",
+        "will",
+        "let",
+        "see",
+        "lisa",
+        "bart",
+        "did"
+      ],
+      "related_characters": [
+        {
+          "name": "Homer Simpson",
+          "count": 16
+        },
+        {
+          "name": "Lisa Simpson",
+          "count": 4
+        },
+        {
+          "name": "Moe Szyslak",
+          "count": 3
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 2
+        },
+        {
+          "name": "Bart Simpson",
+          "count": 2
+        },
+        {
+          "name": "Ned Flanders",
+          "count": 2
+        },
+        {
+          "name": "Chief Wiggum",
+          "count": 2
+        },
+        {
+          "name": "Principal Skinner",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Bart Gets an F",
+          "count": 1
+        },
+        {
+          "title": "1. Bart of Darkness",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Not Dead",
+          "count": 1
+        },
+        {
+          "title": "1. Beyond Blunderdome",
+          "count": 1
+        },
+        {
+          "title": "1. Bonfire of the Manatees",
+          "count": 1
+        },
+        {
+          "title": "1. Elementary School Musical",
+          "count": 1
+        },
+        {
+          "title": "1. Every Man's Dream",
+          "count": 1
+        },
+        {
+          "title": "1. Habeas Tortoise",
+          "count": 1
+        },
+        {
+          "title": "1. He Loves To Fly And He D'ohs",
+          "count": 1
+        },
+        {
+          "title": "1. Homer the Whopper",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Barbershop Quartet",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        },
+        {
+          "title": "1. Homerland",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Which is why he lets his wife, Marge,"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Aw, what if Marge doesn't"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Marge as an accomplice."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "And, of course, Marge was not happy."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "- But Marge needs her Homie back."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[MARGE GRUNTS]"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[MARGE] Well, that's sweet."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Marge, look,"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "That sounds lovely, Marge."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[MARGE] A yolk? Like an egg yolk?"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[MARGE CHUCKLES] I was"
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "-Marge, get me another beer."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "\" Marge, come take a look at this."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "Won't this overload the motor? Marge, can you set the oven to cold? Ice cream! Ice cream! I'm all out of ice cream! It's true, you know."
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Marge, I could lie and tell"
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "[MARGE] Homer!"
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Maybe Marge has an aspirational new job?"
+        },
+        {
+          "episode": "1. Bart's Not Dead",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e01",
+          "line": "- MARGE: Wait, there's - My people."
+        },
+        {
+          "episode": "1. Bart's Not Dead",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e01",
+          "line": "Then why would you do such a stupid, stupid thing? Marge, Marge."
+        },
+        {
+          "episode": "1. Bart's Not Dead",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e01",
+          "line": "Oh, my God, Marge! I think our son went to heaven."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "[Marge.]",
+          "count": 21
+        },
+        {
+          "line": "Oh, Marge.",
+          "count": 17
+        },
+        {
+          "line": "Hello, Marge.",
+          "count": 15
+        },
+        {
+          "line": "- [Marge.]",
+          "count": 15
+        },
+        {
+          "line": "[ Marge .]",
+          "count": 13
+        },
+        {
+          "line": "- [ Marge .]",
+          "count": 13
+        },
+        {
+          "line": "Marge Simpson.",
+          "count": 11
+        },
+        {
+          "line": "Sorry, Marge.",
+          "count": 11
+        },
+        {
+          "line": "Come on, Marge.",
+          "count": 10
+        },
+        {
+          "line": "Thanks, Marge.",
+          "count": 8
+        },
+        {
+          "line": "Don't worry, Marge.",
+          "count": 7
+        },
+        {
+          "line": "[MARGE GRUNTS]",
+          "count": 6
+        },
+        {
+          "line": "Thank you, Marge.",
+          "count": 6
+        },
+        {
+          "line": "[MARGE GROANS.]",
+          "count": 6
+        },
+        {
+          "line": "- Marge.",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "name": "Bart Simpson",
+      "top_terms": [
+        "bart",
+        "don",
+        "lisa",
+        "simpson",
+        "now",
+        "know",
+        "homer",
+        "one",
+        "well",
+        "hey",
+        "dad",
+        "right",
+        "did",
+        "mom",
+        "come",
+        "want",
+        "little",
+        "think",
+        "good",
+        "will"
+      ],
+      "related_characters": [
+        {
+          "name": "Homer Simpson",
+          "count": 5
+        },
+        {
+          "name": "Principal Skinner",
+          "count": 5
+        },
+        {
+          "name": "Lisa Simpson",
+          "count": 4
+        },
+        {
+          "name": "Krusty the Clown",
+          "count": 3
+        },
+        {
+          "name": "Marge Simpson",
+          "count": 3
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 3
+        },
+        {
+          "name": "Moe Szyslak",
+          "count": 2
+        },
+        {
+          "name": "Milhouse Van Houten",
+          "count": 1
+        },
+        {
+          "name": "Mr. Burns",
+          "count": 1
+        },
+        {
+          "name": "Chief Wiggum",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Bart Gets an F",
+          "count": 1
+        },
+        {
+          "title": "1. Bart of Darkness",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Not Dead",
+          "count": 1
+        },
+        {
+          "title": "1. Beyond Blunderdome",
+          "count": 1
+        },
+        {
+          "title": "1. Bonfire of the Manatees",
+          "count": 1
+        },
+        {
+          "title": "1. Elementary School Musical",
+          "count": 1
+        },
+        {
+          "title": "1. Every Man's Dream",
+          "count": 1
+        },
+        {
+          "title": "1. Habeas Tortoise",
+          "count": 1
+        },
+        {
+          "title": "1. He Loves To Fly And He D'ohs",
+          "count": 1
+        },
+        {
+          "title": "1. Homer the Whopper",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Barbershop Quartet",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        },
+        {
+          "title": "1. Homerland",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "He once gave Bart a CPR dummy."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Bart hated it. He refused to revive it."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "What about you, Bart? How do you"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "No, Bart. The drummer boy's"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Bart's right. We're gonna"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "- Bart!"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Bart, why'd you scare us?"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Just, you know, being the Bartman."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "while Bart and I put your"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Bart, why did you do this?"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Bart. Oh, you heard me."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "when Bart and Lisa and Maggie"
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "Bart, no more interruptions during Martin's book report."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "Bart Simpson? Is your book report ready? Is it ready? What a question! Students, prepare to be dazzled."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "Bart, you're gonna miss your bus."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "Hey, Bart-dude."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "-Good morning, Bart."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "-What is it, Bart? -Nothing."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "Bart's got his vision back! I wish I had amoria phlebitis."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "This test is worse than Milhouse's! Bart, I warned you."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "Come on, Bart.",
+          "count": 17
+        },
+        {
+          "line": "[ Bart .]",
+          "count": 14
+        },
+        {
+          "line": "- [ Bart .]",
+          "count": 13
+        },
+        {
+          "line": "Hey, Bart.",
+          "count": 13
+        },
+        {
+          "line": "Hello, Bart.",
+          "count": 12
+        },
+        {
+          "line": "Bart Simpson.",
+          "count": 12
+        },
+        {
+          "line": "Thanks, Bart.",
+          "count": 11
+        },
+        {
+          "line": "Oh, Bart.",
+          "count": 8
+        },
+        {
+          "line": "Sorry, Bart.",
+          "count": 7
+        },
+        {
+          "line": "- Hey, Bart.",
+          "count": 6
+        },
+        {
+          "line": "Hi, Bart.",
+          "count": 6
+        },
+        {
+          "line": "- [Bart.]",
+          "count": 6
+        },
+        {
+          "line": "Thank you, Bart.",
+          "count": 6
+        },
+        {
+          "line": "- Hi, Bart.",
+          "count": 5
+        },
+        {
+          "line": "I love Bart.",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "name": "Lisa Simpson",
+      "top_terms": [
+        "lisa",
+        "bart",
+        "don",
+        "know",
+        "simpson",
+        "now",
+        "well",
+        "dad",
+        "one",
+        "homer",
+        "little",
+        "right",
+        "marge",
+        "gasps",
+        "good",
+        "mom",
+        "think",
+        "come",
+        "did",
+        "want"
+      ],
+      "related_characters": [
+        {
+          "name": "Bart Simpson",
+          "count": 12
+        },
+        {
+          "name": "Principal Skinner",
+          "count": 8
+        },
+        {
+          "name": "Homer Simpson",
+          "count": 5
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 2
+        },
+        {
+          "name": "Ned Flanders",
+          "count": 2
+        },
+        {
+          "name": "Marge Simpson",
+          "count": 2
+        },
+        {
+          "name": "Krusty the Clown",
+          "count": 2
+        },
+        {
+          "name": "Ralph Wiggum",
+          "count": 1
+        },
+        {
+          "name": "Chief Wiggum",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Bart Gets an F",
+          "count": 1
+        },
+        {
+          "title": "1. Bart of Darkness",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Not Dead",
+          "count": 1
+        },
+        {
+          "title": "1. Beyond Blunderdome",
+          "count": 1
+        },
+        {
+          "title": "1. Bonfire of the Manatees",
+          "count": 1
+        },
+        {
+          "title": "1. Clown in the Dumps",
+          "count": 1
+        },
+        {
+          "title": "1. Elementary School Musical",
+          "count": 1
+        },
+        {
+          "title": "1. Every Man's Dream",
+          "count": 1
+        },
+        {
+          "title": "1. Habeas Tortoise",
+          "count": 1
+        },
+        {
+          "title": "1. Homer the Whopper",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Barbershop Quartet",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        },
+        {
+          "title": "1. Homerland",
+          "count": 1
+        },
+        {
+          "title": "1. Kamp Krusty",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Lisa, when you became a Buddhist,"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[LISA] No! The thing they use"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[LISA] Well, don't."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "when Bart and Lisa and Maggie"
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "-Wait, Lisa has some news."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "Homer! Go ahead, Lisa."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "Dad? Dad? - Dad! - Yes, Lisa? Dad, as you know, we've been swimming."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "- Lisa! Hey, look."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "Lisa, the blob has got me! Don't touch me or it'll get you too! Dad, you have to put chlorine in the water every day to keep it clean."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "Look, Lisa."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "Lisa, please join my family for a weekend in the country."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "- Lisa, Lisa! - Watch me! They're only using you for your pool, you know."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "Lisa, get out of there! No, Lisa, don't go upstairs."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "You'll be trapped! An ax! He's got an ax! I'll save you, Lisa! I'll save you by calling the police."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "I'll save you, cast or no cast! Gotta save Lisa, trash can or no trash can."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "No! What the gumdrops is going on here? I came to stop you from murdering Lisa like you murdered your wife! Murdered? Murdered? No, I've just been in the country for a week."
+        },
+        {
+          "episode": "1. Bart's Not Dead",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e01",
+          "line": "LISA: Bart."
+        },
+        {
+          "episode": "1. Bart's Not Dead",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e01",
+          "line": "Gal Gadot reading for Lisa."
+        },
+        {
+          "episode": "1. Bart's Not Dead",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e01",
+          "line": "Mom, do you really believe Bart's story? Lisa, do you know how I've gotten to this point in life? Two things blind faith and a little wine."
+        },
+        {
+          "episode": "1. Bart's Not Dead",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e01",
+          "line": "- [LISA GROANS.]"
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "Lisa Simpson.",
+          "count": 12
+        },
+        {
+          "line": "- [Lisa.]",
+          "count": 12
+        },
+        {
+          "line": "Hi, Lisa.",
+          "count": 8
+        },
+        {
+          "line": "[ Lisa .]",
+          "count": 8
+        },
+        {
+          "line": "Hello, Lisa.",
+          "count": 7
+        },
+        {
+          "line": "- [ Lisa .]",
+          "count": 7
+        },
+        {
+          "line": "- Dental plan! - Lisa needs braces.",
+          "count": 7
+        },
+        {
+          "line": "Oh, Lisa.",
+          "count": 7
+        },
+        {
+          "line": "No, Lisa.",
+          "count": 6
+        },
+        {
+          "line": "Hey, Lisa.",
+          "count": 6
+        },
+        {
+          "line": "[LISA GROANS.]",
+          "count": 5
+        },
+        {
+          "line": "I'm Lisa Simpson.",
+          "count": 5
+        },
+        {
+          "line": "- Hi, Lisa.",
+          "count": 4
+        },
+        {
+          "line": "Goodbye, Lisa.",
+          "count": 4
+        },
+        {
+          "line": "Come on, Lisa.",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "name": "Moe Szyslak",
+      "top_terms": [
+        "moe",
+        "homer",
+        "hey",
+        "don",
+        "well",
+        "one",
+        "now",
+        "yeah",
+        "know",
+        "gonna",
+        "right",
+        "marge",
+        "good",
+        "back",
+        "going",
+        "come",
+        "let",
+        "beer",
+        "want",
+        "time"
+      ],
+      "related_characters": [
+        {
+          "name": "Homer Simpson",
+          "count": 5
+        },
+        {
+          "name": "Chief Wiggum",
+          "count": 2
+        },
+        {
+          "name": "Marge Simpson",
+          "count": 2
+        },
+        {
+          "name": "Principal Skinner",
+          "count": 1
+        },
+        {
+          "name": "Bart Simpson",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Bonfire of the Manatees",
+          "count": 1
+        },
+        {
+          "title": "1. Elementary School Musical",
+          "count": 1
+        },
+        {
+          "title": "1. Every Man's Dream",
+          "count": 1
+        },
+        {
+          "title": "1. Habeas Tortoise",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Barbershop Quartet",
+          "count": 1
+        },
+        {
+          "title": "1. Simpsons Roasting on an Open Fire",
+          "count": 1
+        },
+        {
+          "title": "1. The City of New York vs. Homer Simpson",
+          "count": 1
+        },
+        {
+          "title": "1. The Star of the Backstage",
+          "count": 1
+        },
+        {
+          "title": "1. The Winter of Our Monetized Content",
+          "count": 1
+        },
+        {
+          "title": "1. Thrifty Ways to Thieve Your Mother",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XII",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XIII",
+          "count": 1
+        },
+        {
+          "title": "1. Undercover Burns",
+          "count": 1
+        },
+        {
+          "title": "1. Who Shot Mr. Burns? (2)",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "can Moe be played by Topher Grace?"
+        },
+        {
+          "episode": "1. Bonfire of the Manatees",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s17e01",
+          "line": "Ugh! Thanks, Moe! Why would we want to go to Santa's Village? It's August."
+        },
+        {
+          "episode": "1. Bonfire of the Manatees",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s17e01",
+          "line": "That's hard enough! Oh, my darling, I love you! Please forgive me! MOE: Hey, Homer."
+        },
+        {
+          "episode": "1. Bonfire of the Manatees",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s17e01",
+          "line": "Moe, what are you calling me for? You told me to call."
+        },
+        {
+          "episode": "1. Bonfire of the Manatees",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s17e01",
+          "line": "I better call Moe."
+        },
+        {
+          "episode": "1. Bonfire of the Manatees",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s17e01",
+          "line": "Moe, will you get off the line? (GROANS) I guess I better tell them I'm coming home."
+        },
+        {
+          "episode": "1. Elementary School Musical",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s22e01",
+          "line": "I'm Moe."
+        },
+        {
+          "episode": "1. Every Man's Dream",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s27e01",
+          "line": "Did you go to Moe's? Every time I have beer on my breath, you assume I've been drinking."
+        },
+        {
+          "episode": "1. Every Man's Dream",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s27e01",
+          "line": "You two celebrating or what? Two Scorpinos, Moe."
+        },
+        {
+          "episode": "1. Habeas Tortoise",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s34e01",
+          "line": "Why isn't Dad at Moe's?"
+        },
+        {
+          "episode": "1. Habeas Tortoise",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s34e01",
+          "line": "Is Moe all right?"
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "Every afternoon at Moe's, Chief Wiggum Principal Skinner, Apu and I would get together and sing."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "- Hey, Barney, what'll it be? - I'd like a beer, Moe."
+        },
+        {
+          "episode": "1. Simpsons Roasting on an Open Fire",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s01e01",
+          "line": "- Thanks, Moe."
+        },
+        {
+          "episode": "1. The City of New York vs. Homer Simpson",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s09e01",
+          "line": "Good evenin', Moe."
+        },
+        {
+          "episode": "1. The City of New York vs. Homer Simpson",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s09e01",
+          "line": "Good mornin', Moe."
+        },
+        {
+          "episode": "1. The Star of the Backstage",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s33e01",
+          "line": "And I will do everything I can to support you while I'm at Moe's."
+        },
+        {
+          "episode": "1. The Winter of Our Monetized Content",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s31e01",
+          "line": "Give me a Duff, Moe."
+        },
+        {
+          "episode": "1. Thrifty Ways to Thieve Your Mother",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s37e01",
+          "line": "Come on, Bart. We're going to Moe's."
+        },
+        {
+          "episode": "1. Thrifty Ways to Thieve Your Mother",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s37e01",
+          "line": "No Moe's on a school night."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "Moe's Tavern.",
+          "count": 8
+        },
+        {
+          "line": "Hey, Moe.",
+          "count": 8
+        },
+        {
+          "line": "- [ Moe .]",
+          "count": 5
+        },
+        {
+          "line": "Moe speaking.",
+          "count": 5
+        },
+        {
+          "line": "- [Moe.]",
+          "count": 5
+        },
+        {
+          "line": "I'm going to Moe's.",
+          "count": 5
+        },
+        {
+          "line": "Thanks, Moe.",
+          "count": 4
+        },
+        {
+          "line": "Thank you, Moe.",
+          "count": 4
+        },
+        {
+          "line": "I'm Moe.",
+          "count": 3
+        },
+        {
+          "line": "- Thanks, Moe.",
+          "count": 3
+        },
+        {
+          "line": "- Moe's Tavern.",
+          "count": 3
+        },
+        {
+          "line": "I'll be at Moe's.",
+          "count": 3
+        },
+        {
+          "line": "Hi, Moe.",
+          "count": 2
+        },
+        {
+          "line": "- Oh, Moe.",
+          "count": 2
+        },
+        {
+          "line": "You're right, Moe.",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "name": "Mr. Burns",
+      "top_terms": [
+        "burns",
+        "now",
+        "homer",
+        "don",
+        "man",
+        "know",
+        "well",
+        "montgomery",
+        "one",
+        "want",
+        "old",
+        "back",
+        "has",
+        "will",
+        "smithers",
+        "simpson",
+        "never",
+        "hey",
+        "right",
+        "could"
+      ],
+      "related_characters": [
+        {
+          "name": "Homer Simpson",
+          "count": 8
+        },
+        {
+          "name": "Bart Simpson",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Bart Gets an F",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Beyond Blunderdome",
+          "count": 1
+        },
+        {
+          "title": "1. He Loves To Fly And He D'ohs",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        },
+        {
+          "title": "1. Homerland",
+          "count": 1
+        },
+        {
+          "title": "1. Monty Burns' Fleeing Circus",
+          "count": 1
+        },
+        {
+          "title": "1. Simpsons Roasting on an Open Fire",
+          "count": 1
+        },
+        {
+          "title": "1. The Falcon And The D'ohman",
+          "count": 1
+        },
+        {
+          "title": "1. The Serfsons",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XI",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XIII",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XV",
+          "count": 1
+        },
+        {
+          "title": "1. Undercover Burns",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "that Burns's small heart"
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "Gotcha, Burnsie."
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Mr. Burns is dead."
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "\"I, Charles Montgomery Burns,"
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Monty Burns monkey-shinery!"
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Mr. Burns died,"
+        },
+        {
+          "episode": "1. He Loves To Fly And He D'ohs",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s19e01",
+          "line": "Burns."
+        },
+        {
+          "episode": "1. He Loves To Fly And He D'ohs",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s19e01",
+          "line": "Burns for my old job back."
+        },
+        {
+          "episode": "1. Homer's Crossing",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s35e01",
+          "line": "and unsold Mr. Burns funkos."
+        },
+        {
+          "episode": "1. Homerland",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s25e01",
+          "line": "Burns."
+        },
+        {
+          "episode": "1. Homerland",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s25e01",
+          "line": "Wait a minute, Burns."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "Burns, you already trap-doored us from your upstairs office."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "Montgomery Burns."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "BURNS: Next."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "Burns is really up to."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "Burns gone? Smitty, as a wise, old man once said, \"Out with the old and in with the brew."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "Burns? No, he's very busy."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "Burns the monster he is."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "(GIGGLES) BURNS: Within days half of America was cranking to my bottom."
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "Burns, I want you to listen to that crowd."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "Montgomery Burns.",
+          "count": 13
+        },
+        {
+          "line": "Burns .]",
+          "count": 4
+        },
+        {
+          "line": "[Burns.]",
+          "count": 3
+        },
+        {
+          "line": "Burns The wiki-wakka liki-lakka Mr.",
+          "count": 3
+        },
+        {
+          "line": "Burns! Mr.",
+          "count": 2
+        },
+        {
+          "line": "Burns's money.",
+          "count": 2
+        },
+        {
+          "line": "BURNS (over P.",
+          "count": 2
+        },
+        {
+          "line": "Burns? Mr.",
+          "count": 2
+        },
+        {
+          "line": "Burns could give your career a real shot in the arm.",
+          "count": 2
+        },
+        {
+          "line": "Burns's office.",
+          "count": 2
+        },
+        {
+          "line": "Burns needs me.",
+          "count": 2
+        },
+        {
+          "line": "BURNS: Happy birthday, Lenny.",
+          "count": 2
+        },
+        {
+          "line": "Montgomery Burns? Wouldn't you rather be Mrs.",
+          "count": 2
+        },
+        {
+          "line": "I'm Monty Burns.",
+          "count": 2
+        },
+        {
+          "line": "Burns has changed.",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "name": "Ned Flanders",
+      "top_terms": [
+        "flanders",
+        "ned",
+        "happened",
+        "well",
+        "don",
+        "homer",
+        "now",
+        "know",
+        "one",
+        "learned",
+        "turned",
+        "never",
+        "hey",
+        "bart",
+        "good",
+        "marge",
+        "man",
+        "has",
+        "did",
+        "see"
+      ],
+      "related_characters": [
+        {
+          "name": "Homer Simpson",
+          "count": 16
+        },
+        {
+          "name": "Bart Simpson",
+          "count": 8
+        },
+        {
+          "name": "Marge Simpson",
+          "count": 8
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 4
+        },
+        {
+          "name": "Krusty the Clown",
+          "count": 3
+        },
+        {
+          "name": "Principal Skinner",
+          "count": 3
+        },
+        {
+          "name": "Lisa Simpson",
+          "count": 2
+        },
+        {
+          "name": "Chief Wiggum",
+          "count": 2
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Bart Gets an F",
+          "count": 1
+        },
+        {
+          "title": "1. Bart of Darkness",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Not Dead",
+          "count": 1
+        },
+        {
+          "title": "1. Beyond Blunderdome",
+          "count": 1
+        },
+        {
+          "title": "1. Bonfire of the Manatees",
+          "count": 1
+        },
+        {
+          "title": "1. Clown in the Dumps",
+          "count": 1
+        },
+        {
+          "title": "1. Elementary School Musical",
+          "count": 1
+        },
+        {
+          "title": "1. Every Man's Dream",
+          "count": 1
+        },
+        {
+          "title": "1. Habeas Tortoise",
+          "count": 1
+        },
+        {
+          "title": "1. He Loves To Fly And He D'ohs",
+          "count": 1
+        },
+        {
+          "title": "1. Homer the Whopper",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Barbershop Quartet",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "learned that he did, in fact, suck."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[BROWN] What concerned me was how"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "concerned about the nose thingy"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "- [BROWN] And what happened then?"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "- [NED] That's right."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "- Ned."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "- Ned, calm down."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[NED SIGHS]"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Ned, you can't stop believing in God"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "It's not just what happened tonight."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "[NED] Every morning I put a Post-it"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Oh, Ned."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Poor Ned."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "And if you see Mr. Flanders,"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Ooh. It hasn't happened this year."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "to fool Ned Flanders into"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "to lure Ned back to the church,"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Oh, Ned just seems so lost."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "These charlatans you mentioned,"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Ned, would you and the boys like"
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "Flanders.",
+          "count": 18
+        },
+        {
+          "line": "Poor Ned.",
+          "count": 5
+        },
+        {
+          "line": "What happened?",
+          "count": 5
+        },
+        {
+          "line": "Ned Flanders.",
+          "count": 5
+        },
+        {
+          "line": "[ Ned .]",
+          "count": 5
+        },
+        {
+          "line": "I don't know what happened.",
+          "count": 5
+        },
+        {
+          "line": "Hey, Ned.",
+          "count": 4
+        },
+        {
+          "line": "Captioned by",
+          "count": 4
+        },
+        {
+          "line": "Captioned by Scarfo and Lord Damon",
+          "count": 4
+        },
+        {
+          "line": "Hey, Flanders.",
+          "count": 4
+        },
+        {
+          "line": "- [Ned.]",
+          "count": 4
+        },
+        {
+          "line": "Sorry, Ned.",
+          "count": 3
+        },
+        {
+          "line": "- Hey, Flanders.",
+          "count": 3
+        },
+        {
+          "line": "Shut up, Flanders.",
+          "count": 3
+        },
+        {
+          "line": "Please be Flanders.",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "name": "Principal Skinner",
+      "top_terms": [
+        "skinner",
+        "principal",
+        "know",
+        "seymour",
+        "don",
+        "now",
+        "bart",
+        "school",
+        "well",
+        "one",
+        "man",
+        "good",
+        "will",
+        "right",
+        "lisa",
+        "been",
+        "did",
+        "chalmers",
+        "see",
+        "think"
+      ],
+      "related_characters": [
+        {
+          "name": "Bart Simpson",
+          "count": 5
+        },
+        {
+          "name": "Lisa Simpson",
+          "count": 4
+        },
+        {
+          "name": "Chief Wiggum",
+          "count": 1
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 1
+        },
+        {
+          "name": "Ned Flanders",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Not Dead",
+          "count": 1
+        },
+        {
+          "title": "1. He Loves To Fly And He D'ohs",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Barbershop Quartet",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        },
+        {
+          "title": "1. Kamp Krusty",
+          "count": 1
+        },
+        {
+          "title": "1. Lard of the Dance",
+          "count": 1
+        },
+        {
+          "title": "1. Monty Burns' Fleeing Circus",
+          "count": 1
+        },
+        {
+          "title": "1. The Winter of Our Monetized Content",
+          "count": 1
+        },
+        {
+          "title": "1. Thrifty Ways to Thieve Your Mother",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror VII",
+          "count": 1
+        },
+        {
+          "title": "1. Who Shot Mr. Burns? (2)",
+          "count": 1
+        },
+        {
+          "title": "10. A Springfield Summer Christmas for Christmas",
+          "count": 1
+        },
+        {
+          "title": "10. A Test Before Trying",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "picture of Agnes Skinner."
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "No more Skinner?"
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Skinner got a new job,"
+        },
+        {
+          "episode": "1. Bart's Not Dead",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e01",
+          "line": "Hey, Skinner, if you like Chalmers so much, why don't you marry him? Well, as the superintendent, he's married to all the principals."
+        },
+        {
+          "episode": "1. He Loves To Fly And He D'ohs",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s19e01",
+          "line": "I'm so proud of you, Dad! Stop peppering me with questions! Principal Skinner, why did we have to leave the Learn and Touch Reptile Zoo so early? Well, it seems someone was riding the giant tortoise naked."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "Oh, my! [ Skinner.]"
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "Every afternoon at Moe's, Chief Wiggum Principal Skinner, Apu and I would get together and sing."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "[ Skinner.]"
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "No! No! Noooo! Principal Seymour Skinner."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "- Principal Skinner-- - Mm-hmm? You've been referred to as ''the funny one."
+        },
+        {
+          "episode": "1. Homer's Crossing",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s35e01",
+          "line": "Whoa, there, Skinner."
+        },
+        {
+          "episode": "1. Kamp Krusty",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s04e01",
+          "line": "This is Principal Skinner."
+        },
+        {
+          "episode": "1. Kamp Krusty",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s04e01",
+          "line": "[Skinner.]"
+        },
+        {
+          "episode": "1. Kamp Krusty",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s04e01",
+          "line": "- D'oh! [Skinner On P."
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "! [ Skinner On P."
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "Yeah! Principal Skinner, can we have a dance instead? [ Voices Overlapping .]"
+        },
+        {
+          "episode": "1. Monty Burns' Fleeing Circus",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s28e01",
+          "line": "SKINNER (OVER P."
+        },
+        {
+          "episode": "1. The Winter of Our Monetized Content",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s31e01",
+          "line": "Skinner I'll Heimlich you, sir."
+        },
+        {
+          "episode": "1. The Winter of Our Monetized Content",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s31e01",
+          "line": "- Principal Skinner, it wasn't me."
+        },
+        {
+          "episode": "1. The Winter of Our Monetized Content",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s31e01",
+          "line": "Hey there, Skinner."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "[Skinner.]",
+          "count": 7
+        },
+        {
+          "line": "Skinner.",
+          "count": 7
+        },
+        {
+          "line": "Skinner's a jerk.",
+          "count": 7
+        },
+        {
+          "line": "[ Skinner.]",
+          "count": 3
+        },
+        {
+          "line": "This is Principal Skinner.",
+          "count": 3
+        },
+        {
+          "line": "- [ Skinner .]",
+          "count": 3
+        },
+        {
+          "line": "[Skinner On P.",
+          "count": 2
+        },
+        {
+          "line": "- That man is the real Seymour Skinner.",
+          "count": 2
+        },
+        {
+          "line": "[Skinner Narrating.]",
+          "count": 2
+        },
+        {
+          "line": "Skinner.]",
+          "count": 2
+        },
+        {
+          "line": "picture of Agnes Skinner.",
+          "count": 1
+        },
+        {
+          "line": "No more Skinner?",
+          "count": 1
+        },
+        {
+          "line": "Skinner got a new job,",
+          "count": 1
+        },
+        {
+          "line": "Oh, my! [ Skinner.]",
+          "count": 1
+        },
+        {
+          "line": "No! No! Noooo! Principal Seymour Skinner.",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "name": "Krusty the Clown",
+      "top_terms": [
+        "krusty",
+        "hey",
+        "clown",
+        "don",
+        "now",
+        "well",
+        "show",
+        "kids",
+        "one",
+        "want",
+        "man",
+        "bart",
+        "know",
+        "let",
+        "good",
+        "will",
+        "see",
+        "right",
+        "yeah",
+        "burger"
+      ],
+      "related_characters": [
+        {
+          "name": "Homer Simpson",
+          "count": 2
+        },
+        {
+          "name": "Milhouse Van Houten",
+          "count": 1
+        },
+        {
+          "name": "Chief Wiggum",
+          "count": 1
+        },
+        {
+          "name": "Principal Skinner",
+          "count": 1
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 1
+        },
+        {
+          "name": "Bart Simpson",
+          "count": 1
+        },
+        {
+          "name": "Marge Simpson",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Bart of Darkness",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Clown in the Dumps",
+          "count": 1
+        },
+        {
+          "title": "1. Elementary School Musical",
+          "count": 1
+        },
+        {
+          "title": "1. Kamp Krusty",
+          "count": 1
+        },
+        {
+          "title": "1. Lard of the Dance",
+          "count": 1
+        },
+        {
+          "title": "1. Stark Raving Dad",
+          "count": 1
+        },
+        {
+          "title": "1. The Mook, the Chef, the Wife and Her Homer",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XI",
+          "count": 1
+        },
+        {
+          "title": "1. Undercover Burns",
+          "count": 1
+        },
+        {
+          "title": "1. Who Shot Mr. Burns? (2)",
+          "count": 1
+        },
+        {
+          "title": "10. Diatribe of a Mad Housewife",
+          "count": 1
+        },
+        {
+          "title": "10. E Pluribus Wiggum",
+          "count": 1
+        },
+        {
+          "title": "10. Flaming Moe's",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "We stop by Krusty"
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "Hope you enjoyed that, kids, because Krusty's out of here for the summer."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "In the meantime, we'll be running classic Krusty."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "- It's a pleasure to be here, Krusty."
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Krusty!"
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "on the \"Krusty Show Last"
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "ruin Krusty's finale,"
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "(quiet grunts) What's on TV? Krusty's getting roasted tonight."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "(crowd laughs over TV) Hey, Krusty, our local deli just named a sandwich after you."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "\" (crowd laughs) You will always be remembered for your countless appearances on the Krusty the Clown Show and your one appearance on To Catch A Predator."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "Krusty the Clown is to comedy what Martin Luther King is to comedy."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "(laughter) We've seen a lot of top-flight comics tonight, but that's over, because it's time to hear from Krusty the Clown."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "Welcome, Krusty."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "Krusty."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "Krusty, sorry about the roast."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "Krusty, why don't you talk to your dad? He'll cheer you up."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "Krusty, I brought some homemade chicken soup."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "Can you stop comforting me now? Krusty, condolences on your loss."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "(sighs) Clowns have it tough, Krusty."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "Krusty, would you like a therapy dog? Yeah."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "- [Krusty.]",
+          "count": 4
+        },
+        {
+          "line": "Krusty the Clown.",
+          "count": 3
+        },
+        {
+          "line": "Sorry, Krusty.",
+          "count": 3
+        },
+        {
+          "line": "Hey, Krusty.",
+          "count": 2
+        },
+        {
+          "line": "Krusty is coming.",
+          "count": 2
+        },
+        {
+          "line": "- I love you, Krusty.",
+          "count": 2
+        },
+        {
+          "line": "- Hey, Krusty.",
+          "count": 2
+        },
+        {
+          "line": "[Krusty Groaning.]",
+          "count": 2
+        },
+        {
+          "line": "[Krusty.]",
+          "count": 2
+        },
+        {
+          "line": "And Krusty.",
+          "count": 2
+        },
+        {
+          "line": "Cheer up, Krusty.",
+          "count": 2
+        },
+        {
+          "line": "We stop by Krusty",
+          "count": 1
+        },
+        {
+          "line": "Hope you enjoyed that, kids, because Krusty's out of here for the summer.",
+          "count": 1
+        },
+        {
+          "line": "In the meantime, we'll be running classic Krusty.",
+          "count": 1
+        },
+        {
+          "line": "- It's a pleasure to be here, Krusty.",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "name": "Milhouse Van Houten",
+      "top_terms": [
+        "milhouse",
+        "bart",
+        "don",
+        "hey",
+        "know",
+        "now",
+        "one",
+        "lisa",
+        "well",
+        "want",
+        "okay",
+        "see",
+        "right",
+        "come",
+        "let",
+        "could",
+        "did",
+        "think",
+        "mom",
+        "take"
+      ],
+      "related_characters": [
+        {
+          "name": "Bart Simpson",
+          "count": 10
+        },
+        {
+          "name": "Homer Simpson",
+          "count": 1
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 1
+        },
+        {
+          "name": "Lisa Simpson",
+          "count": 1
+        },
+        {
+          "name": "Krusty the Clown",
+          "count": 1
+        },
+        {
+          "name": "Ralph Wiggum",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": "1. Bart Gets an F",
+          "count": 1
+        },
+        {
+          "title": "1. Bart of Darkness",
+          "count": 1
+        },
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Beyond Blunderdome",
+          "count": 1
+        },
+        {
+          "title": "1. Clown in the Dumps",
+          "count": 1
+        },
+        {
+          "title": "1. Every Man's Dream",
+          "count": 1
+        },
+        {
+          "title": "1. Homer the Whopper",
+          "count": 1
+        },
+        {
+          "title": "1. Homerland",
+          "count": 1
+        },
+        {
+          "title": "1. Lard of the Dance",
+          "count": 1
+        },
+        {
+          "title": "1. Monty Burns' Fleeing Circus",
+          "count": 1
+        },
+        {
+          "title": "1. Moonshine River",
+          "count": 1
+        },
+        {
+          "title": "1. Simpsons Roasting on an Open Fire",
+          "count": 1
+        },
+        {
+          "title": "1. Stark Raving Dad",
+          "count": 1
+        },
+        {
+          "title": "1. The Falcon And The D'ohman",
+          "count": 1
+        },
+        {
+          "title": "1. The Mook, the Chef, the Wife and Her Homer",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "Milhouse, what'd I miss today? Richard laughed milk through his nose."
+        },
+        {
+          "episode": "1. Bart Gets an F",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s02e01",
+          "line": "This test is worse than Milhouse's! Bart, I warned you."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "- Hey, guys! Sign my cast? Sign my cast? Guys? - Milhouse! - Hi, Bart."
+        },
+        {
+          "episode": "1. Bart of Darkness",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s06e01",
+          "line": "Faithful Milhouse."
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Milhouse, today is crazy."
+        },
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "Milhouse, we have amazing news."
+        },
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "So this is what a body looks like after it drops Uh, come on, Milhouse, don't pretend you're asleep."
+        },
+        {
+          "episode": "1. Every Man's Dream",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s27e01",
+          "line": "Dad, can you drive me to Milhouse's? Narcolepsy."
+        },
+        {
+          "episode": "1. Homer the Whopper",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s21e01",
+          "line": "Milhouse, watch me make a loser lose it."
+        },
+        {
+          "episode": "1. Homerland",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s25e01",
+          "line": "What do you want with his dad? Go back to sleep, Milhouse."
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "- [ Milhouse .]"
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "Catch my drift? Milhouse, lower those eyebrows."
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "Milhouse! Oh! I've been looking all over for you."
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "I'm sorry, Milhouse."
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "I'm free next weekend! There's plenty of Milhouse to go around! All right, Son."
+        },
+        {
+          "episode": "1. Moonshine River",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s24e01",
+          "line": "Milhouse may not be the perfect date."
+        },
+        {
+          "episode": "1. Simpsons Roasting on an Open Fire",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s01e01",
+          "line": "Hey, Milhouse, I dare you to sit on his lap."
+        },
+        {
+          "episode": "1. Stark Raving Dad",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s03e01",
+          "line": "Yes, Dad, I solemnly swear I will not tell another living soul-- No, not even Milhouse."
+        },
+        {
+          "episode": "1. Stark Raving Dad",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s03e01",
+          "line": "Huh? Hello, Milhouse? Can you keep a secret? No."
+        },
+        {
+          "episode": "1. The Falcon And The D'ohman",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s23e01",
+          "line": "I admit it! I let Milhouse lie down in your bed! Kids, can I talk to Wayne alone a minute? Remember everything they say, and tell us later in rattle code."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "Milhouse.",
+          "count": 5
+        },
+        {
+          "line": "Come on, Milhouse.",
+          "count": 5
+        },
+        {
+          "line": "[Milhouse.]",
+          "count": 3
+        },
+        {
+          "line": "- That's Milhouse.",
+          "count": 3
+        },
+        {
+          "line": "Hey, Milhouse.",
+          "count": 3
+        },
+        {
+          "line": "Milhouse to Bart.",
+          "count": 3
+        },
+        {
+          "line": "- [ Milhouse .]",
+          "count": 2
+        },
+        {
+          "line": "- Milhouse.",
+          "count": 2
+        },
+        {
+          "line": "[ Milhouse .]",
+          "count": 2
+        },
+        {
+          "line": "Milhouse,",
+          "count": 2
+        },
+        {
+          "line": "Thanks, Milhouse.",
+          "count": 2
+        },
+        {
+          "line": "Except Milhouse.",
+          "count": 2
+        },
+        {
+          "line": "D'oh! Ow! Ow! I was scared, Milhouse scared.",
+          "count": 2
+        },
+        {
+          "line": "Milhouse? Yeah.",
+          "count": 2
+        },
+        {
+          "line": "I'm Milhouse.",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "name": "Chief Wiggum",
+      "top_terms": [
+        "wiggum",
+        "chief",
+        "ralph",
+        "don",
+        "police",
+        "well",
+        "will",
+        "now",
+        "yeah",
+        "hey",
+        "right",
+        "clancy",
+        "good",
+        "gonna",
+        "one",
+        "way",
+        "let",
+        "little",
+        "okay",
+        "grunting"
+      ],
+      "related_characters": [
+        {
+          "name": "Ralph Wiggum",
+          "count": 27
+        },
+        {
+          "name": "Homer Simpson",
+          "count": 2
+        },
+        {
+          "name": "Principal Skinner",
+          "count": 1
+        },
+        {
+          "name": "Lisa Simpson",
+          "count": 1
+        },
+        {
+          "name": "Comic Book Guy",
+          "count": 1
+        },
+        {
+          "name": "Ned Flanders",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": "1. Clown in the Dumps",
+          "count": 1
+        },
+        {
+          "title": "1. Habeas Tortoise",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Barbershop Quartet",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        },
+        {
+          "title": "1. Homerland",
+          "count": 1
+        },
+        {
+          "title": "1. Kamp Krusty",
+          "count": 1
+        },
+        {
+          "title": "1. Thrifty Ways to Thieve Your Mother",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XII",
+          "count": 1
+        },
+        {
+          "title": "1. Who Shot Mr. Burns? (2)",
+          "count": 1
+        },
+        {
+          "title": "10. $pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)",
+          "count": 1
+        },
+        {
+          "title": "10. A Made Maggie",
+          "count": 1
+        },
+        {
+          "title": "10. E Pluribus Wiggum",
+          "count": 1
+        },
+        {
+          "title": "10. Married To The Blob",
+          "count": 1
+        },
+        {
+          "title": "10. Pokeymom",
+          "count": 1
+        },
+        {
+          "title": "11. Bart's New Friend",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": "1. Clown in the Dumps",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s26e01",
+          "line": "How permissive? Chief Wiggum shows us crime photos at sleepovers."
+        },
+        {
+          "episode": "1. Habeas Tortoise",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s34e01",
+          "line": "I'm not here as Police Chief Wiggum."
+        },
+        {
+          "episode": "1. Habeas Tortoise",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s34e01",
+          "line": "I'm here as Clancy Wiggum,"
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "Every afternoon at Moe's, Chief Wiggum Principal Skinner, Apu and I would get together and sing."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "The next day, we started auditioning for Chief Wiggum's replacement."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "Next! \" If I could walk with the animals \" \"Talk with the animals \" \" Grunt and squeak and squawk with the animals \" Good Lord! Doctor Doolittle is Chief Wiggum."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "Barney forever! Wiggum never! Barney forever! Wiggum never! Hey, those girls you paid to scream are doing a great job! I didn't pay any girls to scream."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "[ Wiggum .]"
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "Gilligan, the Skipper, and Chief Wiggum."
+        },
+        {
+          "episode": "1. Homer's Barbershop Quartet",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e01",
+          "line": "Oh! Can we talk about Chief Wiggum? [ Gagging Noise .]"
+        },
+        {
+          "episode": "1. Homer's Crossing",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s35e01",
+          "line": "[WIGGUM] Me would dare."
+        },
+        {
+          "episode": "1. Homer's Crossing",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s35e01",
+          "line": "This is a chair too far, Wiggum."
+        },
+        {
+          "episode": "1. Homerland",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s25e01",
+          "line": "(deep Southern accent): Uh, how y'all doin'? (crunch) (dog barking in distance) Chief Wiggum, how come every time there's a terrorist chatter in this town, you come to me? Lay off, Apu."
+        },
+        {
+          "episode": "1. Kamp Krusty",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s04e01",
+          "line": "Ahh! Sweet, nourishing gruel! - Kowalski! - My brownies! - Wiggum! - A change of underwear! - Crandall! - My insulin! [ Squeaking .]"
+        },
+        {
+          "episode": "1. Thrifty Ways to Thieve Your Mother",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s37e01",
+          "line": "You stole Mrs. Wiggum's old clothes?"
+        },
+        {
+          "episode": "1. Thrifty Ways to Thieve Your Mother",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s37e01",
+          "line": "It's not like Mrs. Wiggum was"
+        },
+        {
+          "episode": "1. Treehouse of Horror XII",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s13e01",
+          "line": "BROSNAN: This is Constable Wiggums."
+        },
+        {
+          "episode": "1. Who Shot Mr. Burns? (2)",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s07e01",
+          "line": "Now let's talk to Police Chief Wiggum."
+        },
+        {
+          "episode": "1. Who Shot Mr. Burns? (2)",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s07e01",
+          "line": "- Chief! Chief! Hey, Chief Wiggum, what are you doing? What's going on? I'm sorry, kid."
+        },
+        {
+          "episode": "10. $pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e10",
+          "line": "And special awards go to the two students who obviously had no help from their parents: Lisa Simpson and Ralph Wiggum."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "[Wiggum.]",
+          "count": 5
+        },
+        {
+          "line": "- [Wiggum.]",
+          "count": 4
+        },
+        {
+          "line": "[ Wiggum .]",
+          "count": 3
+        },
+        {
+          "line": "## [Wiggum Singing Along.]",
+          "count": 3
+        },
+        {
+          "line": "How permissive? Chief Wiggum shows us crime photos at sleepovers.",
+          "count": 1
+        },
+        {
+          "line": "I'm not here as Police Chief Wiggum.",
+          "count": 1
+        },
+        {
+          "line": "I'm here as Clancy Wiggum,",
+          "count": 1
+        },
+        {
+          "line": "The next day, we started auditioning for Chief Wiggum's replacement.",
+          "count": 1
+        },
+        {
+          "line": "Gilligan, the Skipper, and Chief Wiggum.",
+          "count": 1
+        },
+        {
+          "line": "Oh! Can we talk about Chief Wiggum? [ Gagging Noise .]",
+          "count": 1
+        },
+        {
+          "line": "[WIGGUM] Me would dare.",
+          "count": 1
+        },
+        {
+          "line": "This is a chair too far, Wiggum.",
+          "count": 1
+        },
+        {
+          "line": "You stole Mrs. Wiggum's old clothes?",
+          "count": 1
+        },
+        {
+          "line": "It's not like Mrs. Wiggum was",
+          "count": 1
+        },
+        {
+          "line": "BROSNAN: This is Constable Wiggums.",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "name": "Comic Book Guy",
+      "top_terms": [
+        "book",
+        "comic",
+        "guy",
+        "one",
+        "flavor",
+        "well",
+        "yeah",
+        "homer",
+        "back",
+        "hey",
+        "man",
+        "yes",
+        "ever",
+        "don",
+        "think",
+        "know",
+        "now",
+        "marge",
+        "going",
+        "good"
+      ],
+      "related_characters": [
+        {
+          "name": "Principal Skinner",
+          "count": 1
+        },
+        {
+          "name": "Homer Simpson",
+          "count": 1
+        },
+        {
+          "name": "Krusty the Clown",
+          "count": 1
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": "1. Bart's Birthday",
+          "count": 1
+        },
+        {
+          "title": "1. Homer the Whopper",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XIV",
+          "count": 1
+        },
+        {
+          "title": "10. Married To The Blob",
+          "count": 1
+        },
+        {
+          "title": "10. Moms I'd Like To Forget",
+          "count": 1
+        },
+        {
+          "title": "11. Flaming Moe",
+          "count": 1
+        },
+        {
+          "title": "11. The Dad-Feelings Limited",
+          "count": 1
+        },
+        {
+          "title": "11. Worst Episode Ever",
+          "count": 1
+        },
+        {
+          "title": "12. Diggs",
+          "count": 1
+        },
+        {
+          "title": "12. Love, Springfieldian Style",
+          "count": 1
+        },
+        {
+          "title": "12. Sunday, Cruddy Sunday",
+          "count": 1
+        },
+        {
+          "title": "12. The Fall Guy-Yi-Yi",
+          "count": 1
+        },
+        {
+          "title": "13. Gone Maggie Gone",
+          "count": 1
+        },
+        {
+          "title": "13. Saddlesore Galactica",
+          "count": 1
+        },
+        {
+          "title": "14. Bart the Bad Guy",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": "1. Bart's Birthday",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e01",
+          "line": "comic book guy's baby."
+        },
+        {
+          "episode": "1. Homer the Whopper",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s21e01",
+          "line": "Comic book guy's been writing these for years."
+        },
+        {
+          "episode": "1. Homer the Whopper",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s21e01",
+          "line": "Come on, comic book guy, you've gotta pick someone."
+        },
+        {
+          "episode": "1. Homer the Whopper",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s21e01",
+          "line": "Look, comic book guy, about the movie, We know it's not great."
+        },
+        {
+          "episode": "1. Treehouse of Horror XIV",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s15e01",
+          "line": "Comic book guy's ass won't fit in couch."
+        },
+        {
+          "episode": "10. Married To The Blob",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s25e10",
+          "line": "Excelsior! But listen, as comic book guys go, you're trim, friendly, and, quite a catch."
+        },
+        {
+          "episode": "10. Married To The Blob",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s25e10",
+          "line": "MARGE: Hmm Homer, I want you to take Kumiko and Comic Book Guy a housewarming present, and maybe check in on them? We talked about this, Marge."
+        },
+        {
+          "episode": "10. Married To The Blob",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s25e10",
+          "line": "To celebrate the wedding of, Comic Book Guy, and Kumiko Nakamura."
+        },
+        {
+          "episode": "10. Moms I'd Like To Forget",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s22e10",
+          "line": "(laughing) I believe it had something to do with Comic Book Guy."
+        },
+        {
+          "episode": "10. Moms I'd Like To Forget",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s22e10",
+          "line": "Comic Book Guy? Thanks."
+        },
+        {
+          "episode": "10. Moms I'd Like To Forget",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s22e10",
+          "line": "All right, Comic Book Guy."
+        },
+        {
+          "episode": "11. Flaming Moe",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s22e11",
+          "line": "Hey, I didn't know you were, uh, you know, one of those I am not Comic Book Guy."
+        },
+        {
+          "episode": "11. The Dad-Feelings Limited",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s32e11",
+          "line": "\" - (GROANS) - Well, I think Comic Book Guy should have kids."
+        },
+        {
+          "episode": "11. The Dad-Feelings Limited",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s32e11",
+          "line": "So this is where Comic Book Guy grew up."
+        },
+        {
+          "episode": "11. The Dad-Feelings Limited",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s32e11",
+          "line": "Actually, we're looking for someone we call \"Comic Book Guy."
+        },
+        {
+          "episode": "11. The Dad-Feelings Limited",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s32e11",
+          "line": "\" What is this crazy place? BOB BALABAN: This crazy place is Comic Book Guy's childhood home."
+        },
+        {
+          "episode": "11. The Dad-Feelings Limited",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s32e11",
+          "line": "He became Comic Book Guy."
+        },
+        {
+          "episode": "11. The Dad-Feelings Limited",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s32e11",
+          "line": "Well, maybe Comic Book Guy won't be so afraid to be a father."
+        },
+        {
+          "episode": "11. Worst Episode Ever",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s12e11",
+          "line": "Here's Comic Book Guy's instructions."
+        },
+        {
+          "episode": "11. Worst Episode Ever",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s12e11",
+          "line": "Eat watering can, partner! Whoa! Comic Book Guy's secret stash."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "comic book guy's baby.",
+          "count": 1
+        },
+        {
+          "line": "Comic book guy's been writing these for years.",
+          "count": 1
+        },
+        {
+          "line": "Come on, comic book guy, you've gotta pick someone.",
+          "count": 1
+        },
+        {
+          "line": "Look, comic book guy, about the movie, We know it's not great.",
+          "count": 1
+        },
+        {
+          "line": "Comic book guy's ass won't fit in couch.",
+          "count": 1
+        },
+        {
+          "line": "Excelsior! But listen, as comic book guys go, you're trim, friendly, and, quite a catch.",
+          "count": 1
+        },
+        {
+          "line": "To celebrate the wedding of, Comic Book Guy, and Kumiko Nakamura.",
+          "count": 1
+        },
+        {
+          "line": "(laughing) I believe it had something to do with Comic Book Guy.",
+          "count": 1
+        },
+        {
+          "line": "Comic Book Guy? Thanks.",
+          "count": 1
+        },
+        {
+          "line": "All right, Comic Book Guy.",
+          "count": 1
+        },
+        {
+          "line": "Hey, I didn't know you were, uh, you know, one of those I am not Comic Book Guy.",
+          "count": 1
+        },
+        {
+          "line": "\" - (GROANS) - Well, I think Comic Book Guy should have kids.",
+          "count": 1
+        },
+        {
+          "line": "So this is where Comic Book Guy grew up.",
+          "count": 1
+        },
+        {
+          "line": "Actually, we're looking for someone we call \"Comic Book Guy.",
+          "count": 1
+        },
+        {
+          "line": "He became Comic Book Guy.",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "name": "Ralph Wiggum",
+      "top_terms": [
+        "ralph",
+        "ralphie",
+        "one",
+        "wiggum",
+        "don",
+        "hey",
+        "know",
+        "bart",
+        "good",
+        "well",
+        "let",
+        "want",
+        "now",
+        "right",
+        "down",
+        "lisa",
+        "will",
+        "new",
+        "day",
+        "two"
+      ],
+      "related_characters": [
+        {
+          "name": "Chief Wiggum",
+          "count": 3
+        },
+        {
+          "name": "Lisa Simpson",
+          "count": 2
+        },
+        {
+          "name": "Bart Simpson",
+          "count": 2
+        }
+      ],
+      "episode_presence": [
+        {
+          "title": ". O C'mon All Ye Faithful",
+          "count": 1
+        },
+        {
+          "title": "1. Homer's Crossing",
+          "count": 1
+        },
+        {
+          "title": "1. Lard of the Dance",
+          "count": 1
+        },
+        {
+          "title": "1. The Winter of Our Monetized Content",
+          "count": 1
+        },
+        {
+          "title": "1. Thrifty Ways to Thieve Your Mother",
+          "count": 1
+        },
+        {
+          "title": "1. Treehouse of Horror XV",
+          "count": 1
+        },
+        {
+          "title": "10. $pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)",
+          "count": 1
+        },
+        {
+          "title": "10. 'Tis the 30th Season",
+          "count": 1
+        },
+        {
+          "title": "10. A Made Maggie",
+          "count": 1
+        },
+        {
+          "title": "10. E Pluribus Wiggum",
+          "count": 1
+        },
+        {
+          "title": "10. Haw-Haw Land",
+          "count": 1
+        },
+        {
+          "title": "10. Married To The Blob",
+          "count": 1
+        },
+        {
+          "title": "10. The Nightmare After Krustmas",
+          "count": 1
+        },
+        {
+          "title": "11. Faith Off",
+          "count": 1
+        },
+        {
+          "title": "11. Frink Gets Testy",
+          "count": 1
+        }
+      ],
+      "example_lines": [
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Hey, Ralph."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Good idea, Ralph. Start the car."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "- Ralph?"
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Ralph! [SNIFFLES] You came back."
+        },
+        {
+          "episode": ". O C'mon All Ye Faithful",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s36e00",
+          "line": "Ralph, new plan."
+        },
+        {
+          "episode": "1. Homer's Crossing",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s35e01",
+          "line": "for saving my Ralphy's life."
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "Thank you, Ralph."
+        },
+        {
+          "episode": "1. Lard of the Dance",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s10e01",
+          "line": "! - [ Ralph Screams .]"
+        },
+        {
+          "episode": "1. The Winter of Our Monetized Content",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s31e01",
+          "line": "Look at us, the bully, the princess, more bullies, the Ralph and me, the smart kid no one gets."
+        },
+        {
+          "episode": "1. Thrifty Ways to Thieve Your Mother",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s37e01",
+          "line": "with Ralph is a party?"
+        },
+        {
+          "episode": "1. Thrifty Ways to Thieve Your Mother",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s37e01",
+          "line": "If you see Ralph in the mirror, say hi."
+        },
+        {
+          "episode": "1. Thrifty Ways to Thieve Your Mother",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s37e01",
+          "line": "gonna pass them down to Ralph."
+        },
+        {
+          "episode": "1. Treehouse of Horror XV",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s16e01",
+          "line": "Well, well, what have we here? Inspector, you've caught the villain! But what are you doing in an opium den? It's the only way I can get Ralphie to go to sleep."
+        },
+        {
+          "episode": "1. Treehouse of Horror XV",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s16e01",
+          "line": "Ralphie, you're still in it."
+        },
+        {
+          "episode": "10. $pringfield (Or, How I Learned to Stop Worrying and Love Legalized Gambling)",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s05e10",
+          "line": "And special awards go to the two students who obviously had no help from their parents: Lisa Simpson and Ralph Wiggum."
+        },
+        {
+          "episode": "10. 'Tis the 30th Season",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s30e10",
+          "line": "Sorry, Ralphie, it's just too cold."
+        },
+        {
+          "episode": "10. A Made Maggie",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s33e10",
+          "line": "I have done a great job with Ralphie."
+        },
+        {
+          "episode": "10. E Pluribus Wiggum",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s19e10",
+          "line": "Roll over, Anne Coulter, and tell James Carville the news: Springfield voters have overwhelmingly rejected the major candidates of both parties in favor of a write-in: eight-year-old Ralph Wiggum."
+        },
+        {
+          "episode": "10. E Pluribus Wiggum",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s19e10",
+          "line": "Our top story: President Ralph Wiggum? Two days ago, this bed-wetter made a splash in the Springfield Primary."
+        },
+        {
+          "episode": "10. E Pluribus Wiggum",
+          "url": "https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=the-simpsons&episode=s19e10",
+          "line": "Before we invite Ralph to the prom, we should find out if he's wearing a tux or a tutu."
+        }
+      ],
+      "candidate_catchphrases": [
+        {
+          "line": "- Hi, Ralph.",
+          "count": 4
+        },
+        {
+          "line": "Hey, Ralph.",
+          "count": 2
+        },
+        {
+          "line": "[RALPH HUMMING.]",
+          "count": 2
+        },
+        {
+          "line": "It's a package from Ralph.",
+          "count": 2
+        },
+        {
+          "line": "Please don't show me with Ralph.",
+          "count": 2
+        },
+        {
+          "line": "- What's your name, son? - Ralph.",
+          "count": 2
+        },
+        {
+          "line": "[ Ralph .]",
+          "count": 2
+        },
+        {
+          "line": "Come on, Ralph.",
+          "count": 2
+        },
+        {
+          "line": "Good idea, Ralph. Start the car.",
+          "count": 1
+        },
+        {
+          "line": "- Ralph?",
+          "count": 1
+        },
+        {
+          "line": "Ralph! [SNIFFLES] You came back.",
+          "count": 1
+        },
+        {
+          "line": "Ralph, new plan.",
+          "count": 1
+        },
+        {
+          "line": "for saving my Ralphy's life.",
+          "count": 1
+        },
+        {
+          "line": "Thank you, Ralph.",
+          "count": 1
+        },
+        {
+          "line": "! - [ Ralph Screams .]",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

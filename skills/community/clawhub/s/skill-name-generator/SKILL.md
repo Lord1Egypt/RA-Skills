@@ -1,35 +1,155 @@
 ---
-name: "技能名称生成器"
-description: "基于功能描述生成符合规范且易于搜索的Skill名称；当用户需要为Skill命名、或询问"我的skill应该叫什么"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-name-generator"
-sourceUrl: "https://clawhub.ai/skills/skill-name-generator"
+name: skill-name-generator
+description: 基于功能描述生成符合规范且易于搜索的Skill名称；当用户需要为Skill命名、或询问"我的skill应该叫什么"时使用。
 ---
 
-# 技能名称生成器
+# Skill 名称生成器
 
-> 基于功能描述生成符合规范且易于搜索的Skill名称；当用户需要为Skill命名、或询问"我的skill应该叫什么"时使用。
+## 任务目标
+- 本 Skill 用于：根据用户提供的功能描述，生成符合规范且易于搜索的 Skill 中英文名称
+- 能力包含：理解功能语义、提取核心关键词、应用命名规则、评估 SEO 友好度、生成多个命名方案
+- 触发条件：用户需要为自己的 Skill 命名，或询问"我的 skill 应该叫什么"、"帮我起个名字"等
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-name-generator`
-- **Source URL:** [https://clawhub.ai/skills/skill-name-generator](https://clawhub.ai/skills/skill-name-generator)
+## 命名规则
 
-## Overview
+### 英文名称规范
+- **格式要求**：仅使用小写英文字母和连字符(-)，禁止使用驼峰命名
+- **长度要求**：严格限制为 2-4 个单词，最多不超过 4 个单词（强制要求）
+- **字符长度**：总长度 20-40 字符
+- **禁止后缀**：不得使用 "-skill" 作为后缀
+- **常见模式**：
+  - 动作 + 对象：`pdf-parser`、`image-compress`
+  - 对象 + 动作：`data-convert`、`text-analyze`
+  - 工具 + 领域：`code-review`、`email-sender`
+  - 领域 + 功能：`finance-calc`、`music-tag`
+  - 平台 + 功能：`wechat-article-publish`、`douyin-video-edit`
+  - 功能 + 平台：`article-publish-wechat`、`video-edit-douyin`
 
+### 中文名称规范
+- **简洁性**：2-6 个汉字，易于记忆和传播
+- **准确性**：准确传达功能核心，避免歧义
+- **专业性**：符合领域术语习惯，避免口语化
+- **风格统一**：与英文名称保持风格一致
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-name-generator
-```
+### 平台相关命名规范
+- **平台识别**：当功能描述中包含特定平台名称时(如公众号、抖音、小红书等)，必须将平台融入名称中
+- **常见平台映射**：
+  - 微信公众号/公众号 → wechat
+  - 抖音 → douyin
+  - 小红书 → xiaohongshu
+  - 微博 → weibo
+  - 知乎 → zhihu
+  - B站/哔哩哔哩 → bilibili
+  - 快手 → kuaishou
+  - 头条号 → toutiao
+  - 百家号 → baijiahao
+  - 大鱼号 → dayuhao
+- **命名模式**：
+  - 平台 + 功能：`wechat-article-publish`、`douyin-video-edit`
+  - 功能 + 平台：`article-publish-wechat`、`video-edit-douyin`
+- **SEO 优势**：平台名称是高频搜索词，融入名称可显著提升搜索可见性
+
+### SEO 优化规则
+- **关键词前置**：将最核心、最常被搜索的关键词放在名称前部
+- **高频词汇**：优先使用用户搜索频率高的通用术语(如 pdf、image、data、code、api)
+- **简洁直观**：名称应让用户一眼看出功能，降低理解成本
+- **避免缩写**：除非行业通用，否则避免使用不常见的缩写
+- **词汇匹配**：名称应包含用户在搜索时可能使用的关键词组合
+- **竞品参考**：参考同类工具的命名习惯，提升辨识度
+
+## 操作步骤
+
+1. **理解功能描述与提取关键词**
+   - 仔细阅读用户提供的功能描述
+   - 提取核心功能、目标对象、使用场景等关键信息
+   - 识别功能的技术特征和领域属性
+   - **识别平台信息**：检查功能描述中是否包含特定平台名称(如公众号、抖音、小红书等)
+   - 分析用户在搜索此功能时可能使用的关键词组合
+
+2. **生成英文名称（必须提供）**
+   - 根据核心功能提取 1-2 个高频搜索关键词
+   - 如果识别到特定平台，必须将平台名称融入命名中
+   - 将核心关键词或平台名称前置以提升 SEO 权重
+   - 选择合适的命名模式组合关键词
+   - **强制约束**：确保名称由 2-4 个单词组成，严禁超过 4 个单词
+   - 确保名称符合格式规范(小写+连字符)
+   - 提供 2-3 个备选方案，按 SEO 友好度和推荐度排序
+   - 确保不使用 "-skill" 后缀
+
+3. **生成中文名称（必须提供）**
+   - 基于功能语义进行意译，非直译英文名称
+   - 如果识别到特定平台，必须将平台名称融入命名中
+   - 选择简洁、准确、专业且符合搜索习惯的中文表达
+   - 确保中文名称包含用户可能搜索的核心词汇
+   - 提供 2-3 个备选方案
+   - 确保中英文名称在功能传达上保持一致
+
+4. **提供命名理由与 SEO 分析**
+   - 说明每个名称的设计思路
+   - 解释关键词的选择依据(为何选择这些词汇)
+   - 分析名称的 SEO 优势(关键词密度、搜索频率、直观性)
+   - 说明名称的优势和适用场景
+   - 评估名称在搜索结果中的表现预期
+
+5. **输出格式（必须包含中英文名称）**
+   - 英文名称（按推荐度和 SEO 评分排序，每个名称严格限制为 2-4 个单词）
+   - 中文名称（按推荐度和 SEO 评分排序）
+   - 命名理由和 SEO 分析
+   - 关键词提取说明
+
+## 资源索引
+- 命名参考：见 [references/naming-examples.md](references/naming-examples.md)（何时读取：需要更多命名灵感、参考命名模式或 SEO 优化技巧时）
+
+## 使用示例
+
+**示例 1：PDF 文档解析功能**
+- 英文名称：`pdf-parser` (SEO 评分: 9/10)、`document-extractor` (SEO 评分: 7/10)
+- 中文名称："PDF解析器" (SEO 评分: 9/10)、"文档提取器" (SEO 评分: 7/10)
+- 命名理由：
+  - `pdf-parser`："pdf" 是高频搜索词，"parser" 准确描述功能，组合直观
+  - SEO 优势：用户搜索"pdf解析"时匹配度高，点击率预期高
+- 关键词：pdf、解析、文档、提取
+
+**示例 2：图片压缩工具**
+- 英文名称：`image-compress` (SEO 评分: 9/10)、`picture-optimizer` (SEO 评分: 7/10)
+- 中文名称："图片压缩器" (SEO 评分: 9/10)、"图像优化工具" (SEO 评分: 6/10)
+- 命名理由：
+  - `image-compress`："image" 是通用高频词，"compress" 是核心动作
+  - SEO 优势：匹配用户搜索"图片压缩"、"image compress"的习惯
+- 关键词：图片、压缩、image、optimize
+
+**示例 3：代码审查助手**
+- 英文名称：`code-review` (SEO 评分: 9/10)、`code-analyzer` (SEO 评分: 8/10)
+- 中文名称："代码审查助手" (SEO 评分: 9/10)、"代码分析器" (SEO 评分: 7/10)
+- 命名理由：
+  - `code-review`："code" 是极高搜索频率词，"review" 是行业标准术语
+  - SEO 优势：准确匹配开发者搜索习惯，行业认可度高
+- 关键词：代码、审查、code、review、analyze
+
+**示例 4：微信公众号文章发布**
+- 英文名称：`wechat-article-publish` (SEO 评分: 10/10)、`article-publish-wechat` (SEO 评分: 8/10)
+- 中文名称："公众号文章发布" (SEO 评分: 10/10)、"微信文章发布器" (SEO 评分: 9/10)
+- 命名理由：
+  - `wechat-article-publish`："wechat" 是平台核心词，"article-publish" 准确描述功能
+  - 平台融入：必须包含平台名称"wechat"，提升目标用户搜索匹配度
+  - SEO 优势：用户搜索"公众号文章"、"wechat article"时完美匹配
+- 关键词：公众号、微信、文章、发布、wechat
+
+**示例 5：抖音视频编辑**
+- 英文名称：`douyin-video-edit` (SEO 评分: 10/10)、`video-edit-douyin` (SEO 评分: 8/10)
+- 中文名称："抖音视频编辑" (SEO 评分: 10/10)、"视频编辑工具(抖音)" (SEO 评分: 8/10)
+- 命名理由：
+  - `douyin-video-edit`："douyin" 是平台名称，"video-edit" 是核心功能
+  - 平台融入：必须包含平台名称"douyin"，明确目标用户群体
+  - SEO 优势：用户搜索"抖音视频"、"douyin video"时精准匹配
+- 关键词：抖音、视频、编辑、douyin
+
+## 注意事项
+- 充分利用智能体的语言理解和创意生成能力，直接基于功能描述生成名称
+- 无需调用脚本或工具，通过自然语言推理和创作即可完成
+- 确保生成的名称符合 Skill 命名规范，便于后续使用和识别
+- **强制要求**：必须同时提供中文名称和英文名称，缺一不可
+- **强制要求**：英文名称严格限制为 2-4 个单词，严禁超过 4 个单词
+- **优先考虑 SEO 效果**：名称应包含高频搜索词，提升被发现概率
+- 在语义准确性、SEO 友好度和创意性之间取得平衡
+- 避免使用过于复杂、生僻或不常见的词汇

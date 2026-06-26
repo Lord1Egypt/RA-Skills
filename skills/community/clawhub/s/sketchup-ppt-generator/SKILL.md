@@ -1,35 +1,61 @@
----
-name: "SketchUp-PPT生成"
-description: "一键将SketchUp模型生成符合温州隐室15页标准的客户汇报PPT，自动预留效果图位置便于插入截图。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sketchup-ppt-generator"
-sourceUrl: "https://clawhub.ai/skills/sketchup-ppt-generator"
----
+# SketchUp-PPT生成 - 温州隐室空间设计自研技能
 
-# SketchUp-PPT生成
+## 📋 技能说明
 
-> 一键将SketchUp模型生成符合温州隐室15页标准的客户汇报PPT，自动预留效果图位置便于插入截图。
+一键将SketchUp模型生成客户汇报PPT，按照工作室标准15页框架自动生成，预留效果图位置，只需你在SketchUp导出截图插入即可。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sketchup-ppt-generator`
-- **Source URL:** [https://clawhub.ai/skills/sketchup-ppt-generator](https://clawhub.ai/skills/sketchup-ppt-generator)
+**适用场景：**
+- 客户方案汇报
+- 快速出PPT框架
+- SketchUp模型转PPT
 
-## Overview
+## 🎯 标准15页框架
 
+完全匹配工作室输出规范：
+1. **封面** - 项目名称 + 风格 + 工作室名称
+2. **任务回顾** - 客户需求 + 核心目标
+3. **场地分析** - 采光/动线/视线分析
+4. **设计概念** - 灵感来源 + 概念推导
+5. **功能布局** - 平面规划 + 动线标注
+6-8. **效果展示** - 预留3个空间效果图位置（客厅/餐厅/主卧）
+9. **材质搭配** - 主要材料 + 色彩搭配
+10. **打卡点分析** - 出片位置 + 预期效果
+11. **关键节点** - 特殊工艺/收口细节
+12. **灯光设计** - 点位 + 场景模式
+13. **软装方案** - 主要家具选型 + 采购建议
+14. **时间与预算** -  timeline + 预算分配
+15. **封底** - 感谢聆听 + 联系方式
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 🚀 使用方法
+
 ```bash
-hermes skills install clawhub/sketchup-ppt-generator
+cd /Users/laobaobei/.openclaw/workspace/skills/SketchUp-PPT生成
+python3 generate_ppt_from_skp.py <input.skp> <output.pptx> [项目名称] [风格]
 ```
+
+**示例（江境项目）：**
+```bash
+python3 generate_ppt_from_skp.py "/Users/laobaobei/工作图纸/2026 进行/江境12-503/瑞安江境1265艺术馆12栋503 上叠skp.skp" "/Users/laobaobei/工作图纸/2026 进行/江境12-503/江境叠墅SU汇报方案.pptx" "瑞安江境叠墅 12-503 上叠" "轻美式"
+```
+
+## ✅ 测试记录
+
+- **测试项目：** 瑞安江境叠墅 12-503 上叠
+- **SU文件：** `5.69 MB` 读取成功
+- **生成结果：** 15页标准PPT框架，输出正常
+- **测试时间：** 2026-03-31
+
+## 📁 自研技能队列
+
+当前温州隐室空间设计自研技能列表（按创建顺序）：
+
+1. **建筑学长AI工作流** - 平面图 → AI效果图 → 预算 → PPT全流程自动化
+2. **设计方案PPT自动生成器** - 按15页标准框架生成设计方案PPT
+3. **CAD批量处理** - 读取/批量修改/生成/批量导出DWG
+4. **小红书自动化运营** - 双账号监控客户咨询/热点搜索/笔记生成
+5. **SketchUp-PPT生成** - SU模型一键生成客户汇报PPT框架（本技能）
+6. **臻玉园顶跃概算工具** - 三档预算概算生成
+
+---
+
+*Created by 隐室助手 @ 2026-03-31*

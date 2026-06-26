@@ -1,0 +1,69 @@
+name: yunlv-product-desc
+version: 1.0.2
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to generate differentiated product descriptions for
+  foreign trade. Use when creating product listings for B2B platforms, e-commerce
+  sites, or catalogs. Use when translating and localizing product descriptions for
+  international markets. Use when writing SEO-optimized product content for B2B export
+  websites. Use when user mentions "产品描述", "产品文案", "差异化", "卖点提炼", "多语言产品", "B2B产品",
+  "产品详情", "产品卖点", "product description".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI TradeGPT API
+  url: https://api.yunlvai.com
+  purpose: 产品描述内容生成与多语言翻译
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: customer-development
+tags:
+- 产品描述
+- 差异化文案
+- 多语言产品
+- B2B内容
+- 卖点提炼
+- 产品详情
+- 产品文案
+- SEO优化
+triggers:
+- 产品描述
+- 产品文案
+- 卖点提炼
+- 差异化
+- 多语言产品
+- 产品详情
+- B2B产品
+- SEO
+- product description
+- 产品页面
+pricing:
+  free:
+    features:
+    - 每天5篇产品描述
+    - 3种语言
+    - 基础模板
+  basic:
+    price: 199
+    currency: CNY
+    period: month
+    features:
+    - 无限描述生成
+    - 15种语言
+    - 差异化策略
+    - SEO关键词
+    - 平台适配
+  pro:
+    price: 499
+    currency: CNY
+    period: month
+    features:
+    - 批量生成
+    - 行业竞品对比
+    - 品牌故事撰写
+    - 多版本A/B测试

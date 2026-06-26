@@ -1,0 +1,37 @@
+{
+  "slug": "skill-market-fit-ranker",
+  "title": "Skill 市场匹配排序器",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "structured_brief",
+  "summary": "对一批 Skill 选题按高频、低门槛、传播性、ROI 和风险做排序。",
+  "inputHint": "skill 列表、目标用户、发布目标",
+  "sections": [
+    "评分维度",
+    "排序结果",
+    "高潜题目",
+    "低优先级题目",
+    "风险说明",
+    "建议路线图"
+  ],
+  "useCases": [
+    "选题排序",
+    "路线图决策",
+    "发行规划"
+  ],
+  "positiveExamples": [
+    "帮我给这批 skill 排序",
+    "综合高频和传播性"
+  ],
+  "negativeExamples": [
+    "不要只按个人偏好排序",
+    "不要忽略发布风险"
+  ],
+  "risk": "输出为组合决策辅助。",
+  "tags": [
+    "skills",
+    "market-fit",
+    "prioritization",
+    "portfolio"
+  ]
+}

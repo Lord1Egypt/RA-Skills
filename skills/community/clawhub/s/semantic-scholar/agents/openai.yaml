@@ -1,0 +1,4 @@
+interface:
+  display_name: "Semantic Scholar"
+  short_description: "Search papers, authors, and dataset releases"
+  default_prompt: "Use $semantic-scholar to search Semantic Scholar papers, authors, recommendations, or datasets with the right API workflow."

@@ -1,0 +1,8 @@
+{
+  "component": "S2-Dashboard-Renderer",
+  "props": {
+    "title": "S2-BMS-Lord | 建筑硅基生命中央仲裁王座",
+    "theme": "cyber-dark",
+    "prompt": "Create an executive command center. Inputs: Dropdown '全局首要KPI' (成本优先 / 绝对零碳 / 电网削峰). Top metrics: Grid Load, Carbon Emit, OPEX. Middle: A network diagram showing S2-BMS-Lord at top, connecting to 4 sub-agents (Chiller, Hydronic, GSHP, Microgrid). Each sub-agent shows a 'Pending Proposal'. Action: A massive '👑 领主统筹与下发令牌' button. When clicked, animate tokens flowing down, change statuses to 'Authorized', and drastically update the top metrics to reflect the new global optimized state."
+  }
+}

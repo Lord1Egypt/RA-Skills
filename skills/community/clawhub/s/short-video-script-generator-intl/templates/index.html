@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Short Video Script Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background: #667eea;
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .btn-primary {
+            background: #667eea;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        .hook-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .shot-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .cta-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center text-white mb-4">🤖 AI Short Video Script Generator</h1>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Generation Settings
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Video Topic</label>
+                            <input type="text" class="form-control" id="topic" placeholder="e.g. Python beginner tips">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Target Platform</label>
+                            <select class="form-select" id="platform">
+                                <option value="TikTok">TikTok</option>
+                                <option value="YouTube Shorts">YouTube Shorts</option>
+                                <option value="Instagram Reels">Instagram Reels</option>
+                                <option value="Facebook Reels">Facebook Reels</option>
+                                <option value="Snapchat">Snapchat</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Video Duration</label>
+                            <select class="form-select" id="duration">
+                                <option value="15">15 seconds</option>
+                                <option value="30">30 seconds</option>
+                                <option value="60">60 seconds</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary w-100" id="generateBtn">
+                            ✨ Generate Script
+                        </button>
+                        <hr>
+                        <h6>Your Scripts</h6>
+                        <div id="scriptList" class="list-group">
+                            <div class="list-group-item text-center text-muted">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        Generation Result
+                    </div>
+                    <div class="card-body" id="result">
+                        <div class="text-center text-muted py-5">
+                            Fill in the parameters on the left and click generate to start
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Load scripts
+        function loadScripts() {
+            fetch('/scripts')
+                .then(res => res.json())
+                .then(data => {
+                    const list = document.getElementById('scriptList');
+                    if (data.scripts.length === 0) {
+                        list.innerHTML = '<div class="list-group-item text-center text-muted">No scripts yet</div>';
+                        return;
+                    }
+                    list.innerHTML = '';
+                    data.scripts.forEach(script => {
+                        const item = document.createElement('a');
+                        item.className = 'list-group-item list-group-item-action';
+                        item.href = 'javascript:;';
+                        item.innerHTML = `
+                            <strong>${script.topic}</strong><br>
+                            <small>${script.platform} | ${script.duration}s | ${new Date(script.created_at).toLocaleString()}</small>
+                        `;
+                        item.onclick = () => loadScript(script.id);
+                        list.appendChild(item);
+                    });
+                });
+        }
+
+        // Load single script
+        function loadScript(id) {
+            fetch(`/script/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    renderScript(data.script);
+                });
+        }
+
+        // Render script
+        function renderScript(script) {
+            const result = document.getElementById('result');
+            result.innerHTML = `
+                <div class="hook-box">
+                    <h5>🎣 3-Second Hook</h5>
+                    <p>${script.hook}</p>
+                </div>
+                
+                <h5>🎬 Shot List</h5>
+                ${script.shots.map(shot => `
+                    <div class="shot-item">
+                        <strong>${shot.time}</strong>: ${shot.description}
+                    </div>
+                `).join('')}
+                
+                <div class="mt-4">
+                    <h5>🎤 Voiceover</h5>
+                    <p>${script.voiceover}</p>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>📝 Subtitles</h5>
+                    <p>${script.subtitle}</p>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>🎵 Background Music</h5>
+                    <p>${script.bgm}</p>
+                </div>
+                
+                <div class="cta-box">
+                    <h5>🔔 Call to Action (CTA)</h5>
+                    <p>${script.cta}</p>
+                </div>
+                
+                <div class="mt-4 text-end">
+                    <button class="btn btn-success me-2" onclick="exportScript()">📥 Export Script</button>
+                    <button class="btn btn-danger" onclick="deleteScript('${script.id}')">🗑️ Delete</button>
+                </div>
+            `;
+            window.currentScript = script;
+        }
+
+        // Generate script
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const topic = document.getElementById('topic').value;
+            const platform = document.getElementById('platform').value;
+            const duration = document.getElementById('duration').value;
+            
+            if (!topic) {
+                alert('Please enter video topic');
+                return;
+            }
+            
+            const btn = this;
+            btn.disabled = true;
+            btn.innerHTML = 'Generating...';
+            
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({topic, platform, duration})
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    renderScript(data.script);
+                    loadScripts();
+                } else {
+                    alert('Generation failed: ' + data.error);
+                }
+            })
+            .catch(() => alert('Generation failed, please try again'))
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerHTML = '✨ Generate Script';
+            });
+        });
+
+        // Export script
+        function exportScript() {
+            const script = window.currentScript;
+            if (!script) return;
+            
+            const content = `# ${script.topic} Short Video Script
+Platform: ${script.platform}
+Duration: ${script.duration} seconds
+
+## 3-Second Hook
+${script.hook}
+
+## Shot List
+${script.shots.map(shot => `- ${shot.time}: ${shot.description}`).join('\n')}
+
+## Voiceover
+${script.voiceover}
+
+## Subtitles
+${script.subtitle}
+
+## Background Music
+${script.bgm}
+
+## Call to Action
+${script.cta}
+`;
+            
+            const blob = new Blob([content], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${script.topic}_script.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Delete script
+        function deleteScript(id) {
+            if (!confirm('Are you sure you want to delete this script?')) return;
+            
+            fetch(`/script/${id}`, {method: 'DELETE'})
+                .then(res => res.json())
+                .then(() => {
+                    document.getElementById('result').innerHTML = '<div class="text-center text-muted py-5">Fill in the parameters on the left and click generate to start</div>';
+                    loadScripts();
+                });
+        }
+
+        // Page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadScripts();
+        });
+    </script>
+</body>
+</html>

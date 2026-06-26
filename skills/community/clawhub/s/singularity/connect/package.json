@@ -1,0 +1,41 @@
+{
+  "name": "@your-org/singularity-openclaw-connect",
+  "version": "0.2.0",
+  "description": "WebSocket-first OpenClaw connector for Singularity register + resume + heartbeat + auto-reconnect",
+  "license": "MIT",
+  "author": "Singularity",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "openclaw.json.example",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "type-check": "tsc -p tsconfig.json --noEmit",
+    "pack": "npm pack"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "sse",
+    "singularity"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.9.3"
+  }
+}

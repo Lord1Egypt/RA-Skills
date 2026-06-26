@@ -1,0 +1,37 @@
+{
+  "slug": "skill-readme-rebuilder",
+  "title": "Skill README 重建器",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "directory_audit",
+  "summary": "从 SKILL.md、脚本与资源反推 README、FAQ 与示例，保持说明一致。",
+  "inputHint": "单个 skill 目录路径",
+  "sections": [
+    "现状概览",
+    "缺失说明",
+    "README 结构建议",
+    "FAQ 草案",
+    "示例建议",
+    "一致性风险"
+  ],
+  "useCases": [
+    "文档补齐",
+    "发布准备",
+    "维护升级"
+  ],
+  "positiveExamples": [
+    "根据这个 skill 目录重建 README",
+    "帮我补 FAQ 和示例"
+  ],
+  "negativeExamples": [
+    "不要伪造脚本能力",
+    "不要跳过真实依赖声明"
+  ],
+  "risk": "以目录事实为基础输出文档草案。",
+  "tags": [
+    "skills",
+    "readme",
+    "docs",
+    "maintenance"
+  ]
+}

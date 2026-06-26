@@ -1,0 +1,48 @@
+{
+  "name": "skill-discovery",
+  "version": "2.2.1",
+  "description": "Automatically discover and install skills based on user intent",
+  "main": "index.js",
+  "bin": {
+    "skill-discovery": "index.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:unit": "jest test/unit --verbose",
+    "test:integration": "jest test/integration --verbose",
+    "test:coverage": "jest --coverage",
+    "discover": "node index.js",
+    "lint": "eslint *.js test/**/*.js",
+    "lint:fix": "eslint *.js test/**/*.js --fix",
+    "format": "prettier --write *.js test/**/*.js",
+    "format:check": "prettier --check *.js test/**/*.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "agent",
+    "discovery",
+    "auto-install",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caocong1/skill-discovery.git"
+  },
+  "homepage": "",
+  "directories": {
+    "test": "test"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "jest": "^30.3.0",
+    "prettier": "^3.8.1"
+  }
+}

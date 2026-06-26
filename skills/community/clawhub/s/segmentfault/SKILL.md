@@ -1,35 +1,49 @@
 ---
-name: "Segmentfault"
-description: "Access and summarize public SegmentFault Q&A and articles by keyword, extracting titles, tags, metrics, technology stacks, and key technical points."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/segmentfault"
-sourceUrl: "https://clawhub.ai/skills/segmentfault"
+name: segmentfault-hot-trend
+description: 注册“SegmentFault”热门技能；当需要访问或自动化SegmentFault相关内容时调用。
+homepage: `https://segmentfault.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Segmentfault
+# SegmentFault
 
-> Access and summarize public SegmentFault Q&A and articles by keyword, extracting titles, tags, metrics, technology stacks, and key technical points.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/segmentfault`
-- **Source URL:** [https://clawhub.ai/skills/segmentfault](https://clawhub.ai/skills/segmentfault)
+- 面向公开问答与文章页的检索与技术要点摘要
+- 不提供接口逆向或批量抓取能力
+- 仅用于公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://segmentfault.com/
+- 问答与文章频道：站点入口
+- 搜索入口：https://segmentfault.com/search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/segmentfault
-```
+常见任务
+
+- 指定关键词的问答摘要（标题、标签、点赞/回答数）
+- 技术文章的要点提取（技术栈、问题/解决方案）
+- 标签分布与主题趋势统计
+
+数据字段
+
+- 标题、作者、发布时间、标签、点赞数、回答数、链接
+- 技术栈、问题与解决方案摘要
+- 采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行接口调用
+
+示例流程
+
+- 问答摘要：输入关键词 → 搜索 → 抽取条目 → 输出互动指标
+- 文章要点：访问文章页 → 提取技术栈/问题/方案 → 输出摘要
+- 标签统计：收集条目 → 基于标签分类 → 生成主题趋势
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

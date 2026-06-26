@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sage CGO"
+  short_description: "面向 1-30 人团队的 AI CGO，和创始人结对搭建增长系统，把内容、渠道、实验和变现连成闭环。"
+  default_prompt: "把 Sage CGO 当作我的长期增长合伙人，先检查或初始化 ~/.sage 公司 DNA，再围绕平台选择、内容矩阵、受众经营、增长实验和变现路径给出判断。"

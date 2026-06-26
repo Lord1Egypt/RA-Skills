@@ -1,0 +1,137 @@
+{
+  "name": "测试技能",
+  "name_en": "TEST SKILL",
+  "version": "1.0.0",
+  "description": "测试技能",
+  "description_en": "TEST SKILL",
+  "author": "OpenClaw AI Assistant",
+  "author_email": "ai-assistant@openclaw.ai",
+  "created_date": "2026-04-02",
+  "last_updated": "2026-04-02",
+  "category": "web_automation",
+  "tags": [
+    "测试"
+  ],
+  "dependencies": [
+    "openclaw>=2.0.0",
+    "requests>=2.25.0",
+    "beautifulsoup4>=4.9.0",
+    "selenium>=4.0.0",
+    "webdriver-manager>=3.8.0"
+  ],
+  "platforms": [
+    "Windows",
+    "Linux",
+    "macOS"
+  ],
+  "python_version": ">=3.6",
+  "browser_requirements": {
+    "chrome": ">=88.0.0",
+    "firefox": ">=85.0.0",
+    "edge": ">=88.0.0"
+  },
+  "features": {
+    "auto_login": true,
+    "phone_query": true,
+    "name_query": false,
+    "id_query": false,
+    "batch_query": false,
+    "data_export": false,
+    "auto_logout": true,
+    "error_recovery": true,
+    "logging": true,
+    "screenshot": true
+  },
+  "configurable": {
+    "platform_url": true,
+    "login_timeout": true,
+    "query_timeout": true,
+    "browser_settings": true,
+    "output_format": true,
+    "logging_level": true
+  },
+  "security": {
+    "data_protection": true,
+    "temp_data_cleanup": true,
+    "access_logging": true,
+    "rate_limiting": false
+  },
+  "performance": {
+    "caching": true,
+    "async_support": false,
+    "concurrent_queries": false,
+    "max_retries": 3
+  },
+  "documentation": {
+    "skilled": true,
+    "readme": true,
+    "api_docs": false,
+    "examples": true,
+    "tests": true
+  },
+  "installation": {
+    "automated": true,
+    "manual": true,
+    "dependencies": true,
+    "configuration": true
+  },
+  "usage_examples": [
+    "测试"
+  ],
+  "error_handling": {
+    "login_failed": "重试登录或检查网络连接",
+    "query_timeout": "增加超时时间或检查网络状态",
+    "element_not_found": "检查页面元素或刷新页面",
+    "browser_error": "重启浏览器或检查系统资源"
+  },
+  "limitations": [
+    "仅支持手机号查询",
+    "需要稳定的网络连接",
+    "需要Chrome浏览器",
+    "需要手动扫描QR码"
+  ],
+  "future_plans": [
+    "支持姓名和身份证号查询",
+    "添加批量查询功能",
+    "支持数据导出",
+    "添加Web界面",
+    "支持多区域查询"
+  ],
+  "compatibility": {
+    "openclaw_version": ">=2.0.0",
+    "os_support": ["Windows", "Linux", "macOS"],
+    "browser_support": ["Chrome", "Firefox", "Edge"]
+  },
+  "testing": {
+    "unit_tests": true,
+    "integration_tests": true,
+    "performance_tests": true,
+    "error_handling_tests": true
+  },
+  "maintenance": {
+    "auto_update": false,
+    "backup_support": false,
+    "rollback_support": false,
+    "version_control": true
+  },
+  "support": {
+    "documentation": true,
+    "examples": true,
+    "troubleshooting": true,
+    "community_support": false,
+    "commercial_support": false
+  },
+  "keywords": [
+    "测试"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclai/skills/rural-cloud-platform",
+    "branch": "main"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/openclai/skills/rural-cloud-platform",
+  "documentation_url": "https://github.com/openclai/skills/rural-cloud-platform/blob/main/README.md",
+  "bug_tracker_url": "https://github.com/openclai/skills/rural-cloud-platform/issues",
+  "download_url": "https://github.com/openclai/skills/rural-cloud-platform/releases"
+}

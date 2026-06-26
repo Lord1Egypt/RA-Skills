@@ -1,0 +1,18 @@
+{
+  "emoji": "🔍",
+  "requires": {
+    "env": ["SIMMER_API_KEY", "WALLET_PRIVATE_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": "*/5 * * * *",
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "resolution_tracker.py"
+  },
+  "tunables": [
+    {"env": "DISCORD_WEBHOOK", "type": "string", "default": "", "label": "Discord webhook URL for win/loss alerts"},
+    {"env": "POLY_MODE", "type": "string", "default": "live", "label": "Set to 'sim' to skip on-chain redemptions"},
+    {"env": "DATA_DIR", "type": "string", "default": "", "label": "Override data directory (default: ./data/live)"}
+  ]
+}

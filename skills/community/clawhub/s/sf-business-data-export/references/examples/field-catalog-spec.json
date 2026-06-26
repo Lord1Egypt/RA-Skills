@@ -1,0 +1,24 @@
+{
+  "object_api_name": "Opportunity",
+  "field_source": "lightning_page",
+  "expected_fields": [
+    "Id",
+    "Name",
+    "StageName",
+    "Amount",
+    "CloseDate",
+    "OwnerId"
+  ],
+  "exported_fields": [
+    "Id",
+    "Name",
+    "StageName",
+    "Amount",
+    "CloseDate",
+    "OwnerId"
+  ],
+  "key_fields": [
+    "Name",
+    "StageName"
+  ]
+}

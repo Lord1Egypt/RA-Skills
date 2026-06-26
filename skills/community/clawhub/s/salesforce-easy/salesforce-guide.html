@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salesforce Easy — Usage Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #18181f;
+  --surface3: #1e1e28;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8e6f0;
+  --text2: #9896a8;
+  --text3: #5c5a6e;
+  --accent: #7c6af5;
+  --accent2: #a594f9;
+  --accent-glow: rgba(124,106,245,0.15);
+  --teal: #2dd4bf;
+  --teal-dim: rgba(45,212,191,0.12);
+  --amber: #f59e0b;
+  --amber-dim: rgba(245,158,11,0.12);
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.1);
+  --green: #4ade80;
+  --green-dim: rgba(74,222,128,0.1);
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Figtree', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Background ── */
+.bg-orbs {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.bg-orbs::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  top: -200px; left: -100px;
+  background: radial-gradient(circle, rgba(124,106,245,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: drift1 18s ease-in-out infinite alternate;
+}
+.bg-orbs::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  bottom: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(45,212,191,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: drift2 14s ease-in-out infinite alternate;
+}
+@keyframes drift1 { to { transform: translate(60px, 40px); } }
+@keyframes drift2 { to { transform: translate(-40px, -60px); } }
+
+/* ── Layout ── */
+.wrap {
+  position: relative; z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Hero ── */
+.hero {
+  padding: 80px 0 56px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 56px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--accent-glow);
+  border: 1px solid rgba(124,106,245,0.25);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent2);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent2);
+}
+.hero-sub {
+  font-size: 17px;
+  color: var(--text2);
+  max-width: 520px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.hero-meta {
+  display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap;
+}
+.meta-chip {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 13px; color: var(--text3);
+  font-family: var(--font-mono);
+}
+.meta-chip .ic {
+  width: 20px; height: 20px;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+}
+.meta-chip .ic.v { background: var(--teal-dim); color: var(--teal); }
+.meta-chip .ic.m { background: var(--amber-dim); color: var(--amber); }
+.meta-chip .ic.s { background: var(--green-dim); color: var(--green); }
+
+/* ── Nav sidebar (sticky TOC) ── */
+.layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start; }
+@media(max-width: 760px) { .layout { grid-template-columns: 1fr; } .toc { display: none; } }
+
+.toc {
+  position: sticky; top: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  font-size: 13px;
+}
+.toc-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.toc a {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text2);
+  text-decoration: none;
+  transition: all .15s;
+  line-height: 1.3;
+}
+.toc a:hover { background: var(--surface2); color: var(--text); }
+.toc a.active { background: var(--accent-glow); color: var(--accent2); }
+.toc-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text3);
+  min-width: 16px;
+}
+
+/* ── Sections ── */
+.section { margin-bottom: 56px; }
+.section-header {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 24px;
+}
+.step-badge {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.step-badge.blue  { background: rgba(99,179,237,0.12); color: #63b3ed; border: 1px solid rgba(99,179,237,0.2); }
+.step-badge.teal  { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(45,212,191,0.2); }
+.step-badge.purple { background: var(--accent-glow); color: var(--accent2); border: 1px solid rgba(124,106,245,0.2); }
+.step-badge.amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+.step-badge.red   { background: var(--red-dim); color: var(--red); border: 1px solid rgba(248,113,113,0.2); }
+
+.section-title { font-family: var(--font-serif); font-size: 26px; font-weight: 400; color: var(--text); line-height: 1.2; }
+.section-desc { font-size: 14px; color: var(--text2); margin-top: 3px; font-weight: 300; }
+
+/* ── Cards ── */
+.cards { display: flex; flex-direction: column; gap: 12px; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--border2); }
+.card-label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.tag {
+  display: inline-block;
+  padding: 2px 8px; border-radius: 20px;
+  font-size: 10px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  font-family: var(--font-mono);
+}
+.tag.req { background: rgba(124,106,245,0.15); color: var(--accent2); border: 1px solid rgba(124,106,245,0.2); }
+.tag.opt { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(45,212,191,0.2); }
+.tag.warn { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+
+.card-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 10px; }
+
+/* ── Code blocks ── */
+.code-block {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: #c4c0e0;
+  overflow-x: auto;
+  position: relative;
+}
+.code-block .kw  { color: var(--accent2); }
+.code-block .str { color: var(--teal); }
+.code-block .cmt { color: var(--text3); font-style: italic; }
+.code-block .cmd-line { display: flex; align-items: baseline; gap: 8px; }
+.code-block .prompt { color: var(--text3); user-select: none; }
+.copy-btn {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text3);
+  cursor: pointer;
+  transition: all .15s;
+}
+.copy-btn:hover { color: var(--text); border-color: var(--border2); }
+.copy-btn.copied { color: var(--teal); border-color: var(--teal-dim); }
+
+/* ── Two column grid ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+/* ── Command examples ── */
+.cmd-examples { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.cmd-pill {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all .15s;
+  text-align: left;
+}
+.cmd-pill:hover { background: var(--surface3); border-color: var(--border2); transform: translateX(3px); }
+.cmd-tag-small {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text3);
+  min-width: 72px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+.cmd-text { font-size: 14px; color: var(--text2); line-height: 1.4; }
+.cmd-text strong { color: var(--text); font-weight: 500; }
+
+/* ── Flow steps ── */
+.flow-strip {
+  display: flex; align-items: center; gap: 0;
+  flex-wrap: wrap;
+  margin: 14px 0 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.flow-node {
+  padding: 9px 16px;
+  font-size: 13px;
+  color: var(--text2);
+  display: flex; align-items: center; gap: 8px;
+  flex: 1; min-width: 0;
+}
+.flow-node .fn { font-family: var(--font-mono); font-size: 12px; }
+.flow-node:not(:last-child)::after {
+  content: '›';
+  color: var(--text3);
+  margin-left: auto;
+  padding-right: 4px;
+}
+
+/* ── Table ── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th {
+  text-align: left; padding: 8px 12px;
+  color: var(--text3); font-weight: 500;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: middle; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table td:first-child { font-family: var(--font-mono); color: var(--text); font-size: 12px; }
+
+/* ── Warning box ── */
+.warning-box {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: rgba(245,158,11,0.07);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-left: 3px solid var(--amber);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 13px; color: #d4b070; line-height: 1.6;
+  margin: 12px 0;
+}
+.warning-box .wi { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── Pill badge for table ── */
+.impact { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 500; font-family: var(--font-mono); }
+.impact.hi  { background: var(--red-dim); color: var(--red); }
+.impact.mid { background: var(--amber-dim); color: var(--amber); }
+.impact.lo  { background: var(--green-dim); color: var(--green); }
+
+/* ── Field table in GTM section ── */
+.field-row {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.field-row:last-child { border-bottom: none; }
+.field-name { font-family: var(--font-mono); font-size: 13px; color: var(--teal); }
+.field-type { font-size: 12px; color: var(--text3); font-family: var(--font-mono); }
+
+/* ── Divider ── */
+.divider { height: 1px; background: var(--border); margin: 14px 0; }
+
+/* ── Footer ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; color: var(--text3);
+  font-family: var(--font-mono);
+}
+.footer a { color: var(--accent2); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 3px; }
+
+/* ── Method tabs ── */
+.method-tabs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.mtab {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer; text-align: left;
+  transition: all .15s;
+  font-family: var(--font-body);
+  color: var(--text2);
+  font-size: 14px;
+}
+.mtab:hover { background: var(--surface2); border-color: var(--border2); }
+.mtab.active { background: var(--surface2); border-color: var(--accent); color: var(--text); }
+.mtab-num {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--text3); min-width: 20px;
+}
+.mtab strong { font-weight: 500; color: var(--text); display: block; }
+.mtab-info { display: flex; flex-direction: column; gap: 1px; flex: 1; }
+.mtab-sub { font-size: 12px; color: var(--text3); }
+.method-panel { animation: fadeUp .25s ease; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+
+<div class="bg-orbs"></div>
+
+<div class="wrap">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Usage Guide
+    </div>
+    <h1>Salesforce <em>Easy</em><br>— how to use it</h1>
+    <p class="hero-sub">Complete guide to installing, connecting, and working with your Salesforce data through natural language in OpenClaw.</p>
+    <div class="hero-meta">
+      <div class="meta-chip"><span class="ic v">v</span> v1.0.16</div>
+      <div class="meta-chip"><span class="ic m">@</span> sawera557</div>
+      <div class="meta-chip"><span class="ic s">✓</span> Static analysis: Benign</div>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- TOC -->
+    <aside class="toc">
+      <div class="toc-title">Contents</div>
+      <a href="#s1" class="active"><span class="toc-num">01</span> Install</a>
+      <a href="#s2"><span class="toc-num">02</span> Connect</a>
+      <a href="#s3"><span class="toc-num">03</span> Query data</a>
+      <a href="#s4"><span class="toc-num">04</span> Create & update</a>
+      <a href="#s5"><span class="toc-num">05</span> Bulk & delete</a>
+      <a href="#s6"><span class="toc-num">06</span> GTM standardize</a>
+      <a href="#s7"><span class="toc-num">07</span> Troubleshooting</a>
+    </aside>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Section 1 -->
+      <section class="section" id="s1">
+        <div class="section-header">
+          <div class="step-badge blue">01</div>
+          <div>
+            <div class="section-title">Install the skill</div>
+            <div class="section-desc">One-time setup · takes about 2 minutes</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="card-label">OpenClaw CLI <span class="tag req">Required</span></div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              <div class="cmd-line"><span class="prompt">$</span> <span>openclaw skills install salesforce-easy</span></div>
+            </div>
+            <p style="font-size:13px;color:var(--text2);margin-top:10px;">Downloads all scripts and a pinned <code style="font-family:var(--font-mono);font-size:12px;color:var(--teal)">requirements.txt</code> to your OpenClaw skills folder.</p>
+          </div>
+          <div class="card">
+            <div class="card-label">Python dependencies <span class="tag req">Required</span></div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              <div class="cmd-line"><span class="prompt">$</span> <span>cd ~/.openclaw/skills/salesforce-easy</span></div>
+              <div class="cmd-line"><span class="prompt">$</span> <span>pip install -r requirements.txt</span></div>
+            </div>
+            <div class="warning-box" style="margin-top:12px;">
+              <span class="wi">⚠</span>
+              Always install from <strong>requirements.txt</strong>. Versions are pinned to reviewed releases — do not run a bare <code style="font-family:var(--font-mono)">pip install simple-salesforce</code>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="section" id="s2">
+        <div class="section-header">
+          <div class="step-badge teal">02</div>
+          <div>
+            <div class="section-title">Connect to Salesforce</div>
+            <div class="section-desc">Choose one credential method</div>
+          </div>
+        </div>
+        <div class="cards">
+          <!-- Method tabs -->
+          <div class="method-tabs">
+            <button class="mtab active" onclick="switchMethod(0, this)">
+              <span class="mtab-num">01</span>
+              <span class="mtab-info"><strong>Platform CLI</strong><span class="mtab-sub">No secrets needed</span></span>
+              <span class="tag opt" style="margin-left:auto">Easiest</span>
+            </button>
+            <button class="mtab" onclick="switchMethod(1, this)">
+              <span class="mtab-num">02</span>
+              <span class="mtab-info"><strong>Connected App</strong><span class="mtab-sub">Authorization code flow</span></span>
+              <span class="tag req" style="margin-left:auto">OAuth 2.0</span>
+            </button>
+            <button class="mtab" onclick="switchMethod(2, this)">
+              <span class="mtab-num">03</span>
+              <span class="mtab-info"><strong>Username + Password</strong><span class="mtab-sub">Direct credential</span></span>
+            </button>
+          </div>
+
+          <!-- Panel 0: Platform CLI -->
+          <div class="method-panel" id="mp0">
+            <div class="card" style="border-color:rgba(45,212,191,0.2)">
+              <div class="card-label" style="color:var(--teal)">🌟 Salesforce Platform CLI — zero secrets needed</div>
+              <p style="font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.6;">The safest method. The <code style="font-family:var(--font-mono);color:var(--teal)">sf</code> CLI stores tokens in your local keychain after a one-time browser login. No passwords, no client secrets, no .env secrets needed.</p>
+              <div class="card-title" style="font-size:13px;color:var(--text3);margin-bottom:8px;">Step 1 — install the CLI (one time)</div>
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">copy</button>
+                <div class="cmd-line"><span class="prompt">$</span> <span>npm install -g @salesforce/cli</span></div>
+              </div>
+              <div class="card-title" style="font-size:13px;color:var(--text3);margin:14px 0 8px;">Step 2 — authenticate in browser (one time)</div>
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">copy</button>
+                <div class="cmd-line"><span class="prompt">$</span> <span>sf org login web --alias myorg</span></div>
+                <div class="cmd-line"><span class="prompt">$</span> <span class="cmt"># For sandbox:</span></div>
+                <div class="cmd-line"><span class="prompt">$</span> <span>sf org login web --alias mysandbox --instance-url https://test.salesforce.com</span></div>
+              </div>
+              <div class="card-title" style="font-size:13px;color:var(--text3);margin:14px 0 8px;">Step 3 — extract token into skill</div>
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">copy</button>
+                <div class="cmd-line"><span class="prompt">$</span> <span>python scripts/oauth.py platform --list</span></div>
+                <div class="cmd-line"><span class="prompt">$</span> <span>python scripts/oauth.py platform --alias myorg</span></div>
+              </div>
+              <p style="font-size:12px;color:var(--text3);margin-top:10px;line-height:1.6;">Token is set in the current process. To persist: copy the printed SALESFORCE_ACCESS_TOKEN and SALESFORCE_INSTANCE_URL values into your .env file.</p>
+              <div class="flow-strip" style="margin-top:12px;">
+                <div class="flow-node">npm install sf</div>
+                <div class="flow-node">sf org login web</div>
+                <div class="flow-node">oauth.py platform</div>
+                <div class="flow-node">token loaded ✓</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 1: Connected App -->
+          <div class="method-panel" id="mp1" style="display:none">
+            <div class="card">
+              <div class="card-label">Prerequisites — create a Connected App in Salesforce</div>
+              <div class="flow-strip">
+                <div class="flow-node">Setup → App Manager</div>
+                <div class="flow-node">New Connected App</div>
+                <div class="flow-node">Enable OAuth</div>
+                <div class="flow-node">copy Client ID + Secret</div>
+              </div>
+              <p style="font-size:12px;color:var(--text3);margin-top:10px;">Callback URL: <code style="font-family:var(--font-mono)">http://localhost:8080/oauth/callback</code> · Scope: <code style="font-family:var(--font-mono)">api refresh_token</code></p>
+            </div>
+            <div class="card" style="margin-top:12px;">
+              <div class="card-label">Step 1 — generate authorization URL</div>
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">copy</button>
+                <div class="cmd-line"><span class="prompt">$</span> <span>python scripts/connect.py oauth &lt;your_client_id&gt;</span></div>
+              </div>
+              <p style="font-size:12px;color:var(--text2);margin-top:8px;">Copy the URL, open in browser, authorize. You'll be redirected with <code style="font-family:var(--font-mono);color:var(--teal)">?code=...</code> in the URL.</p>
+            </div>
+            <div class="card" style="margin-top:12px;">
+              <div class="card-label">Step 2 — exchange code for token</div>
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">copy</button>
+                <div class="cmd-line"><span class="prompt">$</span> <span>python scripts/oauth.py exchange</span></div>
+                <div class="cmd-line"><span class="prompt">&gt;</span> <span class="cmt">Prompts: Client ID, Client Secret, Authorization Code</span></div>
+              </div>
+              <p style="font-size:12px;color:var(--text3);margin-top:8px;">Or set env vars: SALESFORCE_CLIENT_ID, SALESFORCE_CLIENT_SECRET, SALESFORCE_OAUTH_CODE</p>
+            </div>
+            <div class="card" style="margin-top:12px;">
+              <div class="card-label">Token expired? Refresh it</div>
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">copy</button>
+                <div class="cmd-line"><span class="prompt">$</span> <span>python scripts/oauth.py refresh</span></div>
+                <div class="cmd-line"><span class="prompt">&gt;</span> <span class="cmt">Prompts: Client ID, Client Secret, Refresh Token</span></div>
+              </div>
+            </div>
+            <div class="card" style="margin-top:12px;">
+              <div class="card-label">Save to .env <span class="tag req">Required</span></div>
+              <div class="code-block" style="font-size:12px;">
+                <span class="cmt"># .env file — never commit to source control</span><br>
+                <span class="kw">SALESFORCE_INSTANCE_URL</span>=<span class="str">https://yourorg.salesforce.com</span><br>
+                <span class="kw">SALESFORCE_ACCESS_TOKEN</span>=<span class="str">&lt;token-from-exchange-output&gt;</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 2: Username/Password -->
+          <div class="method-panel" id="mp2" style="display:none">
+            <div class="warning-box">
+              <span class="wi">⚠</span>
+              <div>This method sends your password + security token to Salesforce. Only use it if your org's security policies allow username/password flows. Use a <strong>dedicated integration user</strong>, never your personal admin account.</div>
+            </div>
+            <div class="card" style="margin-top:12px;">
+              <div class="card-label">Add to .env</div>
+              <div class="code-block" style="font-size:12px;">
+                <span class="cmt"># .env file — never commit to source control</span><br>
+                <span class="kw">SALESFORCE_USERNAME</span>=<span class="str">integration@yourco.com</span><br>
+                <span class="kw">SALESFORCE_PASSWORD</span>=<span class="str">&lt;password&gt;</span><br>
+                <span class="kw">SALESFORCE_SECURITY_TOKEN</span>=<span class="str">&lt;security-token&gt;</span>
+              </div>
+              <p style="font-size:12px;color:var(--text3);margin-top:10px;">Security token: found in Salesforce under <em>Settings → My Personal Information → Reset My Security Token</em>.</p>
+            </div>
+            <div class="card" style="margin-top:12px;">
+              <div class="card-label">Test it</div>
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">copy</button>
+                <div class="cmd-line"><span class="prompt">$</span> <span>python scripts/connect.py test</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Verify connection</div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              <div class="cmd-line"><span class="prompt">$</span> <span>python scripts/connect.py test</span></div>
+            </div>
+            <p style="font-size:13px;color:var(--text2);margin-top:10px;">Expected: <code style="font-family:var(--font-mono);font-size:12px;color:var(--teal)">"Connection active. Logged in as: Your Name"</code></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="section" id="s3">
+        <div class="section-header">
+          <div class="step-badge purple">03</div>
+          <div>
+            <div class="section-title">Query your data</div>
+            <div class="section-desc">Natural language · no SOQL needed</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="card-label">Leads</div>
+            <div class="cmd-examples">
+              <button class="cmd-pill"><span class="cmd-tag-small">this week</span><span class="cmd-text">"Show me all leads created <strong>this week</strong>"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">status</span><span class="cmd-text">"Find all <strong>unqualified leads</strong> from California"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">source</span><span class="cmd-text">"Show leads by <strong>lead source</strong> breakdown"</span></button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Contacts & Accounts</div>
+            <div class="cmd-examples">
+              <button class="cmd-pill"><span class="cmd-tag-small">account</span><span class="cmd-text">"Find all contacts at <strong>Acme Corp</strong>"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">search</span><span class="cmd-text">"Search for <strong>john@example.com</strong> across all objects"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">state</span><span class="cmd-text">"Get all accounts in <strong>California</strong>"</span></button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Opportunities & pipeline</div>
+            <div class="cmd-examples">
+              <button class="cmd-pill"><span class="cmd-tag-small">pipeline</span><span class="cmd-text">"Get open opportunities <strong>over $50K closing this month</strong>"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">top deals</span><span class="cmd-text">"Show my <strong>top 10 deals</strong> by value"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">stage</span><span class="cmd-text">"What's the total pipeline value in <strong>Proposal</strong> stage?"</span></button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Custom SOQL (advanced)</div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              "Run SOQL: SELECT Name, Email FROM Lead<br>
+              &nbsp;WHERE Company LIKE '%Tech%'<br>
+              &nbsp;ORDER BY CreatedDate DESC LIMIT 50"
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="section" id="s4">
+        <div class="section-header">
+          <div class="step-badge amber">04</div>
+          <div>
+            <div class="section-title">Create & update records</div>
+            <div class="section-desc">All writes require explicit confirmation</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="card-label">Create — leads</div>
+            <div class="cmd-examples">
+              <button class="cmd-pill"><span class="cmd-tag-small">new lead</span><span class="cmd-text">"Create a lead: <strong>Sarah Chen, sarah@techco.com, TechCo, VP Engineering</strong>"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">from CSV</span><span class="cmd-text">"Create leads from this CSV: [upload file]"</span></button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Create — opportunities & tasks</div>
+            <div class="cmd-examples">
+              <button class="cmd-pill"><span class="cmd-tag-small">opportunity</span><span class="cmd-text">"Add opportunity: <strong>Acme Deal, $75K, Prospecting, closing June 30</strong>"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">task</span><span class="cmd-text">"Create a task to <strong>follow up with John Smith tomorrow</strong>"</span></button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Update records</div>
+            <div class="cmd-examples">
+              <button class="cmd-pill"><span class="cmd-tag-small">status</span><span class="cmd-text">"Update lead status to <strong>Qualified</strong> for sarah@techco.com"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">stage</span><span class="cmd-text">"Change opportunity stage to <strong>Proposal</strong> for Acme Deal"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">task</span><span class="cmd-text">"Mark the follow-up task for John as <strong>completed</strong>"</span></button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Duplicates</div>
+            <div class="cmd-examples">
+              <button class="cmd-pill"><span class="cmd-tag-small">email</span><span class="cmd-text">"Find duplicate leads by <strong>email address</strong>"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">phone</span><span class="cmd-text">"Show contacts with <strong>duplicate phone numbers</strong>"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">pre-create</span><span class="cmd-text">"Check if <strong>john@acme.com</strong> already exists before creating"</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="section" id="s5">
+        <div class="section-header">
+          <div class="step-badge red">05</div>
+          <div>
+            <div class="section-title">Bulk & destructive ops</div>
+            <div class="section-desc">Confirmation required · backups auto-exported</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="warning-box">
+            <span class="wi">⚠</span>
+            <div>Every create, update, and delete — single or bulk — requires <strong>confirmed=True</strong> before executing. The skill shows you exactly what will be affected and asks you to confirm. Bulk deletes automatically export a snapshot of records before deletion.</div>
+          </div>
+          <div class="card">
+            <div class="card-label">Confirmation flow</div>
+            <div class="flow-strip">
+              <div class="flow-node">You make request</div>
+              <div class="flow-node">Skill previews impact</div>
+              <div class="flow-node">You say "yes"</div>
+              <div class="flow-node">Changes applied</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Limits per batch</div>
+            <table class="data-table">
+              <thead><tr><th>Operation</th><th>Max records</th><th>Impact level</th></tr></thead>
+              <tbody>
+                <tr><td>Bulk create</td><td>200</td><td><span class="impact lo">reversible</span></td></tr>
+                <tr><td>Bulk update</td><td>200</td><td><span class="impact mid">review first</span></td></tr>
+                <tr><td>Bulk delete</td><td>200</td><td><span class="impact hi">backup auto-exported</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="card-label">Example bulk commands</div>
+            <div class="cmd-examples">
+              <button class="cmd-pill"><span class="cmd-tag-small">bulk create</span><span class="cmd-text">"Create 50 leads from this list: [paste data]"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">bulk update</span><span class="cmd-text">"Update all leads from California to region <strong>West</strong>"</span></button>
+              <button class="cmd-pill"><span class="cmd-tag-small">bulk delete</span><span class="cmd-text">"Delete all leads with status <strong>Unqualified</strong> (export backup first)"</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="section" id="s6">
+        <div class="section-header">
+          <div class="step-badge teal">06</div>
+          <div>
+            <div class="section-title">GTM data standardization</div>
+            <div class="section-desc">standardize.py · automate.py</div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="card-label">Step 1 — create custom fields in Salesforce Setup <span class="tag req">Manual step</span></div>
+            <p style="font-size:13px;color:var(--text2);margin-bottom:12px;">Go to <strong>Setup → Object Manager → Lead → Fields & Relationships → New</strong>. Repeat for Contact and Account.</p>
+            <div style="padding: 4px 0;">
+              <div class="field-row"><span class="field-name">GTM_Industry__c</span><span class="field-type">Picklist</span></div>
+              <div class="field-row"><span class="field-name">GTM_Vertical__c</span><span class="field-type">Picklist</span></div>
+              <div class="field-row"><span class="field-name">GTM_Role_Category__c</span><span class="field-type">Picklist</span></div>
+              <div class="field-row"><span class="field-name">GTM_Seniority__c</span><span class="field-type">Picklist</span></div>
+              <div class="field-row"><span class="field-name">GTM_Standardized__c</span><span class="field-type">Checkbox</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Step 2 — audit existing data</div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              <div class="cmd-line"><span class="prompt">$</span> python scripts/standardize.py audit --object all</div>
+            </div>
+            <p style="font-size:13px;color:var(--text2);margin-top:10px;">Shows data quality score and unmapped field counts. Read-only — no changes made.</p>
+          </div>
+          <div class="card">
+            <div class="card-label">Step 3 — preview changes</div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              <div class="cmd-line"><span class="prompt">$</span> python scripts/standardize.py preview --object Lead --limit 20</div>
+              <div class="cmd-line"><span class="prompt">$</span> python scripts/standardize.py execute --object all --dry-run</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-label">Step 4 — run the backfill</div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              <div class="cmd-line"><span class="prompt">$</span> python scripts/standardize.py execute --object all</div>
+            </div>
+            <p style="font-size:13px;color:var(--text2);margin-top:10px;">Maps all existing Lead, Contact, and Account records to your GTM taxonomy.</p>
+          </div>
+          <div class="card">
+            <div class="card-label">Step 5 — automate new records <span class="tag warn">Sandbox first</span></div>
+            <div class="warning-box" style="margin-bottom:12px;">
+              <span class="wi">⚠</span>
+              Flows are org-wide. Test in a sandbox before deploying to production.
+            </div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              <div class="cmd-line"><span class="prompt">$</span> python scripts/automate.py deploy --confirm</div>
+              <div class="cmd-line"><span class="prompt">$</span> python scripts/automate.py status</div>
+            </div>
+            <p style="font-size:13px;color:var(--text2);margin-top:10px;">Flows deploy in <strong>Draft</strong> state. Go to <strong>Setup → Flows</strong> to activate each one manually.</p>
+          </div>
+          <div class="card">
+            <div class="card-label">Reports</div>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyCode(this)">copy</button>
+              <div class="cmd-line"><span class="prompt">$</span> python scripts/standardize.py report --type attribution</div>
+              <div class="cmd-line"><span class="prompt">$</span> python scripts/standardize.py report --type gaps</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="section" id="s7">
+        <div class="section-header">
+          <div class="step-badge blue">07</div>
+          <div>
+            <div class="section-title">Troubleshooting</div>
+            <div class="section-desc">Common errors and fixes</div>
+          </div>
+        </div>
+        <div class="card">
+          <table class="data-table">
+            <thead><tr><th>Error</th><th>Cause</th><th>Fix</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Authentication failed</td>
+                <td style="color:var(--text3)">Wrong credentials</td>
+                <td>Check SALESFORCE_INSTANCE_URL, regenerate token</td>
+              </tr>
+              <tr>
+                <td>Invalid session ID</td>
+                <td style="color:var(--text3)">Token expired</td>
+                <td>Re-run OAuth flow, update .env</td>
+              </tr>
+              <tr>
+                <td>Invalid SOQL query</td>
+                <td style="color:var(--text3)">Wrong field name</td>
+                <td>Field names are case-sensitive — check API name in Setup</td>
+              </tr>
+              <tr>
+                <td>No results found</td>
+                <td style="color:var(--text3)">Sharing rules</td>
+                <td>Check record permissions and org sharing settings</td>
+              </tr>
+              <tr>
+                <td>Request limit exceeded</td>
+                <td style="color:var(--text3)">API cap hit</td>
+                <td>Developer Edition = 15k calls/day. Wait or upgrade</td>
+              </tr>
+              <tr>
+                <td>GTM fields not found</td>
+                <td style="color:var(--text3)">Setup skipped</td>
+                <td>Create custom fields manually in Salesforce Setup (step 6)</td>
+              </tr>
+              <tr>
+                <td>Query timeout</td>
+                <td style="color:var(--text3)">Too many records</td>
+                <td>Add LIMIT clause, use indexed filter fields (Id, Email)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <div class="card-label">API rate limits by edition</div>
+          <table class="data-table">
+            <thead><tr><th>Edition</th><th>API calls / 24h</th></tr></thead>
+            <tbody>
+              <tr><td>Developer Edition</td><td>15,000</td></tr>
+              <tr><td>Professional Edition</td><td>1,000 per user</td></tr>
+              <tr><td>Enterprise Edition</td><td>5,000 per user</td></tr>
+              <tr><td>Unlimited Edition</td><td>5,000 per user</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div><!-- /content -->
+  </div><!-- /layout -->
+
+  <footer class="footer">
+    <span>salesforce-easy · by <a href="https://clawhub.ai/sawera557/salesforce-easy" target="_blank">sawera557</a> on ClawHub</span>
+    <span>MIT-0 License</span>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+
+function switchMethod(idx, btn) {
+  document.querySelectorAll('.mtab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.method-panel').forEach((p, i) => {
+    p.style.display = i === idx ? 'block' : 'none';
+  });
+}
+
+// Copy button
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const text = Array.from(block.querySelectorAll('.cmd-line'))
+    .map(l => l.textContent.replace(/^\$\s*/, '').trim())
+    .join('\n') ||
+    block.innerText.replace('copy','').replace(/\$\s/g,'').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 1800);
+  });
+}
+
+// Active TOC highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      tocLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.toc a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Staggered entrance animation
+const cards = document.querySelectorAll('.card, .section-header');
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.animationDelay = (i * 0.04) + 's';
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+cards.forEach(c => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(16px)';
+  c.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  io.observe(c);
+});
+document.querySelectorAll('.visible, .card, .section-header').forEach(el => {
+  el.style.opacity = '1';
+  el.style.transform = 'none';
+});
+</script>
+
+<style>
+.card, .section-header {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.hero, .toc { opacity: 1; transform: none; }
+</style>
+
+<script>
+// Trigger entrance on load for visible elements
+setTimeout(() => {
+  document.querySelectorAll('.card, .section-header').forEach((el, i) => {
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, i * 50);
+  });
+}, 100);
+</script>
+
+</body>
+</html>

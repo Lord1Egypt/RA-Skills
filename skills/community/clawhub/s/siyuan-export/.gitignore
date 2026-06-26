@@ -1,0 +1,12 @@
+# 思源笔记敏感配置
+config.json
+config.example.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/

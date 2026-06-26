@@ -1,0 +1,13 @@
+{
+  "name": "letter",
+  "displayName": "💌 信笺风",
+  "description": "西式信笺落款，温暖亲切",
+  "template": "From {name}, {location}, with {emoji}",
+  "emoji": "🧡",
+  "seal": "",
+  "contextMode": {
+    "work": "{name} — {location}",
+    "casual": "From {name}, {location}, with {emoji}"
+  },
+  "preview": "From 小橘, Hangzhou, with 🧡"
+}

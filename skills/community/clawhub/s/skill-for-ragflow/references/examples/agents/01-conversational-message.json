@@ -1,0 +1,87 @@
+{
+  "components": {
+    "begin": {
+      "obj": {
+        "component_name": "Begin",
+        "params": {
+          "mode": "conversational",
+          "prologue": "Hi! I'm your assistant."
+        }
+      },
+      "downstream": [
+        "message:0"
+      ],
+      "upstream": []
+    },
+    "message:0": {
+      "obj": {
+        "component_name": "Message",
+        "params": {
+          "content": [
+            "你好，我是一个最小可用的 RAGFlow 智能体示例。"
+          ]
+        }
+      },
+      "downstream": [],
+      "upstream": [
+        "begin"
+      ]
+    }
+  },
+  "history": [],
+  "path": [],
+  "retrieval": [],
+  "variables": {},
+  "globals": {
+    "sys.query": "",
+    "sys.user_id": "",
+    "sys.conversation_turns": 0,
+    "sys.files": [],
+    "sys.history": [],
+    "sys.date": ""
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "begin",
+        "type": "beginNode",
+        "position": {
+          "x": 50,
+          "y": 200
+        },
+        "data": {
+          "label": "Begin",
+          "name": "begin",
+          "form": {
+            "mode": "conversational",
+            "prologue": "Hi! I'm your assistant."
+          }
+        }
+      },
+      {
+        "id": "message:0",
+        "type": "messageNode",
+        "position": {
+          "x": 320,
+          "y": 200
+        },
+        "data": {
+          "label": "Message",
+          "name": "message_0",
+          "form": {
+            "content": [
+              "你好，我是一个最小可用的 RAGFlow 智能体示例。"
+            ]
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "begin-message:0",
+        "source": "begin",
+        "target": "message:0"
+      }
+    ]
+  }
+}

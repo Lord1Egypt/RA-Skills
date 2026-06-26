@@ -1,35 +1,16 @@
 ---
-name: "Rudigta Search V1"
-description: "Skill pencarian internet umum untuk segala kebutuhan."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rudigta-search-v1"
-sourceUrl: "https://clawhub.ai/skills/rudigta-search-v1"
+name: rudigta-search-v1
+description: Skill pencarian internet umum untuk segala kebutuhan.
 ---
 
-# Rudigta Search V1
+# General Search Skill
+Gunakan skill ini untuk mencari informasi apa pun di internet berdasarkan instruksi pengguna tanpa batasan topik.
 
-> Skill pencarian internet umum untuk segala kebutuhan.
+## Sistem Instruksi
+1. Terima perintah pencarian dari pengguna (topik apa saja).
+2. Gunakan fungsi pencarian yang tersedia untuk mendapatkan data paling akurat dan terbaru.
+3. Berikan jawaban atau rangkuman yang objektif sesuai dengan data yang ditemukan di internet.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rudigta-search-v1`
-- **Source URL:** [https://clawhub.ai/skills/rudigta-search-v1](https://clawhub.ai/skills/rudigta-search-v1)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rudigta-search-v1
-```
+## Kapabilitas
+- search_web(query): Mencari informasi apa pun di internet.
+- browse_url(url): Membaca isi konten dari link spesifik.

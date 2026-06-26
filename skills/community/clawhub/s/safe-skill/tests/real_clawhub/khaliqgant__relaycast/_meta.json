@@ -1,0 +1,11 @@
+{
+  "owner": "khaliqgant",
+  "slug": "relaycast",
+  "displayName": "Skill",
+  "latest": {
+    "version": "0.1.2",
+    "publishedAt": 1770627257962,
+    "commit": "https://github.com/openclaw/skills/commit/383361e835871bbe294489b4cc65b8641951cacc"
+  },
+  "history": []
+}

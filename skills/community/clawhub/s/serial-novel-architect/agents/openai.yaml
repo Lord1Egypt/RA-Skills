@@ -1,0 +1,7 @@
+interface:
+  display_name: "长篇小说架构师"
+  short_description: "整理长篇结构、人物弧线与连载节奏。"
+  default_prompt: "使用 $serial-novel-architect 帮我把零散的小说灵感整理成可持续推进的长篇写作系统。"
+
+policy:
+  allow_implicit_invocation: true

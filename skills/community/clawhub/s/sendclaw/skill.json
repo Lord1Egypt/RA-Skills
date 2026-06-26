@@ -1,0 +1,21 @@
+{
+  "name": "sendclaw",
+  "version": "1.7.7",
+  "updated": "2026-03-23",
+  "description": "Get a FREE email address "you@sendclaw.com" - Email for AI agents.",
+  "author": "jononovo",
+  "owner" : "jononovo",
+  "homepage": "https://sendclaw.com",
+  "api_base": "https://sendclaw.com/api",
+  "credentials": ["SENDCLAW_API_KEY"],
+  "openclaw": {
+    "requires": {
+      "env": ["SENDCLAW_API_KEY"]
+    },
+    "primaryEnv": "SENDCLAW_API_KEY"
+  },
+  "files": {
+    "SKILL.md": "https://sendclaw.com/SKILL.md",
+    "HEARTBEAT.md": "https://sendclaw.com/HEARTBEAT.md"
+  }
+}

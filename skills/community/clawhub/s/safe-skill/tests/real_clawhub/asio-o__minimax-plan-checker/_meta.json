@@ -1,0 +1,11 @@
+{
+  "owner": "asio-o",
+  "slug": "minimax-plan-checker",
+  "displayName": "MiniMax套餐查询",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773159781609,
+    "commit": "https://github.com/openclaw/skills/commit/3643cfe1b8ed3cd6bd71c0a403a3b30a3886aa2b"
+  },
+  "history": []
+}

@@ -1,0 +1,190 @@
+{
+  "tutorial_quest": {
+    "name": "冒险者的第一步",
+    "description": "与酒馆老板对话，了解基本情况",
+    "type": "main",
+    "giver": "bartender",
+    "location": "tavern",
+    "objectives": [
+      {
+        "type": "talk",
+        "target": "bartender",
+        "description": "与酒馆老板对话"
+      }
+    ],
+    "rewards": {
+      "xp": 50,
+      "gold": 10
+    },
+    "next_quest": "village_threat"
+  },
+  "village_threat": {
+    "name": "村庄的威胁",
+    "description": "消灭威胁村庄的哥布林",
+    "type": "main",
+    "giver": "guard",
+    "location": "village_square",
+    "objectives": [
+      {
+        "type": "kill",
+        "target": "goblin",
+        "count": 3,
+        "description": "消灭3只哥布林"
+      }
+    ],
+    "rewards": {
+      "xp": 150,
+      "gold": 25,
+      "items": ["dagger"]
+    },
+    "next_quest": "goblin_chief"
+  },
+  "goblin_chief": {
+    "name": "哥布林首领",
+    "description": "击败哥布林战帮首领",
+    "type": "main",
+    "giver": "guard",
+    "location": "village_square",
+    "prerequisite": "village_threat",
+    "objectives": [
+      {
+        "type": "defeat",
+        "target": "goblin-warchief",
+        "description": "击败哥布林战帮首领"
+      }
+    ],
+    "rewards": {
+      "xp": 300,
+      "gold": 50,
+      "items": ["longsword"]
+    },
+    "next_quest": "ancient_ruins_exploration"
+  },
+  "ancient_ruins_exploration": {
+    "name": "远古遗迹",
+    "description": "探索村庄附近的远古遗迹",
+    "type": "main",
+    "giver": "scholar",
+    "location": "village_square",
+    "prerequisite": "goblin_chief",
+    "objectives": [
+      {
+        "type": "reach",
+        "target": "ancient_ruins",
+        "description": "到达远古遗迹"
+      },
+      {
+        "type": "explore",
+        "target": "treasury",
+        "description": "探索宝库"
+      }
+    ],
+    "rewards": {
+      "xp": 400,
+      "gold": 100,
+      "items": ["gem_ruby"]
+    },
+    "next_quest": "skeleton_king"
+  },
+  "skeleton_king": {
+    "name": "骷髅王者",
+    "description": "击败守护宝库的骷髅骑士",
+    "type": "main",
+    "prerequisite": "ancient_ruins_exploration",
+    "objectives": [
+      {
+        "type": "defeat",
+        "target": "skeleton_knight",
+        "description": "击败骷髅骑士"
+      }
+    ],
+    "rewards": {
+      "xp": 500,
+      "gold": 200,
+      "items": ["plate_armor"]
+    }
+  },
+  "forest_wolves": {
+    "name": "森林狼患",
+    "description": "消灭袭击村庄的狼群",
+    "type": "side",
+    "giver": "farmer",
+    "location": "village_square",
+    "objectives": [
+      {
+        "type": "kill",
+        "target": "wolf",
+        "count": 5,
+        "description": "消灭5只狼"
+      }
+    ],
+    "rewards": {
+      "xp": 100,
+      "gold": 20
+    }
+  },
+  "missing_item": {
+    "name": "遗失的项链",
+    "description": "帮村民找回被偷的项链",
+    "type": "side",
+    "giver": "villager",
+    "location": "village_square",
+    "objectives": [
+      {
+        "type": "find",
+        "target": "necklace",
+        "location": "deep_forest",
+        "description": "在森林中找到项链"
+      }
+    ],
+    "rewards": {
+      "xp": 75,
+      "gold": 30
+    }
+  },
+  "spider_nest": {
+    "name": "蜘蛛巢穴",
+    "description": "清除洞穴中的巨型蜘蛛",
+    "type": "side",
+    "giver": "blacksmith",
+    "location": "blacksmith",
+    "objectives": [
+      {
+        "type": "clear",
+        "target": "spider_nest",
+        "description": "清除蜘蛛巢穴"
+      }
+    ],
+    "rewards": {
+      "xp": 200,
+      "gold": 40,
+      "items": ["spider_silk"]
+    }
+  },
+  "rescue_princess": {
+    "name": "拯救公主",
+    "description": "从黑暗精灵手中拯救被绑架的公主",
+    "type": "special",
+    "giver": "king",
+    "location": "village_square",
+    "prerequisite": "skeleton_king",
+    "objectives": [
+      {
+        "type": "rescue",
+        "target": "princess",
+        "location": "dark_cave",
+        "description": "找到并拯救公主"
+      },
+      {
+        "type": "defeat",
+        "target": "dark_elf",
+        "description": "击败黑暗精灵刺客"
+      }
+    ],
+    "rewards": {
+      "xp": 1000,
+      "gold": 500,
+      "items": ["holy_sword"]
+    }
+  }
+}

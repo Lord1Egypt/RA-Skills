@@ -1,0 +1,7 @@
+ShaderToy feedback export notes
+
+- This is intentionally not a fake single-pass demo.
+- If the original effect uses Buffer A/B/C/D or previous-frame state, plan render targets first.
+- For raw WebGL: expect ping-pong framebuffers.
+- For Three.js: expect render targets and pass ordering.
+- For R3F: keep feedback state outside casual component state and make the pass graph explicit.

@@ -1,0 +1,32 @@
+[
+  {
+    "enabled": true,
+    "slave_addr": "1",
+    "function_code": "3",
+    "register_addr": "0",
+    "register_num": "2",
+    "timeout": "1000",
+    "interval_time": "5000",
+    "data_format": "Float",
+    "report_format": "mqtt",
+    "baud_rate": "9600",
+    "data_bit": "8",
+    "stop_bit": "1",
+    "check_bit": "None"
+  },
+  {
+    "enabled": true,
+    "slave_addr": "2",
+    "function_code": "3",
+    "register_addr": "0",
+    "register_num": "2",
+    "timeout": "1000",
+    "interval_time": "10000",
+    "data_format": "Unsigned",
+    "report_format": "mqtt",
+    "baud_rate": "9600",
+    "data_bit": "8",
+    "stop_bit": "1",
+    "check_bit": "None"
+  }
+]

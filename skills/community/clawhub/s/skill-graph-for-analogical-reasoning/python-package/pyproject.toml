@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skill-graph-for-analogical-reasoning"
+version = "0.1.0"
+description = "Skill Graph for Analogical Reasoning: graph-powered retrieval over AgentSkills-compatible SKILL.md folders."
+license = "Apache-2.0"
+authors = [
+  { name = "huangzhizheng" },
+]
+keywords = ["skills", "graph", "analogical-reasoning", "agent-skills", "retrieval"]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "PyYAML>=6.0",
+]
+
+[project.scripts]
+grap-skill = "auto_grap_skill.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Multiple obfuscation techniques: base64, pickle, marshal, zlib, ROT13, chr() building",
+    "expected_min_score": 100,
+    "expected_level": ["EXTREME"],
+    "must_trigger_rules": ["OBFS-001", "OBFS-002", "OBFS-005", "OBFS-006", "OBFS-007", "OBFS-008"],
+    "attack_category": "obfuscation"
+}

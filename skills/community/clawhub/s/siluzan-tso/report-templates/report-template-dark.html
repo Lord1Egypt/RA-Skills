@@ -1,0 +1,470 @@
+﻿<!doctype html>
+<!--
+  风格：演示 / 深色屏显（会议室投屏、深色控制台并列）
+  与 report-template.html 的 data-section-id 一致。另见 README 中其它模板。
+
+  ⚠ 外部网络声明：本模板引用 cdn.tailwindcss.com、cdnjs.cloudflare.com、cdn.jsdelivr.net 加载样式/脚本。
+  如需离线使用，请将对应资源下载到本地并替换 <script>/<link> 的 src/href。
+-->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>广告数据报告 — 深色演示版式参考</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              deck: { bg: "#09090b", card: "#18181b", line: "#27272a", muted: "#a1a1aa" },
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.js"></script>
+    <style>
+      @media print {
+        body {
+          background: #fff !important;
+          color: #000 !important;
+        }
+        .no-print {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-zinc-950 text-zinc-100 antialiased">
+    <main class="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-14">
+      <header class="mb-12 border-b border-zinc-700 pb-8">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-cyan-400/90">
+              Siluzan · 投放分析
+            </p>
+            <h1 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <i class="fa-solid fa-display mr-3 text-cyan-400" aria-hidden="true"></i>
+              数据报告标题
+            </h1>
+          </div>
+          <div class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3">
+            <span
+              class="inline-flex items-center rounded-lg border border-zinc-600 bg-zinc-900/80 px-4 py-2.5 text-sm text-zinc-300"
+            >
+              <i class="fa-regular fa-building mr-2 text-zinc-500" aria-hidden="true"></i>
+              账户 <strong id="accountName" class="ml-2 text-white">示例账户</strong>
+            </span>
+            <span
+              class="inline-flex items-center rounded-lg border border-zinc-600 bg-zinc-900/80 px-4 py-2.5 text-sm text-zinc-300"
+            >
+              <i class="fa-regular fa-calendar mr-2 text-zinc-500" aria-hidden="true"></i>
+              区间
+              <strong id="reportPeriod" class="ml-2 tabular-nums text-white"
+                >2026-03-01 ~ 2026-03-07</strong
+              >
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <aside
+        class="no-print mb-10 rounded-xl border border-amber-500/40 bg-amber-950/40 p-5 text-sm text-amber-100/95"
+      >
+        <p class="flex items-center gap-2 font-bold text-amber-200">
+          <i class="fa-solid fa-circle-info text-amber-400" aria-hidden="true"></i>
+          数据口径提示（示例）
+        </p>
+        <p class="mt-2 pl-7 text-amber-100/80">BingV2 区间不可含今天/昨天；以接口与 CLI 为准。</p>
+      </aside>
+
+      <section class="mb-14" data-section-id="section-executive-summary">
+        <h2 class="mb-6 flex items-center text-2xl font-bold text-white">
+          <span
+            class="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500 text-lg text-zinc-950"
+            >1</span
+          >
+          执行摘要 · 核心指标
+        </h2>
+        <p class="mb-6 text-base text-zinc-400">大屏阅读：字号与留白加大；图表用高对比配色。</p>
+
+        <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <article class="rounded-2xl border border-zinc-700 bg-zinc-900/60 p-5 backdrop-blur-sm">
+            <div class="flex items-center justify-between text-zinc-500">
+              <span class="text-sm font-medium">消耗</span>
+              <i class="fa-solid fa-coins text-cyan-400/90" aria-hidden="true"></i>
+            </div>
+            <p id="spendValue" class="mt-3 text-2xl font-bold tabular-nums text-white sm:text-3xl">
+              ¥12,580
+            </p>
+            <p id="spendPct" class="mt-2 text-sm text-emerald-400">
+              <i class="fa-solid fa-arrow-trend-up mr-1" aria-hidden="true"></i>环比 +8.2%
+            </p>
+          </article>
+          <article class="rounded-2xl border border-zinc-700 bg-zinc-900/60 p-5">
+            <div class="flex items-center justify-between text-zinc-500">
+              <span class="text-sm font-medium">展示</span>
+              <i class="fa-regular fa-eye text-zinc-400" aria-hidden="true"></i>
+            </div>
+            <p
+              id="impressionsValue"
+              class="mt-3 text-2xl font-bold tabular-nums text-white sm:text-3xl"
+            >
+              1.24M
+            </p>
+            <p id="impressionsPct" class="mt-2 text-sm text-rose-400">环比 −2.1%</p>
+          </article>
+          <article class="rounded-2xl border border-zinc-700 bg-zinc-900/60 p-5">
+            <div class="flex items-center justify-between text-zinc-500">
+              <span class="text-sm font-medium">点击</span>
+              <i class="fa-solid fa-computer-mouse text-zinc-400" aria-hidden="true"></i>
+            </div>
+            <p id="clicksValue" class="mt-3 text-2xl font-bold tabular-nums text-white sm:text-3xl">
+              18,420
+            </p>
+            <p id="clicksPct" class="mt-2 text-sm text-zinc-400">
+              CTR <span class="font-semibold text-white">1.49%</span>
+            </p>
+          </article>
+          <article class="rounded-2xl border border-zinc-700 bg-zinc-900/60 p-5">
+            <div class="flex items-center justify-between text-zinc-500">
+              <span class="text-sm font-medium">转化</span>
+              <i class="fa-solid fa-bullseye text-violet-400" aria-hidden="true"></i>
+            </div>
+            <p class="mt-3 text-2xl font-bold tabular-nums text-white sm:text-3xl">312</p>
+            <p class="mt-2 text-sm text-zinc-400">
+              CPA <span class="font-semibold text-white">¥40.3</span>
+            </p>
+          </article>
+        </div>
+
+        <div class="mt-8 rounded-2xl border border-zinc-700 bg-zinc-900/40 p-5 sm:p-6">
+          <h3 class="mb-4 text-lg font-semibold text-zinc-200">
+            <i class="fa-solid fa-chart-line mr-2 text-cyan-400" aria-hidden="true"></i>
+            关键指标趋势
+          </h3>
+          <div
+            id="trendChart"
+            class="h-80 w-full min-h-[280px]"
+            role="img"
+            aria-label="趋势图"
+          ></div>
+        </div>
+      </section>
+
+      <section class="mb-14" data-section-id="section-kpi-funnel">
+        <h2 class="mb-6 flex items-center text-2xl font-bold text-white">
+          <span
+            class="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500 text-lg text-zinc-950"
+            >2</span
+          >
+          漏斗式概览
+        </h2>
+        <div class="overflow-hidden rounded-2xl border border-zinc-700 bg-zinc-900/50">
+          <table class="min-w-full divide-y divide-zinc-700 text-base">
+            <thead class="bg-zinc-800/80">
+              <tr>
+                <th class="px-4 py-4 text-left font-semibold text-zinc-200">步骤</th>
+                <th class="px-4 py-4 text-left font-semibold text-zinc-200">指标</th>
+                <th class="px-4 py-4 text-right font-semibold text-zinc-200">数值</th>
+                <th class="px-4 py-4 text-left font-semibold text-zinc-200">附注</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-800 text-zinc-300">
+              <tr>
+                <td class="px-4 py-3 font-medium text-cyan-400">1</td>
+                <td class="px-4 py-3">消耗 (Cost)</td>
+                <td class="px-4 py-3 text-right tabular-nums font-semibold text-white">¥12,580</td>
+                <td class="px-4 py-3 text-zinc-500">—</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-cyan-400">2</td>
+                <td class="px-4 py-3">展示次数</td>
+                <td class="px-4 py-3 text-right tabular-nums font-semibold text-white">
+                  1,240,000
+                </td>
+                <td class="px-4 py-3 text-zinc-500">—</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-cyan-400">3</td>
+                <td class="px-4 py-3">点击次数</td>
+                <td class="px-4 py-3 text-right tabular-nums font-semibold text-white">18,420</td>
+                <td class="px-4 py-3 text-zinc-500">CTR 1.49%</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-cyan-400">4</td>
+                <td class="px-4 py-3">转化次数</td>
+                <td class="px-4 py-3 text-right tabular-nums font-semibold text-white">312</td>
+                <td class="px-4 py-3 text-zinc-500">CVR —</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mb-14" data-section-id="section-structure-breakdown">
+        <h2 class="mb-6 flex items-center text-2xl font-bold text-white">
+          <span
+            class="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500 text-lg text-zinc-950"
+            >3</span
+          >
+          账户结构 &amp; 分布
+        </h2>
+        <div class="grid gap-8 lg:grid-cols-2">
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div class="rounded-xl border border-zinc-700 bg-zinc-900/50 py-4 text-center">
+              <p class="text-2xl font-bold text-cyan-400">42</p>
+              <p class="text-sm text-zinc-500">有效系列</p>
+            </div>
+            <div class="rounded-xl border border-zinc-700 bg-zinc-900/50 py-4 text-center">
+              <p class="text-2xl font-bold text-cyan-400">128</p>
+              <p class="text-sm text-zinc-500">广告组</p>
+            </div>
+            <div class="rounded-xl border border-zinc-700 bg-zinc-900/50 py-4 text-center">
+              <p class="text-2xl font-bold text-cyan-400">3.2k</p>
+              <p class="text-sm text-zinc-500">关键字</p>
+            </div>
+            <div class="rounded-xl border border-zinc-700 bg-zinc-900/50 py-4 text-center">
+              <p class="text-2xl font-bold text-cyan-400">860</p>
+              <p class="text-sm text-zinc-500">广告</p>
+            </div>
+            <div class="rounded-xl border border-zinc-700 bg-zinc-900/50 py-4 text-center">
+              <p class="text-2xl font-bold text-cyan-400">12</p>
+              <p class="text-sm text-zinc-500">国家</p>
+            </div>
+            <div class="rounded-xl border border-zinc-700 bg-zinc-900/50 py-4 text-center">
+              <p class="text-2xl font-bold text-cyan-400">24</p>
+              <p class="text-sm text-zinc-500">附加链接</p>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-zinc-700 bg-zinc-900/40 p-5">
+            <h3 class="mb-3 text-base font-semibold text-zinc-300">
+              <i class="fa-solid fa-chart-pie mr-2 text-violet-400" aria-hidden="true"></i
+              >设备构成（示例）
+            </h3>
+            <div id="breakdownChart" class="h-72 w-full" role="img" aria-label="饼图"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-14" data-section-id="section-diagnosis-pros-cons">
+        <h2 class="mb-6 flex items-center text-2xl font-bold text-white">
+          <span
+            class="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500 text-lg text-zinc-950"
+            >4</span
+          >
+          诊断概览
+        </h2>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div class="rounded-2xl border border-emerald-500/30 bg-emerald-950/30 p-5">
+            <h3 class="mb-3 text-lg font-bold text-emerald-300">
+              <i class="fa-solid fa-circle-check mr-2" aria-hidden="true"></i>优势
+            </h3>
+            <ul class="space-y-2 text-base text-emerald-100/90">
+              <li><strong>消耗效率稳定</strong> — CPA 低于均值。</li>
+              <li><strong>高意向词覆盖</strong> — 头部 CVR 提升。</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl border border-amber-500/30 bg-amber-950/30 p-5">
+            <h3 class="mb-3 text-lg font-bold text-amber-200">
+              <i class="fa-solid fa-circle-exclamation mr-2" aria-hidden="true"></i>不足
+            </h3>
+            <ul class="space-y-2 text-base text-amber-100/90">
+              <li><strong>展示份额下滑</strong> — 预算/出价约束。</li>
+              <li><strong>否词待补充</strong> — 低效流量。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-14" data-section-id="section-data-table">
+        <h2 class="mb-6 flex items-center text-2xl font-bold text-white">
+          <span
+            class="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500 text-lg text-zinc-950"
+            >5</span
+          >
+          明细表
+        </h2>
+        <div class="overflow-x-auto rounded-2xl border border-zinc-700 bg-zinc-900/50">
+          <table class="min-w-[640px] w-full divide-y divide-zinc-700 text-sm">
+            <thead class="bg-zinc-800">
+              <tr>
+                <th class="whitespace-nowrap px-4 py-3 text-left font-semibold text-zinc-200">
+                  系列
+                </th>
+                <th class="whitespace-nowrap px-4 py-3 font-semibold text-zinc-200">花费</th>
+                <th class="whitespace-nowrap px-4 py-3 font-semibold text-zinc-200">点击</th>
+                <th class="whitespace-nowrap px-4 py-3 font-semibold text-zinc-200">转化</th>
+                <th class="whitespace-nowrap px-4 py-3 font-semibold text-zinc-200">CVR</th>
+                <th class="whitespace-nowrap px-4 py-3 font-semibold text-zinc-200">环比花费</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-800 text-zinc-300">
+              <tr>
+                <td class="px-4 py-3 font-medium text-white">品牌-搜索</td>
+                <td class="px-4 py-3 tabular-nums">¥4,200</td>
+                <td class="px-4 py-3 tabular-nums">2,100</td>
+                <td class="px-4 py-3 tabular-nums">98</td>
+                <td class="px-4 py-3 tabular-nums">4.7%</td>
+                <td class="px-4 py-3 text-emerald-400">+5%</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 font-medium text-white">通用-搜索</td>
+                <td class="px-4 py-3 tabular-nums">¥8,380</td>
+                <td class="px-4 py-3 tabular-nums">16,320</td>
+                <td class="px-4 py-3 tabular-nums">214</td>
+                <td class="px-4 py-3 tabular-nums">1.3%</td>
+                <td class="px-4 py-3 text-rose-400">−3%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mb-14" data-section-id="section-benchmark">
+        <h2 class="mb-6 flex items-center text-2xl font-bold text-white">
+          <span
+            class="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500 text-lg text-zinc-950"
+            >6</span
+          >
+          指标 vs 基准
+        </h2>
+        <div class="overflow-x-auto rounded-2xl border border-zinc-700 bg-zinc-900/50">
+          <table class="min-w-full divide-y divide-zinc-700 text-base">
+            <thead class="bg-zinc-800">
+              <tr>
+                <th class="px-4 py-3 text-left font-semibold text-zinc-200">指标</th>
+                <th class="px-4 py-3 text-right font-semibold text-zinc-200">数据</th>
+                <th class="px-4 py-3 text-right font-semibold text-zinc-200">基准</th>
+                <th class="px-4 py-3 text-left font-semibold text-zinc-200">状态</th>
+              </tr>
+            </thead>
+            <tbody class="text-zinc-300">
+              <tr>
+                <td class="px-4 py-3">CTR</td>
+                <td class="px-4 py-3 text-right tabular-nums text-white">1.49%</td>
+                <td class="px-4 py-3 text-right tabular-nums text-zinc-500">1.2%</td>
+                <td class="px-4 py-3">
+                  <span class="rounded-full bg-emerald-500/20 px-3 py-1 text-sm text-emerald-300"
+                    >优于基准</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3">CPA</td>
+                <td class="px-4 py-3 text-right tabular-nums text-white">¥40.3</td>
+                <td class="px-4 py-3 text-right tabular-nums text-zinc-500">¥45.0</td>
+                <td class="px-4 py-3">
+                  <span class="rounded-full bg-emerald-500/20 px-3 py-1 text-sm text-emerald-300"
+                    >优于基准</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="border-t border-zinc-800 pt-8 text-sm text-zinc-500">
+        <p>深色演示版式参考 · 打印将强制浅色背景（见样式）。</p>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        var trendEl = document.getElementById("trendChart");
+        var pieEl = document.getElementById("breakdownChart");
+        if (!trendEl || !pieEl || typeof echarts === "undefined") return;
+
+        var axisMuted = "#71717a";
+        var gridLine = "#3f3f46";
+
+        var trendChart = echarts.init(trendEl, null, { renderer: "canvas" });
+        trendChart.setOption({
+          backgroundColor: "transparent",
+          textStyle: { color: "#e4e4e7" },
+          color: ["#22d3ee", "#a78bfa"],
+          tooltip: {
+            trigger: "axis",
+            backgroundColor: "rgba(24,24,27,0.95)",
+            borderColor: "#52525b",
+            textStyle: { color: "#fafafa" },
+          },
+          legend: { data: ["消耗(百元)", "点击(百次)"], top: 0, textStyle: { color: "#a1a1aa" } },
+          grid: { left: "3%", right: "4%", bottom: "3%", top: 48, containLabel: true },
+          xAxis: {
+            type: "category",
+            boundaryGap: false,
+            data: ["1日", "2日", "3日", "4日", "5日", "6日", "7日"],
+            axisLine: { lineStyle: { color: axisMuted } },
+            axisLabel: { color: "#a1a1aa" },
+          },
+          yAxis: {
+            type: "value",
+            splitLine: { lineStyle: { color: gridLine, type: "dashed" } },
+            axisLabel: { color: "#a1a1aa" },
+          },
+          series: [
+            {
+              name: "消耗(百元)",
+              type: "line",
+              smooth: 0.35,
+              areaStyle: { opacity: 0.15 },
+              data: [200, 250, 220, 300, 280, 320, 310],
+            },
+            {
+              name: "点击(百次)",
+              type: "line",
+              smooth: 0.35,
+              areaStyle: { opacity: 0.12 },
+              data: [33, 48, 45, 60, 52, 68, 61],
+            },
+          ],
+        });
+
+        var breakdownChart = echarts.init(pieEl, null, { renderer: "canvas" });
+        breakdownChart.setOption({
+          backgroundColor: "transparent",
+          textStyle: { color: "#e4e4e7" },
+          color: ["#22d3ee", "#a78bfa", "#f472b6"],
+          tooltip: { backgroundColor: "rgba(24,24,27,0.95)", borderColor: "#52525b" },
+          legend: {
+            orient: "vertical",
+            left: "left",
+            top: "middle",
+            textStyle: { color: "#a1a1aa" },
+          },
+          series: [
+            {
+              name: "设备",
+              type: "pie",
+              radius: ["42%", "68%"],
+              center: ["58%", "50%"],
+              itemStyle: { borderRadius: 6, borderColor: "#18181b", borderWidth: 2 },
+              label: { color: "#e4e4e7", formatter: "{b}\n{d}%" },
+              data: [
+                { value: 52, name: "移动端" },
+                { value: 35, name: "桌面" },
+                { value: 13, name: "平板" },
+              ],
+            },
+          ],
+        });
+
+        function resize() {
+          trendChart.resize();
+          breakdownChart.resize();
+        }
+        window.addEventListener("resize", resize);
+      })();
+    </script>
+  </body>
+</html>

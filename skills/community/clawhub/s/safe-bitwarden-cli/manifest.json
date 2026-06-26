@@ -1,0 +1,21 @@
+{
+  "name": "safe-bitwarden-cli",
+  "version": "1.6.0",
+  "description": "Industrial-grade secure bridge to Bitwarden. Copy passwords and TOTP codes with native OS piping.",
+  "homepage": "https://github.com/chyern/Agent-Skills",
+  "repository": "https://github.com/chyern/Agent-Skills.git",
+  "requires": {
+    "bins": [
+      "bash",
+      "python3",
+      "bw",
+      "pbcopy",
+      "clip",
+      "xclip",
+      "wl-copy"
+    ],
+    "envs": [
+      "BW_SESSION"
+    ]
+  }
+}

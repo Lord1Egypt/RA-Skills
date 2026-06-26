@@ -1,0 +1,210 @@
+{
+  "giant_bee": {
+    "level": 1,
+    "attacks": {
+      "sting": ["1d3", "poison"]
+    },
+    "ac": 7,
+    "job": "fighter",
+    "treasure": "giant_bee_special",
+    "xp_value": 6
+  },
+  "crab_spider": {
+    "ac": 7,
+    "level": 2,
+    "attacks": {
+      "bite": ["1d8", "poison"]
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 25
+  },
+  "black_widow": {
+    "ac": 6,
+    "level": 3,
+    "attacks": {
+      "bite": ["2d6", "poison"]
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 50
+  },
+  "tarantula": {
+    "ac": 5,
+    "level": 4,
+    "attacks": {
+      "bite": ["1d8", "poison"]
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 125
+  },
+  "rock_baboon": {
+    "ac": 6,
+    "level": 2,
+    "attacks": {
+      "club": "1d6",
+      "bite": "1d3"
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 20
+  },
+  "bandit": {
+    "ac": 6,
+    "level": 1,
+    "attacks": {
+      "sword": "1d6"
+    },
+    "job": "thief",
+    "treasure": "U",
+    "xp_value": 10
+  },
+  "berserker": {
+    "ac": 7,
+    "level": 1,
+    "lifedice": "1d8+1",
+    "attacks": {
+      "broadsword": "1d10"
+    },
+    "job": "fighter",
+    "treasure": "P",
+    "xp_value": 19
+  },
+  "bat": {
+    "ac": 6,
+    "level": 1,
+    "lifedice": "0d1+1",
+    "attacks": {
+      "scream": ["0d1", "confusion"]
+    },
+    "job": "commoner",
+    "treasure": "",
+    "xp_value": 5
+  },
+  "giant_bat": {
+    "ac": 6,
+    "level": 2,
+    "attacks": {
+      "bite": "1d4"
+    },
+    "job": "fighter",
+    "treasure": "",
+    "xp_value": 20
+  },
+  "goblin": {
+    "ac": 6,
+    "level": 1,
+    "lifedice": "1d8-1",
+    "attacks": {
+      "sword": "1d6"
+    },
+    "job": "commoner",
+    "treasure": "R",
+    "xp_value": 50,
+    "status_effects": ["goblin-light-sensitivity"]
+  },
+  "goblin-warchief": {
+    "ac": 5,
+    "level": 2,
+    "lifedice": "2d6",
+    "attacks": {
+      "sword": "1d6"
+    },
+    "job": "commoner",
+    "treasure": "R",
+    "xp_value": 75
+  },
+  "goblin-king": {
+    "ac": 4,
+    "level": 3,
+    "lifedice": "0d8+15",
+    "attacks": {
+      "sword": "1d6"
+    },
+    "job": "commoner",
+    "treasure": "R",
+    "xp_value": 100
+  },
+  "wolf": {
+    "level": 1,
+    "attacks": {
+      "maw": "1d6",
+      "claw": ["1d4", "bleeding"]
+    },
+    "ac": 9,
+    "xp_value": 30
+  },
+  "skeleton": {
+    "ac": 7,
+    "level": 1,
+    "attacks": {
+      "sword": "1d6"
+    },
+    "job": "commoner",
+    "treasure": "U",
+    "xp_value": 13
+  },
+  "zombie": {
+    "ac": 8,
+    "level": 1,
+    "attacks": {
+      "claw": "1d4"
+    },
+    "job": "commoner",
+    "treasure": "U",
+    "xp_value": 5
+  },
+  "orc": {
+    "ac": 6,
+    "level": 1,
+    "attacks": {
+      "spear": "1d8"
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 15
+  },
+  "orc-warchief": {
+    "ac": 5,
+    "level": 3,
+    "lifedice": "3d8",
+    "attacks": {
+      "greataxe": "2d6"
+    },
+    "job": "fighter",
+    "treasure": "R",
+    "xp_value": 85
+  },
+  "troll": {
+    "ac": 4,
+    "level": 6,
+    "lifedice": "6d8",
+    "attacks": {
+      "claw": "2d6"
+    },
+    "job": "fighter",
+    "treasure": "R",
+    "xp_value": 300
+  },
+  "ogre": {
+    "ac": 5,
+    "level": 4,
+    "attacks": {
+      "club": "2d6"
+    },
+    "job": "fighter",
+    "treasure": "U",
+    "xp_value": 50
+  },
+  "cave_rat": {
+    "ac": 8,
+    "level": 1,
+    "attacks": {
+      "bite": "1d3"
+    },
+    "job": "commoner",
+    "treasure": "",
+    "xp_value": 2
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "sap-journal-auditor",
+  "version": "1.0.0",
+  "description": "Audit SAP FI/CO journal entry exports for anomalies, duplicate postings, unusual cost center assignments, period-end outliers, and approval bypass patterns. Outputs a structured audit memo in English or German.",
+  "author": {
+    "name": "Daryoosh Dehestani",
+    "email": "daryoosh@radarroster.com",
+    "organization": "RadarRoster",
+    "url": "https://radarroster.com"
+  },
+  "homepage": "https://github.com/dda-oo/sap-journal-auditor",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "SAP",
+    "FI",
+    "CO",
+    "S4HANA",
+    "journal-entries",
+    "audit",
+    "finance",
+    "ERP",
+    "controlling",
+    "ACDOCA"
+  ],
+  "trigger": [
+    "audit journal",
+    "check journal entries",
+    "SAP audit",
+    "review postings",
+    "flag anomalies",
+    "prüfe buchungen",
+    "journal analyse"
+  ],
+  "tools": ["file_read", "shell", "memory"],
+  "entrypoint": "index.js",
+  "inputs": {
+    "file": {
+      "type": "file",
+      "description": "CSV or Excel export from SAP FI/CO (FB03, FAGLL03, KSB1, or ACDOCA extract)",
+      "required": true,
+      "accept": [".csv", ".xlsx", ".xls"]
+    },
+    "language": {
+      "type": "string",
+      "description": "Output language: 'en' (English) or 'de' (German)",
+      "required": false,
+      "default": "en"
+    },
+    "period": {
+      "type": "string",
+      "description": "Fiscal period to audit, e.g. '2025-03'. If omitted, audits all periods in the file.",
+      "required": false
+    },
+    "threshold_duplicate_amount": {
+      "type": "number",
+      "description": "Minimum amount (absolute value) to flag potential duplicates. Default: 1000.",
+      "required": false,
+      "default": 1000
+    }
+  },
+  "outputs": {
+    "audit_memo": {
+      "type": "markdown",
+      "description": "Structured audit memo with flagged items, risk levels, and recommendations"
+    },
+    "flagged_entries": {
+      "type": "csv",
+      "description": "CSV of flagged journal lines with anomaly type and severity"
+    }
+  },
+  "openclaw": {
+    "min_version": "0.9.0",
+    "messaging_platforms": ["telegram", "whatsapp", "slack", "cli"]
+  }
+}

@@ -1,0 +1,64 @@
+version: 1
+
+analysis:
+  local_temp_dir: temp/server-log-analysis
+  default_time_window: 2h
+  default_tail_lines: 3000
+  max_download_mb_per_file: 50
+  prefer_remote_filter: true
+  preserve_downloads: true
+
+connections:
+  default-server:
+    host: hostname
+    port: 22
+    username: root
+    password: password
+
+services:
+  example-service:
+    description: >
+      Example business service. Replace with a clear business description,
+      including service responsibility, key upstream/downstream dependencies,
+      and which user-facing failures usually indicate this service should be
+      investigated first.
+    aliases:
+      - example
+      - demo-service
+    keywords:
+      - login
+      - timeout
+      - order
+    connection: default-server
+    workdir: /opt/example-service
+    startup_command: systemctl status example-service
+    investigation_hints:
+      - Prioritize startup-failure related checks first.
+      - Correlate timeout errors with upstream gateway logs.
+      - During peak traffic, watch for database connection exhaustion.
+    log_files:
+      - name: a
+        path: /logs/ms_log/a/
+        format: plain
+        priority: high
+        purpose: Logs for the microservice handling direct device access.
+download_profiles:
+  recent-tail:
+    description: Quickly fetch recent logs
+    mode: tail
+    lines: 3000
+  recent-errors:
+    description: Keyword-focused log snippets for quick diagnosis
+    mode: keyword
+    keywords:
+      - ERROR
+      - WARN
+      - Exception
+      - timeout
+      - refused
+      - failed
+  bounded-window:
+    description: Extract a time window around the incident
+    mode: time-range
+    before: 15m
+    after: 15m

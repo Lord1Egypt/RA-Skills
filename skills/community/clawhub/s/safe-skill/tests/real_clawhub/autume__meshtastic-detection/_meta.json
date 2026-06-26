@@ -1,0 +1,11 @@
+{
+  "owner": "autume",
+  "slug": "meshtastic-detection",
+  "displayName": "Meshtastic Detection",
+  "latest": {
+    "version": "0.1.1",
+    "publishedAt": 1772787246234,
+    "commit": "https://github.com/openclaw/skills/commit/06e84303cb452b59b11e6b2ba136b312f3db76b9"
+  },
+  "history": []
+}

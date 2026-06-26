@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three.js ShaderMaterial Demo</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #07111f;
+      }
+
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module">
+      import * as THREE from "https://unpkg.com/three@0.176.0/build/three.module.js";
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        100,
+      );
+      camera.position.z = 2.5;
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      const geometry = new THREE.PlaneGeometry(1.8, 1.8, 128, 128);
+
+      const material = new THREE.ShaderMaterial({
+        uniforms: {
+          uTime: { value: 0 },
+        },
+        vertexShader: `
+          varying vec2 vUv;
+          uniform float uTime;
+
+          void main() {
+            vUv = uv;
+
+            vec3 transformed = position;
+            transformed.z += sin(position.x * 6.0 + uTime * 2.0) * 0.08;
+            transformed.z += sin(position.y * 5.0 + uTime * 1.6) * 0.05;
+
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
+          }
+        `,
+        fragmentShader: `
+          precision mediump float;
+
+          varying vec2 vUv;
+          uniform float uTime;
+
+          void main() {
+            vec2 uv = vUv * 2.0 - 1.0;
+            float radial = length(uv);
+            float pulse = 0.5 + 0.5 * sin(uTime * 2.0 - radial * 10.0);
+
+            vec3 base = vec3(0.04, 0.12, 0.24);
+            vec3 accent = vec3(0.25, 0.82, 1.0);
+            vec3 color = mix(base, accent, pulse);
+
+            float vignette = smoothstep(1.2, 0.2, radial);
+            color *= vignette;
+
+            gl_FragColor = vec4(color, 1.0);
+          }
+        `,
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      function resize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      window.addEventListener("resize", resize);
+
+      const clock = new THREE.Clock();
+
+      function animate() {
+        material.uniforms.uTime.value = clock.getElapsedTime();
+        mesh.rotation.x = Math.sin(material.uniforms.uTime.value * 0.4) * 0.08;
+        mesh.rotation.y = Math.cos(material.uniforms.uTime.value * 0.5) * 0.12;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+  </html>

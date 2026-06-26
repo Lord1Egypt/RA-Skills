@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Saizeriya CLI'
+  short_description: 'Use the Saizeriya CLI as a user-facing agent'
+  default_prompt: 'Use $saizeriya-cli to help me operate a Saizeriya session through the CLI.'

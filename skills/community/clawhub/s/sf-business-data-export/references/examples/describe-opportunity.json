@@ -1,0 +1,29 @@
+{
+  "name": "Opportunity",
+  "fields": [
+    {
+      "name": "Id",
+      "label": "机会 ID"
+    },
+    {
+      "name": "Name",
+      "label": "机会名称"
+    },
+    {
+      "name": "StageName",
+      "label": "阶段"
+    },
+    {
+      "name": "Amount",
+      "label": "金额"
+    },
+    {
+      "name": "CloseDate",
+      "label": "关闭日期"
+    },
+    {
+      "name": "OwnerId",
+      "label": "所有者 ID"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Slug:
+meeting-brief-copilot
+
+Display name:
+Meeting Brief Copilot
+
+Version:
+1.3.0
+
+Tags:
+meetings, executive-brief, follow-up, communication, productivity, planning, email, stakeholder-management, prep, collaboration
+
+Changelog:
+Reformatted the skill to match stronger top-listing patterns with a sharper first screen, new “Use when” and “Output” sections, and a more skimmable tool-like structure.

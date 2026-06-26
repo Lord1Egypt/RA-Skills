@@ -1,0 +1,109 @@
+{
+  "$schema": "https://clawhub.com/schemas/product/v1.json",
+  "name": "semantic-prospect",
+  "displayName": "Semantic Prospect",
+  "version": "1.0.1",
+  "publisher": {
+    "name": "Simply Semantics",
+    "id": "simply-semantics",
+    "url": "https://www.simplysemantics.com",
+    "email": "info@simplysemantics.com"
+  },
+  "description": "AI-powered lead discovery engine that finds, qualifies, and scores high-intent prospects from online forums, communities, and web sources using semantic intelligence. Requires your Semantic Prospect API key for authentication. Free tier includes Brave Search and LLM queries — no third-party API keys needed.",
+  "longDescription": "Semantic Prospect is a lightweight SaaS component that automatically discovers high-quality business opportunities and leads from across the web. Using AI-driven semantic analysis and multiple search strategies (Brave Search, Perplexity, xAI Grok), it identifies people actively expressing needs that your business can fulfill — then qualifies, scores, and delivers action-ready leads for immediate outreach or agent automation. Authentication requires your Semantic Prospect API key (generated at signup). The free tier includes platform-provided Brave Search and LLM keys — you do not need to supply third-party API keys. Users can optionally add their own search keys via the dashboard for unlimited usage. All leads are sourced from publicly accessible content only. Lead data is stored in your account and never shared with other users or third parties.",
+  "homepage": "https://www.simplysemantics.com/semantic-prospect.html",
+  "repository": "https://clawhub.com/simply-semantics/semantic-prospect",
+  "license": "MIT",
+  "categories": [
+    "lead-generation",
+    "ai-agents",
+    "sales-tools",
+    "marketing",
+    "mcp",
+    "saas-component",
+    "web-scraping",
+    "semantic-analysis"
+  ],
+  "tags": [
+    "leads",
+    "forums",
+    "prospecting",
+    "ai",
+    "llm",
+    "semantic-scoring",
+    "mcp-compatible",
+    "brave-search",
+    "perplexity",
+    "xai",
+    "free-tier",
+    "small-business",
+    "consultants",
+    "coaches",
+    "saas"
+  ],
+  "mcp": {
+    "compatible": true,
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/sp/mcp/forum-leads-api",
+        "description": "Extract high-intent leads for a given niche using AI-powered search strategies",
+        "auth": "x-api-key header",
+        "input": {
+          "niche": "string — target niche key (e.g. 'marketing', 'saas', 'fitness')",
+          "nicheLabel": "string — display name for the niche (e.g. 'Digital Marketing Services')",
+          "keywords": "array of strings — search keywords (e.g. ['SEO help', 'social media manager'])",
+          "strategy": "string — 'llm', 'brave', or 'mock'. IMPORTANT: defaults to 'mock' (test data) for new accounts. Always pass 'llm' or 'brave' explicitly for real results."
+        },
+        "output": {
+          "leads": "array of {url, poster_username, intent_summary, lead_score, contact_hint, source_forum, is_mock, search_strategy, search_rank, niche}",
+          "strategy": "string — which strategy was used (mock, brave, llm)",
+          "free_tier": "object — present only for LLM free tier; contains maxResults (e.g. 3)"
+        }
+      }
+    ]
+  },
+  "pricing": {
+    "model": "freemium",
+    "tiers": {
+      "free": {
+        "price": 0,
+        "leadsPerMonth": 50,
+        "freeSearchesPerWeek": 10,
+        "llmFreeQueries": 5,
+        "llmFreeMaxResults": 3,
+        "braveFreeTier": true,
+        "description": "Works out of the box — Brave Search and LLM queries included at no cost. Weekly search limit applies. Add your own API key for unlimited searches and up to 10 results per LLM query."
+      }
+    }
+  },
+  "features": [
+    "Requires only your Semantic Prospect API key — no third-party search keys needed for free tier",
+    "Semantic AI intent scoring for high-quality lead qualification",
+    "Multiple search strategies: Brave Search API, LLM Web Search (Perplexity, xAI Grok)",
+    "Free tier: 10 free searches/week, 5 free LLM queries (3 results each), 50 leads/month",
+    "Bring your own API key for unlimited Brave or LLM searches with up to 10 results",
+    "Interactive dashboard: Extract Leads, Search Strategies, Leads History, Forum Filters, Settings",
+    "Lead deduplication, history tracking, and CSV export",
+    "Configurable niche targeting with custom niches and keywords",
+    "Forum source filtering (allowlist/blocklist)",
+    "Weekly and monthly usage quotas with clear usage indicators",
+    "SSO authentication via SimplySemantics.com",
+    "MCP-compatible API endpoint for AI agent integration",
+    "URL validation — dead links and soft-404s automatically removed from LLM results"
+  ],
+  "privacy": {
+    "dataSources": "All leads are sourced exclusively from publicly accessible web content (public forums, Reddit, community boards). No private data, login-walled content, or PII databases are accessed.",
+    "dataRetention": "Leads are stored in your account for your review and export. Data is isolated per account.",
+    "dataSharing": "Lead data is never shared with other users, other Simply Semantics services, or third parties.",
+    "credentialHandling": "The platform never reads, collects, or transmits your environment variables. Your SIMPLY_SEMANTICS_API_KEY is used solely for request authentication. If you optionally add third-party API keys (Brave, LLM) via the dashboard, they are stored encrypted and used only to make search requests on your behalf.",
+    "compliance": "Users are responsible for ensuring their use of lead data complies with each source community's terms of service."
+  },
+  "security": {
+    "authMethod": "x-api-key header — per-account API key generated at signup, scoped to Semantic Prospect only",
+    "apiEndpoint": "https://dashboard.simplysemantics.com/sp/mcp/forum-leads-api",
+    "noExternalEnvAccess": true,
+    "noCredentialCollection": true
+  }
+}
+

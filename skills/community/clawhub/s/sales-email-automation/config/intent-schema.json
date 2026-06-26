@@ -1,0 +1,86 @@
+{
+  "version": "1.0",
+  "created_at": "2026-03-24T11:10:00+08:00",
+  "description": "Intent classification schema for email auto-reply system",
+  "intents": [
+    {
+      "id": "inquiry",
+      "name_en": "Product Inquiry",
+      "name_cn": "产品询价",
+      "keywords_en": ["inquiry", "quote", "quotation", "price", "pricing", "cost", "product", "catalog", "specification", "MOQ", "sample"],
+      "keywords_zh": ["询价", "报价", "价格", "产品", "目录", "规格", "起订量", "样品", "多少钱", "报价单"],
+      "confidence_threshold": 0.75,
+      "fallback_behavior": "manual_review",
+      "reply_template_id": "template-inquiry-001",
+      "priority": "high",
+      "auto_draft": true
+    },
+    {
+      "id": "delivery-chase",
+      "name_en": "Delivery Follow-up",
+      "name_cn": "交期催促",
+      "keywords_en": ["delivery", "shipment", "shipping", "lead time", "when", "delay", "tracking", "ETA", "arrive", "dispatch"],
+      "keywords_zh": ["交货", "发货", "船期", "交期", "延迟", "物流", "追踪", "什么时候", "到货", "发出"],
+      "confidence_threshold": 0.75,
+      "fallback_behavior": "manual_review",
+      "reply_template_id": "template-delivery-001",
+      "priority": "high",
+      "auto_draft": true
+    },
+    {
+      "id": "complaint",
+      "name_en": "Customer Complaint",
+      "name_cn": "客户投诉",
+      "keywords_en": ["complaint", "issue", "problem", "defect", "quality", "wrong", "damaged", "broken", "not working", "disappointed"],
+      "keywords_zh": ["投诉", "问题", "缺陷", "质量", "错误", "损坏", "坏了", "不工作", "失望", "不满意"],
+      "confidence_threshold": 0.75,
+      "fallback_behavior": "escalate_to_wilson",
+      "reply_template_id": "template-complaint-001",
+      "priority": "urgent",
+      "auto_draft": false
+    },
+    {
+      "id": "technical",
+      "name_en": "Technical Support",
+      "name_cn": "技术支持",
+      "keywords_en": ["technical", "support", "how to", "compatibility", "installation", "setup", "troubleshoot", "error", "not compatible", "driver"],
+      "keywords_zh": ["技术", "支持", "怎么", "兼容", "安装", "设置", "故障", "错误", "不兼容", "驱动", "使用"],
+      "confidence_threshold": 0.75,
+      "fallback_behavior": "manual_review",
+      "reply_template_id": "template-technical-001",
+      "priority": "medium",
+      "auto_draft": true
+    },
+    {
+      "id": "partnership",
+      "name_en": "Partnership/Collaboration",
+      "name_cn": "合作意向",
+      "keywords_en": ["partnership", "collaborate", "distributor", "agent", "reseller", "OEM", "ODM", "cooperation", "exclusive", "represent"],
+      "keywords_zh": ["合作", "代理", "分销", "经销商", "OEM", "ODM", "独家", "代表", "合伙", "联手"],
+      "confidence_threshold": 0.75,
+      "fallback_behavior": "manual_review",
+      "reply_template_id": "template-partnership-001",
+      "priority": "high",
+      "auto_draft": true
+    },
+    {
+      "id": "spam",
+      "name_en": "Spam/Promotional",
+      "name_cn": "垃圾邮件",
+      "keywords_en": ["unsubscribe", "promotion", "advertisement", "lottery", "winner", "congratulations", "click here", "limited offer", "act now"],
+      "keywords_zh": ["退订", "促销", "广告", "抽奖", "中奖", "恭喜", "点击", "限时", "立即行动", "优惠"],
+      "confidence_threshold": 0.75,
+      "fallback_behavior": "ignore",
+      "reply_template_id": null,
+      "priority": "low",
+      "auto_draft": false
+    }
+  ],
+  "global_settings": {
+    "default_confidence_threshold": 0.75,
+    "low_confidence_threshold": 0.5,
+    "language_detection": true,
+    "multi_intent_handling": "use_highest_confidence",
+    "fallback_intent": "manual_review"
+  }
+}

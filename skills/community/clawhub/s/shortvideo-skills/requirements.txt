@@ -1,0 +1,10 @@
+# ShortVideo Skills Dependencies
+# Python 3.9+ required
+
+# HTTP requests
+requests>=2.28.0
+
+# Optional: Development dependencies
+# pytest>=7.0.0
+# black>=23.0.0
+# mypy>=1.0.0

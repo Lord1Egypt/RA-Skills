@@ -1,0 +1,17 @@
+{
+  "downstream": {
+    "waoo": {
+      "video": {
+        "厂商": "Seedance",
+        "接口地址": "https://ark.cn-beijing.volces.com",
+        "模型名": "doubao-seedance-1-5-pro-251215",
+        "APIKey": "your-seedance-key"
+      }
+    }
+  },
+  "runtime": {
+    "pipelineMode": "seedance_simple",
+    "时长秒数": 5,
+    "分辨率": "720P"
+  }
+}

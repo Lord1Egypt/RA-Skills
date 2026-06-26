@@ -1,0 +1,31 @@
+{
+  "name": "shwuyeyanjiu",
+  "version": "1.0.0",
+  "description": "上海物业研究技能 - 研究具体某个物业项目的详细信息",
+  "author": "傲小喵 (Ao Xiao Miao)",
+  "license": "MIT",
+  "keywords": [
+    "上海物业",
+    "项目研究",
+    "招标公告",
+    "中标公告",
+    "饱和收入"
+  ],
+  "dependencies": {
+    "requests": ">=2.31.0",
+    "beautifulsoup4": ">=4.12.0",
+    "pdf2image": ">=1.16.0",
+    "pytesseract": ">=0.3.10",
+    "python-dateutil": ">=2.8.0"
+  },
+  "scripts": {
+    "research": "python scripts/research_project.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/shwuyeyanjiu"
+  },
+  "engines": {
+    "python": ">=3.8"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "headings": [
+    {
+      "level": 2,
+      "name": "name: skill-compiler\ndescription: Compile SKILL.md files into runtime artifacts (SKILL.struct.json and SKILL.toon), verify freshness/health, and prepare portable publish-ready skill folders for ClawHub-style registries.\ncontract_version: v0\nquick_cmd: skills/public/skill-compiler/scripts/compile-skill --skill skills/todoist/SKILL.md\nrisk_level: safe\ncapabilities:\nbins: [bash, mdquery, jq, toon]\nnetwork: false\nsecrets: []\ndry_run_cmd: skills/public/skill-compiler/scripts/check-env\ncompat:\nos: [linux, macos]\narch: [x64, arm64]\nshell: [bash]\nowner: matt\nlast_tested: 2026-03-08\nrollback: remove skills/public/skill-compiler and revert commit\ncategory: ops\ninputs_min: []\ncost_hint: low",
+      "text": ""
+    },
+    {
+      "level": 1,
+      "name": "skill-compiler",
+      "text": "Compile-first workflow for skill runtime performance.",
+      "children": [
+        {
+          "level": 2,
+          "name": "Commands",
+          "text": "# Check local dependencies\nskills/public/skill-compiler/scripts/check-env\n\n# Compile one skill doc\nskills/public/skill-compiler/scripts/compile-skill --skill skills/todoist/SKILL.md\n\n# Compile all SKILL.md under a root (default: ./skills)\nskills/public/skill-compiler/scripts/compile-all --root skills"
+        },
+        {
+          "level": 2,
+          "name": "Outputs",
+          "text": "For each input `SKILL.md`, compiler generates sibling artifacts:\n`SKILL.struct.json` (canonical runtime structure)`SKILL.toon` (token-lean projection)"
+        },
+        {
+          "level": 2,
+          "name": "Entrypoint trigger setup (exe / execute)",
+          "text": "Preferred runtime trigger words:\n`exe \u003cskill\u003e``execute \u003cskill\u003e`\nResolution order:\n`SKILL.struct.json` / `SKILL.toon` (artifact-first)`quick_cmd` from frontmatter`SKILL.md` fallback\nUse bundled helper:\nskills/public/skill-compiler/scripts/exe skill-compiler"
+        },
+        {
+          "level": 2,
+          "name": "Publish-ready shape",
+          "text": "This folder is ClawHub-ready once versioned:\n`SKILL.md``skill.yaml``scripts/*`\nOptional publish command:\nclawhub publish ./skills/public/skill-compiler \\\n  --slug skill-compiler \\\n  --name \"Skill Compiler\" \\\n  --version 0.2.0 \\\n  --changelog \"Add exe/execute trigger docs and artifact-first entrypoint\""
+        }
+      ]
+    }
+  ]
+}

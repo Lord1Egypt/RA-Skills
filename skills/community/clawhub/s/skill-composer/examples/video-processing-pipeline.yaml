@@ -1,0 +1,40 @@
+# 视频处理完整流程：整理 → 字幕 → 格式化
+# 使用技能：video-organizer, auto-subtitle, wechat-formatter
+
+name: "video-processing-pipeline"
+steps:
+  - name: "Step 1: 整理视频文件"
+    skill: video-organizer
+    args:
+      - --input
+      - /path/to/raw/videos
+      - --output
+      - /tmp/organized_videos
+      - --by
+      - date
+    output: organized_videos
+
+  - name: "Step 2: 生成字幕文件"
+    skill: auto-subtitle
+    args:
+      - --input
+      - "{{organized_videos}}"
+      - --output
+      - /tmp/subtitles
+      - --format
+      - srt
+    output: subtitles
+
+  - name: "Step 3: 格式化为公众号文章"
+    skill: wechat-formatter
+    args:
+      - --input
+      - "{{subtitles}}"
+      - --output
+      - /tmp/article.md
+    output: formatted_article
+
+# 说明：
+# 1. 修改 --input 路径为你的实际视频目录
+# 2. run: composer.py run video-processing-pipeline.yaml
+# 3. 输出：/tmp/article.md 包含格式化好的公众号文章草稿

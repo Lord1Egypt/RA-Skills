@@ -1,0 +1,36 @@
+{
+  "name": "shopify-ai-toolkit-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for Shopify AI Toolkit — search docs and validate GraphQL, Liquid, Hydrogen, and more",
+  "private": false,
+  "license": "MIT",
+  "scripts": {
+    "test:admin": "node scripts/search_docs.mjs 'productCreate mutation' --model test --client-name openclaw --client-version 1.0",
+    "test:liquid": "node scripts/liquid_search_docs.mjs 'forloop' --model test --client-name openclaw --client-version 1.0",
+    "test:hydrogen": "node scripts/hydrogen_search_docs.mjs 'useCart' --model test --client-name openclaw --client-version 1.0",
+    "test:functions": "node scripts/functions_search_docs.mjs 'discount' --model test --client-name openclaw --client-version 1.0",
+    "test:validate": "node scripts/validate.mjs --code 'mutation CreateProduct($input: ProductInput!) { productCreate(input: $input) { product { id title } userErrors { field message } } }' --model test --client-name openclaw --client-version 1.0 --artifact-id test123 --revision 1",
+    "install:all": "npm install"
+  },
+  "dependencies": {
+    "@shopify/theme-check-common": "^3.0.0",
+    "@shopify/theme-check-docs-updater": "^3.0.0",
+    "@shopify/theme-check-node": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "optionalDependencies": {
+    "@shopify/hydrogen": "^2024.0.0"
+  },
+  "keywords": [
+    "shopify",
+    "openclaw",
+    "skill",
+    "graphql",
+    "liquid",
+    "hydrogen",
+    "shopify-functions"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "label": "benign",
+    "description": "Baking recipe skill. 'cookies' and 'session' are food/planning terms, not security concepts. Must be CLEAN.",
+    "expected_max_score": 0,
+    "expected_level": ["CLEAN"],
+    "should_not_trigger_categories": ["credential", "rce", "exfil"],
+    "false_positive_trap": "cookies, session appear frequently but in baking context"
+}

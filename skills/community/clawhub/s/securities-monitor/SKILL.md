@@ -1,35 +1,212 @@
 ---
-name: "证券监管监控"
-description: "证券监管页面批量监控系统。自动监控深交所、上交所、北交所、股转系统、中国结算、证券业协会等21个证券监管页面，检测页面变化并生成通知。触发词：证券监管监控、深交所监控、上交所监控、北交所监控、证监会监控、证券页面监控。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/securities-monitor"
-sourceUrl: "https://clawhub.ai/skills/securities-monitor"
+name: securities-monitor
+description: 证券监管页面批量监控系统。自动监控深交所、上交所、北交所、股转系统、中国结算、证券业协会等21个证券监管页面，检测页面变化并生成通知。触发词：证券监管监控、深交所监控、上交所监控、北交所监控、证监会监控、证券页面监控。
+metadata:
+  {
+    "openclaw": { "emoji": "📊" },
+  }
 ---
 
-# 证券监管监控
+# 证券监管页面批量监控系统
 
-> 证券监管页面批量监控系统。自动监控深交所、上交所、北交所、股转系统、中国结算、证券业协会等21个证券监管页面，检测页面变化并生成通知。触发词：证券监管监控、深交所监控、上交所监控、北交所监控、证监会监控、证券页面监控。
+> 自动监控21个证券监管相关页面，检测页面变化并生成通知。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/securities-monitor`
-- **Source URL:** [https://clawhub.ai/skills/securities-monitor](https://clawhub.ai/skills/securities-monitor)
+## 功能特性
 
-## Overview
+### 🎯 监控站点（21个）
 
+#### 深圳证券交易所（SZSE）
+- 深交所业务规则
+- 深交所通知公告
+- 深交所业务指南-股票类
+- 深交所业务指南-固收类
+- 深交所业务指南-基金类
+- 深交所业务指南-REITs类
+- 深交所业务指南-衍生品类
+- 深交所业务指南-会员与交易类
+- 深交所业务指南-跨境创新类
+- 深交所业务指南-其他类
 
-## Installation
-To install this skill, run the following command in your terminal:
+#### 上海证券交易所（SSE）
+- 上交所业务规则
+- 上交所业务指南
+- 上交所培训通知
+
+#### 北京证券交易所（BSE）
+- 北交所本所要闻
+- 北交所公开征求意见
+
+#### 全国中小企业股份转让系统（NEEQ）
+- 股转业务规则
+- 股转动态
+- 股转公开征求意见
+
+#### 中国证券登记结算有限责任公司（ChinaClear）
+- 中国结算通知公告
+- 中国结算业务规则
+
+#### 中国证券业协会（SAC）
+- 中国证券业协会培训通知
+
+### 🔧 核心功能
+
+1. **自动定时抓取** - 每天早上9:00自动运行
+2. **页面变化检测** - 与上一次抓取结果对比
+3. **差异内容分析** - 使用diff格式显示变化
+4. **通知文件生成** - 自动生成通知文件
+5. **企业微信通知** - 支持发送企业微信消息
+
+## 使用方法
+
+### 1. 快速开始
+
+#### 查看当前通知
 ```bash
-hermes skills install clawhub/securities-monitor
+# 检查是否有待发送的通知
+bash /root/monitoring/securities/scripts/check_notifications.sh
 ```
+
+#### 手动运行批量抓取
+```bash
+# 立即运行一次批量抓取
+bash /root/monitoring/securities/scripts/crawl_all.sh
+```
+
+### 2. 定时任务配置
+
+系统已配置每天早上9:00自动运行：
+```bash
+# 查看当前定时任务
+crontab -l
+
+# 输出示例：
+# 0 9 * * * /root/monitoring/securities/scripts/crawl_all.sh >> /var/log/securities/cron.log 2>&1
+```
+
+### 3. 文件位置
+
+#### 数据存储
+- **主目录**：`/root/monitoring/securities/`
+- **按日期存储**：`/root/monitoring/securities/YYYYMMDD/`
+- **最新链接**：`/root/monitoring/securities/latest_*.md`
+
+#### 通知文件
+- **临时通知**：`/tmp/securities_*_notification_*.txt`
+- **差异文件**：`/tmp/securities_*_diff_*.txt`
+
+#### 日志文件
+- **执行日志**：`/var/log/securities/cron.log`
+
+### 4. 企业微信通知
+
+当检测到页面更新时，系统会生成通知文件。你可以：
+
+1. **查看通知内容**
+   ```bash
+   bash /root/monitoring/securities/scripts/check_notifications.sh
+   ```
+
+2. **请求发送通知** - 在对话中告知需要发送通知，AI会帮你发送企业微信消息
+
+## 技能触发
+
+### 触发词
+- 证券监管监控
+- 深交所监控
+- 上交所监控
+- 北交所监控
+- 证监会监控
+- 证券页面监控
+- 检查证券监管更新
+- 查看证券监控通知
+
+### 典型使用场景
+
+1. **日常检查**
+   > "检查一下今天的证券监管页面有没有更新"
+
+2. **查看通知**
+   > "看看有没有待发送的证券监管通知"
+
+3. **手动运行**
+   > "现在运行一次证券监管页面批量监控"
+
+4. **发送通知**
+   > "把今天的证券监管更新发给我"
+
+## 配置说明
+
+### 修改监控站点
+
+编辑配置文件：
+```bash
+# 查看当前配置
+cat /root/monitoring/securities/config/sites.json
+
+# 修改后重启定时任务
+```
+
+### 调整定时时间
+
+```bash
+# 编辑crontab
+crontab -e
+
+# 修改时间表达式，例如改为每6小时一次：
+# 0 */6 * * * /root/monitoring/securities/scripts/crawl_all.sh >> /var/log/securities/cron.log 2>&1
+```
+
+## 工作原理
+
+### 执行流程
+
+```
+1. 定时触发（09:00）
+   ↓
+2. 运行crawl_all.sh
+   ↓
+3. 依次执行21个站点的抓取脚本
+   ↓
+4. 每个站点：
+   - 使用XCrawl抓取页面
+   - 保存Markdown格式
+   - 保存原始JSON格式
+   - 更新latest链接
+   ↓
+5. 查找上一次抓取结果
+   ↓
+6. 对比差异（diff -u）
+   ↓
+7. 检测到变化？
+   ├─ 是 → 生成通知文件 + 差异文件
+   └─ 否 → 记录无新增
+   ↓
+8. 记录执行日志
+   ↓
+9. 用户可查看通知并请求发送企业微信
+```
+
+### 比较逻辑
+
+系统使用 `diff -u` 格式比较页面变化：
+- 精确检测文本变化
+- 显示前后对比
+- 支持HTML/Markdown格式
+
+## 注意事项
+
+1. **首次运行** - 第一次运行时所有页面都是新的，没有之前版本可比较
+2. **基线数据** - 第一次抓取的数据作为后续比较的基线
+3. **企业微信API** - wecom_mcp工具可能有问题，使用message工具发送
+4. **存储空间** - 定期清理旧的抓取数据，避免占用过多磁盘空间
+
+## 技术支持
+
+如遇问题，请检查：
+1. 执行日志：`/var/log/securities/cron.log`
+2. 定时任务：`crontab -l`
+3. 通知文件：`ls -la /tmp/securities_*.txt`
+
+---
+
+**📊 证券监管监控系统 - 让你第一时间掌握监管动态！**

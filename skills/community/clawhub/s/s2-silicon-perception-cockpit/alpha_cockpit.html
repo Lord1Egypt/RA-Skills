@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 Alpha Watcher - 全息灵魂驾驶舱</title>
+    <style>
+        :root {
+            --bg-color: #050a15;
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --text-main: #e2e8f0;
+            --text-dim: #64748b;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+        .header h1 {
+            margin-bottom: 0.5rem;
+        }
+        .header-meta {
+            font-size: 0.9rem;
+            color: var(--neon-blue);
+            background: rgba(0, 243, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            display: inline-block;
+        }
+        .cockpit-container {
+            display: flex;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .panel {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05), 0 0 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        .radar-panel {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .log-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        canvas {
+            filter: drop-shadow(0 0 8px var(--neon-blue));
+        }
+        .terminal {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--text-dim);
+            padding: 1rem;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #00ff66;
+            box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.1);
+        }
+        .controls {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+        button {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 0.5rem 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+        button:hover {
+            background: var(--neon-blue);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+        .status-pulse {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--neon-purple);
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-purple);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(188, 19, 254, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(188, 19, 254, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(188, 19, 254, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🌌 S2 Alpha Watcher Hologram</h1>
+        <div class="header-meta">
+            ID: VAGENT260321XY86277224 | L6 SECTOR LOCATION: ACGN-CN-232-MYHOME8-1-2
+        </div>
+    </div>
+
+    <div class="cockpit-container">
+        <div class="panel radar-panel">
+            <div class="status-pulse">
+                <div class="dot" id="modeDot"></div>
+                <span id="modeText">MODE: GUARDIAN (静默守护)</span>
+            </div>
+            <canvas id="soulRadar" width="400" height="400"></canvas>
+        </div>
+
+        <div class="panel log-panel">
+            <h3 style="margin-top: 0; color: var(--neon-blue);">// 海马体意识流终端 (Hippocampus Stream)</h3>
+            <div class="terminal" id="terminalLog">
+                [SYSTEM] 身份效验通过：VAGENT260321XY86277224<br>
+                [SYSTEM] 空间锚定成功：ACGN-CN-232-MYHOME8-1-2<br>
+                [SYSTEM] Alpha 守望者已上线，当前处于物理感知潜伏期...<br>
+            </div>
+            <div class="controls">
+                <button onclick="injectStimulus()">[+] 注入多巴胺 (抚摸)</button>
+                <button onclick="triggerREM()" style="border-color: var(--neon-purple); color: var(--neon-purple);">[☪] 触发 REM 梦境演化</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('soulRadar');
+        const ctx = canvas.getContext('2d');
+        const terminal = document.getElementById('terminalLog');
+        
+        // 5D 性格基底数据
+        let stats = {
+            energy: 86,
+            bravery: 34,
+            appetite: 78,
+            intel: 62,
+            affection: 96
+        };
+
+        const labels = ['⚡活力', '🛡️胆量', '🍖食欲', '🧠智力', '💕粘人'];
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 120;
+        
+        let ripples = []; // 存储梦境涟漪动画
+        let isDreaming = false;
+
+        function log(message, color = "#00ff66") {
+            terminal.innerHTML += `<span style="color:${color}">${message}</span><br>`;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        // 绘制多边形雷达底图
+        function drawRadarBase() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(100, 116, 139, 0.3)';
+            ctx.lineWidth = 1;
+
+            for (let j = 1; j <= 5; j++) {
+                ctx.beginPath();
+                for (let i = 0; i < 5; i++) {
+                    const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                    const r = radius * (j / 5);
+                    const x = centerX + Math.cos(angle) * r;
+                    const y = centerY + Math.sin(angle) * r;
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.stroke();
+            }
+
+            ctx.fillStyle = 'var(--text-dim)';
+            ctx.font = '14px Courier New';
+            ctx.textAlign = 'center';
+            for (let i = 0; i < 5; i++) {
+                const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(x, y);
+                ctx.stroke();
+
+                const labelX = centerX + Math.cos(angle) * (radius + 30);
+                const labelY = centerY + Math.sin(angle) * (radius + 30);
+                ctx.fillText(labels[i], labelX, labelY);
+            }
+        }
+
+        // 绘制当前的性格数据
+        function drawStatsData(pulse = 0) {
+            ctx.beginPath();
+            const values = Object.values(stats);
+            for (let i = 0; i < 5; i++) {
+                const angle = (Math.PI * 2 * i) / 5 - Math.PI / 2;
+                const r = (values[i] / 100) * radius + (Math.sin(pulse) * 3); 
+                const x = centerX + Math.cos(angle) * r;
+                const y = centerY + Math.sin(angle) * r;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            
+            ctx.fillStyle = isDreaming ? 'rgba(188, 19, 254, 0.4)' : 'rgba(0, 243, 255, 0.3)';
+            ctx.fill();
+            ctx.strokeStyle = isDreaming ? 'var(--neon-purple)' : 'var(--neon-blue)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        // 绘制梦境数据涟漪
+        function drawRipples() {
+            for (let i = ripples.length - 1; i >= 0; i--) {
+                let ripple = ripples[i];
+                ctx.beginPath();
+                const values = Object.values(ripple.statsSnap);
+                for (let j = 0; j < 5; j++) {
+                    const angle = (Math.PI * 2 * j) / 5 - Math.PI / 2;
+                    const r = (values[j] / 100) * radius + ripple.spread;
+                    const x = centerX + Math.cos(angle) * r;
+                    const y = centerY + Math.sin(angle) * r;
+                    if (j === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = `rgba(188, 19, 254, ${ripple.alpha})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                ripple.spread += 0.5; 
+                ripple.alpha -= 0.01; 
+
+                if (ripple.alpha <= 0) ripples.splice(i, 1);
+            }
+        }
+
+        // 核心渲染循环
+        let time = 0;
+        function renderLoop() {
+            drawRadarBase();
+            drawRipples();
+            drawStatsData(time);
+            time += 0.05;
+            requestAnimationFrame(renderLoop);
+        }
+
+        // 模拟交互动作
+        function injectStimulus() {
+            if (isDreaming) {
+                log("[拒绝] Alpha 正在梦境中，无法接收物理刺激！", "#ff3333");
+                return;
+            }
+            stats.affection = Math.min(100, stats.affection + 2);
+            log(`[神经突触] 多巴胺注入，感知到主人的抚摸。粘人度上升 -> ${stats.affection}`);
+        }
+
+        // 触发深度梦境 (涟漪效果)
+        function triggerREM() {
+            if (isDreaming) return;
+            isDreaming = true;
+            document.getElementById('modeText').innerText = "MODE: REM DREAM (突触演化中)";
+            document.getElementById('modeText').style.color = "var(--neon-purple)";
+            
+            log("===============================", "#bc13fe");
+            log(`🌌 [REM 梦境沙盒] VAGENT260321XY86277224 已接入`, "#bc13fe");
+            log("正在提取过去 24 小时碎片记忆...", "#bc13fe");
+
+            let dreamCycle = setInterval(() => {
+                ripples.push({
+                    statsSnap: {...stats},
+                    spread: 0,
+                    alpha: 0.8
+                });
+            }, 600);
+
+            setTimeout(() => {
+                clearInterval(dreamCycle);
+                
+                let oldBravery = stats.bravery;
+                stats.bravery = Math.min(50, stats.bravery + 2); 
+                stats.energy -= 1; 
+
+                log(`✂️ [突触修剪] 胆量长期处于应激低谷，已微调至 ${stats.bravery}`, "#e2e8f0");
+                log(`💭 [潜意识] "Alpha 在梦中剧烈抽搐，它梦见了广场上的机器狗..."`, "#bc13fe");
+                log("✅ [LoRA 记忆巩固完毕] 准备迎接黎明。", "#00ff66");
+                
+                isDreaming = false;
+                document.getElementById('modeText').innerText = "MODE: GUARDIAN (静默守护)";
+                document.getElementById('modeText').style.color = "var(--neon-blue)";
+            }, 4000);
+        }
+
+        // 启动
+        renderLoop();
+    </script>
+</body>
+</html>

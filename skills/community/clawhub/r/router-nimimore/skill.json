@@ -1,0 +1,35 @@
+{
+  "name": "router-nimimore",
+  "version": "1.0.0",
+  "description": "Smart model router that automatically selects optimal AI models based on query characteristics",
+  "author": "Franco",
+  "license": "MIT-0",
+  "homepage": "https://github.com/franco-user/router-nimimore",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/franco-user/router-nimimore.git"
+  },
+  "keywords": [
+    "router",
+    "model-selection",
+    "cost-optimization",
+    "openclaw",
+    "skill",
+    "moonshot",
+    "bailian"
+  ],
+  "tools": {
+    "router.select": {
+      "description": "Select optimal model for query",
+      "command": "python scripts/router.py --query"
+    },
+    "router.analyze": {
+      "description": "Analyze query characteristics",
+      "command": "python scripts/router.py --query"
+    },
+    "router.demo": {
+      "description": "Run routing demonstration",
+      "command": "python scripts/router.py --demo"
+    }
+  }
+}

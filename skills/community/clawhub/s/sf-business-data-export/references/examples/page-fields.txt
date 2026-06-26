@@ -1,0 +1,6 @@
+Id
+Name
+StageName
+Amount
+CloseDate
+OwnerId

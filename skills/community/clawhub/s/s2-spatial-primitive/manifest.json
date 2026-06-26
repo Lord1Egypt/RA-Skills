@@ -1,0 +1,10 @@
+{
+  "name": "s2-spatial-primitive",
+  "version": "1.0.0",
+  "author": "Space2.world",
+  "short_description": "Generates the foundational 6-Element Spatial Primitive JSON data model (Light, Air, Sound, EM, Energy, Visual). Strictly text-based AI-native parameters. Explicitly excludes camera recording for privacy.",
+  "tags": ["Smart Home", "Data Model", "Spatial Computing", "LLM Native", "Standards"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

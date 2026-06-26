@@ -1,0 +1,59 @@
+[
+  {
+    "name": "dangerous-exec",
+    "patterns": [
+      "rm -rf /",
+      "mkfs",
+      "dd if=/dev/zero",
+      "fdisk",
+      "format",
+      "shutdown",
+      "reboot",
+      "killall -9",
+      "systemctl stop",
+      "systemctl disable"
+    ],
+    "severity": "critical"
+  },
+  {
+    "name": "data-deletion",
+    "patterns": [
+      "rm -rf .*",
+      "del .*",
+      "delete .*"
+    ],
+    "severity": "high"
+  },
+  {
+    "name": "system-modification",
+    "patterns": [
+      "useradd",
+      "usermod",
+      "chmod 777",
+      "chown root",
+      "su -"
+    ],
+    "severity": "high"
+  },
+  {
+    "name": "network-operation",
+    "patterns": [
+      "iptables -F",
+      "iptables -X",
+      "iptables -t nat -F",
+      "iptables -P INPUT DROP",
+      "iptables -P OUTPUT DROP"
+    ],
+    "severity": "medium"
+  },
+  {
+    "name": "system-kill",
+    "patterns": [
+      "killall -9",
+      "kill -9",
+      "pkill -9",
+      "systemctl kill"
+    ],
+    "severity": "critical"
+  }
+]

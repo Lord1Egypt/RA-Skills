@@ -1,0 +1,56 @@
+{
+  "skillName": "test-skill",
+  "currentState": "IDLE",
+  "stateStartTime": 1776064095119,
+  "stateHistory": [
+    {
+      "from": "IDLE",
+      "to": "ANALYZING",
+      "timestamp": 1776064094107,
+      "data": {
+        "action": "start"
+      }
+    },
+    {
+      "from": "ANALYZING",
+      "to": "PLANNING",
+      "timestamp": 1776064094112,
+      "data": {}
+    },
+    {
+      "from": "PLANNING",
+      "to": "IMPLEMENTING",
+      "timestamp": 1776064094113,
+      "data": {}
+    },
+    {
+      "from": "IMPLEMENTING",
+      "to": "TESTING",
+      "timestamp": 1776064094114,
+      "data": {}
+    },
+    {
+      "from": "TESTING",
+      "to": "DEPLOYING",
+      "timestamp": 1776064094115,
+      "data": {}
+    },
+    {
+      "from": "DEPLOYING",
+      "to": "COMPLETED",
+      "timestamp": 1776064094116,
+      "data": {
+        "action": "complete"
+      }
+    },
+    {
+      "from": "COMPLETED",
+      "to": "IDLE",
+      "timestamp": 1776064095119,
+      "data": {
+        "action": "reset"
+      }
+    }
+  ],
+  "lastUpdated": 1776064095119
+}

@@ -1,0 +1,85 @@
+{
+  "weapons_shop": {
+    "name": "武器店",
+    "owner": "铁匠戈登",
+    "inventory": [
+      {"item": "dagger", "price_mult": 1.0, "stock": 10},
+      {"item": "longsword", "price_mult": 1.0, "stock": 5},
+      {"item": "bastardsword", "price_mult": 1.0, "stock": 2},
+      {"item": "shortbow", "price_mult": 1.0, "stock": 5},
+      {"item": "longbow", "price_mult": 1.0, "stock": 3},
+      {"item": "battleaxe", "price_mult": 1.0, "stock": 3},
+      {"item": "mace", "price_mult": 1.0, "stock": 5},
+      {"item": "staff", "price_mult": 1.0, "stock": 3}
+    ],
+    "buy_multiplier": 0.5,
+    "description": "各种武器装备"
+  },
+  "armor_shop": {
+    "name": "护甲店",
+    "owner": "皮匠玛丽的",
+    "inventory": [
+      {"item": "leather_armor", "price_mult": 1.0, "stock": 10},
+      {"item": "chain_shirt", "price_mult": 1.0, "stock": 5},
+      {"item": "scale_mail", "price_mult": 1.0, "stock": 3},
+      {"item": "breastplate", "price_mult": 1.0, "stock": 2},
+      {"item": "shield", "price_mult": 1.0, "stock": 8}
+    ],
+    "buy_multiplier": 0.5,
+    "description": "皮甲、锁甲、盾牌"
+  },
+  "potion_shop": {
+    "name": "药水铺",
+    "owner": "炼金师艾莉丝",
+    "inventory": [
+      {"item": "health_potion", "price_mult": 1.0, "stock": 20},
+      {"item": "greater_health_potion", "price_mult": 1.0, "stock": 5},
+      {"item": "antidote", "price_mult": 1.0, "stock": 10},
+      {"item": "torch", "price_mult": 1.0, "stock": 30},
+      {"item": "lantern", "price_mult": 1.0, "stock": 5},
+      {"item": "oil", "price_mult": 1.0, "stock": 15},
+      {"item": "rope", "price_mult": 1.0, "stock": 10},
+      {"item": "rations", "price_mult": 1.0, "stock": 50}
+    ],
+    "buy_multiplier": 0.6,
+    "description": "治疗药水、炼金材料"
+  },
+  "magic_shop": {
+    "name": "魔法商店",
+    "owner": "法师维森",
+    "inventory": [
+      {"item": "spellbook", "price_mult": 1.0, "stock": 3},
+      {"item": "component_pouch", "price_mult": 1.0, "stock": 5},
+      {"item": "holy_symbol", "price_mult": 1.0, "stock": 5},
+      {"item": "thieves_tools", "price_mult": 1.0, "stock": 3}
+    ],
+    "buy_multiplier": 0.7,
+    "description": "法师和牧师的魔法物品"
+  },
+  "general_store": {
+    "name": "杂货铺",
+    "owner": "商人鲍勃",
+    "inventory": [
+      {"item": "torch", "price_mult": 1.0, "stock": 50},
+      {"item": "rope", "price_mult": 1.0, "stock": 20},
+      {"item": "rations", "price_mult": 1.0, "stock": 100},
+      {"item": "lantern", "price_mult": 1.0, "stock": 10},
+      {"item": "oil", "price_mult": 1.0, "stock": 30},
+      {"item": "dagger", "price_mult": 1.0, "stock": 10},
+      {"item": "mace", "price_mult": 1.0, "stock": 5}
+    ],
+    "buy_multiplier": 0.5,
+    "description": "日常所需物品"
+  },
+  "black_market": {
+    "name": "黑市",
+    "owner": "神秘商人",
+    "inventory": [
+      {"item": "greater_health_potion", "price_mult": 2.0, "stock": 3},
+      {"item": "thieves_tools", "price_mult": 1.5, "stock": 2}
+    ],
+    "buy_multiplier": 0.8,
+    "description": "来路不明的货物，价格较高",
+    "hidden": true
+  }
+}

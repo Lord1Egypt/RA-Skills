@@ -1,0 +1,373 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "created": "2026-04-11",
+    "purpose": "搜索策略模板 - 指导 agent 如何高效搜索各区域雪场实时价格和票务信息",
+    "data_type": "关键词模板，无需验证 URL 可用性",
+    "coverage": {
+      "total_regions": 161,
+      "china_regions": 30,
+      "intl_countries": 35,
+      "intl_sub_regions": 96
+    }
+  },
+
+  "region_strategies": {
+    "崇礼": {
+      "description": "河北崇礼滑雪核心区，中国最密集优质雪场",
+      "resort_count": 73,
+      "top_resorts": ["万龙滑雪场", "太舞滑雪小镇", "云顶滑雪公园", "富龙滑雪场", "翠云山银河滑雪场"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["崇礼滑雪", "崇礼 万龙 雪票", "崇礼 太舞 门票"]
+      },
+      "websearch_keywords": [
+        "崇礼滑雪场 2026 雪票价格",
+        "万龙滑雪场 门票 预订",
+        "太舞滑雪小镇 雪票 官网"
+      ],
+      "fliggy_keywords": ["崇礼滑雪", "崇礼滑雪票"],
+      "priority": "highest",
+      "season": "11月-次年3月"
+    },
+
+    "东北": {
+      "description": "吉林+黑龙江+辽宁，天然粉雪区",
+      "resort_count": 89,
+      "top_resorts": ["北大湖滑雪场", "松花湖滑雪场", "亚布力滑雪场", "长白山万达滑雪场"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["吉林滑雪", "亚布力滑雪", "北大湖 雪票"]
+      },
+      "websearch_keywords": [
+        "吉林 滑雪 2026 雪票价格",
+        "亚布力滑雪场 门票 预订",
+        "北大湖滑雪场 雪票 官网"
+      ],
+      "fliggy_keywords": ["吉林滑雪", "亚布力滑雪"],
+      "priority": "high",
+      "season": "11月-次年3月"
+    },
+
+    "新疆": {
+      "description": "阿尔泰山区，粉雪天堂，雪期长",
+      "resort_count": 19,
+      "top_resorts": ["将军山滑雪场", "可可托海滑雪场", "丝绸之路滑雪场"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["新疆滑雪", "阿勒泰滑雪", "将军山 雪票"]
+      },
+      "websearch_keywords": [
+        "新疆 阿勒泰 滑雪 2026 雪票",
+        "将军山滑雪场 门票 预订",
+        "可可托海国际滑雪场 官网"
+      ],
+      "fliggy_keywords": ["新疆滑雪", "阿勒泰滑雪"],
+      "priority": "high",
+      "season": "10月-次年4月"
+    },
+
+    "北京": {
+      "description": "北京周边一日滑雪圈",
+      "resort_count": 24,
+      "top_resorts": ["南山滑雪场", "军都山滑雪场", "怀北国际滑雪场"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["北京滑雪", "北京 南山 雪票", "密云滑雪"]
+      },
+      "websearch_keywords": [
+        "北京滑雪场 2026 雪票价格",
+        "南山滑雪场 门票 预订",
+        "北京周边滑雪 一日游"
+      ],
+      "fliggy_keywords": ["北京滑雪", "北京滑雪票"],
+      "priority": "high",
+      "season": "12月-次年2月"
+    },
+
+    "国内其他": {
+      "description": "山东/河南/山西/湖北/四川等南方及中部省份室内/小型雪场",
+      "resort_count": 276,
+      "top_resorts": ["融创雪世界（成都）", "融创雪世界（哈尔滨）", "金象山滑雪场"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["成都 室内滑雪", "山东滑雪", "湖北神农架滑雪"]
+      },
+      "websearch_keywords": [
+        "{省份} 滑雪场 2026 门票",
+        "融创雪世界 票价",
+        "室内滑雪 价格 对比"
+      ],
+      "fliggy_keywords": ["室内滑雪", "{省份}滑雪"],
+      "priority": "medium",
+      "season": "全年（室内）/ 12月-2月（室外）",
+      "note": "使用 {省份} 占位符，agent 根据用户查询替换"
+    },
+
+    "日本": {
+      "description": "日本滑雪区（北海道+长野+新潟+东北）",
+      "resort_count": 51,
+      "top_resorts": ["Niseko", "白马五龙", "志贺高原", "留寿都"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["日本滑雪", "北海道 滑雪", "长野 白马 滑雪"]
+      },
+      "websearch_keywords": [
+        "日本滑雪 2026 雪票价格",
+        "Niseko Grand Hirafu lift ticket",
+        "白马五龙滑雪场 门票"
+      ],
+      "fliggy_keywords": ["日本滑雪", "北海道滑雪", "日本滑雪票"],
+      "priority": "high",
+      "season": "12月-次年4月",
+      "currency": "JPY",
+      "note": "需货币换算，价格通常 5000-8000 JPY/天"
+    },
+
+    "韩国": {
+      "description": "韩国滑雪（江原道为主）",
+      "resort_count": 12,
+      "top_resorts": ["龙平度假村", "阿尔卑斯希亚", "旌善滑雪场"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["韩国滑雪", "江原道滑雪", "龙平 滑雪"]
+      },
+      "websearch_keywords": [
+        "韩国滑雪 2026 价格",
+        "龙平度假村 滑雪票",
+        "江原道滑雪 一日游"
+      ],
+      "fliggy_keywords": ["韩国滑雪", "韩国滑雪票"],
+      "priority": "medium",
+      "season": "12月-次年3月",
+      "currency": "KRW"
+    },
+
+    "欧洲": {
+      "description": "法国/瑞士/奥地利/意大利/德国/西班牙等阿尔卑斯及欧洲滑雪区",
+      "resort_count": 134,
+      "top_resorts": ["Chamonix", "Verbier", "St. Anton", "Val Thorens", "Zermatt", "Courchevel"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["法国滑雪", "瑞士滑雪", "阿尔卑斯滑雪", "Chamonix skiing"]
+      },
+      "websearch_keywords": [
+        "Chamonix Mont-Blanc lift ticket price 2026",
+        "Verbier forfait journalier prix",
+        "St. Anton am Arlberg ski pass price"
+      ],
+      "fliggy_keywords": [],
+      "priority": "medium",
+      "season": "12月-次年4月",
+      "currency": "EUR/CHF",
+      "note": "多币种（EUR/CHF），需货币换算。飞猪无欧洲滑雪产品"
+    },
+
+    "北美": {
+      "description": "美国/加拿大滑雪区（落基山脉+东部）",
+      "resort_count": 104,
+      "top_resorts": ["Vail", "Whistler Blackcomb", "Aspen", "Park City", "Breckenridge"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["Vail滑雪", "Whistler滑雪", "科罗拉多滑雪", "Aspen skiing"]
+      },
+      "websearch_keywords": [
+        "Vail lift ticket price 2026",
+        "Whistler Blackcomb day pass price",
+        "Aspen Snowmass lift ticket cost"
+      ],
+      "fliggy_keywords": [],
+      "priority": "medium",
+      "season": "11月-次年4月",
+      "currency": "USD/CAD",
+      "note": "Ikon/Epic Pass 覆盖多数雪场，查单日票价格。飞猪无北美滑雪产品"
+    },
+
+    "南半球": {
+      "description": "澳大利亚/新西兰/阿根廷/智利（反季滑雪 6-10月）",
+      "resort_count": 40,
+      "top_resorts": ["Perisher", "Coronet Peak", "Las Lenas", "Thredbo", "Treble Cone"],
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["澳大利亚滑雪", "新西兰滑雪", "皇后镇滑雪", "Perisher skiing"]
+      },
+      "websearch_keywords": [
+        "Perisher NSW lift ticket price 2026",
+        "Coronet Peak Queenstown ski pass cost",
+        "Las Lenas Argentina ski ticket price"
+      ],
+      "fliggy_keywords": [],
+      "priority": "low",
+      "season": "6月-10月",
+      "currency": "AUD/NZD/ARS/CLP",
+      "note": "反季，北半球夏季时开放。飞猪无南半球滑雪产品"
+    },
+
+    "default": {
+      "description": "默认搜索策略，用于未覆盖区域（小众国际雪场）",
+      "resort_count": 44,
+      "flyai_params": {
+        "search_poi_category": "skiing",
+        "keywords": ["{resort_name}滑雪", "{resort_name}雪票"]
+      },
+      "websearch_keywords": [
+        "{resort_name} 雪票价格 2026",
+        "{resort_name} lift ticket price",
+        "{resort_name} 官网 预订"
+      ],
+      "fliggy_keywords": ["{resort_name}"],
+      "priority": "low",
+      "season": "因地区而异",
+      "note": "使用雪场名称动态替换 {resort_name}"
+    }
+  },
+
+  "official_channels": {
+    "_description": "国内头部雪场官方渠道 - 需手动验证 URL 有效性（建议季度复核）",
+    "_verification_status": "created_2026-04-11_next_review_2026-07-11",
+    "_note": "仅覆盖 Top 20 中国雪场（用户查询量 80%），其余走 region_strategies",
+
+    "万龙滑雪场": {
+      "type": "wechat",
+      "name": "万龙滑雪场",
+      "value": "万龙滑雪场 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：万龙滑雪场"
+    },
+    "太舞滑雪小镇": {
+      "type": "wechat",
+      "name": "太舞滑雪小镇",
+      "value": "太舞滑雪小镇 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：太舞滑雪小镇"
+    },
+    "云顶滑雪公园": {
+      "type": "wechat",
+      "name": "云顶滑雪公园",
+      "value": "云顶滑雪公园 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：云顶滑雪公园"
+    },
+    "富龙滑雪场": {
+      "type": "wechat",
+      "name": "富龙滑雪场",
+      "value": "崇礼富龙四季小镇 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：崇礼富龙四季小镇"
+    },
+    "北大湖滑雪场": {
+      "type": "wechat",
+      "name": "北大湖滑雪场",
+      "value": "北大湖滑雪度假区 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：北大湖滑雪度假区"
+    },
+    "松花湖滑雪场": {
+      "type": "wechat",
+      "name": "松花湖滑雪场",
+      "value": "万科松花湖度假区 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：万科松花湖度假区"
+    },
+    "亚布力滑雪场": {
+      "type": "wechat",
+      "name": "亚布力滑雪旅游度假区",
+      "value": "亚布力滑雪旅游度假区 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：亚布力滑雪旅游度假区"
+    },
+    "南山滑雪场": {
+      "type": "wechat",
+      "name": "北京南山滑雪场",
+      "value": "北京南山滑雪 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：北京南山滑雪"
+    },
+    "将军山滑雪场": {
+      "type": "wechat",
+      "name": "阿勒泰将军山",
+      "value": "阿勒泰地区文旅局 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "通过阿勒泰文旅获取信息"
+    },
+    "长白山万达滑雪场": {
+      "type": "wechat",
+      "name": "长白山万达国际度假区",
+      "value": "长白山万达国际度假区 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：长白山万达国际度假区"
+    },
+    "融创雪世界": {
+      "type": "wechat",
+      "name": "融创雪世界",
+      "value": "融创文旅俱乐部 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "统一入口：融创文旅俱乐部小程序"
+    },
+    "军都山滑雪场": {
+      "type": "wechat",
+      "name": "北京军都山滑雪场",
+      "value": "军都山滑雪场 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：军都山滑雪场"
+    },
+    "怀北国际滑雪场": {
+      "type": "wechat",
+      "name": "怀北国际滑雪场",
+      "value": "怀北国际滑雪场 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：怀北国际滑雪场"
+    },
+    "翠云山银河滑雪场": {
+      "type": "wechat",
+      "name": "翠云山银河滑雪场",
+      "value": "翠云山国际旅游度假区 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：翠云山国际旅游度假区"
+    },
+    "可可托海滑雪场": {
+      "type": "wechat",
+      "name": "可可托海国际滑雪场",
+      "value": "可可托海国际滑雪场 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：可可托海国际滑雪场"
+    },
+    "丝绸之路滑雪场": {
+      "type": "wechat",
+      "name": "丝绸之路滑雪场",
+      "value": "丝绸之路山地度假区 (WeChat MP)",
+      "url": "",
+      "verified": false,
+      "note": "微信搜索公众号：丝绸之路山地度假区"
+    }
+  },
+
+  "fliggy_platform": {
+    "_description": "飞猪平台搜索能力 - 可搜索雪票/机酒套餐/当地游",
+    "supported_categories": ["雪票", "机酒套餐", "当地游", "住宿"],
+    "search_command": "flyai keyword-search",
+    "note": "优先搜索 飞猪 keyword-search 获取实时套餐价格",
+    "keyword_templates": {
+      "china_top": "{resort_name} 雪票",
+      "china_region": "{region} 滑雪 套餐",
+      "japan": "日本 {region} 滑雪 套餐",
+      "europe": "阿尔卑斯 滑雪 机酒",
+      "north_america": "{resort_name} 滑雪 套餐"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "name": "rpg-travel",
+  "displayName": "RPG Travel: Game Pilgrimage · RPG 旅行：游戏圣地巡礼",
+  "version": "1.0.0",
+  "description": "Map game scenes to real-world travel plans with RPG-style adventure maps",
+  "install": {
+    "spec": "bash scripts/setup.sh",
+    "description": "Checks for python3, flyai CLI, and node.js. Reports missing dependencies with install hints."
+  },
+  "runtime": {
+    "requiredBinaries": [
+      {
+        "name": "python3",
+        "version": ">=3.9",
+        "purpose": "Run generate_map.py to render HTML and text taskbook"
+      },
+      {
+        "name": "flyai",
+        "purpose": "FlyAI CLI — query real flight, hotel, attraction, and food data from Fliggy platform"
+      }
+    ],
+    "requiredCredentials": [
+      {
+        "name": "flyai_account",
+        "purpose": "FlyAI CLI authentication (API key or account credentials)",
+        "configuredBy": "user",
+        "storageRecommendation": "Configure via official FlyAI CLI local config, not in chat or skill files"
+      }
+    ],
+    "networkAccess": {
+      "outbound": [
+        {
+          "host": "store.steampowered.com",
+          "purpose": "Fetch game screenshots for adventure map background (read-only GET)"
+        },
+        {
+          "host": "images.hdqwalls.com",
+          "purpose": "Fallback game wallpapers (read-only GET)"
+        },
+        {
+          "host": "user0514.cdnw.net",
+          "purpose": "PAKUTASO Japanese stock photos (read-only GET)"
+        },
+        {
+          "host": "upload.wikimedia.org",
+          "purpose": "Fallback landmark images from Wikimedia Commons (read-only GET)"
+        }
+      ],
+      "dataCollected": "None — all requests are read-only image fetches, no user data transmitted"
+    }
+  },
+  "privacy": {
+    "localOutput": "Generates HTML/TXT files in current working directory only",
+    "credentialHandling": "Skill does not store or transmit user credentials. FlyAI credentials are managed by FlyAI CLI independently.",
+    "thirdPartyRequests": "Generated HTML embeds external image URLs. Opening the HTML in a browser will cause client-side GET requests to Steam, HDQWalls, PAKUTASO, and Wikimedia, revealing IP and User-Agent.",
+    "recommendations": [
+      "Run in isolated/local environment",
+      "Configure FlyAI credentials only via official CLI mechanisms",
+      "For privacy-sensitive use, download images locally before opening HTML"
+    ]
+  }
+}

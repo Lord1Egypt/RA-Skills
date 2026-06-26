@@ -1,0 +1,48 @@
+{
+  "upstream": {
+    "seedance": {
+      "厂商": "MiniMax",
+      "接口地址": "https://api.minimaxi.com/v1",
+      "模型名": "your-upstream-model",
+      "APIKey": "your-upstream-key"
+    }
+  },
+  "downstream": {
+    "waoo": {
+      "image": {
+        "厂商": "MiniMax",
+        "接口地址": "https://api.minimaxi.com/v1",
+        "模型名": "image-model",
+        "APIKey": "your-image-key"
+      },
+      "video": {
+        "厂商": "MiniMax",
+        "接口地址": "https://api.minimaxi.com/v1",
+        "模型名": "MiniMax-Hailuo-2.3",
+        "APIKey": "your-video-key"
+      },
+      "tts": {
+        "厂商": "MiniMax",
+        "接口地址": "https://api.minimaxi.com/v1",
+        "模型名": "speech-2.8-hd",
+        "APIKey": "your-tts-key"
+      },
+      "ambience": {
+        "优先本地环境音素材": true,
+        "厂商": "",
+        "接口地址": "",
+        "模型名": "",
+        "APIKey": ""
+      }
+    }
+  },
+  "runtime": {
+    "pipelineMode": "minimax_full",
+    "时长秒数": 6,
+    "分辨率": "768P",
+    "每日Fast视频额度": 2,
+    "单条主视频优先": true,
+    "ffmpeg": "",
+    "ffprobe": ""
+  }
+}

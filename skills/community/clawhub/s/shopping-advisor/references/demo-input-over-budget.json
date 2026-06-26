@@ -1,0 +1,20 @@
+{
+  "category": "耳机",
+  "budget": { "max": 200 },
+  "scenario": "通勤",
+  "priorities": ["性价比"],
+  "decision_mode": "compare",
+  "notes": "如果都超预算，就直接告诉我该不该换方向。",
+  "items": [
+    {
+      "title": "耳机 A 标准版",
+      "source": "taobao",
+      "price_hint": 299
+    },
+    {
+      "title": "耳机 A 标准版",
+      "source": "jd",
+      "price_hint": 399
+    }
+  ]
+}

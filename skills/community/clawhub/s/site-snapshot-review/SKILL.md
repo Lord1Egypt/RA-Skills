@@ -1,35 +1,20 @@
 ---
-name: "Site Snapshot Review"
-description: "Review one supported site's exported snapshot records without reopening live browser automation."
-category: "other"
-source: "ClawHub"
-tags: [campus-copilot, read-only]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/site-snapshot-review"
-sourceUrl: "https://clawhub.ai/skills/site-snapshot-review"
+name: site-snapshot-review
+description: Review one supported site's exported snapshot records without reopening live browser automation.
 ---
 
 # Site Snapshot Review
 
-> Review one supported site's exported snapshot records without reopening live browser automation.
+Use this skill when you have an exported Campus Copilot workspace snapshot and want a read-only review of one site's current records.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/site-snapshot-review`
-- **Source URL:** [https://clawhub.ai/skills/site-snapshot-review](https://clawhub.ai/skills/site-snapshot-review)
+## Steps
 
-## Overview
+1. Load the snapshot through `@campus-copilot/sdk/snapshot`.
+2. Build a workspace summary.
+3. Filter to one site with `getSiteRecords`.
+4. Report counts and the highest-signal assignments, messages, or events.
 
+## Hard boundary
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/site-snapshot-review
-```
+- Do not mutate site state.
+- Do not claim live browser truth from a snapshot alone.

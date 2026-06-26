@@ -1,0 +1,7 @@
+interface:
+  display_name: "Seedance Prompt Architect"
+  short_description: "Turns briefs into structured Seedance video prompts"
+  default_prompt: "Use $seedance-video-prompt-architect to turn my idea into a Seedance 2.0 prompt pack with variants and a revision plan."
+
+policy:
+  allow_implicit_invocation: true

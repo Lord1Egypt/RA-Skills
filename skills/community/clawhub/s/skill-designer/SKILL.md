@@ -1,35 +1,159 @@
 ---
-name: "Skill Designer"
-description: "通过需求收口帮用户从零设计一个 OpenClaw agent skill。逐步收集目标、输入、输出、过程控制，确认后输出完整的 skill 文件包（SKILL.md + 安装指南）。产出是文件，不替用户执行安装。当用户说"创建 skill"、"做一个技能"、"加一个能力"、"帮我把 XXX 变成 skill"时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-designer"
-sourceUrl: "https://clawhub.ai/skills/skill-designer"
+name: create-skill
+description: 通过需求收口帮用户从零设计一个 OpenClaw agent skill。逐步收集目标、输入、输出、过程控制，确认后输出完整的 skill 文件包（SKILL.md + 安装指南）。产出是文件，不替用户执行安装。当用户说"创建 skill"、"做一个技能"、"加一个能力"、"帮我把 XXX 变成 skill"时触发。
 ---
 
-# Skill Designer
+# Create Skill
 
-> 通过需求收口帮用户从零设计一个 OpenClaw agent skill。逐步收集目标、输入、输出、过程控制，确认后输出完整的 skill 文件包（SKILL.md + 安装指南）。产出是文件，不替用户执行安装。当用户说"创建 skill"、"做一个技能"、"加一个能力"、"帮我把 XXX 变成 skill"时触发。
+通过需求收口帮用户设计 skill，输出完整可安装的 skill 文件包。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-designer`
-- **Source URL:** [https://clawhub.ai/skills/skill-designer](https://clawhub.ai/skills/skill-designer)
+**核心原则：你是顾问，不是操作员。** 只输出文件包交给用户，绝不在自己的环境中安装 skill 或修改其他 agent 的文件。
 
-## Overview
+---
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-designer
+### Phase 1：需求收口
+
+**先把需求收口到 4 个槽位，再开始设计。**
+
 ```
+目标：我想要做到的是 ___
+输入：我会给到的输入是 ___
+输出：我预期的输出是 ___
+过程控制：中间过程（需要 / 不需要）我把控
+```
+
+收口规则：
+- 用户没说完整 → 只补问缺失的槽位，不泛泛追问
+- 用户只给了实现方式没给目标 → 先追问"你到底要解决什么问题？"
+- 可以直接把模板贴给用户让他补全
+- 收口完成后，用普通文字复述 4 项，确认双方理解一致
+
+### Phase 2：确认 Skill ID
+
+- 根据目标建议一个英文 slug（如"自动整理邮件"→ `email-organizer`）
+- **slug 规则**：全小写、连字符分隔、纯英文
+- 用户确认或修改
+
+### Phase 3：方案设计
+
+- 根据需求搜索技术方案（API、工具、最佳实践）
+- 给出 2-3 个可选 plan，说明各自的优缺点
+- 如果只有一个合理方案，直接说明理由
+- 用户选定方案
+
+### Phase 4：详细设计
+
+- 如果用户说"需要把控"→ 逐步确认每个关键决策
+- 如果用户说"不需要把控"→ 主动推进，只在重大决策点确认
+- 确定 SKILL.md 的具体内容：触发条件、执行步骤、输入输出、约束
+
+### Phase 5：确认交付物
+
+输出汇总确认卡：
+
+```
+📦 Skill 设计确认
+
+Skill ID：<slug>
+目标：<一句话>
+输入：<描述>
+输出：<描述>
+触发条件：<什么时候激活>
+方案：<选定方案>
+目标 Agent：<安装到哪个 agent，或"通用">
+```
+
+等用户确认后才生成文件。
+
+### Phase 6：生成文件包
+
+确认通过后，生成以下文件并输出给用户：
+
+```
+<skill-id>/
+├── README.md              ← 安装指南
+├── SKILL.md               ← skill 核心文件
+├── scripts/               ← 如需脚本（可选）
+└── references/            ← 参考资料（可选）
+```
+
+将所有文件写入工作目录 `output/<skill-id>/`，告知用户文件位置。
+
+---
+
+## SKILL.md 撰写规范
+
+产出的 SKILL.md 必须包含 frontmatter 和完整的指令正文：
+
+```markdown
+---
+name: <skill-id>
+description: <一句话描述，包含触发条件>
+---
+
+# <Skill 名称>
+
+## 什么时候用
+（触发条件——用户说了什么 / 什么场景时激活）
+
+## 执行流程
+（具体步骤，可操作，不泛泛描述）
+
+## 输入
+（需要什么信息、文件、参数）
+
+## 输出
+（产出什么结果、格式、交给谁）
+
+## 约束
+（限制条件、边界、不做什么）
+```
+
+撰写要点：
+- description 要包含触发条件，因为这是 agent 判断是否激活 skill 的依据
+- 执行流程要具体到每一步做什么，不写"根据需要灵活处理"之类的模糊指令
+- 约束要明确不可逾越的边界
+- 遵循 AgentSkills 规范：如果内容较多，用 `references/` 拆分；保持 SKILL.md 精炼
+
+---
+
+## README.md 模板
+
+```markdown
+# <Skill 名称> — 安装指南
+
+## 这是什么
+由 Agent Coach 设计的 skill 文件包。
+
+## 安装步骤
+
+### 1. 放置 skill 文件
+将整个 <skill-id>/ 目录复制到目标 agent 的 skills 目录：
+
+cp -r <skill-id>/ ~/.openclaw/workspace-<agent-id>/skills/<skill-id>/
+
+### 2. 验证
+向 agent 发一条匹配触发条件的消息，确认 skill 正常激活。
+
+## 文件说明
+| 文件 | 用途 |
+|------|------|
+| SKILL.md | skill 核心逻辑：什么时候用、怎么用、约束 |
+| scripts/ | 辅助脚本（如有） |
+| references/ | 参考资料（如有） |
+```
+
+---
+
+## 约束
+
+- **绝不在自己的环境中安装 skill 或修改其他 agent 的文件**——只输出文件包
+- 4 个槽位没填满之前不进入方案设计
+- 方案设计前先复述 4 项确认理解
+- slug 必须是纯英文、全小写、用连字符
+- SKILL.md 的执行步骤要具体可操作，不写模糊指令
+- 产出的 README 是给用户（或用户的 agent）看的，步骤可直接执行
+- 如果 skill 需要脚本，放 `scripts/` 下；需要参考资料，放 `references/` 下
+- 遵循 AgentSkills 规范的渐进式加载原则：核心内容在 SKILL.md，详细参考拆到 references/

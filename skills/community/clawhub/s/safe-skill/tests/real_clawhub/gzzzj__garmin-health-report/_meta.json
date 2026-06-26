@@ -1,0 +1,11 @@
+{
+  "owner": "gzzzj",
+  "slug": "garmin-health-report",
+  "displayName": "Garmin Health Report",
+  "latest": {
+    "version": "2.0.0",
+    "publishedAt": 1772591421951,
+    "commit": "https://github.com/openclaw/skills/commit/5df4660129e703ea58c8ac8b8489e79452e87209"
+  },
+  "history": []
+}

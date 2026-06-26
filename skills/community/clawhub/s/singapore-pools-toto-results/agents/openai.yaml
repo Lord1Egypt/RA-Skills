@@ -1,0 +1,4 @@
+interface:
+  display_name: "Singapore Pools Toto Results"
+  short_description: "Fetch latest Singapore Pools TOTO results"
+  default_prompt: "Use $singapore-pools-toto-results to fetch and summarize the latest Singapore Pools TOTO draw."

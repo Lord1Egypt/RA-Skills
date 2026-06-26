@@ -1,35 +1,138 @@
 ---
-name: "Scnet Ocr"
-description: "将图片中的文字、通用文字识别, 票据混贴识别, 印章文字识别,居民身份证, 银行卡, 社保卡, 户口本, 出生医学证明, 往来港澳通行证, 往来台湾通行证, 台湾居民来往大陆通行证, 港澳居民来往内地通行证, 中国香港身份证, 外国人永久居留身份证, 结婚证, 不动产权证书, 机动车行驶证正页, 机动车行驶证副页..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scnet-ocr"
-sourceUrl: "https://clawhub.ai/skills/scnet-ocr"
+name: scnet-ocr
+description: 将图片中的文字、通用文字识别, 票据混贴识别, 印章文字识别,居民身份证, 银行卡, 社保卡, 户口本, 出生医学证明, 往来港澳通行证, 往来台湾通行证, 台湾居民来往大陆通行证, 港澳居民来往内地通行证, 中国香港身份证, 外国人永久居留身份证, 结婚证, 不动产权证书, 机动车行驶证正页, 机动车行驶证副页, 机动车驾驶证正页, 机动车驾驶证副页, 中国护照, 学历证书, 学历证书电子注册备案表, 学位证书。营业执照, 社会团体法人登记证书, 工会法人资格证书, 宗教活动场所登记证, 民办非企业单位登记证书, 事业单位法人证书, 统一社会信用代码证书, 财务票据统一识别, 增值税发票, 增值税卷票, 出租车发票, 火车票, 航空运输电子客票行程单, 机动车销售统一发票, 定额发票, 过路过桥费发票, 医疗门诊发票, 税收完税证明, 船票, 非税票据, 通用机打发票, 汽车票等信息识别并提取出来。本技能应在用户需要 OCR 识别图片中的文字，或识别通用文字识别, 居民身份证, 银行卡, 社保卡, 户口本, 出生医学证明, 往来港澳通行证, 往来台湾通行证, 台湾居民来往大陆通行证, 港澳居民来往内地通行证, 营业执照, 社会团体法人登记证书, 工会法人资格证书, 宗教活动场所登记证, 民办非企业单位登记证书, 事业单位法人证书, 统一社会信用代码证书, 增值税发票, 增值税卷票, 出租车发票, 火车票, 航空运输电子客票行程单, 机动车销售统一发票, 定额发票, 过路过桥费发票, 医疗门诊发票, 税收完税证明, 船票, 非税票据, 通用机打发票, 汽车票, 银行汇票, 银行承兑汇票, 电子银行承兑汇票, 商业承兑汇票, 电子商业承兑汇票, 银行支票, 银行回单, 进账单, 电汇凭证, 支款凭证, 移动支付账单时使用。
+version: 1.0.6
+author: SCNet
+license: MIT
+tags:
+  - OCR
+  - 证件识别
+  - 发票识别
+  - 文字提取
+required_env_vars:
+  - SCNET_API_KEY
+optional_env_vars:
+  - SCNET_API_BASE
+primary_credential: SCNET_API_KEY
+dependencies:
+  - python3
+  - requests
+input:
+  - ocrType : 识别类型，可选值见下文
+  - filePath : 待识别图片的本地路径
+output: 结构化的 JSON 数据，包含识别结果和置信度
 ---
+# Sugon-Scnet 通用 OCR 技能
 
-# Scnet Ocr
+本技能封装了 Sugon-Scnet 通用 OCR 服务，通过单一接口即可调用 57 种识别能力，高效提取文字及票据信息。
 
-> 将图片中的文字、通用文字识别, 票据混贴识别, 印章文字识别,居民身份证, 银行卡, 社保卡, 户口本, 出生医学证明, 往来港澳通行证, 往来台湾通行证, 台湾居民来往大陆通行证, 港澳居民来往内地通行证, 中国香港身份证, 外国人永久居留身份证, 结婚证, 不动产权证书, 机动车行驶证正页, 机动车行驶证副页...
+## 功能特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scnet-ocr`
-- **Source URL:** [https://clawhub.ai/skills/scnet-ocr](https://clawhub.ai/skills/scnet-ocr)
+- **通用文字识别**：提取图片中的全部文字，印章要素内容识别，支持横竖版及坐标定位。
+- **个人证照**：识别居民身份证, 银行卡, 社保卡, 户口本, 出生医学证明, 往来港澳通行证, 往来台湾通行证, 台湾居民来往大陆通行证, 港澳居民来往内地通行证, 中国香港身份证, 外国人永久居留身份证, 结婚证, 不动产权证书, 机动车行驶证正页, 机动车行驶证副页, 机动车驾驶证正页, 机动车驾驶证副页, 中国护照, 学历证书, 学历证书电子注册备案表, 学位证书。
+- **行业资质**：识别营业执照, 社会团体法人登记证书, 工会法人资格证书, 宗教活动场所登记证, 民办非企业单位登记证书, 事业单位法人证书, 统一社会信用代码证书。
+- **财务票据**：覆盖增值税发票, 增值税卷票, 出租车发票, 火车票, 航空运输电子客票行程单, 机动车销售统一发票, 定额发票, 过路过桥费发票, 医疗门诊发票, 税收完税证明, 船票, 非税票据, 通用机打发票, 汽车票，自动提取关键字段。
+- **金融单据**：银行汇票, 银行承兑汇票, 电子银行承兑汇票, 商业承兑汇票, 电子商业承兑汇票, 银行支票, 银行回单, 进账单, 电汇凭证, 支款凭证, 移动支付账单。
 
-## Overview
+## 前置配置
 
+> **⚠️ 重要**：使用前需要申请 Scnet API Token
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/scnet-ocr
+### 申请 API Token
+
+1. 访问 [Scnet 官网](https://www.scnet.cn) 注册/登录
+2. 在控制台申请 API 密钥（格式：`sc-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`）
+3. 复制密钥备用
+
+### 配置 Token
+
+**手动配置（推荐）**
+1. 在技能目录下创建 `config/.env` 文件，内容如下：
+```ini
+# =====  Sugon-Scnet OCR API 配置 =====
+# 申请地址：https://www.scnet.cn
+SCNET_API_KEY=your_scnet_api_key_here
+
+# API 基础地址（一般无需修改）
+SCNET_API_BASE=https://api.scnet.cn/api/llm/v1
 ```
+2. 添加：`SCNET_API_KEY=你的密钥`
+3. 设置文件权限为 600（仅所有者可读写）
+**⚠️ 安全警告**：切勿将 API Key 直接粘贴到聊天对话中，否则可能被记录或泄露。
+
+### Token 更新
+
+Token 过期后调用会返回 401 或 403 错误。更新方法：重新申请 Token 并替换 config/.env 中的 SCNET_API_KEY。
+
+### 依赖安装
+
+本技能需要 Python 3.6+ 和 requests 库。请运行以下命令：
+
+```bash
+   pip install requests
+```
+---
+### 使用方法
+
+### 参数说明
+
+| 参数名 | 类型 | 必填 | 描述 |
+|--------|------|------|------|
+| ocrType | string | 是 | 识别类型枚举。必须为以下之一：<br>• GENERAL（通用文字）<br>• BILL_MIXING_AND_IDENTIFICATION（票据混贴识别）<br>• SEAL_CHARACTER_RECOGNITION（印章文字识别）<br>• ID_CARD（居民身份证）<br>• BANK_CARD（银行卡）<br>• SOCIAL_SECURITY_CARD（社保卡）<br>• HOUSEHOLD_REGISTER（户口本）<br>• BIRTH_CERTIFICATE（出生医学证明）<br>• HK_MACAU_PASS（往来港澳通行证）<br>• TAIWAN_PASS（往来台湾通行证）<br>• TAIWAN_MAINLAND_PASS（台湾居民来往大陆通行证）<br>• HK_MAINLAND_PASS（港澳居民来往内地通行证）<br>• HONG_KONG_IDENTITY_CARD（中国香港身份证）<br>• PERMANENT_RESIDENCE_ID_CARD_FOR（外国人永久居留身份证）<br>• MARRIAGE_CERTIFICATE（结婚证）<br>• REAL_ESTATE_OWNERSHIP_CERTIFICAT（不动产权证书）<br>• FRONT_PAGE_OF_MOTOR_VEHICLE_DRIV（机动车行驶证正页）<br>• SECOND_SHEET_OF_MOTOR_VEHICLE_DR（机动车行驶证副页）<br>• MOTOR_VEHICLE_DRIVING_LICENSE（机动车驾驶证正页）<br>• MOTOR_VEHICLE_DRIVING_LICENSE_SU（机动车驾驶证副页）<br>• CHINESE_PASSPORT（中国护照）<br>• ACADEMIC_CERTIFICATE（学历证书）<br>• ONLINE_VERIFICATION_REPORT_OF_HE（学历证书电子注册备案表）<br>• DIPLOMA（学位证书）<br>• BUSINESS_LICENSE（营业执照）<br>• SOCIAL_ORG_REG（社会团体法人登记证书）<br>• TRADE_UNION_REG（工会法人资格证书）<br>• RELIGIOUS_ACTIVITY_REG（宗教活动场所登记证）<br>• PRIVATE_NON_ENTERPRISE_REG（民办非企业单位登记证书）<br>• INSTITUTION_LEGAL_REG（事业单位法人证书）<br>• UNIFIED_SOCIAL_CREDIT_REG（统一社会信用代码证书）<br>• UNIFIED_IDENTIFICATION_OF_FINANC（财务票据统一识别）<br>• VAT_INVOICE（增值税发票）<br>• VAT_ROLL_INVOICE（增值税卷票）<br>• TAXI_INVOICE（出租车发票）<br>• TRAIN_TICKET（火车票）<br>• AIRPORT_TICKET（航空运输电子客票行程单）<br>• VEHICLE_SALE_INVOICE（机动车销售统一发票）<br>• QUOTA_INVOICE（定额发票）<br>• TOLL_INVOICE（过路过桥费发票）<br>• MEDICAL_INVOICE（医疗门诊发票）<br>• TAX_CERTIFICATE（税收完税证明）<br>• SHIP_TICKET（船票）<br>• NON_TAX_BILL（非税票据）<br>• GENERAL_MACHINE_INVOICE（通用机打发票）<br>• BUS_TICKET（汽车票）<br>• BANK_DRAFT（银行汇票）<br>• BANK_ACCEPTANCE_BILL（银行承兑汇票）<br>• ELECTRONIC_BANK_ACCEPTANCE_BILL（电子银行承兑汇票）<br>• COMMERCIAL_ACCEPTANCE_BILL（商业承兑汇票）<br>• ELECTRONIC_COMMERCIAL_ACCEPTANCE（电子商业承兑汇票）<br>• BANK_CHECK（银行支票）<br>• BANK_RECEIPT（银行回单）<br>• DEPOSIT_SLIP（进账单）<br>• TELEGRAPHIC_TRANSFER_VOUCHER（电汇凭证）<br>• WITHDRAWAL_VOUCHER（支款凭证）<br>• MOBILE_PAYMENT_BILL（移动支付账单） |
+| filePath | string | 是 | 待识别图片的本地绝对路径。支持 jpg、png、pdf 等常见格式。 |
+
+### 命令行调用示例
+
+```bash
+   python .claude/skills/scnet-ocr/scripts/main.py VAT_INVOICE /path/to/invoice.jpg
+```
+
+### 在 AI 对话中使用
+
+用户可以说：
+
+- “帮我识别这张身份证，图片在 /Users/name/Downloads/id.jpg”
+- “提取这张发票的信息，路径是 /Users/name/Downloads/fapiao.png”
+- “OCR 这个图片里的文字，图片在 /Users/name/Desktop/text.png”
+
+AI 会根据 description 中的关键词自动触发本技能。
+
+### AI 调用建议
+为避免触发 API 速率限制（10 QPS），请串行调用本技能，即等待前一个识别完成后再发起下一个请求。
+如果使用 OpenClaw 的 exec 工具，建议设置 timeout 或 yieldMs 参数，让命令同步执行，避免多个命令同时运行导致并发。
+
+### 配置选项
+
+编辑 `config/.env` 文件：
+
+| 变量名 | 默认值 | 说明 |
+|--------|--------|------|
+| SCNET_API_KEY | 必需 | Scnet API 密钥 |
+| SCNET_API_BASE | https://api.scnet.cn/api/llm/v1 | API 基础地址（一般无需修改） |
+
+### 输出
+
+- 标准输出：识别结果的 JSON 数据，结构与 API 文档一致，位于 `data` 字段内。
+- 识别结果位于 data[0].result[0].elements 中，具体字段取决于 ocrType。
+- 识别结果位于 data[0].result[0].stamps 中，具体字段取决于 ocrType。
+- 错误信息：如果发生错误，会输出以 `错误:` 开头的友好提示。
+
+### 注意事项
+
+- 本技能调用的 OCR API 有 10 QPS 的速率限制。
+- 如果遇到 429 错误，请等待 2-3 秒后重试，不要连续发起请求。
+- 建议在调用前确保图片已准备就绪，避免因网络问题导致重复调用。
+
+### 故障排除
+
+| 问题 | 解决方案 |
+|------|----------|
+| 配置文件不存在 | 创建 config/.env 并填入 Token（参考前置配置） |
+| API Key 无效/过期 | 重新申请 Token 并更新 `.env` 文件 |
+| 文件不存在 | 检查提供的文件路径是否正确 |
+| 网络连接失败 | 检查网络连接或防火墙设置 |
+| 不支持的文件类型 | 确保文件扩展名为允许的类型（参考 API 文档） |
+| 401/403/Unauthorized | Token 无效或过期，重新申请并配置 |
+| 429 Too Many Requests | 请求过于频繁，技能会自动等待并重试（最多 3 次）。若持续失败，请降低调用频率或联系服务方提高限额。 |
+
+

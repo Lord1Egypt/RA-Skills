@@ -1,0 +1,4 @@
+interface:
+  display_name: "SF Business Data Export"
+  short_description: "Export Salesforce data to business-ready Excel"
+  default_prompt: "Use $sf-business-data-export to export Salesforce business data into review-ready Excel files."

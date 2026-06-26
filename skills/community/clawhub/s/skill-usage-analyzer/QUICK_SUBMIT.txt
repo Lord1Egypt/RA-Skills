@@ -1,0 +1,72 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                    🔍 Skill Usage Analyzer                        ║
+║                        ClawHub 提交卡片                          ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📦 技能信息
+─────────────────────────────────────────────────────────────────
+ID:          skill-usage-analyzer
+名称:        Skill Usage Analyzer
+版本:        1.0.0
+作者:        OpenClaw Community
+许可证:      MIT
+分类:        Development, Productivity, Documentation
+图标:        🔍
+
+🎯 核心功能 (6个)
+─────────────────────────────────────────────────────────────────
+1. 📖 智能解析    - 自动提取 SKILL.md 关键信息
+2. 💡 创意用法    - 提供6种创意使用场景
+3. 🔗 组合推荐    - 发现技能协同使用方式
+4. 🎯 智能推荐    - 根据任务描述推荐技能
+5. 📊 对比矩阵    - 多技能对比分析
+6. 📦 批量分析    - 一键分析所有技能
+
+📤 快速提交步骤
+─────────────────────────────────────────────────────────────────
+1. 访问 https://clawhub.com
+2. 登录账号 → 点击 "Publish Skill"
+3. 填写:
+   - ID: skill-usage-analyzer
+   - Name: Skill Usage Analyzer
+   - Version: 1.0.0
+   - Description: 智能分析 OpenClaw 技能，生成使用指南、
+                  创意用法和组合推荐
+4. 上传: skill-usage-analyzer-v1.0.0.tar.gz (26KB)
+5. 选择分类: Development, Productivity, Documentation
+6. 添加标签: skill, analyzer, usage, documentation
+7. 点击 "Submit for Review"
+
+📋 提交材料清单
+─────────────────────────────────────────────────────────────────
+✅ skill-usage-analyzer-v1.0.0.tar.gz (主包)
+✅ .clawhub/publish.json (元数据)
+✅ CLAWHUB_SUBMISSION.md (详细说明)
+✅ SUBMIT_GUIDE.md (提交指南)
+✅ 所有测试通过
+
+📊 文件统计
+─────────────────────────────────────────────────────────────────
+脚本文件:    6个 Python 脚本
+文档文件:    5个 (SKILL, README, LICENSE, CHANGELOG, package)
+测试文件:    1个单元测试
+配置文件:    2个 JSON 配置
+其他:        install.sh, test_install.sh, .gitignore
+总计:        26KB
+
+🚀 一键命令
+─────────────────────────────────────────────────────────────────
+# 测试
+./test_install.sh
+
+# 打包
+tar -czvf skill-usage-analyzer-v1.0.0.tar.gz skill-usage-analyzer/
+
+# 提交 (需要 clawhub CLI)
+clawhub publish
+
+═══════════════════════════════════════════════════════════════════
+提交日期: 2026-03-21
+版本: 1.0.0
+状态:  ready for submission
+═══════════════════════════════════════════════════════════════════

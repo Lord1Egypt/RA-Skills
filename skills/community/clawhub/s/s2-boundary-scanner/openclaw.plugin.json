@@ -1,0 +1,16 @@
+{
+  "id": "s2-boundary-scanner",
+  "pluginId": "s2-boundary-scanner",
+  "version": "1.0.0",
+  "type": "native-code",
+  "entry": "handler.py",
+  "runtime": "python3",
+  "permissions": {
+    "network": ["localhost"],
+    "tools": ["execute_boundary_scan"]
+  },
+  "mcp_config": {
+    "auto_discovery": true,
+    "protocol_version": "2026.4.1"
+  }
+}

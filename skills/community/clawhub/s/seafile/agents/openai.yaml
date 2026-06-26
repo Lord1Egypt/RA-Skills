@@ -1,0 +1,7 @@
+interface:
+  display_name: "Seafile Library"
+  short_description: "Repo-token search, download, and upload"
+  default_prompt: "Use $seafile-skill with a Seafile base URL and repo token to search a library, download an exact file path, or upload a local file."
+
+policy:
+  allow_implicit_invocation: true

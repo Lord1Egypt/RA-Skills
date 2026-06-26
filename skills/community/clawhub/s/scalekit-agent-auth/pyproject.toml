@@ -1,0 +1,15 @@
+[project]
+name = "openclaw-skill"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "protobuf>=5.29.6",
+    "python-dotenv>=1.1.1",
+    "scalekit-sdk-python>=2.6.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]

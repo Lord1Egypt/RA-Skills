@@ -1,0 +1,78 @@
+{
+  "skills": {
+    "shou-zhuo": {
+      "name": "守拙",
+      "version": "1.0.0",
+      "last_updated": "2026-04-15",
+      "publish_code": "k97c25kvbwx58nghs4eaa5k9sn84w0m3",
+      "sources": [
+        "https://xueqiu.com/9290769077/162490444",
+        "https://zhuanlan.zhihu.com/p/338196840"
+      ],
+      "update_frequency": "quarterly",
+      "next_update_window": "2026-07-15",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-04-15",
+          "change_type": "initial",
+          "change_summary": "初始版本，融合朱少醒/曹名长/丘栋荣/冯柳/董承非/张坤/谢治宇七大顶级经理人心智模型",
+          "sources_used": ["知乎-深挖中国最牛的30个基金经理", "雪球-最强价值风格基金经理", "Wind数据-基金经理公开访谈"],
+          "approved_by": "Eric"
+        }
+      ]
+    },
+    "rau-perspective": {
+      "name": "Rau",
+      "version": "1.0.0",
+      "last_updated": "2026-04-15",
+      "publish_code": "k97bp0m2ffckk97yevypkgxh6984wxj8",
+      "sources": [
+        "https://www.linkedin.com/posts/rauchg",
+        "https://refactoring.fm/p/the-vercel-journey-with-guillermo",
+        "https://addyosmani.com/blog/21-lessons/",
+        "https://seriousben.com/links/2024-11-06-engineering-principles-shared-by-guillermo-rauch-ceo-of-vercel/"
+      ],
+      "update_frequency": "monthly",
+      "next_update_window": "2026-05-15",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-04-15",
+          "change_type": "initial",
+          "change_summary": "初始版本，融合Guillermo Rauch（Vercel/Next.js）× Addy Osmani（Google Chrome DevEx）工程智慧，含6大核心心智",
+          "sources_used": [
+            "Refactoring.fm-Vercel Journey",
+            "LinkedIn-Rauch Engineering Principles",
+            "Addy Osmani-21 Lessons from 14 Years at Google",
+            "Sequoia Capital Podcast-Guillermo Rauch"
+          ],
+          "approved_by": "Eric"
+        }
+      ]
+    },
+    "naval-perspective": {
+      "name": "Naval Ravikant",
+      "version": "1.0.0",
+      "last_updated": "2026-03-27",
+      "sources": ["https://navalmanack.com/", "https://twitter.com/naval"],
+      "update_frequency": "quarterly",
+      "next_update_window": "2026-06-27",
+      "changelog": [
+        {
+          "version": "1.0.0",
+          "date": "2026-03-27",
+          "change_type": "initial",
+          "change_summary": "融合Naval《如何不随波逐流》全套心智模型+Twitter Wisdom精选",
+          "sources_used": ["Navalmanack Podcast", "Twitter @naval", "Wikipedia-Naval"],
+          "approved_by": "Eric"
+        }
+      ]
+    }
+  },
+  "meta": {
+    "created": "2026-04-15",
+    "tracker_version": "1.0.0",
+    "total_tracked_skills": 3
+  }
+}

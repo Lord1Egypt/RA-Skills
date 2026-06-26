@@ -1,35 +1,110 @@
 ---
-name: "sanxin_form_filler1"
-description: "智能申报表填写工具。将申报报告内容智能填入申请表对应位置，保持原文档格式，新内容格式统一。适用于各类 Word 表格申请表自动填写。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sanxin"
-sourceUrl: "https://clawhub.ai/skills/sanxin"
+name: sanxin_form_filler
+description: 智能申报表填写工具。将申报报告内容智能填入申请表对应位置，保持原文档格式，新内容格式统一。适用于各类 Word 表格申请表自动填写。
+homepage: https://github.com/openclaw/openclaw
+metadata:
+  openclaw:
+    emoji: "📝"
+    requires:
+      bins: ["python"]
+    install:
+      - kind: pip
+        package: pywin32
+        bins: []
 ---
 
-# sanxin_form_filler1
+# Form Filler - 智能申报表填写工具
 
-> 智能申报表填写工具。将申报报告内容智能填入申请表对应位置，保持原文档格式，新内容格式统一。适用于各类 Word 表格申请表自动填写。
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sanxin`
-- **Source URL:** [https://clawhub.ai/skills/sanxin](https://clawhub.ai/skills/sanxin)
+将申报报告内容智能填入申请表对应位置：
+- 自动识别申请表表格结构
+- 将申报报告各章节内容匹配到对应位置
+- 保持原文档格式不变
+- 新内容格式统一（宋体、小四、黑色、无下划线、不加粗）
+- 自动调整表格行高，避免内容被遮挡
 
-## Overview
+## 使用场景
 
+- 医疗新技术申报表
+- 科研项目申报表
+- 各类 Word 表格申请表
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sanxin
+## 使用方法
+
+### 基本用法
+
 ```
+请帮我填写申报表：
+- 申报报告：C:\path\to\申报报告.docx
+- 申请表：C:\path\to\空表申报表.doc
+```
+
+### 指定格式
+
+```
+请帮我填写申报表，格式要求：
+- 字体：宋体
+- 字号：小四
+- 颜色：黑色
+- 无下划线、不加粗
+```
+
+## 技术要点
+
+### 1. 读取文档结构
+- 使用 win32com 读取 Word 表格结构
+- 识别每个章节的行号位置
+- 保留原有标题
+
+### 2. 内容填写
+- 在标题后插入内容
+- 不覆盖原有标题
+- 处理控制字符（\x07）
+
+### 3. 格式控制
+- 标题和内容分开设置格式
+- 使用 Range 对象精确控制格式范围
+
+### 4. 表格调整
+- 设置行高为自动（HeightRule = 0）
+- 允许跨页（AllowBreakAcrossPages = True）
+
+## 关键问题解决
+
+### 问题1：原有格式被改变
+**解决方案**：将标题和内容分开处理，只对新内容设置格式
+
+### 问题2：内容被表格遮挡
+**解决方案**：设置表格行高为自动
+
+### 问题3：出现控制字符 _x0007_
+**解决方案**：清理文本中的控制字符 \x07
+
+### 问题4：项目名称位置
+**解决方案**：查找"新技术新项目名称："后插入
+
+## 注意事项
+
+1. 确保原始空表格式正确
+2. 内容不要过长，避免表格过度扩展
+3. 填写后建议手动检查格式
+4. Windows 系统需要安装 pywin32
+
+## 示例
+
+```
+用户：帮我填写申报表：
+- 申报报告：C:\Users\xxx\Downloads\申报报告.docx  
+- 申请表：C:\Users\xxx\Desktop\空表申报表.doc
+
+助手：我来帮你填写...
+[执行填写脚本]
+已完成！保存到：申报表_已填写.docx
+```
+
+## 依赖
+
+- Python 3.x
+- pywin32 (pip install pywin32)
+- Microsoft Word 或 WPS

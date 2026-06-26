@@ -1,0 +1,24 @@
+{
+  "deps": [
+    {
+      "body": "Seat",
+      "ref": "origin"
+    },
+    {
+      "body": "Leg_NL (1)",
+      "ref": "Seat"
+    },
+    {
+      "body": "Leg_NR",
+      "ref": "Seat"
+    },
+    {
+      "body": "Leg_FL",
+      "ref": "Seat"
+    },
+    {
+      "body": "Leg_FR",
+      "ref": "Seat"
+    }
+  ]
+}

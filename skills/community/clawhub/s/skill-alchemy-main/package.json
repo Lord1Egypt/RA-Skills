@@ -1,0 +1,10 @@
+{
+  "name": "SkillAlchemy",
+  "version": "v1.0",
+  "description": "Skill production operating system — turn any person, method, or experience into an installable Skill.",
+  "type": "skill",
+  "author": "agentsope",
+  "license": "MIT",
+  "repository": "github:agentsope/SkillAlchemy",
+  "keywords": ["skill", "agent", "claude-code", "distill", "persona", "tool"]
+}

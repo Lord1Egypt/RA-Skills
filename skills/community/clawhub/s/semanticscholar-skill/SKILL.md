@@ -1,35 +1,283 @@
 ---
-name: "Semanticscholar Skill"
-description: "Use when searching academic papers, looking up citations, finding authors, or getting paper recommendations using the Semantic Scholar API. Triggers on queri..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/semanticscholar-skill"
-sourceUrl: "https://clawhub.ai/skills/semanticscholar-skill"
+name: semanticscholar-skill
+description: Use when searching academic papers, looking up citations, finding authors, or getting paper recommendations using the Semantic Scholar API. Triggers on queries about research papers, academic search, citation analysis, or literature discovery.
+license: MIT
+homepage: https://github.com/Agents365-ai/semanticscholar-skill
+compatibility: Requires python3 and the `requests` package. Set S2_API_KEY for higher rate limits (request at https://www.semanticscholar.org/product/api#api-key). Works unauthenticated with strict rate limits.
+platforms: [macos, linux, windows]
+metadata: {"openclaw":{"requires":{"bins":["python3"],"env":["S2_API_KEY"]},"emoji":"📚"},"hermes":{"tags":["semantic-scholar","academic","paper-search","citation","literature","research"],"category":"research","requires_tools":["python3"],"related_skills":["asta-skill","zotero-research-assistant","literature-review","paper-reader"]},"author":"Agents365-ai","version":"0.3.0"}
 ---
 
-# Semanticscholar Skill
+# Semantic Scholar Search Workflow
 
-> Use when searching academic papers, looking up citations, finding authors, or getting paper recommendations using the Semantic Scholar API. Triggers on queri...
+Search academic papers via the Semantic Scholar API using a structured 4-phase workflow.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/semanticscholar-skill`
-- **Source URL:** [https://clawhub.ai/skills/semanticscholar-skill](https://clawhub.ai/skills/semanticscholar-skill)
+**Critical rule:** NEVER make multiple sequential Bash calls for API requests. Always write ONE Python script that runs all searches, then execute it once. All rate limiting is handled inside `s2.py` automatically.
 
-## Overview
+## Phase 1: Understand & Plan
 
+Parse the user's intent and choose a search strategy:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/semanticscholar-skill
+### Decision Tree
+
+| User wants... | Strategy | Function |
+|---------------|----------|----------|
+| Broad topic exploration | Relevance search | `search_relevance()` |
+| Precise technical terms, exact phrases | Bulk search with boolean operators | `search_bulk()` with `build_bool_query()` |
+| Specific passages or methods | Snippet search | `search_snippets()` |
+| Known paper by title | Title match | `match_title()` |
+| Known paper by DOI/PMID/ArXiv | Direct lookup | `get_paper()` |
+| Papers citing a known work | Citation traversal | `get_citations()` |
+| Related to one paper | Single-seed recommendations | `find_similar()` |
+| Related to multiple papers | Multi-seed recommendations | `recommend()` |
+| Find a researcher | Author search | `search_authors()` |
+| Researcher's profile | Author details | `get_author()` |
+| Researcher's publications | Author papers | `get_author_papers()` |
+
+### Query Construction Rules
+
+- **Ambiguous terms** (e.g., "stem cells" could mean mesenchymal or stem-like T cells): Use `build_bool_query()` with exact phrases and exclusions
+  - Example: `build_bool_query(phrases=["stem-like T cells"], required=["CD4", "TCF7"], excluded=["mesenchymal", "hematopoietic stem cell"])`
+- **Multi-context queries** (e.g., "topic X in cancer AND autoimmunity"): Plan separate searches, deduplicate with `deduplicate()`
+- **Broad topics**: Use `search_relevance()` with filters (year, venue, fieldsOfStudy, minCitationCount)
+
+### Plan Filters
+
+| Filter | Use when |
+|--------|----------|
+| `year="2020-"` | Recent work only |
+| `publication_date="2024-01-01:2024-06-30"` | Precise date range (YYYY-MM-DD) |
+| `fields_of_study="Medicine"` | Restrict to domain |
+| `min_citations=10` | Only established papers |
+| `pub_types="Review"` | Find reviews/meta-analyses |
+| `pub_types="ClinicalTrial"` | Clinical trials only |
+| `open_access=True` | Only open access papers |
+
+**Checkpoint:** Before proceeding, verify: (1) search strategy matches user intent, (2) filters are appropriate, (3) query is specific enough to avoid irrelevant results.
+
+## Phase 2: Execute Search
+
+Write ONE Python script. Example:
+
+```python
+import sys, os
+SKILL_DIR = next((p for p in [
+    os.path.expanduser("~/.claude/skills/semanticscholar-skill"),
+    os.path.expanduser("~/.openclaw/skills/semanticscholar-skill"),
+] if os.path.isdir(p)), ".")
+sys.path.insert(0, SKILL_DIR)
+from s2 import *
+
+# Build precise query
+q = build_bool_query(
+    phrases=["stem-like T cells"],
+    required=["CD4", "IBD"],
+    excluded=["mesenchymal"]
+)
+papers = search_bulk(q, max_results=30, year="2018-", fields_of_study="Medicine")
+papers = deduplicate(papers)
+
+print(format_results(papers, "Stem-like CD4 T cells in IBD"))
 ```
+
+Execute with: `python3 /tmp/s2_search.py`
+
+**Rules:**
+- Import everything from s2: `from s2 import *`
+- Write script to `/tmp/s2_search.py` (or similar temp path)
+- One Bash call to execute. Never chain multiple API calls via separate Bash invocations.
+- Rate limiting, retries, and backoff are automatic inside s2.py
+
+**Checkpoint:** Verify the script ran successfully (no exceptions) and returned results. If 0 results, broaden the query or relax filters before presenting.
+
+### Worked Examples
+
+**Example 1: Author workflow** — "Find papers by Yann LeCun on self-supervised learning"
+
+```python
+import sys, os
+SKILL_DIR = next((p for p in [
+    os.path.expanduser("~/.claude/skills/semanticscholar-skill"),
+    os.path.expanduser("~/.openclaw/skills/semanticscholar-skill"),
+] if os.path.isdir(p)), ".")
+sys.path.insert(0, SKILL_DIR)
+from s2 import *
+
+authors = search_authors("Yann LeCun", max_results=5)
+print(format_authors(authors))
+
+# Use the first match's ID to get their papers
+author_id = authors[0]["authorId"]
+papers = get_author_papers(author_id, max_results=50)
+# Filter locally for topic
+ssl_papers = [p for p in papers if "self-supervised" in (p.get("title") or "").lower()]
+print(format_results(ssl_papers, "Yann LeCun - Self-Supervised Learning"))
+```
+
+**Example 2: Citation chain** — "Who cited the Transformer paper and what did they build on?"
+
+```python
+import sys, os
+SKILL_DIR = next((p for p in [
+    os.path.expanduser("~/.claude/skills/semanticscholar-skill"),
+    os.path.expanduser("~/.openclaw/skills/semanticscholar-skill"),
+] if os.path.isdir(p)), ".")
+sys.path.insert(0, SKILL_DIR)
+from s2 import *
+
+paper = get_paper("DOI:10.48550/arXiv.1706.03762")
+print(f"Title: {paper['title']}, Citations: {paper['citationCount']}")
+
+# Get top-cited papers that cite this one
+citing = get_citations(paper["paperId"], max_results=50)
+citing_papers = [c["citingPaper"] for c in citing if c.get("citingPaper")]
+citing_papers.sort(key=lambda p: p.get("citationCount", 0), reverse=True)
+print(format_results(citing_papers, "Most-cited papers citing Attention Is All You Need"))
+```
+
+**Example 3: Multi-seed recommendations with BibTeX export** — "Find papers like these two but not about NLP"
+
+```python
+import sys, os
+SKILL_DIR = next((p for p in [
+    os.path.expanduser("~/.claude/skills/semanticscholar-skill"),
+    os.path.expanduser("~/.openclaw/skills/semanticscholar-skill"),
+] if os.path.isdir(p)), ".")
+sys.path.insert(0, SKILL_DIR)
+from s2 import *
+
+recs = recommend(
+    positive_ids=["DOI:10.1038/nature14539", "ARXIV:2010.11929"],
+    negative_ids=["ARXIV:1706.03762"],
+    limit=20
+)
+print(format_results(recs, "Vision papers like Deep Learning & ViT, excluding NLP"))
+
+# Export BibTeX for top results
+bib_data = batch_papers([r["paperId"] for r in recs[:10]], fields="title,citationStyles")
+print(export_bibtex(bib_data))
+```
+
+## Phase 3: Summarize & Present
+
+- Use `format_results()` for consistent output (summary table + top-10 details)
+- If user's language is Chinese, present summaries in Chinese
+- Always note total results count and search strategy used
+- Highlight most relevant papers based on the user's specific question
+
+## Phase 4: User Interaction Loop
+
+After presenting results, **always offer these options:**
+
+1. **Translate** — titles/summaries to Chinese (or other language)
+2. **Details** — full abstract for specific paper numbers
+3. **Refine** — narrow or expand search with different terms/filters
+4. **Similar** — find papers similar to a specific result (`find_similar()`)
+5. **Citations** — who cited a specific paper (`get_citations()`)
+6. **Export** — save results via `export_bibtex()`, `export_markdown()`, or `export_json()`
+7. **Done** — end search session
+
+Loop until user says done. Each follow-up uses the same single-script pattern.
+
+---
+
+## API Quick Reference
+
+### Helper Module (`s2.py`)
+
+```python
+import sys, os
+SKILL_DIR = next((p for p in [
+    os.path.expanduser("~/.claude/skills/semanticscholar-skill"),
+    os.path.expanduser("~/.openclaw/skills/semanticscholar-skill"),
+] if os.path.isdir(p)), ".")
+sys.path.insert(0, SKILL_DIR)
+from s2 import *
+```
+
+### Paper Search Functions
+
+| Function | Purpose | Max Results |
+|----------|---------|-------------|
+| `search_relevance(query, **filters)` | Simple broad search | 1,000 |
+| `search_bulk(query, sort=..., **filters)` | Boolean precise search | 10,000,000 |
+| `search_snippets(query, **filters)` | Full-text passage search | 1,000 |
+| `match_title(title)` | Exact title match | 1 |
+| `get_paper(paper_id)` | Single paper details | — |
+| `get_citations(paper_id, max_results)` | Who cited this | 10,000 |
+| `get_references(paper_id, max_results)` | What this cites | 10,000 |
+| `find_similar(paper_id, limit, pool)` | Single-seed recommendations | 500 |
+| `recommend(positive_ids, negative_ids, limit)` | Multi-seed recommendations | 500 |
+| `batch_papers(ids, fields)` | Batch lookup (≤500) | — |
+
+### Author Functions
+
+| Function | Purpose | Max Results |
+|----------|---------|-------------|
+| `search_authors(query, max_results)` | Find researchers by name | 1,000 |
+| `get_author(author_id)` | Author profile (affiliations, h-index) | — |
+| `get_author_papers(author_id, max_results)` | Author's publications | 10,000 |
+| `get_paper_authors(paper_id, max_results)` | Paper's author list | 1,000 |
+| `batch_authors(ids, fields)` | Batch author lookup (≤1000) | — |
+
+### Filter Parameters (kwargs)
+
+`year`, `publication_date`, `venue`, `fields_of_study`, `min_citations`, `pub_types`, `open_access`
+
+- `year`: `"2020-"`, `"-2019"`, `"2016-2020"`
+- `publication_date`: `"2024-01-01:2024-06-30"` (YYYY-MM-DD range, open-ended OK)
+- `pub_types`: `Review`, `JournalArticle`, `Conference`, `ClinicalTrial`, `MetaAnalysis`, `Dataset`, `Book`, `CaseReport`, `Editorial`, `LettersAndComments`, `News`, `Study`, `BookSection`
+
+### Boolean Query Syntax (bulk search only)
+
+| Syntax | Example | Meaning |
+|--------|---------|---------|
+| `"..."` | `"deep learning"` | Exact phrase |
+| `+` | `+transformer` | Must include |
+| `-` | `-survey` | Exclude |
+| `\|` | `CNN \| RNN` | OR |
+| `*` | `neuro*` | Prefix wildcard |
+| `()` | `(CNN \| RNN) +attention` | Grouping |
+
+Use `build_bool_query(phrases, required, excluded, or_terms)` to construct safely.
+
+### Output Functions
+
+| Function | Purpose |
+|----------|---------|
+| `format_table(papers, max_rows=30)` | Markdown summary table |
+| `format_details(papers, max_papers=10)` | Detailed entries with TLDR/abstract |
+| `format_results(papers, query_desc)` | Combined: summary + table + details |
+| `format_authors(authors, max_rows=20)` | Author table (name, affiliations, h-index) |
+| `export_bibtex(papers)` | BibTeX entries (requires `citationStyles` field) |
+| `export_markdown(papers, query_desc)` | Full markdown report saved to file |
+| `export_json(papers, path)` | JSON export saved to file |
+| `deduplicate(papers)` | Remove duplicates by paperId |
+
+### Supported ID Formats
+
+`DOI:10.1038/...`, `ARXIV:2106.15928`, `PMID:19872477`, `PMCID:PMC2323569`, `CorpusId:215416146`, `ACL:2020.acl-main.447`, `DBLP:conf/acl/...`, `MAG:3015453090`, `URL:https://...`
+
+### Paper Fields
+
+Default: `title,year,citationCount,authors,venue,externalIds,tldr`
+
+Additional: `abstract`, `references`, `citations`, `openAccessPdf`, `publicationDate`, `publicationVenue`, `fieldsOfStudy`, `s2FieldsOfStudy`, `journal`, `isOpenAccess`, `referenceCount`, `influentialCitationCount`, `citationStyles`, `embedding`, `textAvailability`
+
+Author fields: `name`, `affiliations`, `paperCount`, `citationCount`, `hIndex`, `homepage`, `externalIds`, `papers`
+
+### Rate Limiting
+
+Handled automatically by `s2.py`: 1.1s gap between requests, exponential backoff (2s→4s→8s→16s→32s, max 60s) on 429/504 errors, up to 5 retries.
+
+### Troubleshooting
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| `HTTPError 403` | Missing or invalid API key | Verify `S2_API_KEY` is set: `echo $S2_API_KEY` |
+| `HTTPError 429` after 5 retries | Sustained rate limit exceeded | Wait 60s, reduce `max_results`, or split into smaller batches |
+| `ModuleNotFoundError: s2` | Skill directory not on path | Verify skill is installed at `~/.claude/skills/` or `~/.openclaw/skills/` |
+| `ModuleNotFoundError: requests` | `requests` not installed | `pip install requests` or `uv pip install requests` |
+| 0 results returned | Query too specific or filters too narrow | Broaden query, remove filters, try `search_relevance()` instead of `search_bulk()` |
+| `KeyError: 'data'` | Endpoint returned error object | Check `r.get("message")` for API error details |
+| `tldr` field is empty | Not all papers have TLDR | Fall back to `abstract` field; bulk search never returns `tldr` |

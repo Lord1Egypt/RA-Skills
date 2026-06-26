@@ -1,0 +1,31 @@
+<svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景/外壳 -->
+  <rect x="50" y="100" width="100" height="120" rx="30" fill="#cbd5e1" stroke="#475569" stroke-width="4"/>
+  
+  <!-- 头部 -->
+  <circle cx="100" cy="80" r="45" fill="#e2e8f0" stroke="#475569" stroke-width="4"/>
+  
+  <!-- 猫耳 -->
+  <polygon points="65,45 50,10 85,35" fill="#e2e8f0" stroke="#475569" stroke-width="3"/>
+  <polygon points="135,45 150,10 115,35" fill="#e2e8f0" stroke="#475569" stroke-width="3"/>
+  
+  <!-- 赛博发光眼 -->
+  <circle cx="80" cy="75" r="12" fill="#10b981"/>
+  <circle cx="120" cy="75" r="12" fill="#10b981"/>
+  <circle cx="80" cy="75" r="4" fill="#ffffff"/>
+  <circle cx="120" cy="75" r="4" fill="#ffffff"/>
+  
+  <!-- 猫嘴 -->
+  <path d="M 95 90 Q 100 95 105 90" stroke="#475569" stroke-width="2" fill="none"/>
+  
+  <!-- 胸口触摸开关 (S2 灵印) -->
+  <circle cx="100" cy="150" r="20" fill="#0f172a" stroke="#10b981" stroke-width="3"/>
+  <!-- 呼吸灯动画 -->
+  <circle cx="100" cy="150" r="10" fill="#10b981" opacity="0.8">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+  </circle>
+  
+  <!-- 机器爪子 -->
+  <rect x="55" y="210" width="25" height="15" rx="7.5" fill="#e2e8f0" stroke="#475569" stroke-width="3"/>
+  <rect x="120" y="210" width="25" height="15" rx="7.5" fill="#e2e8f0" stroke="#475569" stroke-width="3"/>
+</svg>

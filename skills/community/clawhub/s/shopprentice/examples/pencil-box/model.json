@@ -1,0 +1,28 @@
+{
+  "deps": [
+    {
+      "body": "Front",
+      "ref": "origin"
+    },
+    {
+      "body": "Back",
+      "ref": "Front"
+    },
+    {
+      "body": "Side_Left",
+      "ref": "Front"
+    },
+    {
+      "body": "Side_Right",
+      "ref": "Front"
+    },
+    {
+      "body": "Bottom",
+      "ref": "Front"
+    },
+    {
+      "body": "Lid",
+      "ref": "Front"
+    }
+  ]
+}

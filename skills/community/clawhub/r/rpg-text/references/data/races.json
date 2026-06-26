@@ -1,0 +1,128 @@
+{
+  "human": {
+    "name": "人类",
+    "description": "适应力极强的种族",
+    "stats_modifier": {
+      "str": 1,
+      "dex": 1,
+      "con": 1,
+      "int": 1,
+      "wis": 1,
+      "cha": 1
+    },
+    "features": [
+      "额外技能熟练项：自选一项技能"
+    ],
+    "languages": ["common"],
+    "dark_vision": false
+  },
+  "elf": {
+    "name": "精灵",
+    "description": "优雅的长寿种族，精通魔法",
+    "stats_modifier": {
+      "dex": 2,
+      "int": 1
+    },
+    "features": [
+      "黑暗视觉：60尺内可在微光环境下如常视物",
+      "精怪血统：对魅惑效果免疫",
+      "天生隐匿：静止时可进行隐匿检定"
+    ],
+    "languages": ["common", "elvish"],
+    "dark_vision": true,
+    "dark_vision_range": 60
+  },
+  "dwarf": {
+    "name": "矮人",
+    "description": "坚韧的矿山居民",
+    "stats_modifier": {
+      "str": 2,
+      "con": 2
+    },
+    "features": [
+      "黑暗视觉：60尺",
+      "石头亲和：对抗毒素豁免+2",
+      "武器训练：熟练使用战锤、鹤嘴锄"
+    ],
+    "languages": ["common", "dwarvish"],
+    "dark_vision": true,
+    "dark_vision_range": 60
+  },
+  "halfling": {
+    "name": "半身人",
+    "description": "小巧灵活的幸运种族",
+    "stats_modifier": {
+      "dex": 2,
+      "cha": 1
+    },
+    "features": [
+      "幸运：投出1时重投",
+      "勇敢：对恐惧豁免+2",
+      "脚轻：可穿过其他生物占据的空间"
+    ],
+    "languages": ["common", "halfling"],
+    "dark_vision": false
+  },
+  "half_orc": {
+    "name": "半兽人",
+    "description": "兽人与人类的混血后裔",
+    "stats_modifier": {
+      "str": 2,
+      "con": 1
+    },
+    "features": [
+      "黑暗视觉：60尺",
+      "残暴：生命值降至0时，可投1次1d8+等级，成功则降至1",
+      "威慑：恐惧状态可进行对抗检定"
+    ],
+    "languages": ["common", "orc"],
+    "dark_vision": true,
+    "dark_vision_range": 60
+  },
+  "tiefling": {
+    "name": "提夫林",
+    "description": "拥有炼狱血统的契约者",
+    "stats_modifier": {
+      "int": 1,
+      "cha": 2
+    },
+    "features": [
+      "黑暗视觉：60尺",
+      "炼狱血脉：火焰法术豁免+2",
+      "地狱惩罚：近战命中造成1d4火焰伤害"
+    ],
+    "languages": ["common", "infernal"],
+    "dark_vision": true,
+    "dark_vision_range": 60
+  },
+  "gnome": {
+    "name": "侏儒",
+    "description": "小巧而智慧的发明家",
+    "stats_modifier": {
+      "int": 2,
+      "dex": 1
+    },
+    "features": [
+      "黑暗视觉：60尺",
+      "侏儒机巧：对反射豁免+2",
+      "天生幻术师：表演和欺骗+1"
+    ],
+    "languages": ["common", "gnomish"],
+    "dark_vision": true,
+    "dark_vision_range": 60
+  },
+  "dragonborn": {
+    "name": "龙裔",
+    "description": "拥有龙族血统的荣耀战士",
+    "stats_modifier": {
+      "str": 2,
+      "cha": 1
+    },
+    "features": [
+      "龙息：每日1次，造成2d6对应元素伤害",
+      "龙族血统：对应元素伤害抗性+2"
+    ],
+    "languages": ["common", "draconic"],
+    "dark_vision": false
+  }
+}

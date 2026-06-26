@@ -1,0 +1,31 @@
+{
+  "name": "semantic-memory-search",
+  "version": "1.0.0",
+  "description": "为 OpenClaw Markdown 记忆文件添加向量驱动的语义搜索",
+  "main": "scripts/search.sh",
+  "author": "sunnyhot",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "search",
+    "semantic",
+    "vector",
+    "milvus",
+    "memsearch"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunnyhot/semantic-memory-search"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.10"
+  },
+  "openclaw": {
+    "requires": {
+      "bins": ["python3"]
+    },
+    "optionalBins": ["memsearch"],
+    "configPaths": ["config/settings.json"]
+  }
+}

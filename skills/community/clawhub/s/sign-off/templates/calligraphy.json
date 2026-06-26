@@ -1,0 +1,13 @@
+{
+  "name": "calligraphy",
+  "displayName": "🖌️ 书法风",
+  "description": "传统书法落款，有文人气息",
+  "template": "{name} 书于 {location} {season}\n{emoji} {seal}",
+  "emoji": "🏮",
+  "seal": "[印]",
+  "contextMode": {
+    "work": "{name} 于 {location}",
+    "casual": "{name} 书于 {location} {season}\n{emoji} {seal}"
+  },
+  "preview": "小橘 书于杭州 春\n🏮 [橘印]"
+}

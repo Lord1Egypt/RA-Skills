@@ -1,0 +1,37 @@
+{
+  "slug": "skill-risk-splitter",
+  "title": "Skill 风险拆分器",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "structured_brief",
+  "summary": "把职责过杂的 Skill 拆成安全版、增强版或多子 Skill，降低扫描和维护风险。",
+  "inputHint": "现有 skill 描述、脚本职责、风险点",
+  "sections": [
+    "当前职责",
+    "风险来源",
+    "拆分方案",
+    "迁移建议",
+    "兼容性影响",
+    "优先级"
+  ],
+  "useCases": [
+    "职责拆分",
+    "发布治理",
+    "安全优化"
+  ],
+  "positiveExamples": [
+    "帮我把职责过杂的 skill 拆开",
+    "设计安全版和增强版"
+  ],
+  "negativeExamples": [
+    "不要为了拆分而失去清晰定位",
+    "不要隐藏高风险行为"
+  ],
+  "risk": "适合作为架构治理工具。",
+  "tags": [
+    "skills",
+    "refactor",
+    "risk",
+    "architecture"
+  ]
+}

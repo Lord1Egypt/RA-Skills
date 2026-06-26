@@ -1,0 +1,61 @@
+name: "Scenario Forecaster"
+description: "AI-driven event forecasting skill. Collects multi-source data, cross-validates facts, maps future scenarios with probabilities, and delivers actionable recommendations for investors, managers, and policymakers."
+version: "1.2.0"
+author: "Onecore-me"
+tags: ["scenario-planning", "decision-making", "forecasting", "analysis", "risk-management", "PESTEL"]
+
+input_schema:
+  type: object
+  properties:
+    event_description:
+      type: string
+      description: "The event or topic to forecast. Be as specific as possible."
+    time_horizon:
+      type: string
+      description: "Forecast period"
+      default: "6 months"
+    focus_dimensions:
+      type: array
+      items:
+        type: string
+        enum: ["Economic", "Political", "Social", "Technological", "Environmental", "Legal", "Sentiment"]
+      description: "PESTEL dimensions to focus on"
+      default: ["Economic", "Political", "Technological"]
+    num_paths:
+      type: integer
+      minimum: 3
+      maximum: 5
+      default: 3
+      description: "Number of scenario paths to generate"
+  required:
+    - event_description
+
+workflow:
+  description: "Standard forecasting pipeline"
+  steps:
+    - id: collect
+      name: "Data Collection"
+      description: "Gather information from news, social media, academic sources, and government reports."
+    - id: validate
+      name: "Cross-Validation"
+      description: "Verify key facts across at least two independent sources and rate confidence level."
+    - id: drivers
+      name: "Driver Analysis"
+      description: "Identify key drivers and uncertainty variables using the PESTEL framework."
+    - id: scenarios
+      name: "Scenario Generation"
+      description: "Generate multiple logically consistent development paths based on driver combinations."
+    - id: probability
+      name: "Probability Assessment"
+      description: "Assign probability estimates to each scenario based on historical data and Bayesian reasoning."
+    - id: recommendations
+      name: "Decision Recommendations"
+      description: "Generate actionable do/don't lists for different stakeholder roles."
+
+examples:
+  - input:
+      event_description: "Impact of Fed rate cuts over 6 months on global tech stocks."
+      time_horizon: "6 months"
+      focus_dimensions: ["Economic", "Technological"]
+      num_paths: 3
+    output_reference: "examples/output_fed_rate.md"

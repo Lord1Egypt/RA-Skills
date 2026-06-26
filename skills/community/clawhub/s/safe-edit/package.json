@@ -1,0 +1,19 @@
+{
+  "name": "safe-edit",
+  "version": "1.0.0",
+  "description": "安全配置修改辅助技能 - 在修改重要配置文件前自动设置回滚",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "safe-edit",
+    "rollback",
+    "backup"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}

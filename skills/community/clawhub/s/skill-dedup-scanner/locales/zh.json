@@ -1,0 +1,48 @@
+{
+  "skill_name": "技能审查助手",
+  "skill_description": "扫描已安装的技能，检测重复和命名冲突。发现可能导致模型混淆的相似技能。适用于发布新技能前或排查触发冲突。",
+  
+  "trigger_phrases": [
+    "检查重复技能",
+    "审查我的技能",
+    "扫描相似技能",
+    "技能冲突检测",
+    "检查技能命名",
+    "skills 有没有重复",
+    "技能会不会冲突",
+    "有没有相似的技能"
+  ],
+  
+  "report_title": "🔍 技能审查报告",
+  "scan_time": "扫描时间",
+  "scan_directory": "扫描目录",
+  "total_skills": "技能总数",
+  
+  "no_conflicts": "✅ 未发现重复技能",
+  "no_conflicts_detail": "所有技能的名称和描述都有明显差异，无需优化。",
+  
+  "conflicts_found": "⚠️ 发现 {count} 组相似技能",
+  
+  "high_similarity": "🔴 高相似度警告",
+  "medium_similarity": "🟡 中等相似度警告",
+  
+  "skill_a": "技能 A",
+  "skill_b": "技能 B",
+  "similarity_score": "相似度",
+  
+  "analysis": "问题分析",
+  "name_similarity": "名称相似度",
+  "description_similarity": "描述相似度",
+  
+  "recommendations": "建议",
+  "merge_suggestion": "考虑合并两个技能",
+  "differentiate_suggestion": "在 description 中明确区分定位",
+  "rename_suggestion": "修改名称使其更清晰",
+  
+  "safe_skills": "✅ 无问题的技能",
+  "unique": "独特",
+  
+  "usage_title": "使用方法",
+  "usage_example": "示例",
+  "options": "选项"
+}

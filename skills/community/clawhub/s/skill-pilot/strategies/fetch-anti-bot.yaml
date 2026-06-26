@@ -1,0 +1,49 @@
+# 调度策略模板：反爬网站抓取优化
+# 适用场景：微信/知乎/豆瓣等反爬网站
+
+name: fetch-anti-bot-optimized
+description: 针对反爬网站的抓取优化策略
+
+# 适用条件
+applicable_when:
+  category: fetch
+  is_anti_bot_url: true
+
+# 反爬域名列表
+anti_bot_domains:
+  - mp.weixin.qq.com
+  - zhihu.com
+  - douban.com
+  - weibo.com
+  - xiaohongshu.com
+  - jianshu.com
+
+# 路由配置
+routing:
+  # 首选技能
+  primary:
+    - skill: scrapling-fetch
+      timeout: 60
+  
+  # 降级技能
+  fallback:
+    - skill: web_fetch
+      timeout: 30
+    - skill: multi-search-engine
+      timeout: 30
+
+# 超时配置
+timeout: 60  # 反爬网站需要更长时间
+
+# 降级配置
+max_fallback: 3
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl_seconds: 1800  # 网页内容相对稳定，缓存 30 分钟
+
+# 优化建议
+# - 反爬网站优先使用专用抓取工具
+# - 设置较长超时时间
+# - 必要时使用缓存避免重复抓取

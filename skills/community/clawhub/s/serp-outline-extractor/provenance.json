@@ -1,0 +1,14 @@
+{
+  "skill_id": "skill_serp_outline_extractor",
+  "source_type": "original",
+  "sources": [
+    {
+      "type": "internal_authoring",
+      "ref": "idea://batch1/serp-outline-extractor",
+      "title": "Batch 1 skill concept"
+    }
+  ],
+  "license_status": "acceptable",
+  "provenance_confidence": "high",
+  "transformation_summary": "Originally authored as a search-informed content planning skill for SEO and article briefing workflows."
+}

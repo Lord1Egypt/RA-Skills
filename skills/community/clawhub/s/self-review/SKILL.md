@@ -1,35 +1,31 @@
----
-name: "Self Review"
-description: "Automatically evaluates and approves agent outputs based on clarity, conciseness, actionability, and structure using a rule-based system."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, quality, token-optimization]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/self-review"
-sourceUrl: "https://clawhub.ai/skills/self-review"
----
+# Self-Review Skill
 
-# Self Review
+Automatically review agent output quality before sending to user.
 
-> Automatically evaluates and approves agent outputs based on clarity, conciseness, actionability, and structure using a rule-based system.
+- Checks: clarity, conciseness, actionability, structure
+- Simple rule-based engine (no API cost)
+- Exit code 0 = approved, 1 = needs improvement
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/self-review`
-- **Source URL:** [https://clawhub.ai/skills/self-review](https://clawhub.ai/skills/self-review)
+## Usage
 
-## Overview
+Pipe output to reviewer:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/self-review
+echo "Your response text" | node skills/self-review/index.js
 ```
+
+Or integrate into agent pipeline (AGENTS.md step 6).
+
+## Configuration
+
+Edit `skills/self-review/index.js` to adjust thresholds.
+
+## Advanced
+
+For LLM-based review, see `self-review-llm` skill (separate package).
+
+---
+
+Author: dvinci达芬奇 (self-evolved)
+Version: 1.0.0
+Tags: quality, automation, token-optimization

@@ -1,0 +1,39 @@
+{
+  "name": "s-skill",
+  "version": "1.0.0",
+  "description": "Smart - 智能代码助手，深度理解代码，精准提供诊断、修复、重构和文档生成建议",
+  "author": "s-skill Team",
+  "keywords": [
+    "smart",
+    "code",
+    "ai",
+    "assistant",
+    "refactor",
+    "debug",
+    "documentation",
+    "code-review",
+    "code-explanation",
+    "bug-detection"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/s-skill/s-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s-skill/s-skill.git"
+  },
+  "categories": [
+    "Development",
+    "AI",
+    "Code Review",
+    "Productivity"
+  ],
+  "features": [
+    "智能代码解释",
+    "错误诊断与修复",
+    "重构建议",
+    "文档自动生成"
+  ],
+  "compatibility": {
+    "clawhub": ">=1.0.0"
+  }
+}

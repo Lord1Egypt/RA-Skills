@@ -1,35 +1,41 @@
 ---
-name: "Skill Ict"
+name: skill-ict
+version: 3.3.2
 description: "DEPRECATED - This skill has been renamed to 'ict'. Please install 'ict' instead: clawhub install ict"
-category: "security"
-source: "ClawHub"
-tags: [audit, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-ict"
-sourceUrl: "https://clawhub.ai/skills/skill-ict"
+metadata:
+  openclaw:
+    requires:
+      bins: []
+      env: []
+      config: []
+    user-invocable: false
 ---
 
-# Skill Ict
+# ⚠️ DEPRECATED / 已停用
 
-> DEPRECATED - This skill has been renamed to 'ict'. Please install 'ict' instead: clawhub install ict
+**This skill has been renamed to `ict`.**
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-ict`
-- **Source URL:** [https://clawhub.ai/skills/skill-ict](https://clawhub.ai/skills/skill-ict)
+## Please use the new skill instead:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/skill-ict
+clawhub install ict
 ```
+
+---
+
+## Version History
+
+| Version | Status |
+|---------|--------|
+| 3.3.1 | Old version |
+| **4.0.2** | **Current** → Use `ict` |
+
+---
+
+## Why?
+
+The skill has been renamed to `ict` (simpler name) and includes additional security checks (23 items).
+
+## Support
+
+For issues, please use the new `ict` skill.

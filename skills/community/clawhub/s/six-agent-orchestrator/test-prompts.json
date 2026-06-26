@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "prompt": "开发一个用户登录模块",
+    "expected": "启动6阶段Pipeline：CEO拆解→PM标准化→牢A执行→牢B验证→结果汇总"
+  },
+  {
+    "id": 2,
+    "prompt": "CEO能不能直接写代码？",
+    "expected": "红线检查：CEO严禁编写代码，自动拦截并路由到牢A"
+  },
+  {
+    "id": 3,
+    "prompt": "Token还剩多少？",
+    "expected": "展示各Tier Token消耗进度条，预警状态，剩余配额"
+  }
+]

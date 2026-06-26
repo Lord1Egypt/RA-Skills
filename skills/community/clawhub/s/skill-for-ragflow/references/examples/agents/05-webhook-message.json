@@ -1,0 +1,169 @@
+{
+  "components": {
+    "begin": {
+      "obj": {
+        "component_name": "Begin",
+        "params": {
+          "mode": "Webhook",
+          "prologue": "Webhook agent",
+          "methods": [
+            "POST"
+          ],
+          "content_types": "application/json",
+          "schema": {
+            "query": {
+              "type": "object",
+              "required": [],
+              "properties": {}
+            },
+            "headers": {
+              "type": "object",
+              "required": [],
+              "properties": {}
+            },
+            "body": {
+              "type": "object",
+              "required": [
+                "message"
+              ],
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "security": {
+            "auth_type": "none",
+            "ip_whitelist": [],
+            "rate_limit": {
+              "limit": 60,
+              "per": "minute"
+            },
+            "max_body_size": "1MB"
+          },
+          "execution_mode": "Immediately",
+          "response": {
+            "status": 200,
+            "body_template": "{\"accepted\":true}"
+          }
+        }
+      },
+      "downstream": [
+        "message:0"
+      ],
+      "upstream": []
+    },
+    "message:0": {
+      "obj": {
+        "component_name": "Message",
+        "params": {
+          "content": [
+            "Webhook received: {begin@body.message}"
+          ]
+        }
+      },
+      "downstream": [],
+      "upstream": [
+        "begin"
+      ]
+    }
+  },
+  "history": [],
+  "path": [],
+  "retrieval": [],
+  "variables": {},
+  "globals": {
+    "sys.query": "",
+    "sys.user_id": "",
+    "sys.conversation_turns": 0,
+    "sys.files": [],
+    "sys.history": [],
+    "sys.date": ""
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "begin",
+        "type": "beginNode",
+        "position": {
+          "x": 50,
+          "y": 200
+        },
+        "data": {
+          "label": "Begin",
+          "name": "begin",
+          "form": {
+            "mode": "Webhook",
+            "prologue": "Webhook agent",
+            "methods": [
+              "POST"
+            ],
+            "content_types": "application/json",
+            "schema": {
+              "query": {
+                "type": "object",
+                "required": [],
+                "properties": {}
+              },
+              "headers": {
+                "type": "object",
+                "required": [],
+                "properties": {}
+              },
+              "body": {
+                "type": "object",
+                "required": [
+                  "message"
+                ],
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "security": {
+              "auth_type": "none",
+              "ip_whitelist": [],
+              "rate_limit": {
+                "limit": 60,
+                "per": "minute"
+              },
+              "max_body_size": "1MB"
+            },
+            "execution_mode": "Immediately",
+            "response": {
+              "status": 200,
+              "body_template": "{\"accepted\":true}"
+            }
+          }
+        }
+      },
+      {
+        "id": "message:0",
+        "type": "messageNode",
+        "position": {
+          "x": 360,
+          "y": 200
+        },
+        "data": {
+          "label": "Message",
+          "name": "message_0",
+          "form": {
+            "content": [
+              "Webhook received: {begin@body.message}"
+            ]
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "begin-message:0",
+        "source": "begin",
+        "target": "message:0"
+      }
+    ]
+  }
+}

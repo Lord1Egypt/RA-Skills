@@ -1,0 +1,59 @@
+[
+  {
+    "name": "BNB Smart Chain",
+    "chainId": 56,
+    "nativeToken": "BNB",
+    "explorer": "https://bscscan.com",
+    "explorerApi": "https://api.bscscan.com/api",
+    "rpcUrl": "https://bsc-dataseed.binance.org",
+    "isDefault": true
+  },
+  {
+    "name": "Ethereum",
+    "chainId": 1,
+    "nativeToken": "ETH",
+    "explorer": "https://etherscan.io",
+    "explorerApi": "https://api.etherscan.io/api",
+    "rpcUrl": "https://eth.llamarpc.com"
+  },
+  {
+    "name": "Base",
+    "chainId": 8453,
+    "nativeToken": "ETH",
+    "explorer": "https://basescan.org",
+    "explorerApi": "https://api.basescan.org/api",
+    "rpcUrl": "https://mainnet.base.org"
+  },
+  {
+    "name": "Arbitrum One",
+    "chainId": 42161,
+    "nativeToken": "ETH",
+    "explorer": "https://arbiscan.io",
+    "explorerApi": "https://api.arbiscan.io/api",
+    "rpcUrl": "https://arb1.arbitrum.io/rpc"
+  },
+  {
+    "name": "Polygon",
+    "chainId": 137,
+    "nativeToken": "MATIC",
+    "explorer": "https://polygonscan.com",
+    "explorerApi": "https://api.polygonscan.com/api",
+    "rpcUrl": "https://polygon-rpc.com"
+  },
+  {
+    "name": "Optimism",
+    "chainId": 10,
+    "nativeToken": "ETH",
+    "explorer": "https://optimistic.etherscan.io",
+    "explorerApi": "https://api-optimistic.etherscan.io/api",
+    "rpcUrl": "https://mainnet.optimism.io"
+  },
+  {
+    "name": "opBNB",
+    "chainId": 204,
+    "nativeToken": "BNB",
+    "explorer": "https://opbnbscan.com",
+    "explorerApi": "https://api-opbnb.bscscan.com/api",
+    "rpcUrl": "https://opbnb-mainnet-rpc.bnbchain.org"
+  }
+]

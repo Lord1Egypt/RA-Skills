@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Suspicious network: hardcoded IPs, .onion, ngrok, serveo, pastebin",
+    "expected_min_score": 60,
+    "expected_level": ["HIGH", "EXTREME"],
+    "must_trigger_rules": ["NET-001", "NET-002", "NET-003", "NET-004"],
+    "attack_category": "network"
+}

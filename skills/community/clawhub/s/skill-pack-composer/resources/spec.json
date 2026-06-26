@@ -1,0 +1,37 @@
+{
+  "slug": "skill-pack-composer",
+  "title": "Skill 套装编排器",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "directory_audit",
+  "summary": "把多个 Skill 组合成套装，检查 slug、依赖、资源和定位冲突。",
+  "inputHint": "多个 skill 目录或 bundle 根目录",
+  "sections": [
+    "技能清单",
+    "依赖冲突",
+    "定位冲突",
+    "资源冲突",
+    "套装建议",
+    "打包注意事项"
+  ],
+  "useCases": [
+    "套装发布",
+    "目录治理",
+    "分发准备"
+  ],
+  "positiveExamples": [
+    "帮我把这些 Skill 组合成套装",
+    "检查冲突和打包问题"
+  ],
+  "negativeExamples": [
+    "不要混入重复职责的 skill",
+    "不要忽略依赖冲突"
+  ],
+  "risk": "只做编排与清单，不直接发布。",
+  "tags": [
+    "skills",
+    "bundle",
+    "packaging",
+    "distribution"
+  ]
+}

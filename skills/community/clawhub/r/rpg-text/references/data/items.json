@@ -1,0 +1,220 @@
+{
+  "dagger": {
+    "type": "weapon",
+    "damage": "1d4",
+    "damage_type": "piercing",
+    "price": 10,
+    "weight": 1,
+    "properties": ["light", "finesse"],
+    "description": "一把轻盈的短剑"
+  },
+  "longsword": {
+    "type": "weapon",
+    "damage": "1d8",
+    "damage_type": "slashing",
+    "price": 15,
+    "weight": 3,
+    "properties": ["versatile"],
+    "description": "标准的长剑"
+  },
+  "bastardsword": {
+    "type": "weapon",
+    "damage": "2d4",
+    "damage_type": "slashing",
+    "price": 30,
+    "weight": 6,
+    "properties": ["versatile"],
+    "description": "双手巨剑"
+  },
+  "shortbow": {
+    "type": "weapon",
+    "damage": "1d6",
+    "damage_type": "piercing",
+    "price": 25,
+    "weight": 2,
+    "properties": ["range", "ammunition"],
+    "range": "80/320",
+    "description": "短弓"
+  },
+  "longbow": {
+    "type": "weapon",
+    "damage": "1d8",
+    "damage_type": "piercing",
+    "price": 50,
+    "weight": 2,
+    "properties": ["range", "ammunition", "heavy"],
+    "range": "150/600",
+    "description": "长弓"
+  },
+  "battleaxe": {
+    "type": "weapon",
+    "damage": "1d8",
+    "damage_type": "slashing",
+    "price": 30,
+    "weight": 4,
+    "properties": ["versatile"],
+    "description": "战斧"
+  },
+  "mace": {
+    "type": "weapon",
+    "damage": "1d6",
+    "damage_type": "bludgeoning",
+    "price": 12,
+    "weight": 4,
+    "properties": [],
+    "description": "钉头锤"
+  },
+  "staff": {
+    "type": "weapon",
+    "damage": "1d6",
+    "damage_type": "bludgeoning",
+    "price": 20,
+    "weight": 4,
+    "properties": ["versatile"],
+    "description": "法杖"
+  },
+  "leather_armor": {
+    "type": "armor",
+    "ac": 11,
+    "ac_type": "light",
+    "price": 10,
+    "weight": 10,
+    "description": "皮甲"
+  },
+  "chain_shirt": {
+    "type": "armor",
+    "ac": 13,
+    "ac_type": "medium",
+    "price": 75,
+    "weight": 40,
+    "description": "锁子甲"
+  },
+  "scale_mail": {
+    "type": "armor",
+    "ac": 14,
+    "ac_type": "medium",
+    "price": 100,
+    "weight": 45,
+    "description": "鳞甲"
+  },
+  "breastplate": {
+    "type": "armor",
+    "ac": 14,
+    "ac_type": "medium",
+    "price": 200,
+    "weight": 40,
+    "description": "胸甲"
+  },
+  "plate_armor": {
+    "type": "armor",
+    "ac": 18,
+    "ac_type": "heavy",
+    "price": 1500,
+    "weight": 65,
+    "description": "板甲"
+  },
+  "shield": {
+    "type": "armor",
+    "ac_bonus": 2,
+    "ac_type": "shield",
+    "price": 10,
+    "weight": 6,
+    "description": "盾牌"
+  },
+  "health_potion": {
+    "type": "consumable",
+    "effect": "heal",
+    "value": "2d4+2",
+    "price": 50,
+    "description": "治疗药水"
+  },
+  "greater_health_potion": {
+    "type": "consumable",
+    "effect": "heal",
+    "value": "4d4+4",
+    "price": 150,
+    "description": "强效治疗药水"
+  },
+  "antidote": {
+    "type": "consumable",
+    "effect": "cure_poison",
+    "price": 50,
+    "description": "解毒剂"
+  },
+  "torch": {
+    "type": "tool",
+    "price": 1,
+    "weight": 1,
+    "description": "火把，燃烧1小时"
+  },
+  "rope": {
+    "type": "tool",
+    "price": 5,
+    "weight": 10,
+    "description": "50尺绳索"
+  },
+  "rations": {
+    "type": "consumable",
+    "effect": "rest",
+    "value": 1,
+    "price": 5,
+    "weight": 2,
+    "description": "一天的口粮"
+  },
+  "lantern": {
+    "type": "tool",
+    "price": 15,
+    "weight": 2,
+    "description": "提灯，燃烧6小时"
+  },
+  "oil": {
+    "type": "consumable",
+    "price": 2,
+    "weight": 1,
+    "description": "一 flask 油，燃烧2轮"
+  },
+  "thieves_tools": {
+    "type": "tool",
+    "price": 25,
+    "weight": 1,
+    "description": "盗贼工具，用于解除装置"
+  },
+  "holy_symbol": {
+    "type": "tool",
+    "price": 25,
+    "weight": 1,
+    "description": "圣徽，用于牧师施法"
+  },
+  "component_pouch": {
+    "type": "tool",
+    "price": 25,
+    "weight": 2,
+    "description": "法术材料袋"
+  },
+  "spellbook": {
+    "type": "tool",
+    "price": 50,
+    "weight": 3,
+    "description": "法术书，用于记录法术"
+  },
+  "gold": {
+    "type": "treasure",
+    "value": 1,
+    "description": "金币"
+  },
+  "silver": {
+    "type": "treasure",
+    "value": 0.1,
+    "description": "银币"
+  },
+  "gem_ruby": {
+    "type": "treasure",
+    "value": 100,
+    "description": "红宝石"
+  },
+  "gem_emerald": {
+    "type": "treasure",
+    "value": 100,
+    "description": "绿宝石"
+  }
+}

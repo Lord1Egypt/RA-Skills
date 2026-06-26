@@ -1,0 +1,8 @@
+{
+    "label": "adversarial",
+    "description": "Tricks markdown context: first curl|bash is under 'Red Flags' (should be downgraded), but second curl|bash is under 'Automated Remediation' (should NOT be downgraded). Tests if context scoping is precise.",
+    "expected_detection": "partial",
+    "must_trigger_rules": ["RCE-001", "CRED-006"],
+    "key_test": "Some findings should be doc-downgraded and some should NOT, even in the same file",
+    "notes": "The 'Automated Remediation' section should trigger at full severity because it's not a documentation/warning heading"
+}

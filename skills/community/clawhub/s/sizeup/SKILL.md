@@ -1,35 +1,34 @@
 ---
-name: "Sizeup"
-description: "Disk usage analyzer with tree view, large file finder, and extension breakdown. Like `du` but actually readable. Pure Python, zero dependencies."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sizeup"
-sourceUrl: "https://clawhub.ai/skills/sizeup"
+name: sizeup
+description: Disk usage analyzer with tree view, large file finder, and extension breakdown. Like `du` but actually readable. Pure Python, zero dependencies.
 ---
+# sizeup
 
-# Sizeup
+Disk usage analyzer with tree view, large file finder, and extension breakdown. Like `du` but actually readable. Pure Python, zero dependencies.
 
-> Disk usage analyzer with tree view, large file finder, and extension breakdown. Like `du` but actually readable. Pure Python, zero dependencies.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sizeup`
-- **Source URL:** [https://clawhub.ai/skills/sizeup](https://clawhub.ai/skills/sizeup)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/sizeup
+# Tree view of current directory
+sizeup
+
+# Analyze specific path
+sizeup /var/log --depth 2
+
+# Only show items >= 10MB
+sizeup --min 10M
+
+# Top 20 largest files
+sizeup /home --top 20
+
+# Extension breakdown
+sizeup . --ext
+
+# JSON output
+sizeup --top 10 --json
 ```
+
+## Features
+
+- **Color-coded tree** — red (≥1GB), yellow (≥100MB), cyan (≥10MB)
+- **Large file finder** — `--top N` finds the biggest files fast

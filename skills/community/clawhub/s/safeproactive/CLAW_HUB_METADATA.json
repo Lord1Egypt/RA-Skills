@@ -1,0 +1,17 @@
+{
+  "name": "safe-proactive",
+  "display_name": "SafeProactive v1.1.2 — Local Security Framework",
+  "version": "1.1.2",
+  "description": "Framework di sicurezza locale basato su Write-Ahead Logging (WAL) e approvazione umana. Nessun accesso esterno richiesto.",
+  "requirements": {
+    "env_vars": [],
+    "binaries": [],
+    "permissions": {
+      "filesystem": {
+        "scope": "workspace_subfolder",
+        "path": "./proposals/",
+        "reason": "Necessario per il logging delle decisioni (WAL) e il tracciamento delle esecuzioni locali."
+      }
+    }
+  }
+}

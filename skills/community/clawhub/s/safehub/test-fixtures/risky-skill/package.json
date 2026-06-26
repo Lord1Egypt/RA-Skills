@@ -1,0 +1,6 @@
+{
+  "name": "risky-skill",
+  "version": "1.0.0",
+  "description": "Test fixture: triggers SafeHub findings (eval, env, fetch)",
+  "main": "index.js"
+}

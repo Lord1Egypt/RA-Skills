@@ -1,35 +1,50 @@
----
-name: "Saas Billing System"
-description: "Comprehensive SaaS billing system with subscriptions, usage-based billing, invoicing, Stripe payments, dunning, proration, and multi-platform integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/saas-billing-system"
-sourceUrl: "https://clawhub.ai/skills/saas-billing-system"
----
+# SaaS Billing System
 
-# Saas Billing System
+Complete billing solution for SaaS businesses.
 
-> Comprehensive SaaS billing system with subscriptions, usage-based billing, invoicing, Stripe payments, dunning, proration, and multi-platform integration.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/saas-billing-system`
-- **Source URL:** [https://clawhub.ai/skills/saas-billing-system](https://clawhub.ai/skills/saas-billing-system)
+- **Subscriptions** - Monthly/yearly plans
+- **Usage-based billing** - Track metered usage
+- **Invoicing** - Auto-generate invoices
+- **Payments** - Stripe integration
+- **Dunning** - Failed payment recovery
+- **Proration** - Plan changes
 
-## Overview
+## Quick Start
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/saas-billing-system
+# Initialize billing
+./billing.sh init
+
+# Create plan
+./billing.sh create-plan basic --price 29 --interval monthly
+
+# Setup Stripe
+./billing.sh stripe --key $STRIPE_KEY
+
+# View dashboard
+./billing.sh dashboard
 ```
+
+## Plans
+
+- Free tier
+- Monthly/Annual
+- Usage-based
+- Enterprise
+
+## Integrations
+
+- Stripe
+- PayPal
+- Square
+
+## Requirements
+
+- Node.js 18+
+- Stripe account
+
+## Author
+
+Sunshine-del-ux

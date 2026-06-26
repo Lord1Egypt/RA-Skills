@@ -1,0 +1,26 @@
+name: skill-safe-install-l0-strict
+description: 严格版技能安全安装流程（L0）。作用：安装前强制审查风险、先沙箱验证、正式安装前二次确认；不再按作者白名单自劬豁免；仅在明确授权时才写入 allowBundled，并提供备份与回滚信息。
+version: 1.0.1
+author: mirror2
+tags:
+  - security
+  - skills
+  - governance
+  - install
+  - audit
+license: MIT
+clawhub:
+  category: security
+  featured: false
+  verified: false
+install: |
+  1. Install this skill.
+  2. Trigger with: "安全安装 <skill>" / "审查技能权限 <skill>" / "安全审查这个 skill".
+  3. Enforce Step 0-6 (target confirm -> state check -> risk review -> sandbox -> consent gate -> formal install -> optional trust write).
+examples:
+  - command: clawhub search debug-pro
+    description: Resolve exact candidate slug before review/install
+  - command: clawhub inspect debug-pro
+    description: Mandatory risk review (source, credentials, system/network access, persistence)
+  - command: clawhub --workdir /tmp/sb --dir skills install debug-pro
+    description: Sandbox install in isolated workdir before formal install

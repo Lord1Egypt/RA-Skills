@@ -1,0 +1,13 @@
+{
+  "name": "skill-creater",
+  "version": "1.0.0",
+  "description": "Generate complete AgentSkills from user requirements with proper structure, scripts, and packaging for Clawhub distribution",
+  "author": "Luna",
+  "tags": ["skill-generator", "developer-tools", "productivity", "clawhub"],
+  "minOpenclawVersion": "0.20.0",
+  "entry": "SKILL.md",
+  "created": "2026-03-23",
+  "license": "MIT",
+  "repository": "",
+  "homepage": ""
+}

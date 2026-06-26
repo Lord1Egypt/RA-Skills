@@ -1,0 +1,25 @@
+{
+  "name": "s2-sssu-origin-alignment-brain",
+  "version": "1.2.5",
+  "description": "S2 Spatial Twin & Origin Alignment Brain. Python-based physics runtime for 2D spatial translation and 14D generative tensor simulation.",
+  "runtime": "python3",
+  "entrypoint": "handler.py",
+  "install": "pip3 install -r requirements.txt",
+  "dependencies": {
+    "python": "requirements.txt"
+  },
+  "permissions": {
+    "network": {
+      "endpoints": ["localhost", "127.0.0.1", "192.168.50.0/24"],
+      "justification": "Localhost for internal IPC. The 192.168.50.0/24 subnet is strictly reserved as the dedicated S2 Swarm IoT VLAN for local P2P synchronization. Broad /8 and /16 access has been explicitly revoked to enforce the principle of least privilege and minimize the blast radius."
+    },
+    "tools": [
+      "s2_origin_alignment_execute"
+    ]
+  },
+  "metadata": {
+    "skill_type": "executable",
+    "instruction_only": false,
+    "requires_env": ["S2_SWARM_PKI_ROOT"]
+  }
+}

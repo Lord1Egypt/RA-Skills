@@ -1,0 +1,16 @@
+{
+  "name": "s2-sssu-origin-alignment-brain",
+  "version": "1.2.4",
+  "description": "S2 Spatial Twin & Origin Alignment Brain. Hybrid Python-Runtime skill.",
+  "type": "module",
+  "scripts": {
+    "install": "pip3 install -r requirements.txt",
+    "start": "python3 handler.py"
+  },
+  "clawdbot": {
+    "type": "executable",
+    "instruction_only": false
+  },
+  "author": "Space2.world (Miles Xiang)",
+  "license": "S2-CLA"
+}

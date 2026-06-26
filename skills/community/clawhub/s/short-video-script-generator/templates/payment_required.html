@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>需要支付</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background: #ffc107;
+            color: #856404;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background: #667eea;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header text-center">
+            💰 支付提醒
+        </div>
+        <div class="card-body text-center">
+            <h4 class="mb-4">使用本工具需要支付 0.001 USDT</h4>
+            <p class="text-muted mb-4">
+                付费后即可生成完整短视频脚本，包含Hook、镜头、文案、BGM、CTA全套内容
+            </p>
+            {% if test_mode %}
+            <a href="/?test_payment=success" class="btn btn-primary btn-lg">
+                🧪 测试模式：模拟支付
+            </a>
+            {% else %}
+            <a href="{{ payment_url }}" class="btn btn-primary btn-lg">
+                💳 立即支付
+            </a>
+            {% endif %}
+            <p class="mt-4 text-sm text-muted">
+                支付接口由 SkillPay.me 提供，安全可靠
+            </p>
+        </div>
+    </div>
+</body>
+</html>

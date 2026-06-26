@@ -1,0 +1,78 @@
+{
+  "name": "scrcpy-claw",
+  "display_name": "龙虾安卓助手 / Lobster Android Assistant",
+  "version": "1.0.0",
+  "description": {
+    "zh": "一个强大的 Android 设备自动化控制技能，支持触摸控制、键盘输入、系统操作、AI辅助自动化和脚本录制回放。",
+    "en": "A powerful Android device automation control skill with touch control, keyboard input, system operations, AI-assisted automation, and script recording & playback."
+  },
+  "author": "Lobster Team",
+  "license": "MIT",
+  "keywords": [
+    "android",
+    "adb",
+    "scrcpy",
+    "automation",
+    "control",
+    "lobster",
+    "安卓",
+    "自动化",
+    "控制"
+  ],
+  "categories": [
+    "automation",
+    "device-control",
+    "testing"
+  ],
+  "requirements": {
+    "python": ">=3.7",
+    "dependencies": [],
+    "external_tools": [
+      "adb"
+    ]
+  },
+  "platforms": [
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "icon": "assets/icon.svg",
+  "readme": "README.md",
+  "entry_point": "SKILL.md",
+  "scripts": [
+    "scripts/adb_controller.py",
+    "scripts/scrcpy_controller.py",
+    "scripts/ai_controller.py"
+  ],
+  "references": [
+    "references/scrcpy-commands.md"
+  ],
+  "triggers": [
+    "control android",
+    "android automation",
+    "控制安卓",
+    "安卓自动化",
+    "控制手机",
+    "phone control",
+    "adb command",
+    "scrcpy"
+  ],
+  "examples": [
+    {
+      "prompt": "打开微信给张三发消息",
+      "description": "打开微信应用并发送消息给指定联系人"
+    },
+    {
+      "prompt": "截图并分析当前界面",
+      "description": "截取屏幕并分析UI元素"
+    },
+    {
+      "prompt": "录制操作脚本",
+      "description": "开始录制用户操作"
+    },
+    {
+      "prompt": "open settings and enable dark mode",
+      "description": "打开设置并启用深色模式"
+    }
+  ]
+}

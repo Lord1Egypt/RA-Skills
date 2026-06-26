@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "shunshi-bazi-core": "^0.1.0"
+  }
+}

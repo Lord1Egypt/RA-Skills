@@ -1,0 +1,15 @@
+{
+  "name": "signal-track",
+  "version": "0.1.0",
+  "private": true,
+  "description": "signal-track CLI",
+  "bin": {
+    "signal-track": "./bin/signal-track.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "signal-track": "node ./bin/signal-track.js"
+  }
+}

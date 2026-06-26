@@ -1,35 +1,60 @@
 ---
-name: "Session Brief"
-description: "Produce a compact, complete context dump of the current session directly in chat. Use when the user wants the current conversation summarized for reference,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/session-brief"
-sourceUrl: "https://clawhub.ai/skills/session-brief"
+name: session-brief
+description: Produce a compact, complete context dump of the current session directly in chat. Use when the user wants the current conversation summarized for reference, asks for a context dump, says the chat is bloated or slow, or wants a concise session state without creating files or migrating to a new chat.
 ---
 
 # Session Brief
 
-> Produce a compact, complete context dump of the current session directly in chat. Use when the user wants the current conversation summarized for reference,...
+Dump the current session context directly in chat. Do not create a file unless the user explicitly asks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/session-brief`
-- **Source URL:** [https://clawhub.ai/skills/session-brief](https://clawhub.ai/skills/session-brief)
+The brief should be compact but complete enough for the user to understand the current state without rereading the whole thread.
 
-## Overview
+## Output Contract
 
+Return one copyable Markdown block with:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/session-brief
+- current goal or topic
+- key decisions and constraints
+- what has already been done
+- current state
+- important files, repos, URLs, branches, commands, or artifacts
+- open questions, blockers, or next likely steps
+- anything the user explicitly wanted preserved
+
+Keep it factual. Separate confirmed state from assumptions.
+
+## Compression Rules
+
+- Preserve decisions, constraints, state, names, paths, URLs, commands, and unresolved work.
+- Drop greetings, transient status updates, repeated explanations, and dead ends unless they explain the current state.
+- Reference existing artifacts by path, URL, commit, PR, or issue instead of restating their full contents.
+- Include exact file paths and commit hashes when they matter.
+- Do not include secrets, tokens, private credentials, or unnecessary personal data.
+
+## Shape
+
+Use this structure unless the user asks for another format:
+
+```markdown
+Session brief:
+
+Current goal:
+...
+
+Decisions and constraints:
+...
+
+Done:
+...
+
+Current state:
+...
+
+Important references:
+...
+
+Next:
+...
 ```
+
+For tiny sessions, compress to a short paragraph.

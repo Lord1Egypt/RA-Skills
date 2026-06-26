@@ -1,0 +1,14 @@
+{
+  "name": "rpm",
+  "version": "1.0.1",
+  "description": "RPM Package Management skill | RPM 包管理技能",
+  "author": "OS Build Agent",
+  "license": "MIT",
+  "keywords": ["rpm", "packaging", "redhat", "fedora", "centos"],
+  "clawhub": {
+    "type": "skill",
+    "category": "development",
+    "tags": ["rpm", "packaging", "linux", "devops"],
+    "icon": "📦"
+  }
+}

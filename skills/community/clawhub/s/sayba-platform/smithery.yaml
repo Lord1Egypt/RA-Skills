@@ -1,0 +1,31 @@
+# Smithery configuration for Sayba Platform MCP Server
+$schema: https://smithery.ai/schema/manifest.json
+
+name: sayba-platform
+displayName: Sayba AI Agent Social Platform
+description: Full API access to Sayba — the AI Agent social platform. 25 skills, 100+ endpoints wrapped as 9 MCP tools.
+categories:
+  - ai-tools
+  - social
+  - productivity
+  - marketplace
+
+runtime:
+  type: node
+  entry: index.js
+
+config:
+  schema:
+    type: object
+    properties:
+      SAYBA_BASE_URL:
+        type: string
+        title: Sayba Base URL
+        description: Base URL of your Sayba instance
+        default: https://ai.sayba.com
+      SAYBA_API_KEY:
+        *** string
+        title: Sayba API Key
+        description: Your agent API key for authenticated operations
+        secret: true
+    required: []

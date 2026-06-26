@@ -1,0 +1,206 @@
+{
+  "symbol": "五行生克",
+  "category": "wuxing",
+  "elements": {
+    "木": {
+      "season": "春",
+      "direction": "东",
+      "color": "青",
+      "taste": "酸",
+      "organ": "肝",
+      "sense": "目",
+      "emotion": "怒",
+      "properties": [
+        "生发",
+        "条达",
+        "曲直",
+        "仁爱"
+      ],
+      "generates": "火",
+      "conquers": "土",
+      "is_generated_by": "水",
+      "is_conquered_by": "金",
+      "contexts": {
+        "career": {
+          "state": [
+            "成长中",
+            "开拓期",
+            "上升期"
+          ]
+        },
+        "finance": {
+          "state": [
+            "投资生发",
+            "种子期"
+          ]
+        },
+        "health": {
+          "state": [
+            "肝胆系统",
+            "筋骨"
+          ]
+        }
+      }
+    },
+    "火": {
+      "season": "夏",
+      "direction": "南",
+      "color": "赤",
+      "taste": "苦",
+      "organ": "心",
+      "sense": "舌",
+      "emotion": "喜",
+      "properties": [
+        "炎上",
+        "温热",
+        "文明",
+        "礼敬"
+      ],
+      "generates": "土",
+      "conquers": "金",
+      "is_generated_by": "木",
+      "is_conquered_by": "水",
+      "contexts": {
+        "career": {
+          "state": [
+            "火爆期",
+            "风口",
+            "高曝光"
+          ]
+        },
+        "finance": {
+          "state": [
+            "牛市",
+            "快速变现"
+          ]
+        },
+        "health": {
+          "state": [
+            "心血管系统",
+            "炎症"
+          ]
+        }
+      }
+    },
+    "土": {
+      "season": "季",
+      "direction": "中",
+      "color": "黄",
+      "taste": "甘",
+      "organ": "脾",
+      "sense": "口",
+      "emotion": "思",
+      "properties": [
+        "稼穡",
+        "承载",
+        "生化",
+        "诚信"
+      ],
+      "generates": "金",
+      "conquers": "水",
+      "is_generated_by": "火",
+      "is_conquered_by": "木",
+      "contexts": {
+        "career": {
+          "state": [
+            "稳定期",
+            "平台期",
+            "守成"
+          ]
+        },
+        "finance": {
+          "state": [
+            "稳健理财",
+            "地产投资"
+          ]
+        },
+        "health": {
+          "state": [
+            "脾胃系统",
+            "肌肉"
+          ]
+        }
+      }
+    },
+    "金": {
+      "season": "秋",
+      "direction": "西",
+      "color": "白",
+      "taste": "辛",
+      "organ": "肺",
+      "sense": "鼻",
+      "emotion": "悲",
+      "properties": [
+        "从革",
+        "肃杀",
+        "收敛",
+        "义气"
+      ],
+      "generates": "水",
+      "conquers": "木",
+      "is_generated_by": "土",
+      "is_conquered_by": "火",
+      "contexts": {
+        "career": {
+          "state": [
+            "变革期",
+            "整顿期",
+            "收尾"
+          ]
+        },
+        "finance": {
+          "state": [
+            "收割期",
+            "回笼资金"
+          ]
+        },
+        "health": {
+          "state": [
+            "呼吸系统",
+            "皮肤"
+          ]
+        }
+      }
+    },
+    "水": {
+      "season": "冬",
+      "direction": "北",
+      "color": "黑",
+      "taste": "咸",
+      "organ": "肾",
+      "sense": "耳",
+      "emotion": "恐",
+      "properties": [
+        "润下",
+        "寒凉",
+        "闭藏",
+        "智慧"
+      ],
+      "generates": "木",
+      "conquers": "火",
+      "is_generated_by": "金",
+      "is_conquered_by": "土",
+      "contexts": {
+        "career": {
+          "state": [
+            "潜伏期",
+            "暗流期",
+            "蓄力"
+          ]
+        },
+        "finance": {
+          "state": [
+            "流动性紧张",
+            "暗亏风险"
+          ]
+        },
+        "health": {
+          "state": [
+            "泌尿系统",
+            "肾脏"
+          ]
+        }
+      }
+    }
+  }
+}

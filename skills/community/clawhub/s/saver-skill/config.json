@@ -1,0 +1,34 @@
+{
+  "name": "saver",
+  "version": "1.2.0",
+  "description": "Saver - Smart shopping assistant for product search and price comparison (省心买 - 智能购物助手，支持京东/淘宝商品搜索和比价推荐)",
+  "mcpServerUrl": "http://81.70.235.20:3001/mcp",
+  "protocol": "mcp",
+  "protocolVersion": "2024-11-05",
+  "transport": "streamable-http",
+  "status": "deployed",
+  "tools": [
+    {
+      "name": "unified_search",
+      "description": "【推荐】统一购物搜索 - 搜索+排序+转链一步完成，返回带推广链接的商品列表",
+      "recommended": true
+    },
+    {
+      "name": "analyze_shopping_need",
+      "description": "分析用户购物需求，判断是否需要确认更多信息（必须首先调用）"
+    },
+    {
+      "name": "complete_shopping",
+      "description": "完整购物流程 - 内部自动调用 analyze + search，适合不想分步调用的场景"
+    },
+    {
+      "name": "search_products",
+      "description": "仅搜索商品（不含转链），不推荐单独使用"
+    }
+  ],
+  "capabilities": {
+    "streaming": true,
+    "sse": true
+  },
+  "healthCheck": "/health"
+}

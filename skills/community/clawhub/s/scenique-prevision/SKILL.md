@@ -1,35 +1,22 @@
----
-name: "scenique-prevision"
-description: "Simulates multi-agent swarms using Menos architecture to forecast decision outcomes and provide probabilistic scenario reports."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scenique-prevision"
-sourceUrl: "https://clawhub.ai/skills/scenique-prevision"
----
-
 # scenique-prevision
-
-> Simulates multi-agent swarms using Menos architecture to forecast decision outcomes and provide probabilistic scenario reports.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scenique-prevision`
-- **Source URL:** [https://clawhub.ai/skills/scenique-prevision](https://clawhub.ai/skills/scenique-prevision)
+Decision forecasting engine based on Menos architecture and swarm intelligence.
 
 ## Overview
+This skill implements the "Prevision" layer of the Menos architecture, allowing Scenique to simulate multi-agent swarms in a digital sandbox before committing to real-world decisions.
 
+## Features
+- **Menos Integration**: Automatically pulls context from L1 (Physical Ledger) and L2 (Long-term Memory).
+- **Dynamic Swarm**: Spawns Skeptic, Optimist, and Strategist agents to debate the query.
+- **Path Collapse**: Provides a probabilistic report of potential outcomes.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/scenique-prevision
+## Usage
+Activate the `prevision_simulate` tool with a specific query:
+```json
+{
+  "query": "Should I sell FET at 0.16 or hold until 0.20?",
+  "mode": "standard"
+}
 ```
+
+## Configuration
+Requires an OpenClaw gateway with subagent capabilities enabled.

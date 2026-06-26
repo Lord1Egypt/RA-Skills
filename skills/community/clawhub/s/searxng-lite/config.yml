@@ -1,0 +1,25 @@
+# SearXNG-lite configuration
+# Edit categories to enable/disable engine groups. Changes take effect immediately (hot-reload).
+
+# Proxy URL for engines that need it (Google, YouTube, Reddit, etc.)
+# Supports http, https, socks5, socks5h protocols.
+# Examples:
+#   proxy: http://127.0.0.1:7890
+#   proxy: socks5h://127.0.0.1:1080
+# Leave empty or comment out to disable proxy (proxy-required engines will be skipped).
+# Can also be set via HTTPS_PROXY environment variable.
+proxy: ""
+
+# Category toggles (true = enabled, false = disabled)
+categories:
+  general: true       # bing, brave, duckduckgo, google🌐, startpage, yahoo
+  knowledge: true     # wikipedia, wikidata, wolframalpha🌐
+  dev: true           # github, gitlab, stackoverflow, hackernews, reddit🌐, huggingface🌐, mdn
+  academic: true      # arxiv, semantic_scholar, google_scholar🌐, crossref
+  news: false         # bing_news, reuters
+  video: false        # youtube🌐
+  images: false       # unsplash
+  social: false       # lemmy🌐
+  translate: false    # lingva🌐
+
+# 🌐 = requires proxy. Without a proxy configured, these engines will fail silently.

@@ -1,0 +1,147 @@
+{
+  "name": "Shopify — Daily Sales Report",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "n1",
+      "name": "Daily Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst yesterday = new Date(now - 24 * 60 * 60 * 1000);\nreturn [{ json: { since: yesterday.toISOString(), until: now.toISOString() } }];"
+      },
+      "id": "n2",
+      "name": "Build Date Range",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.SHOPIFY_STORE_URL }}/admin/api/2024-01/orders.json?status=any&created_at_min={{ $json.since }}&created_at_max={{ $json.until }}&limit=250",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $env.SHOPIFY_ACCESS_TOKEN }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "n3",
+      "name": "Fetch Orders",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const orders = $input.first().json.orders || [];\nconst dateRange = $('Build Date Range').first().json;\nconst reportDate = new Date().toISOString().split('T')[0];\n\nconst totalOrders = orders.length;\nconst totalRevenue = orders.reduce((sum, o) => sum + parseFloat(o.total_price || 0), 0);\nconst avgOrderValue = totalOrders > 0 ? Math.round(totalRevenue / totalOrders * 100) / 100 : 0;\n\nconst paid = orders.filter(o => o.financial_status === 'paid').length;\nconst pending = orders.filter(o => o.financial_status === 'pending').length;\nconst refunded = orders.filter(o => o.financial_status === 'refunded').length;\n\nconst fulfilled = orders.filter(o => o.fulfillment_status === 'fulfilled').length;\nconst unfulfilled = orders.filter(o => !o.fulfillment_status || o.fulfillment_status === 'unfulfilled').length;\n\n// Top products\nconst productCounts = {};\nfor (const order of orders) {\n  for (const item of (order.line_items || [])) {\n    productCounts[item.title] = (productCounts[item.title] || 0) + item.quantity;\n  }\n}\nconst topProducts = Object.entries(productCounts)\n  .sort((a, b) => b[1] - a[1])\n  .slice(0, 5)\n  .map(([name, qty]) => `${name}: ${qty} sold`)\n  .join('<br>');\n\nconst currency = orders[0]?.currency || 'USD';\n\nreturn [{\n  json: {\n    report_date: reportDate,\n    total_orders: totalOrders,\n    total_revenue: Math.round(totalRevenue * 100) / 100,\n    avg_order_value: avgOrderValue,\n    currency,\n    paid,\n    pending,\n    refunded,\n    fulfilled,\n    unfulfilled,\n    top_products: topProducts || 'No orders'\n  }\n}];"
+      },
+      "id": "n4",
+      "name": "Calculate Metrics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $env.SHOPIFY_ADMIN_EMAIL || 'YOUR_NOTIFICATION_EMAIL' }}",
+        "subject": "=Shopify Daily Report — {{ $json.report_date }} | {{ $json.currency }} {{ $json.total_revenue }}",
+        "message": "=<h2>Daily Sales Report</h2><p><strong>Date:</strong> {{ $json.report_date }}</p><h3>Revenue</h3><table border='1' cellpadding='8' cellspacing='0'><tr><td><strong>Total Revenue</strong></td><td>{{ $json.currency }} {{ $json.total_revenue }}</td></tr><tr><td><strong>Total Orders</strong></td><td>{{ $json.total_orders }}</td></tr><tr><td><strong>Avg Order Value</strong></td><td>{{ $json.currency }} {{ $json.avg_order_value }}</td></tr></table><h3>Payment Status</h3><table border='1' cellpadding='8' cellspacing='0'><tr><td><strong>Paid</strong></td><td>{{ $json.paid }}</td></tr><tr><td><strong>Pending</strong></td><td>{{ $json.pending }}</td></tr><tr><td><strong>Refunded</strong></td><td>{{ $json.refunded }}</td></tr></table><h3>Fulfillment</h3><table border='1' cellpadding='8' cellspacing='0'><tr><td><strong>Fulfilled</strong></td><td>{{ $json.fulfilled }}</td></tr><tr><td><strong>Unfulfilled</strong></td><td>{{ $json.unfulfilled }}</td></tr></table><h3>Top Products</h3><p>{{ $json.top_products }}</p>",
+        "options": {}
+      },
+      "id": "n5",
+      "name": "Send Report",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1100,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily Schedule": {
+      "main": [
+        [
+          {
+            "node": "Build Date Range",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Date Range": {
+      "main": [
+        [
+          {
+            "node": "Fetch Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Orders": {
+      "main": [
+        [
+          {
+            "node": "Calculate Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Metrics": {
+      "main": [
+        [
+          {
+            "node": "Send Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

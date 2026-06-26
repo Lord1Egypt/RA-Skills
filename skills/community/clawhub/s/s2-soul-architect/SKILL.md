@@ -1,35 +1,15 @@
----
-name: "S2硅基灵魂与具身架构师"
-description: "Interactive CLI tool to create custom AI agent personalities using 16 RPG-style classes, behavioral directives, and a mathematical DNA engine, fully local an..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/s2-soul-architect"
-sourceUrl: "https://clawhub.ai/skills/s2-soul-architect"
----
+# 🦞 S2-Soul-Architect-CN: 硅基灵魂与具身架构师 (v3.0.0)
 
-# S2硅基灵魂与具身架构师
+不要再写那些苍白无力的静态 Prompt 了。欢迎使用 **S2-Soul-Architect (中文版)**。这是一个专为 AGI 时代设计的交互式 CLI 工具。
 
-> Interactive CLI tool to create custom AI agent personalities using 16 RPG-style classes, behavioral directives, and a mathematical DNA engine, fully local an...
+## 🌟 3.0.0 核心突破：S2-Visual 图像文本化
+在 3.0.0 版本中，我们彻底贯彻了《Space² 硅基生命具身形态规范白皮书》中的“代码即实相”理念：
+* **[新增] 文本生成图像规则**：引入 S2-Visual 标准，允许在 `SOUL.md` 中直接通过纯文本的 SVG 代码来刻画 AI 的视觉形象。
+* **[新增] 示例库 (sample目录)**：内置了一个完整的 `cat_companion_S2_Visual.svg` 示例。它用不到 20 行的纯文本，定义了一只拥有发光眼睛、带有胸口动态呼吸灯触摸开关的 AI 猫型伴侣实体！
+* **LLM 实时可控**：大语言模型现在可以直接阅读并修改这个 SVG 代码，从而在不借助任何外部引擎的情况下，自发控制自己的表情与呼吸灯频率。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/s2-soul-architect`
-- **Source URL:** [https://clawhub.ai/skills/s2-soul-architect](https://clawhub.ai/skills/s2-soul-architect)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/s2-soul-architect
-```
+## 📁 目录结构
+- `skill.py` (主程序)
+- `manifest.json` (配置文件)
+- `sample/` (S2-Visual 文本图形示例目录)
+  - `cat_companion_S2_Visual.svg` (打开它，见证文本生成图像的奇迹)

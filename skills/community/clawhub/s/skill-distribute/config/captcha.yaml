@@ -1,0 +1,90 @@
+# 验证码处理配置
+
+captcha:
+  # 自动处理超时时间（秒）
+  timeout: 30
+  
+  # 失败重试次数
+  max_retries: 3
+  
+  # 重试间隔（秒）
+  retry_delay: 2
+  
+  # 验证码类型处理策略
+  handlers:
+    # 滑块验证码
+    slider:
+      enabled: true
+      # 处理方式: auto | manual
+      mode: auto
+      # 识别服务: local | 2captcha | anti-captcha
+      service: local
+      # 滑动速度: slow | normal | fast
+      slide_speed: normal
+      
+    # 点选验证码
+    click:
+      enabled: true
+      mode: auto
+      service: local
+      
+    # 文字验证码
+    text:
+      enabled: true
+      mode: auto
+      # OCR 引擎: tesseract | paddle | easyocr
+      ocr_engine: tesseract
+      
+    # 短信验证码
+    sms:
+      enabled: true
+      # 短信验证码只能手动输入
+      mode: manual
+      # 等待用户输入超时时间
+      input_timeout: 60
+      
+    # 图形验证码
+    image:
+      enabled: true
+      mode: auto
+      service: local
+
+  # 第三方验证码服务配置（可选）
+  third_party:
+    # 2captcha 配置
+    2captcha:
+      enabled: false
+      api_key: ""
+      # 超时时间（秒）
+      timeout: 120
+      # 轮询间隔（秒）
+      poll_interval: 5
+      
+    # Anti-Captcha 配置
+    anti_captcha:
+      enabled: false
+      api_key: ""
+      timeout: 120
+      poll_interval: 5
+
+  # 本地验证码识别模型
+  local_model:
+    # 滑块验证码模型
+    slider:
+      enabled: true
+      model_path: "models/slider_model.onnx"
+      confidence: 0.8
+      
+    # 文字验证码模型
+    text:
+      enabled: true
+      model_path: "models/text_captcha_model"
+      confidence: 0.85
+
+# 验证码截图保存（用于调试）
+debug:
+  enabled: false
+  # 截图保存路径
+  screenshot_path: "logs/captchas/"
+  # 是否保存成功通过的验证码
+  save_success: false

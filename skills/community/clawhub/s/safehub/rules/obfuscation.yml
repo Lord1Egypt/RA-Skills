@@ -1,0 +1,34 @@
+# SafeHub Semgrep rules: obfuscation and hidden code
+# Detects base64 decode and similar patterns often used to hide malicious payloads.
+# Severity: CRITICAL when used with eval/exec; MEDIUM as standalone.
+
+rules:
+  - id: safehub-obfuscation-base64-decode
+    message: "Base64 decode detected. Often used to hide malicious payloads."
+    severity: MEDIUM
+    languages:
+      - js
+      - ts
+    pattern-either:
+      - pattern: Buffer.from(..., "base64")
+      - pattern: atob(...)
+      - pattern: $B.toString("base64")
+
+  - id: safehub-obfuscation-buffer-base64
+    message: "Buffer base64 encoding/decoding. Can hide executable content."
+    severity: MEDIUM
+    languages:
+      - js
+      - ts
+    pattern: Buffer.from(..., "base64")
+
+  - id: safehub-obfuscation-eval-base64
+    message: "eval or Function with decoded string. Common malware pattern."
+    severity: CRITICAL
+    languages:
+      - js
+      - ts
+    pattern-either:
+      - pattern: eval(atob(...))
+      - pattern: eval(Buffer.from(..., "base64").toString())
+      - pattern: new Function(atob(...))()

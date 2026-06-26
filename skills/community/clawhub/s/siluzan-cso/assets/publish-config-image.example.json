@@ -1,0 +1,45 @@
+{
+  "contentType": 2,
+  "taskName": "图文批量发布",
+  "failureNotification": false,
+  "isDomesticTrade": false,
+
+  "posts": [
+    {
+      "title": "图文文案标题",
+      "description": "Facebook/Instagram 等平台描述",
+      "topics": ["话题X"],
+
+      "images": [
+        {
+          "imageUrl": "https://cdn.example.com/img1.jpg",
+          "imageName": "img1.jpg",
+          "imageSourceType": 1,
+          "sourceImageId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "width": 1080,
+          "height": 1080
+        }
+      ],
+
+      "accounts": [
+        {
+          "entityId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "mediaAccountType": "Instagram",
+          "mediaCustomerId": "平台账号ID（非UUID）",
+          "mediaCustomerName": "我的 Instagram",
+          "externalMediaAccountTokenId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        }
+      ],
+
+      "publishMode": "scheduled",
+      "publishAt": "2026-03-20T10:00:00+08:00",
+
+      "platformOverrides": {
+        "Facebook": {
+          "publishMode": "scheduled",
+          "publishAt": "2026-03-20T15:00:00+08:00"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "operation": "profile",
+  "parameters": {
+    "type": "extrude",
+    "points": [
+      [0, 0],
+      [50, 0],
+      [25, 50]
+    ],
+    "direction": [0, 0, 10],
+    "name": "ExtrudedTriangle"
+  }
+}

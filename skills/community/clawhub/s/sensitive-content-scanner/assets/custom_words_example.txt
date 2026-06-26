@@ -1,0 +1,31 @@
+# 自定义敏感词库示例
+# 格式: 每行一个词，支持中英文
+# 以#开头的行会被忽略
+# 空行会被忽略
+
+# 公司内部信息
+内部代号
+项目代号
+机密文件
+confidential
+internal use only
+
+# 产品相关
+未公开产品
+测试版本
+beta version
+
+# 客户信息
+客户名单
+用户数据
+customer list
+
+# 技术敏感信息
+API密钥
+access token
+secret key
+private key
+
+# 其他自定义词汇
+示例敏感词1
+示例敏感词2

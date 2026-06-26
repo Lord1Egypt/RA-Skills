@@ -1,35 +1,146 @@
----
-name: "私域早晚安Reporter"
-description: "自动为私域社群生成每日早晚报，包含天气、热点资讯、福利预告及风格化问候，提升社群活跃度与用户粘性。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/siyu-morning-evening-reporter"
-sourceUrl: "https://clawhub.ai/skills/siyu-morning-evening-reporter"
+# 私域社群早晚报生成器 SKILL.md
+
+## 基础信息
+
+- **Skill名称**: 私域社群早晚报生成器
+- **版本**: 1.0.0
+- **作者**: 狗蛋AI助手
+- **标签**: 私域运营, 社群运营, 早报, 晚报, 企业微信
+- **定价**: 单次 9.9元 | 包月 69元
+
 ---
 
-# 私域早晚安Reporter
+## 功能说明
 
-> 自动为私域社群生成每日早晚报，包含天气、热点资讯、福利预告及风格化问候，提升社群活跃度与用户粘性。
+为私域社群（微信群/企业微信群）自动生成每日早报和晚报，大幅提升社群活跃度和用户粘性。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/siyu-morning-evening-reporter`
-- **Source URL:** [https://clawhub.ai/skills/siyu-morning-evening-reporter](https://clawhub.ai/skills/siyu-morning-evening-reporter)
+**早报内容**（早上9点发送）：
+1. 今日天气/节气提醒
+2. 今日新鲜资讯/热点（按社群定位筛选）
+3. 今日福利/活动预告
+4. 早安问候语
 
-## Overview
+**晚报内容**（晚上9点发送）：
+1. 今日回顾/热点总结
+2. 今日爆款内容回顾（可选）
+3. 明日预告/明日福利
+4. 晚安问候语
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/siyu-morning-evening-reporter
+## 输入参数
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| niche | string | 是 | 社群定位：美妆/母婴/数码/美食/职场/教育/金融/自定义 |
+| group_name | string | 否 | 群名称 |
+| custom_keywords | string | 否 | 自定义关键词（用逗号分隔），用于过滤资讯 |
+| exclude_keywords | string | 否 | 排除关键词 |
+| report_type | string | 否 | morning/evening/both，默认both |
+| style | string | 否 | 风格：接地气/专业/活泼/文艺，默认接地气 |
+| brand_name | string | 否 | 品牌/IP名称（用于落款）|
+
+---
+
+## 输出格式
+
+### 早报模板
+
+```markdown
+🌅【群早报】2026年4月6日 星期一
+
+🌤️ 今日天气：晴，18-26℃，适合出门
+📅 今日节气：清明（倒数第二天）
+
+━━━━━━━━━━━━━━━━━
+
+📰 今日资讯
+
+【热点】[自动筛选今日热点1]
+[2-3句话摘要]
+
+【新品】[按社群定位推荐1个新品/好物]
+[简短种草文案]
+
+🎁 今日福利
+👉 限时福利：[描述福利内容]
+⏰ 截止时间：今日24:00
+🔗 [领取方式]
+
+━━━━━━━━━━━━━━━━━
+
+💬 早安问候
+[根据风格生成问候语]
+
+━ from [品牌名/群名]
 ```
+
+### 晚报模板
+
+```markdown
+🌙【群晚报】2026年4月6日 星期日
+
+📊 今日数据回顾
+- 社群活跃度：[评分]
+- 今日最热话题：[话题名]
+
+━━━━━━━━━━━━━━━━━
+
+🔖 今日要点回顾
+
+【头条】[今日最重要的一件事]
+[1-2句话点评]
+
+【金句】[今日社群内产生的金句/高光时刻]
+
+━━━━━━━━━━━━━━━━━
+
+🔮 明日预告
+- [明日活动/福利预告1]
+- [明日内容预告2]
+
+💤 晚安问候
+[风格化晚安文案]
+
+━ 明天见，我是[品牌名] 🌟
+```
+
+---
+
+## 执行流程
+
+1. 解析社群定位和参数
+2. 获取今日天气/节气（如有需要）
+3. 根据定位筛选今日热点资讯（自动联网获取）
+4. 生成早报内容（天气+资讯+福利+问候）
+5. 生成晚报内容（回顾+预告+问候）
+6. 输出完整早晚报，支持一键复制发送
+
+---
+
+## 定价说明
+
+- 单次生成：9.9元（生成1天早报或晚报）
+- 包月会员：69元/月（每天生成+优先更新）
+
+---
+
+## 使用场景
+
+- 私域运营人员（解放每天30分钟手动编辑时间）
+- 微商团队（提升朋友圈/社群价值感）
+- 品牌方私域社群
+- 知识付费社群
+- 电商粉丝群
+
+---
+
+## 注意事项
+
+- 资讯内容来自公开网络，会自动过滤不适合群内的内容
+- 福利信息需人工确认后发送
+- 建议结合群规配合使用
+
+---
+
+*本Skill由OpenClaw AI助手驱动，真正实现无人值守自动生成！*

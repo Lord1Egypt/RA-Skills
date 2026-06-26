@@ -1,0 +1,33 @@
+{
+  "$schema": "https://clawhub.io/schemas/plugin-manifest.json",
+  "id": "shieldclaw",
+  "name": "ShieldClaw",
+  "version": "1.0.4",
+  "description": "OpenClaw 安全技能套件，提供安全扫描、实时防护、审计日志和敏感数据保护功能",
+  "author": {
+    "name": "ShieldClaw Team"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "scan",
+    "guard",
+    "audit",
+    "vault",
+    "encryption"
+  ],
+  "categories": [
+    "security"
+  ],
+  "icon": "./assets/icon.png",
+  "main": "./apps/openclaw-integration/dist/index.js",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "permissions": [
+    "storage",
+    "network",
+    "filesystem"
+  ],
+  "minAppVersion": "1.0.0"
+}

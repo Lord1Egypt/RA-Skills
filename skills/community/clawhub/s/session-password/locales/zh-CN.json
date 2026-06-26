@@ -1,0 +1,76 @@
+{
+  "name": "会话口令守护",
+  "version": "1.0.0",
+  "author": "squallsol",
+  "description": "OpenClaw 会话的安全口令认证系统",
+  
+  "setup": {
+    "title": "会话口令守护 - 设置向导",
+    "welcome": "此向导将帮助您配置口令认证。",
+    "step1": "步骤 1：创建管理员用户",
+    "step2": "步骤 2：安全邮箱（恢复必需）",
+    "step3": "步骤 3：安全问题（可选）",
+    "step4": "步骤 4：设置",
+    "usernamePrompt": "输入管理员用户名 [admin]: ",
+    "passwordPrompt": "输入口令: ",
+    "confirmPasswordPrompt": "确认口令: ",
+    "emailPrompt": "输入安全邮箱: ",
+    "securityQuestionPrompt": "输入安全问题: ",
+    "securityAnswerPrompt": "输入答案: ",
+    "timeoutPrompt": "闲置超时分钟数（默认 60）: ",
+    "setupComplete": "设置完成！"
+  },
+  
+  "errors": {
+    "passwordTooShort": "口令至少需要 {{min}} 个字符",
+    "passwordNoLower": "口令必须包含小写字母",
+    "passwordNoUpper": "口令必须包含大写字母",
+    "passwordNoDigit": "口令必须包含数字",
+    "passwordNoSpecial": "口令必须包含特殊符号（@$!%*?&）",
+    "passwordWeak": "口令过于常见或太弱",
+    "passwordMismatch": "口令不匹配",
+    "invalidEmail": "邮箱格式无效",
+    "emailRequired": "安全邮箱是账户恢复的必需项",
+    "incorrectPassword": "口令不正确",
+    "accountLocked": "账户已锁定，请 {{minutes}} 分钟后重试",
+    "tooManyAttempts": "失败次数过多，账户已锁定",
+    "notAuthenticated": "未认证，请先输入口令",
+    "sessionExpired": "会话已过期，请重新认证",
+    "looksLikeHash": "检测到无效输入，请输入实际口令而非哈希值"
+  },
+  
+  "auth": {
+    "prompt": "请输入口令以继续：",
+    "success": "认证成功！",
+    "locked": "账户已锁定",
+    "remainingAttempts": "剩余尝试次数：{{count}}",
+    "logout": "已退出认证"
+  },
+  
+  "recovery": {
+    "title": "口令恢复",
+    "emailSent": "恢复码已发送到您的安全邮箱",
+    "enterCode": "请输入收到的恢复码：",
+    "codeValid": "恢复码有效，请设置新口令",
+    "codeInvalid": "恢复码无效或已过期",
+    "securityQuestion": "安全问题验证",
+    "securityQuestionPrompt": "安全问题：{{question}}",
+    "answerPrompt": "请输入答案："
+  },
+  
+  "commands": {
+    "forgotPassword": "忘记口令",
+    "changePassword": "修改口令",
+    "logout": "退出认证",
+    "uninstall": "卸载口令skill"
+  },
+  
+  "audit": {
+    "login": "登录",
+    "logout": "登出",
+    "failedAttempt": "登录失败",
+    "passwordChange": "口令修改",
+    "recovery": "恢复请求",
+    "lockout": "账户锁定"
+  }
+}

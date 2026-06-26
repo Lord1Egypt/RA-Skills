@@ -1,0 +1,23 @@
+{
+  "id": "s2-sssu-spatial-genesis",
+  "pluginId": "s2-sssu-spatial-genesis",
+  "version": "1.2.0",
+  "type": "native-code",
+  "entry": "skill.py",
+  "runtime": "python3",
+  "capabilities": {
+    "database_generation": true,
+    "spatial_validation": true
+  },
+  "configSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "permissions": {
+    "tools": [
+      "register_sssu",
+      "spawn_entity"
+    ]
+  }
+}

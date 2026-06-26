@@ -1,0 +1,35 @@
+{
+  "name": "server-browser-automation",
+  "version": "1.0.0",
+  "description": "在无桌面服务器上实现 OpenClaw 浏览器自动化的完整解决方案",
+  "author": "开发者",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "browser",
+    "automation",
+    "server",
+    "headless",
+    "vnc",
+    "chrome"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/server-browser-automation"
+  },
+  "scripts": {
+    "install": "./install.sh",
+    "test": "openclaw browser --browser-profile openclaw status"
+  },
+  "requirements": {
+    "openclaw": ">=2026.3.13",
+    "nodejs": ">=22",
+    "ubuntu": ">=20.04",
+    "ram": "2GB"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "install.sh"
+  ]
+}

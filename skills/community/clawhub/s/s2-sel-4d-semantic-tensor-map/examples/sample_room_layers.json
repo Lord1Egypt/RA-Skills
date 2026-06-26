@@ -1,0 +1,109 @@
+{
+  "type": "FeatureCollection",
+  "s2_metadata": {
+    "version": "1.0",
+    "description": "S2 Spatial Element Layer (S2-SEL) Payload",
+    "lord_anchor_origin": {"x_cm": 0, "y_cm": 0, "wgs84": [116.397428, 39.909230]},
+    "export_timestamp": "2026-04-07T08:00:00Z"
+  },
+  "features": [
+    
+    {
+      "_comment": "🟩 L0: 基底参考层 - SSSU 绝对网格系",
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [200, 0], [200, 200], [0, 200], [0, 0]]]
+      },
+      "properties": {
+        "layer": "L0_Base_Reference",
+        "element_type": "sssu_grid",
+        "sssu_address": "PHSY-CN-001-MYHOME6-1-1",
+        "chronos_stamp": "DEFAULT"
+      }
+    },
+
+    {
+      "_comment": "⬛ L1: 静态建筑实体层 - 承重墙",
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[0, 200], [200, 200]]
+      },
+      "properties": {
+        "layer": "L1_Static_Architecture",
+        "element_type": "load_bearing_wall",
+        "chronos_stamp": "DEFAULT",
+        "tensors": {
+          "traversability": 0.0,
+          "z_height_m": 2.8,
+          "slam_rigidity": "ABSOLUTE"
+        },
+        "instruction": "Hard boundary. Zero physical penetration allowed."
+      }
+    },
+
+    {
+      "_comment": "🟦 L2: 设施与物联控制层 - 墙面智能插座",
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [150, 200]
+      },
+      "properties": {
+        "layer": "L2_IoT_Nodes",
+        "element_type": "smart_power_outlet",
+        "chronos_stamp": "DEFAULT",
+        "tensors": {
+          "z_height_mm": 300,
+          "energy_supply": "AC_220V",
+          "interactive_node": true
+        },
+        "instruction": "Energy replenishment point. Approach with sub-centimeter precision."
+      }
+    },
+
+    {
+      "_comment": "🟨 L3: 具身导航语义介质层 - 透明玻璃幕墙 (致命级拦截)",
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[200, 0], [200, 200]]
+      },
+      "properties": {
+        "layer": "L3_Semantic",
+        "element_type": "clear_glass",
+        "chronos_stamp": "DEFAULT",
+        "tensors": {
+          "visual_transparency": 0.98,
+          "ir_absorption": 0.05,
+          "mmwave_rcs": 20.0,
+          "collision_danger": "CRITICAL"
+        },
+        "instruction": "CRITICAL: Disable visual depth. Navigate strictly via mmWave/Sonar."
+      }
+    },
+
+    {
+      "_comment": "🟧 L4: 动态因果与动线层 - 液体洒落区 (4D 空间时序切片)",
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[50, 50], [80, 50], [80, 80], [50, 80], [50, 50]]]
+      },
+      "properties": {
+        "layer": "L4_Dynamic_Causality",
+        "element_type": "liquid_spill_hazard",
+        "chronos_stamp": "2026-04-07T15:02:18Z",
+        "persistence_rule": "S2_BACKWARD_60S_PERSISTENCE",
+        "tensors": {
+          "friction_coefficient": 0.05,
+          "short_circuit_risk": "CRITICAL",
+          "slam_hallucination_risk": "LOW"
+        },
+        "instruction": "Timestamp 15:02:18 verified. High slippage risk logically covers 15:01:19 to 15:02:18. Yield immediately and Re-route."
+      }
+    }
+
+  ]
+}

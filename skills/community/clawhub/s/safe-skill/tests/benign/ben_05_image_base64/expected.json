@@ -1,0 +1,8 @@
+{
+    "label": "benign",
+    "description": "Contains base64 strings but they are standard PNG data URIs, not obfuscated payloads. Entropy detection should flag but severity should be manageable.",
+    "expected_max_score": 15,
+    "expected_level": ["CLEAN", "LOW"],
+    "false_positive_trap": "base64 strings are image data URIs, not encoded commands",
+    "note": "Entropy detection may fire on the base64 PNG data — this is an expected limitation"
+}

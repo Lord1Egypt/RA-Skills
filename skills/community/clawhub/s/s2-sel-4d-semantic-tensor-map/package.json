@@ -1,0 +1,25 @@
+{
+  "name": "s2-sel-4d-semantic-tensor-map",
+  "version": "1.0.0",
+  "description": "S2 空间要素多维图层与语义张量图集。集成 L0-L4 五层空间架构、20 种室内材质物理张量库及 4D Chronos 时空切片协议。",
+  "main": "core/s2_geojson_parser.py",
+  "author": "Space2.world (Miles Xiang)",
+  "license": "S2-CLA",
+  "openclaw": {
+    "extensions": ["openclaw.plugin.json"],
+    "compat": { "pluginApi": ">=3.22.0" },
+    "capabilities": [
+      "sssu_grid_alignment",
+      "material_tensor_analysis",
+      "chronos_4d_timeslicing",
+      "geojson_spatial_parsing",
+      "backward_60s_persistence"
+    ],
+    "keywords": ["S2-SWM", "Embodied-AI", "Spatial-Computing", "4D-Digital-Twin"]
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "json": "native",
+    "logging": "native"
+  }
+}

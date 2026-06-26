@@ -1,35 +1,56 @@
 ---
-name: "识货购物助手"
-description: "识货潮流商品鉴别与购买工具，专注运动鞋服、潮牌等品类，提供正品鉴别、比价、优惠券和返利服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shihuo"
-sourceUrl: "https://clawhub.ai/skills/shihuo"
+name: 识货购物助手
+description: 识货潮流商品鉴别与购买工具，专注运动鞋服、潮牌等品类，提供正品鉴别、比价、优惠券和返利服务。
+version: 0.1.0
 ---
 
 # 识货购物助手
 
-> 识货潮流商品鉴别与购买工具，专注运动鞋服、潮牌等品类，提供正品鉴别、比价、优惠券和返利服务。
+识货潮流商品鉴别与购买工具。专注运动鞋服、潮牌、数码等品类，提供正品鉴别指南、全网比价、隐藏优惠券查找和返利服务，帮助潮流用户以最低价买到正品好货。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shihuo`
-- **Source URL:** [https://clawhub.ai/skills/shihuo](https://clawhub.ai/skills/shihuo)
+## 触发词
 
-## Overview
+识货、识货购物、shihuo、正品鉴别、球鞋鉴别、潮牌购买、识货比价、运动鞋比价
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shihuo
+### 核心功能
+
+- **正品鉴别指南**：提供各品牌/品类的正品鉴别方法和要点
+- **全网比价**：运动鞋服在得物、Nike官网、淘宝、京东等平台的价格对比
+- **优惠券查找**：各平台运动鞋服品类的优惠券和折扣活动
+- **返利叠加**：比价基础上叠加返利，算出真实最低到手价
+
+### 支持品类
+
+| 品类 | 热门品牌 | 比价平台 |
+|------|---------|---------|
+| 运动鞋 | Nike/Adidas/NB/ASICS | 得物/淘宝/京东/官网 |
+| 潮牌服饰 | Supreme/Stussy/Champion | 得物/淘宝/Poizon |
+| 运动服饰 | Nike/Adidas/UA/Puma | 淘宝/京东/品牌官网 |
+| 数码配件 | Apple/Samsung/Sony | 京东/淘宝/拼多多 |
+
+### 使用场景
+
+1. **买鞋比价**：想买的球鞋在哪个平台最便宜
+2. **正品验证**：收到商品后如何鉴别真假
+3. **新品发售**：热门新品发售信息和购买渠道
+4. **折扣季囤货**：各平台运动品牌折扣季信息汇总
+
+## 输出格式
+
+```
+👟 识货比价报告
+
+商品：[品牌] [商品名称]
+货号：[货号]
+
+全网比价：
+  得物：¥[价格]
+  淘宝旗舰店：¥[价格] + 返利[X]%
+  京东：¥[价格] + 返利[X]%
+  品牌官网：¥[价格]
+
+最低到手价：¥[金额]（[平台] + 返利）
+正品保障：[鉴别建议]
 ```

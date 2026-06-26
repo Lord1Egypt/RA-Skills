@@ -1,0 +1,8 @@
+{
+  "component": "S2-Dashboard-Renderer",
+  "props": {
+    "title": "S2-Chiller-Agent | 冷水机组热力学博弈推演舱",
+    "theme": "cyber-dark",
+    "prompt": "Create an interactive dashboard. Inputs: Slider '室外湿球温度 (℃)' (20-32). Slider '冷负荷需求 (kW)' (500-3000). Visualization: Line chart showing X-axis '冷却水设定温度 (℃)', Y-axis '电功率 (kW)'. Plot three lines: 1) Chiller Power (decreases as X increases). 2) Cooling Tower Power (increases exponentially as X approaches WBT). 3) Total Power. Highlight the minimum point on Total Power curve. Output Panel: Show the optimal temperature, saved power, and a '📝 生成提案' button simulating an OpenClaw JSON dispatch token."
+  }
+}

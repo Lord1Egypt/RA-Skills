@@ -1,0 +1,46 @@
+{
+  "name": "skill-usage-analyzer",
+  "version": "1.0.0",
+  "description": "智能分析 OpenClaw 技能，生成使用指南、创意用法和组合推荐",
+  "main": "scripts/analyze_skill.py",
+  "scripts": {
+    "analyze": "python3 scripts/analyze_skill.py",
+    "creative": "python3 scripts/creative_usage.py",
+    "combine": "python3 scripts/find_combinations.py",
+    "recommend": "python3 scripts/recommend_skill.py",
+    "compare": "python3 scripts/compare_matrix.py",
+    "index": "python3 scripts/analyze_all.py"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "analyzer",
+    "usage",
+    "documentation",
+    "cli"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/skill-usage-analyzer"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/skill-usage-analyzer/issues"
+  },
+  "homepage": "https://github.com/your-username/skill-usage-analyzer#readme",
+  "engines": {
+    "python": ">=3.6"
+  },
+  "categories": [
+    "development",
+    "productivity",
+    "documentation"
+  ],
+  "clawhub": {
+    "id": "skill-usage-analyzer",
+    "emoji": "🔍",
+    "install": "git clone {repo} ~/.openclaw/workspace/skills/skill-usage-analyzer",
+    "entry": "scripts/analyze_skill.py"
+  }
+}

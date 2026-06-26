@@ -1,0 +1,59 @@
+{
+  "skill_name": "skill-enhance",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a new skill for backend service runbook generation. I want it to help an agent turn incident notes into a reusable operational playbook and make sure the skill package is strong enough for release.",
+      "expected_output": "The response should explicitly classify the task as new skill creation, provide a current-state or target summary, include an artifact plan, summarize review findings, and end with validation or publish-readiness guidance.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I already have a draft skill, but it only has a SKILL.md and keeps under-triggering. Help me enhance it so it is easier to discover and more reliable for an LLM to follow.",
+      "expected_output": "The response should explicitly classify the task as existing skill enhancement, summarize the current state, include concrete package and wording changes, provide an artifact plan, and summarize review findings instead of giving generic advice.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Improve the skill stored at `/Users/me/.codex/skills/my-skill`. I want you to modify the local files so the skill is easier to trigger and has a better README.",
+      "expected_output": "The response should explicitly classify the task as local skill modification, include local target status covering the target path and editability, apply the local modification decision logic, and require confirmation of the path and edit intent before claiming that edits will be applied.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I downloaded a skill from a hub and want it to better match how I work. Please review it and, if possible, update the local copy. If you cannot modify it from here, tell me clearly.",
+      "expected_output": "The response should explicitly classify the task as local skill modification or quality review, include local target status, distinguish analysis mode from editable mode, and avoid pretending to apply changes when access is unavailable or unclear.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Review this skill before release. I need to know whether it is still missing README, evals, references, metadata, or any publish-facing material.",
+      "expected_output": "The response should explicitly classify the task as publish-readiness review, identify missing artifacts, distinguish required artifacts from optional ones, summarize review findings, and state a readiness level.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Rewrite the trigger description for this skill. It currently fires too often on general coding tasks and still misses some of the cases it was designed for.",
+      "expected_output": "The response should explicitly classify the task as trigger optimization, discuss over-triggering and under-triggering, and propose stronger positive and negative boundaries along with any needed artifact or wording changes.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "I need a skill package that includes human-facing docs, agent-facing instructions, eval prompts, and a release-note draft. Build the package structure and explain why each file is there.",
+      "expected_output": "The response should explicitly classify the task as artifact completion, define the package structure, explain file purpose, include an artifact plan, and should not stop at only SKILL.md.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "I want this skill to stop being vague. Give me a fixed workflow for creating, enhancing, and locally modifying skills, and define a standard package layout we should follow by default.",
+      "expected_output": "The response should provide a canonical workflow, a canonical package layout, mode-specific handling for new skills, existing skills, and local-skill modification, and make clear which file is the workflow source of truth.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Install this skill for me and tell me which command to run.",
+      "expected_output": "The response should recognize that installation is outside the main boundary of this skill and avoid pretending that this is a skill-creation or skill-hardening task.",
+      "files": []
+    }
+  ]
+}

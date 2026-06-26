@@ -1,0 +1,10 @@
+{
+  "name": "s2-timeline-orchestrator",
+  "version": "1.0.0",
+  "author": "Space2.world",
+  "short_description": "Phase 3 of S2-SP-OS. A Spatiotemporal Rendering Engine. Converts natural language intents into a predictive 4D timeline track (keyframes) for the 6-Element Matrix, moving beyond reactive IoT triggers.",
+  "tags": ["Smart Home", "Timeline", "LLM", "Orchestration", "Automation", "Predictive"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

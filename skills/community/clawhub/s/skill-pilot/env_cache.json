@@ -1,0 +1,28 @@
+{
+  "timestamp": 1773732086.7857084,
+  "network_profile": {
+    "region": "us",
+    "proxy_enabled": false,
+    "ipv6_available": true,
+    "dns_speed": 0.42128562927246094,
+    "latency_us": Infinity,
+    "latency_cn": 347.12767601013184
+  },
+  "skill_availability": {
+    "multi-search-engine": {
+      "available": true,
+      "latency_ms": 0,
+      "last_checked": 1773732086.7856898
+    },
+    "exa-web-search-free": {
+      "available": true,
+      "latency_ms": 0,
+      "last_checked": 1773732086.7856987
+    },
+    "tavily-search": {
+      "available": true,
+      "latency_ms": 0,
+      "last_checked": 1773732086.7857058
+    }
+  }
+}

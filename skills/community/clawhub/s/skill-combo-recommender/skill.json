@@ -1,0 +1,24 @@
+{
+  "name": "skill-combo-recommender",
+  "version": "1.0.0",
+  "description": "技能组合推荐器 - 根据任务推荐最佳技能组合和工作流程",
+  "author": "小叮当",
+  "homepage": "https://clawhub.ai/skills/skill-combo-recommender",
+  "entry": "source/skill_combo_recommender.py",
+  "categories": ["productivity", "workflow", "ai-assistant"],
+  "tags": ["skill-combo", "workflow", "recommender", "productivity"],
+  "requirements": {
+    "python": ">=3.8",
+    "modules": []
+  },
+  "openclaw": {
+    "emoji": "🎯",
+    "requires": {
+      "bins": ["python3"]
+    }
+  },
+  "install": {
+    "script": "install.sh"
+  },
+  "config": {}
+}

@@ -1,0 +1,29 @@
+# 技能追踪器配置
+
+# 是否启用追踪
+enabled: true
+
+# 是否记录原始日志
+logRaw: true
+
+# 聚合间隔：daily / weekly / monthly
+aggregateInterval: daily
+
+# 日志保留天数（0=永久）
+retentionDays: 90
+
+# 统计报告设置
+report:
+  # 默认显示前几名
+  topN: 10
+  # 包含详细信息
+  includeDetails: true
+  # 成功率低于此值时告警
+  alertSuccessRate: 80
+
+# 自动清理
+autoClean:
+  # 是否自动清理旧日志
+  enabled: true
+  # 清理时间（每天凌晨 3 点）
+  cron: '0 3 * * *'

@@ -1,0 +1,9 @@
+# Gitea
+GITEA_BASE_URL=http://43.156.243.152:3000
+GITEA_TOKEN_BOT=your_aifusionbot_access_token_here
+
+# 元信息仓库（用于统一日志 + 存放 pending 会议）
+AIFUSION_META_REPO=HKU-AIFusion/aifusion-meta
+
+# 导师/管理员 Gitea 用户名（用于 create-pending 的通知邮件收件人 fallback）
+ADVISOR_GITEA_USERNAME=HKU-AIFusion

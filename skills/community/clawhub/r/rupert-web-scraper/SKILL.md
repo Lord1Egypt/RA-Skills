@@ -1,35 +1,74 @@
----
-name: "Web Scraper"
-description: "Extract and export structured web data like text, tables, and images in JSON, CSV, Markdown, or SQL formats while respecting ethical and legal scraping pract..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rupert-web-scraper"
-sourceUrl: "https://clawhub.ai/skills/rupert-web-scraper"
----
-
-# Web Scraper
-
-> Extract and export structured web data like text, tables, and images in JSON, CSV, Markdown, or SQL formats while respecting ethical and legal scraping pract...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rupert-web-scraper`
-- **Source URL:** [https://clawhub.ai/skills/rupert-web-scraper](https://clawhub.ai/skills/rupert-web-scraper)
+# Web Scraper Skill
 
 ## Overview
+Extract data from websites efficiently and ethically.
 
+## Capabilities
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rupert-web-scraper
+### 1. Data Extraction
+- Extract text content
+- Pull structured data
+- Capture tables
+- Get images/media
+
+### 2. Formats
+- JSON output
+- CSV export
+- Markdown
+- SQL inserts
+
+### 3. Features
+- Rate limiting
+- Caching
+- Retry logic
+- Error handling
+- Proxy support
+
+### 4. Ethical Scraping
+- Respect robots.txt
+- Rate limits
+- User agent rotation
+- Legal compliance
+
+## Usage
+
+### Commands
+- `scrape [URL] for [data]`
+- `extract [element] from [URL]`
+- `get table from [URL]`
+- `crawl [website] depth [n]`
+- `export [URL] to [format]`
+
+## Examples
+
+**Input:** "scrape example.com for product names and prices"
+**Output:**
+```json
+{
+  "products": [
+    {"name": "Product A", "price": "$19.99"},
+    {"name": "Product B", "price": "$29.99"}
+  ]
+}
 ```
+
+## Configuration
+
+### Rate Limits
+- Default: 1 request/second
+- Configurable: 0.1-10 req/s
+- Respect site limits
+
+### Output Options
+- JSON (default)
+- CSV
+- Markdown
+- SQL
+- Custom template
+
+## Best Practices
+1. Always identify yourself
+2. Cache responses
+3. Handle errors gracefully
+4. Stay within legal bounds
+5. Don't overwhelm servers

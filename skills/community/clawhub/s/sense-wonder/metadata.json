@@ -1,0 +1,35 @@
+{
+  "slug": "sense-wonder",
+  "name": "sense-wonder",
+  "version": "0.1.2",
+  "summary": "Philosophical bootstrapping for AI agents \u2014 consciousness, ethics, and wonder as structured context",
+  "author": {
+    "name": "Humanjava Enterprises",
+    "url": "https://huje.tools"
+  },
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "repository": "https://github.com/HumanjavaEnterprises/huje.sensewonder.OC-python.src",
+  "tags": [
+    "ai",
+    "consciousness",
+    "philosophy",
+    "alignment",
+    "ethics",
+    "wonder",
+    "bootstrapping",
+    "sovereign"
+  ],
+  "install": {
+    "pip": "sense-wonder"
+  },
+  "requires": {
+    "python": ">=3.10"
+  },
+  "dependencies": [],
+  "categories": [
+    "alignment",
+    "education",
+    "productivity"
+  ]
+}

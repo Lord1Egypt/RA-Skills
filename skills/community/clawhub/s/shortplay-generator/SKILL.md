@@ -1,35 +1,65 @@
 ---
-name: "短剧本生成器"
-description: "AI短剧生成器。当用户说“生成短剧”“写个剧本”“帮我做个短剧”时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shortplay-generator"
-sourceUrl: "https://clawhub.ai/skills/shortplay-generator"
+name: shortplay-generator
+description: AI短剧生成器。当用户说“生成短剧”“写个剧本”“帮我做个短剧”时使用。
 ---
 
-# 短剧本生成器
+# 短剧生成器
 
-> AI短剧生成器。当用户说“生成短剧”“写个剧本”“帮我做个短剧”时使用。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shortplay-generator`
-- **Source URL:** [https://clawhub.ai/skills/shortplay-generator](https://clawhub.ai/skills/shortplay-generator)
+当用户请求生成短剧时，按以下步骤执行：
 
-## Overview
+### 1. 理解需求
+- 题材：甜宠/修仙/霸总/重生/悬疑/古装
+- 时长：30秒/1分钟/3分钟
+- 风格：甜/虐/爽
 
+### 2. 生成剧本
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shortplay-generator
-```
+按这个格式输出：
+
+【剧名】《XXX》
+【类型】XXX
+【时长】X秒
+
+【角色1】姓名 - 性格描述
+【角色2】姓名 - 性格描述
+
+【场景1】地点 - 时间
+（画面描述）
+角色A：台词
+角色B：台词
+
+（动作/表情描述）
+
+【场景2】...
+
+**剧本原则**：
+- 开头3秒抓眼球
+- 每15秒一个小反转
+- 结尾留钩子
+
+### 3. 生成视频提示词包
+
+为每个关键场景生成AI视频工具（可灵/Runway/即梦）可直接使用的提示词：
+
+🎬 **场景1 视频提示词**
+[风格] 电影感，4K，超写实
+[主体] 具体描述人物、动作、表情
+[环境] 光线、氛围、背景
+[镜头] 景别（特写/中景/远景）、角度
+
+🎬 **场景2 视频提示词**
+...
+
+### 4. 输出格式
+
+用分隔线区分剧本和提示词包：
+
+---
+【剧本】
+...
+
+---
+【视频提示词包】
+...

@@ -1,0 +1,18 @@
+{
+  "name": "skill-evolver",
+  "version": "0.3.0",
+  "description": "Skill automatic evolution engine with feedback collection and pattern extraction",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "keywords": ["evolution", "learning", "pattern-extraction", "infrastructure", "meta-skill"],
+  "author": "pagoda111king",
+  "license": "MIT",
+  "clawhub": {
+    "slug": "skill-evolver",
+    "name": "Skill Evolver",
+    "tags": ["evolution", "learning", "pattern-extraction", "infrastructure", "meta-skill"]
+  }
+}

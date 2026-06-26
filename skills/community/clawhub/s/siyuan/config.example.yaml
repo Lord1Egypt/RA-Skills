@@ -1,0 +1,13 @@
+# SiYuan Note API Configuration
+# 思源笔记 API 配置
+#
+# 1. 从思源笔记获取 API Token:
+#    设置 → 关于 → API → 复制 Token
+#
+# 2. 保存此文件为 config.yaml 并填入你的 Token
+
+siyuan:
+  base_url: "http://127.0.0.1:6806"  # API 地址，端口可能在重启后变化
+  token: "your-api-token-here"       # 填入你的 API Token
+  timeout: 30                        # 请求超时时间（秒）
+  retry: 3                           # 重试次数

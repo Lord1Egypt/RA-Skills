@@ -1,35 +1,73 @@
----
-name: "销售冷启动消息生成器"
-description: "快速生成个性化微信、邮件、短信和LinkedIn等渠道的B2B销售冷启动外联消息，提升回复率和转化效果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sales-cold-outreach-message-generator"
-sourceUrl: "https://clawhub.ai/skills/sales-cold-outreach-message-generator"
----
+# 销售冷启动外联消息生成器
 
-# 销售冷启动消息生成器
+## 功能概述
+帮助 B2B 销售、猎头、微商、保险/理财顾问快速生成个性化的冷启动（cold outreach）消息。支持微信、邮件、短信、LinkedIn 多渠道，自动注入收件人背景信息，大幅提升回复率。
 
-> 快速生成个性化微信、邮件、短信和LinkedIn等渠道的B2B销售冷启动外联消息，提升回复率和转化效果。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sales-cold-outreach-message-generator`
-- **Source URL:** [https://clawhub.ai/skills/sales-cold-outreach-message-generator](https://clawhub.ai/skills/sales-cold-outreach-message-generator)
+### 1. 微信私聊消息生成
+- 首次加微自我介绍模板
+- 破冰话术（基于行业/职位定制）
+- 跟进消息序列（3轮跟进话术）
+- 促成行动话术
 
-## Overview
+### 2. 商务邮件生成
+- Subject Line 优化（A/B 测试版本）
+- 正文结构：开场 → 价值点 → CTA
+- 不同场景模板：开发信/感谢信/报价跟进/拒绝挽回
 
+### 3. LinkedIn InMail 生成
+- 适合 LinkedIn 平台的简短专业语气
+- Connection Request 附言
+- 站内消息序列
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sales-cold-outreach-message-generator
+### 4. 短信/WhatsApp 外联
+- 短消息版（≤160字符）
+- 长消息版（多段式）
+
+## 使用方式
+
+用户输入：
 ```
+/销售外联
+渠道：微信
+身份：保险顾问
+客户画像：35岁IT男，有房有车，年收入50万+
+目标：约见面咨询重疾险
+风格：专业但不冰冷
+数量：5条
+```
+
+系统输出：
+```
+【开场破冰】
+1. [微信] 王先生好！朋友介绍您对家庭保障规划比较关注，
+   我是明亚保险经纪小林，专注帮职场人士做保障方案。
+   方便的话可以交流一下您的想法吗？
+
+2. [微信] 王先生您好！您的朋友推荐了您，说您是技术大牛👍
+   我专门帮IT从业者做保险规划，了解这个群体常见的健康
+   风险和保障缺口，方便做个简单沟通吗？
+
+【跟进序列】
+第1次跟进：发完3天后
+第2次跟进：发完7天后（提供一个小案例）
+第3次跟进：发完14天后（限时福利钩子）
+...
+```
+
+## 输出格式
+- 按场景分类的消息模板
+- 关键变量用 [占位符] 标注（姓名、行业、痛点等）
+- 每条消息附带最佳发送时间建议
+- 回复率优化小贴士
+
+## 定价
+- 单次生成：12.9 元
+- 包月：69 元（不限次使用）
+
+## 技术实现
+- 使用 OpenClaw 原生能力
+- 读取 memory/sales-preferences.md 获取用户行业/产品信息
+- 保存生成记录到 memory/sales-outreach-history.md
+- 支持用户自定义话术模板库

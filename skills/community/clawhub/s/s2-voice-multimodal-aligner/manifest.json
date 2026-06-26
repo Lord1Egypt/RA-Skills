@@ -1,0 +1,37 @@
+{
+  "name": "s2-voice-multimodal-aligner",
+  "version": "1.4.0",
+  "author": "Space2.world",
+  "short_description": "A sensory tentacle for S2-SP-OS. Cloud-Native ready: uses graceful .env loading with container-first environment variables, strict SSRF DNS/IP checks, and fully pinned dependencies.",
+  "tags": ["Voice", "Smart Home", "SecOps", "Zero-Trust", "Cloud-Native", "12-Factor"],
+  "entry_point": "skill.py",
+  "dependencies": {
+    "numpy": "==1.24.3",
+    "scipy": "==1.10.1",
+    "requests": "==2.31.0",
+    "python-dotenv": "==1.0.0"
+  },
+  "environment_variables": {
+    "S2_ENABLE_REAL_ACTUATION": {
+      "type": "boolean",
+      "required": false,
+      "default": "False",
+      "description": "Enforces Dry-Run mode."
+    },
+    "HA_BASE_URL": {
+      "type": "string",
+      "required": false,
+      "default": "http://127.0.0.1:8123/api",
+      "description": "Local REST API endpoint. Checked via socket DNS resolution."
+    },
+    "HA_BEARER_TOKEN": {
+      "type": "string",
+      "required": false,
+      "sensitive": true,
+      "default": "UNCONFIGURED_SANDBOX_TOKEN",
+      "description": "Sensitive access token. Must be provided via system ENV or local .env file. Reference .env.example."
+    }
+  },
+  "language": "python",
+  "homepage": "https://space2.world"
+}

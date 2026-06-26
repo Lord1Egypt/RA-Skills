@@ -1,0 +1,2 @@
+# No third-party Python packages are required.
+# Runtime tools: Python 3.9+, Chrome or Chromium, and FFmpeg.

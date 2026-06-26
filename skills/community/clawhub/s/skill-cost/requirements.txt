@@ -1,0 +1,1 @@
+# skill-cost: no external dependencies — stdlib only

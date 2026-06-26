@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "language": "zh-CN",
+  "multi_agent_mode": true,
+  "default_startup_file": "INDEX.md",
+  "agent_roles": ["COO", "CPO", "CGO"],
+  "update_rules": {
+    "ask_before_promoting_uncertain_facts": true,
+    "raw_capture_path": "inbox/capture.md",
+    "unresolved_path": "inbox/unresolved.md"
+  },
+  "privacy_rules": {
+    "store_contacts_by_default": false,
+    "store_bank_info": false,
+    "store_api_keys": false,
+    "store_private_access_links": false
+  }
+}
+

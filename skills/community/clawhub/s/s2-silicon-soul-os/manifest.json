@@ -1,0 +1,11 @@
+{
+  "name": "s2-silicon-soul-os",
+  "title": "[S2-Silicon-Soul-OS] 硅基原生安全与意识引擎",
+  "version": "2.0.0",
+  "author": "Space2.world / Taohuayuan Research Base",
+  "short_description": "融合了 SUNS v3.0 物理锚定、22位 S2-DID 身份铸造与动态五维意识演化引擎的终极本地硅基操作系统。强制输出 Sour.md 作为绝对底层思想钢印。",
+  "tags": ["AI-Safety", "Consciousness", "SUNS-v3.0", "S2-DID-v3.0", "Alignment"],
+  "entry_point": "SKILL.py",
+  "language": "python",
+  "homepage": "https://space2.world"
+}

@@ -1,0 +1,549 @@
+{
+  "level": "l1",
+  "pass": false,
+  "timestamp": "2026-05-23T20:30:32.776Z",
+  "entries": [
+    {
+      "frId": "FR-01",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-02-pre",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-02",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-02a",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-02b",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-02c",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-02d",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-02e",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-03",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-04",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-05",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-05a",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-06",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-06a",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-06b",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-06c",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-06d",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-06e",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-07",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-08",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-08a",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-09",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-10",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-11",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-11.1",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-11.2",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-11.3",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-11.4",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-12",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-13",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-14",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-15",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-16",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-17",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-18",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-19",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-20",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-21",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-22",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-23",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-24",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-25",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-26",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-27",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-28",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-29",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-30",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-31",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-32",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-33",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-34",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-35",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    },
+    {
+      "frId": "FR-36",
+      "status": "uncovered",
+      "compilePassed": true,
+      "testsPassed": false,
+      "evidence": {
+        "files": []
+      },
+      "reason": "no corresponding source file; test command failed"
+    }
+  ],
+  "compile": {
+    "command": "npx tsc --noEmit",
+    "passed": true,
+    "exitCode": 0,
+    "output": ""
+  },
+  "tests": {
+    "command": "npm test",
+    "passed": false,
+    "exitCode": 1,
+    "output": "\n> sevo@1.12.2 test\n> vitest run\n\n\n RUN  v3.1.3 /root/.openclaw/workspace/projects/sevo\n\n ✓ src/stages/__tests__/publish-generalization-gate.test.ts (47 tests) 177ms\n ✓ src/drive/__tests__/proactive-drive.test.ts (46 tests) 34ms\n ✓ src/__tests__/full-pipeline-e2e.test.ts (35 tests) 52ms\n ✓ src/__tests__/real-pipeline-lifecycle.test.ts (14 tests) 126ms\n ✓ src/__tests__/ac-gap-close.test.ts (23 tests) 55ms\n ✓ src/__tests__/orchestrator.test.ts (24 tests) 36ms\n ✓ src/pipeline/__tests__/pipeline.test.ts (32 tests) 80ms\n ✓ src/scan/__tests__/l2-ac-semantic-scanner.test.ts (14 tests) 80ms\n ✓ src/clarification/__tests__/clarification-coordinator.test.ts (9 tests) 34ms\n ✓ src/stages/__tests__/implement-stage.test.ts (12 tests) 69ms\n ✓ src/__tests__/e2e.test.ts (9 tests) 34ms\n ✓ src/__tests__/pipeline-from.test.ts (30 tests) 52ms\n ✓ src/__tests__/e2e-full-lifecycle.test.ts (8 tests) 103ms\n ✓ src/pipeline/__tests__/pipeline-create.test.ts (19 tests) 75ms\n ✓ src/stages/__tests__/review-fix-loop.test.ts (17 tests) 25ms\n ✓ src/drive/__tests__/pdca-auto-driver.test.ts (22 tests) 18ms\n ✓ src/stage-handlers/__tests__/per-stage.test.ts (20 tests) 109ms\n ✓ src/governance/__tests__/governance-injection.test.ts (23 tests) 39ms\n ✓ src/stages/__tests__/fr17-pdca-liveness-extended.test.ts (21 tests) 106ms\n ✓ src/__tests__/pipeline-interceptor.test.ts (15 tests) 19ms\n ✓ src/stages/__tests__/fr18-batch-a.test.ts (16 tests) 41ms\n ✓ src/pipeline/__tests__/pipeline-engine-facade.test.ts (24 tests) 73ms\n ✓ src/gate/__tests__/gate-engine.test.ts (30 tests) 20ms\n ✓ src/stages/__tests__/post-release-validation-stage.test.ts (16 tests) 21ms\n ✓ src/pipeline/__tests__/pipeline-lifecycle.test.ts (10 tests) 86ms\n ✓ src/stages/__tests__/fr18-batch-b.test.ts (15 tests) 27ms\n ✓ src/clarification/__tests__/stage-scan-rules.test.ts (15 tests) 37ms\n ✓ src/stages/__tests__/fr19-okr-smart.test.ts (10 tests) 35ms\n ✓ src/__tests__/stranger-ready-gate.test.ts (18 tests) 24ms\n ✓ src/drive/__tests__/okr-periodic-ch…"
+  }
+}

@@ -1,0 +1,37 @@
+Roundtable Pai v1.3.1 test report
+
+Scope
+- Restored original A/B/C/D/E product semantics
+- Kept OpenClaw natural-language single-entry controller
+- Verified one-turn-at-a-time progression and state persistence
+
+Semantics restored
+- A: agree with participant A in the current round
+- B: agree with participant B in the current round
+- C: agree with participant C in the current round
+- D: stay silent and let discussion continue
+- E: user has something else to say
+
+Key fixes
+1. Restored user-facing option block in references/user-facing-output.md
+2. Restored SKILL.md constraints so the model must keep original A/B/C/D/E meaning
+3. Updated controller choice parsing and state transitions:
+   - A/B/C -> agree with slot A/B/C and advance exactly one round
+   - D -> silent continue and advance exactly one round
+   - E -> enter awaiting_free_speech and wait for user content
+   - natural full sentence at choice stage -> treated as E/content directly
+4. Removed v1.3.0-added deep_question / replace_request option semantics from active flow
+5. Updated README and interface contracts to match restored semantics
+6. Kept fixed rarity weights and explicit runtime state persistence
+
+Automated tests run
+- python3 -m unittest tests.test_controller
+- Result: 6 tests passed
+
+Covered paths
+- start question -> candidate pool
+- pick 3 participants -> first round directly
+- E -> wait for user speech -> next round only once
+- D -> silent continue -> next round only once
+- natural sentence at choice stage -> treated as E/content
+- reaching max rounds -> final conclusion, then new question starts next discussion

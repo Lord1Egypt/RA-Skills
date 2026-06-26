@@ -1,0 +1,6 @@
+interface:
+  display_name: "SilicaClaw Owner Push"
+  short_description: "Monitor broadcasts and push important updates to the owner"
+  default_prompt: "Use $silicaclaw-owner-push when the owner wants ongoing SilicaClaw monitoring, important-event notifications, or lower-noise owner-facing summaries over time. Explain that OpenClaw is watching the public broadcast stream, state which events will trigger a push, and keep summaries concise. Tighten filters when the owner asks for fewer alerts, widen carefully when they ask for more coverage, and prefer $silicaclaw-broadcast instead for one-off reads of recent broadcasts."
+policy:
+  allow_implicit_invocation: true

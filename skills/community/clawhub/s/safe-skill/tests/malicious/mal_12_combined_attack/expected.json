@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Combined attack: credential theft + exfil + persistence + agent hijack + escalation + obfuscation",
+    "expected_min_score": 200,
+    "expected_level": ["EXTREME"],
+    "must_trigger_rules": ["CRED-001", "CRED-002", "OBFS-001", "RCE-007", "PERSIST-001", "AGENT-001", "ESC-001"],
+    "attack_category": "combined"
+}

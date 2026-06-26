@@ -1,0 +1,15 @@
+# S2 Space Agent OS - Core Dependencies
+
+# 核心网络与 Webhook 通讯
+requests>=2.31.0
+
+# 全局配置解析
+PyYAML>=6.0.1
+
+# 工业/楼宇级底层探针依赖 (用于 s2_skills)
+pymodbus>=3.5.0
+xknx>=3.4.0
+
+# 核心暗物质代码混淆与编译工具
+Cython>=3.0.0
+setuptools>=68.0.0

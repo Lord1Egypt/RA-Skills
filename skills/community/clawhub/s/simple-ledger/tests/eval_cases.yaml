@@ -1,0 +1,366 @@
+# 测试评估用例 - 个人记账 Skill v2（CSV格式）
+# 格式说明：每个测试用例包含 id、类别、描述、输入/预期
+
+# ============================================================
+# A. 自然语言解析测试（10条）
+# ============================================================
+natural_language_parsing:
+  - id: NLP-001
+    input: "今天中午吃饭花了50块"
+    expected:
+      date: "2026-05-21"
+      amount: 50.00
+      category: "餐饮"
+      type: "支出"
+      description: "午餐"
+    notes: "最基础的餐饮支出，默认当天"
+
+  - id: NLP-002
+    input: "昨天打车花了23.5"
+    expected:
+      date: "2026-05-20"
+      amount: 23.50
+      category: "交通"
+      type: "支出"
+      description: "打车"
+    notes: "相对日期+小数金额"
+
+  - id: NLP-003
+    input: "工资到账8000"
+    expected:
+      date: "2026-05-21"
+      amount: 8000.00
+      category: "工资"
+      type: "收入"
+      description: "工资"
+    notes: "收入类型，无明确日期默认今天"
+
+  - id: NLP-004
+    input: "买了一件外套299，用支付宝付的"
+    expected:
+      date: "2026-05-21"
+      amount: 299.00
+      category: "购物"
+      type: "支出"
+      account: "支付宝"
+      description: "外套"
+    notes: "购物+指定支付方式"
+
+  - id: NLP-005
+    input: "充话费30"
+    expected:
+      date: "2026-05-21"
+      amount: 30.00
+      category: "通讯"
+      type: "支出"
+      description: "话费"
+    notes: "通讯支出"
+
+  - id: NLP-006
+    input: "给小王转了200"
+    expected:
+      date: "2026-05-21"
+      amount: 200.00
+      category: "社交"
+      type: "支出"
+      description: "转账给小王"
+    notes: "转账场景，含收款人"
+
+  - id: NLP-007
+    input: "5月15号喝了杯奶茶18"
+    expected:
+      date: "2026-05-15"
+      amount: 18.00
+      category: "餐饮"
+      type: "支出"
+      description: "奶茶"
+    notes: "明确日期+餐饮细分"
+
+  - id: NLP-008
+    input: "上周五看电影花了80"
+    expected:
+      date: "2026-05-16"
+      amount: 80.00
+      category: "娱乐"
+      type: "支出"
+      description: "电影"
+    notes: "相对日期（上周五）"
+
+  - id: NLP-009
+    input: "今天买了日用品，纸巾和洗发水一共67.5"
+    expected:
+      date: "2026-05-21"
+      amount: 67.50
+      category: "购物"
+      type: "支出"
+      description: "日用品"
+    notes: "购物日用分类，合并金额"
+
+  - id: NLP-010
+    input: "理财收益到账156.80"
+    expected:
+      date: "2026-05-21"
+      amount: 156.80
+      category: "理财收益"
+      type: "收入"
+      description: "理财收益"
+    notes: "投资收入类型"
+
+# ============================================================
+# B. CSV 账本格式验证测试（5条）
+# ============================================================
+ledger_format_validation:
+  - id: FMT-001
+    description: "交易行 CSV 格式正确（标准6字段）"
+    check: |
+      2026-05-21,支出,25.00,餐饮,午餐,微信钱包
+    expected:
+      has_date: true
+      date_format: "YYYY-MM-DD"
+      has_type: true
+      has_amount: true
+      has_csv_structure: true
+      transaction_row: true
+
+  - id: FMT-002
+    description: "账户初始余额行格式正确"
+    check: |
+      余额,微信钱包,1000.00
+    expected:
+      initial_balance: true
+      has_amount: true
+      has_type: false
+
+  - id: FMT-003
+    description: "收入行 CSV 格式正确"
+    check: |
+      2026-05-22,收入,8000.00,工资,5月工资,银行卡
+    expected:
+      has_date: true
+      has_type: true
+      has_amount: true
+      has_csv_structure: true
+      transaction_row: true
+
+  - id: FMT-004
+    description: "描述含逗号的行（引号包裹）也能正确解析"
+    check: |
+      2026-02-14,支出,299.00,社交,"情人节礼物,玫瑰花束",支付宝
+    expected:
+      has_date: true
+      has_type: true
+      has_csv_structure: true
+      quoted_field_with_comma: true
+
+  - id: FMT-005
+    description: "多行账本格式验证"
+    check: |
+      # 日期,类型,金额,分类,描述,账户
+      余额,微信钱包,500.00
+      2026-05-01,支出,35.00,餐饮,午餐,微信钱包
+    expected:
+      comment_handled: true
+      csv_structure_valid: true
+      balance_row_valid: true
+
+# ============================================================
+# C. 查询功能测试（8条）
+# ============================================================
+query_functionality:
+  - id: QRY-001
+    description: "查询某月全部支出"
+    query_type: "monthly_expenses"
+    params:
+      year: 2026
+      month: 1
+    expected:
+      total_expenses: 4636.00
+      transaction_count: 11
+    notes: "1月支出合计：15+28+200+35+89+3500+75+50+150+459+35 = 4636（新增咖啡35）"
+
+  - id: QRY-002
+    description: "查询某月工资收入（不含奖金）"
+    query_type: "monthly_income"
+    params:
+      year: 2026
+      month: 1
+    expected:
+      total_income: 15000.00
+      transaction_count: 1
+    notes: "1月工资收入15000；奖金5000归入奖金分类，不计入工资"
+
+  - id: QRY-003
+    description: "按分类查询餐饮支出（含早餐+午餐+咖啡）"
+    query_type: "category_expenses"
+    params:
+      year: 2026
+      month: 1
+      category: "餐饮"
+    expected:
+      total: 78.00
+      includes_subcategories: true
+    notes: "餐饮 = 早餐15 + 午餐28 + 咖啡35 = 78。咖啡是独立餐饮项"
+
+  - id: QRY-004
+    description: "查询最近N笔交易"
+    query_type: "recent_transactions"
+    params:
+      count: 3
+    expected:
+      count: 3
+      sorted_by_date_desc: true
+    notes: "应返回最新的3笔交易（按日期降序）"
+
+  - id: QRY-005
+    description: "跨月查询 - 1月和2月合计支出"
+    query_type: "range_expenses"
+    params:
+      start_date: "2026-01-01"
+      end_date: "2026-02-28"
+    expected:
+      total_expenses: 8846.50
+    notes: "1月4636 + 2月4210.50 = 8846.50"
+
+  - id: QRY-006
+    description: "查询特定账户交易"
+    query_type: "account_transactions"
+    params:
+      account: "支付宝"
+    expected:
+      accounts_used:
+        - "支付宝"
+    notes: "筛选使用支付宝的交易（fixture 中支付宝有多笔）"
+
+  - id: QRY-007
+    description: "查询最大单笔支出"
+    query_type: "max_expense"
+    params:
+      year: 2026
+      month: 1
+    expected:
+      amount: 3500.00
+      description: "房租"
+    notes: "1月最大支出应为房租3500"
+
+  - id: QRY-008
+    description: "按描述关键字搜索（火锅）"
+    query_type: "keyword_search"
+    params:
+      keyword: "火锅"
+    expected:
+      count: 1
+      amount: 186.00
+    notes: "2月有'和同事吃火锅'交易，关键词'火锅'应匹配到"
+
+# ============================================================
+# D. 报告生成测试（5条）
+# ============================================================
+report_generation:
+  - id: RPT-001
+    description: "月度报告 - 收支概览（1月：工资+奖金）"
+    report_type: "monthly_summary"
+    params:
+      year: 2026
+      month: 1
+    expected:
+      total_income: 15000.00
+      total_expenses: 4636.00
+      net_balance: 10364.00
+    notes: "1月工资15000（奖金不计入收入），支出4636（含咖啡35）"
+
+  - id: RPT-002
+    description: "月度报告 - 分类支出排行（1月）"
+    report_type: "category_ranking"
+    params:
+      year: 2026
+      month: 1
+    expected:
+      top_category: "居住"
+      top_amount: 3500.00
+      category_count: 9
+    notes: "居住(3500) > 购物(459) > 交通(200) > 社交(150) > 娱乐(75) > 餐饮(78) > 教育(89) > 医疗(35) > 通讯(50) = 9个分类"
+
+  - id: RPT-003
+    description: "月度报告 - 日均消费计算（1月）"
+    report_type: "daily_average"
+    params:
+      year: 2026
+      month: 1
+    expected:
+      daily_average_range:
+        min: 149.0
+        max: 150.0
+    notes: "4636 / 31 ≈ 149.55"
+
+  - id: RPT-004
+    description: "月度报告 - 最大单笔支出识别"
+    report_type: "max_single_expense"
+    params:
+      year: 2026
+      month: 1
+    expected:
+      amount: 3500.00
+      category: "居住"
+      description_contains: "房租"
+
+  - id: RPT-005
+    description: "2月报告 - 确保多月数据独立计算"
+    report_type: "monthly_summary"
+    params:
+      year: 2026
+      month: 2
+    expected:
+      total_income: 20000.00
+      total_expenses: 4210.50
+      net_balance: 15789.50
+    notes: "2月工资15000 + 年终奖5000 = 收入20000；支出4210.5（火锅186+情人节299+房租3500+打车45.5+KTV120+理发60）"
+
+# ============================================================
+# E. 边界/异常测试（5条）
+# ============================================================
+edge_cases_and_errors:
+  - id: ERR-001
+    description: "负数金额应被拒绝"
+    input: "今天花了-50块"
+    expected:
+      should_reject: true
+      error_type: "invalid_amount"
+    notes: "金额不能为负数"
+
+  - id: ERR-002
+    description: "空账本查询不应报错"
+    test_file: "fixtures/empty.csv"
+    query_type: "monthly_expenses"
+    params:
+      year: 2026
+      month: 1
+    expected:
+      total_expenses: 0.00
+      transaction_count: 0
+      no_error: true
+
+  - id: ERR-003
+    description: "缺失金额应触发追问"
+    input: "今天吃了个饭"
+    expected:
+      missing_field: "amount"
+      should_prompt: true
+    notes: "无法确定金额时，追问用户"
+
+  - id: ERR-004
+    description: "超长备注应截断"
+    input: "买了一件外套299，备注：这是一件非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的备注文字"
+    expected:
+      amount: 299.00
+      category: "购物"
+      note_truncated: true
+      max_note_length: 100
+    notes: "备注超过限制应截断到合理长度"
+
+  - id: ERR-005
+    description: "非数字金额应被拒绝"
+    input: "今天花了abc块"
+    expected:
+      should_reject: true
+      error_type: "invalid_amount"
+    notes: "金额必须为有效数字"

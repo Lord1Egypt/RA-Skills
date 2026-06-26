@@ -1,35 +1,200 @@
----
-name: "rural-cloud-platform"
-description: "自动登录数字乡村云平台，支持手机号、姓名、身份证号查询村民信息，提取数据并导出，完成后自动退出登录。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rural-cloud-platform"
-sourceUrl: "https://clawhub.ai/skills/rural-cloud-platform"
----
+# 测试技能
+# TEST Skill
 
-# rural-cloud-platform
+## 📋 技能概述
 
-> 自动登录数字乡村云平台，支持手机号、姓名、身份证号查询村民信息，提取数据并导出，完成后自动退出登录。
+测试技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rural-cloud-platform`
-- **Source URL:** [https://clawhub.ai/skills/rural-cloud-platform](https://clawhub.ai/skills/rural-cloud-platform)
+## 🚀 功能特性
 
-## Overview
+- 🔐 **自动登录**: 自动打开浏览器并完成QR码登录
+- 🔍 **智能查询**: 支持手机号、姓名、身份证号等多种查询方式
+- 📊 **数据提取**: 自动提取和解析村民详细信息
+- 🖥️ **界面优化**: 自动调整浏览器窗口大小和缩放级别
+- 🔄 **自动退出**: 完成查询后自动退出登录并关闭浏览器
+- 📝 **详细日志**: 完整的操作日志和错误处理
 
+## 📦 安装指南
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 克隆技能
 ```bash
-hermes skills install clawhub/rural-cloud-platform
+git clone <技能仓库地址>
+cd rural-cloud-platform
+```
+
+### 2. 安装依赖
+```bash
+pip install -r requirements.txt
+```
+
+### 3. 配置环境
+```bash
+# 配置平台URL（如需要）
+export RURAL_CLOUD_URL=https://szxc.189.cn/dv/web/bsp/
+```
+
+### 4. 验证安装
+```bash
+python test.py
+```
+
+## 🎯 使用方法
+
+### 基本查询
+```bash
+# 查询指定手机号的村民信息
+```
+
+### 数据导出
+```bash
+# 导出查询结果
+```
+
+## 🔧 配置选项
+
+### 平台配置
+```json
+{
+  "platform_url": "https://szxc.189.cn/dv/web/bsp/",
+  "login_timeout": 300,
+  "query_timeout": 60,
+  "browser_window_size": {
+    "width": 1600,
+    "height": 1000
+  },
+  "zoom_level": 0.9
+}
+```
+
+### 查询配置
+```json
+{
+  "max_retry_times": 3,
+  "retry_delay": 5,
+  "data_cache_enabled": true,
+  "cache_expiration": 3600
+}
+```
+
+## 📊 输出格式
+
+### 成功查询结果
+```json
+{
+  "status": "success",
+  "villager_info": {
+  },
+  "query_time": "2026-04-02 18:30:00",
+  "execution_time": 15.5
+}
+```
+
+### 无结果查询
+```json
+{
+  "status": "no_results",
+  "query_time": "2026-04-02 18:30:00",
+  "execution_time": 10.2
+}
+```
+
+### 错误响应
+```json
+{
+  "status": "error",
+  "error_code": "LOGIN_FAILED",
+  "error_message": "登录失败，请检查网络连接或QR码状态",
+  "query_time": "2026-04-02 18:30:00",
+  "execution_time": 25.0
+}
+```
+
+## 🛠️ 技术实现
+
+### 核心组件架构
+```
+RuralCloudPlatform
+├── BrowserManager
+│   ├── 启动/停止浏览器
+│   ├── 管理标签页
+│   └── 处理浏览器异常
+├── LoginHandler
+│   ├── QR码登录
+│   ├── 会话管理
+│   └── 登录状态验证
+├── VillagerQuery
+│   ├── 手机号查询
+│   ├── 姓名查询
+│   └── 身份证号查询
+├── DataExtractor
+│   ├── 页面元素定位
+│   ├── 数据解析
+│   └── 格式转换
+└── ResultHandler
+    ├── 结果验证
+    ├── 数据导出
+    └── 日志记录
+```
+
+### 关键技术点
+1. **浏览器自动化**: 使用OpenClaw浏览器控制工具
+2. **元素定位**: 使用ref和selector双重定位策略
+3. **异步处理**: 支持异步操作和超时处理
+4. **错误恢复**: 多重异常处理和重试机制
+5. **数据缓存**: 智能缓存提高查询效率
+
+## 📈 性能优化
+
+### 缓存策略
+- **页面元素缓存**: 缓存常用页面元素定位信息
+- **查询结果缓存**: 缓存最近查询结果避免重复查询
+- **会话状态缓存**: 缓存登录状态避免重复登录
+
+### 并发处理
+- **批量查询**: 支持多个手机号并发查询
+- **异步操作**: 异步执行提高响应速度
+- **资源管理**: 智能管理浏览器资源使用
+
+## 🔒 安全考虑
+
+### 数据安全
+- **敏感信息保护**: 不保存敏感个人信息
+- **临时存储**: 使用临时文件存储查询结果
+- **自动清理**: 操作完成后自动清理临时数据
+
+### 访问控制
+- **权限验证**: 验证用户操作权限
+- **访问日志**: 记录所有操作日志
+- **异常监控**: 监控异常访问行为
+
+## 🐛 故障排除
+
+### 常见问题
+
+#### 1. 登录失败
+**问题**: QR码无法扫描或登录超时
+**解决方案**:
+- 检查网络连接
+- 重新生成QR码
+- 清除浏览器缓存
+
+#### 2. 查询无结果
+**问题**: 查询不到信息
+**解决方案**:
+- 验证手机号是否正确
+- 检查查询条件是否正确
+- 尝试其他查询方式
+
+#### 3. 浏览器异常
+**问题**: 浏览器崩溃或无响应
+**解决方案**:
+- 重启浏览器
+- 检查系统资源
+- 更新浏览器版本
+
+### 调试模式
+```bash
+# 启用调试模式
+export DEBUG=1
+python main.py --debug
 ```

@@ -1,0 +1,16 @@
+{
+  "name": "seo-content-strategy",
+  "displayName": "SEO Content Strategy Generator",
+  "version": "1.0.0",
+  "description": "Professional SEO content planning tool with keyword research, content calendar generation, competitor analysis, ranking tracking, and systematic organic growth optimization.",
+  "author": "ahmed181283",
+  "license": "MIT",
+  "pricing": {
+    "model": "subscription",
+    "price": 12900,
+    "interval": "monthly"
+  },
+  "tags": ["seo", "content-strategy", "keyword-research", "ranking-tracking", "competitor-analysis", "content-calendar"],
+  "minOpenClawVersion": "1.0.0",
+  "category": "marketing"
+}

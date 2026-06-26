@@ -1,0 +1,4 @@
+interface:
+  display_name: "Runtime Verifier"
+  short_description: "Verify changes against running software"
+  default_prompt: "Create and execute a concrete verification plan that proves the change works in a live runtime."

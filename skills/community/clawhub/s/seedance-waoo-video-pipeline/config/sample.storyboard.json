@@ -1,0 +1,21 @@
+{
+  "projectId": "sample-project",
+  "episodeId": "sample-episode-01",
+  "panels": [
+    {
+      "id": "panel-001",
+      "panelIndex": 0,
+      "imageUrl": "./assets/sample-first-frame.jpg",
+      "videoPrompt": "A man walks into a snowy temple courtyard at night.",
+      "srtSegment": "只得暂避到山神庙",
+      "isMainClip": true
+    },
+    {
+      "id": "panel-002",
+      "panelIndex": 1,
+      "imageUrl": "./assets/sample-second-frame.jpg",
+      "videoPrompt": "He turns and looks back into the snow.",
+      "srtSegment": "忽听得庙外有人说话"
+    }
+  ]
+}

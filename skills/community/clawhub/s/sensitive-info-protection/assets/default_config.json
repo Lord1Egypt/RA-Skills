@@ -1,0 +1,9 @@
+{
+  "settings": {
+    "block_on_high": true,
+    "warn_on_medium": true,
+    "ignore_low": false,
+    "default_replacement": "***"
+  },
+  "custom_rules": []
+}

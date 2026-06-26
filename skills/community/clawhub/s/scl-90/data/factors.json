@@ -1,0 +1,214 @@
+{
+	"factors": [
+		{
+			"description": "主要反映主观的身体不适感，包括心血管、胃肠道、呼吸和其他系统的不适，以及头痛、背痛、肌肉酸痛等。",
+			"id": "somatization",
+			"name": "躯体化",
+			"name_en": "Somatization",
+			"norm": {
+				"mean": 1.37,
+				"sd": 0.48
+			},
+			"questions": [
+				1,
+				4,
+				12,
+				27,
+				40,
+				42,
+				48,
+				49,
+				52,
+				53,
+				56,
+				58
+			]
+		},
+		{
+			"description": "主要指那些明知没有必要，但又无法摆脱的无意义的思想、冲动和行为。",
+			"id": "obsessive_compulsive",
+			"name": "强迫症状",
+			"name_en": "Obsessive-Compulsive",
+			"norm": {
+				"mean": 1.62,
+				"sd": 0.58
+			},
+			"questions": [
+				3,
+				9,
+				10,
+				28,
+				38,
+				45,
+				46,
+				51,
+				55,
+				65
+			]
+		},
+		{
+			"description": "主要指某些个人不自在感和自卑感，尤其是在与他人相比较时更突出。",
+			"id": "interpersonal_sensitivity",
+			"name": "人际关系敏感",
+			"name_en": "Interpersonal Sensitivity",
+			"norm": {
+				"mean": 1.65,
+				"sd": 0.61
+			},
+			"questions": [
+				6,
+				21,
+				34,
+				36,
+				37,
+				41,
+				61,
+				69,
+				73
+			]
+		},
+		{
+			"description": "以苦闷的情感与心境为代表性症状，还以生活兴趣的减退、动力缺乏、活力丧失等为特征。",
+			"id": "depression",
+			"name": "抑郁",
+			"name_en": "Depression",
+			"norm": {
+				"mean": 1.5,
+				"sd": 0.59
+			},
+			"questions": [
+				5,
+				14,
+				15,
+				20,
+				22,
+				26,
+				29,
+				30,
+				31,
+				32,
+				54,
+				71,
+				79
+			]
+		},
+		{
+			"description": "一般指那些烦躁、坐立不安、神经过敏、紧张以及由此产生的躯体征象。",
+			"id": "anxiety",
+			"name": "焦虑",
+			"name_en": "Anxiety",
+			"norm": {
+				"mean": 1.39,
+				"sd": 0.43
+			},
+			"questions": [
+				2,
+				17,
+				23,
+				33,
+				39,
+				57,
+				72,
+				78,
+				80,
+				86
+			]
+		},
+		{
+			"description": "主要从思维、情感及行为三个方面来反映病人的敌对表现。",
+			"id": "hostility",
+			"name": "敌对",
+			"name_en": "Hostility",
+			"norm": {
+				"mean": 1.48,
+				"sd": 0.5600000000000001
+			},
+			"questions": [
+				11,
+				24,
+				63,
+				67,
+				74,
+				81
+			]
+		},
+		{
+			"description": "恐怖的对象包括出门旅行、空旷场地、人群或公共场所和交通工具。",
+			"id": "phobic_anxiety",
+			"name": "恐怖",
+			"name_en": "Phobic Anxiety",
+			"norm": {
+				"mean": 1.23,
+				"sd": 0.41
+			},
+			"questions": [
+				13,
+				25,
+				47,
+				50,
+				70,
+				75,
+				82
+			]
+		},
+		{
+			"description": "主要指投射性思维、敌对、猜疑、关系观念、妄想、被动体验和夸大等。",
+			"id": "paranoid_ideation",
+			"name": "偏执",
+			"name_en": "Paranoid Ideation",
+			"norm": {
+				"mean": 1.43,
+				"sd": 0.57
+			},
+			"questions": [
+				8,
+				18,
+				43,
+				68,
+				76,
+				83
+			]
+		},
+		{
+			"description": "反映各式各样的急性症状和行为，有代表性地视为较隐讳、限定不严的精神病性过程的指征。",
+			"id": "psychoticism",
+			"name": "精神病性",
+			"name_en": "Psychoticism",
+			"norm": {
+				"mean": 1.29,
+				"sd": 0.42
+			},
+			"questions": [
+				7,
+				16,
+				35,
+				62,
+				77,
+				84,
+				85,
+				87,
+				88,
+				90
+			]
+		},
+		{
+			"description": "主要反映睡眠及饮食情况。",
+			"id": "additional",
+			"name": "其他",
+			"name_en": "Additional Items",
+			"norm": {
+				"mean": 1.35,
+				"sd": 0.5
+			},
+			"questions": [
+				19,
+				44,
+				59,
+				60,
+				64,
+				66,
+				89
+			]
+		}
+	]
+}

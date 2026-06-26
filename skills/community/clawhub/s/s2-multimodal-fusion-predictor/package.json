@@ -1,0 +1,24 @@
+{
+  "name": "s2-multimodal-fusion-predictor",
+  "version": "1.0.0",
+  "description": "S2-SWM Multimodal Fusion Predictor. Aligns LiDAR, Vision, and Tactile data spatio-temporally to resolve physical illusions. Generates high-fidelity latent space causal predictions (1s-60s) for Embodied AI brains.",
+  "main": "handler.py",
+  "scripts": { "start": "python3 handler.py" },
+  "openclaw": {
+    "extensions": ["openclaw.plugin.json"],
+    "compat": { "pluginApi": ">=3.22.0" },
+    "build": { "openclawVersion": "4.2.0" },
+    "capabilities": [
+      "spatio_temporal_alignment", 
+      "latent_space_fusion", 
+      "causal_timeline_prediction"
+    ],
+    "configSchema": {
+      "type": "object",
+      "required": [],
+      "properties": {}
+    }
+  },
+  "author": "Space2.world (Miles Xiang)",
+  "license": "MIT"
+}

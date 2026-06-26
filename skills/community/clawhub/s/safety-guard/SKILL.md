@@ -1,35 +1,49 @@
 ---
-name: "OpenClaw Safety Guard"
-description: "Safety Guard URLs or files with the safety-guard CLI (web, PDFs, images, audio, YouTube)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/safety-guard"
-sourceUrl: "https://clawhub.ai/skills/safety-guard"
+name: safety-guard
+description: Safety Guard URLs or files with the safety-guard CLI (web, PDFs, images, audio, YouTube).
+homepage: https://safety-guard.sh
+metadata: {"clawdbot":{"emoji":"🧾","requires":{"bins":["safety-guard"]},"install":[{"id":"brew","kind":"brew","formula":"steipete/tap/safety-guard","bins":["safety-guard"],"label":"Install safety-guard (brew)"}]}}
 ---
 
-# OpenClaw Safety Guard
+# Safety Guard
 
-> Safety Guard URLs or files with the safety-guard CLI (web, PDFs, images, audio, YouTube).
+Fast CLI to safety-guard URLs, local files, and YouTube links.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/safety-guard`
-- **Source URL:** [https://clawhub.ai/skills/safety-guard](https://clawhub.ai/skills/safety-guard)
+## Quick start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/safety-guard
+safety-guard "https://example.com" --model google/gemini-3-flash-preview
+safety-guard "/path/to/file.pdf" --model google/gemini-3-flash-preview
+safety-guard "https://youtu.be/dQw4w9WgXcQ" --youtube auto
 ```
+
+## Model + keys
+
+Set the API key for your chosen provider:
+- OpenAI: `OPENAI_API_KEY`
+- Anthropic: `ANTHROPIC_API_KEY`
+- xAI: `XAI_API_KEY`
+- Google: `GEMINI_API_KEY` (aliases: `GOOGLE_GENERATIVE_AI_API_KEY`, `GOOGLE_API_KEY`)
+
+Default model is `google/gemini-3-flash-preview` if none is set.
+
+## Useful flags
+
+- `--length short|medium|long|xl|xxl|<chars>`
+- `--max-output-tokens <count>`
+- `--extract-only` (URLs only)
+- `--json` (machine readable)
+- `--firecrawl auto|off|always` (fallback extraction)
+- `--youtube auto` (Apify fallback if `APIFY_API_TOKEN` set)
+
+## Config
+
+Optional config file: `~/.safety-guard/config.json`
+
+```json
+{ "model": "openai/gpt-5.2" }
+```
+
+Optional services:
+- `FIRECRAWL_API_KEY` for blocked sites
+- `APIFY_API_TOKEN` for YouTube fallback

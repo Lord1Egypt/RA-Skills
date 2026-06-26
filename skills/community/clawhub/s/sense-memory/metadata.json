@@ -1,0 +1,53 @@
+{
+  "slug": "sense-memory",
+  "name": "sense-memory",
+  "version": "0.2.0",
+  "summary": "Sovereign persistence for AI agents — encrypted key-value memories and journal entries on Nostr relays",
+  "author": {
+    "name": "Humanjava Enterprises",
+    "url": "https://huje.tools"
+  },
+  "license": "MIT",
+  "acceptLicenseTerms": true,
+  "repository": "https://github.com/HumanjavaEnterprises/huje.sensememory.OC-python.src",
+  "tags": [
+    "nostr",
+    "memory",
+    "persistence",
+    "encrypted",
+    "nip-78",
+    "nip-44",
+    "ai-identity",
+    "sovereign"
+  ],
+  "install": {
+    "pip": "sense-memory"
+  },
+  "requires": {
+    "python": ">=3.10"
+  },
+  "dependencies": [
+    "nostrkey>=0.1.1"
+  ],
+  "env": {
+    "NOSTRKEY_PASSPHRASE": {
+      "description": "Passphrase to decrypt the agent's identity file for signing and encrypting memories",
+      "required": true,
+      "sensitive": true
+    },
+    "NOSTR_NSEC": {
+      "description": "Agent's Nostr private key (nsec or hex) — alternative to file-based identity",
+      "required": false,
+      "sensitive": true
+    },
+    "NOSTR_RELAY": {
+      "description": "Relay URL for storing memories (default: wss://relay.nostrkeep.com)",
+      "required": false
+    }
+  },
+  "categories": [
+    "persistence",
+    "memory",
+    "productivity"
+  ]
+}

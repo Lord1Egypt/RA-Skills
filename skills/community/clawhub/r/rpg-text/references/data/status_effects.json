@@ -1,0 +1,258 @@
+{
+  "poison": {
+    "name": "中毒",
+    "type": "negative",
+    "duration_type": "stacking",
+    "effect": {
+      "type": "damage_over_time",
+      "damage": "1d4",
+      "damage_type": "poison"
+    },
+    "save": "con",
+    "save_dc": 10,
+    "description": "目标受到持续毒素伤害，每轮1d4"
+  },
+  "poison_strong": {
+    "name": "强效中毒",
+    "type": "negative",
+    "duration_type": "stacking",
+    "effect": {
+      "type": "damage_over_time",
+      "damage": "2d4",
+      "damage_type": "poison"
+    },
+    "save": "con",
+    "save_dc": 14,
+    "description": "目标受到强烈毒素伤害，每轮2d4"
+  },
+  "bleeding": {
+    "name": "流血",
+    "type": "negative",
+    "duration_type": "stacking",
+    "effect": {
+      "type": "damage_over_time",
+      "damage": "1d6",
+      "damage_type": "slashing"
+    },
+    "save": "dex",
+    "save_dc": 12,
+    "description": "伤口持续流血，每轮1d6伤害"
+  },
+  "burning": {
+    "name": "燃烧",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "damage_over_time",
+      "damage": "1d6",
+      "damage_type": "fire"
+    },
+    "save": "dex",
+    "save_dc": 12,
+    "description": "火焰持续灼烧，每轮1d6伤害"
+  },
+  "stunned": {
+    "name": "眩晕",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "condition",
+      "condition": "cannot_act"
+    },
+    "save": "con",
+    "save_dc": 14,
+    "description": "目标无法行动，回合结束需豁免"
+  },
+  "paralyzed": {
+    "name": "麻痹",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "condition",
+      "condition": "cannot_move"
+    },
+    "save": "dex",
+    "save_dc": 14,
+    "description": "目标无法移动或行动"
+  },
+  "frightened": {
+    "name": "恐惧",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "disadvantage",
+      "check": "attack"
+    },
+    "save": "wis",
+    "save_dc": 12,
+    "description": "目标攻击检定和力量/敏捷检定劣势"
+  },
+  "charmed": {
+    "name": "魅惑",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "condition",
+      "condition": "cannot_attack_creator"
+    },
+    "save": "wis",
+    "save_dc": 12,
+    "description": "目标无法攻击施法者"
+  },
+  "blinded": {
+    "name": "失明",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "condition",
+      "condition": "auto_miss"
+    },
+    "save": "con",
+    "save_dc": 12,
+    "description": "目标无法看到，所有攻击劣势"
+  },
+  "restrained": {
+    "name": "束缚",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "condition",
+      "condition": "cannot_move"
+    },
+    "save": "dex",
+    "save_dc": 12,
+    "description": "目标无法移动，AC-2"
+  },
+  "confused": {
+    "name": "混乱",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "random_action"
+    },
+    "save": "int",
+    "save_dc": 12,
+    "description": "目标行为不可预测"
+  },
+  "sleeping": {
+    "name": "睡眠",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "condition",
+      "condition": "unconscious"
+    },
+    "save": "wis",
+    "save_dc": 10,
+    "description": "目标陷入沉睡，受伤时醒来"
+  },
+  "bless": {
+    "name": "祝福",
+    "type": "positive",
+    "duration_type": "temporary",
+    "duration": "1 minute",
+    "effect": {
+      "type": "bonus",
+      "attack": 1,
+      "save": 1
+    },
+    "description": "攻击检定和豁免检定+1加值"
+  },
+  "shield_of_faith": {
+    "name": "信仰护盾",
+    "type": "positive",
+    "duration_type": "temporary",
+    "duration": "10 minutes",
+    "effect": {
+      "type": "ac_bonus",
+      "value": 2
+    },
+    "description": "AC获得+2加值"
+  },
+  "haste": {
+    "name": "加速",
+    "type": "positive",
+    "duration_type": "temporary",
+    "duration": "1 minute",
+    "effect": {
+      "type": "multiple",
+      "ac": 2,
+      "speed": 2,
+      "attack": 1
+    },
+    "description": "速度翻倍，AC+2，攻击+1，豁免优势"
+  },
+  "slow": {
+    "name": "缓慢",
+    "type": "negative",
+    "duration_type": "temporary",
+    "duration": "1 minute",
+    "effect": {
+      "type": "multiple",
+      "ac": -2,
+      "speed": -0.5,
+      "attack": -1
+    },
+    "save": "dex",
+    "save_dc": 14,
+    "description": "速度减半，AC-2，攻击-1"
+  },
+  "invisible": {
+    "name": "隐形",
+    "type": "positive",
+    "duration_type": "temporary",
+    "duration": "1 hour",
+    "effect": {
+      "type": "condition",
+      "condition": "cannot_be_seen"
+    },
+    "description": "目标不可被看见，攻击时隐形打破"
+  },
+  "flying": {
+    "name": "飞行",
+    "type": "positive",
+    "duration_type": "temporary",
+    "duration": "10 minutes",
+    "effect": {
+      "type": "fly",
+      "speed": 60
+    },
+    "description": "目标获得飞行能力"
+  },
+  "regeneration": {
+    "name": "再生",
+    "type": "positive",
+    "duration_type": "temporary",
+    "duration": "1 minute",
+    "effect": {
+      "type": "heal_per_turn",
+      "value": 1
+    },
+    "description": "每轮恢复1点生命值"
+  },
+  "frozen": {
+    "name": "冰冻",
+    "type": "negative",
+    "duration_type": "temporary",
+    "effect": {
+      "type": "condition",
+      "condition": "cannot_move"
+    },
+    "save": "con",
+    "save_dc": 14,
+    "description": "目标被冻结，无法移动"
+  },
+  "electrified": {
+    "name": "触电",
+    "type": "negative",
+    "duration_type": "stacking",
+    "effect": {
+      "type": "damage_over_time",
+      "damage": "1d6",
+      "damage_type": "lightning"
+    },
+    "save": "dex",
+    "save_dc": 12,
+    "description": "闪电持续伤害，每轮1d6"
+  }
+}

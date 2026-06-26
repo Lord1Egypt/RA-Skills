@@ -1,0 +1,13 @@
+{
+  "name": "retro",
+  "displayName": "📟 复古风",
+  "description": "BB机/电报风格，怀旧感",
+  "template": "== END ==\n[{name}] {location} {time}",
+  "emoji": "📟",
+  "seal": "",
+  "contextMode": {
+    "work": "== END ==",
+    "casual": "== END ==\n[{name}] {location} {time}"
+  },
+  "preview": "== END ==\n[小橘] 杭州 午后"
+}

@@ -1,0 +1,76 @@
+{
+  "deps": [
+    {
+      "body": "Front",
+      "ref": "origin"
+    },
+    {
+      "body": "Back",
+      "ref": "Front"
+    },
+    {
+      "body": "Side_Left",
+      "ref": "Front"
+    },
+    {
+      "body": "Side_Right",
+      "ref": "Side_Left"
+    },
+    {
+      "body": "Bottom",
+      "ref": "Front"
+    },
+    {
+      "body": "Foot_Front",
+      "ref": "Front"
+    },
+    {
+      "body": "Foot_Back",
+      "ref": "Foot_Front"
+    },
+    {
+      "body": "Foot_Left",
+      "ref": "Foot_Front"
+    },
+    {
+      "body": "Foot_Right",
+      "ref": "Foot_Left"
+    },
+    {
+      "body": "dd_Front",
+      "ref": "Bottom"
+    },
+    {
+      "body": "dd_Back",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Left",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Right",
+      "ref": "dd_Left"
+    },
+    {
+      "body": "dd_Bottom",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "Lid",
+      "ref": "Front"
+    },
+    {
+      "body": "Batten_Left",
+      "ref": "Lid"
+    },
+    {
+      "body": "Batten_Right",
+      "ref": "Lid"
+    },
+    {
+      "body": "BackPanel",
+      "ref": "Back"
+    }
+  ]
+}

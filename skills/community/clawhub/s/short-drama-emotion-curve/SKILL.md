@@ -1,35 +1,98 @@
 ---
-name: "Short Drama Emotion Curve"
-description: "短剧情绪曲线设计技能。用于 AI 短剧/短视频创作中的情绪节奏规划、观众共鸣设计、虐点/爽点编排。触发关键词：情绪曲线、短剧情感、观众共鸣、共情、虐点、爽点、情绪节奏、情感弧线、短剧节奏、催泪、燃点、共情设计、代入感、困境设定。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/short-drama-emotion-curve"
-sourceUrl: "https://clawhub.ai/skills/short-drama-emotion-curve"
+name: short-drama-emotion-curve
+description: 短剧情绪曲线设计技能。用于 AI 短剧/短视频创作中的情绪节奏规划、观众共鸣设计、虐点/爽点编排。触发关键词：情绪曲线、短剧情感、观众共鸣、共情、虐点、爽点、情绪节奏、情感弧线、短剧节奏、催泪、燃点、共情设计、代入感、困境设定。
 ---
 
-# Short Drama Emotion Curve
+# 短剧情绪曲线设计 (Short Drama Emotion Curve)
 
-> 短剧情绪曲线设计技能。用于 AI 短剧/短视频创作中的情绪节奏规划、观众共鸣设计、虐点/爽点编排。触发关键词：情绪曲线、短剧情感、观众共鸣、共情、虐点、爽点、情绪节奏、情感弧线、短剧节奏、催泪、燃点、共情设计、代入感、困境设定。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/short-drama-emotion-curve`
-- **Source URL:** [https://clawhub.ai/skills/short-drama-emotion-curve](https://clawhub.ai/skills/short-drama-emotion-curve)
+短剧（每集 60-90 秒）的核心挑战在于：在极短的时间内建立观众的情感投入，并在每一集结尾留下足够的钩子（hook）让观众点入下一集。
 
-## Overview
+本技能聚焦于 **emotional arc design**（情绪弧线设计），提供可复用的情绪设计原则和模式库。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/short-drama-emotion-curve
+## 核心原理
+
+### 1. 代入感优先 (Empathy First)
+
+短剧的核心情绪需求是 **代入感（沉浸感）**：
+
+> "和我处境差不多的女人，活出我不敢活的样子。"
+
+女主角的处境本身就是困境，而不是意外发生的悲剧。观众在第一秒就知道她不容易——这是所有后续情绪的根基。
+
+**代入感的建立方式：**
+
+| 时间节点 | 目标 | 典型手法 |
+|---------|------|---------|
+| 0-5s | 处境揭示 | 用细节而非旁白展示困境 |
+| 5-20s | 内心冲突 | 让观众看到角色的犹豫、权衡 |
+| 20-50s | 共情积累 | 展示她做出妥协的日常细节 |
+| 50-90s | 情绪爆发/钩子 | 秘密被逼上台面 or 外力打破平衡 |
+
+**经典场景举例（50秒共情建立）：**
 ```
+儿子学校催费短信 → 看了眼银行余额锁屏 → 继续值班
+```
+这三动作不解释、不诉苦——观众自己补全了处境。
+
+### 2. 虐点与爽点的节奏编排
+
+- **虐点（Pain Point）**：角色处境被逼到台面上，而非外力介入强行制造冲突。观众看到的是她自己最不想被看见的部分。
+- **爽点（Reward Point）**：逆袭、反击、真相揭露、身份逆转。爽点要压在情绪最顶点释放，不能提前。
+
+**节奏原则：**  
+压得越深，弹得越高。虐点积累不够，爽点就没有力度。
+
+### 3. 竖屏叙事特性
+
+- **9:16 画幅（9_PERCENT vertical video）** 限制了横向调度，纵深（Z轴）和面部特写是主要武器
+- 声音先于画面：开场音效/音乐建立情绪基调，先声夺人
+- 信息密度高：每一帧都要承载情绪或剧情信息，无效镜头会打断节奏
+- 结尾 hook 必须视觉化：不能用"下集揭晓"这种廉价钩子，必须用画面本身制造悬念
+
+---
+
+## 情绪曲线结构（60-90秒集）
+
+```
+[ Setup  ]  [ Confrontation ]  [ Crisis     ]  [ Hook ]
+  0-15s        15-40s             40-75s       75-90s
+
+  困境展示      冲突升级           临界点       悬念/反转
+  代入感        情绪积累           情绪顶点      下一集钩子
+```
+
+- **Setup（前奏）**：用细节暗示处境，不要解释
+- **Confrontation（冲突）**：内部矛盾（自我怀疑）或外部压力升级
+- **Crisis（危机）**：秘密/处境被逼到台面，情绪到达临界点
+- **Hook（钩子）**：画面本身制造悬念——通常是反转前的最后一帧
+
+---
+
+## 模式库索引
+
+详见 `references/pattern-library.md`，包含以下核心模式：
+
+- 初遇模式（First Meeting）
+- 误解模式（Misunderstanding）
+- 分离模式（Separation）
+- 重逢模式（Reunion）
+- 高潮模式（Climax）
+- 解局模式（Resolution）
+
+---
+
+## 参考文件
+
+- `references/emotion-design.md` — 情绪设计原理详解
+- `references/pattern-library.md` — 情绪模式库（含场景结构与 shot design）
+
+---
+
+## 案例参考
+
+- 海外短剧：**《The Night Shift》** — 夜班医护群体的情绪弧线设计
+- 母女逆袭短剧：**《SHAME》** — 家庭困境→母女共战→逆袭的情绪节奏

@@ -1,0 +1,25 @@
+{
+  "skill_id": "root-cause-hunter",
+  "version": "1.0.0",
+  "epoch": 1,
+  "round": 1,
+  "edit_budget": 8,
+  "last_update": "2026-06-03T02:09:48.301255",
+  "trajectory_stats": {
+    "total": 6,
+    "hard_success": 1,
+    "hard_fail": 5,
+    "soft_fail": 0
+  },
+  "edit_history": [
+    {
+      "round": 1,
+      "applied": 0,
+      "rejected": 2,
+      "edits_count": 2,
+      "gate_passed": false,
+      "timestamp": "2026-06-03T02:09:48.301255"
+    }
+  ],
+  "slow_update_region": null
+}

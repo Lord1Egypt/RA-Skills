@@ -1,0 +1,69 @@
+{
+  "contentType": 1,
+  "taskName": "我的发布任务",
+  "failureNotification": false,
+  "isDomesticTrade": false,
+
+  "videos": [
+    {
+      "videoId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "videoUrl": "https://cdn.example.com/video.mp4",
+      "videoName": "视频文件名.mp4",
+      "isMaterialCenter": true,
+      "width": 1920,
+      "height": 1080,
+      "duration": 60,
+
+      "title": "默认标题，所有平台共用",
+      "description": "描述（YouTube/Facebook 有独立描述字段，其他平台回落为标题）",
+      "topics": ["话题A", "话题B"],
+      "topicPosition": 2,
+
+      "cover": {
+        "imageUrl": "https://cdn.example.com/cover.jpg",
+        "imageName": "cover.jpg",
+        "imageSourceType": 1,
+        "sourceImageId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      },
+
+      "accounts": [
+        {
+          "entityId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "mediaAccountType": "Douyin",
+          "mediaCustomerId": "抖音平台账号ID（非UUID，如数字字符串）",
+          "mediaCustomerName": "我的抖音账号",
+          "externalMediaAccountTokenId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        },
+        {
+          "entityId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "mediaAccountType": "YouTube",
+          "mediaCustomerId": "YouTube频道ID（非UUID，如UCxxx）",
+          "mediaCustomerName": "我的 YouTube 频道",
+          "externalMediaAccountTokenId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        }
+      ],
+
+      "publishMode": "scheduled",
+      "publishAt": "2026-04-08T10:00:00+08:00",
+
+      "youtubePrivacy": "public",
+
+      "platformOverrides": {
+        "YouTube": {
+          "title": "YouTube 专用标题（≤100字）",
+          "description": "YouTube 专用描述",
+          "topics": ["YouTubeTopic"],
+          "topicPosition": 4,
+          "publishMode": "scheduled",
+          "publishAt": "2026-04-08T18:00:00+08:00",
+          "cover": {
+            "imageUrl": "https://cdn.example.com/cover-youtube.jpg",
+            "imageName": "cover-youtube.jpg",
+            "imageSourceType": 1,
+            "sourceImageId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+          }
+        }
+      }
+    }
+  ]
+}

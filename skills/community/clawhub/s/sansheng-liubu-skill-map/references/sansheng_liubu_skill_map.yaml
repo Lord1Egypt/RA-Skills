@@ -1,0 +1,159 @@
+task_id: JJC-20260322-001
+title: 三省六部 × 技能库 最终匹配表
+version: 2
+updated_at: 2026-03-22
+description: >-
+  按中书省、门下省、尚书省与六部中文标签，将技能库整理为可落地的协作配置，适合现代工程化多 Agent 体系。
+
+provinces:
+  zhongshu:
+    zh_name: 中书省
+    core_positioning: 创意生成 → 方案撰写 → 目标制定
+    matched_skills:
+      - brainstorming
+      - writing-plans
+      - docx
+      - pptx
+      - pdf
+    outputs:
+      - 战略摘要
+      - 方案文档
+      - 目标定义
+      - Epic/Issue 草案
+
+  menxia:
+    zh_name: 门下省
+    core_positioning: 方案审核 → 风险校验 → 质量把关
+    matched_skills:
+      - verification-before-completion
+      - requesting-code-review
+      - pdf
+      - docx
+    outputs:
+      - 审核意见
+      - 风险结论
+      - 评审报告
+
+  shangshu:
+    zh_name: 尚书省
+    core_positioning: 任务分发 → 多 Agent 协同 → 进度监控
+    matched_skills:
+      - executing-plans
+      - dispatching-parallel-agents
+      - subagent-driven-development
+      - mcp-builder
+    outputs:
+      - 任务拆解
+      - 调度计划
+      - 执行看板
+      - 阶段汇报
+
+ministries:
+  libu:
+    zh_name: 吏部
+    core_positioning: 人事 / 组织管理
+    matched_skills:
+      - subagent-driven-development
+      - dispatching-parallel-agents
+    responsibilities:
+      - 子 Agent 角色分配
+      - 权限管理
+      - 团队协作调度
+
+  hubu:
+    zh_name: 户部
+    core_positioning: 财务 / 数据管理
+    matched_skills:
+      - xlsx
+      - data-analysis
+      - pdf
+    responsibilities:
+      - 成本核算
+      - 数据统计
+      - 报表生成
+      - 数据可视化
+
+  lebu:
+    zh_name: 礼部
+    core_positioning: 品牌 / 沟通 / 文化
+    matched_skills:
+      - brainstorming
+      - writing-plans
+      - docx
+      - pptx
+      - pdf
+      - canvas-design
+      - algorithmic-art
+    responsibilities:
+      - 品牌宣传
+      - 活动策划
+      - 文案输出
+      - 视觉设计
+
+  bingbu:
+    zh_name: 兵部
+    core_positioning: 项目攻坚 / 应急
+    matched_skills:
+      - systematic-debugging
+      - webapp-testing
+      - executing-plans
+    responsibilities:
+      - 线上问题处理
+      - 技术攻坚
+      - 应急响应
+
+  xingbu:
+    zh_name: 刑部
+    core_positioning: 合规 / 风控 / 审核
+    matched_skills:
+      - verification-before-completion
+      - requesting-code-review
+      - xlsx
+      - pdf
+    responsibilities:
+      - 合规检查
+      - 代码审核
+      - 风险预警
+      - 违规处理
+
+  gongbu:
+    zh_name: 工部
+    core_positioning: 技术落地 / 开发
+    matched_skills:
+      - test-driven-development
+      - systematic-debugging
+      - webapp-testing
+      - frontend-design
+      - canvas-design
+      - algorithmic-art
+      - web-artifacts-builder
+      - mcp-builder
+      - subagent-driven-development
+      - github-integration
+    responsibilities:
+      - 前端设计
+      - 代码开发
+      - 测试部署
+      - 工程交付
+
+workflow:
+  - step: 1
+    owner: 中书省
+    action: brainstorming → writing-plans → 导出 docx/pptx/pdf 方案
+  - step: 2
+    owner: 门下省
+    action: verification-before-completion → requesting-code-review → 生成审核报告
+  - step: 3
+    owner: 尚书省
+    action: dispatching-parallel-agents → mcp-builder 构建协作流 → 分发任务给六部
+  - step: 4
+    owner: 六部
+    action: 按部门主责技能执行对应工作
+  - step: 5
+    owner: 门下省 / 尚书省
+    action: verification-before-completion 最终校验 → 项目复盘 → GitHub 归档
+
+engineering_value:
+  - 复古官制 + 现代 AI 协作
+  - 全链路覆盖：从创意到复盘
+  - 工程化落地：可版本化、可自动化、可归档

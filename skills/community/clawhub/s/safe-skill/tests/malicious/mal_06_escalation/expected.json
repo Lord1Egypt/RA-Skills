@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Privilege escalation: sudo, chmod 777, /etc/passwd, /etc/shadow, /etc/sudoers, SUID",
+    "expected_min_score": 80,
+    "expected_level": ["EXTREME"],
+    "must_trigger_rules": ["ESC-001", "ESC-002", "ESC-003", "ESC-004", "ESC-005"],
+    "attack_category": "escalation"
+}

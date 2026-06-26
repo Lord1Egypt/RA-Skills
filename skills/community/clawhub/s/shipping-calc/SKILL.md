@@ -1,35 +1,57 @@
 ---
-name: "Shipping Calc"
+name: "shipping-calc"
+version: "3.0.0"
 description: "Calculate shipping costs with zone-based rates and duty estimates. Use when estimating shipping costs."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shipping-calc"
-sourceUrl: "https://clawhub.ai/skills/shipping-calc"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Shipping Calc
+# shipping-calc
 
-> Calculate shipping costs with zone-based rates and duty estimates. Use when estimating shipping costs.
+Calculate shipping costs with zone-based rates and duty estimates. Use when estimating shipping costs.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shipping-calc`
-- **Source URL:** [https://clawhub.ai/skills/shipping-calc](https://clawhub.ai/skills/shipping-calc)
+## Commands
 
-## Overview
+### `rate`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/shipping-calc
+scripts/script.sh rate <weight from to>
 ```
+
+### `compare`
+
+```bash
+scripts/script.sh compare <weight from to>
+```
+
+### `estimate`
+
+```bash
+scripts/script.sh estimate <length width height weight>
+```
+
+### `duty`
+
+```bash
+scripts/script.sh duty <value country>
+```
+
+### `track`
+
+```bash
+scripts/script.sh track <number>
+```
+
+### `batch`
+
+```bash
+scripts/script.sh batch <file>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/shipping-calc/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

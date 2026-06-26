@@ -1,0 +1,71 @@
+{
+  "deps": [
+    {
+      "body": "Post_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Post_FR",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Post_BL",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Post_BR",
+      "ref": "Post_FR"
+    },
+    {
+      "body": "Rail_Left",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Rail_Right",
+      "ref": "Rail_Left"
+    },
+    {
+      "body": "Rail_Foot",
+      "ref": "Post_FL"
+    },
+    {
+      "body": "Rail_Back",
+      "ref": "Post_BL"
+    },
+    {
+      "body": "Ledger_Left",
+      "ref": "Rail_Left"
+    },
+    {
+      "body": "Ledger_Right",
+      "ref": "Rail_Left"
+    },
+    {
+      "body": "HB_TopRail",
+      "ref": "Post_BL"
+    },
+    {
+      "body": "HB_BotRail",
+      "ref": "Post_BL"
+    },
+    {
+      "body": "HBSlat_1",
+      "ref": "HB_BotRail",
+      "replicas": "HBSlat_*"
+    },
+    {
+      "body": "Slat_1",
+      "ref": "Ledger_Left",
+      "replicas": "Slat_*"
+    },
+    {
+      "body": "CenterBeam",
+      "ref": "Slat_1"
+    },
+    {
+      "body": "BeamLeg_1",
+      "ref": "CenterBeam",
+      "replicas": "BeamLeg_*"
+    }
+  ]
+}

@@ -1,35 +1,120 @@
 ---
-name: "Football Betting Analyzer"
-description: "足彩分析助手 - 提供足球比赛数据分析、赔率分析、投注建议。支持基本面分析（球队战绩、伤停、对战历史）、赔率面分析（亚盘、欧赔、凯利指数）、投注策略建议。当用户需要分析足球比赛、获取投注建议、查询球队数据时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shenmeng-football-betting-analyzer"
-sourceUrl: "https://clawhub.ai/skills/shenmeng-football-betting-analyzer"
+name: football-betting-analyzer
+description: 足彩分析助手 - 提供足球比赛数据分析、赔率分析、投注建议。支持基本面分析（球队战绩、伤停、对战历史）、赔率面分析（亚盘、欧赔、凯利指数）、投注策略建议。当用户需要分析足球比赛、获取投注建议、查询球队数据时使用。
+metadata:
+  openclaw:
+    emoji: ⚽
 ---
 
-# Football Betting Analyzer
+# Football Betting Analyzer 足彩分析助手
 
-> 足彩分析助手 - 提供足球比赛数据分析、赔率分析、投注建议。支持基本面分析（球队战绩、伤停、对战历史）、赔率面分析（亚盘、欧赔、凯利指数）、投注策略建议。当用户需要分析足球比赛、获取投注建议、查询球队数据时使用。
+> 💰 **本 Skill 已接入 SkillPay 付费系统**
+> - 每次调用费用：**0.01 USDT**
+> - 支付方式：BNB Chain USDT
+> - 请先确保账户有足够余额
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shenmeng-football-betting-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/shenmeng-football-betting-analyzer](https://clawhub.ai/skills/shenmeng-football-betting-analyzer)
+专业的足球比赛数据分析和投注决策支持工具。
 
-## Overview
+## 核心能力
 
+1. **基本面分析** — 球队战绩、伤停名单、主客场表现
+2. **赔率面分析** — 亚盘、欧赔、凯利指数、赔率变化趋势
+3. **历史数据** — 对战记录、近期状态、进球/失球统计
+4. **投注建议** — 胜平负预测、让球分析、大小球建议
+5. **资金管理** — 投注比例、风险控制、组合方案
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shenmeng-football-betting-analyzer
+## 适用场景
+
+| 场景 | 示例 |
+|------|------|
+| **赛前分析** | "分析今晚曼联vs利物浦的比赛" |
+| **赔率解读** | "这场比赛亚盘怎么看？" |
+| **投注建议** | "这场推荐怎么买？" |
+| **串关方案** | "今天有什么稳胆可以串？" |
+| **球队查询** | "曼城最近状态怎么样？" |
+| **联赛分析** | "英超争冠形势如何？" |
+
+## 分析维度
+
+### 1. 基本面 (Fundamentals)
+- 联赛排名与积分差距
+- 近期5/10场比赛战绩
+- 主客场表现差异
+- 伤停名单影响评估
+- 战意分析（争冠/保级/欧战资格）
+- 历史对战记录
+
+### 2. 赔率面 (Odds Analysis)
+- **亚盘**: 初盘/即时盘、水位变化、盘口升降
+- **欧赔**: 胜平负赔率、凯利指数、返还率
+- **大小球**: 盘口、水位分析
+- **赔率趋势**: 机构倾向判断
+
+### 3. 数据模型
+- 预期进球 (xG)
+- 控球率与射门效率
+- 进攻/防守效率指数
+- 价值投注识别
+
+## 使用方法
+
+### 单场比赛分析
+```
+分析 [球队A] vs [球队B] 的比赛
+```
+
+### 赔率查询
+```
+查询 [比赛] 的亚盘/欧赔
+```
+
+### 投注建议
+```
+这场比赛推荐怎么买？
+```
+
+### 多场比赛对比
+```
+对比今天几场比赛的投注价值
+```
+
+## 数据来源
+
+- **免费API**: API-Football、Football-Data.org
+- **赔率数据**: OddsAPI、各博彩公司公开赔率
+- **新闻资讯**: 球队官网、体育媒体
+
+## 输出格式
+
+分析报告包含：
+1. 比赛基本信息
+2. 基本面评估（★☆☆☆☆）
+3. 赔率解读
+4. 综合推荐
+5. 风险提示
+
+## 注意事项
+
+⚠️ **免责声明**: 
+- 本工具仅供数据分析参考，不构成投注建议
+- 足球比赛具有不确定性，请理性购彩
+- 请遵守当地法律法规，合法参与彩票活动
+
+## 技术栈
+
+- Python 3.8+
+- 数据获取: requests / aiohttp
+- 数据分析: pandas / numpy
+- 可视化: matplotlib (可选)
+
+## 文件结构
+
+```
+football-betting-analyzer/
+├── SKILL.md                 # 本文件
+├── config.json             # 配置信息
+├── analyzer.py             # 主分析脚本
+├── data_fetcher.py         # 数据获取模块
+├── odds_analyzer.py        # 赔率分析模块
+└── utils.py                # 工具函数
 ```

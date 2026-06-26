@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Data exfiltration via HTTP POST, raw socket, and SMTP",
+    "expected_min_score": 50,
+    "expected_level": ["HIGH", "EXTREME"],
+    "must_trigger_rules": ["EXFIL-001", "EXFIL-004", "EXFIL-005"],
+    "attack_category": "exfil"
+}

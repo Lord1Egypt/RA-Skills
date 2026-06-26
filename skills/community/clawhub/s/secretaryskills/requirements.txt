@@ -1,0 +1,3 @@
+# Secretary Skill - dependencies
+# Core is pure Python 3.10+ — no external deps required.
+# Add below if integrating with external cron/automation systems.

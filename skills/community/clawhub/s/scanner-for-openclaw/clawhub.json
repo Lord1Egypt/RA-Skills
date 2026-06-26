@@ -1,0 +1,98 @@
+{
+  "name": "openclaw-security-scanner",
+  "version": "1.0.4",
+  "slug": "openclaw-security-scanner",
+  "description": "Security expert for OpenClaw deployments. Audits local configuration files for vulnerabilities in network settings, channel policies, and tool permissions. Pure static analysis — no network probing, no subprocess execution, no system command calls.",
+  "homepage": "https://clawhub.ai/zoowii/scanner-for-openclaw",
+  "license": "MIT",
+  "author": "DTClaw Team",
+  "tags": ["security", "audit", "scanner", "hardening", "compliance"],
+  "minOpenClawVersion": "2026.3.0",
+  "entryPoint": "SKILL.md",
+  "permissions": {
+    "fileRead": [
+      "~/.openclaw/openclaw.json",
+      "~/.openclaw/config.json",
+      "~/.openclaw/gateway.config.json",
+      "/etc/openclaw/openclaw.json"
+    ],
+    "fileWrite": [
+      "$WORKSPACE/security_report_*.md"
+    ],
+    "envRead": [
+      "OPENCLAW_CONFIG"
+    ],
+    "network": false,
+    "subprocess": false
+  },
+  "scripts": {
+    "scan": "python3 scripts/security_scan.py",
+    "cli": "python3 scripts/cli.py"
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/security_scan.py",
+    "scripts/cli.py",
+    "references/permission-management.md",
+    "references/remediation-playbook.md"
+  ],
+  "commands": [
+    {
+      "name": "security-scan",
+      "description": "Run full security audit",
+      "script": "scripts/cli.py",
+      "args": ["$@"]
+    }
+  ],
+  "changelog": [
+    {
+      "version": "1.0.4",
+      "date": "2026-03-12",
+      "changes": [
+        "Remove all subprocess calls (lsof, ss, openclaw CLI) to eliminate system command execution",
+        "Remove all network socket connections (port probing) to eliminate network access",
+        "Convert to pure config-file static analysis — no risky capabilities",
+        "Add permissions declaration in clawhub.json (fileRead, fileWrite, envRead, network:false, subprocess:false)",
+        "Add TLS/SSL configuration check and bind-address-missing warning",
+        "CLI wrapper now calls scanner directly instead of via subprocess",
+        "Rewrite remediation-playbook.md: config-edit-only fixes, system commands marked [OPERATOR]",
+        "Rewrite permission-management.md: remove runnable shell commands, add [OPERATOR] labels",
+        "Fix SKILL.md: align example output, troubleshooting paths, and safety warnings with config-only scope",
+        "Resolves ClawHub suspicious classification and declaration/behaviour mismatches"
+      ]
+    },
+    {
+      "version": "1.0.3",
+      "date": "2026-03-10",
+      "changes": [
+        "Add primary config path ~/.openclaw/openclaw.json and update /etc path to openclaw.json",
+        "Add PortDetectionMode enum with CONFIG_ONLY / PROCESS_CHECK / MULTI_SOURCE modes",
+        "Add get_port_from_running_process() to query live gateway port via CLI",
+        "Add get_port_from_config() helper with proper fallback to default port",
+        "Fix scan_ports: use actual_port (not config_port) in Finding title and description",
+        "Fix get_port_from_running_process: cast returned port value to int to prevent type mismatch"
+      ]
+    },
+    {
+      "version": "1.0.2",
+      "date": "2026-03-09",
+      "changes": [
+        "Removed external network access (GitHub API fetching)",
+        "Scan now operates fully offline on local configuration only",
+        "Fixes ClawHub suspicious flag caused by outbound HTTP requests"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-03-08",
+      "changes": [
+        "Initial release",
+        "Network port scanning",
+        "Channel policy audit",
+        "Permission analysis",
+        "GitHub threat intelligence",
+        "Safe remediation playbook"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "case_id": "case_014",
+  "category": "ISV高级版权限边界",
+  "title": "ISV状态缺失时阻断",
+  "new_lui_request": "每天9点做高级铺货",
+  "initial_tasks": [],
+  "existing_tasks": [],
+  "user_context": {
+    "ali_id": "ali_test_001",
+    "shops": [
+      {
+        "shop_id": "pdd_missing_paid",
+        "shopCode": "pdd_missing_paid",
+        "shop_name": "pdd_missing_paid店铺",
+        "platform": "pinduoduo",
+        "channel": "pinduoduo",
+        "authorized": true,
+        "is_authorized": true,
+        "create_permission_status": "paid_status_missing",
+        "sv_permission_status": "paid_status_missing"
+      }
+    ],
+    "platform_capabilities": {
+      "pinduoduo": {
+        "auto_listing": true,
+        "auto_follow_order": true,
+        "inventory_sync": true,
+        "price_adjust": true,
+        "auto_delist": true,
+        "supplier_switch": true,
+        "product_selection": true,
+        "inspection": true,
+        "daily_report": true
+      },
+      "douyin": {
+        "auto_listing": true,
+        "auto_follow_order": true,
+        "inventory_sync": true,
+        "price_adjust": false,
+        "auto_delist": false,
+        "supplier_switch": true,
+        "product_selection": true,
+        "inspection": true,
+        "daily_report": true
+      },
+      "xiaohongshu": {
+        "auto_listing": true,
+        "auto_follow_order": false,
+        "inventory_sync": true,
+        "price_adjust": false,
+        "auto_delist": false,
+        "supplier_switch": false,
+        "product_selection": true,
+        "inspection": true,
+        "daily_report": true
+      }
+    },
+    "wechat_bound": true
+  },
+  "proposed_task": {
+    "task_id": "new",
+    "source": "LUI",
+    "canonical_task_type": "auto_listing",
+    "name": "auto_listing",
+    "frequency": "daily",
+    "time": "09:00",
+    "status": "active",
+    "shop_id": "pdd_missing_paid",
+    "requires_sv_advanced_permission": true
+  },
+  "expected_decision": "block",
+  "expected_reason_code": "sv_advanced_permission_missing",
+  "expected_prompt_required": true,
+  "cleanup_required": true,
+  "cleanup_policy": "runner 必须在本 case 执行前清空 runtime/task_pool.json，写入 initial_tasks；执行后再次删除 runtime/task_pool.json，禁止后续 case 继承任务状态。"
+}

@@ -1,35 +1,92 @@
 ---
-name: "语义压缩"
-description: "语义压缩技能，在不降低准确度的前提下大幅减少token消耗。保留完整关键信息和语义骨架，去除冗余文本，让上下文更紧凑。不损失精度，只砍掉废话。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/semantic-compress"
-sourceUrl: "https://clawhub.ai/skills/semantic-compress"
+name: semantic-compress
+description: 语义压缩技能，在不降低准确度的前提下大幅减少token消耗。保留完整关键信息和语义骨架，去除冗余文本，让上下文更紧凑。不损失精度，只砍掉废话。
 ---
 
-# 语义压缩
+# Semantic Compress - 语义压缩技能
 
-> 语义压缩技能，在不降低准确度的前提下大幅减少token消耗。保留完整关键信息和语义骨架，去除冗余文本，让上下文更紧凑。不损失精度，只砍掉废话。
+**在不降低准确度的前提下，大幅减少token消耗（通常减少 50%-70%）**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/semantic-compress`
-- **Source URL:** [https://clawhub.ai/skills/semantic-compress](https://clawhub.ai/skills/semantic-compress)
+## 核心思想
 
-## Overview
+Token 浪费的主要原因是**文本冗余**：
+- 对话历史中大量客套话、重复确认、过程性描述
+- 长文章中大量修饰性、铺垫性话语
+- 重复说明相同的背景信息
 
+语义压缩不是简单摘要，而是**提取完整语义骨架，保留所有关键信息，只去除冗余废话**。因此不会降低准确度，只是让文本更紧凑。
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 什么时候用
+
+- ✅ 长对话历史上下文压缩
+- ✅ 长文章/文档总结但保留全部要点
+- ✅ 多轮对话后清理上下文，节省token
+- ✅ 保存历史对话到长期记忆时压缩
+- ✅ 批量处理文本减少prompt体积
+
+## 什么时候不用
+
+- ❌ 原文已经很精简（<500 token）
+- ❌ 需要保留原始完整文本供后续查阅
+- ❌ 诗歌、文学作品等需要保留原文修辞
+
+## 压缩原则（不降低准确度）
+
+1. **保留所有关键信息**：论点、结论、决策、数据、关键事实都必须完整保留
+2. **去除所有冗余**：客套话、重复说明、过程性废话、修饰性铺垫都删掉
+3. **保持逻辑连贯**：压缩后仍然是完整可理解的文本，逻辑关系不变
+4. **分层压缩**：最新对话完整保留，历史对话只压缩保留结论
+
+## 使用方式
+
+### 命令行调用
+
 ```bash
-hermes skills install clawhub/semantic-compress
+node scripts/compress.js input.txt [output.txt]
+# 或者
+python scripts/compress.py input.txt
 ```
+
+### API 调用
+
+```javascript
+const { semanticCompress } = require('./index.js');
+const result = semanticCompress(text, { 
+  targetCompression: 0.5, // 目标压缩率（保留原体积的百分比）
+  preserveAccuracy: true // 是否强制保证准确度
+});
+console.log(result.compressed);
+console.log(`压缩率: ${result.compressedLength / result.originalLength * 100}%`);
+```
+
+## 效果示例
+
+| 原始token | 压缩后token | 压缩率 | 准确度 |
+|-----------|-------------|--------|--------|
+| 2000 | 600 | 30% | 完整保留 |
+| 10000 | 3000 | 30% | 完整保留 |
+| 5000 | 2000 | 40% | 完整保留 |
+
+## 优势对比
+
+| 方法 | Token减少 | 准确度保留 | 推荐度 |
+|------|-----------|------------|--------|
+| 全文保留 | 0% | ✅ 100% | 不推荐（浪费token） |
+| 摘要总结 | 70%-90% | ❌ 丢失细节 | 不适合需要准确度的场景 |
+| 关键词提取 | 80% | ❌ 丢失逻辑关联 | 不推荐 |
+| **语义压缩** | **50%-70%** | ✅ 完整保留关键信息 | **推荐** |
+
+## 实现原理
+
+1. 使用大模型作为压缩器
+2. 系统提示词明确要求"保留全部关键信息，只删冗余"
+3. 输出结构化压缩文本
+4. 可选择二次验证：压缩后的文本能否回答原文本能回答的问题
+
+## 分层压缩策略（对话历史）
+
+对于多轮对话：
+- 最近 **3-5轮**：完整保留，不压缩（保证当前对话连贯性）
+- 更早的对话：只压缩保留 **关键结论、决策、重要信息**，过程性对话删除
+
+这样既保证当前对话流畅，又大幅减少总token消耗。

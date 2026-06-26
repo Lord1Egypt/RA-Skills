@@ -1,0 +1,7 @@
+{
+  "_comment": "PATCH 活动；budget/targetCpa 填主币种元，CLI 自动 ×100",
+  "id": "12345678901",
+  "budgetId": "111222333",
+  "budget": 5.5,
+  "statusV2": 3
+}

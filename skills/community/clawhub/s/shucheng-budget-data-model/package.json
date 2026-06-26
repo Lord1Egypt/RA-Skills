@@ -1,0 +1,33 @@
+{
+  "name": "budget-data-model",
+  "version": "1.0.0",
+  "description": "提供预算系统的完整数据模型定义，包含 68 个数据表的详细结构信息。包括表名、字段名、数据类型、约束等。",
+  "author": "Lan2898408767",
+  "license": "MIT",
+  "tags": ["budget", "data-model", "database", "finance", "schema"],
+  "homepage": "https://clawhub.com/skills/budget-data-model",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "预算系统",
+    "数据模型",
+    "数据库结构",
+    "财务管理",
+    "表结构",
+    "字段定义"
+  ],
+  "category": "Data & Analytics",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "references/**/*"
+  ],
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  }
+}

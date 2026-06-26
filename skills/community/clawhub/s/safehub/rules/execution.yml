@@ -1,0 +1,42 @@
+# SafeHub Semgrep rules: dangerous execution (eval, exec, spawn)
+# Detects code that can execute arbitrary strings or shell commands.
+# Severity: CRITICAL — primary malware vector.
+
+rules:
+  - id: safehub-execution-eval
+    message: "eval() call detected. Can execute arbitrary code; common in malware."
+    severity: CRITICAL
+    languages:
+      - js
+      - ts
+    pattern: eval(...)
+
+  - id: safehub-execution-function-constructor
+    message: "Function constructor with dynamic code. Can execute arbitrary code."
+    severity: CRITICAL
+    languages:
+      - js
+      - ts
+    pattern: new Function(...)
+
+  - id: safehub-execution-exec
+    message: "child_process exec/execSync detected. Can run arbitrary shell commands."
+    severity: CRITICAL
+    languages:
+      - js
+      - ts
+    pattern-either:
+      - pattern: exec(...)
+      - pattern: execSync(...)
+      - pattern: require("child_process").exec(...)
+      - pattern: require("child_process").execSync(...)
+
+  - id: safehub-execution-spawn
+    message: "child_process spawn detected. Can run arbitrary processes."
+    severity: HIGH
+    languages:
+      - js
+      - ts
+    pattern-either:
+      - pattern: spawn(...)
+      - pattern: require("child_process").spawn(...)

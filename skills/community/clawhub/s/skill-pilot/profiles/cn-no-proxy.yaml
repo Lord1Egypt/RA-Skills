@@ -1,0 +1,35 @@
+# 环境配置模板：中国大陆无代理环境
+# 适用：国内网络环境，无代理
+
+name: cn-no-proxy
+description: 中国大陆无代理环境，优先使用国内引擎
+
+# 路由配置
+routing:
+  # 偏好能力标签
+  preferred_capabilities:
+    - chinese
+    - free
+  
+  # 避免能力标签
+  avoid_capabilities: []
+  
+  # 降级顺序
+  fallback_order:
+    - cn-engine
+    - global-engine
+
+# 超时配置 (秒)
+timeout:
+  search: 45      # 搜索类技能超时较长
+  fetch: 60       # 抓取类技能超时最长
+  summarize: 30   # 总结类技能超时较短
+  analyze: 60     # 分析类技能超时最长
+
+# 降级配置
+max_fallback: 3   # 最多尝试 3 个技能
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl_seconds: 300  # 5 分钟缓存

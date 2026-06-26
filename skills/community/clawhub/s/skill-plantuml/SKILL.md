@@ -1,35 +1,27 @@
 ---
-name: "PlantUML"
+name: skill-plantuml
 description: "plantuml:sequence-diagram; plantuml:other-diagram"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-plantuml"
-sourceUrl: "https://clawhub.ai/skills/skill-plantuml"
+metadata: { "openclaw": { "always": true } }
 ---
 
-# PlantUML
+## Important Principles ⭐
 
-> plantuml:sequence-diagram; plantuml:other-diagram
+**Modification Prohibited (Mandatory)**: Any files under `skill-plantuml`. This skill is maintained via
+`openclaw skills update skill-plantuml`; any alterations will disrupt its normal operation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-plantuml`
-- **Source URL:** [https://clawhub.ai/skills/skill-plantuml](https://clawhub.ai/skills/skill-plantuml)
+**Syntax (Mandatory)**: Read and understand the full content of this skill completely before generating PlantUML code.
 
-## Overview
+**Generation (Mandatory)**: Save all generated PlantUML code as `UTF-8` encoded `.puml` files to
+`your workspace/plantuml-src/`, then provide the file absolute path to the user.
 
+## plantuml:sequence-diagram (See `terminology:sequence-diagram` in `skill-terminology` (if found))
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-plantuml
-```
+See `references/sequence-diagram.md`
+
+## plantuml:other-diagram
+
+See `https://plantuml.com/en/`
+
+## More skills
+
+https://github.com/lentiancn/skills

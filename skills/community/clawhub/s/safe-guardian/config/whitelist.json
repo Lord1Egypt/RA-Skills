@@ -1,0 +1,22 @@
+[
+  {
+    "command": "cat /etc/passwd",
+    "reason": "Admin monitoring",
+    "description": "Allow reading password file for admin monitoring"
+  },
+  {
+    "command": "tail -f /var/log/syslog",
+    "reason": "System monitoring",
+    "description": "Allow real-time log monitoring"
+  },
+  {
+    "command": "grep -i error /var/log/*.log",
+    "reason": "Error analysis",
+    "description": "Allow error log analysis"
+  },
+  {
+    "command": "ps aux",
+    "reason": "Process monitoring",
+    "description": "Allow process listing for monitoring"
+  }
+]

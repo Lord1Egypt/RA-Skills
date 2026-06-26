@@ -1,0 +1,22 @@
+{
+  "name": "the-synthetic-context-generator",
+  "version": "1.0.0",
+  "description": "Feed it a goal, get the perfect context window",
+  "type": "module",
+  "bin": {
+    "scg": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "fuse.js": "^7.0.0",
+    "tiktoken": "^1.0.14",
+    "glob": "^10.3.10",
+    "dotenv": "^16.3.1"
+  },
+  "keywords": ["ai", "context", "coding", "developer-tools"],
+  "license": "MIT"
+}

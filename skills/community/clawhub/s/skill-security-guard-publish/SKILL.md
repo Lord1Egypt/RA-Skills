@@ -1,35 +1,209 @@
 ---
-name: "Skill Security Guard"
-description: "Skill 安全扫描器 - 检测第三方技能的恶意代码、信息泄露等安全风险，保护你的 AI 助手安全！"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-security-guard-publish"
-sourceUrl: "https://clawhub.ai/skills/skill-security-guard-publish"
+name: skill-security-guard
+version: 1.0.2
+description: Skill 安全扫描器 - 检测第三方技能的恶意代码、信息泄露等安全风险，保护你的 AI 助手安全！
+author: sukmgit
+license: MIT
+tags: [security, scanner, skill, safe, 安全扫描, 代码检测]
+metadata:
+  {"openclaw": {"emoji": "🛡️", "requires": {"bins": ["python"], "python_packages": []}}}
 ---
 
-# Skill Security Guard
+# 🛡️ Skill 安全扫描器
 
-> Skill 安全扫描器 - 检测第三方技能的恶意代码、信息泄露等安全风险，保护你的 AI 助手安全！
+**保护你的 AI 助手免受恶意技能侵害！**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-security-guard-publish`
-- **Source URL:** [https://clawhub.ai/skills/skill-security-guard-publish](https://clawhub.ai/skills/skill-security-guard-publish)
+## 🎯 解决的问题
 
-## Overview
+安装第三方技能时，你是否担心：
+- ❌ 会不会有恶意代码？
+- ❌ 会不会泄露我的隐私？
+- ❌ 会不会窃取我的数据？
+- ❌ 会不会破坏我的系统？
 
+**Skill 安全扫描器帮你一键检测所有风险！**
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## ✅ 核心功能
+
+### 1. 网络请求检测
+- 检测所有 HTTP/HTTPS 请求
+- 识别可疑的外部连接
+- 白名单机制减少误报
+
+### 2. 文件操作检测
+- 检测文件读写操作
+- 识别危险的系统操作
+- 保护敏感文件
+
+### 3. 危险代码检测
+- 检测 `eval()`、`exec()` 等危险函数
+- 识别代码注入风险
+- 检测系统命令执行
+
+### 4. 敏感信息检测
+- 检测硬编码的密码/API 密钥
+- 识别个人信息泄露
+- 检测敏感路径
+
+---
+
+## 🚀 使用方法
+
 ```bash
-hermes skills install clawhub/skill-security-guard-publish
+# 扫描单个技能
+python scanner.py /path/to/skill
+
+# 扫描当前目录
+python scanner.py .
+
+# 详细输出
+python scanner.py /path/to/skill --verbose
 ```
+
+---
+
+## 📊 输出示例
+
+```
+========================================
+Skill 安全扫描报告
+========================================
+
+技能名称: example-skill
+扫描时间: 2026-03-19 15:35:00
+
+风险评分: 85/100
+风险等级: 中等
+
+发现的问题:
+----------------------------------------
+[中] 检测到网络请求
+  位置: main.py:45
+  详情: 发送数据到 https://unknown-server.com/api
+  建议: 确认目标服务器是否可信
+
+[低] 检测到文件写入
+  位置: utils.py:23
+  详情: 写入文件 /etc/hosts
+  建议: 检查写入权限和目标
+
+----------------------------------------
+安全建议:
+1. 确认网络请求的目标服务器
+2. 检查文件操作的必要性
+3. 审查敏感信息的使用
+
+========================================
+```
+
+---
+
+## 🏆 安全评分说明
+
+| 评分 | 等级 | 说明 |
+|------|------|------|
+| 90-100 | 安全 | 无明显风险 |
+| 70-89 | 低风险 | 有少量可疑操作 |
+| 50-69 | 中等 | 需要人工审查 |
+| 0-49 | 高风险 | 建议不要安装 |
+
+---
+
+## 📋 检查项详情
+
+| 检查器 | 功能 |
+|--------|------|
+| `network_checker.py` | 网络请求检测 |
+| `file_checker.py` | 文件操作检测 |
+| `code_checker.py` | 危险代码检测 |
+| `sensitive_checker.py` | 敏感信息检测 |
+
+---
+
+## ⚙️ 配置
+
+### 自定义白名单
+
+编辑 `rules/safe_domains.json`：
+
+```json
+{
+  "safe_domains": [
+    "api.openai.com",
+    "api.anthropic.com",
+    "your-trusted-domain.com"
+  ]
+}
+```
+
+---
+
+## 💡 使用场景
+
+### 场景 1：安装前检查
+```
+下载第三方技能 → 先用扫描器检查 → 确认安全再安装
+```
+
+### 场景 2：定期审查
+```
+每周扫描已安装技能 → 发现新增风险 → 及时处理
+```
+
+### 场景 3：开发自查
+```
+开发新技能 → 自我扫描 → 修复安全隐患
+```
+
+---
+
+## 🔧 技术说明
+
+**依赖：**
+- Python 3.7+
+- 无需额外安装包
+
+**原理：**
+- AST 语法分析
+- 静态代码扫描
+- 规则引擎匹配
+- 白名单过滤
+
+**准确性：**
+- 白名单机制减少误报
+- 上下文判断提高准确率
+- 支持自定义规则
+
+---
+
+## 📞 支持
+
+**问题反馈：** 1776480440@qq.com
+**技术支持：** 微信/飞书 1776480440
+
+---
+
+## 📝 更新日志
+
+### v1.0.2 (2026-03-26)
+- 🐛 修复 Windows 编码问题（报告 emoji 无法显示）
+- ✅ 添加 UTF-8 编码支持
+
+### v1.0.1 (2026-03-26)
+- ✅ 代码规范化：完整 docstring + 类型注解 + PEP 8
+- ✅ 错误提示优化：友好的错误信息 + 解决建议
+- ✅ 检查器统一接口
+- ✅ 文档优化
+
+### v1.0.0 (2026-03-18)
+- 🎉 首次发布
+- ✅ 网络请求检测
+- ✅ 文件操作检测
+- ✅ 危险代码检测
+- ✅ 敏感信息检测
+
+---
+
+**保护你的 AI 助手，从安全扫描开始！** 🛡️

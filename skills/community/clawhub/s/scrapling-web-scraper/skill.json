@@ -1,0 +1,8 @@
+{
+  "name": "Scrapling Web Scraping",
+  "description": "Zero-bot-detection web scraping for OpenClaw. Bypass Cloudflare, handle JavaScript-heavy sites, and adapt to website changes automatically. Use when you need to scrape protected websites, extract data from dynamic JavaScript SPAs, or bypass anti-bot detection systems. Supports three modes - basic (fast HTTP), stealth (undetectable), dynamic (browser automation).",
+  "version": "1.0.0",
+  "identifier": "scrapling-web-scraping",
+  "author": "老二",
+  "category": "web-scraping"
+}

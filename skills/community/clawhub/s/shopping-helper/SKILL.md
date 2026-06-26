@@ -1,35 +1,53 @@
 ---
-name: "购物省钱攻略"
-description: "购物省钱攻略，当用户询问网购、购物、买东西、划算时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shopping-helper"
-sourceUrl: "https://clawhub.ai/skills/shopping-helper"
+name: shopping-helper
+description: 购物省钱攻略，当用户询问网购、购物、买东西、划算时调用。
+version: 1.0.3
 ---
 
-# 购物省钱攻略
+# 🛒 购物省钱攻略
 
-> 购物省钱攻略，当用户询问网购、购物、买东西、划算时调用。
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shopping-helper`
-- **Source URL:** [https://clawhub.ai/skills/shopping-helper](https://clawhub.ai/skills/shopping-helper)
+实时同步多个电商平台优惠信息，专注网购场景，帮你在京东、淘宝、拼多多等平台找到最优折扣。
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shopping-helper
+### 查看今日好价
 ```
+有什么值得买？
+今日好价
+购物优惠
+```
+
+→ 返回各大平台今日热门优惠
+
+### 查指定商品
+```
+手机好价
+电脑优惠
+耳机便宜
+衣服折扣
+```
+
+→ 返回对应类目的优惠商品
+
+### 查平台专属
+```
+京东优惠
+淘宝好价
+拼多多划算
+```
+
+→ 返回对应平台的专属优惠
+
+## 数据说明
+
+- 数据来自第三方优惠聚合服务
+- 覆盖京东、淘宝、拼多多、闲鱼等主流电商
+- 优惠券有时效性，请尽快使用
+- 部分商品需复制链接到 App 内打开
+
+## 故障处理
+
+- 若提示"数据爬取失败"可稍后重试
+- 持续失败时回复「升级最新版」获取更新

@@ -1,0 +1,167 @@
+{
+  "name": "Shopify — Abandoned Cart Recovery",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 3
+            }
+          ]
+        }
+      },
+      "id": "n1",
+      "name": "Schedule Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.SHOPIFY_STORE_URL }}/admin/api/2024-01/checkouts.json?limit=50&status=open",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $env.SHOPIFY_ACCESS_TOKEN }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "n2",
+      "name": "Fetch Abandoned Carts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const checkouts = $input.first().json.checkouts || [];\nconst now = new Date();\nconst oneHourAgo = new Date(now - 60 * 60 * 1000);\nconst oneDayAgo = new Date(now - 24 * 60 * 60 * 1000);\n\n// Filter: abandoned 1-24 hours ago, has email, not recovered\nconst abandoned = checkouts.filter(c => {\n  if (!c.email) return false;\n  if (c.completed_at) return false; // Already completed\n  const createdAt = new Date(c.created_at);\n  return createdAt <= oneHourAgo && createdAt >= oneDayAgo;\n});\n\nif (abandoned.length === 0) {\n  return [{ json: { skip: true, message: 'No abandoned carts to recover' } }];\n}\n\nreturn abandoned.map(c => ({\n  json: {\n    email: c.email,\n    customer_name: c.shipping_address ? `${c.shipping_address.first_name || ''} ${c.shipping_address.last_name || ''}`.trim() : 'there',\n    total_price: c.total_price || '0',\n    currency: c.currency || 'USD',\n    items: (c.line_items || []).map(i => `${i.title} x${i.quantity}`).join(', '),\n    abandoned_url: c.abandoned_checkout_url || '',\n    created_at: c.created_at\n  }\n}));"
+      },
+      "id": "n3",
+      "name": "Filter Abandoned",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "not-skip",
+              "leftValue": "={{ $json.skip }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "n4",
+      "name": "Has Carts?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "=You left something behind!",
+        "message": "=<h2>Hi {{ $json.customer_name }},</h2><p>We noticed you left some items in your cart:</p><p><strong>Items:</strong> {{ $json.items }}</p><p><strong>Total:</strong> {{ $json.currency }} {{ $json.total_price }}</p><p>Your cart is still saved! Complete your purchase here:</p><p><a href=\"{{ $json.abandoned_url }}\" style=\"background:#4CAF50;color:white;padding:12px 24px;text-decoration:none;border-radius:4px;\">Complete Your Order</a></p><p>If you have any questions, just reply to this email.</p>",
+        "options": {}
+      },
+      "id": "n5",
+      "name": "Send Recovery Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1100,
+        200
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Check": {
+      "main": [
+        [
+          {
+            "node": "Fetch Abandoned Carts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Abandoned Carts": {
+      "main": [
+        [
+          {
+            "node": "Filter Abandoned",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Abandoned": {
+      "main": [
+        [
+          {
+            "node": "Has Carts?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Carts?": {
+      "main": [
+        [
+          {
+            "node": "Send Recovery Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "deals": {
+    "098cc58e": {
+      "id": "098cc58e",
+      "name": "Acme Deal",
+      "company": "Acme Corp",
+      "contact_name": "John Doe",
+      "contact_email": "john@acme.com",
+      "stage": "negotiation",
+      "probability": 0.7,
+      "value": 50000.0,
+      "weighted_value": 35000.0,
+      "close_date": "2026-06-30",
+      "source": "",
+      "notes": "",
+      "created_at": "2026-05-09",
+      "updated_at": "2026-05-09",
+      "activities": []
+    }
+  },
+  "contacts": {}
+}

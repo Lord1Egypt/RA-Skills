@@ -1,0 +1,25 @@
+{
+  "name": "safe-guardian",
+  "version": "1.1.0",
+  "description": "A safe security layer plugin for OpenClaw",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "security",
+    "guardian",
+    "safety",
+    "filter"
+  ],
+  "author": "",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai/skills/safe-guardian",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/safeai/safe-guardian.git"
+  },
+  "bugs": {
+    "url": "https://github.com/safeai/safe-guardian/issues"
+  }
+}

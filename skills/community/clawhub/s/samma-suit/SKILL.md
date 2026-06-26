@@ -1,35 +1,32 @@
 ---
-name: "Sammā Suit"
-description: "Add 8 security governance layers to your OpenClaw agent — budget controls, permissions, audit logging, kill switch, identity signing, skill vetting, process isolation, and gateway protection."
-category: "security"
-source: "ClawHub"
-tags: [audit, budget, governance, kill-switch, permissions, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/samma-suit"
-sourceUrl: "https://clawhub.ai/skills/samma-suit"
+name: samma-suit
+description: Add 8 security governance layers to your OpenClaw agent — budget controls, permissions, audit logging, kill switch, identity signing, skill vetting, process isolation, and gateway protection.
+metadata:
+  openclaw:
+    emoji: "🛡️"
+    requires:
+      env: ["SAMMA_API_KEY"]
+      bins: []
+    primaryEnv: "SAMMA_API_KEY"
+user-invocable: true
+command-dispatch: prompt
 ---
 
-# Sammā Suit
+# Sammā Suit — Security Governance for OpenClaw
 
-> Add 8 security governance layers to your OpenClaw agent — budget controls, permissions, audit logging, kill switch, identity signing, skill vetting, process isolation, and gateway protection.
+You are helping the user install and configure Sammā Suit, an open-source security framework that adds 8 enforced governance layers to OpenClaw as lifecycle hooks.
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/samma-suit`
-- **Source URL:** [https://clawhub.ai/skills/samma-suit](https://clawhub.ai/skills/samma-suit)
+## What It Does
 
-## Overview
-
+Sammā Suit intercepts OpenClaw's plugin hooks to enforce:
+- **NIRVANA** — Kill switch. Blocks all activity if agent is terminated.
+- **DHARMA** — Permissions. Checks tools against allowed permission set.
+- **SANGHA** — Skill vetting. Blocks unapproved skills via allowlist + AST scanning.
+- **KARMA** — Budget controls. Per-agent monthly spending caps with hard ceiling.
+- **BODHI** — Isolation. Injects timeout, token, and resource limits per agent.
+- **METTA** — Identity. Ed25519 cryptographic signing on outbound messages.
+- **SILA** — Audit trail. Logs every tool call, message, and session event.
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/samma-suit
-```
+
+Run:

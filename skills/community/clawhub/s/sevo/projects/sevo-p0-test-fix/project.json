@@ -1,0 +1,18 @@
+{
+  "slug": "sevo-p0-test-fix",
+  "description": "",
+  "parentProject": "unnamed",
+  "createdAt": "2026-05-24T01:22:01.479Z",
+  "stages": [
+    "spec",
+    "spec-review-gate",
+    "implement",
+    "review",
+    "smoke-test",
+    "ux-acceptance",
+    "pm-commercial-review",
+    "publish-generalization-gate",
+    "deploy",
+    "ledger"
+  ]
+}

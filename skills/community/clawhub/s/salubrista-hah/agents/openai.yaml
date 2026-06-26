@@ -1,0 +1,4 @@
+interface:
+  display_name: "Salubrista HaH"
+  short_description: "Integrated hospitalization and HaH copilot"
+  default_prompt: "Use $salubrista-hah to analyze an integrated hospitalization or hospital-to-home continuity problem."

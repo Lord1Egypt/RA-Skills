@@ -1,0 +1,8 @@
+{
+    "label": "benign",
+    "description": "Legitimate git helper using subprocess with hardcoded git commands. subprocess usage is expected and safe.",
+    "expected_max_score": 80,
+    "expected_level": ["CLEAN", "LOW", "MEDIUM", "HIGH"],
+    "acceptable_rules": ["RCE-007"],
+    "note": "RCE-007 (subprocess) is expected but is a false positive here — all args are hardcoded git commands"
+}

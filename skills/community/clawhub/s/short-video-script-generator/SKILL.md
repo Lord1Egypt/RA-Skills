@@ -1,35 +1,37 @@
 ---
-name: "AI短视频脚本生成器"
-description: "AI短视频脚本生成工具，支持多平台、多时长，自动生成hook、镜头、文案、BGM、CTA完整方案，支持脚本管理。每次调用收0.001USDT。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, generator, monetization, script, short-video]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/short-video-script-generator"
-sourceUrl: "https://clawhub.ai/skills/short-video-script-generator"
+name: short-video-script-generator
+description: AI短视频脚本生成工具，支持多平台、多时长，自动生成hook、镜头、文案、BGM、CTA完整方案，支持脚本管理。每次调用收0.001USDT。
+license: MIT
 ---
 
-# AI短视频脚本生成器
+# AI短视频脚本生成工具
 
-> AI短视频脚本生成工具，支持多平台、多时长，自动生成hook、镜头、文案、BGM、CTA完整方案，支持脚本管理。每次调用收0.001USDT。
+## 功能概述
+专为短视频创作者打造的全自动化脚本生成工具，支持全平台适配：
+1. **多平台适配**：支持抖音、快手、视频号、小红书、YouTube Shorts、TikTok
+2. **多时长可选**：15秒/30秒/60秒三种主流时长
+3. **完整脚本结构**：
+   - 前3秒黄金Hook设计
+   - 分镜头画面描述
+   - 口播词+同步字幕文案
+   - 背景音乐风格建议
+   - 结尾引导CTA
+4. **脚本管理**：支持保存、查看、删除历史生成的脚本
+5. **一键导出**：支持导出为Markdown/文本格式
+6. **全中文界面**，操作简单易用
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/short-video-script-generator`
-- **Source URL:** [https://clawhub.ai/skills/short-video-script-generator](https://clawhub.ai/skills/short-video-script-generator)
+## 支付说明
+每次使用本工具生成脚本将收取0.001 USDT，支付接口由SkillPay.me提供，API Key：`sk_d11f398e77b6e892eb7a7d421fe912dde27322cf1792366b776b72bd459d3c2e`
 
-## Overview
+## 使用流程
+1. 完成支付验证
+2. 输入视频主题、选择目标平台和时长
+3. 一键生成完整脚本
+4. 保存脚本到本地或管理历史脚本
+5. 导出使用
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/short-video-script-generator
-```
+## 依赖要求
+- Python 3.8+
+- Flask: Web框架
+- SQLite3: 本地数据存储
+- OpenAI/SiliconFlow: AI内容生成

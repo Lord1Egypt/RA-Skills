@@ -1,35 +1,11 @@
----
-name: "OpenClaw 全岗位技能解释器"
-description: "将ClawHub技能名翻译成通俗中文，帮助不懂英文或技术术语的用户快速理解并安装对应技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-chinese-localization"
-sourceUrl: "https://clawhub.ai/skills/skill-chinese-localization"
----
-
-# OpenClaw 全岗位技能解释器
-
-> 将ClawHub技能名翻译成通俗中文，帮助不懂英文或技术术语的用户快速理解并安装对应技能。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-chinese-localization`
-- **Source URL:** [https://clawhub.ai/skills/skill-chinese-localization](https://clawhub.ai/skills/skill-chinese-localization)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-chinese-localization
-```
+# OpenClaw技能中文降维解释器
+## 功能说明
+面向不懂英文/技术术语的国内用户，把ClawHub上的技术化技能名翻译成大白话中文解释，支持自然语言匹配对应技能，不用记任何技术术语。
+## 适用场景
+- 不懂英文的用户用大白话找对应技能
+- 全岗位覆盖：行政/财务/技术/运营/销售/市场等所有岗位需求
+- 自动匹配到对应ClawHub技能后给用户解释功能，确认后自动安装
+## 使用方法
+用户直接说需求，比如「我要个能自动做PPT的工具」「我要个爬网页数据的工具」，自动返回对应技能的中文解释，确认后自动安装。
+## 支持的技能
+已内置50+高频安全技能，每周自动更新ClawHub热门新技能。

@@ -1,0 +1,23 @@
+[
+  {
+    "object_api_name": "Opportunity",
+    "expected_field_count": 6,
+    "exported_field_count": 6,
+    "query_row_count": 125,
+    "export_row_count": 125,
+    "key_fields": [
+      "Name",
+      "StageName"
+    ],
+    "exported_fields": [
+      "Id",
+      "Name",
+      "StageName",
+      "Amount",
+      "CloseDate",
+      "OwnerId"
+    ],
+    "requested_object_count": 1,
+    "produced_object_count": 1
+  }
+]

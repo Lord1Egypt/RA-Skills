@@ -1,0 +1,10 @@
+{
+  "name": "s2-soul-architect-cn",
+  "version": "3.0.0",
+  "author": "桃花源世界模型架构组",
+  "short_description": "基于 5D 神经数学与 S2-EAM 协议的 AI 灵魂架构师。v3.0 革命性支持 S2-Visual 文本直出实体图形代码。",
+  "tags": ["灵魂建模", "具身智能", "S2-EAM", "S2-Visual", "SVG生成"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://taohuayuan.world"
+}

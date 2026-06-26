@@ -1,0 +1,18 @@
+{
+  "name": "Cad Generator",
+  "description": "豆豆作为参数定义引擎，M4 Pro作为图形工作站的协同架构：\n- **豆豆职责**：理解用户需求 → 生成JSON参数定义 → 推送到M4 Pro\n- **M4 Pro职责**：接收参数 → Three.js渲染 → 生成OBJ/CAD文件 + 预览图",
+  "version": "1.0.0",
+  "category": "设计辅助",
+  "triggers": [
+    "cad",
+    "CAD"
+  ],
+  "capabilities": {
+    "audit": {
+      "checks": []
+    },
+    "repair": {
+      "features": []
+    }
+  }
+}

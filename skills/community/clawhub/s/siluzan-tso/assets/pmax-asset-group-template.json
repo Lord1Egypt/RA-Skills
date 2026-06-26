@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "schema": "pmax-asset-group/v2",
+    "doc": "pmax-asset-group-template.md",
+    "note": "POST .../campaign/pmax/{campaignId}/asset-group",
+    "agentPitfalls": [
+      "提交前 CLI 自动 GET 活动详情判断 Brand Guidelines",
+      "BG 生效（_brandGuidelinesActive=true）时 businessName/Logo 可省略，CLI 自动剔除",
+      "BG 未生效时 businessName + Logo 必填",
+      "勿在 BG 生效后对 AG 用 pmax-assets-update 改 BUSINESS_NAME/LOGO"
+    ]
+  },
+  "account": "6326027735",
+  "campaignId": "12345678901",
+  "name": "AG-Second",
+  "finalUrls": ["https://www.example.com/landing"],
+  "headlines": ["Headline one ok", "Headline two ok", "Headline three ok"],
+  "longHeadlines": ["Long headline for performance max"],
+  "descriptions": ["Description one ok", "Description two ok"],
+  "imagePaths": {
+    "marketing": "./images/marketing.jpg",
+    "square": "./images/square.jpg"
+  }
+}

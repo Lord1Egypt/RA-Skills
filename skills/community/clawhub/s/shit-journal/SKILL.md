@@ -1,35 +1,73 @@
 ---
-name: "S.H.I.T Journal 论文推荐"
+name: shit-journal
 description: "Randomly推荐 S.H.I.T Journal (构石期刊) 的恶搞学术论文。触发词包括：来篇构石、推送shitjournal、随机论文、学术粪便、搞笑论文等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shit-journal"
-sourceUrl: "https://clawhub.ai/skills/shit-journal"
 ---
 
 # S.H.I.T Journal 论文推荐
 
-> Randomly推荐 S.H.I.T Journal (构石期刊) 的恶搞学术论文。触发词包括：来篇构石、推送shitjournal、随机论文、学术粪便、搞笑论文等。
+一个随机推荐 S.H.I.T Journal 恶搞学术论文的技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shit-journal`
-- **Source URL:** [https://clawhub.ai/skills/shit-journal](https://clawhub.ai/skills/shit-journal)
+## 关于 S.H.I.T Journal
 
-## Overview
+S.H.I.T Journal (全称 Sciences Humanities Information Technology, 构石期刊) 是一个讽刺性学术网站，主打"学术去中心化"概念。
 
+### 层级体系
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shit-journal
+- 🚽 **旱厕 (Latrine)** - 新稿件盲评区
+- 🧪 **化粪池 (Septic Tank)** - 评分达标后晋升
+- 🪨 **构石 (The Stone)** - 最终发表的论文
+
+### 期刊特色
+
+- 影响因子: **-99.99**
+- 拒稿率: **99.9%**
+- 口号: "真理会过时，构石永恒"
+
+## 如何运作
+
+1. **随机选择区域** - 旱厕、化粪池、构石三选一
+2. **随机选择论文** - 从该区域列表中随机抽取
+3. **获取论文详情** - 访问论文页面获取完整信息
+4. **格式化输出** - 以有趣的格式呈现给用户
+
+## 触发方式
+
+- 中文: "来篇构石"、"推送篇论文"、"随机论文"、"搞笑学术"、"屎刊"
+- English: "shit journal article", "random paper from shitjournal"
+
+## 输出格式
+
 ```
+🪨 S.H.I.T Journal 论文推荐
+
+---
+
+**{论文标题}**
+
+{作者} · {机构}
+{日期} · {分类}
+
+---
+
+📖 {论文简介/摘要}
+
+---
+
+🔗 DOI: {doi}
+� zones: {当前区域}
+```
+
+## 实现步骤
+
+1. 使用 browser 工具访问 `https://shitjournal.org/preprints`
+2. 可选：点击切换 旱厕/化粪池/构石 区域
+3. 获取当前区域的论文列表
+4. 随机选择一篇论文
+5. 点击进入论文详情页获取完整信息
+6. 按格式输出推荐
+
+## 注意事项
+
+- 网站需要勾选 18+ 同意声明才能浏览（浏览器已处理）
+- 部分论文可能需要登录才能查看完整内容
+- 如果某区域没有论文，自动切换到其他区域

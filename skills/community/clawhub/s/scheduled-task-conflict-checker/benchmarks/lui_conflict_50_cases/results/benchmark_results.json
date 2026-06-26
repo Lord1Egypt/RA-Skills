@@ -1,0 +1,1360 @@
+{
+  "total": 50,
+  "passed": 50,
+  "failed": 0,
+  "errors": 0,
+  "task_pool_exists_after_run": false,
+  "results": [
+    {
+      "case_id": "case_001",
+      "category": "店铺绑定/授权边界",
+      "title": "无绑定店铺时阻断创建",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "no_bound_shop",
+      "actual_reason_code": "no_bound_shop",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "no_bound_shop",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "用户当前没有可用店铺，不能创建定时任务。需要先绑定或开店。",
+          "prompt_required": true
+        }
+      ],
+      "user_prompt": "当前没有可用店铺，因此不能创建定时任务。\n\n你可以回复：\n1. 去绑定店铺\n2. 先了解支持哪些定时任务\n3. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_002",
+      "category": "店铺绑定/授权边界",
+      "title": "单店未指定范围时默认该店铺",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_003",
+      "category": "店铺绑定/授权边界",
+      "title": "多店未指定范围要求用户选择",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "shop_scope_missing",
+      "actual_reason_code": "shop_scope_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "shop_scope_missing",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "用户有多个店铺，但本次任务没有明确店铺范围。需要先让用户选择全部店铺、平台子集或指定店铺。",
+          "prompt_required": true
+        }
+      ],
+      "user_prompt": "请先选择定时任务的店铺范围。\n\n你当前有多个店铺，本次任务没有明确要在哪些店铺执行。\n\n你可以回复：\n1. 全部店铺都开启\n2. 只开启某个平台的店铺\n3. 指定店铺编号\n4. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_004",
+      "category": "店铺绑定/授权边界",
+      "title": "指定未绑定店铺时阻断",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "shop_not_bound",
+      "actual_reason_code": "shop_not_bound",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "shop_not_bound",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "以下目标店铺未绑定，不能执行该任务：pdd_unknown。",
+          "prompt_required": true,
+          "unbound_shops": [
+            "pdd_unknown"
+          ],
+          "valid_shops": []
+        }
+      ],
+      "user_prompt": "以下目标店铺未绑定，不能执行该任务：pdd_unknown。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_005",
+      "category": "店铺绑定/授权边界",
+      "title": "目标店铺授权失效时阻断",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "authorization_invalid",
+      "actual_reason_code": "authorization_invalid",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "authorization_invalid",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "以下店铺授权失效，不能执行该任务：pdd_expired。",
+          "prompt_required": true,
+          "invalid_shops": [
+            "pdd_expired"
+          ],
+          "valid_shops": []
+        }
+      ],
+      "user_prompt": "以下店铺授权失效，不能执行该任务：pdd_expired。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_006",
+      "category": "店铺绑定/授权边界",
+      "title": "部分店铺授权失效时部分创建",
+      "status": "pass",
+      "expected_decision": "partial_create",
+      "actual_decision": "partial_create",
+      "expected_reason_code": "authorization_invalid",
+      "actual_reason_code": "authorization_invalid",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "authorization_invalid",
+          "severity": "blocker",
+          "decision": "partial_create",
+          "message": "以下店铺授权失效，不能执行该任务：pdd_expired。",
+          "prompt_required": true,
+          "invalid_shops": [
+            "pdd_expired"
+          ],
+          "valid_shops": [
+            "pdd_A"
+          ]
+        }
+      ],
+      "user_prompt": "以下店铺授权失效，不能执行该任务：pdd_expired。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_007",
+      "category": "店铺绑定/授权边界",
+      "title": "全部店铺均有效可创建",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_008",
+      "category": "店铺绑定/授权边界",
+      "title": "已删除历史任务不参与重复判断",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_009",
+      "category": "ISV高级版权限边界",
+      "title": "高级版任务付费店铺允许",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_010",
+      "category": "ISV高级版权限边界",
+      "title": "高级版任务未付费店铺阻断",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "sv_advanced_permission_missing",
+      "actual_reason_code": "sv_advanced_permission_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "sv_advanced_permission_missing",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "部分店铺缺少 ISV 高级版权限或暂时无法完成 ISV 权限校验，不能直接创建高级版任务。",
+          "prompt_required": true,
+          "invalid_shops": [
+            "pdd_unpaid"
+          ],
+          "valid_shops": [],
+          "missing_sv_shops": [
+            "pdd_unpaid"
+          ],
+          "unknown_sv_status_shops": []
+        }
+      ],
+      "user_prompt": "这个高级版定时任务暂时不能直接创建。\n\n原因：pdd_unpaid 未开通 ISV 高级版，或系统暂时无法完成 ISV 权限校验。\n你可以回复：\n1. 去开通 ISV 高级版后继续创建\n2. 改成普通/低频任务\n3. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_011",
+      "category": "ISV高级版权限边界",
+      "title": "多店部分付费时部分创建",
+      "status": "pass",
+      "expected_decision": "partial_create",
+      "actual_decision": "partial_create",
+      "expected_reason_code": "sv_advanced_permission_missing",
+      "actual_reason_code": "sv_advanced_permission_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "sv_advanced_permission_missing",
+          "severity": "blocker",
+          "decision": "partial_create",
+          "message": "部分店铺缺少 ISV 高级版权限或暂时无法完成 ISV 权限校验，不能直接创建高级版任务。",
+          "prompt_required": true,
+          "invalid_shops": [
+            "pdd_unpaid"
+          ],
+          "valid_shops": [
+            "pdd_A"
+          ],
+          "missing_sv_shops": [
+            "pdd_unpaid"
+          ],
+          "unknown_sv_status_shops": []
+        }
+      ],
+      "user_prompt": "这个高级版定时任务暂时不能直接创建。\n\n原因：pdd_unpaid 未开通 ISV 高级版，或系统暂时无法完成 ISV 权限校验。\n可继续的店铺：pdd_A\n\n你可以回复：\n1. 去开通 ISV 高级版后继续创建\n2. 只为已有 ISV 权限的店铺创建\n3. 改成普通/低频任务\n4. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_012",
+      "category": "ISV高级版权限边界",
+      "title": "ISV接口参数错误阻断",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "sv_advanced_permission_missing",
+      "actual_reason_code": "sv_advanced_permission_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "sv_advanced_permission_missing",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "部分店铺缺少 ISV 高级版权限或暂时无法完成 ISV 权限校验，不能直接创建高级版任务。",
+          "prompt_required": true,
+          "invalid_shops": [
+            "pdd_param_error"
+          ],
+          "valid_shops": [],
+          "missing_sv_shops": [
+            "pdd_param_error"
+          ],
+          "unknown_sv_status_shops": []
+        }
+      ],
+      "user_prompt": "这个高级版定时任务暂时不能直接创建。\n\n原因：pdd_param_error 未开通 ISV 高级版，或系统暂时无法完成 ISV 权限校验。\n你可以回复：\n1. 去开通 ISV 高级版后继续创建\n2. 改成普通/低频任务\n3. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_013",
+      "category": "ISV高级版权限边界",
+      "title": "ISV接口500不能误判为免费而是阻断校验",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "sv_advanced_permission_missing",
+      "actual_reason_code": "sv_advanced_permission_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "sv_advanced_permission_missing",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "部分店铺缺少 ISV 高级版权限或暂时无法完成 ISV 权限校验，不能直接创建高级版任务。",
+          "prompt_required": true,
+          "invalid_shops": [
+            "pdd_api_error"
+          ],
+          "valid_shops": [],
+          "missing_sv_shops": [
+            "pdd_api_error"
+          ],
+          "unknown_sv_status_shops": []
+        }
+      ],
+      "user_prompt": "这个高级版定时任务暂时不能直接创建。\n\n原因：pdd_api_error 未开通 ISV 高级版，或系统暂时无法完成 ISV 权限校验。\n你可以回复：\n1. 去开通 ISV 高级版后继续创建\n2. 改成普通/低频任务\n3. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_014",
+      "category": "ISV高级版权限边界",
+      "title": "ISV状态缺失时阻断",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "sv_advanced_permission_missing",
+      "actual_reason_code": "sv_advanced_permission_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "sv_advanced_permission_missing",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "部分店铺缺少 ISV 高级版权限或暂时无法完成 ISV 权限校验，不能直接创建高级版任务。",
+          "prompt_required": true,
+          "invalid_shops": [
+            "pdd_missing_paid"
+          ],
+          "valid_shops": [],
+          "missing_sv_shops": [],
+          "unknown_sv_status_shops": [
+            "pdd_missing_paid"
+          ]
+        }
+      ],
+      "user_prompt": "这个高级版定时任务暂时不能直接创建。\n\n原因：pdd_missing_paid 未开通 ISV 高级版，或系统暂时无法完成 ISV 权限校验。\n你可以回复：\n1. 去开通 ISV 高级版后继续创建\n2. 改成普通/低频任务\n3. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_015",
+      "category": "ISV高级版权限边界",
+      "title": "普通任务不要求ISV权限",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_016",
+      "category": "ISV高级版权限边界",
+      "title": "权益文本识别ISV高级版",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "sv_advanced_permission_missing",
+      "actual_reason_code": "sv_advanced_permission_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "sv_advanced_permission_missing",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "部分店铺缺少 ISV 高级版权限或暂时无法完成 ISV 权限校验，不能直接创建高级版任务。",
+          "prompt_required": true,
+          "invalid_shops": [
+            "pdd_unpaid"
+          ],
+          "valid_shops": [],
+          "missing_sv_shops": [
+            "pdd_unpaid"
+          ],
+          "unknown_sv_status_shops": []
+        }
+      ],
+      "user_prompt": "这个高级版定时任务暂时不能直接创建。\n\n原因：pdd_unpaid 未开通 ISV 高级版，或系统暂时无法完成 ISV 权限校验。\n你可以回复：\n1. 去开通 ISV 高级版后继续创建\n2. 改成普通/低频任务\n3. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_017",
+      "category": "平台能力不支持",
+      "title": "抖音不支持改价时阻断",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "platform_capability_missing",
+      "actual_reason_code": "platform_capability_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "platform_capability_missing",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "部分平台暂不支持 price_adjust：douyin。",
+          "prompt_required": true,
+          "unsupported_platforms": [
+            "douyin"
+          ],
+          "supported_platforms": []
+        }
+      ],
+      "user_prompt": "部分平台暂不支持 price_adjust：douyin。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_018",
+      "category": "平台能力不支持",
+      "title": "小红书不支持自动跟单时阻断",
+      "status": "pass",
+      "expected_decision": "block",
+      "actual_decision": "block",
+      "expected_reason_code": "platform_capability_missing",
+      "actual_reason_code": "platform_capability_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "platform_capability_missing",
+          "severity": "blocker",
+          "decision": "block",
+          "message": "部分平台暂不支持 auto_follow_order：xiaohongshu。",
+          "prompt_required": true,
+          "unsupported_platforms": [
+            "xiaohongshu"
+          ],
+          "supported_platforms": []
+        }
+      ],
+      "user_prompt": "部分平台暂不支持 auto_follow_order：xiaohongshu。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_019",
+      "category": "平台能力不支持",
+      "title": "部分平台支持时部分创建",
+      "status": "pass",
+      "expected_decision": "partial_create",
+      "actual_decision": "partial_create",
+      "expected_reason_code": "platform_capability_missing",
+      "actual_reason_code": "platform_capability_missing",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "platform_capability_missing",
+          "severity": "blocker",
+          "decision": "partial_create",
+          "message": "部分平台暂不支持 auto_follow_order：xiaohongshu。",
+          "prompt_required": true,
+          "unsupported_platforms": [
+            "xiaohongshu"
+          ],
+          "supported_platforms": [
+            "pinduoduo"
+          ]
+        }
+      ],
+      "user_prompt": "部分平台暂不支持 auto_follow_order：xiaohongshu。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_020",
+      "category": "平台能力不支持",
+      "title": "支持平台的改价进入正常检测",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_021",
+      "category": "平台能力不支持",
+      "title": "未知平台能力不在创建前阻断",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_022",
+      "category": "重复检测",
+      "title": "库存同步完全重复复用",
+      "status": "pass",
+      "expected_decision": "reuse_or_update",
+      "actual_decision": "reuse_or_update",
+      "expected_reason_code": "complete_duplicate",
+      "actual_reason_code": "complete_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "complete_duplicate",
+          "severity": "silent",
+          "decision": "reuse_or_update",
+          "message": "发现完全重复任务，复用或更新原任务，不新增。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_023",
+      "category": "重复检测",
+      "title": "日报语义重复复用",
+      "status": "pass",
+      "expected_decision": "reuse_or_update",
+      "actual_decision": "reuse_or_update",
+      "expected_reason_code": "complete_duplicate",
+      "actual_reason_code": "complete_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "complete_duplicate",
+          "severity": "silent",
+          "decision": "reuse_or_update",
+          "message": "发现完全重复任务，复用或更新原任务，不新增。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_024",
+      "category": "重复检测",
+      "title": "不同时间同目标语义重复复用",
+      "status": "pass",
+      "expected_decision": "reuse_or_update",
+      "actual_decision": "reuse_or_update",
+      "expected_reason_code": "semantic_duplicate",
+      "actual_reason_code": "semantic_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "semantic_duplicate",
+          "severity": "silent",
+          "decision": "reuse_or_update",
+          "message": "发现 LUI 配置与已有任务语义重复，复用原任务。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_025",
+      "category": "重复检测",
+      "title": "选品被选品加铺货流程覆盖静默合并",
+      "status": "pass",
+      "expected_decision": "silent_merge",
+      "actual_decision": "silent_merge",
+      "expected_reason_code": "process_duplicate",
+      "actual_reason_code": "process_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "process_duplicate",
+          "severity": "silent",
+          "decision": "silent_merge",
+          "message": "发现流程前置动作重复，可静默合并已覆盖的前置步骤。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_026",
+      "category": "重复检测",
+      "title": "已有铺货流程覆盖新增选品",
+      "status": "pass",
+      "expected_decision": "silent_merge",
+      "actual_decision": "silent_merge",
+      "expected_reason_code": "process_duplicate",
+      "actual_reason_code": "process_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "process_duplicate",
+          "severity": "silent",
+          "decision": "silent_merge",
+          "message": "发现流程前置动作重复，可静默合并已覆盖的前置步骤。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_027",
+      "category": "重复检测",
+      "title": "不同店铺相同任务不重复但同平台排队信息保留",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "same_platform_rate_limit",
+      "actual_reason_code": "same_platform_rate_limit",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "same_platform_rate_limit",
+          "severity": "info",
+          "decision": "proceed",
+          "message": "同平台 API 密集型任务可能触发平台级排队，任务中心可展示排队中。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_028",
+      "category": "重复检测",
+      "title": "暂停中的相同任务仍参与去重",
+      "status": "pass",
+      "expected_decision": "reuse_or_update",
+      "actual_decision": "reuse_or_update",
+      "expected_reason_code": "complete_duplicate",
+      "actual_reason_code": "complete_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "complete_duplicate",
+          "severity": "silent",
+          "decision": "reuse_or_update",
+          "message": "发现完全重复任务，复用或更新原任务，不新增。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_029",
+      "category": "重复检测",
+      "title": "平台不同但店铺范围重叠时按店铺识别重复",
+      "status": "pass",
+      "expected_decision": "reuse_or_update",
+      "actual_decision": "reuse_or_update",
+      "expected_reason_code": "complete_duplicate",
+      "actual_reason_code": "complete_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "complete_duplicate",
+          "severity": "silent",
+          "decision": "reuse_or_update",
+          "message": "发现完全重复任务，复用或更新原任务，不新增。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_030",
+      "category": "重复检测",
+      "title": "库存管理别名标准化后识别重复",
+      "status": "pass",
+      "expected_decision": "reuse_or_update",
+      "actual_decision": "reuse_or_update",
+      "expected_reason_code": "complete_duplicate",
+      "actual_reason_code": "complete_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "complete_duplicate",
+          "severity": "silent",
+          "decision": "reuse_or_update",
+          "message": "发现完全重复任务，复用或更新原任务，不新增。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_031",
+      "category": "策略部分重复",
+      "title": "铺货利润率阈值变化要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "strategy_partial_duplicate",
+      "actual_reason_code": "strategy_partial_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "strategy_partial_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "策略变化可能扩大或缩小铺货范围。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "auto_listing｜auto_listing｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "auto_listing｜auto_listing｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00"
+        }
+      ],
+      "user_prompt": "检测到相似定时任务。\n\n已有任务：auto_listing｜auto_listing｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：auto_listing｜auto_listing｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n\n两个任务目标相同，但策略参数不同。策略变化可能扩大或缩小铺货范围。\n\n你可以回复：\n1. 修改原任务\n2. 仍然新建一个任务\n3. 取消本次创建\n\n默认建议：修改原任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_032",
+      "category": "策略部分重复",
+      "title": "铺货最大数量变化要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "strategy_partial_duplicate",
+      "actual_reason_code": "strategy_partial_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "strategy_partial_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "策略变化可能扩大或缩小铺货范围。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "auto_listing｜auto_listing｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "auto_listing｜auto_listing｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00"
+        }
+      ],
+      "user_prompt": "检测到相似定时任务。\n\n已有任务：auto_listing｜auto_listing｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：auto_listing｜auto_listing｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n\n两个任务目标相同，但策略参数不同。策略变化可能扩大或缩小铺货范围。\n\n你可以回复：\n1. 修改原任务\n2. 仍然新建一个任务\n3. 取消本次创建\n\n默认建议：修改原任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_033",
+      "category": "策略部分重复",
+      "title": "库存同步字段变化要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "strategy_partial_duplicate",
+      "actual_reason_code": "strategy_partial_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "strategy_partial_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "策略变化可能影响同步范围和平台接口调用量。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "inventory_sync｜inventory_sync｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "inventory_sync｜inventory_sync｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00"
+        }
+      ],
+      "user_prompt": "检测到相似定时任务。\n\n已有任务：inventory_sync｜inventory_sync｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：inventory_sync｜inventory_sync｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n\n两个任务目标相同，但策略参数不同。策略变化可能影响同步范围和平台接口调用量。\n\n你可以回复：\n1. 修改原任务\n2. 仍然新建一个任务\n3. 取消本次创建\n\n默认建议：修改原任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_034",
+      "category": "策略部分重复",
+      "title": "巡检过滤条件变化要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "strategy_partial_duplicate",
+      "actual_reason_code": "strategy_partial_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "strategy_partial_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "策略变化会改变任务命中的对象或执行方式。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "inspection｜inspection｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "inspection｜inspection｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00"
+        }
+      ],
+      "user_prompt": "检测到相似定时任务。\n\n已有任务：inspection｜inspection｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：inspection｜inspection｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n\n两个任务目标相同，但策略参数不同。策略变化会改变任务命中的对象或执行方式。\n\n你可以回复：\n1. 修改原任务\n2. 仍然新建一个任务\n3. 取消本次创建\n\n默认建议：修改原任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_035",
+      "category": "策略部分重复",
+      "title": "换供商品范围变化要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "strategy_partial_duplicate",
+      "actual_reason_code": "strategy_partial_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "strategy_partial_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "策略变化会改变任务命中的对象或执行方式。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "supplier_switch｜supplier_switch｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "supplier_switch｜supplier_switch｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00"
+        }
+      ],
+      "user_prompt": "检测到相似定时任务。\n\n已有任务：supplier_switch｜supplier_switch｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：supplier_switch｜supplier_switch｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n\n两个任务目标相同，但策略参数不同。策略变化会改变任务命中的对象或执行方式。\n\n你可以回复：\n1. 修改原任务\n2. 仍然新建一个任务\n3. 取消本次创建\n\n默认建议：修改原任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_036",
+      "category": "策略部分重复",
+      "title": "跟单订单范围变化要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "strategy_partial_duplicate",
+      "actual_reason_code": "strategy_partial_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "strategy_partial_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "策略变化会改变任务命中的对象或执行方式。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "auto_follow_order｜auto_follow_order｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "auto_follow_order｜auto_follow_order｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00"
+        }
+      ],
+      "user_prompt": "检测到相似定时任务。\n\n已有任务：auto_follow_order｜auto_follow_order｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：auto_follow_order｜auto_follow_order｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n\n两个任务目标相同，但策略参数不同。策略变化会改变任务命中的对象或执行方式。\n\n你可以回复：\n1. 修改原任务\n2. 仍然新建一个任务\n3. 取消本次创建\n\n默认建议：修改原任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_037",
+      "category": "高风险重复",
+      "title": "改价任务重叠要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "high_risk_duplicate",
+      "actual_reason_code": "high_risk_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "high_risk_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "该任务与已有高风险写任务可能命中同一商品或订单，不能静默合并。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "price_adjust｜price_adjust｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "price_adjust｜price_adjust｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:10:00｜时间:10:00"
+        }
+      ],
+      "user_prompt": "该任务存在高风险重复，暂时不会直接创建。\n\n已有任务：price_adjust｜price_adjust｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：price_adjust｜price_adjust｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:10:00｜时间:10:00\n\n风险：同一商品或订单可能被重复写入，导致价格、上下架状态、发货或订单处理结果被重复影响。\n\n你可以回复：\n1. 合并为一个任务，并设置保护规则\n2. 保留两个任务，但开启同一对象每日只允许执行一次的保护\n3. 取消本次创建\n\n默认建议：合并任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_038",
+      "category": "高风险重复",
+      "title": "下架任务重叠要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "high_risk_duplicate",
+      "actual_reason_code": "high_risk_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "high_risk_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "该任务与已有高风险写任务可能命中同一商品或订单，不能静默合并。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "auto_delist｜auto_delist｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "auto_delist｜auto_delist｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:10:00｜时间:10:00"
+        }
+      ],
+      "user_prompt": "该任务存在高风险重复，暂时不会直接创建。\n\n已有任务：auto_delist｜auto_delist｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：auto_delist｜auto_delist｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:10:00｜时间:10:00\n\n风险：同一商品或订单可能被重复写入，导致价格、上下架状态、发货或订单处理结果被重复影响。\n\n你可以回复：\n1. 合并为一个任务，并设置保护规则\n2. 保留两个任务，但开启同一对象每日只允许执行一次的保护\n3. 取消本次创建\n\n默认建议：合并任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_039",
+      "category": "高风险重复",
+      "title": "同一改价任务不同时间也要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "high_risk_duplicate",
+      "actual_reason_code": "high_risk_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "high_risk_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "该任务与已有高风险写任务可能命中同一商品或订单，不能静默合并。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "price_adjust｜price_adjust｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "price_adjust｜price_adjust｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:20:00｜时间:20:00"
+        }
+      ],
+      "user_prompt": "该任务存在高风险重复，暂时不会直接创建。\n\n已有任务：price_adjust｜price_adjust｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：price_adjust｜price_adjust｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:20:00｜时间:20:00\n\n风险：同一商品或订单可能被重复写入，导致价格、上下架状态、发货或订单处理结果被重复影响。\n\n你可以回复：\n1. 合并为一个任务，并设置保护规则\n2. 保留两个任务，但开启同一对象每日只允许执行一次的保护\n3. 取消本次创建\n\n默认建议：合并任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_040",
+      "category": "高风险重复",
+      "title": "同店铺批量下架策略不同要求确认",
+      "status": "pass",
+      "expected_decision": "ask_confirmation",
+      "actual_decision": "ask_confirmation",
+      "expected_reason_code": "high_risk_duplicate",
+      "actual_reason_code": "high_risk_duplicate",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "high_risk_duplicate",
+          "severity": "confirm",
+          "decision": "ask_confirmation",
+          "message": "该任务与已有高风险写任务可能命中同一商品或订单，不能静默合并。",
+          "prompt_required": true,
+          "existing_task_id": "t1",
+          "existing_summary": "auto_delist｜auto_delist｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00",
+          "proposed_summary": "auto_delist｜auto_delist｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00"
+        }
+      ],
+      "user_prompt": "该任务存在高风险重复，暂时不会直接创建。\n\n已有任务：auto_delist｜auto_delist｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n本次任务：auto_delist｜auto_delist｜店铺:pdd_A｜平台:pinduoduo｜interval:1440|times:09:00｜时间:09:00\n\n风险：同一商品或订单可能被重复写入，导致价格、上下架状态、发货或订单处理结果被重复影响。\n\n你可以回复：\n1. 合并为一个任务，并设置保护规则\n2. 保留两个任务，但开启同一对象每日只允许执行一次的保护\n3. 取消本次创建\n\n默认建议：合并任务。",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_041",
+      "category": "高风险重复",
+      "title": "高风险完全重复仍复用不新建",
+      "status": "pass",
+      "expected_decision": "reuse_or_update",
+      "actual_decision": "reuse_or_update",
+      "expected_reason_code": "complete_duplicate",
+      "actual_reason_code": "complete_duplicate",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "complete_duplicate",
+          "severity": "silent",
+          "decision": "reuse_or_update",
+          "message": "发现完全重复任务，复用或更新原任务，不新增。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_042",
+      "category": "高风险重复",
+      "title": "不同店铺高风险任务不冲突但同平台排队信息保留",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "same_platform_rate_limit",
+      "actual_reason_code": "same_platform_rate_limit",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "same_platform_rate_limit",
+          "severity": "info",
+          "decision": "proceed",
+          "message": "同平台 API 密集型任务可能触发平台级排队，任务中心可展示排队中。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_043",
+      "category": "高频堆积",
+      "title": "每5分钟库存同步需要风险提示",
+      "status": "pass",
+      "expected_decision": "warn_then_proceed",
+      "actual_decision": "warn_then_proceed",
+      "expected_reason_code": "high_frequency_accumulation",
+      "actual_reason_code": "high_frequency_accumulation",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "high_frequency_accumulation",
+          "severity": "warning",
+          "decision": "warn_then_proceed",
+          "message": "当前频次较高，可能导致上一轮未完成时下一轮已排队；建议降频到每30分钟或更低频。",
+          "prompt_required": true,
+          "recommended_frequency": "每30分钟"
+        }
+      ],
+      "user_prompt": "当前频次可能导致任务堆积。\n\ninventory_sync｜inventory_sync｜店铺:pdd_A｜平台:pinduoduo｜每5分钟｜时间:未指定时间\n\n风险：上一轮任务可能尚未完成，下一轮已开始排队，导致延迟、失败率上升或平台限流。\n\n你可以回复：\n1. 按推荐频次创建：每30分钟\n2. 仍按当前频次创建，接受排队风险\n3. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_044",
+      "category": "高频堆积",
+      "title": "每10分钟巡检需要风险提示",
+      "status": "pass",
+      "expected_decision": "warn_then_proceed",
+      "actual_decision": "warn_then_proceed",
+      "expected_reason_code": "high_frequency_accumulation",
+      "actual_reason_code": "high_frequency_accumulation",
+      "expected_prompt_required": true,
+      "actual_prompt_required": true,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "high_frequency_accumulation",
+          "severity": "warning",
+          "decision": "warn_then_proceed",
+          "message": "当前频次较高，可能导致上一轮未完成时下一轮已排队；建议降频到每30分钟或更低频。",
+          "prompt_required": true,
+          "recommended_frequency": "每30分钟"
+        }
+      ],
+      "user_prompt": "当前频次可能导致任务堆积。\n\ninspection｜inspection｜店铺:pdd_A｜平台:pinduoduo｜每10分钟｜时间:未指定时间\n\n风险：上一轮任务可能尚未完成，下一轮已开始排队，导致延迟、失败率上升或平台限流。\n\n你可以回复：\n1. 按推荐频次创建：每30分钟\n2. 仍按当前频次创建，接受排队风险\n3. 取消本次创建",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_045",
+      "category": "高频堆积",
+      "title": "同平台同时间API任务只记录排队信息",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "same_platform_rate_limit",
+      "actual_reason_code": "same_platform_rate_limit",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "same_platform_rate_limit",
+          "severity": "info",
+          "decision": "proceed",
+          "message": "同平台 API 密集型任务可能触发平台级排队，任务中心可展示排队中。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_046",
+      "category": "高频堆积",
+      "title": "同店铺同时间不同商品写任务记录排队",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "same_platform_rate_limit",
+      "actual_reason_code": "same_platform_rate_limit",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "same_platform_rate_limit",
+          "severity": "info",
+          "decision": "proceed",
+          "message": "同平台 API 密集型任务可能触发平台级排队，任务中心可展示排队中。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        },
+        {
+          "code": "same_shop_batch_write",
+          "severity": "info",
+          "decision": "proceed",
+          "message": "同店铺批量写任务可能进入店铺级排队。",
+          "prompt_required": false,
+          "existing_task_id": "t1"
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_047",
+      "category": "通知边界",
+      "title": "微信未绑定时回退通知但任务可创建",
+      "status": "pass",
+      "expected_decision": "warn_then_proceed",
+      "actual_decision": "warn_then_proceed",
+      "expected_reason_code": "wechat_not_bound",
+      "actual_reason_code": "wechat_not_bound",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [
+        {
+          "code": "wechat_not_bound",
+          "severity": "warning",
+          "decision": "warn_then_proceed",
+          "message": "用户要求微信通知，但当前未绑定企业微信好友；任务可创建，结果需要回退到任务中心或 App Push。",
+          "prompt_required": false
+        }
+      ],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_048",
+      "category": "通知边界",
+      "title": "微信已绑定时正常创建通知任务",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_049",
+      "category": "正常可创建",
+      "title": "已有不同资源任务时可创建巡检",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    },
+    {
+      "case_id": "case_050",
+      "category": "正常可创建",
+      "title": "不同店铺不同任务可创建",
+      "status": "pass",
+      "expected_decision": "proceed",
+      "actual_decision": "proceed",
+      "expected_reason_code": "none",
+      "actual_reason_code": "none",
+      "expected_prompt_required": false,
+      "actual_prompt_required": false,
+      "decision_ok": true,
+      "reason_ok": true,
+      "prompt_ok": true,
+      "findings": [],
+      "user_prompt": "",
+      "cleanup_after_case": true
+    }
+  ]
+}

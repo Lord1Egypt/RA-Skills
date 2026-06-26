@@ -1,35 +1,202 @@
 ---
-name: "Sbti Fun Test"
-description: "SBTI personality test V3 - 梗王版！28种接地气的人格类型，包括自我攻击者、吗喽、狗屎人、握草人等。每种类型都有独特的ASCII艺术宠物。30道题，4个选项，测试结果 hilariously accurate。"
-category: "software-development"
-source: "ClawHub"
-tags: [fun, mbti, personality, sbti, test]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sbti-fun-test"
-sourceUrl: "https://clawhub.ai/skills/sbti-fun-test"
+name: sbti-fun-test
+version: 3.0.1
+description: SBTI personality test V3 - 梗王版！28种接地气的人格类型，包括自我攻击者、吗喽、狗屎人、握草人等。每种类型都有独特的ASCII艺术宠物。30道题，4个选项，测试结果 hilariously accurate。
 ---
 
-# Sbti Fun Test
+# SBTI 人格测试 V3 🎭 梗王版
 
-> SBTI personality test V3 - 梗王版！28种接地气的人格类型，包括自我攻击者、吗喽、狗屎人、握草人等。每种类型都有独特的ASCII艺术宠物。30道题，4个选项，测试结果 hilariously accurate。
+**SBTI** (Super Bullshit Type Indicator) - 超级胡说八道人格测试
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sbti-fun-test`
-- **Source URL:** [https://clawhub.ai/skills/sbti-fun-test](https://clawhub.ai/skills/sbti-fun-test)
+> 原作者：[B站@蛆肉儿串儿](https://space.bilibili.com/417038183)
+> 
+> V3梗王版：28种接地气人格类型，每个都有ASCII艺术宠物
 
-## Overview
+---
 
+## ✨ V3 新特性
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **30道题目**，每题**4个选项**（A/B/C/D）
+- **28种人格类型**，全部接地气、有梗
+- **每种人格对应一个ASCII艺术宠物**
+- ** hilariously accurate **的描述
+
+---
+
+## 🎭 28种人格类型 + 宠物
+
+| 代码 | 中文名 | 英文名 | 宠物 | 特点 |
+|-----|--------|--------|------|------|
+| **IMSB** | 自我攻击者 | I'm Shit, Boss | 💔 自我攻击刺猬 | 内耗严重，总觉得自己不够好 |
+| **BOSS** | 领导者 | The Boss | 👔 霸道总裁狮 | 气场强大，说一不二 |
+| **MUM** | 妈妈 | The Mum | 👩 唠叨妈妈兔 | 无微不至，爱唠叨 |
+| **FAKE** | 伪人 | The Fake Human | 🎭 伪人机器人 | 伪装情绪稳定 |
+| **DEAD** | 死者 | The Dead | ☠️ 真·死者骷髅 | 生无可恋，心如死灰 |
+| **ZZZZ** | 装死者 | The Pretender | 😴 装死树懒 | 逃避大师，能躲就躲 |
+| **GOGO** | 行者 | The Go-Getter | 🏃 永动行者狼 | 停不下来，执行力MAX |
+| **FUCK** | 草者 | The F-word | 🌿 暴躁草泥马 | 出口成脏，一点就着 |
+| **CTRL** | 拿捏者 | The Controller | 👌 拿捏大师蜘蛛 | 掌控全局，游刃有余 |
+| **HHHH** | 傻乐者 | The Happy-Go-Lucky | 😄 傻乐哈士奇 | 乐天派，没心没肺 |
+| **SEXY** | 尤物 | The Sexy One | 🔥 性感狐狸精 | 天生魅，吸引力MAX |
+| **OJBK** | 无所谓人 | The Carefree | 👌 佛系水豚 | 都行，可以，没关系 |
+| **POOR** | 贫穷者 | The Broke | 💸 贫穷老鼠 | 吃土日常，穷开心 |
+| **OHNO** | 哦不人 | The Panicker | 😱 慌张松鼠 | 完了，芭比Q了 |
+| **MONK** | 僧人 | The Monk | 🙏 僧人乌龟 | 阿弥陀佛，一切随缘 |
+| **SHIT** | 狗屎人 | The Shitty One | 💩 狗屎人臭鼬 | 愤世嫉俗，毒舌 |
+| **THANK** | 感恩者 | The Grateful | 🙏 感恩小狗 | 谢谢，太感谢了 |
+| **MALO** | 吗喽 | The Monkey | 🐒 吗喽猴子 | 吗喽的命也是命 |
+| **ATM** | 送钱者 | The ATM | 💳 ATM提款机熊 | 冤种本种，行走的提款机 |
+| **THINK** | 思考者 | The Thinker | 🤔 思考者猫头鹰 | 别吵，我在思考 |
+| **SOLO** | 孤儿 | The Lone Wolf | 🚶 孤狼 | 一个人也能活得很好 |
+| **LOVER** | 多情者 | The Lover | 💕 多情种孔雀 | 见一个爱一个 |
+| **WOC** | 握草人 | The Shocker | 🤯 震惊猫 | 握草！震惊了 |
+| **DRUNK** | 酒鬼 | The Drunkard | 🍺 酒鬼熊猫 | 酒是灵魂伴侣 |
+| **IMFW** | 废物 | The Waste | 🗑️ 废物咸鱼 | 承认吧，你就是废物 |
+| **JOKER** | 小丑 | The Joker | 🤡 小丑面具 | 小丑竟是我自己 |
+| **DIORS** | 屌丝 | The Loser | 👟 屌丝青蛙 | 屌丝的标签，习惯了 |
+
+---
+
+## 🚀 使用方法
+
+### 直接运行测试
+
 ```bash
-hermes skills install clawhub/sbti-fun-test
+python3 scripts/sbti_test.py
 ```
+
+### 在代码中使用
+
+```python
+from scripts.sbti_test import SBTITestV3, format_result
+
+test = SBTITestV3()
+
+# 回答30道题
+answers = ['A', 'B', 'C', 'D', ...]  # 30个答案
+for choice in answers:
+    test.answer(choice)
+
+personality, analysis = test.calculate_result()
+print(format_result(personality, analysis))
+```
+
+---
+
+## 📋 示例输出
+
+```
+============================================================
+🎉 SBTI 梗王版测试完成！
+============================================================
+
+      💔 IMSB
+    ╭────────╮
+    │  (╥﹏╥)  │
+    │  我垃圾  │
+    │  我不行  │
+    ╰────┬───╯
+       🔪│🔪
+        🩸
+     自我攻击刺猬
+
+
+    🏷️  类型: IMSB - 自我攻击者
+    📛 英文名: I'm Shit, Boss
+    🎯 匹配度: 85%
+
+📋 人格描述:
+    你对自己有着超乎寻常的严苛标准。每次失败都像是世界末日，
+    你总觉得自己不够好。
+
+✨ 主要特征:
+    • 自我批评
+    • 高标准
+    • 内耗严重
+    • 需要认可
+
+📊 维度分析:
+    社交   [██░░] -2
+    感性   [████] +4
+    外向   [█░░░] -1
+    奋斗   [██░░] +2
+    直觉   [██░░] -2
+    胡扯   [█░░░] +1
+    自信   [░░░░] +0
+    冷静   [██░░] +2
+    计划   [░░░░] +0
+
+============================================================
+⚠️  友情提示：本测试仅供娱乐！
+============================================================
+```
+
+---
+
+## 🎨 所有宠物预览
+
+每种人格都有一个独特的ASCII艺术宠物：
+
+- **自我攻击刺猬** 💔 - 拿着刀自我攻击
+- **霸道总裁狮** 👔 - 气场强大的狮子
+- **唠叨妈妈兔** 👩 - 催你穿秋裤的兔子
+- **伪人机器人** 🤖 - 假装人类的AI
+- **真·死者骷髅** ☠️ - 已经死透了
+- **装死树懒** 😴 - 在装死，勿扰
+- **永动行者狼** 🏃 - 永远停不下来的狼
+- **暴躁草泥马** 🌿 - 出口成脏的羊驼
+- **拿捏大师蜘蛛** 👌 - 掌控全局的蜘蛛
+- **傻乐哈士奇** 😄 - 每天哈哈哈的狗
+- **性感狐狸精** 🔥 - 天生魅惑的狐狸
+- **佛系水豚** 👌 - 无所谓的卡皮巴拉
+- **贫穷老鼠** 💸 - 吃土的老鼠
+- **慌张松鼠** 😱 - 总是慌乱的松鼠
+- **僧人乌龟** 🙏 - 阿弥陀佛的乌龟
+- **狗屎人臭鼬** 💩 - 愤世嫉俗的臭鼬
+- **感恩小狗** 🙏 - 总是谢谢的小狗
+- **吗喽猴子** 🐒 - 吗喽的命也是命
+- **ATM提款机熊** 💳 - 送钱的熊
+- **思考者猫头鹰** 🤔 - 在思考的猫头鹰
+- **孤狼** 🚶 - 独来独往的狼
+- **多情种孔雀** 💕 - 开屏的孔雀
+- **震惊猫** 🤯 - 握草表情的猫
+- **酒鬼熊猫** 🍺 - 喝酒的熊猫
+- **废物咸鱼** 🗑️ - 躺平的咸鱼
+- **小丑面具** 🤡 - 小丑竟是我自己
+- **屌丝青蛙** 👟 - 平凡的青蛙
+
+---
+
+## 📁 文件结构
+
+```
+sbti-fun-test/
+├── SKILL.md              # 本文档
+└── scripts/
+    ├── sbti_test.py      # 当前版本 (V3 梗王版)
+    ├── sbti_test_v1.py   # V1 旧版本 (2选项)
+    ├── sbti_test_v2.py   # V2 版本 (4选项+原宠物)
+    └── sbti_test_v3.py   # V3 副本 (梗王版)
+```
+
+---
+
+## ⚠️ 免责声明
+
+> **本测试仅供娱乐**
+> 
+> 请勿用于：诊断、面试、相亲、分手、招魂、算命或作为人生判决书。
+> 
+> 如果测试结果让你感到不适，请 remember：这只是一个娱乐测试 😄
+
+---
+
+## 🙏 致谢
+
+- 原作者：[B站@蛆肉儿串儿](https://space.bilibili.com/417038183)
+- V3梗王版人格类型：来自用户的创意贡献
+- ASCII艺术：灵感来自网络
+
+---
+
+*好玩为主，还请不要用于盈利呀。* 🎭✨

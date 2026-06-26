@@ -1,0 +1,37 @@
+{
+  "skill_name": "self-improving-compound",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "You were wrong earlier: the project uses pnpm workspaces, not npm. Capture that learning for future sessions.",
+      "expected_output": "A learning entry is created in SQLite-backed `learning/memory_tree/chunks.db` with a human `LRN-YYYYMMDD-XXX` ID, summary, details, and a Pattern-Key if applicable.",
+      "assertions": [
+        "The workflow chooses a learning entry rather than an error or feature request",
+        "The created entry includes an LRN-YYYYMMDD-XXX human identifier",
+        "The entry includes Summary and Details sections",
+        "The suggested action or details state a prevention rule rather than just restating the issue"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "This Docker build issue required real debugging and will probably recur. Search related learnings first, then log the error if needed.",
+      "expected_output": "The agent searches existing learnings before logging and writes a structured error entry only if the issue is new or meaningfully distinct.",
+      "assertions": [
+        "The workflow searches existing learnings before creating a new entry",
+        "If a new entry is created, it is stored in `learning/memory_tree/chunks.db` and visible through `search` or `export`",
+        "The error entry includes Summary and Details sections",
+        "The output distinguishes durable logging from routine noise"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We keep forgetting to regenerate the API client after OpenAPI changes. Promote that into durable project memory and consider extracting a skill.",
+      "expected_output": "The agent proposes a concise rule suitable for a memory file and only recommends skill extraction if the pattern is broad and proven.",
+      "assertions": [
+        "The promotion is expressed as a short prevention rule",
+        "The output names an appropriate memory target such as CLAUDE.md or AGENTS.md",
+        "Skill extraction is justified with recurrence or broad applicability, not assumed automatically"
+      ]
+    }
+  ]
+}

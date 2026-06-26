@@ -1,35 +1,36 @@
----
-name: "Short Drama Generator"
-description: "生成多题材短剧剧本，包含角色设定、剧情大纲、对白脚本及6宫格分镜提示，助力短视频内容创作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/short-drama-generator"
-sourceUrl: "https://clawhub.ai/skills/short-drama-generator"
----
+# 短剧剧本生成器
 
-# Short Drama Generator
+## 名称
+short-drama-generator
 
-> 生成多题材短剧剧本，包含角色设定、剧情大纲、对白脚本及6宫格分镜提示，助力短视频内容创作。
+## 描述
+AI漫剧短剧剧本生成技能，专为创作者提供完整的短剧剧本解决方案。支持多种题材（重生逆袭、穿越、甜宠、家庭群像等），自动生成角色设定、剧情大纲、对白脚本和6宫格分镜提示词。适用于红果、抖音等平台的短剧内容创作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/short-drama-generator`
-- **Source URL:** [https://clawhub.ai/skills/short-drama-generator](https://clawhub.ai/skills/short-drama-generator)
+## 核心功能
+- 题材类型推荐：分析当前市场趋势，推荐热门蓝海题材
+- 角色设定生成：创建有记忆点的角色（姓名、年龄、性格、经典台词）
+- 剧情大纲设计：3秒开篇钩子、高频反转、每集悬念结尾
+- 对白脚本撰写：符合平台用户口味的台词风格
+- 6宫格分镜提示词：生成可用的AI生图/视频提示词
 
-## Overview
+## 适用场景
+- 个人创作者制作AI漫剧
+- 短剧工作室快速产出剧本
+- 短视频内容创业者寻找热门题材
 
+## 使用方式
+提供以下信息即可生成完整剧本：
+- 题材类型（可选，或让AI推荐）
+- 核心设定（主角身份、故事背景等）
+- 集数要求（默认第1集）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/short-drama-generator
-```
+## 定价建议
+- 单集剧本：9.9元
+- 10集剧本包：69元
+- 定制化剧本：面议
+
+## 版本
+1.0.0
+
+## 作者
+@xxxholiczzz

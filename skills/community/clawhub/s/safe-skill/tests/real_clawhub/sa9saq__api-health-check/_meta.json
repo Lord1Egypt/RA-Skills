@@ -1,0 +1,22 @@
+{
+  "owner": "sa9saq",
+  "slug": "api-health-check",
+  "displayName": "api-health-check",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": 1770790931770,
+    "commit": "https://github.com/openclaw/skills/commit/c132ea460c2df35b8be4004f946be9bb1912e91d"
+  },
+  "history": [
+    {
+      "version": "1.2.0",
+      "publishedAt": 1770560335431,
+      "commit": "https://github.com/openclaw/skills/commit/ff0d46b8adf01d9405a556cb2cf3b2247af183a6"
+    },
+    {
+      "version": "1.1.0",
+      "publishedAt": 1770526194586,
+      "commit": "https://github.com/openclaw/skills/commit/d86f543b5c0610d7a80168cd7f195c93e7e36b16"
+    }
+  ]
+}

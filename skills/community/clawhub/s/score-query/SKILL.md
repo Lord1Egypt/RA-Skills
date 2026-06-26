@@ -1,35 +1,33 @@
 ---
-name: "学分查询技能"
-description: "学分查询技能"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/score-query"
-sourceUrl: "https://clawhub.ai/skills/score-query"
+name: score-query
+description: 学分查询技能
+metadata:
+  openclaw:
+    emoji: 🎵
+    requires:
+      bins: [ffmpeg]
 ---
+
 
 # 学分查询技能
 
-> 学分查询技能
+## 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/score-query`
-- **Source URL:** [https://clawhub.ai/skills/score-query](https://clawhub.ai/skills/score-query)
+- **技能名称**: 学分查询
+- **技能版本**: 0.0.2
+- **技能描述**: 用于查询学生各科目成绩的OpenClaw技能
+- **作者**: bc96
 
-## Overview
+## 功能列表
+
+| 功能 | 说明 |
+|-----|------|
+| 查询单科成绩 | 根据姓名和科目查询特定成绩 |
+| 查询全部成绩 | 查询某学生的所有科目成绩 |
+| 科目名称转换 | 支持口语化转标准科目名 |
+
+## 支持的查询模式
+
+### 单科成绩查询
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/score-query
-```

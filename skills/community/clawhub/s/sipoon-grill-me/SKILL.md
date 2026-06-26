@@ -1,35 +1,108 @@
----
-name: "Grill Me"
-description: "系统化追问任务执行细节、风险与验收，确保多模块协作或截止明确任务的规划无遗漏，避免返工。"
-category: "other"
-source: "ClawHub"
-tags: [local, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sipoon-grill-me"
-sourceUrl: "https://clawhub.ai/skills/sipoon-grill-me"
+# grill-me
+
+> **借鉴来源**：grill-me（规划确认追问清单）
+>
+> 重要任务开始前，用系统化追问确认清楚再动手。
+> 是 brainstorming 的"执行前一刻"版本——brainstorming 管"做什么"，grill-me 管"怎么做"。
+>
+> **核心理念**：30分钟的追问可以节省8小时的返工。
+
 ---
 
-# Grill Me
+## 触发条件
 
-> 系统化追问任务执行细节、风险与验收，确保多模块协作或截止明确任务的规划无遗漏，避免返工。
+满足以下任一场景时**自动激活**，无需用户调用：
+- 用户说"开始做"、"开始吧"、"go"、"执行"（表示准备开始实施）
+- 任务涉及多个模块/团队协作
+- 任务有明确的截止时间或质量要求
+- 任务技术方案不明确或有多种实现路径
+- 用户上次说"返工"或"重做"（说明规划不足）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sipoon-grill-me`
-- **Source URL:** [https://clawhub.ai/skills/sipoon-grill-me](https://clawhub.ai/skills/sipoon-grill-me)
+**不适用于**：纯搜索、简单回答、已知答案的快速任务。
 
-## Overview
+---
 
+## 追问流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sipoon-grill-me
+### Step 1：6W2H 清单（必须覆盖）
+
 ```
+[grill-me 追问]
+- Why（为什么做？）→ 动机是什么？不做会怎样？
+- What（做什么？）→ 具体交付物是什么？
+- Who（谁来谁用？）→ 谁提需求？谁最终用户？
+- When（截止时间？）→ 硬截止还是软截止？
+- Where（在哪发生？）→ 线上/线下/特定环境？
+- Which（哪个方案？）→ 有多个选项吗？选哪个？
+- How（怎么实现？）→ 技术路径是什么？
+- How much（多少资源？）→ 时间/人力/预算限制？
+```
+
+**规则**：一次问 2-3 个最重要的问题，不要一次全问完。
+
+### Step 2：风险与备选方案
+
+```
+[风险确认]
+- 最坏情况是什么？能否接受？
+- 有没有 Plan B？
+- 如果依赖方延迟怎么办？
+```
+
+### Step 3：明确验收标准
+
+```
+[验收标准]
+- 怎么算"完成"？
+- 哪些情况算"失败"？
+- 用户自己怎么验证结果？
+```
+
+### Step 4：输出结构化确认清单
+
+```
+## grill-me 确认清单
+
+| 项目 | 结论 | 状态 |
+|------|------|------|
+| 目标 | [一句话] | ✅ |
+| 范围 | [做什么/不做什么] | ✅ |
+| 技术路径 | [方案A/方案B] | 待确认 |
+| 截止时间 | [时间] | ✅ |
+| 验收标准 | [可测试的标准] | ✅ |
+| 风险 | [Top 1 风险] | ⚠️ 需讨论 |
+
+→ 方案A/B 选哪个？ → 确认后开始。
+```
+
+## 下一跳（Skill 链式调用）
+
+grill-me 是**执行前确认技能**，确认完成后按以下路径调用：
+
+```
+grill-me → [implementation 开始]
+         ↘ agent-teams（需要并行审查时）
+         ↘ refactoring（涉及现有代码重构时）
+```
+
+**下一跳触发条件**：
+- 确认清单全部 ✅ → 开始实施（进入 `brainstorming` Step 4）
+- 需要多角色并行审查 → 调用 `agent-teams`
+- 涉及现有代码改动 → 先调用 `refactoring` 做影响分析
+
+---
+
+## 与 brainstorming 的区别
+
+| 维度 | brainstorming | grill-me |
+|------|--------------|---------|
+| 时机 | 需求模糊时 | 需求明确，准备开始前 |
+| 重点 | 做什么 | 怎么做、风险、验收 |
+| 问题类型 | 探索性（why/what） | 确认性（how/how much/which） |
+| 输出 | 设计草案 | 执行确认清单 |
+
+---
+
+## 触发命令
+
+**自动触发**。当用户说"开始"、"go"、"执行"、"开始做吧"时，或 `brainstorming` Step 4 完成后，自动激活。

@@ -1,0 +1,6 @@
+{
+  "name": "freecad",
+  "description": "Parametric CAD engine for FreeCAD using structured JSON operations",
+  "version": "1.0.0",
+  "entry_point": "python scripts/cad_engine.py"
+}

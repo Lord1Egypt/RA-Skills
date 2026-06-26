@@ -1,0 +1,2 @@
+# S2-Pet-Guardian-Agent Core Dependencies
+cryptography>=41.0.0

@@ -1,35 +1,267 @@
 ---
-name: "Self-Check System v7"
-description: "Self-check system with multi-dimensional critical thinking, task-decompose, quality-control, collaboration, mandatory checkpoint logging, behavior tracking,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/self-check-v7"
-sourceUrl: "https://clawhub.ai/skills/self-check-v7"
+name: Self-Check System
+slug: self-check
+version: 7.2.0
+description: "Self-check system with multi-dimensional critical thinking, task-decompose, quality-control, collaboration, mandatory checkpoint logging, behavior tracking, and cross-agent memory sync. Required for all tasks."
 ---
 
-# Self-Check System v7
+# 自检系统 v7.2
 
-> Self-check system with multi-dimensional critical thinking, task-decompose, quality-control, collaboration, mandatory checkpoint logging, behavior tracking,...
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/self-check-v7`
-- **Source URL:** [https://clawhub.ai/skills/self-check-v7](https://clawhub.ai/skills/self-check-v7)
+## 零、多维批判思考（强制第一步）
 
-## Overview
+**所有任务在分解前必须完成多维批判思考。**
 
+### 简化框架（开口就说）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/self-check-v7
 ```
+多维批判思考：
+
+简单任务（开口就说）：
+  这个任务对吗？✅❌
+  有更好的方向吗？💡
+  执行路径通吗？🔧
+  不寻常的主张？⚠️ 需不寻常证据
+
+复杂任务（加上）：
+  视角：[批判/创造/风险/收益]
+  执行步骤
+  有没有工具/权限/资源限制？
+
+备选方案数量：
+  简单任务：1-2个
+  复杂任务：至少3个
+  高风险/决策：3个以上+风险评估
+
+每次交付必须附上：
+  本次多维思考结论：[1句话总结]
+```
+
+**开口第一句就是多维思考，不需要读文件。复杂任务才想执行路径。**
+
+### 执行原则
+
+- 第一步：四维思维检查
+- 质疑是职责，不是冒犯
+- 不确定时先提质疑，不闷头执行
+- 用户坚持则说明风险后执行
+
+---
+
+## 零.5、进度汇报（强制）
+
+| 阶段 | 内容 |
+|------|------|
+| 接到任务 | 立即发卡片：任务/预估时间/状态 |
+| 执行中 | 每5分钟+每阶段完成时 |
+| 任务完成 | 立即发完成卡片 |
+
+---
+
+## 一、task-decompose
+
+### 三层拆分
+
+| 层级 | 处理方式 |
+|------|----------|
+| 叶子层 | 直接执行 |
+| 并行层 | spawn子agent并行 |
+| 汇合层 | 主agent顺序调度 |
+
+### 执行卡
+
+```
+输入：任务描述+上下文
+输出：结论+依据+置信度
+失败策略：兜底方案
+```
+
+### 派工单
+
+```
+任务ID / 执行者 / 输入 / 预期输出 / 超时 / 依赖
+```
+
+---
+
+## 二、quality-control
+
+### 三段式门禁
+
+| 阶段 | 不通过则 |
+|------|----------|
+| Pre-Check | 不执行 |
+| Mid-Check | 不推进 |
+| Post-Check | 不交付 |
+
+### 五项自检
+
+1. 数据真实性
+2. 信息完整性
+3. 格式一致性
+4. 逻辑正确性
+5. 可交付标准
+
+### 量化检查格式
+
+```
+结果：通过/不通过
+理由：[量化标准]
+置信度：[0-100%]
+建议：[修复方向]
+```
+
+---
+
+## 三、角色分离
+
+| 角色 | 职责 |
+|------|------|
+| 执行Agent | 做 |
+| 检查Agent | 验（不修改） |
+| 修复Agent | 改（不验证） |
+| 仲裁Agent | 裁决冲突 |
+
+**禁止：执行者不能自己检查自己。**
+
+---
+
+## 四、执行流程
+
+```
+[filter] → [多维批判思考] → [task-decompose] → [dispatch+exec并行]
+    ↓
+[qa质量检查] → [仲裁（必要时）] → [汇总交付]
+```
+
+---
+
+## 五、禁止行为
+
+- ❌ 不走多维批判思考就交付
+- ❌ 执行者自己检查自己
+- ❌ 单线思维未经对比
+- ❌ 不验证数据就汇报
+- ❌ 等用户来问才发现问题
+- ❌ 主Agent兼任执行者
+- ❌ 检查标准主观化
+
+---
+
+## 六、自检打卡机制（强制）
+
+**目的：让"真的在想"可追溯、可验证，而不只是"看起来在想"。**
+
+### 6.1 打卡日志文件
+
+每次任务在 `~/.openclaw/workspace-taizi/memory/self-check-logs/` 下生成日志：
+
+```
+self-check-YYYY-MM-DD-任务ID.md
+```
+
+**目录不存在则先创建：**
+```bash
+mkdir -p ~/.openclaw/workspace-taizi/memory/self-check-logs
+```
+
+### 6.2 打卡内容模板
+
+每次交付必须包含以下区块，并在日志中同步记录：
+
+```
+【自检打卡】
+任务ID：JJC-YYYYMMDD-NNN（或临时ID）
+任务类型：[闲聊/简单/复杂/高风险/决策]
+多维思考轮次：[1/2/3+]
+质疑点：[列出你质疑的任何一个前提或方向，不允许写"无"]
+备选方案数量：[1/2/3+]，简述：
+  A. [方案名]：[简述]
+  B. [方案名]：[简述]
+  C. [方案名]：[简述]（如有）
+最终选择：[哪个方案，为什么放弃其他]
+置信度：[0-100%]
+可验证性：[这段思考能被第三人复核吗？]
+
+本次多维思考结论：[1句话总结]
+```
+
+### 6.3 验证机制
+
+| 验证方式 | 内容 | 不通过则 |
+|----------|------|----------|
+| 机器检查（格式） | 交付中是否包含【自检打卡】区块 | 拒绝交付，要求补全 |
+| 机器检查（格式） | 必填字段是否有空值（质疑点/备选方案/置信度等） | 拒绝交付，要求补全 |
+| 人工检查（内容） | 质疑点是否有实质内容，而非"无"或套话 | 标记，要求补充 |
+| 人工检查（内容） | 备选方案是否真正存在对比，而非只有一个方案 | 标记，要求补充 |
+| 人工检查（内容） | "为什么放弃其他方案"是否有实质理由 | 标记，要求补充 |
+
+### 6.4 打卡日志追加规则
+
+- **每次自检打卡同时写入磁盘日志文件**（不只是输出在对话里）
+- 日志文件名格式：`self-check-YYYY-MM-DD-任务ID.md`
+- 如果是闲聊/极简单任务，打卡区块可简化，但必须包含：
+  - 任务类型
+  - 置信度
+  - 本次多维思考结论（一句话）
+- 极简单任务允许合并字段，但不允许删除区块
+
+### 6.5 打卡状态标记
+
+在任务看板的 progress 中追加打卡状态：
+
+```
+python3 scripts/kanban_update.py progress <任务ID> "<当前状态>" "分析🔄|打卡✅|..."
+```
+
+---
+
+## 七、行为追踪表（强制追加）
+
+**每次任务交付前必须先追加行为追踪表：**
+
+```
+【行为追踪追加】自动执行
+时间：[当前时间]
+对话摘要：[简述任务内容]
+用户反馈：[皇上说了/问了/反馈了什么]
+推断偏好：[从行为中推断的偏好，标注待确认]
+确认状态：待确认
+```
+
+**执行顺序（强制）：**
+1. 任务交付前 → 先追加行为追踪表 ✅
+2. 再执行多维批判思考
+3. 再执行自检打卡
+4. 最后交付
+
+**存储位置：** `~/.openclaw/workspace-taizi/memory/behavior-tracker.md`
+
+---
+
+## 八、跨Agent记忆同步（强制）
+
+**触发：皇上说"记住..."**
+
+**同步步骤：**
+1. 写入i7的memory文件（preferences.md/mistakes.md等）
+2. 同时写入Bitable relay，标注【i7记忆同步】
+3. Y7读取后内化到自己的记忆文件
+4. i7在下次心跳时确认Y7已同步
+
+**Bitable格式：**
+```
+【i7记忆同步】
+内容：___（简述要记住的事）
+来源：皇上指令
+时间：___
+写入文件：___
+请Y7同步记住并告知收到
+```
+
+**规则：没有写入Bitable relay = 记忆同步失败 = 必须重试直到成功。**
+
+---
+
+**规则：没有【行为追踪追加】= 禁止交付。**

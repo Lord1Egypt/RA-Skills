@@ -1,0 +1,16 @@
+{
+  "name": "learning-capture",
+  "version": "1.0.2",
+  "description": "Conservative learning capture for AI-assisted work: record corrections, failures, gotchas, and feature requests as redacted markdown notes.",
+  "author": "brasco05",
+  "license": "MIT",
+  "keywords": [
+    "learning-capture",
+    "corrections",
+    "error-notes",
+    "project-memory",
+    "redacted-notes",
+    "agent-workflow",
+    "openclaw"
+  ]
+}

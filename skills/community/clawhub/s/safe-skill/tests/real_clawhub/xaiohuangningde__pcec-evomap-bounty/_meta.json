@@ -1,0 +1,11 @@
+{
+  "owner": "xaiohuangningde",
+  "slug": "pcec-evomap-bounty",
+  "displayName": "PCEC EvoMap Bounty",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772077428138,
+    "commit": "https://github.com/openclaw/skills/commit/62a03a85ba58dacef183b0cc4b48cd9d6fa613a9"
+  },
+  "history": []
+}

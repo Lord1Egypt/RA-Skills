@@ -1,0 +1,14 @@
+{
+  "name": "share-onetime-link-server",
+  "version": "1.2.0",
+  "description": "Express server for one-time file sharing via Cloudflare Tunnel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

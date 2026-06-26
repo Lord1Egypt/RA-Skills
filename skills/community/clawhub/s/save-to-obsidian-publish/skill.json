@@ -1,0 +1,20 @@
+{
+  "name": "save-to-obsidian",
+  "version": "2.1.0",
+  "description": "Save web articles to Obsidian with auto-generated summaries, tags, and local image storage",
+  "author": "vlalamoon",
+  "license": "MIT",
+  "keywords": [
+    "obsidian",
+    "article",
+    "save",
+    "markdown",
+    "knowledge-base"
+  ],
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["obsidian", "article", "save", "markdown", "knowledge-base", "productivity"],
+    "skillType": "productivity-tool",
+    "price": "0"
+  }
+}

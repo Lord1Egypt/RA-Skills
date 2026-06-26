@@ -1,0 +1,140 @@
+{
+  "magic_missile": {
+    "name": "魔法飞弹",
+    "level": 1,
+    "school": "evocation",
+    "casting_time": "1 action",
+    "range": "120 feet",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "damage": "1d4+1",
+    "damage_type": "force",
+    "description": "发射三发由力场构成的飞弹，自動命中目標"
+  },
+  "fireball": {
+    "name": "火球术",
+    "level": 3,
+    "school": "evocation",
+    "casting_time": "1 action",
+    "range": "150 feet",
+    "components": "V, S, M",
+    "duration": "Instantaneous",
+    "damage": "8d6",
+    "damage_type": "fire",
+    "save": "Dexterity",
+    "description": "火球在指定地点爆炸，所有生物需通过敏捷检定否则受到伤害"
+  },
+  "cure_wounds": {
+    "name": "治疗伤口",
+    "level": 1,
+    "school": "evocation",
+    "casting_time": "1 action",
+    "range": "Touch",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "heal": "1d8",
+    "description": "触碰目标，恢复1d8点生命值"
+  },
+  "shield": {
+    "name": "护盾",
+    "level": 1,
+    "school": "abjuration",
+    "casting_time": "1 reaction",
+    "range": "Self",
+    "components": "V, S",
+    "duration": "1 round",
+    "effect": "ac_bonus",
+    "value": 5,
+    "description": "奥术护盾环绕身体，AC获得+5加值"
+  },
+  "lightning_bolt": {
+    "name": "闪电束",
+    "level": 3,
+    "school": "evocation",
+    "casting_time": "1 action",
+    "range": "Self (100-foot line)",
+    "components": "V, S, M",
+    "duration": "Instantaneous",
+    "damage": "8d6",
+    "damage_type": "lightning",
+    "save": "Dexterity",
+    "description": "释放一道闪电，横扫路径上的所有生物"
+  },
+  "sleep": {
+    "name": "睡眠术",
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "1 action",
+    "range": "90 feet",
+    "components": "V, S, M",
+    "duration": "1 minute",
+    "effect": "hp_total",
+    "value": 5,
+    "description": "指定区域内生命值总计不超过5d8的生物陷入睡眠"
+  },
+  "detect_magic": {
+    "name": "侦测魔法",
+    "level": 1,
+    "school": "divination",
+    "casting_time": "1 action",
+    "range": "Self",
+    "components": "V, S",
+    "duration": "Concentration, up to 10 minutes",
+    "description": "感知周围30尺内的魔法波动"
+  },
+  "hold_person": {
+    "name": "人群定身术",
+    "level": 2,
+    "school": "enchantment",
+    "casting_time": "1 action",
+    "range": "60 feet",
+    "components": "V, S, M",
+    "duration": "Concentration, up to 1 minute",
+    "save": "Wisdom",
+    "description": "类人生物若通过感知豁免则被麻痹"
+  },
+  "healing_word": {
+    "name": "治疗之语",
+    "level": 1,
+    "school": "evocation",
+    "casting_time": "1 bonus action",
+    "range": "60 feet",
+    "components": "V",
+    "duration": "Instantaneous",
+    "heal": "1d4",
+    "description": "治疗60尺内一个目标，恢复1d4点生命值"
+  },
+  "bless": {
+    "name": "祝福术",
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "1 action",
+    "range": "30 feet",
+    "components": "V, S, M",
+    "duration": "Concentration, up to 1 minute",
+    "effect": "attack_save_bonus",
+    "value": 1,
+    "description": "指定三个生物在攻击和豁免上获得+1加值"
+  },
+  "cure_critical_wounds": {
+    "name": "关键治疗",
+    "level": 4,
+    "school": "evocation",
+    "casting_time": "1 action",
+    "range": "Touch",
+    "components": "V, S",
+    "duration": "Instantaneous",
+    "heal": "4d8",
+    "description": "触碰目标，恢复4d8点生命值"
+  },
+  "revivify": {
+    "name": "复活术",
+    "level": 3,
+    "school": "necromancy",
+    "casting_time": "1 action",
+    "range": "Touch",
+    "components": "V, S, M",
+    "duration": "Instantaneous",
+    "description": "一个死亡不超过1分钟的生物复活"
+  }
+}

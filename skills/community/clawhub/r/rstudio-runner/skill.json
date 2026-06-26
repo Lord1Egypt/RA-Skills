@@ -1,0 +1,79 @@
+{
+  "name": "Rstudio-runner",
+  "version": "4.0.1",
+  "description": "AI-powered bioinformatics analysis platform with intelligent auto-organization and comprehensive Chinese report generation. Includes installation instructions. Created by 孟令章 教授 & 赵净洁.",
+  "author": "(孟令章 教授) & 赵净洁",
+  "contributors": [
+    {
+      "name": "(孟令章 教授)",
+      "fullName": "Prof. Dr. rer. nat. Lingzhang Meng",
+      "institution": "广西壮族自治区人民医院（广西医学科学院）",
+      "email": "lzmeng@gxams.org.cn"
+    },
+    {
+      "name": "赵净洁",
+      "email": "87611218@qq.com"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/skills/k97f5d8d367me4186h0d5j1jb583st34",
+  "bugs": {
+    "url": "mailto:lzmeng@gxams.org.cn"
+  },
+  "capabilities": [
+    "auto-detect-sequencing-data",
+    "intelligent-file-organization",
+    "auto-save-scripts",
+    "auto-save-plots",
+    "auto-save-csv",
+    "auto-save-txt",
+    "auto-save-rds",
+    "structured-subfolders",
+    "generate-r-scripts",
+    "run-in-rstudio",
+    "intelligent-error-correction",
+    "bioinformatics-pipelines",
+    "scRNA-seq-analysis",
+    "bulk-seq-analysis",
+    "chinese-report-generation",
+    "detailed-figure-explanation",
+    "file-documentation"
+  ],
+  "requirements": {
+    "bins": ["RStudio", "Rscript"],
+    "packages": ["Seurat", "DESeq2", "clusterProfiler", "ggplot2", "rmarkdown"]
+  },
+  "triggers": {
+    "files": [".R", ".Rmd", ".csv", ".tsv", ".mtx", ".h5", ".h5ad", ".png", ".txt", ".html"],
+    "directories": ["sequencing-data", "raw_data", "count_matrix"],
+    "keywords": [
+      "analyze sequencing",
+      "auto-organize",
+      "save outputs",
+      "run analysis",
+      "bioinformatics",
+      "scRNA-seq",
+      "生成报告",
+      "中文报告",
+      "自动保存",
+      "自动分析",
+      "整理文件"
+    ]
+  },
+  "keywords": [
+    "bioinformatics",
+    "auto-organization",
+    "file-management",
+    "sequencing",
+    "scRNA-seq",
+    "bulk-seq",
+    "R",
+    "RStudio",
+    "AI-powered",
+    "automation",
+    "structured-output",
+    "data-analysis",
+    "chinese-report",
+    "report-generation"
+  ]
+}

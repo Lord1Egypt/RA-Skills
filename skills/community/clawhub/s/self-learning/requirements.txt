@@ -1,0 +1,13 @@
+# Agent Self-Learning Skill Dependencies
+# Python 3.8+
+
+# Core dependencies
+PyYAML>=6.0  # 配置文件解析
+
+# Optional dependencies
+# openclaw>=1.0.0  # OpenClaw SDK (如果可用)
+
+# Development dependencies
+pytest>=7.0.0  # 单元测试
+black>=22.0.0  # 代码格式化
+flake8>=4.0.0  # 代码检查

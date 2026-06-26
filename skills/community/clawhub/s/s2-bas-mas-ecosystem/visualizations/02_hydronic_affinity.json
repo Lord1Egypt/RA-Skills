@@ -1,0 +1,8 @@
+{
+  "component": "S2-Dashboard-Renderer",
+  "props": {
+    "title": "S2-Hydronic-Agent | 管网压差重置流体力学舱",
+    "theme": "cyber-dark",
+    "prompt": "Create an interactive dashboard demonstrating Pump Affinity Laws. Input: Slider '最不利末端真实需求 (%)' (30-100, default 60). Visualization: Curve chart showing P = 110 * (Freq/50)^3. Plot 'Baseline' at 50Hz/110kW. Calculate and plot 'S2 Optimized' point dynamically where Freq = 50 * (Demand / 95). Output Panel: Emphasize the cubic power drop (e.g., 'Frequency drops 36%, Power drops 74%'). Display a '⚡ 下发降频提案' button."
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Screenshot Stitcher"
+  short_description: "Stitch vertically scrolling iPhone screenshots locally with the OpenCV CLI"
+  default_prompt: "Use $screenshot-stitcher to combine multiple ordered iPhone screenshots into one long image locally. Prefer the published PyPI CLI package, and choose crop or edge-margin flags only when the default command is not enough."

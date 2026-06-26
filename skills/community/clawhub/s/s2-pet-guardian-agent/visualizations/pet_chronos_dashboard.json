@@ -1,0 +1,102 @@
+{
+  "dashboard_metadata": {
+    "id": "s2_vis_pet_chronos_v1",
+    "name": "S2 宠物全息时空看板 (Pet Chronos Dashboard)",
+    "version": "1.1.0",
+    "author": "Space2.world",
+    "target_resolution": "1920x1080",
+    "theme": "dark_neo"
+  },
+  "global_state": {
+    "default_pet_id": "${S2_DID}",
+    "default_timeframe": "DAY",
+    "refresh_interval_ms": 5000
+  },
+  "layout": {
+    "header": {
+      "components": [
+        {
+          "type": "Title",
+          "text": "🐾 宠物全息时空看板 - ${pet_nickname}"
+        },
+        {
+          "type": "TimeframeSelector",
+          "options": [
+            {"label": "日视界 (Day)", "value": "DAY"},
+            {"label": "周视界 (Week)", "value": "WEEK"},
+            {"label": "月视界 (Month)", "value": "MONTH"},
+            {"label": "年鉴 (Year)", "value": "YEAR"}
+          ]
+        },
+        {
+          "type": "HealthAlertBadge",
+          "data_source": "api/v1/pets/${S2_DID}/health_score",
+          "thresholds": {
+            "warning": 80,
+            "critical": 60
+          },
+          "display_format": "健康指数: {score}/100 | ⚠️ {latest_alert}"
+        }
+      ]
+    },
+    "grid_modules": [
+      {
+        "id": "module_a_feeding",
+        "title": "进食量曲线 (g)",
+        "type": "LineChart",
+        "grid_position": {"x": 0, "y": 0, "w": 6, "h": 4},
+        "data_source": "api/v1/pets/${S2_DID}/metrics/feeding",
+        "series": [
+          {"name": "实际进食", "field": "actual_eaten_g", "color": "#4CAF50"},
+          {"name": "计划进食", "field": "plan_g", "color": "rgba(255, 255, 255, 0.3)", "line_type": "dashed"}
+        ]
+      },
+      {
+        "id": "module_b_water",
+        "title": "饮水频次与耗水量 (ml)",
+        "type": "BarChart",
+        "grid_position": {"x": 6, "y": 0, "w": 6, "h": 4},
+        "data_source": "api/v1/pets/${S2_DID}/metrics/water",
+        "series": [
+          {"name": "单次饮水", "field": "water_consumed_ml", "color": "#03A9F4"}
+        ]
+      },
+      {
+        "id": "module_c_litter",
+        "title": "猫砂盆驻留时序 (异常预警)",
+        "type": "ScatterPlot",
+        "grid_position": {"x": 0, "y": 4, "w": 6, "h": 4},
+        "data_source": "api/v1/pets/${S2_DID}/metrics/litter",
+        "xAxis": "timestamp",
+        "yAxis": "duration_seconds",
+        "visual_map": {
+          "field": "duration_seconds",
+          "rules": [
+            {"max": 60, "color": "#4CAF50"},
+            {"min": 61, "max": 120, "color": "#FFC107"},
+            {"min": 121, "color": "#F44336", "symbolSize": 20, "animation": "pulse"}
+          ]
+        }
+      },
+      {
+        "id": "module_d_environment",
+        "title": "14维环境张量拟合 (温/湿度)",
+        "type": "DualAxisLineChart",
+        "grid_position": {"x": 6, "y": 4, "w": 6, "h": 4},
+        "data_source": "api/v1/spaces/${SUNS_ADDRESS}/telemetry",
+        "series": [
+          {"name": "温度 (℃)", "field": "temperature_c", "yAxisIndex": 0, "color": "#FF9800"},
+          {"name": "湿度 (%)", "field": "humidity_percent", "yAxisIndex": 1, "color": "#00BCD4", "areaStyle": true}
+        ]
+      }
+    ],
+    "footer": {
+      "id": "semantic_logs",
+      "title": "🧠 空间情绪翻译记录 (S2 AI Semantic Logs)",
+      "type": "ScrollingList",
+      "grid_position": {"x": 0, "y": 8, "w": 12, "h": 3},
+      "data_source": "api/v1/pets/${S2_DID}/logs/semantic",
+      "item_template": "<span class='time'>[{timestamp}]</span> <span class='urgency-{urgency}'>[{urgency_label}]</span> {translated_content}"
+    }
+  }
+}

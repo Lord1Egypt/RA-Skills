@@ -1,0 +1,6 @@
+schema_version: v1
+name: self-improving-agent
+interface:
+  display_name: Self-Improving Agent
+  short_description: Capture errors and corrections into learnings, then promote durable rules
+  default_prompt: Use self-improving-agent to log important learnings and promote reusable patterns to workspace memory.

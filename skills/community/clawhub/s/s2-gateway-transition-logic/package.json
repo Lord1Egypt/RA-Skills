@@ -1,0 +1,29 @@
+{
+  "name": "s2-gateway-transition-logic",
+  "version": "1.4.2",
+  "description": "S2-SWM Gateway Transition Gatekeeper. Evaluates inbound/outbound transit requests safely. Enforces strict Dual-Track Authorization via the S2_BMS_VAULT_TOKENS environment variable, acting purely in an advisory reporting capacity for ACS hardware.",
+  "main": "handler.py",
+  "scripts": { "start": "python3 handler.py" },
+  "openclaw": {
+    "extensions": ["openclaw.plugin.json"],
+    "compat": { "pluginApi": ">=3.22.0" },
+    "build": { "openclawVersion": "4.2.0" },
+    "capabilities": [
+      "spatial_authorization", 
+      "acs_command_reporting", 
+      "scene_linkage"
+    ],
+    "configSchema": {
+      "type": "object",
+      "required": ["S2_BMS_VAULT_TOKENS"],
+      "properties": {
+        "S2_BMS_VAULT_TOKENS": {
+          "type": "string",
+          "description": "Comma-separated list of valid Owner Tokens or BMS Dispatch Tokens from your secure vault. (e.g., 'TOKEN1,TOKEN2')"
+        }
+      }
+    }
+  },
+  "author": "Space2.world (Miles Xiang)",
+  "license": "MIT"
+}

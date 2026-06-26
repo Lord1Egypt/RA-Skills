@@ -1,0 +1,35 @@
+[
+  {
+    "source": "gcp-status",
+    "title": "payment-processor pods entering CrashLoopBackOff after deploy",
+    "severity": "critical",
+    "service": "payment-processor",
+    "region": "us-central1-a",
+    "status": "active",
+    "started_at": "2026-03-25T13:20:00-07:00",
+    "description": "Pods in namespace production are restarting repeatedly with OOMKilled events after the latest deploy. Checkout traffic is degraded.",
+    "url": "https://status.example.com/incidents/payment-processor"
+  },
+  {
+    "source": "k8s-github",
+    "title": "user-service rollout stuck with ImagePullBackOff on broken image tag",
+    "severity": "high",
+    "service": "user-service",
+    "region": "us-central1-a",
+    "status": "active",
+    "started_at": "2026-03-25T13:25:00-07:00",
+    "description": "A deployment is referencing a missing image tag. New pods fail with ImagePullBackOff while old replicas continue serving.",
+    "url": "https://github.com/kubernetes/kubernetes/issues/example-user-service"
+  },
+  {
+    "source": "gcp-status",
+    "title": "analytics-worker restarting with repeated OOMKilled events",
+    "severity": "medium",
+    "service": "analytics-worker",
+    "region": "us-central1-a",
+    "status": "active",
+    "started_at": "2026-03-25T13:32:00-07:00",
+    "description": "Background workers in production show memory pressure, repeated restarts, and degraded queue processing.",
+    "url": "https://status.example.com/incidents/analytics-worker"
+  }
+]

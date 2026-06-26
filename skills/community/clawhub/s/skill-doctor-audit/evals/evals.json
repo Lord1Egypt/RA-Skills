@@ -1,0 +1,30 @@
+{
+  "skill_name": "skill-doctor",
+  "evals": [
+    {
+      "id": 0,
+      "name": "audit-security-and-conflicts",
+      "prompt": "I've collected a few skills in /sessions/serene-dreamy-ritchie/skill-evals/fixtures/installed-skills and I'm a little nervous about them. Can you check whether any are a security risk and whether any of them overlap or step on each other?",
+      "expected_output": "Runs skill_doctor.py audit on the fixture dir. Flags quick-deploy as high-risk (curl-pipe-bash, hard-coded ghp_ token, env-var exfiltration), and identifies the meeting-notes-pro vs meeting-recap trigger conflict. Leads with the security risk, shows file/line evidence, and frames flags as 'worth a look' rather than proof of malice.",
+      "files": [],
+      "assertions": [
+        {"text": "Names quick-deploy as the security-risk skill", "kind": "qualitative"},
+        {"text": "Identifies at least one concrete red flag (curl|bash, hard-coded token, or env-var exfiltration)", "kind": "qualitative"},
+        {"text": "Identifies the meeting-notes-pro vs meeting-recap trigger overlap", "kind": "qualitative"},
+        {"text": "Runs the bundled skill_doctor.py tool rather than hand-rolling the analysis", "kind": "qualitative"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "which-fires-debug-triggering",
+      "prompt": "When I ask my agent to 'summarize this meeting' it sometimes gives me the wrong format — I think two of my skills are fighting over it. The skills are in /sessions/serene-dreamy-ritchie/skill-evals/fixtures/installed-skills. Which one actually fires for that, and what should I do about it?",
+      "expected_output": "Runs skill_doctor.py which \"summarize this meeting\". Reports that meeting-notes-pro and meeting-recap both match and the choice is ambiguous, and recommends tightening one skill's description so they stop competing.",
+      "files": [],
+      "assertions": [
+        {"text": "Identifies both meeting-notes-pro and meeting-recap as competing for the prompt", "kind": "qualitative"},
+        {"text": "Flags the match as ambiguous / a near-tie", "kind": "qualitative"},
+        {"text": "Recommends disambiguating or tightening one skill's description", "kind": "qualitative"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "deps": [
+    {
+      "body": "Leg_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Leg_FR",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BL",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BR",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Apron_Back",
+      "ref": "Leg_BL"
+    },
+    {
+      "body": "Apron_Left",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Apron_Right",
+      "ref": "Leg_FR"
+    },
+    {
+      "body": "Str_Upper",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Str_Lower",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Top",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "dd_Front",
+      "ref": "Str_Lower"
+    },
+    {
+      "body": "dd_Back",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Left",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Right",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "dd_Bottom",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "Pull_Post0",
+      "ref": "dd_Front"
+    },
+    {
+      "body": "TB_L_0",
+      "ref": "Apron_Left"
+    },
+    {
+      "body": "TB_R_0",
+      "ref": "Apron_Right"
+    }
+  ]
+}

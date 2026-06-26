@@ -1,35 +1,240 @@
 ---
-name: "Airdrop Hunter"
-description: "虚拟币空投撸毛助手。当用户想了解空投项目、追踪潜在空投机会、获取交互教程、评估空投风险、管理多账号操作或查询最新空投资讯时使用。支持Layer 1/2公链、DeFi协议、AI项目、RWA等多种类型空投的分析与策略制定。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shenmeng-airdrop-hunter"
-sourceUrl: "https://clawhub.ai/skills/shenmeng-airdrop-hunter"
+name: airdrop-hunter
+description: 虚拟币空投撸毛助手。当用户想了解空投项目、追踪潜在空投机会、获取交互教程、评估空投风险、管理多账号操作或查询最新空投资讯时使用。支持Layer 1/2公链、DeFi协议、AI项目、RWA等多种类型空投的分析与策略制定。
 ---
 
-# Airdrop Hunter
+# Airdrop Hunter 空投猎人
 
-> 虚拟币空投撸毛助手。当用户想了解空投项目、追踪潜在空投机会、获取交互教程、评估空投风险、管理多账号操作或查询最新空投资讯时使用。支持Layer 1/2公链、DeFi协议、AI项目、RWA等多种类型空投的分析与策略制定。
+> 💰 **本 Skill 已接入 SkillPay 付费系统**
+> - 每次调用费用：**0.01 USDT**
+> - 支付方式：BNB Chain USDT
+> - 请先确保账户有足够余额
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shenmeng-airdrop-hunter`
-- **Source URL:** [https://clawhub.ai/skills/shenmeng-airdrop-hunter](https://clawhub.ai/skills/shenmeng-airdrop-hunter)
+帮助用户发现和参与有价值的加密货币空投活动，最大化投入产出比。
 
-## Overview
+## 核心能力
 
+1. **空投项目追踪** — 筛选高价值空投机会
+2. **交互教程** — 测试网/主网任务分步指导
+3. **风险评估** — 识别反撸机制、计算时间成本
+4. **工具推荐** — 钱包、指纹浏览器、自动化脚本
+5. **策略制定** — 多账号管理、资金分配、时间规划
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/shenmeng-airdrop-hunter
+## 适用场景
+
+| 场景 | 示例 |
+|------|------|
+| **项目发现** | "最近有什么值得做的空投？"、"哪个项目空投价值大" |
+| **交互指导** | "Monad测试网怎么做？"、"Sahara AI白名单怎么申请" |
+| **风险评估** | "这个项目会不会反撸？"、"投入时间值得吗" |
+| **工具配置** | "推荐个指纹浏览器"、"多钱包怎么管理" |
+| **策略优化** | "怎么提高空投成功率"、"资金怎么分配最合理" |
+| **信息查询** | "查看某项目最新进展"、"空投什么时候发币" |
+
+## 工作流程
+
+### 第一步：明确需求类型
+
+- **找项目**：推荐当前值得关注的空投机会
+- **学交互**：提供具体项目的操作步骤
+- **查风险**：分析项目的反撸机制和潜在风险
+- **要工具**：推荐合适的工具和资源
+
+### 第二步：获取最新信息
+
+当需要最新数据时，主动联网搜索：
+- 项目融资情况、估值、投资方
+- 社区热度和讨论质量
+- 测试网/主网最新进展
+- 发币时间线和快照预期
+
+### 第三步：输出建议
+
+根据用户需求提供：
+- 项目列表（按优先级排序）
+- 交互教程（分步骤）
+- 风险提示
+- 工具推荐
+
+## 项目分类体系
+
+### 按类型分类
+
+| 类型 | 特点 | 代表项目 |
+|------|------|----------|
+| **Layer 1** | 公链底层，融资大，空投多 | Monad, Berachain, Eclipse |
+| **Layer 2** | 以太坊扩容，技术门槛适中 | Linea, Scroll, zkSync |
+| **DeFi协议** | 交互复杂，收益可能高 | LayerZero, Celestia |
+| **AI项目** | 新赛道，估值高 | Sahara AI, Grass |
+| **RWA** | 现实资产上链，合规趋势 | 各银行系项目 |
+| **游戏/元宇宙** | 用户多，竞争激烈 | Portal, Pixels |
+
+### 按阶段分类
+
+| 阶段 | 特征 | 策略 |
+|------|------|------|
+| **测试网** | 零成本，周期长，不确定 | 批量操作，养号为主 |
+| **主网早期** | 需要资金，竞争相对小 | 精品号，深度交互 |
+| **快照前** | 时间紧迫，博弈性质 | 评估成本，决定是否冲 |
+| **已快照** | 等发币，或查是否遗漏 | 准备钱包，关注公告 |
+
+## 高价值项目筛选标准
+
+### 融资规模（权重30%）
+- Tier 1机构（Binance, Polychain, Sequoia）：+3分
+- Tier 2机构（Hack VC, Jump Crypto）：+2分
+- 知名机构（Coinbase Ventures, A16z）：+1分
+- 融资额 > $50M：+2分
+- 融资额 $10-50M：+1分
+
+### 技术/叙事热度（权重25%）
+- 新赛道开创者（如Monad并行EVM）：+3分
+- 热门赛道（AI, RWA, DePIN）：+2分
+- 有实际产品/主网：+1分
+- 社区活跃度高：+1分
+
+### 空投确定性（权重25%）
+- 官方明确空投计划：+3分
+- 有积分/等级系统：+2分
+- 测试网明确激励：+1分
+
+### 成本效益（权重20%）
+- 测试网零成本：+3分
+- 主网但Gas低：+1分
+- 交互频次要求低：+1分
+
+## 热门项目速查（2025年3月）
+
+### Tier 1 - 必做项目
+
+| 项目 | 类型 | 阶段 | 融资 | 预期价值 |
+|------|------|------|------|----------|
+| **Monad** | L1 | 测试网 | $244M | $5K-20K |
+| **Sahara AI** | AI | 白名单申请 | $49M | $2K-10K |
+| **Eclipse** | L2 | 主网 | 未公开 | $3K-15K |
+| **Polymarket** | 预测市场 | 主网 | $74M | $2K-8K |
+
+### Tier 2 - 推荐项目
+
+| 项目 | 类型 | 阶段 | 特点 |
+|------|------|------|------|
+| **Berachain** | L1 | 主网 | 流动性证明，Artio测试网已结束 |
+| **Story Protocol** | IP | 测试网 | 知识产权上链，a16z投资 |
+| **MegaETH** | L2 | 测试网 | 高性能，Paradigm投资 |
+| **Initia** | L1 | 主网 | 模块化，Binance投资 |
+
+### Tier 3 - 关注项目
+
+- **Grass** - DePIN，已快照，等发币
+- **Walrus** - 存储，Sui团队
+- **Lens Protocol** - 社交，Aave团队
+
+## 参考资料
+
+- **新手入门指南**：`references/newbie-guide.md` - 从零开始的完整执行手册
+- **Monad测试网教程**：`references/monad-tutorial.md` - 必做项目详细交互指南
+- **空投基础知识**：`references/airdrop-basics.md`
+- **热门项目追踪**：`references/projects-tracker.md`
+- **交互教程指南**：`references/interaction-guide.md`
+- **风险评估指南**：`references/risk-assessment.md`
+- **工具资源汇总**：`references/tools-resources.md`
+
+## 脚本工具
+
+- **项目评分工具**：`scripts/project_scorer.py`
+- **交互检查清单**：`scripts/interaction_checklist.py`
+- **收益计算器**：`scripts/roi_calculator.py`
+
+## 风险提示
+
+⚠️ **重要声明**：
+1. 空投活动具有高度不确定性，项目方可能取消或修改空投计划
+2. 存在反撸（anti-sybil）检测机制，多账号操作可能导致全部无效
+3. 主网交互需要真实资金，存在Gas费和资金损失风险
+4. 部分项目存在诈骗风险，请仔细验证官方渠道
+5. 不构成投资建议，请根据自身情况决策
+
+## 使用示例
+
+### 示例1：寻找空投项目
+
+**用户**："最近有什么值得做的空投？"
+
+**处理**：
+1. 搜索最新空投资讯
+2. 按筛选标准评估
+3. 按Tier分类推荐
+
+**输出**：
 ```
+🎯 当前值得关注的空投项目
+
+【Tier 1 - 必做】
+1. Monad (L1公链)
+   - 阶段：测试网 | 融资：$244M
+   - 动作：领水、部署合约、交互dApp
+   - 时间：Q2 2025快照预期
+   
+2. Sahara AI (AI基础设施)
+   - 阶段：白名单申请 | 融资：$49M
+   - 动作：申请白名单、Galxe任务
+   - 注意：80万人竞争1万名额
+
+【Tier 2 - 推荐】
+...
+```
+
+### 示例2：获取交互教程
+
+**用户**："Monad测试网怎么做？"
+
+**输出**：
+```
+📘 Monad 测试网交互教程
+
+准备工作：
+1. 添加网络（Chain ID: 10143）
+2. 领测试币：https://testnet.monad.xyz/
+
+交互步骤：
+1. 官方桥接（必做）
+   - https://testnet.monad.xyz/bridge
+   - 从Sepolia桥接到Monad
+
+2. 部署合约（高分项）
+   - 使用Remix部署简单合约
+   
+3. 交互生态项目
+   - Acurast: 质押交互
+   - Kintsu: 流动性质押
+   - NadSwap: DEX交易
+
+频率建议：每周1-2次，持续3个月
+```
+
+### 示例3：风险评估
+
+**用户**："Azuro值不值得做？"
+
+**输出**：
+```
+⚠️ Azuro 风险评估报告
+
+【负面信号】
+- 代币$AZUR已上线，从$45跌至$6（-86%）
+- 明确的反撸机制，多账号容易被封
+- 积分系统复杂，规则频繁变更
+
+【正面信号】
+- 融资$25M，机构背书强
+- 产品已上线，有实际用户
+
+【建议】
+- 适合精品号（1-2个）深度交互
+- 不适合批量操作
+- 关注积分价值，及时变现
+```
+
+---
+
+*空投是马拉松，不是百米冲刺。坚持、策略、风控缺一不可。*

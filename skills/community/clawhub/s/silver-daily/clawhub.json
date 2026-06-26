@@ -1,0 +1,10 @@
+{
+  "name": "silver-daily",
+  "version": "1.0.1",
+  "description": "银发头条 — 一键生成当日银发经济精选资讯日报",
+  "author": "cnspica",
+  "category": "news",
+  "tags": ["银发经济", "老龄化", "养老", "资讯", "日报"],
+  "homepage": "https://github.com/cnspica/silver-daily",
+  "license": "MIT"
+}

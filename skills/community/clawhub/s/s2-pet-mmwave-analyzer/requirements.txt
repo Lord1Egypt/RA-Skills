@@ -1,0 +1,6 @@
+# S2-Pet-mmWave-Analyzer Dependencies
+# 用于支持硬核的雷达数字信号处理 (DSP) 与数据可视化
+
+numpy>=1.24.0      # 矩阵运算与快速傅里叶变换 (FFT) 基础库
+scipy>=1.10.0      # 工业级信号处理 (IIR 巴特沃斯带通滤波器)
+matplotlib>=3.7.0  # 医疗级生命体征数据可视化图表渲染

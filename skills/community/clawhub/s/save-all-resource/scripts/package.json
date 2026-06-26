@@ -1,0 +1,12 @@
+{
+  "name": "save-all-resource",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "puppeteer": "^24.39.1"
+  }
+}

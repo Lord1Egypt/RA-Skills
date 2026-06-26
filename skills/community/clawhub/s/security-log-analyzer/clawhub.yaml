@@ -1,0 +1,45 @@
+name: security-log-analyzer
+displayName: 安全事件日志调查助手
+version: 1.0.0
+description: 基于 LLM 的安全事件日志分析工具，支持简要分析和详细分析两种模式，可识别威胁等级、提取 IOC 指标、提供修复建议
+author: beijinglaoli
+license: MIT
+tags:
+  - security
+  - log-analysis
+  - threat-hunting
+  - incident-response
+  - llm
+
+requirements:
+  bins:
+    - python3
+  python:
+    packages:
+      - openai>=1.0.0
+      - python-dotenv>=1.0.0
+      - tiktoken>=0.5.0
+
+config:
+  env:
+    - SILICONFLOW_API_KEY
+    - SILICONFLOW_BASE_URL
+    - SILICONFLOW_MODEL
+    - API_RATE_LIMIT
+
+entryPoint: src/analyzer.py
+
+examples:
+  - name: 简要分析 SSH 日志
+    command: python src/analyzer.py examples/sample_logs/ssh_bruteforce.log brief
+  - name: 详细分析 Web 日志
+    command: python src/analyzer.py /path/to/access.log detailed
+
+changelog:
+  - version: 1.0.0
+    changes:
+      - 初始版本发布
+      - 支持简要分析和详细分析两种模式
+      - 集成 SiliconFlow Qwen/Qwen3-8B 模型
+      - 内置限流保护机制
+      - 提供示例日志文件

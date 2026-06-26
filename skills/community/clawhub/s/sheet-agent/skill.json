@@ -1,0 +1,19 @@
+{
+  "name": "sheet-agent",
+  "slug": "sheet-agent",
+  "version": "1.0.10",
+  "summary": "Spreadsheet operations agent for CSV and Excel files: inspect data, detect anomalies, answer business questions, generate reports, and preview edits safely.",
+  "description": "Spreadsheet operations agent for CSV and Excel files: inspect data, detect anomalies, answer business questions, generate reports, and preview edits safely.",
+  "author": "harrylabsj",
+  "license": "MIT",
+  "keywords": ["sheet", "excel", "csv", "spreadsheet", "operations", "anomaly-detection", "weekly-report", "data-analysis"],
+  "tags": ["spreadsheet", "data-analysis", "operations", "report-generation", "excel", "csv"],
+  "entry": "scripts/sheet_agent.py",
+  "python": true,
+  "capabilities": {
+    "read": ["csv", "excel"],
+    "write": ["csv", "excel"],
+    "analyze": true,
+    "report": true
+  }
+}

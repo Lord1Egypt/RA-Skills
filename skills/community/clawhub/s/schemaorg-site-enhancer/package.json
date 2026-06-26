@@ -1,0 +1,16 @@
+{
+  "name": "schemaorg-site-enhancer",
+  "version": "0.1.0",
+  "main": "./src/index.js",
+  "description": "Helps agents integrate Schema.org structured data into websites for rich search results, better SEO, and improved communication with search engines. Provides ready-to-use JSON-LD templates, generation scripts, and implementation patterns for common schema types.",
+  "author": "Chaika",
+  "license": "MIT",
+  "keywords": [
+    "schema.org",
+    "JSON-LD",
+    "SEO",
+    "structured-data",
+    "openclaw",
+    "skill"
+  ]
+}

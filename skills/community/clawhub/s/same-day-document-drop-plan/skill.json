@@ -1,0 +1,45 @@
+{
+  "slug": "same-day-document-drop-plan",
+  "name": "Same-Day Document Drop Plan",
+  "displayName": "Same-Day Document Drop Plan",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Create a same-day document drop-off plan with recipient verification, document inventory, route timing, proof checklist, and fallback steps.",
+  "author": "Golden Bean / coder",
+  "license": "MIT-0",
+  "category": "Urgent Admin & Logistics",
+  "triggerKeywords": [
+    "same day document drop",
+    "document drop off plan",
+    "urgent paperwork delivery",
+    "drop off documents today",
+    "proof of delivery checklist",
+    "deliver original documents",
+    "document courier checklist",
+    "paperwork deadline",
+    "office drop box plan",
+    "same day filing logistics"
+  ],
+  "tags": [
+    "logistics",
+    "documents",
+    "deadline",
+    "paperwork",
+    "checklist",
+    "proof"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ]
+}

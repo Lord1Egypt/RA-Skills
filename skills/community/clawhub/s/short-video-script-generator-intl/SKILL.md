@@ -1,35 +1,31 @@
 ---
-name: "AI Short Video Script Generator Pro"
-description: "AI Short Video Script Generator, support TikTok/YouTube Shorts/Instagram Reels, auto generate hook, shots, voiceover, subtitles, BGM, CTA. $0.005 USDT per use."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, instagram-reels, monetization, script, short-video, tiktok, youtube-shorts]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/short-video-script-generator-intl"
-sourceUrl: "https://clawhub.ai/skills/short-video-script-generator-intl"
+name: short-video-script-generator-pro
+description: AI Short Video Script Generator, support TikTok/YouTube Shorts/Instagram Reels, auto generate hook, shots, voiceover, subtitles, BGM, CTA. $0.005 USDT per use.
+license: MIT
 ---
 
 # AI Short Video Script Generator Pro
 
-> AI Short Video Script Generator, support TikTok/YouTube Shorts/Instagram Reels, auto generate hook, shots, voiceover, subtitles, BGM, CTA. $0.005 USDT per use.
+## Features
+All-in-one AI script generator for short video creators worldwide:
+1. **Multi-platform support**: TikTok, YouTube Shorts, Instagram Reels, Facebook Reels, Snapchat
+2. **3 durations available**: 15s/30s/60s
+3. **Full script structure**:
+   - 3-seconds hook to grab attention
+   - Shot list with time codes and scene descriptions
+   - Voiceover script
+   - Subtitle text
+   - Background music recommendation
+   - Call to action (CTA)
+4. **Script management**: Save, view, delete, export all your generated scripts
+5. **One-click export to Markdown/TXT format
+6. **Simple UI, no learning curve required
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/short-video-script-generator-intl`
-- **Source URL:** [https://clawhub.ai/skills/short-video-script-generator-intl](https://clawhub.ai/skills/short-video-script-generator-intl)
+## Pricing
+$0.005 USDT per generation, or $4.99 for lifetime unlimited access. Payment powered by SkillPay.me.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/short-video-script-generator-intl
-```
+## How to use
+1. Complete payment verification
+2. Enter video topic, select target platform and duration
+3. Generate full script with one click
+4. Save to your library or export for use

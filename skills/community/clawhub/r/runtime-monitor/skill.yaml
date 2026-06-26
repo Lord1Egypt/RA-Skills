@@ -1,0 +1,10 @@
+name: runtime-monitor
+version: 1.0.0
+description: AI 代理运行时 I/O 安全监控 - 检测提示注入、数据外泄、危险命令
+author: liwiw
+tags:
+  - security
+  - monitoring
+  - runtime
+entry: runtime_monitor.py
+min_openclaw_version: 0.8.0

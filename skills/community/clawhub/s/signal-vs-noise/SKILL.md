@@ -1,35 +1,60 @@
 ---
-name: "Signal vs Noise"
-description: "Filter relevant information from noise; extract claims, dedupe, rank impact, and preserve evidence."
-category: "other"
-source: "ClawHub"
-tags: [beta]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/signal-vs-noise"
-sourceUrl: "https://clawhub.ai/skills/signal-vs-noise"
+name: signal-vs-noise
+description: Filter relevant information from noise; extract claims, dedupe, rank impact, and preserve evidence.
+metadata:
+  author: Morpheus
+  version: 2.0.0
+  owner: Morpheus Agent
+  category: filtering
 ---
 
-# Signal vs Noise
+# SKILL: signal-vs-noise
 
-> Filter relevant information from noise; extract claims, dedupe, rank impact, and preserve evidence.
+## Purpose
+Filter relevant information from noise while preserving evidence and decision-impact.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/signal-vs-noise`
-- **Source URL:** [https://clawhub.ai/skills/signal-vs-noise](https://clawhub.ai/skills/signal-vs-noise)
+## When to Use
+- Many messages/news/items arrive at once
+- A decision must be made and inputs are overwhelming
+- You need a ranked list of what matters
 
-## Overview
+## Inputs
+- `dataset` (required): list of items (news, messages, metrics, notes)
+- `decision_context` (optional): what decision this supports
+- `time_window` (optional): timeframe considered relevant
 
+## Steps
+1. Normalize the dataset into items with `source`, `timestamp` (if present), and `content`.
+2. Extract key claims per item (1–3 claims max).
+3. Remove redundancy:
+   - merge duplicates
+   - group near-duplicates by same claim
+4. Identify high-impact signals:
+   - changes in constraints (governance, deadlines, outages)
+   - verified facts that shift probability
+   - actionable next steps
+5. Rank signals by:
+   - impact on the decision
+   - credibility/verifiability
+   - urgency (only if real)
+6. Output:
+   - ranked signals with evidence
+   - discarded noise (with brief reason)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/signal-vs-noise
-```
+## Validation
+- No duplicated signals in the ranked list.
+- Each signal includes at least one evidence pointer (source/item id).
+- Novelty is not treated as importance by default.
+
+## Output
+- `ranked_signals`: ordered list with `claim`, `why_it_matters`, `evidence`
+- `discarded_noise`: list with `item` + `reason`
+
+## Safety Rules
+- Avoid bias toward novelty: “new” is not automatically “important”.
+- Do not delete dissent; label it as low-confidence when evidence is weak.
+
+## Example
+Input: 30 chat messages + 5 news headlines about a protocol.
+Output: top 5 signals (governance vote date, confirmed exploit, liquidity change) + noise bucket (memes, repeated hype).
+

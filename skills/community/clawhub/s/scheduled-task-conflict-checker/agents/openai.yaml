@@ -1,0 +1,4 @@
+interface:
+  display_name: "LUI 定时任务冲突检测"
+  short_description: "创建前检测 LUI 定时任务冲突"
+  default_prompt: "使用 $scheduled-task-conflict-checker 在创建 LUI 定时任务前检测当前任务冲突。"

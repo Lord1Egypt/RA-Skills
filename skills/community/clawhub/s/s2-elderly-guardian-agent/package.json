@@ -1,0 +1,22 @@
+{
+  "name": "s2-elderly-guardian-agent",
+  "slug": "s2-elderly-guardian-agent",
+  "version": "1.0.3",
+  "description": "S2 零隐私老人健康哨兵。多模态感知并本地记录活动日志，仅向总线广播跌倒预警，不包含任何物理越权操作。",
+  "main": "core/s2_elderly_guardian_agent.py",
+  "author": "Space2.world (Miles Xiang)",
+  "license": "S2-CLA",
+  "scripts": {
+    "start": "python core/s2_elderly_guardian_agent.py"
+  },
+  "environment": {
+    "S2_BUS_ENDPOINT": {
+      "type": "string",
+      "required": false,
+      "description": "Optional local endpoint to broadcast health events."
+    }
+  },
+  "directories": {
+    "s2_bas_governance": "PERSISTENCE: Stores anonymized ADL (Activities of Daily Living) JSON logs in elderly_care/."
+  }
+}

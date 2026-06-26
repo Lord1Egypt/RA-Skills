@@ -1,0 +1,28 @@
+{
+  "name": "shopguard",
+  "version": "1.0.0",
+  "description": "ShopGuard - Not just whether a product is worth buying, but whether this seller path is safe enough to take, whether it is suitable for gifting or urgency, and what evidence to save before the order turns messy.",
+  "keywords": [
+    "shopguard",
+    "shopping-risk",
+    "merchant-risk",
+    "seller-risk",
+    "after-sales",
+    "refund",
+    "refund-friction",
+    "after-sales-hassle",
+    "store-trust",
+    "evidence-retention",
+    "risk-check",
+    "consumer-protection",
+    "taobao",
+    "tmall",
+    "jd",
+    "pdd",
+    "meituan",
+    "elm",
+    "ecommerce-risk"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

@@ -1,35 +1,29 @@
----
-name: "Simple Mail Client"
-description: "Send, receive, and manage emails using IMAP/POP3 and SMTP with multi-account support, attachments, and message status control."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/simple-mail-client"
-sourceUrl: "https://clawhub.ai/skills/simple-mail-client"
----
+# generic-mail-client
 
-# Simple Mail Client
+A generic email client skill. Supports any mailbox using IMAP/POP3 + SMTP with username and password authentication:
+- Alibaba Cloud Enterprise Mail
+- QQ Mail / 163 / Gmail / Outlook / Exchange (with IMAP/POP3/SMTP enabled)
 
-> Send, receive, and manage emails using IMAP/POP3 and SMTP with multi-account support, attachments, and message status control.
+## Capabilities
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/simple-mail-client`
-- **Source URL:** [https://clawhub.ai/skills/simple-mail-client](https://clawhub.ai/skills/simple-mail-client)
+- Multi-account support — select mailbox via accountId
+- Sending (SMTP):
+  - Plain text / HTML / Markdown body
+  - Multiple recipients (To/Cc/Bcc)
+  - Attachments (base64 transfer)
+- Receiving (IMAP/POP3):
+  - List recent emails (by folder, date, unread status, keyword)
+  - View email details (subject, body, attachment info)
+  - Retrieve attachment content (optional)
+  - Mark as read/unread, move emails (IMAP only)
 
-## Overview
+## Security Notes
 
+- All mailbox credentials (host/port/username/password) are stored only in the host configuration and are not visible to the LLM.
+- Logs do not record full email bodies or attachment content — only API call results, email IDs, timestamps, and other metadata.
+- It is strongly recommended to use a dedicated bot email account or app-specific password. Do not use your personal login password.
+- Default rate limits and list size caps are enforced to prevent misuse as a spam tool.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/simple-mail-client
-```
+## Configuration
+
+See `config.example.yaml`. Copy it to `config.yaml` on the host side and inject it into the skill.

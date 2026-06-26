@@ -1,35 +1,38 @@
 ---
-name: "Seo Autopilot"
-description: "Run local SEO autopilot for boll-koll.se or hyresbyte.se and return PR link plus summary."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/seo-autopilot"
-sourceUrl: "https://clawhub.ai/skills/seo-autopilot"
+name: seo-autopilot
+description: Run local SEO autopilot for boll-koll.se or hyresbyte.se and return PR link plus summary.
+allowed-tools:
+  - exec
+metadata:
+  triggers:
+    - "seo"
+    - "seo boll-koll.se"
+    - "seo hyresbyte.se"
+  allowed_sites:
+    - boll-koll.se
+    - hyresbyte.se
+  command:
+    - scripts/run.sh
+license: MIT
 ---
 
-# Seo Autopilot
+# seo-autopilot
 
-> Run local SEO autopilot for boll-koll.se or hyresbyte.se and return PR link plus summary.
+## Usage (WhatsApp / chat)
+- seo
+- seo boll-koll.se
+- seo hyresbyte.se
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/seo-autopilot`
-- **Source URL:** [https://clawhub.ai/skills/seo-autopilot](https://clawhub.ai/skills/seo-autopilot)
+Default site: boll-koll.se
 
-## Overview
+## Safety
+Only allow: boll-koll.se, hyresbyte.se  
+Never run arbitrary commands. Only run:
+- scripts/run.sh <site>
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/seo-autopilot
-```
+## Behavior
+1. Parse site from the message, default to boll-koll.se.
+2. Refuse if site is not in allowlist.
+3. Run: scripts/run.sh <site>
+4. Extract PR url from stdout (line starting with "PR:").
+5. If SEO_REPORT.md exists in the repo, include the top 3 findings in the reply.

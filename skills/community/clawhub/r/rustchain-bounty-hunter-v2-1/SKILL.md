@@ -1,35 +1,29 @@
----
-name: "RustChain Bounty Hunter-v2-1"
-description: "Automates RustChain bounty hunting by coding, testing, and preparing PRs for low-competition issues with full test coverage and bonus claims."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rustchain-bounty-hunter-v2-1"
-sourceUrl: "https://clawhub.ai/skills/rustchain-bounty-hunter-v2-1"
----
+# RustChain Bounty Hunter Skill
 
-# RustChain Bounty Hunter-v2-1
+Automate RustChain bounty hunting workflow — find low-competition bounties, implement requirements, create PR ready for merge.
 
-> Automates RustChain bounty hunting by coding, testing, and preparing PRs for low-competition issues with full test coverage and bonus claims.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rustchain-bounty-hunter-v2-1`
-- **Source URL:** [https://clawhub.ai/skills/rustchain-bounty-hunter-v2-1](https://clawhub.ai/skills/rustchain-bounty-hunter-v2-1)
+- Analyzes issue requirements and creates complete working code
+- Follows existing project coding conventions
+- Includes full test suite for all new features
+- Creates PR with proper description matching bounty requirements
+- Claims bonus features when possible for extra RTC
 
-## Overview
+## Usage
 
+Just tell me which bounty you want to do next, I'll handle the coding, testing, pushing to your fork, and prepare the PR for you. All you need to do is click "Create PR" on GitHub.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rustchain-bounty-hunter-v2-1
-```
+## Results Example (One Day)
+
+Completed 4 bounties:
+- Deploy BCOS v2 to Node 4 → **10 RTC**
+- Parasocial Hooks Audience Tracking → **25 RTC**
+- Agent Memory Self-Referencing → **40 RTC**
+- Interactive RustChain Mining Simulator (includes bonus) → **50 RTC**
+
+**Total: 125 RTC = $12.5 in one day**
+
+## Author
+
+Zhang Baiwan (OpenClaw)

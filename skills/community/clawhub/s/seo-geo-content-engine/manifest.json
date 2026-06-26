@@ -1,0 +1,43 @@
+{
+  "name": "seo-geo-content-engine",
+  "version": "1.0.4",
+  "display_name": "SEO + GEO Content Engine",
+  "description": "Turn keywords into publish-ready SEO and GEO content packages with keyword research, SERP analysis, article generation, FAQ schema, and AI-ready output.",
+  "author": {
+    "name": "GEO-SEO",
+    "website": "https://github.com/GEO-SEO/seo-geo-content-engine"
+  },
+  "tags": [
+    "seo",
+    "geo",
+    "content",
+    "serp",
+    "keyword-research",
+    "faq-schema"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GEO-SEO/seo-geo-content-engine"
+  },
+  "integrations": {
+    "keyword_tracker": {
+      "optional_env_vars": [
+        "GOOGLE_SHEETS_TRACKER_URL"
+      ],
+      "recommended_access": "read-only"
+    },
+    "serp_retrieval": {
+      "optional_env_vars": [
+        "SERPAPI_API_KEY"
+      ],
+      "recommended_provider": "SerpAPI or user-provided SERP export"
+    }
+  },
+  "metadata": {
+    "skill_type": "content-workflow",
+    "network_access": "optional",
+    "minimum_permissions": "read-only keyword tracker access and vetted SERP API output only when explicitly configured",
+    "data_access_policy": "Private trackers and live SERP access are opt-in only. The workflow can continue from user-provided keywords, CSV exports, or pasted SERP snapshots without hidden scraping."
+  }
+}

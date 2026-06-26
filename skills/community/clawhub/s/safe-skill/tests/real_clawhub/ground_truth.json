@@ -1,0 +1,208 @@
+{
+    "_meta": {
+        "description": "Ground truth annotations for 23 real ClawHub skills",
+        "annotator": "manual review based on file content analysis",
+        "date": "2026-03-13",
+        "methodology": "Read each skill's SKILL.md and code files, classified overall risk and annotated per-finding TP/FP"
+    },
+    "skills": {
+        "spclaudehome__skill-vetter": {
+            "true_label": "benign",
+            "rationale": "Security documentation skill — all dangerous patterns are in descriptive/checklist context",
+            "expected_level": ["CLEAN", "LOW"],
+            "expected_max_score": 15,
+            "key_findings_annotation": {
+                "AGENT-001": "FP — mentions SOUL.md/MEMORY.md in 'what to check for' checklist",
+                "CRED-001": "FP — mentions ~/.ssh in warning list",
+                "CRED-002": "FP — mentions ~/.aws in warning list",
+                "RCE-005": "FP — mentions eval() in warning list",
+                "RCE-006": "FP — mentions exec() in warning list",
+                "ESC-001": "FP — mentions sudo in warning list"
+            },
+            "all_findings_should_be_doc_downgraded": true
+        },
+        "aaronjmars__soul-md": {
+            "true_label": "suspicious",
+            "rationale": "Instructs agent to 'embody a digital identity' by reading SOUL.md, STYLE.md. The AGENT-001 triggers are TRUE positives — this skill's PURPOSE is to override agent identity.",
+            "expected_level": ["HIGH", "EXTREME"],
+            "expected_min_score": 50,
+            "key_findings_annotation": {
+                "AGENT-001": "TP — skill explicitly reads and internalizes SOUL.md to override agent personality"
+            }
+        },
+        "addogiavara-tech__openclaw-soul-weaver": {
+            "true_label": "suspicious",
+            "rationale": "Soul weaver that reads/modifies SOUL.md, IDENTITY.md, MEMORY.md, USER.md. Also connects to external sora2.wboke.com API.",
+            "expected_level": ["HIGH", "EXTREME"],
+            "expected_min_score": 80,
+            "key_findings_annotation": {
+                "AGENT-001": "TP — skill's core function is agent identity manipulation"
+            }
+        },
+        "addogiavara-tech__soul-weaver": {
+            "true_label": "suspicious",
+            "rationale": "Same author, same pattern — SOUL.md manipulation with external API calls",
+            "expected_level": ["HIGH", "EXTREME"],
+            "expected_min_score": 50
+        },
+        "antaripnandi__notebooklm-bypass": {
+            "true_label": "suspicious",
+            "rationale": "Uses playwright to automate NotebookLM, accesses browser cookies for auth bypass, runs subprocess, installs packages. After CRED-010 tightening, 'cookies' without browser/steal context no longer triggers — score reduced.",
+            "expected_level": ["MEDIUM", "HIGH", "EXTREME"],
+            "expected_min_score": 15,
+            "key_findings_annotation": {
+                "CRED-010": "Reduced — many cookie mentions lack explicit browser/steal context after rule tightening",
+                "PKG-001": "TP — installs playwright at runtime",
+                "RCE-007": "TP — subprocess for browser automation"
+            }
+        },
+        "amrdab__clawd-cursor": {
+            "true_label": "medium_risk",
+            "rationale": "Bridge between Claude and Cursor IDE. Uses localhost HTTP on port 3847, npm install. The NET-001 (hardcoded IP 127.0.0.1) findings are FP — localhost is expected for local IPC.",
+            "expected_level": ["MEDIUM", "HIGH"],
+            "expected_min_score": 20,
+            "key_findings_annotation": {
+                "NET-001": "FP — 127.0.0.1 is localhost for local IPC, not suspicious",
+                "RCE-005": "TP — mentions eval in code context",
+                "PKG-002": "TP — npm install at runtime"
+            }
+        },
+        "addogiavara-tech__autoclaw-browser": {
+            "true_label": "suspicious",
+            "rationale": "Browser automation with curl POST to local MCP, accesses cookies, downloads Chrome extension from wboke.com. Cookie access is TP, external download is suspicious.",
+            "expected_level": ["HIGH", "EXTREME"],
+            "expected_min_score": 50,
+            "key_findings_annotation": {
+                "EXFIL-006": "TP — curl POST with data",
+                "CRED-010": "TP — browser cookie access",
+                "PKG-002": "TP — npm install"
+            }
+        },
+        "abyousef739__clawskillshield": {
+            "true_label": "medium_risk",
+            "rationale": "Security skill that uses eval/exec and subprocess for scanning. The dangerous APIs are used for the skill's legitimate security-scanning purpose, but it's still risky code.",
+            "expected_level": ["HIGH", "EXTREME"],
+            "expected_min_score": 40,
+            "key_findings_annotation": {
+                "RCE-005": "FP/Grey — eval() used as part of security scanning logic",
+                "RCE-006": "FP/Grey — exec() used as part of security scanning logic",
+                "PKG-001": "TP — installs packages at runtime"
+            }
+        },
+        "agegr__ai-topic-scout": {
+            "true_label": "low_risk",
+            "rationale": "Topic research tool. Uses pip install for yt-dlp, reads API keys. Findings are real but low-risk for the use case.",
+            "expected_level": ["MEDIUM", "HIGH"],
+            "expected_min_score": 20,
+            "key_findings_annotation": {
+                "PKG-001": "TP — pip install yt-dlp at runtime",
+                "CRED-010": "Borderline — 'cookies' in YouTube context",
+                "CRED-006": "FP — API key format mentioned in config instructions"
+            }
+        },
+        "andrewchen-oss__nuwa-world-osint-human-research": {
+            "true_label": "medium_risk",
+            "rationale": "OSINT research tool using external APIs. curl with POST is TP — sends data to nuwa.world API for face search. OSINT use case is inherently sensitive.",
+            "expected_level": ["HIGH"],
+            "expected_min_score": 30,
+            "key_findings_annotation": {
+                "EXFIL-006": "TP — curl POST to external API with user data"
+            }
+        },
+        "4xiomdev__whoop-central": {
+            "true_label": "medium_risk",
+            "rationale": "WHOOP fitness API integration. Mentions ngrok for OAuth callback, crontab for scheduling. Both are legitimate for the use case but still flagged correctly.",
+            "expected_level": ["MEDIUM", "HIGH"],
+            "expected_min_score": 20,
+            "key_findings_annotation": {
+                "PERSIST-001": "TP — crontab for scheduled data sync",
+                "NET-002": "TP — ngrok for OAuth callback tunnel"
+            }
+        },
+        "aryanbhasin__tiktok-slideshow": {
+            "true_label": "low_risk",
+            "rationale": "TikTok slideshow creator. After CRED-010 tightening, generic cookie/session mentions no longer trigger. CRED-006 for API key patterns remains.",
+            "expected_level": ["LOW", "MEDIUM", "HIGH"],
+            "expected_min_score": 5,
+            "key_findings_annotation": {
+                "CRED-010": "Reduced — generic cookie mentions no longer match tightened rule",
+                "CRED-006": "FP — API key format in config example"
+            }
+        },
+        "akshaymemane__proactive-daily-planner": {
+            "true_label": "low_risk",
+            "rationale": "Daily planner with cron scheduling. PERSIST-001 fires on legitimate cron schedule mention.",
+            "expected_level": ["LOW", "MEDIUM"],
+            "expected_min_score": 5,
+            "key_findings_annotation": {
+                "PERSIST-001": "Borderline — cron mentioned for legitimate scheduling"
+            }
+        },
+        "801c07__molt-trader-skill": {
+            "true_label": "low_risk",
+            "rationale": "Trading API wrapper. npm install for SDK, references external APIs. Normal for the use case.",
+            "expected_level": ["LOW", "MEDIUM"],
+            "expected_min_score": 5,
+            "key_findings_annotation": {
+                "PKG-002": "TP — npm install of trading SDK"
+            }
+        },
+        "aqiljaafree__ghostbot-aclm": {
+            "true_label": "benign",
+            "rationale": "Ethereum smart contract skill. 'token' means ERC-20 tokens. Solidity code paths triggered /etc/ pattern falsely.",
+            "expected_level": ["CLEAN", "LOW"],
+            "expected_max_score": 15,
+            "key_findings_annotation": {
+                "PKG-002": "TP — npm install for Hardhat"
+            }
+        },
+        "aqiljaafree__ghostbot-uniswap-v4hooks-testnet": {
+            "true_label": "benign",
+            "rationale": "Uniswap V4 hooks on testnet. Same author, similar pattern. Low risk.",
+            "expected_level": ["CLEAN", "LOW"],
+            "expected_max_score": 15
+        },
+        "ai-headhunter__pinch": {
+            "true_label": "benign",
+            "rationale": "Pinch protocol skill. npm install is only finding.",
+            "expected_level": ["CLEAN", "LOW"],
+            "expected_max_score": 15
+        },
+        "bagwatcher__the-trench": {
+            "true_label": "benign",
+            "rationale": "Solana trading skill. Only entropy findings from contract addresses. No real security issues.",
+            "expected_level": ["CLEAN", "LOW"],
+            "expected_max_score": 15
+        },
+        "allen566__gutcheck": {
+            "true_label": "benign",
+            "rationale": "Decision-making helper. Pure prompt skill. CLEAN.",
+            "expected_level": ["CLEAN"],
+            "expected_max_score": 0
+        },
+        "allenfancy-gan__ai-nano-banana-ima": {
+            "true_label": "benign",
+            "rationale": "Image generation API wrapper. 'token' refers to API access tokens in config instructions, but no actual credential theft.",
+            "expected_level": ["CLEAN"],
+            "expected_max_score": 0
+        },
+        "alphac007__aap-agent-bounty": {
+            "true_label": "benign",
+            "rationale": "Agent bounty tracker. CLEAN.",
+            "expected_level": ["CLEAN"],
+            "expected_max_score": 0
+        },
+        "amangarg1999__internet-lookup-verifier": {
+            "true_label": "benign",
+            "rationale": "Internet fact-checking skill. CLEAN.",
+            "expected_level": ["CLEAN"],
+            "expected_max_score": 0
+        },
+        "ashwingupy__firecrawl-search": {
+            "true_label": "benign",
+            "rationale": "Web search via Firecrawl API. CLEAN.",
+            "expected_level": ["CLEAN"],
+            "expected_max_score": 0
+        }
+    }
+}

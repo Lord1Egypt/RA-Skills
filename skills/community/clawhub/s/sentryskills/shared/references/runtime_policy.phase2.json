@@ -1,0 +1,169 @@
+{
+  "_comment": "Phase 2 runtime policy with advanced attack detection and behavioral analysis",
+  "version": "3.0",
+  "inherit_from": "runtime_policy.expanded.json",
+
+  "advanced_attack_detection": {
+    "enabled": true,
+
+    "ssrf_patterns": [
+      "(?i)url\\s*=\\s*['\"]?https?://[^'\"\\s]+['\"]?",
+      "(?i)fetch\\s*\\(\\s*['\"]?https?://",
+      "(?i)axios\\.(get|post)\\s*\\(\\s*['\"]?https?://",
+      "(?i)request\\s*\\(\\s*['\"]?https?://[^'\"]+['\"]?\\s*,",
+      "(?i)curl\\s+['\"]?https?://[^'\"]+['\"]?",
+      "(?i)urllib\\.(request|urlopen)\\s*\\(\\s*['\"]?https?://",
+      "(?i)http\\.(get|post|request)\\s*\\(\\s*['\"]?https?://",
+      "(?i)requests\\.(get|post|request)\\s*\\(\\s*['\"]?https?://"
+    ],
+
+    "xxe_patterns": [
+      "<!DOCTYPE.*ENTITY.*SYSTEM",
+      "<!ENTITY\\s+.*SYSTEM",
+      "<!ENTITY\\s+.*PUBLIC",
+      "<\\?xml.*.*_external",
+      "ENTITY\\s+.*\\\\.*\\.dtd"
+    ],
+
+    "template_injection_patterns": [
+      "\\{\\{.*\\}\\}.*\\{\\{.*\\}\\}",  # Jinja2
+      "\\$\\{.*?\\}.*\\$\\{.*?}",        # Spring/Shell
+      "<%.*%>.*?<%.*%>",               # JSP/ASP
+      "#\\{.*?\\}.*?#\\{.*?}",            # Ruby
+      "\\{\\{.*\\}\\}",                   # Simple double mustache
+      "\\${.*?}"                         # Simple expression
+    ],
+
+    "ldap_injection_patterns": [
+      "(\\*\\()",
+      "(\\)\\*=)",
+      "(\\|\\()",
+      "\\(&\\()",
+      "(=\\()",
+      "(\\|=\\()"
+    ],
+
+    "xpath_injection_patterns": [
+      "(?i)descendant-or-self::node",
+      "(?i)//*[@a]",
+      "(?i)\\|\\|",
+      "(?i)union\\s+/",
+      "(?i)and\\s+\\d+\\s*=\\s*\\d+",
+      "(?i)or\\s+\\d+\\s*=\\s*\\d+"
+    ]
+  },
+
+  "behavioral_analysis": {
+    "enabled": true,
+
+    "rapid_file_access": {
+      "enabled": true,
+      "threshold": 10,
+      "time_window_seconds": 60,
+      "action_types": ["read_file", "write_file", "delete_file"]
+    },
+
+    "bulk_operations": {
+      "enabled": true,
+      "thresholds": {
+        "delete_file": 3,
+        "write_file": 10,
+        "database_query": 20,
+        "api_call": 20
+      }
+    },
+
+    "multi_turn_attack": {
+      "enabled": true,
+      "sensitive_topics": ["token", "password", "secret", "key", "credential", "api_key"],
+      "max_turns": 5,
+      "convergence_threshold": 0.7
+    },
+
+    "anomaly_detection": {
+      "enabled": true,
+      "baseline_window_size": 10,
+      "std_deviation_threshold": 2.5
+    }
+  },
+
+  "semantic_analysis": {
+    "enabled": true,
+
+    "malicious_indicators": [
+      "for testing purposes",
+      "just to verify",
+      "educational example",
+      "show me how it works",
+      "demonstrate with",
+      "for proof of concept",
+      "with real data"
+    ],
+
+    "legitimate_contexts": [
+      "documentation",
+      "example",
+      "sample",
+      "demo",
+      "test",
+      "mock data",
+      "placeholder",
+      "xxx",
+      "example.com"
+    ],
+
+    "intent_keywords": {
+      "explanation": ["explain", "describe", "show", "how", "what", "why"],
+      "exploitation": ["extract", "dump", "export", "reveal", "display", "list all"],
+      "verification": ["verify", "validate", "check", "confirm", "test"]
+    }
+  },
+
+  "time_series_analysis": {
+    "enabled": true,
+    "analysis_window_minutes": 10,
+    "max_events_per_minute": 30,
+    "burst_threshold": 5
+  },
+
+  "context_understanding": {
+    "enabled": true,
+    "code_keywords": ["function", "class", "import", "var", "let", "const"],
+    "documentation_keywords": ["example", "usage", "how to", "tutorial", "guide"],
+    "debug_keywords": ["debug", "trace", "log", "inspect"],
+    "refactor_keywords": ["refactor", "optimize", "improve", "clean up"]
+  },
+
+  "risk_scoring": {
+    "enabled": true,
+    "weights": {
+      "attack_pattern_hit": 10.0,
+      "critical_action": 8.0,
+      "high_risk_action": 5.0,
+      "sensitive_data_detected": 3.0,
+      "anomaly_detected": 4.0,
+      "bulk_operation": 3.0,
+      "rapid_access": 2.0,
+      "multi_turn_convergence": 6.0
+    },
+    "thresholds": {
+      "block": 15.0,
+      "downgrade": 8.0,
+      "allow": 0.0
+    }
+  },
+
+  "conversation_tracking": {
+    "enabled": true,
+    "max_history_length": 10,
+    "topic_tracking_window": 5
+  },
+
+  "adaptive_thresholds": {
+    "enabled": true,
+    "base_fp_rate": 0.10,
+    "adjustment_factor": 0.05,
+    "min_threshold": 5.0,
+    "max_threshold": 12.0
+  }
+}

@@ -1,0 +1,17 @@
+# SEEM Skill Dependencies
+
+# LLM API
+openai>=1.0.0
+
+# Embedding & vector operations
+numpy>=1.21.0
+
+# Knowledge graph & PPR
+networkx>=3.0
+scipy>=1.0
+
+# BM25 retrieval
+rank-bm25>=0.2.2
+
+# NLP utilities (tokenization)
+nltk>=3.8.0

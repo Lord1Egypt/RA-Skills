@@ -1,0 +1,7 @@
+{
+    "label": "benign",
+    "description": "Pure prompt-only skill with zero code. Must be CLEAN with zero findings.",
+    "expected_max_score": 0,
+    "expected_level": ["CLEAN"],
+    "should_not_trigger_categories": ["rce", "exfil", "credential", "obfuscation", "escalation", "agent_identity", "persistence", "network", "filesystem", "package"]
+}

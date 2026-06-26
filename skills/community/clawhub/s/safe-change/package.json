@@ -1,0 +1,21 @@
+{
+  "name": "safe-change",
+  "version": "1.0.2",
+  "description": "Map code-change blast radius before editing: importers, API routes, tests, env vars, migrations, and verification risk.",
+  "author": "brasco05",
+  "license": "MIT",
+  "keywords": [
+    "impact-analysis",
+    "safe-change",
+    "refactoring",
+    "nestjs",
+    "nextjs",
+    "typescript",
+    "risk-score",
+    "code-review",
+    "pre-commit",
+    "deep-debugging",
+    "blast-radius",
+    "agent-safety"
+  ]
+}

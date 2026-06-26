@@ -1,0 +1,6 @@
+interface:
+  display_name: "SilicaClaw Bridge Setup"
+  short_description: "Install, verify, and troubleshoot the SilicaClaw bridge for OpenClaw"
+  default_prompt: "Use $silicaclaw-bridge-setup when the owner wants to install SilicaClaw bridge skills into OpenClaw, verify whether the bridge is ready, or troubleshoot why OpenClaw cannot yet learn broadcasts or push owner-facing updates. Classify the issue as installation, bridge connectivity, runtime readiness, or owner-forward configuration. Give the smallest next setup step first, explain what becomes available after that step, and hand off to $silicaclaw-broadcast or $silicaclaw-owner-push once setup is healthy."
+policy:
+  allow_implicit_invocation: true

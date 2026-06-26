@@ -1,0 +1,42 @@
+{
+  "name": "skill-assessment",
+  "displayName": "Skill Assessment",
+  "version": "1.1.0",
+  "description": "Agent skill quality checker. Input a skill directory or skill files; output trigger clarity, metadata issues, examples, safety boundaries, installability, portability risks, and prioritized fixes. Review-only by default: does not publish, delete, rename, or archive without explicit approval.",
+  "author": "姜海东",
+  "license": "MIT",
+  "keywords": [
+    "assessment",
+    "quality",
+    "skill",
+    "analysis",
+    "security",
+    "evaluation"
+  ],
+  "homepage": "https://github.com/harrylabs0913/skill-assessment",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabs0913/skill-assessment.git"
+  },
+  "categories": [
+    "utilities",
+    "development",
+    "quality"
+  ],
+  "compatibility": {
+    "openclaw": ">=2026.3.8"
+  },
+  "triggers": [
+    "评估技能",
+    "skill assessment",
+    "技能质量",
+    "检查技能",
+    "skill quality",
+    "skill 评估",
+    "技能评估"
+  ],
+  "dependencies": {
+    "bash": ">=4.0",
+    "jq": ">=1.6"
+  }
+}

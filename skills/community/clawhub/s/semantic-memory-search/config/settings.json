@@ -1,0 +1,17 @@
+{
+  "memory_path": "~/.openclaw/workspace/memory/",
+  "memsearch_path": "~/Library/Python/3.14/bin/memsearch",
+  "discord_channel": "1482296953445289985",
+  "milvus_uri": "~/.memsearch/milvus.db",
+  "embedding": {
+    "provider": "local",
+    "model": "all-MiniLM-L6-v2"
+  },
+  "search": {
+    "top_k": 5
+  },
+  "watch": {
+    "enabled": false,
+    "interval_seconds": 60
+  }
+}

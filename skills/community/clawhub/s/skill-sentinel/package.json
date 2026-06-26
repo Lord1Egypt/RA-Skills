@@ -1,0 +1,47 @@
+{
+  "name": "@mike007jd/openclaw-clawshield",
+  "version": "1.0.0",
+  "description": "Security scanner for OpenClaw skills",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "clawshield": "./bin/clawshield.js"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
+    }
+  },
+  "files": [
+    "bin",
+    "src",
+    "fixtures",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "security",
+    "scanner",
+    "static-analysis",
+    "sarif"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike007jd/openclaw-skills.git",
+    "directory": "clawshield"
+  },
+  "homepage": "https://github.com/mike007jd/openclaw-skills/tree/main/clawshield",
+  "bugs": {
+    "url": "https://github.com/mike007jd/openclaw-skills/issues"
+  },
+  "author": "mike007jd",
+  "engines": {
+    "node": ">=18"
+  }
+}

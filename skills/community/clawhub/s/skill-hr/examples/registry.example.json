@@ -1,0 +1,35 @@
+{
+  "skill_hr_version": "1.0.0",
+  "updated_at": "2026-04-04T12:00:00Z",
+  "hosts": ["claude-code", "cursor"],
+  "matching": {
+    "delegate_min_score": 75,
+    "confirm_band_min": 60,
+    "max_trials_per_task_per_skill": 2
+  },
+  "skills": [
+    {
+      "id": "pdf",
+      "name": "pdf",
+      "install_path": "~/.claude/skills/pdf/SKILL.md",
+      "status": "active",
+      "added_at": "2026-04-01T10:00:00Z",
+      "last_used_at": "2026-04-03T09:15:00Z",
+      "tasks_total": 5,
+      "tasks_success": 5,
+      "tasks_fail": 0,
+      "notes": "Reliable for extraction; not for scanned PDFs without OCR tool"
+    },
+    {
+      "id": "experimental-foo",
+      "name": "foo-beta",
+      "source_url": "https://example.com/skills/foo",
+      "status": "on_probation",
+      "added_at": "2026-04-02T14:00:00Z",
+      "tasks_total": 2,
+      "tasks_success": 0,
+      "tasks_fail": 2,
+      "notes": "Poor fit for CLI tasks; consider terminate if next task fails"
+    }
+  ]
+}

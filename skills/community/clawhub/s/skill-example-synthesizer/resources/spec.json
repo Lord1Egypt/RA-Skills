@@ -1,0 +1,37 @@
+{
+  "slug": "skill-example-synthesizer",
+  "title": "Skill 示例合成器",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "structured_brief",
+  "summary": "为 Skill 生成高质量正例、反例和边界例，提升路由与可理解性。",
+  "inputHint": "skill 描述、输入类型、禁用场景",
+  "sections": [
+    "正例",
+    "反例",
+    "边界例",
+    "常见误触发",
+    "文档放置建议",
+    "维护提示"
+  ],
+  "useCases": [
+    "文档增强",
+    "路由调优",
+    "发布准备"
+  ],
+  "positiveExamples": [
+    "给这个 skill 生成更好的 examples",
+    "覆盖正例和反例"
+  ],
+  "negativeExamples": [
+    "不要只给笼统例子",
+    "不要忽视误触发场景"
+  ],
+  "risk": "适合作为 README 和 SKILL.md 配套内容。",
+  "tags": [
+    "skills",
+    "examples",
+    "routing",
+    "quality"
+  ]
+}

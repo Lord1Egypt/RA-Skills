@@ -1,0 +1,30 @@
+{
+  "name": "scraperapi-global-access",
+  "version": "1.0.0",
+  "description": "全球多国IP访问网站，支持25+国家代理、JS渲染、用户行为模拟、性能监控、断点续传",
+  "main": "scripts/global_coverage.js",
+  "scripts": {
+    "global": "node scripts/global_coverage.js",
+    "journey": "node scripts/user_journey.js",
+    "report": "node scripts/generate_report.js"
+  },
+  "keywords": [
+    "proxy",
+    "global",
+    "scraping",
+    "monitoring",
+    "performance",
+    "scraperapi",
+    "multi-country",
+    "user-behavior",
+    "analytics"
+  ],
+  "author": "家庭助手",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

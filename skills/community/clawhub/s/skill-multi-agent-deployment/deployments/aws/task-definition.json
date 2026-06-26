@@ -1,0 +1,28 @@
+{
+  "family": "openclaw-multi-agent",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+  "containerDefinitions": [
+    {
+      "name": "openclaw-gateway",
+      "image": "openclaw/gateway:latest",
+      "cpu": 256,
+      "memory": 512,
+      "essential": true,
+      "environment": [
+        {"name": "OPENCLAW_AGENTS", "value": "coordinator,research,builder,auditor,personal"}
+      ],
+      "portMappings": [
+        {"containerPort": 8080, "hostPort": 8080, "protocol": "tcp"}
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/openclaw-multi-agent",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}

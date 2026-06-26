@@ -1,0 +1,21 @@
+[
+  {
+    "object_api_name": "Opportunity",
+    "status": "success",
+    "failure_category": "",
+    "failure_stage": "",
+    "failure_reason": "",
+    "field_catalog_path": "/tmp/sf-business-data-export/field_catalog.csv",
+    "soql_path": "/tmp/sf-business-data-export/opportunity.soql",
+    "export_path": "/tmp/sf-business-data-export/opportunity.xlsx",
+    "field_coverage_ratio": 1.0,
+    "expected_field_count": 6,
+    "exported_field_count": 6,
+    "query_row_count": 125,
+    "raw_row_count": 125,
+    "deduped_row_count": 125,
+    "export_row_count": 125,
+    "column_count": 6,
+    "next_action": ""
+  }
+]

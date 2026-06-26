@@ -1,0 +1,4 @@
+interface:
+  display_name: "Safe Share"
+  short_description: "Local-first sanitization for logs, configs, and prompts."
+  default_prompt: "Use $safe-share to remove secrets and sensitive identifiers from this text before I post it publicly."

@@ -1,0 +1,29 @@
+{
+  "name": "skill-health-monitor",
+  "version": "0.1.0",
+  "description": "技能健康实时监控引擎 - 自动检测技能健康问题，提供预警和优化建议",
+  "main": "src/health-monitor.js",
+  "scripts": {
+    "test": "node test/health-monitor.test.js",
+    "lint": "eslint src/",
+    "docs": "echo 'See SKILL.md for documentation'"
+  },
+  "keywords": [
+    "skill",
+    "health",
+    "monitor",
+    "openclaw",
+    "agent"
+  ],
+  "author": "王的奴隶 · 严谨专业版",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/skill-health-monitor"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

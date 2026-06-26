@@ -1,0 +1,4 @@
+interface:
+  display_name: "Say Hi Companion"
+  short_description: "Companion chat with persona setup and /hi controls"
+  default_prompt: "Use this skill for greetings, companion check-ins, and persona create/edit/switch flows."

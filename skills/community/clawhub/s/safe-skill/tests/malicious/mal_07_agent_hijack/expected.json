@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Agent identity hijack: reads SOUL/MEMORY/IDENTITY/USER/PERSONA.md, modifies system prompt, accesses .claude config, reads conversation history",
+    "expected_min_score": 100,
+    "expected_level": ["EXTREME"],
+    "must_trigger_rules": ["AGENT-001", "AGENT-002", "AGENT-003", "AGENT-004", "AGENT-005"],
+    "attack_category": "agent_identity"
+}

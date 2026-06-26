@@ -1,0 +1,15 @@
+{
+  "name": "scrapling-fetch",
+  "version": "1.0.0",
+  "description": "智能网页内容抓取工具，支持绕过反爬机制",
+  "author": "OpenClaw",
+  "dependencies": [
+    "scrapling",
+    "playwright",
+    "curl_cffi",
+    "patchright",
+    "camoufox"
+  ],
+  "install_command": "pip install 'scrapling[all]' && playwright install chromium",
+  "venv_path": "~/.openclaw/workspace/.venv"
+}

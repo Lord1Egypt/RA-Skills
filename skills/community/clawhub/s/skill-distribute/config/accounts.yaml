@@ -1,0 +1,69 @@
+# 平台账号配置
+# 注意：此文件包含敏感信息，请设置文件权限为 600
+
+platforms:
+  # 小红书 - 源平台
+  xiaohongshu:
+    enabled: true
+    # 登录方式: qrcode (扫码登录，推荐)
+    login_type: qrcode
+    # 可选：用户名（用于日志显示）
+    username: ""
+    # Cookie 保存路径（自动管理）
+    cookie_file: "data/cookies/xiaohongshu.json"
+    
+  # 抖音
+  douyin:
+    enabled: true
+    # 登录方式: qrcode | phone
+    login_type: phone
+    # 手机号（如使用验证码登录）
+    phone: ""
+    cookie_file: "data/cookies/douyin.json"
+    # 发布设置
+    publish:
+      # 是否同步视频
+      sync_video: true
+      # 是否同步图文
+      sync_image: true
+      # 默认可见性: public | private | friends
+      visibility: public
+      
+  # 视频号
+  shipinhao:
+    enabled: true
+    # 登录方式: wechat (微信扫码)
+    login_type: wechat
+    cookie_file: "data/cookies/shipinhao.json"
+    publish:
+      # 视频号主要支持视频
+      sync_video: true
+      sync_image: false
+      # 默认可见性
+      visibility: public
+      
+  # 快手
+  kuaishou:
+    enabled: true
+    # 登录方式: qrcode | phone
+    login_type: phone
+    phone: ""
+    cookie_file: "data/cookies/kuaishou.json"
+    publish:
+      sync_video: true
+      sync_image: true
+      visibility: public
+
+# 全局设置
+global:
+  # 登录超时时间（秒）
+  login_timeout: 120
+  
+  # 发布超时时间（秒）
+  publish_timeout: 300
+  
+  # 失败重试次数
+  max_retries: 3
+  
+  # 重试间隔（秒）
+  retry_delay: 30

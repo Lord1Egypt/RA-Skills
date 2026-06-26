@@ -1,0 +1,9 @@
+# Income Lab 依赖
+
+# 数据处理（可选）
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+
+# 日期处理
+python-dateutil>=2.8.0

@@ -1,0 +1,49 @@
+{
+  "name": "odds-movement-monitor",
+  "version": "1.0.0",
+  "description": "盘口变化监控助手 - 实时监控亚盘、欧赔、大小球盘口变化",
+  "author": "shenmeng",
+  "license": "MIT",
+  "requires": {
+    "python": ">=3.8",
+    "packages": ["requests", "aiohttp", "asyncio", "sqlite3"]
+  },
+  "config": {
+    "data_sources": {
+      "odds_api": {
+        "name": "OddsAPI",
+        "base_url": "https://api.the-odds-api.com/v4",
+        "free_tier": true,
+        "rate_limit": "500 requests/month"
+      },
+      "bet365": {
+        "name": "Bet365",
+        "enabled": false,
+        "note": "需要特殊接口"
+      }
+    },
+    "monitoring": {
+      "check_interval_seconds": 60,
+      "significant_change_threshold": 0.15,
+      "major_change_threshold": 0.25,
+      "alert_cooldown_minutes": 15
+    },
+    "supported_sports": [
+      {"key": "soccer", "name": "足球", "popularity": 100},
+      {"key": "basketball", "name": "篮球", "popularity": 90},
+      {"key": "tennis", "name": "网球", "popularity": 70},
+      {"key": "baseball", "name": "棒球", "popularity": 60},
+      {"key": "esports", "name": "电竞", "popularity": 80}
+    ],
+    "markets": [
+      {"key": "h2h", "name": "胜负盘", "description": "1X2 / 胜负"},
+      {"key": "spreads", "name": "让分盘", "description": "亚盘 / Handicap"},
+      {"key": "totals", "name": "大小球", "description": "Over/Under"}
+    ],
+    "alert_channels": [
+      "console",
+      "webhook",
+      "telegram"
+    ]
+  }
+}

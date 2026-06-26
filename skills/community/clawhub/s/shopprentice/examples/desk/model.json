@@ -1,0 +1,138 @@
+{
+  "deps": [
+    {
+      "body": "Leg_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Leg_FR",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BL",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BR",
+      "ref": "Leg_BL"
+    },
+    {
+      "body": "Top",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Apron_Back",
+      "ref": "Leg_BL"
+    },
+    {
+      "body": "Apron_Left",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Apron_Right",
+      "ref": "Apron_Left"
+    },
+    {
+      "body": "Apron_FrontStretcher",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Divider",
+      "ref": "Apron_FrontStretcher"
+    },
+    {
+      "body": "Divider_Front",
+      "ref": "Apron_FrontStretcher"
+    },
+    {
+      "body": "Runner_L",
+      "ref": "Apron_Left"
+    },
+    {
+      "body": "Runner_R",
+      "ref": "Apron_Right"
+    },
+    {
+      "body": "Stop_L",
+      "ref": "Runner_L"
+    },
+    {
+      "body": "Stop_R",
+      "ref": "Runner_R"
+    },
+    {
+      "body": "ddl_Front",
+      "ref": "Apron_FrontStretcher"
+    },
+    {
+      "body": "ddl_Back",
+      "ref": "ddl_Front"
+    },
+    {
+      "body": "ddl_Left",
+      "ref": "ddl_Front"
+    },
+    {
+      "body": "ddl_Right",
+      "ref": "ddl_Front"
+    },
+    {
+      "body": "ddl_Bottom",
+      "ref": "ddl_Front"
+    },
+    {
+      "body": "ddr_Front",
+      "ref": "Apron_FrontStretcher"
+    },
+    {
+      "body": "ddr_Back",
+      "ref": "ddr_Front"
+    },
+    {
+      "body": "ddr_Left",
+      "ref": "ddr_Front"
+    },
+    {
+      "body": "ddr_Right",
+      "ref": "ddr_Front"
+    },
+    {
+      "body": "ddr_Bottom",
+      "ref": "ddr_Front"
+    },
+    {
+      "body": "TB_BL",
+      "ref": "Apron_Back"
+    },
+    {
+      "body": "TB_BR",
+      "ref": "Apron_Back"
+    },
+    {
+      "body": "TB_L_0",
+      "ref": "Apron_Left"
+    },
+    {
+      "body": "TB_L_1",
+      "ref": "Apron_Left",
+      "replicas": "TB_L_*"
+    },
+    {
+      "body": "TB_R_0",
+      "ref": "Apron_Right"
+    },
+    {
+      "body": "TB_R_1",
+      "ref": "Apron_Right",
+      "replicas": "TB_R_*"
+    },
+    {
+      "body": "TB_FL",
+      "ref": "Apron_FrontStretcher"
+    },
+    {
+      "body": "TB_FR",
+      "ref": "Apron_FrontStretcher"
+    }
+  ]
+}

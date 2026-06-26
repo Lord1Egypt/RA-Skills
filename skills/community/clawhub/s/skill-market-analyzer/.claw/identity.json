@@ -1,0 +1,10 @@
+{
+  "id": "skill-market-analyzer",
+  "name": "Skill Market Analyzer",
+  "version": "2.0.1",
+  "author": "harrylabsj",
+  "description": "Analyze the OpenClaw skill marketplace to identify trends, gaps, and opportunities. No external APIs, local analysis only.",
+  "status": "stable",
+  "tags": ["market-analysis", "research", "skills", "local-only"],
+  "workspace": "skill-market-analyzer"
+}

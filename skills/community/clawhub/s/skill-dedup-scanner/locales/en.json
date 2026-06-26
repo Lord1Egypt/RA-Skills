@@ -1,0 +1,46 @@
+{
+  "skill_name": "Skill Auditor",
+  "skill_description": "Scans installed skills for duplicates and naming conflicts. Detects similar skills that may cause model confusion. Use before publishing new skills or when troubleshooting trigger conflicts.",
+  
+  "trigger_phrases": [
+    "check duplicate skills",
+    "audit my skills",
+    "scan for similar skills",
+    "skill conflict detection",
+    "review skill naming",
+    "find similar skills"
+  ],
+  
+  "report_title": "🔍 Skill Audit Report",
+  "scan_time": "Scan Time",
+  "scan_directory": "Scan Directory",
+  "total_skills": "Total Skills",
+  
+  "no_conflicts": "✅ No Duplicate Skills Found",
+  "no_conflicts_detail": "All skills have distinct names and descriptions. No optimization needed.",
+  
+  "conflicts_found": "⚠️ Found {count} Groups of Similar Skills",
+  
+  "high_similarity": "🔴 High Similarity Warning",
+  "medium_similarity": "🟡 Medium Similarity Warning",
+  
+  "skill_a": "Skill A",
+  "skill_b": "Skill B",
+  "similarity_score": "Similarity Score",
+  
+  "analysis": "Analysis",
+  "name_similarity": "Name Similarity",
+  "description_similarity": "Description Similarity",
+  
+  "recommendations": "Recommendations",
+  "merge_suggestion": "Consider merging these two skills",
+  "differentiate_suggestion": "Clarify the distinction in descriptions",
+  "rename_suggestion": "Rename to make purposes more distinct",
+  
+  "safe_skills": "✅ Safe Skills",
+  "unique": "Unique",
+  
+  "usage_title": "Usage",
+  "usage_example": "Example",
+  "options": "Options"
+}

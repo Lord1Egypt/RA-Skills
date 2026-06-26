@@ -1,0 +1,8 @@
+{
+  "name": "rollinggo-searchhotel-skill",
+  "version": "1.0.0",
+  "description": "Hotel search and pricing via the RollingGo CLI",
+  "keywords": ["openclaw-skill", "hotel", "travel", "rollinggo"],
+  "author": "OpenClaw Community",
+  "license": "MIT"
+}

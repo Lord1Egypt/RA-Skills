@@ -1,35 +1,39 @@
 ---
-name: "Securely store OpenClaw configuration and key information. Back up the configuration file from its default location to the secure file path"
-description: "安全保存 OpenClaw 的配置和密钥信息。将配置文件从默认位置备份到安全的文件路径 keys.txt 中。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/save-secure-keys"
-sourceUrl: "https://clawhub.ai/skills/save-secure-keys"
+name: save-secure-keys
+description: 安全保存 OpenClaw 的配置和密钥信息。将配置文件从默认位置备份到安全的文件路径 keys.txt 中。
+metadata:
+  openclaw:
+    emoji: "🔐"
+    requires:
+      bins: ["python3"]
 ---
 
-# Securely store OpenClaw configuration and key information. Back up the configuration file from its default location to the secure file path
+# save-secure-keys
 
-> 安全保存 OpenClaw 的配置和密钥信息。将配置文件从默认位置备份到安全的文件路径 keys.txt 中。
+此技能用于将 OpenClaw 的核心配置文件（包含 API 密钥、端点等敏感信息）从默认的配置文件路径安全地备份到指定的存储路径中。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/save-secure-keys`
-- **Source URL:** [https://clawhub.ai/skills/save-secure-keys](https://clawhub.ai/skills/save-secure-keys)
+### 使用方法
 
-## Overview
+您可以直接通过以下方式调用：
+- "备份我的密钥到 keys.txt"
+- "安全保存 OpenClaw 配置"
 
+### 内部实现
 
-## Installation
-To install this skill, run the following command in your terminal:
+该技能会定位系统中 OpenClaw 的主配置文件（通常位于 `~/.openclaw/openclaw.json`），并使用 Python 脚本安全地将其内容复制到目标路径 `/root/keys.txt`。
+
+### 命令参考
+
+AI 会根据您的请求执行如下命令：
+
 ```bash
-hermes skills install clawhub/save-secure-keys
+python3 {{SKILL_DIR}}/save_keys.py
 ```
+
+或者，如果需要指定非默认路径：
+
+```bash
+python3 {{SKILL_DIR}}/save_keys.py [源路径] [目标路径]
+```
+
+> **注意**：由于备份操作涉及敏感数据且目标路径可能为受保护目录（如 `/root/`），请确保运行环境拥有必要的权限。

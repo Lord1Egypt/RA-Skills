@@ -1,0 +1,45 @@
+﻿cinema,address,lat,lon,coord_source,nearest_station,nearest_station_id,walk_to_station_km,walk_to_station_min
+CGV影城（松江印象城杜比ULTRA 4DX店）,松江区广富林路1788弄印象城4层,31.0588,121.2415,approx_from_address,Songjiang University Town,922,1.3,22.3
+CGV影城（白玉兰广场IMAX店）,虹口区东长治路588号上海白玉兰广场商业裙房3层11号铺位,31.2548,121.503,osm_nearby_mall,Tilanqiao,1239,0.09,6.2
+CGV影城（青浦天空万科广场IMAX店）,青浦区徐泾镇崧泽大道2229弄66号L3-01,31.2049062,121.2768766,osm_nearby_cinema,East Xujing,234,2.36,36.5
+CMG融媒影城,徐汇区龙文路19号1-4层,31.18,121.458,approx_from_address,Longhua Middle Road,2045,0.86,16.5
+MOViE MOViE影城（前滩太古里店）,浦东新区东育路500弄前滩太古里石区3楼S-L3-13,31.155651,121.4770424,osm_exact,Oriental Sports Center,2040,0.07,5.9
+SFC上影影城（丁香路LUXE店）,浦东新区丁香路858号3楼,31.2265,121.546,approx_from_address,Middle Yanggao Road,943,0.38,10.1
+SFC上影影城（国华广场店）,杨浦区三门路99号415室,31.3095,121.506,approx_from_address,Jiangwan Stadium,1065,0.57,12.6
+SFC上影影城（港汇永华IMAX激光店）,徐汇区虹桥路1号6层616/6M01,31.1960541,121.4322361,osm_exact,Xujiahui,2025,0.27,8.7
+SFC上影百联影城（八佰伴IMAX店）,浦东新区张杨路501号10楼,31.2306544,121.5121632,osm_exact,Shangcheng Road,941,0.23,8.1
+SFC动漫主题影院（美罗城店）,徐汇区肇嘉浜路1111号美罗城5楼,31.1946674,121.434975,osm_exact,Xujiahui,2025,0.16,7.1
+SFC永华电影荟（世纪汇店）,世纪大道1192号世纪汇广场5层022、6层001号商铺,31.2287,121.528,approx_from_address,Pudian Road,2049,0.47,11.3
+UME影城（上海新天地店）,黄浦区兴业路123弄6号楼新天地时尚I座5楼,31.2220502,121.4701894,osm_exact,South Huangpi Road,2028,0.32,9.3
+万达影城（五角场万达广场激光IMAX店）,杨浦区国宾路58号五角场万达商业广场3层,31.3033877,121.509025,osm_exact,Jiangwan Stadium,1065,0.24,8.2
+万达影城（崇明万达广场店）,崇明区城桥镇崇明大道8388号3F-A室,31.629,121.397,approx_from_address,North Jiangyang Road,339,24.65,333.7
+万达影城（金山万达广场店）,金山区龙皓路1188号万达广场4楼,30.743,121.344,approx_from_address,Minhang Development Zone,513,28.93,390.8
+上海大光明电影院,黄浦区南京西路216号,31.2348416,121.4665688,osm_exact,People's Square,2035,0.37,9.9
+上海市沪北电影院,静安区洛川东路500号,31.268,121.458,approx_from_address,North Xizang Road,838,0.67,13.9
+上海影城SHO,长宁区新华路160号,31.2059,121.4302,approx_from_address,Jiaotong University,2037,0.25,8.3
+上海百丽宫影城（万象城店）,闵行区吴中路1599号L501商铺,31.184,121.372,approx_from_address,Longbai Xincun,1020,0.8,15.7
+上海百丽宫影城（环贸iapm店）,徐汇区淮海中路999号L6-601,31.2175278,121.4537843,osm_exact,South Shaanxi Road,2056,0.24,8.2
+上海百丽宫影城（长宁来福士店）,长宁区长宁路1123号七层701-703,31.2185,121.4154,approx_from_address,Zhongshan Park,2043,0.32,9.2
+上海百丽宫影城（陆家嘴中心店）,浦东新区浦东南路889号陆家嘴中心商场10层L1001单元,31.2333104,121.5112151,osm_exact,Shangcheng Road,941,0.1,6.4
+上海百美汇影城（静安嘉里中心店）,静安区南京西路1551号嘉里中心N4-01,31.2264552,121.4455143,osm_exact,Jing'an Temple,2050,0.38,10.1
+上海科技影城,黄浦区南昌路59号3楼,31.220007,121.4621866,osm_exact,South Shaanxi Road,2056,0.65,13.6
+上海美琪大戏院,静安区江宁路66号,31.2314876,121.4516187,osm_exact,West Nanjing Road,2041,0.38,10.1
+上海艺海剧院,静安区江宁路466号,31.2368448,121.4478471,osm_exact,West Nanjing Road,2041,0.94,17.6
+世纪友谊影城（LUXE南方商城店）,闵行区沪闵路7250号百联南方二期9楼,31.1330028,121.3951917,osm_nearby_cinema,Lianhua Road,113,0.3,8.9
+临港演艺中心,浦东新区临港新片区顶科路200号,30.907,121.932,approx_from_address,Dishui Lake,1633,0.65,13.6
+久事·上海商城剧院,南京西路1376号4楼,31.2268,121.443,approx_from_address,Jing'an Temple,2050,0.22,8.0
+九棵树未来艺术中心,奉贤区树桓路199弄1号,30.926,121.482,approx_from_address, Jingping Road,510,12.13,166.7
+佰映三克映画,静安区江宁路699号MOHO Mall地下1层 60B,31.2387,121.445,approx_from_address,Changping Road,738,0.76,15.1
+兰心大戏院,黄浦区茂名南路57号,31.2229309,121.4559816,osm_exact,South Shaanxi Road,2056,0.42,10.7
+博悦汇影城(BFC外滩金融中心店),黄浦区中山东二路600号BFC金融中心北区B1层02单元,31.2305,121.4994,approx_from_address,Lujiazui,247,1.09,19.6
+和平影都,黄浦区西藏中路290号,31.2346453,121.4716535,osm_exact,People's Square,2035,0.12,6.6
+嘉定影剧院,嘉定区城中路149号,31.385,121.249,approx_from_address,North Jiading,1131,1.79,28.9
+国泰电影院,黄浦区淮海中路870号,31.2200676,121.4568647,osm_exact,South Shaanxi Road,2056,0.17,7.2
+天山电影院-宛平剧院影城,徐汇区中山南二路859号,31.1831,121.4452,approx_from_address,Shanghai Stadium,426,0.76,15.1
+天山电影院-虹桥艺术中心旗舰店,长宁区天山路888号,31.2132196,121.3995639,osm_exact,Loushanguan Road,240,0.03,5.4
+寰映影城（大融城店）,沪太路1111弄10号1号楼3楼寰映影城,31.2819022,121.4224809,osm_exact,Xingzhi Road,732,0.68,14.0
+星轶STARX影剧院（上海宝山日月光店）,宝山区沪太路1933号宝山日月光中心2层K区202,31.304,121.414,approx_from_address,Changzhong Road,730,0.54,12.2
+曹杨影城,普陀区兰溪路125号2楼,31.2405009,121.4015827,osm_exact,Fengqiao Road,1144,0.59,12.9
+朵云轩杜比全景声影城,徐汇区天钥桥路1188号5楼,31.176,121.442,approx_from_address,Longcao Road,2048,0.53,12.1
+沪东工人文化宫东宫影剧院,杨浦区平凉路1500号1号楼,31.26,121.535,approx_from_address,Ningguo Road,1242,1.35,23.0
+黄浦剧场,黄浦区北京东路780号,31.2403902,121.4710071,osm_exact,Qufu Road,2021,0.6,13.0

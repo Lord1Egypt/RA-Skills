@@ -1,0 +1,10 @@
+{
+  "name": "semantic-compress",
+  "version": "1.0.0",
+  "description": "语义压缩技能 - 在不降低准确度的前提下大幅减少token消耗",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": ["openclaw-skill", "compression", "token", "semantic", "llm"],
+  "author": "",
+  "license": "MIT"
+}

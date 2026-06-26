@@ -1,0 +1,4 @@
+# settlement-predictor requirements
+# Install: pip install -r requirements.txt
+
+web3>=6.0.0

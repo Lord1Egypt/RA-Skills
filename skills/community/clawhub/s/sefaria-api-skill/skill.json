@@ -1,0 +1,8 @@
+{
+  "name": "sefaria-mcp-guidance",
+  "version": "1.0.0",
+  "description": "Guidance for using the Sefaria API MCP and example usage patterns",
+  "author": "Sefaria Developer <dev@sefaria.org>",
+  "license": "MIT",
+  "keywords": ["Sefaria", "MCP", "Jewish Texts", "AI", "api"]
+}

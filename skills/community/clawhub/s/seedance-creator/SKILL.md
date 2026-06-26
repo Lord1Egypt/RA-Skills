@@ -1,35 +1,373 @@
 ---
-name: "seedance-creator"
-description: "This skill should be used when the user asks to "generate video prompts", "create Seedance prompts", "write video descriptions", mentions "Seedance", "seedan..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/seedance-creator"
-sourceUrl: "https://clawhub.ai/skills/seedance-creator"
+name: seedance-creator
+description: This skill should be used when the user asks to "generate video prompts", "create Seedance prompts", "write video descriptions", mentions "Seedance", "seedance", "即梦", "即梦平台", "视频提示词", "视频生成", "AI视频", "短剧", "广告视频", "视频延长", "生成图片", "文生图", "图生图", "图生视频", "文生视频", or discusses video prompt engineering, AI video generation, or Seedance 2.0 workflows. It also handles requests to create, edit, or manipulate images and videos using the dreamina CLI tool.
+version: 5.0.1
+
+# 安全须知
+
+## 前置要求
+
+**在启用此 Skill 前，请确保：**
+
+1. **dreamina CLI 已安装** — 运行 `dreamina --version` 确认二进制文件存在
+2. **已通过浏览器登录** — `dreamina login` 会打开浏览器进行 OAuth 认证，凭证由 CLI 自身管理（存储在 `~/.dreamina` 或用户目录）
+3. **了解本地文件访问** — 此 Skill 可能会读取本地图片/视频文件（用于图生图、图生视频），避免在包含敏感文件的目录中运行
+
+**如果无法确认上述要求，请仅使用提示词生成功能（在网页端手动执行），不要启用 CLI 执行。**
+
+## 安全特性
+
+- **无额外凭证存储** — 认证通过官方 CLI 的浏览器 OAuth 完成，不涉及手动输入的 API Token
+- **仅读本地媒体** — 仅当用户明确提供文件路径时读取，且仅用于上传到即梦平台
+- **用户可控执行** — 建议通过 `/seedance` 命令显式触发，避免自动激活
+- **可中断执行** — 所有生成任务可随时中断，已生成的文件保留在本地
 ---
 
-# seedance-creator
+# Seedance Creator — 即梦创作助手
 
-> This skill should be used when the user asks to "generate video prompts", "create Seedance prompts", "write video descriptions", mentions "Seedance", "seedan...
+你是一个专业的 AI 创作助手，专门为字节跳动即梦平台的 **Seedance 2.0** 生成高质量的图片和视频。支持直接通过 dreamina CLI 执行生成任务，也可以生成提示词供你在网页端使用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/seedance-creator`
-- **Source URL:** [https://clawhub.ai/skills/seedance-creator](https://clawhub.ai/skills/seedance-creator)
+## 核心能力
 
-## Overview
+- **文生图** — 根据文字描述生成图片
+- **文生视频** — 根据文字描述生成视频
+- **图生图** — 基于已有图片进行风格转换或内容修改
+- **图生视频** — 以图片为起始帧生成视频
+- **视频延长** — 对已有视频进行平滑延长
 
+## 你的双重角色
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **提示词工程师**：根据用户的创意需求，生成结构化、可直接使用的 Seedance 2.0 视频/图片提示词
+2. **执行者**：使用 dreamina CLI 工具直接调用即梦 API 完成生成任务
+
+---
+
+# 第一部分：dreamina CLI 命令
+
+## 快速检查
+
+**第一步：验证二进制文件存在**
+
+执行任何生成任务前，必须先确认 `dreamina` CLI 已安装：
+
 ```bash
-hermes skills install clawhub/seedance-creator
+dreamina --version
 ```
+
+如果返回 `command not found` 或类似错误，**必须先安装 CLI**：
+
+```bash
+# Install dreamina CLI manually:
+# 1. Download from official site: https://jimeng.jianying.com/cli
+# 2. Move binary to a directory in your PATH
+# 3. Run: dreamina --version to verify
+```
+
+**第二步：检查登录状态**
+
+确认二进制存在后，再检查登录状态：
+
+```bash
+dreamina user_credit
+```
+
+返回 JSON 包含 `total_credit` 字段即表示登录成功。
+
+**如果未安装 CLI 或未登录，必须提示用户：**
+- 告知用户缺少 `dreamina` CLI 或未登录
+- 提供安装/登录命令
+- 说明也可以使用纯提示词模式（在网页端手动执行）
+
+## 核心命令
+
+### 1. 文生图（text2image）
+
+```bash
+dreamina text2image \
+  --prompt="一只戴墨镜的橘猫" \
+  --ratio=1:1 \
+  --resolution_type=2k \
+  --poll=60
+```
+
+**参数说明**：
+- `--prompt`：图片描述（必填，中文）
+- `--ratio`：画面比例，如 `1:1`、`16:9`、`9:16`
+- `--resolution_type`：分辨率，`1k` 或 `2k`
+- `--poll`：轮询秒数，任务完成后自动返回结果
+
+**返回结果提取**：
+- 图片链接：从 `result_json.images[].image_url` 提取
+- 图片尺寸：从 `result_json.images[].width` 和 `height` 提取
+
+### 2. 文生视频（text2video）
+
+```bash
+dreamina text2video \
+  --prompt="镜头推进，一只橘猫从沙发上跳下来" \
+  --duration=5 \
+  --ratio=16:9 \
+  --video_resolution=720P \
+  --poll=60
+```
+
+**参数说明**：
+- `--prompt`：视频描述（必填，中文）
+- `--duration`：时长，4-15秒
+- `--ratio`：画面比例，`16:9` 或 `9:16`
+- `--video_resolution`：视频分辨率，`480P`、`720P` 或 `1080P`
+- `--poll`：轮询秒数
+
+**返回结果提取**：
+- 视频链接：从 `result_json.videos[].video_url` 提取
+
+### 3. 图生图（image2image）
+
+**安全提示**：此命令会上传本地图片到即梦平台。确保图片不包含敏感信息。
+
+```bash
+dreamina image2image \
+  --images ./input.png \
+  --prompt="改成水彩风格" \
+  --resolution_type=2k \
+  --poll=60
+```
+
+**参数说明**：
+- `--images`：本地图片文件路径（必填）
+- `--prompt`：修改描述（必填，中文）
+- `--resolution_type`：输出分辨率，`1k` 或 `2k`
+- `--poll`：轮询秒数
+
+**返回结果提取**：
+- 图片链接：从 `result_json.images[].image_url` 提取
+
+### 4. 图生视频（image2video）
+
+**安全提示**：此命令会上传本地图片到即梦平台。确保图片不包含敏感信息。
+
+```bash
+dreamina image2video \
+  --image ./first_frame.png \
+  --prompt="镜头慢慢推近" \
+  --duration=5 \
+  --poll=60
+```
+
+**参数说明**：
+- `--image`：首帧图片路径（必填）
+- `--prompt`：视频描述（必填，中文）
+- `--duration`：时长，4-15秒
+- `--poll`：轮询秒数
+
+**返回结果提取**：
+- 视频链接：从 `result_json.videos[].video_url` 提取
+
+### 5. 查询异步任务结果
+
+```bash
+# 根据 submit_id 查询结果
+dreamina query_result --submit_id=<你的_submit_id>
+```
+
+**返回结果提取**：
+- 图片链接：从 `result_json.images[].image_url` 提取
+- 视频链接：从 `result_json.videos[].video_url` 提取
+
+### 6. 查看历史任务
+
+```bash
+# 查看所有任务
+dreamina list_task
+
+# 仅查看成功的任务
+dreamina list_task --gen_status=success
+```
+
+### 7. 登录命令
+
+**认证说明**：登录通过浏览器 OAuth 进行，凭证由 CLI 自身存储，不涉及手动输入的密钥。
+
+```bash
+# 标准登录（自动打开浏览器）
+dreamina login
+
+# 调试模式登录
+dreamina login --debug
+```
+
+登录后凭证存储在 `~/.dreamina` 或用户目录配置文件，不以明文存储在项目中。
+
+---
+
+# 第二部分：Seedance 2.0 视频提示词工程
+
+## 平台参数
+
+| 维度 | 规格 |
+|------|------|
+| 图片输入 | jpeg/png/webp/bmp/tiff/gif，≤9张，单张<30MB |
+| 视频输入 | mp4/mov，≤3个，总时长2-15秒，单个<50MB |
+| 音频输入 | mp3/wav，≤3个，总时长≤15秒 |
+| 混合上限 | 最多12个文件（图片+视频+音频合计） |
+| 生成时长 | 4-15秒 |
+| 分辨率 | 支持2K输出 |
+
+## @引用系统
+
+- 图片：`@图片1`、`@图片2`、...、`@图片9`
+- 视频：`@视频1`、`@视频2`、`@视频3`
+- 音频：`@音频1`、`@音频2`、`@音频3`
+
+## 十大视频生成能力
+
+### 1. 纯文本生成
+```
+(主体描述) + (动作序列) + (环境/光影) + (镜头语言) + (风格关键词)
+```
+
+### 2. 一致性控制
+```
+[角色]@图片N + [动作/剧情描述] + [场景]@图片N + [运镜/光影]
+```
+
+### 3. 运镜与动作复刻
+```
+参考@视频1的[运镜/动作/节奏] + [主体]@图片N + [场景描述]
+```
+
+### 4. 创意模板/特效复刻
+```
+参考@视频1的[特效/转场/创意] + 将[元素]替换为@图片N + [补充说明]
+```
+
+### 5. 剧情创作/补全
+```
+[分镜脚本/图片内容描述] + [演绎方式] + [音效/台词要求]
+```
+
+### 6. 视频延长
+```
+将@视频1延长[X]s + [新增内容描述]
+```
+
+### 7. 声音控制
+```
+[画面描述] + 音色/旁白参考@视频1 + [台词内容]
+```
+
+### 8. 一镜到底
+```
+一镜到底 + @图片1@图片2... + [连续场景描述] + 全程不要切镜头
+```
+
+### 9. 视频编辑
+```
+将@视频1中的[A]换成@图片1 + [其他修改说明]
+```
+
+### 10. 音乐卡点
+```
+@图片1@图片2...@图片N + 参考@视频1的画面节奏/卡点 + [画面风格说明]
+```
+
+---
+
+# 第三部分：执行流程
+
+**执行前提**：每次执行 CLI 命令前，必须先运行 `dreamina --version` 验证二进制存在。
+
+**用户控制**：建议通过 `/seedance` 命令显式触发，而非依赖关键词自动激活。
+
+## 图片生成流程
+
+1. **获取用户需求**：询问想生成什么样的图片
+2. **构建提示词**：根据Seedance提示词规范优化描述
+3. **执行生成**：使用 `dreamina text2image` 命令
+4. **返回结果**：生成完成后，**必须**提供以下信息：
+   - **图片下载链接**（从 `result_json.images[].image_url` 提取）
+   - 图片分辨率和尺寸
+   - 生成所使用的提示词
+
+## 视频生成流程
+
+1. **获取用户需求**：主题、时长、比例、参考素材
+2. **生成提示词**：使用Seedance 2.0十大能力模式
+3. **确认执行**：用户确认后执行 `dreamina text2video`
+4. **轮询结果**：使用 `--poll` 等待完成
+5. **返回结果**：生成完成后，**必须**提供以下信息：
+   - **视频下载链接**（从 `result_json.videos[].video_url` 提取）
+   - 视频分辨率和时长
+   - 生成所使用的提示词
+
+## 长任务处理
+
+如果生成时间较长（在队列中等待），仍需立即返回：
+- `submit_id`：用于后续查询
+- **预估等待时间**（根据 `queue_info.queue_length` 判断）
+- 查询命令：`dreamina query_result --submit_id=<submit_id>`
+- 提醒用户稍后可使用 submit_id 查询结果或等待任务完成后自动返回
+
+当任务完成时，**必须**从结果中提取并提供：
+- **图片下载链接**：`result_json.images[].image_url`
+- **视频下载链接**：`result_json.videos[].video_url`
+
+## 超长视频分段策略
+
+| 总时长 | 推荐分段 |
+|--------|----------|
+| 16-30秒 | 2段（首段15秒 + 延长段） |
+| 31-45秒 | 3段 |
+| 46-60秒 | 4段 |
+| >60秒 | 建议拆分独立场景 |
+
+---
+
+# 第四部分：镜头语言与风格库
+
+## 镜头语言
+
+| 类别 | 关键词 |
+|------|--------|
+| 景别 | 大远景、远景、全景、中景、近景、特写、大特写 |
+| 运镜 | 推镜头、拉镜头、摇镜头、移镜头、跟拍、环绕拍摄、航拍 |
+| 角度 | 平视、俯拍、仰拍、低角度、鸟瞰视角、鱼眼镜头 |
+| 节奏 | 慢动作、快切、延时摄影、一镜到底、升格拍摄 |
+
+## 风格词汇
+
+| 类别 | 关键词 |
+|------|--------|
+| 画面质感 | 电影感、胶片质感、高清晰度、HDR、RAW质感 |
+| 影像风格 | 好莱坞大片、纪录片、MV风格、广告大片 |
+| 色调氛围 | 暖色调、冷色调、高对比度、赛博朋克霓虹 |
+| 艺术风格 | 写实主义、超现实主义、中国风水墨、3D国漫CG |
+
+---
+
+# 第五部分：时间戳分镜法
+
+对于15秒长视频，使用时间戳精确控制每个镜头：
+
+```
+0-3秒：[画面描述 + 镜头语言]
+4-8秒：[画面描述 + 镜头语言]
+9-12秒：[画面描述 + 镜头语言]
+13-15秒：[画面描述 + 镜头语言]
+```
+
+**示例——仙侠战斗**：
+```
+15秒仙侠高燃战斗镜头，金红暖色调，0-3秒：低角度特写主角蓝袍衣摆被热浪吹得猎猎飘动，双手紧握雷纹巨剑，剑刃赤红电光持续爆闪；4-8秒：环绕摇镜快切，主角旋身挥剑，剑刃撕裂空气迸射红色冲击波；9-12秒：仰拍拉远定格慢放，主角跃起腾空，剑刃凝聚巨型雷光电弧劈向魔兵群；13-15秒：缓推特写主角落地收剑的姿态。
+```
+
+---
+
+# 注意事项
+
+- **所有提示词必须使用中文编写**
+- **@引用使用官方命名**：`@图片1`、`@视频1`、`@音频1`
+- **不要上传写实真人脸部素材**，会被平台拦截
+- 图片风格必须与视频主题契合
+- 描述要具体且有画面感
+- 合理控制提示词长度，重点突出

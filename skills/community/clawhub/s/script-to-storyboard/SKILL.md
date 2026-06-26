@@ -1,35 +1,63 @@
 ---
-name: "Script to Storyboard"
-description: "将电影/视频剧本转换为分镜脚本表格。适用于：(1) 将剧本文本解析为结构化分镜，(2) 根据场景描述生成拍摄计划，(3) 提取视觉元素并输出标准分镜表格（镜号、景别/拍摄角度、画面内容、出场人物、场景、音效）。当用户提到分镜、storyboard、镜头脚本、剧本转换时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/script-to-storyboard"
-sourceUrl: "https://clawhub.ai/skills/script-to-storyboard"
+name: script-to-storyboard
+description: 将电影/视频剧本转换为分镜脚本表格。适用于：(1) 将剧本文本解析为结构化分镜，(2) 根据场景描述生成拍摄计划，(3) 提取视觉元素并输出标准分镜表格（镜号、景别/拍摄角度、画面内容、出场人物、场景、音效）。当用户提到分镜、storyboard、镜头脚本、剧本转换时触发。
 ---
 
 # Script to Storyboard
 
-> 将电影/视频剧本转换为分镜脚本表格。适用于：(1) 将剧本文本解析为结构化分镜，(2) 根据场景描述生成拍摄计划，(3) 提取视觉元素并输出标准分镜表格（镜号、景别/拍摄角度、画面内容、出场人物、场景、音效）。当用户提到分镜、storyboard、镜头脚本、剧本转换时触发。
+将剧本转换为标准分镜脚本表格。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/script-to-storyboard`
-- **Source URL:** [https://clawhub.ai/skills/script-to-storyboard](https://clawhub.ai/skills/script-to-storyboard)
+## 输入格式
 
-## Overview
+剧本应包含以下元素：
+- 场景描述（场景编号、时间、地点）
+- 人物动作
+- 对白
+- 镜头指示（如"特写"、"推镜头"等）
 
+## 输出格式
 
-## Installation
-To install this skill, run the following command in your terminal:
+生成的表格包含以下字段：
+- **镜号**: 镜头序号 (如 01, 02, 03...)
+- **景别/拍摄角度**: 如远景、全景、中景、近景、特写，或俯拍、仰拍、平拍
+- **画面内容**: 画面描述，包含主要视觉元素
+- **出场人物**: 该镜头出现的角色
+- **场景**: 拍摄地点和环境
+- **音效**: 背景音乐、环境音、对白以外的声音
+
+## 转换脚本
+
+使用 `scripts/convert.py` 辅助转换：
+
 ```bash
-hermes skills install clawhub/script-to-storyboard
+python3 scripts/convert.py <input.txt> [output.csv]
 ```
+
+脚本会自动：
+1. 解析剧本结构，识别场景和镜头
+2. 提取视觉元素（人物、动作、环境）
+3. 生成符合电影制作规范的分镜表格
+
+## 手动转换流程
+
+当需要手动转换时：
+
+1. **识别镜头边界**：查找剧本中的镜头指示词（远景、特写、切入、切出等）
+2. **提取场景信息**：从场景描述中获取地点和时间
+3. **列出出场人物**：从动作/对白中识别角色
+4. **描述画面内容**：用简洁的视觉语言描述画面
+5. **标注音效**：记录背景音乐、环境音、特殊音效
+
+## 示例
+
+参考"热带海岸沙滩派对夜景"剧本结构：
+- 风格定位：夜景、热闹、氛围感
+- 运镜方式：推、拉、摇、移
+- 核心画面：全景展示 → 人物特写 → 细节强化
+- 镜头分镜逻辑：开场全景 → 中景互动 → 特写情感 → 群体高潮 → 收尾
+
+分镜输出示例：
+| 镜号 | 景别/拍摄角度 | 画面内容 | 出场人物 | 场景 | 音效 |
+|------|--------------|----------|----------|------|------|
+| 01 | 远景/俯拍 | 全景俯瞰沙滩派对，灯光璀璨 | 全体 | 热带海岸沙滩 | 背景音乐 |
+| 02 | 中景/平拍 | 人群舞动，香槟塔 | 派对人群 | 沙滩派对 | 音乐+欢笑声 |

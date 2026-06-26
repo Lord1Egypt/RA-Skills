@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Optimizer"
+  short_description: "Audit skills and generate an actionable cleanup plan"
+  default_prompt: "Use $skill-optimizer to audit the current conversation and local skills, then produce a detailed report with actions the user can choose: Fix, Merge, Delete, or Keep and Skip."

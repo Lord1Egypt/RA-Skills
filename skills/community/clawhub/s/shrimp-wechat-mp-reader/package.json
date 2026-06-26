@@ -1,0 +1,14 @@
+{
+  "name": "wechat-mp-reader",
+  "version": "0.1.2",
+  "private": true,
+  "description": "直接安装、直接运行、直接读出公众号正文的可执行 skill，已验证成功提取标题和正文。",
+  "main": "scripts/extract.js",
+  "scripts": {
+    "extract": "node scripts/extract.js",
+    "install:browser": "playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

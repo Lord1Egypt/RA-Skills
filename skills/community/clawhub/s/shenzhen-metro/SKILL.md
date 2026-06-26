@@ -1,35 +1,66 @@
 ---
-name: "Shenzhen Metro"
-description: "深圳地铁查询工具。查线路、站点、票价、时刻表、换乘、客流等。覆盖美食/商场/停车场等周边信息，及票价优惠、无障碍设施、打卡点等特色功能。（⚠️ 非官方数据，数据为测试用途仅供参考）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shenzhen-metro"
-sourceUrl: "https://clawhub.ai/skills/shenzhen-metro"
+name: shenzhen-metro
+version: 3.1.1
+description: 深圳地铁查询工具。查线路、站点、票价、时刻表、换乘、客流等。覆盖美食/商场/停车场等周边信息，及票价优惠、无障碍设施、打卡点等特色功能。（⚠️ 非官方数据，数据为测试用途仅供参考）
 ---
 
-# Shenzhen Metro
+# 深圳地铁查询
 
-> 深圳地铁查询工具。查线路、站点、票价、时刻表、换乘、客流等。覆盖美食/商场/停车场等周边信息，及票价优惠、无障碍设施、打卡点等特色功能。（⚠️ 非官方数据，数据为测试用途仅供参考）
+## 数据来源
+- 高德POI/地铁路线API（需用户配置Key）
+- 公开网络收集的地铁信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shenzhen-metro`
-- **Source URL:** [https://clawhub.ai/skills/shenzhen-metro](https://clawhub.ai/skills/shenzhen-metro)
+## 核心功能
 
-## Overview
+| 功能 | 示例问题 |
+|------|---------|
+| 线路站点 | "1号线有哪些站？" |
+| 完整站点库 | "14号线全部站点"（共15条线路） |
+| 时刻表 | "福田站首班车几点？" |
+| 换乘 | "岗厦北怎么换乘？" |
+| 站点详情 | "车公庙有洗手间吗？" |
+| 周边 | "站附近有什么好吃的？" |
+| 实时客流 | "现在哪个站最挤？" |
 
+## 特色功能（详见 data/metro_facts.json）
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **地铁冷知识** - 最深站/最长间距/首条线路
+2. **避峰指南** - 早晚高峰最挤站点+绕行方案
+3. **票价优惠** - 深圳通9.5折/学生卡5折/老人免费
+4. **WiFi服务** - SZMetro-Free连接方式
+5. **失物招领** - 客服热线+办公地址
+6. **机场换乘** - 11号线直达机场/机场北
+7. **打卡点** - 福田站壁画/世界之窗可达景点
+8. **节假日** - 春节/国庆运营时间调整
+9. **语音播报** - 使用tts工具生成语音
+10. **英文翻译** - 站名英文对照
+11. **离线数据** - 基础信息可离线查
+
+## 使用流程
+
+1. 理解需求（线路/站点/时间/周边/优惠等）
+2. 查 data/metro_facts.json 或调用高德API
+3. 返回结果，如需语音可调用tts工具
+
+## 高德API调用
+
 ```bash
-hermes skills install clawhub/shenzhen-metro
+# 站点查询
+curl "https://restapi.amap.com/v3/place/text?city=深圳&keywords=车公庙站&key=YOUR_API_KEY"
+
+# 美食
+curl "...&types=050000&key=YOUR_API_KEY"
+
+# 商场
+curl "...&types=060000&key=YOUR_API_KEY"
 ```
+
+**配置API Key**：在 data/metro_facts.json 中修改 amap_api_key
+
+## 注意事项
+- 票价按里程计算，非站数
+- 节假日运营可能有调整
+- 建议通过官方渠道确认最新信息
+
+## ⚠️ 免责声明
+本Skill数据为**测试用途**，来自公开网络，**未核实**，仅供参考。

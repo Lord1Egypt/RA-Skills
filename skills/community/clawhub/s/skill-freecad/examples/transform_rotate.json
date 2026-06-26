@@ -1,0 +1,7 @@
+{
+  "operation": "transform",
+  "parameters": {
+    "target": "MyBox",
+    "rotate": [45, 0, 90]
+  }
+}

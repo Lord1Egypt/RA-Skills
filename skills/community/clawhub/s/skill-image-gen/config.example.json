@@ -1,0 +1,18 @@
+{
+  "gitee": {
+    "api_key": "YOUR_GITEE_AI_API_KEY_HERE",
+    "model": "Kolors",
+    "base_url": "https://ai.gitee.com/v1"
+  },
+  "cos": {
+    "enabled": false,
+    "secret_id": "YOUR_COS_SECRET_ID",
+    "secret_key": "YOUR_COS_SECRET_KEY",
+    "region": "ap-guangzhou",
+    "bucket": "your-bucket-name"
+  },
+  "output": {
+    "path": "./output",
+    "format": "png"
+  }
+}

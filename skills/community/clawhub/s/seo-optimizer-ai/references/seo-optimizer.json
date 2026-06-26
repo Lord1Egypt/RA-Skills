@@ -1,0 +1,794 @@
+{
+  "meta": {
+    "skill": "AI SEO 内容优化",
+    "version": "1.0.0",
+    "last_updated": "2026-06-06",
+    "author": "AI Generated",
+    "slug": "seo-optimizer"
+  },
+  "ranking_factors": {
+    "google": {
+      "on_page": {
+        "title_tag": {
+          "weight": 0.15,
+          "description": "Title标签中包含目标关键词，长度50-60字符"
+        },
+        "meta_description": {
+          "weight": 0.08,
+          "description": "Meta描述包含关键词且吸引点击，长度150-160字符"
+        },
+        "h1_tag": {
+          "weight": 0.1,
+          "description": "H1标签唯一且包含主关键词"
+        },
+        "h2_h6_structure": {
+          "weight": 0.05,
+          "description": "层级化标题结构，子标题覆盖LSI关键词"
+        },
+        "content_quality": {
+          "weight": 0.18,
+          "description": "原创度、深度、多媒体丰富度、EEAT信号"
+        },
+        "keyword_density": {
+          "weight": 0.06,
+          "description": "主关键词密度2-3%，LSI关键词自然分布"
+        },
+        "internal_linking": {
+          "weight": 0.05,
+          "description": "合理的内链结构，锚文本多样化"
+        },
+        "image_alt": {
+          "weight": 0.03,
+          "description": "所有图片含描述性Alt文本"
+        },
+        "url_structure": {
+          "weight": 0.04,
+          "description": "URL简短、含关键词、使用连字符"
+        },
+        "schema_markup": {
+          "weight": 0.06,
+          "description": "JSON-LD结构化数据，支持Rich Results"
+        }
+      },
+      "off_page": {
+        "backlink_quality": {
+          "weight": 0.1,
+          "description": "高权威域名外链数量与质量"
+        },
+        "social_signals": {
+          "weight": 0.03,
+          "description": "社交媒体分享与互动信号"
+        },
+        "brand_mentions": {
+          "weight": 0.02,
+          "description": "非链接品牌提及"
+        }
+      },
+      "technical": {
+        "page_speed": {
+          "weight": 0.08,
+          "description": "Core Web Vitals (LCP/FID/CLS)"
+        },
+        "mobile_friendly": {
+          "weight": 0.07,
+          "description": "移动端适配与响应式设计"
+        },
+        "ssl_certificate": {
+          "weight": 0.03,
+          "description": "HTTPS加密"
+        },
+        "crawlability": {
+          "weight": 0.04,
+          "description": "robots.txt、XML Sitemap"
+        },
+        "structured_data_valid": {
+          "weight": 0.03,
+          "description": "Schema标记通过Google验证"
+        }
+      }
+    },
+    "bing": {
+      "on_page": {
+        "title_tag": {
+          "weight": 0.16,
+          "description": "Bing更重视精确匹配的Title标签"
+        },
+        "meta_description": {
+          "weight": 0.07,
+          "description": "Meta描述长度建议150-160字符"
+        },
+        "h1_tag": {
+          "weight": 0.11,
+          "description": "H1需精确匹配搜索意图"
+        },
+        "content_depth": {
+          "weight": 0.15,
+          "description": "Bing偏好深度内容与多媒体"
+        },
+        "keyword_exact_match": {
+          "weight": 0.08,
+          "description": "精确匹配关键词权重高于Google"
+        },
+        "social_media_integration": {
+          "weight": 0.05,
+          "description": "Facebook/Twitter信号权重较高"
+        }
+      },
+      "off_page": {
+        "backlink_quality": {
+          "weight": 0.12,
+          "description": "外链质量和域名年龄"
+        }
+      },
+      "technical": {
+        "page_speed": {
+          "weight": 0.06,
+          "description": "页面加载速度"
+        },
+        "mobile_friendly": {
+          "weight": 0.05,
+          "description": "移动端适配"
+        }
+      }
+    },
+    "baidu": {
+      "on_page": {
+        "title_tag": {
+          "weight": 0.18,
+          "description": "百度对Title标签权重极高，建议≤35个中文字符"
+        },
+        "meta_description": {
+          "weight": 0.06,
+          "description": "百度对Description权重较低但影响点击率"
+        },
+        "h1_tag": {
+          "weight": 0.1,
+          "description": "首页H1必须包含品牌词+核心词"
+        },
+        "content_originality": {
+          "weight": 0.2,
+          "description": "百度原创星火计划，原创度权重很高"
+        },
+        "keyword_density": {
+          "weight": 0.08,
+          "description": "中文关键词密度建议3-8%"
+        },
+        "internal_linking": {
+          "weight": 0.06,
+          "description": "面包屑导航和内链结构"
+        },
+        "domain_age": {
+          "weight": 0.05,
+          "description": "域名注册年限影响排名"
+        },
+        "icp_filing": {
+          "weight": 0.04,
+          "description": "ICP备案对中文站点是基础要求"
+        },
+        "baidu_structured_data": {
+          "weight": 0.03,
+          "description": "百度结构化数据（熊掌号/百家号）"
+        }
+      },
+      "off_page": {
+        "baidu_backlinks": {
+          "weight": 0.12,
+          "description": "百度域内链接（百度百科/知道/贴吧）"
+        },
+        "baidu_social": {
+          "weight": 0.05,
+          "description": "百家号/熊掌号内容分发"
+        }
+      },
+      "technical": {
+        "page_speed_baidu": {
+          "weight": 0.05,
+          "description": "百度爬虫抓取速度"
+        },
+        "mobile_first": {
+          "weight": 0.08,
+          "description": "百度移动优先索引"
+        }
+      }
+    }
+  },
+  "lsi_keyword_graph": {
+    "technology": {
+      "primary": [
+        "AI",
+        "machine learning",
+        "cloud computing",
+        "cybersecurity",
+        "blockchain"
+      ],
+      "secondary": [
+        "neural networks",
+        "NLP",
+        "edge computing",
+        "DevOps",
+        "containerization"
+      ],
+      "tertiary": [
+        "transformer models",
+        "sentiment analysis",
+        "Kubernetes",
+        "zero-trust",
+        "smart contracts"
+      ],
+      "related_entities": [
+        "OpenAI",
+        "AWS",
+        "TensorFlow",
+        "Docker",
+        "Ethereum"
+      ]
+    },
+    "ecommerce": {
+      "primary": [
+        "online shopping",
+        "product review",
+        "price comparison",
+        "free shipping",
+        "customer service"
+      ],
+      "secondary": [
+        "cart abandonment",
+        "checkout flow",
+        "return policy",
+        "loyalty program",
+        "marketplace"
+      ],
+      "tertiary": [
+        "AOV optimization",
+        "cross-sell",
+        "up-sell",
+        "churn rate",
+        "NPS score"
+      ],
+      "related_entities": [
+        "Amazon",
+        "Shopify",
+        "Alibaba",
+        "WooCommerce",
+        "PayPal"
+      ]
+    },
+    "health": {
+      "primary": [
+        "wellness",
+        "nutrition",
+        "exercise",
+        "mental health",
+        "preventive care"
+      ],
+      "secondary": [
+        "mediterranean diet",
+        "HIIT workout",
+        "mindfulness",
+        "telemedicine",
+        "supplements"
+      ],
+      "tertiary": [
+        "omega-3",
+        "VO2 max",
+        "cognitive behavioral therapy",
+        "wearable health",
+        "probiotics"
+      ],
+      "related_entities": [
+        "WHO",
+        "FDA",
+        "Mayo Clinic",
+        "Fitbit",
+        "MyFitnessPal"
+      ]
+    },
+    "finance": {
+      "primary": [
+        "investment",
+        "savings",
+        "retirement planning",
+        "tax optimization",
+        "portfolio"
+      ],
+      "secondary": [
+        "ETF",
+        "mutual fund",
+        "IRA",
+        "401k",
+        "dividend yield",
+        "bond market"
+      ],
+      "tertiary": [
+        "Sharpe ratio",
+        "beta coefficient",
+        "dollar-cost averaging",
+        "tax-loss harvesting",
+        "REIT"
+      ],
+      "related_entities": [
+        "Vanguard",
+        "Fidelity",
+        "Bloomberg",
+        "SEC",
+        "Charles Schwab"
+      ]
+    },
+    "travel": {
+      "primary": [
+        "hotel booking",
+        "flight deals",
+        "travel insurance",
+        "itinerary",
+        "visa requirements"
+      ],
+      "secondary": [
+        "all-inclusive resort",
+        "budget travel",
+        "last-minute deals",
+        "travel rewards",
+        "eco-tourism"
+      ],
+      "tertiary": [
+        "airline alliance",
+        "lounge access",
+        "travel hacking",
+        "digital nomad visa",
+        "sustainable tourism"
+      ],
+      "related_entities": [
+        "Booking.com",
+        "Airbnb",
+        "Expedia",
+        "TripAdvisor",
+        "Skyscanner"
+      ]
+    },
+    "education": {
+      "primary": [
+        "online learning",
+        "certification",
+        "degree program",
+        "tutoring",
+        "skill development"
+      ],
+      "secondary": [
+        "MOOCs",
+        "micro-credentials",
+        "bootcamp",
+        "flipped classroom",
+        "adaptive learning"
+      ],
+      "tertiary": [
+        "Bloom's taxonomy",
+        "spaced repetition",
+        "peer assessment",
+        "competency-based education",
+        "LMS"
+      ],
+      "related_entities": [
+        "Coursera",
+        "edX",
+        "Udemy",
+        "Khan Academy",
+        "LinkedIn Learning"
+      ]
+    }
+  },
+  "eeat_criteria": {
+    "experience": {
+      "weight": 0.2,
+      "indicators": [
+        "first-hand usage evidence",
+        "personal case studies",
+        "original photography/screenshots",
+        "practical tips from real experience",
+        "user testimonials and reviews"
+      ],
+      "scoring_rubric": {
+        "excellent": "作者展示直接的一手经验，含原创图片/视频/案例",
+        "good": "引用可验证的他人经验或数据，有一定实操性",
+        "fair": "理论性内容为主，缺少具体经验佐证",
+        "poor": "内容明显为非经验型生成文本"
+      }
+    },
+    "expertise": {
+      "weight": 0.25,
+      "indicators": [
+        "author credentials and bio",
+        "depth of topic coverage",
+        "technical accuracy",
+        "citation of authoritative sources",
+        "peer recognition"
+      ],
+      "scoring_rubric": {
+        "excellent": "作者具备公认专业资质，内容深度超过竞品",
+        "good": "内容准确专业，有充足的外部引用支撑",
+        "fair": "基本准确但缺乏深度，引用有限",
+        "poor": "存在事实错误或明显知识盲区"
+      }
+    },
+    "authoritativeness": {
+      "weight": 0.25,
+      "indicators": [
+        "domain authority",
+        "backlink profile from .edu/.gov",
+        "Wikipedia citations",
+        "industry awards/recognition",
+        "media mentions"
+      ],
+      "scoring_rubric": {
+        "excellent": "行业公认权威源，被多处引用",
+        "good": "在细分领域有一定知名度",
+        "fair": "新站点或知名度较低",
+        "poor": "无任何权威信号"
+      }
+    },
+    "trustworthiness": {
+      "weight": 0.3,
+      "indicators": [
+        "HTTPS encryption",
+        "clear contact information",
+        "privacy policy and terms",
+        "transparent authorship",
+        "factual accuracy",
+        "updated date visible",
+        "no deceptive advertising"
+      ],
+      "scoring_rubric": {
+        "excellent": "完全透明，所有信任信号齐备",
+        "good": "大部分信任信号到位",
+        "fair": "缺少部分信任要素",
+        "poor": "存在误导性或欺骗性内容"
+      }
+    }
+  },
+  "structured_data_templates": {
+    "Article": {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{headline}}",
+      "author": {
+        "@type": "Person",
+        "name": "{{author_name}}"
+      },
+      "datePublished": "{{date_published}}",
+      "dateModified": "{{date_modified}}",
+      "image": "{{image_url}}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{publisher_name}}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{logo_url}}"
+        }
+      },
+      "description": "{{description}}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{page_url}}"
+      }
+    },
+    "Product": {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "{{product_name}}",
+      "description": "{{description}}",
+      "image": "{{image_url}}",
+      "sku": "{{sku}}",
+      "brand": {
+        "@type": "Brand",
+        "name": "{{brand_name}}"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{{offer_url}}",
+        "priceCurrency": "{{currency}}",
+        "price": "{{price}}",
+        "availability": "https://schema.org/{{availability}}"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{rating}}",
+        "reviewCount": "{{review_count}}"
+      }
+    },
+    "FAQ": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "{{question_1}}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{answer_1}}"
+          }
+        }
+      ]
+    },
+    "LocalBusiness": {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "{{business_name}}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{street}}",
+        "addressLocality": "{{city}}",
+        "addressRegion": "{{state}}",
+        "postalCode": "{{zip}}",
+        "addressCountry": "{{country}}"
+      },
+      "telephone": "{{phone}}",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Monday",
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ]
+    },
+    "Review": {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "itemReviewed": {
+        "@type": "{{item_type}}",
+        "name": "{{item_name}}"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "{{reviewer_name}}"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "{{rating}}",
+        "bestRating": "5"
+      },
+      "reviewBody": "{{review_text}}"
+    },
+    "BreadcrumbList": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{home_url}}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{category_name}}",
+          "item": "{{category_url}}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{page_name}}"
+        }
+      ]
+    },
+    "HowTo": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "{{howto_name}}",
+      "description": "{{description}}",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "{{step_name}}",
+          "text": "{{step_text}}"
+        }
+      ]
+    },
+    "Event": {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "{{event_name}}",
+      "startDate": "{{start_date}}",
+      "endDate": "{{end_date}}",
+      "location": {
+        "@type": "Place",
+        "name": "{{venue_name}}",
+        "address": "{{address}}"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ticket_url}}",
+        "price": "{{price}}",
+        "priceCurrency": "{{currency}}"
+      }
+    },
+    "VideoObject": {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "{{video_title}}",
+      "description": "{{description}}",
+      "thumbnailUrl": "{{thumbnail_url}}",
+      "uploadDate": "{{upload_date}}",
+      "duration": "{{duration}}",
+      "contentUrl": "{{content_url}}"
+    },
+    "Organization": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{org_name}}",
+      "url": "{{org_url}}",
+      "logo": "{{logo_url}}",
+      "sameAs": [
+        "{{social_1}}",
+        "{{social_2}}",
+        "{{social_3}}"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "{{phone}}",
+        "contactType": "customer service"
+      }
+    }
+  },
+  "title_meta_rules": {
+    "title_tag": {
+      "optimal_length": {
+        "min_chars": 50,
+        "max_chars": 60,
+        "min_pixels": 285,
+        "max_pixels": 600
+      },
+      "keyword_placement": "前置（前20个字符内）",
+      "separator": "管道符 (|) 或连字符 (-)",
+      "brand_placement": "末尾",
+      "uniqueness": "每页唯一",
+      "forbidden": [
+        "全大写",
+        "关键词堆砌",
+        "无意义重复",
+        "诱惑性点击标题"
+      ],
+      "formulas": [
+        "{Primary Keyword} - {Secondary Keyword} | {Brand}",
+        "{Primary Keyword}: {Compelling Benefit} | {Brand}",
+        "{Question Keyword}? - {Answer} | {Brand}"
+      ]
+    },
+    "meta_description": {
+      "optimal_length": {
+        "min_chars": 150,
+        "max_chars": 160
+      },
+      "must_contain": [
+        "primary keyword",
+        "value proposition",
+        "call to action"
+      ],
+      "forbidden": [
+        "重复Title",
+        "无意义关键词堆砌",
+        "非完整句子"
+      ],
+      "formulas": [
+        "Looking for {keyword}? {Benefit_1}, {Benefit_2}, and {Benefit_3}. {CTA}",
+        "{keyword} guide: learn how to {benefit}. {unique_value}. Read our expert review.",
+        "Discover the best {keyword} of {year}. Our top {number} picks include {examples}. {CTA}"
+      ]
+    },
+    "heading_hierarchy": {
+      "h1": {
+        "count": 1,
+        "must_contain": "primary keyword",
+        "optimal_length": "20-70 chars"
+      },
+      "h2": {
+        "count": "3-8",
+        "should_contain": "secondary keywords / LSI terms"
+      },
+      "h3": {
+        "count": "per h2: 1-4",
+        "should_contain": "long-tail / question keywords"
+      },
+      "h4_h6": {
+        "usage": "sub-topics or nested lists only"
+      }
+    }
+  },
+  "readability_formulas": {
+    "flesch_reading_ease": {
+      "formula": "206.835 - 1.015 * (total_words / total_sentences) - 84.6 * (total_syllables / total_words)",
+      "score_ranges": {
+        "90-100": "Very Easy (5th grade)",
+        "80-89": "Easy (6th grade)",
+        "70-79": "Fairly Easy (7th grade)",
+        "60-69": "Standard (8th-9th grade)",
+        "50-59": "Fairly Difficult (10th-12th grade)",
+        "30-49": "Difficult (College)",
+        "0-29": "Very Confusing (College Graduate)"
+      },
+      "seo_target": "60-70 (accessible to broad audience)"
+    },
+    "flesch_kincaid_grade": {
+      "formula": "0.39 * (total_words / total_sentences) + 11.8 * (total_syllables / total_words) - 15.59",
+      "seo_target": "7th-9th grade for general content"
+    },
+    "gunning_fog_index": {
+      "formula": "0.4 * ((total_words / total_sentences) + 100 * (complex_words / total_words))",
+      "complex_word_definition": "3+ syllables (excl. proper nouns, compound words, -ed/-es)",
+      "seo_target": "8-12 for B2B, 6-8 for B2C"
+    },
+    "smog_index": {
+      "formula": "1.0430 * sqrt(30 * (polysyllable_count / sentence_count)) + 3.1291",
+      "seo_target": "≤10"
+    },
+    "coleman_liau_index": {
+      "formula": "0.0588 * L - 0.296 * S - 15.8",
+      "L": "avg letters per 100 words",
+      "S": "avg sentences per 100 words",
+      "seo_target": "10-12"
+    },
+    "automated_readability_index": {
+      "formula": "4.71 * (characters / words) + 0.5 * (words / sentences) - 21.43",
+      "seo_target": "8-10"
+    }
+  },
+  "content_optimization_rules": {
+    "keyword_usage": {
+      "primary_density": {
+        "min": 0.02,
+        "max": 0.03,
+        "description": "主关键词密度2-3%"
+      },
+      "first_100_words": "主关键词必须出现",
+      "last_100_words": "建议包含主关键词",
+      "lsí_distribution": "每300-500词出现1个LSI关键词",
+      "anchor_text_variation": "内链锚文本使用部分匹配/品牌/裸URL混合"
+    },
+    "content_structure": {
+      "intro_paragraph": "≤150词，含主关键词，明确内容价值",
+      "body_sections": "3-7个H2段落，每段300-500词",
+      "conclusion": "含CTA，总结关键要点",
+      "multimedia": "每500词至少1张图片/视频/信息图"
+    },
+    "link_optimization": {
+      "internal_links": "每500词2-3条内链",
+      "external_links": "每篇2-5个权威外链",
+      "dofollow_nofollow_ratio": "外链中30-50% nofollow",
+      "broken_link_check": "所有链接必须有效（4xx/5xx = negative signal）"
+    }
+  },
+  "market_specific_rules": {
+    "global_google": {
+      "language": "英语优先",
+      "hreflang": "多语言站点必须配置",
+      "content_length": "建议 1500+ 词（深度内容）",
+      "featured_snippet_target": "用列表/表格/定义回答用户问题"
+    },
+    "china_baidu": {
+      "language": "中文简体",
+      "icp_required": true,
+      "content_length": "建议 800+ 汉字",
+      "baidu_specific": [
+        "提交百度收录",
+        "配置百度站长平台",
+        "移动适配"
+      ],
+      "forbidden": [
+        "敏感词",
+        "非备案域名",
+        "海外服务器慢速"
+      ]
+    },
+    "russia_yandex": {
+      "language": "俄语",
+      "yandex_webmaster": "必须提交",
+      "turbo_pages": "推荐启用",
+      "regional_targeting": "Yandex.Directory 注册"
+    },
+    "korea_naver": {
+      "language": "韩语",
+      "naver_blog": "权重极高，建议同步发布",
+      "naver_cafe": "社区内容可提升可见度"
+    }
+  }
+}

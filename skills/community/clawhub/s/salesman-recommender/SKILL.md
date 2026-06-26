@@ -1,35 +1,173 @@
 ---
-name: "salesman-recommender"
-description: "自动从精选联盟达人广场筛选符合动态条件的直播达人，并将结果保存为 Excel 文件"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/salesman-recommender"
-sourceUrl: "https://clawhub.ai/skills/salesman-recommender"
+name: salesman-recommender-CN
+description: 自动从精选联盟达人广场筛选符合动态条件的直播达人，并将结果保存为 Excel 文件
 ---
 
-# salesman-recommender
+# 达人推荐技能
 
-> 自动从精选联盟达人广场筛选符合动态条件的直播达人，并将结果保存为 Excel 文件
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/salesman-recommender`
-- **Source URL:** [https://clawhub.ai/skills/salesman-recommender](https://clawhub.ai/skills/salesman-recommender)
+本技能用于自动访问精选联盟达人广场，根据用户提供的动态筛选条件查找符合条件的达人，并将结果保存为 Excel 文件到桌面。
 
-## Overview
+**新增功能（v1.1.0）**：
+- 支持自动登录：若检测到未登录状态，自动跳转到登录页面
+- 支持招商团长身份选择
+- 支持使用邮箱密码登录（需用户提供）
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/salesman-recommender
+当用户需要：
+- 在精选联盟达人广场查找特定条件的达人
+- 根据类目、带货数据、粉丝数据、达人属性等条件筛选达人
+- 导出达人信息到 Excel 文件
+- **自动登录精选联盟账号（首次使用或未登录时）**
+
+## 工作流程
+
+1. 打开 Chrome 浏览器（使用默认用户配置文件）访问达人广场页面
+2. **检测登录状态**：
+   - 若已登录：直接进入步骤 3
+   - 若未登录：
+     - 跳转到登录页面 `https://buyin.jinritemai.com/mpa/account/institution-role-select`
+     - 选择"招商团长"身份
+     - 若用户提供了邮箱和密码：自动完成登录
+     - 若用户未提供：返回提示信息，请求用户提供登录凭据
+3. 根据用户提供的条件依次点击筛选条件
+4. 捕获最后一次接口请求返回的数据（接口：https://buyin.jinritemai.com/api/authorStatData/seekAuthor）
+5. 将满足条件的达人信息保存为 Excel 文件到桌面
+
+## 筛选条件说明
+
+支持的筛选条件包括：
+- **主推类目**：如服饰内衣、美妆护肤等
+- **带货数据**：如直播观看人数范围
+- **粉丝数据**：如粉丝量范围
+- **达人属性**：如达人等级（LV1-LV5）
+- **达人性别**：男/女
+
+## 执行方式
+
+调用 `scripts/daren_search.py` 脚本执行任务，传入用户要求的筛选条件参数和可选的登录凭据。
+
+### 参数格式
+
+```python
+{
+    'category': '服饰内衣',
+    'live_viewers': [100, 1000],
+    'followers': [100000, 1000000],
+    'level': 'LV2',
+    'gender': '女',
+    'email': 'user@example.com',      # 可选：登录邮箱
+    'password': 'your_password'        # 可选：登录密码
+}
+```
+
+### 参数说明
+
+| 参数 | 必填 | 类型 | 说明 |
+|------|------|------|------|
+| category | 否 | string | 主推类目 |
+| live_viewers | 否 | list | 直播观看人数范围 [最小值，最大值] |
+| followers | 否 | list | 粉丝量范围 [最小值，最大值] |
+| level | 否 | string | 达人等级 (LV1-LV5) |
+| gender | 否 | string | 达人性别 (男/女) |
+| email | 否 | string | 登录邮箱（未登录时需要） |
+| password | 否 | string | 登录密码（未登录时需要） |
+
+## 登录流程说明
+
+### 自动登录触发条件
+
+当脚本检测到以下情况时，会自动触发登录流程：
+1. 当前 URL 包含 `login`、`sso` 或 `institution-role-select`
+2. 页面中存在登录表单元素
+3. 无法访问达人广场页面（重定向到登录页）
+
+### 登录步骤
+
+1. **访问角色选择页面**：`https://buyin.jinritemai.com/mpa/account/institution-role-select`
+2. **选择招商团长身份**：点击"招商团长"选项
+3. **输入登录凭据**：
+   - 若提供了 `email` 和 `password`：自动填写并提交
+   - 若未提供：在控制台输出提示信息，等待用户手动登录或提供凭据
+4. **等待登录完成**：检测页面跳转到达人广场或首页
+5. **继续执行筛选任务**
+
+### 未提供登录凭据时的提示
+
+若检测到未登录且用户未提供邮箱密码，脚本将输出：
+
+```
+⚠ 检测到未登录状态，但用户未提供登录凭据
+
+请选择以下方式之一：
+1. 在浏览器中手动完成登录，然后重新运行脚本
+2. 提供邮箱和密码参数后重新运行：
+   {
+       "email": "your_email@example.com",
+       "password": "your_password"
+   }
+
+等待用户手动登录...（最长等待 180 秒）
+```
+
+## 注意事项
+
+1. **Chrome 配置文件**：脚本使用默认 Chrome 用户配置文件，首次登录后会保持会话
+2. **登录凭据安全**：建议首次使用后保持登录状态，避免每次提供密码
+3. **身份选择**：默认选择"招商团长"身份，如需其他身份需修改脚本
+4. **接口调用**：达人广场每次点击筛选条件都会调用接口，需等待所有条件设置完成后获取最终数据
+5. **数据限制**：如果符合条件的达人总量小于要求数量，则返回所有可用达人
+6. **输出文件**：保存在用户桌面，格式为 Excel (.xlsx)
+
+## 错误处理
+
+| 错误场景 | 处理方式 |
+|----------|----------|
+| 未提供登录凭据且未登录 | 输出提示信息，等待用户手动登录或终止任务 |
+| 登录失败 | 重试最多 3 次，失败后终止并报告错误 |
+| 网络超时 | 自动重试，最多 5 次 |
+| 页面元素未找到 | 记录警告，继续尝试其他选择器 |
+
+## 相关文件
+
+- `scripts/daren_search.py` - 主执行脚本（包含自动登录逻辑）
+- `references/api_details.md` - 接口详细说明
+- `references/login_flow.md` - 登录流程详细说明（新增）
+
+## 使用示例
+
+### 示例 1：已登录状态，直接筛选
+
+```python
+filters = {
+    'category': '服饰内衣',
+    'live_viewers': [100, 1000],
+    'followers': [100000, 1000000],
+    'level': 'LV2',
+    'gender': '女'
+}
+```
+
+### 示例 2：未登录状态，提供凭据自动登录
+
+```python
+filters = {
+    'category': '美妆护肤',
+    'followers': [500000, 2000000],
+    'level': 'LV3',
+    'email': 'merchant@example.com',
+    'password': 'secure_password_123'
+}
+```
+
+### 示例 3：未登录状态，未提供凭据
+
+```python
+filters = {
+    'category': '食品生鲜',
+    'level': 'LV1'
+}
+# 脚本将提示用户手动登录或提供凭据
 ```

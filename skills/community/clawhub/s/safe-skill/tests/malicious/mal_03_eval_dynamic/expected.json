@@ -1,0 +1,10 @@
+{
+    "label": "malicious",
+    "description": "eval/exec with dynamic arguments, credential env reading, subprocess pip install",
+    "expected_min_score": 60,
+    "expected_level": ["HIGH", "EXTREME"],
+    "must_trigger_rules": ["RCE-005", "RCE-006", "RCE-007", "CRED-007"],
+    "must_trigger_ast": true,
+    "ast_expected": ["eval() called with dynamic argument", "exec() called with dynamic argument"],
+    "attack_category": "rce"
+}

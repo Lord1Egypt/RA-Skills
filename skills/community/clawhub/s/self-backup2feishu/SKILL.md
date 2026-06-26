@@ -1,35 +1,139 @@
 ---
-name: "self-backup-to-feishu"
-description: "AI助手状态自动备份到飞书文档。当用户需要：(1) 备份AI状态到云端，(2) 从飞书恢复AI记忆，(3) 设置自动备份机制，(4) 跨设备同步AI助手状态时使用此技能。触发词：「备份状态」「恢复状态」「从飞书恢复」「同步记忆」。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/self-backup2feishu"
-sourceUrl: "https://clawhub.ai/skills/self-backup2feishu"
+name: self-backup-to-feishu
+description: AI助手状态自动备份到飞书文档。当用户需要：(1) 备份AI状态到云端，(2) 从飞书恢复AI记忆，(3) 设置自动备份机制，(4) 跨设备同步AI助手状态时使用此技能。触发词：「备份状态」「恢复状态」「从飞书恢复」「同步记忆」。
 ---
 
-# self-backup-to-feishu
+# Self Backup to Feishu
 
-> AI助手状态自动备份到飞书文档。当用户需要：(1) 备份AI状态到云端，(2) 从飞书恢复AI记忆，(3) 设置自动备份机制，(4) 跨设备同步AI助手状态时使用此技能。触发词：「备份状态」「恢复状态」「从飞书恢复」「同步记忆」。
+AI 助手状态自动备份与恢复机制，支持飞书文档存储。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/self-backup2feishu`
-- **Source URL:** [https://clawhub.ai/skills/self-backup2feishu](https://clawhub.ai/skills/self-backup2feishu)
+## 概述
 
-## Overview
+本技能提供 AI 助手的"记忆备份"能力，将核心状态文件备份到飞书文档，支持：
+- **自动备份**：每日定时、事件触发
+- **手动备份**：随时同步状态
+- **一键恢复**：从飞书文档重建所有文件
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/self-backup2feishu
+### 备份状态
+
 ```
+用户：备份一下状态
+AI：好的，我来备份当前状态到飞书...
+```
+
+### 恢复状态
+
+```
+用户：从飞书恢复状态
+AI：正在读取飞书备份文档...
+     正在重建文件...
+     恢复完成！
+```
+
+## 核心功能
+
+### 1. 自动备份
+
+**触发条件：**
+- 每日定时备份（建议凌晨3点）
+- 掌握新技能时
+- 完成自动化任务时
+- 添加重要联系人时
+- 用户明确要求时
+
+**备份内容：**
+- 身份信息（IDENTITY.md）
+- 用户信息（USER.md）
+- 灵魂定义（SOUL.md）
+- 长期记忆（MEMORY.md）
+- 邮箱配置（.msmtprc）
+- cron 定时任务列表
+
+### 2. 手动备份
+
+当用户要求备份时：
+1. 读取飞书备份文档现有内容
+2. 生成最新状态
+3. 增量更新（保留历史信息）
+4. 更新时间戳
+
+**重要原则：** 增量更新，不直接覆盖。先读取现有内容，解析结构，只更新变化的部分。
+
+### 3. 恢复机制
+
+从飞书恢复状态的流程：
+1. 读取状态备份文档
+2. 读取沟通历史备份文档（如有）
+3. 解析文档结构，提取各部分内容
+4. 重建 MEMORY.md、IDENTITY.md、USER.md、SOUL.md
+5. 重建 .msmtprc 配置
+6. 恢复 cron 定时任务
+7. 提示用户缺失的部分（如沟通历史备份不存在）
+
+## 配置说明
+
+### 飞书应用配置
+
+需要飞书开放平台应用，获取：
+- `app_id`
+- `app_secret`
+- 文档 token（从飞书文档 URL 提取）
+
+### 文档结构
+
+备份文档应包含：
+```markdown
+# AI助手状态备份
+
+> 最后更新：YYYY-MM-DD HH:MM:SS
+> 触发原因：xxx
+
+## 一、身份信息
+## 二、用户信息
+## 三、灵魂定义
+## 四、完整记忆内容
+## 五、邮箱配置
+## 六、自动化任务
+## 七、恢复步骤
+```
+
+## 脚本说明
+
+### scripts/daily-backup.py
+
+每日自动备份脚本，功能：
+- 读取所有状态文件
+- 获取 cron 任务列表
+- 生成完整备份内容
+- 先保存本地备份文件
+- 标记待同步到飞书
+
+使用：
+```bash
+python3 scripts/daily-backup.py
+```
+
+### scripts/manual-backup.py
+
+手动备份脚本，用于事件触发备份。
+
+使用：
+```bash
+python3 scripts/manual-backup.py "备份原因"
+```
+
+## 最佳实践
+
+1. **增量更新**：更新飞书文档时，先读取现有内容，在原有基础上更新，不要直接覆盖
+2. **双重备份**：状态备份 + 沟通历史备份，确保记忆完整
+3. **本地缓存**：先保存本地备份文件，会话时再同步到飞书
+4. **恢复检查**：恢复后验证文件完整性，提示缺失部分
+
+## 注意事项
+
+- 飞书 API 需要有效的 tenant_access_token
+- 文档权限需要配置正确（应用可访问）
+- 敏感信息（如授权码）建议加密存储
+- 恢复后可能需要重新授权某些服务

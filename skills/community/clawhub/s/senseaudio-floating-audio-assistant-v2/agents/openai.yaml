@@ -1,0 +1,4 @@
+interface:
+  display_name: "SenseAudio Floating Audio Assistant"
+  short_description: "Open and manage the AudioClaw SenseAudio floating audio assistant, including subtitles, translation, TTS, music, and recent-project templates"
+  default_prompt: "Use $senseaudio-floating-audio-assistant when the user wants to open, stop, configure, debug, or package the floating audio assistant. Prefer the named wrapper scripts, check BlackHole/Multi-Output routing when system audio is silent, use AudioClaw agent for organization, and never print SenseAudio API keys."

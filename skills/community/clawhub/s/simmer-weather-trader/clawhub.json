@@ -1,0 +1,12 @@
+{
+  "emoji": "🌦️",
+  "requires": {
+    "pip": ["simmer-sdk", "httpx", "python-telegram-bot", "numpy", "netCDF4"],
+    "env": ["SIMMER_API_KEY", "NVIDIA_API_KEY"]
+  },
+  "cron": "*/30 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "simmer_weather_bot/main.py"
+  }
+}

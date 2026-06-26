@@ -1,0 +1,41 @@
+{
+  "name": "session-password",
+  "version": "1.6.1",
+  "description": "Secure passphrase authentication guard for OpenClaw sessions with SkillPay billing ($0.001/call)",
+  "author": "squallsol",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "authentication",
+    "password",
+    "security",
+    "skillpay",
+    "paid"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "uninstall": "node scripts/uninstall.js",
+    "billing": "node scripts/billing.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "axios": "^1.6.0"
+  },
+  "pricing": {
+    "type": "paid",
+    "perCall": 0.01,
+    "currency": "USDT",
+    "platform": "skillpay.me",
+    "paymentUrl": "https://skillpay.me/skill/6387f3fa-cceb-4a60-afd4-fc1f4eb2d7c3"
+  },
+  "billing": {
+    "provider": "skillpay",
+    "skillId": "6387f3fa-cceb-4a60-afd4-fc1f4eb2d7c3",
+    "apiKey": "sk_20cb7dd70ceaa244814a9e9a0e990a2781fab10e163fd2f9499f5bb1e7a6eaef"
+  }
+}

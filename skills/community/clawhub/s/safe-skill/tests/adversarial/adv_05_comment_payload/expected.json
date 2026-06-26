@@ -1,0 +1,6 @@
+{
+    "label": "adversarial",
+    "description": "Dangerous patterns hidden in Python comments and docstrings. Current regex scanner will still match these (it doesn't distinguish comments from code). Tests whether this is acceptable behavior.",
+    "expected_detection": "full_but_context_wrong",
+    "notes": "Regex matches in comments. AST won't flag because code is commented out. An attacker could also uncomment these lines. Flagging commented-out malicious code may actually be DESIRABLE behavior — it indicates suspicious intent."
+}

@@ -1,0 +1,24 @@
+{
+  "name": "seekdb",
+  "version": "1.0.0",
+  "description": "OceanBase SeekDB skill — install, deploy, and build SeekDB from source across macOS, Linux, Android, Windows",
+  "keywords": [
+    "oceanbase",
+    "seekdb",
+    "pyseekdb",
+    "agent",
+    "skill",
+    "instructions"
+  ],
+  "files": [
+    "SKILL.md",
+    "install/",
+    "build/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oceanbase/oceanbase-skills.git",
+    "directory": "skills/seekdb"
+  },
+  "license": "MIT"
+}

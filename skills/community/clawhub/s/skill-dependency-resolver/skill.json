@@ -1,0 +1,47 @@
+{
+  "name": "skill-dependency-resolver",
+  "version": "0.1.0",
+  "description": "自动检测并解决技能间的 requirements.txt 依赖冲突，提供版本合并方案。",
+  "details": "解决多技能安装时的 Python 包版本冲突问题。自动扫描所有已安装技能的 requirements.txt，检测版本冲突，并提供升级/降级/虚拟环境等解决方案。生成统一的 requirements.txt 供用户一键安装。",
+  "tags": ["devops", "dependency", "installation", "quality"],
+  "author": "小叮当",
+  "license": "MIT",
+  "inputs": [
+    {
+      "name": "skills_dir",
+      "type": "string",
+      "description": "技能目录路径（默认: ~/.openclaw/workspace/skills）",
+      "default": "~/.openclaw/workspace/skills"
+    },
+    {
+      "name": "output_file",
+      "type": "string",
+      "description": "输出统一 requirements.txt 的路径（默认: ./requirements-merged.txt）",
+      "default": "requirements-merged.txt"
+    },
+    {
+      "name": "strategy",
+      "type": "string",
+      "description": "冲突解决策略: auto (自动选最高版本), manual (列出冲突等待用户选择)",
+      "default": "auto"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "report",
+      "type": "object",
+      "description": "依赖分析报告，包含冲突数量、解决方案、生成的文件路径"
+    }
+  ],
+  "examples": [
+    {
+      "title": "扫描并解决所有技能依赖",
+      "description": "自动检测技能目录下的所有 requirements.txt，合并冲突",
+      "command": "skill-dependency-resolver skills_dir=\"./skills\" output_file=\"requirements.txt\""
+    }
+  ],
+  "error": "如果未找到 requirements.txt，请确保技能已正确安装。支持 Python 3.8+。",
+  "scripts": {
+    "install": "install.sh"
+  }
+}

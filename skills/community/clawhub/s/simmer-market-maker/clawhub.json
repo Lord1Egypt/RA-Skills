@@ -1,0 +1,55 @@
+{
+  "emoji": "📊",
+  "requires": {
+    "env": ["SIMMER_API_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "market_maker.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_MM_MAX_ORDER_USD",
+      "type": "number",
+      "default": 5,
+      "range": [1, 50],
+      "step": 1,
+      "label": "Max USD per limit order"
+    },
+    {
+      "env": "SIMMER_MM_MAX_MARKETS",
+      "type": "number",
+      "default": 3,
+      "range": [1, 10],
+      "step": 1,
+      "label": "Max markets per run"
+    },
+    {
+      "env": "SIMMER_MM_MIN_VOL_24H",
+      "type": "number",
+      "default": 10000,
+      "range": [1000, 1000000],
+      "step": 1000,
+      "label": "Min 24h volume filter (USD)"
+    },
+    {
+      "env": "SIMMER_MM_SPREAD_OFFSET",
+      "type": "number",
+      "default": 0.02,
+      "range": [0.01, 0.10],
+      "step": 0.01,
+      "label": "Spread offset from mid (e.g. 0.02 = 2¢)"
+    },
+    {
+      "env": "SIMMER_MM_MIN_HOURS_TO_RESOLVE",
+      "type": "number",
+      "default": 4,
+      "range": [1, 72],
+      "step": 1,
+      "label": "Min hours to resolution"
+    }
+  ]
+}

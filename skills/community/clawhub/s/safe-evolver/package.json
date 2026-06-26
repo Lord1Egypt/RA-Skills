@@ -1,0 +1,25 @@
+{
+  "name": "safe-evolver",
+  "version": "1.1.0",
+  "description": "A safe AI agent evolution engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "evolution",
+    "ai",
+    "agent",
+    "safety"
+  ],
+  "author": "",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai/skills/safe-evolver",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/safeai/safe-evolver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/safeai/safe-evolver/issues"
+  }
+}

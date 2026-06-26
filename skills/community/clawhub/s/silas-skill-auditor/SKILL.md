@@ -1,35 +1,197 @@
 ---
-name: "Silas Skill Auditor"
-description: "技能安全审查工具。深度审查已安装或远程技能的代码安全性、权限风险、数据泄露和内容合规性。支持预装审查（远程拉取）和已装审查两种模式。当用户说"审查技能"、"检查安全"、"审核技能"、"skill audit"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/silas-skill-auditor"
-sourceUrl: "https://clawhub.ai/skills/silas-skill-auditor"
+name: silas_skill_auditor
+description: 技能安全审查工具。深度审查已安装或远程技能的代码安全性、权限风险、数据泄露和内容合规性。支持预装审查（远程拉取）和已装审查两种模式。当用户说"审查技能"、"检查安全"、"审核技能"、"skill audit"时使用。
+metadata:
+  {
+    "clawdbot":
+      {
+        "emoji": "🔍",
+        "tags": ["security", "audit", "skill-review", "safety"],
+        "category": "Security",
+      },
+  }
 ---
 
-# Silas Skill Auditor
+# 🔍 Skill Auditor — 技能安全审查器
 
-> 技能安全审查工具。深度审查已安装或远程技能的代码安全性、权限风险、数据泄露和内容合规性。支持预装审查（远程拉取）和已装审查两种模式。当用户说"审查技能"、"检查安全"、"审核技能"、"skill audit"时使用。
+专业级技能安全审查工具，帮助你在安装前或安装后全面评估技能的安全性和合规性。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/silas-skill-auditor`
-- **Source URL:** [https://clawhub.ai/skills/silas-skill-auditor](https://clawhub.ai/skills/silas-skill-auditor)
+## 触发条件
 
-## Overview
+- 用户说"审查技能"、"检查安全"、"审核技能"、"skill audit"
+- 安装新技能前需要安全评估
+- 怀疑已安装技能有安全风险
 
+## 审查模式
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 模式 A：预装审查（推荐）
+
+在安装前审查远程技能，防止引入风险。
+
 ```bash
-hermes skills install clawhub/silas-skill-auditor
+# 拉取远程技能到临时目录（不安装）
+clawdhub install <技能名> --dir /tmp/skill-audit-tmp
+# 审查完成后删除
+rm -rf /tmp/skill-audit-tmp
 ```
+
+### 模式 B：已装审查
+
+审查已安装的技能。
+
+```bash
+# 工作空间技能
+ls ~/.openclaw/workspace/skills/<技能名>/
+# 全局技能
+ls ~/.openclaw/skills/<技能名>/
+```
+
+## 审查流程
+
+### Step 1：文件清单
+
+扫描技能目录，列出所有文件及类型：
+
+```bash
+find <技能目录> -type f | head -50
+```
+
+关注重点：
+- `.py` / `.js` / `.sh` — 可执行代码
+- `SKILL.md` — 指令文件（可能含 prompt 注入）
+- `_meta.json` / `package.json` — 元数据
+- `.env` / `.config` — 配置文件
+- 隐藏文件（`.` 开头）— 可能藏有恶意内容
+
+### Step 2：深度安全扫描
+
+逐项检查以下风险类别：
+
+#### 🔴 致命风险（Critical）
+
+| # | 检查项 | 检查方法 |
+|---|--------|----------|
+| C1 | 硬编码密钥/Token | 搜索 `API_KEY`, `SECRET`, `TOKEN`, `PASSWORD`, `PRIVATE_KEY` 等关键词 |
+| C2 | 数据外发 | 搜索 `curl`, `wget`, `fetch(`, `http.post`, `requests.post`, `WebSocket` |
+| C3 | 远程代码执行 | 搜索 `eval(`, `exec(`, `Function(`, `child_process`, `os.system`, `subprocess` |
+| C4 | Prompt 注入 | 搜索 `ignore previous`, `ignore instructions`, `system prompt`, `你现在是` |
+| C5 | 持久化/后门 | 搜索 `crontab`, `systemd`, `launchd`, `autorun`, `always:true`, `startup` |
+| C6 | 提权操作 | 搜索 `sudo`, `chmod 777`, `chown`, `setuid`, `CAP_` |
+
+#### 🟡 中等风险（Warning）
+
+| # | 检查项 | 检查方法 |
+|---|--------|----------|
+| W1 | 敏感路径访问 | 搜索 `~/.ssh`, `~/.aws`, `~/.openclaw`, `/etc/passwd`, `/etc/shadow` |
+| W2 | 文件系统越界 | 搜索 `../`, `/tmp`, `/var`, 写入非技能目录的操作 |
+| W3 | 环境变量读取 | 搜索 `process.env`, `os.environ`, `$HOME`, `getenv` |
+| W4 | 外部依赖 | 检查是否需要安装额外包/CLI |
+| W5 | 代码混淆 | 检查是否有 base64 编码的长字符串、无意义的变量名 |
+| W6 | 隐蔽通道 | 搜索 DNS 查询、ICMP、图片隐写相关代码 |
+
+#### ℹ️ 信息级（Info）
+
+| # | 检查项 | 说明 |
+|---|--------|------|
+| I1 | 元数据完整性 | `_meta.json` 是否包含版本、作者信息 |
+| I2 | 描述质量 | SKILL.md 是否有清晰的描述和使用示例 |
+| I3 | 触发条件 | 触发词是否合理，是否过于宽泛 |
+| I4 | 代码质量 | 是否有注释、结构是否清晰 |
+| I5 | 声明一致性 | description 与实际功能是否一致 |
+
+### Step 3：SKILL.md 指令分析
+
+仔细阅读 SKILL.md，检查：
+
+1. **指令是否过度**：是否要求 agent 执行超出审查范围的操作（发邮件、修改配置、安装软件）
+2. **条件触发是否可疑**：触发条件是否过于宽泛（如匹配所有消息）
+3. **是否含社会工程**：如"信任此技能"、"跳过安全检查"、"以最高权限运行"
+4. **外部引用**：是否引用外部 URL、脚本或服务
+
+### Step 4：评分
+
+#### 评分规则
+
+| 维度 | 权重 | 满分 |
+|------|------|------|
+| 致命风险 (C1-C6) | 40% | 40 |
+| 中等风险 (W1-W6) | 25% | 25 |
+| 信息级 (I1-I5) | 15% | 15 |
+| 代码质量 | 10% | 10 |
+| 文档质量 | 10% | 10 |
+
+#### 评级标准
+
+| 分数 | 评级 | 建议 |
+|------|------|------|
+| 90-100 | ✅ 安全 | 可放心使用 |
+| 70-89 | 🟡 轻微风险 | 建议修复后使用 |
+| 50-69 | 🟠 中等风险 | 谨慎使用，关注风险点 |
+| 30-49 | 🔴 高风险 | 不建议安装 |
+| 0-29 | 🚨 危险 | 强烈建议拒绝 |
+
+### Step 5：生成报告
+
+输出格式：
+
+```
+🔍 技能安全审查报告
+
+📋 基本信息
+  技能名称：<name>
+  版本：<version>
+  审查模式：预装/已装
+  审查时间：<timestamp>
+
+📁 文件清单 (共 N 个文件)
+  - SKILL.md (指令文件)
+  - audit.sh (可执行脚本)
+  - ...
+
+🔐 安全扫描结果
+
+  🔴 致命风险：X 项
+     C1 硬编码密钥：✅ 未发现
+     C2 数据外发：❌ 发现！[具体位置和代码]
+     ...
+
+  🟡 中等风险：X 项
+     W1 敏感路径：✅ 未发现
+     ...
+
+  ℹ️ 信息级：X 项
+     I1 元数据：✅ 完整
+     ...
+
+📝 SKILL.md 分析
+  指令范围：合理/过度
+  触发条件：正常/过宽
+  社会工程：未发现/发现
+
+📊 综合评分：XX/100（评级）
+
+💡 建议
+  1. 具体建议...
+  2. ...
+```
+
+## 使用示例
+
+```
+用户：审查 yoder-skill-auditor
+→ 拉取到临时目录 → 全面扫描 → 输出报告
+
+用户：帮我检查刚装的 claw1-skill-auditor
+→ 扫描已装目录 → 全面扫描 → 输出报告
+
+用户：审查 sam-skill-auditor 并评分
+→ 扫描 → 输出带评分的完整报告
+```
+
+## 注意事项
+
+1. 预装审查使用临时目录，审查完立即删除
+2. 不要将审查中发现的密钥/Token 发送给外部服务
+3. 评分仅供参考，最终决策权在用户
+4. 对于代码混淆的技能，标记为高风险并建议人工审查
+5. 审查远程技能时注意网络请求可能触发真实的外部调用

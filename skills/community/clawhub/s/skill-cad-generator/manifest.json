@@ -1,0 +1,52 @@
+{
+  "name": "skill_cad_generator",
+  "version": "1.0",
+  "description": "豆豆CAD/3D能力提升方案的核心技能。接收用户描述，生成JSON参数定义文件，通过FRP隧道发送到M4 Pro执行重计算和渲染。",
+  "author": "豆豆",
+  "tags": ["cad", "3d", "threejs", "blender", "parametric", "m4pro"],
+  "permissions": {
+    "file_system": {
+      "read": [],
+      "write": ["~/DouCAD/engine/", "~/DouCAD/output/"]
+    },
+    "network": {
+      "outbound": ["localhost:3006"],
+      "inbound": []
+    },
+    "system": {
+      "execute": false,
+      "browser": false
+    }
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "model_type": {"type": "string"},
+      "params": {"type": "object"},
+      "output": {
+        "type": "object",
+        "properties": {
+          "format": {"type": "string", "enum": ["obj", "stl", "dxf"]},
+          "preview": {"type": "string", "enum": ["png"]}
+        }
+      }
+    },
+    "required": ["model_type", "params"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "success": {"type": "boolean"},
+      "message": {"type": "string"},
+      "files": {"type": "object"}
+    },
+    "required": ["success"]
+  },
+  "dependencies": {
+    "external_apis": ["M4 Pro Three.js Engine (http://localhost:3006)"],
+    "tunnels": ["FRP tunnel port 6003"]
+  },
+  "entry_point": "skill_cad_generator",
+  "created_at": "2026-04-01T00:59:00Z",
+  "updated_at": "2026-04-01T00:59:00Z"
+}

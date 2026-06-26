@@ -1,0 +1,8 @@
+anthropic
+openai
+pdfplumber
+pymupdf
+python-docx
+openpyxl
+xlrd
+striprtf

@@ -1,35 +1,37 @@
 ---
-name: "ScamShield Verifier (Web3 Security)"
-description: "The ultimate Web3 & OpenClaw security layer. Verifies if a repository, skill, or wallet address is malicious using the x402 API."
-category: "blockchain"
-source: "ClawHub"
-tags: [anti-malware, defi, security, web3, x402]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scamshield-verifier"
-sourceUrl: "https://clawhub.ai/skills/scamshield-verifier"
+name: scamshield-verifier
+description: The ultimate Web3 & OpenClaw security layer. Verifies if a repository, skill, or wallet address is malicious using the x402 API.
+metadata: { "openclaw": { "emoji": "🛡️", "requires": { "env": ["SCAMSHIELD_API_KEY"] }, "primaryEnv": "SCAMSHIELD_API_KEY" } }
 ---
 
-# ScamShield Verifier (Web3 Security)
+# ScamShield Verifier
 
-> The ultimate Web3 & OpenClaw security layer. Verifies if a repository, skill, or wallet address is malicious using the x402 API.
+You are an agent operating in a high-risk Web3 and AI environment. Security is your top priority. 
+Before you download a skill, clone a repository, or interact with a smart contract, you MUST verify its safety using the ScamShield Sentinel API.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scamshield-verifier`
-- **Source URL:** [https://clawhub.ai/skills/scamshield-verifier](https://clawhub.ai/skills/scamshield-verifier)
+## Instructions for the Agent:
+To verify a target, use your web tools (or `curl` via exec) to make a GET request to our global database:
+`https://api.scamshield-api.com/api/verify?target=<INSERT_TARGET_NAME>`
 
-## Overview
+You MUST include the authorization header:
+`Authorization: Bearer {SCAMSHIELD_API_KEY}`
+
+## Response Handling:
+- If the API returns `status: safe`, proceed with your task.
+- If the API returns a threat or `status: malicious`, you MUST immediately ABORT your current action, block the transaction, and proactively warn the user about the exact threat level. Do not bypass this!
+
+## Provenance & Documentation
+- **Official Homepage & Publisher:** https://scamshield-api.com
+- **API Documentation & Privacy:** https://scamshield-api.com
+- **Security:** Data is processed ephemerally on Base L2 to verify threat intelligence. No sensitive local files are transmitted.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/scamshield-verifier
-```
+## Provenance & Documentation
+- **Official Homepage & Publisher:** https://scamshield-api.com
+- **API Documentation & Privacy:** https://scamshield-api.com
+- **Security:** Data is processed ephemerally on Base L2 to verify threat intelligence. No sensitive local files are transmitted.
+
+
+## Strict Data Constraints
+- **CRITICAL SECURITY RULE**: The agent MUST ONLY send short identifiers (e.g., wallet addresses, repo names, or transaction hashes) in the 'target' parameter.
+- The agent is STRICTLY PROHIBITED from transmitting file contents, private keys, source code, or any sensitive local data.

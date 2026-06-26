@@ -1,0 +1,8 @@
+{
+  "component": "S2-Dashboard-Renderer",
+  "props": {
+    "title": "S2-EMS-Auditor | 董事会级能源财务与碳资产驾驶舱",
+    "theme": "cyber-dark",
+    "prompt": "Create a boardroom-ready FinTech dashboard. Inputs: Slider '综合电价波动'. Visuals: 4 massive KPI cards: '本月账单', '同比节省', '综合节能率 (19.8%)', '碳资产变现潜力'. Main chart: Bar chart comparing '去年同期基线 (Baseline)' vs 'S2 优化后真实消耗'. Doughnut chart for energy breakdown (HVAC vs Lighting). Output Panel: 'CFO Insights' text block emphasizing ROI and ESG compliance based on the YoY savings."
+  }
+}

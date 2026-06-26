@@ -1,0 +1,34 @@
+{
+  "name": "openclaw-session-compactor",
+  "version": "0.1.0",
+  "description": "智能会话压缩技能 - 基于 claw-code compact.rs 设计，自动压缩长对话以节省 tokens",
+  "main": "scripts/compact_session.js",
+  "scripts": {
+    "test": "node scripts/compact_session.js",
+    "compact": "node scripts/compact_session.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "session",
+    "compaction",
+    "token",
+    "claw-code"
+  ],
+  "author": "小李 (AI 情报官)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/session-compactor.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "scripts/",
+    "references/",
+    "SKILL.md",
+    "_meta.json",
+    "README.md"
+  ]
+}

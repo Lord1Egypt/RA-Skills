@@ -1,35 +1,18 @@
----
-name: "scenique-context-frame"
-description: "Detects topic switches in conversations and creates or manages Context Frames to maintain work-related context."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scenique-context-frame"
-sourceUrl: "https://clawhub.ai/skills/scenique-context-frame"
----
+# Context Frame Skill
 
-# scenique-context-frame
+Purpose
+- Detect topic switches in conversation and create/manage Context Frames (work contexts).
 
-> Detects topic switches in conversations and creates or manages Context Frames to maintain work-related context.
+Usage
+- context_simulate: demo mode runs a simulated conversation and shows frame creation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scenique-context-frame`
-- **Source URL:** [https://clawhub.ai/skills/scenique-context-frame](https://clawhub.ai/skills/scenique-context-frame)
+Integration
+- Designed to be integrated into Consolidator or called as an isolated skill for on-demand context management.
 
-## Overview
+Notes
+- MVP uses lightweight heuristic topic detection; can be upgraded to embedding-based semantic similarity for production.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/scenique-context-frame
-```
+Packaging
+- Files included: context_sim.py, preload.py, skill.json, SKILL.md
+- To test locally: python3 preload.py
+- To publish: upload the packaged tarball via ClawHub upload UI or use npx clawhub publish <path> (web upload recommended for first-time publish to accept license).

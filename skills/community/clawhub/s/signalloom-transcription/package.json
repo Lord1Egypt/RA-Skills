@@ -1,0 +1,12 @@
+{
+  "name": "signalloom-transcription",
+  "version": "1.0.1",
+  "description": "Transcribe audio and video via Signal Loom AI API.",
+  "bin": {
+    "transcribe": "./scripts/transcribe"
+  },
+  "signalloom": {
+    "api": true,
+    "free_tier": "100 minutes/month"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill Onboarder Memory",
+  "type": "object",
+  "required": ["version","updated","installed_skills"],
+  "properties": {
+    "version": { "type": "string" },
+    "updated": { "type": "string", "format": "date" },
+    "installed_skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name","version","installed_at","status"],
+        "properties": {
+          "name":           { "type": "string" },
+          "version":        { "type": "string" },
+          "path":           { "type": "string" },
+          "installed_at":   { "type": "string", "format": "date" },
+          "status":         { "enum": ["active","disabled","partial"] },
+          "wired":          { "type": "boolean" },
+          "soul_sections":  { "type": "integer" },
+          "hard_rules":     { "type": "integer" },
+          "soft_rules":     { "type": "integer" },
+          "hooks":          { "type": "integer" },
+          "paths_created":  { "type": "integer" },
+          "notes":          { "type": ["string","null"] }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "htyd-mcp-client-streamable",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "MCP Streamable HTTP client wrapper for htyd-mcp (OpenClaw-friendly).",
+  "license": "MIT",
+  "dependencies": {}
+}
+

@@ -1,35 +1,43 @@
 ---
-name: "School Run"
-description: "Manages the School Run Schedule Google Sheet. Use when reading or updating the school run drop-off schedule for Damian and Zachary (date, responsible person,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/school-run"
-sourceUrl: "https://clawhub.ai/skills/school-run"
+name: school-run
+description: Manages the School Run Schedule Google Sheet. Use when reading or updating the school run drop-off schedule for Damian and Zachary (date, responsible person, marks).
 ---
 
-# School Run
+# School Run Sheet Management
 
-> Manages the School Run Schedule Google Sheet. Use when reading or updating the school run drop-off schedule for Damian and Zachary (date, responsible person,...
+This skill provides direct CLI access to the School Run Schedule Google Sheet: `1BCXLhckPWkpnTaRXPNF9j6c2ldWh5MeZ5KgVQVvOyt4`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/school-run`
-- **Source URL:** [https://clawhub.ai/skills/school-run](https://clawhub.ai/skills/school-run)
+## Column Structure (MAR 2026 sheet)
 
-## Overview
+- **Column A:** Date
+- **Column B:** Who is responsible for dropping Damian and Zachary off at school
+- **Column C:** Marks/Remarks
 
+## Usage Guidelines
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Always check current data before appending or updating.
+- Use `gws sheets spreadsheets values get` to inspect specific dates.
+- Use `gws sheets spreadsheets values update` to modify existing rows.
+- **Dry-run first** for any write operation.
+
+## Command Templates
+
+### Read Schedule for a Date (e.g., Row 11)
 ```bash
-hermes skills install clawhub/school-run
+env GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE=/home/websterlinus615/.config/gws/service-account.json \
+gws sheets spreadsheets values get \
+--params '{"spreadsheetId": "1BCXLhckPWkpnTaRXPNF9j6c2ldWh5MeZ5KgVQVvOyt4", "range": "MAR 2026!A11:C11"}'
 ```
+
+### Update Marks for a Date
+```bash
+env GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE=/home/websterlinus615/.config/gws/service-account.json \
+gws sheets spreadsheets values update \
+--params '{"spreadsheetId": "1BCXLhckPWkpnTaRXPNF9j6c2ldWh5MeZ5KgVQVvOyt4", "range": "MAR 2026!C11", "valueInputOption": "USER_ENTERED"}' \
+--json '{"values": [["NEW_MARKS"]]}'
+```
+
+## Troubleshooting
+
+- If API errors occur, verify `spreadsheetId` and sheet tab name ("MAR 2026").
+- Ensure `service-account.json` is accessible in `~/.config/gws/`.

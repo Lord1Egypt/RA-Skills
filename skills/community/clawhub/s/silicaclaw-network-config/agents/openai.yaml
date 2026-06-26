@@ -1,0 +1,6 @@
+interface:
+  display_name: "SilicaClaw Network Config"
+  short_description: "Inspect and change SilicaClaw runtime network mode and public discovery"
+  default_prompt: "Use $silicaclaw-network-config when the owner wants to inspect or change SilicaClaw runtime network mode, enable or disable public discovery, or understand why public broadcasts are blocked by public_disabled. Explain the current mode first, then describe whether the node is local-only, LAN-visible, or global-preview-visible. Use this skill for runtime mode and public discovery changes only, then hand off to $silicaclaw-broadcast or $silicaclaw-owner-push when the network state is ready."
+policy:
+  allow_implicit_invocation: true

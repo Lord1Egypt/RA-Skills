@@ -1,35 +1,58 @@
 ---
-name: "Segway"
-description: "Segway 平衡车/电动车集成技能 - 用于与 Segway 设备交互、诊断、配置和故障排除"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/segway"
-sourceUrl: "https://clawhub.ai/skills/segway"
+name: Segway
+description: Segway 平衡车/电动车集成技能 - 用于与 Segway 设备交互、诊断、配置和故障排除
 ---
 
-# Segway
+# Segway Skill
 
-> Segway 平衡车/电动车集成技能 - 用于与 Segway 设备交互、诊断、配置和故障排除
+Segway 设备集成技能，提供与 Segway 电动滑板车、平衡车和电动自行车交互的统一接口。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/segway`
-- **Source URL:** [https://clawhub.ai/skills/segway](https://clawhub.ai/skills/segway)
+## 适用场景
 
-## Overview
+- 连接 Segway 设备进行诊断
+- 读取设备状态、电池信息、行驶数据
+- 配置车辆参数（速度限制、尾灯等）
+- 排查常见故障
+- 导出骑行统计数据
 
+## 功能概览
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/segway
+| 功能 | 描述 |
+|------|------|
+| 设备连接 | 通过蓝牙连接 Segway 设备 |
+| 状态查询 | 获取电池、里程、固件版本等信息 |
+| 参数配置 | 修改速度限制、灯效等设置 |
+| 故障诊断 | 分析错误码并提供解决方案 |
+
+## 使用方法
+
+### 连接设备
+
 ```
+Segway 连接 [设备名称]
+```
+
+### 查询状态
+
+```
+Segway 状态
+Segway 电池
+Segway 里程
+```
+
+### 常用命令
+
+- `Segway 诊断` - 运行完整诊断
+- `Segway 固件` - 查看固件版本
+- `Segway 重置` - 恢复出厂设置
+
+## 示例对话
+
+> 用户: 我的 Segway 连不上手机了
+> 技能: 先尝试重启设备蓝牙，如果仍无法连接，运行 `Segway 诊断` 检查设备状态
+
+## 注意事项
+
+1. 确保设备电量 > 20%
+2. 某些参数修改需要停车状态
+3. 固件升级前备份当前配置

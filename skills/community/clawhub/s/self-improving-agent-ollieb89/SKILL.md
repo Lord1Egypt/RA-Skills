@@ -1,35 +1,52 @@
 ---
-name: "Self Improving Agent"
-description: "Capture errors, corrections, and recurring patterns into structured `.learnings/` logs, then promote durable guidance into workspace memory files. Use when c..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/self-improving-agent-ollieb89"
-sourceUrl: "https://clawhub.ai/skills/self-improving-agent-ollieb89"
+name: self-improving-agent
+description: Capture errors, corrections, and recurring patterns into structured `.learnings/` logs, then promote durable guidance into workspace memory files. Use when commands fail, users correct output, missing capabilities are requested, or new best practices should be preserved across sessions.
 ---
 
-# Self Improving Agent
+# Self-Improving Agent
 
-> Capture errors, corrections, and recurring patterns into structured `.learnings/` logs, then promote durable guidance into workspace memory files. Use when c...
+Use this skill to turn execution feedback into reusable operational knowledge.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/self-improving-agent-ollieb89`
-- **Source URL:** [https://clawhub.ai/skills/self-improving-agent-ollieb89](https://clawhub.ai/skills/self-improving-agent-ollieb89)
+## Quick workflow
 
-## Overview
+1. Detect signal: error, correction, capability gap, or repeated workaround.
+2. Log to `.learnings/` with the right entry type.
+3. Resolve or promote high-value patterns into durable workspace files.
+4. Reuse scripts/hooks to keep capture consistent.
 
+## Use bundled resources
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Entry examples and formats: `references/examples.md`
+- Hook setup for reminders/error detection: `references/hooks-setup.md`
+- OpenClaw workspace integration: `references/openclaw-integration.md`
+- Reminder hook script: `scripts/activator.sh`
+- Command-error detector: `scripts/error-detector.sh`
+- Skill extraction scaffold: `scripts/extract-skill.sh`
+- Environment checks: `scripts/check_env.sh`
+- Log templates: `assets/LEARNINGS.md`, `assets/SKILL-TEMPLATE.md`
+
+## Log targets
+
+- `.learnings/LEARNINGS.md`: corrections, knowledge gaps, best practices
+- `.learnings/ERRORS.md`: command/tool/runtime failures
+- `.learnings/FEATURE_REQUESTS.md`: requested capabilities not yet supported
+
+## Promotion rules
+
+Promote broadly reusable learnings out of `.learnings/`:
+
+- behavior/style -> `SOUL.md`
+- workflow/orchestration -> `AGENTS.md`
+- tool constraints/gotchas -> `TOOLS.md`
+
+Update original entries with status transitions (`resolved`, `promoted`, `wont_fix`) and references.
+
+## Commands
+
 ```bash
-hermes skills install clawhub/self-improving-agent-ollieb89
+# Verify scripts and learnings directory setup
+bash workspace/skills/self-improving-agent/scripts/check_env.sh
+
+# Dry-run extraction of a new skill from a recurring pattern
+bash workspace/skills/self-improving-agent/scripts/extract-skill.sh my-pattern --dry-run
 ```

@@ -1,0 +1,141 @@
+=== RSS BREW PROCESSING SUMMARY ===
+Date: 2026-02-27
+Processing Pipeline Version: 1.0
+
+COMPLETION STATUS: 100% COMPLETE
+
+=== ARTICLE PROCESSING RESULTS ===
+
+Total Articles Processed: 35 / 35
+Files Created: 37 (35 article files + 1 daily digest + 1 dedup index)
+
+SCORING DISTRIBUTION:
+- Score ≥ 3 (High Quality): 10 articles (28.6%)
+- Score 0-2 (Medium Quality): 24 articles (68.6%)
+- Score < 0: 1 article (2.9%)
+
+HIGH-SCORING ARTICLES (≥3) WITH TIER-2 ANALYSIS:
+1. OpenAI raises $110B in one of the largest private funding rounds in history
+2. Anthropic vs. the Pentagon: What's actually at stake?
+3. The Game on the Field Has Changed (Block 40% layoffs)
+4. Is AI Doing Less & Less? (65% hybrid agent data)
+5. ChinAI #348: China's Compute Year in Review
+6. Weekly Dose of Optimism #182
+7. Power in the Age of Intelligence
+8. SpaceX, OpenAI & Anthropic IPOs: A $3 Trillion Stress Test
+9. The AI Megacycle: Five Forces Reshaping The Venture Market In 2026
+10. The New Weakest Link: The Shift from Human Error to AI Agent Risk
+
+=== FOLDER STRUCTURE CREATED ===
+
+/rss-brew-data/
+├── AI & Frontier Tech/                    (11 articles)
+├── VC & Investment/                       (9 articles)
+├── Business Insights/                     (5 articles)
+├── Strategy & Analysis/                   (3 articles)
+├── Startup Strategy/                      (3 articles)
+├── China Tech & Market/                   (2 articles)
+├── Product & Design/                      (2 articles)
+├── Other/                                 (0 articles)
+├── digests/
+│   └── daily-digest-2026-02-27.md
+├── processed-index.json
+└── PROCESSING_SUMMARY.txt
+
+=== ARTICLE CATEGORIES ===
+
+AI & Frontier Tech (11): Strong focus on AI governance, regulation, and safety
+VC & Investment (9): Dominated by OpenAI $110B round and mega-fundraises
+Business Insights (5): Productivity, market trends, strategy
+Strategy & Analysis (3): Frameworks and scenario planning
+Startup Strategy (3): Founder insights and talent dynamics
+China Tech & Market (2): Compute infrastructure and AI adoption resistance
+Product & Design (2): User interface innovation
+
+=== KEY SOURCES ===
+
+TechCrunch: 12 articles
+Crunchbase News: 7 articles
+Tom Tunguz: 5 articles
+Not Boring: 2 articles
+Steve Blank: 2 articles
+ChinAI: 2 articles
+TrueBridge Capital: 1 article
+Notable Capital: 2 articles
+LBS StartHub: 2 articles
+
+=== ANALYSIS FEATURES ===
+
+All 35 Articles Include:
+- YAML front matter with metadata
+- Confidence scores (0.0-1.0 range)
+- Score breakdown with rationale
+- English and Chinese summaries
+- Category classification
+- Keywords/hashtags
+
+High-Scoring Articles (Score ≥3) Additionally Include:
+- Paragraph summaries of major sections
+- Underwater insights (non-obvious findings)
+- Golden quotes (2-3 impactful statements)
+- Extended analysis
+
+=== DEDUP INDEX ===
+
+Format: JSON mapping URL → {title, date, category, score}
+Total Entries: 35
+Status: Complete and validated
+File: processed-index.json (8.7 KB)
+
+=== DAILY DIGEST ===
+
+Format: Markdown with executive summary
+Coverage: All 35 articles organized by score tier
+Key Themes: 
+- AI governance and regulation
+- Productivity transformation via AI
+- Capital markets dislocation
+- China's AI independence efforts
+- Infrastructure as competitive advantage
+
+File: daily-digest-2026-02-27.md (9.3 KB)
+
+=== PROCESSING QUALITY METRICS ===
+
+Tier-1 Analysis Coverage: 100% (all 35 articles scored)
+Tier-2 Analysis Coverage: 100% (all 10 high-scoring articles analyzed)
+YAML Validation: 100% (all files properly formatted)
+Category Assignment: 100% (no "Other" category articles)
+Confidence Scoring: 100% (all articles scored 0.78-0.94)
+
+=== DATA INTEGRITY ===
+
+Duplicate Prevention: Checked via URL dedup index
+Consistent Formatting: All files follow template structure
+Metadata Completeness: All required fields populated
+Source Attribution: All articles linked to original URLs
+Language Support: English and Chinese summaries for all articles
+
+=== PROCESSING NOTES ===
+
+- Dominance of OpenAI news reflects major funding round and market impact
+- Clear bifurcation between AI/infrastructure focus and traditional venture
+- Employee activism on AI ethics emerging as significant trend
+- China compute landscape showing structural shifts
+- Productivity gains from AI becoming material and measurable
+
+=== NEXT STEPS (RECOMMENDATIONS) ===
+
+1. Monitor development of Pentagon/Anthropic regulatory framework
+2. Track Block competitors' workforce restructuring timelines
+3. Watch for additional mega-IPO announcements (SpaceX, Anthropic)
+4. Monitor Chinese GPU startup competitive progress
+5. Track AI agent risk framework adoption in enterprises
+
+=== FILE MANIFEST ===
+
+35 Article Markdown Files: 142 KB total
+1 Daily Digest: 9.3 KB
+1 Dedup Index JSON: 8.7 KB
+Total Dataset: ~160 KB
+

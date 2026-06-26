@@ -1,0 +1,69 @@
+Fetching sequence for XM_007994685...
+Fetching exon annotation for XM_007994685...
+Target lacks exon data. Activating HARDCORE MODE with NM_001256799...
+Mapping homolog junctions from NM_001256799 to target...
+Fetching sequence for NM_001256799...
+Fetching exon annotation for NM_001256799...
+Successfully mapped 0 junctions using homology.
+No exon junctions found.
+Searching for highly specific primer/probe sets...
+Found 5 valid assay designs. Showing top 3:
+[
+  {
+    "Amplicon_Size": 126,
+    "gDNA_Safe": "Unknown",
+    "F_Primer": {
+      "seq": "ACGGGGCGGTGTCTGCG",
+      "tm": 60.0,
+      "len": 17
+    },
+    "R_Primer": {
+      "seq": "TCCCTGGAACTTCACCCG",
+      "tm": 58.0,
+      "len": 18
+    },
+    "Probe": {
+      "seq": "CCGCACGGCGCGACAAGAT",
+      "tm": 64.0,
+      "len": 19
+    }
+  },
+  {
+    "Amplicon_Size": 127,
+    "gDNA_Safe": "Unknown",
+    "F_Primer": {
+      "seq": "ACGGGGCGGTGTCTGCG",
+      "tm": 60.0,
+      "len": 17
+    },
+    "R_Primer": {
+      "seq": "CTCCCTGGAACTTCACCC",
+      "tm": 58.0,
+      "len": 18
+    },
+    "Probe": {
+      "seq": "CCGCACGGCGCGACAAGAT",
+      "tm": 64.0,
+      "len": 19
+    }
+  },
+  {
+    "Amplicon_Size": 128,
+    "gDNA_Safe": "Unknown",
+    "F_Primer": {
+      "seq": "ACGGGGCGGTGTCTGCG",
+      "tm": 60.0,
+      "len": 17
+    },
+    "R_Primer": {
+      "seq": "CCTCCCTGGAACTTCACC",
+      "tm": 58.0,
+      "len": 18
+    },
+    "Probe": {
+      "seq": "CCGCACGGCGCGACAAGAT",
+      "tm": 64.0,
+      "len": 19
+    }
+  }
+]

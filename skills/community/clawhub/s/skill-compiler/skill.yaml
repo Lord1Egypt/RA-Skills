@@ -1,0 +1,2 @@
+name: skill-compiler
+description: Compile SKILL.md into SKILL.struct.json and SKILL.toon artifacts for low-token runtime loading.

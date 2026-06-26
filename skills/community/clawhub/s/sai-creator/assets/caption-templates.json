@@ -1,0 +1,50 @@
+{
+  "linkedin": {
+    "char_target": [1300, 1700],
+    "structure": "hook → konteks → 3 takeaways → implikasi → CTA + hashtags",
+    "template": "{{HOOK_LINE}}\n\n{{CONTEXT_PARAGRAPH}}\n\nTiga hal yang perlu dipahami pengelola jurnal:\n\n1. {{KEY_POINT_1}}\n\n2. {{KEY_POINT_2}}\n\n3. {{KEY_POINT_3}}\n\n{{IMPLICATION_PARAGRAPH}}\n\nSumber: {{SOURCE_URL}}\n\nUntuk pengelola jurnal yang ingin upgrade tampilan: {{CTA_URL}}\n\n{{HASHTAGS}}",
+    "hashtags_pool": [
+      "#OJS3", "#PKP", "#OpenJournalSystems", "#JurnalIlmiah",
+      "#ScholarlyPublishing", "#OpenAccess", "#AcademicPublishing",
+      "#JournalEditor", "#Indonesia", "#RJI"
+    ],
+    "hashtags_max": 5
+  },
+  "x": {
+    "char_target": [220, 280],
+    "thread_split": true,
+    "max_tweets": 4,
+    "tweet_structure": [
+      "{{HOOK_LINE}}\n\n🧵👇",
+      "1/ {{KEY_POINT_1_TRIMMED}}",
+      "2/ {{KEY_POINT_2_TRIMMED}}",
+      "3/ {{KEY_POINT_3_TRIMMED}}\n\nSumber: {{SOURCE_URL}}\n\nUpgrade tema jurnal: {{CTA_URL}}"
+    ],
+    "hashtags_pool": ["#OJS3", "#PKP", "#OpenAccess"],
+    "hashtags_max": 2
+  },
+  "instagram": {
+    "char_target": [400, 1200],
+    "structure": "hook line → spacer → konteks → spacer → 3 takeaways → spacer → implikasi → CTA → spacer → hashtag block",
+    "template": "{{HOOK_LINE}}\n.\n.\n.\n{{CONTEXT_PARAGRAPH}}\n\nApa yang perlu pengelola jurnal tahu:\n\n→ {{KEY_POINT_1}}\n\n→ {{KEY_POINT_2}}\n\n→ {{KEY_POINT_3}}\n\n{{IMPLICATION_LINE}}\n\nSumber: link di bio\n\n{{HASHTAGS}}",
+    "hashtags_pool": [
+      "#ojs", "#openjournalsystems", "#pkp", "#jurnalilmiah",
+      "#editorjurnal", "#publikasiilmiah", "#openaccess",
+      "#publikasi", "#akademik", "#peneliti", "#dosenindonesia",
+      "#perguruantinggi", "#literasiakademik", "#jurnalindonesia",
+      "#openjournaltheme"
+    ],
+    "hashtags_max": 15,
+    "hashtag_placement": "akhir caption, dipisah baris kosong dari body"
+  },
+  "rules": {
+    "no_promotional_adjectives": [
+      "revolutionary", "groundbreaking", "must-have",
+      "ultimate", "best-ever", "WAJIB", "RAHASIA"
+    ],
+    "verbatim_quote_max_length_words": 14,
+    "verbatim_quote_max_per_source": 1,
+    "all_entities_must_exist_in_candidate_json": true,
+    "cta_url_must_be": "https://openjournaltheme.com/"
+  }
+}

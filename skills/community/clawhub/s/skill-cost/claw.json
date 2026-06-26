@@ -1,0 +1,22 @@
+{
+  "name": "skill-cost",
+  "version": "0.1.0",
+  "description": "Track per-skill token usage and costs from OpenClaw session logs. Shows which skills consume the most tokens and money, with model and daily breakdowns.",
+  "author": "dzwalker",
+  "category": "utilities",
+  "tags": [
+    "token-tracking",
+    "cost-monitoring",
+    "skill-analytics",
+    "usage-report",
+    "budget"
+  ],
+  "permissions": [],
+  "entry": "SKILL.md",
+  "support": "https://github.com/dzwalker/skill-cost/issues",
+  "license": "MIT",
+  "engines": {
+    "python": ">=3.9"
+  },
+  "dependencies": {}
+}

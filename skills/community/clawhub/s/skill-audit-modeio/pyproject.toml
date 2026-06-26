@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skill-audit"
+version = "0.1.0"
+description = "Deterministic static safety audit tooling for skill and plugin repositories."
+requires-python = ">=3.10"
+
+[project.scripts]
+skill-audit = "modeio_skill_audit.cli.skill_safety_assessment:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["modeio_skill_audit*"]

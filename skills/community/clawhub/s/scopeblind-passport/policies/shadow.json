@@ -1,0 +1,13 @@
+{
+  "tools": {
+    "*": {
+      "rate_limit": "100/hour"
+    }
+  },
+  "default_tier": "unknown",
+  "signing": {
+    "key_path": "./keys/gateway.json",
+    "issuer": "protect-mcp",
+    "enabled": true
+  }
+}

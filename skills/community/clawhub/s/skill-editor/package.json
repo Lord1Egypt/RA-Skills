@@ -1,0 +1,7 @@
+{
+  "name": "skill-editor",
+  "version": "1.2.4",
+  "displayName": "技能编辑器",
+  "description": "编辑、完善和审查 AgentSkills 的指南。创建或修改技能时参考此指南。",
+  "homepage": "https://clawhub.ai/skills/skill-editor"
+}

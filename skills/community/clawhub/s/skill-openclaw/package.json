@@ -1,0 +1,58 @@
+{
+  "name": "@useoris/skill-openclaw",
+  "version": "1.0.4",
+  "description": "Oris payment skill for OpenClaw AI agent framework.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "oris_mcp",
+    "pyproject.toml"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "oris-sdk": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "keywords": [
+    "oris",
+    "openclaw",
+    "ai-agents",
+    "payments",
+    "stablecoin",
+    "mcp"
+  ],
+  "license": "MIT",
+  "author": "Fluxa Ventures <engineering@fluxa.ventures>",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fluxaventures/oris"
+  },
+  "homepage": "https://useoris.finance",
+  "engines": {
+    "node": ">=18"
+  }
+}

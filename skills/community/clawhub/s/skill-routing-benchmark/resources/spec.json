@@ -1,0 +1,37 @@
+{
+  "slug": "skill-routing-benchmark",
+  "title": "Skill 路由基准测试器",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "structured_brief",
+  "summary": "测试多个 Skill 描述是否会路由冲突，并生成正例、反例与负向触发语句。",
+  "inputHint": "多个 skill 描述与目标任务",
+  "sections": [
+    "潜在冲突",
+    "正向例句",
+    "反向例句",
+    "描述修改建议",
+    "优先级",
+    "回归测试集"
+  ],
+  "useCases": [
+    "描述优化",
+    "路由测试",
+    "质量门控"
+  ],
+  "positiveExamples": [
+    "帮我测试这些 Skill 会不会路由冲突",
+    "给我 negative examples"
+  ],
+  "negativeExamples": [
+    "不要只给模糊建议",
+    "不要忽略高度相近的 skill"
+  ],
+  "risk": "适合 Skill 设计阶段使用。",
+  "tags": [
+    "skills",
+    "routing",
+    "benchmark",
+    "quality"
+  ]
+}

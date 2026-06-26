@@ -1,0 +1,8 @@
+{
+  "component": "S2-Dashboard-Renderer",
+  "props": {
+    "title": "S2-Oracle-Agent | 建筑先知时空推演与审计舱",
+    "theme": "cyber-dark",
+    "prompt": "Create a multi-view dashboard with a toggle: [⏪ 历史回溯 (Past)] vs [🔮 未来推演 (Future)]. State Past: Sliders for occupancy. Chart showing 'Actual Energy' vs 'S2 Optimal Energy'. Highlight the gap as 'Causal Waste'. State Future: Sliders for predicted temp and occupancy. Chart showing 'Legacy Forecast Curve' vs 'S2 Managed Flat Curve'. Output Panel: Generate AI text insights (e.g., 'Pre-cool building tomorrow at 6AM due to 35C warning')."
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "ShopGuard"
+  short_description: "Check seller risk, refund friction, and after-sales hassle before buying"
+  default_prompt: "Use $shopguard to tell me whether a seller is safe enough to buy from, whether the low price hides more risk, whether the route is okay for gifting or urgency, and what evidence I should save before ordering."

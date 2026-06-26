@@ -1,35 +1,43 @@
 ---
-name: "Skill Learner 818d6a"
+name: skill-learner-818d6a
 description: "从抖音视频学习: skill-learner — Hermes v0.15.0 Skill Bundles 技能包教程：一个命令加载所有常用技能"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-learner-818d6a"
-sourceUrl: "https://clawhub.ai/skills/skill-learner-818d6a"
+compatibility: opencode
+trigger: "skill-learner / Hermes / v0 / 15"
+tags: [guide, skill-learner, video-learned]
 ---
 
-# Skill Learner 818d6a
+# skill-learner
 
-> 从抖音视频学习: skill-learner — Hermes v0.15.0 Skill Bundles 技能包教程：一个命令加载所有常用技能
+> 从 @麦冬AI实验室 的视频中学到的技能
+> 关键词: Hermes, v0, 15, Skill, Bundles, 技能包教程, 一个命令加载所有常用技能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-learner-818d6a`
-- **Source URL:** [https://clawhub.ai/skills/skill-learner-818d6a](https://clawhub.ai/skills/skill-learner-818d6a)
+## 描述
 
-## Overview
+Hermes v0.15.0 Skill Bundles 技能包教程：一个命令加载所有常用技能
 
+## 操作步骤
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-learner-818d6a
-```
+1. 理解核心概念: skill-learner
+2. 掌握关键技巧: Hermes, v0, 15, Skill
+3. 参考案例: 麦冬AI实验室 的演示
+4. 动手实践并迭代
+
+## 参考来源
+- 作者: @麦冬AI实验室
+- 学习时间: 2026-06-02 09:35
+- 领域标签: guide
+
+## 触发场景
+- 用户说"skill-learner"
+- 用户说"Hermes"
+- 用户需要skill-learner相关帮助
+
+## B站学习 (第1轮)
+> 学习时间: 2026-06-02 09:35
+
+- **发福的卡皮巴拉**: HIGGSFIELD 剧本skill 深度拆解
+  https://www.bilibili.com/video/BV1DiVn6LEzg
+- **一只路路**: OpenClaw 技能（Skill）分享-Skill Vetter
+  https://www.bilibili.com/video/BV1Zhw1z1EAz
+- **五里墩茶社**: 体验开源PPT Skills - 歸藏 PPT Skill, 花叔 Huashu Design
+  https://www.bilibili.com/video/BV12HRLBREeV

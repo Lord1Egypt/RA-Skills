@@ -1,0 +1,17 @@
+{
+  "owner": "liuhao6741",
+  "slug": "mindkeeper",
+  "displayName": "Mindkeeper",
+  "latest": {
+    "version": "1.2.4",
+    "publishedAt": 1773026096736,
+    "commit": "https://github.com/openclaw/skills/commit/fb06e5ba578ef20b2ab39c7fb0efa76f676af66b"
+  },
+  "history": [
+    {
+      "version": "1.2.1",
+      "publishedAt": 1772794661469,
+      "commit": "https://github.com/openclaw/skills/commit/5293dcc5ed0b8c328b53ac846775b33d95b69496"
+    }
+  ]
+}

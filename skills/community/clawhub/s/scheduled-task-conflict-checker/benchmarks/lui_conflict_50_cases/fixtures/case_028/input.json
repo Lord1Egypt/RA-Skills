@@ -1,0 +1,99 @@
+{
+  "case_id": "case_028",
+  "category": "重复检测",
+  "title": "暂停中的相同任务仍参与去重",
+  "new_lui_request": "每天9点同步库存",
+  "initial_tasks": [
+    {
+      "task_id": "t1",
+      "source": "LUI",
+      "canonical_task_type": "inventory_sync",
+      "name": "inventory_sync",
+      "frequency": "daily",
+      "time": "09:00",
+      "status": "paused",
+      "shop_id": "pdd_A"
+    }
+  ],
+  "existing_tasks": [
+    {
+      "task_id": "t1",
+      "source": "LUI",
+      "canonical_task_type": "inventory_sync",
+      "name": "inventory_sync",
+      "frequency": "daily",
+      "time": "09:00",
+      "status": "paused",
+      "shop_id": "pdd_A"
+    }
+  ],
+  "user_context": {
+    "ali_id": "ali_test_001",
+    "shops": [
+      {
+        "shop_id": "pdd_A",
+        "shopCode": "pdd_A",
+        "shop_name": "pdd_A店铺",
+        "platform": "pinduoduo",
+        "channel": "pinduoduo",
+        "authorized": true,
+        "is_authorized": true,
+        "create_permission_status": "ok",
+        "sv_permission_status": "ok",
+        "has_sv_advanced_permission": true,
+        "sv_is_paid": true
+      }
+    ],
+    "platform_capabilities": {
+      "pinduoduo": {
+        "auto_listing": true,
+        "auto_follow_order": true,
+        "inventory_sync": true,
+        "price_adjust": true,
+        "auto_delist": true,
+        "supplier_switch": true,
+        "product_selection": true,
+        "inspection": true,
+        "daily_report": true
+      },
+      "douyin": {
+        "auto_listing": true,
+        "auto_follow_order": true,
+        "inventory_sync": true,
+        "price_adjust": false,
+        "auto_delist": false,
+        "supplier_switch": true,
+        "product_selection": true,
+        "inspection": true,
+        "daily_report": true
+      },
+      "xiaohongshu": {
+        "auto_listing": true,
+        "auto_follow_order": false,
+        "inventory_sync": true,
+        "price_adjust": false,
+        "auto_delist": false,
+        "supplier_switch": false,
+        "product_selection": true,
+        "inspection": true,
+        "daily_report": true
+      }
+    },
+    "wechat_bound": true
+  },
+  "proposed_task": {
+    "task_id": "new",
+    "source": "LUI",
+    "canonical_task_type": "inventory_sync",
+    "name": "inventory_sync",
+    "frequency": "daily",
+    "time": "09:00",
+    "status": "active",
+    "shop_id": "pdd_A"
+  },
+  "expected_decision": "reuse_or_update",
+  "expected_reason_code": "complete_duplicate",
+  "expected_prompt_required": false,
+  "cleanup_required": true,
+  "cleanup_policy": "runner 必须在本 case 执行前清空 runtime/task_pool.json，写入 initial_tasks；执行后再次删除 runtime/task_pool.json，禁止后续 case 继承任务状态。"
+}

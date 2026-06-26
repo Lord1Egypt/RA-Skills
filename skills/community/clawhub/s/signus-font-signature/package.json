@@ -1,0 +1,9 @@
+{
+  "name": "signus-font-signature",
+  "version": "1.0.1",
+  "private": true,
+  "description": "Skill runtime dependencies for Signus font signature generation",
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "tools": {
+    "*": {
+      "rate_limit": "60/hour"
+    },
+    "browse_url": {
+      "rate_limit": "30/minute"
+    },
+    "search_web": {
+      "rate_limit": "20/minute"
+    },
+    "fill_form": {
+      "require_approval": true
+    },
+    "submit_form": {
+      "require_approval": true
+    },
+    "download_file": {
+      "require_approval": true
+    },
+    "execute_javascript": {
+      "block": true
+    },
+    "run_script": {
+      "block": true
+    }
+  },
+  "default_tier": "unknown",
+  "signing": {
+    "key_path": "./keys/gateway.json",
+    "issuer": "protect-mcp",
+    "enabled": true
+  }
+}

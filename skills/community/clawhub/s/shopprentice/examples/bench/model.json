@@ -1,0 +1,48 @@
+{
+  "deps": [
+    {
+      "body": "Leg_FL",
+      "ref": "origin"
+    },
+    {
+      "body": "Leg_FR",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BL",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Leg_BR",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Seat",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Apron_Front",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Apron_Back",
+      "ref": "Leg_BL"
+    },
+    {
+      "body": "Apron_Left",
+      "ref": "Leg_FL"
+    },
+    {
+      "body": "Apron_Right",
+      "ref": "Leg_FR"
+    },
+    {
+      "body": "Str_Front",
+      "ref": "Apron_Front"
+    },
+    {
+      "body": "Str_Back",
+      "ref": "Apron_Back"
+    }
+  ]
+}

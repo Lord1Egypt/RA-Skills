@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Debug Log Investigator"
+  short_description: "Inspect and interpret session debug logs"
+  default_prompt: "Turn on session debugging if needed, read the latest log tail, and diagnose this Claude Code issue."

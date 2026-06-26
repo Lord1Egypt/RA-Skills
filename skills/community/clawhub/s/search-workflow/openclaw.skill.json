@@ -1,0 +1,106 @@
+{
+  "id": "search-workflow",
+  "name": "Search Workflow",
+  "description": "标准化搜索工作流，整合 tavily-search、web_search、web_fetch 等搜索技能，提供从查询分析到结果输出的完整搜索流程。支持学术研究、实时信息、深度调研、事实验证等多种搜索场景。",
+  "version": "1.0.0",
+  "author": "academic-assistant",
+  "license": "MIT",
+  
+  "trigger": {
+    "keywords": [
+      "搜索",
+      "查找",
+      "查询",
+      "search",
+      "调研",
+      "文献",
+      "资料"
+    ],
+    "mode": "keyword"
+  },
+
+  "config": {
+    "default_search_engine": "tavily-search",
+    "fallback_engines": ["web_search", "perplexity-search"],
+    "max_results": 10,
+    "search_depth": "advanced",
+    "include_domains": [],
+    "exclude_domains": ["wikipedia.org"]
+  },
+
+  "workflow": {
+    "stages": [
+      {
+        "name": "查询分析",
+        "description": "意图识别、关键词提取、搜索策略制定",
+        "duration": "1-2 分钟"
+      },
+      {
+        "name": "搜索执行",
+        "description": "多引擎并行/串行搜索",
+        "duration": "2-10 分钟"
+      },
+      {
+        "name": "结果处理",
+        "description": "去重、排序、摘要生成",
+        "duration": "1-5 分钟"
+      },
+      {
+        "name": "内容提取",
+        "description": "网页全文获取",
+        "duration": "1-5 分钟"
+      },
+      {
+        "name": "整理输出",
+        "description": "结构化报告生成",
+        "duration": "1-3 分钟"
+      }
+    ]
+  },
+
+  "skills": {
+    "required": [
+      "tavily-search",
+      "web_fetch"
+    ],
+    "optional": [
+      "web_search",
+      "perplexity-search",
+      "research-lookup",
+      "bgpt-paper-search"
+    ]
+  },
+
+  "scenarios": {
+    "academic": {
+      "description": "学术搜索",
+      "engines": ["tavily-search", "bgpt-paper-search"],
+      "output": "学术简历、论文列表"
+    },
+    "realtime": {
+      "description": "实时信息",
+      "engines": ["tavily-search"],
+      "time_range": "week"
+    },
+    "deep_research": {
+      "description": "深度调研",
+      "engines": ["tavily-search", "market-research-reports"],
+      "max_results": 20
+    },
+    "fact_check": {
+      "description": "事实验证",
+      "engines": ["tavily-search", "perplexity-search", "web_search"],
+      "verify": true
+    }
+  },
+
+  "output": {
+    "format": "markdown",
+    "include": [
+      "搜索摘要",
+      "关键信息",
+      "来源引用",
+      "相关链接"
+    ]
+  }
+}

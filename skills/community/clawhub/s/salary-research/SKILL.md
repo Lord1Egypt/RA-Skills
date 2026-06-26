@@ -1,35 +1,80 @@
 ---
-name: "Salary Research"
-description: "薪酬调研助手 - 查询岗位薪酬数据并生成分析报告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/salary-research"
-sourceUrl: "https://clawhub.ai/skills/salary-research"
+name: salary-research
+description: 薪酬调研助手 - 查询岗位薪酬数据并生成分析报告
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - salary-natural
 ---
 
-# Salary Research
+# 薪酬调研助手技能
 
-> 薪酬调研助手 - 查询岗位薪酬数据并生成分析报告
+## 技能概述
+薪酬调研助手是一个 CLI 工具，可以通过调用招聘网站的公开 API 或爬取数据来查询薪酬信息，并生成详细的薪酬分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/salary-research`
-- **Source URL:** [https://clawhub.ai/skills/salary-research](https://clawhub.ai/skills/salary-research)
+## 触发条件（自然语言）
+当用户提到以下关键词时自动触发：
+- **薪资相关**：薪资、工资、薪酬、薪水、待遇、收入水平、薪资水平
+- **询问价格**：多少钱、能拿多少、收入多少
+- **查询动作**：查一下、查询、看看、帮我查
 
-## Overview
+**示例**：
+- "产品经理在北京能拿多少钱"
+- "帮我查一下 Java 工程师的薪资"
+- "上海本科产品经理工资水平"
+- "深圳前端工程师待遇怎么样"
+- "魔都算法工程师收入水平"（支持城市别名）
 
+## 功能特性
+- ✅ 自然语言理解，无需记忆命令格式
+- ✅ 智能参数提取（岗位/城市/经验/学历）
+- ✅ 支持城市别名（魔都→上海、鹏城→深圳等）
+- ✅ 缺失参数自动提示
+- ✅ 查询指定岗位和城市的薪酬数据
+- ✅ 提供行业对比分析
+- ✅ 显示城市间薪酬差异
+- ✅ 支持多种输出格式（Markdown/JSON/Text/CSV）
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
+### 方式 1：自然语言查询（市场数据）⭐
 ```bash
-hermes skills install clawhub/salary-research
+salary-natural --text "产品经理在北京能拿多少钱"
+salary-natural --text "帮我查一下 Java 工程师的薪资，3-5 年经验"
 ```
+
+### 方式 2：企业数据管理（内部数据）
+```bash
+# 下载数据模板
+salary-data template --output 薪酬数据模板.csv
+
+# 上传企业数据
+salary-data upload --file 薪酬数据.csv
+
+# 查询企业数据
+salary-data query --position "前端工程师" --city "北京"
+salary-data query --all
+
+# 生成薪酬报告
+salary-data report --output 薪酬报告.md
+```
+
+## 参数说明
+- `--position` / `-p`: 必需参数，输入岗位名称
+- `--city` / `-c`: 必需参数，输入城市名称
+- `--experience` / `-e`: 工作经验要求（如：3-5 年）
+- `--education`: 学历要求（如：本科）
+- `--output`: 输出格式 (json, markdown, text, csv)，默认为 markdown
+
+## 输出内容（简洁版）
+- 💰 薪资范围（最低 - 最高）
+- 📊 平均薪资
+- 🏢 行业对比（最高薪行业）
+- 🌆 城市对比（最高薪城市）
+
+## 技术实现
+- 基于 Node.js 的 CLI 应用
+- 自然语言处理模块自动解析用户输入
+- 集成招聘网站 API 或网页爬虫
+- 支持多种输出格式转换

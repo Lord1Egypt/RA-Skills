@@ -1,0 +1,76 @@
+{
+  "name": "Session Password",
+  "version": "1.0.0",
+  "author": "squallsol",
+  "description": "Secure passphrase authentication guard for OpenClaw sessions",
+  
+  "setup": {
+    "title": "Session Password - Setup Wizard",
+    "welcome": "This wizard will help you configure passphrase authentication.",
+    "step1": "Step 1: Create Admin User",
+    "step2": "Step 2: Security Email (Required for Recovery)",
+    "step3": "Step 3: Security Question (Optional)",
+    "step4": "Step 4: Settings",
+    "usernamePrompt": "Enter admin username [admin]: ",
+    "passwordPrompt": "Enter passphrase: ",
+    "confirmPasswordPrompt": "Confirm passphrase: ",
+    "emailPrompt": "Enter security email: ",
+    "securityQuestionPrompt": "Enter security question: ",
+    "securityAnswerPrompt": "Enter answer: ",
+    "timeoutPrompt": "Idle timeout in minutes (default 60): ",
+    "setupComplete": "Setup complete!"
+  },
+  
+  "errors": {
+    "passwordTooShort": "Password must be at least {{min}} characters",
+    "passwordNoLower": "Password must contain lowercase letters",
+    "passwordNoUpper": "Password must contain uppercase letters",
+    "passwordNoDigit": "Password must contain digits",
+    "passwordNoSpecial": "Password must contain special characters (@$!%*?&)",
+    "passwordWeak": "Password is too common or weak",
+    "passwordMismatch": "Passphrases do not match",
+    "invalidEmail": "Invalid email format",
+    "emailRequired": "Security email is required for account recovery",
+    "incorrectPassword": "Incorrect passphrase",
+    "accountLocked": "Account locked. Try again in {{minutes}} minutes",
+    "tooManyAttempts": "Too many failed attempts. Account locked",
+    "notAuthenticated": "Not authenticated. Please enter passphrase",
+    "sessionExpired": "Session expired. Please re-authenticate",
+    "looksLikeHash": "Invalid input detected. Please enter the actual passphrase, not a hash value"
+  },
+  
+  "auth": {
+    "prompt": "Please enter passphrase to continue:",
+    "success": "Authentication successful!",
+    "locked": "Account locked",
+    "remainingAttempts": "Remaining attempts: {{count}}",
+    "logout": "Logged out"
+  },
+  
+  "recovery": {
+    "title": "Password Recovery",
+    "emailSent": "Recovery code sent to your security email",
+    "enterCode": "Enter the recovery code you received:",
+    "codeValid": "Recovery code valid. Please set a new password",
+    "codeInvalid": "Recovery code invalid or expired",
+    "securityQuestion": "Security Question Verification",
+    "securityQuestionPrompt": "Security question: {{question}}",
+    "answerPrompt": "Enter your answer:"
+  },
+  
+  "commands": {
+    "forgotPassword": "forgot password",
+    "changePassword": "change password",
+    "logout": "logout",
+    "uninstall": "uninstall auth skill"
+  },
+  
+  "audit": {
+    "login": "login",
+    "logout": "logout",
+    "failedAttempt": "failed attempt",
+    "passwordChange": "password change",
+    "recovery": "recovery request",
+    "lockout": "account lockout"
+  }
+}

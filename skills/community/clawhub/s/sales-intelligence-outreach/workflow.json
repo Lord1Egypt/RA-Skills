@@ -1,0 +1,98 @@
+{
+  "name": "sales-intelligence-outreach",
+  "version": "1.0.0",
+  "description": "AI销售情报与客户触达全流程自动化 — 智能检索目标客户信息、生成个性化销售文案与素材、一键发布至多个社交平台",
+  "category": "AI|自动化",
+  "triggers": [
+    "销售线索",
+    "客户触达",
+    "智能拓客",
+    "B2B销售",
+    "获客",
+    "开发信",
+    "发掘客户"
+  ],
+  "skills": [
+    {
+      "name": "Agent-Reach",
+      "role": "情报检索 & 多平台发布",
+      "description": "全网情报检索 + 多平台内容发布（小红书/微信文章/LinkedIn/微博）"
+    },
+    {
+      "name": "nano-banana-pro",
+      "role": "个性化销售素材生成",
+      "description": "生成个性化销售图片素材，支持多种风格（赛博朋克/Mac Pro/知识卡片）"
+    },
+    {
+      "name": "xiaohongshu-mcp",
+      "role": "小红书内容发布",
+      "description": "小红书精准种草内容发布与互动管理"
+    },
+    {
+      "name": "公众号助手",
+      "role": "微信公众号深度内容创作",
+      "description": "微信公众号长文创作与发布"
+    }
+  ],
+  "workflow": {
+    "stages": [
+      {
+        "id": 1,
+        "name": "销售情报检索",
+        "description": "使用 Agent-Reach 全网搜索目标客户/公司/行业动态，抓取关键决策人信息和近期新闻",
+        "skills": ["Agent-Reach"],
+        "input": "客户名称/行业关键词",
+        "output": "目标客户档案（含公司背景、近期动态、关键人信息）"
+      },
+      {
+        "id": 2,
+        "name": "客户画像分析",
+        "description": "AI 分析客户背景、痛点、服务切入机会，生成个性化触达策略",
+        "skills": ["Agent-Reach"],
+        "input": "客户档案",
+        "output": "客户画像报告（含痛点分析 + 切入建议）"
+      },
+      {
+        "id": 3,
+        "name": "个性化素材生成",
+        "description": "使用 nano-banana-pro 生成配套销售图片素材，支持多款风格",
+        "skills": ["nano-banana-pro"],
+        "input": "客户画像报告",
+        "output": "个性化销售素材图（5-10张）"
+      },
+      {
+        "id": 4,
+        "name": "触达文案生成",
+        "description": "根据客户画像生成个性化邮件/微信话术，可直接使用",
+        "skills": ["Agent-Reach"],
+        "input": "客户画像 + 素材",
+        "output": "个性化触达文案（邮件版/微信版）"
+      },
+      {
+        "id": 5,
+        "name": "多平台精准触达",
+        "description": "一键发布至小红书（xiaohongshu-mcp）、公众号（公众号助手）、LinkedIn（Agent-Reach）",
+        "skills": ["xiaohongshu-mcp", "公众号助手", "Agent-Reach"],
+        "input": "素材 + 文案",
+        "output": "已发布内容 + 触达记录"
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "B2B外贸客户开发",
+      "description": "为外贸业务员提供目标客户群发掘→素材生成→多平台触达的全套流程",
+      "example": "帮我找10家做智能家居的海外品牌，做一套开发信素材"
+    },
+    {
+      "name": "销售朋友圈素材自动化",
+      "description": "搜集行业热点，生成借势营销素材并发布至朋友圈",
+      "example": "搜集本周新能源行业热点，生成一套朋友圈素材"
+    },
+    {
+      "name": "客户首次触达全流程",
+      "description": "深度调研目标公司，生成个性化触达话术和素材",
+      "example": "帮我触达这家AI公司，我可以给他们提供什么服务"
+    }
+  ]
+}

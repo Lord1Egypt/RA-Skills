@@ -1,35 +1,41 @@
----
-name: "Secure Api Starter"
-description: "Provides a production-ready API template with JWT, API key, OAuth2 authentication, role-based access control, rate limiting, input validation, logging, and e..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/secure-api-starter"
-sourceUrl: "https://clawhub.ai/skills/secure-api-starter"
----
+# Secure API Starter
 
-# Secure Api Starter
+Production-ready secure API template.
 
-> Provides a production-ready API template with JWT, API key, OAuth2 authentication, role-based access control, rate limiting, input validation, logging, and e...
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/secure-api-starter`
-- **Source URL:** [https://clawhub.ai/skills/secure-api-starter](https://clawhub.ai/skills/secure-api-starter)
+- **Authentication** - JWT, API keys, OAuth2
+- **Authorization** - Role-based access control
+- **Rate Limiting** - Per-user, per-IP
+- **Input Validation** - Schema validation
+- **Logging** - Request/response logs
+- **Error Handling** - Structured errors
 
-## Overview
+## Quick Start
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/secure-api-starter
+# Create API
+./create-api.sh my-api
+
+# Add authentication
+./create-api.sh my-api --auth jwt
+
+# Add rate limiting
+./create-api.sh my-api --rate-limit 100
 ```
+
+## Auth Methods
+
+- JWT tokens
+- API keys
+- OAuth2 (Google, GitHub)
+- Session-based
+
+## Requirements
+
+- Node.js 18+
+- TypeScript
+
+## Author
+
+Sunshine-del-ux

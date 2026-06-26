@@ -1,0 +1,21 @@
+{
+  "id": "russian-humanizer",
+  "name": "Russian Humanizer",
+  "description": "Russian Humanizer AI slop detector tool",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "mode": {
+        "type": "string",
+        "enum": ["blog", "business", "hardcore"],
+        "default": "business",
+        "description": "Степень строгости анализа (влияет на пенальти за штампы)"
+      },
+      "glavredApiKey": {
+        "type": "string",
+        "description": "API-ключ для интеграции с glvrd.ru (Опционально)"
+      }
+    }
+  }
+}

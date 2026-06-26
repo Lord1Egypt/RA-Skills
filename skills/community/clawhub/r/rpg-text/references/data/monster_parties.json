@@ -1,0 +1,69 @@
+{
+  "goblin_patrol": {
+    "monsters": {
+      "goblin": "2d4"
+    },
+    "treasure": "R",
+    "description": "一队哥布林巡逻兵"
+  },
+  "goblin_warband": {
+    "monsters": {
+      "goblin": "3d6",
+      "goblin-warchief": "1"
+    },
+    "treasure": "R",
+    "description": "一支哥布林战帮"
+  },
+  "wolf_pack": {
+    "monsters": {
+      "wolf": "2d4"
+    },
+    "description": "一群饥饿的狼"
+  },
+  "spider_nest": {
+    "monsters": {
+      "crab_spider": "1d4",
+      "black_widow": "1"
+    },
+    "treasure": "U",
+    "description": "蜘蛛巢穴"
+  },
+  "bandit_ambush": {
+    "monsters": {
+      "bandit": "2d4"
+    },
+    "treasure": "P",
+    "description": "埋伏的土匪"
+  },
+  "undead_horde": {
+    "monsters": {
+      "skeleton": "3d6",
+      "zombie": "2d4"
+    },
+    "treasure": "U",
+    "description": "亡灵大军"
+  },
+  "dungeon_ guardians": {
+    "monsters": {
+      "skeleton_knight": "1",
+      "skeleton": "2d4"
+    },
+    "treasure": "R",
+    "description": "守护宝库的亡灵守卫"
+  },
+  "forest_ambush": {
+    "monsters": {
+      "goblin_scout": "1d4",
+      "wolf": "1d2"
+    },
+    "description": "森林伏击"
+  },
+  "cave_dwellers": {
+    "monsters": {
+      "cave_rat": "3d6",
+      "giant_spider": "1d2"
+    },
+    "treasure": "U",
+    "description": "洞穴居住者"
+  }
+}

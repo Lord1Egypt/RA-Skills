@@ -1,0 +1,39 @@
+{
+  "goals": [
+    {
+      "id": 1778036087061.3467,
+      "name": "LanguageHonesty接入主循环",
+      "description": "processInput调用validateOutput，检测绝对判断词",
+      "progress": 100,
+      "status": "completed",
+      "createdAt": 1778036087061,
+      "deadline": 1778122487061,
+      "subtasks": [],
+      "reflections": []
+    },
+    {
+      "id": 1778036087061.985,
+      "name": "模块接入率提升",
+      "description": "GoalTracker等未用模块接入实际调用链",
+      "progress": 0,
+      "status": "active",
+      "createdAt": 1778036087061,
+      "deadline": 1778295287061,
+      "subtasks": [],
+      "reflections": []
+    },
+    {
+      "id": 1778036087061.7024,
+      "name": "验证机制独立化",
+      "description": "pre-upgrade-verify不依赖自检结果",
+      "progress": 0,
+      "status": "active",
+      "createdAt": 1778036087061,
+      "deadline": 1778640887061,
+      "subtasks": [],
+      "reflections": []
+    }
+  ],
+  "version": "11.17.2",
+  "lastUpdated": 1778036087061
+}

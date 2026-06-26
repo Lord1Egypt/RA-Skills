@@ -1,35 +1,40 @@
 ---
-name: "自营发货策略+分区方案配置拆分导出. 读取Excel文件，按照指定的列进行分组，将相同组的数据导出到新文件，文件命名用分组字段组合命名。"
-description: "自营发货策略+分区方案配置拆分导出. 读取Excel文件，按照指定的列进行分组，将相同组的数据导出到新文件，文件命名用分组字段组合命名。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/self-operated-delivery-strategy-excel-group-export"
-sourceUrl: "https://clawhub.ai/skills/self-operated-delivery-strategy-excel-group-export"
+name: self-operated-delivery-strategy-excel-group-export
+description: 自营发货策略+分区方案配置拆分导出. 读取Excel文件，按照指定的列进行分组，将相同组的数据导出到新文件，文件命名用分组字段组合命名。
 ---
 
-# 自营发货策略+分区方案配置拆分导出. 读取Excel文件，按照指定的列进行分组，将相同组的数据导出到新文件，文件命名用分组字段组合命名。
+# 自营发货策略+分区方案配置拆分导出技能
 
-> 自营发货策略+分区方案配置拆分导出. 读取Excel文件，按照指定的列进行分组，将相同组的数据导出到新文件，文件命名用分组字段组合命名。
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/self-operated-delivery-strategy-excel-group-export`
-- **Source URL:** [https://clawhub.ai/skills/self-operated-delivery-strategy-excel-group-export](https://clawhub.ai/skills/self-operated-delivery-strategy-excel-group-export)
+使用此技能处理Excel文件分组导出：
 
-## Overview
+### 基本用法
+1. 准备Excel文件（.xlsx格式）
+2. 指定分组列（如 渠道组,实重区间,周长区间）
+3. 运行分组导出脚本
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 脚本执行
 ```bash
-hermes skills install clawhub/self-operated-delivery-strategy-excel-group-export
+python scripts/excel_export.py --input input.xlsx --columns "渠道组,实重区间,周长区间" --output-dir ./output/
 ```
+
+## 详细说明
+
+### 功能特性
+- 读取Excel文件，按照指定的列进行分组，将相同组的数据导出到新文件，文件命名用分组字段组合命名. 文件名格式：`{分组字段1}_{分组字段2}_{分组字段3}.xlsx`
+- 导出的文件需要添加 分区名称列，默认值为1
+- 导出的文件需要添加 国家二字码列，默认值:US
+- 导出的文件需要添加 城市列，默认值为空
+- 导出的文件需要添加 开始邮编列和结束邮编列，默认值: 邮编
+- 导出的文件需要删除 原所有字段仅保留新增加的 分区名称, 国家二字码, 城市, 开始邮编, 结束邮编 字段
+
+### 使用示例
+假设Excel文件有列：渠道组,实重区间,周长区间,邮编
+- 分组列：渠道组,实重区间,周长区间
+- 数据行1：渠道组=USPS, 实重区间=1, 周长区间=1, 邮编=100000 → 输出文件：USPS_1_1.xlsx
+- 数据行2：渠道组=USPS, 实重区间=1, 周长区间=2, 邮编=100000 → 输出文件：USPS_1_2.xlsx
+- 数据行3：渠道组=FEDEX, 实重区间=1, 周长区间=2, 邮编=100000 → 输出文件：FEDEX_1_2.xlsx
+
+## 资源
+- `scripts/excel_export.py`: 主要处理脚本

@@ -1,0 +1,30 @@
+# 环境配置模板：中国大陆有代理环境
+# 适用：国内网络环境，有代理
+
+name: cn-with-proxy
+description: 中国大陆有代理环境，国内外引擎混合使用
+
+# 路由配置
+routing:
+  preferred_capabilities:
+    - fast
+    - accurate
+  avoid_capabilities: []
+  fallback_order:
+    - fast-engine
+    - reliable-engine
+
+# 超时配置 (秒)
+timeout:
+  search: 30
+  fetch: 45
+  summarize: 30
+  analyze: 60
+
+# 降级配置
+max_fallback: 3
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl_seconds: 300

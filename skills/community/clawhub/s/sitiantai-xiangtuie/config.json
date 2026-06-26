@@ -1,0 +1,17 @@
+{
+  "name": "谛观·解卦 | Hexagram Interpreter",
+  "slug": "sitiantai-xiangtuie",
+  "description": "解卦——四象合参·象推演系统。基于梅花易数+六爻为主体、六壬奇门为辅助触发、类象知识库展开的符号推演 Skill。不做吉凶判断，展开丰富可能性，启发用户自主决策。",
+  "description_en": "Hexagram Interpreter — Four-Element Synthesis divination system. Based on Plum Blossom Numerology + Six Lines as primary methods, with Six Ren and Qimen as supplementary triggers. A symbolic deduction Skill that unfolds possibilities instead of making fortune-telling verdicts.",
+  "description_fr": "Interprète d'hexagramme — système de divination à synthèse quadruple. Basé sur la numérologie des fleurs de prunier et les six lignes, avec Six Ren et Qi Men comme déclencheurs auxiliaires. Un Skill de déduction symbolique qui déploie des possibilités sans porter de jugement.",
+  "description_es": "Intérprete de hexagramas — sistema de adivinación de síntesis cuádruple. Basado en la numerología de ciruela y seis líneas, con Seis Ren y Qi Men como disparadores auxiliares. Un Skill de deducción simbólica que despliega posibilidades sin emitir veredictos.",
+  "version": "0.8.3",
+  "homepage": "https://github.com/henrryjoke/sitiantai-xiangtuie",
+  "categories": ["AI增强", "知识管理", "多媒体/垂直"],
+  "categories_en": ["AI Enhancement", "Knowledge Management", "Specialized"],
+  "tags": ["divination", "iching", "meihua", "liuyao", "qimen", "daliuren", "xiangtuie", "jiegua"],
+  "triggers": ["解卦", "算一卦", "问卦", "卜问", "分析这事", "推演一下", "象推演", "四象合参", "divination", "iching", "hexagram reading", "fortune reading", "symbolic deduction", "lecture d'hexagramme", "I Ching", "adivinación", "hexagrama", "lectura de hexagramas"],
+  "dependencies": ["swisseph", "lunar-python"],
+  "author": {"name": "henrryjoke", "email": ""},
+  "license": {"code": "MIT", "data": "CC BY-NC-SA 4.0"}
+}

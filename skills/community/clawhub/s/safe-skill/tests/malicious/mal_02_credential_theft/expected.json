@@ -1,0 +1,8 @@
+{
+    "label": "malicious",
+    "description": "Reads SSH keys, AWS credentials, GCP credentials",
+    "expected_min_score": 50,
+    "expected_level": ["HIGH", "EXTREME"],
+    "must_trigger_rules": ["CRED-001", "CRED-002", "CRED-003"],
+    "attack_category": "credential"
+}

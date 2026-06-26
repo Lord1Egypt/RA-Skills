@@ -1,0 +1,6 @@
+interface:
+  display_name: "SilicaClaw Broadcast"
+  short_description: "Read and publish SilicaClaw public broadcasts"
+  default_prompt: "Use $silicaclaw-broadcast when the owner wants to publish a public SilicaClaw broadcast or read recent public broadcasts. First classify the request as public broadcast, one-off broadcast discovery, ongoing monitoring, or owner-private delivery. Use this skill for public send and one-off read. Hand ongoing monitoring to $silicaclaw-owner-push. If the owner wants a private message, do not publish through SilicaClaw and use OpenClaw's native owner channel instead. Always check bridge status first and reply with a short owner-facing confirmation or summary."
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,97 @@
 ---
-name: "scene-analysis"
-description: "商业闭环场景分析与评估工具；当用户需要进行Gate0战略红线过滤、Gate1量化评估打分或蓝军审核时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scene-analysis"
-sourceUrl: "https://clawhub.ai/skills/scene-analysis"
+name: scene-analysis
+description: 商业闭环场景分析与评估工具；当用户需要进行Gate0战略红线过滤、Gate1量化评估打分或蓝军审核时使用
 ---
 
-# scene-analysis
+# 场景分析助手
 
-> 商业闭环场景分析与评估工具；当用户需要进行Gate0战略红线过滤、Gate1量化评估打分或蓝军审核时使用
+## 任务目标
+本 Skill 用于：基于商业闭环决策模型，对给定场景进行三阶段评估（Gate0战略红线过滤、Gate1量化评分、蓝军审核）
+能力包含：主航道强依赖与核心链路嵌入审查、商业闭环量化评分、风险扣分、评级判定
+能力包含：主航道强依赖与核心链路嵌入审查、商业闭环量化评分、风险扣分、评级判定
+触发条件：用户需要评估商业场景、进行投资决策评审或获取场景评级报告
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scene-analysis`
-- **Source URL:** [https://clawhub.ai/skills/scene-analysis](https://clawhub.ai/skills/scene-analysis)
+## 前置准备
+无额外依赖要求
 
-## Overview
+## 操作步骤
 
+### 标准：Gate0战略红线与"去伪存真"过滤器
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/scene-analysis
-```
+1. **接受场景描述**
+   - 智能体读取用户提供的场景描述文本
+
+2. **四维度评估**（严格按顺序执行）
+   - 主航道强依赖：评估是否依赖计费/编排OS/数智本体主航道能力
+   - 核心链路嵌入：评估是否嵌入交易/调度/结算核心链路
+   - 资产沉淀能力：评估是否形成可复用算法/模块资产
+   - 替代性验证：评估市场替代可能性
+
+3. **评估规则执行**
+   - 每个维度必须基于用户提供的具体证据材料
+   - 无证据时可通过逻辑推导替代，但需标注"无相关证明材料"
+   - 任一维度不通过 → 直接判定"C级淘汰"，终止后续流程
+
+4. **输出Gate0评估结果**
+   - 列出四维度评估结论（通过/淘汰）
+   - 说明判定依据（对应场景描述内容+模型规则）
+   - 若全部通过，提示用户可进入Gate1打分环节
+
+### 标准：Gate1量化评估矩阵
+
+1. **触发条件**
+   - Gate0四维度全部通过后
+   - 用户确认进入打分环节
+
+2. **评分执行**
+   - 按评分矩阵对六个因子打分：
+     - A1 必要性（25%）
+     - A2 现金窗口真实性（20%）
+     - B1 标准化/插座化能力（15%）
+     - B2 网络效应（15%）
+     - C1 算法不可替代性（15%）
+     - C2 生态卡位（10%）
+   - 计算总分：(A1×0.25 + A2×0.2 + B1×0.15 + B2×0.15 + C1×0.15 + C2×0.1) × 10
+   - 执行风险扣分（如适用）
+   - 判定最终评级（S/A+/A/B/C）
+
+本 Skill 用于：基于商业闭环决策模型，对给定场景进行三阶段评估（Gate0战略红线过滤、Gate1量化评分、蓝军审核）
+
+2. **蓝军评估执行**
+   - 完全从用户输入的场景描述出发，不受前序评估影响
+   - 严格重新评估Gate0四维度（审查要点、核心证据、判定规则）
+   - 严格重新评估Gate1六因子（按分档条件判定）
+   - 严格执行风险扣分
+   - 严格计算总分和评级
+
+3. **输出蓝军评估结果**
+   - Gate0审查结果（四维度结论+判定依据）
+   - 各维度打分详情（得分+分档依据+权重+加权得分）
+   - 风险扣分情况
+   - 总分计算过程
+   - 等级判定依据
+   - 最终评级
+   - 完成评估流程，输出最终结果
+
+## 资源索引
+- 领域参考：见 [references/gate0-standards.md](references/gate0-standards.md)（Gate0四维度评估详细标准）
+- 领域参考：见 [references/gate1-scoring-rules.md](references/gate1-scoring-rules.md)（Gate1评分矩阵、风险扣分、评级规则）
+- 领域参考：见 [references/blue-force-review.md](references/blue-force-review.md)（蓝军审核流程和规则）
+
+## 注意事项
+- 严格按"Gate0→Gate1→蓝军"顺序执行，不得跳过任意流程
+- 所有评估必须基于用户提供的具体证据材料，无证据时可通过逻辑推导替代，但需标注
+- 仅在Gate0四维度全部通过后才进入Gate1打分环节
+- 蓝军审核需完全独立判断，不受前序评估影响
+
+## 使用示例
+
+### 示例1：完整评估流程
+- **功能说明**：从场景描述到蓝军验证结果的完整评估流程
+- **执行方式**：智能体按步骤执行Gate0→Gate1→蓝军
+- **关键要点**：Gate0通过后进入Gate1打分，Gate1完成后直接进入蓝军审核
+
+### 示例2：蓝军审核
+- **功能说明**：对打分结果进行反向严格验证
+- **执行方式**：智能体完全基于场景描述重新评估，不受前序影响
+- **关键要点**：从严判定，边界分数按低等级判定

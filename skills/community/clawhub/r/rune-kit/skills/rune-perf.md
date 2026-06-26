@@ -1,0 +1,449 @@
+# rune-perf
+
+> Rune L2 Skill | quality | model: tier:mid
+
+
+# perf
+
+> **RUNE COMPLIANCE**: Before ANY code response, you MUST:
+> 1. Classify this request (CODE_CHANGE | QUESTION | DEBUG | REVIEW | EXPLORE)
+> 2. Route through the correct Rune skill (see skill-router routing table)
+> 3. Follow the skill's workflow — do NOT freelance or skip steps
+> Violation: writing code without skill routing = incorrect behavior.
+
+## Platform Constraints
+
+- SHOULD: Monitor your context usage. If working on a long task, summarize progress before context fills up.
+- MUST: Before summarizing/compacting context, save important decisions and progress to project files.
+- SHOULD: Before ending, save architectural decisions and progress to .rune/ directory for future sessions.
+
+## Purpose
+
+Performance regression gate. Analyzes code changes for patterns that cause measurable slowdowns — N+1 queries, sync operations in async handlers, unbounded DB queries, missing indexes, memory leaks, and bundle bloat. Not a profiler — a gate. Finds performance bugs with measurable/estimated impact before production, so developers fix them at the cheapest point in the cycle.
+
+## Triggers
+
+- `/rune perf` — manual invocation before commit
+- Called by `cook` (L1): Phase 5 quality gate
+- Called by `review` (L2): performance patterns detected in diff
+- Called by `deploy` (L2): pre-deploy regression check
+- Called by `audit` (L2): performance health dimension
+
+## Calls (outbound)
+
+- `scout` (L2): find hotpath files and identify framework in use
+- `browser-pilot` (L3): run Lighthouse / Core Web Vitals for frontend projects
+- `verification` (L3): run benchmark scripts if configured (e.g. `npm run bench`)
+- `design` (L2): when Lighthouse Accessibility BLOCK — design system may lack a11y foundation
+
+## Called By (inbound)
+
+- `cook` (L1): Phase 5 quality gate before PR
+- `audit` (L2): performance dimension delegation
+- `review` (L2): performance patterns detected in diff
+- `deploy` (L2): pre-deploy perf regression check
+- `adversary` (L2): scalability stress test when bottleneck patterns detected in plan
+
+## References
+
+- `references/cost-reference.md` — Cost priority hierarchy, quick wins checklist, instance right-sizing, data transfer traps, serverless optimization, observability cost control, managed vs self-hosted matrix, unit economics tracking. Load when cost analysis or FinOps context detected.
+- `references/scalability-reference.md` — Bottleneck identification flow, performance thresholds, API patterns (cursor pagination, rate limiting, circuit breaker, graceful shutdown), caching strategies, queue-based load leveling, concurrency patterns, K8s HPA, CDN headers, load testing. Load when scaling or infrastructure optimization context detected.
+
+## Executable Steps
+
+### Step 1 — Scope
+
+Determine what to analyze:
+- If called with a file list or diff → analyze those files only
+- If called standalone → invoke `scout` to identify top 10 hotpath files (entry points, routes, DB access layers, render-heavy components)
+- Detect project type: **frontend** (React/Vue/Svelte) | **backend** (Node/Python/Go) | **fullstack** | **CLI**
+
+### Step 2 — DB Query Patterns
+
+Scan all in-scope files for:
+
+**N+1 pattern** — loop containing ORM call:
+```
+# BAD: N+1
+for user in users:
+    orders = Order.objects.filter(user=user)  # N queries
+
+# GOOD: prefetch
+users = User.objects.prefetch_related('orders').all()
+```
+Finding: `N+1 DETECTED — [file:line] — loop over [collection] with [ORM call] inside — use prefetch/JOIN`
+
+**Unbounded query** — no LIMIT/pagination:
+```
+# BAD
+db.query("SELECT * FROM events")
+
+# GOOD
+db.query("SELECT * FROM events LIMIT 100 OFFSET ?", [offset])
+```
+Finding: `UNBOUNDED_QUERY — [file:line] — missing LIMIT on [table] — add pagination`
+
+**SELECT \*** — fetching all columns when only some are needed:
+Finding: `SELECT_STAR — [file:line] — select only needed columns`
+
+### Step 3 — Async/Sync Violations
+
+Scan for synchronous operations in async contexts:
+
+**Blocking I/O in async handler:**
+```javascript
+// BAD: blocks event loop
+async function handler(req) {
+  const data = fs.readFileSync('./config.json')
+}
+
+// GOOD
+async function handler(req) {
+  const data = await fs.promises.readFile('./config.json')
+}
+```
+Finding: `SYNC_IN_ASYNC — [file:line] — [readFileSync|execSync|etc] in async function — blocks event loop`
+
+**Missing await:**
+```javascript
+// BAD: fire-and-forget
+async function save() {
+  db.insert(record)  // no await
+}
+```
+Finding: `MISSING_AWAIT — [file:line] — unresolved Promise may cause race condition`
+
+### Step 4 — Memory Leak Patterns
+
+Scan for:
+
+**Event listener without cleanup:**
+```javascript
+// BAD: leak in React
+useEffect(() => {
+  window.addEventListener('resize', handler)
+  // missing return cleanup
+})
+
+// GOOD
+useEffect(() => {
+  window.addEventListener('resize', handler)
+  return () => window.removeEventListener('resize', handler)
+}, [])
+```
+Finding: `MEMORY_LEAK — [file:line] — addEventListener without cleanup in useEffect`
+
+**Growing collection without eviction:**
+```python
+# BAD: unbounded cache
+cache = {}
+def get(key):
+    if key not in cache:
+        cache[key] = expensive_compute(key)
+    return cache[key]
+```
+Finding: `UNBOUNDED_CACHE — [file:line] — dict grows indefinitely — add LRU eviction or TTL`
+
+**Closure-captured arrays:**
+```javascript
+// BAD: closure retains entire `items` even after only `id` is needed
+function makeHandler(items) {
+  return (e) => items.find(x => x.id === e.id);  // items array retained
+}
+// GOOD: extract minimum data
+function makeHandler(items) {
+  const ids = new Set(items.map(x => x.id));
+  return (e) => ids.has(e.id);
+}
+```
+Finding: `CLOSURE_RETAIN — [file:line] — closure captures full collection — extract needed fields only`
+
+**Timer / interval without clear:**
+- `setInterval` / `setTimeout` callback referencing component state without cleanup on unmount
+- Finding: `LEAK_TIMER — [file:line] — interval not cleared — add clearInterval in cleanup`
+
+**Cost framing — memory leak = cost driver:**
+
+Unbounded caches + forgotten listeners + closure-captured arrays produce a chain reaction in production: memory grows → process exceeds container limit → orchestrator kills + cold-starts → cold-start latency spike → autoscaler provisions more replicas → bill climbs 20-40% versus a leak-free baseline. The leak finding is also a COST finding. When tagging severity, escalate any leak in a long-running process (worker, daemon, queue consumer) to **BLOCK** even if heap profile is currently under threshold — the slope, not the absolute, determines OOM timing.
+
+Cross-link to `debug` when a leak surfaces during diagnosis: `debug` finds the cause, `perf` quantifies the cost driver and recommends scope (LRU vs WeakRef vs explicit lifecycle).
+
+### Step 5 — Bundle Analysis (frontend only)
+
+If project type is frontend:
+- Check for large direct imports that block tree-shaking:
+  ```javascript
+  // BAD: imports entire lodash
+  import _ from 'lodash'
+  // GOOD: named import
+  import { debounce } from 'lodash'
+  ```
+  Finding: `BUNDLE_BLOAT — [file:line] — default import of [library] prevents tree-shaking`
+- Check for missing React.memo / useMemo on expensive renders
+- Check for component definitions inside render (recreated every render)
+
+If `browser-pilot` is available and project has a URL: invoke it for Lighthouse score.
+
+**Lighthouse Score Gates** (apply to any project with a public URL):
+
+```
+Performance:    ≥ 90 → PASS  |  70–89 → WARN  |  < 70 → BLOCK
+Accessibility:  ≥ 95 → PASS  |  80–94 → WARN  |  < 80 → BLOCK
+Best Practices: ≥ 90 → PASS  |  < 90  → WARN
+SEO:            ≥ 80 → PASS  |  < 80  → WARN  (public-facing pages only)
+```
+
+**Core Web Vitals thresholds:**
+```
+LCP (Largest Contentful Paint):
+  ≤ 2.5s → PASS  |  2.5–4s → WARN  |  > 4s → BLOCK
+
+INP (Interaction to Next Paint, replaces FID):
+  ≤ 200ms → PASS  |  200–500ms → WARN  |  > 500ms → BLOCK
+
+CLS (Cumulative Layout Shift):
+  ≤ 0.1 → PASS  |  0.1–0.25 → WARN  |  > 0.25 → BLOCK
+```
+
+<HARD-GATE>
+Lighthouse Accessibility score < 80 = BLOCK regardless of other scores.
+Accessibility regressions are legal liability and cannot be auto-fixed by the AI.
+Do NOT downgrade this gate.
+</HARD-GATE>
+
+If no URL available (dev-only environment): log `INFO: no URL for Lighthouse — run manually before deploy`
+If Lighthouse MCP not installed: log `INFO: Lighthouse MCP not available — run lighthouse [url] --output json manually`
+
+### Step 6 — Framework-Specific Checks
+
+**React:**
+- `useEffect` without dependency array → runs every render
+- Expensive computation directly in render (not wrapped in useMemo)
+- Component created inside another component body
+
+**Node.js / Express:**
+- `require()` calls inside route handlers (should be top-level)
+- Missing connection pool config (default pool size = 1 on some ORMs)
+- Synchronous crypto operations (use `crypto.subtle` async API)
+
+**Python / Django:**
+- Missing `select_related` / `prefetch_related` on ForeignKey traversal
+- `len(queryset)` instead of `queryset.count()` (loads all rows)
+- Celery tasks without `bind=True` retried without backoff
+
+**SQL:**
+- JOIN without index on join column
+- WHERE on non-indexed column in large table
+- Cartesian product (missing JOIN condition)
+
+### Step 7 — Benchmark Execution
+
+If project has benchmark scripts (detected via `package.json` scripts, `Makefile`, or `pytest-benchmark`):
+- Invoke `verification` to run them
+- Compare output to baseline if `.perf-baseline.json` exists
+
+If no benchmarks configured: log `INFO: no benchmark scripts found — skipping`
+
+### Step 8 — Report
+
+Emit structured report:
+
+```
+## Perf Report: [scope]
+
+### BLOCK (must fix before merge)
+- [FINDING_TYPE] [file:line] — [description] — estimated impact: [Xms|X% bundle|X queries]
+
+### WARN (should fix)
+- [FINDING_TYPE] [file:line] — [description] — estimated impact: [...]
+
+### PASS
+- DB query patterns: clean
+- Async/sync violations: none
+- [etc.]
+
+### Lighthouse (if ran)
+- Performance: [score] [PASS|WARN|BLOCK]
+- Accessibility: [score] [PASS|WARN|BLOCK]
+- Best Practices: [score] [PASS|WARN]
+- SEO: [score] [PASS|WARN]
+- LCP: [Xs] [PASS|WARN|BLOCK] | INP: [Xms] [PASS|WARN|BLOCK] | CLS: [X] [PASS|WARN|BLOCK]
+
+### Verdict: PASS | WARN | BLOCK
+```
+
+### Step 8.5 — Token Budget Tracking (AI-Powered Apps)
+
+For projects that call AI APIs (detected via imports of `anthropic`, `openai`, `@anthropic-ai/sdk`, `@ai-sdk/core`, `langchain`, `llamaindex`, or `fastmcp`), audit token usage patterns per operation type.
+
+**Scan for:**
+
+| Pattern | Finding | Impact |
+|---------|---------|--------|
+| AI call inside a loop without batching | `TOKEN_LOOP — [file:line] — AI call in loop over [collection] — batch or parallelize` | Cost scales linearly with collection size |
+| No token usage tracking | `NO_TOKEN_TRACKING — [file:line] — AI response usage not captured — add cost logging` | Invisible spend, no budget control |
+| Expensive model for simple tasks | `MODEL_MISMATCH — [file:line] — using [opus/gpt-4] for [classification/extraction] — use [haiku/gpt-4.1-mini]` | 10-30x cost difference for same result |
+| Missing max_tokens on open-ended prompts | `UNBOUNDED_TOKENS — [file:line] — no max_tokens on [call] — add limit to prevent runaway cost` | Single call can consume entire budget |
+| Duplicate AI calls for same input | `DUPLICATE_AI_CALL — [file:line] — same prompt sent to [provider] without caching — add response cache` | Wasted tokens on redundant calls |
+
+**Per-Operation Cost Awareness:**
+
+When token tracking IS present, analyze the operation type breakdown:
+
+```
+Operation Type          Avg Tokens    Frequency    Monthly Est.
+─────────────────────────────────────────────────────────────
+Chat (primary)          2,500 in/800 out    high         $X.XX
+Background notes        500 in/200 out      per-chat     $X.XX
+Summarization           1,500 in/300 out    periodic     $X.XX
+Classification          200 in/50 out       high         $X.XX
+─────────────────────────────────────────────────────────────
+Total estimated monthly                                  $X.XX
+```
+
+**Report this under a `### AI Token Budget` subsection** in the Perf Report. Only include when AI API usage detected — skip entirely for non-AI projects.
+
+**Key insight**: The most impactful optimization is often **model selection per operation** — using a cheaper model for background tasks (summarization, classification, metadata extraction) while reserving expensive models for primary user-facing interactions. A 10x cost reduction on 60% of calls = 6x overall savings.
+
+### Step 8.6 — Observability Cost Control
+
+Logging, tracing, and metrics infrastructure is often the **second-largest cloud bill line after compute** for production workloads. Most observability cost is self-inflicted — high-cardinality labels, unsampled traces, or 100% INFO log retention. Scan for the four common patterns:
+
+**Sampling discipline:**
+| Layer | Healthy default | Anti-pattern |
+|---|---|---|
+| INFO logs | 5-10% sample, 100% on warn/error | 100% retention on all levels |
+| Distributed traces | 5-10% normal, 100% on errors or > p95 latency | Head-based 100% sampling |
+| Metrics | Pre-aggregated at agent (no per-event metrics) | Per-event metrics emission |
+| Debug logs | Off in prod; on-demand via runtime flag | Always-on debug retention |
+
+**Findings to emit:**
+
+| Pattern | Finding | Cost impact |
+|---|---|---|
+| Log line emits unique IDs (`user_id`, `request_id`, `trace_id`) AS A METRIC LABEL | `HIGH_CARDINALITY_METRIC — [file:line] — label [name] is unbounded — move to log/trace, not metric` | Metric stores explode 100x+ ingestion cost |
+| No sampling on INFO logs | `LOG_NO_SAMPLE — [file:line] — INFO logged at 100% — add sampling (10% INFO, 100% warn+)` | 10x log volume = 10x bill |
+| Trace sampling head-based at 100% | `TRACE_NO_SAMPLE — [file:line] — head sampling 100% — switch to tail-based 5-10% with always-on for errors/slow` | 20x trace volume |
+| `console.log` in production hot path | `LOG_HOT_PATH — [file:line] — log emitted per request in tight loop — gate behind LOG_LEVEL or remove` | Logs dominate IOPS; throttles real traffic |
+| Sentry / OTel SDK with no scrubbing config | `OBS_NO_SCRUB — [file:line] — payloads emitted unscrubbed — risk PII + cost (large payloads)` | Compliance + ingestion cost |
+
+**Cost framing**: same project, same business logic; the observability cost line moves 5-20x depending on whether sampling is disciplined. Especially severe in serverless/edge runtimes where every invocation pays cold-start log ingestion overhead.
+
+## Cost Impact Hierarchy
+
+Not every perf finding has the same cost impact. When the report has multiple findings competing for engineering attention, rank them by where they sit in this hierarchy — fixes higher up the tree deliver more $ per engineering hour than fixes lower down.
+
+```
+Tier 1 — Architecture choices (10x impact)
+  • Hot loop running on wrong runtime (serverless cold-start per call vs warm container)
+  • N+1 queries that fan out to upstream rate limit (compounds with retries)
+  • Single-region for global users (egress + latency cost)
+
+Tier 2 — Data transfer (3-5x impact)
+  • Cross-AZ chatter (per-GB egress)
+  • Uncompressed responses (gzip = 70-90% reduction)
+  • Image format (WebP/AVIF = 25-50% reduction over JPEG/PNG)
+  • Log/trace volume (see Step 8.6)
+
+Tier 3 — Compute right-sizing (2-3x impact)
+  • Oversized instance types
+  • Over-provisioned autoscaler floor
+  • Always-on workers for bursty traffic
+
+Tier 4 — DB optimization (1.5-2x impact)
+  • Missing index on hot query
+  • N+1 within a single DB connection (cheaper than cross-service N+1)
+  • Connection pool sizing
+  • Query result caching
+
+Tier 5 — Caching layer (1.2-1.5x impact)
+  • CDN cache hit rate
+  • Application-level memoization
+  • Read-through cache for hot reads
+```
+
+**Reporting rule**: when verdict is BLOCK or WARN, group findings by tier in the report. Operator should NOT optimize Tier 5 caching when a Tier 1 architecture mismatch is sitting unaddressed — the Tier 1 fix subsumes the Tier 5 gain.
+
+**Unit economics anchor**: where possible, attach a unit-cost delta to each finding (e.g., `LOG_NO_SAMPLE` → `~$X/mo per 10k req` based on operator's current observability vendor pricing). If unit-cost data unavailable, flag the finding with the tier-based multiplier band instead of leaving impact blank.
+
+**Cost-allocation precondition**: a perf report's cost claims are only auditable if cloud resources have allocation tags (Environment, Team, Service). If `deploy` artifacts show untagged resources, raise a WARN `COST_UNATTRIBUTED — resources lack allocation tags — anomaly detection blind; tag-first then optimize`.
+
+## Output Format
+
+```
+## Perf Report: src/api/users.ts, src/db/queries.ts
+
+### BLOCK
+- N+1_QUERY src/db/queries.ts:47 — loop over users with Order.find() inside — fix: use JOIN or prefetch — estimated: +200ms per 100 users
+
+### WARN
+- SYNC_IN_ASYNC src/api/users.ts:23 — readFileSync in async handler — fix: fs.promises.readFile
+
+### PASS
+- Memory leak patterns: clean
+- Bundle analysis: N/A (backend project)
+
+### Verdict: BLOCK
+```
+
+## Constraints
+
+1. MUST cite file:line for every finding — "might be slow" without evidence is not a finding
+2. MUST include estimated impact — impact-free findings are noise
+3. MUST NOT fix code — perf investigates only, never edits files
+4. MUST distinguish BLOCK (blocks merge) from WARN (should fix but doesn't block)
+5. MUST run framework-specific checks for detected framework — not just generic patterns
+
+## Mesh Gates (L1/L2 only)
+
+| Gate | Requires | If Missing |
+|------|----------|------------|
+| Scope Gate | File list or scout result before scanning | Invoke scout to identify hotpath files |
+| Evidence Gate | file:line + estimated impact for every BLOCK finding | Downgrade to WARN or remove finding |
+| Framework Gate | Framework detected before framework-specific checks | Fall back to generic patterns only |
+
+## Sharp Edges
+
+Known failure modes for this skill. Check these before declaring done.
+
+| Failure Mode | Severity | Mitigation |
+|---|---|---|
+| BLOCK finding without impact estimate | HIGH | Every BLOCK needs "estimated impact: X" — evidence gate enforces this |
+| False N+1 on intentional batched loops | MEDIUM | Check if loop has a `batch_size` limiter or is already prefetched upstream |
+| Skipping framework checks because framework not detected | MEDIUM | If scout returns unknown framework, run generic checks + note in report |
+| Calling browser-pilot on backend-only project | LOW | Check project type in Step 1 — browser-pilot only for frontend/fullstack |
+| Reporting WARN as BLOCK (severity inflation) | MEDIUM | BLOCK = measurable regression on hot path; WARN = pattern that could be slow |
+| Memory leak found, severity left as MEDIUM | HIGH | Leak in long-running process = cost driver (OOM restart loop → autoscaler spend). Escalate to BLOCK when process lifetime > 1 hour |
+| High-cardinality label silently added as metric tag | HIGH | `user_id` / `request_id` / `trace_id` as METRIC label explodes ingestion cost 100x. Move to log/trace, never metric |
+| Findings reported without tier ranking when multiple compete | MEDIUM | Cost Impact Hierarchy groups by tier (1-5). Tier 1 fix subsumes Tier 5 gain; operator otherwise optimizes wrong target |
+| Cost claim made without cloud tag prerequisite | MEDIUM | Untagged resources = anomaly detection blind. Pair perf findings with WARN `COST_UNATTRIBUTED` when cloud tags missing |
+
+## Done When
+
+- All in-scope files analyzed for DB patterns, async/sync violations, memory leaks
+- Framework-specific checks applied for detected framework
+- Every finding has file:line + estimated impact
+- Bundle analysis ran (frontend) or skipped with reason (backend)
+- Benchmark scripts ran (if configured) or INFO: skipped
+- Perf Report emitted with PASS/WARN/BLOCK verdict
+
+## Returns
+
+| Artifact | Format | Location |
+|----------|--------|----------|
+| Perf Report with verdict | Markdown (PASS/WARN/BLOCK) | inline |
+| Per-finding details | Structured list (file:line + impact) | inline |
+| Lighthouse scores (if ran) | Score table | inline |
+| Framework-specific findings | Categorized list | inline |
+
+## Cost Profile
+
+~3000-8000 tokens input, ~500-1500 tokens output. Sonnet for pattern recognition.
+
+**Scope guardrail:** perf investigates and reports only — it does not fix code. All fixes are delegated to `fix` (L2) after the report is reviewed.
+
+---
+> **Rune Skill Mesh** — 64 skills, 203 connections + 40 signals, 14 extension packs
+> [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
+> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

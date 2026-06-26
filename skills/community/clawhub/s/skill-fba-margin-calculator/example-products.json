@@ -1,0 +1,32 @@
+[
+  {
+    "sku": "CJLE2170569",
+    "name": "Ring Light + Phone Stand Combo",
+    "cj_price_usd": 12.96,
+    "weight_g": 400,
+    "target_aed": 129,
+    "shipping_usd": 4,
+    "dg_risk": false,
+    "referral_pct": 8
+  },
+  {
+    "sku": "CJTY1053448",
+    "name": "Portable Mini Projector",
+    "cj_price_usd": 19.72,
+    "weight_g": 500,
+    "target_aed": 159,
+    "shipping_usd": 5,
+    "dg_risk": false,
+    "referral_pct": 8
+  },
+  {
+    "sku": "CJYS1240831",
+    "name": "Wearable Neck BT Speaker",
+    "cj_price_usd": 12.72,
+    "weight_g": 150,
+    "target_aed": 99,
+    "shipping_usd": 3.5,
+    "dg_risk": true,
+    "referral_pct": 8
+  }
+]

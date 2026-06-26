@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-06-03T14:14:56Z",
+  "note": "Embedded official SIFF 2026 schedule reference files for film-ticket-itinerary-planning. This is source data, not a saved itinerary result.",
+  "files": [
+    {
+      "name": "siff2026-official-cndata-20260603-001.json",
+      "relative_path": "references/siff2026/siff2026-official-cndata-20260603-001.json",
+      "bytes": 1975114,
+      "sha256": "118a964e4c27570fea436ff5eafc0f45fd5bb7e482fde616976cf10279faa16b"
+    },
+    {
+      "name": "第28届上海国际电影节排片表-官方.xlsx",
+      "relative_path": "references/siff2026/第28届上海国际电影节排片表-官方.xlsx",
+      "bytes": 139667,
+      "sha256": "52bf3896d8c128eb56e541429f3c0496407989bc244dc16800f5e066981ea07e"
+    },
+    {
+      "name": "siff2026-scrape-summary.json",
+      "relative_path": "references/siff2026/siff2026-scrape-summary.json",
+      "bytes": 2012,
+      "sha256": "2efb8d1233e8d33bcdd017125706888b3af2fe25b3580f82d093f19e96a85e18"
+    }
+  ]
+}

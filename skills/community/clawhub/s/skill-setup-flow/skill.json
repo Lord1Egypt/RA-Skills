@@ -1,0 +1,50 @@
+{
+  "name": "skill-setup-flow",
+  "version": "1.0.0",
+  "description": "为已安装的 OpenClaw 技能创建标准化的设置流程",
+  "author": "腾龙虾 🦞",
+  "created": "2026-04-04",
+  "type": "meta-skill",
+  "category": "workflow",
+  "triggers": [
+    "为 {skill} 创建设置流程",
+    "初始化 {skill} 配置",
+    "设置 {skill} 技能",
+    "启用 {skill}",
+    "为 {skill} 创建设置",
+    "配置 {skill}"
+  ],
+  "capabilities": [
+    "分析技能类型",
+    "创建目录结构",
+    "创建配置文件",
+    "更新核心文件",
+    "记录设置日志",
+    "提供快速参考"
+  ],
+  "supportedSkillTypes": [
+    "配置型",
+    "数据型",
+    "行为型",
+    "工具型"
+  ],
+  "files": {
+    "core": [
+      "SKILL.md",
+      "README.md",
+      "QUICKSTART.md",
+      "setup-template.md"
+    ],
+    "examples": [
+      "examples/self-improving-setup.md"
+    ]
+  },
+  "dependencies": [],
+  "tags": [
+    "setup",
+    "workflow",
+    "meta",
+    "automation",
+    "configuration"
+  ]
+}

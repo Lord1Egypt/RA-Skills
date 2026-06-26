@@ -1,0 +1,15 @@
+{
+  "name": "谛观·射覆 | Shefu Hexagram Analysis",
+  "slug": "shefu",
+  "description": "「谛观」出品：基于正易心法的卦脉解读技能。默认大衍筮法起卦（模拟蓍草四营十八变），支持梅花易数和六爻纳甲。从卦画结构直接读取气的态势——爻位即气位，八卦为德性（健顺动入陷丽止说），观不是推，同构容纳。包含起卦引擎、卦画默观、反对分析、卦脉流动、月建加权、落处展开、变复自校验七层分析链路。不判断吉凶，展开可能性，启发自主判断。",
+  "description_en": "Structural hexagram analysis based on Zheng Yi Xin Fa. Default Dayan Yarrow Method casting (simulating 49-stalk divination), with Plum Blossom and Six-Yao with Najia as alternatives. Reads qi dynamics from hexagram line structures — line positions represent qi positions, the eight trigrams are functional virtues, observation precedes deduction. Includes hexagram casting engine and six analysis layers. Does not make fortune-telling verdicts — unfolds possibilities from structure.",
+  "version": "0.2.2",
+  "homepage": "https://github.com/henrryjoke/shefu",
+  "categories": ["术数", "传统文化", "AI增强", "易学"],
+  "categories_en": ["Divination", "Chinese Culture", "AI Enhancement", "I Ching"],
+  "tags": ["shefu", "iching", "hexagram", "kunyu", "guamai", "bagua", "divination", "symbolic-analysis", "meihua", "liuyao", "najia", "plum-blossom"],
+  "triggers": ["射覆", "算一算", "占卦", "测算", "预测", "猜一猜", "卦脉", "解卦", "正易心法", "问卦", "卜问", "起卦", "起一卦", "摇卦", "摇一卦", "梅花易数", "梅花起卦", "六爻", "六爻起卦", "六爻纳甲", "纳甲", "铜钱起卦", "hexagram analysis", "shefu", "iching reading", "meihua yishu", "liuyao", "najia divination"],
+  "dependencies": [],
+  "author": {"name": "henrryjoke", "email": ""},
+  "license": {"code": "MIT", "data": "CC BY-NC-SA 4.0"}
+}

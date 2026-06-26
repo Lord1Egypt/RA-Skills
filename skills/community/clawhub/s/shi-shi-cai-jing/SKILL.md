@@ -1,35 +1,79 @@
 ---
-name: "实时财经"
-description: "实时抓取并汇总新浪财经7×24小时全球财经新闻。通过API接口智能增量检测，每5分钟自动抓取最新新闻。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shi-shi-cai-jing"
-sourceUrl: "https://clawhub.ai/skills/shi-shi-cai-jing"
+name: 实时财经
+description: 实时抓取并汇总新浪财经7×24小时全球财经新闻。通过API接口智能增量检测，每5分钟自动抓取最新新闻。
 ---
 
-# 实时财经
+# 实时财经新闻
 
-> 实时抓取并汇总新浪财经7×24小时全球财经新闻。通过API接口智能增量检测，每5分钟自动抓取最新新闻。
+## 使用场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shi-shi-cai-jing`
-- **Source URL:** [https://clawhub.ai/skills/shi-shi-cai-jing](https://clawhub.ai/skills/shi-shi-cai-jing)
+- 获取最新全球财经动态
+- 定时追踪新闻更新
+- 增量检测新内容
 
-## Overview
+## 工作流程
 
+### 1. API抓取（无需浏览器）
 
-## Installation
-To install this skill, run the following command in your terminal:
+使用 `fetch_api.js` 通过新浪财经API接口抓取新闻：
+
 ```bash
-hermes skills install clawhub/shi-shi-cai-jing
+cd ~/.openclaw/workspace/skills/实时财经
+node fetch_api.js
 ```
+
+### 2. 智能增量检测
+
+- 脚本会自动读取数据库中今日最大新闻ID
+- 对比API返回的新闻，筛选出ID大于上次最大ID的增量新闻
+- 无新内容时会跳过，无需刷新页面
+
+### 3. 数据存储
+
+- 新闻保存到 `data/news_db.json`
+- 状态记录在 `data/state.json`（包含最大ID和最后读取时间）
+- 自动清理7天前的旧数据
+
+### 4. 定时任务
+
+使用 cron 每5分钟执行一次：
+
+```bash
+# 执行命令
+cd ~/.openclaw/workspace/skills/实时财经 && node fetch_api.js
+```
+
+任务配置：
+- 间隔：300000ms（5分钟）
+- 模式：isolated
+- 模型：ult/qwen3.5-flash
+
+## 输出格式
+
+汇总时按以下分类组织：
+
+- 🌍 国际局势
+- 🇨🇳 国内新闻
+- 💹 市场动态
+- 🛢️ 能源/大宗商品
+
+## 状态文件
+
+`data/state.json` 格式：
+
+```json
+{
+  "lastRead": "2026-03-18T23:00:00.000Z",
+  "maxId": 4754123,
+  "cronJobId": null
+}
+```
+
+每次抓取后自动更新，用于下次增量检测。
+
+## 注意事项
+
+- 无需打开浏览器，完全通过API获取
+- 智能增量：只保存新新闻，避免重复
+- 自动去重：基于新闻ID判断是否已存在
+- 数据保留7天，自动清理旧数据

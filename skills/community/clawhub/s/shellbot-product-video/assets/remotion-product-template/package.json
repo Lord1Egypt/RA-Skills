@@ -1,0 +1,20 @@
+{
+  "name": "remotion-product-video-template",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts ProductAida out/product-aida.mp4",
+    "render:1080": "remotion render src/index.ts ProductAida out/product-aida-1080.mp4 --codec=h264 --pixel-format=yuv420p"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "remotion": "^4.0.340"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}

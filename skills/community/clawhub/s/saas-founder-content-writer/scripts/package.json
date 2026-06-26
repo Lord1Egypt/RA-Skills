@@ -1,0 +1,15 @@
+{
+  "name": "saas-founder-content-writer-render-image",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Render HTML/CSS cards and Xiaohongshu covers to PNG with headless Chrome.",
+  "bin": {
+    "render-image": "render-image.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "puppeteer": "^24.15.0"
+  }
+}

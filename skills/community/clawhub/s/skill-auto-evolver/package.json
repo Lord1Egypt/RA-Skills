@@ -1,0 +1,46 @@
+{
+  "name": "skill-auto-evolver",
+  "version": "0.1.2",
+  "description": "自动分析和优化 OpenClaw Agent Skills 的工具",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "analysis",
+    "monitoring",
+    "optimization",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/skill-evolver"
+  },
+  "main": "skill_evolver/cli.py",
+  "scripts": {
+    "test": "python -m pytest tests/ -v",
+    "lint": "python -m flake8 skill_evolver/ database/",
+    "analyze": "python -m skill_evolver.cli analyze",
+    "report": "python -m skill_evolver.cli report"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "pyyaml": "^6.0",
+    "gitpython": "^3.1.0"
+  },
+  "devDependencies": {
+    "pytest": "^7.0.0",
+    "flake8": "^6.0.0"
+  },
+  "bin": {
+    "skill-evolver": "./skill_evolver/cli.py"
+  },
+  "files": [
+    "skill_evolver/",
+    "database/",
+    "SKILL.md",
+    "README.md"
+  ]
+}

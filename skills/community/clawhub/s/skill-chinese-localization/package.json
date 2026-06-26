@@ -1,0 +1,9 @@
+{
+  "name": "skill-cn-glossary",
+  "version": "1.0.0",
+  "description": "OpenClaw技能中文降维解释器，大白话匹配对应技能",
+  "author": "Boobi AI",
+  "license": "MIT",
+  "main": "index.js",
+  "keywords": ["chinese", "glossary", "skill matching", "translation"]
+}

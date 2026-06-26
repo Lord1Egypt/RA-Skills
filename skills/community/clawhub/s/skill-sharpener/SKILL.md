@@ -1,35 +1,135 @@
 ---
-name: "Skill Sharpener"
-description: "对现有 Agent Skill（SKILL.md）进行全面质量评估并生成优化建议报告。当用户想要审查、评估、诊断或改进某个 skill 的质量时使用此技能，包括：检查 skill 是否符合最佳实践、描述是否有效触发、结构是否合理、内容是否简洁。使用关键词如"评估 skill"、"优化 skill"、"审查 ski..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-sharpener"
-sourceUrl: "https://clawhub.ai/skills/skill-sharpener"
+name: skill-sharpener
+description: 对现有 Agent Skill（SKILL.md）进行全面质量评估并生成优化建议报告。当用户想要审查、评估、诊断或改进某个 skill 的质量时使用此技能，包括：检查 skill 是否符合最佳实践、描述是否有效触发、结构是否合理、内容是否简洁。使用关键词如"评估 skill"、"优化 skill"、"审查 skill"、"skill 质量"、"skill 诊断"时触发。
 ---
 
-# Skill Sharpener
+# Skill Quality Auditor
 
-> 对现有 Agent Skill（SKILL.md）进行全面质量评估并生成优化建议报告。当用户想要审查、评估、诊断或改进某个 skill 的质量时使用此技能，包括：检查 skill 是否符合最佳实践、描述是否有效触发、结构是否合理、内容是否简洁。使用关键词如"评估 skill"、"优化 skill"、"审查 ski...
+对现有 Agent Skill 进行质量评估和综合优化建议，帮助提升 skill 的发现率、执行效果和维护性。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-sharpener`
-- **Source URL:** [https://clawhub.ai/skills/skill-sharpener](https://clawhub.ai/skills/skill-sharpener)
+## 使用流程
 
-## Overview
+### 第一步：读取目标 Skill
 
+首先确认要审查的 skill 路径。读取：
+- `SKILL.md`（必读）
+- 所有关联的 reference 文件
+- scripts/ 目录下的脚本文件（如有）
 
-## Installation
-To install this skill, run the following command in your terminal:
+如果用户只提供目录而未指定具体 skill，列出该目录下所有 SKILL.md 供用户选择。
+
+### 第二步：运行自动化分析
+
+执行结构分析脚本（输出客观指标，不加载到上下文）：
+
 ```bash
-hermes skills install clawhub/skill-sharpener
+python scripts/audit_skill.py <skill目录路径>
 ```
+
+脚本输出：行数统计、文件树、frontmatter 字段检查。详见 [scripts/audit_skill.py](scripts/audit_skill.py)。
+
+### 第三步：脚本代码审查（如有 scripts/ 目录）
+
+逐一读取 `scripts/` 下的每个脚本文件，作为代码审查员评估以下维度：
+
+**错误处理**：关键操作是否有 try/except？错误信息是否有实际帮助（说明出了什么问题、怎么修复），还是只抛出原始异常？
+
+**路径规范**：文件路径是否全部使用正斜杠 `/`？是否存在硬编码的绝对路径？
+
+**魔法数字/字符串**：是否有无解释的数字或字符串常量（如 `timeout=47`）？关键参数应有注释说明取值理由。
+
+**函数文档**：函数是否有 docstring 说明功能、参数和返回值？
+
+**自解决能力**：脚本遇到问题时是否自己处理（给出默认值、备用方案），还是直接报错甩给调用者？
+
+对每个脚本给出简短的代码审查结论，指出具体问题行和改进建议。
+
+### 第四步：按维度评估
+
+根据 [references/checklist.md](references/checklist.md) 中的详细评估清单，逐维度打分：
+
+| 维度 | 权重 | 评估要点 |
+|------|------|----------|
+| **元数据质量** | 25% | name 格式、description 有效性与触发性 |
+| **结构合理性** | 20% | frontmatter、行数、渐进式披露、引用深度 |
+| **内容质量** | 25% | 简洁性、避免过度解释、术语一致性 |
+| **示例与模式** | 15% | 是否有具体示例、工作流是否清晰 |
+| **脚本质量** | 15% | 错误处理、路径规范、魔法数字、文档完整性（无脚本则跳过，权重重分配）|
+
+每个维度评分：🔴 差（0-59）/ 🟡 待改进（60-79）/ 🟢 良好（80-100）
+
+### 第五步：生成评估报告
+
+使用以下报告结构输出结果：
+
+---
+
+## 📊 Skill 质量评估报告
+
+**Skill 名称**：`{name}`  
+**评估时间**：{date}  
+**总体评分**：{综合得分}/100 {等级emoji}
+
+### 核心指标
+
+| 维度 | 得分 | 状态 |
+|------|------|------|
+| 元数据质量 | XX/100 | 🟢/🟡/🔴 |
+| 结构合理性 | XX/100 | 🟢/🟡/🔴 |
+| 内容质量 | XX/100 | 🟢/🟡/🔴 |
+| 示例与模式 | XX/100 | 🟢/🟡/🔴 |
+| 脚本质量 | XX/100 | 🟢/🟡/🔴 |
+
+### 🔴 高优先级问题（必须修复）
+
+> 列出严重影响 skill 可用性的问题，每条附上：问题描述 + 具体位置 + 修改建议
+
+### 🟡 中优先级建议（建议优化）
+
+> 列出影响质量的改进点
+
+### 🟢 优化亮点
+
+> 列出做得好的地方，供参考
+
+### 📝 优化后的 description 建议
+
+```
+{具体的优化后 description 文本}
+```
+
+---
+
+### 第六步：询问是否应用修复
+
+评估报告生成后，询问用户：
+- "是否直接应用高优先级修复？"（仅修改明确的格式/结构问题）
+- "是否需要我重写 description 以提升触发率？"
+- "是否需要对整个 skill 进行全面重构？"
+
+根据用户选择执行相应操作，**修改前先备份原文件**。
+
+## 关键评估标准速查
+
+**description 必须满足**：
+- 第三人称写法（不用"我"或"你"）
+- 明确说明 WHAT（做什么）和 WHEN（何时触发）
+- 包含具体触发关键词
+- 适度"pushy"——避免 undertrigger，触发词要覆盖用户可能的各种表述
+
+**SKILL.md 正文必须满足**：
+- 不超过 500 行
+- 不过度解释 LLM 已知的内容（质疑每段：这段对 LLM 是新信息吗？）
+- 外部文件引用保持一级深度（SKILL.md → reference.md，不再嵌套）
+- 无时间敏感信息（如"在 2025年8月前..."）
+
+**常见反模式**（立即标记）：
+- Windows 风格路径（`\` 而非 `/`）
+- 提供过多选项而无默认值
+- 模糊 skill 名称（`helper`、`utils`）
+- 文档中混用不同术语指代同一概念
+
+## 参考资料
+
+- 详细评估清单：[references/checklist.md](references/checklist.md)
+- 自动分析脚本：[scripts/audit_skill.py](scripts/audit_skill.py)

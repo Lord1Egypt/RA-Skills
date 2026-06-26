@@ -1,35 +1,22 @@
 ---
-name: "Sanfrancisco Today Festivalevents Agent"
-description: "Harvests, indexes, and searches today's festivals and events in San Francisco."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sanfrancisco-today-festivalevents-agent"
-sourceUrl: "https://clawhub.ai/skills/sanfrancisco-today-festivalevents-agent"
+name: sf-today-events-harvester
+description: Harvests, indexes, and searches today's festivals and events in San Francisco.
+homepage: https://clawhub.ai/u/assix
+metadata:
+  clawdbot:
+    emoji: "🌉"
+    requires:
+      env: []
+    files: ["SanFrancisco-Today-FestivalEvents-Harvester-Agent.py"]
 ---
 
-# Sanfrancisco Today Festivalevents Agent
+# San Francisco Today Events Harvester
 
-> Harvests, indexes, and searches today's festivals and events in San Francisco.
+This skill provides the ability to scrape live event data from SF Funcheap and interact with a local RAG database (ChromaDB) to find specific activities.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sanfrancisco-today-festivalevents-agent`
-- **Source URL:** [https://clawhub.ai/skills/sanfrancisco-today-festivalevents-agent](https://clawhub.ai/skills/sanfrancisco-today-festivalevents-agent)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sanfrancisco-today-festivalevents-agent
-```
+## Agent Instructions
+When the user asks about events in San Francisco today:
+1. Use the script `SanFrancisco-Today-FestivalEvents-Harvester-Agent.py`.
+2. To see live listings, run: `python3 SanFrancisco-Today-FestivalEvents-Harvester-Agent.py --action list --scope top`
+3. To search previous harvests, run: `python3 SanFrancisco-Today-FestivalEvents-Harvester-Agent.py --action search --query "<user query>"`
+4. To update the local database with full listings, run: `python3 SanFrancisco-Today-FestivalEvents-Harvester-Agent.py --action ingest --scope full`

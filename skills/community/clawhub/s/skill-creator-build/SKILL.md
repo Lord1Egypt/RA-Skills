@@ -1,35 +1,260 @@
 ---
-name: "Build"
-description: "生成定制化的构建项目 Skill（含 SKILL.md + references/），为用户的构建过程提供从规划到结项的 持续引导。触发场景：用户表达想做一个项目（"我想做个 X""帮我开发一个 X""搭个 X" "写个 X""做个 X 出来""build X""create X""develop X""make..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-creator-build"
-sourceUrl: "https://clawhub.ai/skills/skill-creator-build"
+name: skill-creator-build
+description: >
+  生成定制化的构建项目 Skill（含 SKILL.md + references/），为用户的构建过程提供从规划到结项的
+  持续引导。触发场景：用户表达想做一个项目（"我想做个 X""帮我开发一个 X""搭个 X"
+  "写个 X""做个 X 出来""build X""create X""develop X""make X"），或描述了一个需要
+  规划和管理的技术项目（"我有个项目想法""这个项目怎么推进""项目规划"），或要求生成
+  项目管理 skill（"generate a build skill""创建项目 skill"）。涵盖软件开发、Skill 开发、
+  技术方案落地、系统搭建、工具制作等构建类项目。安装本 skill 即表明用户倾向于系统化
+  项目管理——遇到构建意图时优先触发，而非直接进入即时编码。
+tools: [write, bash]
 ---
 
-# Build
+# Skill Creator: Build
 
-> 生成定制化的构建项目 Skill（含 SKILL.md + references/），为用户的构建过程提供从规划到结项的 持续引导。触发场景：用户表达想做一个项目（"我想做个 X""帮我开发一个 X""搭个 X" "写个 X""做个 X 出来""build X""create X""develop X""make...
+根据用户的构建需求，生成一个定制化的构建项目 Skill。生成物是一个独立的 SKILL.md（+ references/），
+安装后能在用户的构建项目中持续引导从规划到结项的全过程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-creator-build`
-- **Source URL:** [https://clawhub.ai/skills/skill-creator-build](https://clawhub.ai/skills/skill-creator-build)
+本 Creator 执行一次性的信息收集→生成→交付流程，不是一个持续运行的助手。
 
-## Overview
+---
 
+## Phase 1: 信息收集（Intake）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-creator-build
+目标：用 2 轮自然对话收集生成所需的关键信息。Build 用户通常对项目有清晰认知、想尽快开始——信息收集要快。
+
+### 第一轮：项目目标 + 规模
+
+被触发后，先用一句话说明自己做什么，然后问两个核心变量：
+
+> "我可以帮你生成一个构建项目 skill——它会在你的项目全程引导规划、技术决策、实施和阶段管理。
+> 先告诉我：你想建什么？这个项目大概多大规模，有时间要求吗？"
+
+**被动捕获**——用户在回答时经常自然带出额外信息，Creator 直接捕获：
+- "用 Next.js + Supabase 搭一个 XX" → 捕获技术栈
+- "公司内部的 XX 系统" → 捕获项目性质（工作项目）
+- "我和另一个前端工程师一起做" → 捕获团队构成
+
+### 第二轮：汇总确认 + 条件追问
+
+先回应用户第一轮的内容（让对话有来有回），展示理解到的信息：
+
 ```
+[对用户项目的简短回应]
+
+我理解到的信息：
+- 项目目标：[目标]
+- 项目规模：[规模/时间评估]
+- 推荐模式：[轻量/完整]
+  └ 轻量模式默认快速推进，遇到复杂决策点自动加深；完整模式默认深入分析，明确简单的环节自动精简。
+[如捕获到可选变量，也列出：]
+- 技术栈：[捕获到的技术信息]
+- 项目性质：[side project / 工作项目]
+
+有需要修正的吗？确认后我开始生成 skill 预览。
+```
+
+条件追问（仅在第一轮信息不充分时触发）：
+
+| 缺失/模糊的信息 | 追问策略 |
+|---|---|
+| 目标不清（只说了技术栈没说要做什么） | "技术栈清楚了，但这个项目最终要实现什么？谁会用它？" |
+| 规模完全无线索 | "大概需要多长时间？是一两天能搞定的，还是需要几周甚至更长？" |
+| 目标和规模都充分 | 不追问，直接进汇总确认 |
+| 第一轮已带出足够被动捕获信息 | 汇总确认中展示捕获到的信息，不重复问 |
+
+兜底策略：追问后仍不充分的信息，用合理假设填充并在汇总确认中显式标注。例如：
+
+> "你没提到时间要求，我先按中等规模（几周级）来规划。如果实际更短或更长，告诉我我会调整。"
+
+### 信息充分性判断标准
+
+进入汇总确认的最低门槛：
+- ✅ 项目目标明确（能判断项目类型和命名）
+- ✅ 规模有定位（能判断单阶段 vs 多阶段，轻量 vs 完整）
+
+### 模式推荐启发式规则
+
+| 项目特征 | 默认推荐 | 理由 |
+|---|---|---|
+| 短周期 / 单一交付物（如"写一个 CLI 工具"、"开发一个 Skill"、"一周搞定"） | 轻量模式 | 范围小，深度分析的 ROI 低 |
+| 长周期 / 多模块（如"搭建 SaaS 产品"、"重构核心系统"） | 完整模式 | 范围大，需要充分的阶段管理和技术决策深度 |
+| 不确定 | 完整模式 | 宁多勿少，用户可跳步 |
+
+用户可覆盖推荐。Creator 尊重选择，不反复劝说。
+
+---
+
+## Phase 2: 生成与预览（Generate & Preview）
+
+用户确认汇总后，进入生成流程。
+
+### 变量准备
+
+从收集到的信息中提取生成所需的变量：
+
+| 变量 | 来源 | 处理方式 |
+|---|---|---|
+| `topic` | 用户描述的项目 | 直接使用 |
+| `topic_slug` | 从 topic 派生 | 转为适合文件命名和 name 字段的格式（小写、下划线、无空格，如 "saas_dashboard"） |
+| `goal` | 用户提供的项目目标 | 确保是可操作表述 |
+| `scale` | 用户提供的项目规模/时间 | 直接使用 |
+| `mode` | 用户确认的模式 | "轻量" 或 "完整" |
+| `tech_stack_override` | 可选，被动捕获的技术栈 | 有值→插入 `- 技术栈：[值]`；无值→清除占位符 |
+| `project_nature_override` | 可选，被动捕获的项目性质 | 有值→插入 `- 项目性质：[值]`；无值→清除占位符 |
+| `project_nature_tech_hint` | 从 project_nature 派生 | 工作项目→插入保守选型提示；side project→插入灵活选型提示；未知→清除 |
+| `team_override` | 可选，被动捕获的团队构成 | 有值→插入 `- 团队构成：[值]`；无值→清除占位符 |
+| `lang` | 用户对话使用的语言 | 生成物使用相同语言 |
+| `project_dir` | 从 topic_slug 派生 | `build_` + topic_slug + `/`（如 `build_saas_dashboard/`），项目文件的存放目录 |
+| `generated_by` | Creator 版本标识 | 固定值 `skill_creator_build v1.2.0` |
+
+### 生成逻辑
+
+1. 根据 `mode` 选择对应的骨架模板：
+   - 轻量模式 → 读取 `references/templates/skill/lite.md`
+   - 完整模式 → 读取 `references/templates/skill/full.md`
+
+2. 用收集到的变量替换模板中的占位符（`{{topic}}`、`{{goal}}`、`{{scale}}` 等）
+
+3. 处理可选变量的条件注入：
+   - `tech_stack_override`：如用户提到了技术栈，在模板的 `{{tech_stack_override}}` 位置插入一行，如 `- 技术栈：Next.js + Supabase`
+   - `project_nature_override`：如用户提到了项目性质，插入一行，如 `- 项目性质：工作项目`
+   - `project_nature_tech_hint`：
+     - 工作项目 → 插入"这是工作项目，技术选型偏保守：优先团队熟悉的、社区活跃的、文档好的、维护成本可控的方案"
+     - side project → 插入"这是个人项目，技术选型可以更灵活：学习目的允许尝试新技术，交付目的选熟悉的"
+     - 未知 → 清除占位符
+   - `team_override`：如用户提到了团队，插入一行，如 `- 团队构成：2人（1前端+1后端）`
+   - 所有未提供的可选变量：清除占位符（不留空行）
+
+4. 准备 references/ 文件：
+   - 两种模式都需要：读取 `references/templates/guides/engineering_checklist.md` → 生成 `engineering_checklist.md`
+   - 根据模式选择对应的回顾指南模板：
+     - 完整模式 → 读取 `references/templates/guides/project_review_full.md` → 生成 `project_review_guide.md`
+     - 轻量模式 → 读取 `references/templates/guides/project_review_lite.md` → 生成 `project_review_guide.md`
+
+5. 如果对话语言不是中文，将生成物全文翻译为用户使用的语言，保持结构和格式不变
+
+### 预览展示
+
+将生成的 SKILL.md 完整内容展示给用户，然后列出 references/ 文件清单：
+
+> "此外还会生成以下配套文件：
+> - references/engineering_checklist.md — 技术决策与工程实践检查清单
+> - references/project_review_guide.md — 项目回顾指南（[轻量版/完整版]）
+>
+> 你可以提出修改意见，或者确认后我直接生成。"
+
+### 修改处理
+
+| 修改类型 | 判断标准 | 处理方式 |
+|---|---|---|
+| 结构性修改 | 影响流程结构或阶段逻辑（如"不需要设计模块""加一个安全审查环节"） | 回到映射逻辑调整骨架，重新生成受影响部分，再次展示完整预览 |
+| 内容微调 | 不影响结构（如"目标描述改一下""技术栈补充一个"） | 定点修改，展示差异点而非全文（"已更新 xx，其他部分不变。确认？"） |
+
+迭代引导：
+- 首次："你可以提出修改意见，或者确认后我直接生成。"
+- 后续："已根据你的意见调整。还有需要改的地方吗？没有的话我开始生成。"
+- 不设轮数上限，用户想改就改
+
+### 占位符对照表
+
+生成时逐项检查，确保每个占位符都已处理：
+
+| 占位符 | 来源 | 处理方式 |
+|---|---|---|
+| `{{topic}}` | 用户描述的项目 | 直接替换 |
+| `{{topic_slug}}` | 从 topic 派生（小写、下划线、无空格） | 直接替换 |
+| `{{goal}}` | 用户输入的项目目标（可操作表述） | 直接替换 |
+| `{{scale}}` | 用户输入的项目规模/时间 | 直接替换 |
+| `{{tech_stack_override}}` | 可选，被动捕获的技术栈 | 有值→插入文本；无值→清除占位符（不留空行） |
+| `{{project_nature_override}}` | 可选，被动捕获的项目性质 | 有值→插入文本；无值→清除占位符（不留空行） |
+| `{{project_nature_tech_hint}}` | 从 project_nature 派生 | 有值→插入提示文本；无值→清除占位符（不留空行） |
+| `{{team_override}}` | 可选，被动捕获的团队构成 | 有值→插入文本；无值→清除占位符（不留空行） |
+| `{{project_dir}}` | 从 topic_slug 派生 | `build_` + topic_slug + `/`（如 `build_api_gateway/`），直接替换 |
+| `{{generated_by}}` | Creator 版本标识 | 固定值 `skill_creator_build v1.2.0`，直接替换 |
+
+> **⚠️ 用户确认生成后，必须进入 Phase 3 执行交付流程。不要直接写文件——Phase 3 包含安装路径探测、交付方式询问等必要步骤。**
+
+---
+
+## Phase 3: 交付（Deliver）
+
+用户确认预览后，询问交付方式：
+
+> "你希望我怎么交付？
+> 1. **直接安装到当前工作空间** — skill 和项目文件夹都创建在当前工作空间内，立即可用
+> 2. **打包为 ZIP** — 生成 zip 文件，你可以自行解压到任意位置或分享给别人"
+
+### 安装路径探测
+
+无论哪种交付方式，都需要先确定 skill 的安装目录前缀。按以下优先级探测：
+
+1. **检查当前 workspace 下的已有 skill 路径**：扫描项目根目录中是否存在 `.claude/skills/`、`.agents/skills/`、`.agent/skills/`、`_agents/skills/`、`_agent/skills/`、`.workbuddy/skills/`、`skills/` 等目录。找到任意一个则沿用该前缀
+2. **检查用户根目录（`~/`）下的全局 skill 路径**：扫描是否存在 `~/.claude/skills/`、`~/.openclaw/skills/`、`~/.agents/skills/`、`~/.gemini/antigravity/skills/` 等目录。能找到则说明用户在用对应平台，项目级路径使用对应前缀
+3. **兜底默认值**：以上都未找到，使用 `.agents/skills/` 作为默认前缀（Agent Skills 开放标准，兼容性最广）
+
+探测到的前缀记为 `{skill_prefix}`。最终 skill 安装路径为：`{skill_prefix}/build_{{topic_slug}}/SKILL.md`
+
+### 路径1：直接安装到当前工作空间
+
+**执行以下步骤（必须按顺序完成）：**
+
+1. 在当前工作空间内，按探测到的 `{skill_prefix}` 创建 skill 目录：`{skill_prefix}/build_{{topic_slug}}/`
+2. 将生成的 SKILL.md 写入该目录
+3. 在该目录下创建 `references/` 子目录，写入 engineering_checklist.md 和 project_review_guide.md
+4. 在当前工作空间根目录下创建项目文件目录 `build_{{topic_slug}}/`（用于存放构建过程中产生的所有项目文件：项目计划、阶段文档、决策记录等）
+5. 注意：生成的文件包含大量 Markdown 特殊字符（反引号、方括号、花括号），请使用文件写入工具直接创建文件，避免通过 Shell heredoc（`cat <<EOF`）或重定向写入
+6. 通知用户：
+
+> "构建项目已安装到当前工作空间：
+> - skill 位于 `{skill_prefix}/build_{{topic_slug}}/`
+> - 项目文件将保存在 `build_{{topic_slug}}/` 目录下
+>
+> 直接开始对话就可以使用了——说「开始构建」或「继续项目」即可。"
+
+### 路径2：ZIP 打包
+
+**执行以下步骤（必须按顺序完成）：**
+
+1. 在 /tmp/ 下创建临时目录 `build_{{topic_slug}}_package/`
+2. 在临时目录内按探测到的 `{skill_prefix}` 创建 skill 目录结构：`{skill_prefix}/build_{{topic_slug}}/SKILL.md` + `{skill_prefix}/build_{{topic_slug}}/references/`
+3. 在临时目录内创建项目文件目录：`build_{{topic_slug}}/`（空目录，首次使用时 skill 会自动初始化）
+4. 写入所有文件（同路径1步骤2-3）。同样使用文件写入工具，避免 Shell heredoc
+5. 执行 zip 打包：`cd /tmp && zip -r build_{{topic_slug}}.zip build_{{topic_slug}}_package/`
+6. 将 zip 文件移动到用户工作目录
+7. 清理临时目录
+8. 通知用户：
+
+> "已打包为 `build_{{topic_slug}}.zip`。
+> 解压到你的工作空间根目录后，skill 会自动生效，项目文件将保存在 `build_{{topic_slug}}/` 目录下。"
+
+---
+
+## 附录：生成物质量检查清单
+
+生成前最后过一遍，确保生成物质量：
+
+**内容质量**
+- [ ] frontmatter 的 name 字段不超过 32 字符
+- [ ] frontmatter 的 description 包含触发关键词和主题名称
+- [ ] frontmatter 的 generated_by 字段已填充版本标识
+- [ ] 项目信息区的所有变量（含项目文件目录）都已正确填充
+- [ ] 所有占位符已处理（替换或清除），无残留的 `{{...}}`
+- [ ] 启动协议中的文件读取逻辑与文件管理规范一致
+- [ ] 启动协议中包含项目文件目录的定位和创建逻辑
+- [ ] 四子流完整（设计(条件触发) + 技术决策 + 实施 + 验证）
+- [ ] 推进与回退机制完整（回退表 + 行为定义）
+- [ ] 阶段推进机制完整（推进确认 + 跳阶段 + 对话管理）
+- [ ] 所有文件命名规则使用了正确的 topic_slug
+- [ ] 没有任何删除文件的指令
+- [ ] 所有项目文件路径相对于项目文件目录
+- [ ] 如完整模式：读取优先级四层定义清晰
+- [ ] references/ 文件与 SKILL.md 中的引用一致
+
+**交付验证**
+- [ ] 交付前已询问用户选择交付方式（直接安装 / ZIP）
+- [ ] 已执行安装路径探测，确认 `{skill_prefix}` 值
+- [ ] skill 目录结构正确：`{skill_prefix}/build_[topic_slug]/SKILL.md` + `references/`
+- [ ] 项目文件目录已创建：`build_[topic_slug]/`
+- [ ] 所有文件已成功写入（非空、内容完整）

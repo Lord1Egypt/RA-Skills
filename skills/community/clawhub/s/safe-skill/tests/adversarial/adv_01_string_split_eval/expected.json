@@ -1,0 +1,8 @@
+{
+    "label": "adversarial",
+    "description": "Evasion via string splitting: eval is assembled from 'ev'+'al', subprocess from 'sub'+'process', os.system via getattr. Tests whether AST/regex can catch split identifiers.",
+    "expected_detection": "partial",
+    "known_blind_spots": ["getattr-based function resolution", "string concatenation to build function names"],
+    "ideal_triggers": ["RCE-010"],
+    "notes": "Current scanner likely misses most of these — this is an expected limitation of static analysis without taint tracking"
+}

@@ -1,0 +1,793 @@
+{
+    "_meta": {
+        "description": "Ground truth annotations for 73 real ClawHub skills (23 original + 50 expanded from batch_200_labeling)",
+        "annotator": "manual review based on file content analysis",
+        "date": "2026-03-16",
+        "methodology": "Original 23 from deep manual review; 50 new from batch_200_labeling.json with 23 deeply reviewed and 27 likely_benign auto-labeled",
+        "total_skills": 73,
+        "original_count": 23,
+        "expanded_count": 50
+    },
+    "skills": {
+        "spclaudehome__skill-vetter": {
+            "true_label": "benign",
+            "rationale": "Security documentation skill \u2014 all dangerous patterns are in descriptive/checklist context",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15,
+            "key_findings_annotation": {
+                "AGENT-001": "FP \u2014 mentions SOUL.md/MEMORY.md in 'what to check for' checklist",
+                "CRED-001": "FP \u2014 mentions ~/.ssh in warning list",
+                "CRED-002": "FP \u2014 mentions ~/.aws in warning list",
+                "RCE-005": "FP \u2014 mentions eval() in warning list",
+                "RCE-006": "FP \u2014 mentions exec() in warning list",
+                "ESC-001": "FP \u2014 mentions sudo in warning list"
+            },
+            "all_findings_should_be_doc_downgraded": true
+        },
+        "aaronjmars__soul-md": {
+            "true_label": "suspicious",
+            "rationale": "Instructs agent to 'embody a digital identity' by reading SOUL.md, STYLE.md. The AGENT-001 triggers are TRUE positives \u2014 this skill's PURPOSE is to override agent identity.",
+            "expected_level": [
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 50,
+            "key_findings_annotation": {
+                "AGENT-001": "TP \u2014 skill explicitly reads and internalizes SOUL.md to override agent personality"
+            }
+        },
+        "addogiavara-tech__openclaw-soul-weaver": {
+            "true_label": "suspicious",
+            "rationale": "Soul weaver that reads/modifies SOUL.md, IDENTITY.md, MEMORY.md, USER.md. Also connects to external sora2.wboke.com API.",
+            "expected_level": [
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 80,
+            "key_findings_annotation": {
+                "AGENT-001": "TP \u2014 skill's core function is agent identity manipulation"
+            }
+        },
+        "addogiavara-tech__soul-weaver": {
+            "true_label": "suspicious",
+            "rationale": "Same author, same pattern \u2014 SOUL.md manipulation with external API calls",
+            "expected_level": [
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 50
+        },
+        "antaripnandi__notebooklm-bypass": {
+            "true_label": "suspicious",
+            "rationale": "Uses playwright to automate NotebookLM, accesses browser cookies for auth bypass, runs subprocess, installs packages. After CRED-010 tightening, 'cookies' without browser/steal context no longer triggers \u2014 score reduced.",
+            "expected_level": [
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 15,
+            "key_findings_annotation": {
+                "CRED-010": "Reduced \u2014 many cookie mentions lack explicit browser/steal context after rule tightening",
+                "PKG-001": "TP \u2014 installs playwright at runtime",
+                "RCE-007": "TP \u2014 subprocess for browser automation"
+            }
+        },
+        "amrdab__clawd-cursor": {
+            "true_label": "medium_risk",
+            "rationale": "Bridge between Claude and Cursor IDE. Uses localhost HTTP on port 3847, npm install. The NET-001 (hardcoded IP 127.0.0.1) findings are FP \u2014 localhost is expected for local IPC.",
+            "expected_level": [
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_min_score": 20,
+            "key_findings_annotation": {
+                "NET-001": "FP \u2014 127.0.0.1 is localhost for local IPC, not suspicious",
+                "RCE-005": "TP \u2014 mentions eval in code context",
+                "PKG-002": "TP \u2014 npm install at runtime"
+            }
+        },
+        "addogiavara-tech__autoclaw-browser": {
+            "true_label": "suspicious",
+            "rationale": "Browser automation with curl POST to local MCP, accesses cookies, downloads Chrome extension from wboke.com. Cookie access is TP, external download is suspicious.",
+            "expected_level": [
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 50,
+            "key_findings_annotation": {
+                "EXFIL-006": "TP \u2014 curl POST with data",
+                "CRED-010": "TP \u2014 browser cookie access",
+                "PKG-002": "TP \u2014 npm install"
+            }
+        },
+        "abyousef739__clawskillshield": {
+            "true_label": "medium_risk",
+            "rationale": "Security skill that uses eval/exec and subprocess for scanning. The dangerous APIs are used for the skill's legitimate security-scanning purpose, but it's still risky code.",
+            "expected_level": [
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 40,
+            "key_findings_annotation": {
+                "RCE-005": "FP/Grey \u2014 eval() used as part of security scanning logic",
+                "RCE-006": "FP/Grey \u2014 exec() used as part of security scanning logic",
+                "PKG-001": "TP \u2014 installs packages at runtime"
+            }
+        },
+        "agegr__ai-topic-scout": {
+            "true_label": "low_risk",
+            "rationale": "Topic research tool. Uses pip install for yt-dlp, reads API keys. Findings are real but low-risk for the use case.",
+            "expected_level": [
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_min_score": 20,
+            "key_findings_annotation": {
+                "PKG-001": "TP \u2014 pip install yt-dlp at runtime",
+                "CRED-010": "Borderline \u2014 'cookies' in YouTube context",
+                "CRED-006": "FP \u2014 API key format mentioned in config instructions"
+            }
+        },
+        "andrewchen-oss__nuwa-world-osint-human-research": {
+            "true_label": "medium_risk",
+            "rationale": "OSINT research tool using external APIs. curl with POST is TP \u2014 sends data to nuwa.world API for face search. OSINT use case is inherently sensitive.",
+            "expected_level": [
+                "HIGH"
+            ],
+            "expected_min_score": 30,
+            "key_findings_annotation": {
+                "EXFIL-006": "TP \u2014 curl POST to external API with user data"
+            }
+        },
+        "4xiomdev__whoop-central": {
+            "true_label": "medium_risk",
+            "rationale": "WHOOP fitness API integration. Mentions ngrok for OAuth callback, crontab for scheduling. Both are legitimate for the use case but still flagged correctly.",
+            "expected_level": [
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_min_score": 20,
+            "key_findings_annotation": {
+                "PERSIST-001": "TP \u2014 crontab for scheduled data sync",
+                "NET-002": "TP \u2014 ngrok for OAuth callback tunnel"
+            }
+        },
+        "aryanbhasin__tiktok-slideshow": {
+            "true_label": "low_risk",
+            "rationale": "TikTok slideshow creator. After CRED-010 tightening, generic cookie/session mentions no longer trigger. CRED-006 for API key patterns remains.",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_min_score": 5,
+            "key_findings_annotation": {
+                "CRED-010": "Reduced \u2014 generic cookie mentions no longer match tightened rule",
+                "CRED-006": "FP \u2014 API key format in config example"
+            }
+        },
+        "akshaymemane__proactive-daily-planner": {
+            "true_label": "low_risk",
+            "rationale": "Daily planner with cron scheduling. PERSIST-001 fires on legitimate cron schedule mention.",
+            "expected_level": [
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_min_score": 5,
+            "key_findings_annotation": {
+                "PERSIST-001": "Borderline \u2014 cron mentioned for legitimate scheduling"
+            }
+        },
+        "801c07__molt-trader-skill": {
+            "true_label": "low_risk",
+            "rationale": "Trading API wrapper. npm install for SDK, references external APIs. Normal for the use case.",
+            "expected_level": [
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_min_score": 5,
+            "key_findings_annotation": {
+                "PKG-002": "TP \u2014 npm install of trading SDK"
+            }
+        },
+        "aqiljaafree__ghostbot-aclm": {
+            "true_label": "benign",
+            "rationale": "Ethereum smart contract skill. 'token' means ERC-20 tokens. Solidity code paths triggered /etc/ pattern falsely.",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15,
+            "key_findings_annotation": {
+                "PKG-002": "TP \u2014 npm install for Hardhat"
+            }
+        },
+        "aqiljaafree__ghostbot-uniswap-v4hooks-testnet": {
+            "true_label": "benign",
+            "rationale": "Uniswap V4 hooks on testnet. Same author, similar pattern. Low risk.",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "ai-headhunter__pinch": {
+            "true_label": "benign",
+            "rationale": "Pinch protocol skill. npm install is only finding.",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "bagwatcher__the-trench": {
+            "true_label": "benign",
+            "rationale": "Solana trading skill. Only entropy findings from contract addresses. No real security issues.",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "allen566__gutcheck": {
+            "true_label": "benign",
+            "rationale": "Decision-making helper. Pure prompt skill. CLEAN.",
+            "expected_level": [
+                "CLEAN"
+            ],
+            "expected_max_score": 0
+        },
+        "allenfancy-gan__ai-nano-banana-ima": {
+            "true_label": "benign",
+            "rationale": "Image generation API wrapper. 'token' refers to API access tokens in config instructions, but no actual credential theft.",
+            "expected_level": [
+                "CLEAN"
+            ],
+            "expected_max_score": 0
+        },
+        "alphac007__aap-agent-bounty": {
+            "true_label": "benign",
+            "rationale": "Agent bounty tracker. CLEAN.",
+            "expected_level": [
+                "CLEAN"
+            ],
+            "expected_max_score": 0
+        },
+        "amangarg1999__internet-lookup-verifier": {
+            "true_label": "benign",
+            "rationale": "Internet fact-checking skill. CLEAN.",
+            "expected_level": [
+                "CLEAN"
+            ],
+            "expected_max_score": 0
+        },
+        "ashwingupy__firecrawl-search": {
+            "true_label": "benign",
+            "rationale": "Web search via Firecrawl API. CLEAN.",
+            "expected_level": [
+                "CLEAN"
+            ],
+            "expected_max_score": 0
+        },
+        "xaiohuangningde__pcec-evomap-bounty": {
+            "true_label": "low_risk",
+            "rationale": "Bounty system with external API calls to evomap.ai; multiple EXFIL-006 hits from POST requests plus high-entropy strings push score into HIGH range, but behavior is legitimate for the bounty platform workflow",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_min_score": 5
+        },
+        "autume__meshtastic-detection": {
+            "true_label": "low_risk",
+            "rationale": "LoRa mesh detection tool with many files containing legitimate ESC-001 and PERSIST-001 patterns from hardware automation scripts; score is high due to volume of files, not malicious intent",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 5
+        },
+        "novirusallowed__clawpenflow": {
+            "true_label": "low_risk",
+            "rationale": "Q&A platform agent with ironic name; EXFIL-006 and CRED-006 from legitimate API calls to clawpenflow.com platform",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 5
+        },
+        "kentaroid-bot__agents-refresh-md": {
+            "true_label": "benign",
+            "rationale": "Agent context refresh tool; extremely high AGENT-001 count is structurally expected as the skill's purpose is managing agent markdown context files",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_max_score": 2000
+        },
+        "liuhao6741__mindkeeper": {
+            "true_label": "benign",
+            "rationale": "Agent context version control; 36 AGENT-001 hits are structurally expected as the skill manages agent identity and context files by design",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_max_score": 2000
+        },
+        "suileyan__telegram-send-photo": {
+            "true_label": "suspicious",
+            "rationale": "Telegram photo sender with hardcoded bot token patterns; EXFIL-001 + CRED-006 indicate data exfiltration risk via Telegram bot API",
+            "expected_level": [
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 50
+        },
+        "realroc__tiktok-viral-marketing": {
+            "true_label": "low_risk",
+            "rationale": "TikTok marketing tool sending data to pinghuman.ai API; EXFIL-006 hits are from legitimate marketing API integration",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 5
+        },
+        "dilate7__moltunes": {
+            "true_label": "low_risk",
+            "rationale": "Decentralized skill marketplace with MOLT tokens; PKG-002 from npm patterns are expected for the marketplace functionality",
+            "expected_level": [
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_min_score": 5
+        },
+        "th3hypn0tist__symbolic-memory": {
+            "true_label": "low_risk",
+            "rationale": "Symbolic memory system with PostgreSQL and Ollama; AGENT-001 and EXFIL-001 from legitimate memory storage and retrieval patterns",
+            "expected_level": [
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_min_score": 5
+        },
+        "kimbo128__drain-mcp": {
+            "true_label": "medium_risk",
+            "rationale": "USDC payment channels on Polygon; EXFIL-007 from crypto transaction patterns represent real financial risk",
+            "expected_level": [
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_min_score": 15
+        },
+        "wljmmx__cross-channel-memory": {
+            "true_label": "benign",
+            "rationale": "Cross-channel memory sync across QQ/Feishu; AGENT-001 from agent coordination patterns are expected for the cross-platform sync use case",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 100
+        },
+        "ok-james-01__okx-onchain-gateway": {
+            "true_label": "medium_risk",
+            "rationale": "OKX blockchain transaction broadcaster; multiple RCE-001 from transaction execution patterns represent real financial execution risk",
+            "expected_level": [
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_min_score": 15
+        },
+        "assistant-design__clawflight": {
+            "true_label": "low_risk",
+            "rationale": "Flight search with affiliate links; CRED-006 from API key patterns and PERSIST-001 from caching are expected for travel search functionality",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_min_score": 5
+        },
+        "driftsbot__experience-body-electric": {
+            "true_label": "benign",
+            "rationale": "Immersive experience platform; EXFIL-006 from API calls to drifts.bot plus INJECT-002 patterns from agent instruction handling push score higher than expected, but behavior is legitimate",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 60
+        },
+        "dbalve__fastio-skills": {
+            "true_label": "benign",
+            "rationale": "Agent workspace platform; RCE-005 and INJECT-002 from tool routing patterns are structural to the workspace framework",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 100
+        },
+        "khaliqgant__relaycast": {
+            "true_label": "benign",
+            "rationale": "Multi-agent messaging system; EXFIL-006 and CRED-006 from API key and message transmission plus INJECT-002 from relay message handling push score higher than expected, but behavior is legitimate for relay functionality",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 60
+        },
+        "donghaozhang__qcut-toolkit": {
+            "true_label": "low_risk",
+            "rationale": "Media toolkit with many sub-skills; high EXFIL-006 count from legitimate media processing API calls across sub-tools",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 5
+        },
+        "impkind__acc-error-memory": {
+            "true_label": "low_risk",
+            "rationale": "Error tracking system; 21 PERSIST-001 hits from heavy file system writes are expected for error log persistence across many tracked files",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 5
+        },
+        "werdelin__audos": {
+            "true_label": "low_risk",
+            "rationale": "Startup workspace builder; EXFIL-006 from API calls to audos service and INJECT-002 from prompt patterns are expected for the platform",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 5
+        },
+        "gdperkins__reporead": {
+            "true_label": "benign",
+            "rationale": "GitHub repo analyzer requiring API key; CRED-006 and PERSIST-002 are expected for GitHub API key handling and analysis caching",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_max_score": 200
+        },
+        "jordancoin__atl-mobile": {
+            "true_label": "low_risk",
+            "rationale": "iOS simulator automation tool; 50 EXFIL-006 hits from legitimate automation URL and data patterns across many test scenarios",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 5
+        },
+        "summerloveqq__call-aida-app": {
+            "true_label": "low_risk",
+            "rationale": "Internal LLM invoke tool for aida.vip.sankuai.com; RCE-007 and EXFIL-002 from subprocess and HTTP calls to internal service",
+            "expected_level": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_min_score": 5
+        },
+        "againta__fluid-memory": {
+            "true_label": "benign",
+            "rationale": "Ebbinghaus-based memory system; AGENT-005 hits from memory manipulation are structurally expected, RCE-007 from legitimate subprocess usage",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_max_score": 200
+        },
+        "niracler__nini-writing-inspiration": {
+            "true_label": "benign",
+            "rationale": "Chinese writing inspiration tool with no code or external calls",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "ivangdavila__play-store": {
+            "true_label": "benign",
+            "rationale": "Google Play Store publishing guide, purely instructional",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "zhengxinjipai__deep-research-gemini": {
+            "true_label": "benign",
+            "rationale": "Gemini deep research wrapper, marked as safe by author",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "atwatcher__mckinsey-style-meeting-brief-copilot": {
+            "true_label": "benign",
+            "rationale": "Meeting brief generation tool, text-only productivity skill",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "vishalgojha__lead-storage": {
+            "true_label": "benign",
+            "rationale": "Lead storage skill with explicit confirmation gating",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "lxgicstudios__validator-gen": {
+            "true_label": "benign",
+            "rationale": "Zod/Yup schema generator; PKG-002 from npx usage is expected",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "yipng05-max__cjournal-analyzer": {
+            "true_label": "benign",
+            "rationale": "Chinese academic journal analyzer; high_entropy from Chinese text",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "siddontang__tidb-x": {
+            "true_label": "benign",
+            "rationale": "TiDB database skill; EXFIL-006 from legitimate API endpoint URLs",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "asio-o__minimax-plan-checker": {
+            "true_label": "benign",
+            "rationale": "MiniMax API plan checker; PKG-001 from python script usage",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "bytesagain__api-docs": {
+            "true_label": "benign",
+            "rationale": "ShowDoc API documentation tool; high_entropy from mixed Chinese/English text",
+            "expected_level": [
+                "CLEAN",
+                "LOW"
+            ],
+            "expected_max_score": 15
+        },
+        "tylordius__x-read": {
+            "true_label": "benign",
+            "rationale": "Twitter/X content reader; NET-001 and ESC-005 from web scraping patterns",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_max_score": 39
+        },
+        "michael-laffin__content-recycler": {
+            "true_label": "benign",
+            "rationale": "Content repurposing tool; PERSIST-001 from file write patterns for content storage",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_max_score": 30
+        },
+        "stperic__local-websearch": {
+            "true_label": "benign",
+            "rationale": "Self-hosted SearXNG search; EXFIL-002 from legitimate HTTP requests to user's own server",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_max_score": 36
+        },
+        "sa9saq__api-health-check": {
+            "true_label": "benign",
+            "rationale": "API health monitoring with curl; NET-001 from legitimate endpoint checking",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_max_score": 26
+        },
+        "anmolnagpal__guardduty-explainer": {
+            "true_label": "benign",
+            "rationale": "AWS GuardDuty finding explainer; INJECT-002 from security rule patterns in content",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_max_score": 33
+        },
+        "effimail__crop-image": {
+            "true_label": "benign",
+            "rationale": "Image cropping API wrapper; EXFIL-006 from legitimate API POST endpoints",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_max_score": 36
+        },
+        "lihai2582424632-droid__jiade": {
+            "true_label": "benign",
+            "rationale": "FLUX image generation via inference.sh; RCE-001 from allowed bash tool usage",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM"
+            ],
+            "expected_max_score": 33
+        },
+        "badideal-2046__specvibe": {
+            "true_label": "benign",
+            "rationale": "Spec-driven dev framework; INJECT-002 and AGENT-003 from framework instruction patterns",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 51
+        },
+        "ivangdavila__genomics": {
+            "true_label": "benign",
+            "rationale": "Genomics variant interpreter; AGENT-001 from clinical workflow instructions",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 93
+        },
+        "xingstudy__hongkong-payment-qfpay": {
+            "true_label": "benign",
+            "rationale": "QFPay payment API integration guide; EXFIL-001 from legitimate payment API signatures",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 93
+        },
+        "crazylion__aws-price-csv": {
+            "true_label": "benign",
+            "rationale": "AWS pricing CSV generator; PKG-001 and RCE-007 from pip install and subprocess patterns",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 56
+        },
+        "wangwalk__managing-apple-notes": {
+            "true_label": "benign",
+            "rationale": "Apple Notes CLI wrapper; ESC-001 from AppleScript/osascript execution",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 63
+        },
+        "administratorfung__news-aggregator-skill-3": {
+            "true_label": "benign",
+            "rationale": "Multi-source news aggregator; NET-001 from legitimate HTTP fetches to news APIs",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 58
+        },
+        "darkdevelopers__bring-add": {
+            "true_label": "benign",
+            "rationale": "Bring! shopping list CLI; CRED-006 from auth token patterns for legitimate API",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 74
+        },
+        "gzzzj__garmin-health-report": {
+            "true_label": "benign",
+            "rationale": "Garmin health report generator; CRED-006 from garth auth library, PKG-001 from pip install",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ],
+            "expected_max_score": 90
+        },
+        "alirezarezvani__ciso-advisor": {
+            "true_label": "benign",
+            "rationale": "Security advisory skill; INJECT-002 hits from security terminology in content, not actual injection",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_max_score": 123
+        },
+        "azep-ninja__quickintel-scan": {
+            "true_label": "benign",
+            "rationale": "Token security scanner; EXFIL-006/007 from legitimate API calls to Quick Intel for contract analysis",
+            "expected_level": [
+                "CLEAN",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "EXTREME"
+            ],
+            "expected_max_score": 114
+        }
+    }
+}

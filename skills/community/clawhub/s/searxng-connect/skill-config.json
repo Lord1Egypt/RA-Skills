@@ -1,0 +1,12 @@
+{
+  "name": "searxng-connect",
+  "version": "1.0.0",
+  "description": "SearXNG search wrapper for OpenClaw",
+  "author": "rdeangel",
+  "config": {
+    "default_instance": "https://searxng.yourserver.com/",
+    "cache_enabled": true,
+    "cache_expiry": 3600,
+    "rate_limit": 2.0
+  }
+}

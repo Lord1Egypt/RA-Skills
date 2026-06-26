@@ -1,0 +1,27 @@
+{
+  "owner": "kimbo128",
+  "slug": "drain-mcp",
+  "displayName": "Handshake58 DRAIN",
+  "latest": {
+    "version": "1.8.0",
+    "publishedAt": 1771714302733,
+    "commit": "https://github.com/openclaw/skills/commit/1029f2c8d3ff4eca893e4e0efcfd6266a99de481"
+  },
+  "history": [
+    {
+      "version": "1.7.0",
+      "publishedAt": 1771441710407,
+      "commit": "https://github.com/openclaw/skills/commit/8abff44e374c239d5f5d57cc500b7832ef06d87e"
+    },
+    {
+      "version": "1.3.0",
+      "publishedAt": 1771353383015,
+      "commit": "https://github.com/openclaw/skills/commit/ae2b1f649466dde0697dade58ca84df959b56552"
+    },
+    {
+      "version": "1.1.0",
+      "publishedAt": 1771352468045,
+      "commit": "https://github.com/openclaw/skills/commit/ccb0cb6462f2b9423a2d6d5aca779e3de8be056a"
+    }
+  ]
+}

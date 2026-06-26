@@ -1,0 +1,11 @@
+# seth_receitas_ptbr - Dependencies
+# This skill uses ONLY Python stdlib - no external dependencies required!
+#
+# Built with:
+# - urllib (stdlib)
+# - html.parser (stdlib)
+# - json (stdlib)
+# - re (stdlib)
+#
+# Optional enhancements (not required):
+# - requests (for faster HTTP) - NOT USED

@@ -1,35 +1,176 @@
 ---
-name: "Skill Reader"
-description: "深入解读任意 Skill 的使用方法。输入 Skill 名称、安装地址或 SKILL.md 文档，输出结构化的使用说明：主要功能、使用场景、核心命令、安装依赖、API Key 需求、版本号、注意事项等。Triggers: skill reader, 读skill, 解读skill, skill怎么用, skill..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-reader"
-sourceUrl: "https://clawhub.ai/skills/skill-reader"
+name: skill-reader
+version: "1.0.0"
+description: "深入解读任意 Skill 的使用方法。输入 Skill 名称、安装地址或 SKILL.md 文档，输出结构化的使用说明：主要功能、使用场景、核心命令、安装依赖、API Key 需求、版本号、注意事项等。Triggers: skill reader, 读skill, 解读skill, skill怎么用, skill guide, skill manual, skill usage, 如何使用skill."
 ---
 
-# Skill Reader
+# Skill Reader - Skill 使用说明书生成器
+> 版本：2026040601
 
-> 深入解读任意 Skill 的使用方法。输入 Skill 名称、安装地址或 SKILL.md 文档，输出结构化的使用说明：主要功能、使用场景、核心命令、安装依赖、API Key 需求、版本号、注意事项等。Triggers: skill reader, 读skill, 解读skill, skill怎么用, skill...
+像买电器看说明书一样——你不需要懂电路，只需要知道按哪个键、出什么效果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-reader`
-- **Source URL:** [https://clawhub.ai/skills/skill-reader](https://clawhub.ai/skills/skill-reader)
+**专治**："装了一堆 skill 但不知道怎么用"、"这个 skill 到底干啥的"。
 
-## Overview
+## 适用场景
 
+- 安装了复杂 skill（如 superpower、gstack、baoyu 系列），不知道从哪下手
+- 评估一个 skill 是否值得安装——先看说明书再决定
+- 给团队成员生成 skill 使用指南
+- 自己忘了某个 skill 怎么用，快速回顾
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-reader
+## 输入方式
+
+1. **Skill 名称** — 已安装的 skill，如 `baoyu-image-gen`
+2. **安装地址** — ClawHub URL 或 GitHub URL
+3. **SKILL.md 文档路径** — 本地文件路径
+
+---
+
+## 输出格式（核心改进版）
+
+### 🏷️ 第一层：速览卡（30 秒读完）
+
+```markdown
+## 📌 [Skill Name] — 一句话说明
+[大白话，10-15 字]
+
+**帮我做什么**：[用 2-3 个口语化场景描述，不要用技术术语]
+**跟你说什么就能用**：[2-3 个自然语言触发词示例]
+**要不要钱**：[免费 / 需要付费 Key / 有免费额度]
+**值得装吗**：[⭐⭐⭐⭐⭐ 星级评分 + 一句话推荐理由]
 ```
+
+### 📖 第二层：完整说明书（需要时展开）
+
+```markdown
+---
+
+## 🎯 它能干什么
+[3-5 个核心功能，每个用"用户能获得的成果"来描述，不描述技术实现]
+[例：❌ "调用 Google Gemini API 生成图像" → ✅ "你描述想要什么画面，它帮你画出来"]
+
+## 🗺️ 使用场景（带真实例子）
+
+### 场景 1：[场景名]
+- 你说什么：「帮我画一张XX的封面图」
+- 它做什么：[具体产出]
+- 贴士：[使用建议]
+
+### 场景 2：[场景名]
+...
+
+## ⚡ 怎么用（对话式）
+[用"你 → AI"的对话格式展示，不展示命令行]
+
+### 最简单的用法
+你说：「[自然语言示例]」
+AI 做：[产出结果]
+
+### 进阶用法
+你说：「[带参数的自然语言示例]」
+AI 做：[更精准的产出]
+
+## 🔑 要准备什么
+[按必要性排序]
+
+### 必须有（没有就不能用）
+- [依赖 1]：怎么获取 → [具体步骤，包括链接]
+
+### 最好有（没有也能用，但效果更好）
+- [依赖 2]：...
+
+### 可选（锦上添花）
+- [依赖 3]：...
+
+## 💰 费用说明
+[如果有 API 费用，给出大致估算：比如"一张图约 0.01 元"]
+[标注免费额度：比如"Google 每月免费 15 张"]
+
+## 🚦 推荐决策
+
+| 你想做什么 | 用这个 | 还是那个 |
+|-----------|--------|---------|
+| 画封面图 | ✅ 这个 | → baoyu-cover-image 更专业 |
+| 小红书配图 | ❌ 别用 | → baoyu-xhs-images 专门做这个 |
+| 随便画一张 | ✅ 可以 | → ai-image-generation 模型更多 |
+
+## ⚠️ 踩坑记录
+[如果能实际测试，记录真实踩坑经验；不能测试则基于文档推测]
+- [坑 1]：[现象] → [解决方案]
+- [坑 2]：...
+
+## 🧩 它和其他 Skill 的关系
+[用简单的关系图或文字描述]
+[例："baoyu-image-gen 是底层发动机，cover-image 和 xhs-images 是在它上面做的专用车型"]
+```
+
+---
+
+## 工作流程
+
+### Step 1: 获取 Skill 文档
+- **已安装**：读 `skills/<name>/SKILL.md`，顺便检查 README.md、package.json、.env.example
+- **ClawHub URL**：`clawhub info <name>` 或 `web_fetch`
+- **GitHub URL**：`web_fetch` 抓取
+
+### Step 2: 实地探测（不只是读文档）
+- 检查辅助文件：package.json（依赖、版本）、.env.example（需要配什么）
+- 扫描 scripts/ 目录：了解实际执行方式
+- 查 git log：最近一次更新是什么时候
+- **尽量实际跑一遍**（如果条件允许）：记录速度、效果、报错
+
+### Step 3: 关联分析
+- 在已安装 skill 中找重叠/互补/依赖关系
+- 标注哪个是底层、哪个是上层封装
+- 如果有多个 skill 做类似的事，给推荐决策表
+
+### Step 4: 生成说明书
+**语言铁律：**
+- ❌ 禁止出现命令行代码（除非是纯技术 skill）
+- ❌ 禁止用技术术语当主语（"调用 API" → "它去问了 Google"）
+- ❌ 禁止罗列参数列表（放附录，用户需要时再展开）
+- ✅ 全部用"你说什么 → 它做什么"的对话格式
+- ✅ 费用必须写清楚，不要让用户事后才发现要钱
+- ✅ 如果文档本身写不清楚，如实标注"📖 文档描述模糊，建议实际测试"
+
+---
+
+## 特殊处理规则
+
+### Baoyu 系列（Skill 集合）
+- 先给**全家福**：整个系列的定位 + 子 skill 关系图
+- 标注**推荐入口**：普通用户应该从哪个子 skill 开始用
+- 标注**底层 vs 上层**：底层 skill 不需要直接碰
+
+### 复杂 Skill（SKILL.md > 200 行）
+- 强制分层：速览卡 → 模块概览 → 详细说明
+- 标注"核心模块"和"可选模块"
+- 可选模块一句话带过，别展开
+
+### 需要外部 API 的 Skill
+- **费用必须量化**：不要只写"需要 API Key"，要说清楚"多少钱、有没有免费额度、用完怎么办"
+- **获取路径完整**：给链接、给步骤、给截图位置
+- **优先推荐免费方案**：如果 Google 和 OpenAI 都能用，优先推荐 Google（有免费额度）
+
+### 与现有 Skill 功能重叠的情况
+- 给出**推荐决策表**（见输出格式）
+- 不要两边都推荐，给一个明确结论
+
+---
+
+## 限制
+
+- 无法保证 100% 准确（有些 skill 行为和文档不一致）
+- 费用估算基于文档，实际可能不同
+- 不替代实际测试——说明书是起点，不是终点
+
+## 与 skill-catalog 的关系
+
+| | skill-catalog | skill-reader |
+|--|--------------|-------------|
+| **定位** | 花名册（有哪些 skill） | 说明书（怎么用） |
+| **类比** | 手机里的 App 列表 | App Store 里的详细介绍页 |
+| **输出** | 一行摘要 + 路径 | 速览卡 + 完整说明书 |
+| **触发** | git commit 自动 | 用户主动请求 |
+
+**组合使用：** 先用 skill-catalog 找到 skill → 再用 skill-reader 读说明书。

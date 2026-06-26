@@ -1,0 +1,22 @@
+{
+  "name": "self-improving-agent",
+  "version": "1.0.0",
+  "description": "Self-improving agent system that learns from its own errors",
+  "author": "Yakov & Claw",
+  "tags": ["self-improvement", "automation", "agent", "monitoring"],
+  "license": "MIT",
+  "homepage": "https://github.com/mopga/self-improving-agent",
+  "keywords": [
+    "self-improving",
+    "agent",
+    "automation",
+    "error-tracking",
+    "impact-measurement"
+  ],
+  "repository": "https://github.com/mopga/self-improving-agent",
+  "engines": {
+    "openclaw": ">=2026.1.0"
+  },
+  "python_version": "3.10+",
+  "dependencies": []
+}

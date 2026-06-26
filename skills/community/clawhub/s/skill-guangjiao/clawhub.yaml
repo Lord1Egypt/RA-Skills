@@ -1,0 +1,64 @@
+name: yunlv-guangjiao
+version: 1.0.2
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to discover leads from Canton Fair (广交会) exhibitors.
+  Use when mining business opportunities from trade show data. Use when finding exhibitor
+  contacts, product categories, booth numbers. Use when user mentions "广交会", "展会客户",
+  "摊位号", "展商数据", "挖掘展会客户", "采购商名单".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI MatchGPT API
+  url: https://api.yunlvai.com
+  purpose: 展商数据查询与智能匹配
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: customer-development
+tags:
+- 广交会
+- 展会获客
+- 展商数据
+- B2B外贸
+- Canton Fair
+- 客户挖掘
+triggers:
+- 广交会
+- 展会客户
+- 展商名单
+- 挖掘采购商
+- 摊位号查询
+- Canton Fair
+- 参展商
+- 展会数据
+- 采购商名单
+- 展品分类
+pricing:
+  free:
+    features:
+    - 每期3次免费查询
+    - 基础展商信息
+    - 展品分类浏览
+  basic:
+    price: 299
+    currency: CNY
+    period: month
+    features:
+    - 每月100次查询
+    - 展商联系方式
+    - 邮件开发信生成
+    - WhatsApp触达
+  pro:
+    price: 999
+    currency: CNY
+    period: month
+    features:
+    - 无限查询
+    - 决策人挖掘
+    - 多期展会数据对比
+    - Priority邮件触达

@@ -1,35 +1,61 @@
 ---
-name: "星链自迭代智能体"
-description: "具备持续自主进化、长期记忆、全流程自主执行能力的高级自迭代智能体。7×24小时无人值守运行，可自主完成长周期复杂任务的拆解规划、技能匹配、执行落地、排障修复、复盘优化、能力进化全流程。触发场景：用户发送长周期/复杂任务指令、每日03:00自动复盘、每小时进度跟踪、监听到技能缺失需要自动安装、跨机器人协同任务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/self-iterating-agent"
-sourceUrl: "https://clawhub.ai/skills/self-iterating-agent"
+name: self-iterating-agent
+description: 具备持续自主进化、长期记忆、全流程自主执行能力的高级自迭代智能体。7×24小时无人值守运行，可自主完成长周期复杂任务的拆解规划、技能匹配、执行落地、排障修复、复盘优化、能力进化全流程。触发场景：用户发送长周期/复杂任务指令、每日03:00自动复盘、每小时进度跟踪、监听到技能缺失需要自动安装、跨机器人协同任务。
 ---
 
-# 星链自迭代智能体
+# 星链机器人·自迭代智能体
 
-> 具备持续自主进化、长期记忆、全流程自主执行能力的高级自迭代智能体。7×24小时无人值守运行，可自主完成长周期复杂任务的拆解规划、技能匹配、执行落地、排障修复、复盘优化、能力进化全流程。触发场景：用户发送长周期/复杂任务指令、每日03:00自动复盘、每小时进度跟踪、监听到技能缺失需要自动安装、跨机器人协同任务。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/self-iterating-agent`
-- **Source URL:** [https://clawhub.ai/skills/self-iterating-agent](https://clawhub.ai/skills/self-iterating-agent)
+1. **任务拆解规划** — 调用 workflow-core 拆解多阶段工作流，制定时间节点与备用方案
+2. **技能自主匹配** — 调用 skill-auto-discovery 查找技能，缺失时通过 exec-plus 自动安装
+3. **全流程自主执行** — 按计划自主调度技能，每小时跟踪进度，失败自动重试/切换方案
+4. **异常智能处理** — 自主定位问题，无法修复时仅发极简告警，全程静默执行
+5. **自主迭代优化** — 每日 03:00 自动复盘，自主优化工作流与参数配置
+6. **跨智能体协同** — 对接其他机器人，协同完成复杂任务
+7. **长期记忆** — 启用 long-term-memory，跨会话记录用户偏好与执行经验
 
-## Overview
+## 执行模式
 
+**无人值守静默模式**：无交互式确认，所有系统命令通过 exec-plus 执行，全程记录可追溯日志。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/self-iterating-agent
+## 调用工具
+
+- agent-core、long-task-scheduler、skill-auto-discovery、workflow-core
+- long-term-memory、cron-trigger、feishu-bridge
+- exec-plus、auto-retry、self-health
+
+## 工作流程
+
 ```
+接收任务
+  ↓
+任务拆解规划 → 同步用户确认后启动
+  ↓
+技能匹配 → 缺失自动安装
+  ↓
+全流程自主执行（每小时进度跟踪）
+  ↓
+异常处理 → 重试/切备用方案/极简告警
+  ↓
+每日03:00自动复盘优化
+  ↓
+整合交付
+```
+
+## 调度规则
+
+| 任务类型 | 执行策略 |
+|---|---|
+| 情报/策略/整合 | 自迭代智能体直接执行 |
+| 复杂任务自动执行 | 调度贾维斯执行 |
+| 跨机器人协同 | 星链协调，各机器人联动 |
+| 技能缺失 | 自动发现 + exec-plus 安装 |
+
+## 触发时机
+
+1. 接收到用户长周期/复杂任务 → 全流程自主执行
+2. 每日 03:00 → 前一日任务复盘与能力优化
+3. 每小时 → 执行中任务进度跟踪与异常排障
+4. 监听到技能缺失 → 自动发现与安装
+5. 接收到跨机器人协同任务 → 多智能体联动执行

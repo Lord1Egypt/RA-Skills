@@ -1,0 +1,82 @@
+{
+  "version": "2.0",
+  "default_language": "zh-CN",
+  "system": "travel_points",
+  "point_rules": {
+    "behaviors": [
+      {
+        "id": "exercise",
+        "label": "运动30分钟",
+        "keywords": ["运动", "跑步", "健身", "游泳", "骑车", "瑜伽", "散步", "走路"],
+        "points": 5,
+        "button_text": "我运动了"
+      },
+      {
+        "id": "early_sleep",
+        "label": "提前睡觉一次",
+        "keywords": ["早睡", "提前睡", "提前休息", "按时睡觉", "没有熬夜"],
+        "points": 4,
+        "button_text": "我提前休息了"
+      },
+      {
+        "id": "important_task",
+        "label": "完成重点任务",
+        "keywords": ["完成", "搞定", "做完", "提交", "交付", "重要的事"],
+        "points": 6,
+        "button_text": "我完成了一件重要的事"
+      },
+      {
+        "id": "focused",
+        "label": "今天很专注",
+        "keywords": ["专注", "集中", "认真", "投入", "心无旁骛"],
+        "points": 5,
+        "button_text": "我今天很专注"
+      },
+      {
+        "id": "general_high_energy",
+        "label": "高能量状态",
+        "keywords": ["高能量", "状态好", "不错", "挺好", "有精神"],
+        "points": 4,
+        "note": "模糊表达时默认归类"
+      }
+    ],
+    "streaks": [
+      {
+        "id": "streak_3",
+        "days": 3,
+        "bonus_points": 10,
+        "label": "连续3天高能量"
+      },
+      {
+        "id": "streak_7",
+        "days": 7,
+        "bonus_points": 20,
+        "label": "连续7天高能量"
+      }
+    ]
+  },
+  "travel_tiers": [
+    {
+      "points": 50,
+      "label": "周边游",
+      "description": "住一晚漂亮酒店 / 1天1夜微旅行",
+      "emoji": "🏖️"
+    },
+    {
+      "points": 100,
+      "label": "跨省游",
+      "description": "去一个一直想去的城市",
+      "emoji": "🚄"
+    },
+    {
+      "points": 300,
+      "label": "出国游",
+      "description": "一次完整远行",
+      "emoji": "✈️"
+    }
+  ],
+  "fallback": {
+    "unknown_behavior_points": 4,
+    "message": "一点点也算。"
+  }
+}

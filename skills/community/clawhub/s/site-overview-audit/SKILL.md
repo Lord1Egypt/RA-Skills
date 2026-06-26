@@ -1,35 +1,42 @@
 ---
-name: "Site Overview Audit"
-description: "Summarize one supported site's current snapshot records and highest-signal items."
-category: "other"
-source: "ClawHub"
-tags: [campus-copilot, read-only]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/site-overview-audit"
-sourceUrl: "https://clawhub.ai/skills/site-overview-audit"
+name: site-overview-audit
+description: Summarize one supported site's current snapshot records and highest-signal items.
 ---
 
 # Site Overview Audit
 
-> Summarize one supported site's current snapshot records and highest-signal items.
+Use this skill when you want a read-only answer to the question:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/site-overview-audit`
-- **Source URL:** [https://clawhub.ai/skills/site-overview-audit](https://clawhub.ai/skills/site-overview-audit)
+- what does one supported site currently look like in the imported workspace
 
-## Overview
+This is the narrowest skill for one-site snapshot inspection.
 
+## Inputs
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/site-overview-audit
-```
+- one snapshot path
+- one site name: `canvas`, `gradescope`, `edstem`, or `myuw`
+
+## Steps
+
+1. Load the site overview from `@campus-copilot/site-sdk`, `@campus-copilot/mcp-server`, or one of the site-scoped `@campus-copilot/mcp-readonly` sidecars.
+2. Report counts, the top assignments/messages/events, and current recent updates.
+3. Keep the output read-only and grounded in normalized entities.
+
+## Good fit
+
+- one-site Codex or Claude inspection over a snapshot
+- validating that one site's records are rich enough for export, cited AI, or MCP consumption
+- OpenClaw-style local consumers that want one smaller site-scoped context card
+
+## Hard boundary
+
+- do not mutate site state
+- do not claim live browser truth from a snapshot alone
+- do not present private/session-backed collectors as public site APIs
+
+## Companion references
+
+- `examples/workspace-snapshot.sample.json`
+- `examples/mcp/codex.example.json`
+- `examples/mcp/claude-desktop.example.json`
+- `skills/site-mcp-consumer/SKILL.md`

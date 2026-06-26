@@ -1,0 +1,27 @@
+{
+  "name": "scrapeless-pro",
+  "version": "1.0.3",
+  "description": "Professional web scraping for OpenClaw — stealth browser automation with anti-bot bypass",
+  "main": "scraper.js",
+  "bin": {
+    "scrapeless": "./scraper.js"
+  },
+  "scripts": {
+    "test": "node scraper.js scrape https://quotes.toscrape.com --format json",
+    "validate": "node scraper.js validate"
+  },
+  "keywords": [
+    "openclaw",
+    "scraping",
+    "web-scraping",
+    "playwright",
+    "stealth",
+    "anti-bot",
+    "automation"
+  ],
+  "license": "Commercial",
+  "dependencies": {
+    "playwright": "^1.58.0",
+    "commander": "^12.0.0"
+  }
+}

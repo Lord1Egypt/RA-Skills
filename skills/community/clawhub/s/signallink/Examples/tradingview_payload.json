@@ -1,0 +1,11 @@
+{
+  "action": "buy",
+  "symbol": "XAUUSD",
+  "price": "2345.50",
+  "interval": "1H",
+  "strategy": "EMA Crossover",
+  "sl": "2330.00",
+  "tp": "2370.00",
+  "lot": "0.1",
+  "message": "Golden cross confirmed on H1. Momentum strong."
+}

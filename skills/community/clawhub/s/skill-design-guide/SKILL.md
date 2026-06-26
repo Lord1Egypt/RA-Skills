@@ -1,35 +1,155 @@
 ---
-name: "Skill Design Guide"
-description: "Skill 设计指南。在创建新 Skill、优化现有 Skill、或评审 Skill 质量时使用。包含核心设计原则、常见陷阱、最佳实践。"
-category: "creative"
-source: "ClawHub"
-tags: [design, guide, skill]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-design-guide"
-sourceUrl: "https://clawhub.ai/skills/skill-design-guide"
+name: skill-design-guide
+description: Skill 设计指南。在创建新 Skill、优化现有 Skill、或评审 Skill 质量时使用。包含核心设计原则、常见陷阱、最佳实践。
 ---
 
-# Skill Design Guide
+# Skill 设计指南
 
-> Skill 设计指南。在创建新 Skill、优化现有 Skill、或评审 Skill 质量时使用。包含核心设计原则、常见陷阱、最佳实践。
+> 核心思想：**Skills 的本质不是提示词增强，而是 Workflow 的迁移**
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-design-guide`
-- **Source URL:** [https://clawhub.ai/skills/skill-design-guide](https://clawhub.ai/skills/skill-design-guide)
+## Skill 是什么
 
-## Overview
+Skill 是一个工程化的能力单元，不是高级 Prompt：
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-design-guide
 ```
+skill-name/
+├── SKILL.md      # 核心：告诉 Agent "怎么做" 的调度入口
+├── references/   # 知识层：API 文档、业务规则、历史案例
+├── assets/       # 模板层：输出骨架、固定格式
+├── scripts/      # 执行层：确定性任务的代码
+└── hooks/        # 约束与观测：记录调用、控制权限
+```
+
+## Skill 解决的三大痛点
+
+1. **提示词臃肿** — 复杂任务需要几百上千字 Prompt，难维护，模型注意力分散
+2. **上下文窗口限制** — 完美 Prompt 也要占用宝贵上下文
+3. **能力复用困难** — 调教好的能力难以分享、难以保证执行一致
+
+## 核心设计原则
+
+### 1. 元数据要精准
+
+`name` 和 `description` 是模型判断何时调用的唯一窗口。
+
+❌ 差的写法：
+```
+description: 用于审查代码质量的 Skill
+```
+
+✅ 好的写法：
+```
+description: 在用户提交 Pull Request 后自动触发，对新增代码进行安全审查，输出审查报告并标注高风险问题
+```
+
+**要点**：告诉模型什么时候触发、干什么事、输出什么。
+
+### 2. 约束强度适中
+
+- **管太死**：每一步都写死 → 模型遇到超出预期的情况就乱来
+- **放太松**：只说目标 → 每次结果不一样
+
+✅ 正确做法：
+- 明确告诉模型"要做什么"
+- 给它留足推理空间
+- 明确告诉它"不要做什么"
+- 配上关键场景的例子
+
+### 3. 一事一 Skill
+
+单一职责原则。Skill 越简单，触发越精准，执行越稳定。
+
+### 4. 持续迭代
+
+发现问题 → 加评测用例 → 改 Skill → 继续观察
+
+## Skill 开发流程
+
+### Step 1: 先用裸模型跑一遍
+
+看它哪里出错，这些就是 Skill 要填的坑。
+
+### Step 2: 定标准
+
+什么算好？什么算不好？定义及格线。
+
+示例：
+- 输入：一段关于项目进度讨论的会议记录
+- 期望：明确列出"下一步行动"，包含负责人和时间节点
+- 及格线：漏掉任何一个行动项就算失败
+
+### Step 3: 先有再优
+
+写最小可用版本，别一上来就大而全。
+
+评测里暴露什么问题，就先解决什么问题，别的先别管。
+
+### Step 4: 补边界
+
+最小版本能用了，再慢慢往里加东西：
+
+- 把边界情况写清楚：能处理什么、不能处理什么
+- 定好输入输出格式
+- 每个关键场景配一个例子
+
+### Step 5: 持续观察
+
+上线后监控，迭代改进。
+
+## 脚本编写原则
+
+如果 Skill 需要跑脚本：
+
+- **错误要说人话**：别抛异常，告诉模型"为什么错"和"怎么办"
+- **输出要解释清楚**：不光说"干了什么"，还要说"为什么"和"接下来可以干什么"
+- **别用魔法数字**：`TIMEOUT_SECONDS = 30  # 服务启动一般 10-20 秒`
+
+## 常见陷阱
+
+### 陷阱 1：写成说明书了
+
+Skill 是给模型下的指令，不是给人看的文档。
+
+❌ 不要写：
+```
+本 Skill 基于敏捷开发方法论
+旨在通过结构化思维提升会议纪要的质量...
+```
+
+✅ 要写：
+```
+什么情况用我、怎么执行、做成什么样
+```
+
+### 陷阱 2：越写越复杂
+
+功能越多越不稳定，模型也有注意力限制。
+
+**Skill 越简单，触发越精准，执行越稳定。**
+
+## 优先级覆盖机制
+
+同名 Skill 按优先级覆盖：
+
+```
+工作区 > 项目 Agent > 个人 Agent > 用户 managed > 内置 > 额外目录
+```
+
+用途：官方提供默认版本，个人有常用版本，项目可覆盖成专属版本，彼此不冲突。
+
+## 三级预算降级
+
+防止上下文爆炸：
+
+1. **完整格式** — name + description + instructions
+2. **紧凑格式** — name + location only
+3. **二分截断** — 找最大可行前缀
+
+## 渐进式披露
+
+模型启动时只加载元数据（name + description），触发时才加载完整指令，按需加载脚本和资源。
+
+这平衡了灵活性和效率：
+- 元数据始终在上下文中 → 模型知道自己能做什么
+- 指令按需加载 → 节省上下文
+- 资源按需调用 → 无限扩展可能

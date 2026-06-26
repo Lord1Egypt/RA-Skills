@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-06-03T14:26:13Z",
+  "routing_source": "OSM/Overpass coordinates where available; OSRM public driving table for free-flow distance/duration; some coordinates are approximate from official addresses where OSM lacks POI.",
+  "files": [
+    {
+      "name": "siff2026-cinema-coordinates.csv",
+      "bytes": 4761,
+      "sha256": "fbfdb388734b01c954e3de609232398defa25cb910f6002bf9e9f260d8f6954b"
+    },
+    {
+      "name": "siff2026-cinema-driving-matrix-osrm.csv",
+      "bytes": 299744,
+      "sha256": "b415e3cfba7420150ab353f161e24ae5607e58977f9885f17dd91423a44dbf82"
+    }
+  ]
+}

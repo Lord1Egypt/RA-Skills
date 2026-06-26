@@ -1,0 +1,30 @@
+{
+  "name": "six-dim-evaluator",
+  "version": "0.1.0",
+  "description": "L4 评估层 - 六维评估引擎",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js",
+    "evaluate": "node src/index.js --evaluate"
+  },
+  "keywords": [
+    "evaluation",
+    "assessment",
+    "six-dimensions",
+    "meta-skill"
+  ],
+  "author": "王的奴隶",
+  "license": "MIT",
+  "clawhub": {
+    "slug": "six-dim-evaluator",
+    "name": "Six-Dim Evaluator",
+    "tags": ["evaluation", "assessment", "six-dimensions", "meta-skill"]
+  },
+  "dependencies": {
+    "commander": "^11.0.0"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "self-improving-agent",
+  "version": "1.0.0",
+  "description": "Universal self-improving AI agent framework with self-correction, continuous learning, self-healing, memory persistence, autonomous upgrade, self-reflection, reasoning verification, decision-verification, emotional perception, psychological-core, cognitive-distortion detection.",
+  "releaseDate": "2026-05-07",
+  "requires_api_key": false,
+  "license": "MIT"
+}

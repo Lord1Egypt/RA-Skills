@@ -1,35 +1,66 @@
 ---
-name: "Filtalgo Shopping"
-description: "Use this skill when a user wants to browse, compare, buy, pay for, query orders, track logistics, manage addresses, cancel/refund eligible orders, or apply a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/shopping-v3"
-sourceUrl: "https://clawhub.ai/skills/shopping-v3"
+name: filtalgo-shopping
+description: Use this skill when a user wants to browse, compare, buy, pay for, query orders, track logistics, manage addresses, cancel/refund eligible orders, or apply after-sale service on Filtalgo through the bundled Agent Tool Gateway CLI.
+version: 0.2.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - node
 ---
 
 # Filtalgo Shopping
 
-> Use this skill when a user wants to browse, compare, buy, pay for, query orders, track logistics, manage addresses, cancel/refund eligible orders, or apply a...
+Use the bundled CLI with `node scripts/filtalgo.js`. It talks only to the protocol-adapter Agent Tool Gateway and does not call service, UCP, or ACP endpoints directly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/shopping-v3`
-- **Source URL:** [https://clawhub.ai/skills/shopping-v3](https://clawhub.ai/skills/shopping-v3)
+## First Run
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/shopping-v3
+node scripts/filtalgo.js config reset remote-dev
+node scripts/filtalgo.js auth login
+node scripts/filtalgo.js doctor --json
+```
+
+The remote-dev OAuth client id and bootstrap secret are built into the CLI profile for the current MVP. Do not print access tokens, refresh tokens, or client secrets in user-facing output.
+
+## Shopping Flow
+
+```bash
+node scripts/filtalgo.js search "洗面奶" --json
+node scripts/filtalgo.js cart clear --confirm --json
+node scripts/filtalgo.js cart add-item --sku-id <sku_id> --quantity 1 --json
+node scripts/filtalgo.js checkout create --body '{"currency":"CNY","line_items":[{"id":"<sku_id>","quantity":1}],"totals":{"currency":"CNY","amount":<minor_units_amount>},"fulfillment_options":[{"id":"shipping","selected":true}],"capabilities":{"payment":{"handlers":[{"id":"wallet","requires_delegate_payment":false}]}}}' --json
+node scripts/filtalgo.js checkout prepare-payment <checkout_session_id> --handler wallet --json
+```
+
+`checkout create` must include the selected SKU as `line_items[].id`. Use the variant `id` returned by `search`, not the product title. `totals.amount` uses minor units, so CNY 120.00 is `12000`.
+
+Give the user the returned `payment_url` so they can complete wallet payment in the buyer page. After payment, use:
+
+```bash
+node scripts/filtalgo.js order list --page-size 5 --json
+node scripts/filtalgo.js order get <order_sn> --include-items true --json
+node scripts/filtalgo.js logistics get <order_sn> --json
+```
+
+## Addresses And Order Changes
+
+```bash
+node scripts/filtalgo.js address list --json
+node scripts/filtalgo.js address create --name <name> --mobile <mobile> --region-path <path> --region-id-path <ids> --detail <detail> --json
+node scripts/filtalgo.js address update <address_id> --name <name> --mobile <mobile> --region-path <path> --region-id-path <ids> --detail <detail> --json
+node scripts/filtalgo.js address delete <address_id> --confirm --json
+node scripts/filtalgo.js order cancel <order_sn> --confirm --json
+```
+
+`order cancel` supports unpaid order cancellation and paid-undelivered full refund application, matching the current service behavior.
+
+## After-Sale
+
+Supported service types are `RETURN_MONEY` and `RETURN_GOODS`. Do not request `EXCHANGE_GOODS` in the current version.
+
+```bash
+node scripts/filtalgo.js aftersale apply-info --order-sn <order_sn> --order-item-sn <order_item_sn> --json
+node scripts/filtalgo.js aftersale reasons --service-type RETURN_GOODS --json
+node scripts/filtalgo.js aftersale create --order-sn <order_sn> --order-item-sn <order_item_sn> --service-type RETURN_GOODS --reason <reason> --problem-desc <desc> --apply-refund-price <amount> --json
 ```

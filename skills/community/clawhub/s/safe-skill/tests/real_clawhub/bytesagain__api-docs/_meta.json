@@ -1,0 +1,11 @@
+{
+  "owner": "bytesagain",
+  "slug": "api-docs",
+  "displayName": "Api Docs",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1773450679049,
+    "commit": "https://github.com/openclaw/skills/commit/ba327540ed4806fd1c1ab6fe0645291fde2eccb5"
+  },
+  "history": []
+}

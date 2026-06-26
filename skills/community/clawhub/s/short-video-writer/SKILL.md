@@ -1,35 +1,55 @@
----
-name: "Short Video Writer"
-description: "AI-powered tool to generate tailored short video scripts for platforms like TikTok, Bilibili, and live streams with style and format customization."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/short-video-writer"
-sourceUrl: "https://clawhub.ai/skills/short-video-writer"
----
+# Video Script Generator - 短视频脚本生成器
 
-# Short Video Writer
+## 功能描述
+AI 驱动的短视频脚本自动生成工具，支持抖音/快手/B 站/视频号等平台。
 
-> AI-powered tool to generate tailored short video scripts for platforms like TikTok, Bilibili, and live streams with style and format customization.
+## 使用场景
+- 抖音短视频脚本
+- 快手视频文案
+- B 站视频大纲
+- 视频号内容
+- YouTube 视频脚本
+- 直播带货话术
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/short-video-writer`
-- **Source URL:** [https://clawhub.ai/skills/short-video-writer](https://clawhub.ai/skills/short-video-writer)
+## 命令
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/short-video-writer
+### 生成抖音脚本
 ```
+生成抖音脚本 主题=产品评测 时长=60 秒 风格=搞笑
+```
+
+### 生成 B 站大纲
+```
+生成 B 站视频大纲 主题=科技科普 时长=10 分钟 风格=专业
+```
+
+### 生成直播话术
+```
+生成直播话术 产品=护肤品 时长=2 小时 风格=热情
+```
+
+### 批量生成
+```
+批量生成脚本 主题列表=主题 1，主题 2 平台=抖音 输出目录=./scripts
+```
+
+## 支持平台
+- 抖音
+- 快手
+- B 站
+- 视频号
+- YouTube
+- 小红书视频
+- 淘宝直播
+
+## 输出格式
+- Markdown (.md)
+- Word (.docx)
+- 提词器格式
+
+## 特性
+- AI 智能创作
+- 平台风格适配
+- 热点话题结合
+- 分镜建议
+- BGM 推荐

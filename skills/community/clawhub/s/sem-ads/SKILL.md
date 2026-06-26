@@ -1,35 +1,24 @@
 ---
 name: "SEM投放"
 description: "提供SEM投放的可落地指南与SOP。在开展SEM投放相关工作时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sem-ads"
-sourceUrl: "https://clawhub.ai/skills/sem-ads"
 ---
+# SEM投放 (sem-ads)
+## 使用场景
+- 以付费渠道（Baidu/Google）快速获取意向流量并验证投放回报。
 
-# SEM投放
+## 账户结构
+- 账户→计划→单元→关键词与创意；分层匹配策略（精确/短语/广泛）；
+- 否定词库与黑名单维护；落地页与转化跟踪打通。
 
-> 提供SEM投放的可落地指南与SOP。在开展SEM投放相关工作时调用。
+## 出价与预算
+- tCPA/tROAS自动出价；时段与地域分配；设备与人群定向；
+- A/B测试创意文案、扩展链接、附加信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sem-ads`
-- **Source URL:** [https://clawhub.ai/skills/sem-ads](https://clawhub.ai/skills/sem-ads)
+## 数据与优化
+- 关注关键词质量得分、CTR、CVR、首屏加载；用搜索词报告扩充词库；
+- 转化漏斗与ROI看板；周度复盘与预算调优。
 
-## Overview
+## 合规
+- 真实资质与备案；医疗、金融等行业需特殊资质；遵循广告法。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sem-ads
-```
+生成日期：2026-03-17

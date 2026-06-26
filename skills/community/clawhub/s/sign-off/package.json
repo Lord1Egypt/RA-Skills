@@ -1,0 +1,11 @@
+{
+  "name": "sign-off",
+  "version": "1.0.0",
+  "description": "给 AI 输出加个性化落款签名，像对讲机的 Over",
+  "keywords": ["openclaw", "skill", "sign-off", "signature", "ai"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Z35th3rJJ/sign-off.git"
+  }
+}

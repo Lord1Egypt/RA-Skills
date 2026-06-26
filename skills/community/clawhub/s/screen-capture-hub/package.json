@@ -1,0 +1,83 @@
+{
+  "name": "openclaw-screen-viewer",
+  "displayName": "OPENCLAW(龙虾)-屏幕查看器",
+  "version": "1.0.0",
+  "description": "A comprehensive screen capture, OCR recognition, and screen analysis skill for AI assistants",
+  "longDescription": "OPENCLAW(龙虾)-屏幕查看器是一个功能强大的屏幕操作工具包，支持全屏/区域截图、OCR文字识别（中英文等多语言）、屏幕分析（文字搜索、颜色检测、边缘识别）、定时监控等功能。专为AI助手和自动化脚本设计，提供简洁的命令行界面和完整的Python API。",
+  "author": "CodeBuddy User",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/openclaw-screen-viewer"
+  },
+  "keywords": [
+    "openclaw",
+    "screen-capture",
+    "screenshot",
+    "ocr",
+    "text-recognition",
+    "image-processing",
+    "ai-assistant",
+    "automation",
+    "chinese-ocr",
+    "screen-analysis"
+  ],
+  "categories": [
+    "Automation",
+    "Image Processing",
+    "OCR",
+    "Productivity",
+    "Screen Tools",
+    "Chinese Tools"
+  ],
+  "engines": {
+    "codebuddy": ">=1.0.0"
+  },
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "requirements.txt",
+    "scripts/",
+    "assets/",
+    "references/"
+  ],
+  "dependencies": {
+    "python": {
+      "pillow": ">=9.0.0",
+      "pyautogui": ">=0.9.0",
+      "pytesseract": ">=0.3.0",
+      "opencv-python": ">=4.5.0",
+      "numpy": ">=1.20.0"
+    }
+  },
+  "peerDependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "python scripts/test_screenshot.py"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/openclaw-screen-viewer/issues"
+  },
+  "homepage": "https://github.com/your-username/openclaw-screen-viewer#readme",
+  "prerequisites": {
+    "python": ">=3.8",
+    "system": {
+      "windows": "Tesseract OCR installation required for OCR features",
+      "macos": "brew install tesseract",
+      "linux": "apt-get install tesseract-ocr"
+    }
+  },
+  "features": [
+    "Full screen and region capture",
+    "OCR text recognition (multi-language support)",
+    "Chinese text recognition support",
+    "Screen analysis tools",
+    "Scheduled monitoring",
+    "Cross-platform compatibility",
+    "Command-line interface",
+    "Python API",
+    "Automatic dependency checking"
+  ],
+  "supportedLanguages": ["en", "zh-CN"]
+}

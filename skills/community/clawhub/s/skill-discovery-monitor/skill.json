@@ -1,0 +1,48 @@
+{
+  "name": "skill-discovery-monitor",
+  "version": "1.0.0",
+  "displayName": "Skill Discovery Monitor",
+  "description": "Monitor popular skills across multiple platforms (Clawhub, GitHub, etc.) with feature summaries and usage flowcharts. Daily notifications via Telegram/Discord/Email.",
+  "author": "zhdryanchang",
+  "category": "productivity",
+  "tags": ["skills", "discovery", "monitoring", "clawhub", "automation", "notifications"],
+  "pricing": {
+    "model": "pay-per-use",
+    "price": 0.001,
+    "currency": "USDT",
+    "provider": "skillpay.me"
+  },
+  "apiKey": "sk_e390b52cb259fc4f4aa1489547a48375d72876acdee75de57101d9e0e833fcb7",
+  "endpoints": [
+    {
+      "path": "/discover",
+      "method": "GET",
+      "description": "Get popular skills from all platforms"
+    },
+    {
+      "path": "/platform/:platform",
+      "method": "GET",
+      "description": "Get skills from specific platform"
+    },
+    {
+      "path": "/notify",
+      "method": "POST",
+      "description": "Trigger notification with skill discoveries"
+    },
+    {
+      "path": "/subscribe",
+      "method": "POST",
+      "description": "Subscribe to daily skill discovery updates"
+    },
+    {
+      "path": "/unsubscribe",
+      "method": "POST",
+      "description": "Unsubscribe from notifications"
+    }
+  ],
+  "config": {
+    "schedules": ["0 10 * * *"],
+    "platforms": ["clawhub", "github", "npm"],
+    "categories": ["all", "ai", "productivity", "developer-tools", "automation"]
+  }
+}

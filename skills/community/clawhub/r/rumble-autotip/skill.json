@@ -1,0 +1,8 @@
+{
+  "slug": "rumble-autotip",
+  "name": "RumbleTipAI",
+  "version": "2.0.0",
+  "description": "Autonomous AI agent that tips Rumble.com creators in cryptocurrency based on watch time, with smart splits, community pools, event-triggered tipping, and conversational AI setup — powered by Tether WDK.",
+  "skills": ["SKILL.md"],
+  "tags": ["rumble", "tether", "wdk", "tipping", "crypto", "usdt", "agents", "ai", "autonomous", "chrome-extension"]
+}

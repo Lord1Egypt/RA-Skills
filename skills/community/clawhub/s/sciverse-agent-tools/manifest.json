@@ -1,0 +1,182 @@
+{
+  "name": "sciverse-agent-tools",
+  "version": "0.1.5",
+  "slug": "sciverse-agent-tools",
+  "description": "[DEPRECATED] This skill has moved to `academic-retrieval` (publisher @sciverse). Migrate with: `openclaw skills install academic-retrieval`. No new versions will be published under this slug.",
+  "runtime": "node>=18",
+  "license": "Apache-2.0",
+  "homepage": "https://sciverse.space",
+  "env": [
+    {
+      "name": "SCIVERSE_API_TOKEN",
+      "required": true,
+      "description": "SciVerse API Token (obtain from https://sciverse.space)."
+    },
+    {
+      "name": "SCIVERSE_BASE_URL",
+      "required": false,
+      "default": "https://api.sciverse.space",
+      "description": "Override the default API base URL (for dev / self-hosted gateways)."
+    }
+  ],
+  "tools": [
+    {
+      "name": "search_papers",
+      "description": "Search academic papers by structured filters (title, authors, journal,\nyear, subjects, etc.).\nUse when: \"find Hinton's papers from 2020-2023\", \"Nature papers on\nCRISPR\".\nNot for: natural-language Q&A retrieval (use semantic_search) or\nfull-text snippets (use read_content).\nReturns: list of papers; each entry has doc_id, title, author, abstract,\npublication_venue_name, publication_published_year.",
+      "script": "scripts/search_papers.mjs",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "BM25 全文关键词，匹配标题/摘要/期刊名/关键词字段。留空则纯靠结构化过滤。"
+          },
+          "title_contains": {
+            "type": "string",
+            "description": "标题中必须包含的词（仅匹配 title 字段）。"
+          },
+          "abstract_contains": {
+            "type": "string",
+            "description": "摘要中必须包含的词（仅匹配 abstract 字段）。"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "作者名（任一命中即可）。SDK 内部映射到后端 `author` 字段（FILTER_OP_IN）。"
+          },
+          "year_from": {
+            "type": "integer",
+            "description": "起始发表年（含）。"
+          },
+          "year_to": {
+            "type": "integer",
+            "description": "结束发表年（含）。"
+          },
+          "journals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "期刊名（任一命中即可）。SDK 内部映射到后端 `publication_venue_name` 字段（FILTER_OP_IN）。"
+          },
+          "subjects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "学科分类，如 \"computer science\"、\"biology\"。"
+          },
+          "filters_advanced": {
+            "type": "array",
+            "description": "高级过滤逃生舱（仅当上述字段不够用时使用）。",
+            "items": {
+              "type": "object",
+              "required": ["field", "value"],
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "operator": {
+                  "type": "string",
+                  "enum": [
+                    "FILTER_OP_EQ",
+                    "FILTER_OP_NE",
+                    "FILTER_OP_GT",
+                    "FILTER_OP_GTE",
+                    "FILTER_OP_LT",
+                    "FILTER_OP_LTE",
+                    "FILTER_OP_IN",
+                    "FILTER_OP_NIN",
+                    "FILTER_OP_CONTAINS"
+                  ],
+                  "default": "FILTER_OP_EQ"
+                },
+                "value": {}
+              }
+            }
+          },
+          "sort_by_year": {
+            "type": "string",
+            "enum": ["desc", "asc", "none"],
+            "default": "desc"
+          },
+          "page": {
+            "type": "integer",
+            "default": 1,
+            "minimum": 1
+          },
+          "page_size": {
+            "type": "integer",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 50
+          }
+        }
+      }
+    },
+    {
+      "name": "semantic_search",
+      "description": "Natural-language semantic search returning relevant paper chunks for\nRAG-style answering.\nUse when: \"How does Transformer attention work?\", \"What are recent\nmethods for protein structure prediction?\".\nNot for: precise field filtering (use search_papers) or fetching full\noriginal text (use read_content).\nReturns: list of chunks; each entry has chunk_id, doc_id, abstract,\nchunk, score, title, offset.\nTypical chain: semantic_search → pick chunk → read_content(doc_id,\noffset).",
+      "script": "scripts/semantic_search.mjs",
+      "input_schema": {
+        "type": "object",
+        "required": ["query"],
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "自然语言查询，1-200 字最佳。"
+          },
+          "top_k": {
+            "type": "integer",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 30
+          },
+          "source_types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["web", "pdf"]
+            }
+          },
+          "mode": {
+            "type": "string",
+            "enum": ["fast", "balanced", "quality"],
+            "default": "balanced",
+            "description": "fast = 仅关键词召回 (~200ms)；balanced = 混合检索 (~600ms)；quality = LLM 改写 + 混合 (~2-4s)。\n"
+          }
+        }
+      }
+    },
+    {
+      "name": "read_content",
+      "description": "Read a UTF-8 byte range of a paper's original text. Typically used with\na doc_id/offset returned by semantic_search to expand context (read\nmore bytes before or after a chunk).\nReturns: text fragment, bytes_returned, next_offset, more (boolean).",
+      "script": "scripts/read_content.mjs",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "description": "文献 ID（来自 search_papers / semantic_search）。"
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int64",
+            "default": 4096,
+            "maximum": 16384
+          }
+        },
+        "required": ["doc_id"]
+      }
+    }
+  ]
+}

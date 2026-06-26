@@ -1,35 +1,138 @@
 ---
-name: "samOnboarding山姆超市产品上架指导"
-description: "指导食品企业完成山姆超市产品上架全流程，包含客户需求分析、合规准备、申请提交、审核跟进、上架执行各阶段操作要点；当用户需要山姆上架指导、食品合规咨询或上架问题应对时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sam-food-onboarding"
-sourceUrl: "https://clawhub.ai/skills/sam-food-onboarding"
+name: sam-food-onboarding
+description: 指导食品企业完成山姆超市产品上架全流程，包含客户需求分析、合规准备、申请提交、审核跟进、上架执行各阶段操作要点；当用户需要山姆上架指导、食品合规咨询或上架问题应对时使用
 ---
 
-# samOnboarding山姆超市产品上架指导
+# 山姆超市食品上架指导
 
-> 指导食品企业完成山姆超市产品上架全流程，包含客户需求分析、合规准备、申请提交、审核跟进、上架执行各阶段操作要点；当用户需要山姆上架指导、食品合规咨询或上架问题应对时使用
+## 任务目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sam-food-onboarding`
-- **Source URL:** [https://clawhub.ai/skills/sam-food-onboarding](https://clawhub.ai/skills/sam-food-onboarding)
+本 Skill 用于指导食品企业完成山姆超市产品上架全流程操作。
+能力包含：客户需求分析、合规资质准备、上架申请流程、审核跟进、问题整改。
+触发条件：用户咨询山姆上架流程、食品合规要求、上架问题应对，或提供客户需求需要分析可行性。
 
-## Overview
+## 前置准备
 
+无特殊系统依赖。需要用户准备以下信息：
+- 产品基本信息（品名、规格、配料表、营养成分表）
+- 企业资质文件（营业执照、食品生产许可证等）
+- 客户具体需求（如有）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sam-food-onboarding
-```
+## 操作步骤
+
+### 标准流程
+
+#### 阶段一：客户需求分析
+
+1. **需求收集**：获取客户对产品的具体要求
+   - 产品规格要求（包装规格、净含量等）
+   - 质量标准要求（有机、无添加、特定认证等）
+   - 价格与成本要求
+   - 交付时间要求
+
+2. **可行性评估**：分析企业能力是否匹配
+   - 生产线能力评估
+   - 资质合规性评估
+   - 成本利润测算
+   - 交付周期评估
+
+详见 [references/onboarding-process.md](references/onboarding-process.md) 的"需求分析阶段"章节。
+
+#### 阶段二：合规准备
+
+1. **资质文件梳理**：确认所需证照完整性
+   - 基础资质：营业执照、食品生产许可证
+   - 产品资质：第三方检测报告、认证证书
+   - 标签合规：营养成分表、配料表、标签审核
+
+2. **材料准备**：整理申请所需文档
+   - 产品技术规格书
+   - 样品及检测报告
+   - 企业资质文件
+
+详见 [references/compliance-guide.md](references/compliance-guide.md) 的"资质清单"章节。
+
+#### 阶段三：申请提交
+
+1. **供应商入驻申请**
+   - 通过山姆供应商门户网站提交申请
+   - 填写企业信息、产品信息
+   - 上传资质文件
+
+2. **产品上架申请**
+   - 提交产品详细信息
+   - 上传产品图片、标签图片
+   - 提交检测报告及认证证书
+
+详见 [references/onboarding-process.md](references/onboarding-process.md) 的"申请阶段"章节。
+
+#### 阶段四：审核跟进
+
+1. **审核状态跟踪**
+   - 定期查询审核进度
+   - 关注审核反馈意见
+
+2. **问题整改**
+   - 根据审核意见进行整改
+   - 补充缺失材料
+   - 重新提交审核
+
+详见 [references/stage-checklist.md](references/stage-checklist.md) 的"审核阶段检查清单"。
+
+#### 阶段五：上架执行
+
+1. **合同签订**：确认合作条款
+2. **样品确认**：提供确认样品
+3. **首批供货**：按订单要求发货
+4. **持续跟进**：销售表现跟踪、补货协调
+
+详见 [references/stage-checklist.md](references/stage-checklist.md) 的"上架阶段检查清单"。
+
+### 可选分支
+
+- **当客户需求涉及特殊认证**（有机、绿色食品、清真等）：参考 [references/compliance-guide.md](references/compliance-guide.md) 的"特殊认证要求"章节
+- **当审核不通过需要整改**：参考 [references/onboarding-process.md](references/onboarding-process.md) 的"常见问题与整改"章节
+- **当涉及进口食品**：参考 [references/compliance-guide.md](references/compliance-guide.md) 的"进口食品要求"章节
+
+## 资源索引
+
+- 上架流程详解：见 [references/onboarding-process.md](references/onboarding-process.md)（何时读取：需要了解各阶段详细操作时）
+- 合规要求指南：见 [references/compliance-guide.md](references/compliance-guide.md)（何时读取：需要确认资质要求、标签规范时）
+- 阶段检查清单：见 [references/stage-checklist.md](references/stage-checklist.md)（何时读取：需要在各阶段进行自查核验时）
+
+## 注意事项
+
+- 山姆超市对食品质量要求严格，务必确保所有资质文件真实有效
+- 标签合规是常见审核不通过原因，建议提前进行标签预审
+- 审核周期通常为 2-4 周，需预留充足时间
+- 保持与采购的及时沟通，了解审核进度和反馈意见
+- 本 Skill 中的流程指导由智能体根据用户提供的信息进行分析和建议，具体操作需根据山姆官方要求执行
+
+## 使用示例
+
+### 示例一：客户需求分析
+
+用户表达："客户要求供应一款有机坚果，规格 500g，需要有机认证，我们厂能不能做？"
+
+执行方式：智能体处理
+- 分析需求要点：有机认证、500g 规格
+- 评估资质要求：有机产品认证证书、生产许可证
+- 提供可行性建议：确认企业是否已获有机认证，如无则指导申请流程
+
+### 示例二：上架申请指导
+
+用户表达："资质都齐了，接下来怎么申请上架？"
+
+执行方式：智能体处理
+- 指导访问山姆供应商门户
+- 说明需要填写的信息和上传的材料
+- 提供申请提交注意事项
+
+### 示例三：审核问题整改
+
+用户表达："审核不通过，说营养成分表标注不符合要求，怎么改？"
+
+执行方式：智能体处理
+- 分析问题原因：营养成分表标注规范
+- 提供整改建议：根据 GB 28050 标准调整标注方式
+- 建议整改后重新提交

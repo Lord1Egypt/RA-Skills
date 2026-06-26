@@ -1,0 +1,31 @@
+{
+  "name": "skill-discoverer",
+  "version": "0.1.0",
+  "description": "L0 入口层 - 技能发现与引导引擎",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "discovery",
+    "recommendation",
+    "guidance",
+    "meta-skill"
+  ],
+  "author": "王的奴隶",
+  "license": "MIT",
+  "clawhub": {
+    "slug": "skill-discoverer-pro",
+    "name": "Skill Discoverer Pro",
+    "tags": [
+      "discovery",
+      "recommendation",
+      "guidance",
+      "meta-skill"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}

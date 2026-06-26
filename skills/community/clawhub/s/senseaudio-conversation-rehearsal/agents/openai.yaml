@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conversation Rehearsal"
+  short_description: "Simulate high-pressure conversations with ASR, TTS, and debriefing"
+  default_prompt: "Use $senseaudio-conversation-rehearsal to design and run a realistic rehearsal for this difficult conversation, then review what went wrong and how to improve it. Once the user starts rehearsal mode, treat that as voice mode by default: begin with a spoken opening turn, automatically send each generated counterpart turn one by one as Feishu audio messages instead of replying with file paths, and keep voice replies sticky across later rehearsal turns until the user explicitly asks to switch back to text-only replies."

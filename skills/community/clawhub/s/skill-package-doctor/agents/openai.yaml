@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Package Doctor"
+  short_description: "Audit skill packages before publishing, then generate concrete fixes and a shareable proof card"
+  default_prompt: "Use $skill-package-doctor to audit the target SKILL.md or skill folder. Run the bundled skill_doctor.py script if available, report blocking errors first, patch only concrete issues, rerun the audit, and produce the final score plus proof-card path."

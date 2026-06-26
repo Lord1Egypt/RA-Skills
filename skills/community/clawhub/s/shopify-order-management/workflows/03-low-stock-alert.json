@@ -1,0 +1,168 @@
+{
+  "name": "Shopify — Low Stock Alert",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "n1",
+      "name": "Schedule Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.SHOPIFY_STORE_URL }}/admin/api/2024-01/products.json?limit=250",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $env.SHOPIFY_ACCESS_TOKEN }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "n2",
+      "name": "Fetch Products",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const products = $input.first().json.products || [];\nconst threshold = parseInt($env.LOW_STOCK_THRESHOLD || '5', 10);\n\nconst lowStock = [];\n\nfor (const product of products) {\n  for (const variant of (product.variants || [])) {\n    const qty = parseInt(variant.inventory_quantity || '0', 10);\n    if (qty <= threshold && variant.inventory_management === 'shopify') {\n      lowStock.push({\n        product_title: product.title,\n        variant_title: variant.title !== 'Default Title' ? variant.title : '',\n        sku: variant.sku || 'N/A',\n        inventory_quantity: qty,\n        price: variant.price\n      });\n    }\n  }\n}\n\nif (lowStock.length === 0) {\n  return [{ json: { has_alerts: false, message: 'All stock levels OK' } }];\n}\n\nlet alertHtml = '<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\"><tr><th>Product</th><th>Variant</th><th>SKU</th><th>Stock</th><th>Price</th></tr>';\nfor (const item of lowStock) {\n  const color = item.inventory_quantity <= 0 ? 'red' : 'orange';\n  alertHtml += `<tr><td>${item.product_title}</td><td>${item.variant_title}</td><td>${item.sku}</td><td style=\"color:${color}\"><strong>${item.inventory_quantity}</strong></td><td>${item.price}</td></tr>`;\n}\nalertHtml += '</table>';\n\nreturn [{\n  json: {\n    has_alerts: true,\n    low_stock_count: lowStock.length,\n    out_of_stock: lowStock.filter(i => i.inventory_quantity <= 0).length,\n    alert_html: alertHtml,\n    checked_at: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "n3",
+      "name": "Check Stock Levels",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-alerts",
+              "leftValue": "={{ $json.has_alerts }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "n4",
+      "name": "Has Low Stock?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $env.SHOPIFY_ADMIN_EMAIL || 'YOUR_NOTIFICATION_EMAIL' }}",
+        "subject": "=LOW STOCK: {{ $json.low_stock_count }} products need restocking ({{ $json.out_of_stock }} out of stock)",
+        "message": "=<h2>Low Stock Alert</h2><p><strong>Checked at:</strong> {{ $json.checked_at }}</p><p><strong>Low stock items:</strong> {{ $json.low_stock_count }}</p><p><strong>Out of stock:</strong> {{ $json.out_of_stock }}</p>{{ $json.alert_html }}",
+        "options": {}
+      },
+      "id": "n5",
+      "name": "Send Alert",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1100,
+        200
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Check": {
+      "main": [
+        [
+          {
+            "node": "Fetch Products",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Products": {
+      "main": [
+        [
+          {
+            "node": "Check Stock Levels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Stock Levels": {
+      "main": [
+        [
+          {
+            "node": "Has Low Stock?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Low Stock?": {
+      "main": [
+        [
+          {
+            "node": "Send Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

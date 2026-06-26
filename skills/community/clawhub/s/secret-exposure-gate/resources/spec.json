@@ -1,0 +1,37 @@
+{
+  "slug": "secret-exposure-gate",
+  "title": "密钥暴露门禁器",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "pattern_audit",
+  "summary": "在发布前检查目录中是否含秘钥、token、私有 URL、证书片段或凭证文件。",
+  "inputHint": "待发布目录路径",
+  "sections": [
+    "扫描概览",
+    "疑似密钥",
+    "高风险文件",
+    "误报说明",
+    "修复建议",
+    "复检建议"
+  ],
+  "useCases": [
+    "发布前检查",
+    "仓库清洁",
+    "技能打包"
+  ],
+  "positiveExamples": [
+    "发布前帮我扫一遍目录里有没有密钥",
+    "检查 token 和私有 URL"
+  ],
+  "negativeExamples": [
+    "不要显示完整密钥值",
+    "不要修改用户文件"
+  ],
+  "risk": "适合作为发布前门禁。",
+  "tags": [
+    "secrets",
+    "security",
+    "preflight",
+    "audit"
+  ]
+}

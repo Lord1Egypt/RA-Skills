@@ -1,0 +1,147 @@
+{
+  "name": "shuke-document-formatting",
+  "version": "1.1.0",
+  "description": "数科公司文印格式自动化工具包。自动按照数科公司文印格式要求格式化Word文档并生成PDF。",
+  "author": "xiaoqiang",
+  "license": "MIT-0",
+  "keywords": [
+    "数科文印",
+    "文档格式化",
+    "PDF生成",
+    "字体安装",
+    "自动化",
+    "shuke"
+  ],
+  "category": "productivity",
+  "min_version": "1.0.0",
+  "models": [],
+  "dependencies": [],
+  "trigger": {
+    "keywords": [
+      "数科文印",
+      "文印格式",
+      "格式化文档",
+      "生成PDF",
+      "shuke",
+      "文档格式化"
+    ]
+  },
+  "features": [
+    "智能文档结构分析",
+    "精确字体匹配",
+    "批量处理支持",
+    "字体安装与管理",
+    "PDF字体验证",
+    "完全符合数科公司格式要求"
+  ],
+  "use_cases": [
+    "数科公司文档格式化",
+    "政府公文格式化",
+    "学术论文格式调整",
+    "企业标准文档生成"
+  ],
+  "workflow": {
+    "stages": 3,
+    "total_time": "5-10分钟",
+    "steps": [
+      "字体安装与验证",
+      "文档结构分析与格式化",
+      "PDF生成与验证"
+    ]
+  },
+  "templates": [],
+  "design": {
+    "fonts": [
+      "方正小标宋简体",
+      "仿宋GB2312",
+      "楷体GB2312",
+      "黑体"
+    ],
+    "page_setup": {
+      "margins": "上3.5cm, 下3.5cm, 左2.8cm, 右2.8cm",
+      "grid": "28字/行, 22行/页",
+      "line_spacing": "固定值28磅"
+    }
+  },
+  "output": {
+    "formats": [
+      "docx",
+      "pdf"
+    ],
+    "delivery_package": [
+      "formatted.docx",
+      "output.pdf",
+      "font_verification.txt"
+    ]
+  },
+  "examples": [
+    {
+      "title": "单个文档格式化",
+      "input": "格式化文档 input.docx 并生成PDF",
+      "commands": [
+        "python smart_format_v3.py input.docx formatted.docx",
+        "python convert_to_pdf_shuke_final.py formatted.docx output.pdf"
+      ]
+    },
+    {
+      "title": "批量处理",
+      "input": "批量处理文件夹中的所有文档",
+      "commands": [
+        "python batch_convert_shuke_pdf.py ./documents ./pdfs"
+      ]
+    },
+    {
+      "title": "字体安装",
+      "input": "安装数科公司要求的字体",
+      "commands": [
+        "python install_shuke_fonts.py",
+        "python verify_shuke_fonts.py"
+      ]
+    }
+  ],
+  "quality_check": {
+    "content": [
+      "标题层次正确",
+      "字体使用正确",
+      "页面设置符合要求",
+      "网格设置正确"
+    ],
+    "technical": [
+      "PDF字体嵌入正确",
+      "文档正常打开",
+      "字体正常显示"
+    ]
+  },
+  "best_practices": [
+    "先安装字体再生成文档",
+    "使用英文文件名避免乱码",
+    "批量处理前先测试单个文档",
+    "生成PDF后验证字体使用"
+  ],
+  "support": {
+    "documentation": "SKILL.md",
+    "issues": "https://github.com/openclaw/openclaw/issues"
+  },
+  "changelog": {
+    "1.1.0": {
+      "date": "2026-03-28",
+      "changes": [
+        "增强字体安装体验",
+        "添加系统字体检测功能",
+        "支持多种字体获取方式",
+        "提供详细的字体安装指南",
+        "优化错误提示和用户指导"
+      ]
+    },
+    "1.0.0": {
+      "date": "2026-03-28",
+      "changes": [
+        "初始版本发布",
+        "包含8个核心工具",
+        "支持智能文档格式化",
+        "支持精确PDF生成",
+        "支持字体安装与管理"
+      ]
+    }
+  }
+}

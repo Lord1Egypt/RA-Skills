@@ -1,0 +1,38 @@
+{
+  "name": "schedule-reminder",
+  "version": "1.0.0",
+  "description": "双保险智能日程提醒系统 - 即使Gateway失效也能准时提醒",
+  "main": "SKILL.md",
+  "scripts": {
+    "install": "node scripts/install.mjs",
+    "create": "node scripts/create-reminder.mjs",
+    "backup": "node scripts/reminder-backup.mjs"
+  },
+  "keywords": ["reminder", "schedule", "cron", "notification"],
+  "author": "",
+  "license": "MIT",
+  "openclaw": {
+    "minVersion": "2026.3.0",
+    "config": {
+      "primaryChannel": {
+        "type": "string",
+        "default": "openclaw-weixin",
+        "description": "主推送渠道"
+      },
+      "backupEnabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "启用备用提醒系统"
+      },
+      "userId": {
+        "type": "string",
+        "required": true,
+        "description": "用户ID (微信ID/Telegram chatId等)"
+      },
+      "accountId": {
+        "type": "string",
+        "description": "账号ID (多账号时需要)"
+      }
+    }
+  }
+}

@@ -1,0 +1,2952 @@
+{
+  "data": [
+    {
+      "id": "25ab46bd-4a63-4a06-a6f0-2c209595bb26",
+      "type": "incident_action_items",
+      "attributes": {
+        "incident_id": "2111b16a-4e97-4d93-9b20-b08183e2123b",
+        "incident_title": "Unauthorized bastion access attempt blocked",
+        "description": "Run tabletop + automation simulation for break-glass production access controls.",
+        "assigned_to": {
+          "id": 233906,
+          "email": "oncall.engineer@example.com",
+          "deleted_at": null,
+          "created_at": "2026-03-14T19:45:25.797-07:00",
+          "updated_at": "2026-03-15T10:45:42.904-07:00",
+          "current_team_id": 6174,
+          "first_name": "Nicole",
+          "last_name": "Bu",
+          "time_zone": "America/New_York",
+          "last_seen_at": "2026-03-15T10:45:39.058-07:00",
+          "profile_photo_id": null,
+          "ability_cache": {
+            "team_ids": [
+              6174
+            ],
+            "administrating_team_ids": [
+              6174
+            ]
+          },
+          "last_notification_email_sent_at": null,
+          "accept_terms": true,
+          "onboarding_completed": true,
+          "service_user": false,
+          "accept_marketing": true,
+          "teams_count": 1,
+          "created_through_sso": false,
+          "scim_uid": null,
+          "session_token": null,
+          "incidents_example_count": 0,
+          "incidents_test_count": 0,
+          "incidents_normal_count": 3,
+          "incidents_scheduled_count": 0,
+          "incidents_backfilled_count": 0,
+          "incidents_count": 3,
+          "theme": "light_v2",
+          "skip_tutorial": false,
+          "external_id": null,
+          "jti": "bd051f47-e532-4038-bec6-ef8c1ed4b3f2",
+          "is_super_admin": false,
+          "has_impersonate_write_permission": false,
+          "view_multiple_schedules": true,
+          "push_notification_new_alert_sound": "default",
+          "push_notification_shift_starts_sound": "soft_bloob",
+          "push_notification_shift_ends_sound": "soft_bloob",
+          "how_did_you_hear_about_us": "Web search",
+          "push_notification_new_alert_volume": 1.0,
+          "opsgenie_id": null,
+          "victor_ops_id": null,
+          "pagerduty_id": null,
+          "locale": "en",
+          "push_notification_shift_coverage_sound": "soft_bloob",
+          "jsmops_id": null,
+          "preferred_name": null
+        },
+        "assigned_to_group_ids": [],
+        "kind": "follow_up",
+        "priority": "low",
+        "status": "in_progress",
+        "due_date": "2026-03-24T10:00:00.000-04:00",
+        "jira_issue_id": null,
+        "jira_issue_key": "SEC-790",
+        "jira_issue_url": "https://jira.example.com/browse/SEC-790",
+        "asana_task_id": null,
+        "asana_task_url": null,
+        "github_issue_id": null,
+        "github_issue_url": null,
+        "gitlab_issue_id": null,
+        "gitlab_issue_url": null,
+        "shortcut_story_id": null,
+        "shortcut_story_url": null,
+        "shortcut_task_id": null,
+        "shortcut_task_url": null,
+        "trello_card_id": null,
+        "trello_card_url": null,
+        "linear_issue_id": null,
+        "linear_issue_url": null,
+        "zendesk_ticket_id": null,
+        "zendesk_ticket_url": null,
+        "motion_task_id": null,
+        "motion_task_url": null,
+        "clickup_task_id": null,
+        "clickup_task_url": null,
+        "airtable_base_key": null,
+        "airtable_table_name": null,
+        "airtable_record_id": null,
+        "airtable_record_url": null,
+        "freshservice_ticket_id": null,
+        "freshservice_ticket_url": null,
+        "freshservice_task_id": null,
+        "freshservice_task_url": null,
+        "url": "https://rootly.com/account/incidents/2-production-environment-access-breach?tab=follow_ups",
+        "short_url": "https://root.ly/gtb2es",
+        "created_by": {
+          "data": {
+            "id": "233906",
+            "type": "users",
+            "attributes": {
+              "name": "Nicole Bu",
+              "email": "oncall.engineer@example.com",
+              "phone": null,
+              "phone_2": null,
+              "first_name": "Nicole",
+              "last_name": "Bu",
+              "preferred_name": null,
+              "full_name": "Nicole Bu",
+              "full_name_with_team": "[Windriver] Nicole Bu",
+              "slack_id": null,
+              "time_zone": "America/New_York",
+              "updated_at": "2026-03-15T10:45:42.904-07:00",
+              "created_at": "2026-03-14T19:45:25.797-07:00"
+            },
+            "relationships": {
+              "email_addresses": {
+                "data": [
+                  {
+                    "id": "3c8d65a9-55f2-4a8e-b1c2-c46483ba7820",
+                    "type": "user_email_addresses"
+                  }
+                ]
+              },
+              "phone_numbers": {
+                "data": []
+              },
+              "devices": {
+                "data": []
+              },
+              "role": {
+                "data": {
+                  "created_at": "2026-03-14T19:47:13.746-07:00",
+                  "updated_at": "2026-03-14T19:47:13.746-07:00",
+                  "display_order": 1,
+                  "api_keys_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "billing_permissions": [
+                    "update"
+                  ],
+                  "environments_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "functionalities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "group_admin_update_name",
+                    "group_admin_manage_services"
+                  ],
+                  "incident_causes_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_types_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "private_incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "playbooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "retrospective_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "severities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "status_pages_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "team_id": 6174,
+                  "name": "owner",
+                  "slug": "owner",
+                  "is_editable": false,
+                  "is_deletable": false,
+                  "incident_feedbacks_permissions": [
+                    "read",
+                    "create",
+                    "update"
+                  ],
+                  "form_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "secrets_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "id": "18e84c14-fc7e-4928-abff-5639912a55e8",
+                  "deleted_at": null,
+                  "incident_permission_set_id": null,
+                  "pulses_permissions": [
+                    "create",
+                    "update",
+                    "read"
+                  ],
+                  "alerts_permissions": [
+                    "create",
+                    "read"
+                  ],
+                  "paging_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "sub_statuses_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "catalogs_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "send"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "edge_connector_permissions": []
+                }
+              },
+              "on_call_role": {
+                "data": {
+                  "id": "24a80041-cf9d-4a84-b812-880a036c4fc8",
+                  "team_id": 6174,
+                  "name": "Admin",
+                  "slug": "admin",
+                  "system_role": "admin",
+                  "deleted_at": null,
+                  "created_at": "2026-03-14T19:47:13.838-07:00",
+                  "updated_at": "2026-03-14T19:47:13.838-07:00",
+                  "alerts_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "api_keys_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "escalation_policies_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "on_call_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "schedules_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "shift_overrides_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "contacts_permissions": [
+                    "read"
+                  ],
+                  "live_call_routing_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "heartbeats_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_urgency_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [],
+                  "alert_sources_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "schedule_override_permissions": [
+                    "create",
+                    "update"
+                  ],
+                  "on_call_readiness_report_permissions": [
+                    "read"
+                  ],
+                  "alert_routing_rules_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "alert_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ]
+                }
+              },
+              "teams": {
+                "data": []
+              },
+              "schedules": {
+                "data": []
+              },
+              "notification_rules": {
+                "data": [
+                  {
+                    "id": "34c859ca-8f45-4b25-8656-59a7a764439c",
+                    "type": "user_notification_rules"
+                  },
+                  {
+                    "id": "bcfd218b-5d46-4282-979d-638fad108623",
+                    "type": "user_notification_rules"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "created_at": "2026-03-14T19:47:18.012-07:00",
+        "updated_at": "2026-03-15T10:35:16.299-07:00",
+        "summary": "Enable break-glass access simulation in staging and validate approval workflow."
+      }
+    },
+    {
+      "id": "6ee7bdb6-fdb9-4b06-827b-3c16c44170f8",
+      "type": "incident_action_items",
+      "attributes": {
+        "incident_id": "2111b16a-4e97-4d93-9b20-b08183e2123b",
+        "incident_title": "Global sign-in failures after OIDC key rotation",
+        "description": "Compromised token blast radius review + revocation verification checklist.",
+        "assigned_to": {
+          "id": 233906,
+          "email": "oncall.engineer@example.com",
+          "deleted_at": null,
+          "created_at": "2026-03-14T19:45:25.797-07:00",
+          "updated_at": "2026-03-15T10:45:42.904-07:00",
+          "current_team_id": 6174,
+          "first_name": "Nicole",
+          "last_name": "Bu",
+          "time_zone": "America/New_York",
+          "last_seen_at": "2026-03-15T10:45:39.058-07:00",
+          "profile_photo_id": null,
+          "ability_cache": {
+            "team_ids": [
+              6174
+            ],
+            "administrating_team_ids": [
+              6174
+            ]
+          },
+          "last_notification_email_sent_at": null,
+          "accept_terms": true,
+          "onboarding_completed": true,
+          "service_user": false,
+          "accept_marketing": true,
+          "teams_count": 1,
+          "created_through_sso": false,
+          "scim_uid": null,
+          "session_token": null,
+          "incidents_example_count": 0,
+          "incidents_test_count": 0,
+          "incidents_normal_count": 3,
+          "incidents_scheduled_count": 0,
+          "incidents_backfilled_count": 0,
+          "incidents_count": 3,
+          "theme": "light_v2",
+          "skip_tutorial": false,
+          "external_id": null,
+          "jti": "bd051f47-e532-4038-bec6-ef8c1ed4b3f2",
+          "is_super_admin": false,
+          "has_impersonate_write_permission": false,
+          "view_multiple_schedules": true,
+          "push_notification_new_alert_sound": "default",
+          "push_notification_shift_starts_sound": "soft_bloob",
+          "push_notification_shift_ends_sound": "soft_bloob",
+          "how_did_you_hear_about_us": "Web search",
+          "push_notification_new_alert_volume": 1.0,
+          "opsgenie_id": null,
+          "victor_ops_id": null,
+          "pagerduty_id": null,
+          "locale": "en",
+          "push_notification_shift_coverage_sound": "soft_bloob",
+          "jsmops_id": null,
+          "preferred_name": null
+        },
+        "assigned_to_group_ids": [],
+        "kind": "follow_up",
+        "priority": "high",
+        "status": "in_progress",
+        "due_date": "2026-03-14T07:30:00.000-04:00",
+        "jira_issue_id": null,
+        "jira_issue_key": "SEC-742",
+        "jira_issue_url": "https://jira.example.com/browse/SEC-742",
+        "asana_task_id": null,
+        "asana_task_url": null,
+        "github_issue_id": null,
+        "github_issue_url": null,
+        "gitlab_issue_id": null,
+        "gitlab_issue_url": null,
+        "shortcut_story_id": null,
+        "shortcut_story_url": null,
+        "shortcut_task_id": null,
+        "shortcut_task_url": null,
+        "trello_card_id": null,
+        "trello_card_url": null,
+        "linear_issue_id": null,
+        "linear_issue_url": null,
+        "zendesk_ticket_id": null,
+        "zendesk_ticket_url": null,
+        "motion_task_id": null,
+        "motion_task_url": null,
+        "clickup_task_id": null,
+        "clickup_task_url": null,
+        "airtable_base_key": null,
+        "airtable_table_name": null,
+        "airtable_record_id": null,
+        "airtable_record_url": null,
+        "freshservice_ticket_id": null,
+        "freshservice_ticket_url": null,
+        "freshservice_task_id": null,
+        "freshservice_task_url": null,
+        "url": "https://rootly.com/account/incidents/2-production-environment-access-breach?tab=follow_ups",
+        "short_url": "https://root.ly/gtb2es",
+        "created_by": {
+          "data": {
+            "id": "233906",
+            "type": "users",
+            "attributes": {
+              "name": "Nicole Bu",
+              "email": "oncall.engineer@example.com",
+              "phone": null,
+              "phone_2": null,
+              "first_name": "Nicole",
+              "last_name": "Bu",
+              "preferred_name": null,
+              "full_name": "Nicole Bu",
+              "full_name_with_team": "[Windriver] Nicole Bu",
+              "slack_id": null,
+              "time_zone": "America/New_York",
+              "updated_at": "2026-03-15T10:45:42.904-07:00",
+              "created_at": "2026-03-14T19:45:25.797-07:00"
+            },
+            "relationships": {
+              "email_addresses": {
+                "data": [
+                  {
+                    "id": "3c8d65a9-55f2-4a8e-b1c2-c46483ba7820",
+                    "type": "user_email_addresses"
+                  }
+                ]
+              },
+              "phone_numbers": {
+                "data": []
+              },
+              "devices": {
+                "data": []
+              },
+              "role": {
+                "data": {
+                  "created_at": "2026-03-14T19:47:13.746-07:00",
+                  "updated_at": "2026-03-14T19:47:13.746-07:00",
+                  "display_order": 1,
+                  "api_keys_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "billing_permissions": [
+                    "update"
+                  ],
+                  "environments_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "functionalities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "group_admin_update_name",
+                    "group_admin_manage_services"
+                  ],
+                  "incident_causes_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_types_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "private_incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "playbooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "retrospective_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "severities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "status_pages_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "team_id": 6174,
+                  "name": "owner",
+                  "slug": "owner",
+                  "is_editable": false,
+                  "is_deletable": false,
+                  "incident_feedbacks_permissions": [
+                    "read",
+                    "create",
+                    "update"
+                  ],
+                  "form_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "secrets_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "id": "18e84c14-fc7e-4928-abff-5639912a55e8",
+                  "deleted_at": null,
+                  "incident_permission_set_id": null,
+                  "pulses_permissions": [
+                    "create",
+                    "update",
+                    "read"
+                  ],
+                  "alerts_permissions": [
+                    "create",
+                    "read"
+                  ],
+                  "paging_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "sub_statuses_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "catalogs_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "send"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "edge_connector_permissions": []
+                }
+              },
+              "on_call_role": {
+                "data": {
+                  "id": "24a80041-cf9d-4a84-b812-880a036c4fc8",
+                  "team_id": 6174,
+                  "name": "Admin",
+                  "slug": "admin",
+                  "system_role": "admin",
+                  "deleted_at": null,
+                  "created_at": "2026-03-14T19:47:13.838-07:00",
+                  "updated_at": "2026-03-14T19:47:13.838-07:00",
+                  "alerts_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "api_keys_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "escalation_policies_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "on_call_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "schedules_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "shift_overrides_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "contacts_permissions": [
+                    "read"
+                  ],
+                  "live_call_routing_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "heartbeats_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_urgency_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [],
+                  "alert_sources_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "schedule_override_permissions": [
+                    "create",
+                    "update"
+                  ],
+                  "on_call_readiness_report_permissions": [
+                    "read"
+                  ],
+                  "alert_routing_rules_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "alert_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ]
+                }
+              },
+              "teams": {
+                "data": []
+              },
+              "schedules": {
+                "data": []
+              },
+              "notification_rules": {
+                "data": [
+                  {
+                    "id": "34c859ca-8f45-4b25-8656-59a7a764439c",
+                    "type": "user_notification_rules"
+                  },
+                  {
+                    "id": "bcfd218b-5d46-4282-979d-638fad108623",
+                    "type": "user_notification_rules"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "created_at": "2026-03-14T19:47:17.991-07:00",
+        "updated_at": "2026-03-15T10:39:46.081-07:00",
+        "summary": "Rotate CI deploy tokens and verify revocation in every production region."
+      }
+    },
+    {
+      "id": "18fea278-a680-4e51-a5e4-a442dcdc40fc",
+      "type": "incident_action_items",
+      "attributes": {
+        "incident_id": "2111b16a-4e97-4d93-9b20-b08183e2123b",
+        "incident_title": "Unauthorized bastion access attempt blocked",
+        "description": "Audit PostgreSQL role grants and revoke stale elevated privileges.",
+        "assigned_to": {
+          "id": 233906,
+          "email": "oncall.engineer@example.com",
+          "deleted_at": null,
+          "created_at": "2026-03-14T19:45:25.797-07:00",
+          "updated_at": "2026-03-15T10:45:42.904-07:00",
+          "current_team_id": 6174,
+          "first_name": "Nicole",
+          "last_name": "Bu",
+          "time_zone": "America/New_York",
+          "last_seen_at": "2026-03-15T10:45:39.058-07:00",
+          "profile_photo_id": null,
+          "ability_cache": {
+            "team_ids": [
+              6174
+            ],
+            "administrating_team_ids": [
+              6174
+            ]
+          },
+          "last_notification_email_sent_at": null,
+          "accept_terms": true,
+          "onboarding_completed": true,
+          "service_user": false,
+          "accept_marketing": true,
+          "teams_count": 1,
+          "created_through_sso": false,
+          "scim_uid": null,
+          "session_token": null,
+          "incidents_example_count": 0,
+          "incidents_test_count": 0,
+          "incidents_normal_count": 3,
+          "incidents_scheduled_count": 0,
+          "incidents_backfilled_count": 0,
+          "incidents_count": 3,
+          "theme": "light_v2",
+          "skip_tutorial": false,
+          "external_id": null,
+          "jti": "bd051f47-e532-4038-bec6-ef8c1ed4b3f2",
+          "is_super_admin": false,
+          "has_impersonate_write_permission": false,
+          "view_multiple_schedules": true,
+          "push_notification_new_alert_sound": "default",
+          "push_notification_shift_starts_sound": "soft_bloob",
+          "push_notification_shift_ends_sound": "soft_bloob",
+          "how_did_you_hear_about_us": "Web search",
+          "push_notification_new_alert_volume": 1.0,
+          "opsgenie_id": null,
+          "victor_ops_id": null,
+          "pagerduty_id": null,
+          "locale": "en",
+          "push_notification_shift_coverage_sound": "soft_bloob",
+          "jsmops_id": null,
+          "preferred_name": null
+        },
+        "assigned_to_group_ids": [],
+        "kind": "follow_up",
+        "priority": "medium",
+        "status": "in_progress",
+        "due_date": "2026-03-17T17:00:00.000-04:00",
+        "jira_issue_id": null,
+        "jira_issue_key": "SEC-751",
+        "jira_issue_url": "https://jira.example.com/browse/SEC-751",
+        "asana_task_id": null,
+        "asana_task_url": null,
+        "github_issue_id": null,
+        "github_issue_url": null,
+        "gitlab_issue_id": null,
+        "gitlab_issue_url": null,
+        "shortcut_story_id": null,
+        "shortcut_story_url": null,
+        "shortcut_task_id": null,
+        "shortcut_task_url": null,
+        "trello_card_id": null,
+        "trello_card_url": null,
+        "linear_issue_id": null,
+        "linear_issue_url": null,
+        "zendesk_ticket_id": null,
+        "zendesk_ticket_url": null,
+        "motion_task_id": null,
+        "motion_task_url": null,
+        "clickup_task_id": null,
+        "clickup_task_url": null,
+        "airtable_base_key": null,
+        "airtable_table_name": null,
+        "airtable_record_id": null,
+        "airtable_record_url": null,
+        "freshservice_ticket_id": null,
+        "freshservice_ticket_url": null,
+        "freshservice_task_id": null,
+        "freshservice_task_url": null,
+        "url": "https://rootly.com/account/incidents/2-production-environment-access-breach?tab=follow_ups",
+        "short_url": "https://root.ly/gtb2es",
+        "created_by": {
+          "data": {
+            "id": "233906",
+            "type": "users",
+            "attributes": {
+              "name": "Nicole Bu",
+              "email": "oncall.engineer@example.com",
+              "phone": null,
+              "phone_2": null,
+              "first_name": "Nicole",
+              "last_name": "Bu",
+              "preferred_name": null,
+              "full_name": "Nicole Bu",
+              "full_name_with_team": "[Windriver] Nicole Bu",
+              "slack_id": null,
+              "time_zone": "America/New_York",
+              "updated_at": "2026-03-15T10:45:42.904-07:00",
+              "created_at": "2026-03-14T19:45:25.797-07:00"
+            },
+            "relationships": {
+              "email_addresses": {
+                "data": [
+                  {
+                    "id": "3c8d65a9-55f2-4a8e-b1c2-c46483ba7820",
+                    "type": "user_email_addresses"
+                  }
+                ]
+              },
+              "phone_numbers": {
+                "data": []
+              },
+              "devices": {
+                "data": []
+              },
+              "role": {
+                "data": {
+                  "created_at": "2026-03-14T19:47:13.746-07:00",
+                  "updated_at": "2026-03-14T19:47:13.746-07:00",
+                  "display_order": 1,
+                  "api_keys_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "billing_permissions": [
+                    "update"
+                  ],
+                  "environments_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "functionalities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "group_admin_update_name",
+                    "group_admin_manage_services"
+                  ],
+                  "incident_causes_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_types_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "private_incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "playbooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "retrospective_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "severities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "status_pages_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "team_id": 6174,
+                  "name": "owner",
+                  "slug": "owner",
+                  "is_editable": false,
+                  "is_deletable": false,
+                  "incident_feedbacks_permissions": [
+                    "read",
+                    "create",
+                    "update"
+                  ],
+                  "form_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "secrets_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "id": "18e84c14-fc7e-4928-abff-5639912a55e8",
+                  "deleted_at": null,
+                  "incident_permission_set_id": null,
+                  "pulses_permissions": [
+                    "create",
+                    "update",
+                    "read"
+                  ],
+                  "alerts_permissions": [
+                    "create",
+                    "read"
+                  ],
+                  "paging_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "sub_statuses_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "catalogs_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "send"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "edge_connector_permissions": []
+                }
+              },
+              "on_call_role": {
+                "data": {
+                  "id": "24a80041-cf9d-4a84-b812-880a036c4fc8",
+                  "team_id": 6174,
+                  "name": "Admin",
+                  "slug": "admin",
+                  "system_role": "admin",
+                  "deleted_at": null,
+                  "created_at": "2026-03-14T19:47:13.838-07:00",
+                  "updated_at": "2026-03-14T19:47:13.838-07:00",
+                  "alerts_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "api_keys_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "escalation_policies_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "on_call_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "schedules_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "shift_overrides_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "contacts_permissions": [
+                    "read"
+                  ],
+                  "live_call_routing_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "heartbeats_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_urgency_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [],
+                  "alert_sources_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "schedule_override_permissions": [
+                    "create",
+                    "update"
+                  ],
+                  "on_call_readiness_report_permissions": [
+                    "read"
+                  ],
+                  "alert_routing_rules_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "alert_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ]
+                }
+              },
+              "teams": {
+                "data": []
+              },
+              "schedules": {
+                "data": []
+              },
+              "notification_rules": {
+                "data": [
+                  {
+                    "id": "34c859ca-8f45-4b25-8656-59a7a764439c",
+                    "type": "user_notification_rules"
+                  },
+                  {
+                    "id": "bcfd218b-5d46-4282-979d-638fad108623",
+                    "type": "user_notification_rules"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "created_at": "2026-03-14T19:47:17.971-07:00",
+        "updated_at": "2026-03-14T19:47:17.971-07:00",
+        "summary": "Complete IAM least-privilege audit for production database roles."
+      }
+    },
+    {
+      "id": "916486ca-e1bd-42db-8512-c100999138de",
+      "type": "incident_action_items",
+      "attributes": {
+        "incident_id": "2111b16a-4e97-4d93-9b20-b08183e2123b",
+        "incident_title": "Unauthorized bastion access attempt blocked",
+        "description": "Document actor identity and full timeline in incident retrospective.",
+        "assigned_to": {
+          "id": 233906,
+          "email": "oncall.engineer@example.com",
+          "deleted_at": null,
+          "created_at": "2026-03-14T19:45:25.797-07:00",
+          "updated_at": "2026-03-15T10:45:42.904-07:00",
+          "current_team_id": 6174,
+          "first_name": "Nicole",
+          "last_name": "Bu",
+          "time_zone": "America/New_York",
+          "last_seen_at": "2026-03-15T10:45:39.058-07:00",
+          "profile_photo_id": null,
+          "ability_cache": {
+            "team_ids": [
+              6174
+            ],
+            "administrating_team_ids": [
+              6174
+            ]
+          },
+          "last_notification_email_sent_at": null,
+          "accept_terms": true,
+          "onboarding_completed": true,
+          "service_user": false,
+          "accept_marketing": true,
+          "teams_count": 1,
+          "created_through_sso": false,
+          "scim_uid": null,
+          "session_token": null,
+          "incidents_example_count": 0,
+          "incidents_test_count": 0,
+          "incidents_normal_count": 3,
+          "incidents_scheduled_count": 0,
+          "incidents_backfilled_count": 0,
+          "incidents_count": 3,
+          "theme": "light_v2",
+          "skip_tutorial": false,
+          "external_id": null,
+          "jti": "bd051f47-e532-4038-bec6-ef8c1ed4b3f2",
+          "is_super_admin": false,
+          "has_impersonate_write_permission": false,
+          "view_multiple_schedules": true,
+          "push_notification_new_alert_sound": "default",
+          "push_notification_shift_starts_sound": "soft_bloob",
+          "push_notification_shift_ends_sound": "soft_bloob",
+          "how_did_you_hear_about_us": "Web search",
+          "push_notification_new_alert_volume": 1.0,
+          "opsgenie_id": null,
+          "victor_ops_id": null,
+          "pagerduty_id": null,
+          "locale": "en",
+          "push_notification_shift_coverage_sound": "soft_bloob",
+          "jsmops_id": null,
+          "preferred_name": null
+        },
+        "assigned_to_group_ids": [],
+        "kind": "follow_up",
+        "priority": "high",
+        "status": "done",
+        "due_date": "2026-03-15T09:00:00.000-04:00",
+        "jira_issue_id": null,
+        "jira_issue_key": "SEC-739",
+        "jira_issue_url": "https://jira.example.com/browse/SEC-739",
+        "asana_task_id": null,
+        "asana_task_url": null,
+        "github_issue_id": null,
+        "github_issue_url": null,
+        "gitlab_issue_id": null,
+        "gitlab_issue_url": null,
+        "shortcut_story_id": null,
+        "shortcut_story_url": null,
+        "shortcut_task_id": null,
+        "shortcut_task_url": null,
+        "trello_card_id": null,
+        "trello_card_url": null,
+        "linear_issue_id": null,
+        "linear_issue_url": null,
+        "zendesk_ticket_id": null,
+        "zendesk_ticket_url": null,
+        "motion_task_id": null,
+        "motion_task_url": null,
+        "clickup_task_id": null,
+        "clickup_task_url": null,
+        "airtable_base_key": null,
+        "airtable_table_name": null,
+        "airtable_record_id": null,
+        "airtable_record_url": null,
+        "freshservice_ticket_id": null,
+        "freshservice_ticket_url": null,
+        "freshservice_task_id": null,
+        "freshservice_task_url": null,
+        "url": "https://rootly.com/account/incidents/2-production-environment-access-breach?tab=follow_ups",
+        "short_url": "https://root.ly/gtb2es",
+        "created_by": {
+          "data": {
+            "id": "233906",
+            "type": "users",
+            "attributes": {
+              "name": "Nicole Bu",
+              "email": "oncall.engineer@example.com",
+              "phone": null,
+              "phone_2": null,
+              "first_name": "Nicole",
+              "last_name": "Bu",
+              "preferred_name": null,
+              "full_name": "Nicole Bu",
+              "full_name_with_team": "[Windriver] Nicole Bu",
+              "slack_id": null,
+              "time_zone": "America/New_York",
+              "updated_at": "2026-03-15T10:45:42.904-07:00",
+              "created_at": "2026-03-14T19:45:25.797-07:00"
+            },
+            "relationships": {
+              "email_addresses": {
+                "data": [
+                  {
+                    "id": "3c8d65a9-55f2-4a8e-b1c2-c46483ba7820",
+                    "type": "user_email_addresses"
+                  }
+                ]
+              },
+              "phone_numbers": {
+                "data": []
+              },
+              "devices": {
+                "data": []
+              },
+              "role": {
+                "data": {
+                  "created_at": "2026-03-14T19:47:13.746-07:00",
+                  "updated_at": "2026-03-14T19:47:13.746-07:00",
+                  "display_order": 1,
+                  "api_keys_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "billing_permissions": [
+                    "update"
+                  ],
+                  "environments_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "functionalities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "group_admin_update_name",
+                    "group_admin_manage_services"
+                  ],
+                  "incident_causes_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_types_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "private_incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "playbooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "retrospective_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "severities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "status_pages_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "team_id": 6174,
+                  "name": "owner",
+                  "slug": "owner",
+                  "is_editable": false,
+                  "is_deletable": false,
+                  "incident_feedbacks_permissions": [
+                    "read",
+                    "create",
+                    "update"
+                  ],
+                  "form_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "secrets_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "id": "18e84c14-fc7e-4928-abff-5639912a55e8",
+                  "deleted_at": null,
+                  "incident_permission_set_id": null,
+                  "pulses_permissions": [
+                    "create",
+                    "update",
+                    "read"
+                  ],
+                  "alerts_permissions": [
+                    "create",
+                    "read"
+                  ],
+                  "paging_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "sub_statuses_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "catalogs_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "send"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "edge_connector_permissions": []
+                }
+              },
+              "on_call_role": {
+                "data": {
+                  "id": "24a80041-cf9d-4a84-b812-880a036c4fc8",
+                  "team_id": 6174,
+                  "name": "Admin",
+                  "slug": "admin",
+                  "system_role": "admin",
+                  "deleted_at": null,
+                  "created_at": "2026-03-14T19:47:13.838-07:00",
+                  "updated_at": "2026-03-14T19:47:13.838-07:00",
+                  "alerts_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "api_keys_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "escalation_policies_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "on_call_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "schedules_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "shift_overrides_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "contacts_permissions": [
+                    "read"
+                  ],
+                  "live_call_routing_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "heartbeats_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_urgency_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [],
+                  "alert_sources_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "schedule_override_permissions": [
+                    "create",
+                    "update"
+                  ],
+                  "on_call_readiness_report_permissions": [
+                    "read"
+                  ],
+                  "alert_routing_rules_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "alert_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ]
+                }
+              },
+              "teams": {
+                "data": []
+              },
+              "schedules": {
+                "data": []
+              },
+              "notification_rules": {
+                "data": [
+                  {
+                    "id": "34c859ca-8f45-4b25-8656-59a7a764439c",
+                    "type": "user_notification_rules"
+                  },
+                  {
+                    "id": "bcfd218b-5d46-4282-979d-638fad108623",
+                    "type": "user_notification_rules"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "created_at": "2026-03-14T19:47:17.952-07:00",
+        "updated_at": "2026-03-14T19:47:17.952-07:00",
+        "summary": "Confirm CloudTrail actor attribution for blocked bastion access path."
+      }
+    },
+    {
+      "id": "feb2b0d4-626f-4ac8-92ac-b72441ed9fc7",
+      "type": "incident_action_items",
+      "attributes": {
+        "incident_id": "521279c8-3634-4813-8958-64c11acacd11",
+        "incident_title": "Unauthorized bastion access attempt blocked",
+        "description": "Assign service owners and add reminders before cert expiration windows.",
+        "assigned_to": {
+          "id": 233906,
+          "email": "oncall.engineer@example.com",
+          "deleted_at": null,
+          "created_at": "2026-03-14T19:45:25.797-07:00",
+          "updated_at": "2026-03-15T10:45:42.904-07:00",
+          "current_team_id": 6174,
+          "first_name": "Nicole",
+          "last_name": "Bu",
+          "time_zone": "America/New_York",
+          "last_seen_at": "2026-03-15T10:45:39.058-07:00",
+          "profile_photo_id": null,
+          "ability_cache": {
+            "team_ids": [
+              6174
+            ],
+            "administrating_team_ids": [
+              6174
+            ]
+          },
+          "last_notification_email_sent_at": null,
+          "accept_terms": true,
+          "onboarding_completed": true,
+          "service_user": false,
+          "accept_marketing": true,
+          "teams_count": 1,
+          "created_through_sso": false,
+          "scim_uid": null,
+          "session_token": null,
+          "incidents_example_count": 0,
+          "incidents_test_count": 0,
+          "incidents_normal_count": 3,
+          "incidents_scheduled_count": 0,
+          "incidents_backfilled_count": 0,
+          "incidents_count": 3,
+          "theme": "light_v2",
+          "skip_tutorial": false,
+          "external_id": null,
+          "jti": "bd051f47-e532-4038-bec6-ef8c1ed4b3f2",
+          "is_super_admin": false,
+          "has_impersonate_write_permission": false,
+          "view_multiple_schedules": true,
+          "push_notification_new_alert_sound": "default",
+          "push_notification_shift_starts_sound": "soft_bloob",
+          "push_notification_shift_ends_sound": "soft_bloob",
+          "how_did_you_hear_about_us": "Web search",
+          "push_notification_new_alert_volume": 1.0,
+          "opsgenie_id": null,
+          "victor_ops_id": null,
+          "pagerduty_id": null,
+          "locale": "en",
+          "push_notification_shift_coverage_sound": "soft_bloob",
+          "jsmops_id": null,
+          "preferred_name": null
+        },
+        "assigned_to_group_ids": [],
+        "kind": "follow_up",
+        "priority": "medium",
+        "status": "in_progress",
+        "due_date": "2026-03-20T12:00:00.000-04:00",
+        "jira_issue_id": null,
+        "jira_issue_key": "PLAT-557",
+        "jira_issue_url": "https://jira.example.com/browse/PLAT-557",
+        "asana_task_id": null,
+        "asana_task_url": null,
+        "github_issue_id": null,
+        "github_issue_url": null,
+        "gitlab_issue_id": null,
+        "gitlab_issue_url": null,
+        "shortcut_story_id": null,
+        "shortcut_story_url": null,
+        "shortcut_task_id": null,
+        "shortcut_task_url": null,
+        "trello_card_id": null,
+        "trello_card_url": null,
+        "linear_issue_id": null,
+        "linear_issue_url": null,
+        "zendesk_ticket_id": null,
+        "zendesk_ticket_url": null,
+        "motion_task_id": null,
+        "motion_task_url": null,
+        "clickup_task_id": null,
+        "clickup_task_url": null,
+        "airtable_base_key": null,
+        "airtable_table_name": null,
+        "airtable_record_id": null,
+        "airtable_record_url": null,
+        "freshservice_ticket_id": null,
+        "freshservice_ticket_url": null,
+        "freshservice_task_id": null,
+        "freshservice_task_url": null,
+        "url": "https://rootly.com/account/incidents/1-unauthorized-access-to-internal-file-server?tab=follow_ups",
+        "short_url": "https://root.ly/al9c4m",
+        "created_by": {
+          "data": {
+            "id": "233906",
+            "type": "users",
+            "attributes": {
+              "name": "Nicole Bu",
+              "email": "oncall.engineer@example.com",
+              "phone": null,
+              "phone_2": null,
+              "first_name": "Nicole",
+              "last_name": "Bu",
+              "preferred_name": null,
+              "full_name": "Nicole Bu",
+              "full_name_with_team": "[Windriver] Nicole Bu",
+              "slack_id": null,
+              "time_zone": "America/New_York",
+              "updated_at": "2026-03-15T10:45:42.904-07:00",
+              "created_at": "2026-03-14T19:45:25.797-07:00"
+            },
+            "relationships": {
+              "email_addresses": {
+                "data": [
+                  {
+                    "id": "3c8d65a9-55f2-4a8e-b1c2-c46483ba7820",
+                    "type": "user_email_addresses"
+                  }
+                ]
+              },
+              "phone_numbers": {
+                "data": []
+              },
+              "devices": {
+                "data": []
+              },
+              "role": {
+                "data": {
+                  "created_at": "2026-03-14T19:47:13.746-07:00",
+                  "updated_at": "2026-03-14T19:47:13.746-07:00",
+                  "display_order": 1,
+                  "api_keys_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "billing_permissions": [
+                    "update"
+                  ],
+                  "environments_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "functionalities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "group_admin_update_name",
+                    "group_admin_manage_services"
+                  ],
+                  "incident_causes_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_types_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "private_incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "playbooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "retrospective_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "severities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "status_pages_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "team_id": 6174,
+                  "name": "owner",
+                  "slug": "owner",
+                  "is_editable": false,
+                  "is_deletable": false,
+                  "incident_feedbacks_permissions": [
+                    "read",
+                    "create",
+                    "update"
+                  ],
+                  "form_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "secrets_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "id": "18e84c14-fc7e-4928-abff-5639912a55e8",
+                  "deleted_at": null,
+                  "incident_permission_set_id": null,
+                  "pulses_permissions": [
+                    "create",
+                    "update",
+                    "read"
+                  ],
+                  "alerts_permissions": [
+                    "create",
+                    "read"
+                  ],
+                  "paging_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "sub_statuses_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "catalogs_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "send"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "edge_connector_permissions": []
+                }
+              },
+              "on_call_role": {
+                "data": {
+                  "id": "24a80041-cf9d-4a84-b812-880a036c4fc8",
+                  "team_id": 6174,
+                  "name": "Admin",
+                  "slug": "admin",
+                  "system_role": "admin",
+                  "deleted_at": null,
+                  "created_at": "2026-03-14T19:47:13.838-07:00",
+                  "updated_at": "2026-03-14T19:47:13.838-07:00",
+                  "alerts_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "api_keys_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "escalation_policies_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "on_call_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "schedules_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "shift_overrides_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "contacts_permissions": [
+                    "read"
+                  ],
+                  "live_call_routing_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "heartbeats_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_urgency_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [],
+                  "alert_sources_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "schedule_override_permissions": [
+                    "create",
+                    "update"
+                  ],
+                  "on_call_readiness_report_permissions": [
+                    "read"
+                  ],
+                  "alert_routing_rules_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "alert_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ]
+                }
+              },
+              "teams": {
+                "data": []
+              },
+              "schedules": {
+                "data": []
+              },
+              "notification_rules": {
+                "data": [
+                  {
+                    "id": "34c859ca-8f45-4b25-8656-59a7a764439c",
+                    "type": "user_notification_rules"
+                  },
+                  {
+                    "id": "bcfd218b-5d46-4282-979d-638fad108623",
+                    "type": "user_notification_rules"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "created_at": "2026-03-14T19:47:17.399-07:00",
+        "updated_at": "2026-03-14T19:47:17.399-07:00",
+        "summary": "Define monthly certificate expiration review with clear service ownership."
+      }
+    },
+    {
+      "id": "ab59176b-251d-4051-b47d-f2f9aa137be4",
+      "type": "incident_action_items",
+      "attributes": {
+        "incident_id": "521279c8-3634-4813-8958-64c11acacd11",
+        "incident_title": "Unauthorized bastion access attempt blocked",
+        "description": "Consolidate all active certificates, owners, and renewal playbooks.",
+        "assigned_to": {
+          "id": 233906,
+          "email": "oncall.engineer@example.com",
+          "deleted_at": null,
+          "created_at": "2026-03-14T19:45:25.797-07:00",
+          "updated_at": "2026-03-15T10:45:42.904-07:00",
+          "current_team_id": 6174,
+          "first_name": "Nicole",
+          "last_name": "Bu",
+          "time_zone": "America/New_York",
+          "last_seen_at": "2026-03-15T10:45:39.058-07:00",
+          "profile_photo_id": null,
+          "ability_cache": {
+            "team_ids": [
+              6174
+            ],
+            "administrating_team_ids": [
+              6174
+            ]
+          },
+          "last_notification_email_sent_at": null,
+          "accept_terms": true,
+          "onboarding_completed": true,
+          "service_user": false,
+          "accept_marketing": true,
+          "teams_count": 1,
+          "created_through_sso": false,
+          "scim_uid": null,
+          "session_token": null,
+          "incidents_example_count": 0,
+          "incidents_test_count": 0,
+          "incidents_normal_count": 3,
+          "incidents_scheduled_count": 0,
+          "incidents_backfilled_count": 0,
+          "incidents_count": 3,
+          "theme": "light_v2",
+          "skip_tutorial": false,
+          "external_id": null,
+          "jti": "bd051f47-e532-4038-bec6-ef8c1ed4b3f2",
+          "is_super_admin": false,
+          "has_impersonate_write_permission": false,
+          "view_multiple_schedules": true,
+          "push_notification_new_alert_sound": "default",
+          "push_notification_shift_starts_sound": "soft_bloob",
+          "push_notification_shift_ends_sound": "soft_bloob",
+          "how_did_you_hear_about_us": "Web search",
+          "push_notification_new_alert_volume": 1.0,
+          "opsgenie_id": null,
+          "victor_ops_id": null,
+          "pagerduty_id": null,
+          "locale": "en",
+          "push_notification_shift_coverage_sound": "soft_bloob",
+          "jsmops_id": null,
+          "preferred_name": null
+        },
+        "assigned_to_group_ids": [],
+        "kind": "follow_up",
+        "priority": "medium",
+        "status": "done",
+        "due_date": "2026-03-13T10:00:00.000-04:00",
+        "jira_issue_id": null,
+        "jira_issue_key": "PLAT-549",
+        "jira_issue_url": "https://jira.example.com/browse/PLAT-549",
+        "asana_task_id": null,
+        "asana_task_url": null,
+        "github_issue_id": null,
+        "github_issue_url": null,
+        "gitlab_issue_id": null,
+        "gitlab_issue_url": null,
+        "shortcut_story_id": null,
+        "shortcut_story_url": null,
+        "shortcut_task_id": null,
+        "shortcut_task_url": null,
+        "trello_card_id": null,
+        "trello_card_url": null,
+        "linear_issue_id": null,
+        "linear_issue_url": null,
+        "zendesk_ticket_id": null,
+        "zendesk_ticket_url": null,
+        "motion_task_id": null,
+        "motion_task_url": null,
+        "clickup_task_id": null,
+        "clickup_task_url": null,
+        "airtable_base_key": null,
+        "airtable_table_name": null,
+        "airtable_record_id": null,
+        "airtable_record_url": null,
+        "freshservice_ticket_id": null,
+        "freshservice_ticket_url": null,
+        "freshservice_task_id": null,
+        "freshservice_task_url": null,
+        "url": "https://rootly.com/account/incidents/1-unauthorized-access-to-internal-file-server?tab=follow_ups",
+        "short_url": "https://root.ly/al9c4m",
+        "created_by": {
+          "data": {
+            "id": "233906",
+            "type": "users",
+            "attributes": {
+              "name": "Nicole Bu",
+              "email": "oncall.engineer@example.com",
+              "phone": null,
+              "phone_2": null,
+              "first_name": "Nicole",
+              "last_name": "Bu",
+              "preferred_name": null,
+              "full_name": "Nicole Bu",
+              "full_name_with_team": "[Windriver] Nicole Bu",
+              "slack_id": null,
+              "time_zone": "America/New_York",
+              "updated_at": "2026-03-15T10:45:42.904-07:00",
+              "created_at": "2026-03-14T19:45:25.797-07:00"
+            },
+            "relationships": {
+              "email_addresses": {
+                "data": [
+                  {
+                    "id": "3c8d65a9-55f2-4a8e-b1c2-c46483ba7820",
+                    "type": "user_email_addresses"
+                  }
+                ]
+              },
+              "phone_numbers": {
+                "data": []
+              },
+              "devices": {
+                "data": []
+              },
+              "role": {
+                "data": {
+                  "created_at": "2026-03-14T19:47:13.746-07:00",
+                  "updated_at": "2026-03-14T19:47:13.746-07:00",
+                  "display_order": 1,
+                  "api_keys_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "billing_permissions": [
+                    "update"
+                  ],
+                  "environments_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "functionalities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "group_admin_update_name",
+                    "group_admin_manage_services"
+                  ],
+                  "incident_causes_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_types_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "private_incidents_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "playbooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "retrospective_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "severities_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "status_pages_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "team_id": 6174,
+                  "name": "owner",
+                  "slug": "owner",
+                  "is_editable": false,
+                  "is_deletable": false,
+                  "incident_feedbacks_permissions": [
+                    "read",
+                    "create",
+                    "update"
+                  ],
+                  "form_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "secrets_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "id": "18e84c14-fc7e-4928-abff-5639912a55e8",
+                  "deleted_at": null,
+                  "incident_permission_set_id": null,
+                  "pulses_permissions": [
+                    "create",
+                    "update",
+                    "read"
+                  ],
+                  "alerts_permissions": [
+                    "create",
+                    "read"
+                  ],
+                  "paging_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "sub_statuses_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "catalogs_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "incident_communication_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete",
+                    "send"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "edge_connector_permissions": []
+                }
+              },
+              "on_call_role": {
+                "data": {
+                  "id": "24a80041-cf9d-4a84-b812-880a036c4fc8",
+                  "team_id": 6174,
+                  "name": "Admin",
+                  "slug": "admin",
+                  "system_role": "admin",
+                  "deleted_at": null,
+                  "created_at": "2026-03-14T19:47:13.838-07:00",
+                  "updated_at": "2026-03-14T19:47:13.838-07:00",
+                  "alerts_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "api_keys_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "audits_permissions": [
+                    "read"
+                  ],
+                  "escalation_policies_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "integrations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "invitations_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "on_call_roles_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "schedules_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "services_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "shift_overrides_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "workflows_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "contacts_permissions": [
+                    "read"
+                  ],
+                  "live_call_routing_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "heartbeats_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_urgency_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "webhooks_permissions": [],
+                  "alert_sources_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "schedule_override_permissions": [
+                    "create",
+                    "update"
+                  ],
+                  "on_call_readiness_report_permissions": [
+                    "read"
+                  ],
+                  "alert_routing_rules_permissions": [
+                    "create",
+                    "update",
+                    "read",
+                    "delete"
+                  ],
+                  "alert_fields_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ],
+                  "alert_groups_permissions": [
+                    "create",
+                    "read",
+                    "update",
+                    "delete"
+                  ]
+                }
+              },
+              "teams": {
+                "data": []
+              },
+              "schedules": {
+                "data": []
+              },
+              "notification_rules": {
+                "data": [
+                  {
+                    "id": "34c859ca-8f45-4b25-8656-59a7a764439c",
+                    "type": "user_notification_rules"
+                  },
+                  {
+                    "id": "bcfd218b-5d46-4282-979d-638fad108623",
+                    "type": "user_notification_rules"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "created_at": "2026-03-14T19:47:17.375-07:00",
+        "updated_at": "2026-03-14T19:47:17.375-07:00",
+        "summary": "Publish certificate inventory source-of-truth in platform runbook."
+      }
+    }
+  ],
+  "links": {
+    "self": "https://api.rootly.com/v1/action_items?page%5Bnumber%5D=1&page%5Bsize%5D=100",
+    "first": "https://api.rootly.com/v1/action_items?page%5Bnumber%5D=1&page%5Bsize%5D=100",
+    "prev": null,
+    "next": null,
+    "last": "https://api.rootly.com/v1/action_items?page%5Bnumber%5D=1&page%5Bsize%5D=100"
+  },
+  "meta": {
+    "current_page": 1,
+    "next_page": null,
+    "prev_page": null,
+    "total_count": 6,
+    "total_pages": 1
+  }
+}

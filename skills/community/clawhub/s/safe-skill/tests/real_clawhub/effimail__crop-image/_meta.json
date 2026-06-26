@@ -1,0 +1,11 @@
+{
+  "owner": "effimail",
+  "slug": "crop-image",
+  "displayName": "Crop Image",
+  "latest": {
+    "version": "0.1.0",
+    "publishedAt": 1773290850057,
+    "commit": "https://github.com/openclaw/skills/commit/c52819176d91301e5ea30614f28ebc116b25eb6e"
+  },
+  "history": []
+}

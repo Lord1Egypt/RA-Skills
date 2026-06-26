@@ -1,0 +1,48 @@
+{
+  "name": "my-project",
+  "skills": [
+    { "name": "feishu-doc", "version": "latest" },
+    { "name": "weather", "version": "1.2.0" },
+    { "name": "stock-analyzer" }
+  ],
+  "excludeGlobal": true,
+  "sources": [
+    {
+      "name": "clawhub",
+      "type": "registry",
+      "priority": 1,
+      "enabled": true
+    },
+    {
+      "name": "local",
+      "type": "filesystem",
+      "priority": 2,
+      "paths": [
+        "~/.openclaw/skills",
+        "~/my-skills"
+      ]
+    },
+    {
+      "name": "github",
+      "type": "git",
+      "priority": 3,
+      "repos": [
+        "user/skill-repo",
+        "org/awesome-skills"
+      ],
+      "branch": "main",
+      "auth": {
+        "type": "token",
+        "env": "GITHUB_TOKEN"
+      }
+    }
+  ],
+  "cache": {
+    "enabled": true,
+    "ttlHours": 24
+  },
+  "autoSync": {
+    "onProjectEnter": true,
+    "onSkillMissing": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "s2-bas-causal-os",
+  "version": "1.1.0",
+  "description": "S2-SWM Unified BAS OS. Integrates SSSU grid generation, OLS thermal calibration, and Causal Lookahead Control (CLC) thermodynamic prediction for both closed and semi-open spaces.",
+  "main": "handler.py",
+  "scripts": { "start": "python3 handler.py" },
+  "openclaw": {
+    "extensions": ["openclaw.plugin.json"],
+    "compat": { "pluginApi": ">=3.22.0" },
+    "build": { "openclawVersion": "4.2.0" },
+    "capabilities": ["topology_mapper", "physics_calibrator", "causal_hvac_control"]
+  },
+  "keywords": ["openclaw", "bas", "hvac", "sssu", "taohuayuan", "causal-os"],
+  "author": "Space2.world (Miles Xiang)"
+}

@@ -1,0 +1,11 @@
+{
+  "owner": "impkind",
+  "slug": "acc-error-memory",
+  "displayName": "ACC Error Memory",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1770833752017,
+    "commit": "https://github.com/openclaw/skills/commit/42d714c7d8553d3d23b685d0370d6083a5356b27"
+  },
+  "history": []
+}

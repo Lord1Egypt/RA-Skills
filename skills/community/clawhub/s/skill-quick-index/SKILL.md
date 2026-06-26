@@ -1,35 +1,44 @@
 ---
-name: "Skill Quick Index"
-description: "Build a wide-trigger, precise-match index for local OpenClaw skills (L1-L3), then quickly route by intent/category/keywords."
-category: "other"
-source: "ClawHub"
-tags: [routing, skills]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-quick-index"
-sourceUrl: "https://clawhub.ai/skills/skill-quick-index"
+name: skill-quick-index
+version: 1.0.1
+description: Build a wide-trigger, precise-match index for local OpenClaw skills (L1-L3), then quickly route by intent/category/keywords.
 ---
 
 # Skill Quick Index
 
-> Build a wide-trigger, precise-match index for local OpenClaw skills (L1-L3), then quickly route by intent/category/keywords.
+Create and use a fast local index so users can trigger skills with natural language (broad keywords) and still get precise skill routing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-quick-index`
-- **Source URL:** [https://clawhub.ai/skills/skill-quick-index](https://clawhub.ai/skills/skill-quick-index)
+## What this skill does
 
-## Overview
+1. Scans local skills in `~/.openclaw/workspace/skills/*/SKILL.md`
+2. Builds a category + keyword index for L1/L2/L3 routing
+3. Supports quick lookup from any user phrase
+4. Produces recommended skills with priority order
 
+## Files
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `index/skill_index.json` — index database
+- `scripts/skill_lookup.py` — local query tool
+- `README.md` — usage docs
+
+## Usage
+
 ```bash
-hermes skills install clawhub/skill-quick-index
+python3 scripts/skill_lookup.py "打开网页并截图"
+python3 scripts/skill_lookup.py "ocr识别图片文字"
+python3 scripts/skill_lookup.py "自动化工作流"
 ```
+
+## Matching strategy
+
+- Exact skill trigger > category keyword > generic intent
+- Multi-keyword query returns intersected/re-ranked skills
+- Keeps L0 out of normal routing unless explicitly requested
+
+## Typical triggers
+
+- Browser: 浏览器 / 网页 / 抓取 / 截图 / 登录 / 表单
+- Docs: word / docx / csv / 报告 / 导出
+- AI Agent: evomap / agent / 协作 / 节点
+- Media: ocr / 字幕 / youtube / 语音转文字
+- Team: codingteam / 子代理 / 任务分解

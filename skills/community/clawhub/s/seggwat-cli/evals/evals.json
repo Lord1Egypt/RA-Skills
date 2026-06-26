@@ -1,0 +1,23 @@
+{
+  "skill_name": "seggwat-cli",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just set up SeggWat for my SaaS product. How do I install the CLI and check my feedback from the terminal? I want to filter by bugs only.",
+      "expected_output": "Should provide install command (brew/cargo/curl), auth setup with API key, and the exact command to list feedback filtered by bug type with --type bug flag",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need to write a bash script that runs in our CI pipeline. It should check if our NPS score dropped below 30 and create a bug report in SeggWat if it did. We have our API key in SEGGWAT_API_KEY env var already.",
+      "expected_output": "Should produce a working bash script using seggwat CLI with --json flag, jq to extract NPS score, conditional logic, and seggwat feedback create command. Should use the correct flags and know NPS stats endpoint.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We're using SeggWat and I want to triage the last week's feedback. Show me how to list new feedback, update a few to active, and then resolve one with a note. Also how do I see helpful rating stats?",
+      "expected_output": "Should show feedback list with --status new, feedback update with --status active, feedback update with --status resolved --resolution-note, and rating stats --type helpful. Commands should use correct syntax.",
+      "files": []
+    }
+  ]
+}

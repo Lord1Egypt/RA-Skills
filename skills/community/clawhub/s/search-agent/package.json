@@ -1,0 +1,62 @@
+{
+  "name": "search-agent",
+  "version": "1.0.0",
+  "description": "AI-powered search agent that performs intelligent web searches, aggregates results, and provides summarized answers with source citations",
+  "main": "index.js",
+  "bin": {
+    "search-agent": "./cli.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "search",
+    "research",
+    "web-search",
+    "ai-search",
+    "information-retrieval",
+    "fact-checking",
+    "news-aggregation",
+    "academic-search",
+    "code-search",
+    "intelligent-agent",
+    "knowledge-discovery",
+    "source-citation",
+    "automated-research",
+    "clawhub",
+    "skill",
+    "openclaw"
+  ],
+  "author": "Search Agent Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawhub/search-agent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/clawhub/search-agent/issues"
+  },
+  "homepage": "https://github.com/clawhub/search-agent#readme",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "clawhub": {
+    "skill": true,
+    "category": "productivity",
+    "displayName": "Search Agent",
+    "icon": "🔍",
+    "minTraeVersion": "1.0.0"
+  }
+}

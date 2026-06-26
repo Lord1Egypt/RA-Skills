@@ -1,0 +1,11 @@
+{
+  "owner": "ivangdavila",
+  "slug": "play-store",
+  "displayName": "Google Play Store",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1771373872930,
+    "commit": "https://github.com/openclaw/skills/commit/d57a6da55f65fc72bf1b367daceb5c450df6f63b"
+  },
+  "history": []
+}

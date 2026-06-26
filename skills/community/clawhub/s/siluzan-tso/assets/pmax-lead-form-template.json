@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "schema": "pmax-lead-form/v1",
+    "doc": "pmax-lead-form-template.md",
+    "note": "以 _ 开头的键仅作说明，CLI 提交前会剥离",
+    "agentPitfalls": [
+      "新建 PMax（Lead Gen/B2B）：优先 campaignExtensions.leadForm 随 pmax-create 一次挂载（见 pmax-create-template.json）",
+      "存量补挂：用本文件 + ad extension lead-form（须已有 campaignId）",
+      "LEAD_FORM 仅 Campaign 级；每活动通常 1 个；补挂前 ad extension list --type LEAD_FORM --campaign-id 检查",
+      "privacyPolicyUrl 须为 https 可访问页（可从官网 footer 找 privacy/terms）",
+      "账户须在 Google Ads UI 接受 Lead Form ToS",
+      "WhatsApp 见 pmax-whatsapp-template.json 或 campaignExtensions.businessMessage"
+    ]
+  },
+  "account": "REPLACE_mediaCustomerId",
+  "campaignId": "REPLACE_pmaxCampaignId",
+  "leadForm": {
+    "businessName": "Example Brand Co",
+    "headline": "Get a free quote",
+    "description": "Tell us about your project and we will contact you.",
+    "privacyPolicyUrl": "https://www.example.com/privacy",
+    "finalUrl": "https://www.example.com",
+    "callToActionType": "LEARN_MORE",
+    "callToActionDescription": "Contact us",
+    "fields": [
+      { "inputType": "FULL_NAME" },
+      { "inputType": "EMAIL" },
+      { "inputType": "PHONE_NUMBER" }
+    ],
+    "webhook": {
+      "advertiserWebhookUrl": "https://your-crm.example.com/webhook",
+      "googleSecret": "your-google-secret",
+      "payloadSchemaVersion": 3
+    }
+  }
+}

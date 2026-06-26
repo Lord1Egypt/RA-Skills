@@ -1,0 +1,8 @@
+{
+    "label": "benign",
+    "description": "Reads standard env vars (HOME, EDITOR, SHELL) — not secrets. Should be CLEAN.",
+    "expected_max_score": 0,
+    "expected_level": ["CLEAN"],
+    "should_not_trigger_categories": ["credential"],
+    "note": "os.environ.get is used but only for non-secret standard vars"
+}

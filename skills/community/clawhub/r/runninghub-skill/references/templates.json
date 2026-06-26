@@ -1,0 +1,79 @@
+{
+  "_comment": "RHMCP Skill 预设模板 - OpenClaw Skill 专用",
+  "_lastUpdated": "2025-03-31",
+  "_source": "https://github.com/AIRix315/RHMCP",
+
+  "templates": {
+    "anime-portrait": {
+      "name": "动漫人像",
+      "alias": "qwen-text-to-image",
+      "params": {
+        "width": 1024,
+        "height": 1024
+      },
+      "styleHint": "动漫风格人物",
+      "examplePrompt": "一位美丽的动漫角色，精致的五官，柔和的光线",
+      "tags": ["动漫", "人像", "角色"]
+    },
+
+    "landscape-wide": {
+      "name": "风景横图",
+      "alias": "qwen-text-to-image",
+      "params": {
+        "width": 1920,
+        "height": 1080
+      },
+      "styleHint": "自然风景",
+      "examplePrompt": "壮丽的山川风景，日落时分，金色阳光洒满山谷",
+      "tags": ["风景", "横版", "自然"]
+    },
+
+    "portrait-vertical": {
+      "name": "人像竖图",
+      "alias": "qwen-text-to-image",
+      "params": {
+        "width": 768,
+        "height": 1024
+      },
+      "styleHint": "人物肖像",
+      "examplePrompt": "一位优雅的人物肖像，柔和的背景虚化",
+      "tags": ["人像", "竖版", "肖像"]
+    },
+
+    "social-media-square": {
+      "name": "社交媒体方图",
+      "alias": "qwen-text-to-image",
+      "params": {
+        "width": 1024,
+        "height": 1024
+      },
+      "styleHint": "社交媒体风格",
+      "examplePrompt": "吸引眼球的社交媒体图片，鲜艳的色彩，现代风格",
+      "tags": ["社交媒体", "方形", "营销"]
+    },
+
+    "wallpaper-ultrawide": {
+      "name": "超宽壁纸",
+      "alias": "qwen-text-to-image",
+      "params": {
+        "width": 2560,
+        "height": 1080
+      },
+      "styleHint": "桌面壁纸",
+      "examplePrompt": "适合作为桌面壁纸的场景，宽屏构图",
+      "tags": ["壁纸", "超宽", "桌面"]
+    }
+  },
+
+  "categories": {
+    "image": [
+      "anime-portrait",
+      "landscape-wide",
+      "portrait-vertical",
+      "social-media-square",
+      "wallpaper-ultrawide"
+    ],
+    "video": [],
+    "audio": []
+  }
+}

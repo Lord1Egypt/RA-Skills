@@ -1,0 +1,31 @@
+{
+  "name": "skill-composer",
+  "version": "0.1.0",
+  "description": "L2 编排层 - 智能技能编排引擎",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "orchestration",
+    "workflow",
+    "optimization",
+    "meta-skill"
+  ],
+  "author": "王的奴隶",
+  "license": "MIT",
+  "clawhub": {
+    "slug": "skill-composer-pro",
+    "name": "Skill Composer Pro",
+    "tags": [
+      "orchestration",
+      "workflow",
+      "optimization",
+      "meta-skill"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/您的Hook地址",
+  "wecom_webhook": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=您的Key"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "s2-soul-architect-en",
+  "version": "3.0.0",
+  "author": "Taohuayuan World Model Architecture Group",
+  "short_description": "Forge advanced English SOUL.md prompts with 5D Neuro-Math. v3.0 introduces revolutionary S2-Visual SVG text-to-image generation.",
+  "tags": ["AI Personality", "Embodied AI", "S2-EAM", "S2-Visual", "SVG Gen"],
+  "entry_point": "skill.py",
+  "language": "python",
+  "homepage": "https://taohuayuan.world"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Install Bridge"
+  short_description: "Generate install commands, README snippets, website cards, and social copy for published skills"
+  default_prompt: "Use $skill-install-bridge to create install copy for a published skill. Run install_bridge.py with the real slug, owner, version, and URL, then return the generated Markdown, HTML, JSON, and social snippet paths."

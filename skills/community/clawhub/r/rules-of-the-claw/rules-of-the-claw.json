@@ -1,0 +1,1407 @@
+[
+  {
+    "id": "block-rm-rf-openclaw",
+    "description": "Block rm -rf on OpenClaw directories",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "rm\\s+-(r|rf|fr)\\s+.*\\.openclaw",
+    "field": "command",
+    "blockMessage": "🛡️ rm -rf blocked on .openclaw directory. Use trash or ask YOUR_USER.",
+    "severity": "high"
+  },
+  {
+    "id": "block-rm-rf-workspace",
+    "description": "Block rm -rf on workspace/your_app",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "rm\\s+-(r|rf|fr)\\s+.*(workspace|your_app)",
+    "field": "command",
+    "blockMessage": "🛡️ rm -rf blocked on workspace/your_app. Use trash or ask YOUR_USER.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-soul-write",
+    "description": "Protect SOUL.md from agent writes",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "SOUL\\.md$",
+    "field": "file_path",
+    "blockMessage": "🛡️ SOUL.md is protected. Changes require YOUR_USER's explicit approval.",
+    "severity": "medium"
+  },
+  {
+    "id": "protect-soul-edit",
+    "description": "Protect SOUL.md from agent edits",
+    "enabled": true,
+    "tool": "Edit",
+    "pattern": "SOUL\\.md$",
+    "field": "file_path",
+    "blockMessage": "🛡️ SOUL.md is protected. Changes require YOUR_USER's explicit approval.",
+    "severity": "medium"
+  },
+  {
+    "id": "protect-openclaw-json-write",
+    "description": "Protect openclaw.json from direct Write",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "\\.openclaw/openclaw\\.json$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Direct writes to openclaw.json blocked. Use python3 manipulation with explicit path.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-secrets-read",
+    "description": "Block reads from .secrets directories",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.secrets/",
+    "field": "path",
+    "blockMessage": "🛡️ .secrets directory is protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-git-credentials",
+    "description": "Block reading ~/.git-credentials",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.git-credentials",
+    "field": "path",
+    "blockMessage": "🛡️ .git-credentials is protected.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-openclaw-memory",
+    "description": "Block agents reading other agents' session transcripts",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.openclaw/agents/.*/sessions/",
+    "field": "path",
+    "blockMessage": "🛡️ Agent session transcripts are protected.",
+    "severity": "medium"
+  },
+  {
+    "id": "protect-auth-profiles-read",
+    "description": "Block reading auth-profiles.json files (path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "auth-profiles\\.json",
+    "field": "path",
+    "blockMessage": "🛡️ auth-profiles.json is protected. Contains credentials.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-auth-profiles-read-file_path",
+    "description": "Block reading auth-profiles.json files (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "auth-profiles\\.json",
+    "field": "file_path",
+    "blockMessage": "🛡️ auth-profiles.json is protected. Contains credentials.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-token-secret-paths-read",
+    "description": "Block reads of likely secret-bearing paths (token, secret, credential, bearer, passwd, password, api_key)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "/(token|secret|credential|bearer|passwd|password|api_key)[^/]*$|/(tokens|secrets|credentials)/",
+    "field": "path",
+    "exclude": "\\.(md|txt|log)$",
+    "blockMessage": "🛡️ Sensitive path (token/secret/credential) blocked from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-env-files-read",
+    "description": "Block reads of .env, .env.vault, certificate and key files. Allows .env.example/.env.sample/.env.template",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "(^|/)\\.env($|\\.)|\\.env\\.vault$|\\.pem$|\\.key$|\\.p12$|\\.pfx$|\\.jks$|\\.keystore$|\\.der$|\\.crt$|\\.gpg$",
+    "field": "path",
+    "exclude": "\\.env\\.(example|sample|template)$",
+    "blockMessage": "🛡️ Environment/certificate files are protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-ssh-read",
+    "description": "Block reads from ~/.ssh/",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.ssh/",
+    "field": "path",
+    "blockMessage": "🛡️ ~/.ssh/ is protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-cloud-credentials-read",
+    "description": "Block reads from cloud credential paths including ~/.aws, ~/.config/gcloud, ~/.azure, ~/.config/gh, ~/.npmrc, ~/.netrc, ~/.docker/config.json, ~/.kube/config, ~/.cloudflared",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\/(\\.(aws|azure|npmrc|netrc)|cloudflared|\\.config\\/(gcloud|gh)|\\.docker\\/config\\.json|\\.kube\\/config)(\\.|$|\\/)",
+    "field": "path",
+    "blockMessage": "🛡️ Cloud/tunnel credential paths are protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "refine-openclaw-json-sensitive-read",
+    "description": "Block exec reads of openclaw.json combined with outbound transport. Allows harmless local reads (cat, jq, grep) that are not piped outbound.",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "openclaw\\.json.*(curl|wget|python\\s*-c|python3\\s*-c|node\\s*-e|perl\\s*-e|ruby\\s*-e|base64|xxd|openssl\\s+enc|\\$\\(|`|\\|\\s*(curl|wget|python|node|bash|sh))|(curl|wget|python\\s*-c|python3\\s*-c|node\\s*-e|base64|xxd|\\$\\().*openclaw\\.json",
+    "field": "command",
+    "blockMessage": "🛡️ openclaw.json access combined with outbound transport blocked. Credential exfiltration prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "refine-auth-profiles-sensitive-read",
+    "description": "Block exec reads of auth-profiles.json combined with outbound transport. Allows harmless local inspection.",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "auth-profiles\\.json.*(curl|wget|python\\s*-c|python3\\s*-c|node\\s*-e|base64|xxd|openssl\\s+enc|\\$\\(|`|\\|\\s*(curl|wget|python|node|bash|sh))|(curl|wget|python\\s*-c|python3\\s*-c|node\\s*-e|base64|xxd|\\$\\().*auth-profiles\\.json",
+    "field": "command",
+    "blockMessage": "🛡️ auth-profiles.json access combined with outbound transport blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-bot-token-extraction",
+    "description": "Block BOT_TOKEN=$(cat ...) and similar token harvesting patterns from config files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "BOT_TOKEN\\s*=\\s*\\$\\(|channels['\".]*.*token.*openclaw|\\.openclaw/openclaw\\.json.*token",
+    "field": "command",
+    "blockMessage": "🛡️ Bot token extraction via exec blocked. Credentials must not be passed through shell commands.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-sensitive-file-upload-curl",
+    "description": "Block curl upload of sensitive files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "curl\\s+.*(-d\\s+@|-F\\s+@|--data-binary\\s+@|--upload-file\\s+)\\S*\\.(env|pem|key|p12|pfx)|curl\\s+.*(@openclaw\\.json|@auth-profiles|@\\S*\\.secrets)",
+    "field": "command",
+    "blockMessage": "🛡️ curl upload of sensitive files blocked. Credential exfiltration prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-sensitive-file-upload-wget",
+    "description": "Block wget post-file of sensitive files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "wget\\s+.*--post-file[=\\s]\\S*\\.(env|json|pem|key)|wget\\s+.*--post-file[=\\s]\\S*(openclaw|auth-profiles|\\.secrets)",
+    "field": "command",
+    "blockMessage": "🛡️ wget post-file of sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-sensitive-file-upload-python",
+    "description": "Block python exfil patterns reading sensitive files with HTTP libraries",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "python[3]?\\s+.*open\\([^)]*\\.(env|pem|key)[^)]*\\).*(requests\\.|httpx\\.|urllib)|python[3]?\\s+.*open\\(.*openclaw|python[3]?\\s+.*open\\(.*auth-profiles",
+    "field": "command",
+    "blockMessage": "🛡️ Python file upload of sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-sensitive-file-upload-node",
+    "description": "Block node exfil patterns using fs.readFileSync on sensitive files with HTTP calls",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "node\\s+.*readFileSync[^)]*\\.(env|pem|key|json).*(fetch|axios|https?\\.)|node\\s+.*readFileSync.*(openclaw|auth-profiles)",
+    "field": "command",
+    "blockMessage": "🛡️ Node file upload of sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-sensitive-file-upload-shell-pipe",
+    "description": "Block cat/jq/base64/xxd/od of sensitive files piped to outbound commands",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(cat|jq|base64|xxd|od)\\s+.*(openclaw\\.json|auth-profiles\\.json|\\.env|\\.secrets)\\s*\\|\\s*(curl|wget|python|node|bash|sh)",
+    "field": "command",
+    "blockMessage": "🛡️ Piping sensitive files to outbound commands blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-secrets-base64-encoding",
+    "description": "Block base64/xxd/openssl encoding of sensitive files as credential staging",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(base64|xxd|openssl\\s+enc)\\s+.*(\\.secrets|\\.env|\\.ssh|openclaw\\.json|auth-profiles\\.json|\\.pem|\\.key|\\.git-credentials|\\.aws|\\.config/gcloud)",
+    "field": "command",
+    "exclude": "\\.(txt|log|md|gz|tar|zip|bak|output|csv|xml|html)($|\\s)",
+    "blockMessage": "🛡️ Base64/encoding of sensitive files blocked. Credential staging prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-discord-api-curl",
+    "description": "Block direct Discord API calls via curl (prompt injection exfil vector)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "discord\\.com/api",
+    "field": "command",
+    "blockMessage": "🛡️ Direct Discord API calls via exec blocked. Use the message tool instead.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-env-secret-grep",
+    "description": "Block environment variable scraping for credentials",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(env|printenv|set|export)\\s*\\|\\s*grep\\s+.*(token|secret|key|auth|bearer|password|passwd)",
+    "field": "command",
+    "blockMessage": "🛡️ Environment variable scraping for credentials blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-proc-environ-secret-scrape",
+    "description": "Block reads of /proc/*/environ",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "cat\\s+/proc/[0-9]+/environ|/proc/self/environ",
+    "field": "command",
+    "blockMessage": "🛡️ /proc/*/environ scraping blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-shell-history-secret-scrape",
+    "description": "Block reads of shell history files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "cat\\s+~/\\.(bash|zsh|ash)_history|grep\\s+.*(token|secret|key|password)\\s+~/\\.(bash|zsh|ash)_history",
+    "field": "command",
+    "blockMessage": "🛡️ Shell history scraping blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-your_app-db-drop",
+    "description": "Block DROP DATABASE/TABLE/SCHEMA on YourApp DB",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(?i)DROP\\s+(DATABASE|TABLE|SCHEMA)\\s+your_app",
+    "field": "command",
+    "blockMessage": "🛡️ DROP on YourApp database blocked. Ask YOUR_USER first.",
+    "severity": "high"
+  },
+  {
+    "id": "block-your_app-db-truncate",
+    "description": "Block TRUNCATE on YourApp tables",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(?i)TRUNCATE\\s+(TABLE\\s+)?\\w*(your_app|patients|appointments|staff|doctors)\\b",
+    "field": "command",
+    "blockMessage": "🛡️ TRUNCATE on YourApp tables blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-your_app-db-delete-all",
+    "description": "Block unbounded DELETE (without WHERE) on YourApp DB",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(?i)(?:DELETE\\s+FROM\\s+\\w+\\s*(;|$)|DELETE\\s+FROM\\s+\\w+\\s+WHERE\\s+(1\\s*=\\s*1|true|''\\s*=\\s*''))",
+    "field": "command",
+    "exclude": "(?i)WHERE\\s+(1\\s*=\\s*1|true)\\s+AND\\s+\\w*(created|updated|expires|expir|timestamp|date)",
+    "blockMessage": "🛡️ Unbounded DELETE blocked on YourApp DB.",
+    "severity": "high"
+  },
+  {
+    "id": "block-docker-rm-your_app-db",
+    "description": "Block docker rm/stop/kill on your_app-db container",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "docker\\s+(rm|stop|kill)\\s+your_app-db",
+    "field": "command",
+    "blockMessage": "🛡️ your_app-db container is protected. Ask YOUR_USER first.",
+    "severity": "high"
+  },
+  {
+    "id": "block-docker-compose-down-v-your_app",
+    "description": "Block docker compose down -v affecting YourApp services",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "docker[\\s-]compose\\s+down\\s+.*-v[^|]*your_app|docker[\\s-]compose\\s+-f\\S*your_app.*down\\s+.*-v",
+    "field": "command",
+    "blockMessage": "🛡️ docker compose down -v blocked for YourApp services.",
+    "severity": "high"
+  },
+  {
+    "id": "block-docker-volume-rm-your_app",
+    "description": "Block deletion of YourApp Docker volumes",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "docker\\s+volume\\s+(rm|remove|prune).*your_app",
+    "field": "command",
+    "blockMessage": "🛡️ YourApp Docker volume deletion blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-docker-exec-sensitive-container",
+    "description": "Block docker exec on protected containers reading files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "docker\\s+exec\\s+.*your_app.*(cat|head|tail|less|strings|base64|xxd|od|curl|wget|scp|cp)\\s+\\S",
+    "field": "command",
+    "blockMessage": "🛡️ docker exec with sensitive commands on protected containers blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-docker-cp-sensitive-container",
+    "description": "Block docker cp from protected containers",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "docker\\s+cp\\s+your_app[^\\s]*:",
+    "field": "command",
+    "blockMessage": "🛡️ docker cp from protected container blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-docker-export-sensitive-container",
+    "description": "Block docker export of protected containers",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "docker\\s+export\\s+.*your_app",
+    "field": "command",
+    "blockMessage": "🛡️ docker export of protected container blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-openclaw-gateway-restart-direct",
+    "description": "Block openclaw gateway restart command — use systemctl --user instead",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "^\\s*(sudo\\s+)?openclaw\\s+gateway\\s+restart",
+    "field": "command",
+    "blockMessage": "🛡️ openclaw gateway restart blocked. Use: systemctl --user restart openclaw-gateway.service",
+    "severity": "high"
+  },
+  {
+    "id": "refine-openclaw-gateway-restart",
+    "description": "Block ad-hoc gateway restart via pkill/kill/nohup — use systemctl --user instead",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "pkill\\s+.*?openclaw-gateway|kill\\s+.*?openclaw-gateway|nohup\\s+.*?openclaw",
+    "field": "command",
+    "blockMessage": "🛡️ Ad-hoc gateway restart blocked. Use: systemctl --user restart openclaw-gateway.service",
+    "severity": "high"
+  },
+  {
+    "id": "block-network-scanning-nmap",
+    "description": "Block nmap network scanning",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "\\bnmap\\b",
+    "field": "command",
+    "blockMessage": "🛡️ nmap is blocked. Network scanning is not permitted.",
+    "severity": "high"
+  },
+  {
+    "id": "block-network-scanning-masscan",
+    "description": "Block masscan network scanning",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "\\bmasscan\\b",
+    "field": "command",
+    "blockMessage": "🛡️ masscan is blocked. Network scanning is not permitted.",
+    "severity": "high"
+  },
+  {
+    "id": "refine-network-scanning-nc",
+    "description": "Block nc/netcat/socat port scanning patterns — allows legitimate uses",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "\\bnc\\s+-z\\b|\\bnetcat\\s+-z\\b|socat\\s+.*TCP-CONNECT|nc\\s+.*[0-9]+-[0-9]+",
+    "field": "command",
+    "blockMessage": "🛡️ Port scanning via nc/netcat/socat blocked. Network scanning is not permitted.",
+    "severity": "high"
+  },
+  {
+    "id": "block-git-remote-set-url",
+    "description": "Block git remote set-url to non-approved remotes (only github.com/YOUR_ORG/ allowed)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+remote\\s+set-url\\s+\\S+\\s+(?!https://github\\.com/YOUR_ORG/)(?:https?://|git://)",
+    "field": "command",
+    "blockMessage": "🛡️ git remote set-url to non-approved remote blocked. Only github.com/YOUR_ORG/ repos are approved.",
+    "severity": "high"
+  },
+  {
+    "id": "block-git-add-unapproved-remote",
+    "description": "Block adding non-approved git remotes via HTTPS/git:// (only github.com/YOUR_ORG/ allowed)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+remote\\s+add\\s+\\S+\\s+(?!https://github\\.com/YOUR_ORG/)(?:https?://|git://)",
+    "field": "command",
+    "blockMessage": "🛡️ Adding non-approved git remote blocked. Only github.com/YOUR_ORG/ repos are approved.",
+    "severity": "high"
+  },
+  {
+    "id": "block-git-push-unapproved-remote",
+    "description": "Block git push to non-approved remotes via HTTPS/git://",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+push\\s+(?!git@)(?!origin\\b)(?!upstream\\b)(?:https?://|git://)(?!github\\.com/YOUR_ORG/)",
+    "field": "command",
+    "blockMessage": "🛡️ git push to non-approved remote blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-git-ssh-remote-set-url",
+    "description": "Block git remote set-url using SSH/git:// to non-approved remotes",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+remote\\s+set-url\\s+\\S+\\s+(?:git@|git://)(?!github\\.com[:/]YOUR_ORG/)",
+    "field": "command",
+    "blockMessage": "🛡️ git SSH/git:// remote set-url to non-approved remote blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-git-ssh-add-remote",
+    "description": "Block adding SSH/git:// git remotes to non-approved destinations",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+remote\\s+add\\s+\\S+\\s+(?:git@|git://)(?!github\\.com[:/]YOUR_ORG/)",
+    "field": "command",
+    "blockMessage": "🛡️ Adding non-approved SSH/git:// git remote blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-git-ssh-push",
+    "description": "Block git push via SSH/git:// to non-approved remotes",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+push\\s+(?:git@|git://)(?!github\\.com[:/]YOUR_ORG/)",
+    "field": "command",
+    "blockMessage": "🛡️ git SSH/git:// push to non-approved remote blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-git-show-sensitive-files",
+    "description": "Block git show/cat-file/archive on sensitive files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+(show|cat-file|archive)\\s+.*(\\.env|\\.pem|\\.key|\\.json|auth-profiles|openclaw|\\.secrets|\\.ssh)",
+    "field": "command",
+    "blockMessage": "🛡️ git show/archive on sensitive files blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-git-bundle-sensitive",
+    "description": "Block git bundle and git fast-export on protected workspace",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+(bundle|fast-export)\\s+.*(workspace|openclaw|\\.openclaw)",
+    "field": "command",
+    "blockMessage": "🛡️ git bundle/fast-export on protected workspace blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-archive-sensitive-paths",
+    "description": "Block archiving sensitive paths (credential staging prevention)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(tar|zip|gzip|7z|rar|bzip2|xz|lz4|zstd)\\s+.*(\\.openclaw|\\.secrets|\\.env|\\.ssh|auth-profiles\\.json|openclaw\\.json|\\.aws|\\.config/gcloud|cloudflared)",
+    "field": "command",
+    "blockMessage": "🛡️ Archiving sensitive paths blocked. Credential staging prevented.",
+    "severity": "high"
+  },
+  {
+    "id": "block-scp-sensitive-paths",
+    "description": "Block scp of sensitive files or protected paths",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "scp\\s+.*(openclaw\\.json|auth-profiles\\.json|\\.env|\\.secrets|\\.ssh|\\.aws|\\.pem|\\.key|cloudflared)",
+    "field": "command",
+    "blockMessage": "🛡️ scp of sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-cp-mv-sensitive-paths",
+    "description": "Block cp/mv/ln of sensitive files to arbitrary destinations (copy-then-read bypass prevention)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(cp|mv|ln)\\s+.*(openclaw\\.json|auth-profiles\\.json|\\.env|\\.secrets|\\.ssh|\\.pem|\\.key|cloudflared)",
+    "field": "command",
+    "blockMessage": "🛡️ Copying/moving sensitive files blocked. Copy-then-read bypass prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-rsync-sensitive-paths-outbound",
+    "description": "Block outbound rsync of sensitive paths",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "rsync\\s+.*(openclaw\\.json|auth-profiles\\.json|\\.env|\\.secrets|\\.ssh|\\.openclaw|cloudflared)\\s+\\S+@",
+    "field": "command",
+    "blockMessage": "🛡️ Outbound rsync of sensitive paths blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-exec-read-openclaw-json",
+    "description": "Block exec commands that read openclaw.json directly (cat, head, less, tail, vim, nano)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(cat|head|tail|less|more|vim|nano|bat|awk|sed|perl|ruby|strings|grep|sort|tee|dd)\\s+.*openclaw\\.json",
+    "field": "command",
+    "blockMessage": "🛡️ Direct exec read of openclaw.json blocked. Contains credentials.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-exec-read-auth-profiles",
+    "description": "Block exec commands that read auth-profiles.json directly",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(cat|head|tail|less|more|vim|nano|bat|awk|sed|perl|ruby|strings|grep|sort|tee|dd)\\s+.*auth-profiles\\.json",
+    "field": "command",
+    "blockMessage": "🛡️ Direct exec read of auth-profiles.json blocked. Contains credentials.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-exec-read-env-files",
+    "description": "Block exec commands that read .env and .env.vault files directly",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(cat|head|tail|less|more|vim|nano|bat|awk|sed|perl|ruby|strings|grep|sort|tee|dd)\\s+.*(\\.env($|\\.|\\s)|\\.env\\.vault)",
+    "field": "command",
+    "exclude": "\\.env\\.(example|sample|template)",
+    "blockMessage": "🛡️ Direct exec read of .env files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-pki-keystore-read",
+    "description": "Block reads of PKI keystores and certificate files (.jks, .keystore, .der, .gpg)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.(jks|keystore|der|gpg|pgp)$",
+    "field": "path",
+    "blockMessage": "🛡️ PKI/keystore files are protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-exec-read-db-dumps",
+    "description": "Block exec commands that read database dump files (.sql, .dump, .bak, .backup)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(cat|head|tail|less|more|vim|nano|bat|awk|sed|perl|ruby|strings|grep|sort|tee|dd)\\s+.*\\.(sql|dump|bak|backup)($|\\s)",
+    "field": "command",
+    "exclude": "migration|schema|seed|flyway|alembic",
+    "blockMessage": "🛡️ Direct exec read of database dump files blocked. May contain credentials or sensitive data.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-db-dumps-read",
+    "description": "Block reads of database dump files (.sql, .dump, .bak, .backup)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.(sql|dump|bak|backup)$",
+    "field": "path",
+    "exclude": "migration|schema|seed|flyway|alembic",
+    "blockMessage": "🛡️ Database dump files are protected from direct reads. May contain credentials or sensitive data.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-dns-exfil-dig",
+    "description": "Block dig/nslookup/host with command substitution (DNS exfiltration vector)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(dig|nslookup|host)\\s+.*\\$\\(|\\$\\(.*\\)\\s*\\.(\\S+\\.){1,}\\S+|(dig|nslookup|host)\\s+.*`",
+    "field": "command",
+    "blockMessage": "🛡️ DNS query with command substitution blocked. Potential DNS exfiltration vector.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-dns-exfil-sensitive-files",
+    "description": "Block dig/nslookup/host referencing sensitive files (DNS exfiltration staging)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(dig|nslookup|host)\\s+.*(openclaw\\.json|auth-profiles|\\.env|\\.secrets|\\.ssh|\\.aws|token|secret|credential|password)",
+    "field": "command",
+    "blockMessage": "🛡️ DNS query referencing sensitive files blocked. Potential DNS exfiltration.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-telegram-api-exfil",
+    "description": "Block direct Telegram Bot API calls (data exfiltration channel)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "api\\.telegram\\.org/bot",
+    "field": "command",
+    "blockMessage": "🛡️ Direct Telegram API calls blocked. Potential data exfiltration channel.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-slack-webhook-exfil",
+    "description": "Block Slack incoming webhook calls (data exfiltration channel)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "hooks\\.slack\\.com/services/",
+    "field": "command",
+    "blockMessage": "🛡️ Direct Slack webhook calls blocked. Potential data exfiltration channel. Use the Slack integration instead.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-slack-api-exfil",
+    "description": "Block direct Slack API calls via exec (data exfiltration channel)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "slack\\.com/api/(chat\\.postMessage|files\\.upload|conversations)",
+    "field": "command",
+    "blockMessage": "🛡️ Direct Slack API calls blocked. Use the Slack integration instead.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-generic-webhook-exfil",
+    "description": "Block known generic webhook/pastebin services used for exfiltration",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(webhook\\.site|requestbin\\.com|pipedream\\.net|hookbin\\.com|requestcatcher\\.com|canarytokens\\.com|burpcollaborator\\.net|interactsh|oastify\\.com)",
+    "field": "command",
+    "blockMessage": "🛡️ Known webhook/exfiltration service blocked. These services are commonly used for data exfiltration.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-ntfy-exfil",
+    "description": "Block ntfy.sh push notification exfiltration",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "ntfy\\.sh/",
+    "field": "command",
+    "blockMessage": "🛡️ ntfy.sh notification service blocked. Potential data exfiltration channel.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-shell-wrapper-sensitive-files",
+    "description": "Block bash -c/sh -c/eval/source wrapping commands that reference sensitive files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(bash|sh|dash|zsh)\\s+(-c\\s+|.*-c\\s+)['\"].*(\\.env|\\.secrets|openclaw\\.json|auth-profiles|\\.ssh|\\.aws|\\.pem|\\.key)",
+    "field": "command",
+    "blockMessage": "🛡️ Shell wrapper (bash -c/sh -c) referencing sensitive files blocked. This is a common evasion technique.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-eval-sensitive-files",
+    "description": "Block eval/source commands referencing sensitive files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(eval|source)\\s+.*(\\.env|\\.secrets|openclaw\\.json|auth-profiles|\\.ssh|\\.aws|\\.pem|\\.key|token|secret|credential|password)",
+    "field": "command",
+    "blockMessage": "🛡️ eval/source referencing sensitive files blocked. This is a common evasion technique.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-hex-octal-encoding-evasion",
+    "description": "Block shell hex/octal encoding patterns used to evade command detection ($'\\x..', printf \\x)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "\\$'\\\\x[0-9a-fA-F]{2}|printf\\s+['\"]?\\\\x[0-9a-fA-F]|printf\\s+['\"]?\\\\[0-7]{3}|\\$'\\\\[0-7]{3}",
+    "field": "command",
+    "blockMessage": "🛡️ Shell hex/octal encoding blocked. Encoding characters to bypass command detection is not permitted.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-variable-capture-credentials",
+    "description": "Block capturing sensitive file contents into shell variables (SECRET=$(cat .env), TOKEN=`cat ...`)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "\\w*(?:TOKEN|SECRET|KEY|PASS|CRED|AUTH|API)\\w*\\s*=\\s*(?:\\$\\(|`).*(openclaw\\.json|auth-profiles|\\.env|\\.secrets|\\.ssh|\\.aws|\\.pem|\\.key)",
+    "field": "command",
+    "blockMessage": "🛡️ Capturing sensitive file contents into variables blocked. Credential staging prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-xargs-sensitive-files",
+    "description": "Block xargs piping sensitive file names to arbitrary commands",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "xargs\\s+.*(openclaw\\.json|auth-profiles|\\.env|\\.secrets|\\.ssh|\\.aws|\\.pem|\\.key)|(openclaw\\.json|auth-profiles|\\.env|\\.secrets)[^|]*\\|\\s*xargs",
+    "field": "command",
+    "blockMessage": "🛡️ xargs with sensitive files blocked. Indirect command execution on credentials prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-env-files-write",
+    "description": "Block writing to .env files. Allows .env.example/.env.sample/.env.template",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)\\.env($|\\.)",
+    "field": "file_path",
+    "exclude": "\\.env\\.(example|sample|template)$",
+    "blockMessage": "🛡️ Writing to .env files is blocked. Environment files contain secrets.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-secrets-write",
+    "description": "Block writing to .secrets directory",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)\\.secrets/",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to .secrets directory is blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-ssh-write",
+    "description": "Block writing to .ssh directory (authorized_keys, config, keys)",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)\\.ssh/",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to .ssh directory is blocked. Could add unauthorized keys or alter SSH config.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-auth-profiles-write",
+    "description": "Block writing to auth-profiles.json (credential store)",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "auth-profiles\\.json$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to auth-profiles.json is blocked. Credential store is protected.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-pki-write",
+    "description": "Block writing to PKI/certificate files (.pem, .key, .p12, .pfx, .jks, .keystore)",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "\\.(pem|key|p12|pfx|jks|keystore|der|crt|gpg)$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to PKI/certificate files is blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-shell-rc-write",
+    "description": "Block writing to shell startup files (.bashrc, .profile, .zshrc, .bash_profile)",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)(\\.(bashrc|profile|zshrc|bash_profile|bash_login|zprofile|zlogin|zshenv))$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to shell startup files is blocked. Could inject persistent commands.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-cloud-credentials-write",
+    "description": "Block writing to cloud credential directories (.aws, .config/gcloud, .azure, .kube)",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)(\\.aws/|\\.config/gcloud/|\\.azure/|\\.kube/|cloudflared/)",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to cloud credential directories is blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-systemd-write",
+    "description": "Block writing to systemd service files",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)(etc/systemd/|systemd/system/|systemd/user/).*\\.service$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to systemd service files is blocked. Could alter what services execute.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-crontab-write",
+    "description": "Block writing to cron directories and crontab files",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)(etc/cron|var/spool/cron|crontab)",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to cron files is blocked. Could schedule persistent commands.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-nginx-write",
+    "description": "Block writing to nginx/apache configuration files",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)(etc/nginx/|etc/apache2/|etc/httpd/).*\\.conf",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to web server configuration is blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-env-files-edit",
+    "description": "Block editing .env files. Allows .env.example/.env.sample/.env.template",
+    "enabled": true,
+    "tool": "Edit",
+    "pattern": "(^|/)\\.env($|\\.)",
+    "field": "file_path",
+    "exclude": "\\.env\\.(example|sample|template)$",
+    "blockMessage": "🛡️ Editing .env files is blocked. Environment files contain secrets.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-secrets-edit",
+    "description": "Block editing files in .secrets directory",
+    "enabled": true,
+    "tool": "Edit",
+    "pattern": "(^|/)\\.secrets/",
+    "field": "file_path",
+    "blockMessage": "🛡️ Editing files in .secrets directory is blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-ssh-edit",
+    "description": "Block editing .ssh directory files (authorized_keys, config, keys)",
+    "enabled": true,
+    "tool": "Edit",
+    "pattern": "(^|/)\\.ssh/",
+    "field": "file_path",
+    "blockMessage": "🛡️ Editing .ssh files is blocked. Could add unauthorized keys.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-auth-profiles-edit",
+    "description": "Block editing auth-profiles.json",
+    "enabled": true,
+    "tool": "Edit",
+    "pattern": "auth-profiles\\.json$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Editing auth-profiles.json is blocked. Credential store is protected.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-shell-rc-edit",
+    "description": "Block editing shell startup files (.bashrc, .profile, .zshrc)",
+    "enabled": true,
+    "tool": "Edit",
+    "pattern": "(^|/)(\\.(bashrc|profile|zshrc|bash_profile|bash_login|zprofile|zlogin|zshenv))$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Editing shell startup files is blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-systemd-edit",
+    "description": "Block editing systemd service files",
+    "enabled": true,
+    "tool": "Edit",
+    "pattern": "(^|/)(etc/systemd/|systemd/system/|systemd/user/).*\\.service$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Editing systemd service files is blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-fd-redirect-sensitive-files",
+    "description": "Block file descriptor redirects reading sensitive files (exec N< .env)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "exec\\s+\\d+<\\s*.*(\\.env|\\.secrets|auth-profiles|openclaw\\.json|\\.pem|\\.key|\\.ssh)|<&\\d+.*(\\.env|\\.secrets|auth-profiles|openclaw\\.json)",
+    "field": "command",
+    "blockMessage": "🛡️ File descriptor redirect to sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-process-substitution-sensitive",
+    "description": "Block process substitution reading sensitive files (<(cat .env))",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "<\\(\\s*(cat|head|tail|less|more|strings|xxd|od|base64)\\s+.*(\\.env|\\.secrets|auth-profiles|openclaw\\.json|\\.pem|\\.key)",
+    "field": "command",
+    "blockMessage": "🛡️ Process substitution reading sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-crontab-at-scheduling",
+    "description": "Block crontab edits and at/batch job scheduling (delayed execution bypass)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "crontab\\s+(-[elri]|\\S+\\.)|\\bat\\s+(now|midnight|noon|teatime|\\d)|\\bbatch\\b",
+    "field": "command",
+    "exclude": "crontab\\s+-l$",
+    "blockMessage": "🛡️ Scheduling crontab/at jobs blocked. Could be used for delayed execution bypass.",
+    "severity": "high"
+  },
+  {
+    "id": "block-dev-tcp-udp-exfil",
+    "description": "Block bash /dev/tcp and /dev/udp built-in networking (exfiltration channel)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "/dev/(tcp|udp)/",
+    "field": "command",
+    "blockMessage": "🛡️ Bash /dev/tcp|udp networking blocked. Built-in exfiltration channel.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-declare-export-env-dump",
+    "description": "Block declare -x / export -p to dump all environment variables",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(declare\\s+-[a-zA-Z]*x|export\\s+-p)\\s*($|\\||>|;)",
+    "field": "command",
+    "blockMessage": "🛡️ Dumping all environment variables blocked. May expose secrets.",
+    "severity": "high"
+  },
+  {
+    "id": "block-socat-exfil",
+    "description": "Block socat connections (TCP relay, data transfer tool)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "socat\\s+.*(TCP|UDP|EXEC|SYSTEM|OPEN|FILE)",
+    "field": "command",
+    "blockMessage": "🛡️ socat network connection blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-openssl-sclient-exfil",
+    "description": "Block openssl s_client connections (can POST data over TLS)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "openssl\\s+s_client",
+    "field": "command",
+    "blockMessage": "🛡️ openssl s_client blocked. Can be used to exfiltrate data over TLS.",
+    "severity": "high"
+  },
+  {
+    "id": "block-ssh-tunnel-exfil",
+    "description": "Block SSH reverse/dynamic tunnels (exfiltration via tunnel)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "ssh\\s+.*(-R\\s+\\d|-(D|w)\\s+\\d|-o\\s+Tunnel)",
+    "field": "command",
+    "blockMessage": "🛡️ SSH tunnel blocked. Reverse/dynamic tunnels can be used for exfiltration.",
+    "severity": "high"
+  },
+  {
+    "id": "block-ncat-exfil",
+    "description": "Block ncat (netcat variant with SSL support)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "\\bncat\\s+",
+    "field": "command",
+    "blockMessage": "🛡️ ncat blocked. Netcat variant with SSL support.",
+    "severity": "high"
+  },
+  {
+    "id": "block-perl-ruby-php-network",
+    "description": "Block perl/ruby/php one-liner network calls to exfil endpoints",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(perl|ruby|php)\\s+(-e|-r)\\s+.*(socket|IO::Socket|Net::HTTP|open-uri|fsockopen|file_get_contents|curl_exec|webhook|requestbin|pipedream|ngrok|burp)",
+    "field": "command",
+    "blockMessage": "🛡️ Scripting language network call blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-strace-ltrace-secrets",
+    "description": "Block strace/ltrace on processes (can extract secrets from memory)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(strace|ltrace)\\s+(-[a-zA-Z]+\\s+)*(-p\\s+\\d|.*(node|python|gateway|openclaw))",
+    "field": "command",
+    "blockMessage": "🛡️ Process tracing blocked. strace/ltrace can extract secrets from process memory.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-xxd-od-encoding-sensitive",
+    "description": "Block xxd/od/base32 encoding of sensitive files",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(xxd|od|base32)\\s+.*(\\.env|\\.secrets|auth-profiles|openclaw\\.json|\\.pem|\\.key|\\.ssh)",
+    "field": "command",
+    "blockMessage": "🛡️ Binary encoding of sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-clipboard-sensitive-exfil",
+    "description": "Block piping sensitive file content to clipboard (xclip, pbcopy, wl-copy, xsel)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(\\.env|\\.secrets|auth-profiles|openclaw\\.json|\\.pem|\\.key)[^|]*(xclip|pbcopy|wl-copy|xsel)|\\|\\s*(xclip|pbcopy|wl-copy|xsel)",
+    "field": "command",
+    "blockMessage": "🛡️ Piping sensitive data to clipboard blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-curl-header-secret-exfil",
+    "description": "Block curl/wget with -H/--header containing command substitution or sensitive file references (header-based exfiltration)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(curl|wget)\\s+.*(-H|--header)\\s+['\"][^'\"]*?(\\$\\(|`|\\$\\{)|(curl|wget)\\s+.*(-H|--header)\\s+['\"][^'\"]*?(\\.env|\\.secrets|openclaw\\.json|auth-profiles|\\.pem|\\.key)",
+    "field": "command",
+    "blockMessage": "🛡️ HTTP header with command substitution or sensitive data blocked. Header-based exfiltration prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-curl-url-command-substitution-exfil",
+    "description": "Block curl/wget with command substitution or sensitive file references in URLs (URL-based exfiltration)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(curl|wget)\\s+[^|]*?(\\$\\(|`).*(\\.env|\\.secrets|openclaw\\.json|auth-profiles|\\.pem|\\.key)|(curl|wget)\\s+\\S*\\$\\(.*(\\.env|\\.secrets|openclaw\\.json|auth-profiles)",
+    "field": "command",
+    "blockMessage": "🛡️ URL with command substitution referencing sensitive files blocked. URL-based exfiltration prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-find-exec-sensitive-files",
+    "description": "Block find -exec/-execdir on sensitive file patterns (bypasses direct exec-read rules)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "find\\s+.*-exec\\S*\\s+.*(cat|head|tail|less|strings|base64|xxd|curl|wget|cp|mv|scp|rsync)\\s|find\\s+.*(\\.env|\\.secrets|openclaw|auth-profiles|\\.ssh|\\.aws|\\.pem|\\.key).*-exec",
+    "field": "command",
+    "blockMessage": "🛡️ find -exec with sensitive files or dangerous commands blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-gitconfig-hook-injection",
+    "description": "Block git config modifications to hooks path or alias injection (persistence attack)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "git\\s+config\\s+.*(core\\.hooksPath|alias\\.|credential\\.helper)|git\\s+config\\s+--global",
+    "field": "command",
+    "exclude": "--global\\s+(user\\.(name|email)|core\\.(editor|pager|excludesfile|autocrlf)|push\\.default|pull\\.rebase|init\\.defaultBranch|color\\.)",
+    "blockMessage": "🛡️ git config modification blocked. Changing hooks path, aliases, or global config could inject persistent backdoors.",
+    "severity": "high"
+  },
+  {
+    "id": "block-tunnel-services",
+    "description": "Block ngrok, cloudflared tunnel, localtunnel, and similar services that expose local ports",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "\\b(ngrok|cloudflared\\s+tunnel|lt\\s+--port|localtunnel|bore\\s+local|pagekite)\\b",
+    "field": "command",
+    "blockMessage": "🛡️ Tunnel service blocked. Exposing local ports to the internet is not permitted.",
+    "severity": "high"
+  },
+  {
+    "id": "block-systemctl-destructive",
+    "description": "Block systemctl stop/disable/mask on protected services",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "systemctl\\s+.*(stop|disable|mask)\\s+.*(openclaw|gateway|guardian|cloudflared|docker|nginx|apache|postgresql|mysql|redis)",
+    "field": "command",
+    "blockMessage": "🛡️ Stopping/disabling protected services blocked. Ask YOUR_USER first.",
+    "severity": "high"
+  },
+  {
+    "id": "block-firewall-modification",
+    "description": "Block iptables, nftables, ufw, and firewall-cmd modifications",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "\\b(iptables|ip6tables|nft|nftables)\\s+(-[A-Z]|--append|--delete|--insert|--flush)|\\bufw\\s+(allow|deny|delete|disable|reset)|\\bfirewall-cmd\\s+--",
+    "field": "command",
+    "exclude": "iptables\\s+-[LS]\\b|ip6tables\\s+-[LS]\\b",
+    "blockMessage": "🛡️ Firewall rule modification blocked. Network security configuration is protected.",
+    "severity": "high"
+  },
+  {
+    "id": "block-curl-pipe-shell",
+    "description": "Block downloading and executing scripts via curl/wget piped to shell or process substitution",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(curl|wget)\\s+\\S+.*\\|\\s*(bash|sh|dash|zsh|python|perl|ruby|node)|<\\(\\s*(curl|wget)\\s",
+    "field": "command",
+    "blockMessage": "🛡️ Downloading and executing remote scripts blocked. Pipe-to-shell is a common attack vector.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-etc-hosts-write",
+    "description": "Block writing to /etc/hosts (DNS redirection attack)",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "^/etc/hosts$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to /etc/hosts is blocked. Could redirect DNS resolution.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-etc-hosts-edit",
+    "description": "Block editing /etc/hosts (DNS redirection attack)",
+    "enabled": true,
+    "tool": "Edit",
+    "pattern": "^/etc/hosts$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Editing /etc/hosts is blocked. Could redirect DNS resolution.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-gitconfig-write",
+    "description": "Block writing to .gitconfig and .git/hooks (persistence via git hooks)",
+    "enabled": true,
+    "tool": "Write",
+    "pattern": "(^|/)(\\.gitconfig|\\.git/hooks/)$|(\\.git/hooks/)",
+    "field": "file_path",
+    "blockMessage": "🛡️ Writing to git config/hooks is blocked. Could inject persistent backdoors.",
+    "severity": "high"
+  },
+  {
+    "id": "protect-secrets-read-win",
+    "description": "[Windows] Block reads from .secrets directories via backslash paths (C:\\Users\\...\\. secrets\\)",
+    "enabled": false,
+    "tool": "Read",
+    "pattern": "\\.secrets\\\\|\\\\secrets\\\\",
+    "field": "path",
+    "blockMessage": "🛡️ .secrets directory is protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-ssh-read-win",
+    "description": "[Windows] Block reads from .ssh via backslash paths (C:\\Users\\...\\.ssh\\)",
+    "enabled": false,
+    "tool": "Read",
+    "pattern": "\\.ssh\\\\",
+    "field": "path",
+    "blockMessage": "🛡️ .ssh directory is protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-cloud-credentials-read-win",
+    "description": "[Windows] Block reads from cloud credential paths via backslash paths (C:\\Users\\...\\.aws\\, %APPDATA%\\gcloud\\)",
+    "enabled": false,
+    "tool": "Read",
+    "pattern": "(\\.aws\\\\|\\.azure\\\\|\\.config\\\\gcloud\\\\|\\.config\\\\gh\\\\|\\.docker\\\\config\\.json|\\.kube\\\\config|cloudflared\\\\)",
+    "field": "path",
+    "blockMessage": "🛡️ Cloud credential paths are protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-openclaw-memory-win",
+    "description": "[Windows] Block agents reading session transcripts via backslash paths",
+    "enabled": false,
+    "tool": "Read",
+    "pattern": "\\.openclaw\\\\agents\\\\.*\\\\sessions\\\\",
+    "field": "path",
+    "blockMessage": "🛡️ Agent session transcripts are protected.",
+    "severity": "medium"
+  },
+  {
+    "id": "protect-openclaw-json-write-win",
+    "description": "[Windows] Protect openclaw.json from direct Write via backslash paths",
+    "enabled": false,
+    "tool": "Write",
+    "pattern": "\\.openclaw\\\\openclaw\\.json$",
+    "field": "file_path",
+    "blockMessage": "🛡️ Direct writes to openclaw.json blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-del-openclaw-win",
+    "description": "[Windows] Block del/rmdir on .openclaw directories",
+    "enabled": false,
+    "tool": "exec",
+    "pattern": "(?i)(del|rmdir|rd)\\s+.*(\\\\|/)\\.openclaw",
+    "field": "command",
+    "blockMessage": "🛡️ Deletion of .openclaw directories blocked on Windows.",
+    "severity": "high"
+  },
+  {
+    "id": "block-type-sensitive-files-win",
+    "description": "[Windows] Block 'type' command (Windows cat equivalent) on sensitive files",
+    "enabled": false,
+    "tool": "exec",
+    "pattern": "(?i)\\btype\\b\\s+.*(openclaw\\.json|auth-profiles\\.json|\\.env|\\.secrets|\\.ssh|\\.aws|\\.pem|\\.key)",
+    "field": "command",
+    "blockMessage": "🛡️ type command on sensitive files blocked. Windows credential read prevented.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-copy-move-sensitive-files-win",
+    "description": "[Windows] Block copy/move/mklink of sensitive files (Windows cp/mv/ln equivalent)",
+    "enabled": false,
+    "tool": "exec",
+    "pattern": "(?i)(\\bcopy\\b|\\bmove\\b|\\bmklink\\b|\\bxcopy\\b|\\brobocopy\\b)\\s+.*(openclaw\\.json|auth-profiles\\.json|\\.env|\\.secrets|\\.ssh|\\.aws|\\.pem|\\.key)",
+    "field": "command",
+    "blockMessage": "🛡️ Copying/moving sensitive files blocked on Windows.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-powershell-sensitive-read-win",
+    "description": "[Windows] Block PowerShell commands reading sensitive files (Get-Content, Select-String, Import-Csv)",
+    "enabled": false,
+    "tool": "exec",
+    "pattern": "(?i)(Get-Content|Select-String|Import-Csv|ConvertFrom-Json|\\[IO\\.File\\]).*(\\.env|\\.secrets|openclaw\\.json|auth-profiles|credentials|\\.ssh|\\.aws|\\.pem|\\.key)",
+    "field": "command",
+    "blockMessage": "🛡️ PowerShell read of sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-powershell-web-exfil-win",
+    "description": "[Windows] Block PowerShell web requests used for exfiltration (Invoke-WebRequest, Invoke-RestMethod, curl alias)",
+    "enabled": false,
+    "tool": "exec",
+    "pattern": "(?i)(Invoke-WebRequest|Invoke-RestMethod|iwr\\b|irm\\b|Invoke-Expression).*(\\.env|\\.secrets|openclaw\\.json|auth-profiles|credentials|\\.ssh|\\.aws)",
+    "field": "command",
+    "blockMessage": "🛡️ PowerShell web exfiltration of sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-powershell-base64-win",
+    "description": "[Windows] Block PowerShell base64 encoding of sensitive files",
+    "enabled": false,
+    "tool": "exec",
+    "pattern": "(?i)\\[Convert\\]::ToBase64String.*(\\.env|\\.secrets|openclaw\\.json|auth-profiles|\\.pem|\\.key)|ConvertTo-Base64.*(\\.env|\\.secrets|openclaw)",
+    "field": "command",
+    "blockMessage": "🛡️ PowerShell base64 encoding of sensitive files blocked.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-soul-exec-write",
+    "description": "Block shell writes to SOUL.md via exec (echo >>, tee, dd, heredoc)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(>>|>\\s*|tee\\s+|dd\\s+of=)[^\\n]*SOUL\\.md",
+    "field": "command",
+    "blockMessage": "🛡️ SOUL.md is protected. Shell writes require YOUR_USER's explicit approval.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-agents-memory-exec-write",
+    "description": "Block shell writes to AGENTS.md and MEMORY.md via exec",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "(>>|>\\s*|tee\\s+|dd\\s+of=)[^\\n]*(AGENTS\\.md|MEMORY\\.md|HEARTBEAT\\.md)",
+    "field": "command",
+    "blockMessage": "🛡️ Core agent files are protected from shell writes.",
+    "severity": "critical"
+  },
+  {
+    "id": "block-python-environ-secret-read",
+    "description": "Block Python inline env reads of sensitive keys",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "python3?\\s+-c\\s+[\\\"'].*os\\.environ.*(?:KEY|TOKEN|SECRET|PASSWORD|API_KEY|BEARER)",
+    "field": "command",
+    "blockMessage": "🛡️ Python inline environment reads of secrets are blocked.",
+    "severity": "high"
+  },
+  {
+    "id": "block-nslookup-external",
+    "description": "Block nslookup to external domains (DNS exfil vector)",
+    "enabled": true,
+    "tool": "exec",
+    "pattern": "nslookup\\s+(?!localhost|127\\.|10\\.|172\\.(1[6-9]|2[0-9]|3[01])\\.|192\\.168\\.|::1)",
+    "field": "command",
+    "blockMessage": "🛡️ nslookup to external domains is blocked.",
+    "severity": "medium"
+  },
+  {
+    "id": "protect-secrets-read-file_path",
+    "description": "Block reads from .secrets directories (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.secrets/",
+    "field": "file_path",
+    "blockMessage": "🛡️ .secrets directory is protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-git-credentials-file_path",
+    "description": "Block reading ~/.git-credentials (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.git-credentials",
+    "field": "file_path",
+    "blockMessage": "🛡️ .git-credentials is protected.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-openclaw-memory-file_path",
+    "description": "Block agents reading other agents' session transcripts (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.openclaw/agents/.*/sessions/",
+    "field": "file_path",
+    "blockMessage": "🛡️ Agent session transcripts are protected.",
+    "severity": "medium"
+  },
+  {
+    "id": "protect-token-secret-paths-read-file_path",
+    "description": "Block reads of likely secret-bearing paths (token, secret, credential, bearer, passwd, password, api_key) (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "/(token|secret|credential|bearer|passwd|password|api_key)[^/]*$|/(tokens|secrets|credentials)/",
+    "field": "file_path",
+    "exclude": "\\.(md|txt|log)$",
+    "blockMessage": "🛡️ Sensitive path (token/secret/credential) blocked from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-env-files-read-file_path",
+    "description": "Block reads of .env, .env.vault, certificate and key files. Allows .env.example/.env.sample/.env.template (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "(^|/)\\.env($|\\.)|\\.env\\.vault$|\\.pem$|\\.key$|\\.p12$|\\.pfx$|\\.jks$|\\.keystore$|\\.der$|\\.crt$|\\.gpg$",
+    "field": "file_path",
+    "exclude": "\\.env\\.(example|sample|template)$",
+    "blockMessage": "🛡️ Environment/certificate files are protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-ssh-read-file_path",
+    "description": "Block reads from ~/.ssh/ (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.ssh/",
+    "field": "file_path",
+    "blockMessage": "🛡️ ~/.ssh/ is protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-cloud-credentials-read-file_path",
+    "description": "Block reads from cloud credential paths including ~/.aws, ~/.config/gcloud, ~/.azure, ~/.config/gh, ~/.npmrc, ~/.netrc, ~/.docker/config.json, ~/.kube/config, ~/.cloudflared (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\/(\\.(aws|azure|npmrc|netrc)|cloudflared|\\.config\\/(gcloud|gh)|\\.docker\\/config\\.json|\\.kube\\/config)(\\.|$|\\/)",
+    "field": "file_path",
+    "blockMessage": "🛡️ Cloud/tunnel credential paths are protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-pki-keystore-read-file_path",
+    "description": "Block reads of PKI keystores and certificate files (.jks, .keystore, .der, .gpg) (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.(jks|keystore|der|gpg|pgp)$",
+    "field": "file_path",
+    "blockMessage": "🛡️ PKI/keystore files are protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-db-dumps-read-file_path",
+    "description": "Block reads of database dump files (.sql, .dump, .bak, .backup) (file_path field)",
+    "enabled": true,
+    "tool": "Read",
+    "pattern": "\\.(sql|dump|bak|backup)$",
+    "field": "file_path",
+    "exclude": "migration|schema|seed|flyway|alembic",
+    "blockMessage": "🛡️ Database dump files are protected from direct reads. May contain credentials or sensitive data.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-secrets-read-win-file_path",
+    "description": "[Windows] Block reads from .secrets directories via backslash paths (C:\\Users\\...\\. secrets\\) (file_path field)",
+    "enabled": false,
+    "tool": "Read",
+    "pattern": "\\.secrets\\\\|\\\\secrets\\\\",
+    "field": "file_path",
+    "blockMessage": "🛡️ .secrets directory is protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-ssh-read-win-file_path",
+    "description": "[Windows] Block reads from .ssh via backslash paths (C:\\Users\\...\\.ssh\\) (file_path field)",
+    "enabled": false,
+    "tool": "Read",
+    "pattern": "\\.ssh\\\\",
+    "field": "file_path",
+    "blockMessage": "🛡️ .ssh directory is protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-cloud-credentials-read-win-file_path",
+    "description": "[Windows] Block reads from cloud credential paths via backslash paths (C:\\Users\\...\\.aws\\, %APPDATA%\\gcloud\\) (file_path field)",
+    "enabled": false,
+    "tool": "Read",
+    "pattern": "(\\.aws\\\\|\\.azure\\\\|\\.config\\\\gcloud\\\\|\\.config\\\\gh\\\\|\\.docker\\\\config\\.json|\\.kube\\\\config|cloudflared\\\\)",
+    "field": "file_path",
+    "blockMessage": "🛡️ Cloud credential paths are protected from direct reads.",
+    "severity": "critical"
+  },
+  {
+    "id": "protect-openclaw-memory-win-file_path",
+    "description": "[Windows] Block agents reading session transcripts via backslash paths (file_path field)",
+    "enabled": false,
+    "tool": "Read",
+    "pattern": "\\.openclaw\\\\agents\\\\.*\\\\sessions\\\\",
+    "field": "file_path",
+    "blockMessage": "🛡️ Agent session transcripts are protected.",
+    "severity": "medium"
+  }
+]

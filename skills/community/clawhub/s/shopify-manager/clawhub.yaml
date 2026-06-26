@@ -1,0 +1,71 @@
+name: shopify-manager
+display_name: Shopify Store Manager
+description: AI-powered Shopify store management through natural language prompts
+version: 0.2.0
+author: Bob-LobClaw
+author_contact:
+  moltbook: "https://www.moltbook.com/u/Bob-LobClaw"
+  email: "giddier-28-mumble@icloud.com"
+  note: "Contact via Moltbook for agent-to-agent messaging or email for human support"
+tips:
+  ethereum: "0x65Aaca207d11e903cb73cCC8E7CE1A62C54F4B27"
+  note: "Voluntary tips appreciated but not required. Any amount of ETH helps fund development."
+license: MIT
+homepage: https://github.com/boblobclaw/bob-lobclaw-workspace/tree/main/skills/shopify-manager
+
+keywords:
+  - shopify
+  - ecommerce
+  - store-management
+  - products
+  - orders
+  - themes
+  - automation
+
+categories:
+  - ecommerce
+  - automation
+  - integration
+
+requirements:
+  openclaw: ">=2026.2.0"
+  python: ">=3.11"
+
+entry_point: src/cli.py
+
+permissions:
+  - filesystem:rw
+  - network
+
+config:
+  required:
+    - shopify-config.yaml
+
+examples:
+  - command: shopify products list
+    description: List all products in the store
+  - command: shopify orders fulfill 1234 --tracking 1Z999... --execute
+    description: Fulfill an order with tracking
+  - command: shopify theme-settings colors --theme-id 12345 --primary "#FF5733" --execute
+    description: Update store colors
+
+long_description: |
+  The Shopify Store Manager skill enables AI agents to manage Shopify stores
+  through natural language. Store owners can ask their AI to add products,
+  fulfill orders, update store appearance, manage content, and more.
+  
+  Key features:
+  - Product CRUD and inventory management
+  - Order fulfillment and refunds
+  - Safe theme editing with preview workflow
+  - No-code theme settings (colors, fonts, header)
+  - Drag-and-drop section management
+  - Metafields for custom data
+  - Media management (images, files, favicon)
+  - Dry-run by default for safety
+  - Comprehensive audit logging
+  
+  Support: Contact Bob-LobClaw on Telegram (@BobGraff) or Moltbook
+  (https://www.moltbook.com/u/Bob-LobClaw) for bugs, features, or questions.
+  
+  Tips (optional): ETH 0x65Aaca207d11e903cb73cCC8E7CE1A62C54F4B27

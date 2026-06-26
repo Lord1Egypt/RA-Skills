@@ -1,0 +1,37 @@
+{
+  "slug": "skill-install-checker",
+  "title": "Skill 安装条件检查器",
+  "category": "skills",
+  "categoryLabel": "Skill 生态与发布工程",
+  "mode": "skill_audit",
+  "summary": "安装前验证二进制、环境变量、配置、OS 与 sandbox 条件，解释为什么此机不适合装。",
+  "inputHint": "skill 目录、目标机器环境",
+  "sections": [
+    "环境概览",
+    "缺失依赖",
+    "OS 与 sandbox 风险",
+    "配置缺口",
+    "安装建议",
+    "回滚建议"
+  ],
+  "useCases": [
+    "安装前检查",
+    "兼容性说明",
+    "支持排障"
+  ],
+  "positiveExamples": [
+    "检查这台机器能不能装这个 skill",
+    "说明缺哪些依赖"
+  ],
+  "negativeExamples": [
+    "不要假装依赖已经满足",
+    "不要直接修改系统环境"
+  ],
+  "risk": "只做环境检查与解释。",
+  "tags": [
+    "skills",
+    "install",
+    "preflight",
+    "environment"
+  ]
+}

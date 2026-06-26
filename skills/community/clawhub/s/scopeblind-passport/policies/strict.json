@@ -1,0 +1,37 @@
+{
+  "tools": {
+    "*": {
+      "block": true
+    },
+    "read_file": {
+      "rate_limit": "50/minute"
+    },
+    "list_files": {
+      "rate_limit": "30/minute"
+    },
+    "search": {
+      "rate_limit": "20/minute"
+    },
+    "browse_url": {
+      "rate_limit": "10/minute"
+    },
+    "search_web": {
+      "rate_limit": "10/minute"
+    },
+    "read_email": {
+      "rate_limit": "30/minute"
+    },
+    "read_inbox": {
+      "rate_limit": "10/minute"
+    },
+    "search_email": {
+      "rate_limit": "10/minute"
+    }
+  },
+  "default_tier": "unknown",
+  "signing": {
+    "key_path": "./keys/gateway.json",
+    "issuer": "protect-mcp",
+    "enabled": true
+  }
+}

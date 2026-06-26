@@ -1,35 +1,525 @@
 ---
-name: "six-agent-orchestrator"
-description: "六Agent协作编排器 - 开箱即用的多Agent团队模板。包含CEO（架构师）、PM（项目经理）、牢A（执行）、牢B（审计）、牢C（推理）、牢D（监控），6阶段Pipeline强制执行，Token配额自动管理，红线禁区自动检查。触发词：六Agent、多Agent协作、agent团队、协作编排、six agent..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/six-agent-orchestrator"
-sourceUrl: "https://clawhub.ai/skills/six-agent-orchestrator"
+name: six-agent-orchestrator
+description: "六Agent协作编排器 - 开箱即用的多Agent团队模板。包含CEO（架构师）、PM（项目经理）、牢A（执行）、牢B（审计）、牢C（推理）、牢D（监控），6阶段Pipeline强制执行，Token配额自动管理，红线禁区自动检查。触发词：六Agent、多Agent协作、agent团队、协作编排、six agents、multi-agent。"
 ---
 
-# six-agent-orchestrator
+# 六Agent协作编排器
 
-> 六Agent协作编排器 - 开箱即用的多Agent团队模板。包含CEO（架构师）、PM（项目经理）、牢A（执行）、牢B（审计）、牢C（推理）、牢D（监控），6阶段Pipeline强制执行，Token配额自动管理，红线禁区自动检查。触发词：六Agent、多Agent协作、agent团队、协作编排、six agent...
+> 一个人的AI是工具，六个人的AI是团队。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/six-agent-orchestrator`
-- **Source URL:** [https://clawhub.ai/skills/six-agent-orchestrator](https://clawhub.ai/skills/six-agent-orchestrator)
+## 核心理念
 
-## Overview
+**痛点**：
+- 单Agent能力有限，复杂任务容易遗漏
+- 多Agent协作没标准，容易混乱
+- Token消耗不可控，成本爆炸
+- 责任边界不清晰，互相推诿
 
+**解法**：
+- **角色分工**：6个Agent各司其职，边界清晰
+- **流程强制**：6阶段Pipeline，不跳步
+- **配额管理**：Token预算自动分配，超限预警
+- **红线检查**：越权操作自动拦截
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/six-agent-orchestrator
+---
+
+## 六Agent角色定义
+
+### 001 小小兵CEO【主控架构师】
+
+**模型**：DeepSeek-V3.2（Tier 1）
+**Token配额**：15%
+**思考模式**：high
+
+**职责**：
+- 需求拆解
+- 架构决策
+- 最终审核
+- 结果汇总
+
+**红线禁区**：
+- ❌ 严禁越权编写代码
+- ❌ 严禁跳过PM直接调度牢A
+- ❌ 严禁替代牢B做深度推理
+
+---
+
+### 002 豆包PM【项目管理】
+
+**模型**：GLM-5（Tier 0，免费）
+**Token配额**：20%
+**思考模式**：medium
+
+**职责**：
+- 项目管理
+- 调度协调
+- 黑板维护
+- 进度追踪
+
+**红线禁区**：
+- ❌ 严禁越权做需求拆解
+- ❌ 严禁替代牢B做深度推理
+- ❌ 严禁编写代码
+
+---
+
+### 003 牢A【代码执行员】
+
+**模型**：MiniMax-M2.5（Tier 1）
+**Token配额**：15%
+**思考模式**：low
+
+**职责**：
+- 全栈代码开发
+- BUG修复
+- 测试编写
+
+**红线禁区**：
+- ❌ 严禁越权分析需求
+- ❌ 严禁输出不可运行代码
+- ❌ 严禁跳过PM反馈结果
+
+---
+
+### 004 牢B【审计与优化员】
+
+**模型**：DeepSeek-Reasoner + GLM-5（混合）
+**Token配额**：10%
+**思考模式**：high
+
+**职责**：
+- 深度推理
+- 架构评审
+- 质量审计
+- 自我改进（提取经验、固化流程）
+
+**红线禁区**：
+- ❌ 严禁参与代码编写
+- ❌ 严禁参与需求拆解
+
+---
+
+### 005 牢C【专项推理顾问】
+
+**模型**：千问qwen-plus（Tier 2）
+**Token配额**：15%
+**思考模式**：low
+
+**职责**：
+- 数学推理
+- 算法分析
+- 代码审查
+
+**红线禁区**：
+- ❌ 严禁参与代码编写
+- ❌ 严禁超配额使用（15%硬性限制）
+
+---
+
+### 006 牢D【技能监控员】
+
+**模型**：GLM-4.7-Flash（Tier 0，免费）
+**Token配额**：10%
+**思考模式**：low
+
+**职责**：
+- Skill使用统计
+- 异常检测
+- Skill强制执行监控
+- 任务队列监控
+
+**红线禁区**：
+- ❌ 严禁参与代码编写
+- ❌ 严禁越权调度其他Agent
+
+---
+
+## 6阶段强制Pipeline
+
 ```
+PIPELINE_PLAN → PIPELINE_PRD → PIPELINE_EXEC → PIPELINE_VERIFY → PIPELINE_FIX → PIPELINE_SUMMARY
+     ↓              ↓               ↓               ↓               ↓               ↓
+   CEO拆解       PM标准化         牢A执行          牢B验证         问题修复         CEO汇总
+```
+
+### Phase 0: 任务确认（入口）
+
+**负责人**：CEO（001）
+**输出**：任务分析报告
+
+**执行内容**：
+1. 分析任务复杂度（简单/中等/复杂）
+2. 预估Token消耗
+3. 预估总耗时
+4. 判断是否需要全部6阶段（简单任务可跳过部分阶段）
+
+**输出确认**：
+```
+任务分析报告：
+┌──────────────────────────────┐
+│ 任务：开发用户登录模块        │
+│ 复杂度：中等                  │
+│ 预估Token：8000               │
+│ 预估耗时：30分钟              │
+│ Pipeline：6阶段全部执行       │
+│                              │
+│ Token配额状态：               │
+│ Tier 0: ████████░░ 36%       │
+│ Tier 1: ████████░░ 32%       │
+│ Tier 2: ███░░░░░░░ 12%       │
+│                              │
+│ 确认执行？(y/n)               │
+└──────────────────────────────┘
+```
+
+**检查点**：
+- [ ] Token是否充足？（总消耗≤80%配额）
+- [ ] 用户是否确认？
+- [ ] Pipeline是否合理？
+
+---
+
+### Phase 1: PLAN（需求拆解）
+
+**负责人**：CEO（001）
+**超时**：5分钟
+**输出**：`plan.json`
+
+```json
+{
+  "task": "用户原始需求",
+  "subtasks": [
+    {"id": 1, "desc": "子任务1", "assignee": "牢A", "priority": "P0"},
+    {"id": 2, "desc": "子任务2", "assignee": "牢A", "priority": "P1"}
+  ],
+  "constraints": ["约束条件"],
+  "estimated_tokens": 5000
+}
+```
+
+**检查点**：
+- [ ] 子任务是否明确？
+- [ ] 负责人是否分配？
+- [ ] 优先级是否标注？
+
+---
+
+### Phase 2: PRD（标准化指令）
+
+**负责人**：PM（002）
+**超时**：5分钟
+**输出**：`prd.json`
+
+```json
+{
+  "instructions": [
+    {
+      "agent": "牢A",
+      "task": "具体任务描述",
+      "input": "输入规格",
+      "output": "输出规格",
+      "deadline": "预计完成时间"
+    }
+  ],
+  "dependencies": ["任务依赖关系"],
+  "blackboard": "黑板状态"
+}
+```
+
+**检查点**：
+- [ ] 指令是否具体可执行？
+- [ ] 输入输出是否明确？
+- [ ] 依赖关系是否标注？
+
+---
+
+### Phase 3: EXEC（代码执行）
+
+**负责人**：牢A（003）
+**超时**：15分钟
+**输出**：代码 + `exec-report.json`
+
+**执行模式**：
+- 单任务 → 直接执行
+- 多任务 → 调用parallel-task-executor并行执行
+
+**检查点**：
+- [ ] 代码是否可运行？
+- [ ] 是否符合规范？
+- [ ] 是否有测试？
+
+---
+
+### Phase 4: VERIFY（结果验证）
+
+**负责人**：牢B（004）+ PM（002）
+**超时**：10分钟
+**输出**：`verify-report.json`
+
+```json
+{
+  "passed": true/false,
+  "issues": [
+    {"severity": "high", "desc": "问题描述", "fix": "修复建议"}
+  ],
+  "score": 85
+}
+```
+
+**验证维度**：
+- 功能正确性
+- 代码质量
+- 性能表现
+- 安全合规
+
+**检查点**：
+- [ ] 是否通过验证？
+- [ ] 问题是否记录？
+- [ ] 是否需要FIX阶段？
+
+---
+
+### Phase 5: FIX（问题修复）
+
+**负责人**：牢A（003）
+**超时**：10分钟
+**输出**：修复代码 + `fix-report.json`
+
+**修复策略**：
+- P0问题 → 立即修复
+- P1问题 → 优先修复
+- P2问题 → 记录到待办
+
+**检查点**：
+- [ ] 问题是否修复？
+- [ ] 是否需要重新VERIFY？
+- [ ] 最多重试2次
+
+---
+
+### Phase 6: SUMMARY（结果汇总）
+
+**负责人**：CEO（001）
+**超时**：3分钟
+**输出**：`summary.md`
+
+**汇总内容**：
+- 任务完成情况
+- Token消耗统计
+- 遇到的问题
+- 学到的经验
+- 改进建议
+
+---
+
+## Token配额管理
+
+### 四级Token分配
+
+| Tier | 模型 | 配额 | 使用范围 |
+|------|------|------|---------|
+| Tier 0 | GLM-4.7-Flash | 45% | 免费模型（PM、监控） |
+| Tier 1 | DeepSeek系列 | 40% | 核心决策、代码开发 |
+| Tier 2 | 千问qwen-plus | 15% | 专项推理 |
+| Tier 3 | 豆包2.0 | ≤0.1% | 特殊场景兜底 |
+
+### 实时监控
+
+```
+Token消耗监控：
+┌──────────────────────────────┐
+│ Tier 0: ████████░░ 36% (7200)│
+│ Tier 1: ████████░░ 32% (6400)│
+│ Tier 2: ███░░░░░░░ 12% (2400)│
+│ 总消耗: 16000/20000 (80%)     │
+│ 预警：⚠️ 接近配额上限        │
+└──────────────────────────────┘
+```
+
+**阈值配置说明**：
+
+| Tier | 硬性上限 | 黄色预警 | 红色预警 |
+|------|---------|---------|---------|
+| Tier 0 | 45% | 36% | 40% |
+| Tier 1 | 40% | 32% | 36% |
+| Tier 2 | 15% | 12% | 13% |
+| Tier 3 | 0.1% | 0.08% | 0.09% |
+
+**计算公式**：
+- 黄色预警 = 硬性上限 × 80%
+- 红色预警 = 硬性上限 × 90%
+
+### 超限处理
+
+- **黄色预警（80%）**：提示用户
+- **红色预警（90%）**：自动降级到Tier 0模型
+- **硬性上限（100%）**：暂停任务，请求追加配额
+
+---
+
+## 红线禁区检查
+
+### 全局红线（所有Agent禁止）
+
+1. ❌ 严禁越权执行非职责范围内任务
+2. ❌ 严禁超配额使用Token
+3. ❌ 严禁输出冗余、无价值内容
+4. ❌ 严禁跳过Skill匹配直接调用大模型
+5. ❌ 严禁隐瞒任务卡点、校验失败问题
+
+### 自动拦截机制
+
+```
+检测到越权操作：
+Agent: CEO
+操作: 编写代码
+红线: CEO严禁越权编写代码
+处理: 拦截 → 提示 → 路由到牢A
+```
+
+---
+
+## 实战案例
+
+### 案例1：开发用户登录模块
+
+```
+用户："开发用户登录模块"
+
+Phase 1 (CEO)：
+  拆解：前端表单 + 后端API + 数据库设计 + 测试用例
+  分配：牢A负责全部
+  Token预估：8000
+
+Phase 2 (PM)：
+  指令：详细的输入输出规格、API接口定义、测试要求
+  黑板：任务进度追踪
+
+Phase 3 (牢A)：
+  执行：编写前端HTML + 后端Python + 数据库SQL
+  并行：前端和后端并行开发
+
+Phase 4 (牢B)：
+  验证：功能测试 + 代码审查 + 安全检查
+  问题：SQL注入风险
+  评分：75分（未通过）
+
+Phase 5 (牢A)：
+  修复：添加参数化查询
+  重验证：通过（90分）
+
+Phase 6 (CEO)：
+  汇总：完成情况、Token消耗、经验总结
+```
+
+### 案例2：修复项目BUG
+
+```
+用户："修复项目的性能问题"
+
+Phase 1 (CEO)：
+  分析：性能瓶颈定位 → 需要牢C专项推理
+
+Phase 2 (PM)：
+  调度：牢C分析 + 牢A修复
+
+Phase 3 (牢C + 牢A)：
+  牢C：性能分析报告（瓶颈在数据库查询）
+  牢A：优化SQL + 添加索引
+
+Phase 4 (牢B)：
+  验证：性能测试提升5倍
+
+Phase 6 (CEO)：
+  汇总：性能提升报告
+```
+
+---
+
+## 一键启动
+
+### 方式1：自动编排
+
+```bash
+# 输入任务，自动编排六Agent协作
+python3 scripts/orchestrate.py --task "开发用户登录模块"
+
+# 输出：Pipeline执行日志 + 结果汇总
+```
+
+### 方式2：手动调用
+
+```python
+from six_agent_orchestrator import SixAgentTeam
+
+# 创建团队
+team = SixAgentTeam()
+
+# 执行任务
+result = team.execute("开发用户登录模块")
+
+# 查看Token消耗
+print(result.token_usage)
+
+# 查看执行日志
+print(result.logs)
+```
+
+---
+
+## 配置文件
+
+### `config/agents.json`
+
+```json
+{
+  "agents": [
+    {
+      "id": "001",
+      "name": "小小兵CEO",
+      "model": "deepseek/deepseek-v3.2",
+      "tier": 1,
+      "token_quota": 0.15
+    },
+    ...
+  ]
+}
+```
+
+### `config/pipeline.json`
+
+```json
+{
+  "phases": ["PLAN", "PRD", "EXEC", "VERIFY", "FIX", "SUMMARY"],
+  "timeout_per_phase": {
+    "PLAN": 300,
+    "PRD": 300,
+    "EXEC": 900,
+    "VERIFY": 600,
+    "FIX": 600,
+    "SUMMARY": 180
+  }
+}
+```
+
+---
+
+## 与竞品差异
+
+| 功能 | CrewAI | AutoGen | **我们** |
+|------|--------|---------|---------|
+| 角色分工 | ✅ | ✅ | ✅ |
+| Token配额 | ❌ | ❌ | ✅ |
+| 红线检查 | ❌ | ❌ | ✅ |
+| 强制Pipeline | ❌ | ❌ | ✅ |
+| 断点续传 | ❌ | ❌ | ✅ |
+| 免费模型优化 | ❌ | ❌ | ✅ |
+
+---
+
+## 最后
+
+六Agent不是六个工具，是六个角色。
+有分工、有协作、有边界、有红线。
+
+就像真正的团队一样。

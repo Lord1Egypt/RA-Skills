@@ -1,35 +1,53 @@
 ---
-name: "Cloud Share Downloader"
-description: "网盘分享链接转存 - 完全自动化，发的链接就能下"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/share-transfer-tool"
-sourceUrl: "https://clawhub.ai/skills/share-transfer-tool"
+name: cloud-share-downloader
+version: 3.0.0
+description: 网盘分享链接转存 - 完全自动化，发的链接就能下
+author: OpenClaw
+triggers:
+  - "网盘下载"
+  - "分享链接下载"
+  - "转存文件"
+  - "保存网盘"
 ---
 
-# Cloud Share Downloader
+# Cloud Share Saver ☁️💾
 
-> 网盘分享链接转存 - 完全自动化，发的链接就能下
+**你发链接，我转存，完全自动化！**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/share-transfer-tool`
-- **Source URL:** [https://clawhub.ai/skills/share-transfer-tool](https://clawhub.ai/skills/share-transfer-tool)
+## 用户要做的
 
-## Overview
+**只需发分享链接给我！**
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/share-transfer-tool
 ```
+发给我: https://pan.baidu.com/s/xxxxx
+或者: https://www.alipan.com/s/xxxxx
+```
+
+我自动完成：
+- ✅ 识别链接类型
+- ✅ 尝试获取文件
+- ✅ 转存到我的网盘
+- 🔗 返回我的分享链接
+
+## 完全没有操作
+
+用户只需要发链接，其他全部自动！
+
+## 支持
+
+| 类型 | 支持 | 说明 |
+|------|------|------|
+| 百度网盘 | ✅ | 发链接即可 |
+| 阿里云盘 | ✅ | 发链接即可 |
+| 夸克网盘 | ✅ | 发链接即可 |
+| 115网盘 | ✅ | 发链接即可 |
+| B站视频 | ✅ | 发链接即可 |
+| 抖音/快手 | ✅ | 发链接即可 |
+
+## 返回什么
+
+我会把文件存到我的网盘，然后给你一个**新的分享链接**。
+
+---
+
+**现在就发一个网盘链接给我试试！**

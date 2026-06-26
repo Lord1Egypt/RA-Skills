@@ -1,35 +1,83 @@
 ---
-name: "seedance2.0"
-description: "字节跳动 Seedance 2.0 AI 视频生成技能，支持文生图、文生视频，提供申请指南和快速生成封装"
-category: "other"
-source: "ClawHub"
-tags: [ai-video, doubao, seedance, volcengine]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/seedance-2-0"
-sourceUrl: "https://clawhub.ai/skills/seedance-2-0"
+name: seedance-2-0
+display_name: Seedance 2.0
+description: 字节跳动 Seedance 2.0 AI 视频生成技能，支持文生图、文生视频，提供申请指南和快速生成封装
+version: 1.0.0
+author: Zoe
 ---
 
-# seedance2.0
+# Seedance 2.0 - 字节跳动AI视频生成技能
 
-> 字节跳动 Seedance 2.0 AI 视频生成技能，支持文生图、文生视频，提供申请指南和快速生成封装
+## 功能描述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/seedance-2-0`
-- **Source URL:** [https://clawhub.ai/skills/seedance-2-0](https://clawhub.ai/skills/seedance-2-0)
+帮助用户申请开通 Seedance 2.0 白名单，并提供便捷的API调用封装，支持提示词配置化快速生成视频。
 
-## Overview
+Seedance 2.0 是字节跳动最新的AI视频生成模型，支持文生视频、图生视频等功能。
 
+## 功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/seedance-2-0
+1. **申请指南** - 引导未开通的用户通过邀请链接申请Seedance 2.0白名单
+2. **快速生成** - 封装API调用，支持常见场景提示词模板配置化
+3. **支持多种参数配置** - 模型选择、时长、分辨率、比例等
+4. **下载结果** - 自动下载生成的视频文件到本地
+
+## 申请开通流程
+
+### 前置条件
+- 和合作伙伴关联
+- 企业实名认证（未实名无法申请）
+
+### 申请步骤
+1. 通过邀请链接注册/登录火山引擎合作伙伴平台
+2. 提交申请后，提供公司名称 + 客户账号ID给渠道联系人
+3. 内部帮忙申请开白
+4. 留资报名通过后，在官网签署协议并下单购买
+5. 开通后即可使用API生成视频
+
+## 权益差异
+
+| 权益项 | 普通用户 | 保底客户 | 备注 |
+|--------|----------|----------|------|
+| 基本功能 | ✅ | ✅ | - |
+| 公共虚拟人像库 | ✅ | ✅ | - |
+| 信任Seedance产物 | ✅ | ✅ | - |
+| 信任Seedream产物 | ✅ | ✅ | - |
+| 排队序列 | ❌低优先级 | ✅高优先级 | 保底客户高优队列 |
+| 并发数 | ❌ 默认Pro 10 & fast 10，不支持提升 | ✅ | 可单独提升 |
+| 自定义虚拟人像库 | ❌ | ✅ | Hi-level客户专享 |
+| 真人人像 | ❌ | ✅ | Hi-level客户专享 |
+| 版权IP | ❌ | ✅ | Hi-level客户专享 |
+
+## 配置
+
+本技能读取环境变量 `ARK_API_KEY` 和 `ARK_BASE_URL` 配置：
+
+- `ARK_API_KEY` - 火山引擎API密钥（从火山引擎控制台获取）
+- `ARK_BASE_URL` - 默认 `https://ark.cn-beijing.volces.com/api/v3`
+- 默认模型：`doubao-seedance-1-5-pro`
+
+## 使用方式
+
+### 申请开通
 ```
+帮我申请开通Seedance 2.0
+```
+会输出完整的申请指南和邀请链接。
+
+### 生成视频
+```
+用seedance生成视频，提示词：...
+```
+
+支持参数：
+- 模型选择（pro/fast/lite）
+- 时长（5s/10s/15s）
+- 比例（9:16/16:9/1:1）
+- 分辨率（720p/1080p）
+
+## 合规说明
+
+必须遵守内容审核：
+- 通用安全：禁涉黄、涉恐、涉敏
+- 版权：禁未授权IP作品、公众人物、版权音乐
+- 人脸：未开白直接拦截

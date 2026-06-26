@@ -1,0 +1,18 @@
+monitor:
+  enabled: false
+  check_interval: 60
+  watch_directory: ""
+  excel_path: ""
+
+notification:
+  channel: wecom
+  feishu_webhook: ""
+  wecom_webhook: ""
+
+logging:
+  level: INFO
+  file: monitor.log
+
+data:
+  history_dir: "data/history"
+  watch_dir: "data/watch"

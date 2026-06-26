@@ -1,0 +1,43 @@
+{
+  "name": "football-betting-analyzer",
+  "version": "1.0.0",
+  "description": "足彩分析助手 - 足球比赛数据分析和投注决策支持",
+  "author": "shenmeng",
+  "license": "MIT",
+  "requires": {
+    "python": ">=3.8",
+    "packages": ["requests", "pandas", "numpy"]
+  },
+  "config": {
+    "api_sources": {
+      "api_football": {
+        "name": "API-Football",
+        "base_url": "https://v3.football.api-sports.io",
+        "free_tier": true,
+        "rate_limit": "100 requests/day"
+      },
+      "football_data": {
+        "name": "Football-Data.org",
+        "base_url": "https://api.football-data.org/v4",
+        "free_tier": true,
+        "rate_limit": "10 requests/minute"
+      }
+    },
+    "default_leagues": [
+      {"id": 39, "name": "英超", "country": "England"},
+      {"id": 140, "name": "西甲", "country": "Spain"},
+      {"id": 135, "name": "意甲", "country": "Italy"},
+      {"id": 78, "name": "德甲", "country": "Germany"},
+      {"id": 61, "name": "法甲", "country": "France"},
+      {"id": 88, "name": "荷甲", "country": "Netherlands"},
+      {"id": 94, "name": "葡超", "country": "Portugal"}
+    ],
+    "analysis_weights": {
+      "recent_form": 0.25,
+      "head_to_head": 0.20,
+      "home_away": 0.20,
+      "odds_analysis": 0.20,
+      "injuries": 0.15
+    }
+  }
+}

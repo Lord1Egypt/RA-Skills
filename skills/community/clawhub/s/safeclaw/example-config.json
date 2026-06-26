@@ -1,0 +1,82 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "debug": false
+  },
+  "logging": {
+    "enabled": true,
+    "level": "info",
+    "output": "/var/log/safeclaw/app.log"
+  },
+  "auth": {
+    "enabled": true,
+    "provider": "local"
+  },
+  "security": {
+    "allowed_hosts": ["localhost", "127.0.0.1"],
+    "cors": {
+      "allow_origins": ["http://localhost:3000"],
+      "allow_credentials": true
+    }
+  },
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"],
+      "audited": true
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "audited": true
+    }
+  },
+  "audit": {
+    "trace_id": true,
+    "request_id": true,
+    "retention_days": 90
+  },
+  "api_version": "1.0.0",
+  "openclaw": {
+    "deployment": {
+      "isolated_environment": false,
+      "environment_type": "",
+      "host_isolation_verified": false
+    },
+    "network": {
+      "firewall_enabled": false,
+      "ip_whitelist": [],
+      "outbound_restricted": false
+    },
+    "credentials": {
+      "default_passwords_changed": false,
+      "dedicated_user_created": false,
+      "sensitive_file_access_restricted": false
+    },
+    "skills": {
+      "official_sources_only": false,
+      "security_verified": false,
+      "last_audit_date": "",
+      "approved_sources": []
+    },
+    "api_keys": {
+      "env_injection": false,
+      "last_rotation_date": "",
+      "rotation_days": 90,
+      "anomaly_monitoring": false
+    },
+    "backup_audit": {
+      "backup_enabled": false,
+      "backup_tool": "",
+      "audit_enabled": false,
+      "last_backup_date": ""
+    },
+    "usage_habits": {
+      "no_financial_credentials": false,
+      "auto_shutdown": false,
+      "auto_update": false,
+      "human_confirmation_required": false
+    }
+  }
+}

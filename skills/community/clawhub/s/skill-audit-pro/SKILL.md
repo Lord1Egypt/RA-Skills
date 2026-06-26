@@ -1,35 +1,82 @@
 ---
-name: "Skill Audit Pro"
-description: "AI Agent技能安全扫描工具。自动扫描已安装的OpenClaw技能，发现安全隐患。支持定时扫描（每24小时），自动发送报告到配置的所有Channel（Telegram/飞书等）。检测硬编码凭证、Shell注入、网络泄露等安全威胁。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/skill-audit-pro"
-sourceUrl: "https://clawhub.ai/skills/skill-audit-pro"
+name: skill-audit
+description: AI Agent技能安全扫描工具。自动扫描已安装的OpenClaw技能，发现安全隐患。支持定时扫描（每24小时），自动发送报告到配置的所有Channel（Telegram/飞书等）。检测硬编码凭证、Shell注入、网络泄露等安全威胁。
 ---
 
-# Skill Audit Pro
+# 🛡️ Skill Audit - AI技能安全扫描工具
 
-> AI Agent技能安全扫描工具。自动扫描已安装的OpenClaw技能，发现安全隐患。支持定时扫描（每24小时），自动发送报告到配置的所有Channel（Telegram/飞书等）。检测硬编码凭证、Shell注入、网络泄露等安全威胁。
+**每天自动扫描一次，守护你的Agent安全**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/skill-audit-pro`
-- **Source URL:** [https://clawhub.ai/skills/skill-audit-pro](https://clawhub.ai/skills/skill-audit-pro)
+## 功能特点
 
-## Overview
+- 🔍 **全面扫描** - 检查所有已安装的技能（npm包+扩展+workspace）
+- 🛡️ **四大威胁检测**
+  - 🔴 硬编码凭证（密码、API密钥）
+  - 🔴 环境变量泄露
+  - 🔴 Shell注入风险
+  - 🔴 网络请求外泄
+- ⏰ **定时扫描** - 每24小时自动执行
+- 📱 **多渠道推送** - 自动发送到所有已配置的Channel
+- 🎯 **精准定位** - 告诉你是哪一行代码有问题
 
+## 安全等级
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/skill-audit-pro
+| 等级 | 含义 | 建议 |
+|------|------|------|
+| 🔴 CRITICAL | 严重漏洞 | 立即卸载 |
+| 🟠 HIGH | 高危风险 | 需人工确认 |
+| 🟡 MEDIUM | 中危隐患 | 可选处理 |
+| ⚪ INFO | 最佳实践 | 可忽略 |
+
+## 使用方法
+
+### 手动触发
 ```
+scan skills
+扫描技能
+安全扫描
+audit skills
+```
+
+### 定时任务
+安装后自动创建每24小时的定时扫描任务。
+
+### 报告示例
+```
+🛡️ Skill Audit Report
+AI技能安全扫描 — 守护你的Agent
+━━━━━━━━━━━━━━━━━━━━
+
+📊 扫描概况
+已扫描：53 个技能
+✅ 安全：52 个
+⚠️ 有隐患：1 个
+
+📋 隐患详情
+🔸 some-skill
+   🔴 严重 1 个
+   → Hardcoded credentials
+
+💡 处理建议
+🔴 立即卸载 /remove some-skill
+
+━━━━━━━━━━━━━━━━━━━━
+```
+
+## 技术细节
+
+- **扫描引擎**: Python正则表达式静态分析
+- **扫描范围**: npm包技能、扩展技能、工作区技能
+- **安装即用**: 自动配置定时任务和渠道推送
+
+## 安装要求
+
+- OpenClaw 运行环境
+- Python 3.7+
+- 至少配置了一个消息渠道（Telegram/飞书等）
+
+## 安装后
+
+1. 安装完成后3分钟内收到首次扫描报告
+2. 之后每24小时自动扫描一次
+3. 报告发送到所有已配置的Channel

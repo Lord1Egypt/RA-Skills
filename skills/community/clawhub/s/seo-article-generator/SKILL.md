@@ -1,35 +1,37 @@
----
-name: "SEO Article Generator"
-description: "Generate 500+ word SEO-optimized articles with structured HTML, affiliate links, and auto-updated sitemap for topics like AI tools and digital marketing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/seo-article-generator"
-sourceUrl: "https://clawhub.ai/skills/seo-article-generator"
----
-
 # SEO Article Generator
 
-> Generate 500+ word SEO-optimized articles with structured HTML, affiliate links, and auto-updated sitemap for topics like AI tools and digital marketing.
+Automatically generate SEO-optimized articles for your website to drive organic traffic.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/seo-article-generator`
-- **Source URL:** [https://clawhub.ai/skills/seo-article-generator](https://clawhub.ai/skills/seo-article-generator)
+## Features
 
-## Overview
-
+- 🚀 Generate 500+ word SEO articles using DeepSeek AI
+- 🎯 40+ topic pool covering AI tools, side hustles, digital marketing
+- 📝 Auto-creates HTML files with proper heading structure
+- 🔗 Built-in affiliate links to your services
+- 🌐 Auto-updates sitemap.xml for search engines
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/seo-article-generator
+openclaw skills install seo-article-generator
 ```
+
+## Usage
+
+The skill automatically generates one SEO article per hour. To trigger manually:
+
+```
+Generate a new SEO article about [your topic]
+```
+
+## Example Output
+
+The skill creates HTML articles in `./articles/` directory with:
+- SEO-optimized title and headings (H1, H2, H3)
+- 500-800 words of original content
+- Internal links to your services/products
+- Auto-registration in sitemap.xml
+
+## Configuration
+
+No configuration needed. The skill uses your default OpenAI-compatible API provider.

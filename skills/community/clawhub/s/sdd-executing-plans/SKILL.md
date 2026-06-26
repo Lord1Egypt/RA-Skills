@@ -1,35 +1,155 @@
 ---
-name: "SDD Executing Plans"
+name: sdd-executing-plans
 description: "执行 spec-plan.md 实现计划，自动完成任务、验证步骤并包含重试逻辑。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sdd-executing-plans"
-sourceUrl: "https://clawhub.ai/skills/sdd-executing-plans"
 ---
 
-# SDD Executing Plans
-
-> 执行 spec-plan.md 实现计划，自动完成任务、验证步骤并包含重试逻辑。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sdd-executing-plans`
-- **Source URL:** [https://clawhub.ai/skills/sdd-executing-plans](https://clawhub.ai/skills/sdd-executing-plans)
+# SDD Executing Plans — 执行计划
 
 ## Overview
 
+加载 spec-plan.md，按顺序执行所有 Task 到完成，验证每个步骤，并报告结果。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/sdd-executing-plans
+**核心原则：** 自主执行 — 连续运行所有 Task，不进行手动批量暂停。
+
+**启动时声明：** "我正在使用 sdd-executing-plans 技能来执行此计划。"
+
+## 关键概念
+
+- **工作区 (Workspace)：** 通过 `.sdd-workspace` 配置文件中 `workspace_path` 指定的根目录
+- **Spec 目录：** 所有 SDD 文档存储在 `{workspace}/spec/` 下
+
+## Step 0: 读取工作区配置
+
+在任何操作之前，必须读取工作区配置：
+
+1. 检查当前 OpenClaw workspace 中是否存在 `.sdd-workspace`
+2. 如果存在，读取 `workspace_path` 作为工作区根目录 `{workspace}`
+3. 如果不存在，显示错误："请先运行 `/sdd-global-init` 初始化工作区。" 并**停止**
+
+验证工作区目录存在，如果不存在提示用户重新初始化。
+
+## Step 1: 模型检查
+
+检查当前模型是否为 Opus。如果是 Opus，输出以下纯文本消息并继续（非阻塞）：
+
 ```
+⚠️ 当前模型是 Opus，执行计划任务不需要 Opus 级别的推理能力，建议切换到更快的模型以提升执行效率。输入 /model 切换模型。
+```
+
+## Step 1: 计划选择
+
+### 如果提供了路径参数
+- 直接使用它作为计划文件路径
+- 读取文件并继续 Step 2
+
+### 如果没有提供路径参数
+1. 扫描 `{workspace}/spec/` 中所有匹配 `feature_*/spec-plan.md` 的文件
+2. 按目录名排序（feature 目录包含日期，所以字母排序 = 时间顺序）
+3. 通过 `AskUserQuestion` 展示**最新的 3 个**计划：
+   - 每个选项显示目录名和计划标题（第一个标题）
+   - 用户也可以通过 "Other" 输入自定义路径
+4. 读取选中的 spec-plan.md
+
+## Step 2: 恢复检测与执行前确认
+
+### 恢复检测
+
+读取计划后，扫描文件中的所有复选框标记（`- [ ]` 和 `- [x]`）：
+
+- **如果存在任何 `- [x]`** → 这是**恢复执行**：
+  - 完全跳过执行前确认
+  - 找到仍然包含至少一个 `- [ ]` 步骤的第一个 Task
+  - 在该 Task 中，识别第一个未勾选的步骤（`- [ ]`）作为恢复点
+  - 打印："从 Task N: [任务名] 恢复执行，步骤: [步骤描述]"
+  - 从恢复点直接继续 Step 3
+
+- **如果所有复选框都是 `- [ ]`** → 这是**全新执行**，继续执行前确认。
+
+### 执行前确认（仅全新执行）
+
+显示汇总：
+- **功能名称**（来自计划标题）
+- **Task 总数**（Task 部分的数量）
+- **关键文件** 要创建或修改的文件
+
+使用 `AskUserQuestion` 提供选项：
+- "开始执行" — 继续执行
+- "取消" — 中止
+
+只有用户选择 "开始执行" 才继续。
+
+## Step 3: 执行循环
+
+按顺序严格执行 Task（Task 1, Task 2, Task 3...）。不批量处理，Task 之间不暂停。
+
+### 识别步骤类型
+
+通过步骤出现的章节标题识别步骤类型：
+- `**执行步骤:**` → 执行步骤（实现代码更改）
+- `**检查步骤:**` → 检查步骤（运行验证命令）
+- `**End-to-end verification:**` → 验收 Task 验证（视为检查步骤）
+
+### 对于每个 Task：
+
+1. **执行所有执行步骤**（在 `**执行步骤:**` 下）：
+   - 按顺序处理每个 `- [ ]` 步骤
+   - 步骤完成后，**立即**更新计划文件：将该步骤的 `- [ ]` 改为 `- [x]`
+   - **跳过**已标记为 `- [x]` 的步骤（恢复执行场景）
+
+2. **运行所有检查步骤**（在 `**检查步骤:**` 或 `**End-to-end verification:**` 下）：
+   - 按顺序处理每个 `- [ ]` 检查
+   - 检查通过后，**立即**更新计划文件：将该检查的 `- [ ]` 改为 `- [x]`
+   - **跳过**已标记为 `- [x]` 的检查（恢复执行场景）
+
+3. **处理检查失败：**
+   - 分析失败输出
+   - 尝试修复问题（已检查的执行步骤保持 `- [x]` — 不要取消勾选）
+   - 重新运行失败的检查命令
+   - **每个检查项最多 5 轮重试**
+   - 如果 5 轮后仍然失败 → Task **被阻塞**，进入 Step 4
+
+4. Task **在以下情况下完成**：
+   - 所有执行步骤都是 `- [x]`
+   - 所有检查步骤都是 `- [x]`
+   - 继续下一个 Task
+
+验收 Task（如果存在）的处理方式与其他 Task 完全相同 — 执行其步骤并运行其验证。
+
+## Step 4: 阻塞 → 立即停止
+
+当被阻塞（任何验证项重试耗尽 5 轮）时：
+
+1. **立即停止整个执行** — 不要跳到下一个 Task
+2. 直接进入 Step 5（执行摘要）
+
+## Step 5: 执行摘要
+
+完成或阻塞后打印简洁摘要：
+
+```
+## 执行摘要
+- 任务: X 完成 / Y 总计
+- 新建文件: [列表]
+- 修改文件: [列表]
+- 💡 **建议下一步：** 运行 `/sdd-plan-human-verify` 生成人工验收清单
+```
+
+如果阻塞，同时包含：
+```
+## 阻塞信息
+- 任务: [Task 编号和名称]
+- 验证项: [失败的检查项]
+- 最后错误: [简要描述]
+```
+
+## 规则
+
+- **开始时检测模型** — 检测到 Opus 时，输出纯文本建议切换到更快的模型；非阻塞，始终继续
+- **无外部技能依赖** — 此技能完全独立
+- **无批量审核暂停** — 连续运行所有 Task
+- **无 git 操作** — 不进行 branch、commit、merge、push
+- 严格按照计划步骤执行
+- 永不跳过验证
+- 阻塞时停止，不猜测
+- 只有两种状态的复选框：`- [ ]`（待处理）和 `- [x]`（已完成）
+- **不要**生成验收清单 — 那由 `sdd-plan-human-verify` 技能处理

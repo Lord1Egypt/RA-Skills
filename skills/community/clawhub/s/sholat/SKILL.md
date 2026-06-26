@@ -1,35 +1,69 @@
 ---
-name: "Ambil jadwal sholat (imsak, subuh, dzuhur, ashar, maghrib, isya) untuk kota/kabupaten di Indonesia dari API Muslim api.myquran.com (sumber Kemenag Bimas Islam). Gunakan saat user minta jadwal sholat hari ini / tanggal tertentu / 1 bulan untuk lokasi tertentu, atau butuh mencari ID kab/kota."
-description: "Ambil jadwal sholat (imsak, subuh, dzuhur, ashar, maghrib, isya) untuk kota/kabupaten di Indonesia dari API Muslim api.myquran.com (sumber Kemenag Bimas Islam). Gunakan saat user minta jadwal sholat hari ini / tanggal tertentu / 1 bulan untuk lokasi tertentu, atau butuh mencar…"
-category: "other"
-source: "ClawHub"
-tags: [islam, islamic, moslem, prayer, sholat]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/sholat"
-sourceUrl: "https://clawhub.ai/skills/sholat"
+name: jadwal-sholat
+version: 1.0.0
+description: Ambil jadwal sholat (imsak, subuh, dzuhur, ashar, maghrib, isya) untuk kota/kabupaten di Indonesia dari API Muslim api.myquran.com (sumber Kemenag Bimas Islam). Gunakan saat user minta jadwal sholat hari ini / tanggal tertentu / 1 bulan untuk lokasi tertentu, atau butuh mencari ID kab/kota.
 ---
 
-# Ambil jadwal sholat (imsak, subuh, dzuhur, ashar, maghrib, isya) untuk kota/kabupaten di Indonesia dari API Muslim api.myquran.com (sumber Kemenag Bimas Islam). Gunakan saat user minta jadwal sholat hari ini / tanggal tertentu / 1 bulan untuk lokasi tertentu, atau butuh mencari ID kab/kota.
+# Jadwal Sholat (api.myquran.com)
 
-> Ambil jadwal sholat (imsak, subuh, dzuhur, ashar, maghrib, isya) untuk kota/kabupaten di Indonesia dari API Muslim api.myquran.com (sumber Kemenag Bimas Islam). Gunakan saat user minta jadwal sholat hari ini / tanggal tertentu / 1 bulan untuk lokasi tertentu, atau butuh mencar…
+API base: `https://api.myquran.com/v3`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/sholat`
-- **Source URL:** [https://clawhub.ai/skills/sholat](https://clawhub.ai/skills/sholat)
+Script helper (rekomendasi): `scripts/myquran_sholat.py`
 
-## Overview
+## Quick start
 
+Cari lokasi (kab/kota):
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/sholat
+python3 scripts/myquran_sholat.py cari "tangerang"
+```
+
+Jadwal sholat hari ini (Asia/Jakarta) untuk lokasi berdasarkan keyword:
+
+```bash
+python3 scripts/myquran_sholat.py hari-ini "kota tangerang"
+```
+
+Jadwal sholat tanggal tertentu (format `YYYY-MM-DD`):
+
+```bash
+python3 scripts/myquran_sholat.py tanggal "kota tangerang" 2026-02-03
+```
+
+Jadwal sholat 1 bulan (format `YYYY-MM`):
+
+```bash
+python3 scripts/myquran_sholat.py bulan "kota tangerang" 2026-02
+```
+
+## Catatan pemilihan lokasi
+
+Endpoint pencarian mengembalikan beberapa kandidat. Script akan:
+- mencoba match exact (case-insensitive) ke kolom `lokasi` bila memungkinkan
+- kalau tidak, pakai hasil pertama
+
+Kalau hasilnya kurang tepat, gunakan keyword yang lebih spesifik (mis. `KOTA TANGERANG` vs `TANGERANG`), atau ambil `id` lokasi lalu panggil mode `id`.
+
+## Pemanggilan langsung via curl (tanpa script)
+
+Cari kab/kota:
+
+```bash
+curl -s "https://api.myquran.com/v3/sholat/kabkota/cari/tangerang"
+```
+
+Ambil jadwal hari ini:
+
+```bash
+curl -s "https://api.myquran.com/v3/sholat/jadwal/<ID>/today?tz=Asia/Jakarta"
+```
+
+Ambil jadwal periode (bulanan / harian):
+
+```bash
+# bulanan
+curl -s "https://api.myquran.com/v3/sholat/jadwal/<ID>/2026-02?tz=Asia/Jakarta"
+
+# harian
+curl -s "https://api.myquran.com/v3/sholat/jadwal/<ID>/2026-02-03?tz=Asia/Jakarta"
 ```

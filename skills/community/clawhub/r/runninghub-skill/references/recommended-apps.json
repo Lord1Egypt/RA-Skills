@@ -1,0 +1,161 @@
+{
+  "_comment": "RHMCP 推荐APP列表 - OpenClaw Skill 专用",
+  "_lastUpdated": "2025-03-31",
+  "_source": "https://github.com/AIRix315/RHMCP",
+
+  "apps": {
+    "qwen-text-to-image": {
+      "appId": "2037760725296357377",
+      "alias": "qwen-text-to-image",
+      "category": "image",
+      "description": "Qwen 文生图 - 根据文字描述生成图片",
+      "mcpLevel": "full",
+      "inputs": {
+        "text": {
+          "nodeId": "16",
+          "fieldName": "text",
+          "description": "提示词（描述想要的图片）",
+          "required": true
+        },
+        "width": {
+          "nodeId": "19",
+          "fieldName": "value",
+          "description": "图片宽度",
+          "default": 1024
+        },
+        "height": {
+          "nodeId": "20",
+          "fieldName": "value",
+          "description": "图片高度",
+          "default": 1024
+        }
+      },
+      "capabilities": {
+        "strengths": ["中文理解强", "创意生成", "风格多样"],
+        "bestFor": ["创意插图", "概念设计", "角色生成"],
+        "limitations": ["不支持超高清（>2048px）"],
+        "speed": "fast",
+        "quality": "high"
+      },
+      "constraints": {
+        "imageSize": {
+          "min": { "width": 512, "height": 512 },
+          "max": { "width": 2048, "height": 2048 },
+          "recommended": [
+            { "width": 1024, "height": 1024, "name": "方形" },
+            { "width": 768, "height": 1024, "name": "竖版" },
+            { "width": 1024, "height": 768, "name": "横版" }
+          ]
+        },
+        "prompt": {
+          "format": "natural",
+          "languages": ["zh", "en"],
+          "maxLength": 500
+        }
+      },
+      "sceneMapping": ["generate-image", "text-to-image", "文生图", "生成图片", "画一张图", "画画"],
+      "fallback": ["sdxl-text-to-image", "flux-text-to-image"],
+      "tips": [
+        "描述越详细，效果越好",
+        "可以指定画风：动漫、油画、水彩等",
+        "可以指定构图：近景、远景、俯视等"
+      ]
+    },
+
+    "qwen-image-to-image": {
+      "appId": "2037822548796252162",
+      "alias": "qwen-image-to-image",
+      "category": "image",
+      "description": "Qwen 图生图 - 根据图片和提示词修改图片",
+      "mcpLevel": "partial",
+      "inputs": {
+        "image": {
+          "nodeId": "2",
+          "fieldName": "image",
+          "description": "输入图片URL",
+          "required": true
+        },
+        "prompt": {
+          "nodeId": "1",
+          "fieldName": "prompt",
+          "description": "修改提示词（描述想要的改变）",
+          "required": true
+        }
+      },
+      "capabilities": {
+        "strengths": ["风格迁移", "细节修改", "保持构图"],
+        "bestFor": ["风格转换", "局部修改", "背景替换"],
+        "limitations": ["需要输入图片URL"],
+        "speed": "fast",
+        "quality": "high"
+      },
+      "constraints": {
+        "imageSize": {
+          "min": { "width": 512, "height": 512 },
+          "max": { "width": 2048, "height": 2048 }
+        }
+      },
+      "sceneMapping": ["modify-image", "image-to-image", "图生图", "改图", "修改图片"],
+      "tips": [
+        "prompt 描述的是想要改变的部分",
+        "可以用上一步生成的图片作为输入",
+        "修改幅度可以通过描述详细程度控制"
+      ]
+    }
+  },
+
+  "memberTiers": {
+    "free": { "maxConcurrent": 1, "dailyLimit": 10 },
+    "basic": { "maxConcurrent": 1, "dailyLimit": 100 },
+    "premium": { "maxConcurrent": 3, "dailyLimit": null },
+    "enterprise": { "maxConcurrent": null, "dailyLimit": null }
+  },
+
+  "pollingStrategy": {
+    "image-to-video": { "initialWait": 180, "interval": 60, "maxWait": 900 },
+    "digital-human": { "initialWait": 120, "interval": 30, "maxWait": 600 },
+    "text-to-image": { "initialWait": 10, "interval": 5, "maxWait": 300 }
+  },
+
+  "sceneIndex": {
+    "generate-image": "qwen-text-to-image",
+    "text-to-image": "qwen-text-to-image",
+    "text2img": "qwen-text-to-image",
+    "文生图": "qwen-text-to-image",
+    "生成图片": "qwen-text-to-image",
+    "画画": "qwen-text-to-image",
+    "画一张图": "qwen-text-to-image",
+
+    "modify-image": "qwen-image-to-image",
+    "image-to-image": "qwen-image-to-image",
+    "img2img": "qwen-image-to-image",
+    "图生图": "qwen-image-to-image",
+    "改图": "qwen-image-to-image",
+    "修改图片": "qwen-image-to-image"
+  },
+
+  "defaults": {
+    "image": {
+      "width": 1024,
+      "height": 1024,
+      "quality": "standard"
+    },
+    "video": {
+      "fps": 24,
+      "duration": 5
+    }
+  },
+
+  "storageRecommendations": {
+    "chainWorkflow": {
+      "intermediateSteps": "none",
+      "finalOutput": "none"
+    },
+    "userSave": {
+      "explicit": "network"
+    },
+    "auto": {
+      "default": "none"
+    }
+  }
+}

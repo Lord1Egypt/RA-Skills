@@ -1,0 +1,28 @@
+{
+  "name": "sendflare-skill",
+  "version": "1.0.7",
+  "description": "Sendflare sending skill for OpenClaw. Core feature: send emails via Sendflare SDK. Does NOT support attachments. Contact management is experimental.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "Sendflare",
+    "email",
+    "openclaw",
+    "skill"
+  ],
+  "author": "Sendflare <support@Sendflare.com>",
+  "license": "MIT",
+  "dependencies": {
+    "Sendflare-sdk-ts": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

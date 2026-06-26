@@ -1,0 +1,18 @@
+{
+  "name": "3D Preview",
+  "description": "专业的AI能力技能，支持3D, 3d等功能。",
+  "version": "1.0.0",
+  "category": "AI能力",
+  "triggers": [
+    "3D",
+    "3d"
+  ],
+  "capabilities": {
+    "audit": {
+      "checks": []
+    },
+    "repair": {
+      "features": []
+    }
+  }
+}

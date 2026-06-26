@@ -1,0 +1,66 @@
+{
+  "name": "openclaw-session-compact",
+  "version": "1.2.1",
+  "description": "Smart session compaction plugin for OpenClaw to manage token usage and support unlimited conversation length.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "openclaw-compact": "bin/openclaw-compact.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "session",
+    "compaction",
+    "token-management"
+  ],
+  "author": "sdc-creator",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.0"
+  },
+  "peerDependencies": {
+    "openclaw": "^2026.4.9"
+  },
+  "openclaw": {
+    "name": "Session Compact",
+    "version": "1.2.1",
+    "description": "Automatically compresses session history to manage token limits with comprehensive session management.",
+    "extensions": ["./dist/index.js"],
+    "compat": {
+      "pluginApi": ">=2026.4.2"
+    },
+    "build": {
+      "openclawVersion": "2026.4.9"
+    }
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [".ts"],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": ["ts-jest", { "useESM": true }]
+    },
+    "testMatch": ["**/__tests__/**/*.test.ts"],
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": ["src/**/*.ts", "!src/**/*.test.ts"]
+  }
+}

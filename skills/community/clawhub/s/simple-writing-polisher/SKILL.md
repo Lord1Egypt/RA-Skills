@@ -1,35 +1,38 @@
----
-name: "simple-writing-polisher"
-description: "快速将中文文本润色为更清晰自然且专业的表达，支持多风格、多场景定制，确保不改变原意。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/simple-writing-polisher"
-sourceUrl: "https://clawhub.ai/skills/simple-writing-polisher"
----
+name: simple-writing-polisher
+description: 将中文文本快速润色为更清晰、自然、专业的表达（保留原意，按需提供多种风格）。
+version: 0.1.1
 
-# simple-writing-polisher
+# Simple Writing Polisher
 
-> 快速将中文文本润色为更清晰自然且专业的表达，支持多风格、多场景定制，确保不改变原意。
+## 用途
+把你给的中文文本在**不改变原意**的前提下，润色成更清晰、更自然、更专业的表达。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/simple-writing-polisher`
-- **Source URL:** [https://clawhub.ai/skills/simple-writing-polisher](https://clawhub.ai/skills/simple-writing-polisher)
+## 使用方式
+把原文贴出来，并选择你需要的输出方式之一：
 
-## Overview
+- **默认润色**：给出润色后的版本（1 个）。
 
+- **多版本**：给出 3 个版本（正式/中性/口语），并标注差异侧重点。
+- **压缩/扩写**：在不改变关键事实的前提下压缩到更短，或扩写得更完整。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/simple-writing-polisher
-```
+你也可以附加约束：
+- 目标读者（面试官/客户/同事/公众号读者等）
+- 场景（邮件/周报/项目复盘/PRD/评论回复等）
+- 字数范围
+- 需要保留/必须出现的关键词
+
+## 输出格式（默认）
+1. 润色结果
+2. 关键修改点（不超过 12 条）
+
+## 例子
+输入：
+> 我们这个项目做了很多工作，但是遇到不少问题，最终还是按时上线了。
+
+输出（示例）：
+润色结果：
+> 这个项目推进过程中我们完成了大量工作，也遇到不少挑战，但最终仍按计划如期上线。
+
+关键修改点：
+- 语气更客观、信息更凝练
+- “不少问题”替换为更中性的“挑战”

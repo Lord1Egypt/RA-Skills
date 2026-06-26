@@ -1,0 +1,88 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-04-02T17:45:15.992377",
+  "lottery_types": {
+    "pl3": {
+      "hot_weight": 0.6,
+      "cold_weight": 0.1,
+      "warm_weight": 0.3,
+      "missing_threshold": 2.0,
+      "position_weight": 0.7,
+      "sum_weight": 0.3,
+      "performance": {
+        "total_predictions": 3,
+        "exact_matches": 0,
+        "group_matches": 0,
+        "digit_matches": 6
+      }
+    },
+    "pl5": {
+      "hot_weight": 0.6,
+      "cold_weight": 0.1,
+      "warm_weight": 0.3,
+      "missing_threshold": 2.0,
+      "performance": {
+        "total_predictions": 0,
+        "exact_matches": 0,
+        "digit_matches": 0
+      }
+    },
+    "dlt": {
+      "hot_weight": 0.6,
+      "cold_weight": 0.15,
+      "warm_weight": 0.25,
+      "zone_balance_weight": 0.3,
+      "odd_even_weight": 0.2,
+      "performance": {
+        "total_predictions": 1,
+        "front_5_hits": 0,
+        "front_4_hits": 0,
+        "front_3_hits": 1,
+        "back_2_hits": 0,
+        "back_1_hits": 1
+      }
+    },
+    "ssq": {
+      "hot_weight": 0.6,
+      "cold_weight": 0.15,
+      "warm_weight": 0.25,
+      "zone_balance_weight": 0.3,
+      "performance": {
+        "total_predictions": 0,
+        "red_6_hits": 0,
+        "red_5_hits": 0,
+        "red_4_hits": 0,
+        "blue_hits": 0
+      }
+    },
+    "qxc": {
+      "hot_weight": 0.6,
+      "cold_weight": 0.1,
+      "warm_weight": 0.3,
+      "performance": {
+        "total_predictions": 0,
+        "exact_matches": 0,
+        "digit_matches": 0
+      }
+    },
+    "zc14": {
+      "odds_weight": 0.5,
+      "form_weight": 0.3,
+      "home_advantage": 0.2,
+      "performance": {
+        "total_predictions": 0,
+        "exact_14_hits": 0,
+        "13_hits": 0,
+        "12_hits": 0,
+        "avg_correct": 0
+      }
+    }
+  },
+  "evolution_rules": {
+    "adjustment_rate": 0.05,
+    "min_weight": 0.05,
+    "max_weight": 0.9,
+    "window_size": 20,
+    "improvement_threshold": 0.02
+  }
+}

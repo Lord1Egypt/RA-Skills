@@ -1,35 +1,48 @@
 ---
 name: "secondary-style-perturbation"
 description: "对已初步处理的文本进行二次轻微扰动。用于第一轮重写后需要进一步降低风格一致性特征时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/secondary-style-perturbation"
-sourceUrl: "https://clawhub.ai/skills/secondary-style-perturbation"
 ---
 
-# secondary-style-perturbation
+# 二次风格扰动
 
-> 对已初步处理的文本进行二次轻微扰动。用于第一轮重写后需要进一步降低风格一致性特征时使用。
+对已初步处理的文本进行二次轻微扰动，进一步降低文本的风格一致性特征。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/secondary-style-perturbation`
-- **Source URL:** [https://clawhub.ai/skills/secondary-style-perturbation](https://clawhub.ai/skills/secondary-style-perturbation)
+## 背景
 
-## Overview
+文本已经过第一轮人类化重写，可能仍存在一些规律性特征。本轮处理重点关注：句子节奏、表达多样性、局部逻辑断层。
 
+## 核心操作
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/secondary-style-perturbation
-```
+### 1. 节奏打散
+- 将部分连续的中等长度句子拆分为"一长+一短"或"一短+一长"
+- 随机在1-2个段落中加入极短句（5字以内）
+- 避免所有段落内部节奏模式完全相同
+
+### 2. 表达多样性提升
+- 同一关键词出现2次以上时，替换其中1-2次为同义表达
+- 将部分"是"字句改为更简洁的主语省略句
+- 将部分陈述句改为反问句或双重否定句（保持学术语气）
+
+### 3. 局部逻辑断层
+- 在1-2个段落内制造轻微逻辑跳跃
+- 在跳跃处加入"换个角度看""事实上"等承上启下的短语
+- 避免全文所有段落之间的逻辑连贯性完全一致
+
+### 4. 指代多样性
+- 将部分"这"指代改为"这一点""这种情况"
+- 将部分精确指代改为模糊指代，配合上下文理解
+
+## 约束条件
+- 保持学术表达语气
+- 不改变专业术语含义
+- 不添加新信息或实质性内容
+- 修改幅度控制在5%以内
+- 不使用口语化或情绪化表达
+
+## 输出要求
+- 仅输出扰动后的文本
+- 不解释修改过程
+- 不添加任何说明性文字
+
+原文如下：
+{{text}}

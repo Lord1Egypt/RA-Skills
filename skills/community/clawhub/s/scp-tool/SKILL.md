@@ -1,35 +1,27 @@
 ---
-name: "Scp Tool"
-description: "Securely copy files between local and remote hosts over SSH. Use for file transfers, remote backups, and deployment tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/scp-tool"
-sourceUrl: "https://clawhub.ai/skills/scp-tool"
+name: scp-tool
+description: Securely copy files between local and remote hosts over SSH. Use for file transfers, remote backups, and deployment tasks.
 ---
+# SCP - Secure File Copy
 
-# Scp Tool
+Copy files between local and remote systems using SSH encryption. Supports recursive directory transfers and custom port specifications.
 
-> Securely copy files between local and remote hosts over SSH. Use for file transfers, remote backups, and deployment tasks.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/scp-tool`
-- **Source URL:** [https://clawhub.ai/skills/scp-tool](https://clawhub.ai/skills/scp-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/scp-tool
+scp-tool [options] <source> <destination>
+```
+
+## Options
+
+- `-r`: Recursively copy directories
+- `-P port`: Specify SSH port
+- `-C`: Enable compression for faster transfer
+- `-v`: Verbose mode for debugging
+
+## Examples
+
+```bash
+scp-tool file.txt user@host:/remote/path/
+scp-tool -r ./folder user@host:/remote/folder
+scp-tool user@host:/remote/file.txt .
 ```

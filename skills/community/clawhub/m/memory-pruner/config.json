@@ -1,0 +1,13 @@
+{
+  "name": "Memory Pruner",
+  "slug": "memory-pruner",
+  "version": "1.0.0",
+  "description": "Intelligent memory management for agents. Keep only what matters, prune the rest.",
+  "author": "xaxia_summer",
+  "tags": ["memory", "pruning", "optimization", "agent", "management"],
+  "homepage": "",
+  "repository": "",
+  "license": "MIT",
+  "entry": "memory-pruner",
+  "runtime": "shell"
+}

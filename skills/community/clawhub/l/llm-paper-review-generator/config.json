@@ -1,0 +1,51 @@
+{
+  "use_paddleocr": false,
+  "paddleocr": {
+    "job_url": "https://paddleocr.aistudio-app.com/api/v2/ocr/jobs",
+    "model": "PaddleOCR-VL-1.5",
+    "api_key": "",
+    "show_window": true,
+    "threads": 1,
+    "poll_seconds": 5,
+    "timeout_seconds": 1800,
+    "optional_payload": {
+      "useDocOrientationClassify": false,
+      "useDocUnwarping": false,
+      "useChartRecognition": false
+    }
+  },
+  "summarizer": {
+    "provider": "siliconflow",
+    "show_window": true,
+    "threads": 1,
+    "max_input_chars": 0,
+    "sleep_seconds": 1,
+    "providers": {
+      "modelscope": {
+        "base_url": "https://api-inference.modelscope.cn/v1",
+        "api_key": "",
+        "model": ""
+      },
+      "siliconflow": {
+        "base_url": "https://api.siliconflow.cn/v1",
+        "api_key": "",
+        "model": "THUDM/GLM-4.1V-9B-Thinking"
+      },
+      "openai-compatible": {
+        "base_url": "https://api.openai.com/v1",
+        "api_key": "",
+        "model": "gpt-4o-mini"
+      },
+      "volcengine": {
+        "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+        "api_key": "",
+        "model": "doubao-seed-2-0-lite-260215"
+      },
+      "longcat": {
+        "base_url": "https://api.longcat.chat/openai",
+        "api_key": "",
+        "model": "LongCat-Flash-Chat"
+      }
+    }
+  }
+}

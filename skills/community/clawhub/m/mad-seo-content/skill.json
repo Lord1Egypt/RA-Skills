@@ -1,0 +1,40 @@
+{
+  "name": "M.A.D. SEO CONTENT",
+  "version": "1.2.1",
+  "description": "The M.A.D. (Multimodal Attribution & Discovery) engine for autonomous SEO. Features editorial variety optimization, unified analytics, and site-wide entity mapping.",
+  "author": "Mad Labs",
+  "entry": "index.js",
+  "permissions": [
+    {
+      "type": "fs.write",
+      "path": "/root/.openclaw/shared/mad_seo/",
+      "reason": "Restricted path for project strategy and SQLite calendar to minimize exposure to other skills."
+    },
+    {
+      "type": "fs.read",
+      "path": "/root/.openclaw/shared/mad_seo/",
+      "reason": "Restricted path to read project context and authorized entity maps."
+    }
+  ],
+  "triggers": [
+    "Onboard me to M.A.D. SEO CONTENT",
+    "Omnichannel research for [Topic]",
+    "Plan my strategy",
+    "Draft an article",
+    "Audit eeat",
+    "Generate schema",
+    "Run site intelligence",
+    "Inject internal links",
+    "Repurpose content",
+    "Analyze share of voice",
+    "Run analytics suite",
+    "Create a WordPress draft"
+  ],
+  "dependencies": {
+    "skills": [
+      "api-gateway",
+      "scrapling-official",
+      "agent-browser"
+    ]
+  }
+}

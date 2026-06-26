@@ -1,0 +1,13 @@
+{
+  "name": "List Files",
+  "description": "List all files uploaded by this API key. Returns URL and creation timestamp, ordered newest first.",
+  "method": "GET",
+  "endpoint": "/v1/file/list",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "query": [
+      { "name": "limit", "type": "integer", "required": false, "default": 100, "description": "Max number of files to return (1-500)" }
+    ]
+  }
+}

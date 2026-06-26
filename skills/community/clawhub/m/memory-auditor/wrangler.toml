@@ -1,0 +1,9 @@
+name = "memory-auditor"
+main = "worker.js"
+compatibility_date = "2026-04-05"
+
+[env.production]
+name = "memory-auditor-prod"
+
+[vars]
+EXA_API_KEY = "d6aa75ee-d815-4a48-8262-ac16131e9323"

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "Storyboard-mcp": {
+      "url": "https://api.bizyair.cn/w/v1/mcp/242",
+      "headers": {
+        "Authorization": "Bearer ${BIZYAIR_API_KEY}"
+      }
+    }
+  }
+}

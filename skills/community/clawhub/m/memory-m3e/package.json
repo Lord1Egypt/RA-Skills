@@ -1,0 +1,10 @@
+{
+  "name": "memory-m3e",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Semantic memory plugin using m3e-large embedding API + SQLite",
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.48",
+    "better-sqlite3": "^11.0.0"
+  }
+}

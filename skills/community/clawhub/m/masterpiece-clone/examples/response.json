@@ -1,0 +1,12 @@
+{
+  "taskId": "task_xxx",
+  "status": 2000,
+  "progress": 100,
+  "message": "Processing...",
+  "outputs": [
+    {
+      "type": "image",
+      "url": "https://cdn.ngmob.com/result.jpg"
+    }
+  ]
+}

@@ -1,35 +1,345 @@
 ---
-name: "Mao Colleague"
+name: mao
 description: "毛泽东方法论AI助手 - 基于六层认知架构的智能分析系统 | Mao Zedong Methodology AI Assistant with Six-Layer Cognitive Architecture"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mao-colleague"
-sourceUrl: "https://clawhub.ai/skills/mao-colleague"
+argument-hint: "[command] [args]"
+version: "1.2.0"
+user-invocable: true
+allowed-tools: Read, Write, Edit, Bash
 ---
 
-# Mao Colleague
+# 毛泽东 — AI Colleague Skill
 
-> 毛泽东方法论AI助手 - 基于六层认知架构的智能分析系统 | Mao Zedong Methodology AI Assistant with Six-Layer Cognitive Architecture
+> 基于毛泽东著作的方法论体系和表达风格构建的AI Skill | 六层认知架构 v1.2.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mao-colleague`
-- **Source URL:** [https://clawhub.ai/skills/mao-colleague](https://clawhub.ai/skills/mao-colleague)
+---
 
-## Overview
+## 概述
 
+本Skill将毛泽东的哲学方法论、工作方法和表达风格蒸馏为AI可用的格式，采用现代化六层认知架构，提供智能分析、渐进学习、概念查询等完整功能体系。
 
-## Installation
-To install this skill, run the following command in your terminal:
+**核心特性**：
+- 🏗️ **六层认知架构**：现代化分层设计，确保系统稳定性和扩展性
+- 🎯 **智能分析推荐**：基于问题内容自动推荐最佳分析方法（准确率78%+）
+- 📚 **四级渐进学习**：入门→基础→进阶→专业，支持从零基础到专业研究
+- 🔍 **概念知识网络**：674个毛泽东核心概念库，支持深度查询和关系探索
+- 🔄 **向后完全兼容**：所有老命令继续支持，平滑过渡到新架构
+
+**版本信息**：
+- **当前版本**: 1.2.0 (六层架构版)
+- **发布日期**: 2026-04-09
+- **架构版本**: Six-Layer Cognitive Architecture
+
+---
+
+## 核心能力
+
+### 1. 哲学方法论
+- **实践论方法**：实践 → 认识 → 再实践 → 再认识
+- **矛盾论方法**：对立统一规律，主要矛盾分析，矛盾转化
+- **实事求是原则**：理论联系实际，反对教条主义
+
+### 2. 工作方法
+- **调查研究法**：没有调查就没有发言权
+- **群众路线法**：从群众中来，到群众中去
+- **试点推广法**：典型试验，逐步推广
+- **批评与自我批评**：惩前毖后，治病救人
+
+### 3. 战略思维
+- **持久战思维**：防御 → 相持 → 反攻
+- **统一战线思维**：团结一切可以团结的力量
+- **根据地思维**：建立巩固的根据地，逐步发展
+- **运动战原则**：集中优势兵力，各个歼灭敌人
+
+### 4. 分析框架
+- **阶级分析法**：分析社会各阶级的状况和态度
+- **矛盾分析法**：分析事物内部的矛盾运动
+- **历史分析法**：用历史的眼光看问题
+- **调查研究法**：通过调查掌握实际情况
+
+---
+
+## 使用方法
+
+### 🚀 核心命令架构
+
+毛泽东.skill采用主命令+子命令架构，提供直观易用的使用体验：
+
 ```bash
-hermes skills install clawhub/mao-colleague
+# 快捷方式
+/mao [问题]                     # 智能分析快捷方式
+
+# 完整命令
+/mao help                      # 获取帮助（智能引导）
+/mao analyze [问题]            # 智能分析（主功能）
+/mao learn                     # 学习系统
+/mao concepts                  # 概念系统
+/mao compare                   # 比较系统
+/mao settings                  # 设置系统
+
+# 向后兼容的老命令（继续支持）
+/mao-work [问题]
+/mao-persona [文本]
+/mao-analyze [方法] [问题]
+/mao-concepts
+/mao-examples
+/mao-help
+/mao-version
 ```
+
+### 📖 详细命令说明
+
+#### 1. 智能分析（核心功能）
+```bash
+/mao analyze [问题]              # 智能推荐分析方法
+/mao analyze --method=矛盾 [问题] # 指定矛盾分析法
+/mao analyze --method=实践 [问题] # 指定实践论方法
+```
+
+**支持的分析方法**：
+- **矛盾分析法**：识别主要矛盾和次要矛盾，分析矛盾转化
+- **实践论方法**：遵循"实践-认识-再实践"循环，指导具体工作
+- **调查研究法**：没有调查就没有发言权，典型与普遍结合
+- **战略思维法**：持久战思维，战略藐视战术重视
+- **群众路线法**：从群众中来，到群众中去
+- **综合分析法**：智能选择最适合的方法（默认）
+
+#### 2. 学习系统
+```bash
+/mao learn                      # 开始学习（智能推荐路径）
+/mao learn [主题]               # 学习特定主题
+/mao learn --path=入门          # 选择入门学习路径
+/mao learn --path=基础          # 选择基础学习路径
+/mao learn --path=进阶          # 选择进阶学习路径
+/mao learn --path=专业          # 选择专业学习路径
+```
+
+**四级渐进学习路径**：
+- **入门**：15分钟快速了解毛泽东方法论核心
+- **基础**：1小时掌握核心方法论和应用
+- **进阶**：3小时深入学习复杂问题分析
+- **专业**：10小时专业研究深度理论
+
+#### 3. 概念系统
+```bash
+/mao concepts                   # 查看核心概念列表（674+概念）
+/mao concepts [概念]            # 查看特定概念详细解释
+/mao concepts --search=[关键词] # 搜索相关概念
+```
+
+#### 4. 帮助系统
+```bash
+/mao help                       # 获取总体帮助和快速入门
+/mao help [主题]                # 获取特定主题详细帮助
+```
+
+#### 5. 比较系统
+```bash
+/mao compare                    # 查看比较系统介绍
+/mao compare [主题1] [主题2]    # 比较两个方法论或主题
+```
+
+#### 6. 设置系统
+```bash
+/mao settings                   # 查看和修改个性化设置
+```
+
+---
+
+## 技术实现
+
+### 六层认知架构
+
+毛泽东.skill采用现代化六层认知架构设计：
+
+```
+┌─────────────────────────────────────────────┐
+│            用户界面层 (UI Layer)            │
+│  • 命令解析、响应格式化、用户交互          │
+│  • 向后兼容性保证、智能错误处理            │
+└──────────────────────┬──────────────────────┘
+                       ↓
+┌─────────────────────────────────────────────┐
+│         分析决策层 (Analytics Layer)        │
+│  • 智能分析方法推荐（准确率78%+）          │
+│  • 问题理解、意图识别、路径规划            │
+└──────────────────────┬──────────────────────┘
+                       ↓
+┌─────────────────────────────────────────────┐
+│          方法执行层 (Method Layer)          │
+│  • 6种具体分析方法执行                     │
+│  • 矛盾分析、实践论方法、调查研究法等      │
+└──────────────────────┬──────────────────────┘
+                       ↓
+┌─────────────────────────────────────────────┐
+│         知识检索层 (Knowledge Layer)        │
+│  • 674个概念库查询、四级学习路径管理       │
+│  • 用户进度跟踪、个性化推荐                │
+└──────────────────────┬──────────────────────┘
+                       ↓
+┌─────────────────────────────────────────────┐
+│           性能监控层 (Performance Layer)    │
+│  • 实时性能监控、响应时间优化              │
+│  • 缓存管理、资源优化                      │
+└──────────────────────┬──────────────────────┘
+                       ↓
+┌─────────────────────────────────────────────┐
+│             集成接口层 (Integration Layer)  │
+│  • 统一接口、向后兼容性、多平台支持        │
+│  • 标准化响应格式、错误处理机制            │
+└─────────────────────────────────────────────┘
+```
+
+### 核心组件
+
+- **智能推荐器** (`tools/smart_recommender.py`)：基于问题内容推荐最佳分析方法
+- **命令解析器** (`tools/command_parser.py`)：统一的主命令+子命令解析架构
+- **学习管理系统** (`tools/learning_system.py`)：四级渐进学习路径和进度跟踪
+- **概念查询系统**：674个核心概念的关系网络查询
+- **六层集成系统** (`tools/six_layer_integration.py`)：完整的六层架构实现
+- **现代化接口** (`tools/mao_skill_integration_v2.py`)：向后兼容的主接口
+
+---
+
+## 安装与部署
+
+### OpenClaw
+```bash
+# 安装完整Skill
+git clone https://github.com/wwwaapplleecu-source/mao-skill ~/.openclaw/workspace/skills/mao-colleague
+
+# 安装依赖（如需要）
+cd ~/.openclaw/workspace/skills/mao-colleague
+pip install -r requirements.txt
+```
+
+### Claude Code
+```bash
+# 项目级安装
+mkdir -p .claude/skills
+git clone https://github.com/wwwaapplleecu-source/mao-skill .claude/skills/mao-colleague
+
+# 或全局安装
+git clone https://github.com/wwwaapplleecu-source/mao-skill ~/.claude/skills/mao-colleague
+```
+
+---
+
+## 效果示例
+
+### 示例1：智能矛盾分析
+**用户输入**：
+```
+/mao 分析公司部门协作矛盾
+```
+
+**Skill响应**：
+```
+## 🔍 问题分析: 分析公司部门协作矛盾
+
+🎯 **智能推荐方法**: 矛盾分析法 (置信度: 78%)
+
+**推荐理由**: 问题中包含"矛盾"、"协作"、"问题"等关键词，适合使用矛盾分析法识别主要矛盾和次要矛盾。
+
+## 📋 矛盾分析步骤
+
+1. **识别矛盾**：找出部门协作中的各种矛盾
+2. **区分主次**：确定主要矛盾和次要矛盾
+3. **分析关系**：分析矛盾双方的对立统一关系
+4. **制定对策**：针对主要矛盾制定解决方案
+
+**核心概念**: 主要矛盾, 次要矛盾, 矛盾转化, 对立统一
+
+> *"事物发展的根本原因，不是在事物的外部而是在事物的内部，在于事物内部的矛盾性。"*
+
+---
+
+💡 **建议**: 如需深入学习矛盾分析法，请使用 `/mao learn 矛盾论`
+```
+
+### 示例2：实践论方法指导
+**用户输入**：
+```
+/mao analyze --method=实践 如何改进产品设计流程
+```
+
+**Skill响应**：
+```
+## 🔍 实践论方法指导: 如何改进产品设计流程
+
+**方法**: 实践-认识-再实践循环
+
+## 📋 实践论步骤
+
+1. **实践探索**：进行小范围产品设计实践，获取感性认识
+2. **总结提升**：总结经验，形成理性认识和改进方案
+3. **指导实践**：用理性认识指导更大范围的设计实践
+4. **循环验证**：实践-认识-再实践循环，逐步完善流程
+
+**核心原则**: 理论联系实际，反对教条主义
+
+> *"实践、认识、再实践、再认识，这种形式，循环往复以至无穷。"*
+```
+
+---
+
+## 限制说明
+
+### 适用场景
+- 战略分析与规划
+- 矛盾分析与解决
+- 工作方法指导
+- 调查研究设计
+- 领导力与团队建设
+
+### 不适用场景
+- 技术细节问题
+- 情感咨询
+- 个人隐私问题
+- 当代政治评论
+- 敏感历史评价
+
+### 表达边界
+- 专注于方法论和思维方式的提取
+- 保持学术中立，尊重历史事实
+- 不进行政治宣传或意识形态灌输
+- 不讨论敏感历史时期和事件
+
+---
+
+## 项目结构
+
+```
+mao-colleague/
+├── SKILL.md                    # 主技能入口文件（本文件）
+├── tools/                      # 核心工具库
+│   ├── command_parser.py       # 命令解析器
+│   ├── smart_recommender.py    # 智能推荐器
+│   ├── learning_system.py      # 学习管理系统
+│   ├── mao_skill_integration_v2.py # 现代化接口
+│   ├── analytics_layer.py      # 分析决策层
+│   ├── method_executor.py      # 方法执行层
+│   ├── knowledge_retriever.py  # 知识检索层
+│   ├── six_layer_integration.py # 六层集成
+│   └── text_processor.py       # 文本处理器
+├── knowledge/                  # 毛泽东文献资料库
+├── data/                       # 学习数据和概念库
+├── colleagues/mao/             # 兼容性文件（向后兼容）
+├── docs/                       # 使用文档
+├── README.md                   # 项目说明
+├── CHANGELOG.md                # 版本历史
+├── LICENSE                     # MIT许可证
+└── requirements.txt            # Python依赖
+```
+
+---
+
+## 技术支持
+
+- **文档**: 查看 `docs/` 目录下的详细文档
+- **GitHub**: https://github.com/wwwaapplleecu-source/mao-skill
+- **问题反馈**: 通过GitHub Issues提交问题
+
+---
+
+**版本状态**：1.2.0 (六层架构版) ✅
+**更新日期**：2026-04-09

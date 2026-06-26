@@ -1,0 +1,18 @@
+# 记忆审查代理 Prompt (优化版)
+
+## 任务
+审查记忆内容，输出 JSON。
+
+## 输出格式
+```json
+{"risk_level": "LOW", "quality_score": 8, "recommended_action": "APPROVE", "confidence": 0.9}
+```
+
+## 风险等级
+- LOW: 无问题，可存储
+- MEDIUM: 有小问题，建议修改
+- HIGH: 需人工审核
+- CRITICAL: 应拒绝
+
+## 输入记忆
+{memory_content}

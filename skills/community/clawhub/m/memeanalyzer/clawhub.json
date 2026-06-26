@@ -1,0 +1,12 @@
+{
+  "name": "Solana Meme Token Analyzer",
+  "tagline": "Detect insider wallets and rug risk for any Solana meme token CA",
+  "description": "Instantly analyze any Solana token contract address (CA) for rug pull risk. Scans the top 20 holders, detects insider/pre-mine wallets (老鼠仓 — wallets holding large token amounts with almost no SOL), and calculates top-holder concentration to assess dump risk. Returns a clear risk level: LOW / MEDIUM / HIGH / EXTREME.\n\nBuilt for Solana meme coin traders who want to quickly evaluate a token before buying. Works without any API key using public RPC nodes — or set a free Helius API key for higher reliability on popular tokens.",
+  "category": "crypto",
+  "tags": ["solana", "meme-coin", "rug-detection", "defi", "onchain", "risk-analysis", "crypto"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/ultranumblol/solana-meme-analyzer/issues",
+  "homepage": "https://github.com/ultranumblol/solana-meme-analyzer"
+}

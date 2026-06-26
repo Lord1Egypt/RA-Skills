@@ -1,35 +1,26 @@
----
-name: "LLM Supervisor"
-description: "Automatically switches between cloud and local LLMs on rate limits, with user confirmation required for local code generation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/llm-supervisor-agent"
-sourceUrl: "https://clawhub.ai/skills/llm-supervisor-agent"
----
-
 # LLM Supervisor
 
-> Automatically switches between cloud and local LLMs on rate limits, with user confirmation required for local code generation.
+Automatically switches OpenClaw between cloud and local Ollama models when rate limits occur.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/llm-supervisor-agent`
-- **Source URL:** [https://clawhub.ai/skills/llm-supervisor-agent](https://clawhub.ai/skills/llm-supervisor-agent)
+## Features
 
-## Overview
+- Detects rate-limit / overload errors from Anthropic/OpenAI
+- Switches to a local Ollama fallback model
+- Requires explicit confirmation before local code generation
+- Supports manual commands:
 
+### Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/llm-supervisor-agent
-```
+- `/llm status`
+- `/llm switch cloud`
+- `/llm switch local`
+
+## Default Local Model
+
+- `qwen2.5:7b`
+
+## Safety
+
+Local code generation requires the user to type:
+
+`CONFIRM LOCAL CODE`

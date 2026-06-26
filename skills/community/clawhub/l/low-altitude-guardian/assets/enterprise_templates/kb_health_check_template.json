@@ -1,0 +1,23 @@
+{
+  "health_check_config": {
+    "minimum_coverage_rate": 0.6,
+    "freshness_threshold_days": 180,
+    "required_crisis_types": [
+      "power_failure.single_motor_loss",
+      "power_failure.total_power_loss",
+      "navigation_failure.gps_loss",
+      "communication_failure.link_lost",
+      "environment_threat.severe_weather"
+    ],
+    "severity_levels": ["L1-CAUTION", "L2-MINOR", "L3-MAJOR", "L4-SEVERE", "L5-CRITICAL"],
+    "alert_thresholds": {
+      "kb_match_rate_warning": 0.5,
+      "success_rate_warning": 0.8,
+      "device_repair_cost_warning_cny": 10000
+    },
+    "report_recipients": [
+      {"role": "运维主管", "email": ""},
+      {"role": "安全监督员", "email": ""}
+    ]
+  }
+}

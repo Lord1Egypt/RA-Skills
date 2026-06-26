@@ -1,35 +1,55 @@
 ---
-name: "Memory Vacuum"
-description: "轻量化记忆管理。每日自动分片归档，语义压缩，只保留必要信息。0内存占用，重启不丢。用于用户提到内存、清理、整理记忆、减轻负担等场景。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, memory, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-vacuum"
-sourceUrl: "https://clawhub.ai/skills/memory-vacuum"
+name: memory-vacuum
+description: 轻量化记忆管理。每日自动分片归档，语义压缩，只保留必要信息。0内存占用，重启不丢。用于用户提到内存、清理、整理记忆、减轻负担等场景。
 ---
 
-# Memory Vacuum
+# 记忆轻量化系统
 
-> 轻量化记忆管理。每日自动分片归档，语义压缩，只保留必要信息。0内存占用，重启不丢。用于用户提到内存、清理、整理记忆、减轻负担等场景。
+让记忆系统保持轻量：按天分片、自动压缩、只保留必要信息，不让记忆文件无限膨胀。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-vacuum`
-- **Source URL:** [https://clawhub.ai/skills/memory-vacuum](https://clawhub.ai/skills/memory-vacuum)
+## 核心原则
 
-## Overview
+**记忆要精，不要多。宁精一条，不要滥十条。**
 
+## 工作方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-vacuum
+### 每日分片
+
+所有记忆按 `memory/YYYY-MM-DD.md` 日期归档，**不写入同一个大文件**。
+
 ```
+memory/
+├── 2026-05-01.md   ← 5月1日所有对话
+├── 2026-05-02.md   ← 5月2日所有对话
+├── 2026-05-03.md   ← 5月3日所有对话
+└── MEMORY.md        ← 提炼后的精华（体积小，定时精简）
+```
+
+### 自动压缩（每次会话前）
+
+新会话开始前，检查 `MEMORY.md`：
+- 单条记忆超过 5 行 → 压缩成要点
+- 有重复信息 → 合并
+- 有过时信息 → 标记但不删除（永远不删除）
+- 超过 200 行 → 压缩最旧的一半
+
+### 零内存占用原理
+
+- **不存对话历史**（太初靠上下文）
+- **不预加载任何东西**（按需读取）
+- **MEMORY.md 永远小于 50KB**（动态压缩保证）
+- 真正需要的信息 → MEMORY.md（<50KB）
+- 原始对话 → 当日日记（按日期分流，不影响加载速度）
+
+## 内存管理规则
+
+| 操作 | 触发条件 | 动作 |
+|------|---------|------|
+| 写入日记 | 每条消息 | 追加到 `memory/YYYY-MM-DD.md` |
+| 写入精华 | 重要信息 | 写入 MEMORY.md（精炼后） |
+| 压缩 | MEMORY.md > 50KB | 自动压缩最旧记忆 |
+| 分流 | 单日日记 > 100KB | 拆分月份子文件 |
+
+## 安装
+
+本技能无需额外配置，直接启用即可。

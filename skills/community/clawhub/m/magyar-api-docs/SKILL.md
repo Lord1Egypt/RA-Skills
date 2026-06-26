@@ -1,35 +1,67 @@
 ---
-name: "Magyar API Dokumentáció"
-description: "Magyar nyelvű API dokumentációk, fejlesztői útmutatók, technikai szakkifejezések és példakódok keresése és magyarázata."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/magyar-api-docs"
-sourceUrl: "https://clawhub.ai/skills/magyar-api-docs"
+name: magyar-api-docs
+description: Magyar nyelvű API dokumentációk, fejlesztői útmutatók, és technikai referenciák kezelése. Use when: (1) magyar API dokumentumot kell olvasni vagy keresni, (2) fejlesztői útmutató magyar nyelven kell, (3) magyar technikai szakkifejezések magyarázata, (4) API endpointok magyar leírása.
 ---
 
 # Magyar API Dokumentáció
 
-> Magyar nyelvű API dokumentációk, fejlesztői útmutatók, technikai szakkifejezések és példakódok keresése és magyarázata.
+## Áttekintés
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/magyar-api-docs`
-- **Source URL:** [https://clawhub.ai/skills/magyar-api-docs](https://clawhub.ai/skills/magyar-api-docs)
+Magyar nyelvű API dokumentációk, fejlesztői útmutatók, és technikai referenciák tárolása és keresése.
 
-## Overview
+## Mikor használd
 
+- **API keresés**: magyar leírású endpointok keresése
+- **Dokumentáció olvasás**: fejlesztői útmutatók magyarul
+- **Szakkifejezések**: technikai magyar szakkifejezések magyarázata
+- **Példakód**: magyar kommentárral ellátott kódminták
+- **Hibakeresés**: magyar hibaüzenetek, stack trace elemzése
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/magyar-api-docs
+## Dokumentáció szerkezet
+
 ```
+references/
+├── api-auth.md        – hitelesítés magyarul
+├── api-endpoints.md   – endpoint leírások
+├── hibauzenetek.md    – gyakori hibák magyarul
+└── peldakod.md       – magyar kommentárral
+```
+
+## Magyar szakkifejezések
+
+| Angol | Magyar |
+|-------|--------|
+| endpoint | végpont |
+| authentication | hitelesítés |
+| response | válasz |
+| request | kérés |
+| payload | adatterhelés |
+| token | azonosító |
+| callback | visszahívás |
+| webhook | webhívás |
+
+## Kód példák (magyar kommentárral)
+
+```python
+# Hitelesítés kérés
+response = api.login(felhasznalonev, jelszo)
+
+# Adatok lekérése
+adatok = api.get_endpoint("users")
+
+# Hiba kezelés
+if response.hiba:
+    print(f"Hiba történt: {response.hiba_uzenet}")
+```
+
+## Referenciák
+
+- **references/api-glossary.md** – angol-magyar technikai szótár
+- **references/hungarian-docs/** – magyar API dokumentumok
+- **references/error-messages.md** – magyar hibaüzenet katalogus
+
+## Jegyzetek
+
+- Mindig őrizd meg az eredeti angol terminológiát zárójelben
+- Magyar kommentárok segítik a helyi fejlesztőket
+- API változásoknál frissítsd a magyar leírást is

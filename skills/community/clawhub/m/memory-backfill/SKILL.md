@@ -1,35 +1,211 @@
----
-name: "Memory Backfill"
-description: "规范升级 Agent 记忆，将抽象原则转为包含项目事实和结果闭环的全面项目级记忆，并固化验收标准。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-backfill"
-sourceUrl: "https://clawhub.ai/skills/memory-backfill"
+# memory-backfill Skill
+
+**版本：** v1.0  
+**创建日期：** 2026-04-26  
+**来源：** Agent 记忆补强两层方法论验证  
+
 ---
 
-# Memory Backfill
+## 用途
 
-> 规范升级 Agent 记忆，将抽象原则转为包含项目事实和结果闭环的全面项目级记忆，并固化验收标准。
+标准化执行 Agent 记忆补强任务，将"框架型记忆"升级为"项目型记忆"，再升级为"结果闭环型记忆"。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-backfill`
-- **Source URL:** [https://clawhub.ai/skills/memory-backfill](https://clawhub.ai/skills/memory-backfill)
+---
 
-## Overview
+## 适用场景
 
+- Agent 的 MEMORY.md 停留在抽象原则层，缺少真实项目事实
+- 团队需要统一记忆沉淀口径
+- 新 Agent 接入后需要快速建立项目级记忆
+- 定期复盘时需要升级旧记忆
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-backfill
+---
+
+## 两层架构
+
+### 第一层：项目块型记忆
+
+**目标：** 不再只写抽象原则，而是补真实项目事实。
+
+**每条记忆必须包含：**
+1. 项目名
+2. 我负责什么
+3. 关键决策
+4. 关键坑点
+5. 可复用经验
+
+**完成标准：**
+- 至少补 3 个项目块
+- 写入 `MEMORY.md`
+- 写入当天 `memory/YYYY-MM-DD.md`
+
+---
+
+### 第二层：结果闭环型 + 证据锚点型记忆
+
+**目标：** 不再只回答"做过什么"，而是回答"最后成了没有、证据在哪、还卡在哪"。
+
+**每条记忆必须包含：**
+1. 最终状态（DONE / PARTIAL / BLOCKED）
+2. 是否彻底解决
+3. 已完成/已落地阶段（用 ✅ 标记）
+4. 仍停在观察/未落地阶段（用 ⏸️ 标记）
+5. 证据路径（文件路径 / 线上验证 / 日志锚点）
+6. 最终交付证据
+7. 遗留缺口
+8. 默认回答口径
+
+**完成标准：**
+- 每个重点项目都升级为上述结构
+- 写入 `MEMORY.md`
+- 写入当天 `memory/YYYY-MM-DD.md`
+
+---
+
+## 执行流程
+
+### Step 1：诊断当前记忆状态
 ```
+1. 读取 AGENTS.md / SOUL.md / USER.md / MEMORY.md
+2. 读取最近 7 天 memory/*.md
+3. 判断当前记忆层级：
+   - 只有框架/原则 → 需要第一层
+   - 有项目块但无结果闭环 → 需要第二层
+   - 已有结果闭环 → 只需维护
+```
+
+### Step 2：下发记忆补强任务
+```
+task_id: memory-backfill-layer[N]-[agent]-[date]
+
+任务目标：[第一层/第二层] 记忆补强
+
+重点补：
+1. [项目 1 - 脱敏后用真实项目名替换]
+2. [项目 2 - 脱敏后用真实项目名替换]
+3. [项目 3 - 脱敏后用真实项目名替换]
+
+要求：
+- 更新 MEMORY.md 与当天 memory 日志
+- 必须写：[对应层级要求的字段]
+- 回执格式：
+  - status
+  - claimed deliverable
+  - evidence path
+  - attached_to_mainline
+  - single biggest gap
+  - upgraded_to
+```
+
+### Step 3：验收与核验
+```
+1. 优先直接查文件产物：
+   - workspace-[agent]/MEMORY.md
+   - workspace-[agent]/memory/[date].md
+2. 不依赖消息回执判断完成
+3. 对照模板检查字段完整性
+```
+
+### Step 4：固化与归档
+```
+1. 将本次补强记录写入当天 memory 日志
+2. 如有跨 agent 可复用经验，沉淀到方法论文档
+3. 标记哪些项目仍为 PARTIAL / BLOCKED，纳入后续跟进队列
+```
+
+---
+
+## 验收标准
+
+### 第一层验收清单
+- [ ] 至少 3 个项目块
+- [ ] 每块包含：项目名 / 负责内容 / 关键决策 / 关键坑点 / 可复用经验
+- [ ] 已写入 MEMORY.md
+- [ ] 已写入当天 memory 日志
+
+### 第二层验收清单
+- [ ] 每个项目有最终状态（DONE/PARTIAL/BLOCKED）
+- [ ] 每个项目有证据路径
+- [ ] 每个项目有默认回答口径
+- [ ] 每个项目有遗留缺口说明
+- [ ] 已写入 MEMORY.md
+- [ ] 已写入当天 memory 日志
+
+---
+
+## 常见陷阱
+
+### 陷阱 1：只补框架不补事实
+**表现：** 写了很多"应该怎么做"，但没有"我做了什么项目"
+
+**解法：** 强制要求每条记忆必须带项目名
+
+### 陷阱 2：只报 DONE 不报 PARTIAL/BLOCKED
+**表现：** 所有项目都报完成，但实际缺少验证证据
+
+**解法：** 明确定义 DONE/PARTIAL/BLOCKED 口径，要求必须有证据支撑
+
+### 陷阱 3：消息回执 timeout 就判失败
+**表现：** 因为 timeout 就认为 agent 没做
+
+**解法：** 优先查文件产物，不等回执
+
+### 陷阱 4：证据锚点模糊
+**表现：** "我记得做了"、"应该是完成了"
+
+**解法：** 强制要求具体文件路径 / 线上验证 URL / 日志锚点
+
+---
+
+## 可复用模板
+
+### 第一层模板
+```markdown
+### 项目 X：[项目名]
+- **我负责什么**：
+- **关键决策**：
+- **关键坑点**：
+- **可复用经验**：
+```
+
+### 第二层模板
+```markdown
+### 项目 X：[项目名]
+- **最终状态**：DONE / PARTIAL / BLOCKED
+- **是否彻底解决**：是/否
+- **已完成/已落地阶段**：
+  - ✅ ...
+- **仍停在观察/未落地阶段**：
+  - ⏸️ ...
+- **证据路径**：
+  - ...
+- **最终交付证据**：
+  - ...
+- **遗留缺口**：
+  - ...
+- **默认回答口径**："..."
+```
+
+---
+
+## 相关 Skill
+
+- `result-closure-memory` - 结果闭环型记忆写入规范
+- `evidence-anchor` - 证据锚点定义与验收
+- `taskflow` - 任务流管理
+
+---
+
+## 维护者
+
+- 创建者：小强（qiang）
+- 创建日期：2026-04-26
+- 来源项目：Agent 记忆补强两层方法论验证
+
+---
+
+## 变更日志
+
+| 版本 | 日期 | 变更内容 |
+|------|------|----------|
+| v1.0 | 2026-04-26 | 初始版本，基于 4 位 agent 验证通过 |

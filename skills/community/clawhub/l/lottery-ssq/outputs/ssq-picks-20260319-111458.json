@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-03-19T11:14:58",
+  "lottery": "双色球",
+  "main": [
+    {
+      "reds": [
+        5,
+        10,
+        11,
+        14,
+        20,
+        31
+      ],
+      "blue": 7,
+      "score": 448.8622,
+      "odd_even": [
+        3,
+        3
+      ],
+      "zone_split": [
+        3,
+        2,
+        1
+      ],
+      "sum": 91,
+      "consecutive_groups": 1
+    },
+    {
+      "reds": [
+        5,
+        10,
+        16,
+        20,
+        29,
+        33
+      ],
+      "blue": 8,
+      "score": 446.9191,
+      "odd_even": [
+        3,
+        3
+      ],
+      "zone_split": [
+        2,
+        2,
+        2
+      ],
+      "sum": 113,
+      "consecutive_groups": 0
+    }
+  ],
+  "backup": [
+    {
+      "reds": [
+        5,
+        14,
+        18,
+        27,
+        32,
+        33
+      ],
+      "blue": 3,
+      "score": 429.3465,
+      "odd_even": [
+        3,
+        3
+      ],
+      "zone_split": [
+        1,
+        2,
+        3
+      ],
+      "sum": 129,
+      "consecutive_groups": 1
+    },
+    {
+      "reds": [
+        5,
+        10,
+        12,
+        14,
+        29,
+        32
+      ],
+      "blue": 3,
+      "score": 427.4878,
+      "odd_even": [
+        2,
+        4
+      ],
+      "zone_split": [
+        2,
+        2,
+        2
+      ],
+      "sum": 102,
+      "consecutive_groups": 0
+    },
+    {
+      "reds": [
+        11,
+        12,
+        14,
+        26,
+        29,
+        31
+      ],
+      "blue": 4,
+      "score": 398.1213,
+      "odd_even": [
+        3,
+        3
+      ],
+      "zone_split": [
+        1,
+        2,
+        3
+      ],
+      "sum": 123,
+      "consecutive_groups": 1
+    }
+  ]
+}

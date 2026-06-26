@@ -1,0 +1,25 @@
+{
+  "name": "master-data-matching",
+  "version": "1.0.0",
+  "description": "Production-ready Master Data Intelligent Matching System with domain isolation, OCR mapping, dual-path entity retrieval, field verification, human-in-the-loop, and active learning",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test index.js",
+    "lint": "echo 'No linter configured'"
+  },
+  "keywords": [
+    "master-data",
+    "entity-matching",
+    "ocr",
+    "data-quality",
+    "human-in-the-loop",
+    "active-learning",
+    "procurement",
+    "finance",
+    "sales",
+    "hr"
+  ],
+  "author": "",
+  "license": "ISC"
+}

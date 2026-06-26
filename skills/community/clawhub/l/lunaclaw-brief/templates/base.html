@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>{% include "style.css" %}</style>
+</head>
+<body>
+
+{% block header %}
+<header class="report-header">
+    <div class="logo">
+        {% if luna_logo_b64 %}
+        <img src="data:image/png;base64,{{ luna_logo_b64 }}" alt="Luna" class="luna-logo-img">
+        {% else %}
+        <span style="font-size:56px">🦞</span>
+        {% endif %}
+    </div>
+    <h1>{{ display_name }}<span class="vol-badge">VOL.{{ issue_number }}</span></h1>
+    <div class="meta-line">
+        <span>{{ time_range }}</span>
+        <span class="sep"></span>
+        <span>{{ generated_at }}</span>
+    </div>
+</header>
+{% endblock %}
+
+{% block stats %}{% endblock %}
+
+<main class="container">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="report-footer">
+    <div class="footer-divider">
+        {% if luna_logo_b64 %}
+        <img src="data:image/png;base64,{{ luna_logo_b64 }}" alt="Luna" class="luna-footer-img">
+        {% else %}
+        <span>🦞</span>
+        {% endif %}
+    </div>
+    <div class="footer-brand">LunaClaw Brief</div>
+    <div class="footer-sub">AI-Powered Report Engine · by llx &amp; Luna</div>
+</footer>
+
+</body>
+</html>

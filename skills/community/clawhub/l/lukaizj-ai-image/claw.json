@@ -1,0 +1,18 @@
+{
+  "version": "0.1.0",
+  "name": "ai-image",
+  "description": "AI image generation - Generate images using OpenAI DALL-E",
+  "instructions": "instructions.md",
+  "tools": {
+    "auto_preload": false,
+    "entries": [
+      {"name": "ai_generate_image", "description": "Generate an image from text prompt", "parameters": {"type": "object", "properties": {"prompt": {"type": "string"}, "model": {"type": "string"}, "size": {"type": "string"}}, "required": ["prompt"]}},
+      {"name": "ai_edit_image", "description": "Edit an existing image", "parameters": {"type": "object", "properties": {"image_path": {"type": "string"}, "prompt": {"type": "string"}}, "required": ["image_path", "prompt"]}},
+      {"name": "ai_image_variations", "description": "Generate variations of an image", "parameters": {"type": "object", "properties": {"image_path": {"type": "string"}, "n": {"type": "integer"}}}}
+    ]
+  },
+  "env": [{"name": "OPENAI_API_KEY", "description": "OpenAI API Key", "required": true}],
+  "tags": ["ai", "image", "generation"],
+  "author": "lukaizj",
+  "homepage": "https://github.com/lukaizj/ai-image-skill"
+}

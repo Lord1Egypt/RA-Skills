@@ -1,35 +1,122 @@
 ---
-name: "Lobster Autodream"
-description: "AI记忆巩固系统，灵感来自人类睡眠记忆巩固过程。自动整理会话历史，提取重要信息，更新长期记忆。在心跳检查或会话压缩时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lobster-autodream"
-sourceUrl: "https://clawhub.ai/skills/lobster-autodream"
+name: lobster-autodream
+description: AI记忆巩固系统，灵感来自人类睡眠记忆巩固过程。自动整理会话历史，提取重要信息，更新长期记忆。在心跳检查或会话压缩时触发。
+metadata: {"openclaw":{"requires":[]}}
 ---
 
-# Lobster Autodream
+# AutoDream 记忆巩固系统
 
-> AI记忆巩固系统，灵感来自人类睡眠记忆巩固过程。自动整理会话历史，提取重要信息，更新长期记忆。在心跳检查或会话压缩时触发。
+基于 Claude Code 源码中的 AutoDream 系统，适配 OpenClaw 的记忆管理架构。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lobster-autodream`
-- **Source URL:** [https://clawhub.ai/skills/lobster-autodream](https://clawhub.ai/skills/lobster-autodream)
+灵感来自人类睡眠时的记忆巩固——大脑在睡眠中整理白天的记忆，把重要的存入长期记忆，不重要的被遗忘。
 
-## Overview
+## 核心思想
 
+> AI 的"做梦"过程：定期整理对话历史 → 提取关键信息 → 更新长期记忆
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lobster-autodream
+## 三重门控机制
+
+为了节省 token，按成本从低到高逐层检查：
+
+### 门控1：时间检查（零成本）
+- 距离上次 AutoDream 是否超过阈值？
+- 默认：至少间隔 4 小时
+- 防止频繁整理浪费资源
+
+### 门控2：内容量检查（低成本）
+- 新增的对话内容是否足够多？
+- 默认：至少 20 条新消息
+- 内容太少不值得整理
+
+### 门控3：质量评估（中成本）
+- 内容中是否包含值得记住的信息？
+- 排除纯闲聊、重复内容
+- 识别：决策、偏好、教训、重要事实
+
+**三重门控全部通过才触发整理。**
+
+## 记忆整理流程
+
+### Step 1: 读取原始材料
 ```
+读取当天的 memory/YYYY-MM-DD.md
+```
+
+### Step 2: 信息提取
+参考 Claude Code 的四种记忆类型分类：
+
+| 类型 | 范围 | 示例 | 写到哪里 |
+|------|------|------|----------|
+| 👤 user | 始终private | 用户角色、偏好、知识水平 | MEMORY.md#关于麻团 |
+| 💬 feedback | 默认private | 用户纠正/确认的做法 | MEMORY.md#经验教训 |
+| 📋 project | 偏向team | 项目状态、目标、进行中的工作 | memory/YYYY-MM-DD.md |
+| 📖 reference | private或team | 技术参考、架构知识、API文档 | memory/*.md |
+
+**关键规则**：
+- 从代码/git/file可推导的信息**不要**存为记忆（读文件就行）
+- feedback要包含**为什么**（reason），不只是规则本身
+- 相对日期转为绝对日期（"下周四"→"2026-04-09"）
+- 确认类反馈也要记录（不只是纠正）
+
+### Step 3: 分类整合
+- 按主题分类
+- 去重（与 MEMORY.md 现有内容对比）
+- 标记优先级（重要/一般/可选）
+
+### Step 4: 写入长期记忆
+更新 `MEMORY.md`，新内容追加到对应分类下。
+
+### Step 5: 清理
+- 过时的信息标记或删除
+- 临时笔记归档或清理
+
+## 触发时机
+
+1. **心跳检查时** — 如果门控通过，执行整理
+2. **会话压缩时** — 压缩前先整理记忆
+3. **用户主动触发** — "整理记忆"、"autodream"
+
+## 记忆质量标准
+
+写入 MEMORY.md 的每条记忆应：
+- **简洁**：一句话说清楚
+- **可检索**：包含关键关键词
+- **有时效性标注**：过期时间（如适用）
+- **有来源**：来自哪次对话
+
+## 实践示例
+
+```
+# 心跳触发 AutoDream
+
+## 门控检查
+- ✅ 距上次整理：6小时（> 4小时阈值）
+- ✅ 新消息数：35条（> 20条阈值）
+- ✅ 包含决策和偏好
+
+## 提取结果
+- 🎯 麻团决定不装 Ollama
+- 👤 麻团是行动派，喜欢快速推进
+- 📚 已安装 web-learner 和 cli-anything 两个 skill
+- 🔑 配置了 imageModel: zai/glm-4.6v
+
+## 写入 MEMORY.md
+（追加到对应分类）
+```
+
+## 配置
+
+在 HEARTBEAT.md 中添加：
+```markdown
+## AutoDream
+- 检查是否需要整理记忆
+- 参照 skills/autodream/SKILL.md
+```
+
+## 注意事项
+
+- 不要在每次会话都触发，尊重时间门控
+- 整理时不要删除重要记忆
+- 隐私信息不写入 MEMORY.md
+- 保持 MEMORY.md 精简，不超过 200 行
+- 如果 MEMORY.md 太长，优先清理过时内容

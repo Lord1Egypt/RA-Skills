@@ -1,0 +1,268 @@
+{
+  "正官格": {
+    "enemy_god": "伤官",
+    "enemy_reason": "伤官克官，破坏正官格局",
+    "partner_shishen": "印星",
+    "partner_reason": "印制伤官，护官星",
+    "partner_name": "静水深流"
+  },
+  "禄劫用财": {
+    "enemy_god": "比劫",
+    "enemy_reason": "比劫争财，损耗财源",
+    "partner_shishen": "官杀",
+    "partner_reason": "官杀制比劫，护财星",
+    "partner_name": "铁律执灯"
+  },
+  "印绶喜食": {
+    "enemy_god": "枭印",
+    "enemy_reason": "印重太过，泄秀不畅",
+    "partner_shishen": "财星",
+    "partner_reason": "财星制印，打通食伤泄秀之路",
+    "partner_name": "春风落笔"
+  },
+  "伤官生财": {
+    "enemy_god": "七煞",
+    "enemy_reason": "财党煞攻身，身轻遭煞",
+    "partner_shishen": "食伤",
+    "partner_reason": "食伤制煞，护财路",
+    "partner_name": "破晓行者"
+  },
+  "财格佩印": {
+    "enemy_god": "食伤",
+    "enemy_reason": "食伤泄身太过，印财皆虚",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫帮身，让财印双美落到实处",
+    "partner_name": "磐石之盾"
+  },
+  "食神生财": {
+    "enemy_god": "枭印",
+    "enemy_reason": "枭印夺食，食神生财链断裂",
+    "partner_shishen": "财星",
+    "partner_reason": "财星制枭印，护食神",
+    "partner_name": "春潮引路"
+  },
+  "煞印相生": {
+    "enemy_god": "财星",
+    "enemy_reason": "财坏印，煞印链条断裂",
+    "partner_shishen": "比劫",
+    "partner_reason": "劫财护印，保护化煞通道",
+    "partner_name": "铁壁回声"
+  },
+  "禄劫用官": {
+    "enemy_god": "伤官",
+    "enemy_reason": "伤官克官，官星受损",
+    "partner_shishen": "印星",
+    "partner_reason": "印制伤官，护官星",
+    "partner_name": "暮色守望"
+  },
+  "财旺生官": {
+    "enemy_god": "比劫",
+    "enemy_reason": "比劫争财，断财生官链",
+    "partner_shishen": "官杀",
+    "partner_reason": "官杀制比劫，护财源",
+    "partner_name": "秋霜执令"
+  },
+  "阳刃用煞": {
+    "enemy_god": "食伤",
+    "enemy_reason": "食伤制煞太过，失去制衡",
+    "partner_shishen": "印星",
+    "partner_reason": "印化煞生身，调和刃煞",
+    "partner_name": "星河织网"
+  },
+  "以劫合煞": {
+    "enemy_god": "财星",
+    "enemy_reason": "财星党煞，煞力增强而劫合不住",
+    "partner_shishen": "印星",
+    "partner_reason": "印化煞生身，补劫合煞之不足",
+    "partner_name": "孤弦定音"
+  },
+  "煞邀食制": {
+    "enemy_god": "印星",
+    "enemy_reason": "印夺食护煞，食神制煞链断裂",
+    "partner_shishen": "财星",
+    "partner_reason": "财星制印护食，保食神制煞通道",
+    "partner_name": "烈焰熔锋"
+  },
+  "伤官佩印": {
+    "enemy_god": "财星",
+    "enemy_reason": "财坏印星，伤官失控克官伤身",
+    "partner_shishen": "官杀",
+    "partner_reason": "官杀生印，巩固印制伤官之力",
+    "partner_name": "松涛镇海"
+  },
+  "伤官驾煞": {
+    "enemy_god": "财星",
+    "enemy_reason": "财泄伤、坏印、党煞，格局全崩",
+    "partner_shishen": "印星",
+    "partner_reason": "印化煞伏伤，调和伤煞平衡",
+    "partner_name": "霜刃悬衡"
+  },
+  "印多用财": {
+    "enemy_god": "比劫",
+    "enemy_reason": "比劫克财护印，财无法裁损过重之印",
+    "partner_shishen": "食伤",
+    "partner_reason": "食伤泄比生财，助财制印归于平衡",
+    "partner_name": "清风剪枝"
+  },
+  "印带煞兼食伤": {
+    "enemy_god": "财星",
+    "enemy_reason": "财坏印星，煞印食伤双链条皆断",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫护印克财，保护煞印化路与食伤泄秀",
+    "partner_name": "双弦共振"
+  },
+  "印带财煞": {
+    "enemy_god": "财星",
+    "enemy_reason": "财坏印星，官煞混杂失去化路反攻身",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫克财护印，让印化煞取清官煞",
+    "partner_name": "雾散峰明"
+  },
+  "印绶喜比": {
+    "enemy_god": "财星",
+    "enemy_reason": "财克印星，二气成象被打破",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫克财护印，维护印比二气纯粹",
+    "partner_name": "众木成林"
+  },
+  "印绶用官": {
+    "enemy_god": "食伤",
+    "enemy_reason": "食伤克官，官印相生链断裂",
+    "partner_shishen": "印星",
+    "partner_reason": "印制食伤护官，官印相生不受损",
+    "partner_name": "玉笏朝天"
+  },
+  "印赖煞生": {
+    "enemy_god": "财星",
+    "enemy_reason": "财坏印星，煞失去化路反攻身",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫克财护印，保护煞印化路",
+    "partner_name": "寒潭映月"
+  },
+  "禄劫用伤食": {
+    "enemy_god": "印星",
+    "enemy_reason": "枭印夺食，食伤泄秀之路被堵",
+    "partner_shishen": "财星",
+    "partner_reason": "财星制印护食，打通泄秀生财之路",
+    "partner_name": "长河奔涌"
+  },
+  "禄劫用煞": {
+    "enemy_god": "印星",
+    "enemy_reason": "印夺食护煞，食神制煞失力",
+    "partner_shishen": "财星",
+    "partner_reason": "财制印存食，让食神保持制煞之力",
+    "partner_name": "雷霆执序"
+  },
+  "弃财就煞": {
+    "enemy_god": "食伤",
+    "enemy_reason": "食伤制煞，煞失去制劫护财之力",
+    "partner_shishen": "印星",
+    "partner_reason": "印制食伤护煞，煞制劫刃存财",
+    "partner_name": "危崖立鹤"
+  },
+  "用财喜比": {
+    "enemy_god": "官杀",
+    "enemy_reason": "官杀泄财克比，财比平衡被打破",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫帮身分财，维持身财平衡",
+    "partner_name": "兄弟同行"
+  },
+  "财喜食生": {
+    "enemy_god": "印星",
+    "enemy_reason": "印克食伤，食神生财链断裂",
+    "partner_shishen": "比劫",
+    "partner_reason": "比肩助食之源，略带比肩益觉有情",
+    "partner_name": "活水养田"
+  },
+  "财带七煞": {
+    "enemy_god": "印星",
+    "enemy_reason": "印化煞夺食，去煞手段失效而煞攻身",
+    "partner_shishen": "食伤",
+    "partner_reason": "食伤制煞存财，去煞之害而存财之美",
+    "partner_name": "伏虎藏锋"
+  },
+  "财用伤官": {
+    "enemy_god": "官杀",
+    "enemy_reason": "官煞泄财，伤官见官反成祸端",
+    "partner_shishen": "印星",
+    "partner_reason": "印星帮身取贵，让财伤格局有根基",
+    "partner_name": "逆旅执笔"
+  },
+  "财用煞印": {
+    "enemy_god": "食伤",
+    "enemy_reason": "食伤制煞夺印之源，坏煞印化路",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫帮身护印，稳固煞印存财之局",
+    "partner_name": "渊底承舟"
+  },
+  "财用食印": {
+    "enemy_god": "比劫",
+    "enemy_reason": "比劫克财，食印双美根基动摇",
+    "partner_shishen": "官杀",
+    "partner_reason": "官杀制比劫护财，财食印三者各安其位",
+    "partner_name": "三川归海"
+  },
+  "阳刃用官": {
+    "enemy_god": "伤官",
+    "enemy_reason": "伤官克官，官失制刃之力",
+    "partner_shishen": "印星",
+    "partner_reason": "印制伤官护官，官星制刃不受损",
+    "partner_name": "冷月悬弓"
+  },
+  "阳刃用财": {
+    "enemy_god": "比劫",
+    "enemy_reason": "比劫争财助刃，刃财相搏更剧",
+    "partner_shishen": "食伤",
+    "partner_reason": "食伤泄刃生财，转化刃气为财源",
+    "partner_name": "化刃为犁"
+  },
+  "弃食就煞印": {
+    "enemy_god": "财星",
+    "enemy_reason": "财损印党煞，印不能化煞生身",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫克财护印，保煞印相生通道",
+    "partner_name": "绝壁回春"
+  },
+  "食神制煞": {
+    "enemy_god": "印星",
+    "enemy_reason": "枭印夺食护煞，食神制煞链断裂",
+    "partner_shishen": "财星",
+    "partner_reason": "财星制印护食，保食神制煞之力",
+    "partner_name": "对弈千钧"
+  },
+  "食神合煞存财": {
+    "enemy_god": "印星",
+    "enemy_reason": "印夺食神，合煞存财的关键棋子被毁",
+    "partner_shishen": "财星",
+    "partner_reason": "财星制印护食，食合煞而财得存",
+    "partner_name": "棋落无悔"
+  },
+  "食神吐秀": {
+    "enemy_god": "印星",
+    "enemy_reason": "枭印夺食，吐秀之路被封",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫化印护食，维护食神吐秀通道",
+    "partner_name": "素手调弦"
+  },
+  "食神带煞印": {
+    "enemy_god": "财星",
+    "enemy_reason": "财坏印星，煞印化路断裂而煞攻身",
+    "partner_shishen": "比劫",
+    "partner_reason": "比劫克财护印，保煞印相生与食伤泄秀并行",
+    "partner_name": "铁幕织锦"
+  },
+  "_generic_败格有救": {
+    "enemy_god": "",
+    "enemy_reason": "格局受损，但有救应之神",
+    "partner_shishen": "",
+    "partner_reason": "补足格局缺失的关键一环",
+    "partner_name": "暗夜灯塔"
+  },
+  "_generic_败格无救": {
+    "enemy_god": "",
+    "enemy_reason": "格局受损，暂无明显救应",
+    "partner_shishen": "",
+    "partner_reason": "在逆境中陪伴和缓冲",
+    "partner_name": "风雨同舟"
+  }
+}

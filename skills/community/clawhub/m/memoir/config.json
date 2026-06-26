@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "collection_frequency": "manual",
+  "topics_order": [
+    "童年时光",
+    "成长经历",
+    "工作事业",
+    "感情家庭",
+    "人生转折",
+    "人生感悟"
+  ],
+  "output_format": "markdown",
+  "current_phase": "collecting",
+  "topics_covered": [],
+  "last_collection_date": null
+}

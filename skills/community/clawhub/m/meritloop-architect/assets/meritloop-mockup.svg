@@ -1,0 +1,52 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1480" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3E5CE"/>
+      <stop offset="0.6" stop-color="#E7C89A"/>
+      <stop offset="1" stop-color="#B56B3B"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="220" y1="140" x2="1380" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9F1"/>
+      <stop offset="1" stop-color="#F7E7D0"/>
+    </linearGradient>
+    <filter id="shadow" x="140" y="90" width="1320" height="820" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#6E3818" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <rect x="170" y="122" width="1260" height="736" rx="34" fill="url(#panel)"/>
+  </g>
+
+  <text x="240" y="210" fill="#6A3517" font-size="54" font-family="Georgia, 'Times New Roman', serif" font-weight="700">MeritLoop Daily Ritual</text>
+  <text x="241" y="255" fill="#9B5B30" font-size="26" font-family="'Helvetica Neue', Arial, sans-serif">English default · multilingual local deployment</text>
+
+  <rect x="240" y="300" width="330" height="430" rx="30" fill="#FAF0E1"/>
+  <text x="280" y="358" fill="#8A4B25" font-size="30" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Tonight's Summary</text>
+  <text x="280" y="418" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">Merit Score</text>
+  <text x="280" y="500" fill="#A95A32" font-size="92" font-family="Georgia, 'Times New Roman', serif" font-weight="700">128</text>
+  <text x="280" y="552" fill="#7B411E" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">Evening streak: 5 days</text>
+  <text x="280" y="592" fill="#7B411E" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">Best window: 7:30 PM</text>
+  <rect x="280" y="640" width="190" height="48" rx="24" fill="#A95A32"/>
+  <text x="325" y="671" fill="#FFF8F0" font-size="22" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Dedication</text>
+
+  <rect x="610" y="300" width="760" height="170" rx="28" fill="#FFF7EB"/>
+  <text x="650" y="355" fill="#8A4B25" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Language Pack Preview</text>
+  <text x="650" y="405" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">English: "Your robot helped you accumulate 128 merit points today."</text>
+  <text x="650" y="438" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">中文: "今天你的机器人为你积累了 128 点功德值。"</text>
+
+  <text x="650" y="671" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">日本語: "今日の功徳ポイントは128でした。"</text>
+  <text x="650" y="704" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">ไทย: "วันนี้หุ่นยนต์ของคุณสะสมแต้มบุญได้ 128 แต้ม"</text>
+
+  <rect x="610" y="500" width="760" height="230" rx="28" fill="#F9EBD4"/>
+  <text x="650" y="556" fill="#8A4B25" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">V1 Local-First Loop</text>
+  <text x="650" y="608" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">1. Schedule ritual</text>
+  <text x="650" y="642" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">2. Chant or listen</text>
+  <text x="650" y="676" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">3. Dedicate merit</text>
+  <text x="930" y="608" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">4. Log session locally</text>
+  <text x="930" y="642" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">5. Update practice score</text>
+  <text x="930" y="676" fill="#5F3118" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif">6. Nightly spoken summary</text>
+
+  <text x="240" y="810" fill="#6A3517" font-size="22" font-family="'Helvetica Neue', Arial, sans-serif">Designed for local robots, shrine devices, and private on-device agents.</text>
+</svg>

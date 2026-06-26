@@ -1,0 +1,29 @@
+{
+  "name": "爷爷（王建国）",
+  "slug": "example_grandpa",
+  "created_at": "2026-04-01T00:00:00Z",
+  "updated_at": "2026-04-01T00:00:00Z",
+  "version": "v1",
+  "profile": {
+    "birth_year": 1938,
+    "death_year": 2023,
+    "age_at_death": 85,
+    "hometown": "湖南省衡阳县",
+    "lived_in": "北京",
+    "occupation": "铁路工人（退休前为工段长）",
+    "gender": "男"
+  },
+  "tags": {
+    "personality": ["沉默寡言", "原则性强", "行动型爱", "节俭", "隔代宠爱"],
+    "era_background": ["文革", "改革开放", "三年困难时期"],
+    "attachment_style": "安全型（回避表达）"
+  },
+  "impression": "话少，但每一句都算数。爱不说，但从不缺席。",
+  "materials": [
+    {
+      "source": "家人口述（子女、配偶）",
+      "added_at": "2026-04-01T00:00:00Z"
+    }
+  ],
+  "corrections_count": 0
+}

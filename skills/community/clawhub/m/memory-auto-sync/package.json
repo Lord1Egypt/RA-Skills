@@ -1,0 +1,12 @@
+{
+  "name": "memory-auto-sync",
+  "version": "2.0.0",
+  "description": "记忆自动同步插件：自动双写对话到记忆文件和LanceDB向量库",
+  "type": "module",
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "label": "记忆自动同步",
+    "blurb": "实时监听对话事件，自动双写到记忆文件和向量库，支持语义搜索",
+    "tags": ["记忆", "工具", "自动化", "向量库"]
+  }
+}

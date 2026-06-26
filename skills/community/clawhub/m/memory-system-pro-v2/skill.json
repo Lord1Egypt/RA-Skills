@@ -1,0 +1,160 @@
+{
+  "name": "memory-system",
+  "version": "2.0.1",
+  "displayName": "Memory System",
+  "description": "完整记忆系统 - 四类记忆分类 + AutoDream LLM整合 + Feedback双向记录",
+  "author": {
+    "name": "团宝 (openclaw)",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": ["memory", "persistence", "vector-search", "ollama", "feedback", "knowledge-management", "auto-dream", "llm"],
+  "dependencies": {
+    "ollama": ">=0.3.0",
+    "nomic-embed-text": "latest"
+  },
+  "config": {
+    "memoryDir": {
+      "type": "string",
+      "default": "~/.openclaw/workspace/memory",
+      "description": "记忆文件存储目录"
+    },
+    "flushMode": {
+      "type": "string",
+      "enum": ["safeguard", "manual", "disabled"],
+      "default": "safeguard",
+      "description": "内存 flush 模式"
+    },
+    "softThresholdTokens": {
+      "type": "number",
+      "default": 300000,
+      "description": "触发 flush 的 token 阈值"
+    },
+    "vectorEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否启用向量搜索"
+    },
+    "embeddingModel": {
+      "type": "string",
+      "default": "nomic-embed-text",
+      "description": "向量嵌入模型"
+    },
+    "autoDream": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "minHours": 24,
+        "minSessions": 3
+      },
+      "description": "AutoDream 自动整合配置"
+    }
+  },
+  "tools": [
+    {
+      "name": "memory_search",
+      "description": "语义搜索记忆",
+      "parameters": {
+        "query": { "type": "string", "required": true },
+        "type": { "type": "string", "description": "user/feedback/project/reference" },
+        "topK": { "type": "number", "default": 5 },
+        "group": { "type": "string" }
+      }
+    },
+    {
+      "name": "memory_get",
+      "description": "读取记忆文件",
+      "parameters": {
+        "path": { "type": "string", "required": true },
+        "from": { "type": "number" },
+        "lines": { "type": "number" }
+      }
+    },
+    {
+      "name": "memory_write",
+      "description": "写入记忆（写入后可触发AutoDream检查）",
+      "parameters": {
+        "file": { "type": "string", "required": true },
+        "content": { "type": "string", "required": true },
+        "type": { "type": "string", "description": "user/feedback/project/reference" },
+        "mode": { "type": "string", "default": "append" }
+      }
+    },
+    {
+      "name": "memory_flush",
+      "description": "手动触发 flush",
+      "parameters": {
+        "force": { "type": "boolean" }
+      }
+    },
+    {
+      "name": "memory_dream",
+      "description": "执行 AutoDream 记忆整合（与HEARTBEAT集成）",
+      "parameters": {
+        "force": { "type": "boolean", "description": "强制触发" }
+      }
+    },
+    {
+      "name": "memory_dream_status",
+      "description": "查看 AutoDream 状态",
+      "parameters": {}
+    }
+  ],
+  "hooks": {
+    "onSessionStart": {
+      "description": "会话启动时自动加载记忆"
+    },
+    "onHeartbeat": {
+      "description": "心跳时检查并触发 AutoDream"
+    }
+  },
+  "integrations": {
+    "heartbeat": {
+      "enabled": true,
+      "cron": "0 22 * * *",
+      "description": "每天22:00自动执行记忆整合"
+    }
+  },
+  "memoryTypes": {
+    "user": {
+      "scope": "private",
+      "description": "用户信息 - 角色、偏好、知识背景",
+      "whenToSave": "了解用户任何个人细节时"
+    },
+    "feedback": {
+      "scope": "private/team",
+      "description": "用户反馈 - 纠正和确认都要记录",
+      "whenToSave": "用户纠正或确认你的做法时",
+      "bidirectional": true
+    },
+    "project": {
+      "scope": "team",
+      "description": "项目信息 - 进展、目标、决策",
+      "whenToSave": "了解项目动态时"
+    },
+    "reference": {
+      "scope": "team",
+      "description": "外部系统指针",
+      "whenToSave": "了解外部资源时"
+    }
+  },
+  "autoDream": {
+    "description": "定时记忆整合系统",
+    "llm": "MiniMax-M2.7",
+    "triggerConditions": {
+      "minHours": "距离上次整合的最小小时数（默认24）",
+      "minSessions": "新增会话数阈值（默认3）"
+    },
+    "tasks": [
+      "扫描现有记忆文件",
+      "调用MiniMax LLM分析",
+      "识别过时信息并删除",
+      "更新 MEMORY.md 索引",
+      "合并重复记忆"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/memory-system-skill"
+  },
+  "license": "MIT"
+}

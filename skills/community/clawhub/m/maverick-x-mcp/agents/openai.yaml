@@ -1,0 +1,4 @@
+interface:
+  display_name: "X"
+  short_description: "Work with X posts, users, timelines, and search"
+  default_prompt: "Use the X MCP tools to help the user work with posts, users, timelines, and search."

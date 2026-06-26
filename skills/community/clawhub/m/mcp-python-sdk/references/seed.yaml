@@ -1,0 +1,1635 @@
+meta:
+  id: finance-bp-140-v6.1
+  version: v6.1
+  blueprint_id: finance-bp-140
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-25T09:07:15.815631+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: null
+    evidence_verify_ratio: null
+    evidence_invalid: 0
+    evidence_verified: null
+    evidence_auto_fixed: null
+    audit_coverage: 20 finance-universal not_applicable + 3 AIL warn + 3 AIL not_applicable + 2 DAT warn + 1 DAT pass + 2
+      DAT not_applicable = 31 items reviewed across applicable scope
+    audit_pass_rate: 1/6 (17% applicable items pass; 5 warn items capture the architectural divergences and risk surfaces
+      worth surfacing as constraints)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 0
+      warn: 0
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  - id: EQ-02
+    trigger: always
+    action: MUST prepend user_disclosure_template (translated to user locale) to first user-facing response
+    violation_code: EQ-02-V
+    violation_signal: First agent response to user does not contain audit warning phrase
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-140. Evidence verify ratio
+    = 0.0% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-140-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-001
+    name: Decorator-style stdio server (Quickstart)
+    positive_terms:
+    - quickstart
+    - stdio server
+    - decorator API
+    - hello world
+    data_domain: technical_demo
+    negative_terms:
+    - production deployments (use streamable-http)
+    - networked / remote clients
+  - uc_id: UC-002
+    name: Lifespan-managed DB tool
+    positive_terms:
+    - lifespan
+    - dependency injection
+    - DB connection pool
+    - typed Context
+    data_domain: technical_demo
+    negative_terms:
+    - per-request scoped resources (use Context for that)
+  - uc_id: UC-003
+    name: LLM-sampling tool (server invokes client LLM)
+    positive_terms:
+    - sampling
+    - server-to-client LLM call
+    - thinking tools
+    - delegate to host LLM
+    data_domain: technical_demo
+    negative_terms:
+    - stateless HTTP deployments (raises StatelessModeNotSupported)
+    - clients without sampling capability
+  - uc_id: UC-004
+    name: Form + URL elicitation
+    positive_terms:
+    - elicitation
+    - form input
+    - URL flow
+    - OAuth confirmation
+    - payment
+    data_domain: technical_demo
+    negative_terms:
+    - stateless deployments
+    - non-interactive automation
+  - uc_id: UC-005
+    name: Long-running tool with progress
+    positive_terms:
+    - long-running tool
+    - progress reporting
+    - ctx.report_progress
+    - ctx.info logging
+    data_domain: technical_demo
+    negative_terms:
+    - synchronous quick-return tools
+  - uc_id: UC-006
+    name: OAuth-protected server
+    positive_terms:
+    - OAuth2
+    - bearer token
+    - authentication
+    - AuthSettings
+    - TokenVerifier
+    data_domain: technical_demo
+    negative_terms:
+    - public / unauthenticated tool servers
+  - uc_id: UC-007
+    name: Stateless streamable-HTTP for K8s scaling
+    positive_terms:
+    - stateless HTTP
+    - production config
+    - K8s scaling
+    - json_response
+    - high throughput
+    data_domain: technical_demo
+    negative_terms:
+    - tools needing sampling / elicitation / list_roots (silent break — see pitfall-003)
+    - session_idle_timeout (raises RuntimeError "session_idle_timeout is not supported in stateless mode")
+  - uc_id: UC-008
+    name: Mount multiple MCP servers in one Starlette app
+    positive_terms:
+    - mount multiple servers
+    - Starlette mount
+    - microservice gateway
+    - ASGI host
+    data_domain: technical_demo
+    negative_terms:
+    - single-server deployments
+  - uc_id: UC-009
+    name: Resumable connection via custom EventStore
+    positive_terms:
+    - resumable HTTP
+    - EventStore
+    - Last-Event-ID
+    - replay
+    - long-lived connections
+    data_domain: technical_demo
+    negative_terms:
+    - simple stateless deployments
+    - servers without external event storage
+  - uc_id: UC-010
+    name: Pagination cursor over large lists
+    positive_terms:
+    - pagination
+    - cursor
+    - large list response
+    - page tokens
+    data_domain: technical_demo
+    negative_terms:
+    - small / static lists
+  - uc_id: UC-011
+    name: Experimental task subsystem (long-running async tools)
+    positive_terms:
+    - long-running tasks
+    - async task subsystem
+    - TaskStore
+    - MessageQueue
+    - experimental
+    data_domain: technical_demo
+    negative_terms:
+    - synchronous quick tools
+    - production-critical workloads (subsystem is experimental)
+  - uc_id: UC-012
+    name: Structured output schema
+    positive_terms:
+    - structured output
+    - Pydantic return type
+    - TypedDict
+    - dataclass
+    - output schema
+    data_domain: technical_demo
+    negative_terms:
+    - tools that need to return arbitrary unstructured strings (use str return type)
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 27
+    fatal_constraints_count: 1
+    non_fatal_constraints_count: 49
+    use_cases_count: 12
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 6 source groups: capability_negotiate(2),
+        cross_cutting(5), server_setup(4), server_to_client_capabilities(3), three_primitives(2), transport_select(11).'
+      key_decisions: 27 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-004
+      type: B
+      summary: Capabilities AUTO-DERIVED from registered handlers (no manual capability declaration)
+    - id: BD-008
+      type: B
+      summary: Strict initialize state machine — server refuses any non-Ping request before notifications/initialized
+    - id: BD-023
+      type: missing
+      summary: README still uses FastMCP imports (26 import-statement occurrences) and broken file paths (10 references)
+    - id: BD-024
+      type: missing
+      summary: No rate-limiting / request quotas at session level
+    - id: BD-025
+      type: missing
+      summary: Origin / Host validation for SSE / streamable-http is opt-in only for non-localhost
+    - id: BD-026
+      type: missing
+      summary: Generic Exception in handler → ErrorData(code=0) — non-standard JSON-RPC code
+    - id: BD-027
+      type: missing
+      summary: '@tool / @resource without parens raises TypeError at decoration time (loud, but message could be friendlier)'
+    - id: BD-001
+      type: B
+      summary: Two-tier API split — high-level MCPServer (decorator) composes low-level Server (constructor injection)
+    - id: BD-012
+      type: T
+      summary: Pydantic v2 for type schemas + JSON-RPC envelope validation
+    - id: BD-014
+      type: T
+      summary: OpenTelemetry via opentelemetry.trace
+    - id: BD-021
+      type: BA
+      summary: Duplicate primitive registration is a WARNING, not an error; existing wins
+    - id: BD-007
+      type: B
+      summary: UrlElicitationRequiredError gets a dedicated -32042 error code
+    - id: BD-010
+      type: B
+      summary: Stateless mode disables sampling / elicitation / list_roots — raises StatelessModeNotSupported
+    - id: BD-022
+      type: DK
+      summary: MCP spec is Anthropic-driven; semantics like "elicitation/URL mode" reflect Claude.ai product needs (OAuth
+        flows, payment confirmation)
+    - id: BD-002
+      type: B
+      summary: Three primitives Tool / Resource / Prompt with NO enforced semantic boundary
+    - id: BD-006
+      type: B
+      summary: Tool exception → CallToolResult(is_error=True), NOT protocol-level JSON-RPC error
+    - id: BD-003
+      type: B
+      summary: JSON-RPC 2.0 over line-delimited JSON for stdio, SSE-or-JSON over HTTP for streamable-http
+    - id: BD-005
+      type: B
+      summary: Streamable-HTTP recommended for production over SSE
+    - id: BD-009
+      type: B
+      summary: StreamableHTTPSessionManager.run() is single-shot per instance
+    - id: BD-011
+      type: T
+      summary: AnyIO over raw asyncio
+    - id: BD-013
+      type: T
+      summary: Starlette as ASGI host for HTTP / SSE / streamable-http
+    - id: BD-015
+      type: T
+      summary: pywin32 Job Object for Windows process tree termination (client-side stdio)
+    - id: BD-016
+      type: BA
+      summary: DNS-rebinding protection auto-on ONLY for 127.0.0.1 / localhost / ::1
+    - id: BD-017
+      type: BA
+      summary: Default stdio inherited env vars — Unix 6 (HOME, LOGNAME, PATH, SHELL, TERM, USER) / Windows 12 (APPDATA, HOMEDRIVE,
+        HOMEPATH, LOCALAPPDATA, PATH, PATHEXT, PROCESSOR_ARCHITECTURE, SYSTEMDRIVE, SYSTEMR
+    - id: BD-018
+      type: BA
+      summary: errors="replace" on stdin decoding, errors="strict" on stdout
+    - id: BD-019
+      type: BA
+      summary: PROCESS_TERMINATION_TIMEOUT = 2.0s for client-side stdio subprocess termination
+    - id: BD-020
+      type: BA
+      summary: Priming events for SSE resumability gated on protocol version >= "2025-11-25"
+resources:
+  packages:
+  - name: AnyIO
+    version_pin: latest
+  - name: Pydantic v2
+    version_pin: latest
+  - name: Starlette
+    version_pin: latest
+  - name: OpenTelemetry (opentelemetry.trace)
+    version_pin: latest
+  - name: pywin32 (Windows only)
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install AnyIO
+    - python3 -m pip install Pydantic v2
+    - python3 -m pip install Starlette
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: mcp-C-001
+    when: When following README quickstart code at commit 3d7b311 to build an MCP server
+    action: translate every `from mcp.server.fastmcp import FastMCP` line (≥26 occurrences in README at lines 147, 231, 293,
+      324, 349, 419, 470, 572, 573, 600, 640, 665, 697, 830, 937, 974, 1017, 1211, 1255, 1297, 1410, 1457, 1504, 1565, 1602,
+      1623) to `from mcp.server.mcpserver import MCPServer` and instantiate `MCPServer(...)` instead of `FastMCP(...)`; `mcp.server.fastmcp`
+      package no longer exists
+    severity: fatal
+    kind: operational_lesson
+    modality: must
+    consequence: 'Copy-pasting README import statements raises ModuleNotFoundError: No module named ''mcp.server.fastmcp''
+      immediately at import time, blocking any further work on the server before a single line of business logic runs'
+    stage_ids:
+    - server_setup
+    derived_from_bd_id: pitfall-001 / BD-G01
+  regular:
+  - id: mcp-C-002
+    when: When following README links or copying file paths referenced in the README at commit 3d7b311
+    action: translate every `examples/fastmcp/*` and `fastmcp_quickstart.py` path reference (10 occurrences at README lines
+      138, 144, 185, 191, 628, 2169, 2200, 2213, 2219, 2299) to `examples/mcpserver/*` and `mcpserver_quickstart.py` respectively
+      before opening or running them
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: FileNotFoundError when opening referenced examples; copy-paste of `examples/fastmcp/icons_demo.py` style
+      commands fails because the directory was renamed to `examples/mcpserver/`. Wastes setup time and erodes trust in documentation
+    stage_ids:
+    - server_setup
+    derived_from_bd_id: pitfall-001 / BD-G01
+  - id: mcp-C-003
+    when: When binding streamable-http or SSE transport to any host other than 127.0.0.1, localhost, or ::1 (e.g. 0.0.0.0,
+      public IP, container IP)
+    action: explicitly pass `transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=True, allowed_hosts=[...],
+      allowed_origins=[...])` to MCPServer.streamable_http_app()/sse_app() — the auto-enable at lowlevel/server.py:579-585
+      (streamable_http) and mcpserver/server.py:928-934 (sse) only fires for the three loopback strings
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without transport_security, browser-based DNS-rebinding attackers can rebind a victim's DNS lookup to point
+      at the MCP server's internal IP and execute tool calls with the victim's credentials. transport_security.py:41 confirms
+      middleware default is enable_dns_rebinding_protection=False when security_settings is None
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: pitfall-002 / BD-016 / BD-G03
+  - id: mcp-C-004
+    when: When considering whether DNS-rebinding protection is on for a streamable-http or SSE deployment
+    action: assume the framework auto-enables DNS-rebinding protection on the user's behalf — auto-enable narrowly fires only
+      when `host in ('127.0.0.1', 'localhost', '::1')`, and the framework's default `MCPServer.run_streamable_http_async(host='127.0.0.1')`
+      is what masks the gap during local development
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Server author who validates locally (host='127.0.0.1' default → protection auto-on) and deploys to production
+      behind 0.0.0.0 will silently lose Origin/Host validation. The exposure window is invisible because the local test suite
+      still passes
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: BD-G03 / BD-016
+  - id: mcp-C-005
+    when: When deploying streamable-http with `stateless=True` (typically combined with `json_response=True` for K8s scaling)
+    action: call `ctx.session.create_message()` (sampling), `ctx.session.elicit_form()`, `ctx.session.elicit_url()`, `ctx.session.elicit()`,
+      or `ctx.session.list_roots()` from any tool / resource / prompt handler — all four raise `StatelessModeNotSupported`
+      (RuntimeError subclass) at call time when self._stateless is True
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Tool author writes/tests locally with stateful sessions, deploys stateless, and tools start raising StatelessModeNotSupported
+      on first invocation in production. README recommends stateless config without flagging this incompatibility
+    stage_ids:
+    - server_to_client_capabilities
+    derived_from_bd_id: pitfall-003 / BD-010
+  - id: mcp-C-006
+    when: When tool implementation needs server→client capabilities (sampling / elicitation / list_roots) but production target
+      is K8s-style horizontal scaling
+    action: either (a) deploy with `stateless=False` (stateful sessions, single-pod or sticky-session loadbalanced) so the
+      bidirectional channel persists, or (b) refactor tools to remove all `ctx.session.create_message / elicit_form / elicit_url
+      / list_roots` calls before enabling `stateless=True`
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without an explicit deployment-mode decision, tools that compile fine locally crash on first stateless invocation.
+      Half-measures (e.g. `stateless=True` + tools that conditionally call sampling) leak the bug to runtime
+    stage_ids:
+    - server_to_client_capabilities
+    - transport_select
+    derived_from_bd_id: pitfall-003 / BD-010
+  - id: mcp-C-007
+    when: When configuring `StreamableHTTPSessionManager(stateless=True, ...)` for stateless production deployment
+    action: pass `session_idle_timeout=<any positive value>` simultaneously — the constructor at streamable_http_manager.py:78
+      raises `RuntimeError('session_idle_timeout is not supported in stateless mode')` before the manager is even returned,
+      so the failure is at app boot
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Server fails to start with a RuntimeError at session-manager construction. Trap is loud at boot but easy
+      to introduce when copy-pasting from stateful examples that include session_idle_timeout for cleanup
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: pitfall-004
+  - id: mcp-C-008
+    when: When integrating `StreamableHTTPSessionManager` into a hot-reload framework (uvicorn --reload, ASGI lifespan reuse)
+      or any lifecycle that re-invokes `manager.run()`
+    action: instantiate a fresh `StreamableHTTPSessionManager(...)` on each lifecycle restart — never reuse the previous instance;
+      `run()` is single-shot per instance and raises `RuntimeError('StreamableHTTPSessionManager .run() can only be called
+      once per instance. Create a new instance if you need to run again.')` on the second call (streamable_http_manager.py:117-122)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Server boots successfully on first start; second restart (via --reload, lifespan reload, container re-launch
+      within same process) crashes opaquely with RuntimeError. The first crash typically appears mid-development and confuses
+      devs because the symptom is delayed
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: pitfall-005 / BD-009
+  - id: mcp-C-009
+    when: Before calling `ctx.session.create_message(..., tools=[...], tool_choice=...)` from a server tool (sampling-with-tools)
+    action: first call `ctx.session.check_client_capability(ClientCapabilities(sampling=SamplingCapability(tools=True)))`
+      (or an equivalent capability gate) and short-circuit with a degraded response when it returns False — `validate_sampling_tools`
+      at validation.py:29-46 raises `MCPError(code=INVALID_PARAMS, message='Client does not support sampling tools capability')`
+      (-32602) when client did not advertise `sampling.tools`
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Tool that unconditionally passes tools= to create_message will raise -32602 INVALID_PARAMS for any client
+      that did not advertise sampling.tools capability — half of real clients today do not. Failure is at runtime, per-client,
+      hard to reproduce in dev
+    stage_ids:
+    - server_to_client_capabilities
+    derived_from_bd_id: pitfall-006
+  - id: mcp-C-010
+    when: When user code or external examples call the legacy `ctx.session.elicit(message, schema, ...)` method
+    action: migrate the call to `ctx.session.elicit_form(message, schema, ...)` for structured form input or `ctx.session.elicit_url(message,
+      url, elicitation_id, ...)` for OAuth / payment URL flow — `elicit()` at session.py:358-378 is documented as deprecated
+      and is currently only a backward-compat wrapper around `elicit_form`
+    severity: low
+    kind: operational_lesson
+    modality: should
+    consequence: elicit() works today but is documented as deprecated and earmarked for removal. Code that does not migrate
+      accumulates technical debt and will break on a future SDK version bump without further warning. URL-flow use cases that
+      wrongly route through elicit() will be coerced to form-mode by elicit() since it forwards only to elicit_form
+    stage_ids:
+    - server_to_client_capabilities
+    derived_from_bd_id: pitfall-007
+  - id: mcp-C-011
+    when: When registering a tool / resource / prompt with `@mcp.tool()`, `@mcp.resource(uri)` or `@mcp.prompt()`
+    action: always invoke the decorator with parentheses — e.g. `@mcp.tool()` not `@mcp.tool` — the decorator factory at server.py:562-565
+      / 682-686 explicitly checks `if callable(name)` and raises `TypeError('The @tool decorator was used incorrectly. Did
+      you forget to call it? Use @tool() instead of @tool')` at decoration time
+    severity: low
+    kind: domain_rule
+    modality: must
+    consequence: Bare `@mcp.tool` (no parentheses) raises TypeError at module import — server cannot start. Loud failure but
+      the message is non-obvious to first-time decorator users; pattern is also non-standard relative to many Python decorator
+      libraries that allow bare usage
+    stage_ids:
+    - server_setup
+    - three_primitives
+    derived_from_bd_id: BD-G05
+  - id: mcp-C-012
+    when: When choosing between MCPServer (high-level decorator API) and Server (low-level handler API) for a new server
+    action: mix the two API tiers at the same level — e.g. instantiate `Server` and then attach `MCPServer.tool()` decorators
+      to it, or pass `on_call_tool=` to a low-level Server constructor while also using MCPServer-style ToolManager. MCPServer
+      composes Server internally (mcpserver/server.py:148-200); choose one tier per server
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Mixing decorator surfaces with constructor-injected handlers produces silent shadowing — a tool registered
+      both ways may invoke only one path or partially register, breaking capability auto-derivation. No exception raised;
+      the bug appears as missing tools at tools/list response
+    stage_ids:
+    - server_setup
+    derived_from_bd_id: BD-001
+  - id: mcp-C-013
+    when: When deciding whether to expose data via Tool, Resource, or Prompt
+    action: treat the three-way distinction as semantic — use Resource for read-only data with no side effects (REST GET analog),
+      Tool for compute / side-effecting actions (action verbs), Prompt for reusable parametrized message templates the LLM
+      can pick. Source enforces no boundary at runtime, so the consumer's discipline is the only safeguard
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: 'Confusing the three primitives is documented as the #1 anti-pattern in README. A tool that reads-only data
+      confuses LLM tool-selection heuristics; a resource that has side effects breaks client caching assumptions. Long-term
+      debt in agent design that is hard to refactor once clients depend on the wrong primitive surface'
+    stage_ids:
+    - three_primitives
+    derived_from_bd_id: BD-002
+  - id: mcp-C-014
+    when: When implementing a custom transport beyond stdio / SSE / streamable-http / WebSocket
+    action: yield a `(read_stream, write_stream)` tuple from an `@asynccontextmanager` where streams match the Protocol[T]
+      subclasses at `shared/_stream_protocols.py:18` (ReadStream) and `:38` (WriteStream) — there is NO formal Transport ABC
+      to inherit from; the contract is structural typing
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Custom transports that return raw asyncio streams or non-AnyIO MemoryObject streams will fail at type-checking
+      and at runtime when ServerSession tries to .receive() / .send() with AnyIO-specific cancellation semantics. No explicit
+      error message — failure mode is `AttributeError` or hung tasks
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: global_contracts[1]
+  - id: mcp-C-015
+    when: When using stdio transport for any payload that may contain newline characters (multi-line JSON values, embedded
+      CR/LF in strings, large JSON-RPC payloads)
+    action: ensure JSON-RPC messages are JSON-encoded with `ensure_ascii=False` AND that no embedded raw newline characters
+      appear in the JSON serialization — stdio framing is line-delimited (`\n` separator at stdio.py:54,69), so any embedded
+      `\n` in the wire bytes corrupts the message boundary
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Embedded raw newlines split a single JSON-RPC message into two lines on the wire, both of which fail JSON
+      parse on the receiver. Symptom is intermittent 'parse error' responses; long payloads are at higher risk because they
+      more often contain embedded line-breaks in escaped string values
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: BD-003
+  - id: mcp-C-016
+    when: When configuring SSE transport endpoint via `SseServerTransport(endpoint=...)`
+    action: pass a relative path string only (e.g. `/messages/`) — the constructor at sse.py:103 explicitly raises `ValueError`
+      if the endpoint contains `://` (absolute URL), starts with `//` (protocol-relative), or contains `?` / `#` (query /
+      fragment)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: The relative-path enforcement is a CSRF / cross-origin defense — clients can only POST to the same origin
+      that opened the SSE stream. Absolute URLs would let an attacker funnel POSTs to a different host. ValueError is raised
+      at construction so the failure is at boot, not runtime
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: stage transport_select
+  - id: mcp-C-017
+    when: When generating or accepting `mcp-session-id` HTTP header values for streamable-http transport
+    action: ensure session IDs match `SESSION_ID_PATTERN = r'^[\x21-\x7E]+$'` (visible ASCII only, one or more characters)
+      — values containing whitespace, control characters, or non-ASCII bytes fail validation at streamable_http.py:64 and
+      the request is rejected
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: 'Custom session ID generators using UUIDs with hyphens are fine; generators using base64 with `=` padding
+      or non-ASCII tokens fail validation. Symptom: requests rejected with 400 Bad Request. Trap is invisible until the first
+      request with a non-conforming session ID hits the server'
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: stage transport_select
+  - id: mcp-C-018
+    when: When a streamable-http client sends a POST request to the MCP endpoint
+    action: include both `application/json` AND `text/event-stream` in the `Accept` header (unless the server has `is_json_response_enabled=True`
+      exclusively) — the Accept-header check at streamable_http.py:419 rejects requests that do not accept both content types
+      because the server may respond with either single JSON or an SSE stream depending on response shape
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Clients that accept only application/json get 406 Not Acceptable from any tool that returns notifications-then-response
+      (which uses SSE). Trap is invisible to clients that test against tools returning single responses but breaks streaming
+      tools
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: stage transport_select
+  - id: mcp-C-019
+    when: When implementing a Resource subclass for the high-level MCPServer
+    action: implement async `def read(self) -> str | bytes` — the only stable user-facing abstract on the high-level Resource
+      ABC at `src/mcp/server/mcpserver/resources/base.py:41` (uses `abc.abstractmethod`, NOT the `@abstractmethod` decorator
+      imported in EventStore / experimental subsystem)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: 'Subclasses missing read() raise TypeError at instantiation: ''Can''t instantiate abstract class X with abstract
+      method read''. Loud failure but easy to miss when porting from non-async resource libraries'
+    stage_ids:
+    - three_primitives
+    derived_from_bd_id: stage three_primitives
+  - id: mcp-C-020
+    when: When defining a ResourceTemplate with URI parameters like `weather://{city}/current`
+    action: ensure URI template parameter names exactly match the function parameter names (excluding the Context parameter
+      if present) — at templates.py:25 the template builder maps URI params to function args by name, mismatched names cause
+      registration to fail or wrong URI parsing at runtime
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Mismatched param names produce either a registration-time error (if validation fires) or — worse — a tool
+      that always receives None / KeyError on URI matching. Hard to diagnose without reading template source
+    stage_ids:
+    - three_primitives
+    derived_from_bd_id: stage three_primitives
+  - id: mcp-C-021
+    when: When raising a custom exception from inside a Tool function to abort with a special protocol-level signal (OAuth
+      flow, payment confirmation)
+    action: raise `UrlElicitationRequiredError(elicitations=[...])` (shared/exceptions.py:61) — Tool.run at base.py:91-119
+      explicitly re-raises this exception (does not wrap in ToolError) to preserve the dedicated -32042 (URL_ELICITATION_REQUIRED)
+      JSON-RPC error code; any other exception type is wrapped into ToolError and converted to CallToolResult(is_error=True)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using a generic Exception or a custom subclass for OAuth abort means clients receive CallToolResult(is_error=True)
+      with a generic ToolError message instead of the -32042 signal. Clients that key off -32042 to launch the URL flow will
+      not detect the request
+    stage_ids:
+    - server_to_client_capabilities
+    - three_primitives
+    derived_from_bd_id: BD-007
+  - id: mcp-C-022
+    when: When relying on the framework to advertise a server capability (sampling / elicitation / list_roots / subscribe)
+    action: manually edit the InitializeResult capabilities object hoping to advertise a capability without registering its
+      handler — capabilities are AUTO-DERIVED from registered handlers at lowlevel/server.py:283-328 (e.g. registering an
+      `on_list_tools` handler causes ToolsCapability to appear; not registering it means the capability is absent regardless
+      of any other config)
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Trying to declare a capability without a handler appears to succeed (no error), but the auto-derive overrides
+      any manual setting at the next handshake. Server appears to advertise the capability but clients calling its methods
+      get METHOD_NOT_FOUND
+    stage_ids:
+    - capability_negotiate
+    derived_from_bd_id: BD-004
+  - id: mcp-C-023
+    when: When sending any non-Ping request to a freshly-connected MCP server before completing the initialize handshake
+    action: send tool calls / resource reads / prompt fetches / completion requests / etc. — server enforces strict state
+      machine `NotInitialized → Initializing → Initialized` at session.py:165-205 and raises `RuntimeError('Received request
+      before initialization was complete')` for any non-Ping request prior to the client sending `notifications/initialized`.
+      PingRequest is the only exempted method (session.py:190-192)
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Pre-init requests crash the server with RuntimeError before any client logic can run. Clients written without
+      strict initialize-then-request ordering hit this on first connection. Some debugging tools (curl directly into the JSON-RPC
+      endpoint) trigger this trap
+    stage_ids:
+    - capability_negotiate
+    derived_from_bd_id: BD-008
+  - id: mcp-C-024
+    when: When negotiating MCP protocol version between client and server
+    action: use one of the four versions in `SUPPORTED_PROTOCOL_VERSIONS = ['2024-11-05', '2025-03-26', '2025-06-18', '2025-11-25']`
+      (shared/version.py:1-3) — clients should send `LATEST_PROTOCOL_VERSION = '2025-11-25'` (types/_types.py:12); servers
+      fall back to `LATEST_PROTOCOL_VERSION` when the requested version is not in the supported list (session.py:174-176);
+      default negotiated version is `DEFAULT_NEGOTIATED_VERSION = '2025-03-26'` (types/_types.py:18)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Hardcoding an unsupported version string (e.g. mistyped date, future version not yet released) causes the
+      client-side check at client/session.py to raise RuntimeError('Unsupported protocol version from the server'). Server-side
+      silent fallback to LATEST may surprise clients that requested an older version expecting it to be honored
+    stage_ids:
+    - capability_negotiate
+    derived_from_bd_id: stage capability_negotiate
+  - id: mcp-C-025
+    when: When implementing client side and deciding whether to advertise sampling / elicitation / list_roots capabilities
+    action: supply non-default callbacks for `sampling_callback`, `elicitation_callback`, `list_roots_callback` if and only
+      if the client actually implements those capabilities — ClientSession.initialize at client/session.py:148-180 advertises
+      capability iff `self._sampling_callback is not _default_sampling_callback` (sentinel-function comparison); supplying
+      default callback = no advertisement
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Supplying a custom callback that delegates back to the default — or any value-equal but identity-different
+      sentinel — causes the capability to be advertised even though the client cannot actually fulfill it. Server tools will
+      then send sampling requests that the client cannot serve
+    stage_ids:
+    - capability_negotiate
+    derived_from_bd_id: stage capability_negotiate
+  - id: mcp-C-026
+    when: When designing a tool / resource / prompt handler that needs request-scoped or startup-scoped dependencies (DB pool,
+      secrets, external API client)
+    action: place startup-scoped dependencies in a user-supplied lifespan callable passed as `lifespan=` to MCPServer / Server
+      constructor; access them via `ctx.request_context.lifespan_context.<field>` inside handler bodies. The default lifespan
+      (lowlevel/server.py:87) yields {} so tools see nothing without explicit lifespan setup
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Accessing ctx.request_context.lifespan_context fields that the default {} lifespan does not provide raises
+      AttributeError or KeyError at first tool call. Beginners frequently put DB-connection setup at module top-level instead
+      of in lifespan and lose proper async cleanup
+    stage_ids:
+    - lifespan_context
+    derived_from_bd_id: stage lifespan_context
+  - id: mcp-C-027
+    when: When relying on Context auto-injection in a tool / resource / prompt handler
+    action: annotate the parameter with type `Context` (or `Optional[Context]`, `Context[T1, T2]`) — find_context_parameter
+      at context_injection.py:13 detects via `typing.get_type_hints(fn)`, NOT by parameter name. The parameter name does not
+      have to be `ctx`
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Handlers that rely on naming convention (e.g. `def my_tool(x, ctx)` without type annotation on ctx) do not
+      get Context injected — ctx is None / unbound and any `ctx.method(...)` call raises AttributeError. Type-hint-stripped
+      imports also break injection
+    stage_ids:
+    - lifespan_context
+    - three_primitives
+    derived_from_bd_id: stage lifespan_context
+  - id: mcp-C-028
+    when: When raising an exception from a Tool function that should be returned to the client as a tool-execution failure
+      (not a transport-level protocol error)
+    action: let the framework wrap the exception into `CallToolResult(is_error=True, content=[TextContent(text=str(e))])`
+      at mcpserver/server.py:315-316 — do NOT manually convert the exception into a JSON-RPC error response. Tool exceptions
+      are domain results; only `UrlElicitationRequiredError` is the deliberate exception (re-raised for -32042)
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Manually raising MCPError or returning a JSON-RPC error from a tool conflates transport vs domain failures.
+      Clients expecting partial output via CallToolResult.content lose visibility; clients tracking is_error flag get false
+      negatives
+    stage_ids:
+    - three_primitives
+    derived_from_bd_id: BD-006
+  - id: mcp-C-029
+    when: When implementing a Resource read handler (Resource.read or read-resource path)
+    action: let internal exception details (database error messages, file system paths, API tokens) leak to the client via
+      raised exceptions — read_resource error handling at mcpserver/server.py:437-460 catches all exceptions and re-raises
+      as `ResourceError(...)` to scrub internals; custom Resource subclasses must follow the same discipline
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Leaked internal details (file paths, DB error messages with table names, stack traces with secrets) widen
+      the attack surface for any client that can call the resource. Defense-in-depth pattern is documented at mcpserver/server.py
+      — custom code must preserve it
+    stage_ids:
+    - three_primitives
+    derived_from_bd_id: stage three_primitives
+  - id: mcp-C-030
+    when: When connecting to an MCP server via stdio_client and the server requires API keys / secrets / custom env vars to
+      operate
+    action: 'explicitly pass `env={''CUSTOM_KEY'': ''...'', ...}` to stdio_client — `DEFAULT_INHERITED_ENV_VARS` at client/stdio.py:28-45
+      only inherits 6 vars on Unix (HOME, LOGNAME, PATH, SHELL, TERM, USER) and 12 on Windows (APPDATA, HOMEDRIVE, HOMEPATH,
+      LOCALAPPDATA, PATH, PATHEXT, PROCESSOR_ARCHITECTURE, SYSTEMDRIVE, SYSTEMROOT, TEMP, USERNAME, USERPROFILE); user-defined
+      vars are dropped silently. Functions starting with `()` are skipped (Bash-export injection mitigation, line 62)'
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Spawned MCP server starts but fails on first API call with 'API_KEY is None' or similar — secret was in caller
+      env but never inherited. Common gotcha when migrating from a shell script that relied on full env inheritance
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: BD-017
+  - id: mcp-C-031
+    when: When designing a long-running MCP server that performs cleanup (flush logs, close DB, drain async tasks) on SIGTERM
+      via stdio_client
+    action: ensure cleanup completes within 2 seconds — `PROCESS_TERMINATION_TIMEOUT = 2.0s` at client/stdio.py:48 (used at
+      lines 199-204) means the client will SIGKILL the server after 2 seconds of grace period regardless of cleanup state.
+      Long cleanup paths (flush large buffers, await network shutdown) need to be either fast or pushed off-process
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Server cleanup that takes >2 seconds gets SIGKILL'd; in-flight writes may not flush, in-memory buffers are
+      lost. Symptom is intermittent 'last operation lost' bugs after restart
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: BD-019
+  - id: mcp-C-032
+    when: When registering tools / resources / prompts and a name collision exists with a previously-registered primitive
+    action: rely on duplicate-warn-and-keep behavior to update a registration — `ToolManager.add_tool` (and ResourceManager
+      / PromptManager analogues) at tool_manager.py:60-64 logs a warning and keeps the EXISTING registration; the second call
+      is silently dropped after the warning
+    severity: medium
+    kind: operational_lesson
+    modality: should_not
+    consequence: Hot-reload that re-registers updated tools assumes second registration replaces the first — actually the
+      OLD version is kept and the new one is dropped. Behavior change appears to take effect (no error) but stale code keeps
+      serving requests until process restart
+    stage_ids:
+    - server_setup
+    - three_primitives
+    derived_from_bd_id: BD-021
+  - id: mcp-C-033
+    when: When implementing a sampling tool that constructs `tool_use` / `tool_result` content blocks for the client LLM
+    action: comply with SEP-1577 — `tool_result` messages must contain ONLY `tool_result` content blocks; each `tool_result`
+      must be preceded by a message containing the matching `tool_use`; `tool_use_id` values must match between the tool_use
+      and its tool_result. validate_tool_use_result_messages at validation.py:49 enforces this and raises if violated
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Mixed-content messages (e.g. tool_result + text in the same message) or unmatched IDs cause validate_tool_use_result_messages
+      to raise MCPError. Trap is at runtime per-call, not at registration
+    stage_ids:
+    - server_to_client_capabilities
+    derived_from_bd_id: stage server_to_client_capabilities
+  - id: mcp-C-034
+    when: When wiring an MCP server into an existing async runtime that is NOT AnyIO (e.g. raw asyncio with custom cancellation,
+      third-party event loops)
+    action: use AnyIO primitives end-to-end — anyio.create_task_group, anyio.create_memory_object_stream(0), anyio.CancelScope
+      — because Server.run uses anyio.create_task_group at lowlevel/server.py:392 and assumes AnyIO cancellation semantics.
+      Mixing raw asyncio cancellation will leave handler tasks orphaned when transport closes
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Raw asyncio code attached to MCP server may not respect anyio.CancelScope cancellation; on transport close,
+      in-flight handlers continue running, leaking resources and producing inconsistent state. AnyIO's cancellation is structured;
+      raw asyncio is not
+    derived_from_bd_id: BD-011 / global_contracts[4]
+  - id: mcp-C-035
+    when: When deploying an MCP server that handles bursty traffic from a single high-volume client
+    action: layer rate-limiting at the reverse-proxy or load-balancer level (nginx, Envoy, ALB) for streamable-http / SSE
+      transports — the framework has NO built-in per-session rate-limiting (BD-G02). For stdio transports, no defense exists;
+      restrict client trust
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without external rate-limiting, a single misbehaving or malicious client can flood the anyio task group at
+      lowlevel/server.py:392-410 (unbounded tg.start_soon) with messages until OS resource exhaustion. anyio memory streams
+      have buffer size 0 (backpressure naturally) but task spawn is unbounded
+    derived_from_bd_id: BD-G02
+  - id: mcp-C-036
+    when: When debugging client-side error responses from an MCP server
+    action: assume `code=0` indicates a transport-level failure or that the server is unreachable — `code=0` is the framework's
+      NON-STANDARD JSON-RPC code emitted at lowlevel/server.py:515 for any uncaught generic Exception inside a handler. JSON-RPC
+      2.0 spec reserves `0` as undefined; client cannot disambiguate handler bug vs transport hiccup
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Client retry logic that treats code=0 as transient transport error retries forever against a server that
+      is consistently bug-crashing in the handler. Real fix is server-side — client just sees an opaque error. Should be -32603
+      (INTERNAL_ERROR) per spec
+    derived_from_bd_id: BD-G04
+  - id: mcp-C-037
+    when: When the MCP server is hot-reloaded or its cancellation logic interacts with long-running handler tasks
+    action: rely on AnyIO structured cancellation — RequestResponder at shared/session.py:60 is a context manager holding
+      `anyio.CancelScope`; client `CancelledNotification` cancels the in-flight handler scope; transport close cancels the
+      entire task group at lowlevel/server.py:415. Custom in-handler cancel handling must use anyio.CancelScope, not asyncio.CancelledError
+      catch
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Handlers that catch `asyncio.CancelledError` and ignore it leak past transport close — task group thinks
+      they finished but they keep running. anyio.get_cancelled_exc_class() is the correct sentinel for cross-backend cancel
+    derived_from_bd_id: global_contracts[5]
+  - id: mcp-C-038
+    when: When implementing a custom `EventStore` for streamable-http resumability
+    action: implement both `async def store_event(stream_id, message) -> EventId` AND `async def replay_events_after(last_event_id,
+      send_callback) -> StreamId | None` — the two @abstractmethod at streamable_http.py:85 and :98. EventStore is the single
+      stable user-facing public ABC outside the experimental tasks subsystem
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Subclasses missing either abstract method raise TypeError at instantiation. EventStore is the only stable
+      abstract contract for resumability — partial implementation breaks Last-Event-ID replay across reconnects
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: stage transport_select
+  - id: mcp-C-039
+    when: When considering using the `experimental/tasks` subsystem (TaskStore + MessageQueue) for long-running async tools
+    action: depend on the experimental tasks subsystem for production-critical workloads — the 9 @abstractmethod on TaskStore
+      (shared/experimental/tasks/store.py) plus 7 on MessageQueue (message_queue.py) are explicitly marked experimental; API
+      surface may change without backward-compat guarantees
+    severity: medium
+    kind: claim_boundary
+    modality: should_not
+    consequence: Production code built on TaskStore / MessageQueue may break on next SDK upgrade. The 16 abstract methods
+      are the largest unstable surface in the SDK. Experimental status communicated by directory placement (src/mcp/shared/experimental/)
+      — easy to miss
+    derived_from_bd_id: stage server_setup
+  - id: mcp-C-040
+    when: When an SSE-based deployment uses resumability priming events (empty SSE data frames) for old-version clients
+    action: gate priming-event emission on the negotiated `protocol_version >= '2025-11-25'` — the framework checks this at
+      streamable_http.py:269-285 because old clients can't parse empty SSE data frames and would crash on receiving priming.
+      Custom SSE extensions must follow the same gate
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Sending priming events to a 2024-11-05 or 2025-03-26 client crashes the client-side SSE parser. Symptom is
+      silent client disconnects on long-lived streams
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: BD-020
+  - id: mcp-C-041
+    when: When choosing a transport for a new MCP server deployment
+    action: default to streamable-http for production (single endpoint, optional resumability via EventStore, mount-friendly
+      under Starlette / FastAPI, supports stateless K8s scaling) and stdio for local AI host integration (Claude Desktop,
+      Cursor, dev workflows). Avoid SSE for new deployments — its two-endpoint dance (GET stream + POST message) is harder
+      to operate and is positioned as legacy in README §1244
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Choosing SSE for a new deployment incurs more operational complexity than streamable-http for no gain. Choosing
+      streamable-http for local single-user dev is overkill — stdio is simpler and matches host-integration conventions
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: BD-005
+  - id: mcp-C-042
+    when: When estimating capability of an MCP server based on the SDK's bundled documentation and examples at commit 3d7b311
+    action: claim 'README quickstart code is verified working' or 'all README import examples are runnable' — README contains
+      26 broken `from mcp.server.fastmcp import FastMCP` import lines and 10 broken file-path references. Use `examples/snippets/servers/mcpserver_quickstart.py`
+      as the authoritative working example instead
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Claiming README is fully runnable misleads users who copy-paste and immediately hit ModuleNotFoundError.
+      Trust in entire SDK documentation degrades
+    stage_ids:
+    - server_setup
+    derived_from_bd_id: BD-G01
+  - id: mcp-C-043
+    when: When promising real-time bidirectional capabilities (sampling / elicitation / list_roots) to end users on a stateless
+      production deployment
+    action: advertise sampling, elicitation, or list_roots as available features when deploying with `stateless=True` — these
+      capabilities ARE the persistent bidirectional channel and CANNOT degrade gracefully in stateless mode (StatelessModeNotSupported
+      is raised loudly at call time, not silently downgraded)
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Marketing or onboarding materials that say 'this MCP server can ask the LLM to think' / 'this server can
+      prompt for OAuth' contradict the deployed stateless config. Users hit the runtime exception and lose trust
+    stage_ids:
+    - server_to_client_capabilities
+    derived_from_bd_id: BD-010
+  - id: mcp-C-044
+    when: When deploying an MCP server to Windows and managing client-side stdio subprocess termination
+    action: rely on the bundled `pywin32` Job Object termination at client/stdio.py:17-22 / :255-270 — Windows lacks process
+      groups, so Job Objects are the canonical way to atomically terminate a process tree. Custom Windows termination logic
+      via TerminateProcess() alone misses orphaned children
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Windows clients that do not use Job Object semantics leave orphaned child processes after MCP server termination
+      — accumulates over many start/stop cycles, eventually saturates user session resources
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: BD-015
+  - id: mcp-C-045
+    when: When sending notifications or responses (no-reply-expected messages) over streamable-http
+    action: expect HTTP `202 Accepted` as the success status for notifications and one-shot responses — the server returns
+      202 at streamable_http.py:502 for any message that does not have an expected reply. Clients that retry on non-200 will
+      retry-storm the server
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Clients with strict 200-only retry logic interpret 202 as failure, retry, get another 202, retry again —
+      DDoS the server. 202 is correct per HTTP semantics for accepted-but-no-content responses
+    stage_ids:
+    - transport_select
+    derived_from_bd_id: stage transport_select
+  - id: mcp-C-046
+    when: When constructing a JSON-RPC envelope manually (not via the bundled types module) for a custom MCP transport or
+      proxy
+    action: 'include `''jsonrpc'': ''2.0''` as a literal string field in every JSONRPCRequest / JSONRPCNotification / JSONRPCResponse
+      / JSONRPCError envelope — types/jsonrpc.py:13-77 defines all four with `jsonrpc: Literal[''2.0'']` enforced by Pydantic
+      at decode boundary; missing or wrong value fails validation'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: 'Envelope without `jsonrpc: ''2.0''` fails Pydantic validation immediately on receive; custom transports
+      that strip the field for compactness break the entire wire protocol'
+    derived_from_bd_id: global_contracts[0]
+  - id: mcp-C-047
+    when: When the OTel-traced MCP server spawns handler tasks that need to inherit trace context (OpenTelemetry spans, request
+      IDs)
+    action: let `Server.run` perform `contextvars.copy_context()` per spawn — at lowlevel/server.py:400 every inbound JSON-RPC
+      request gets `context = contextvars.copy_context()` and is run via `context.run(tg.start_soon, self._handle_message,
+      ...)` to preserve OTel trace state. Custom dispatch outside this pattern loses trace context across the task boundary
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Trace context (OpenTelemetry spans, request IDs) does not propagate to handler task — distributed traces
+      appear disconnected, request correlation in logs breaks. Especially painful when debugging multi-tool flows
+    derived_from_bd_id: BD-014 / global_contracts[4]
+  - id: mcp-C-048
+    when: When upgrading the mcp-python-sdk dependency in a production server
+    action: assume MCP spec semantics or framework APIs are stable across versions — the spec is Anthropic-driven (BD-022
+      DK note) and embeds Claude.ai product expectations (OAuth elicitation flow, payment confirmation). The SDK has experimental
+      subsystems (16 of 18 abstract methods) and an actively-evolving rename divergence (FastMCP→MCPServer at this commit).
+      Pin the version and audit changelogs before upgrading
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Silent upgrades have hit major-rename divergences (FastMCP→MCPServer), deprecated APIs being removed (elicit),
+      and protocol-version additions (4 versions in 18 months). Production servers without pinning regularly break on upgrade
+    derived_from_bd_id: BD-022
+  - id: mcp-C-049
+    when: When implementing a Prompt with a synchronous (non-async) function body
+    action: let the framework wrap the sync function via `anyio.to_thread.run_sync` at prompts/base.py:164 — the framework
+      auto-detects sync vs async and bridges. Do not manually wrap with `asyncio.to_thread` or block the event loop with sync
+      I/O inside a notional `async def` Prompt
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Sync I/O blocking the event loop in a Prompt handler stalls all other concurrent tool calls on the same server
+      instance. anyio.to_thread.run_sync correctly hands off to thread pool
+    stage_ids:
+    - three_primitives
+    derived_from_bd_id: stage three_primitives
+  - id: mcp-C-050
+    when: When defining a Tool's return type for auto-generated output_schema (Pydantic / TypedDict / dataclass / primitive)
+    action: 'annotate the function return type explicitly — `output_schema` at tools/base.py:39 is auto-derived from the return
+      annotation. Primitives (int, str, bool) are wrapped as `{''result'': value}`. Untyped returns lose JSON-Schema generation
+      and the client-side validation surface'
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Tool without return-type annotation cannot have an output_schema; clients depending on output validation
+      get nothing. Sub-tools that compose with other tools via tool_use cannot reason about expected shape
+    stage_ids:
+    - three_primitives
+    derived_from_bd_id: stage three_primitives
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-140 / Decorator-style stdio server (Quickstart)
+    version: v6.1
+    intent_keywords:
+    - quickstart
+    - stdio server
+    - decorator API
+    - hello world
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (2 distinct values, balanced distribution)
+      groups:
+      - group_id: complete_strategy
+        name: Complete Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 7
+        ucs:
+        - uc_id: UC-001
+          name: Decorator-style stdio server (Quickstart)
+          short_description: Minimal Tool + Resource + Prompt server over stdio — the canonical "hello world" for MCP
+          sample_triggers:
+          - quickstart
+          - stdio server
+          - decorator API
+        - uc_id: UC-003
+          name: LLM-sampling tool (server invokes client LLM)
+          short_description: Tool needs LLM completion → calls back to client via ctx.session.create_message
+          sample_triggers:
+          - sampling
+          - server-to-client LLM call
+          - thinking tools
+        - uc_id: UC-004
+          name: Form + URL elicitation
+          short_description: Booking confirmation (form mode), payment / OAuth confirmation (URL mode), and the throw-pattern
+            via UrlElicitationRequiredError to abort with -32042
+          sample_triggers:
+          - elicitation
+          - form input
+          - URL flow
+        - uc_id: UC-005
+          name: Long-running tool with progress
+          short_description: Stream ctx.report_progress + ctx.info / ctx.debug during multi-step task to keep client informed
+            of long operations
+          sample_triggers:
+          - long-running tool
+          - progress reporting
+          - ctx.report_progress
+        - uc_id: UC-006
+          name: OAuth-protected server
+          short_description: Server requires bearer token via AuthSettings + TokenVerifier
+          sample_triggers:
+          - OAuth2
+          - bearer token
+          - authentication
+        - uc_id: UC-007
+          name: Stateless streamable-HTTP for K8s scaling
+          short_description: High-throughput, no per-session state — the recommended production config (stateless + json_response)
+          sample_triggers:
+          - stateless HTTP
+          - production config
+          - K8s scaling
+        - uc_id: UC-008
+          name: Mount multiple MCP servers in one Starlette app
+          short_description: Microservice gateway pattern — /echo + /math mounted under one ASGI host
+          sample_triggers:
+          - mount multiple servers
+          - Starlette mount
+          - microservice gateway
+      - group_id: extension_example
+        name: Extension Example
+        description: ''
+        emoji: 📦
+        uc_count: 5
+        ucs:
+        - uc_id: UC-002
+          name: Lifespan-managed DB tool
+          short_description: Connection pool / DB / external service initialised once at startup and injected into every tool
+            via typed Context
+          sample_triggers:
+          - lifespan
+          - dependency injection
+          - DB connection pool
+        - uc_id: UC-009
+          name: Resumable connection via custom EventStore
+          short_description: Long-lived clients reconnect with Last-Event-ID — events stored externally (Redis, DB) so the
+            server can replay from a known point
+          sample_triggers:
+          - resumable HTTP
+          - EventStore
+          - Last-Event-ID
+        - uc_id: UC-010
+          name: Pagination cursor over large lists
+          short_description: Tool / resource lists too big for one response — cursor-based paging with explicit page tokens
+          sample_triggers:
+          - pagination
+          - cursor
+          - large list response
+        - uc_id: UC-011
+          name: Experimental task subsystem (long-running async tools)
+          short_description: Tools that take longer than a request lifetime — task creation, status polling, result fetch
+          sample_triggers:
+          - long-running tasks
+          - async task subsystem
+          - TaskStore
+        - uc_id: UC-012
+          name: Structured output schema
+          short_description: 'Pydantic / TypedDict / dataclass return types auto-validated as JSON Schema; primitives wrapped
+            in {"result": value}'
+          sample_triggers:
+          - structured output
+          - Pydantic return type
+          - TypedDict
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-001
+      beginner_prompt: Try decorator-style stdio server (quickstart)
+      auto_selected: true
+    - uc_id: UC-002
+      beginner_prompt: Try lifespan-managed db tool
+      auto_selected: true
+    - uc_id: UC-003
+      beginner_prompt: Try llm-sampling tool (server invokes client llm)
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 12 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - LLM-sampling tool (server invokes client LLM)
+    - Lifespan-managed DB tool
+    - Decorator-style stdio server (Quickstart)
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

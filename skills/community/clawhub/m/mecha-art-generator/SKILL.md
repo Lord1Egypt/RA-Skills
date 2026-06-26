@@ -1,35 +1,34 @@
 ---
-name: "Mecha Art Generator"
-description: "AI mecha art generator for anime-style giant robots, gundam-inspired suits, sci-fi battle armor, and mech pilot scenes. Create custom mecha designs, robot il..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mecha-art-generator"
-sourceUrl: "https://clawhub.ai/skills/mecha-art-generator"
+name: mecha-art-generator
+description: AI mecha art generator for anime-style giant robots, gundam-inspired suits, sci-fi battle armor, and mech pilot scenes. Create custom mecha designs, robot illustrations, mech anime posters, sci-fi battle artwork, and futuristic mechanical character art for cosplay reference, fanart, model kit inspiration, and concept design via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Mecha Art Generator
 
-> AI mecha art generator for anime-style giant robots, gundam-inspired suits, sci-fi battle armor, and mech pilot scenes. Create custom mecha designs, robot il...
+AI mecha art generator for anime-style giant robots, gundam-inspired suits, sci-fi battle armor, and mech pilot scenes. Create custom mecha designs, robot illustrations, mech anime posters, sci-fi battle artwork, and futuristic mechanical character art for cosplay reference, fanart, model kit inspiration, and concept design.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mecha-art-generator`
-- **Source URL:** [https://clawhub.ai/skills/mecha-art-generator](https://clawhub.ai/skills/mecha-art-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mecha-art-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create mecha anime art generator images.
+
+## Quick start
+```bash
+node mechaartgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `landscape`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/mecha-art-generator
 ```

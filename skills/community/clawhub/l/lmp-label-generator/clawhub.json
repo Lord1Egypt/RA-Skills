@@ -1,0 +1,17 @@
+{
+  "name": "lmp-label-generator",
+  "tagline": "Generate professional labels in LMP format with one-click preview link (no API key)",
+  "description": "A skill that turns natural language descriptions into professional label designs using the LMP (Label Management Project) open format.\n\nDescribe the label you need — product type, size, brand, colors — and the skill generates a complete LMP JSON with proper layout zones, typography hierarchy, barcodes, and color schemes.\n\n**Default: local only.** The skill saves the .lmp file to your Downloads folder and does not send any data to external servers unless you explicitly set config.apiEndpoint. If you set apiEndpoint (e.g. to a LabelMake Pro preview API URL), the skill will then POST the LMP to that endpoint to return a one-click designer link (no API key required for preview). Labels may contain PII; data leaves your environment only when you configure an endpoint.\n\nPerfect for product labels, shipping labels, price tags, and any label that needs to be quickly designed and printed.",
+  "category": "productivity",
+  "tags": ["latest", "label", "barcode", "design", "lmp", "printing", "product", "packaging", "qrcode", "compliance", "FDA", "EU", "标签", "设计", "条码", "合规", "LabelMakePro"],
+  "version": "1.5.5",
+  "license": "MIT-0",
+  "pricing": "free",
+  "author": "LabelMake Pro Team",
+  "support_url": "https://github.com/lams001/lmp-protocol/issues",
+  "homepage": "https://github.com/lams001/lmp-protocol",
+  "permissions": {
+    "filesystem": "Write generated LMP JSON to local file (Mode A fallback when API is unavailable)",
+    "http": "POST generated LMP data to user-configured preview API endpoint (Mode B one-click link, no API key)"
+  }
+}

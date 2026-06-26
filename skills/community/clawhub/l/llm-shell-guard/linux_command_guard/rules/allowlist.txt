@@ -1,0 +1,20 @@
+# Keep this small and read-only.
+ls
+cat
+grep
+pwd
+whoami
+date
+uname
+id
+head
+tail
+wc
+stat
+file
+df
+du
+free
+ps
+printf
+echo

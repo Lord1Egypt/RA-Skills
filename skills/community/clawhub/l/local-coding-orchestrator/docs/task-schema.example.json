@@ -1,0 +1,52 @@
+{
+  "id": "feat-example",
+  "repo": "my-repo",
+  "repoPath": "D:/data/code/my-repo",
+  "worktree": "../worktrees/feat-example",
+  "branch": "feat/example",
+  "taskType": "feature",
+  "pipeline": "implement_and_review",
+  "role": "implementer",
+  "agent": "codex",
+  "status": "queued",
+  "attempt": 1,
+  "maxAttempts": 3,
+  "createdAt": 1772958600000,
+  "updatedAt": 1772958600000,
+  "successCriteria": [
+    "build passes",
+    "tests pass",
+    "review complete"
+  ],
+  "objectiveChecks": {
+    "build": "pending",
+    "tests": "pending",
+    "review": "pending",
+    "pr": "not-required",
+    "screenshot": "not-required"
+  },
+  "artifacts": {
+    "logPath": "local-orchestrator/logs/feat-example.log",
+    "promptPath": "local-orchestrator/prompts/feat-example-attempt-1.md",
+    "reviewPath": "local-orchestrator/reviews/feat-example.md",
+    "prUrl": null,
+    "resultPath": "local-orchestrator/results/feat-example.json",
+    "summaryPath": "local-orchestrator/results/feat-example-summary.md"
+  },
+  "workerRun": {
+    "tool": "codex",
+    "role": "implementer",
+    "startedAt": 1772958605000,
+    "finishedAt": null,
+    "lastPolledAt": null,
+    "exitCode": null,
+    "status": "planned",
+    "mode": "background",
+    "sessionId": "example-session-id",
+    "pid": 12345,
+    "logPath": "local-orchestrator/logs/feat-example.log",
+    "resultPath": "local-orchestrator/results/feat-example.json",
+    "summary": null
+  },
+  "notes": []
+}

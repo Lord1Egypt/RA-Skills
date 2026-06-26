@@ -1,0 +1,174 @@
+{
+  "name": "douyin-collection-fetch",
+  "description": "基于DATASAVER录制工作流转换: 获取douyin用户合集标签页下的内容",
+  "platform": "抖音",
+  "created_from": "datasaver:抖音合集信息获取.datasaver.json",
+  "created_at": "2024-01-15T10:30:00Z",
+  "parameters": [
+    {
+      "name": "douyin_username",
+      "type": "string",
+      "required": true,
+      "description": "要搜索的抖音用户名",
+      "example": "甄会说"
+    }
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "https://www.douyin.com/jingxuan"
+      },
+      "description": "打开抖音精选页面",
+      "is_final_result": false,
+      "datasaver_note": {
+        "original_label": "new-tab",
+        "original_url": "https://www.douyin.com/jingxuan",
+        "filtered_nodes": ["new-tab(hao123) - 中间跳转页面已过滤"]
+      }
+    },
+    {
+      "step": 2,
+      "tool_name": "task_tool",
+      "tool_params": {
+        "description": "查找搜索框selector",
+        "prompt": "当前页面：抖音精选页面，页面已加载完成。\n\n执行任务：\n1. 调用 chrome_accessibility_snapshot() 获取页面元素树\n2. 分析元素树找到搜索框（通常是input或textbox role，可能包含'搜索'的placeholder）\n3. 返回JSON格式：{\"selector\": \"找到的CSS选择器\", \"uid\": \"元素uid\"}\n\n严格要求：\n- 只返回目标元素信息，不要返回完整元素树\n- 必须包含uid字段，用于后续chrome_fill_or_select",
+        "subagent_type": "general-purpose",
+        "model": "sonnet"
+      },
+      "purpose": "selector_finding",
+      "output": {
+        "selector": "找到的selector",
+        "uid": "找到的元素uid"
+      },
+      "description": "使用chrome_accessibility_snapshot动态查找搜索框",
+      "is_final_result": false,
+      "datasaver_note": {
+        "original_label": "forms",
+        "original_selector": "input.YEhxqQNi.jUqDCyab",
+        "original_value": "甄会说",
+        "css_failed": true,
+        "recovery_method": "Task Tool调用chrome_accessibility_snapshot分析元素树查找",
+        "inference_source": "topLevelDescription + forms节点特征"
+      }
+    },
+    {
+      "step": 3,
+      "tool_name": "mcp__chrome-server__chrome_fill_or_select",
+      "tool_params": {
+        "selector": "{step_2.selector}",
+        "value": "{douyin_username}"
+      },
+      "description": "填写抖音用户名到搜索框",
+      "is_final_result": false,
+      "datasaver_note": {
+        "uses_dynamic_selector": true,
+        "selector_from_step": 2,
+        "parameterized": true
+      }
+    },
+    {
+      "step": 4,
+      "tool_name": "mcp__chrome-server__chrome_keyboard",
+      "tool_params": {
+        "selector": "{step_2.selector}",
+        "keys": "Enter"
+      },
+      "description": "按Enter键触发搜索",
+      "is_final_result": false,
+      "datasaver_note": {
+        "added_for": "触发搜索，原trigger-event节点转换"
+      }
+    },
+    {
+      "step": 5,
+      "tool_name": "task_tool",
+      "tool_params": {
+        "description": "查找用户主页链接",
+        "prompt": "当前页面：抖音搜索结果页，页面已加载完成。\n\n执行任务：\n1. 调用 chrome_accessibility_snapshot() 获取页面元素树\n2. 分析元素树找到用户名为'{douyin_username}'的用户链接元素\n3. 返回JSON格式：{\"uid\": \"元素uid\", \"href\": \"链接URL\"}\n\n严格要求：\n- 只返回目标元素信息，不要返回完整元素树\n- 必须包含href字段用于导航",
+        "subagent_type": "general-purpose",
+        "model": "sonnet"
+      },
+      "purpose": "selector_finding",
+      "output": {
+        "user_page_url": "用户主页URL"
+      },
+      "description": "使用chrome_accessibility_snapshot查找用户主页链接",
+      "is_final_result": false,
+      "datasaver_note": {
+        "original_label": "new-tab",
+        "original_url": "https://www.douyin.com/user/MS4wLjABAAAAQpzaF7au0Trso8kBnQGrURmc_7btZtzwXAfZ_wEBG649H1k0PWnOisaUiA2fDEBv?...",
+        "optimization": "使用Task Tool动态查找用户链接，而非硬编码URL",
+        "inference_source": "topLevelDescription"
+      }
+    },
+    {
+      "step": 6,
+      "tool_name": "mcp__chrome-server__chrome_navigate",
+      "tool_params": {
+        "url": "{step_5.user_page_url}"
+      },
+      "description": "导航到用户主页",
+      "is_final_result": false,
+      "datasaver_note": {
+        "uses_dynamic_url": true,
+        "url_from_step": 5
+      }
+    },
+    {
+      "step": 7,
+      "tool_name": "mcp__chrome-server__chrome_click_element",
+      "tool_params": {
+        "selector": "div.semi-tabs-tab.semi-tabs-tab-button:nth-child(2) > div.KTylVXFk > span"
+      },
+      "description": "点击'合集'标签",
+      "is_final_result": false,
+      "datasaver_note": {
+        "original_label": "event-click",
+        "original_selector": "div.semi-tabs-tab.semi-tabs-tab-button:nth-child(2) > div.KTylVXFk > span",
+        "css_verified": true
+      }
+    },
+    {
+      "step": 8,
+      "tool_name": "Skill",
+      "tool_params": {
+        "skill": "web-data-extractor",
+        "args": "提取当前页面的合集列表数据，包括合集名称、播放量、更新集数等信息"
+      },
+      "purpose": "get_html_info",
+      "description": "收集合集列表数据",
+      "is_final_result": true,
+      "datasaver_note": {
+        "original_label": "mark-element",
+        "original_selector": "div.ek9O6CWD",
+        "original_purpose": "抖音甄会说用户下合集信息",
+        "original_textPreview": "深度解说\n\n18.2万 播放\n\n更新至 2 集...",
+        "converted_to": "web-data-extractor"
+      }
+    }
+  ],
+  "datasaver_conversion_report": {
+    "original_nodes": 8,
+    "filtered_nodes": 2,
+    "final_steps": 8,
+    "filtered_node_types": ["trigger", "trigger-event"],
+    "node_type_mapping": {
+      "new-tab": "chrome_navigate",
+      "event-click": "chrome_click_element",
+      "forms": "chrome_fill_or_select",
+      "mark-element": "web-data-extractor skill"
+    },
+    "optimizations": [
+      "移除了trigger节点（DATASAVER启动触发器）",
+      "移除了trigger-event节点，转换为chrome_keyboard按Enter",
+      "过滤了中间跳转页面new-tab(hao123)",
+      "forms节点CSS Modules选择器失效，使用Task Tool动态查找",
+      "new-tab(用户主页)硬编码URL优化为Task Tool动态查找",
+      "mark-element节点转换为web-data-extractor skill收集数据"
+    ],
+    "warnings": [],
+    "verification_summary": "所有8个步骤已验证通过，包含2个Task Tool步骤用于动态选择器查找"
+  }
+}

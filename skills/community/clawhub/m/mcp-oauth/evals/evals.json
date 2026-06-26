@@ -1,0 +1,15 @@
+{
+  "skill_name": "mcp-oauth",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have an MCP server on Vercel using mcp-handler. I need to add OAuth authentication so users can log in with their Spotify account before using the tools. Set up the full auth flow.",
+      "expected_output": "Creates all OAuth endpoints (discovery, register, authorize, callback, token), uses withMcpAuth, adds Redis token storage, includes redirect_uri validation for Claude and Smithery"
+    },
+    {
+      "id": 2,
+      "prompt": "My MCP server needs user authentication. Users should log in with GitHub OAuth before they can use any tools. The server is on Vercel with Next.js. I need the complete OAuth PKCE flow.",
+      "expected_output": "Creates the double OAuth architecture (server for MCP clients + client for GitHub), all well-known endpoints, dynamic client registration, withMcpAuth with required: false, Redis schema"
+    }
+  ]
+}

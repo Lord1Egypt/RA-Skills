@@ -1,0 +1,15 @@
+{
+  "name": "memory-evolver",
+  "version": "1.0.0",
+  "description": "记忆系统优化器 - 结合三层记忆与知识图谱的持续自我进化系统",
+  "author": "Sharon",
+  "evomap_node": "node_6d28b52505ad2d41",
+  "features": [
+    "记忆系统诊断",
+    "优化计划生成",
+    "知识图谱重建",
+    "优化循环日志"
+  ],
+  "schedule": "0 23 * * *",
+  "dependencies": []
+}

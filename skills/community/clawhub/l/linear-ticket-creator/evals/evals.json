@@ -1,0 +1,32 @@
+{
+  "evals": [
+    {
+      "prompt": "Create a ticket: the login page returns a 500 error when the user enters an email with a + character",
+      "expected_behavior": "Bug ticket with steps to reproduce, auth-related file references in technical notes, acceptance criteria for special character handling, and out-of-scope section"
+    },
+    {
+      "prompt": "Write a Linear ticket for adding dark mode support to the settings page",
+      "expected_behavior": "Feature request ticket with acceptance criteria covering all UI states, relevant component and theme file references, and explicit out-of-scope items (e.g. dark mode for other pages)"
+    },
+    {
+      "prompt": "Draft a ticket: improve the API response time for the /users endpoint, it's taking over 3 seconds",
+      "expected_behavior": "Improvement ticket with measurable acceptance criteria (e.g. p95 < 500ms), technical notes identifying likely bottlenecks (N+1 queries, missing indexes), and out-of-scope items"
+    },
+    {
+      "prompt": "Create a ticket for updating the onboarding flow to include a company name field",
+      "expected_behavior": "Feature request with acceptance criteria covering form validation, DB migration, and edge cases; onboarding component and model references; unknowns marked with [CONFIRM]"
+    },
+    {
+      "prompt": "The export to CSV button on the reports page silently fails for datasets over 10k rows",
+      "expected_behavior": "Bug ticket with steps to reproduce, error handling acceptance criteria, streaming/pagination noted as a constraint in technical notes, and export formats out of scope"
+    },
+    {
+      "prompt": "We need to add rate limiting to the public API — we're getting hammered by a few bad actors",
+      "expected_behavior": "Improvement ticket with specific rate limit thresholds as acceptance criteria, middleware/gateway file references, and out-of-scope items like per-user billing or IP allowlisting"
+    },
+    {
+      "prompt": "ticket: users can't reset their password if their email has uppercase letters",
+      "expected_behavior": "Bug ticket identifying the email case-sensitivity issue, steps to reproduce, acceptance criteria for case-insensitive comparison, and references to auth/password-reset related files"
+    }
+  ]
+}

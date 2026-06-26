@@ -1,0 +1,13 @@
+{
+  "name": "mbti-coach-suite",
+  "version": "1.0.0",
+  "description": "MBTI 教练套件入口 - 16 型人格成长系统（v1.0.0 轻量级入口 + 类型选择引导）",
+  "author": "燃冰 + ant",
+  "license": "MIT",
+  "keywords": ["MBTI", "教练", "成长", "16 型人格", "套件入口"],
+  "category": "productivity",
+  "tags": ["mbti", "coaching", "personal-growth", "16-types"],
+  "main": "SKILL.md",
+  "files": ["SKILL.md"],
+  "repository": {"type": "git", "url": "https://github.com/lj22503/women-awakening-museum.git"}
+}

@@ -1,0 +1,95 @@
+{
+  "name": "douyin-deep-profile-collect",
+  "description": "深度采集抖音个人主页信息，包含基础资料、作品列表（含播放数）、喜欢列表、收藏列表、全量关注列表（虚拟滚动加载）",
+  "original_query": "采集抖音个人主页的信息、发布内容、关注、收藏、点赞等，全量数据",
+  "original_res": "成功采集：基础资料(昵称/性别/地区/抖音号/关注数/粉丝数/获赞数)、全部作品(标题+播放数)、喜欢列表、收藏列表、全量关注列表",
+  "parameters": [],
+  "platform": "抖音",
+  "created_from": "douyin-deep-profile-collect-log.json",
+  "created_at": "2026-03-19T11:30:00+08:00",
+  "steps": [
+    {
+      "step": 1,
+      "tool_name": "chrome_navigate",
+      "tool_params": {
+        "url": "https://www.douyin.com/user/self"
+      },
+      "description": "导航到抖音个人主页。已登录态下/user/self自动跳转到当前用户主页。不带active:false以获取tabId",
+      "output": {
+        "tab_id": "导航返回的tabId，后续所有步骤复用"
+      },
+      "is_final_result": false
+    },
+    {
+      "step": 2,
+      "tool_name": "chrome_execute_script",
+      "tool_params": {
+        "tabId": "{step_1.tab_id}",
+        "world": "MAIN",
+        "timeout": 20000,
+        "jsScript": "async () => { window.scrollTo({top:0,behavior:'instant'}); await new Promise(r=>setTimeout(r,300)); const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight); window.scrollTo({top:h,behavior:'smooth'}); await new Promise(r=>setTimeout(r,2000)); const h2=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight); if(h2>h){window.scrollTo({top:h2,behavior:'smooth'});await new Promise(r=>setTimeout(r,1500));} window.scrollTo({top:0,behavior:'smooth'}); await new Promise(r=>setTimeout(r,500)); return JSON.stringify({url:window.location.href, title:document.title, fullText:document.body.innerText}); }"
+      },
+      "description": "提取作品页（默认tab）：滚动加载全部作品 → 提取全文。包含基础资料(昵称/性别/地区/抖音号/关注粉丝获赞)和全部作品标题+播放数",
+      "is_final_result": false
+    },
+    {
+      "step": 3,
+      "tool_name": "chrome_execute_script",
+      "tool_params": {
+        "tabId": "{step_1.tab_id}",
+        "world": "MAIN",
+        "timeout": 20000,
+        "jsScript": "async () => { const tabs=document.querySelectorAll('.semi-tabs-tab'); for(let t of tabs){if(t.textContent.trim()==='喜欢'){t.click();break;}} await new Promise(r=>setTimeout(r,3000)); window.scrollTo({top:0,behavior:'instant'}); await new Promise(r=>setTimeout(r,300)); const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight); window.scrollTo({top:h,behavior:'smooth'}); await new Promise(r=>setTimeout(r,2000)); const h2=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight); if(h2>h){window.scrollTo({top:h2,behavior:'smooth'});await new Promise(r=>setTimeout(r,1500));} window.scrollTo({top:0,behavior:'smooth'}); await new Promise(r=>setTimeout(r,500)); return JSON.stringify({section:'likes',fullText:document.body.innerText}); }"
+      },
+      "description": "切换到「喜欢」tab并提取：点击.semi-tabs-tab文本为'喜欢'的元素 → 等待加载 → 滚动 → 提取全文。包含用户点赞过的视频标题和播放数",
+      "is_final_result": false
+    },
+    {
+      "step": 4,
+      "tool_name": "chrome_execute_script",
+      "tool_params": {
+        "tabId": "{step_1.tab_id}",
+        "world": "MAIN",
+        "timeout": 20000,
+        "jsScript": "async () => { const tabs=document.querySelectorAll('.semi-tabs-tab'); for(let t of tabs){if(t.textContent.trim()==='收藏'){t.click();break;}} await new Promise(r=>setTimeout(r,3000)); window.scrollTo({top:0,behavior:'instant'}); await new Promise(r=>setTimeout(r,300)); const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight); window.scrollTo({top:h,behavior:'smooth'}); await new Promise(r=>setTimeout(r,2000)); const h2=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight); if(h2>h){window.scrollTo({top:h2,behavior:'smooth'});await new Promise(r=>setTimeout(r,1500));} window.scrollTo({top:0,behavior:'smooth'}); await new Promise(r=>setTimeout(r,500)); return JSON.stringify({section:'favorites',fullText:document.body.innerText}); }"
+      },
+      "description": "切换到「收藏」tab并提取：点击.semi-tabs-tab文本为'收藏'的元素 → 等待加载 → 滚动 → 提取全文。包含用户收藏的视频标题和播放数",
+      "is_final_result": false
+    },
+    {
+      "step": 5,
+      "tool_name": "chrome_execute_script",
+      "tool_params": {
+        "tabId": "{step_1.tab_id}",
+        "world": "MAIN",
+        "timeout": 10000,
+        "jsScript": "() => { const divs=document.querySelectorAll('div.uvGnYXqn'); for(let d of divs){if(d.textContent.trim()==='关注'){d.parentElement.click();return JSON.stringify({ok:true});}} return JSON.stringify({ok:false}); }"
+      },
+      "description": "点击个人资料区域的「关注」数字打开关注侧边面板。面板不是modal/dialog，是侧边滑出panel",
+      "is_final_result": false
+    },
+    {
+      "step": 6,
+      "tool_name": "chrome_execute_script",
+      "tool_params": {
+        "tabId": "{step_1.tab_id}",
+        "world": "MAIN",
+        "timeout": 90000,
+        "jsScript": "async () => { await new Promise(r=>setTimeout(r,2000)); let panel=null; const allDivs=document.querySelectorAll('div'); let maxLinks=0; for(let d of allDivs){const links=d.querySelectorAll('a[href*=\"/user/\"]').length;if(links>maxLinks&&d.scrollHeight>300){maxLinks=links;panel=d;}} if(!panel) return JSON.stringify({error:'no_panel'}); let prevH=0,same=0; for(let i=0;i<100;i++){panel.scrollTop=panel.scrollHeight;panel.dispatchEvent(new WheelEvent('wheel',{deltaY:500,bubbles:true}));await new Promise(r=>setTimeout(r,300));if(panel.scrollHeight===prevH){same++;if(same>15)break;}else same=0;prevH=panel.scrollHeight;} const users=[],seen=new Set(); panel.querySelectorAll('a[href*=\"/user/\"]').forEach(a=>{const href=a.getAttribute('href')||'';const name=a.textContent.trim();if(name.length>0&&name.length<60&&!seen.has(href)){seen.add(href);users.push({name:name.substring(0,40),href:href});}}); document.querySelectorAll('a[href*=\"/user/\"]').forEach(a=>{const href=a.getAttribute('href')||'';const name=a.textContent.trim();if(name.length>0&&name.length<60&&!seen.has(href)&&!name.includes('的抖音')){seen.add(href);users.push({name:name.substring(0,40),href:href});}}); return JSON.stringify({count:users.length,users:users}); }"
+      },
+      "description": "全量滚动关注面板并提取用户列表：找到包含最多user链接的容器 → 通过WheelEvent+scrollTop激进滚动100轮(300ms/轮) → 提取所有a[href*=/user/]去重。面板使用虚拟滚动，必须用WheelEvent触发加载",
+      "is_final_result": false
+    },
+    {
+      "step": 7,
+      "tool_name": "chrome_close_tabs",
+      "tool_params": {
+        "tabIds": [
+          "{step_1.tab_id}"
+        ]
+      },
+      "description": "关闭抖音标签页，清理浏览器资源",
+      "is_final_result": true
+    }
+  ]
+}

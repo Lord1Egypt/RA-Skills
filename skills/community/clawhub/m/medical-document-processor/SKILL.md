@@ -1,35 +1,61 @@
 ---
-name: "Medical Document Processor"
-description: "醫療文檔處理技能 - 病歷摘要、報告分析、醫學文獻整理。適用於醫生、醫療專業人員。觸發詞：病歷、醫療報告、醫學文獻、clinical notes、medical document、病歷摘要、出院小結、門診記錄。"
-category: "productivity"
-source: "ClawHub"
-tags: [chinese, document, healthcare, medical]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-document-processor"
-sourceUrl: "https://clawhub.ai/skills/medical-document-processor"
+name: Medical Document Processor
+description: 醫療文檔處理技能 - 病歷摘要、報告分析、醫學文獻整理。適用於醫生、醫療專業人員。觸發詞：病歷、醫療報告、醫學文獻、clinical notes、medical document、病歷摘要、出院小結、門診記錄。
+version: 1.0.0
+author: psy仔
+slug: medical-document-processor
 ---
 
 # Medical Document Processor
 
-> 醫療文檔處理技能 - 病歷摘要、報告分析、醫學文獻整理。適用於醫生、醫療專業人員。觸發詞：病歷、醫療報告、醫學文獻、clinical notes、medical document、病歷摘要、出院小結、門診記錄。
+醫療文檔智能處理技能，專為醫療專業人員設計。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-document-processor`
-- **Source URL:** [https://clawhub.ai/skills/medical-document-processor](https://clawhub.ai/skills/medical-document-processor)
+## 功能
 
-## Overview
+### 1. 病歷摘要
+將冗長病歷壓縮為結構化摘要：
+- 主訴、現病史、既往史
+- 體檢發現
+- 診斷與鑑別診斷
+- 治療方案
 
+### 2. 醫療報告分析
+- 檢驗報告解讀
+- 影像報告摘要
+- 病理報告整理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/medical-document-processor
+### 3. 醫學文獻整理
+- 文獻重點提取
+- 研究方法摘要
+- 結論與臨床意義
+
+## 使用方式
+
+**病歷摘要：**
 ```
+請幫我摘要這份病歷：[貼上病歷內容]
+```
+
+**報告分析：**
+```
+分析這份檢驗報告：[貼上報告]
+```
+
+**文獻整理：**
+```
+整理這篇文獻的重點：[貼上文獻或連結]
+```
+
+## 輸出格式
+
+預設使用結構化 Markdown：
+- ✅ 清晰標題
+- ✅ 重點加粗
+- ✅ 表格整理數據
+- ✅ 臨床建議
+
+## 注意事項
+
+- 不提供診斷建議，僅做文檔整理
+- 保護患者隱私，去除個人識別信息
+- 醫療決策需由執業醫師判斷

@@ -1,0 +1,92 @@
+{
+  "_comment": "根据角色类型选择对应结构。三种变体可以混合使用。",
+
+  "version": "1.1.0",
+  "target": "{角色名}",
+  "target_type": "{真人|虚构角色|历史人物}",
+  "collected_at": "{ISO 8601}",
+
+  "_variant_A_真人": {
+    "platforms": {
+      "weibo": {
+        "status": "success|skipped|failed",
+        "uid": "", "name": "", "followers": 0,
+        "posts_collected": 0,
+        "posts": [{"date":"","text":"","likes":0,"comments":0,"reposts":0,"is_original":true}]
+      },
+      "bilibili": {
+        "subtitles": {
+          "total_videos": 0, "success": 0, "total_lines": 0,
+          "videos": [{"bvid":"","title":"","lines":0,"status":"success"}]
+        },
+        "speech_analysis": {
+          "avg_sentence_len": 0,
+          "top_phrases": {},
+          "sentence_distribution": {"short_pct":0,"medium_pct":0,"long_pct":0}
+        }
+      },
+      "douyin": {
+        "whisper_transcripts": {
+          "model": "base", "total_videos": 0, "success": 0, "total_chars": 0,
+          "videos": [{"id":"","title":"","chars":0,"status":"success"}]
+        }
+      },
+      "wikipedia": {
+        "key_facts": {"birth":"","birthplace":"","education":"","occupation":"","major_works":[]}
+      }
+    }
+  },
+
+  "_variant_B_虚构角色": {
+    "source_work": "{作品名}",
+    "source_type": "{动漫|影视剧|小说|游戏}",
+    "wiki_sources": {
+      "moegirl": {"url": "", "text_length": 0, "status": "success|skipped|failed"},
+      "baidu_baike": {"url": "", "text_length": 0, "status": "success|skipped|failed"},
+      "fandom": {"url": "", "text_length": 0, "status": "success|skipped|failed"}
+    },
+    "character_info": {
+      "basic": {"age":"","identity":"","species":"","abilities":[]},
+      "personality_description": "{百科原文}",
+      "catchphrases": ["{口头禅1}", "{口头禅2}"],
+      "quotes": [
+        {"text":"{台词}","scene":"{场景/集数}","emotion":"{情绪}"},
+        {"text":"{台词}","scene":"{场景}","emotion":"{情绪}"}
+      ],
+      "relationships": [
+        {"name":"{角色名}","type":"{恋人|挚友|家人|对手|上级}","description":"{关系描述}","attitude":"{对TA的态度}"}
+      ],
+      "key_events": [
+        {"event":"{事件描述}","impact":"{对性格的影响}"}
+      ]
+    }
+  },
+
+  "_variant_C_历史人物": {
+    "era": "{时代}",
+    "wiki_sources": {
+      "wikipedia": {"url": "", "text_length": 0, "status": "success|skipped|failed"},
+      "baidu_baike": {"url": "", "text_length": 0, "status": "success|skipped|failed"}
+    },
+    "quotes": [
+      {"text":"{名言}","source":"{出处}","topic":"{主题}"},
+      {"text":"{名言}","source":"{出处}","topic":"{主题}"}
+    ],
+    "speeches_texts": [
+      {"title":"{演讲/著作名}","text":"{全文或摘要}","date":"{日期}"}
+    ],
+    "biography": {
+      "birth": "", "death": "",
+      "key_events": [
+        {"year":"","event":"","significance":""}
+      ],
+      "thought_system": "{核心思想/哲学体系描述}",
+      "evaluations": ["{后世评价1}", "{后世评价2}"]
+    },
+    "video_subtitles": {
+      "_comment": "近现代名人可能有视频资料",
+      "total_videos": 0, "total_chars": 0,
+      "videos": [{"bvid":"","title":"","lines":0,"status":"success"}]
+    }
+  }
+}

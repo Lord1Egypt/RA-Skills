@@ -1,0 +1,14 @@
+{
+  "prompt_template": "A dynamic, high-quality photograph of a cartoon {token_name} character launching into space on a rocket, cinematic lighting, trending on ArtStation",
+  "size": "2K",
+  "config": {
+    "model": "image-generation",
+    "temperature": 0.0,
+    "top_p": 0.7,
+    "max_completion_tokens": 4096,
+    "thinking": "disabled"
+  },
+  "sp": "You are an image generation assistant for meme tokens.",
+  "up": "Generate a prediction image for {token_name}",
+  "tools": []
+}

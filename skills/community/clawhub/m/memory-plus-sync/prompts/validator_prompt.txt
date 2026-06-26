@@ -1,0 +1,17 @@
+# 记忆验证代理 Prompt (优化版)
+
+## 任务
+评估记忆内容，输出 JSON。
+
+## 输出格式
+```json
+{"validation_result": "PASS", "scores": {"accuracy": 8, "completeness": 7, "value": 8, "non_redundancy": 7}, "total_score": 30, "suggested_action": "STORE", "confidence": 0.8}
+```
+
+## 评分标准
+- PASS: total_score >= 30
+- FAIL: total_score < 20
+- NEEDS_REVIEW: 其他
+
+## 输入记忆
+{memory_content}

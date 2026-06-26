@@ -1,0 +1,40 @@
+{
+  "scores": {
+    "truthfulness": {
+      "skill_name": "truthfulness",
+      "score": 0.65,
+      "breakdown": {
+        "SR": 0.667,
+        "Sp": 0.75,
+        "R": 0.667,
+        "Q": 0.5
+      },
+      "passed": true,
+      "timestamp": "2026-03-10T15:27:32.584682"
+    },
+    "skill-manager": {
+      "skill_name": "skill-manager",
+      "score": 0.64,
+      "breakdown": {
+        "SR": 0.667,
+        "Sp": 0.7,
+        "R": 0.667,
+        "Q": 0.5
+      },
+      "passed": true,
+      "timestamp": "2026-03-10T15:27:32.585683"
+    }
+  },
+  "history": [
+    {
+      "skill": "truthfulness",
+      "score": 0.65,
+      "timestamp": "2026-03-10T15:27:32.584682"
+    },
+    {
+      "skill": "skill-manager",
+      "score": 0.64,
+      "timestamp": "2026-03-10T15:27:32.585683"
+    }
+  ]
+}

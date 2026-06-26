@@ -1,35 +1,38 @@
 ---
-name: "Mcporter 1.0.0"
-description: "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type gene..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcporter-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/mcporter-1-0-0"
+name: mcporter
+description: Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.
+homepage: http://mcporter.dev
+metadata: {"clawdbot":{"emoji":"📦","requires":{"bins":["mcporter"]},"install":[{"id":"node","kind":"node","package":"mcporter","bins":["mcporter"],"label":"Install mcporter (node)"}]}}
 ---
 
-# Mcporter 1.0.0
+# mcporter
 
-> Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type gene...
+Use `mcporter` to work with MCP servers directly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcporter-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/mcporter-1-0-0](https://clawhub.ai/skills/mcporter-1-0-0)
+Quick start
+- `mcporter list`
+- `mcporter list <server> --schema`
+- `mcporter call <server.tool> key=value`
 
-## Overview
+Call tools
+- Selector: `mcporter call linear.list_issues team=ENG limit:5`
+- Function syntax: `mcporter call "linear.create_issue(title: \"Bug\")"`
+- Full URL: `mcporter call https://api.example.com/mcp.fetch url:https://example.com`
+- Stdio: `mcporter call --stdio "bun run ./server.ts" scrape url=https://example.com`
+- JSON payload: `mcporter call <server.tool> --args '{"limit":5}'`
 
+Auth + config
+- OAuth: `mcporter auth <server | url> [--reset]`
+- Config: `mcporter config list|get|add|remove|import|login|logout`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcporter-1-0-0
-```
+Daemon
+- `mcporter daemon start|status|stop|restart`
+
+Codegen
+- CLI: `mcporter generate-cli --server <name>` or `--command <url>`
+- Inspect: `mcporter inspect-cli <path> [--json]`
+- TS: `mcporter emit-ts <server> --mode client|types`
+
+Notes
+- Config default: `./config/mcporter.json` (override with `--config`).
+- Prefer `--output json` for machine-readable results.

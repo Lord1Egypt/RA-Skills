@@ -1,0 +1,14 @@
+name: lobster-memory-system
+description: 龙虾记忆体系统 - 模块化、版本化、自动备份的 AI 记忆管理方案
+version: "1.0.0"
+author: Alan & 麻小
+type: skill
+tags:
+  - memory
+  - backup
+  - persistence
+  - lobster
+  - openclaw
+license: MIT
+homepage: https://github.com/openclaw/lobster-memory-system
+repository: https://github.com/openclaw/lobster-memory-system

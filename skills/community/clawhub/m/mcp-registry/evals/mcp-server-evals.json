@@ -1,0 +1,78 @@
+{
+  "skill_name": "mcpcentral-tool-search",
+  "evals": [
+    {
+      "id": 1,
+      "tool": "search_tools",
+      "prompt": "Find MCP tools that help AI agents persist memory and context between sessions.",
+      "expected_output": "A list of tools related to agent memory and context persistence (e.g., vector stores, embedding tools, session managers, knowledge bases), surfaced via search_tools with mode: semantic. Results reflect conceptual relevance, not just literal keyword overlap.",
+      "assertions": [
+        "search_tools is called with mode: \"semantic\"",
+        "At least 3 results are returned",
+        "Results are conceptually relevant to memory or context persistence (e.g., vector stores, embedding tools, session managers, knowledge bases)"
+      ]
+    },
+    {
+      "id": 2,
+      "tool": "search_tools",
+      "prompt": "Search for MCP servers with 'postgres' in the name or description.",
+      "expected_output": "A list of tools whose names or descriptions contain the exact term 'postgres', retrieved via search_tools with mode: bm25.",
+      "assertions": [
+        "search_tools is called with mode: \"bm25\"",
+        "At least 1 result is returned",
+        "All results contain 'postgres' in the tool name or description (no semantically-adjacent-but-unrelated tools like generic 'database' or 'SQL' servers that don't mention postgres)"
+      ]
+    },
+    {
+      "id": 3,
+      "tool": "search_tools",
+      "prompt": "Find tools for working with GitHub — include both well-known tools and ones I might not know about.",
+      "expected_output": "A list of GitHub-related and adjacent tools from search_tools with mode: hybrid. Results include directly-named GitHub tools plus semantically adjacent tools the user may not have thought to search for.",
+      "assertions": [
+        "search_tools is called with mode: \"hybrid\"",
+        "At least 3 results are returned",
+        "Results include tools directly named or described as GitHub tools",
+        "Results include at least one tool in an adjacent domain (code review, CI/CD, issue tracking, or repository management)"
+      ]
+    },
+    {
+      "id": 4,
+      "tool": "get_tool_schema",
+      "prompt": "What exact parameters do I need to call the postgres query tool?",
+      "expected_output": "A full JSON schema for a postgres query tool, including parameter names, types, and required/optional status. The serverId is resolved via a prior search_tools call; the toolName ('query') is inferred from the prompt.",
+      "assertions": [
+        "search_tools is first called to identify a valid postgres-related server ID (the ID is not invented)",
+        "get_tool_schema is called with both a serverId and a toolName (not a single combined ID string)",
+        "The response includes a JSON schema with a properties block",
+        "Each property in the schema includes a type and description",
+        "Required vs. optional parameters are distinguished in the response"
+      ]
+    },
+    {
+      "id": 5,
+      "tool": "recommend_tools",
+      "prompt": "What MCP servers are similar to the GitHub MCP server?",
+      "expected_output": "A list of servers similar to the GitHub MCP server, retrieved via recommend_tools with type: similar_to and a server-level ID resolved from a prior search_tools call. Results reflect functional similarity (code hosting, version control, CI/CD, developer workflow).",
+      "assertions": [
+        "search_tools is first called to identify a real GitHub server ID (the ID is not invented)",
+        "recommend_tools is called with type: \"similar_to\" and a serverId obtained from the prior search (server-level ID, not tool-level)",
+        "At least 3 results are returned",
+        "Results include servers in functionally adjacent domains (code hosting, version control, CI/CD, issue tracking, developer workflow)",
+        "The response describes the results as similarity-based, not as keyword search matches"
+      ]
+    },
+    {
+      "id": 6,
+      "tool": "recommend_tools",
+      "prompt": "I'm building an agent that monitors cloud infrastructure and sends alerts. What MCP tools should I use?",
+      "expected_output": "A list of tools recommended for the infrastructure monitoring and alerting task, retrieved via recommend_tools with type: for_task and a taskDescription string. Results are task-relevant (cloud providers, monitoring tools, alerting/notification tools).",
+      "assertions": [
+        "recommend_tools is called with type: \"for_task\" and a taskDescription string derived from the user's prompt",
+        "At least 3 results are returned",
+        "Results include tools relevant to cloud infrastructure, monitoring, or alerting/notifications",
+        "The response describes the results as task-based recommendations, not as keyword search matches",
+        "Results include tools from at least two of the following categories: cloud infrastructure, monitoring, alerting, or notifications"
+      ]
+    }
+  ]
+}

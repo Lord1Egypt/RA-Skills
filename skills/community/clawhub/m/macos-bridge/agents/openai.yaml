@@ -1,0 +1,4 @@
+interface:
+  display_name: "macOS Bridge"
+  short_description: "Install Linux wrappers for Mac-owned tools on the same LAN"
+  default_prompt: "Use $macos-bridge to map Mac-owned tools like imsg, remindctl, memo, things, or peekaboo onto a Linux gateway with SSH wrappers, enabled-channel auto-discovery from OpenClaw config, and optional Wake-on-LAN."

@@ -1,0 +1,19 @@
+# 记忆评分代理 Prompt (优化版)
+
+## 任务
+对记忆内容评分，输出 JSON。
+
+## 输出格式
+```json
+{"memory_type": "EVENT", "importance": "IMPORTANT", "total_score": 35, "priority_level": 4, "confidence": 0.7}
+```
+
+## 记忆类型
+- FACT: 事实性记忆
+- EVENT: 事件性记忆
+- SKILL: 技能性记忆
+- PREFERENCE: 偏好性记忆
+- DECISION: 决策性记忆
+
+## 输入记忆
+{memory_content}

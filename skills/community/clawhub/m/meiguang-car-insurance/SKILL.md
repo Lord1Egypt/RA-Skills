@@ -1,35 +1,104 @@
----
-name: "美光车险PDF转Excel"
-description: "Automatically extracts 14 key fields from Meiguang car insurance PDFs for 8 insurers and outputs data in Excel format."
-category: "other"
-source: "ClawHub"
-tags: [car-insurance, excel, insurance, pdf]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meiguang-car-insurance"
-sourceUrl: "https://clawhub.ai/skills/meiguang-car-insurance"
----
+# 美光车险PDF转Excel v5.7.5
 
-# 美光车险PDF转Excel
+从车险保单 PDF 自动提取 15 个字段，输出 Excel。支持 14 家保险公司，全量覆盖交强险/商业险/驾乘险/非车险。
 
-> Automatically extracts 14 key fields from Meiguang car insurance PDFs for 8 insurers and outputs data in Excel format.
+## 支持的保险公司和险种
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meiguang-car-insurance`
-- **Source URL:** [https://clawhub.ai/skills/meiguang-car-insurance](https://clawhub.ai/skills/meiguang-car-insurance)
+| 保险公司 | 险种 |
+|---------|------|
+| 中国人民财产保险股份有限公司 | 交强险、商业险、如意行（PEBS） |
+| 中国太平洋财产保险股份有限公司 | 交强险、商业险、驾意险（畅行保） |
+| 中国大地财产保险股份有限公司 | 交强险、商业险、驾意险、团体意外险（安行如意保） |
+| 中国平安财产保险股份有限公司 | 交强险、商业险、车主尊享保障 |
+| 浙商财产保险股份有限公司 | 交强险、商业险 |
+| 阳光财产保险股份有限公司 | 驾乘人员团体意外险 |
+| 亚太财产保险有限公司 | 交强险、商业险、非车险 |
+| 华海财产保险股份有限公司 | 交强险、商业险、驾意险 |
+| 利宝保险有限公司 | 交强险、驾乘人员意外伤害保险（合并PDF拆分） |
+| 太平财产保险有限公司 | 交强险、商业险、驾乘险 |
+| 泰山财产保险股份有限公司 | 交强险、商业险、驾乘险 |
+| 安华农业保险股份有限公司 | 交强险、商业险、驾乘险 |
+| 中煤财产保险股份有限公司 | 交强险、商业险、驾乘险 |
+| 中银保险有限公司 | 交强险、商业险 |
 
-## Overview
+## 提取字段（15个）
 
+1. Filename（源文件名）
+2. 签单时间
+3. 保险公司名称（标准化全称）
+4. 保单号
+5. 被保人姓名
+6. 被保险人证件号
+7. 车辆使用性质
+8. 车架号（VIN，17位）
+9. 车辆型号名称
+10. 被保险人手机号
+11. 车牌号码
+12. 险种名称原始
+13. 实收保费
+14. 车船税
+15. 保险起期
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
+直接运行：
 ```bash
-hermes skills install clawhub/meiguang-car-insurance
+python scripts/run_extract.py
 ```
+
+输入：`C:\Users\Administrator\Desktop\车险保单`
+输出：`C:\Users\Administrator\Desktop\车险保单提取结果_v5.xlsx`
+
+## 配置
+
+在 `scripts/run_extract.py` 顶部修改：
+```python
+PDF_FOLDER = r"C:\你的PDF文件夹路径"
+OUTPUT_FILE = r"C:\输出文件路径.xlsx"
+```
+
+## 已知限制
+
+- 平安车主尊享保障：pymupdf 中文全乱码，部分字段可能为空（待修复）
+- 部分商业险 PDF 无实收保费数据（pdfplumber 文本提取不稳）
+
+## 更新日志
+
+### v5.7.5 (2026-05-26)
+- 修复中煤保险手机号提取问题
+
+### v5.7.4 (2026-05-26)
+- 新增中银保险有限公司支持（交强险、商业险）
+
+### v5.7.0 (2026-05-07)
+- 新增华海财产保险支持（交强险/商业险/驾意险）
+- 代码优化：抽取公共字段提取函数 `_extract_common_fields()`，三大解析器减~350行重复代码
+- PDF 表格缓存 `_TABLE_CACHE`，同一PDF只打开一次，I/O降低80%+
+- `clean_data` 拆分为5个独立清洗函数
+- trace.log 改用 logging 模块
+- 修复6个代码质量问题（函数重复定义、中文数字映射bug、float逗号处理等）
+- 全量 98 条记录，15 字段覆盖率 100%（车船税除外，商业险/驾乘险正常无此字段）
+
+### v5.6.0 (2026-05-07)
+- 新增利宝保险专用解析器（交强险+驾乘险合并PDF拆分为2条记录）
+- 新增平安车主尊享保障、阳光驾乘险支持
+- 修复大地安行如意保手机号跨行匹配问题
+- 修复大地交强险车辆型号名称跨行提取问题
+- 全量 98 条记录字段覆盖率 100%
+
+### v5.2.0 (2026-05-06)
+- 修复 PLATE_INSURED_LOOKUP 未定义导致脚本崩溃
+- 车船税异常大值修复
+
+### v5.0.7 (2026-04-29)
+- 阳光驾乘险、平安尊享保障险种名称提取修复
+- 平安交强险车船税修复
+- 太平洋畅行保专用解析器
+
+### v3.0.1 (2026-04-22)
+- 字节级正则绕过 plumber text 编码损坏问题
+- 签单时间提取器独立化
+
+### v1.2.0 (2026-04-18)
+- 新增大地安行如意保专用解析函数
+- 被保人姓名支持投保人名称回退

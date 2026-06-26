@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "theme": {
+    "name": "default"
+  },
+  "style": {
+    "fontFamily": "-apple-system-font,BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB , Microsoft YaHei UI , Microsoft YaHei ,Arial,sans-serif",
+    "fontSize": "16px",
+    "primaryColor": "#0F4C81"
+  },
+  "codeBlock": {
+    "themeUrl": "https://cdn-doocs.oss-cn-shenzhen.aliyuncs.com/npm/highlightjs/11.11.1/styles/atom-one-dark.min.css",
+    "themeName": "atom-one-dark",
+    "isMacStyle": true,
+    "showLineNumber": false
+  },
+  "image": {
+    "legend": "alt-title"
+  },
+  "link": {
+    "citeStatus": false
+  },
+  "content": {
+    "countStatus": true,
+    "useIndent": false,
+    "useJustify": false
+  },
+  "headingStyles": {
+    "h1": "default",
+    "h2": "default",
+    "h3": "default",
+    "h4": "default",
+    "h5": "default",
+    "h6": "default"
+  },
+  "customCSS": ""
+}

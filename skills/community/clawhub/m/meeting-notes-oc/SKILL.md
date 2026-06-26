@@ -1,35 +1,31 @@
 ---
-name: "会议记录助手"
-description: "智能会议记录和待办事项跟踪助手"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meeting-notes-oc"
-sourceUrl: "https://clawhub.ai/skills/meeting-notes-oc"
+name: meeting-notes
+version: 1.0.0
+description: 智能会议记录和待办事项跟踪助手
+author: OpenClaw
+tags: [会议, 笔记, 待办, 效率]
 ---
 
-# 会议记录助手
+# meeting-notes - 会议记录技能
 
-> 智能会议记录和待办事项跟踪助手
+智能会议记录和待办事项跟踪助手。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meeting-notes-oc`
-- **Source URL:** [https://clawhub.ai/skills/meeting-notes-oc](https://clawhub.ai/skills/meeting-notes-oc)
+## 功能列表
+1. **会议记录** - 记录会议要点、决策、参与者
+2. **待办提取** - 自动提取会议中的待办事项
+3. **历史查询** - 搜索和回顾历史会议记录
+4. **日程关联** - 关联日历中的会议
 
-## Overview
+## 触发关键词
+- 记录会议、会议记录
+- 会议待办、会议要点
+- 查看会议、搜索会议
 
+## 数据存储
+- meetings.json - 会议记录
+- action-items.json - 待办事项
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meeting-notes-oc
-```
+## 使用示例
+- "记录今天下午的项目评审会议"
+- "查看上周会议的待办事项"
+- "搜索关于API设计的会议"

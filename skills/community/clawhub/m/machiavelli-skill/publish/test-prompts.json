@@ -1,0 +1,203 @@
+{
+  "skill": "Machiavelli Digital Twin / 马基雅维利分身",
+  "version": "1.6.3",
+  "description": "Trigger-condition test cases (bilingual EN+CN) for the Machiavelli Digital Twin skill",
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "lang": "zh",
+      "prompt": "单位里两个科室在争一个项目的主导权，我是中间协调的，两边都不想得罪，但总得推进。你怎么看？",
+      "expected_behavior": "调用马基雅维利分身做局势分析：拆解各方利益、列出选项、风险评估"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "lang": "zh",
+      "prompt": "我要向领导汇报一个情况不太乐观的项目进展，但不想让领导觉得我在推卸责任，该怎么措辞？",
+      "expected_behavior": "调用马基雅维利分身：用'坦率陈述但不冒犯'的方法给出汇报策略"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "lang": "zh",
+      "prompt": "上级要我们报一个方案，给了两个方向，但明眼人都知道他们想要A。我是按他们想要的写，还是如实写出两个选项的利弊？",
+      "expected_behavior": "调用马基雅维利分身：分析上级真实意图、给出多方案建议策略"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "lang": "zh",
+      "prompt": "我在写一个情况分析，涉及三个部门之间的利益关系，不太好直接写透，但又不能不写。怎么处理这个度？",
+      "expected_behavior": "调用马基雅维利分身：引用公文建议结构模板，给出利益分析的表达策略"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "lang": "zh",
+      "prompt": "马基雅维利，帮我分析一下这个局面：我们处室要搞一个跨部门联合检查，但牵头部门态度暧昧，配合部门积极性也不高，我作为具体经办人该怎么办？",
+      "expected_behavior": "调用马基雅维利分身：使用'假如我是他'角色扮演法推演各方意图"
+    },
+    {
+      "id": "should-trigger-en-01",
+      "type": "should_trigger",
+      "lang": "en",
+      "prompt": "/machia Two departments are fighting over project ownership. How do I mediate as the coordinator?",
+      "expected_behavior": "Activate Machiavelli Digital Twin: analyze stakeholder interests, list options, assess risks"
+    },
+    {
+      "id": "should-trigger-en-02",
+      "type": "should_trigger",
+      "lang": "en",
+      "prompt": "/machia I need to report bad news to my boss about a project that's going sideways. How do I phrase it without sounding like I'm passing the buck?",
+      "expected_behavior": "Activate Machiavelli Digital Twin: use 'frank but non-offensive' reporting strategy"
+    },
+    {
+      "id": "should-trigger-en-03",
+      "type": "should_trigger",
+      "lang": "en",
+      "prompt": "/machia My boss clearly prefers Option A but asked me to evaluate both fairly. What do I actually do?",
+      "expected_behavior": "Activate Machiavelli Digital Twin: analyze boss's true intent, provide multi-option strategy"
+    },
+    {
+      "id": "should-trigger-en-04",
+      "type": "should_trigger",
+      "lang": "en",
+      "prompt": "Machiavelli, there's a power struggle between three departments and I need to write an analysis. How do I navigate the sensitivity?",
+      "expected_behavior": "Activate Machiavelli Digital Twin: use role-play method, provide diplomatic communication strategy"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "lang": "zh",
+      "prompt": "帮我解释一下JavaScript里的闭包是什么？",
+      "expected_behavior": "不应调用马基雅维利分身，这是技术问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "lang": "zh",
+      "prompt": "今天心情不太好，感觉做什么都没劲",
+      "expected_behavior": "不应调用，这是纯情感倾诉场景"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "lang": "zh",
+      "prompt": "中午食堂吃鱼还是吃鸡？帮我选一个",
+      "expected_behavior": "不应调用，日常琐碎决策"
+    },
+    {
+      "id": "should-not-trigger-04",
+      "type": "should_not_trigger",
+      "lang": "zh",
+      "prompt": "今天天气怎么样？",
+      "expected_behavior": "不应调用，纯信息查询"
+    },
+    {
+      "id": "should-not-trigger-en-01",
+      "type": "should_not_trigger",
+      "lang": "en",
+      "prompt": "Can you help me debug this Python script? It's throwing a TypeError",
+      "expected_behavior": "Do not activate — this is a pure technical/programming question"
+    },
+    {
+      "id": "should-not-trigger-en-02",
+      "type": "should_not_trigger",
+      "lang": "en",
+      "prompt": "I'm feeling really down today, nothing seems to go right",
+      "expected_behavior": "Do not activate — pure emotional venting"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "lang": "zh",
+      "prompt": "领导在会上当众批评了我，我觉得他说的不完全对，但当时没敢反驳，现在越想越憋屈",
+      "expected_behavior": "应当调用——表面是情绪倾诉，但本质涉及权力关系分析和应对策略"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "lang": "zh",
+      "prompt": "我和同事关系一直不错，但他最近总是绕过我直接向领导汇报我负责的那块工作，我该怎么办？",
+      "expected_behavior": "应当调用——涉及博弈关系和策略选择，适合用狮狐之喻分析"
+    },
+    {
+      "id": "edge-03",
+      "type": "edge_case",
+      "lang": "zh",
+      "prompt": "这个方案领导已经拍板了，让我直接执行，但我心里觉得这个方案有问题",
+      "expected_behavior": "应谨慎判断——如果问'怎么执行好'则调用分析框架；如果只是表达不满则不应激活"
+    },
+    {
+      "id": "edge-en-01",
+      "type": "edge_case",
+      "lang": "en",
+      "prompt": "My boss publicly criticized me in a meeting. I think he was partially wrong but didn't dare push back. Now I keep dwelling on it",
+      "expected_behavior": "Should activate — appears to be emotional venting but is fundamentally about power dynamics and response strategy"
+    },
+    {
+      "id": "edge-en-02",
+      "type": "edge_case",
+      "lang": "en",
+      "prompt": "A colleague I've always been friendly with has been going directly to my boss to report on work that's actually my responsibility. What should I do?",
+      "expected_behavior": "Should activate — involves game-theoretic dynamics and strategy, suitable for Lion-and-Fox analysis"
+    },
+    {
+      "id": "T01-regression-fear",
+      "type": "should_trigger",
+      "lang": "dialogue",
+      "prompt": "/machia 如果我是一个新上任的领导，我应该让下属爱戴我还是怕我？",
+      "expected_behavior": "Credo 4 恐惧优于爱戴; 忘记父亲之死比忘记遗产丧失来得快; 避免被憎恨"
+    },
+    {
+      "id": "T02-new-credo14-irony",
+      "type": "should_trigger",
+      "lang": "dialogue",
+      "prompt": "/machia 我的项目被竞争对手用卑鄙手段搞垮了，正面硬刚不可能，放弃又不甘心。我还能做什么？",
+      "expected_behavior": "Credo 14 讽刺即抵抗; 金驴记; 习惯于损害而非益处; 用自嘲夺走敌人的嘲讽权"
+    },
+    {
+      "id": "T03-new-credo15-letters",
+      "type": "should_trigger",
+      "lang": "dialogue",
+      "prompt": "/machia 我每次给领导写汇报邮件都很纠结，不知道应该写得多'真实'。你觉得我应该完全坦诚吗？",
+      "expected_behavior": "Credo 15 书信即自我建构; 塑造一个配得上写作君主论的人格; 像演员一样写作"
+    },
+    {
+      "id": "T04-new-credo16-glory",
+      "type": "should_trigger",
+      "lang": "dialogue",
+      "prompt": "/machia 我一辈子都在帮别人做事，有时候觉得追名逐利是不是太虚荣了。你怎么看？",
+      "expected_behavior": "Credo 16 地狱胜过天堂; 临终之梦; 成就自身不朽; 尘世的荣耀是神圣的"
+    },
+    {
+      "id": "T05-new-credo17-chiron",
+      "type": "should_trigger",
+      "lang": "dialogue",
+      "prompt": "/machia 我是个写书的人，没什么实权。你觉得我的影响力会有多大？",
+      "expected_behavior": "Credo 17 我是新的喀戎; 思想的创造者; Chiron; 死後四个世纪仍在被阅读"
+    },
+    {
+      "id": "T06-blind-spots",
+      "type": "should_trigger",
+      "lang": "dialogue",
+      "prompt": "/machia 你说的一套似乎假设一个人可以扭转乾坤。但有些局面——比如经济危机、自然灾害——个人的能力根本不够。你的理论对此说了什么？",
+      "expected_behavior": "盲点; 系统性力量; virtù的局限; 城邦的世界"
+    },
+    {
+      "id": "T07-analysis-mode",
+      "type": "should_trigger",
+      "lang": "analysis",
+      "prompt": "/machia-a 我手下两个骨干在公开场合争执，一个主张激进扩张，一个主张保守收缩。帮我分析局面，不要讲故事。",
+      "expected_behavior": "分析模式; Step 1 实际问题; 不讲历史故事"
+    },
+    {
+      "id": "T08-not-trigger",
+      "type": "should_not_trigger",
+      "lang": "any",
+      "prompt": "帮我写一个JavaScript的排序算法",
+      "expected_behavior": "不应触发分身skill"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "auto_classify": true,
+  "auto_write": true,
+  "load_user": true,
+  "load_memory": true,
+  "load_focal_active": true,
+  "token_limit": 8000
+}

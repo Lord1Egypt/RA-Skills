@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LoomLens Live ✦</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: #1e2d4a;
+    --accent: #8b5cf6;
+    --accent-bright: #a78bfa;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --text: #e8edf5;
+    --text-dim: #8899bb;
+    --text-muted: #4a6a9a;
+    --radius: 8px;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  body {
+    font-family: var(--font);
+    background: transparent;
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.4;
+    width: 320px;
+  }
+
+  /* ── Root Panel ── */
+  .ll-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+  }
+
+  /* ── Header ── */
+  .ll-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    cursor: move;
+    user-select: none;
+    flex-shrink: 0;
+  }
+  .ll-header-left { display: flex; align-items: center; gap: 8px; }
+  .ll-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .ll-title { font-size: 13px; font-weight: 800; color: var(--text); letter-spacing: 0.3px; }
+  .ll-badge {
+    font-size: 9px; font-weight: 800;
+    padding: 2px 7px; border-radius: 4px;
+    letter-spacing: 0.5px; flex-shrink: 0;
+  }
+  .ll-badge.free { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
+  .ll-badge.used { background: rgba(245,158,11,0.15); color: var(--amber); border: 1px solid rgba(245,158,11,0.25); }
+  .ll-badge.locked { background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+  .ll-badge.live { background: rgba(139,92,246,0.15); color: var(--accent-bright); border: 1px solid rgba(139,92,246,0.25); }
+  .ll-hdr-btns { display: flex; gap: 3px; }
+  .ll-hdr-btn {
+    background: transparent; border: none;
+    color: var(--text-muted); cursor: pointer;
+    font-size: 14px; padding: 2px 6px; border-radius: 3px;
+    line-height: 1; transition: all 0.15s;
+  }
+  .ll-hdr-btn:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+
+  /* ── Prompt Input ── */
+  .ll-input-area {
+    padding: 10px 12px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .ll-prompt-wrap {
+    position: relative;
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s;
+    min-height: 72px;
+  }
+  .ll-prompt-wrap.drag-over { border-color: var(--accent); background: rgba(139,92,246,0.05); }
+  .ll-prompt-wrap.focused { border-color: var(--accent); border-style: solid; }
+  .ll-prompt-ta {
+    width: 100%; min-height: 70px;
+    background: transparent; border: none; outline: none;
+    color: var(--text); font-family: var(--font);
+    font-size: 11px; line-height: 1.5;
+    padding: 8px 10px; resize: vertical;
+    placeholder-color: var(--text-muted);
+  }
+  .ll-prompt-ta::placeholder { color: var(--text-muted); }
+  .ll-drop-hint {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; pointer-events: none;
+    color: var(--text-muted); font-size: 11px;
+    line-height: 1.5;
+  }
+  .ll-drop-hint.hidden { display: none; }
+
+  /* ── Filters ── */
+  .ll-filters {
+    display: flex; gap: 6px; align-items: center;
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    flex-shrink: 0;
+  }
+  .ll-filter-label { font-size: 10px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
+  .ll-select {
+    flex: 1; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 5px; color: var(--text); font-family: var(--font);
+    font-size: 10px; padding: 4px 6px; cursor: pointer; outline: none;
+  }
+  .ll-select:focus { border-color: var(--accent); }
+
+  /* ── Results ── */
+  .ll-body {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+  }
+  .ll-body::-webkit-scrollbar { width: 3px; }
+  .ll-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+  .ll-cluster { margin-bottom: 4px; }
+
+  .ll-cluster-header {
+    padding: 5px 12px 3px;
+    font-size: 9px; font-weight: 800;
+    letter-spacing: 1px; color: var(--text-muted);
+    text-transform: uppercase;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ll-cluster-count { font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+  .ll-card {
+    padding: 7px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(30,45,74,0.5);
+    transition: background 0.1s;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .ll-card:last-child { border-bottom: none; }
+  .ll-card:hover { background: rgba(255,255,255,0.02); }
+  .ll-card.selected { background: rgba(139,92,246,0.08); border-left: 2px solid var(--accent); padding-left: 10px; }
+  .ll-card.recommended { border-left: 2px solid var(--green); padding-left: 10px; }
+
+  .ll-card-top {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .ll-radio {
+    width: 12px; height: 12px;
+    border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ll-card.selected .ll-radio {
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(139,92,246,0.6);
+  }
+  .ll-card:not(.selected) .ll-radio {
+    border: 1.5px solid var(--text-muted);
+  }
+  .ll-card-name {
+    font-size: 12px; font-weight: 600;
+    color: var(--text-dim); flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .ll-card.selected .ll-card-name { color: var(--accent-bright); }
+  .ll-card-cost {
+    font-size: 11px; font-family: var(--mono);
+    color: var(--text-dim); flex-shrink: 0;
+  }
+  .ll-card-speed {
+    font-size: 10px; color: var(--green); flex-shrink: 0;
+    display: flex; align-items: center; gap: 2px;
+  }
+  .ll-card-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+  .ll-card-bar-row { display: flex; align-items: center; gap: 6px; padding-left: 18px; }
+  .ll-card-bar-wrap {
+    flex: 1; height: 3px; background: rgba(255,255,255,0.06);
+    border-radius: 99px; overflow: hidden;
+  }
+  .ll-card-bar { height: 100%; background: var(--text-muted); border-radius: 99px; transition: width 0.3s; }
+  .ll-card.selected .ll-card-bar { background: var(--accent); }
+  .ll-card.recommended .ll-card-bar { background: var(--green); }
+
+  .ll-card-insight {
+    font-size: 10px; color: var(--text-muted);
+    padding-left: 18px; line-height: 1.4;
+  }
+  .ll-card-badges { display: flex; gap: 4px; padding-left: 18px; flex-wrap: wrap; }
+  .ll-card-badge {
+    font-size: 9px; font-weight: 700; padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .ll-card-badge.rec { background: rgba(16,185,129,0.15); color: var(--green); }
+  .ll-card-badge.over { background: rgba(245,158,11,0.12); color: var(--amber); }
+  .ll-card-badge.sel { background: rgba(139,92,246,0.15); color: var(--accent-bright); }
+
+  /* ── Tip ── */
+  .ll-tip {
+    margin: 6px 12px;
+    padding: 7px 10px;
+    background: rgba(16,185,129,0.07);
+    border: 1px solid rgba(16,185,129,0.15);
+    border-radius: 5px;
+    font-size: 10px; color: var(--green);
+    line-height: 1.5;
+  }
+
+  /* ── Footer ── */
+  .ll-footer {
+    padding: 10px 12px;
+    border-top: 1px solid var(--border);
+    background: var(--surface2);
+    display: flex; flex-direction: column; gap: 7px;
+    flex-shrink: 0;
+  }
+  .ll-quota-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px;
+  }
+  .ll-quota-label { color: var(--text-muted); }
+  .ll-quota-val { font-family: var(--mono); color: var(--text-dim); }
+  .ll-quota-val.warn { color: var(--amber); }
+  .ll-quota-val.ok { color: var(--green); }
+
+  .ll-key-row { display: flex; gap: 5px; align-items: stretch; }
+  .ll-key-input {
+    flex: 1; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 5px; padding: 6px 8px;
+    color: var(--text); font-family: var(--mono); font-size: 10px;
+    outline: none;
+  }
+  .ll-key-input:focus { border-color: var(--accent); }
+  .ll-key-input::placeholder { color: var(--text-muted); font-family: var(--font); }
+  .ll-btn {
+    font-family: var(--font); font-size: 10px; font-weight: 700;
+    padding: 6px 10px; border-radius: 5px; border: none;
+    cursor: pointer; transition: opacity 0.15s; white-space: nowrap;
+  }
+  .ll-btn:hover { opacity: 0.85; }
+  .ll-btn.primary { background: var(--accent); color: white; }
+  .ll-btn.ghost {
+    background: rgba(255,255,255,0.06); color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+  .ll-btn.danger { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.2); }
+
+  .ll-run-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    color: white; border: none;
+    border-radius: 6px; padding: 10px;
+    font-family: var(--font); font-size: 12px; font-weight: 800;
+    cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    letter-spacing: 0.3px;
+  }
+  .ll-run-btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,92,246,0.4); }
+  .ll-run-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .ll-attribution {
+    font-size: 9px; color: var(--text-muted); text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .ll-attribution a { color: var(--text-muted); text-decoration: none; }
+  .ll-attribution a:hover { color: var(--accent-bright); }
+
+  /* ── Empty / Locked State ── */
+  .ll-state {
+    padding: 24px 20px;
+    text-align: center;
+    display: flex; flex-direction: column; gap: 12px; align-items: center;
+  }
+  .ll-state-icon { font-size: 28px; opacity: 0.6; }
+  .ll-state-title { font-size: 13px; font-weight: 700; color: var(--text-dim); }
+  .ll-state-sub { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+  .ll-state-sub a { color: var(--accent-bright); text-decoration: none; }
+  .ll-state-sub a:hover { text-decoration: underline; }
+
+  /* ── Minimized Dock ── */
+  .ll-dock {
+    width: 44px; height: 44px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    transition: all 0.2s;
+    position: relative;
+  }
+  .ll-dock:hover { border-color: var(--accent); transform: scale(1.05); }
+  .ll-dock-inner {
+    font-size: 16px; font-weight: 900;
+    color: var(--accent-bright);
+    letter-spacing: -1px;
+  }
+  .ll-dock-pulse {
+    position: absolute; top: -3px; right: -3px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    animation: pulse 2s infinite;
+  }
+  .ll-dock-pulse.used { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+  .ll-dock-pulse.gone { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ── DOCK (minimized) ─────────────────────────────── -->
+<div class="ll-dock" id="ll_dock" onclick="LL.open()" title="LoomLens Live ✦">
+  <div class="ll-dock-inner">✦</div>
+  <div class="ll-dock-pulse" id="ll_dock_pulse"></div>
+</div>
+
+<!-- ── PANEL ─────────────────────────────────────── -->
+<div class="ll-panel" id="ll_panel" style="display:none;">
+
+  <!-- Header -->
+  <div class="ll-header">
+    <div class="ll-header-left">
+      <div class="ll-dot"></div>
+      <span class="ll-title">LoomLens Live</span>
+      <span class="ll-badge free" id="ll_status_badge">3 FREE</span>
+    </div>
+    <div class="ll-hdr-btns">
+      <button class="ll-hdr-btn" id="ll_btn_min" title="Minimize">−</button>
+      <button class="ll-hdr-btn" id="ll_btn_close" title="Close">×</button>
+    </div>
+  </div>
+
+  <!-- Prompt Input -->
+  <div class="ll-input-area">
+    <div class="ll-prompt-wrap" id="ll_prompt_wrap">
+      <textarea
+        class="ll-prompt-ta"
+        id="ll_prompt_ta"
+        placeholder="Type or drop prompt here to estimate…"
+        rows="3"
+      ></textarea>
+      <div class="ll-drop-hint" id="ll_drop_hint">
+        ✦ Drop prompt here to estimate cost<br>
+        <span style="font-size:10px;opacity:0.6">or paste/type in the box above</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="ll-filters">
+    <span class="ll-filter-label">Cluster:</span>
+    <select class="ll-select" id="ll_cluster_sel">
+      <option value="all">All Clusters</option>
+      <option value="flash">Flash Reasoning</option>
+      <option value="fastgen">Fast General</option>
+      <option value="code">Balanced Coding</option>
+      <option value="power">Power / Architecture</option>
+      <option value="vision">Vision / Multimodal</option>
+    </select>
+    <span class="ll-filter-label">Sort:</span>
+    <select class="ll-select" id="ll_sort_sel">
+      <option value="score">Best Fit</option>
+      <option value="cost">Lowest Cost</option>
+      <option value="speed">Fastest</option>
+    </select>
+  </div>
+
+  <!-- Results Body -->
+  <div class="ll-body" id="ll_body">
+    <div class="ll-state" id="ll_empty_state">
+      <div class="ll-state-icon">✦</div>
+      <div class="ll-state-title">LoomLens Live</div>
+      <div class="ll-state-sub">
+        Enter a prompt above to see cost estimates<br>across all major models
+      </div>
+    </div>
+  </div>
+
+  <!-- Tip -->
+  <div class="ll-tip" id="ll_tip" style="display:none;"></div>
+
+  <!-- Footer -->
+  <div class="ll-footer">
+    <div class="ll-quota-row">
+      <span class="ll-quota-label" id="ll_quota_label">Free estimates:</span>
+      <span class="ll-quota-val ok" id="ll_quota_val">3 left</span>
+    </div>
+    <div class="ll-key-row" id="ll_key_row" style="display:none;">
+      <input type="password" class="ll-key-input" id="ll_key_input" placeholder="sk_... Signal Loom API key" />
+      <button class="ll-btn primary" onclick="LL.connectKey()">Connect</button>
+    </div>
+    <button class="ll-btn ghost" id="ll_show_key" onclick="LL.toggleKeyRow()" style="font-size:9px;">
+      + Connect API key for unlimited
+    </button>
+    <button class="ll-run-btn" id="ll_run_btn" onclick="LL.runEstimate()" disabled>
+      Select a model to run →
+    </button>
+    <div class="ll-attribution">
+      Powered by <a href="https://signalloomai.com" target="_blank">Signal Loom AI</a> ✦
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ─── State ────────────────────────────────────────────────────────────────
+  const STORAGE_KEYS = {
+    apiKey:   'llive_api_key',
+    freeUsed: 'llive_free_used',
+    freeReset:'llive_free_reset',
+    selected: 'llive_selected_model',
+  };
+  const FREE_LIMIT = 3;
+  const CPT = 3.8;  // chars per token (English average)
+
+  let state = {
+    prompt:        '',
+    apiKey:        localStorage.getItem(STORAGE_KEYS.apiKey) || '',
+    freeUsed:      parseInt(localStorage.getItem(STORAGE_KEYS.freeUsed) || '0'),
+    freeReset:     parseInt(localStorage.getItem(STORAGE_KEYS.freeReset) || '0'),
+    selectedModel: localStorage.getItem(STORAGE_KEYS.selected) || '',
+    result:        null,
+    minimized:     false,
+  };
+
+  // ─── Model Clusters ────────────────────────────────────────────────────────
+  const CLUSTERS = [
+    {
+      id: 'flash',
+      name: 'Flash Reasoning',
+      desc: 'Fast + cheap. Best for Q&A, summaries, simple tasks.',
+      models: [
+        { id: 'minimax/MiniMax-M2',     name: 'MiniMax M2',        provider: 'MiniMax',  tier: 3, inPrice: 0.10, outPrice: 0.40, latency: 'fast', caps: ['reasoning','fast','cheap'] },
+        { id: 'google/gemini-2.5-flash', name: 'Gemini 2.5 Flash',  provider: 'Google',   tier: 3, inPrice: 0.15, outPrice: 0.60, latency: 'fast', caps: ['reasoning','fast'] },
+        { id: 'anthropic/claude-haiku',  name: 'Claude Haiku',      provider: 'Anthropic',tier: 3, inPrice: 0.80, outPrice: 4.00, latency: 'fast', caps: ['fast','light-reasoning'] },
+        { id: 'deepseek/deepseek-chat-v3',name:'DeepSeek Chat v3',  provider: 'DeepSeek',tier: 3, inPrice: 0.27, outPrice: 1.10, latency: 'fast', caps: ['reasoning','fast'] },
+      ],
+    },
+    {
+      id: 'fastgen',
+      name: 'Fast General',
+      desc: 'Fast general purpose. Best latency for typical prompts.',
+      models: [
+        { id: 'openai/gpt-4o-mini',      name: 'GPT-4o Mini',       provider: 'OpenAI',   tier: 3, inPrice: 0.15, outPrice: 0.60, latency: 'fast', caps: ['fast','cheap'] },
+        { id: 'google/gemini-2.0-flash', name: 'Gemini 2.0 Flash',  provider: 'Google',   tier: 3, inPrice: 0.10, outPrice: 0.40, latency: 'fast', caps: ['fast','cheap'] },
+        { id: 'xai/grok-3',              name: 'xAI Grok-3',         provider: 'xAI',      tier: 3, inPrice: 2.00, outPrice: 10.0, latency: 'fast', caps: ['fast','reasoning'] },
+      ],
+    },
+    {
+      id: 'code',
+      name: 'Balanced Coding',
+      desc: 'Best code capability per dollar. Medium tasks.',
+      models: [
+        { id: 'anthropic/claude-sonnet-4-20250514', name: 'Claude Sonnet 4', provider: 'Anthropic', tier: 2, inPrice: 3.00, outPrice: 15.0, latency: 'medium', caps: ['reasoning','code','analysis'] },
+        { id: 'openai/gpt-4o',             name: 'GPT-4o',             provider: 'OpenAI',   tier: 2, inPrice: 2.50, outPrice: 10.0, latency: 'medium', caps: ['reasoning','vision','code'] },
+        { id: 'anthropic/claude-3.5-sonnet',name: 'Claude 3.5 Sonnet',  provider: 'Anthropic',tier: 2, inPrice: 3.00, outPrice: 15.0, latency: 'medium', caps: ['code','reasoning'] },
+      ],
+    },
+    {
+      id: 'power',
+      name: 'Power / Architecture',
+      desc: 'Maximum reasoning. Pay for it only when needed.',
+      models: [
+        { id: 'anthropic/claude-opus-4-20250514', name: 'Claude Opus 4',   provider: 'Anthropic', tier: 1, inPrice: 15.0, outPrice: 75.0, latency: 'slow', caps: ['reasoning','code','analysis','long-context'] },
+        { id: 'anthropic/claude-code',      name: 'Claude Code',        provider: 'Anthropic', tier: 1, inPrice: 15.0, outPrice: 75.0, latency: 'slow', caps: ['agentic','code','architecture'] },
+      ],
+    },
+    {
+      id: 'vision',
+      name: 'Vision / Multimodal',
+      desc: 'Image + document understanding.',
+      models: [
+        { id: 'openai/gpt-4o',             name: 'GPT-4o',             provider: 'OpenAI',   tier: 4, inPrice: 2.50, outPrice: 10.0, latency: 'medium', caps: ['vision','reasoning','multimodal'] },
+        { id: 'anthropic/claude-3.5',      name: 'Claude 3.5',         provider: 'Anthropic',tier: 4, inPrice: 3.00, outPrice: 15.0, latency: 'medium', caps: ['vision','code','analysis'] },
+      ],
+    },
+  ];
+
+  // ─── Task Detection ────────────────────────────────────────────────────────
+  const TASK_KEYWORDS = {
+    simple_qa:         ['what is','who is','define','explain','how do i','how does','what are','why does','when did','where is','tell me'],
+    summary:           ['summarize','tl;dr','sum up','brief','recap','key points','highlights','overview','condense'],
+    code_edit:         ['fix','bug','debug','hotfix','patch','tweak','adjust','correct','error','issue'],
+    code_write:        ['write','build','create','implement','add feature','new function','generate',' scaffold','code for'],
+    complex_analysis:  ['analyze','architecture','review','refactor','design','strategy','compare','evaluate','assess','plan'],
+    vision:            ['image','photo','picture','screenshot','diagram','chart','visual','frame','pdf','document'],
+  };
+
+  const OUTPUT_TOKENS = { simple_qa:150, summary:200, code_edit:400, code_write:800, complex_analysis:600, vision:300, unknown:400 };
+  const LATENCY_SCORE = { fast: 100, medium: 62, slow: 22 };
+
+  function detectTask(prompt) {
+    const lower = prompt.toLowerCase();
+    const scores = {};
+    for (const [type, kws] of Object.entries(TASK_KEYWORDS)) {
+      scores[type] = kws.reduce((acc, kw) => acc + (lower.includes(kw) ? 1 : 0), 0);
+    }
+    // Boost code signals
+    if (/```[\s\S]+```/.test(prompt)) scores.code_write = (scores.code_write||0) + 2;
+    if (/^\s*(import|from|const|let|function|class|def |fn |pub fn)/m.test(prompt)) scores.code_write = (scores.code_write||0) + 2;
+    const best = Object.entries(scores).sort((a,b) => b[1]-a[1])[0];
+    return best && best[1] > 0 ? best[0] : 'unknown';
+  }
+
+  // ─── Capability Fit per Cluster ──────────────────────────────────────────
+  const CAP_FIT = {
+    // task → cluster → fit 0-100
+    simple_qa:        { flash: 95, fastgen: 80, code: 30, power: 20, vision: 20 },
+    summary:          { flash: 90, fastgen: 75, code: 40, power: 30, vision: 20 },
+    code_edit:        { flash: 60, fastgen: 40, code: 90, power: 40, vision: 20 },
+    code_write:       { flash: 30, fastgen: 20, code: 95, power: 95, vision: 20 },
+    complex_analysis: { flash: 40, fastgen: 30, code: 85, power: 98, vision: 20 },
+    vision:           { flash: 10, fastgen: 10, code: 30, power: 30, vision: 98 },
+    unknown:          { flash: 70, fastgen: 60, code: 60, power: 50, vision: 40 },
+  };
+
+  // ─── Cost Calculation ─────────────────────────────────────────────────────
+  function estimateTokens(text) {
+    if (!text || !text.trim()) return 0;
+    const lang = /[\u3040-\u309F\u30A0-\u30FF]/.test(text) ? 'ja' : /[\u4E00-\u9FFF]/.test(text) ? 'zh' : /[áéíóúñ¿¡ü]/i.test(text) ? 'es' : 'en';
+    const cpt = lang === 'ja' ? 1.2 : lang === 'zh' ? 1.0 : lang === 'es' ? 3.5 : CPT;
+    const multiline = (text.match(/\n/g)||[]).length;
+    const codeFences = (text.match(/```/g)||[]).length;
+    const mult = (codeFences >= 2 || multiline > 3) ? 1.2 : 1.0;
+    return Math.ceil((text.length / cpt) * mult);
+  }
+
+  function calcCost(model, inTokens, outTokens) {
+    return ((inTokens/1e6)*model.inPrice) + ((outTokens/1e6)*model.outPrice);
+  }
+
+  // ─── Scoring ─────────────────────────────────────────────────────────────
+  function scoreModel(model, task, clusterModels) {
+    const capFit  = CAP_FIT[task]?.[model.clusterId] ?? 50;
+    const costs   = clusterModels.map(m => calcCost(m,1,1)); // relative
+    const minC    = Math.min(...costs);
+    const maxC    = Math.max(...costs);
+    const range   = maxC - minC || 1;
+    const costEff = Math.round(100 - ((calcCost(model,1,1)-minC)/range*100));
+    const speed   = LATENCY_SCORE[model.latency] ?? 50;
+    return Math.round(capFit * 0.35 + costEff * 0.35 + speed * 0.30);
+  }
+
+  // ─── Main Estimation ─────────────────────────────────────────────────────
+  function estimate(prompt, selectedId) {
+    if (!prompt || prompt.trim().length < 10) return null;
+    const task      = detectTask(prompt);
+    const inTokens  = estimateTokens(prompt);
+    const outTokens = OUTPUT_TOKENS[task] ?? 400;
+    const flat      = [];
+
+    for (const cluster of CLUSTERS) {
+      for (const model of cluster.models) {
+        const m = { ...model, clusterId: cluster.id, clusterName: cluster.name };
+        m.cost     = calcCost(m, inTokens, outTokens);
+        m.inTokens = inTokens;
+        m.outTokens= outTokens;
+        flat.push(m);
+      }
+    }
+
+    // Per-cluster scoring
+    const clusterResults = {};
+    for (const cluster of CLUSTERS) {
+      const cModels = flat.filter(m => m.clusterId === cluster.id);
+      cModels.forEach(m => { m.score = scoreModel(m, task, cModels); });
+      const sorted = [...cModels].sort((a,b) => b.score - a.score);
+      const best   = sorted.find(m => m.score >= 65) ?? sorted[0];
+      clusterResults[cluster.id] = { sorted, best, cluster };
+    }
+
+    // Global
+    const allScored = flat.map(m => {
+      const cr = clusterResults[m.clusterId];
+      m.score   = cr.best === m ? m.score : Math.round(m.score * 0.7); // penalize non-cluster-best
+      return m;
+    });
+    const globalSorted = [...allScored].sort((a,b) => b.score - a.score);
+    const recommended  = globalSorted.find(m => m.score >= 80);
+    const selected      = flat.find(m => m.id === selectedId) ?? globalSorted[0];
+
+    // Tip
+    let tip = '';
+    if (recommended && recommended.id !== selectedId) {
+      const saving = (flat.find(m=>m.id===selectedId)?.cost ?? 0) - recommended.cost;
+      if (saving > 0.0001) {
+        tip = `${recommended.name} is better for this task. Switching saves ${fmtCost(saving)}.`;
+      }
+    }
+
+    return {
+      task, inTokens, outTokens,
+      clusters: clusterResults,
+      all: globalSorted,
+      recommended,
+      selected,
+      tip,
+    };
+  }
+
+  // ─── Formatting ──────────────────────────────────────────────────────────
+  function fmtCost(n) {
+    if (n >= 1) return '$' + n.toFixed(2);
+    if (n >= 0.01) return '$' + n.toFixed(3);
+    return '$' + n.toFixed(4);
+  }
+
+  // ─── API Response Mapper ─────────────────────────────────────────────────
+  // Maps Signal Loom /v1/estimate response → local LoomLensResult format.
+  // We pass all cluster models and inject the API cost into the right one.
+  function _mapAPIResponse(data, selectedId, prompt) {
+    // Find the cheapest from the API response
+    const apiModels = (data.models || []).sort((a,b) => a.estimated_cost_mid - b.estimated_cost_mid);
+    const cheapestAPI = apiModels[0];
+    const expensiveAPI = apiModels[apiModels.length - 1];
+
+    // Run local engine to get clusters, then inject API costs
+    const local = estimate(prompt, selectedId);
+
+    if (!cheapestAPI) return local;
+
+    // Inject API cost into the selected model
+    const selectedModel = local.allModels.find(m => m.modelId === selectedId) || local.allModels[0];
+    if (selectedModel) {
+      selectedModel.inputTokens = apiModels.find(m => m.model === selectedId)?.input_tokens_estimate || selectedModel.inputTokens;
+      selectedModel.outputTokens = apiModels.find(m => m.model === selectedId)?.output_tokens_estimate || selectedModel.outputTokens;
+      selectedModel.totalCost = apiModels.find(m => m.model === selectedId)?.estimated_cost_mid || selectedModel.totalCost;
+    }
+
+    // Update cheapest/expensive based on API data
+    const cheapestLocal = local.allModels.find(m => m.modelId === cheapestAPI.model);
+    if (cheapestLocal) cheapestLocal.totalCost = cheapestAPI.estimated_cost_mid;
+
+    // Re-sort clusters with injected costs
+    for (const [cid, cr] of Object.entries(local.clusters)) {
+      cr.models.sort((a,b) => a.totalCost - b.totalCost);
+      cr.best = cr.models.find(m => m.compositeScore >= 65) ?? cr.models[0];
+    }
+    local.allModels.sort((a,b) => b.compositeScore - a.compositeScore);
+    local.recommended = local.allModels.find(m => m.compositeScore >= 80) ?? cheapestLocal;
+
+    // Tip using API costs
+    const rec = local.recommended;
+    const sel = selectedModel;
+    if (rec && sel && rec.modelId !== sel.modelId) {
+      const saving = sel.totalCost - rec.totalCost;
+      if (saving > 0.0001) local.tip = `Switch to ${rec.modelName} and save ${fmtCost(saving)}.`;
+      else if (saving < -0.0001) local.tip = `${sel.modelName} costs ${fmtCost(Math.abs(saving))} more.`;
+    } else if (sel) {
+      local.tip = `${sel.modelName} is a good fit for this task.`;
+    }
+
+    // Attach billing metadata from API response
+    local._billing = data.billing || null;
+    local._apiResponse = data;
+    return local;
+  }
+
+  // ─── Loading State ─────────────────────────────────────────────────────────
+  let loading = false;
+  function setLoading(v) { loading = v; }
+
+  // ─── Free Usage ──────────────────────────────────────────────────────────
+  // Reset free counter at midnight UTC.
+  function checkFreeReset() {
+    const now = Math.floor(Date.now() / 1000);
+    if (now >= state.freeReset) {
+      state.freeUsed  = 0;
+      state.freeReset = now + 86400; // reset at next midnight UTC
+      localStorage.setItem(STORAGE_KEYS.freeUsed, '0');
+      localStorage.setItem(STORAGE_KEYS.freeReset, String(state.freeReset));
+    }
+  }
+
+  // Decrement free run counter. Returns false when all 3 daily free runs are exhausted.
+  function useFree() {
+    if (state.apiKey) return true; // API key = paid, always allowed
+    checkFreeReset();
+    if (state.freeUsed >= FREE_LIMIT) return false;  // no free runs left
+    state.freeUsed++;
+    localStorage.setItem(STORAGE_KEYS.freeUsed, String(state.freeUsed));
+    return true;
+  }
+
+  // Returns remaining free runs today (0 when exhausted).
+  function freeLeft() {
+    if (state.apiKey) return Infinity;
+    checkFreeReset();
+    return Math.max(0, FREE_LIMIT - state.freeUsed);
+  }
+
+  // ─── Render ──────────────────────────────────────────────────────────────
+  const $ = id => document.getElementById(id);
+
+  function render() {
+    const left = freeLeft();
+    const hasApi = !!state.apiKey;
+    const panel = $('ll_panel');
+    const dock  = $('ll_dock');
+
+    // Badge — show -3, -2, -1 counter for free tier
+    const badge = $('ll_status_badge');
+    if (hasApi) {
+      badge.textContent = 'LIVE'; badge.className = 'll-badge live';
+    } else if (left > 0) {
+      const displayCount = -(FREE_LIMIT - left + 1); // -3, -2, -1
+      badge.textContent = displayCount; badge.className = 'll-badge free';
+    } else {
+      badge.textContent = '0'; badge.className = 'll-badge locked';
+    }
+
+    // Dock pulse
+    const pulse = $('ll_dock_pulse');
+    if (hasApi || left > 0) pulse.className = 'll-dock-pulse';
+    else if (left === 0) pulse.className = 'll-dock-pulse used';
+    else pulse.className = 'll-dock-pulse gone';
+
+    // Quota
+    const qLabel = $('ll_quota_label');
+    const qVal   = $('ll_quota_val');
+    if (hasApi) {
+      // Show quota from last API response headers
+      const quota = state.result?._quota;
+      if (quota && quota.monthly_limit > 0) {
+        const rem = quota.remaining_this_month;
+        qLabel.textContent = 'API quota:';
+        qVal.textContent = rem === 0 ? 'Exhausted ⚠' : `${rem} remaining`;
+        qVal.className = rem === 0 ? 'll-quota-val warn' : 'll-quota-val ok';
+      } else {
+        qLabel.textContent = 'API key:'; qVal.textContent = 'Connected ✓'; qVal.className = 'll-quota-val ok';
+      }
+    } else {
+      const displayCount = left > 0 ? -(FREE_LIMIT - left + 1) : 0; // -3, -2, -1, then 0
+      qLabel.textContent = 'Free runs:';
+      qVal.textContent   = displayCount < 0 ? displayCount : '0 (paid)';
+      qVal.className      = displayCount < 0 ? 'll-quota-val ok' : 'll-quota-val warn';
+    }
+
+    // Key row
+    if (hasApi) {
+      $('ll_key_row').style.display = 'none';
+      $('ll_show_key').style.display = 'flex';
+      $('ll_show_key').className = 'll-btn ghost';
+      $('ll_show_key').textContent = 'Disconnect key';
+    }
+
+    renderBody();
+    renderTip();
+  }
+
+  function renderBody() {
+    const result = state.result;
+    const body    = $('ll_body');
+    const empty   = $('ll_empty_state');
+    const clusterSel = $('ll_cluster_sel').value;
+    const sortSel    = $('ll_sort_sel').value;
+
+    // Loading state
+    if (loading) {
+      body.innerHTML = `<div class="ll-state">
+        <div class="ll-state-icon">⚡</div>
+        <div class="ll-state-title">Estimating…</div>
+        <div class="ll-state-sub">Calling Signal Loom API</div>
+      </div>`;
+      return;
+    }
+
+    // Error state
+    if (result?.error) {
+      const isQuota = result.error === 'quota_exhausted';
+      body.innerHTML = `<div class="ll-state">
+        <div class="ll-state-icon">${isQuota ? '📊' : '🔑'}</div>
+        <div class="ll-state-title">${isQuota ? 'Quota Exhausted' : 'API Key Issue'}</div>
+        <div class="ll-state-sub">${result.message}<br><br>
+          <a href="https://signallloomai.com/signup.html" target="_blank" style="color:#a78bfa">Get API key →</a>
+          &nbsp;·&nbsp;
+          <a href="https://signallloomai.com/pricing" target="_blank" style="color:#a78bfa">View plans →</a>
+        </div>
+      </div>`;
+      return;
+    }
+
+    if (!result) {
+      body.innerHTML = '';
+      body.appendChild(empty);
+      empty.style.display = '';
+      return;
+    }
+    empty.style.display = 'none';
+
+    // Collect models to show
+    let models = [];
+    if (clusterSel === 'all') {
+      models = result.all;
+    } else {
+      models = result.clusters[clusterSel]?.sorted ?? [];
+    }
+
+    // Sort
+    if (sortSel === 'cost')  models = [...models].sort((a,b) => a.cost - b.cost);
+    else if (sortSel === 'speed') models = [...models].sort((a,b) => LATENCY_SCORE[b.latency] - LATENCY_SCORE[a.latency]);
+    // else: keep score order
+
+    const maxCost = Math.max(...result.all.map(m=>m.cost));
+
+    // Group by cluster
+    const groups = {};
+    for (const m of models) {
+      if (!groups[m.clusterId]) groups[m.clusterId] = [];
+      groups[m.clusterId].push(m);
+    }
+
+    let html = '';
+    for (const [cid, cmodels] of Object.entries(groups)) {
+      const cluster = CLUSTERS.find(c=>c.id===cid);
+      const best = result.clusters[cid]?.best;
+      html += `<div class="ll-cluster">
+        <div class="ll-cluster-header">
+          ${cluster?.name ?? cid}
+          <span class="ll-cluster-count">${cmodels.length} models</span>
+        </div>`;
+
+      for (const m of cmodels) {
+        const isSel    = m.id === state.selectedModel;
+        const isBest   = best?.id === m.id;
+        const barW     = Math.max(4, Math.round((m.cost / maxCost) * 100));
+        const speedGlyph = m.latency === 'fast' ? '⚡' : m.latency === 'medium' ? '◆' : '◇';
+        const badges   = [];
+        if (isSel)   badges.push('<span class="ll-card-badge sel">✓ Selected</span>');
+        if (isBest && !isSel) badges.push('<span class="ll-card-badge rec">💡 Best in group</span>');
+        if (m.score < 50) badges.push('<span class="ll-card-badge over">⚠️ Review</span>');
+        html += `<div class="ll-card${isSel?' selected':''}${isBest&&!isSel?' recommended':''}" onclick="LL.select('${m.id}')">
+          <div class="ll-card-top">
+            <div class="ll-radio"></div>
+            <div class="ll-card-name">${m.name}</div>
+            <div class="ll-card-right">
+              <div class="ll-card-speed">${speedGlyph} ${LATENCY_SCORE[m.latency]}</div>
+              <div class="ll-card-cost">${fmtCost(m.cost)}</div>
+            </div>
+          </div>
+          <div class="ll-card-bar-row">
+            <div class="ll-card-bar-wrap"><div class="ll-card-bar" style="width:${barW}%"></div></div>
+          </div>
+          <div class="ll-card-insight">${m.clusterName} · ${m.provider} · ~${m.inTokens.toLocaleString()} in / ~${m.outTokens} out</div>
+          ${badges.length ? `<div class="ll-card-badges">${badges.join('')}</div>` : ''}
+        </div>`;
+      }
+      html += '</div>';
+    }
+
+    body.innerHTML = html;
+  }
+
+  function renderTip() {
+    const tip = state.result?.tip;
+    const el   = $('ll_tip');
+    if (!tip) { el.style.display = 'none'; return; }
+    el.textContent = '💡 ' + tip;
+    el.style.display = '';
+  }
+
+  // ─── Public API ───────────────────────────────────────────────────────────
+  window.LL = {
+    open() {
+      $('ll_panel').style.display = 'flex';
+      $('ll_dock').style.display  = 'none';
+      $('ll_prompt_ta').focus();
+    },
+    close() {
+      $('ll_panel').style.display = 'none';
+      $('ll_dock').style.display = 'flex';
+    },
+    minimize() {
+      $('ll_panel').style.display = 'none';
+      $('ll_dock').style.display  = 'flex';
+    },
+    select(modelId) {
+      state.selectedModel = modelId;
+      localStorage.setItem(STORAGE_KEYS.selected, modelId);
+      const runBtn = $('ll_run_btn');
+      const sel = state.result?.all.find(m=>m.id===modelId);
+      if (sel) {
+        runBtn.textContent = `✦ Run on ${sel.name} →`;
+        runBtn.disabled = false;
+      }
+      renderBody();
+    },
+    run() {
+      if (!state.selectedModel) return;
+      if (!state.apiKey && !useFree()) {
+        alert('Daily free estimates exhausted. Connect your Signal Loom API key for unlimited use.');
+        return;
+      }
+      // Dispatch — post to parent or emit event
+      const event = new CustomEvent('loomlens:run', {
+        detail: { modelId: state.selectedModel, prompt: state.prompt }
+      });
+      window.dispatchEvent(event);
+      // Also try postMessage for cross-origin
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'loomlens_run', modelId: state.selectedModel, prompt: state.prompt }, '*');
+      }
+      this.close();
+    },
+    connectKey() {
+      const key = $('ll_key_input').value.trim();
+      if (!key) return;
+      state.apiKey = key;
+      localStorage.setItem(STORAGE_KEYS.apiKey, key);
+      $('ll_key_input').value = key;
+      render();
+    },
+    disconnectKey() {
+      state.apiKey = '';
+      localStorage.removeItem(STORAGE_KEYS.apiKey);
+      $('ll_key_input').value = '';
+      render();
+    },
+    toggleKeyRow() {
+      if (state.apiKey) {
+        this.disconnectKey();
+        return;
+      }
+      const row = $('ll_key_row');
+      const btn = $('ll_show_key');
+      if (row.style.display === 'none') {
+        row.style.display = 'flex';
+        btn.textContent = 'Cancel';
+        $('ll_key_input').focus();
+      } else {
+        row.style.display = 'none';
+        btn.textContent = '+ Connect API key for unlimited';
+      }
+    },
+    estimate() {
+      const prompt = $('ll_prompt_ta').value;
+      if (!prompt || prompt.trim().length < 10) {
+        state.result = null;
+        render();
+        return;
+      }
+      state.prompt = prompt;
+      // ── Local engine preview (always free) ──────────────────────────
+      // API billing happens only on "Run Estimate" click.
+      state.result = estimate(prompt, state.selectedModel);
+      if (!state.selectedModel && state.result?.recommended) {
+        state.selectedModel = state.result.recommended.id;
+      }
+      render();
+      const btn = $('ll_run_btn');
+      const sel = state.result?.allModels?.find(m=>m.id===state.selectedModel);
+      btn.textContent = sel ? `✦ Run on ${sel.name} →` : 'Select a model above →';
+      btn.disabled = !sel;
+    },
+
+    /**
+     * _estimateAPI — call POST /v1/estimate (billed per-call).
+     * Sets billing: true, decrements quota server-side.
+     * Falls back to local engine on network error.
+     */
+    async runEstimate() {
+      if (!state.apiKey) {
+        const left = freeLeft();
+        if (left === 0) {
+          alert('Your 3 free runs are used for today.\n\nConnect your Signal Loom API key to continue — signallloomai.com →');
+        } else {
+          alert('Connect your Signal Loom API key at signallloomai.com to run estimates.');
+        }
+        return;
+      }
+      // Count this as a free use (we'll call /estimate/free on their behalf via their key)
+      useFree();  // record usage against their account
+      const prompt = state.prompt || $('ll_prompt_ta').value;
+      if (!prompt) return;
+      const modelId = state.selectedModel || 'minimax/MiniMax-M2';
+      const btn = $('ll_run_btn');
+      btn.disabled = true;
+      btn.textContent = '⚡ Running…';
+      try {
+        const body = {
+          job_description: prompt,
+          num_agents: 1,
+          estimated_runtime_minutes: 1,
+          complexity: 'standard',
+          target_models: [modelId],
+          include_postmortem: false,
+        };
+        const res = await fetch('https://api.signallloomai.com/v1/estimate', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + state.apiKey,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (res.status === 429) {
+          // Quota exhausted
+          const err = await res.json().catch(()=>({}));
+          state.result = {
+            error: 'quota_exhausted',
+            message: err.detail || 'Monthly estimate quota exhausted. Upgrade at signallloomai.com →',
+          };
+          render();
+          return;
+        }
+        if (res.status === 401) {
+          state.result = {
+            error: 'invalid_key',
+            message: 'Invalid API key. Check your key at signallloomai.com →',
+          };
+          render();
+          return;
+        }
+        if (!res.ok) {
+          throw new Error('API error: ' + res.status);
+        }
+
+        // Extract quota from response headers
+        const quota = {
+          monthly_limit: parseInt(res.headers.get('X-Estimate-Limit') || '0'),
+          used_this_month: parseInt(res.headers.get('X-Estimate-Used') || '0'),
+          remaining_this_month: parseInt(res.headers.get('X-Estimate-Remaining') || '0'),
+          resets_at: res.headers.get('X-Estimate-Resets') || '',
+        };
+
+        const data = await res.json();
+        // Attach billing + quota to result for display
+        data._billing = data.billing || quota;
+        data._quota = quota;
+        state.result = _mapAPIResponse(data, modelId, prompt);
+        state.result._quota = quota;
+        state.result._billing = data.billing || null;
+        if (!state.selectedModel && state.result?.recommended) {
+          state.selectedModel = state.result.recommended.id;
+        }
+
+        // ── Dispatch to OpenClaw ─────────────────────────────────────
+        const event = new CustomEvent('loomlens:run', {
+          detail: { modelId, prompt, cost: data.models?.[0]?.estimated_cost_mid }
+        });
+        window.dispatchEvent(event);
+        if (window.parent !== window) {
+          window.parent.postMessage({ type: 'loomlens_run', modelId, prompt }, '*');
+        }
+
+        btn.textContent = '✓ Dispatched';
+        setTimeout(() => { btn.disabled = false; btn.textContent = `✦ Run on ${state.selectedModel?.split('/').pop()} →`; }, 1200);
+        setTimeout(() => this.close(), 1500);
+      } catch (err) {
+        console.warn('[LoomLens] runEstimate failed:', err.message);
+        const btn = $('ll_run_btn');
+        btn.textContent = '⚠ Error — retry';
+        btn.disabled = false;
+      }
+    },
+    getState() { return {...state}; },
+  };
+
+  // ─── Event Wiring ─────────────────────────────────────────────────────────
+  // Drag & drop
+  const wrap = $('ll_prompt_wrap');
+  wrap.addEventListener('dragover',  e => { e.preventDefault(); wrap.classList.add('drag-over'); });
+  wrap.addEventListener('dragleave', () => wrap.classList.remove('drag-over'));
+  wrap.addEventListener('drop', e => {
+    e.preventDefault();
+    wrap.classList.remove('drag-over');
+    const text = e.dataTransfer?.getData('text/plain') || '';
+    if (text) { $('ll_prompt_ta').value = text; $('ll_prompt_ta').dispatchEvent(new Event('input')); }
+  });
+
+  // Textarea input
+  let debounce;
+  $('ll_prompt_ta').addEventListener('input', () => {
+    wrap.classList.toggle('focused', $('ll_prompt_ta').value.length > 0);
+    $('ll_drop_hint').classList.toggle('hidden', $('ll_prompt_ta').value.length > 0);
+    clearTimeout(debounce);
+    debounce = setTimeout(() => window.LL.estimate(), 300);
+  });
+  $('ll_prompt_ta').addEventListener('focus',  () => wrap.classList.add('focused'));
+  $('ll_prompt_ta').addEventListener('blur',   () => wrap.classList.remove('focused'));
+
+  // Filters
+  $('ll_cluster_sel').addEventListener('change', renderBody);
+  $('ll_sort_sel').addEventListener('change', renderBody);
+
+  // Header controls
+  $('ll_btn_close').onclick = () => window.LL.close();
+  $('ll_btn_min').onclick   = () => window.LL.minimize();
+
+  // Keyboard shortcut
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'l') { e.preventDefault(); window.LL.open(); }
+    if (e.key === 'Escape') window.LL.close();
+  });
+
+  // postMessage: receive prompt from parent (OpenClaw webchat)
+  window.addEventListener('message', e => {
+    if (e.data?.type === 'openclaw_prompt' && e.data?.text) {
+      $('ll_prompt_ta').value = e.data.text;
+      $('ll_drop_hint').classList.add('hidden');
+      window.LL.estimate();
+    }
+  });
+
+  // ─── Init ──────────────────────────────────────────────────────────────────
+  checkFreeReset();
+  if (state.apiKey) $('ll_key_input').value = state.apiKey;
+  if (state.selectedModel) {
+    const runBtn = $('ll_run_btn');
+    runBtn.textContent = `✦ Run on ${state.selectedModel.split('/').pop()} →`;
+    runBtn.disabled = false;
+  }
+  render();
+
+  // Open on load if coming back with a result
+  if (state.result) window.LL.open();
+
+})();
+</script>
+</body>
+</html>

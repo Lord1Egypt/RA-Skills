@@ -1,0 +1,12 @@
+# 发布时排除的文件列表
+*.tmp
+*.log
+*.bat
+test-*
+build/
+dist/
+node_modules/
+.git/
+.DS_Store
+Thumbs.db
+desktop.ini

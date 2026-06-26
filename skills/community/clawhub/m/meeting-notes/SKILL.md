@@ -1,35 +1,123 @@
+# Meeting Notes 整理 Skill
+
+## 适用场景
+整理投资会议转写内容为结构化 Meeting Notes
+
+## 核心原则
+
+### 1. 第一性原则
+Meeting notes 不是会议复盘，而是把"投资人提出的问题"和"项目方能给出的真实回答"并列放在一起。
+
+### 2. 内容处理规则
+
+#### 投资人
+- **提问**：抽象为1-3句「问题本身」，不保留对话过程、不保留修辞、不保留追问路径
+- **判断/补充**：提炼为1-2句在说什么，明确这是"判断"或"方向取舍"，不是项目承诺
+- **呈现方式**：`人名: 问题/判断本身`，不使用转述句式（如"关注...""试图厘清..."）
+
+#### 项目方
+- 尽量**逐句保留原话**
+- 只允许做：断句、去口语赘余、修正明显病句、消除指代不清
+- **禁止**：总结、拔高、合并不同语义段、替项目方补逻辑
+- 项目方的话"可以啰嗦"，但必须"真实"
+
+### 3. 主题划分规则
+- **按会议真实发生顺序**排列主题
+- 先拆出所有投资人的问题，看问题自然落在哪些主题上
+- 给主题加**极短小标题**（只做导航，不总结）
+- 相关主题可合并（如"创业选择"与"创业动机"）
+
+### 4. 格式规范
+- 一行问题 + 一段回答
+- 投资人问句保留追问但精简
+- 项目方回答尽可能保留原文
+- 关键信息摘要表格放在最后
+
+### 5. 信息筛选
+**保留**：
+- 关键数字、时间节点、人名
+- 对投资判断有信息量的内容
+- 哪怕内容重复、啰嗦，也要保留
+
+**删除**：
+- 寒暄（"新年好"、"久等了"）
+- 技术细节演示过程
+- 重复确认（"能看到吗？"、"Ok"）
+- 语气词和口头禅
+
+### 6. 特殊处理
+- 当 Speaker Label 不可靠时，以**语义立场**优先
+- 解释产品/技术/预算 → 一律视为项目方
+- 提问/判断优先级/逼选择 → 一律视为投资人
+
+## 工作流程
+
+1. **读取转写原文**，标记时间戳和发言人
+2. **提取所有投资人问题**，按时间顺序排列
+3. **划分主题**，确定小标题
+4. **整理问答对**，投资人精简、项目方保真
+5. **合并相关主题**（如需要）
+6. **添加关键信息摘要表格**
+7. **审核顺序**，确保符合会议真实流程
+
+## 常见主题模板
+
+### 标准会议结构
+1. 开场寒暄（通常删除）
+2. 项目介绍与创始人背景
+3. 团队构成
+4. 产品/项目介绍
+5. 商业模式与增长
+6. 融资与估值
+7. 竞争与行业讨论
+8. 结尾与后续
+
+### 可选主题（根据会议内容）
+- 价值观排序（开场提问）
+- 个人经历与创业动机
+- 技术/供应链细节
+- 用户洞察
+- 失败经历复盘
+- 团队建议（找联创等）
+
+## 输出格式
+
+```markdown
+Meeting Notes - YYYY-MM-DD
+
+会议时间: YYYY-MM-DD HH:MM
+参与人: XXX (投资人), XXX (项目方)
+
 ---
-name: "Meeting Notes"
-description: "Extract and organize investor questions and project team answers from meeting transcripts into structured, time-sequenced notes with clear, minimal topic tit..."
-category: "other"
-source: "ClawHub"
-tags: [Initial release]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meeting-notes"
-sourceUrl: "https://clawhub.ai/skills/meeting-notes"
----
 
-# Meeting Notes
+## 一、[主题名称]
 
-> Extract and organize investor questions and project team answers from meeting transcripts into structured, time-sequenced notes with clear, minimal topic tit...
+**投资人**: [问题内容]
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meeting-notes`
-- **Source URL:** [https://clawhub.ai/skills/meeting-notes](https://clawhub.ai/skills/meeting-notes)
+**项目方**: [回答内容，尽可能保留原文]
 
-## Overview
+## 二、[主题名称]
+...
 
+## 关键信息摘要
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meeting-notes
+| 项目 | XXX |
+|------|-----|
+| **创始人** | ... |
+| **阶段** | ... |
+| **团队** | ... |
+| **估值** | ... |
 ```
+
+## 注意事项
+
+- 不要想当然整合内容，严格按会议顺序
+- 投资人提问要精简但不要去除追问
+- 项目方回答要尽可能保留原文，不要删除创始人说的话
+- 主题划分要尽量按照会上真实发生的顺序
+- 信息密度要平均
+- 格式就是一行问题+一段回答，以此类推
+
+## 版本记录
+
+- v1.0: 2026-02-25 基于投资会议整理经验创建

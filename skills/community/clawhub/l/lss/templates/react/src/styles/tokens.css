@@ -1,0 +1,132 @@
+:root,
+[data-theme="light"] {
+  --bg-primary:   #FFFFFF;
+  --bg-secondary: #FAFBFD;
+  --bg-tertiary:  #F3F4F6;
+  --bg-elevated:  #FFFFFF;
+
+  --text-primary:   #031C44;
+  --text-secondary: #052490;
+  --text-muted:     #6B7A99;
+  --text-inverse:   #FFFFFF;
+
+  --color-primary:        #2259F2;
+  --color-primary-hover:  #1A47CC;
+  --color-primary-active: #052490;
+  --color-primary-soft:   rgba(34, 89, 242, 0.12);
+
+  --color-accent:       #F3B723;
+  --color-accent-hover: #ED9E1B;
+  --color-accent-soft:  rgba(243, 183, 35, 0.15);
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error:   #EF4444;
+  --color-info:    #2259F2;
+
+  --border-primary:   #E3E8EF;
+  --border-secondary: #F3F4F6;
+  --border-focus:     #2259F2;
+
+  --card-bg:     #FFFFFF;
+  --card-border: #E3E8EF;
+  --card-hover:  #FAFBFD;
+
+  --btn-primary-bg:      var(--color-primary);
+  --btn-primary-hover:   var(--color-primary-hover);
+  --btn-primary-text:    #FFFFFF;
+
+  --btn-secondary-bg:    #F3F4F6;
+  --btn-secondary-hover: #E3E8EF;
+  --btn-secondary-text:  #031C44;
+
+  --btn-accent-bg:       #F3B723;
+  --btn-accent-hover:    #ED9E1B;
+  --btn-accent-text:     #031C44;
+
+  --input-bg:          #FFFFFF;
+  --input-border:      #E3E8EF;
+  --input-focus:       #2259F2;
+  --input-text:        #031C44;
+  --input-placeholder: #6B7A99;
+
+  --shadow-sm: 0 1px 3px rgba(3, 28, 68, 0.06);
+  --shadow-md: 0 4px 12px rgba(3, 28, 68, 0.08);
+  --shadow-lg: 0 8px 24px rgba(3, 28, 68, 0.12);
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --font-heading: 'Poppins', Arial, sans-serif;
+  --font-body: 'Montserrat', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-lg:   18px;
+  --text-xl:   20px;
+  --text-2xl:  24px;
+  --text-3xl:  32px;
+  --text-4xl:  40px;
+  --text-5xl:  48px;
+  --text-6xl:  56px;
+
+  --label-font-size: 14px;
+  --label-weight: 500;
+  --label-transform: none;
+
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  --z-dropdown: 1000;
+  --z-modal: 1100;
+  --z-tooltip: 1200;
+}
+
+[data-theme="dark"] {
+  --bg-primary:    #0B1220;
+  --bg-secondary:  #111A2E;
+  --bg-tertiary:   #1A263D;
+  --bg-elevated:   #22304A;
+
+  --text-primary:   #E6EDF7;
+  --text-secondary: #A8B3C7;
+  --text-muted:     #6B7A99;
+  --text-inverse:   #0B1220;
+
+  --border-primary:   #22304A;
+  --border-secondary: #1A263D;
+  --border-focus:     #2259F2;
+
+  --card-bg:     #111A2E;
+  --card-border: #22304A;
+  --card-hover:  #1A263D;
+
+  --btn-secondary-bg:    #22304A;
+  --btn-secondary-hover: #2A3A5A;
+  --btn-secondary-text:  #E6EDF7;
+
+  --input-bg:          #111A2E;
+  --input-border:      #22304A;
+  --input-focus:       #2259F2;
+  --input-text:        #E6EDF7;
+  --input-placeholder: #6B7A99;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
+}

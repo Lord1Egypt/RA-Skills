@@ -1,0 +1,44 @@
+{
+  "mcp_server": {
+    "name": "mcd-mcp",
+    "type": "streamablehttp",
+    "url": "https://mcp.mcd.cn",
+    "headers": {
+      "Authorization": "Bearer ${MCD_MCP_TOKEN}"
+    }
+  },
+  "default_meals": {
+    "breakfast": {
+      "label": "早餐",
+      "items": [
+        {"name": "麦香鸡", "quantity": 1},
+        {"name": "无糖可口可乐中杯", "quantity": 1}
+      ]
+    },
+    "lunch": {
+      "label": "午餐",
+      "items": [
+        {"name": "板烧鸡腿堡", "quantity": 1},
+        {"name": "无糖可口可乐中杯", "quantity": 1}
+      ]
+    },
+    "dinner": {
+      "label": "晚餐",
+      "items": [
+        {"name": "麦辣鸡腿汉堡中套餐", "quantity": 1},
+        {"name": "无糖可口可乐中杯", "quantity": 1}
+      ]
+    }
+  },
+  "calorie_fallback": {
+    "爆脆星星堡": 450, "麦辣鸡腿汉堡": 491, "板烧鸡腿堡": 430,
+    "Hold不住鸡排堡": 490, "双层脆鸡堡": 438, "泰会浪大鸡排堡": 480,
+    "麦香鸡": 390, "酥酥多笋卷": 340,
+    "无糖可口可乐中杯": 3, "麦乐鸡5块": 239, "麦辣鸡翅2块": 290
+  },
+  "calorie_targets": {
+    "breakfast": {"min": 400, "max": 650},
+    "lunch":     {"min": 700, "max": 950},
+    "dinner":    {"min": 550, "max": 800}
+  }
+}

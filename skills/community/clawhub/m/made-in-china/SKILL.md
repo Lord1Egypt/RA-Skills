@@ -1,35 +1,25 @@
----
-name: "Made In China"
-description: "Analyze China's export volumes, product categories, and trade destinations using official customs data to reveal trends and summaries."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/made-in-china"
-sourceUrl: "https://clawhub.ai/skills/made-in-china"
----
+# Made-in-China Trade Data Analyst
 
-# Made In China
+**Short Description**  
+Analyze global trade trends, export volumes, and product categories related to "Made in China" using public customs data. Get quick insights and summaries.
 
-> Analyze China's export volumes, product categories, and trade destinations using official customs data to reveal trends and summaries.
+**Full Description**  
+This skill helps you explore and understand the landscape of Chinese manufacturing and exports through data. It focuses on **aggregated, statistical information** from official sources, primarily China's customs statistics.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/made-in-china`
-- **Source URL:** [https://clawhub.ai/skills/made-in-china](https://clawhub.ai/skills/made-in-china)
+**Data Source**  
+All data is derived from publicly available statistics provided by the **General Administration of Customs of China**. You can access the official data portal at:  
+[http://stats.customs.gov.cn](http://stats.customs.gov.cn)
 
-## Overview
+**What you can ask**  
+- “Show me the top 10 exported products from China in 2024.”  
+- “Compare the export volume of electronics vs. textiles over the last 5 years.”  
+- “What are the main destination countries for Chinese-made machinery?”  
+- “Give me a summary of recent trends in China's steel exports.”
 
+**Features**  
+- 📊 **Product Category Analysis** – Break down exports by HS codes and industry sectors.  
+- 🌍 **Destination Insights** – See which countries import the most from China.  
+- 📈 **Trend Visualization** – Generate simple charts and growth rates (text-based summary).  
+- 🔍 **Custom Queries** – Ask about specific products, time periods, or regions.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/made-in-china
-```
+> **Note:** This skill uses official, publicly available trade data from China Customs. It does not access or retrieve information from any specific e-commerce platform or company database. For authoritative and comprehensive data, please refer to the source website.

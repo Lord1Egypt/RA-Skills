@@ -1,0 +1,23 @@
+{
+  "name": "llc-registered-agent-guide",
+  "version": "1.0.0",
+  "description": "LLC registered agent guide for LLCClass.com with privacy, compliance, cost, and state-specific guidance.",
+  "keywords": [
+    "llc",
+    "registered-agent",
+    "llc-registered-agent",
+    "business-formation",
+    "llcclass",
+    "privacy",
+    "compliance"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/what-is-llc-registered-agent",
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/what-is-llc-registered-agent",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  }
+}

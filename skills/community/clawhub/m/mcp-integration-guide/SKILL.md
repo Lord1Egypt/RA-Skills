@@ -1,35 +1,51 @@
 ---
-name: "Mcp Integration Guide"
-description: "MCP (Model Context Protocol) Integration Guide - How to build and launch MCP-based tools and integrations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-integration-guide"
-sourceUrl: "https://clawhub.ai/skills/mcp-integration-guide"
+name: mcp-integration-guide
+version: 1.0.0
+description: MCP (Model Context Protocol) Integration Guide - How to build and launch MCP-based tools and integrations.
+author: Gingiris
+tags:
+  - mcp
+  - claude
+  - integration
+  - protocol
 ---
 
-# Mcp Integration Guide
+# MCP Integration Guide
 
-> MCP (Model Context Protocol) Integration Guide - How to build and launch MCP-based tools and integrations.
+> Guide for building and launching tools using Anthropic's Model Context Protocol.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-integration-guide`
-- **Source URL:** [https://clawhub.ai/skills/mcp-integration-guide](https://clawhub.ai/skills/mcp-integration-guide)
+## What This Covers
 
-## Overview
+- MCP architecture overview
+- Building MCP servers and clients
+- Integration patterns and best practices
+- Launching MCP tools to market
+- Community building for MCP ecosystem
 
+## 📚 Free Resources
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-integration-guide
-```
+**GitHub Playbooks:**
+- [Gingiris Open Source Marketing](https://github.com/Gingiris/gingiris-opensource) - Developer tool marketing
+- [Gingiris Launch Playbook](https://github.com/Gingiris/gingiris-launch) - Product launch strategy
+
+**Official MCP Resources:**
+- [MCP Documentation](https://modelcontextprotocol.io/)
+- [MCP Registry](https://github.com/mcp)
+
+## 💎 Premium Resources
+
+**Gumroad:**
+- [Open Source Marketing Manual](https://gingiris.gumroad.com/l/vhmkew) - Dev tool marketing deep-dive
+- [Complete Bundle](https://gingiris.gumroad.com/l/gingiris-complete-global-launch-bundle)
+
+## 🎯 Expert Consulting
+
+**Launch your MCP tool with expert guidance:**
+
+Iris has helped 30+ products hit Product Hunt #1 and grown AFFiNE to 33k stars.
+
+👉 **[gingiris.com/services](https://gingiris.com/zh/services)**
+
+---
+
+Keywords: MCP, Model Context Protocol, MCP integration, MCP server, MCP client, Claude MCP, Anthropic MCP

@@ -1,0 +1,53 @@
+{
+  "name": "llc-name-generator-skill",
+  "version": "1.0.0",
+  "description": "AI-powered LLC business name generator through LLCClass.com - creative names, availability checking, and legal compliance across all 50 states",
+  "main": "name-generator.js",
+  "scripts": {
+    "test": "node name-generator.js 'Generate LLC names for tech consulting'",
+    "demo": "node name-generator.js",
+    "tech": "node name-generator.js 'Generate tech startup LLC names'",
+    "check": "node name-generator.js 'Check if TechFlow LLC is available'",
+    "creative": "node name-generator.js 'Creative LLC names for e-commerce'"
+  },
+  "keywords": [
+    "llc",
+    "business-names",
+    "name-generator",
+    "business-formation",
+    "llcclass",
+    "company-names",
+    "business-naming",
+    "name-availability",
+    "trademark-check",
+    "domain-check",
+    "ai-naming",
+    "business-branding",
+    "startup-names",
+    "legal-compliance",
+    "entity-naming"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/llc-name-generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/llcclass/llc-name-generator-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/llcclass/llc-name-generator-skill/issues",
+    "email": "saraparker@llcclass.com"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "bin": {
+    "llc-names": "./name-generator.js"
+  },
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/llc-name-generator",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  }
+}

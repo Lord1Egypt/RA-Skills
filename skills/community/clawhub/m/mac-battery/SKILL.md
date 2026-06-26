@@ -1,35 +1,30 @@
 ---
-name: "Mac Battery"
-description: "Check Mac laptop battery status including percentage, charging state, and time remaining. Use when user asks about battery level, power status, or how much t..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mac-battery"
-sourceUrl: "https://clawhub.ai/skills/mac-battery"
+name: mac-battery
+version: 1.0.0
+description: Check Mac laptop battery status including percentage, charging state, and time remaining. Use when user asks about battery level, power status, or how much time left until fully charged/discharged on a Mac laptop.
 ---
 
-# Mac Battery
+# Mac Battery Status
 
-> Check Mac laptop battery status including percentage, charging state, and time remaining. Use when user asks about battery level, power status, or how much t...
+Query Mac laptop battery information using the `pmset` command.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mac-battery`
-- **Source URL:** [https://clawhub.ai/skills/mac-battery](https://clawhub.ai/skills/mac-battery)
+## Command
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mac-battery
+pmset -g batt | grep -E "([0-9]+%)"
 ```
+
+## Output Format
+
+Returns battery percentage, charging state, and time remaining:
+- **Percentage**: e.g., "79%"
+- **Charging state**: "charging", "discharging", or "charged"
+- **Time remaining**: e.g., "0:47 remaining" (for charging) or "2:30 remaining" (for discharging)
+
+## Example Response
+
+```
+🔋 79%; charging; 0:47 remaining
+```
+
+Respond to user with the battery info in a friendly format with emoji.

@@ -1,0 +1,37 @@
+{
+  "slug": "metric-definition-catalog",
+  "title": "指标定义目录官",
+  "category": "data",
+  "categoryLabel": "数据与研究",
+  "mode": "structured_brief",
+  "summary": "把散落指标统一整理成口径、公式、归属、例外情况与常见误用。",
+  "inputHint": "指标列表、定义片段、计算方式",
+  "sections": [
+    "指标目录",
+    "口径定义",
+    "计算方式",
+    "不适用场景",
+    "常见误用",
+    "维护建议"
+  ],
+  "useCases": [
+    "指标治理",
+    "跨团队对齐",
+    "看板建设"
+  ],
+  "positiveExamples": [
+    "整理这批指标定义",
+    "统一口径和计算方式"
+  ],
+  "negativeExamples": [
+    "不要编造指标来源",
+    "不要替代 BI 平台配置"
+  ],
+  "risk": "默认把冲突定义并排列出，避免强行合并。",
+  "tags": [
+    "metrics",
+    "catalog",
+    "analytics",
+    "governance"
+  ]
+}

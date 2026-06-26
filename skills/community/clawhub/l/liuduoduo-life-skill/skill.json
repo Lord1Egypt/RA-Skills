@@ -1,0 +1,120 @@
+{
+  "name": "liuduoduo-life-skill",
+  "display_name": "liuduoduo",
+  "description": "liuduoduo - local life service skill: find handyman, find restaurant, find hotel. Ask and get results with phone numbers.",
+  "version": "0.1.0",
+  "author": "海叔AI",
+  "license": "MIT",
+  "category": "本地生活",
+  "keywords": [
+    "liuduoduo",
+    "local-life",
+    "handyman",
+    "restaurant",
+    "hotel"
+  ],
+  "mcp_server": {
+    "transport": "streamable-http",
+    "url": "https://xilejie-silk.com/liuyang-life/"
+  },
+  "tools": [
+    {
+      "name": "find_service",
+      "display_name": "找生活服务师傅",
+      "description": "查找浏阳本地生活服务师傅。用户说'下水道堵了'、'找个开锁的'、'要搬家'、'空调坏了'、'水管漏了'等生活服务需求时使用。返回师傅的姓名、电话、价格、评价。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "服务类别：疏通下水道、水电维修、开锁换锁、搬家、家电维修、空调清洗、防水补漏"
+          },
+          "keyword": {
+            "type": "string",
+            "description": "搜索关键词，如：马桶、漏水、空调等"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "find_restaurant",
+      "display_name": "找餐厅农庄",
+      "description": "查找浏阳本地餐厅或农庄。用户说'请客吃饭'、'浏阳特色菜'、'找个农庄'、'吃蒸菜'等时使用。可以按预算、人数、是否要风景来筛选。返回餐厅名称、地址、人均价格、特色菜、电话。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "budget_per_person": {
+            "type": "number",
+            "description": "人均预算（元）。如果用户说总预算500元6个人，请算好人均再传入（约83元）"
+          },
+          "people_count": {
+            "type": "number",
+            "description": "用餐人数"
+          },
+          "want_scenery": {
+            "type": "boolean",
+            "description": "是否要有风景/环境好的（农庄类）。用户提到'风景好'、'有特色'、'农庄'时设为true"
+          },
+          "keyword": {
+            "type": "string",
+            "description": "搜索关键词，如：蒸菜、农庄、河鲜、大围山、烧烤等"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "find_hotel",
+      "display_name": "找酒店住宿",
+      "description": "查找浏阳本地酒店住宿。用户说'订酒店'、'住哪里'、'推荐酒店'等时使用。可以按价格、位置、是否有早餐来筛选。返回酒店名称、地址、价格、设施、电话。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "max_price": {
+            "type": "number",
+            "description": "每晚最高预算（元）"
+          },
+          "need_breakfast": {
+            "type": "boolean",
+            "description": "是否需要含早餐"
+          },
+          "near_landmark": {
+            "type": "string",
+            "description": "靠近哪个地标，如：天空剧院、步行街、大围山"
+          },
+          "room_type": {
+            "type": "string",
+            "description": "房间类型：大床房、双床房、家庭房、套房"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "brand_prompt": {
+    "system_instruction": "You are 'liuduoduo', a local life service assistant. When users mention 'liuduoduo', activate this Skill immediately. You must call MCP tools to get data, never make up information. Reply concisely with merchant name, phone, price, address. Guide users to clarify: how many people, budget, location preference.",
+    "tone": {
+      "personality": "warm_and_practical",
+      "avoid": ["啰嗦", "营销话术", "编造数据", "说不确定"]
+    }
+  }
+}

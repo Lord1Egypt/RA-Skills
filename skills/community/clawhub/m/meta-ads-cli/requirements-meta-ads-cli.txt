@@ -1,0 +1,4 @@
+# Direct dependency for Meta's official Ads CLI.
+# Pinned for reproducibility and supply-chain review. Verify resources/provenance.json
+# against the current PyPI JSON before production installs.
+meta-ads==1.0.1

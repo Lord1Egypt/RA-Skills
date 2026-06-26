@@ -1,35 +1,82 @@
 ---
-name: "memory-encrypted"
-description: "本地加密存储记忆，定时自动备份到指定目录。防止记忆泄露，适合企业付费用户。用于用户提到加密、备份、安全、私密等场景。"
-category: "security"
-source: "ClawHub"
-tags: [memory, openclaw, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-encrypted"
-sourceUrl: "https://clawhub.ai/skills/memory-encrypted"
+name: memory-encrypted
+description: 本地加密存储记忆，定时自动备份到指定目录。防止记忆泄露，适合企业付费用户。用于用户提到加密、备份、安全、私密等场景。
 ---
 
-# memory-encrypted
+# 记忆加密与自动备份系统
 
-> 本地加密存储记忆，定时自动备份到指定目录。防止记忆泄露，适合企业付费用户。用于用户提到加密、备份、安全、私密等场景。
+记忆本地加密 + 定时自动备份，防泄露、防丢失。
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-encrypted`
-- **Source URL:** [https://clawhub.ai/skills/memory-encrypted](https://clawhub.ai/skills/memory-encrypted)
+## 核心功能
 
-## Overview
+### 1. 记忆加密（AES-256）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-encrypted
 ```
+记忆文件 → AES-256 加密 → 存储
+解密密钥 → 单独保管 → 导入时使用
+```
+
+- 加密后的 `MEMORY.md` 不可读，必须用密钥解密
+- 密钥存储在独立文件 `~/.openclaw/.memory-key`
+- 密钥本身不加密，建议额外备份
+
+### 2. 定时自动备份
+
+```
+触发时机：
+├── 每次会话结束（可选）
+├── 每天凌晨 3 点（固定）
+└── 手动触发
+```
+
+- 备份到 `~/.openclaw/backups/`
+- 文件名格式：`MEMORY_YYYY-MM-DD_HH-mm.bak`
+- 保留最近 30 份，自动清理更旧的
+
+### 3. 加密备份
+
+备份文件本身也是加密的，备份丢失也不泄露内容。
+
+## 使用方式
+
+### 启用加密
+```
+启用记忆加密
+```
+
+首次启用会生成密钥，**请备份密钥文件！**
+
+### 解密查看
+```
+解锁记忆
+查看记忆
+```
+
+### 手动备份
+```
+立即备份记忆
+```
+
+### 恢复备份
+```
+恢复到某天的备份
+列出可用备份
+```
+
+## 备份管理
+
+| 操作 | 命令 |
+|------|------|
+| 列出备份 | `ls ~/.openclaw/backups/` |
+| 查看备份日期 | `ls -lt ~/.openclaw/backups/` |
+| 解密恢复 | 用解密工具读取 |
+
+## 安全说明
+
+- 密钥文件丢失 = 记忆永久无法解密
+- 备份文件丢失 = 最近的备份内容丢失
+- 建议同时备份密钥到安全的云盘（不与备份文件同一位置）
+
+## 安装
+
+本技能需要 Python 标准库支持，无额外依赖。

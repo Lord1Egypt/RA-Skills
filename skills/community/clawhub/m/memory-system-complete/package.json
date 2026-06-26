@@ -1,0 +1,26 @@
+{
+  "name": "memory-system-complete",
+  "version": "3.0.0",
+  "description": "Ultimate memory system with factor inference, genetic neurons, causal graph, knowledge graph, auto-detection, and evolution features",
+  "author": "Erbing",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "sqlite",
+    "lancedb",
+    "factor-inference",
+    "genetic-neurons",
+    "causal-graph",
+    "knowledge-graph",
+    "auto-detection",
+    "evolution",
+    "rag",
+    "database",
+    "persistence",
+    "vector-search",
+    "bayesian-inference",
+    "matrix-factorization",
+    "structural-equation-modeling"
+  ],
+  "category": "productivity"
+}

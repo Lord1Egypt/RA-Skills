@@ -1,0 +1,138 @@
+# CMO Strategy Generation Prompt
+
+## PURPOSE
+This prompt is used by the Virtual CMO to formulate go-to-market strategy based on analyzed opportunities.
+
+## INPUT SPECIFICATION
+
+You will receive:
+
+### analyzed_opportunities (from cmo-analysis output)
+```json
+{
+  "opportunities": [
+    {
+      "opportunity_id": "string",
+      "title": "string",
+      "priority_score": 75,
+      "market_size_estimate": "string",
+      "competition_level": "low | medium | high",
+      "capability_alignment": 8,
+      "urgency": "short-term"
+    }
+  ]
+}
+```
+
+### business_context (required)
+Same as cmo-analysis.txt input.
+
+### constraints
+```json
+{
+  "max_budget": "number or null",
+  "timeline": "string",
+  "brand_guidelines": "string",
+  "prohibited_channels": ["list"],
+  "required_approvals": ["list"]
+}
+```
+
+## INSTRUCTIONS
+
+1. Select top 3 opportunities by priority_score
+2. For each selected opportunity:
+   a. Define target audience segment with specifics:
+      - Demographics, psychographics, behaviors
+      - Pain points (minimum 3)
+      - Where they spend attention (channels)
+   b. Craft positioning statement:
+      - For [target], [product] is the [category] that [key benefit] because [reason to believe]
+   c. Recommend channels (ranked by expected ROI):
+      - For each channel: rationale, estimated reach, estimated cost, confidence
+   d. Define success metrics (KPIs):
+      - Primary KPI with target value
+      - Secondary KPIs (2-3)
+      - Leading indicators
+   e. Identify risks:
+      - Minimum 2 risks per opportunity
+      - Each with: description, severity (1-10), probability, mitigation
+3. Generate overall strategy summary
+4. Define concrete next steps for the Marketing Operator
+
+## OUTPUT STRUCTURE
+
+```json
+{
+  "strategy_id": "UUID",
+  "timestamp": "ISO 8601",
+  "strategic_focus": [
+    {
+      "opportunity_id": "ref",
+      "target_segment": {
+        "name": "string",
+        "description": "string",
+        "size_estimate": "string",
+        "pain_points": ["string"],
+        "channels": ["string"],
+        "buying_triggers": ["string"]
+      },
+      "positioning": "For [X], [product] is...",
+      "recommended_channels": [
+        {
+          "channel": "string",
+          "rationale": "string [FACT/INFERENCE]",
+          "estimated_reach": "string",
+          "estimated_cost": "string",
+          "confidence": "high | medium | low",
+          "priority_rank": 1
+        }
+      ],
+      "success_metrics": {
+        "primary_kpi": { "metric": "string", "target": "string" },
+        "secondary_kpis": [{ "metric": "string", "target": "string" }],
+        "leading_indicators": ["string"]
+      },
+      "risks": [
+        {
+          "description": "string",
+          "severity": 7,
+          "probability": "high | medium | low",
+          "mitigation": "string"
+        }
+      ]
+    }
+  ],
+  "overall_priority_score": 80,
+  "recommended_actions": [
+    {
+      "action": "string — specific and actionable",
+      "priority": "critical | high | medium | low",
+      "expected_impact": "string",
+      "risk_level": 3,
+      "owner": "cmo | operator",
+      "estimated_timeline": "string"
+    }
+  ],
+  "next_steps_for_operator": [
+    {
+      "action": "string",
+      "deadline_type": "immediate | short-term | long-term",
+      "context": "string"
+    }
+  ],
+  "confidence_level": 78,
+  "data_gaps": ["string"]
+}
+```
+
+## CONSTRAINTS
+
+- NEVER recommend a channel without a rationale
+- NEVER skip risk assessment — minimum 2 risks per opportunity
+- Every recommended_action must be specific enough to be decomposed into tasks
+- Do NOT use vague language: "explore", "consider", "look into" are BANNED
+- Use action verbs: "launch", "create", "test", "measure", "deploy"
+- If budget is constrained, explicitly show cost-benefit tradeoffs
+- If timeline is tight, flag any strategies that cannot realistically execute in time
+- Mark all estimates clearly: [ESTIMATE] or [PROJECTION]

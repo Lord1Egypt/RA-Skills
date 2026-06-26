@@ -1,0 +1,63 @@
+{
+  "name": "maskclaw-core-eval",
+  "version": "1.0.0",
+  "description": "MaskClaw 核心模块评估测试用例定义",
+  "skills_tested": ["smart_masker", "behavior_monitor", "skill_evolution"],
+  "test_suites": [
+    {
+      "name": "Smart Masker Tests",
+      "description": "智能打码模块测试",
+      "test_cases": [
+        {
+          "id": "masker_001",
+          "name": "手机号打码",
+          "description": "检测并打码图片中的手机号",
+          "input": {"keywords": ["手机号", "电话", "phone"], "method": "blur"},
+          "expected": {"success": true, "regions_count": 1}
+        },
+        {
+          "id": "masker_002", 
+          "name": "身份证号打码",
+          "description": "检测并打码图片中的身份证号",
+          "input": {"keywords": ["身份证", "id_card"], "method": "blur"},
+          "expected": {"success": true, "regions_count": 1}
+        }
+      ]
+    },
+    {
+      "name": "Behavior Monitor Tests",
+      "description": "行为监控模块测试",
+      "test_cases": [
+        {
+          "id": "monitor_001",
+          "name": "记录 Agent 操作",
+          "description": "记录 Agent 的放行操作",
+          "input": {"action": "share_or_send", "resolution": "allow"},
+          "expected": {"success": true, "has_chain": true}
+        },
+        {
+          "id": "monitor_002",
+          "name": "记录用户纠错",
+          "description": "记录用户的拒绝纠错",
+          "input": {"action": "share_or_send", "resolution": "correction", "correction_type": "user_denied"},
+          "expected": {"success": true, "has_correction": true}
+        }
+      ]
+    },
+    {
+      "name": "Skill Evolution Tests",
+      "description": "规则进化模块测试",
+      "test_cases": [
+        {
+          "id": "evolution_001",
+          "name": "初始化进化流程",
+          "description": "创建新的 SOP 进化草稿",
+          "input": {"app_context": "钉钉", "task_goal": "安全发送工作消息"},
+          "expected": {"success": true}
+        }
+      ]
+    }
+  ],
+  "scoring": {"pass_threshold": 0.8},
+  "metadata": {"created_at": "2026-03-25", "author": "MaskClaw Team"}
+}

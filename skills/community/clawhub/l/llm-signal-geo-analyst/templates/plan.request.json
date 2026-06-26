@@ -1,0 +1,6 @@
+{
+  "siteId": "${LLMSIGNAL_SITE_ID}",
+  "apiKey": "${LLMSIGNAL_API_KEY}",
+  "persist": true
+}
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Config Migrator"
+  short_description: "Migrate dotfiles and plugin stacks across machines"
+  default_prompt: "Use $machine-config-migrator to migrate my old machine setup with selectable components and plugin restore steps."

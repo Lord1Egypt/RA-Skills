@@ -1,35 +1,47 @@
 ---
-name: "Linear CLI"
-description: "Linear CLI skill for OpenClaw workflows, powered by Api2Cli (a2c) against Linear's GraphQL API. Provides a wrapper script that generates its a2c workspace co..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linear-cli"
-sourceUrl: "https://clawhub.ai/skills/linear-cli"
+name: linear-cli
+description: Linear CLI skill for OpenClaw workflows, powered by Api2Cli (a2c) against Linear's GraphQL API. Provides a wrapper script that generates its a2c workspace config at runtime (no custom HTTP client code).
 ---
 
-# Linear CLI
+# Linear (CLI)
 
-> Linear CLI skill for OpenClaw workflows, powered by Api2Cli (a2c) against Linear's GraphQL API. Provides a wrapper script that generates its a2c workspace co...
+This skill provides a tiny, deterministic CLI surface for Linear using **Api2Cli (a2c)** + a declarative GraphQL request config.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linear-cli`
-- **Source URL:** [https://clawhub.ai/skills/linear-cli](https://clawhub.ai/skills/linear-cli)
+## What you get
 
-## Overview
+- `scripts/linear` wrapper (recommended entrypoint)
+- `a2c/config.xfer` request definitions (GraphQL queries/mutations)
 
+## Requirements
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `a2c` installed and available on `PATH`
+- A Linear API key exported as `LINEAR_API_KEY`
+
+## Quick start
+
 ```bash
-hermes skills install clawhub/linear-cli
+export LINEAR_API_KEY="<your_linear_api_key>"
+
+./scripts/linear --help
+./scripts/linear whoami
+```
+
+## Smoke test
+
+1) Verify dependencies:
+
+```bash
+command -v a2c
+```
+
+2) Verify help renders:
+
+```bash
+./scripts/linear --help
+```
+
+3) Verify auth works:
+
+```bash
+LINEAR_API_KEY=... ./scripts/linear whoami
 ```

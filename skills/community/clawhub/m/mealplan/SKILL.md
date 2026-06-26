@@ -1,35 +1,57 @@
 ---
-name: "Mealplan"
+name: "mealplan"
+version: "3.0.0"
 description: "Plan meals with calorie tracking and shopping lists. Use when organizing weekly meals."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mealplan"
-sourceUrl: "https://clawhub.ai/skills/mealplan"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Mealplan
+# mealplan
 
-> Plan meals with calorie tracking and shopping lists. Use when organizing weekly meals.
+Plan meals with calorie tracking and shopping lists. Use when organizing weekly meals.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mealplan`
-- **Source URL:** [https://clawhub.ai/skills/mealplan](https://clawhub.ai/skills/mealplan)
+## Commands
 
-## Overview
+### `add`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mealplan
+scripts/script.sh add <meal calories type>
 ```
+
+### `list`
+
+```bash
+scripts/script.sh list <day>
+```
+
+### `plan`
+
+```bash
+scripts/script.sh plan <days>
+```
+
+### `nutrition`
+
+```bash
+scripts/script.sh nutrition <day>
+```
+
+### `shopping`
+
+```bash
+scripts/script.sh shopping <days>
+```
+
+### `random`
+
+```bash
+scripts/script.sh random <type>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/mealplan/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

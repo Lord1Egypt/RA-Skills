@@ -1,0 +1,18 @@
+[
+  {
+    "method": "GET",
+    "relative_url": "act_<account_id>?fields=id,name,account_status,currency,timezone_name,amount_spent"
+  },
+  {
+    "method": "GET",
+    "relative_url": "act_<account_id>/campaigns?fields=id,name,objective,status,effective_status&limit=25"
+  },
+  {
+    "method": "GET",
+    "relative_url": "act_<account_id>/adsets?fields=id,name,campaign_id,status,effective_status,daily_budget,lifetime_budget,optimization_goal&limit=25"
+  },
+  {
+    "method": "GET",
+    "relative_url": "act_<account_id>/ads?fields=id,name,adset_id,campaign_id,status,effective_status&limit=25"
+  }
+]

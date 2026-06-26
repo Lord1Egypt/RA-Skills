@@ -1,0 +1,119 @@
+{
+ "id": "memory-engine",
+ "kind": "memory",
+ "name": "memory-engine",
+ "version": "2.0.0",
+ "displayName": "Memory Engine V2",
+ "description": "Context management plugin using Context Engine API",
+ "author": "",
+ "homepage": "",
+ "repository": "",
+ "license": "MIT",
+ "engines": {
+ "openclaw": ">=3.8.0"
+ },
+ "main": "dist/index.js",
+ "types": "dist/index.d.ts",
+ "tools": [
+ {
+ "name": "memory_save",
+ "description": "保存重要信息到记忆系统",
+ "inputSchema": {
+ "type": "object",
+ "properties": {
+ "content": { "type": "string", "description": "要记忆的内容" },
+ "type": { "type": "string", "enum": ["fact", "experience", "lesson", "preference", "skill"], "description": "记忆类型" },
+ "importance": { "type": "number", "minimum":0, "maximum":1, "description": "重要性0-1" }
+ },
+ "required": ["content"]
+ }
+ },
+ {
+ "name": "memory_search",
+ "description": "搜索记忆",
+ "inputSchema": {
+ "type": "object",
+ "properties": {
+ "query": { "type": "string", "description": "搜索关键词" },
+ "limit": { "type": "number", "default":5 }
+ },
+ "required": ["query"]
+ }
+ },
+ {
+ "name": "memory_list",
+ "description": "列出所有记忆",
+ "inputSchema": {
+ "type": "object",
+ "properties": {
+ "type": { "type": "string", "enum": ["fact", "experience", "lesson", "preference", "skill"] },
+ "limit": { "type": "number", "default":20 }
+ }
+ }
+ },
+ {
+ "name": "memory_stats",
+ "description": "获取记忆统计"
+ }
+ ],
+ "configSchema": {
+ "type": "object",
+ "properties": {
+ "dbPath": {
+ "type": "string",
+ "default": "./data/memories.db",
+ "description": "SQLite数据库路径"
+ },
+ "recallTopK": {
+ "type": "number",
+ "default":5,
+ "description": "最多召回多少条记忆"
+ },
+ "memoryFetchLimit": {
+ "type": "number",
+ "default":100,
+ "description": "每次检索拉取的记忆上限"
+ },
+ "similarityThreshold": {
+ "type": "number",
+ "default":0.3,
+ "description": "相似度阈值（越高越严格）"
+ },
+ "semanticThreshold": {
+ "type": "number",
+ "default":0.35,
+ "description": "语义触发阈值（越高越严格）"
+ },
+ "embeddingCacheSize": {
+ "type": "number",
+ "default":1000,
+ "description": "embedding缓存最大条目数"
+ },
+ "storeMinLength": {
+ "type": "number",
+ "default":6,
+ "description": "写入记忆的最小长度"
+ },
+ "dedupSimilarityThreshold": {
+ "type": "number",
+ "default":0.92,
+ "description": "语义近似去重阈值（越高越严格）"
+ },
+ "cleanupEnabled": {
+ "type": "boolean",
+ "default": false,
+ "description": "是否启用自动归档"
+ },
+ "cleanupMaxAgeDays": {
+ "type": "number",
+ "default":90,
+ "description": "超过多少天的低重要性记忆可归档"
+ },
+ "cleanupMinImportance": {
+ "type": "number",
+ "default":0.4,
+ "description": "低于该重要性的记忆可归档"
+ }
+ }
+ }
+}

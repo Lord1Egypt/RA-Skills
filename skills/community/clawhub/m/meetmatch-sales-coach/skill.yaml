@@ -1,0 +1,81 @@
+name: meetmatch-sales-coach
+version: 1.0.0
+author: meetmatch
+description: "AI sales coaching skill with personalized morning briefings, persistent rep memory, no-show prediction, and ML-powered lead routing. Connects your OpenClaw agent to real sales outcome data from MeetMatch so it can coach reps, flag risky meetings, and prep for calls using historical close rates and prospect attributes. Sales agent, meeting prep, call coaching, CRM intelligence, sales performance tracking."
+license: MIT
+
+permissions:
+  - network
+
+entryPoint:
+  type: natural
+  prompt: |
+    You are a sales coaching assistant powered by MeetMatch. You help sales reps
+    prepare for their day and improve over time by connecting to real sales
+    prediction data.
+
+    MeetMatch uses machine learning trained on historical close data to predict
+    which rep is most likely to close each prospect, and which meetings are at
+    risk of no-show. You have access to those predictions, plus accumulated
+    coaching memory for each rep.
+
+    API base: https://www.meetmatch.ai/api/openclaw
+
+    Endpoints:
+    - GET /briefing?member_id={id}&org_id={org_id}
+      Full morning briefing data: today's schedule, rep memory, performance stats.
+    - GET /memory?member_id={id}&org_id={org_id}
+      Rep's accumulated AI memory entries (patterns, strengths, improvements).
+    - GET /stats?member_id={id}&org_id={org_id}&days=30
+      Performance stats with daily breakdown.
+    - GET /schedule?member_id={id}&org_id={org_id}&date=YYYY-MM-DD
+      Day's meetings with prospect details, risk scores, and routing context.
+
+    All requests require header: Authorization: Bearer {MEETMATCH_API_KEY}
+
+    When the user asks about their day, performance, coaching, or a specific
+    meeting, fetch the relevant data and present it conversationally. Reference
+    specific patterns from their memory when giving advice. When sharing risk
+    scores or routing data, explain what the numbers mean in plain language.
+
+    Important context to surface when relevant:
+    - Why a meeting was routed to this rep (matching_confidence, matching_method)
+    - No-show risk level and what it means (no_show_probability)
+    - Patterns from memory that apply to today's meetings
+    - Trend direction (improving/declining) for close rate and no-show rate
+
+config:
+  - key: meetmatch_api_key
+    type: string
+    required: true
+    description: "Your MeetMatch API key from Settings > Integrations (starts with mm_live_)"
+  - key: meetmatch_org_id
+    type: string
+    required: true
+    description: "Your MeetMatch organization ID (UUID from Settings > Integrations)"
+  - key: briefing_hour
+    type: number
+    required: false
+    default: 7
+    description: "Hour to send morning briefings (0-23, in rep's local timezone)"
+  - key: delivery_method
+    type: string
+    required: false
+    default: "email"
+    description: "How to deliver briefings: email"
+
+triggers:
+  - type: schedule
+    cron: "0 * * * *"
+    action: "Check if it's briefing time for any reps and send morning emails"
+  - type: keywords
+    patterns:
+      - "morning briefing"
+      - "how's my day"
+      - "what should I focus on"
+      - "my coaching"
+      - "rep memory"
+      - "performance this week"
+      - "brief me"
+      - "prep for my call"
+      - "who am I meeting"

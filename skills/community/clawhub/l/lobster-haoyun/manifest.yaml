@@ -1,0 +1,42 @@
+name: lobster-haoyun
+title: 龙虾好运势
+version: 0.5.11
+author: ryanbihai
+license: MIT-0
+runtime: node
+entry: src/index.js
+min_openclaw_version: "1.0.0"
+description: >
+  从你的对话和记忆中分析人格，生成每日运势和修炼提醒。
+  通过 OceanBus 加密通道发送5维行为代码、城市级位置、日期和匿名OpenID到 L1 服务获取节气数据。
+  本地存储 OB 身份凭据、行为画像、运势历史。不含广告追踪。
+  首次使用自动创建 OceanBus 匿名身份（密码学随机生成，删除 ~/.lucky-lobster/ 即永久清除）。
+  OB SDK 完全开源(MIT-0)，代码可审计。
+categories:
+  - health-fitness
+  - productivity-tasks
+requires:
+  bins:
+    - node
+  env:
+    - name: OCEANBUS_URL
+      required: false
+      description: OceanBus L0 API base URL
+    - name: LUCKY_LOBSTER_SVC_OPENID
+      required: false
+      description: L1 service OpenID for calendar + discovery
+os:
+  - macos
+  - linux
+  - windows
+emoji: 🦞
+skillKey: 龙虾好运势
+config:
+  - key: push_enabled
+    type: boolean
+    default: true
+    description: 是否接收每日运势推送
+  - key: push_frequency
+    type: number
+    default: 1
+    description: 每日推送上限

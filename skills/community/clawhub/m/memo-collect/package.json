@@ -1,0 +1,19 @@
+{
+  "name": "@bondli-skills/memo-collect",
+  "version": "1.0.2",
+  "description": "a simple skill for note-taking and knowledge recording",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md"
+  ],
+  "keywords": [
+    "memo",
+    "note",
+    "todo"
+  ],
+  "license": "MIT"
+}

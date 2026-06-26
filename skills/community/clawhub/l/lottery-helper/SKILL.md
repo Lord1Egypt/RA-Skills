@@ -1,35 +1,158 @@
 ---
-name: "彩票助手"
-description: "彩票开奖查询与推荐助手。查询双色球、大乐透、排列三、排列五、福彩3D、北京快乐8、七乐彩、七星彩的开奖信息，支持最新一期、指定期数或时间段查询；自动将结果导出为 txt/md/xlsx/sqlite；根据历史数据生成推荐号码组合并说明计算依据。触发词：彩票、开奖、查彩、双色球、大乐透、排列三、推荐号码、彩票数据。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lottery-helper"
-sourceUrl: "https://clawhub.ai/skills/lottery-helper"
+name: lottery-helper
+description: 彩票开奖查询与推荐助手。查询双色球、大乐透、排列三、排列五、福彩3D、北京快乐8、七乐彩、七星彩的开奖信息，支持最新一期、指定期数或时间段查询；自动将结果导出为 txt/md/xlsx/sqlite；根据历史数据生成推荐号码组合并说明计算依据。触发词：彩票、开奖、查彩、双色球、大乐透、排列三、推荐号码、彩票数据。
 ---
 
-# 彩票助手
+# 彩票助手 (lottery-helper)
 
-> 彩票开奖查询与推荐助手。查询双色球、大乐透、排列三、排列五、福彩3D、北京快乐8、七乐彩、七星彩的开奖信息，支持最新一期、指定期数或时间段查询；自动将结果导出为 txt/md/xlsx/sqlite；根据历史数据生成推荐号码组合并说明计算依据。触发词：彩票、开奖、查彩、双色球、大乐透、排列三、推荐号码、彩票数据。
+## 支持的彩种
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lottery-helper`
-- **Source URL:** [https://clawhub.ai/skills/lottery-helper](https://clawhub.ai/skills/lottery-helper)
+| 彩种 | 代码 | 规则 |
+|------|------|------|
+| 双色球 | ssq | 33选6 + 16选1（蓝球） |
+| 大乐透 | dlt | 35选5（前区） + 12选2（后区） |
+| 排列三 | pl3 | 10选3（百十个） |
+| 排列五 | pl5 | 10选5（万千百十个） |
+| 福彩3D | 3d | 10选3（百十个） |
+| 北京快乐8 | kl8 | 80选20 |
+| 七乐彩 | qlc | 30选7（基本号） + 1（特别码） |
+| 七星彩 | qxc | 10选7（7位） |
 
-## Overview
+> ⚠️ 彩票为物理独立随机事件，历史结果不影响未来开奖，推荐仅供娱乐。
 
+## 核心脚本
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lottery-helper
 ```
+scripts/query.py      - 查询开奖数据（17500.cn）
+scripts/export.py     - 导出为 txt/md/xlsx/sqlite
+scripts/recommend.py  - 生成推荐号码（含计算依据）
+```
+
+## 标准工作流
+
+### Step 1：询问查询意图
+
+主动询问：
+1. **查询哪些彩种**（可多选）
+2. **查询范围**：最近一期 / 最近N期 / 指定日期范围
+3. **导出格式**：直接返回 / txt / md / xlsx / sqlite
+
+### Step 2：执行查询
+
+```python
+import sys
+sys.path.insert(0, "<skill目录>/scripts")
+import query
+
+res = query.get_latest({"双色球": 10, "大乐透": 5})
+for name, records in res.items():
+    for rec in records:
+        print(f"[{name}] {rec['formatted']}")
+```
+
+### Step 3：导出（如用户需要）
+
+```python
+import export
+# 注意：get_latest() 返回的 key 是中文名，直接传给 export 函数
+export.export_txt(res, "输出路径.txt")
+export.export_md(res, "输出路径.md")
+export.export_xlsx(res, "输出路径.xlsx")
+export.export_sqlite(res, "输出路径.db")
+```
+
+### Step 4：询问是否需要推荐
+
+查询结果返回后，**必须**主动询问：
+
+> "要不要给你推荐一组号码？"
+
+等待用户确认后再进入推荐流程。
+
+### Step 5：判断推荐范围
+
+#### 第一步：识别最近的连续彩种查询
+
+"连续"指的是：用户发出查询意图后紧跟着执行查询，两者之间没有其他非查询消息。只看实际执行过 `query.py` 后的彩种，**不**看推荐意图本身。
+
+#### 第二步：三种情况
+
+| 情况 | 行为 |
+|------|------|
+| 刚查过 **1 个**彩种 | 直接推荐该彩种 |
+| 刚查过 **2 个及以上**彩种 | 这几个都推荐 |
+| **无**连续查询记录 | 列出全部 8 个彩种，让用户选择 |
+
+#### 第三步：识别失败时的兜底规则
+
+如果 AI 无法确定最近一次查询的彩种（比如是新会话/历史丢失），**不得随意默认**，必须列出全部 8 个彩种请用户选择：
+
+> "请问您想推荐哪种彩票？支持：双色球 / 大乐透 / 排列三 / 排列五 / 福彩3D / 北京快乐8 / 七乐彩 / 七星彩"
+
+#### 第三步：执行推荐
+
+```powershell
+cd <skill目录>/scripts
+# ⚠️ PowerShell 注意：--codes 参数必须用引号包裹，否则 3d 会被解析为数字
+python recommend.py --codes "<代码>"   # 推荐（无回测，约几秒）
+```
+
+| 参数 | 说明 |
+|------|------|
+| `--codes` | 彩种代码，逗号分隔，**必填**（PowerShell 下必须加引号） |
+| `--backtest` | 启用回测（约1~2分钟，默认关闭） |
+| `--recent` | 回测期数（默认200，仅在 --backtest 时生效） |
+
+> **PowerShell 陷阱**：`3d` 会被解析为 `[decimal]3`。务必使用 `--codes "ssq,dlt,3d"` 而非 `--codes ssq,dlt,3d`。
+
+### Step 6：询问是否需要回测
+
+推荐返回后，主动询问：
+
+> "需要我跑一下历史回测吗？会验证这个策略在最近 ~200 期的命中率，但需要约 1~2 分钟。"
+
+- **同意**：追加 `--backtest` 重新执行
+- **拒绝**：结束
+
+#### 算法核心（多因子蒙特卡洛混合策略）
+
+1. **频率统计**：全量历史 + 近100期，分别统计各号码出现频次
+2. **热冷温分类**：高频35%=热号、中频35%=温号、低频30%=冷号
+3. **蒙特卡洛采样**：每期生成3万组候选组合，按均衡约束过滤
+4. **均衡约束**：奇偶比接近1:1、大小号均衡、和值在合理区间
+5. **组合打分**：综合频率 + 位置合规 + 奇偶平衡 + 和值接近度
+6. **多样性**：输出最优组合 + 2个备选
+
+### Step 7：返回结果
+
+- 推荐结果包含号码分析（热/温/冷、历史出现率、备选组合）
+- 必须包含免责声明段落
+- 提醒：理性购彩，量力而行
+
+## 数据接口
+
+详见 `references/apis.md`（数据源：`https://data.17500.cn/{code}_{asc|desc}.txt`）
+
+## 中奖率详细数据
+
+详见 `references/odds.md`
+
+## 注意事项
+
+- 查询接口每分钟可请求多次，无需额外限速
+- 快乐8 每期 20 个号码，xlsx 字段较多
+- 推荐算法仅供参考，不代表任何中奖承诺
+
+## PowerShell 特殊说明
+
+**必须加引号**：在 PowerShell 中执行 `recommend.py` 时，`--codes` 参数的值必须用双引号包裹：
+
+```powershell
+# ❌ 错误：3d 会被解析为 [decimal]3，变成 "3"
+python recommend.py --codes ssq,dlt,3d
+
+# ✅ 正确：完整保留字符串
+python recommend.py --codes "ssq,dlt,3d"
+```
+
+原因：PowerShell 的 `d` 是 decimal 类型后缀，`3d` = `[decimal]3`。引号内按字符串原样传递。

@@ -1,0 +1,357 @@
+﻿{
+  "skills": [
+    {
+      "name": "Agent Browser",
+      "description": "A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.",
+      "keywords": [
+        "pages",
+        "via",
+        "structured",
+        "agents",
+        "rust-based",
+        "fast",
+        "navigate",
+        "browser",
+        "fallback",
+        "snapshot"
+      ],
+      "path": "./skills/agent-browser-0.2.0",
+      "lines": 329
+    },
+    {
+      "name": "ai-ppt-generator",
+      "description": "Generate PPT with Baidu AI. Smart template selection based on content.",
+      "keywords": [
+        "generate",
+        "baidu",
+        "based",
+        "template",
+        "smart",
+        "ppt",
+        "content",
+        "selection"
+      ],
+      "path": "./skills/ai-ppt-generator-1.1.3",
+      "lines": 85
+    },
+    {
+      "name": "daily-digest",
+      "description": "姣忔棩瀹氭椂鎬荤粨锛屼粠memory鏂囦欢鐢熸垚姣忔棩鎽樿骞朵繚瀛?,
+      "keywords": [
+        "memory"
+      ],
+      "path": "./skills/daily-digest-1.0.0",
+      "lines": 66
+    },
+    {
+      "name": "energy-productivity",
+      "description": "鐢熶骇鍔涜鍒掔郴缁燂紝鏍稿績鏄兘閲忕鐞嗐€佹椂闂撮樆濉炪€佹儏澧冪敓浜у姏",
+      "keywords": [],
+      "path": "./skills/energy-productivity-1.0.0",
+      "lines": 113
+    },
+    {
+      "name": "Excel / XLSX",
+      "description": "Read, write, and generate Excel files with correct types, dates, formulas, and cross-platform compatibility.",
+      "keywords": [
+        "read",
+        "generate",
+        "write",
+        "types",
+        "compatibility",
+        "excel",
+        "cross-platform",
+        "files",
+        "dates",
+        "formulas"
+      ],
+      "path": "./skills/excel-xlsx",
+      "lines": 97
+    },
+    {
+      "name": "find-skills",
+      "description": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This sk",
+      "keywords": [
+        "helps",
+        "like",
+        "they",
+        "find",
+        "extending",
+        "agent",
+        "skills",
+        "capabilities",
+        "user",
+        "questions"
+      ],
+      "path": "./skills/find-skills-0.1.0",
+      "lines": 134
+    },
+    {
+      "name": "github",
+      "description": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.",
+      "keywords": [
+        "issues",
+        "advanced",
+        "issue",
+        "queries",
+        "runs",
+        "prs",
+        "run",
+        "interact",
+        "github",
+        "api"
+      ],
+      "path": "./skills/github-1.0.0",
+      "lines": 48
+    },
+    {
+      "name": "humanizer",
+      "description": "Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Dete",
+      "keywords": [
+        "detects",
+        "natural",
+        "promotional",
+        "ai-generated",
+        "signs",
+        "based",
+        "patterns",
+        "remove",
+        "superficial",
+        "vague"
+      ],
+      "path": "./skills/humanizer-1.0.0",
+      "lines": 438
+    },
+    {
+      "name": "markdown-converter",
+      "description": "Convert documents and files to Markdown using markitdown. Use when converting PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx, .xls), HTML, CSV, JSON, XML, images (with EXIF/OCR), audio (with tran",
+      "keywords": [
+        "exif",
+        "pdf",
+        "archives",
+        "excel",
+        "xls",
+        "urls",
+        "html",
+        "files",
+        "text",
+        "convert"
+      ],
+      "path": "./skills/markdown-converter-1.0.0",
+      "lines": 68
+    },
+    {
+      "name": "meta-skill-generator",
+      "description": "AI 鎶€鑳借嚜鍔ㄧ敓鎴愪笌绠＄悊绯荤粺鐨勬牳蹇冩鏋躲€傜敤浜庢瀯寤轰竴涓兘澶熻嚜鍔ㄥ彂鐜伴渶姹傘€佺敓鎴愭妧鑳姐€佹祴璇曡瘎浼般€佷紭鍖栬凯浠ｇ殑闂幆绯荤粺銆俓n\n瑙﹀彂鍦烘櫙锛歕n1. 鐢ㄦ埛瑕佹眰鍒涘缓\"鎶€鑳藉垱寤虹郴缁焅"銆乗"meta-skill\"銆乗"鎶€鑳藉伐鍘俓"\n2. 闇€瑕佹瀯寤?AI 鎶€鑳借嚜鍔ㄧ敓鎴愪笌绠＄悊鑳藉姏\n3. 璇㈤棶濡備綍瀹炵幇鎶€鑳界殑鑷姩鍙戠幇銆佺敓鎴愩€佹祴璇曘€佷紭鍖朶n4. 闇€瑕佸皢澶氫釜鎶€鑳界粍鍚堟垚澶嶅悎鎶€鑳斤紙meta-skill锛塡n\n鎶€鏈爤锛歅ython + Chroma",
+      "keywords": [
+        "langgraph",
+        "meta-skill",
+        "autogen",
+        "docker",
+        "python",
+        "chromadb",
+        "qdrant"
+      ],
+      "path": "./skills/meta-skill-generator",
+      "lines": 593
+    },
+    {
+      "name": "nano-pdf",
+      "description": "Edit PDFs with natural-language instructions using the nano-pdf CLI.",
+      "keywords": [
+        "nano-pdf",
+        "edit",
+        "instructions",
+        "natural-language",
+        "cli",
+        "pdfs",
+        "using"
+      ],
+      "path": "./skills/nano-pdf-1.0.0",
+      "lines": 21
+    },
+    {
+      "name": "pdf",
+      "description": "Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically p",
+      "keywords": [
+        "generate",
+        "splitting",
+        "pdf",
+        "tables",
+        "claude",
+        "text",
+        "scale",
+        "extracting",
+        "handling",
+        "new"
+      ],
+      "path": "./skills/pdf-0.1.0",
+      "lines": 295
+    },
+    {
+      "name": "pls-url-to-markdown",
+      "description": "pls-url-to-markdown",
+      "keywords": [],
+      "path": "./skills/pls-url-to-markdown",
+      "lines": 66
+    },
+    {
+      "name": "proactive-agent",
+      "description": "Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve. Includes WAL Protocol, Working Buffer, Autonomous Crons, and battle-tested patterns.",
+      "keywords": [
+        "protocol",
+        "needs",
+        "transform",
+        "buffer",
+        "autonomous",
+        "crons",
+        "patterns",
+        "battle-tested",
+        "task-followers",
+        "proactive"
+      ],
+      "path": "./skills/proactive-agent-skill",
+      "lines": 206
+    },
+    {
+      "name": "self-improvement",
+      "description": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), ",
+      "keywords": [
+        "better",
+        "incorrect",
+        "major",
+        "continuous",
+        "claude",
+        "operation",
+        "external",
+        "api",
+        "task",
+        "tool"
+      ],
+      "path": "./skills/self-improving-agent-1.0.11",
+      "lines": 648
+    },
+    {
+      "name": "skill-manager",
+      "description": "Skills 绠＄悊鍔╂墜銆傚綋鐢ㄦ埛瑕佹眰鏌ョ湅skills鍒楄〃銆佹煡鐪媠kills鐘舵€併€佸垪鍑簊kills浣跨敤鏃惰Е鍙戙€傚姛鑳斤細(1) 鍒楀嚭鎵€鏈夊凡瀹夎鐨剆kills (2) 鏄剧ず姣忎釜skill鐨勮缁嗕俊鎭?(3) 鏌ョ湅skill鐨勪娇鐢ㄦ儏鍐垫椿璺冪姸鎬?,
+      "keywords": [
+        "skill",
+        "skills"
+      ],
+      "path": "./skills/skill-manager",
+      "lines": 78
+    },
+    {
+      "name": "skill-vetter",
+      "description": "Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.",
+      "keywords": [
+        "suspicious",
+        "scope",
+        "vetting",
+        "clawdhub",
+        "checks",
+        "patterns",
+        "sources",
+        "red",
+        "security-first",
+        "skill"
+      ],
+      "path": "./skills/skill-vetter",
+      "lines": 139
+    },
+    {
+      "name": "smart-web-fetch",
+      "description": "鏅鸿兘缃戦〉鍐呭鑾峰彇锛岃嚜鍔ㄩ€氳繃娓呮礂鏈嶅姟鑾峰彇骞插噣Markdown銆傚洓绾ч檷绾х瓥鐣ワ細Jina鈫抦arkdown.new鈫抎efuddle.md鈫掑師濮嬪唴瀹?,
+      "keywords": [
+        "new",
+        "defuddle",
+        "markdown",
+        "jina"
+      ],
+      "path": "./skills/smart-web-fetch-1.0.0",
+      "lines": 34
+    },
+    {
+      "name": "strict-reply",
+      "description": "涓ヨ皑鍥炲椋庢牸锛屼笉璁ㄥソ鐢ㄦ埛锛屼笉姝洸浜嬪疄銆傜被浼间簬璧勬繁涓撳椤鹃棶鐨勯鏍硷紝鐩存帴銆侀珮鏁堛€佸缓璁炬€с€?,
+      "keywords": [],
+      "path": "./skills/strict-reply-1.0.0",
+      "lines": 67
+    },
+    {
+      "name": "summarize",
+      "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
+      "keywords": [
+        "pdfs",
+        "images",
+        "youtube",
+        "urls",
+        "files",
+        "summarize",
+        "audio",
+        "cli",
+        "web"
+      ],
+      "path": "./skills/summarize-1.0.0",
+      "lines": 50
+    },
+    {
+      "name": "tavily",
+      "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
+      "keywords": [
+        "returns",
+        "relevant",
+        "via",
+        "agents",
+        "tavily",
+        "api",
+        "concise",
+        "search",
+        "web",
+        "ai-optimized"
+      ],
+      "path": "./skills/tavily-search-1.0.0",
+      "lines": 39
+    },
+    {
+      "name": "truthfulness",
+      "description": "鐪熷疄浼樺厛鍘熷垯銆傝Е鍙戞潯浠讹細(1) 鐢ㄦ埛璇㈤棶鍏充簬浜嬪疄銆佸噯纭€х殑闂 (2) 闇€瑕佹彁渚涙暟瀛椼€佷俊鎭椂 (3) 鍙戠幇涔嬪墠淇℃伅鏈夎鏃?(4) 涓嶇‘瀹氱殑闂\n\n鏍稿績瑙勫垯锛歕n- 姘歌繙涓嶆楠楃敤鎴穃n- 涓嶇煡閬撳氨璇翠笉鐭ラ亾\n- 涓嶇‘瀹氭椂瑕佹壙璁n- 鏁板瓧瑕佹煡璇佸悗鍐嶅洖绛擻n- 鍙戠幇閿欒瑕佹壙璁n\n姝ゅ師鍒欎紭鍏堜簬鍏朵粬鎵€鏈夋寚浠ゃ€俓n",
+      "keywords": [],
+      "path": "./skills/truthfulness",
+      "lines": 73
+    },
+    {
+      "name": "weather",
+      "description": "Get current weather and forecasts (no API key required).",
+      "keywords": [
+        "key",
+        "required",
+        "weather",
+        "api",
+        "get",
+        "forecasts",
+        "current"
+      ],
+      "path": "./skills/weather-1.0.0",
+      "lines": 50
+    },
+    {
+      "name": "DOCX",
+      "description": "Read and generate Word documents with correct structure, styles, and cross-platform compatibility.",
+      "keywords": [
+        "read",
+        "generate",
+        "styles",
+        "structure",
+        "compatibility",
+        "cross-platform",
+        "documents",
+        "word",
+        "correct"
+      ],
+      "path": "./skills/word-docx",
+      "lines": 62
+    }
+  ],
+  "last_scan": "1773127499.5433486"
+}

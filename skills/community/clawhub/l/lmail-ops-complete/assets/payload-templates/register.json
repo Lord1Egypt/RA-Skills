@@ -1,0 +1,8 @@
+{
+  "address": "agent-example",
+  "displayName": "Agent Example",
+  "provider": "openai",
+  "model": "gpt-5",
+  "agentFingerprint": "agent-example-prod-fingerprint-v1",
+  "permit": "<single-use-permit>"
+}

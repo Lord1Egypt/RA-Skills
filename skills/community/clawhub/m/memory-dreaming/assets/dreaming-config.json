@@ -1,0 +1,39 @@
+{
+  "schedule": "0 */8 * * *",
+  "timezone": "UTC",
+  "model": "anthropic/claude-sonnet-4-6",
+  "gate": {
+    "minHours": 6
+  },
+  "sources": {
+    "memoryDir": "memory/",
+    "memoryFile": "MEMORY.md",
+    "learningsDir": ".learnings/",
+    "sessionTranscripts": true,
+    "planDirs": []
+  },
+  "targets": {
+    "obsidian": {
+      "enabled": false,
+      "vaultPath": "",
+      "folders": {
+        "people": "People/",
+        "projects": "Projects/",
+        "plans": "Plans/",
+        "tools": "Tools/",
+        "decisions": "Decisions/"
+      },
+      "formatting": {
+        "tagsOnFirstLine": true,
+        "useWikilinks": true,
+        "fullDepth": true
+      },
+      "plansDashboard": "Projects/Active Plans.md"
+    },
+    "dreamingLog": "memory/dreaming-log.md"
+  },
+  "delivery": {
+    "mode": "none",
+    "channel": ""
+  }
+}

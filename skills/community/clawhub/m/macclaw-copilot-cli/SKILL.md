@@ -1,35 +1,23 @@
 ---
-name: "MacClaw Copilot CLI"
-description: "GitHub Copilot CLI - AI 代码分析"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/macclaw-copilot-cli"
-sourceUrl: "https://clawhub.ai/skills/macclaw-copilot-cli"
+name: MacClaw Copilot CLI
+slug: macclaw-copilot-cli
+version: 1.0.1
+description: GitHub Copilot CLI - AI 代码分析
+changelog: 修复发布配置
 ---
 
 # MacClaw Copilot CLI
 
-> GitHub Copilot CLI - AI 代码分析
+使用 GitHub Copilot CLI 分析代码。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/macclaw-copilot-cli`
-- **Source URL:** [https://clawhub.ai/skills/macclaw-copilot-cli](https://clawhub.ai/skills/macclaw-copilot-cli)
+## 安装
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/macclaw-copilot-cli
+brew install copilot-cli
+```
+
+## 使用
+
+```bash
+COPILOT_GITHUB_TOKEN=$(cat ~/.copilot/github_token.txt) copilot -p "你的问题"
 ```

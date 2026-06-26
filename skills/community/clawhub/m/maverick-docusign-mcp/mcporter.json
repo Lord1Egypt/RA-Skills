@@ -1,0 +1,19 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-docusign": {
+      "command": "uv",
+      "args": ["run", "--script", "scripts/server.py"],
+      "auth": "refreshable_bearer",
+      "lifecycle": "ephemeral",
+      "refresh": {
+        "tokenEndpoint": "https://account-d.docusign.com/oauth/token",
+        "clientIdEnv": "MAVERICK_DOCUSIGN_MCP_CLIENT_ID",
+        "clientSecretEnv": "MAVERICK_DOCUSIGN_MCP_CLIENT_SECRET",
+        "clientAuthMethod": "client_secret_basic",
+        "accessTokenEnv": "MAVERICK_DOCUSIGN_MCP_ACCESS_TOKEN",
+        "scope": "signature extended"
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pipedrive"
+  short_description: "Read and update Pipedrive deals, contacts, activities, and pipelines"
+  default_prompt: "Use the Pipedrive MCP tools to help the user inspect deals, manage contacts, update activities, and work through sales pipeline tasks."

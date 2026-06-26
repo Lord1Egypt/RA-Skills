@@ -1,0 +1,8 @@
+interface:
+  display_name: "Memfy"
+  short_description: "Save durable memory without secrets"
+  default_prompt: "Use $memfy to save the durable details from this conversation for future sessions."
+  brand_color: "#2563EB"
+policy:
+  allow_implicit_invocation: true
+

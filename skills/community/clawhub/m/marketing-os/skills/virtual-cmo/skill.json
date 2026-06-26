@@ -1,0 +1,67 @@
+{
+  "name": "virtual-cmo",
+  "version": "1.0.0",
+  "role": "strategic-brain",
+  "description": "Analyzes market demand, identifies opportunities, scores them by signal strength, defines positioning and go-to-market strategy. Acts as the strategic decision layer for all marketing operations.",
+  "inputs": [
+    {
+      "name": "market_data",
+      "type": "object",
+      "description": "Raw market signals — search trends, competitor moves, audience feedback, industry reports",
+      "required": false
+    },
+    {
+      "name": "business_context",
+      "type": "object",
+      "description": "Company capabilities, existing products, brand positioning, budget constraints",
+      "required": true
+    },
+    {
+      "name": "feedback_loop",
+      "type": "object",
+      "schema_ref": "schemas/feedback.schema.json",
+      "description": "Execution results and learnings from previous campaigns",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "cmo_analysis",
+      "type": "object",
+      "schema_ref": "schemas/cmo_output.schema.json",
+      "description": "Structured market analysis with scored opportunities and recommended strategy"
+    },
+    {
+      "name": "operator_mission",
+      "type": "object",
+      "schema_ref": "schemas/cmo_to_operator.schema.json",
+      "description": "Mission brief passed to Marketing Operator for execution planning"
+    }
+  ],
+  "dependencies": [
+    "prompts/cmo-analysis.txt",
+    "prompts/cmo-strategy.txt",
+    "schemas/cmo_output.schema.json",
+    "schemas/cmo_to_operator.schema.json",
+    "memory/market-insights.json"
+  ],
+  "triggers": [
+    {
+      "type": "manual",
+      "description": "Human initiates market discovery or strategy refresh"
+    },
+    {
+      "type": "scheduled",
+      "description": "Periodic market scan (e.g., weekly)",
+      "cron": "0 9 * * 1"
+    },
+    {
+      "type": "event",
+      "description": "Triggered when feedback loop detects significant metric change",
+      "event_name": "metric_anomaly_detected"
+    }
+  ],
+  "mode": ["manual", "auto"],
+  "memory_access": ["market-insights", "campaigns", "learnings"],
+  "log_target": "logs/execution.log.json"
+}

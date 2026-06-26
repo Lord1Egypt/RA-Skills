@@ -1,0 +1,29 @@
+{
+  "version": "8.0.1",
+  "description": "LLM Memory Integration - 接口层 + 自动化钩子。安装后自动从 CNB 仓库拉取私有增强包。",
+  "install": {
+    "type": "source",
+    "method": "copy",
+    "source": "src/",
+    "description": "复制源码到技能目录"
+  },
+  "hooks": {
+    "postinstall": "hooks/postinstall.py",
+    "onStartup": "hooks/onStartup.py",
+    "description": "生命周期钩子，自动从 CNB 拉取私有包"
+  },
+  "security": {
+    "native_extensions": false,
+    "subprocess_calls": true,
+    "subprocess_description": "钩子会调用 git clone 命令",
+    "network_access": true,
+    "network_description": "钩子会访问 cnb.cool 下载私有包",
+    "system_reads": false,
+    "api_key_required": false,
+    "note": "公开包本身无风险，但钩子会执行网络操作和 subprocess 调用"
+  },
+  "privileged_package": {
+    "url": "https://cnb.cool/llm-memory-integrat/llm",
+    "description": "私有增强包，包含高性能实现、原生扩展、API 集成"
+  }
+}

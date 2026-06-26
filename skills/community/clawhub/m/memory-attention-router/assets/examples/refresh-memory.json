@@ -1,0 +1,5 @@
+{
+  "stale_memory_ids": ["mem_old_001"],
+  "replacement_memory_id": "mem_new_002",
+  "refresh_reason": "Superseded by validated workflow."
+}

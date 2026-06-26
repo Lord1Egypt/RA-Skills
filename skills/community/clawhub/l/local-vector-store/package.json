@@ -1,0 +1,12 @@
+{
+  "name": "local-vector-store",
+  "version": "1.0.0",
+  "description": "Semantic search engine using local vector embeddings for knowledge base indexing",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').main ? require('./index.js').main() : console.log('ok')\""
+  },
+  "keywords": ["vector", "semantic", "search", "embeddings"],
+  "author": "evolver",
+  "license": "MIT"
+}

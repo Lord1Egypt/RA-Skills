@@ -1,0 +1,26 @@
+{
+  "name": "paid-skill-demo",
+  "version": "1.0.0",
+  "description": "收费技能示例模板 - 带授权验证，演示如何在 ClawHub 发布付费技能",
+  "type": "python",
+  "script": "scripts/demo_function.py",
+  "env": {
+    "SKILL_LICENSE_KEY": {
+      "description": "授权码，购买后获取",
+      "required": true
+    }
+  },
+  "parameters": {
+    "message": {
+      "type": "string",
+      "description": "测试消息（可选）"
+    }
+  },
+  "triggers": [
+    "收费技能",
+    "付费功能",
+    "授权验证",
+    "license check"
+  ],
+  "enabled": true
+}

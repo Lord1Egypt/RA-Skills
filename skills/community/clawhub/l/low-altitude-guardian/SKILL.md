@@ -1,35 +1,194 @@
 ---
-name: "Low Altitude Guardian"
-description: "低空无人设备应急裁决引擎。零依赖可用：基于损失优先级金字塔（P0-P4）和加权决策公式，对无人机/eVTOL突发危机进行分级分析、方案推导、输出可执行决策建议。分析辅助工具，不连接飞控系统，不执行实际飞行控制。"
-category: "other"
-source: "ClawHub"
-tags: [drone, emergency, low-altitude, safety, uav]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/low-altitude-guardian"
-sourceUrl: "https://clawhub.ai/skills/low-altitude-guardian"
+name: low-altitude-guardian
+description: 低空无人设备应急裁决引擎。零依赖可用：基于损失优先级金字塔（P0-P4）和加权决策公式，对无人机/eVTOL突发危机进行分级分析、方案推导、输出可执行决策建议。分析辅助工具，不连接飞控系统，不执行实际飞行控制。
+user-invocable: true
+metadata: {"openclaw":{"requires":{"env":[],"anyBins":[]},"stage":"alpha","version":"0.3.0"}}
 ---
 
-# Low Altitude Guardian
+接收突发情况描述，输出结构化应急决策建议。
 
-> 低空无人设备应急裁决引擎。零依赖可用：基于损失优先级金字塔（P0-P4）和加权决策公式，对无人机/eVTOL突发危机进行分级分析、方案推导、输出可执行决策建议。分析辅助工具，不连接飞控系统，不执行实际飞行控制。
+**⚠️ ALPHA — 重要声明：**
+- 本技能为**分析辅助工具**，不连接任何飞控系统，不执行实际飞行控制
+- 输出结果为决策参考建议，不替代经认证的飞行安全系统
+- 真实飞行作业中，任何最终决策须由持证操作员或认证飞控系统执行
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/low-altitude-guardian`
-- **Source URL:** [https://clawhub.ai/skills/low-altitude-guardian](https://clawhub.ai/skills/low-altitude-guardian)
+---
 
-## Overview
+## 运行模式
 
+| 模式 | 依赖 | 适用场景 |
+|------|------|---------|
+| **推理分析模式**（默认） | 无 | 情景演练、方案推导、培训、Agent 集成 |
+| **集成模式** | Python + 数据接口 | 与实际遥测系统对接（开发/仿真环境） |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/low-altitude-guardian
+---
+
+## 调用示例
+
 ```
+# 单次危机分析
+我的无人机 GPS 信号突然丢失，当前高度 80m，电量 45%，下方是居民区。帮我分析应对方案。
+
+# 结构化输入
+设备: UAV-001 多旋翼
+位置: 高度120m，速度15m/s，下方有人行道
+状态: 电量34%，左前电机异常振动
+环境: 风速8m/s，通信正常
+触发: 电机异常，机身开始偏航
+
+# 方案推演
+如果同时发生 GPS 丢失 + 单电机故障，应该怎么处置？
+
+# 知识库查询
+电池热失控的标准处置流程是什么？
+```
+
+---
+
+## 核心方法论：损失优先级金字塔
+
+**所有决策的唯一不可动摇约束：**
+
+```
+P0 人员安全   ← 绝对最高优先级，任何情况下不可妥协
+P1 公共安全   ← 公共设施、建筑、交通
+P2 第三方财产 ← 他人车辆、农作物
+P3 本机安全   ← 设备自身完整性
+P4 任务完成   ← 原定任务目标
+```
+
+**关键原则**：为保障 P0，可以主动坠毁设备（P3）。高优先级受威胁时，必须无条件牺牲低优先级。
+
+---
+
+## Phase 1: 态势快照
+
+接收突发情况后，立即提取以下关键字段（自然语言描述或结构化均可）：
+
+```
+设备: [device_id] [device_type]
+位置: [坐标/区域描述] 高度[m] 速度[m/s] 航向
+状态: 电量[%] 飞行阶段 载荷[kg]
+触发: [危机触发原因]
+环境: 风速[m/s] 下方区域[人群/建筑/空旷] 通信[正常/异常]
+```
+
+同步推断：可飞行安全包络线、最近可用备降点、周边禁飞区。
+
+---
+
+## Phase 2: 危机分级
+
+| 等级 | 名称 | 判定条件 | 分析时限 |
+|------|------|---------|---------|
+| **L5-CRITICAL** | 灾难性 | 即刻威胁人员生命 | **< 3秒** |
+| **L4-SEVERE** | 严重 | 高概率人员伤害或重大财产损失 | < 10秒 |
+| **L3-MAJOR** | 重大 | 设备功能严重降级，可能危及安全 | < 30秒 |
+| **L2-MINOR** | 一般 | 功能部分降级，可控范围 | < 2分钟 |
+| **L1-CAUTION** | 注意 | 潜在风险，暂无直接威胁 | < 5分钟 |
+
+**态势演化预测**：预测 30s/60s/180s 后态势，识别级联故障风险（如电机故障 → 电池过放）和可用决策时间窗口。
+
+---
+
+## Phase 3: 方案推导与最优裁决
+
+### 3.1 知识库匹配
+
+覆盖场景：动力系统故障 / 导航定位故障 / 通信故障 / 环境威胁 / 碰撞风险 / 复合故障
+
+```bash
+# 集成模式可调用：
+python3 scripts/decision_manager.py --match --crisis-type <type> --level <level>
+```
+
+### 3.2 最优裁决公式
+
+```
+Score = 0.40×S₀(人员安全) + 0.25×S₁(公共安全) + 0.15×S₂(第三方财产)
+      + 0.12×S₃(本机安全) + 0.08×S₄(任务完成)
+
+硬约束：S₀ < 80 的方案一律淘汰，无论总分多高
+```
+
+### 3.3 无匹配时的第一性原理推理
+
+新型故障或罕见组合时：
+
+1. **分解** → 拆解为已知子问题组合
+2. **评估可控能力** → 当前设备还有哪些控制能力
+3. **最低降落需求** → 安全着陆至少需要什么能力
+4. **无法安全降落时** → 按 P0→P1→P2→P3 顺序选择损失最小的坠落区域
+5. **保守原则** → 无先例时，选最保守方案
+
+### 3.4 人工介入模式参考
+
+| 等级 | 建议介入模式 |
+|------|------------|
+| L5 | 自主执行，事后通知（无等待时间） |
+| L4 | 自主执行，同步通知操作员 |
+| L3 | 推荐方案，等待 5 秒确认，超时自动执行 |
+| L2 | 推荐方案，等待操作员确认 |
+| L1 | 仅提醒，由操作员决策 |
+
+---
+
+## 输出格式
+
+```json
+{
+  "crisis_level": "L3-MAJOR",
+  "crisis_type": "power_failure.single_motor_loss",
+  "time_window_seconds": 30,
+  "selected_plan": {
+    "name": "三电机降级返航",
+    "source": "knowledge_base | first_principles",
+    "confidence": 0.87,
+    "steps": [
+      {"seq": 1, "action": "切换三电机飞行模式", "timeout_ms": 500},
+      {"seq": 2, "action": "降至安全包络高度", "timeout_ms": 5000},
+      {"seq": 3, "action": "计算最近备降点航线", "timeout_ms": 1000},
+      {"seq": 4, "action": "降级模式飞往备降点", "timeout_ms": null},
+      {"seq": 5, "action": "执行应急着陆程序", "timeout_ms": 30000}
+    ],
+    "priority_score": 91.2,
+    "estimated_loss": {
+      "human_safety_risk": "none",
+      "public_safety_risk": "none",
+      "device_damage": "minor"
+    }
+  },
+  "eliminated_plans": [
+    {"name": "强制立即降落", "reason": "S₀=65 < 80，下方有行人，一律淘汰"}
+  ]
+}
+```
+
+---
+
+## Phase 4: 事件复盘与知识库自迭代
+
+事件结束后：
+
+```bash
+python3 scripts/incident_reporter.py --generate-report --incident-id <id>
+python3 scripts/knowledge_updater.py --learn --incident-id <id>
+```
+
+**复盘内容**：触发原因、决策过程（选了什么/为什么/排除了什么）、执行效果、实际损失。
+
+**知识库更新**：第一性原理推导出的有效方案，自动封装为新模板。每次事件都让系统更强。
+
+---
+
+## 边界与合规
+
+**本技能做什么：** 危机情景分析、方案推导、决策评分、复盘报告。
+
+**本技能不做什么：**
+- 不连接任何飞控系统或硬件接口
+- 不执行实际飞行控制指令
+- 不替代经 CAAC/FAA 认证的飞行安全系统
+- 不提供法律或保险合规建议
+
+**数据流向**：所有情景分析在本次会话中处理，不向外部系统传输飞行数据。集成模式下的遥测数据处理范围由用户自行配置。

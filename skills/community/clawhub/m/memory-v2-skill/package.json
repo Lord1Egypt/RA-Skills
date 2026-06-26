@@ -1,0 +1,35 @@
+{
+  "name": "memory-lucia",
+  "version": "2.5.4",
+  "description": "Advanced memory system for OpenClaw agents with priority analysis, learning tracking, decision recording, and skill evolution",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "init": "node scripts/init-memory.js",
+    "test": "node tests/test.js",
+    "backup": "node scripts/backup.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "memory",
+    "learning",
+    "decision",
+    "priority",
+    "evolution",
+    "sqlite"
+  ],
+  "author": "Chief of Staff",
+  "license": "MIT",
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wen521/memory-lucia-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wen521/memory-lucia-/issues"
+  },
+  "homepage": "https://github.com/wen521/memory-lucia-#readme"
+}

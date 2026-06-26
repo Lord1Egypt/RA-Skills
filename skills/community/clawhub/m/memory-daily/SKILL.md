@@ -1,35 +1,43 @@
 ---
-name: "Memory Daily"
-description: "Automates daily memory file management. Use when creating, reading, or appending to daily memory notes (memory/YYYY-MM-DD.md). Helps the agent maintain conti..."
-category: "productivity"
-source: "ClawHub"
-tags: [daily, memory, notes, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-daily"
-sourceUrl: "https://clawhub.ai/skills/memory-daily"
+name: memory-daily
+description: Automates daily memory file management. Use when creating, reading, or appending to daily memory notes (memory/YYYY-MM-DD.md). Helps the agent maintain continuity across sessions without manual file editing.
 ---
 
-# Memory Daily
+# memory-daily
 
-> Automates daily memory file management. Use when creating, reading, or appending to daily memory notes (memory/YYYY-MM-DD.md). Helps the agent maintain conti...
+Manages daily memory files in `memory/YYYY-MM-DD.md`.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-daily`
-- **Source URL:** [https://clawhub.ai/skills/memory-daily](https://clawhub.ai/skills/memory-daily)
+## Functions
 
-## Overview
+### `ensureToday(memoryDir?)`
+Creates today's daily file if it doesn't exist. Returns the file path.
 
+### `append(entry, memoryDir?)`
+Appends a timestamped entry to today's daily file. Creates the file first if needed.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-daily
+### `read(date?, memoryDir?)`
+Reads a daily file. Defaults to today. Date format: `YYYY-MM-DD`.
+
+### `recent(days?, memoryDir?)`
+Returns content from the last N days (default 2).
+
+## Usage
+
+```js
+const mem = require('./skills/memory-daily');
+
+// Ensure today's file exists
+await mem.ensureToday();
+
+// Append an entry
+await mem.append('## Session Notes\n- Deployed new feature X');
+
+// Read today
+const today = await mem.read();
+
+// Read last 3 days
+const recent = await mem.recent(3);
 ```
+
+## Default memory directory
+`<workspace>/memory/`

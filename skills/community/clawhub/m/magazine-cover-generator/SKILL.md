@@ -1,35 +1,34 @@
 ---
-name: "Magazine Cover Generator"
-description: "Generate stunning AI magazine cover art in Vogue, TIME, GQ, and editorial styles. Perfect for fashion covers, lifestyle magazine mockups, parody covers, pers..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/magazine-cover-generator"
-sourceUrl: "https://clawhub.ai/skills/magazine-cover-generator"
+name: magazine-cover-generator
+description: Generate stunning AI magazine cover art in Vogue, TIME, GQ, and editorial styles. Perfect for fashion covers, lifestyle magazine mockups, parody covers, personal branding, social media viral posts, pet magazine covers, and mixed-media editorial collage designs with professional masthead typography and cover headlines via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Magazine Cover Generator
 
-> Generate stunning AI magazine cover art in Vogue, TIME, GQ, and editorial styles. Perfect for fashion covers, lifestyle magazine mockups, parody covers, pers...
+Generate stunning AI magazine cover art in Vogue, TIME, GQ, and editorial styles. Perfect for fashion covers, lifestyle magazine mockups, parody covers, personal branding, social media viral posts, pet magazine covers, and mixed-media editorial collage designs with professional masthead typography and cover headlines.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/magazine-cover-generator`
-- **Source URL:** [https://clawhub.ai/skills/magazine-cover-generator](https://clawhub.ai/skills/magazine-cover-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/magazine-cover-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create ai magazine cover generator images.
+
+## Quick start
+```bash
+node magazinecovergenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/magazine-cover-generator
 ```

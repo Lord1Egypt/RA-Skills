@@ -1,0 +1,15 @@
+{
+  "name": "litmus",
+  "version": "1.1.1",
+  "description": "Parallel autonomous ML research agents with Director, circadian rhythm, and morning digest for OpenClaw",
+  "license": "MIT-0",
+  "homepage": "https://github.com/kuberwastaken/litmus",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kuberwastaken/litmus.git"
+  },
+  "keywords": ["openclaw", "skill", "research", "ml", "training", "autonomous-agents", "gpu"],
+  "openclaw": {
+    "skills": ["./"]
+  }
+}

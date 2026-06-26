@@ -1,35 +1,106 @@
 ---
-name: "Temu Ads US"
-description: "Temu 美国站电商广告 Ads API，经 LinkFox 网关转发 Partner US Ads / 广告投放 相关 bg/temu 接口（广告计划、广告组、创意、报表、预算出价等，接口将按 Partner 文档逐条接入）。当用户提到 Temu US 广告、Ads、广告投放、广告计划、广告组、创意、出价、预算..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkfox-temu-ads-us"
-sourceUrl: "https://clawhub.ai/skills/linkfox-temu-ads-us"
+name: linkfox-temu-ads-us
+version: 1.0.0
+category: product-sourcing
+description: Temu 美国站电商广告 Ads API，经 LinkFox 网关转发 Partner US Ads / 广告投放 相关 bg/temu 接口（广告计划、广告组、创意、报表、预算出价等，接口将按 Partner 文档逐条接入）。当用户提到 Temu US 广告、Ads、广告投放、广告计划、广告组、创意、出价、预算、广告报表、ad campaign、product-inventory 广告 时触发。商品管理用 linkfox-temu-manage-product-us；促销用 linkfox-temu-promotion-us；订单用 linkfox-temu-order-us。
 ---
 
-# Temu Ads US
+# Temu 美国站 — 电商广告（Ads）
 
-> Temu 美国站电商广告 Ads API，经 LinkFox 网关转发 Partner US Ads / 广告投放 相关 bg/temu 接口（广告计划、广告组、创意、报表、预算出价等，接口将按 Partner 文档逐条接入）。当用户提到 Temu US 广告、Ads、广告投放、广告计划、广告组、创意、出价、预算...
+本 skill（`linkfox-temu-ads-us`）覆盖 Partner Platform for US **Ads / 电商广告**（广告计划、投放、报表等；`menu_code` 与各 `sub_menu_code` 以 Partner 后台为准，见 [partner-us-catalog.md](./references/partner-us-catalog.md)）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkfox-temu-ads-us`
-- **Source URL:** [https://clawhub.ai/skills/linkfox-temu-ads-us](https://clawhub.ai/skills/linkfox-temu-ads-us)
+已接入 **7** 条 Partner **Ads**（`temu.searchrec.ad.*`）接口，清单见 [partner-us-catalog.md](./references/partner-us-catalog.md)。
 
-## Overview
+**网关（本 skill 内置）**：
 
+| 能力 | 方法 | 路径 |
+|------|------|------|
+| 广告 OpenAPI（`us_ads_*`、`temu_us_proxy`） | POST | `https://tool-gateway.linkfox.com/temu/proxy` |
+| 加签文件下载 | POST | `https://tool-gateway.linkfox.com/temu/fileDownload` |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 相关 skill
+
+| 场景 | skill |
+|------|--------|
+| **广告 Ads**（本 skill） | **`linkfox-temu-ads-us`** |
+| 商品列表/详情/编辑/库存/上下架 | `linkfox-temu-manage-product-us` |
+| 促销/营销活动 | `linkfox-temu-promotion-us` |
+| 发品 | `linkfox-temu-add-product-us` |
+| 价格/供货价、定价单 | `linkfox-temu-price-us` |
+| 订单列表/详情 | `linkfox-temu-order-us` |
+| 退货与退款 | `linkfox-temu-returns-refunds-us` |
+| 网关与 Temu token | 本 skill `scripts/` |
+
+## API Usage
+
+| 文档 | 内容 |
+|------|------|
+| [api.md](./references/api.md) | 网关、鉴权、错误码、接入约定 |
+| [partner-us-catalog.md](./references/partner-us-catalog.md) | 接口目录 + Partner URL + 脚本（随接入更新） |
+| [apis/README.md](./references/apis/README.md) | **按接口分文件**（`apis/<type-slug>.md`） |
+
+## 默认参数
+
+| 字段 | 默认 | 说明 |
+|------|------|------|
+| site | `us` | Partner US |
+| managementType | `semi-managed` | 半托管（具体接口以 Partner 文档为准） |
+| tokenPurpose | `product-inventory` | 卖家助手默认（若 Partner 某 Ads 接口要求其他 `tokenPurpose`，以该接口文档为准） |
+
+## 鉴权
+
+1. **LinkFox**：`LINKFOXAGENT_API_KEY` → Header `Authorization` + `Token`
+2. **Temu**：`accessToken` 或 `storeKey`（`storeKey` 时建议带 `tokenPurpose=product-inventory`）
+
+## Scripts
+
+| 脚本 | 说明 |
+|------|------|
+| `temu_us_proxy.py` | 任意 type |
+| `temu_us_file_download.py` | 加签下载 |
+| `us_ads_searchrec_ad_roas_pred.py` | `temu.searchrec.ad.roas.pred` |
+| `us_ads_searchrec_ad_reports_mall_query.py` | `temu.searchrec.ad.reports.mall.query` |
+| `us_ads_searchrec_ad_create.py` | `temu.searchrec.ad.create` |
+| `us_ads_searchrec_ad_detail_query.py` | `temu.searchrec.ad.detail.query` |
+| `us_ads_searchrec_ad_log_query.py` | `temu.searchrec.ad.log.query` |
+| `us_ads_searchrec_ad_goods_create_query.py` | `temu.searchrec.ad.goods.create.query` |
+| `us_ads_searchrec_ad_modify.py` | `temu.searchrec.ad.modify` |
+
+## 接入新接口（约定）
+
+你每提供一条 Partner 文档（`type` + `sub_menu_code` + URL + Request/Response 参数表），将：
+
+1. 新增 `references/apis/<type-slug>.md`（完整入参/出参层级）
+2. 新增 `scripts/us_ads_<slug>.py`（调用 `_us_ads_script.run_cli`）
+3. 更新 [partner-us-catalog.md](./references/partner-us-catalog.md)、[apis/README.md](./references/apis/README.md) 与本表
+
+## 示例（通用代理）
+
 ```bash
-hermes skills install clawhub/linkfox-temu-ads-us
+export LINKFOXAGENT_API_KEY="<key>"
+
+python scripts/temu_us_proxy.py '{
+  "accessToken": "TOKEN",
+  "tokenPurpose": "product-inventory",
+  "type": "<TEMU_API_TYPE>",
+  "params": {
+    "request": {}
+  }
+}'
 ```
+
+**Feedback：** `skillName`：`linkfox-temu-ads-us`
+
+## 网关与授权脚本
+
+| 脚本 | 说明 |
+|------|------|
+| `check_linkfox_token.py` | 校验 LinkFox 用户 Token |
+| `temu_token_guide.py` | Temu accessToken 后台授权步骤 |
+| `save_temu_access_token.py` | 保存 accessToken 到本地 |
+| `list_temu_access_tokens.py` | 列出已保存 token |
+| `get_temu_access_token.py` | 读取已保存 token |
+| `temu_proxy.py` | 通用网关转发（多 site） |
+| `temu_file_download.py` | 加签文件下载（多 site） |
+
+授权说明：[references/access-token.md](./references/access-token.md)

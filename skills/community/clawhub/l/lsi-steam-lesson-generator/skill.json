@@ -1,0 +1,25 @@
+{
+  "name": "lsi-steam-lesson-generator",
+  "version": "1.0.0",
+  "description": "Generate AI-integrated lesson plans for Hong Kong schools. EDB-aligned for HK$500K AI funding grant.",
+  "author": "LSI - Language Services International",
+  "author_email": "info@lsistream.ai",
+  "license": "MIT",
+  "tags": ["education", "lesson-plans", "steam", "ai", "hong-kong", "edb", "teachers", "classroom"],
+  "category": "Education",
+  "pricing": {
+    "type": "one-time",
+    "amount": 99,
+    "currency": "USD"
+  },
+  "ai_tools": ["GLM5", "Canva AI", "Gamma", "HeyGen", "Blender", "Tripo3D.ai"],
+  "grade_levels": ["Primary", "Secondary"],
+  "languages": ["English", "Chinese", "Bilingual"],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "examples/P4_Science_Plant_Life_Cycle.md",
+    "examples/S2_VisualArts_Digital_Portrait.md",
+    "examples/S2_English_Descriptive_Writing.md"
+  ]
+}

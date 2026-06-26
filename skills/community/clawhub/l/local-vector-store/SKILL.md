@@ -1,35 +1,73 @@
 ---
-name: "Local Vector Store"
-description: "Implements semantic search using local vector embeddings for knowledge base indexing and similarity matching. Use when you need to search documents by meanin..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-vector-store"
-sourceUrl: "https://clawhub.ai/skills/local-vector-store"
+name: local-vector-store
+description: Implements semantic search using local vector embeddings for knowledge base indexing and similarity matching. Use when you need to search documents by meaning rather than keywords, or build a searchable knowledge base.
 ---
 
 # Local Vector Store
 
-> Implements semantic search using local vector embeddings for knowledge base indexing and similarity matching. Use when you need to search documents by meanin...
+A lightweight semantic search engine that indexes documents as vectors and enables similarity-based retrieval without external APIs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-vector-store`
-- **Source URL:** [https://clawhub.ai/skills/local-vector-store](https://clawhub.ai/skills/local-vector-store)
+## Features
 
-## Overview
+- Document indexing with vector embeddings
+- Semantic similarity search
+- Local storage (no external dependencies)
+- Batch indexing support
+- Configurable embedding dimensions
+- Cosine similarity matching
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/local-vector-store
+```javascript
+const vectorStore = require('./local-vector-store');
+
+// Initialize store
+const store = await vectorStore.create({
+  dimension: 384,
+  storePath: '/tmp/vector-store'
+});
+
+// Index documents
+await store.index({
+  id: 'doc1',
+  content: 'Machine learning is a subset of artificial intelligence',
+  metadata: { source: 'wiki' }
+});
+
+// Search by semantic similarity
+const results = await store.search({
+  query: 'AI and deep learning',
+  topK: 5,
+  threshold: 0.7
+});
+
+// Batch operations
+await store.indexBatch([
+  { id: 'doc2', content: 'Neural networks process data' },
+  { id: 'doc3', content: 'Algorithms solve computational problems' }
+]);
+```
+
+## Configuration
+
+Set environment variables:
+- `VECTOR_DIMENSION`: Embedding dimension (default: 384)
+- `STORE_PATH`: Local storage directory (default: /tmp/vector-store)
+- `SIMILARITY_THRESHOLD`: Minimum similarity score (default: 0.5)
+
+## Output Format
+
+```json
+{
+  "query": "semantic search",
+  "results": [
+    {
+      "id": "doc1",
+      "content": "...",
+      "similarity": 0.92,
+      "metadata": {}
+    }
+  ],
+  "searchTime": 45
+}
 ```

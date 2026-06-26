@@ -1,0 +1,25 @@
+{
+  "name": "docstrange",
+  "version": "1.0.0",
+  "description": "Document extraction via SkillBoss API Hub. Convert PDFs and images to markdown, JSON, or CSV with confidence scoring. Use when you need to OCR documents, extract invoice fields, parse receipts, or convert tables to structured data.",
+  "author": "SkillBoss",
+  "homepage": "https://api.heybossai.com",
+  "keywords": [
+    "ocr",
+    "extraction",
+    "docstrange",
+    "pdf",
+    "structured-data"
+  ],
+  "license": "UNLICENSED",
+  "openclaw": {
+    "requiredEnv": [
+      "SKILLBOSS_API_KEY"
+    ],
+    "primaryEnv": "SKILLBOSS_API_KEY",
+    "endpoints": [
+      "https://api.heybossai.com"
+    ],
+    "requiresCredentials": true
+  }
+}

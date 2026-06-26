@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ticktick-cli"
+version = "0.1.0"
+description = "CLI for TickTick / dida365 task and project management with OAuth2 auth, batch operations, and rate limit handling"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    {name = "Liubo", email = "liuboacean@qq.com"}
+]
+keywords = [
+    "ticktick", "dida365", "滴答清单", "task", "todo",
+    "cli", "command-line", "productivity", "oauth2"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["requests>=2.31"]
+
+[project.optional-dependencies]
+dev = ["build", "twine", "pytest"]
+
+[project.scripts]
+ticktick = "ticktick.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/liuboacean/ticktick-cli"
+Documentation = "https://github.com/liuboacean/ticktick-cli#readme"
+Repository = "https://github.com/liuboacean/ticktick-cli"
+Issues = "https://github.com/liuboacean/ticktick-cli/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ticktick*"]
+
+[tool.setuptools.package-data]
+ticktick = ["py.typed"]

@@ -1,35 +1,50 @@
----
-name: "LiuZewei Hello Demo"
-description: "Provides friendly, time-aware greetings with optional emoji support, customizable by name and language."
-category: "other"
-source: "ClawHub"
-tags: [demo, greeting, utility]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liuzewei-hello-demo"
-sourceUrl: "https://clawhub.ai/skills/liuzewei-hello-demo"
----
+# Hello Demo Skill
 
-# LiuZewei Hello Demo
-
-> Provides friendly, time-aware greetings with optional emoji support, customizable by name and language.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liuzewei-hello-demo`
-- **Source URL:** [https://clawhub.ai/skills/liuzewei-hello-demo](https://clawhub.ai/skills/liuzewei-hello-demo)
-
-## Overview
-
+A simple greeting skill for OpenClaw that provides friendly greetings with time awareness.
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/liuzewei-hello-demo
+skillhub install hello-demo
 ```
+
+Or install from file:
+```bash
+skillhub install --file hello-demo.skill
+```
+
+## Usage
+
+### Basic greeting
+```bash
+python3 scripts/greet.py [name]
+```
+
+### With options
+```bash
+python3 scripts/greet.py Alice --time --emoji
+```
+
+## Features
+
+- 👋 Friendly greetings
+- 🕐 Time-aware (morning/afternoon/evening)
+- 😊 Emoji support
+- 🌍 Multi-language ready
+
+## Examples
+
+```bash
+$ python3 scripts/greet.py
+Hello, World!
+
+$ python3 scripts/greet.py Alice --time
+Good afternoon, Alice!
+
+$ python3 scripts/greet.py Bob --emoji
+Hello, Bob! 👋
+```
+
+## Author
+
+Created by liuzewei1990 as a demo for OpenClaw skill development.

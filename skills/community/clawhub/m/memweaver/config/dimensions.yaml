@@ -1,0 +1,61 @@
+# MemWeaver Profile Dimension Definitions
+# The Agent extracts and infers along these dimensions when analyzing memory
+
+# === Basic Profile (extracted from explicit statements) ===
+identity:
+  description: "User's basic identity information"
+  fields:
+    - role          # Job title / role
+    - tech_stack    # Technology stack
+    - mbti          # Personality type
+    - organization  # Organization (optional)
+
+# === Work Patterns (inferred from behavior) ===
+work_patterns:
+  description: "User's working style and decision-making patterns"
+  fields:
+    - decision_style      # Decision style: data_driven / intuitive / consultative
+    - detail_preference   # Detail preference: high / medium / low
+    - creation_preference # Creation preference: 0to1 / polish / both
+    - work_rhythm         # Work rhythm: burst / steady / mixed
+    - energy_source       # Energy source: ideation / execution / collaboration
+
+# === Interests (extracted from discussion topics) ===
+interests:
+  description: "Professional and personal interests"
+  depth_levels:
+    - expert          # Deep expertise
+    - active_research # Actively researching
+    - exploring       # Initial exploration
+    - casual          # Casual interest
+    - heavy_player    # Deep engagement (non-professional)
+    - long_term_habit # Long-term habit
+
+# === Communication Preferences (inferred from interaction patterns) ===
+communication:
+  description: "User's interaction preferences with Agent"
+  fields:
+    - preferred_depth   # Response depth: deep_analysis / balanced / brief
+    - preferred_format  # Format preference: structured / narrative / mixed
+    - language          # Language
+    - dislikes          # Explicitly disliked response types
+
+# === Long-term Goals (from explicit statements and implied directions) ===
+goals:
+  description: "Career, product, and personal goals"
+  priority_levels:
+    - high      # Currently actively pursuing
+    - medium    # Planned but not urgent
+    - low       # Want to do but deferred
+    - shelved   # Archived / on hold
+
+# === Hidden Patterns (Agent should specifically mine for these) ===
+hidden_patterns:
+  description: "Behavioral patterns the user may not be aware of"
+  analysis_prompts:
+    - "Decision patterns: What do they lean toward when facing multiple options?"
+    - "Time & energy allocation: Actual vs ideal distribution?"
+    - "Overlooked interests: Repeatedly mentioned but not formally tracked?"
+    - "Statement vs behavior contradictions: Where do words and actions diverge?"
+    - "Emotion triggers: What makes the user especially engaged or resistant?"
+    - "Unlabeled skills: Abilities demonstrated but not self-recognized?"

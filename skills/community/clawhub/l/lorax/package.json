@@ -1,0 +1,14 @@
+{
+  "name": "lorax",
+  "version": "1.0.1",
+  "description": "System Image Creation skill | 系统镜像构建技能",
+  "author": "OS Build Agent",
+  "license": "MIT",
+  "keywords": ["lorax", "iso", "disk-image", "fedora", "rhel"],
+  "clawhub": {
+    "type": "skill",
+    "category": "development",
+    "tags": ["lorax", "iso", "disk-image", "cloud", "devops"],
+    "icon": "🖥️"
+  }
+}

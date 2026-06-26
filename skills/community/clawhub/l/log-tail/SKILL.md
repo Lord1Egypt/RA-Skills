@@ -1,35 +1,31 @@
 ---
-name: "Log Tail"
+name: log-tail
 description: "Stream recent logs from systemd journal"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/log-tail"
-sourceUrl: "https://clawhub.ai/skills/log-tail"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📜",
+        "requires": { "bins": ["journalctl"] },
+        "install": [],
+      },
+  }
 ---
 
 # Log Tail
 
-> Stream recent logs from systemd journal
+Stream recent logs from the systemd journal. View logs by service unit, control line count, and optionally follow in real time.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/log-tail`
-- **Source URL:** [https://clawhub.ai/skills/log-tail](https://clawhub.ai/skills/log-tail)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/log-tail
+# Show recent journal logs (default: 50 lines)
+log-tail [--unit <service>] [--lines 50]
+
+# Follow logs for a specific service in real time
+log-tail --follow <service>
 ```
+
+## Install
+
+No installation needed. `journalctl` is always present on systemd-based systems like Bazzite/Fedora.

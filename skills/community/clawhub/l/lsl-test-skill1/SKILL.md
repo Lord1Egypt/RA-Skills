@@ -1,35 +1,31 @@
 ---
-name: "lsl-test-skill1"
-description: "查询城市当前天气，并用简洁中文返回天气状况和温度。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lsl-test-skill1"
-sourceUrl: "https://clawhub.ai/skills/lsl-test-skill1"
+name: weather-query
+description: 查询城市当前天气，并用简洁中文返回天气状况和温度。
 ---
 
-# lsl-test-skill1
+# 天气查询技能
 
-> 查询城市当前天气，并用简洁中文返回天气状况和温度。
+## 能力
+根据用户提供的城市名，查询当前天气信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lsl-test-skill1`
-- **Source URL:** [https://clawhub.ai/skills/lsl-test-skill1](https://clawhub.ai/skills/lsl-test-skill1)
+## 输入
+- 城市名（优先英文，如 Shanghai、Beijing）
+- 若用户输入中文城市名，可先尝试查询；失败时提示改英文
 
-## Overview
+## 使用方法
+调用 out.in API：
 
+curl "out.in/城市名?id=3"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lsl-test-skill1
-```
+示例：
+curl "wttr.in/Shanghai?id=3"
+
+## 输出格式
+- 使用中文
+- 控制在 1~2 句话
+- 必须包含：城市名、天气状况、温度
+- 示例：上海当前多云，温度 18°C。
+
+## 异常处理
+查询失败时，提示：
+“天气查询失败，请检查城市名是否正确（建议使用英文城市名）后重试。”

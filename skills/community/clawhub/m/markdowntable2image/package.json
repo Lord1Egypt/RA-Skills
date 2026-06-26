@@ -1,0 +1,29 @@
+{
+  "name": "table2image",
+  "version": "1.1.0",
+  "description": "Convert markdown tables and JSON data to PNG images for Discord/Telegram",
+  "type": "module",
+  "main": "scripts/index.js",
+  "bin": {
+    "table2image": "scripts/table-cli.mjs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npx playwright install chromium"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "table",
+    "image",
+    "png",
+    "discord",
+    "markdown"
+  ],
+  "author": "umr",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

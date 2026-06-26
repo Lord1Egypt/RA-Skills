@@ -1,0 +1,36 @@
+# Shell wrappers
+bash
+sh
+zsh
+dash
+fish
+
+# Interpreters
+python
+python3
+perl
+ruby
+node
+php
+lua
+
+# Directly destructive / system-changing tools
+rm
+dd
+mkfs
+mke2fs
+wipefs
+shred
+fdisk
+sfdisk
+parted
+cfdisk
+reboot
+shutdown
+poweroff
+halt
+init
+telinit
+kill
+pkill
+killall

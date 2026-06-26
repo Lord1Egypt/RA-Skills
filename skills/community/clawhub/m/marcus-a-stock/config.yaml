@@ -1,0 +1,161 @@
+# =====================================================
+# Marcus A股日报分析Agent - API配置文件
+# =====================================================
+# 使用说明：
+# 1. 复制此文件为 config_local.yaml（该文件会被.gitignore忽略）
+# 2. 在 config_local.yaml 中填写您的实际信息
+# 3. 不要将此文件上传到公共仓库，保护您的隐私
+# =====================================================
+
+# ==================== 必填配置 ====================
+
+# Tushare Pro Token（免费注册获取）
+# 官网：https://tushare.pro/register
+# 积分获取：每日签到、分享、完善资料可获得积分
+# 基础数据免费，高级数据需要积分
+TUSHARE_TOKEN: "您的Tushare Token（免费注册获取）"
+
+# ==================== 可选配置（增强功能） ====================
+
+# 聚宽量化平台（免费模拟交易，适合策略验证）
+# 官网：https://www.joinquant.com/
+# 功能：策略回测、模拟交易、数据研究
+JOINQUANT_USERNAME: ""
+JOINQUANT_PASSWORD: ""
+
+# 同花顺iFinD（学生/小资金用户可申请免费试用）
+# 官网：https://www.51ifind.com/
+# 功能：专业级金融数据、研究报告
+IFIND_USERNAME: ""
+IFIND_PASSWORD: ""
+
+# ==================== 邮件推送配置（可选） ====================
+# 用于每日开盘前自动发送Marcus报告到您的邮箱
+
+# SMTP服务器（以QQ邮箱为例）
+SMTP_SERVER: "smtp.qq.com"
+SMTP_PORT: "587"
+
+# 发件人邮箱
+EMAIL_USERNAME: "您的邮箱地址"
+
+# 邮箱授权码（不是登录密码！）
+# QQ邮箱获取方式：设置 -> 账户 -> 开启SMTP服务 -> 获取授权码
+EMAIL_PASSWORD: "您的邮箱授权码"
+
+# 收件人邮箱（可以是同一个）
+RECIPIENT_EMAIL: "接收报告的邮箱地址"
+
+# ==================== 微信推送配置（可选） ====================
+# 用于每日报告微信推送（推荐，更方便）
+
+# Server酱（免费微信推送服务）
+# 官网：http://sc.ftqq.com/
+# 使用方法：
+# 1. 用GitHub账号登录
+# 2. 获取SCKEY
+# 3. 绑定微信
+# 4. 将SCKEY填入下方
+SERVERCHAN_SCKEY: ""
+
+# 企业微信机器人（适合技术用户）
+# 获取方式：在企业微信群中添加机器人，获取Webhook地址
+WECHAT_WEBHOOK: ""
+
+# ==================== 用户个人信息（重要！） ====================
+# 这些信息用于Marcus计算仓位和交易参数
+
+# 本金规模（单位：元）
+# 请根据您的实际资金填写，Marcus会据此计算每只股票的买入数量
+TOTAL_CAPITAL: 10000
+
+# 单票最大仓位限制（占总资金比例）
+# 建议：小资金不超过20%，避免过度集中
+MAX_SINGLE_POSITION: 0.20
+
+# 总仓位上限（占总资金比例）
+# 建议：预留40%现金应对极端行情
+MAX_TOTAL_POSITION: 0.60
+
+# 止盈目标（涨幅比例）
+# 默认5%，可根据市场环境调整
+TAKE_PROFIT_PCT: 0.05
+
+# 止损条件（跌幅比例）
+# 默认3%，与止盈形成1.67:1盈亏比
+STOP_LOSS_PCT: 0.03
+
+# 佣金费率（根据您的券商填写）
+# 常见费率：万2.5（0.00025）、万1.5（0.00015）、万1（0.0001）
+COMMISSION_RATE: 0.00025
+
+# 最低佣金（元）
+# 大多数券商最低5元
+MIN_COMMISSION: 5
+
+# 印花税（卖出时收取，固定千1）
+STAMP_TAX_RATE: 0.001
+
+# 过户费（沪市收取，固定万分之0.2）
+TRANSFER_FEE_RATE: 0.00002
+
+# ==================== 策略参数配置（可选） ====================
+
+# 最小日均成交额筛选（万元）
+# 低于此值的股票将被排除（流动性考虑）
+MIN_DAILY_AMOUNT: 5000
+
+# 股价范围筛选（元）
+# 确保1手（100股）在合理投入范围内
+MIN_STOCK_PRICE: 10
+MAX_STOCK_PRICE: 100
+
+# 排除的板块（用逗号分隔）
+# 可选值：ST, 科创板, 北交所, 次新股
+EXCLUDE_TYPES: "ST,科创板,北交所,次新股"
+
+# 技术指标参数
+RSI_PERIOD: 9  # RSI周期（A股建议9日，波动大）
+MACD_FAST: 12
+MACD_SLOW: 26
+MACD_SIGNAL: 9
+
+# 市场情绪阈值
+BULLISH_LIMIT_UP_COUNT: 50  # 涨停家数>50视为情绪高涨
+BEARISH_LIMIT_DOWN_COUNT: 50  # 跌停家数>50视为情绪恐慌
+
+# ==================== 数据源优先级配置 ====================
+
+# 实时行情数据源优先级：1=首选，2=备选
+DATA_SOURCE_REALTIME_PRIORITY: "akshare,tushare"
+
+# 历史数据源优先级
+DATA_SOURCE_HISTORICAL_PRIORITY: "tushare,akshare"
+
+# 财务数据源优先级
+DATA_SOURCE_FINANCIAL_PRIORITY: "tushare,akshare"
+
+# ==================== 日志配置 ====================
+
+# 日志级别：DEBUG, INFO, WARNING, ERROR
+LOG_LEVEL: "INFO"
+
+# 日志文件路径
+LOG_FILE: "logs/marcus.log"
+
+# 是否同时输出到控制台
+LOG_TO_CONSOLE: true
+
+# ==================== 其他配置 ====================
+
+# 报告生成时间（每天几点生成报告）
+REPORT_GENERATION_TIME: "08:30"
+
+# 数据更新频率（分钟）
+DATA_UPDATE_INTERVAL: 5
+
+# 是否开启模拟交易模式（不实际下单，仅记录）
+PAPER_TRADING_MODE: true
+
+# 模拟交易初始资金（元）
+PAPER_TRADING_CAPITAL: 10000

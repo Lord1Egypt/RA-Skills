@@ -1,0 +1,56 @@
+{
+  "agents": [
+    {
+      "agentId": "mirror",
+      "name": "MBTI镜像测试官",
+      "path": "agents/mirror"
+    }
+  ],
+  "bindings": [
+    {
+      "agentId": "mirror",
+      "match": {
+        "channel": "default"
+      }
+    }
+  ],
+  "tools": {
+    "agentToAgent": {
+      "enabled": false
+    }
+  },
+  "isolation": {
+    "mode": "bank",
+    "dimensions": ["agent", "channel", "user"]
+  },
+  "state": {
+    "tracked_fields": [
+      "test_count",
+      "last_test_date",
+
+      "real_E_score", "real_I_score",
+      "real_S_score", "real_N_score",
+      "real_T_score", "real_F_score",
+      "real_J_score", "real_P_score",
+      "real_mbti",
+      "real_role_name",
+
+      "ai_E_score", "ai_I_score",
+      "ai_S_score", "ai_N_score",
+      "ai_T_score", "ai_F_score",
+      "ai_J_score", "ai_P_score",
+      "ai_mbti",
+      "ai_role_name",
+
+      "mirror_index",
+
+      "history_real_mbti",
+      "history_ai_mbti",
+      "history_mirror_index",
+      "history_dates",
+
+      "drift_detected",
+      "drift_summary"
+    ]
+  }
+}

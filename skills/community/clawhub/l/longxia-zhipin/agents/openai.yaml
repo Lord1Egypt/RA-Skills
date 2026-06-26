@@ -1,0 +1,7 @@
+interface:
+  display_name: "龙虾直聘"
+  short_description: "输入公司画像，自动检索并组装可确认安装的团队技能包"
+  default_prompt: "Use $longxia-zhipin to search company context and claw.ai skills, then propose a one-click install package and install only after confirmation."
+
+policy:
+  allow_implicit_invocation: true

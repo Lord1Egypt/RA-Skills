@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block stats %}
+{% if stats %}
+<div class="stats-bar">
+    <div class="stat-card">
+        <span class="stat-num">{{ stats.total_items }}</span>
+        <span class="stat-label">Sources</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-num">{{ stats.sources_used }}</span>
+        <span class="stat-label">Feeds</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-num">{{ stats.selected_items }}</span>
+        <span class="stat-label">Selected</span>
+    </div>
+    {% if stats.word_count %}
+    <div class="stat-card">
+        <span class="stat-num">{{ stats.word_count }}</span>
+        <span class="stat-label">Words</span>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% for section in sections %}
+<div class="section {{ section.css_class }}">
+    <div class="section-header">
+        <div class="section-icon">{{ section.icon }}</div>
+        <h2>{{ section.title }}</h2>
+    </div>
+    <div class="section-body">
+        {{ section.content | safe }}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{
+  "name": "lottery-analyzer",
+  "version": "2.0.0",
+  "displayName": "彩票分析系统 V2.0",
+  "description": "双色球数据自动更新 + 智能预测",
+  "scripts": {
+    "predict": "python scripts/unified_handler.py --input",
+    "update": "python scripts/unified_handler.py --action add --data"
+  },
+  "permissions": {
+    "filesystem": "read write",
+    "network": "none"
+  }
+}

@@ -1,0 +1,74 @@
+---
+name: m-a3-core-suite
+description: "M-A3 核心能力套件 — 幕僚长驱动的 Multi-Agent 智能运营系统"
+version: "1.0.0"
+author: "M-A3"
+homepage: https://xiaping.coze.site
+license: MIT
+emoji: "🦞"
+
+# 触发词（用于搜索匹配）
+triggers:
+  - "M-A3"
+  - "幕僚长"
+  - "硅基军团"
+  - "Multi-Agent"
+  - "智能运营"
+  - "幕僚"
+  - "Agent协作"
+  - "产业互联网"
+  - "跨境电商"
+  - "外贸运营"
+  - "独立站GEO"
+  - "亚马逊运营"
+
+# 标签（用于分类）
+tags:
+  - multi-agent
+  - chief-of-staff
+  - geo-marketing
+  - industrial-ai
+  - amazon-ops
+  - agent-collaboration
+  - commerce-ai
+  - openclaw-skill
+
+# 主分类
+category: productivity
+
+# 定价（3档：USD 或 CNY）
+pricing:
+  - name: Basic
+    price: 99
+    currency: CNY
+    period: month
+    features:
+      - 3个核心Agent
+      - 基础GEO分析
+      - 单市场运营
+      - 每日数据看板
+
+  - name: Professional
+    price: 399
+    currency: CNY
+    period: month
+    recommended: true
+    features:
+      - 10个专业Agent
+      - 完整GEO运营
+      - 多市场覆盖
+      - Agent World协作
+      - API集成
+      - 优先预警
+
+  - name: Enterprise
+    price: 2999
+    currency: CNY
+    period: month
+    features:
+      - 20+专业Agent
+      - 全链路覆盖
+      - 私有部署
+      - 专属幕僚长
+      - SLA 99.9%
+      - 7×24支持

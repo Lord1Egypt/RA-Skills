@@ -1,0 +1,378 @@
+{
+  "skill": {
+    "name": "linkdapi",
+    "version": "1.0.0",
+    "description": "LinkedIn professional data API — profile enrichment, company research, people/jobs/posts search, B2B intelligence",
+    "source": "https://linkdapi.com/apispec.yml",
+    "tags": ["linkedin", "b2b", "lead-generation", "people-search", "company-research", "jobs", "professional-data"]
+  },
+  "api": {
+    "baseUrl": "https://linkdapi.com",
+    "authHeader": "X-linkdapi-apikey",
+    "authEnv": "LINKDAPI_KEY",
+    "note": "Header is X-linkdapi-apikey — NOT x-api-key",
+    "responseEnvelope": {
+      "success": "boolean",
+      "statusCode": "integer",
+      "message": "string",
+      "errors": "string|null",
+      "data": "object|array"
+    }
+  },
+  "endpoints": {
+    "profile": {
+      "overview": {
+        "method": "GET", "path": "api/v1/profile/overview",
+        "params": { "username": { "type": "string", "required": true } },
+        "note": "Returns urn field needed for all other profile endpoints"
+      },
+      "details": {
+        "method": "GET", "path": "api/v1/profile/details",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "contactInfo": {
+        "method": "GET", "path": "api/v1/profile/contact-info",
+        "params": { "username": { "type": "string", "required": true } }
+      },
+      "about": {
+        "method": "GET", "path": "api/v1/profile/about",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "full": {
+        "method": "GET", "path": "api/v1/profile/full",
+        "params": {
+          "username": { "type": "string", "required": false },
+          "urn": { "type": "string", "required": false, "note": "At least one required" }
+        }
+      },
+      "fullExperience": {
+        "method": "GET", "path": "api/v1/profile/full-experience",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "certifications": {
+        "method": "GET", "path": "api/v1/profile/certifications",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "education": {
+        "method": "GET", "path": "api/v1/profile/education",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "skills": {
+        "method": "GET", "path": "api/v1/profile/skills",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "socialMatrix": {
+        "method": "GET", "path": "api/v1/profile/social-matrix",
+        "params": { "username": { "type": "string", "required": true } }
+      },
+      "recommendations": {
+        "method": "GET", "path": "api/v1/profile/recommendations",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "similar": {
+        "method": "GET", "path": "api/v1/profile/similar",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "reactions": {
+        "method": "GET", "path": "api/v1/profile/reactions",
+        "params": { "urn": { "type": "string", "required": true }, "cursor": { "type": "string", "required": false } }
+      },
+      "interests": {
+        "method": "GET", "path": "api/v1/profile/interests",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "services": {
+        "method": "GET", "path": "api/v1/profile/services",
+        "params": { "urn": { "type": "string", "required": true } }
+      },
+      "usernameToUrn": {
+        "method": "GET", "path": "api/v1/profile/username-to-urn",
+        "params": { "username": { "type": "string", "required": true } }
+      }
+    },
+    "companies": {
+      "note": "Base path is /api/v1/companies/ (plural). Company ID param is 'id', not 'company_id'.",
+      "nameLookup": {
+        "method": "GET", "path": "api/v1/companies/name-lookup",
+        "params": { "query": { "type": "string", "required": true } }
+      },
+      "info": {
+        "method": "GET", "path": "api/v1/companies/company/info",
+        "params": {
+          "id": { "type": "string", "required": false, "note": "Company numeric ID" },
+          "name": { "type": "string", "required": false, "note": "At least one of id or name required" }
+        }
+      },
+      "infoV2": {
+        "method": "GET", "path": "api/v1/companies/company/info-v2",
+        "params": { "id": { "type": "string", "required": true } },
+        "note": "Returns extended info: peopleAlsoFollow, affiliatedByJobs, etc."
+      },
+      "similar": {
+        "method": "GET", "path": "api/v1/companies/company/similar",
+        "params": { "id": { "type": "string", "required": true } }
+      },
+      "employeesData": {
+        "method": "GET", "path": "api/v1/companies/company/employees-data",
+        "params": { "id": { "type": "string", "required": true } }
+      },
+      "affiliatedPages": {
+        "method": "GET", "path": "api/v1/companies/company/affiliated-pages",
+        "params": { "id": { "type": "string", "required": true } }
+      },
+      "posts": {
+        "method": "GET", "path": "api/v1/companies/company/posts",
+        "params": {
+          "id": { "type": "string", "required": true },
+          "start": { "type": "integer", "required": false, "default": 0 }
+        }
+      },
+      "universalNameToId": {
+        "method": "GET", "path": "api/v1/companies/company/universal-name-to-id",
+        "params": { "universalName": { "type": "string", "required": true } }
+      },
+      "jobs": {
+        "method": "GET", "path": "api/v1/companies/jobs",
+        "params": {
+          "companyIDs": { "type": "string", "required": true, "note": "Comma-separated company IDs" },
+          "start": { "type": "integer", "required": false, "default": 0 }
+        }
+      }
+    },
+    "jobs": {
+      "search": {
+        "method": "GET", "path": "api/v1/jobs/search",
+        "note": "V1 — simpler, use for basic keyword+location queries",
+        "params": {
+          "keyword": { "type": "string" },
+          "location": { "type": "string" },
+          "geoId": { "type": "string" },
+          "companyIds": { "type": "string" },
+          "jobTypes": { "type": "string", "enum": ["full_time", "part_time", "contract", "temporary", "internship", "volunteer"] },
+          "experience": { "type": "string", "enum": ["internship", "entry_level", "associate", "mid_senior", "director"] },
+          "regions": { "type": "string" },
+          "timePosted": { "type": "string", "enum": ["any", "24h", "1week", "1month"], "default": "any" },
+          "salary": { "type": "string", "enum": ["any", "40k", "60k", "80k", "100k", "120k"] },
+          "workArrangement": { "type": "string", "enum": ["onsite", "remote", "hybrid"] },
+          "start": { "type": "integer", "default": 0 }
+        }
+      },
+      "details": {
+        "method": "GET", "path": "api/v1/jobs/job/details",
+        "params": { "jobId": { "type": "string", "required": true } },
+        "note": "Open jobs only"
+      },
+      "detailsV2": {
+        "method": "GET", "path": "api/v1/jobs/job/details-v2",
+        "params": { "jobId": { "type": "string", "required": true } },
+        "note": "All job statuses (open, closed, expired)"
+      },
+      "similar": {
+        "method": "GET", "path": "api/v1/jobs/job/similar",
+        "params": { "jobId": { "type": "string", "required": true } }
+      },
+      "peopleAlsoViewed": {
+        "method": "GET", "path": "api/v1/jobs/job/people-also-viewed",
+        "params": { "jobId": { "type": "string", "required": true } }
+      },
+      "hiringTeam": {
+        "method": "GET", "path": "api/v1/jobs/job/hiring-team",
+        "params": {
+          "jobId": { "type": "string", "required": true },
+          "start": { "type": "integer", "required": false, "default": 0 }
+        }
+      },
+      "postedByProfile": {
+        "method": "GET", "path": "api/v1/jobs/posted-by-profile",
+        "params": {
+          "profileUrn": { "type": "string", "required": true },
+          "start": { "type": "integer", "required": false, "default": 0 },
+          "count": { "type": "integer", "required": false, "default": 25 }
+        }
+      }
+    },
+    "search": {
+      "jobs_v2": {
+        "method": "GET", "path": "api/v1/search/jobs",
+        "note": "V2 — comprehensive filters. Prefer over jobs/search for complex queries",
+        "params": {
+          "keyword": { "type": "string" },
+          "start": { "type": "integer", "default": 0 },
+          "count": { "type": "integer", "max": 50, "default": 25 },
+          "sortBy": { "type": "string", "enum": ["relevance", "date_posted"] },
+          "datePosted": { "type": "string", "enum": ["24h", "1week", "1month"] },
+          "experience": { "type": "string", "enum": ["internship", "entry_level", "associate", "mid_senior", "director", "executive"] },
+          "jobTypes": { "type": "string", "enum": ["full_time", "part_time", "contract", "temporary", "internship", "volunteer", "other"] },
+          "workplaceTypes": { "type": "string", "enum": ["onsite", "remote", "hybrid"] },
+          "salary": { "type": "string", "enum": ["20k", "30k", "40k", "50k", "60k", "70k", "80k", "90k", "100k"] },
+          "companies": { "type": "string", "note": "Comma-separated company IDs" },
+          "industries": { "type": "string" },
+          "locations": { "type": "string", "note": "LinkedIn geo IDs comma-separated" },
+          "functions": { "type": "string", "example": "it,sales,eng" },
+          "titles": { "type": "string" },
+          "Benefits": { "type": "string", "enum": ["medical_ins", "dental_ins", "vision_ins", "401k", "pension", "paid_maternity", "paid_paternity", "commuter", "student_loan", "tuition", "disability_ins"] },
+          "commitments": { "type": "string", "enum": ["dei", "environmental", "work_life", "social_impact", "career_growth"] },
+          "easyApply": { "type": "boolean" },
+          "verifiedJob": { "type": "boolean" },
+          "under10Applicants": { "type": "boolean" },
+          "fairChance": { "type": "boolean" }
+        }
+      },
+      "people": {
+        "method": "GET", "path": "api/v1/search/people",
+        "params": {
+          "keyword": { "type": "string" },
+          "start": { "type": "integer", "default": 0 },
+          "count": { "type": "integer", "max": 50, "default": 20 },
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" },
+          "title": { "type": "string" },
+          "currentCompany": { "type": "string", "note": "Company ID(s) comma-separated" },
+          "pastCompany": { "type": "string" },
+          "geoUrn": { "type": "string", "note": "From geos/name-lookup" },
+          "industry": { "type": "string" },
+          "school": { "type": "string" },
+          "profileLanguage": { "type": "string", "example": "en" },
+          "serviceCategory": { "type": "string" }
+        }
+      },
+      "companies": {
+        "method": "GET", "path": "api/v1/search/companies",
+        "params": {
+          "keyword": { "type": "string" },
+          "start": { "type": "integer", "default": 0 },
+          "count": { "type": "integer", "max": 50, "default": 25 },
+          "geoUrn": { "type": "string" },
+          "companySize": { "type": "string", "enum": ["1-10", "11-50", "51-200", "201-500", "501-1000", "1001-5000", "5001-10000", "10001+"] },
+          "hasJobs": { "type": "boolean" },
+          "industry": { "type": "string" }
+        }
+      },
+      "posts": {
+        "method": "GET", "path": "api/v1/search/posts",
+        "params": {
+          "keyword": { "type": "string" },
+          "start": { "type": "integer", "default": 10 },
+          "sortBy": { "type": "string", "enum": ["relevance", "date_posted"], "default": "relevance" },
+          "authorCompany": { "type": "string" },
+          "authorIndustry": { "type": "string" },
+          "authorJobTitle": { "type": "string" },
+          "contentType": { "type": "string", "enum": ["videos", "photos", "jobs", "liveVideos", "documents", "collaborativeArticles"] },
+          "datePosted": { "type": "string", "enum": ["past-24h", "past-week", "past-month", "past-year"] },
+          "fromMember": { "type": "string", "note": "Profile URN" },
+          "fromOrganization": { "type": "string", "note": "Company ID(s) comma-separated" },
+          "mentionsMember": { "type": "string" },
+          "mentionsOrganization": { "type": "string" }
+        }
+      },
+      "services": {
+        "method": "GET", "path": "api/v1/search/services",
+        "params": {
+          "keyword": { "type": "string" },
+          "start": { "type": "integer", "default": 0 },
+          "count": { "type": "integer", "max": 50, "default": 25 },
+          "geoUrn": { "type": "string" },
+          "profileLanguage": { "type": "string" },
+          "serviceCategory": { "type": "string" }
+        }
+      },
+      "schools": {
+        "method": "GET", "path": "api/v1/search/schools",
+        "params": {
+          "keyword": { "type": "string" },
+          "start": { "type": "integer", "default": 0 },
+          "count": { "type": "integer", "max": 50, "default": 25 }
+        }
+      }
+    },
+    "posts": {
+      "featured": { "method": "GET", "path": "api/v1/posts/featured", "params": { "urn": { "type": "string", "required": true } } },
+      "all": {
+        "method": "GET", "path": "api/v1/posts/all",
+        "params": { "urn": { "type": "string", "required": true }, "cursor": { "type": "string" }, "start": { "type": "integer", "default": 0 } }
+      },
+      "info": { "method": "GET", "path": "api/v1/posts/info", "params": { "urn": { "type": "string", "required": true } } },
+      "comments": {
+        "method": "GET", "path": "api/v1/posts/comments",
+        "params": { "urn": { "type": "string", "required": true }, "start": { "type": "integer", "default": 0 }, "count": { "type": "integer", "default": 10 }, "cursor": { "type": "string" } }
+      },
+      "likes": {
+        "method": "GET", "path": "api/v1/posts/likes",
+        "params": { "urn": { "type": "string", "required": true }, "start": { "type": "integer", "default": 0 } }
+      }
+    },
+    "comments": {
+      "all": {
+        "method": "GET", "path": "api/v1/comments/all",
+        "params": { "urn": { "type": "string", "required": true }, "cursor": { "type": "string" } }
+      },
+      "likes": {
+        "method": "GET", "path": "api/v1/comments/likes",
+        "params": { "urn": { "type": "string", "required": true, "note": "Comma-separated URNs" }, "start": { "type": "integer", "default": 0 } }
+      }
+    },
+    "articles": {
+      "all": {
+        "method": "GET", "path": "api/v1/articles/all",
+        "params": { "urn": { "type": "string", "required": true }, "start": { "type": "integer", "default": 0 } }
+      },
+      "info": {
+        "method": "GET", "path": "api/v1/articles/article/info",
+        "params": { "url": { "type": "string", "required": true, "note": "Full LinkedIn article URL" } }
+      },
+      "reactions": {
+        "method": "GET", "path": "api/v1/articles/article/reactions",
+        "params": { "urn": { "type": "string", "required": true }, "start": { "type": "integer", "default": 0 } }
+      }
+    },
+    "lookups": {
+      "geoNameLookup": {
+        "method": "GET", "path": "api/v1/geos/name-lookup",
+        "params": { "query": { "type": "string", "required": true } },
+        "note": "Returns geoUrn values to use in search filters"
+      },
+      "titleSkillsLookup": {
+        "method": "GET", "path": "api/v1/g/title-skills-lookup",
+        "params": { "query": { "type": "string", "required": true } }
+      },
+      "servicesLookup": {
+        "method": "GET", "path": "api/v1/g/services-lookup",
+        "params": { "query": { "type": "string", "required": true } }
+      }
+    },
+    "services": {
+      "details": {
+        "method": "GET", "path": "api/v1/services/service/details",
+        "params": { "vanityname": { "type": "string", "required": true } }
+      },
+      "similar": {
+        "method": "GET", "path": "api/v1/services/service/similar",
+        "params": { "vanityname": { "type": "string", "required": true } }
+      }
+    },
+    "system": {
+      "status": { "method": "GET", "path": "status/", "note": "No auth required" }
+    }
+  },
+  "openclaw": {
+    "install": {
+      "path": "~/.openclaw/skills/linkdapi/",
+      "files": ["SKILL.md", "api-ref.md", "skills.json"],
+      "commands": [
+        "mkdir -p ~/.openclaw/skills/linkdapi",
+        "cp SKILL.md api-ref.md skills.json ~/.openclaw/skills/linkdapi/"
+      ]
+    },
+    "openclaw_json_snippet": {
+      "skills": {
+        "entries": {
+          "linkdapi": {
+            "env": {
+              "LINKDAPI_KEY": "YOUR_LINKDAPI_KEY_HERE"
+            }
+          }
+        }
+      }
+    }
+  }
+}

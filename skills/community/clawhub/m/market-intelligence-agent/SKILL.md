@@ -1,35 +1,25 @@
 ---
-name: "Market Intelligence Agent"
-description: "Find business opportunities others miss. Mines Reddit, HackerNews, ProductHunt for pain points, validates ideas, and surfaces emerging trends."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/market-intelligence-agent"
-sourceUrl: "https://clawhub.ai/skills/market-intelligence-agent"
+name: market-intelligence-agent
+description: Find business opportunities others miss. Mines Reddit, HackerNews, ProductHunt for pain points, validates ideas, and surfaces emerging trends.
 ---
 
 # Market Intelligence Agent
 
-> Find business opportunities others miss. Mines Reddit, HackerNews, ProductHunt for pain points, validates ideas, and surfaces emerging trends.
+Find business opportunities others miss.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/market-intelligence-agent`
-- **Source URL:** [https://clawhub.ai/skills/market-intelligence-agent](https://clawhub.ai/skills/market-intelligence-agent)
+## What It Does
 
-## Overview
+1. **Pain Point Mining** - Search platforms for complaints and unmet needs
+2. **Idea Validation** - Rate any business idea 0-10 on market size, competition, feasibility, timing
+3. **Trend Spotting** - Identify emerging niches from keyword velocity
+4. **Competitor Intel** - Quick analysis of any market niche
+5. **Daily Briefing** - Morning report of top 5 opportunities
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/market-intelligence-agent
-```
+- "Find pain points in the SaaS space"
+- "Rate this business idea: AI invoice extractor"
+- "What's trending in AI agents?"
+- "Give me today's opportunity briefing"
+
+See references/prompts.md for detailed analysis frameworks.

@@ -1,0 +1,45 @@
+{
+  "users": {
+    "250316123456": {
+      "created_at": 1773660559,
+      "last_updated": 1773660559,
+      "total_versions": 3
+    },
+    "260316316011": {
+      "created_at": 1773663316,
+      "last_updated": 1773663316,
+      "total_versions": 1
+    },
+    "test_wrapper_123": {
+      "created_at": 1773670025,
+      "last_updated": 1773670025,
+      "total_versions": 1
+    },
+    "main_emoji_main": {
+      "created_at": 1773670037,
+      "last_updated": 1773670037,
+      "total_versions": 1
+    },
+    "wrapper_test_full": {
+      "created_at": 1773670079,
+      "last_updated": 1773670079,
+      "total_versions": 2
+    },
+    "default_user": {
+      "created_at": 1773671781,
+      "last_updated": 1773671781,
+      "total_versions": 1
+    },
+    "test_direct": {
+      "created_at": 1773671792,
+      "last_updated": 1773671792,
+      "total_versions": 1
+    }
+  },
+  "defaults": {
+    "max_versions": 2,
+    "emoji_send_limit_per_hour": 10,
+    "emoji_send_interval_min": 5,
+    "auto_generate_after_avatar": true
+  }
+}

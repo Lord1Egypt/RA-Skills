@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/mal-updater/contracts/crunchyroll_snapshot.schema.json",
+  "title": "Crunchyroll Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "generated_at",
+    "provider",
+    "series",
+    "progress",
+    "watchlist",
+    "raw"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "provider": {
+      "type": "string",
+      "const": "crunchyroll"
+    },
+    "account_id_hint": {
+      "type": ["string", "null"]
+    },
+    "series": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["provider_series_id", "title"],
+        "properties": {
+          "provider_series_id": { "type": "string" },
+          "title": { "type": "string" },
+          "season_title": { "type": ["string", "null"] },
+          "season_number": { "type": ["integer", "null"] }
+        }
+      }
+    },
+    "progress": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "provider_episode_id",
+          "provider_series_id",
+          "episode_number",
+          "episode_title",
+          "playback_position_ms",
+          "duration_ms",
+          "completion_ratio",
+          "last_watched_at",
+          "audio_locale",
+          "subtitle_locale",
+          "rating"
+        ],
+        "properties": {
+          "provider_episode_id": { "type": "string" },
+          "provider_series_id": { "type": "string" },
+          "episode_number": { "type": ["integer", "null"] },
+          "episode_title": { "type": ["string", "null"] },
+          "playback_position_ms": { "type": ["integer", "null"], "minimum": 0 },
+          "duration_ms": { "type": ["integer", "null"], "minimum": 0 },
+          "completion_ratio": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+          "last_watched_at": { "type": ["string", "null"], "format": "date-time" },
+          "audio_locale": { "type": ["string", "null"] },
+          "subtitle_locale": { "type": ["string", "null"] },
+          "rating": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "watchlist": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["provider_series_id", "added_at", "status"],
+        "properties": {
+          "provider_series_id": { "type": "string" },
+          "added_at": { "type": ["string", "null"], "format": "date-time" },
+          "status": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "raw": {
+      "type": "object"
+    }
+  }
+}

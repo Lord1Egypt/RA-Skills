@@ -1,0 +1,37 @@
+{
+  "slug": "local-bookmark-librarian",
+  "title": "本地书签图书管理员",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "directory_audit",
+  "summary": "去重和再分类本地导出的书签或链接清单，生成主题索引和维护建议。",
+  "inputHint": "书签 HTML、CSV 或链接列表",
+  "sections": [
+    "链接概览",
+    "重复项",
+    "主题分类",
+    "建议目录",
+    "低价值链接",
+    "维护节奏"
+  ],
+  "useCases": [
+    "资料整理",
+    "浏览器迁移",
+    "学习库建设"
+  ],
+  "positiveExamples": [
+    "整理我的书签并去重",
+    "按主题重建目录"
+  ],
+  "negativeExamples": [
+    "不要直接修改浏览器配置",
+    "不要删除用户未确认链接"
+  ],
+  "risk": "建议先导出书签副本再分析。",
+  "tags": [
+    "bookmarks",
+    "links",
+    "knowledge",
+    "organization"
+  ]
+}

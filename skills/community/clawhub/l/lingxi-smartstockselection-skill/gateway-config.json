@@ -1,0 +1,17 @@
+{
+  "active_env": "PROD",
+  "base_urls": {
+    "test": "https://test.gtjadev.com:38443/",
+    "prod": "https://zx.app.gtja.com:8443/"
+  },
+  "gateway_paths": {
+    "financial": "mcp/lingxi/financial",
+    "backtest": "mcp/lingxi/backtest",
+    "mqtt": "mcp/mqtt"
+  },
+  "gateways": {
+    "financial": "https://zx.app.gtja.com:8443/mcp/lingxi/financial",
+    "backtest": "https://zx.app.gtja.com:8443/mcp/lingxi/backtest",
+    "mqtt": "https://zx.app.gtja.com:8443/mcp/mqtt"
+  }
+}

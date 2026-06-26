@@ -1,35 +1,31 @@
----
-name: "mao-thought"
-description: "提供毛泽东思想理论、著作核心观点及相关党史、新民主主义和社会主义革命中国问题的专业问答服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mao-thought"
-sourceUrl: "https://clawhub.ai/skills/mao-thought"
----
+# 毛泽东思想问答 skill
 
-# mao-thought
+## 简介
 
-> 提供毛泽东思想理论、著作核心观点及相关党史、新民主主义和社会主义革命中国问题的专业问答服务。
+本 skill 基于毛泽东思想的基本理论、著作和实践，提供关于毛泽东生平、重要思想、理论体系及相关党史问题的问答服务。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mao-thought`
-- **Source URL:** [https://clawhub.ai/skills/mao-thought](https://clawhub.ai/skills/mao-thought)
+## 功能说明
 
-## Overview
+- 回答毛泽东思想基本理论问题
+- 解答毛泽东重要著作的核心观点
+- 提供党史、新民主主义革命、社会主义革命建设等时期相关历史问题
+- 阐释毛泽东思想的活的灵魂（实事求是、群众路线、独立自主）
 
+## 使用限制
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mao-thought
-```
+- 技能主要用于学术、历史知识类问答
+- 涉及敏感历史事件，请依据官方权威史料回复
+- 引用内容需标注出处或说明来源
+
+## 触发关键词
+
+- 毛泽东思想
+- 毛泽东
+- 实事求是
+- 群众路线
+- 新民主主义
+- 社会主义
+- 矛盾论
+- 实践论
+- 论持久战
+- 以及其他毛泽东相关概念

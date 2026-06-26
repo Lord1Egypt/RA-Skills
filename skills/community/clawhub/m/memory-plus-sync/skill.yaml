@@ -1,0 +1,69 @@
+# Memory Plus - 跨渠道记忆同步工具
+# 版本：1.0.0
+
+name: memory-plus-sync
+version: 2.0.0
+description: Memory-Plus 智能记忆升级系统 - 提供三代理验证、智能去重、批量处理和版本控制等高级功能
+author: 伊娃 (Eva)
+license: MIT
+
+# 分类
+category: memory
+tags:
+  - memory
+  - sync
+  - multi-channel
+  - feishu
+  - wechat
+  - telegram
+
+# 系统要求
+requirements:
+  python_version: ">=3.10"
+  openclaw_version: ">=2026.4.0"
+
+# 依赖
+dependencies:
+  - watchdog
+  - sqlite3
+  - fastapi
+  - uvicorn
+  - pydantic
+  - requests
+
+# 入口
+entry:
+  type: python
+  script: mcp_server.py
+  venv: ~/.openclaw/workspace/memory-plus/venv
+  args: ["--host", "0.0.0.0", "--port", "8000"]
+
+# 配置
+config:
+  workspace: ~/.openclaw/workspace/memory-plus
+  memory_db: ~/.openclaw/memory/main.sqlite
+  mcp_server:
+    host: "0.0.0.0"
+    port: 8000
+    workers: 2
+  triple_agent:
+    enabled: true
+    models:
+      validator: "qwen3.6-plus"
+      scorer: "qwen3.6-plus"
+      reviewer: "qwen3.6-plus"
+    timeout_seconds: 180
+  deduplication:
+    enabled: true
+    similarity_threshold: 0.8
+    batch_size: 50
+  monitoring:
+    health_check_interval: 60
+    alert_on_failure: true
+    auto_repair: true
+
+# 文档
+documentation:
+  readme: README.md
+  skill_doc: SKILL.md
+  test_report: TEST_REPORT_2026-04-07.md

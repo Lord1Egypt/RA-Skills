@@ -1,35 +1,58 @@
----
-name: "Luke Pdf Read Summarize"
-description: "快速读取并提取PDF文本和表格内容，生成结构化摘要报告，支持中文和英文PDF文件。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/luke-pdf-read-summarize"
-sourceUrl: "https://clawhub.ai/skills/luke-pdf-read-summarize"
----
+# Luke PDF Read-Summarize - PDF 阅读与摘要工具
 
-# Luke Pdf Read Summarize
+**快速读取 PDF 文件并生成结构化摘要**
 
-> 快速读取并提取PDF文本和表格内容，生成结构化摘要报告，支持中文和英文PDF文件。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/luke-pdf-read-summarize`
-- **Source URL:** [https://clawhub.ai/skills/luke-pdf-read-summarize](https://clawhub.ai/skills/luke-pdf-read-summarize)
+- 读取 PDF 文件内容
+- 提取文本、表格信息
+- 生成结构化摘要报告
+- 支持中文 PDF
 
-## Overview
+## 使用方法
 
+直接说：
+- "总结这个 PDF"
+- "提取 PDF 的核心内容"
+- "这个 PDF 主要讲了什么？"
+- "读取并分析这个文件"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/luke-pdf-read-summarize
+## 输出格式
+
 ```
+# PDF 摘要
+
+## 基本信息
+- 文档类型：[类型]
+- 主题：[核心主题]
+- 页数：[数量]
+
+## 核心内容
+### 1. [主题一]
+- 要点 1
+- 要点 2
+
+### 2. [主题二]
+- 要点 1
+- 要点 2
+
+## 关键数据/结论
+- [重要数据 1]
+- [重要结论 1]
+
+## 建议/行动项
+- [建议 1]
+- [建议 2]
+```
+
+## 触发条件
+
+- 用户上传了 PDF 文件
+- 提到"PDF"、"文档"、"摘要"、"总结"
+- 需要读取 PDF 内容
+
+## 支持的文件类型
+
+- .pdf 文件
+- 中文/英文 PDF
+- 文本提取型 PDF

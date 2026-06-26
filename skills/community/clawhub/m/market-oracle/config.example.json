@@ -1,0 +1,10 @@
+{
+  "skills": {
+    "entries": {
+      "market-oracle": {
+        "enabled": true,
+        "env": {}
+      }
+    }
+  }
+}

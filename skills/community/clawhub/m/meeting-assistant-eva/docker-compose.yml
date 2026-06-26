@@ -1,0 +1,67 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: vexa-postgres
+    environment:
+      - POSTGRES_USER=vexa
+      - POSTGRES_PASSWORD=vexa_pass
+      - POSTGRES_DB=vexa
+    volumes:
+      - vexa_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vexa"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  whisper:
+    image: fedirz/faster-whisper-server:latest-cpu
+    container_name: vexa-whisper
+    # Not exposed to host — accessed only via whisper-proxy
+    environment:
+      - WHISPER__MODEL=Systran/faster-whisper-base
+      - WHISPER__LANGUAGE=zh
+    restart: unless-stopped
+
+  # Proxy required: Vexa sends model=default but faster-whisper-server needs
+  # a valid model name. This proxy rewrites the multipart form body.
+  whisper-proxy:
+    image: python:3.11-slim
+    container_name: vexa-whisper-proxy
+    ports:
+      - "8000:8000"
+    volumes:
+      # NOTE: Docker cannot mount WSL paths. Copy scripts/whisper_proxy.py to
+      # a Windows path first:
+      #   copy .\scripts\whisper_proxy.py C:\Users\zeron\AppData\Local\Temp\
+      - C:/Users/zeron/AppData/Local/Temp/whisper_proxy.py:/proxy.py:ro
+    command: python3 /proxy.py
+    depends_on:
+      - whisper
+    restart: unless-stopped
+
+  vexa:
+    image: vexaai/vexa-lite:latest
+    container_name: vexa-meeting-bot
+    ports:
+      - "8056:8056"
+    environment:
+      - DATABASE_URL=postgresql://vexa:vexa_pass@postgres:5432/vexa
+      - ADMIN_API_TOKEN=openclaw-meeting-bot
+      - TRANSCRIPTION_ENABLED=true
+      - TRANSCRIBER_URL=http://whisper-proxy:8000/v1/audio/transcriptions
+      - REMOTE_TRANSCRIBER_URL=http://whisper-proxy:8000/v1/audio/transcriptions
+      - TRANSCRIBER_API_KEY=openclaw-key
+      - REMOTE_TRANSCRIBER_API_KEY=openclaw-key
+      - ZOOM_CLIENT_ID=YZXafYz5STiVV3qbh2Sh0w
+      - ZOOM_CLIENT_SECRET=IlvPhToAqWorTeW3qLLNUTnF9I1ItxUs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      whisper-proxy:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  vexa_pgdata:

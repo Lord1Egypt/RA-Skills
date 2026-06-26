@@ -1,0 +1,62 @@
+{
+  "$schema": "./domain-schemas.schema.json",
+  "description": "Domain schema configurations for Master Data Intelligent Matching System",
+  "domains": {
+    "procurement": {
+      "name": "Procurement",
+      "description": "Vendor/master data management for procurement",
+      "fields": [
+        { "name": "vendor_name", "type": "string", "weight": 0.3, "critical": true, "description": "Official vendor name" },
+        { "name": "vendor_code", "type": "string", "weight": 0.25, "critical": true, "description": "Internal vendor code" },
+        { "name": "tax_id", "type": "string", "weight": 0.2, "critical": true, "description": "Tax identification number" },
+        { "name": "contact_person", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "email", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "phone", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "address", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "bank_account", "type": "string", "weight": 0.05, "critical": false }
+      ]
+    },
+    "finance": {
+      "name": "Finance",
+      "description": "Company master data for financial systems",
+      "fields": [
+        { "name": "company_name", "type": "string", "weight": 0.3, "critical": true },
+        { "name": "registration_number", "type": "string", "weight": 0.25, "critical": true },
+        { "name": "tax_id", "type": "string", "weight": 0.2, "critical": true },
+        { "name": "fiscal_year_end", "type": "date", "weight": 0.05, "critical": false },
+        { "name": "registered_capital", "type": "number", "weight": 0.05, "critical": false },
+        { "name": "legal_representative", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "address", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "bank_account", "type": "string", "weight": 0.05, "critical": false }
+      ]
+    },
+    "sales": {
+      "name": "Sales",
+      "description": "Customer master data for CRM/sales systems",
+      "fields": [
+        { "name": "customer_name", "type": "string", "weight": 0.3, "critical": true },
+        { "name": "customer_code", "type": "string", "weight": 0.25, "critical": true },
+        { "name": "industry", "type": "string", "weight": 0.1, "critical": false },
+        { "name": "contact_person", "type": "string", "weight": 0.1, "critical": false },
+        { "name": "email", "type": "string", "weight": 0.1, "critical": false },
+        { "name": "phone", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "address", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "credit_limit", "type": "number", "weight": 0.05, "critical": false }
+      ]
+    },
+    "hr": {
+      "name": "HR",
+      "description": "Employee master data for HR systems",
+      "fields": [
+        { "name": "employee_name", "type": "string", "weight": 0.3, "critical": true },
+        { "name": "employee_id", "type": "string", "weight": 0.25, "critical": true },
+        { "name": "id_number", "type": "string", "weight": 0.2, "critical": true },
+        { "name": "department", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "position", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "email", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "phone", "type": "string", "weight": 0.05, "critical": false },
+        { "name": "hire_date", "type": "date", "weight": 0.05, "critical": false }
+      ]
+    }
+  }
+}

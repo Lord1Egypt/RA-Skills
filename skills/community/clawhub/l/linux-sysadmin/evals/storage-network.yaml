@@ -1,0 +1,80 @@
+tests:
+- name: lvm-extend-online
+  input: /data 分区空间不足，底层是 LVM，新加了一块 /dev/sdc 磁盘，如何在线扩容？
+  expected_keywords:
+  - pvcreate
+  - vgextend
+  - lvextend
+  - resize2fs
+  expected_not:
+  - umount
+- name: fstab-uuid-mount
+  input: 新分区 /dev/sdb1 格式化为 xfs，挂载到 /data，要求重启后自动挂载，用 UUID
+  expected_keywords:
+  - mkfs.xfs
+  - blkid
+  - UUID
+  - fstab
+  - mount -a
+  expected_not:
+  - /dev/sdb1
+- name: raid-disk-replace
+  input: RAID 5 阵列 /dev/md0 中的 /dev/sdc 磁盘故障，如何替换？
+  expected_keywords:
+  - mdadm
+  - fail
+  - remove
+  - add
+  expected_not:
+  - rm -rf
+- name: nfs-share-setup
+  input: 配置 NFS 服务器共享 /data/shared 目录给 192.168.1.0/24 网段，客户端自动挂载
+  expected_keywords:
+  - exports
+  - exportfs
+  - nfs
+  - mount
+  expected_not:
+  - chmod 777
+- name: static-ip-nmcli
+  input: 使用 nmcli 配置 eth0 的静态 IP 为 192.168.1.100/24，网关 192.168.1.1，DNS 8.8.8.8
+  expected_keywords:
+  - nmcli
+  - ipv4.method
+  - manual
+  - ipv4.addresses
+  - ipv4.gateway
+  - ipv4.dns
+  expected_not:
+  - ifconfig
+- name: bond-setup
+  input: 将 eth0 和 eth1 配置为 Bond，模式为 active-backup，配置 IP 地址
+  expected_keywords:
+  - bond
+  - nmcli
+  - active-backup
+  - master
+  - slave
+  expected_not:
+  - ifconfig
+- name: dns-troubleshoot
+  input: 服务器无法解析域名，ping IP 地址正常，如何排查 DNS 问题？
+  expected_keywords:
+  - resolv.conf
+  - dig
+  - nslookup
+  - systemd-resolved
+  - nsswitch
+  expected_not:
+  - ifconfig
+- name: disk-full-cleanup
+  input: 磁盘 100% 满了，系统无法正常工作，如何快速排查和清理？
+  expected_keywords:
+  - du
+  - find
+  - size
+  - lsof
+  - deleted
+  - journalctl
+  expected_not:
+  - rm -rf /

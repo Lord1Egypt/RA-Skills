@@ -1,0 +1,148 @@
+# Agent 注册表
+# M-A3 Core Suite — 专业 Agent 路由配置
+
+agents:
+  - name: ChiefOfStaff
+    display_name: 幕僚长
+    role: 任务调度中心
+    emoji: "🏛️"
+    capabilities:
+      - 任务路由
+      - 复杂度评估
+      - 结果整合
+      - 主动预警
+    keywords:
+      - 帮我
+      - 分析
+      - 查询
+      - 制定
+      - 优化
+    complexity_range: [tiny, large]
+    is_entry_point: true
+
+  - name: GEOStrategyAgent
+    display_name: GEO策略专家
+    role: GEO运营策略
+    emoji: "🌐"
+    capabilities:
+      - 市场分析（北美/欧盟/东南亚/拉美/中东）
+      - 内容策略（GEO标准格式）
+      - 流量规划（渠道选择/预算分配）
+      - 合规检查（GDPR/CCPA/行业法规）
+      - 竞对分析（AI可见性对比）
+      - AI引用监控（ChatGPT/Claude/Perplexity）
+    keywords:
+      - GEO
+      - AI可见性
+      - 独立站
+      - 外贸
+      - AI搜索
+      - SEO
+      - 内容营销
+      - AI引用
+    complexity_range: [small, large]
+    api_endpoint: /api/v1/geo/strategy
+
+  - name: SiliconArmyAgent
+    display_name: 硅基军团指挥官
+    role: 产业互联网运营
+    emoji: "🏭"
+    capabilities:
+      - 采购分析（供应商匹配/行情监控）
+      - 生产调度（排产/工单管理）
+      - 销售决策（报价/订单履约）
+      - 财务建议（成本核算/风险预警）
+      - 合规审查（环保/安全/税务）
+    keywords:
+      - 采购
+      - 生产
+      - 库存
+      - 原材料
+      - 供应商
+      - 制造业
+      - 工厂
+      - 硅基军团
+      - 产业互联网
+    complexity_range: [small, large]
+    api_endpoint: /api/v1/silicon/task
+
+  - name: AmazonOpsAgent
+    display_name: 亚马逊运营专家
+    role: 跨境电商运营
+    emoji: "📦"
+    capabilities:
+      - 选品分析（Helium 10/Jungle Scout）
+      - Listing优化（A9算法/标题/五点/描述）
+      - 广告管理（SP/SB/SD/ACOS优化）
+      - 库存规划（FBA/安全库存/补货）
+      - 定价策略（竞品比价/动态调价）
+      - 差评处理（24h响应/买家沟通）
+    keywords:
+      - 亚马逊
+      - Amazon
+      - Listing
+      - ACOS
+      - FBA
+      - PPC
+      - 选品
+      - 广告
+      - 跨境电商
+    complexity_range: [small, large]
+    api_endpoint: /api/v1/amazon/ops
+
+  - name: ContentCreationAgent
+    display_name: 内容创作专家
+    role: 内容创作与分发
+    emoji: "✍️"
+    capabilities:
+      - GEO标准内容（FAQ/列表/定义/表格）
+      - 营销文案（小红书/知乎/LinkedIn）
+      - 技术文档（白皮书/API文档）
+      - 多语言内容（中/英/日/东南亚语言）
+      - Schema标记（JSON-LD/LLMs.txt）
+    keywords:
+      - 内容
+      - 文案
+      - 文章
+      - 写作
+      - 创作
+      - SEO
+      - 小红书
+      - 多语言
+    complexity_range: [tiny, medium]
+    api_endpoint: /api/v1/content/create
+
+  - name: AgentWorldAgent
+    display_name: Agent World 联络官
+    role: 跨Agent社交协作
+    emoji: "🤝"
+    capabilities:
+      - 跨Agent任务委派
+      - Profile管理（Agent World API）
+      - 联盟站点互通（虾评/InStreet等）
+      - 消息传递（A2A协议）
+    keywords:
+      - 协作
+      - 社交
+      - 联盟
+      - 跨Agent
+      - Agent World
+      - 联合
+    complexity_range: [small, large]
+    api_endpoint: /api/v1/agent-world/collab
+
+# 路由规则（按优先级）
+routing_rules:
+  # 优先级1：精确关键词匹配
+  exact_match:
+    - keywords: ["GEO", "AI可见性", "独立站优化", "AI搜索"]
+      agent: GEOStrategyAgent
+    - keywords: ["亚马逊", "Amazon", "FBA", "Listing"]
+      agent: AmazonOpsAgent
+    - keywords: ["采购", "生产", "硅基军团", "产业互联网"]
+      agent: SiliconArmyAgent
+    - keywords: ["协作", "跨Agent", "Agent World"]
+      agent: AgentWorldAgent
+
+  # 优先级2：默认路由
+  default: GEOStrategyAgent

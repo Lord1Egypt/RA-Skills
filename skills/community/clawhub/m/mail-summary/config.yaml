@@ -1,0 +1,4 @@
+timezone: Asia/Bangkok
+max_retries: 5
+log_level: INFO
+lookback_hours: 24

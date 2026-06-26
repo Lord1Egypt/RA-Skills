@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shopify"
+  short_description: "Search and manage Shopify products, orders, customers, and shop data"
+  default_prompt: "Use the Shopify MCP tools to help the user inspect products, orders, customers, and Shopify shop data."

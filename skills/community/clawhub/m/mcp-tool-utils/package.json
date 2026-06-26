@@ -1,0 +1,10 @@
+{
+  "name": "mcp-tool-utils",
+  "version": "1.0.0",
+  "description": "MCP utilities and helpers for OpenClaw",
+  "main": "SKILL.md",
+  "openclaw": {
+    "skill": true,
+    "category": "integration"
+  }
+}

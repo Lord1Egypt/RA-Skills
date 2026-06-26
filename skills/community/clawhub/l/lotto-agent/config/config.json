@@ -1,0 +1,21 @@
+{
+  "api_base_url": "https://raw.githubusercontent.com/wenjinliuu/lottery-data-repo/main/public_data",
+  "notify": {
+    "enabled": false,
+    "channel": "",
+    "chat_id": "",
+    "account_id": ""
+  },
+  "defaults": {
+    "lottery": "dlt",
+    "count": 1,
+    "multiple": 1,
+    "additional": {
+      "dlt": false
+    }
+  },
+  "draw_check_window": {
+    "time_start": "21:35",
+    "time_end": "23:55"
+  }
+}

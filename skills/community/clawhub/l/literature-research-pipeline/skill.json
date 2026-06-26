@@ -1,0 +1,60 @@
+{
+  "name": "文献检索与下载全流程",
+  "description": "End-to-end academic literature search and download automation. When users ask to search literature, download papers, find academic resources, or mention phrases like help me find literature, download this paper, or I need a paper, this skill triggers. Complete workflow: search → recommend → multi-channel download → Ablesci help posting → cron monitoring → notification → progress tracking.",
+  "version": "1.0.3",
+  "homepage": "https://clawhub.ai/oreosofat/literature-research-pipeline",
+  "categories": [
+    "搜索研究",
+    "AI增强",
+    "知识管理",
+    "DevOps"
+  ],
+  "tags": [
+    "文献检索",
+    "论文下载",
+    "学术搜索",
+    "科研工具",
+    "ablesci",
+    "crossref",
+    "semantic-scholar",
+    "paper-download"
+  ],
+  "env": [
+    {
+      "name": "LIT_DOWNLOAD_DIR",
+      "required": true,
+      "description": "论文下载保存目录"
+    },
+    {
+      "name": "LIT_PROGRESS_FILE",
+      "required": true,
+      "description": "下载进度追踪文件路径"
+    },
+    {
+      "name": "LIT_CDP_PORT",
+      "required": false,
+      "default": "9334",
+      "description": "浏览器远程调试端口"
+    },
+    {
+      "name": "LIT_NOTIFY_CHANNEL",
+      "required": false,
+      "description": "通知渠道（如 wechat-access、telegram 等）"
+    },
+    {
+      "name": "LIT_NOTIFY_USER",
+      "required": false,
+      "description": "通知目标用户 ID"
+    },
+    {
+      "name": "SEMANTIC_SCHOLAR_API_KEY",
+      "required": false,
+      "description": "Semantic Scholar API 密钥"
+    },
+    {
+      "name": "LIT_UNPAYWALL_EMAIL",
+      "required": false,
+      "description": "Unpaywall API 所需邮箱"
+    }
+  ]
+}

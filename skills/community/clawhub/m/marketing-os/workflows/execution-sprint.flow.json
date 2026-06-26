@@ -1,0 +1,171 @@
+{
+    "workflow_id": "execution-sprint",
+    "name": "Execution Sprint",
+    "description": "Execute campaign tasks, track progress, collect metrics, and generate CMO feedback",
+    "version": "1.0.0",
+    "trigger": {
+        "type": "event | manual",
+        "event": "campaign_approved",
+        "requires": "schemas/campaign.schema.json"
+    },
+    "steps": [
+        {
+            "step_id": "step_01",
+            "name": "load_campaign",
+            "description": "Load approved campaign and task queue from memory",
+            "handler": "marketing-operator",
+            "inputs": {
+                "campaign_id": "trigger.payload.campaign_id",
+                "source": "memory/campaigns.json"
+            },
+            "outputs": {
+                "campaign": "object",
+                "task_queue": "object[]"
+            }
+        },
+        {
+            "step_id": "step_02",
+            "name": "execute_tasks",
+            "description": "Execute tasks in dependency order, update status, handle blockers",
+            "handler": "marketing-operator",
+            "prompt": "prompts/operator-execution.txt",
+            "inputs": {
+                "task_queue": "step_01.outputs.task_queue",
+                "adapters": [
+                    "adapters/content.adapter.md",
+                    "adapters/crm.adapter.md"
+                ]
+            },
+            "outputs": {
+                "completed_tasks": "object[]",
+                "blocked_tasks": "object[]",
+                "failed_tasks": "object[]"
+            },
+            "loop": {
+                "type": "for_each",
+                "over": "task_queue",
+                "condition": "task.status != 'completed' AND task.status != 'failed' AND task.status != 'cancelled'",
+                "max_iterations": "configs/system.config.json#max_iterations"
+            },
+            "depends_on": [
+                "step_01"
+            ]
+        },
+        {
+            "step_id": "step_03",
+            "name": "collect_metrics",
+            "description": "Gather performance metrics from all channels",
+            "handler": "marketing-operator",
+            "inputs": {
+                "completed_tasks": "step_02.outputs.completed_tasks",
+                "channels": "adapters/data-source.adapter.md"
+            },
+            "outputs": {
+                "metrics": "object"
+            },
+            "depends_on": [
+                "step_02"
+            ]
+        },
+        {
+            "step_id": "step_04",
+            "name": "evaluate_performance",
+            "description": "Compare actual metrics vs campaign targets, identify gaps",
+            "handler": "marketing-operator",
+            "prompt": "prompts/operator-execution.txt",
+            "inputs": {
+                "metrics": "step_03.outputs.metrics",
+                "target_metrics": "step_01.outputs.campaign.target_metrics"
+            },
+            "outputs": {
+                "performance_report": "object",
+                "escalations": "object[]"
+            },
+            "depends_on": [
+                "step_03"
+            ]
+        },
+        {
+            "step_id": "step_05",
+            "name": "generate_feedback",
+            "description": "Create structured feedback for CMO with metrics, learnings, and recommendations",
+            "handler": "marketing-operator",
+            "prompt": "prompts/operator-execution.txt",
+            "inputs": {
+                "performance_report": "step_04.outputs.performance_report",
+                "completed_tasks": "step_02.outputs.completed_tasks",
+                "failed_tasks": "step_02.outputs.failed_tasks"
+            },
+            "outputs": {
+                "feedback": "schemas/feedback.schema.json"
+            },
+            "depends_on": [
+                "step_04"
+            ]
+        },
+        {
+            "step_id": "step_06",
+            "name": "update_memory",
+            "description": "Persist campaign results, metrics, and learnings",
+            "handler": "system",
+            "action": "write_memory",
+            "inputs": {
+                "campaign_update": "step_04.outputs.performance_report",
+                "feedback": "step_05.outputs.feedback"
+            },
+            "targets": [
+                "memory/campaigns.json",
+                "memory/learnings.json"
+            ],
+            "depends_on": [
+                "step_05"
+            ]
+        },
+        {
+            "step_id": "step_07",
+            "name": "dispatch_feedback",
+            "description": "Send feedback to CMO for strategy refinement",
+            "handler": "system",
+            "action": "dispatch_to_skill",
+            "inputs": {
+                "target_skill": "virtual-cmo",
+                "payload": "step_05.outputs.feedback",
+                "schema": "schemas/feedback.schema.json"
+            },
+            "depends_on": [
+                "step_06"
+            ]
+        }
+    ],
+    "escalation_rules": [
+        {
+            "condition": "performance < 50% of target at midpoint",
+            "action": "trigger_cmo_review",
+            "severity": "high"
+        },
+        {
+            "condition": "budget > 80% spent AND tasks < 50% complete",
+            "action": "pause_and_notify",
+            "severity": "critical"
+        },
+        {
+            "condition": "critical_task_blocked > 24h",
+            "action": "escalate_to_human",
+            "severity": "critical"
+        }
+    ],
+    "on_error": {
+        "strategy": "log_and_continue",
+        "fallback": "halt_after_3_failures",
+        "log_to": "logs/execution.log.json"
+    },
+    "on_complete": {
+        "actions": [
+            "log_execution",
+            "generate_campaign_summary",
+            "archive_campaign_if_complete"
+        ],
+        "next_workflow": "market-discovery.flow.json",
+        "auto_trigger_next": false
+    }
+}

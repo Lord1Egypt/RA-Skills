@@ -1,0 +1,92 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lumi - Repurpose",
+    "description": "One-shot workflow: crawl Chinese platform video → upload → translate/dub → optionally publish",
+    "version": "1.0.0"
+  },
+  "tags": [{ "name": "Repurpose" }],
+  "paths": {
+    "/api/v1/repurpose": {
+      "post": {
+        "summary": "One-shot: crawl → translate/dub → auto-publish",
+        "description": "The fastest workflow for repurposing Chinese platform content. Provide a Douyin/Bilibili/Xiaohongshu URL, translation settings, and optional auto-publish targets. Returns a taskId — poll GET /api/v1/localization?taskId= to track progress.",
+        "tags": ["Repurpose"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sourceUrl": {
+                    "type": "string",
+                    "description": "Source video URL. Supported: douyin.com, bilibili.com, xiaohongshu.com, xhslink.com"
+                  },
+                  "sourceLang": { "type": "string", "description": "Source language code, e.g. zh" },
+                  "targetLang": { "type": "string", "description": "Target language code, e.g. en, ko, ja, es, fr" },
+                  "dubbing": { "type": "boolean", "description": "Enable AI TTS voice dubbing" },
+                  "dubbingVoiceId": { "type": "number", "description": "TTS voice ID from /api/v1/tts. Defaults to 455." },
+                  "backgroundMusic": {
+                    "type": "number",
+                    "enum": [0, 1, 2],
+                    "description": "0=keep original music, 1=mute all, 2=keep sound effects only"
+                  },
+                  "subtitle": { "type": "boolean", "description": "Burn translated subtitles into the video" },
+                  "subtitleStyle": { "type": "string", "description": "Subtitle style code, e.g. tpl-31-1-T" },
+                  "ocr": { "type": "boolean", "description": "Translate on-screen text (OCR)" },
+                  "copyright": { "type": "boolean", "description": "Run async music copyright detection" },
+                  "autoPublish": {
+                    "type": "object",
+                    "description": "Auto-publish to social platforms when translation completes",
+                    "properties": {
+                      "text": { "type": "string", "description": "Post caption/title" },
+                      "tiktokConnectionIds": { "type": "array", "items": { "type": "string" } },
+                      "youtubeConnectionIds": { "type": "array", "items": { "type": "string" } },
+                      "instagramConnectionIds": { "type": "array", "items": { "type": "string" } }
+                    },
+                    "required": ["text"]
+                  }
+                },
+                "required": ["sourceUrl", "sourceLang", "targetLang"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Repurpose task created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "taskId": { "type": "string", "description": "Poll GET /api/v1/localization?taskId= to track progress" },
+                        "vid": { "type": "string" },
+                        "status": { "type": "string" }
+                      },
+                      "required": ["taskId", "vid", "status"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [{ "url": "https://lumipath.cn", "description": "Production" }]
+}

@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://your-mcsmanager.example.com",
+  "apiKey": "replace-me",
+  "instanceUuid": "your-instance-uuid",
+  "daemonId": "optional-if-your-setup-needs-it"
+}

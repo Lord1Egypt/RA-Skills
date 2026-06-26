@@ -1,35 +1,67 @@
 ---
-name: "Markdown Converter 1.0.0"
-description: "Convert documents and files to Markdown using markitdown. Use when converting PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx, .xls), HTML, CSV, JSON, XM..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/markdown-converter-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/markdown-converter-1-0-0"
+name: markdown-converter
+description: Convert documents and files to Markdown using markitdown. Use when converting PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx, .xls), HTML, CSV, JSON, XML, images (with EXIF/OCR), audio (with transcription), ZIP archives, YouTube URLs, or EPubs to Markdown format for LLM processing or text analysis.
 ---
 
-# Markdown Converter 1.0.0
+# Markdown Converter
 
-> Convert documents and files to Markdown using markitdown. Use when converting PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx, .xls), HTML, CSV, JSON, XM...
+Convert files to Markdown using `uvx markitdown` — no installation required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/markdown-converter-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/markdown-converter-1-0-0](https://clawhub.ai/skills/markdown-converter-1-0-0)
+## Basic Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/markdown-converter-1-0-0
+# Convert to stdout
+uvx markitdown input.pdf
+
+# Save to file
+uvx markitdown input.pdf -o output.md
+uvx markitdown input.docx > output.md
+
+# From stdin
+cat input.pdf | uvx markitdown
 ```
+
+## Supported Formats
+
+- **Documents**: PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx, .xls)
+- **Web/Data**: HTML, CSV, JSON, XML
+- **Media**: Images (EXIF + OCR), Audio (EXIF + transcription)
+- **Other**: ZIP (iterates contents), YouTube URLs, EPub
+
+## Options
+
+```bash
+-o OUTPUT      # Output file
+-x EXTENSION   # Hint file extension (for stdin)
+-m MIME_TYPE   # Hint MIME type
+-c CHARSET     # Hint charset (e.g., UTF-8)
+-d             # Use Azure Document Intelligence
+-e ENDPOINT    # Document Intelligence endpoint
+--use-plugins  # Enable 3rd-party plugins
+--list-plugins # Show installed plugins
+```
+
+## Examples
+
+```bash
+# Convert Word document
+uvx markitdown report.docx -o report.md
+
+# Convert Excel spreadsheet
+uvx markitdown data.xlsx > data.md
+
+# Convert PowerPoint presentation
+uvx markitdown slides.pptx -o slides.md
+
+# Convert with file type hint (for stdin)
+cat document | uvx markitdown -x .pdf > output.md
+
+# Use Azure Document Intelligence for better PDF extraction
+uvx markitdown scan.pdf -d -e "https://your-resource.cognitiveservices.azure.com/"
+```
+
+## Notes
+
+- Output preserves document structure: headings, tables, lists, links
+- First run caches dependencies; subsequent runs are faster
+- For complex PDFs with poor extraction, use `-d` with Azure Document Intelligence

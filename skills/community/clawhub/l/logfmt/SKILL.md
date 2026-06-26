@@ -1,35 +1,23 @@
----
-name: "Logfmt"
-description: "Colorize plain text logs in your terminal with syntax highlighting for timestamps and log levels to simplify debugging."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/logfmt"
-sourceUrl: "https://clawhub.ai/skills/logfmt"
----
+# LogFMT
 
-# Logfmt
+A lightweight CLI tool that brings syntax highlighting to plain text logs in your terminal. LogFMT detects timestamps and log levels (ERROR, WARN, INFO, etc.) and applies readable colors, making debugging faster and less error-prone.
 
-> Colorize plain text logs in your terminal with syntax highlighting for timestamps and log levels to simplify debugging.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/logfmt`
-- **Source URL:** [https://clawhub.ai/skills/logfmt](https://clawhub.ai/skills/logfmt)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/logfmt
+# Colorize a log file
+python logfmt.py app.log
+
+# Pipe logs with tail
+tail -f app.log | python logfmt.py
+
+# Colorize current system logs
+journalctl -f | python logfmt.py
+
+# From stdin
+cat error.log | python logfmt.py
 ```
+
+## Price
+
+$2.50

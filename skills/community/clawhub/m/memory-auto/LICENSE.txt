@@ -1,0 +1,5 @@
+﻿MIT License
+
+Copyright (c) 2026 OpenClaw Community
+
+Permission is hereby granted...

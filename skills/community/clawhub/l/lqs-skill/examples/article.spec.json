@@ -1,0 +1,43 @@
+{
+  "module": "Admin",
+  "entity": "Article",
+  "table": "typecho_articles",
+  "pk": "id",
+  "base_controller": "BackendBaseController",
+  "fields": [
+    { "name": "id", "type": "int", "required": true, "label": "ID", "searchable": true, "editable": false },
+    { "name": "title", "type": "string", "required": true, "label": "标题", "searchable": true, "editable": true },
+    { "name": "content", "type": "text", "required": true, "label": "内容", "searchable": false, "editable": true },
+    { "name": "author_id", "type": "int", "required": true, "label": "作者", "searchable": true, "editable": true },
+    { "name": "status", "type": "enum", "enum": ["draft", "active"], "default": "active", "label": "状态", "searchable": true, "editable": true },
+    { "name": "created_at", "type": "datetime", "label": "创建时间", "searchable": true, "editable": false },
+    { "name": "updated_at", "type": "datetime", "label": "更新时间", "searchable": true, "editable": false }
+  ],
+  "apis": [
+    { "method": "GET", "path": "/admin/article/index", "action": "index" },
+    { "method": "GET", "path": "/admin/article/listAjax", "action": "listAjax" },
+    { "method": "POST", "path": "/admin/article/save", "action": "save" },
+    { "method": "POST", "path": "/admin/article/delete", "action": "delete" }
+  ],
+  "artifacts": ["controller", "model", "view", "migration"]
+  ,
+  "assumptions": [
+    "table 前缀 typecho_ 来自 context defaults.migration_prefix",
+    "base_controller=BackendBaseController，Admin 模块默认值",
+    "delete 操作映射到 HoutaiRepository.delAction（非 deleteAction）"
+  ],
+  "evidence": [
+    { "mapping": "entity=Article → controller path", "source": "template_pack", "detail": "admin_controller.txt target: application/modules/{{module}}/controllers/{{Entity}}.php" },
+    { "mapping": "table=typecho_articles", "source": "context", "detail": "context defaults.migration_prefix=typecho_，实体名 article → typecho_articles" },
+    { "mapping": "searchable fields → query_contract", "source": "pattern", "detail": "id:where, title:like, status:where, created_at:between，来自 project_pattern_profile field_heuristics" }
+  ],
+  "confidence": "high",
+  "ambiguities": [
+    {
+      "topic": "删除行为：软删还是硬删",
+      "impact": "Model 是否引入 SoftDeletes",
+      "default_resolution": "本版本按硬删生成，migration 不加 deleted_at",
+      "next_step": "如需软删，在 RequirementDraft constraints 中显式标注"
+    }
+  ]
+}

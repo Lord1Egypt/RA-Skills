@@ -1,35 +1,53 @@
 ---
-name: "Markdown Publish & Share"
-description: "Publish markdown and return share links using curl. Support markdown with mermaid diagrams such as component diagrams, flowcharts, and sequence diagrams. Also supports KaTex and code blocks. AutEng will return a shareable link to the published rendered document. Use cases incl…"
-category: "other"
-source: "ClawHub"
-tags: [./auteng-docs-curl-publish, ./markdown-publish-share]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/markdown-publish-share"
-sourceUrl: "https://clawhub.ai/skills/markdown-publish-share"
+name: markdown-publish-share
+description: Publish markdown and return share links using curl. Support markdown with mermaid diagrams such as component diagrams, flowcharts, and sequence diagrams. Also supports KaTex and code blocks. AutEng will return a shareable link to the published rendered document. Use cases include Software Architecture diagrams and documentation, Maths and Physics derivations and Systems documentation.
 ---
 
-# Markdown Publish & Share
+# AutEng Docs Curl Publish
 
-> Publish markdown and return share links using curl. Support markdown with mermaid diagrams such as component diagrams, flowcharts, and sequence diagrams. Also supports KaTex and code blocks. AutEng will return a shareable link to the published rendered document. Use cases incl…
+Use this endpoint:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/markdown-publish-share`
-- **Source URL:** [https://clawhub.ai/skills/markdown-publish-share](https://clawhub.ai/skills/markdown-publish-share)
+`https://auteng.ai/api/tools/docs/publish-markdown/`
 
-## Overview
+Send JSON with:
 
+- `markdown` (required)
+- `title` (optional)
+- `expires_hours` (optional)
 
-## Installation
-To install this skill, run the following command in your terminal:
+Use this command to publish markdown:
+
 ```bash
-hermes skills install clawhub/markdown-publish-share
+curl -sS -X POST "https://auteng.ai/api/tools/docs/publish-markdown/" \
+  -H "Content-Type: application/json" \
+  -d @- <<'JSON'
+{
+  "markdown": "# API Test\n\nHello from curl.",
+  "title": "API Test",
+  "expires_hours": 24
+}
+JSON
 ```
+
+Extract only the share URL:
+
+```bash
+curl -sS -X POST "https://auteng.ai/api/tools/docs/publish-markdown/" \
+  -H "Content-Type: application/json" \
+  -d '{"markdown":"# Hello\n\nPublished from curl."}' \
+  | jq -r '.share_url'
+```
+
+Extract a compact success payload:
+
+```bash
+curl -sS -X POST "https://auteng.ai/api/tools/docs/publish-markdown/" \
+  -H "Content-Type: application/json" \
+  -d '{"markdown":"# Hello\n\nPublished from curl."}' \
+  | jq '{title, share_url, expires_at}'
+```
+
+Treat any response without `share_url` as an error and show the full JSON body.
+
+
+For full documentation and supported markdown for mermaid, KaTeX and code syntax along with examples, see https://auteng.ai/llms.txt

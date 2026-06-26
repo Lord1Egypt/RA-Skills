@@ -1,0 +1,3 @@
+incident_id,crisis_type,crisis_level,device_type,device_id,location_lat,location_lon,altitude_m,trigger_description,outcome_success,decision_source,response_time_sec,device_repair_cost_cny,third_party_damage_cny,public_property_damage_cny,human_casualties,human_injuries,notes,timestamp
+INC-SAMPLE-001,power_failure.single_motor_loss,L3-MAJOR,multirotor,DJI-M300-001,31.2304,121.4737,80,左前电机异常振动后停转,true,knowledge_base,2.5,1200,0,0,0,0,成功备降至安全区域,2026-01-15T08:30:00Z
+INC-SAMPLE-002,navigation_failure.gps_loss,L2-MINOR,multirotor,DJI-M300-002,31.2350,121.4800,60,GPS信号突然丢失,true,knowledge_base,5.0,0,0,0,0,0,切换视觉导航后安全返航,2026-01-20T14:15:00Z

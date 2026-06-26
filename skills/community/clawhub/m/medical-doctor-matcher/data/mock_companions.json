@@ -1,0 +1,45 @@
+[
+  {
+    "companion_id": "E001",
+    "name": "王阿姨",
+    "city": "北京",
+    "regions": [
+      "朝阳区",
+      "东城区"
+    ],
+    "service_tags": [
+      "门诊陪诊",
+      "取药",
+      "代办"
+    ],
+    "rating": 4.9
+  },
+  {
+    "companion_id": "E002",
+    "name": "李老师",
+    "city": "北京",
+    "regions": [
+      "海淀区",
+      "西城区"
+    ],
+    "service_tags": [
+      "门诊陪诊",
+      "检查陪同"
+    ],
+    "rating": 4.8
+  },
+  {
+    "companion_id": "E003",
+    "name": "张护士",
+    "city": "北京",
+    "regions": [
+      "西城区",
+      "东城区"
+    ],
+    "service_tags": [
+      "儿科陪诊",
+      "老人陪诊"
+    ],
+    "rating": 4.9
+  }
+]

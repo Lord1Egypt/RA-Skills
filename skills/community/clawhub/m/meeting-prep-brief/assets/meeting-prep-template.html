@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{MEETING_TOPIC}} — 会前材料 | {{MEETING_TIME}}</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    padding: 48px 40px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { font-size: 15px; color: rgba(255,255,255,0.7); }
+  .header .meta {
+    margin-top: 20px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header .meta-item {
+    background: rgba(255,255,255,0.12);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .header .meta-item strong { color: #64b5f6; }
+  
+  /* Section */
+  .section {
+    background: #fff;
+    border-radius: 14px;
+    padding: 36px 40px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f3460;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e8ecf1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .icon {
+    width: 28px; height: 28px;
+    background: #0f3460;
+    color: #fff;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 20px 0 10px;
+  }
+  
+  p, li { font-size: 14.5px; color: #333; }
+  p { margin-bottom: 12px; }
+  ul, ol { padding-left: 20px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+  
+  /* Highlight box */
+  .highlight-box {
+    background: #f0f4ff;
+    border-left: 4px solid #3b6fd4;
+    padding: 16px 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 16px 0;
+  }
+  .highlight-box.green { background: #f0faf4; border-left-color: #2e9e5e; }
+  .highlight-box.amber { background: #fffbf0; border-left-color: #d4920b; }
+  .highlight-box.red   { background: #fff5f5; border-left-color: #d44b4b; }
+  .highlight-box p:last-child { margin-bottom: 0; }
+  .highlight-box .label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .highlight-box.green .label { color: #2e9e5e; }
+  .highlight-box.amber .label { color: #d4920b; }
+  .highlight-box.red .label   { color: #d44b4b; }
+  
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  th {
+    background: #f7f8fa;
+    font-weight: 600;
+    color: #555;
+    font-size: 13px;
+  }
+  
+  /* Checklist */
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li {
+    padding: 10px 16px;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14.5px;
+  }
+  .checklist li .checkbox {
+    width: 20px; height: 20px;
+    border: 2px solid #c0c5ce;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .checklist li strong { color: #0f3460; }
+  
+  /* Tag */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .tag.blue   { background: #e8f0fe; color: #1a5dab; }
+  .tag.green  { background: #e6f7ed; color: #1a7a42; }
+  .tag.orange { background: #fff3e0; color: #b86e00; }
+  .tag.purple { background: #f3e8ff; color: #6b21a8; }
+  .tag.red    { background: #fee2e2; color: #b91c1c; }
+  
+  /* Two columns */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .col-card {
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .col-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #0f3460;
+  }
+  
+  .divider { height: 1px; background: #e8ecf1; margin: 24px 0; }
+  
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 32px;
+  }
+  
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    .header .meta { flex-direction: column; gap: 8px; }
+    .section { padding: 24px 20px; }
+  }
+  @media print {
+    body { background: #fff; padding: 20px; }
+    .section { box-shadow: none; border: 1px solid #eee; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== HEADER ==================== -->
+<div class="header">
+  <h1>{{MEETING_TOPIC}} — 会前材料</h1>
+  <div class="subtitle">{{SUBTITLE}}</div>
+  <div class="meta">
+    <div class="meta-item"><strong>会议时间</strong>&nbsp;&nbsp;{{MEETING_TIME}}</div>
+    <div class="meta-item"><strong>对方</strong>&nbsp;&nbsp;{{COUNTERPART}}</div>
+    <div class="meta-item"><strong>我方</strong>&nbsp;&nbsp;{{OUR_SIDE}}</div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 1: 对方背景速览 ==================== -->
+<!-- 根据实际情况填充，可增减字段 -->
+<div class="section">
+  <h2><span class="icon">1</span>对方背景速览</h2>
+  
+  <h3>基本面</h3>
+  <table>
+    <tr><th style="width:160px">全称</th><td>{{FULL_NAME}}</td></tr>
+    <tr><th>主办方/归属</th><td>{{ORGANIZER}}</td></tr>
+    <tr><th>核心业务/定位</th><td>{{CORE_BUSINESS}}</td></tr>
+    <tr><th>规模/影响力</th><td>{{SCALE}}</td></tr>
+  </table>
+  
+  <h3>关键人物</h3>
+  <p>
+    <span class="tag blue">{{PERSON_1}}</span>
+    <span class="tag blue">{{PERSON_2}}</span>
+    <!-- 更多人物标签... -->
+  </p>
+  
+  <div class="highlight-box">
+    <p><strong>合作基础：</strong>{{EXISTING_RELATIONSHIP}}</p>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2: 核心议题/关键信息 ==================== -->
+<div class="section">
+  <h2><span class="icon">2</span>核心议题 · 关键信息</h2>
+  
+  <table>
+    <tr><th style="width:140px">时间</th><td>{{EVENT_TIME}}</td></tr>
+    <tr><th>地点</th><td>{{LOCATION}}</td></tr>
+    <tr><th>预计参会</th><td>{{ATTENDEES}}</td></tr>
+    <tr><th>主题</th><td>{{THEME}}</td></tr>
+  </table>
+  
+  <h3>议程结构</h3>
+  <table>
+    <tr><th>时间</th><th>环节</th></tr>
+    <tr><td>{{TIME_SLOT_1}}</td><td>{{AGENDA_1}}</td></tr>
+    <tr><td>{{TIME_SLOT_2}}</td><td>{{AGENDA_2}}</td></tr>
+    <!-- 更多议程... -->
+  </table>
+  
+  <div class="highlight-box green">
+    <div class="label">与我方直接相关</div>
+    <p>{{RELEVANT_INFO}}</p>
+  </div>
+  
+  <div class="highlight-box amber">
+    <div class="label">需要注意</div>
+    <p>{{WARNING_INFO}}</p>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3: 合作机会分析 ==================== -->
+<div class="section">
+  <h2><span class="icon">3</span>合作机会分析</h2>
+  
+  <div class="two-col">
+    <div class="col-card">
+      <h4><span class="tag green">机会 A</span> {{OPPORTUNITY_A_TITLE}}</h4>
+      <p style="font-size:13px; color:#555;">{{OPP_A_META}}</p>
+      <ul style="font-size:13.5px;">
+        <li><strong>形式：</strong>{{OPP_A_FORMAT}}</li>
+        <li><strong>价值：</strong>{{OPP_A_VALUE}}</li>
+        <li><strong>投入：</strong>{{OPP_A_COST}}</li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <h4><span class="tag orange">机会 B</span> {{OPPORTUNITY_B_TITLE}}</h4>
+      <p style="font-size:13px; color:#555;">{{OPP_B_META}}</p>
+      <ul style="font-size:13.5px;">
+        <li><strong>形式：</strong>{{OPP_B_FORMAT}}</li>
+        <li><strong>价值：</strong>{{OPP_B_VALUE}}</li>
+        <li><strong>投入：</strong>{{OPP_B_COST}}</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- 如有历史参考案例 -->
+  <h3>历史参考</h3>
+  <table>
+    <tr><th style="width:120px">嘉宾</th><th>单位</th><th>主题</th></tr>
+    <tr><td>{{SPEAKER_1}}</td><td>{{ORG_1}}</td><td>{{TOPIC_1}}</td></tr>
+    <!-- 更多行... -->
+  </table>
+</div>
+
+<!-- ==================== SECTION 4: 建议/选题方向（如适用） ==================== -->
+<div class="section">
+  <h2><span class="icon">4</span>选题方向建议</h2>
+  
+  <div class="highlight-box">
+    <p><strong>核心诉求：</strong>{{CORE_DEMAND}}</p>
+  </div>
+  
+  <table>
+    <tr><th style="width:60px">方向</th><th>选题参考</th><th>切入点</th></tr>
+    <tr>
+      <td><span class="tag purple">A</span></td>
+      <td><strong>{{DIRECTION_A}}</strong></td>
+      <td>{{DIRECTION_A_DETAIL}}</td>
+    </tr>
+    <tr>
+      <td><span class="tag purple">B</span></td>
+      <td><strong>{{DIRECTION_B}}</strong></td>
+      <td>{{DIRECTION_B_DETAIL}}</td>
+    </tr>
+    <tr>
+      <td><span class="tag purple">C</span></td>
+      <td><strong>{{DIRECTION_C}}</strong></td>
+      <td>{{DIRECTION_C_DETAIL}}</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ==================== SECTION 5: 合作切入思路（如适用） ==================== -->
+<div class="section">
+  <h2><span class="icon">5</span>合作切入思路</h2>
+  
+  <table>
+    <tr><th style="width:140px">参与方式</th><th>内容设想</th><th>投入</th></tr>
+    <tr>
+      <td>{{WAY_1}}</td>
+      <td>{{WAY_1_DETAIL}}</td>
+      <td>{{WAY_1_COST}}</td>
+    </tr>
+    <!-- 更多行... -->
+  </table>
+  
+  <div class="highlight-box green">
+    <div class="label">利好信号</div>
+    <p>{{POSITIVE_SIGNAL}}</p>
+  </div>
+</div>
+
+<!-- ==================== SECTION 6: 需确认事项 ==================== -->
+<div class="section">
+  <h2><span class="icon">6</span>会上需要确认的事项清单</h2>
+  
+  <h3 style="color: #d44b4b;">一、紧急确认项</h3>
+  <ul class="checklist">
+    <li>
+      <span class="checkbox"></span>
+      <div><strong>{{URGENT_Q1_TITLE}}：</strong>{{URGENT_Q1_DETAIL}}</div>
+    </li>
+    <li>
+      <span class="checkbox"></span>
+      <div><strong>{{URGENT_Q2_TITLE}}：</strong>{{URGENT_Q2_DETAIL}}</div>
+    </li>
+    <!-- 更多条目... -->
+  </ul>
+  
+  <div class="divider"></div>
+  
+  <h3 style="color: #2e9e5e;">二、探讨了解项</h3>
+  <ul class="checklist">
+    <li>
+      <span class="checkbox"></span>
+      <div><strong>{{EXPLORE_Q1_TITLE}}：</strong>{{EXPLORE_Q1_DETAIL}}</div>
+    </li>
+    <!-- 更多条目... -->
+  </ul>
+  
+  <div class="divider"></div>
+  
+  <h3 style="color: #1a5dab;">三、后续跟进项</h3>
+  <ul class="checklist">
+    <li>
+      <span class="checkbox"></span>
+      <div><strong>{{FOLLOWUP_Q1_TITLE}}：</strong>{{FOLLOWUP_Q1_DETAIL}}</div>
+    </li>
+    <!-- 更多条目... -->
+  </ul>
+</div>
+
+<!-- ==================== SECTION 7: 沟通策略 ==================== -->
+<div class="section">
+  <h2><span class="icon">7</span>沟通策略备忘</h2>
+  
+  <div class="highlight-box amber">
+    <div class="label">谈判要点</div>
+    <ul style="margin-bottom: 0;">
+      <li><strong>{{POINT_1_TITLE}}：</strong>{{POINT_1_DETAIL}}</li>
+      <li><strong>{{POINT_2_TITLE}}：</strong>{{POINT_2_DETAIL}}</li>
+      <li><strong>{{POINT_3_TITLE}}：</strong>{{POINT_3_DETAIL}}</li>
+      <!-- 更多要点... -->
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  整理于 {{DATE}} · 会议前准备材料 · 内部使用
+</div>
+
+</div>
+</body>
+</html>

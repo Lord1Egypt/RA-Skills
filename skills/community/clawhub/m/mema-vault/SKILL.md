@@ -1,35 +1,30 @@
 ---
-name: "Mema Vault"
-description: "Secure credential manager using AES-256 (Fernet) encryption. Stores, retrieves, and rotates secrets using a mandatory Master Key. Use for managing API keys,..."
-category: "security"
-source: "ClawHub"
-tags: [aes-256, encryption, secrets, security, vault]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mema-vault"
-sourceUrl: "https://clawhub.ai/skills/mema-vault"
+name: mema-vault
+description: Secure credential manager using AES-256 (Fernet) encryption. Stores, retrieves, and rotates secrets using a mandatory Master Key. Use for managing API keys, database credentials, and other sensitive tokens.
+metadata: {"openclaw":{"requires":{"env":["MEMA_VAULT_MASTER_KEY"]},"install":[{"id":"pip","kind":"exec","command":"pip install cryptography"}]}}
 ---
 
 # Mema Vault
 
-> Secure credential manager using AES-256 (Fernet) encryption. Stores, retrieves, and rotates secrets using a mandatory Master Key. Use for managing API keys,...
+## Prerequisites
+- **Master Key**: Must be set as an environment variable `MEMA_VAULT_MASTER_KEY`.
+- **Dependencies**: Requires `cryptography` Python package.
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mema-vault`
-- **Source URL:** [https://clawhub.ai/skills/mema-vault](https://clawhub.ai/skills/mema-vault)
+## Core Workflows
 
-## Overview
+### 1. Store a Secret
+Encrypt and save a new credential.
+- **Usage**: `python3 $WORKSPACE/skills/mema-vault/scripts/vault.py set <service> <user> <password> [--meta "info"]`
 
+### 2. Retrieve a Secret
+Fetch a credential. By default, the password is masked in output.
+- **Usage**: `python3 $WORKSPACE/skills/mema-vault/scripts/vault.py get <service>`
+- **Show Raw**: Use `--show` flag only when required for secure injection.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mema-vault
-```
+### 3. List Credentials
+- **Usage**: `python3 $WORKSPACE/skills/mema-vault/scripts/vault.py list`
+
+## Security Standards
+- **Encryption**: AES-256 CBC via PBKDF2HMAC (480,000 iterations).
+- **Masking**: Secrets are masked in standard logs/output unless explicitly requested.
+- **Isolation**: The Master Key should never be stored in plaintext on disk.

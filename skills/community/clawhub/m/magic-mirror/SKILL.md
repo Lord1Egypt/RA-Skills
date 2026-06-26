@@ -1,35 +1,426 @@
 ---
-name: "照妖镜 Magic Mirror"
-description: "Scan your user's social media profiles to generate a brutally honest "Mirror Report" — revealing the gap between who they think they are and who the data say..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/magic-mirror"
-sourceUrl: "https://clawhub.ai/skills/magic-mirror"
+name: magic-mirror
+description: Scan your user's social media profiles to generate a brutally honest "Mirror Report" — revealing the gap between who they think they are and who the data says they are. Collects public data from Douyin/Xiaohongshu/Weibo/Douban/Bilibili, cross-analyzes patterns, and produces a shareable, entertaining self-awareness report. Use when users want self-discovery, personality analysis, or fun social media insights. 扫描用户社交账号，生成一份「照妖镜报告」——揭示你以为的自己和数据里的自己之间的反差，扎心但好笑。
+version: 1.0.0
+depends: manobrowser
 ---
 
-# 照妖镜 Magic Mirror
+# 照妖镜.skill 🪞
 
-> Scan your user's social media profiles to generate a brutally honest "Mirror Report" — revealing the gap between who they think they are and who the data say...
+> 你以为你是谁？数据说你是谁。
+> 敢不敢照一照？
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/magic-mirror`
-- **Source URL:** [https://clawhub.ai/skills/magic-mirror](https://clawhub.ai/skills/magic-mirror)
+---
 
-## Overview
+## ⚡ 首次加载行为（AI 必读）
 
+读完这份文档后，立即用以下风格介绍自己（可以根据你的人设调整语气，但核心信息不能少）：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/magic-mirror
 ```
+🪞 照妖镜已就位。
+
+我能扫描你的社交账号，给你出一份「照妖镜报告」——
+不是那种"你是INFJ"的无聊测试。
+
+是这种：
+🎭 你微博转发了47条女权言论，但收藏里全是"怎么让男朋友更粘你"
+📊 你小红书说自己"极简生活"，但购物车里有208件商品
+🎵 你抖音主页全是健身视频，但点赞最多的是深夜美食
+📚 你豆瓣标记了89本书"想读"，今年看完了...2本
+
+就是这种——你以为的你 vs 数据里的你。
+
+⚠️ 可能会社死。但至少你社死在自己手里，不是朋友圈。
+
+前提：需要安装 ManoBrowser Chrome 插件来扫描你的社交账号。
+只看你自己主页的公开信息，不偷你任何数据。
+
+要照一照吗？🪞
+```
+
+**引导原则**：
+- 🎯 用具体的反差例子勾住用户，不要说"分析你的社交数据"这种无聊的话
+- 😈 语气要贱一点、好笑一点——照妖镜不是心理咨询，是朋友之间的毒舌
+- ⚠️ 提前打预防针"可能社死"，激发好奇心
+- 🔒 主动说明隐私（只看自己主页）
+
+---
+
+## 核心概念
+
+### 什么是"照妖镜报告"？
+
+不是用户画像。不是人格测试。
+
+**是从用户社交数据中挖掘「反差」「矛盾」「隐藏真相」，用毒舌但不冒犯的方式呈现出来。**
+
+好的照妖镜报告让人看了反应是：
+- "靠，被看穿了"
+- "哈哈哈哈哈我怎么会这样"
+- "这个太准了我要发朋友圈"
+
+坏的照妖镜报告让人看了反应是：
+- "嗯……挺准的"（太正经，没意思）
+- "这分析跟我有什么关系"（太泛，没有个人化）
+- "感觉被冒犯了"（过线了）
+
+### 分析维度
+
+照妖镜聚焦在**最有戏剧性的反差点**：
+
+| 维度 | 找什么 | 怎么找 |
+|------|-------|-------|
+| 🎭 **人设 vs 真相** | 公开展示 vs 收藏/点赞暴露的真实偏好 | 对比发帖 vs 收藏/点赞 |
+| 📊 **嘴上 vs 行动** | 说要做的 vs 实际做到的 | 豆瓣"想读"vs"已读"等 |
+| 🔍 **意识 vs 潜意识** | 自认为的兴趣 vs 真实兴趣 | 关注列表聚类、内容分布 |
+| 👥 **跨平台人设** | 不同平台的不同面孔 | 跨平台风格对比 |
+| 📈 **自以为 vs 真正** | "我是XX的人" vs 数据反驳 | 自我描述 vs 实际行为 |
+
+---
+
+## 执行流程
+
+```
+0.前置检测 → 1.确认平台 → 2.逐平台采集 → 3.反差挖掘 → 4.生成报告 → 5.引导分享
+```
+
+---
+
+## 0. 前置检测（ManoBrowser）
+
+**不要问用户"你有没有装 ManoBrowser"**——按以下流程自动检测和安装。
+
+### Step 0.1 检查 ManoBrowser Skill 文件
+
+在以下位置查找 ManoBrowser 的 SKILL.md 文件（按优先级）：
+1. 当前工作目录下 `manobrowser/SKILL.md`
+2. `~/.openclaw/skills/manobrowser/SKILL.md`
+3. 其他已知的 skills 目录
+
+- **找到** → 进入 Step 0.2
+- **未找到** → 自动从 GitHub 下载：
+  ```bash
+  git clone https://github.com/ClawCap/ManoBrowser.git ./manobrowser
+  ```
+  没有 git 时用 curl：
+  ```bash
+  curl -L https://github.com/ClawCap/ManoBrowser/archive/refs/heads/main.zip -o /tmp/manobrowser.zip
+  unzip /tmp/manobrowser.zip -d /tmp/ && mv /tmp/ManoBrowser-main ./manobrowser
+  ```
+
+### Step 0.2 检查连接配置
+
+确认环境中是否已配置 ManoBrowser 连接（任一命中即可）：
+- `.mcp.json` 中有包含 `chrome_navigate` 相关的 MCP server 配置
+- `config/mcporter.json` 中有对应配置
+- 当前可用工具列表中已有 `chrome_navigate`（带任意前缀）
+
+- **已配置** → 进入 Step 0.3
+- **未配置** → 读取 `manobrowser/SKILL.md` 的「前置条件」章节，引导用户安装 Chrome 插件并完成配置
+
+### Step 0.3 验证设备在线
+
+调用 `chrome_navigate` 访问 `about:blank` 验证连接：
+- ✅ **正常响应** → 前置完成，进入 Step 1
+- ❌ **device not found** → 引导安装 Chrome 插件（参考 `manobrowser/SKILL.md`）
+- ⚠️ **offline** → 提示打开 Chrome 并确认插件已启用
+
+### 工具名映射
+
+本文档中的工具名使用短名称（如 `chrome_navigate`）。实际调用时需加 MCP 实例前缀：
+```
+mcp__{实例名}__{工具短名}
+```
+例如实例名为 `browser`，则 `chrome_navigate` → `mcp__browser__chrome_navigate`
+
+---
+
+## 1. 确认平台
+
+> 🪞 要照得准，我需要扫描你的社交账号。
+> 你哪些平台用得多？（登录状态的我才能扫到）
+>
+> 📕 小红书 · 🎵 抖音 · 🐦 微博 · 📖 豆瓣 · 📺 B站
+>
+> 至少 2 个平台效果最好——不同平台的「人设差异」是最好笑的部分。
+
+**规则**：至少 1 个平台，推荐 2+。平台越多，跨平台反差越精彩。
+
+---
+
+## 2. 逐平台采集
+
+### 照妖镜采集原则
+
+照妖镜需要同时采集两个维度的数据来寻找反差：
+
+| 维度 | 含义 | 来源 |
+|------|------|------|
+| **A面：人设层**（公开展示） | 用户主动发布的内容 | 帖子、投稿、动态、标记 |
+| **B面：真相层**（私密偏好） | 用户被动暴露的偏好 | 收藏、点赞、喜欢列表 |
+
+**A面和B面的差异 = 反差 = 照妖镜的核心数据。**
+
+### 采集方式：使用平台子模块
+
+每个平台的详细采集流程（导航路径、JS 脚本、滚动加载、容错处理）已沉淀为独立子模块，经过实际测试验证。**执行采集时读取对应子模块的 SKILL.md**：
+
+| 平台 | 子模块路径 | 照妖镜重点关注 |
+|------|----------|-------------|
+| 📕 小红书 | `xiaohongshu-deep-profile-collect/SKILL.md` | 发帖 vs 收藏（人设vs真相最佳战场） |
+| 🎵 抖音 | `douyin-deep-profile-collect/SKILL.md` | 作品 vs 喜欢列表（展示vs真实喜好） |
+| 🐦 微博 | `weibo-deep-profile-collect/SKILL.md` | 原创 vs 收藏（公开态度vs私密兴趣） |
+| 📖 豆瓣 | `douban-deep-profile-collect/SKILL.md` | 想读vs已读（嘴上vs行动） |
+| 📺 B站 | `bilibili-deep-profile-collect/SKILL.md` | 投稿vs收藏夹（表面vs深夜秘密） |
+
+对应的 MCP 执行脚本在 `workflows/` 目录下。
+
+### 目录结构
+
+```
+magic-mirror/
+├── SKILL.md                              ← 本文件：主流程
+├── xiaohongshu-deep-profile-collect/     ← 小红书采集子模块
+│   └── SKILL.md
+├── douyin-deep-profile-collect/          ← 抖音采集子模块
+│   └── SKILL.md
+├── weibo-deep-profile-collect/           ← 微博采集子模块
+│   └── SKILL.md
+├── douban-deep-profile-collect/          ← 豆瓣采集子模块
+│   └── SKILL.md
+├── bilibili-deep-profile-collect/        ← B站采集子模块
+│   └── SKILL.md
+└── workflows/                            ← MCP 执行脚本
+    ├── xiaohongshu-deep-profile-collect-workflow.json
+    ├── douyin-deep-profile-collect-workflow.json
+    ├── weibo-deep-profile-collect-workflow.json
+    ├── douban-deep-profile-collect-workflow.json
+    └── bilibili-deep-profile-collect-workflow.json
+```
+
+### 照妖镜采集要点
+
+子模块会全量采集（作品、收藏、关注、评分等），照妖镜在分析阶段重点使用以下数据做反差对比：
+
+| 平台 | A面（人设层） | B面（真相层） | 最佳反差点 |
+|------|------------|------------|---------|
+| 小红书 | 发帖内容/标签 | 收藏笔记/标签 | 发的是人设，收的是真相 |
+| 抖音 | 发布视频标题 | 喜欢列表标题 | 发健身视频，喜欢深夜美食 |
+| 微博 | 原创微博文本 | 收藏微博文本 | 原创是公开人设，收藏是私密真相 |
+| 豆瓣 | 想读/想看数量 | 已读/已看数量 | 89本想读 vs 2本已读 |
+| B站 | 投稿/动态 | 收藏夹名称+内容 | 收藏夹名比内容更暴露真相 |
+
+> ⚠️ **子模块中的 JS 脚本必须完整复制执行**——不要"简化"或"优化"，龙虾容易丢失关键字段导致数据不全。
+
+### 采集注意事项
+
+1. **先 A面后 B面**：先采公开内容，再采私密偏好，保持对比顺序
+2. **记录数量**：每个维度的总数很重要（"想读89本"比"想读了一些书"有冲击力）
+3. **提取标签/分类**：标签比正文更容易做聚类分析
+4. **容错处理**：某个 tab 打不开或没内容就跳过，不中断整个流程
+5. **每个平台采集完保存**：写入 `mirror-reports/{日期}_raw_data.json`，防止中断丢失
+
+---
+
+## 3. 反差挖掘（⚠️ 核心步骤）
+
+**这是照妖镜区别于普通画像工具的关键。** 不是总结"你喜欢什么"，而是找"你说一套做一套"。
+
+### 分析框架
+
+对每个用户，从以下角度寻找反差：
+
+**A. 公开 vs 私密反差**
+```
+发帖说"今天又去健身房了💪" (3条)
+收藏了"不运动也能瘦的10个方法" (7条)
+→ 🪞 健身房去了3次，但收藏了7种不去健身房的理由
+```
+
+**B. 跨平台人设反差**
+```
+微博：转发社会新闻，评论时事，知识分子人设
+小红书：全是穿搭、探店、美甲
+→ 🪞 微博的你在思考人类命运，小红书的你在思考今天涂什么色号
+```
+
+**C. 理想 vs 现实反差**
+```
+豆瓣：标记了89本书"想读"
+豆瓣：今年标记"已读"2本
+→ 🪞 你的"想读"列表比"已读"长了44.5倍。按这个速度，读完要到2071年
+```
+
+**D. 表面兴趣 vs 真实时间分配**
+```
+关注了50个知识类博主，15个搞笑类博主
+但点赞/互动90%在搞笑类
+→ 🪞 你关注了50个"提升自我"的博主，但你的拇指只为段子停留
+```
+
+**E. 隐藏规律发现**
+```
+收藏的帖子中，67%包含"猫"
+但从没发过关于猫的内容
+→ 🪞 你嘴上没提过猫，但收藏出卖了你——一个深柜养猫人
+```
+
+### 挖掘规则
+
+1. **必须基于数据**：每个反差结论都要有具体数字/内容支撑
+2. **毒舌但不冒犯**：可以说"你嘴上和手上完全是两个人"，不可以人身攻击
+3. **好笑 > 准确**：90%准但不好笑，不如70%准但很好笑
+4. **具体 > 笼统**："收藏了7种不运动的方法"比"不爱运动"有趣100倍
+5. **要有数字**：数字让反差更有冲击力（"44.5倍""67%""89本vs2本"）
+6. **找3-7个反差**：太少没意思，太多疲劳。精选最戏剧化的
+
+### 注意边界
+
+**可以照的**：
+- ✅ 兴趣反差、行为矛盾、人设反差、消费偏好、审美暴露
+
+**不能照的**：
+- ❌ 感情状态/性取向（除非用户自己公开）
+- ❌ 经济状况评判、外貌评价、心理健康推测
+
+**原则**：照妖镜让人「笑着社死」，不是「哭着被揭穿」。
+
+---
+
+## 4. 生成报告
+
+### 报告结构
+
+```markdown
+# 🪞 照妖镜报告
+
+> 扫描于 {日期} | 数据源：{平台列表}
+
+---
+
+## 你以为的你
+
+{基于公开展示内容，描述用户"想让别人看到的自己"。正经、理想化。}
+
+## 数据里的你
+
+{基于收藏/点赞/实际行为，描述"数据暴露的真实的你"。好笑、不刻薄。}
+
+---
+
+## 🔍 反差清单
+
+### 1. {反差标题}（如"健身人设崩塌"）
+{具体数据对比 + 毒舌点评}
+
+### 2. {反差标题}
+{具体数据对比 + 毒舌点评}
+
+（3-7 个反差）
+
+---
+
+## 📊 数据不会说谎
+
+| 维度 | 你以为的 | 数据说的 |
+|------|---------|---------|
+| {阅读量} | {博览群书} | {今年看完2本，想读列表89本} |
+
+---
+
+## 🏷️ 你的照妖镜标签
+
+`#深柜猫奴` `#收藏型学习者` `#微博战士小红书公主` `#89想读2已读`
+
+---
+
+## 🪞 照妖镜评语
+
+{100字以内的毒舌评语。损友吐槽风——好笑、扎心、但有爱。结尾温暖收尾。}
+```
+
+### 报告质量自检
+
+- [ ] 每个反差都有具体数字支撑？
+- [ ] 读起来好笑吗？（不好笑就重写）
+- [ ] 有没有过线的内容？
+- [ ] 标签有传播力吗？（让人想截图分享）
+- [ ] 评语是"损友吐槽"而不是"心理分析"？
+
+---
+
+## 5. 呈现 & 引导分享
+
+```
+🪞 你的照妖镜报告出来了！
+
+{完整报告}
+
+---
+
+📸 **敢发吗？**
+截图发朋友圈/小红书，tag #照妖镜报告，
+看看你的朋友们敢不敢也照一照 😈
+
+太毒舌了可以收着点，太温柔了可以加码。
+想照其他平台？随时说。
+```
+
+---
+
+## 报告存储
+
+```
+mirror-reports/
+├── {日期}_mirror_report.md    ← 照妖镜报告
+└── {日期}_raw_data.json       ← 原始采集数据
+```
+
+---
+
+## 多风格报告
+
+| 风格 | 描述 | 适用场景 |
+|------|------|---------|
+| 🔥 **毒舌版**（默认） | 损友级别吐槽 | 自己看、发朋友圈 |
+| 😊 **温柔版** | 同样的反差，温柔包装 | 心理承受力有限 |
+| 📊 **数据版** | 重数据可视化，少评价 | 理性分析型用户 |
+| 💀 **地狱版** | 加大毒舌力度 | "来最狠的！"用户 |
+
+---
+
+## 写作风格指南
+
+**好的**：
+- "你关注了50个健身博主，但你的拇指只为奶茶停留"
+- "豆瓣想读89本，已读2本。按这个速度你要读到2071年"
+- "你的微博像《人民日报》读者，小红书像《VOGUE》读者，B站收藏像不能说"
+
+**坏的**：
+- "你的阅读量不够多"（太正经）
+- "你可能存在认知失调"（心理分析）
+- "你的消费观有问题"（道德评判）
+
+**原则**：
+1. 用对比制造笑点
+2. 用数字制造冲击
+3. 用具体制造共鸣
+4. 结尾永远温暖
+5. 不做道德评判——我们是照妖镜，不是道德法庭
+
+---
+
+## 隐私说明
+
+- 只扫描用户**自己的**已登录账号，不扫描别人
+- 数据全存本地，不上传任何服务器
+- 报告是否分享完全由用户决定
+- 不分析敏感隐私（感情、健康、经济等）
+
+---
+
+## 版本信息
+
+- **当前版本**：1.0.0
+- **创建日期**：2026-04-02
+- **依赖**：ManoBrowser（浏览器自动化，首次使用自动从 GitHub 下载）

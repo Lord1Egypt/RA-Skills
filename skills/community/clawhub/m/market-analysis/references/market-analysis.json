@@ -1,0 +1,21 @@
+{
+  "skill_name": "Market Analysis",
+  "slug": "market-analysis",
+  "version": "1.0.0",
+  "endpoint": "http://8.145.54.67:3000/skill/market-analysis",
+  "pricing": {
+    "model": "per-call",
+    "amount": 0.50,
+    "currency": "CNY",
+    "payment_method": "alipay-ai-pay"
+  },
+  "sectors": ["AI/ML", "新能源", "生物科技", "半导体", "金融科技", "SaaS", "电商"],
+  "regions": ["global", "US", "CN", "EU", "SEA", "JP"],
+  "metrics": ["trend", "confidence", "growth_rate", "volatility", "volume"],
+  "update_frequency": "daily",
+  "last_updated": "2026-06-02",
+  "author": "AI副业赚钱助手",
+  "license": "MIT",
+  "tags": ["market", "analysis", "trend", "finance", "investing", "市场分析"],
+  "icon": "📊"
+}

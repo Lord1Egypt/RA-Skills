@@ -1,35 +1,51 @@
 ---
-name: "Liuyao Bagua"
-description: "六爻八卦算命技能。当用户请求算命、排盘、八字分析、看卦、看相、命运预测、或提供出生年月日时激活。执行Python脚本进行四柱八字、五行分析、今年卦象解读。"
-category: "other"
-source: "ClawHub"
-tags: [baigua, chinese, fortune]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liuyao-bagua"
-sourceUrl: "https://clawhub.ai/skills/liuyao-bagua"
+name: liuyao-bagua
+description: 六爻八卦算命技能。当用户请求算命、排盘、八字分析、看卦、看相、命运预测、或提供出生年月日时激活。执行Python脚本进行四柱八字、五行分析、今年卦象解读。
 ---
 
-# Liuyao Bagua
+# 六爻八卦算命技能
 
-> 六爻八卦算命技能。当用户请求算命、排盘、八字分析、看卦、看相、命运预测、或提供出生年月日时激活。执行Python脚本进行四柱八字、五行分析、今年卦象解读。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liuyao-bagua`
-- **Source URL:** [https://clawhub.ai/skills/liuyao-bagua](https://clawhub.ai/skills/liuyao-bagua)
+用户发送以下内容时激活：
+- "算命"、"排盘"、"八字分析"、"看卦"
+- 提供出生日期："2000年1月1日出生"
+- 询问命运、运势、事业、财运
 
-## Overview
+## 使用方式
 
+用户提供**出生年月日**（年份必须完整，如 1990年），直接调用脚本：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/liuyao-bagua
+python /root/.openclaw/skills/liuyao-bagua/scripts/liuyao_fortune.py <年> <月> <日> [目标年]
 ```
+
+**注意**：目标年默认为 **2026**（今年）。用户可指定其他年份。
+
+## 脚本输出说明
+
+脚本输出包含以下内容，用户会直接看到完整报告：
+
+1. **基本信息**：出生日期、生肖、日主性情
+2. **四柱八字**：年柱、月柱、日柱、时柱
+3. **今年卦象**：六十四卦中的具体卦象，包含：
+   - 卦名、全称、运势等级（大吉/中吉/小吉/平/小凶/凶）
+   - 内卦（下卦）+ 外卦（上卦）含义
+   - 卦象解释
+4. **五行分析**：木火土金水各得分（柱状图）
+5. **命理建议**：根据五行强弱给出事业、人际、财运建议
+
+## 示例对话
+
+**用户**：1995年3月8日出生，帮我算算今年的运势
+
+**回复**：
+```
+好的，我先帮你排盘……（运行脚本，粘贴完整报告）
+```
+
+## 注意
+
+- 若用户只提供年份，询问"属什么"→ 只回复生肖+五行即可
+- 若用户出生日期不完整（只有年），告知用户提供完整日期才能排盘
+- 脚本基于六爻八卦理论，输出仅供娱乐参考

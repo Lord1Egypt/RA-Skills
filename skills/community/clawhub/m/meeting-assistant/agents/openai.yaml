@@ -1,0 +1,7 @@
+interface:
+  display_name: "SenseAudio 会议助手 / SenseAudio Meeting Assistant"
+  short_description: "实时字幕、会议纪要与行动项提取 / Live captions and meeting notes"
+  default_prompt: "使用 $senseaudio-meeting-assistant / Use $senseaudio-meeting-assistant 帮我构建一个基于 SenseAudio 的会议转写、纪要和行动项工作流。"
+
+policy:
+  allow_implicit_invocation: true

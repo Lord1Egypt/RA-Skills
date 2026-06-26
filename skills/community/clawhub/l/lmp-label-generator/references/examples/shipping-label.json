@@ -1,0 +1,319 @@
+{
+  "lmp": {
+    "version": "1.21",
+    "created": "2026-03-12T00:00:00Z",
+    "modified": "2026-03-12T00:00:00Z",
+    "generator": "OpenClaw lmp-label-generator skill v1.0.0"
+  },
+  "metadata": {
+    "name": "快递面单",
+    "description": "100×150mm 标准快递面单，含收发地址、快递单号条码、二维码",
+    "category": "快递",
+    "tags": ["快递", "物流", "面单", "示例"]
+  },
+  "canvas": {
+    "width": 100,
+    "height": 150,
+    "unit": "mm",
+    "dpi": 203,
+    "orientation": "portrait",
+    "backgroundColor": "#FFFFFF"
+  },
+  "print": {
+    "pageSize": { "width": 100, "height": 150, "unit": "mm" },
+    "margin": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
+  },
+  "elements": [
+    {
+      "id": "rect-001",
+      "type": "rectangle",
+      "name": "顶部区块",
+      "position": { "x": 0, "y": 0, "unit": "mm" },
+      "size": { "width": 100, "height": 18 },
+      "layer": 0,
+      "locked": true,
+      "visible": true,
+      "style": {
+        "fill": "#333333",
+        "stroke": "transparent",
+        "strokeWidth": 0,
+        "strokeStyle": "solid"
+      }
+    },
+    {
+      "id": "text-001",
+      "type": "text",
+      "name": "快递公司名称",
+      "position": { "x": 2, "y": 2, "unit": "mm" },
+      "size": { "width": 60, "height": 14 },
+      "layer": 1,
+      "locked": false,
+      "visible": true,
+      "content": "示例快递 EXPRESS",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#FFFFFF",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-002",
+      "type": "text",
+      "name": "优先级标识",
+      "position": { "x": 75, "y": 3, "unit": "mm" },
+      "size": { "width": 22, "height": 12 },
+      "layer": 1,
+      "locked": false,
+      "visible": true,
+      "content": "次日达",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#FFD700",
+        "align": "center",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-003",
+      "type": "text",
+      "name": "收件人标签",
+      "position": { "x": 2, "y": 20, "unit": "mm" },
+      "size": { "width": 12, "height": 5 },
+      "layer": 1,
+      "locked": true,
+      "visible": true,
+      "content": "收件人",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#888888",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-004",
+      "type": "text",
+      "name": "收件人姓名",
+      "position": { "x": 2, "y": 25, "unit": "mm" },
+      "size": { "width": 60, "height": 8 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "张三",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#000000",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-005",
+      "type": "text",
+      "name": "收件人电话",
+      "position": { "x": 2, "y": 33, "unit": "mm" },
+      "size": { "width": 70, "height": 6 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "138****8888",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 12,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#333333",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-006",
+      "type": "text",
+      "name": "收件地址",
+      "position": { "x": 2, "y": 39, "unit": "mm" },
+      "size": { "width": 95, "height": 12 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "广东省深圳市南山区科技园路1号\n示例大厦 A座 1001室",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 12,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#000000",
+        "align": "left",
+        "verticalAlign": "top",
+        "lineHeight": 1.4
+      }
+    },
+    {
+      "id": "line-001",
+      "type": "line",
+      "name": "分隔线",
+      "position": { "x": 2, "y": 54, "unit": "mm" },
+      "size": { "width": 96, "height": 0.3 },
+      "layer": 1,
+      "locked": true,
+      "visible": true,
+      "startPoint": { "x": 0, "y": 0 },
+      "endPoint": { "x": 96, "y": 0 },
+      "style": {
+        "stroke": "#CCCCCC",
+        "strokeWidth": 0.3,
+        "strokeStyle": "dashed",
+        "startArrow": false,
+        "endArrow": false
+      }
+    },
+    {
+      "id": "text-007",
+      "type": "text",
+      "name": "寄件人标签",
+      "position": { "x": 2, "y": 56, "unit": "mm" },
+      "size": { "width": 12, "height": 5 },
+      "layer": 1,
+      "locked": true,
+      "visible": true,
+      "content": "寄件人",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#888888",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-008",
+      "type": "text",
+      "name": "寄件人信息",
+      "position": { "x": 2, "y": 62, "unit": "mm" },
+      "size": { "width": 95, "height": 10 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "李四  139****9999\n北京市朝阳区望京街道示例路88号",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#555555",
+        "align": "left",
+        "verticalAlign": "top",
+        "lineHeight": 1.4
+      }
+    },
+    {
+      "id": "line-002",
+      "type": "line",
+      "name": "分隔线2",
+      "position": { "x": 2, "y": 75, "unit": "mm" },
+      "size": { "width": 96, "height": 0.3 },
+      "layer": 1,
+      "locked": true,
+      "visible": true,
+      "startPoint": { "x": 0, "y": 0 },
+      "endPoint": { "x": 96, "y": 0 },
+      "style": {
+        "stroke": "#CCCCCC",
+        "strokeWidth": 0.3,
+        "strokeStyle": "solid",
+        "startArrow": false,
+        "endArrow": false
+      }
+    },
+    {
+      "id": "barcode-001",
+      "type": "barcode",
+      "name": "快递单号条码",
+      "position": { "x": 5, "y": 78, "unit": "mm" },
+      "size": { "width": 90, "height": 25 },
+      "layer": 3,
+      "locked": false,
+      "visible": true,
+      "barcode": {
+        "type": "CODE128",
+        "content": "SF1234567890123",
+        "displayText": true,
+        "textPosition": "bottom",
+        "textSize": 12,
+        "foregroundColor": "#000000",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    {
+      "id": "text-009",
+      "type": "text",
+      "name": "快递单号文本",
+      "position": { "x": 2, "y": 105, "unit": "mm" },
+      "size": { "width": 65, "height": 6 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "运单号：SF1234567890123",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#000000",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "qrcode-001",
+      "type": "qrcode",
+      "name": "快递追踪二维码",
+      "position": { "x": 72, "y": 104, "unit": "mm" },
+      "size": { "width": 25, "height": 25 },
+      "layer": 3,
+      "locked": false,
+      "visible": true,
+      "qrcode": {
+        "content": "https://express.example.com/track/SF1234567890123",
+        "errorCorrectionLevel": "M",
+        "foregroundColor": "#000000",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    {
+      "id": "text-010",
+      "type": "text",
+      "name": "备注",
+      "position": { "x": 2, "y": 140, "unit": "mm" },
+      "size": { "width": 96, "height": 8 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "备注：易碎物品，请轻拿轻放",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#CC6600",
+        "align": "center",
+        "verticalAlign": "middle"
+      }
+    }
+  ]
+}

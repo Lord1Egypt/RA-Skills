@@ -1,35 +1,32 @@
 ---
-name: "美赚返利助手"
-description: "美赚社交电商返利与任务平台工具，提供多平台购物返利查询和推广任务奖励，支持自购省钱和分享赚钱。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meizuan"
-sourceUrl: "https://clawhub.ai/skills/meizuan"
+name: 美赚返利助手
+description: 美赚社交电商返利与任务平台工具，提供多平台购物返利查询和推广任务奖励，支持自购省钱和分享赚钱。
+version: 0.1.0
 ---
 
 # 美赚返利助手
 
-> 美赚社交电商返利与任务平台工具，提供多平台购物返利查询和推广任务奖励，支持自购省钱和分享赚钱。
+美赚社交电商返利与任务平台工具。提供淘宝、京东、拼多多等多平台购物返利查询，结合推广任务奖励机制，支持自购省钱和分享赚钱双模式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meizuan`
-- **Source URL:** [https://clawhub.ai/skills/meizuan](https://clawhub.ai/skills/meizuan)
+## 触发词
 
-## Overview
+美赚、美赚返利、meizuan、美赚佣金、美赚省钱、美赚任务
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meizuan
+- **多平台返利**：淘宝/京东/拼多多等购物返利查询
+- **任务奖励**：完成推广任务获得额外收益
+- **推广工具**：生成推广素材和分享链接
+- **收益管理**：佣金统计和提现
+
+## 输出格式
+
+```
+💎 美赚返利查询
+
+商品：[商品名称]
+平台：[电商平台]
+售价：¥[价格]
+返利比例：[X]%
+预计返利：¥[金额]
 ```

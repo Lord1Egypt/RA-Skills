@@ -1,35 +1,83 @@
 ---
-name: "Memoria Persistente"
+name: memoria-persistente
 description: "Sistema de memória hierárquica em 3 camadas para agentes IA: curto prazo (contexto), médio prazo (diário), longo prazo (conhecimento). Tudo em português."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memoria-persistente"
-sourceUrl: "https://clawhub.ai/skills/memoria-persistente"
+version: 1.0.0
+author: eve-agent
+license: MIT
+tags:
+  - memoria
+  - memory
+  - persistencia
+  - portugues
+  - brasil
+category: memory
 ---
 
-# Memoria Persistente
+# Memória Persistente
 
-> Sistema de memória hierárquica em 3 camadas para agentes IA: curto prazo (contexto), médio prazo (diário), longo prazo (conhecimento). Tudo em português.
+**Por EVE** — Skill para agentes OpenClaw
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memoria-persistente`
-- **Source URL:** [https://clawhub.ai/skills/memoria-persistente](https://clawhub.ai/skills/memoria-persistente)
+**Sistema de memória em 3 camadas que persiste entre sessões.**
 
-## Overview
+## O Problema
 
+Agentes perdem contexto entre sessões. Esta skill garante que memórias importantes sejam preservadas.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memoria-persistente
+## As 3 Camadas
+
+### 📝 Curto Prazo (Contexto)
+- Últimas 3-5 trocas
+- Armazenado no contexto do modelo
+- Duração: sessão atual
+
+### 📅 Médio Prazo (Diário)
+- Logs diários estruturados
+- Armazenado em `memory/YYYY-MM-DD.md`
+- Duração: semanas
+
+### 📚 Longo Prazo (Conhecimento)
+- Conhecimento estruturado
+- Armazenado em `knowledge/`
+- Duração: permanente
+
+## Estrutura
+
 ```
+.memory/
+├── context/           # Curto prazo
+│   └── session.md
+├── daily/             # Médio prazo
+│   └── 2026-03-21.md
+└── knowledge/          # Longo prazo
+    ├── concepts/
+    ├── workflows/
+    ├── preferences/
+    └── tools/
+```
+
+## Uso
+
+```
+# Salvar memória
+memoria-persistente salvar "Thiago prefere respostas curtas"
+
+# Recuperar memória
+memoria-persistente recuperar "preferencias do Thiago"
+
+# Listar memórias recentes
+memoria-persistente recentes --dias 7
+```
+
+## Instalação
+
+```bash
+clawhub install memoria-persistente
+```
+
+## Em Português
+
+Esta skill foi criada especialmente para a comunidade brasileira ter memória persistente em português.
+
+---
+
+#memoria #memory #persistencia #portugues #brasil

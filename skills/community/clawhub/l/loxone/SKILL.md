@@ -1,35 +1,29 @@
 ---
-name: "Loxone"
-description: "Control and monitor a Loxone Miniserver (smart home) via HTTP API and real-time WebSocket. Use for querying room/device status (temperatures, lights), watching live events, and sending safe control commands."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/loxone"
-sourceUrl: "https://clawhub.ai/skills/loxone"
+name: loxone
+version: 1.3.3
+homepage: https://github.com/odrobnik/loxone-skill
+metadata:
+  openclaw:
+    emoji: "🏠"
+    requires:
+      bins: ["python3"]
+      python: ["requests", "websockets"]
+description: Control and monitor a Loxone Miniserver (smart home) via HTTP API and real-time WebSocket. Use for querying room/device status (temperatures, lights), watching live events, and sending safe control commands.
 ---
 
-# Loxone
+# Loxone (Smart Home)
 
-> Control and monitor a Loxone Miniserver (smart home) via HTTP API and real-time WebSocket. Use for querying room/device status (temperatures, lights), watching live events, and sending safe control commands.
+## Setup
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/loxone`
-- **Source URL:** [https://clawhub.ai/skills/loxone](https://clawhub.ai/skills/loxone)
+See [SETUP.md](SETUP.md) for prerequisites and setup instructions.
 
-## Overview
+## Commands
+- `python3 scripts/loxone.py rooms`
+- `python3 scripts/loxone.py map`
+- `python3 scripts/loxone.py status "<Room>"`
+- `python3 scripts/loxone.py control "<Room>" "<Control>" on|off`
+- `python3 scripts/loxone_watch.py --room "<Room>" [--changes-only] [--duration <sec>]`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/loxone
-```
+## Notes
+- Treat as **read-only by default**; only use control commands when explicitly requested.
+- WebSocket auth can be finicky; if WS fails, fall back to HTTP status queries.

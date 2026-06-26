@@ -1,0 +1,25 @@
+# memory_consolidate config.yaml
+# See README.md for installation and setup.
+# Identity is auto-detected from IDENTITY.md + USER.md in the workspace.
+
+# Identity fallback (only used if IDENTITY.md / USER.md are missing or unparseable)
+# identity:
+#   assistant_name: "Assistant"
+#   owner_name: "User"
+#   owner_language: "English"
+#   owner_timezone: "UTC"
+
+# Session log ingestion
+# ingest:
+#   session_logs: true    # read OpenClaw session logs directly (default: true)
+#   session_hours: 24     # scan sessions modified within this many hours
+#   agent_ids: "main"     # string = single agent; list = multiple agents
+#   # agent_ids: ["main", "clauder", "worker"]
+
+# Optional project-specific tag rules (merged with generic defaults)
+# tag_rules:
+#   myproject: ["myproject", "My Project"]
+#   deploy: ["systemctl", "build", "deploy"]
+
+# All existing config.json fields are also supported here and override defaults
+# (decay_rates, thresholds, temperature, reinforcement, snapshot)

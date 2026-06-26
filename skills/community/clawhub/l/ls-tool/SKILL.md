@@ -1,35 +1,29 @@
 ---
-name: "Ls Tool"
-description: "List directory contents with detailed file information. Use for browsing files, checking permissions, and examining directory structure."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ls-tool"
-sourceUrl: "https://clawhub.ai/skills/ls-tool"
+name: ls-tool
+description: List directory contents with detailed file information. Use for browsing files, checking permissions, and examining directory structure.
 ---
+# LS - Directory Listing Utility
 
-# Ls Tool
+List files and directories with configurable detail levels including file size, permissions, ownership, and timestamps.
 
-> List directory contents with detailed file information. Use for browsing files, checking permissions, and examining directory structure.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ls-tool`
-- **Source URL:** [https://clawhub.ai/skills/ls-tool](https://clawhub.ai/skills/ls-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ls-tool
+ls-tool [options] [path...]
+```
+
+## Options
+
+- `-l`: Long format (permissions, size, date)
+- `-a`: Show hidden files (starting with .)
+- `-h`: Human-readable file sizes
+- `-R`: Recursive listing
+- `-t`: Sort by modification time
+
+## Examples
+
+```bash
+ls-tool -la
+ls-tool -lh /home/user
+ls-tool -R src/
 ```

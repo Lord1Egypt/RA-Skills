@@ -1,35 +1,30 @@
 ---
-name: "A skill for OpenClaw that verifies link validity, source credibility, and factual accuracy of online content."
-description: "链接与资讯真实性核验工具，检查链接是否可访问、交叉验证资讯真实性。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/link-fact-checker"
-sourceUrl: "https://clawhub.ai/skills/link-fact-checker"
+name: link-fact-checker
+description: |
+  链接与资讯真实性核验工具，检查链接是否可访问、交叉验证资讯真实性。
 ---
 
-# A skill for OpenClaw that verifies link validity, source credibility, and factual accuracy of online content.
+# 链接事实核验工具
 
-> 链接与资讯真实性核验工具，检查链接是否可访问、交叉验证资讯真实性。
+## 功能
+1. 检查给出的URL是否可以正常访问
+2. 抓取资讯内容，核验资讯真实性
+3. 交叉对比多个来源确认事实
+4. 输出标准化核验结果
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/link-fact-checker`
-- **Source URL:** [https://clawhub.ai/skills/link-fact-checker](https://clawhub.ai/skills/link-fact-checker)
+## 使用方式
+- 用户给出需要核验的链接：直接访问并返回状态
+- 用户给出资讯内容：搜索多个来源交叉验证
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/link-fact-checker
+## 输出格式
 ```
+【核验结果】
+- 链接：URL
+- 状态：可正常访问 / 无法访问 / 404 / 连接超时
+- 资讯真实性：✅ 信息匹配 / ⚠️ 部分存疑 / ❌ 虚假信息
+- 备注：简要说明
+```
+
+## 依赖
+- 使用 `web_fetch` 工具访问链接
+- 使用 `web_search` 搜索交叉验证

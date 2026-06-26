@@ -1,0 +1,36 @@
+{
+  "name": "md-wechat",
+  "version": "2.0.1",
+  "description": "Markdown to WeChat Official Account HTML converter",
+  "main": "scripts/convert.js",
+  "type": "module",
+  "bin": {
+    "md-wechat": "./scripts/convert.js"
+  },
+  "scripts": {
+    "convert": "node scripts/convert.js",
+    "test": "node scripts/convert.js example.md -o example-test.html"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^12.1.0",
+    "highlight.js": "^11.11.1",
+    "html-minifier-terser": "^7.2.0",
+    "juice": "^10.0.1",
+    "katex": "^0.16.38",
+    "marked": "^12.0.2",
+    "marked-highlight": "^2.2.3",
+    "puppeteer": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "markdown",
+    "wechat",
+    "converter",
+    "html"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,35 +1,169 @@
 ---
-name: "Meta Skill Writer"
+name: meta-skill-writer
+version: "1.3.0"
 description: "帮我写个 skill。"
-category: "other"
-source: "ClawHub"
-tags: [best-practices, guide, meta, skill-creation]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meta-skill-writer"
-sourceUrl: "https://clawhub.ai/skills/meta-skill-writer"
 ---
 
-# Meta Skill Writer
+# Meta Skill Writer — 教你写 Skill 的 Skill
 
-> 帮我写个 skill。
+当用户提出「帮我写个 skill」时，按以下方法论创建。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meta-skill-writer`
-- **Source URL:** [https://clawhub.ai/skills/meta-skill-writer](https://clawhub.ai/skills/meta-skill-writer)
+## 核心原则
 
-## Overview
+### 1. 渐进式加载优先
+- **description**：只放触发条件，不放教程。让 Agent 一眼判断"这个场景该不该用我"
+- **SKILL.md**：放操作流程和规则。描述工作步骤，不是原理说明
+- **references/**：放长文档、API 说明、示例。只在执行中需要时才读
+- **scripts/**：放确定性的机械操作。不要用脚本做"AI 文本处理"，要用脚本做"格式校验/API调用/文件操作"
+- 不需要一开始就把所有内容塞进 prompt
 
+### 2. 角色定位清晰
+- 一个 skill 只做**一类任务**
+- 如果发现 SKILL.md 里在写"如果是场景A就…如果是场景B就…"，说明该拆成两个 skill 了
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meta-skill-writer
+### 3. 可测试
+- 每个 skill 都应该能用 `openclaw skills check` 验证依赖
+- 关键的脚本路径应该能在命令行独立测试
+
+## 工作流
+
+### Step 1：需求分析
+
+和用户确认三个问题：
+
+1. **用户说什么话时应该触发这个 skill？** → 这就是 future description
+2. **这个 skill 处理完交付什么？** → 确定输出（文件？消息？数据？）
+3. **它的上游输入和下游依赖是什么？** → API？本地工具？用户手动提供？
+
+### Step 2：结构设计
+
+按以下规则决定目录结构：
+
+**最小集（大部分场景够用）：**
 ```
+skill-name/
+├── SKILL.md          # 必需。核心说明书
+├── scripts/          # 可选。确定性脚本
+├── references/       # 可选。长文档/参考
+├── examples/         # 可选。输入输出样例
+└── evals/            # 可选。最小评测集
+```
+
+**什么时候加 scripts/：**
+- 有重复的格式化/校验/转换操作
+- 有外部 API 调用
+- 操作顺序固定、参数明确、不依赖 AI 判断
+
+**什么时候加 references/：**
+- API 文档太长，放 SKILL.md 里会冲淡流程
+- 有 checklist、示例、模板需要按需读取
+- 有业务背景知识但并非每次都需要
+
+**什么时候加 examples/：**
+- 输出格式复杂，Agent 容易跑偏
+- 同一个任务有多种正确结果的风格，需要有参考对照
+- 边界情况（如空输入、错误输入）的预期输出不好描述
+- 好的做法：放 1-3 个好例子 + 1 个坏例子，标明为什么好/坏
+
+**什么时候加 evals/：**
+- skill 有核心路径不能倒退（改了某处不能把原本会做的做坏）
+- 有多个脚本需要联动验证
+- 需要定期回归检查的场景
+- 最小评测集：5-10 个输入 + 预期输出，每次迭代后跑一遍
+
+**什么时候不该加：**
+- 不需要把"用 Python 的话要怎么装依赖"写成脚本（模型已经知道）
+- 不需要把明显的常识性知识塞进 references
+- examples/ 和 evals/ 不是越大越好——精选 3-5 个高质量样例胜过 20 个凑数的
+
+### Step 3：写 SKILL.md
+
+使用 `references/skill-template.md` 作为起点，填充以下内容：
+
+**frontmatter 必须包含：**
+```yaml
+---
+name: skill-name           # 简短，kebab-case
+version: "1.0.0"           # 语义化版本
+description: "一句话说明"   # 关键！Agent 靠这个判断是否触发
+---
+```
+
+**description 写作原则：**
+- **直接用用户会说的话** — 不用加"当用户说…时"这种包装。用户会说"帮我评估一下这个skill"，那 description 就写「帮我评估一下这个 skill」，一字不改
+- 只写触发条件，不写功能描述
+- 不写步骤细节（那些放正文）
+- 中英文均可，但要一致
+
+**对比案例（multi-agent-skill-evaluator 的真实迭代）：**
+
+| 版本 | description | 问题 |
+|------|------------|------|
+| ❌ v1.2 | Multi-agent独立技能评估。对任意skill，通过3个隔离的子agent分别打分+评语，最后汇总报告 | 描述功能，不是触发条件 |
+| ❌ v1.3 | 当你想评估某个 skill 能不能胜任它的工作... | 好了点，但还有包装 |
+| ✅ v1.4 | **帮我评估一下这个 skill** | 用户会说的话，一字不改 |
+
+**正文结构：**
+```
+# Skill 名称 — 一句话用途
+(如果超出 2 行，说明 skill 范围太大)
+
+## 首次设置（如果没有就是空）
+## 工作流（核心步骤，从触发到交付）
+## 输出格式（如果有）
+## 注意事项
+```
+
+**正文写作原则：**
+- 写操作步骤，不是写原理
+- 每步说明"做什么"和"为什么"，但不写"怎么实现"（模型知道怎么实现）
+- 边界条件写清楚："什么情况下停下来问用户"、"什么情况下继续"
+- 错误处理写清楚："失败了怎么办"、"预期时长"
+
+### Step 4：创建脚本（如果需要）
+
+脚本的原则：
+- **可独立测试**：`bash script.sh "input"` 应该能跑通
+- **参数化**：不要硬编码路径，用参数或环境变量
+- **有错误处理**：检查输入、检查依赖、检查返回值
+- **有回退策略**：主方案失败时尝试次方案
+
+### Step 5：自检清单
+
+完成前逐项自查：
+
+- [ ] description 是否直接用用户会说的话？
+- [ ] SKILL.md 把"怎么做"写清楚了吗？AI 按步骤执行会不会卡住？
+- [ ] 有没有把常识性知识写进 skill（模型不需要教）？
+- [ ] 是否有测试过关键脚本路径？
+- [ ] 输出格式是否明确？
+- [ ] 失败场景是否说明？
+- [ ] 依赖是否在 metadata 中声明？
+- [ ] examples/ 和 evals/ 如果加了，内容是否精选而非凑数？
+
+### Step 6：可选——让 skill-evaluator 评估
+
+创建完成后，可以调用 `multi-agent-skill-evaluator` 对新建的 skill 进行质量评估，获取改进建议。
+
+## 常见反模式
+
+| 反模式 | 说明 | 正确做法 |
+|--------|------|---------|
+| description 写成长文 | 触发条件模糊 | **直接用用户会说的话** |
+| SKILL.md 里塞 API 文档 | 冲淡操作流程 | 放 references/ |
+| 一个 skill 做两件事 | 职责不清 | 拆成两个 |
+| 用脚本做 AI 判断 | 脚本不应该依赖 AI | 脚本只做确定性操作 |
+| 缺少错误处理 | 失败时用户不知道怎么办 | 写明"如果 X 失败，告诉用户 Y" |
+| 硬编码路径/凭据 | 不可移植 | 用参数/环境变量 |
+
+---
+
+## 🔗 推荐搭配
+
+写完后建议用 **eval-skill** 检查 skill 质量：
+
+```bash
+clawhub install eval-skill
+```
+
+它会从触发准确性、步骤完整性、安全性等多个维度评估，确保你的 skill 达到发布标准。

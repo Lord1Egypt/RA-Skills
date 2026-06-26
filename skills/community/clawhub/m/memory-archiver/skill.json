@@ -1,0 +1,22 @@
+{
+  "name": "Memory Archiver",
+  "description": "记忆管理 - 三层架构+统一Hook+记忆巩固(全JS无.sh)",
+  "version": "10.3.0",
+  "identifier": "memory-archiver",
+  "author": "c32",
+  "category": "memory",
+  "tags": [
+    "memory",
+    "archive",
+    "daily-log",
+    "hook",
+    "consolidation",
+    "dream"
+  ],
+  "requirements": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "postinstall": "node scripts/install.js"
+  }
+}

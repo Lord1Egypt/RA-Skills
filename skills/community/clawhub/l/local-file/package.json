@@ -1,0 +1,46 @@
+{
+  "name": "openclaw-skill-local-file-manager",
+  "version": "1.0.0",
+  "description": "OpenClaw 本地文件管理技能：支持读取、解析 PDF 和 Word (.docx) 文档，并提取文本内容供 AI 分析。",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "file-management",
+    "pdf-parser",
+    "docx-parser",
+    "local-rag",
+    "document-processing"
+  ],
+  "author": "YourName",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "mammoth": "^1.6.0",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  },
+  "openclaw": {
+    "type": "skill",
+    "entry": "index.js",
+    "minVersion": "2026.1.0",
+    "capabilities": [
+      "file_read",
+      "text_extraction"
+    ]
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE"
+  ]
+}

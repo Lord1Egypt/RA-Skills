@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear"
+  short_description: "Read and update Linear issues, projects, and cycles"
+  default_prompt: "Use the Linear MCP tools to help the user search issues, read project details, create or update issues, and manage their Linear workspace."

@@ -1,0 +1,17 @@
+{
+  "fields": [
+    "path",
+    "filename",
+    "ext",
+    "size_bytes",
+    "created_at",
+    "modified_at",
+    "width",
+    "height",
+    "duration_s",
+    "tags",
+    "project",
+    "rating",
+    "notes"
+  ]
+}

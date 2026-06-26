@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lqs.local/skill/schemas/project_pattern_profile.schema.json",
+  "title": "ProjectPatternProfile",
+  "type": "object",
+  "required": ["controller_patterns", "query_contract", "response_contract", "view_patterns"],
+  "properties": {
+    "source": { "type": "object" },
+    "controller_patterns": { "type": "object" },
+    "query_contract": { "type": "object" },
+    "response_contract": { "type": "object" },
+    "view_patterns": { "type": "object" },
+    "naming_rules": { "type": "object" },
+    "migration_rules": { "type": "object" }
+  }
+}

@@ -1,35 +1,27 @@
+````skill
 ---
-name: "Mediaio Image to Video API"
-description: "Animate static images into dynamic AI-generated videos with realistic motion using Media.io OpenAPI and an API key."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mediaio-image-to-video-api"
-sourceUrl: "https://clawhub.ai/skills/mediaio-image-to-video-api"
+name: mediaio-image-to-video-api
+description: "Animate images into videos using AI via Media.io OpenAPI. Transform any static image into a dynamic AI video with realistic motion."
+metadata: {"mediaio": {"emoji": "", "requires": {"env": ["API_KEY"]}, "priority": "P0", "core_goal_keywords": ["image-to-video"], "trigger_keywords": ["image to video", "image-to-video API", "animate image", "photo to video"]}, "publisher": "Community Maintainer", "source": "https://platform.media.io/docs/"}
 ---
 
-# Mediaio Image to Video API
-
-> Animate static images into dynamic AI-generated videos with realistic motion using Media.io OpenAPI and an API key.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mediaio-image-to-video-api`
-- **Source URL:** [https://clawhub.ai/skills/mediaio-image-to-video-api](https://clawhub.ai/skills/mediaio-image-to-video-api)
+# Image to Video API
 
 ## Overview
+This skill focuses on image-to-video generation via Media.io OpenAPI.
+It includes only common APIs (`Credits`, `Task Result`) and one image-to-video model API for this skill.
 
+## Core Trigger Keywords
+image to video, image-to-video API, animate image, photo to video
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mediaio-image-to-video-api
-```
+## Core Goal Keywords
+image-to-video
+
+## Environment Variable
+- `API_KEY` (required): Media.io OpenAPI key used as `X-API-KEY`.
+
+## Available APIs
+- `Credits` (`user-credits`)
+- `Task Result` (`generation-result`)
+- `Vidu Q3` (`i2v-vidu-q3`)
+````

@@ -1,35 +1,41 @@
+# macOS Control Skill
+
+A high-fidelity automation bridge for macOS (Darwin) that enables agents to perceive the desktop state and execute precise mouse and keyboard interactions.
+
+## 🛠 Included Scripts
+This skill leverages specialized wrappers located in the `/scripts` directory to interface with system-level binaries:
+
+### 1. `cliclick_wrapper.sh`
+A dedicated wrapper for the `cliclick` utility to handle synthetic input events.
+- **Path**: `scripts/cliclick_wrapper.sh`
+- **Logic**: Executes `/opt/homebrew/bin/cliclick` with passed arguments.
+- **Capabilities**: Left/Right clicks, mouse movement, and keyboard emulation.
+
+### 2. `vision_wrapper.sh`
+The visual perception engine for the skill.
+- **Path**: `scripts/vision_wrapper.sh`
+- **Logic**: Utilizes the native macOS `screencapture` utility in silent mode (`-x`).
+- **Output**: Generates a standard PNG at `/tmp/claw_view.png`.
+
 ---
-name: "MacOS Desktop Control (Mouse, Keyboard, Screenshots)"
-description: "Automate macOS desktop by capturing screenshots and executing precise mouse movements, clicks, and keyboard inputs via cliclick."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/macos-desktop-control"
-sourceUrl: "https://clawhub.ai/skills/macos-desktop-control"
+
+## 🚀 Tool Specifications
+
+### `see`
+Captures the current screen state for visual analysis.
+* **Returns**: A string confirming the filepath of the capture.
+* **Use Case**: Identifies UI elements, window positions, and application states.
+
+### `click`
+Sends precise commands to the mouse and keyboard.
+* **Usage**: `click "c:x,y"` (Click) or `click "m:x,y"` (Move).
+* **Syntax**: Supports all `cliclick` standard notation including `w:` (wait) and `t:` (type).
+
 ---
 
-# MacOS Desktop Control (Mouse, Keyboard, Screenshots)
+## ⚙️ Requirements & Setup
 
-> Automate macOS desktop by capturing screenshots and executing precise mouse movements, clicks, and keyboard inputs via cliclick.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/macos-desktop-control`
-- **Source URL:** [https://clawhub.ai/skills/macos-desktop-control](https://clawhub.ai/skills/macos-desktop-control)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/macos-desktop-control
-```
+1. **Binary Dependency**:
+   ```bash
+   brew install cliclick
+   ```

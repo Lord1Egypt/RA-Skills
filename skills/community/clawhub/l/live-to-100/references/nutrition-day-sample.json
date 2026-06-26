@@ -1,0 +1,62 @@
+{
+  "date": "2026-03-25",
+  "profile": {
+    "weight_kg": 84
+  },
+  "targets": {
+    "target_calories": 2200,
+    "target_deficit_kcal": 400,
+    "protein_target_g": 140,
+    "fiber_target_g": 30,
+    "water_target_ml": 2500
+  },
+  "activity": {
+    "training": "strength 45min",
+    "steps": 7800
+  },
+  "hydration": {
+    "water_ml": 2100
+  },
+  "meals": [
+    {
+      "time": "08:10",
+      "name": "鸡蛋+燕麦+牛奶",
+      "calories": 520,
+      "protein_g": 28,
+      "carbs_g": 55,
+      "fat_g": 20,
+      "fiber_g": 8,
+      "category": ["protein source", "whole grain", "dairy"]
+    },
+    {
+      "time": "12:20",
+      "name": "糙米饭+鸡胸肉+西兰花",
+      "calories": 680,
+      "protein_g": 48,
+      "carbs_g": 72,
+      "fat_g": 18,
+      "fiber_g": 10,
+      "category": ["protein source", "whole grain", "vegetable"]
+    },
+    {
+      "time": "16:30",
+      "name": "酸奶+香蕉",
+      "calories": 280,
+      "protein_g": 11,
+      "carbs_g": 40,
+      "fat_g": 8,
+      "fiber_g": 3,
+      "category": ["dairy", "fruit"]
+    },
+    {
+      "time": "19:10",
+      "name": "三文鱼+土豆+沙拉",
+      "calories": 720,
+      "protein_g": 42,
+      "carbs_g": 56,
+      "fat_g": 34,
+      "fiber_g": 9,
+      "category": ["protein source", "vegetable"]
+    }
+  ]
+}

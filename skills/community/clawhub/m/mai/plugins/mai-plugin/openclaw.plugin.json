@@ -1,0 +1,28 @@
+{
+  "id": "mai-plugin",
+  "name": "Mai Plugin",
+  "version": "1.1.4",
+  "description": "Lightweight OpenClaw native bridge for the Mai shopping matchmaking skill and hosted registry.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "projectRoot": {
+        "type": "string",
+        "description": "Absolute path to a Mai skill checkout. Defaults to MAI_ROOT, ~/.openclaw/workspace/skills/mai, or ~/.hermes/skills/commerce/mai."
+      },
+      "dataPath": {
+        "type": "string",
+        "description": "Optional local Mai JSON data path. Defaults to MAI_DATA or ~/.local/share/mai/mai.json."
+      },
+      "registryUrl": {
+        "type": "string",
+        "description": "Optional hosted Mai registry URL. Defaults to MAI_REGISTRY_URL."
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Optional hosted Mai registry API key. Defaults to MAI_API_KEY."
+      }
+    }
+  }
+}

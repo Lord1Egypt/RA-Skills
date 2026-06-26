@@ -1,0 +1,21 @@
+{
+  "name": "loomlens-live",
+  "version": "1.0.0",
+  "description": "LoomLens Live — Pre-flight cost intelligence for LLM prompts",
+  "author": "Aster Vale / AEHS",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:sidebar": "node build.mjs sidebar",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "loomlens-clusters.js",
+    "loomlens-engine.js",
+    "loomlens-sidebar.html"
+  ]
+}

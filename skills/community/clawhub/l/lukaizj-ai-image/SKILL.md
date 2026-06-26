@@ -1,35 +1,30 @@
 ---
-name: "AI Image Generation"
-description: "AI image generation - Generate images using OpenAI DALL-E or other AI image APIs"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lukaizj-ai-image"
-sourceUrl: "https://clawhub.ai/skills/lukaizj-ai-image"
+name: AI Image Generation
+description: AI image generation - Generate images using OpenAI DALL-E or other AI image APIs
+homepage: https://github.com/lukaizj/ai-image-skill
+tags:
+  - ai
+  - image
+  - generation
+  - openai
+requires:
+  env:
+    - OPENAI_API_KEY
+files:
+  - ai_image.py
 ---
 
 # AI Image Generation
 
-> AI image generation - Generate images using OpenAI DALL-E or other AI image APIs
+AI image generation skill for OpenClaw. Generate images using DALL-E or other AI image APIs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lukaizj-ai-image`
-- **Source URL:** [https://clawhub.ai/skills/lukaizj-ai-image](https://clawhub.ai/skills/lukaizj-ai-image)
+## Setup
 
-## Overview
+1. Get OpenAI API key from https://platform.openai.com/api-keys
+2. Configure OPENAI_API_KEY environment variable
 
+## Environment Variables
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lukaizj-ai-image
-```
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `OPENAI_API_KEY` | Yes | Your OpenAI API Key |

@@ -1,0 +1,40 @@
+# LunaClaw Brief — Global Configuration
+# Sensitive info goes in config.local.yaml (gitignored)
+
+llm:
+  base_url: "https://coding.dashscope.aliyuncs.com/v1"
+  model: "kimi-k2.5"
+  timeout: 180
+  # api_key: put in config.local.yaml or env BAILIAN_API_KEY
+
+github:
+  token: ""  # put in config.local.yaml or env GITHUB_TOKEN
+
+proxy:
+  enabled: false
+  http: ""
+  https: ""
+
+email:
+  smtp_host: "smtp.qq.com"
+  smtp_port: 465
+  sender_email: ""
+  password: ""       # put in config.local.yaml or env EMAIL_PASSWORD
+  to_emails: []
+
+# Scheduled auto-generation (used by `python -m brief.scheduler`)
+# Each job specifies a preset, cron expression, and delivery channels.
+# Cron format: minute hour day month weekday (0=Sun, 1=Mon, ..., 6=Sat)
+schedule: []
+  # Example:
+  # - preset: stock_a_daily
+  #   cron: "0 18 * * 1-5"
+  #   delivery:
+  #     - type: email
+  #     - type: webhook
+  #       url: "https://hooks.slack.com/services/xxx"
+  #       webhook_type: slack
+  # - preset: ai_cv_weekly
+  #   cron: "0 9 * * 1"
+  #   delivery:
+  #     - type: email

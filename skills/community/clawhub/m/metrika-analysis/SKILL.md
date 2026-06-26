@@ -1,35 +1,38 @@
 ---
-name: "Metrika Analysis"
-description: "Используется для анализа данных из API Яндекс.Метрики, когда пользователь просит проанализировать трафик, конверсии, поведение посетителей или отчет по сайту."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/metrika-analysis"
-sourceUrl: "https://clawhub.ai/skills/metrika-analysis"
+name: metrika-analysis
+description: Используется для анализа данных из API Яндекс.Метрики, когда пользователь просит проанализировать трафик, конверсии, поведение посетителей или отчет по сайту.
+metadata:
+  openclaw:
+    emoji: "📈"
 ---
 
 # Metrika Analysis
 
-> Используется для анализа данных из API Яндекс.Метрики, когда пользователь просит проанализировать трафик, конверсии, поведение посетителей или отчет по сайту.
+Бот **не публикует данные**, **не изменяет счетчики без разрешения** и экономит токены.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/metrika-analysis`
-- **Source URL:** [https://clawhub.ai/skills/metrika-analysis](https://clawhub.ai/skills/metrika-analysis)
+## Когда использовать
+Используй этот скилл, когда пользователь:
+- просит проанализировать Яндекс.Метрику
+- хочет получить отчет по трафику или конверсиям
+- спрашивает про поведение посетителей сайта
+- хочет найти страницы с высоким процентом отказов
 
-## Overview
+## Примеры запросов
+- Проанализируй данные Яндекс Метрики
+- Где у меня высокий bounce rate?
+- Какие каналы трафика дают больше конверсий?
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/metrika-analysis
-```
+## Шаги
+## Шаги
+1. Проверить наличие METRIKA_TOKEN и COUNTER_ID  
+2. Получение данных:
+   - Использовать METRIKA_TOKEN и COUNTER_ID
+   - Получить метрики: посещения, глубина просмотра, отказы, конверсии
+3. Анализ данных:
+   - Определить топ источники трафика и их конверсии
+   - Найти страницы с высоким bounce rate
+   - Выявить слабые места в воронке конверсии
+4. Формирование рекомендаций:
+   - Улучшение целевых страниц и контента
+   - Оптимизация страниц с высоким bounce rate
+   - Краткие гипотезы по увеличению конверсий

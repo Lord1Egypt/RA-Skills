@@ -1,0 +1,72 @@
+{
+  "template_id": "SOL-COM-001",
+  "name": "通信链路断开应对方案",
+  "crisis_type": "communication_failure.link_lost",
+  "applicable_levels": ["L2", "L3"],
+  "applicable_devices": ["multirotor", "fixed_wing", "evtol", "delivery_vehicle"],
+  "version": "1.0.0",
+  "preconditions": {
+    "all_comms_lost": true,
+    "gps_available": true,
+    "battery_level": ">15%",
+    "home_point_set": true
+  },
+  "actions": [
+    {
+      "step": 1,
+      "action": "activate_failsafe_mode",
+      "params": {"mode": "return_to_home"},
+      "timeout_ms": 2000,
+      "description": "激活通信丢失保护模式，启动自主返航"
+    },
+    {
+      "step": 2,
+      "action": "climb_to_safe_altitude",
+      "params": {"target_altitude_agl": 100, "climb_rate": 3.0},
+      "timeout_ms": 20000,
+      "description": "爬升至安全返航高度，避开障碍物"
+    },
+    {
+      "step": 3,
+      "action": "navigate_to_home",
+      "params": {"speed": 10, "follow_known_route": true},
+      "timeout_ms": null,
+      "description": "沿预设航线或直线返回起飞点"
+    },
+    {
+      "step": 4,
+      "action": "attempt_comms_recovery",
+      "params": {"retry_interval_s": 10, "channels": ["rc", "4g", "wifi"]},
+      "timeout_ms": null,
+      "description": "返航途中持续尝试恢复通信",
+      "parallel": true
+    },
+    {
+      "step": 5,
+      "action": "landing_at_home",
+      "params": {"precision_landing": true, "obstacle_check": true},
+      "timeout_ms": 60000,
+      "description": "到达起飞点后执行精准降落"
+    }
+  ],
+  "expected_outcome": {
+    "device_status": "正常",
+    "payload_status": "完好",
+    "human_risk": "none",
+    "mission_status": "中止，可重新执行"
+  },
+  "fallback": "emergency_landing_nearest",
+  "historical_success_rate": 0.95,
+  "risk_assessment": {
+    "residual_risks": [
+      "返航途中可能遭遇新的障碍物（不在地图中）",
+      "起飞点附近环境可能已变化",
+      "电量可能不足以完成返航"
+    ],
+    "mitigation": [
+      "返航高度设置足够高以避开大多数障碍",
+      "到达起飞点后先悬停评估再降落",
+      "持续监控电量，不足时就近降落"
+    ]
+  }
+}

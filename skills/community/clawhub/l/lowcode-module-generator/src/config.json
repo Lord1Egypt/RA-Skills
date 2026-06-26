@@ -1,0 +1,21 @@
+{
+    "description": "低代码模块生成器配置文件",
+    "version": "1.0.0",
+    "config": {
+        "microservice": {
+            "name": "wsd-aiagent",
+            "package": "com.wisdom.acm.aiagent",
+            "path": "/Users/hadoop/dev/IdeaProjects/cldm_springcloud_v4.0/adp-modules/wsd-aiagent/src/main/java/com/wisdom/acm/aiagent",
+            "description": "*必填项，后台微服务工程出码的指定路径"
+        },
+        "frontend": {
+            "path": "/Users/hadoop/dev/IdeaProjects/cldm_www4.0/pages/modules/Adp",
+            "description": "*必填项，前端模块出码的指定路径"
+        },
+        "database": {
+            "type": "Oracle",
+            "tablePrefix": "wsd_kg_",
+            "description": "*必填项，数据库类型：Oracle / MySQL / DM（达梦）"
+        }
+    }
+}

@@ -1,0 +1,119 @@
+# Memory-Plus 配置文件
+# 版本：1.0.0
+# 创建：2026-04-03
+
+storage:
+  # L1 热数据存储配置
+  l1:
+    path: "/Users/bot-eva/.openclaw/workspace/memory-plus/storage/l1"
+    max_age_days: 7
+    max_size_mb: 500
+    db_mode: "WAL"  # Write-Ahead Logging
+    journal_mode: "WAL"
+    synchronous: "NORMAL"
+    cache_size: 10000  # 页面缓存
+    session_cache_ttl: 3600  # 会话缓存 TTL (秒)
+
+  # L2 温数据存储配置
+  l2:
+    path: "/Users/bot-eva/.openclaw/workspace/memory-plus/storage/l2"
+    max_age_days: 30
+    max_size_mb: 2000
+    db_mode: "DELETE"
+    weekly_rotate: true  # 按周轮转
+    monthly_compress: true  # 按月压缩
+
+  # L3 冷数据存储配置
+  l3:
+    path: "/Users/bot-eva/.openclaw/workspace/memory-plus/storage/l3"
+    compress_after_days: 90
+    compression: "gzip"
+    compression_level: 6
+    vector_index: true
+    vector_dim: 768  # 向量维度
+    archive_format: "tar.gz"
+
+scheduler:
+  # 降级检查间隔 (秒)
+  downgrade_check_interval: 3600
+  # 归档检查间隔 (秒)
+  archive_check_interval: 86400
+  # 健康检查间隔 (秒)
+  health_check_interval: 300
+  # 验证检查间隔 (秒)
+  validation_check_interval: 7200
+
+# 降级策略
+downgrade:
+  # L1→L2 触发条件 (天)
+  l1_to_l2_days: 7
+  # L2→L3 触发条件 (天)
+  l2_to_l3_days: 30
+  # 批量处理大小
+  batch_size: 100
+  # 并发线程数
+  max_workers: 4
+  # 保留索引 (加速查询)
+  keep_index: true
+
+# 归档策略
+archive:
+  # 归档触发条件 (天)
+  archive_after_days: 90
+  # 归档前验证
+  validate_before_archive: true
+  # 归档后删除源文件
+  delete_after_archive: true
+  # 归档保留期限 (天，-1=永久)
+  retention_days: -1
+  # 归档压缩格式
+  compression_format: "tar.gz"
+
+# 验证策略
+validation:
+  # 启用验证
+  enabled: true
+  # 验证类型
+  checks:
+    - "checksum"      # 校验和验证
+    - "schema"        # 模式验证
+    - "referential"   # 引用完整性
+    - "accessibility" # 可访问性
+  # 验证失败动作
+  on_failure: "rollback"  # rollback | alert | ignore
+  # 最大重试次数
+  max_retries: 3
+  # 重试间隔 (秒)
+  retry_interval: 60
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  path: "/Users/bot-eva/.openclaw/workspace/memory-plus/logs"
+  max_size_mb: 100
+  backup_count: 5
+  rotation: "midnight"
+
+# 监控配置
+monitoring:
+  enabled: true
+  metrics_path: "/Users/bot-eva/.openclaw/workspace/memory-plus/metrics"
+  export_interval: 300  # 5 分钟
+  alerts:
+    - type: "storage_threshold"
+      threshold: 0.8  # 80% 告警
+    - type: "downgrade_failure"
+      threshold: 5    # 连续 5 次失败告警
+    - type: "archive_failure"
+      threshold: 3    # 连续 3 次失败告警
+
+# Mem0 集成配置
+mem0:
+  enabled: true
+  # Mem0 数据库路径
+  db_path: "/Users/bot-eva/.openclaw/memory/main.sqlite"
+  # 同步模式
+  sync_mode: "async"  # sync | async
+  # 同步批次大小
+  sync_batch_size: 50

@@ -1,35 +1,59 @@
 ---
-name: "Send email using MailChannels Email API"
-description: "Send email via MailChannels Email API and ingest signed delivery-event webhooks into Clawdbot (Moltbot)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mailchannels"
-sourceUrl: "https://clawhub.ai/skills/mailchannels"
+name: mailchannels-email-api
+description: Send email via MailChannels Email API and ingest signed delivery-event webhooks into Clawdbot (Moltbot).
+homepage: https://docs.mailchannels.net/email-api/
+metadata: {"moltbot":{"emoji":"📨","requires":{"env":["MAILCHANNELS_API_KEY","MAILCHANNELS_ACCOUNT_ID"],"bins":["curl"]},"primaryEnv":"MAILCHANNELS_API_KEY"}}
 ---
 
-# Send email using MailChannels Email API
+# MailChannels Email API (Send + Delivery Events)
 
-> Send email via MailChannels Email API and ingest signed delivery-event webhooks into Clawdbot (Moltbot).
+## Environment
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mailchannels`
-- **Source URL:** [https://clawhub.ai/skills/mailchannels](https://clawhub.ai/skills/mailchannels)
+Required:
+- `MAILCHANNELS_API_KEY` (send in `X-Api-Key`)
+- `MAILCHANNELS_ACCOUNT_ID` (aka `customer_handle`)
 
-## Overview
+Optional:
+- `MAILCHANNELS_BASE_URL` (default: `https://api.mailchannels.net/tx/v1`), `MAILCHANNELS_WEBHOOK_ENDPOINT_URL`
 
+## Domain Lockdown (DNS)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mailchannels
-```
+Create a TXT record for each sender domain:
+- Host: `_mailchannels.<your-domain>`
+- Value: `v=mc1; auid=<YOUR_ACCOUNT_ID>`
+
+## API Quick Reference
+Base URL: `${MAILCHANNELS_BASE_URL:-https://api.mailchannels.net/tx/v1}`
+- Send: `POST /send`
+- Send async: `POST /send-async`
+- Webhook: `POST /webhook?endpoint=<url>`, `GET /webhook`, `DELETE /webhook`, `POST /webhook/validate`
+- Public key: `GET /webhook/public-key?id=<keyid>`
+
+## Sending Email
+Minimum payload fields: `personalizations`, `from`, `subject`, `content`.
+Use `/send` for normal traffic and `/send-async` for queued/low-latency; both produce webhooks.
+Persist MailChannels correlation IDs (e.g., `request_id`).
+
+## Delivery Events (Webhooks)
+MailChannels POSTs a JSON array. Common fields: `email`, `customer_handle`, `timestamp`, `event`, `request_id`.
+Bounce fields often include: `recipients`, `status`, `reason`, `smtp_id`.
+
+## Moltbot Hooks Routing
+1) Enable hooks in `~/.clawdbot/moltbot.json`.
+2) Map `/hooks/<path>` to an agent action via `hooks.mappings` and optional transform.
+3) Enroll the public endpoint in MailChannels `/webhook?endpoint=...`.
+
+## Webhook Signature Verification
+Headers: `Content-Digest`, `Signature-Input`, `Signature`.
+Steps:
+- Parse `Signature-Input` (name, `created`, `alg`, `keyid`).
+- Reject stale `created` values.
+- Fetch public key by `keyid`.
+- Recreate the RFC 9421 signature base.
+- Verify ed25519 signature (avoid hand-rolling).
+Also verify JSON body is an array and every event has `customer_handle == MAILCHANNELS_ACCOUNT_ID`.
+
+## Correlation + State Updates
+Store your internal message ID + MailChannels IDs (e.g., `request_id`, `smtp_id`).
+Update delivery state from events: `processed`, `delivered`, `soft-bounced`, `hard-bounced`, `dropped`.
+Operational tips: respond 2xx quickly, process async, store raw events, dedupe retries.

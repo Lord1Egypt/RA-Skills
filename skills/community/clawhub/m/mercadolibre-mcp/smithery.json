@@ -1,0 +1,48 @@
+{
+  "qualifiedName": "@traid/mercadolibre-mcp",
+  "displayName": "Mercado Libre MCP Server",
+  "description": "Complete MCP server for Mercado Libre seller operations — 11 tools for products, orders, pricing, stock, questions, ads, reputation, and competitor analysis",
+  "homepage": "https://github.com/MarcosNahuel/mercadolibre-mcp",
+  "iconUrl": "https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.73/mercadolibre/logo_large_25years@2x.png",
+  "connections": [
+    {
+      "type": "stdio",
+      "configSchema": {
+        "type": "object",
+        "properties": {
+          "ML_CLIENT_ID": {
+            "type": "string",
+            "description": "App Client ID from developers.mercadolibre.com"
+          },
+          "ML_CLIENT_SECRET": {
+            "type": "string",
+            "description": "App Client Secret"
+          },
+          "ML_REFRESH_TOKEN": {
+            "type": "string",
+            "description": "OAuth refresh token for the seller account"
+          },
+          "ML_SITE_ID": {
+            "type": "string",
+            "description": "ML site ID (MLA, MLU, MLB, MLC, MLM, MCO)",
+            "default": "MLA"
+          }
+        },
+        "required": ["ML_CLIENT_ID", "ML_CLIENT_SECRET", "ML_REFRESH_TOKEN"]
+      }
+    }
+  ],
+  "tools": [
+    { "name": "list_products", "description": "List seller products with price, stock, status" },
+    { "name": "get_orders", "description": "Get orders with buyer, items, shipping, payments" },
+    { "name": "update_price", "description": "Update listing price (returns before/after)" },
+    { "name": "update_stock", "description": "Update available quantity (returns before/after)" },
+    { "name": "list_questions", "description": "List buyer questions, filter by status" },
+    { "name": "answer_question", "description": "Answer a buyer question (public)" },
+    { "name": "get_item_metrics", "description": "Visits, conversion, health, catalog status" },
+    { "name": "manage_ads", "description": "Activate, pause, or check Product Ads status" },
+    { "name": "get_reputation", "description": "Seller reputation, level, metrics" },
+    { "name": "search_competitors", "description": "Search competitor products by keyword" },
+    { "name": "get_categories", "description": "Browse categories and required attributes" }
+  ]
+}

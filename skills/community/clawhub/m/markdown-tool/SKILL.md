@@ -1,35 +1,28 @@
 ---
-name: "Markdown Tool"
-description: "Convert Markdown text to HTML and other formats. Use for documentation generation, content formatting, and text transformation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/markdown-tool"
-sourceUrl: "https://clawhub.ai/skills/markdown-tool"
+name: markdown-tool
+description: Convert Markdown text to HTML and other formats. Use for documentation generation, content formatting, and text transformation.
 ---
+# Markdown - Document Format Converter
 
-# Markdown Tool
+Convert Markdown-formatted text to HTML with support for headings, lists, code blocks, tables, and inline formatting.
 
-> Convert Markdown text to HTML and other formats. Use for documentation generation, content formatting, and text transformation.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/markdown-tool`
-- **Source URL:** [https://clawhub.ai/skills/markdown-tool](https://clawhub.ai/skills/markdown-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/markdown-tool
+markdown-tool [options] <file>
+```
+
+## Features
+
+- Full CommonMark spec support
+- Syntax highlighted code blocks
+- Table of contents generation
+- GitHub Flavored Markdown (GFM) extensions
+
+## Examples
+
+```bash
+markdown-tool README.md > index.html
+markdown-tool --toc doc.md
+echo "# Hello" | markdown-tool
 ```

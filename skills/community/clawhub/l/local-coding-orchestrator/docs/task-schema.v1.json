@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/skills/local-coding-orchestrator/task-schema.v1.json",
+  "title": "local-coding-orchestrator task record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "repo",
+    "taskType",
+    "pipeline",
+    "role",
+    "agent",
+    "status",
+    "attempt",
+    "maxAttempts",
+    "createdAt",
+    "updatedAt",
+    "objectiveChecks",
+    "artifacts"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "repo": { "type": "string", "minLength": 1 },
+    "repoPath": { "type": ["string", "null"] },
+    "worktree": { "type": ["string", "null"] },
+    "branch": { "type": ["string", "null"] },
+    "taskType": {
+      "type": "string",
+      "enum": ["feature", "bugfix", "review", "prototype", "investigation", "maintenance"]
+    },
+    "pipeline": {
+      "type": "string",
+      "enum": ["implement_and_review", "design_then_build", "investigate_then_fix", "parallel_compare", "pr_hardening"]
+    },
+    "role": {
+      "type": "string",
+      "enum": ["implementer", "reviewer", "planner", "investigator", "repairer"]
+    },
+    "agent": {
+      "type": "string",
+      "enum": ["codex", "claude", "opencode", "auto"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "queued", "running", "awaiting-review", "changes-requested", "retrying", "blocked", "completed", "failed", "cancelled"]
+    },
+    "attempt": { "type": "integer", "minimum": 1 },
+    "maxAttempts": { "type": "integer", "minimum": 1 },
+    "createdAt": { "type": "integer", "minimum": 0 },
+    "updatedAt": { "type": "integer", "minimum": 0 },
+    "successCriteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "objectiveChecks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["pending", "passed", "failed", "blocked", "not-required"]
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["logPath", "promptPath", "reviewPath", "prUrl"],
+      "properties": {
+        "logPath": { "type": ["string", "null"] },
+        "promptPath": { "type": ["string", "null"] },
+        "reviewPath": { "type": ["string", "null"] },
+        "prUrl": { "type": ["string", "null"] },
+        "resultPath": { "type": ["string", "null"] },
+        "summaryPath": { "type": ["string", "null"] }
+      }
+    },
+    "workerRun": {
+      "type": ["object", "null"],
+      "properties": {
+        "tool": { "type": ["string", "null"] },
+        "role": { "type": ["string", "null"] },
+        "startedAt": { "type": ["integer", "null"], "minimum": 0 },
+        "finishedAt": { "type": ["integer", "null"], "minimum": 0 },
+        "lastPolledAt": { "type": ["integer", "null"], "minimum": 0 },
+        "exitCode": { "type": ["integer", "null"] },
+        "status": { "type": ["string", "null"] },
+        "mode": { "type": ["string", "null"] },
+        "sessionId": { "type": ["string", "null"] },
+        "pid": { "type": ["integer", "null"] },
+        "logPath": { "type": ["string", "null"] },
+        "resultPath": { "type": ["string", "null"] },
+        "summary": { "type": ["string", "null"] }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "at", "reason", "actor", "attempt"],
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "at": { "type": "integer", "minimum": 0 },
+          "reason": { "type": "string", "minLength": 1 },
+          "actor": { "type": "string", "enum": ["supervisor", "worker", "operator", "system"] },
+          "attempt": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
+  }
+}

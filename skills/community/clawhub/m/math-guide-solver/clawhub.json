@@ -1,0 +1,78 @@
+{
+  "name": "math-solver",
+  "version": "1.0.0",
+  "displayName": "Math Solver",
+  "description": "Complete mathematical problem solving with OCR, LaTeX extraction, PNG rendering, and guided solutions",
+  "author": {
+    "name": "Jayson Yin",
+    "email": "yshajoy@gmail.com",
+    "url": "https://github.com/jayson-tech"
+  },
+  "license": "MIT",
+  "keywords": [
+    "math",
+    "education",
+    "ocr",
+    "latex",
+    "formula",
+    "problem-solving",
+    "socratic"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ysh-star/math-solver.git"
+  },
+  "homepage": "https://github.com/ysh-star/math-solver",
+  "bugs": "https://github.com/ysh-star/math-solver/issues",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/",
+    "references/",
+    "skill.config.json"
+  ],
+  "dependencies": {
+    "paddleocr-doc-parsing": ">=1.0.0",
+    "math-images": ">=1.0.0"
+  },
+  "scripts": {
+    "test": "python scripts/test_skill.py"
+  },
+  "categories": [
+    "Education",
+    "Productivity"
+  ],
+  "tags": [
+    "math",
+    "learning",
+    "ai",
+    "formula"
+  ],
+  "installation": {
+    "methods": [
+      "clawhub",
+      "github",
+      "manual"
+    ],
+    "difficulty": "easy"
+  },
+  "features": [
+    "Image OCR Recognition",
+    "LaTeX Formula Extraction",
+    "PNG Rendering with Multiple Themes",
+    "Socratic Problem-Solving Guidance",
+    "Detailed Step-by-Step Solutions",
+    "Batch Processing",
+    "Multi-Domain Support"
+  ],
+  "documentation": {
+    "readme": "README.md",
+    "guide": "references/QUICKSTART.md",
+    "examples": "references/EXAMPLES.md",
+    "api": "SKILL.md"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "DocuSign"
+  short_description: "Manage DocuSign envelopes, recipients, templates, and signing status"
+  default_prompt: "Use the DocuSign MCP tools to help the user inspect envelopes, prepare agreements, track signing status, and manage templates."

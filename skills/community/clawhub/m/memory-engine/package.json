@@ -1,0 +1,54 @@
+{
+  "name": "memory-engine-v2",
+  "version": "2.0.0",
+  "description": "OpenClaw 3.8+ 智能上下文管理与记忆系统插件",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lizhelong0907/memory-engine.git"
+  },
+  "homepage": "https://github.com/lizhelong0907/memory-engine",
+  "bugs": {
+    "url": "https://github.com/lizhelong0907/memory-engine/issues"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rmdir /s /q dist",
+    "deploy": "npm run build && npm run copy-deps && npm run copy-manifest",
+    "copy-deps": "xcopy /E /I /Y node_modules\\better-sqlite3 dist\\node_modules\\better-sqlite3 2>nul & xcopy /E /I /Y node_modules\\bindings dist\\node_modules\\bindings 2>nul & xcopy /E /I /Y node_modules\\onnxruntime-node dist\\node_modules\\onnxruntime-node 2>nul",
+    "copy-manifest": "copy /Y openclaw.plugin.json dist\\openclaw.plugin.json && copy /Y package.json dist\\package.json"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "memory",
+    "context",
+    "context-engine"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "bindings": "^1.5.0",
+    "onnxruntime-node": "^1.24.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^20.11.19",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "openclaw": ">=3.8.0"
+  },
+  "engines": {
+    "openclaw": ">=3.8.0"
+  }
+}

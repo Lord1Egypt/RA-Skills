@@ -1,35 +1,49 @@
 ---
-name: "Lobster Doctor"
-description: "🦞 龙虾医生 — Workspace 健康管家。体检+清理+技能瘦身+Memory归档。说句话就能用。"
-category: "health"
-source: "ClawHub"
-tags: [cleanup, health, optimization, skill-management, token-saving]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lobster-doctor-skill-slim"
-sourceUrl: "https://clawhub.ai/skills/lobster-doctor-skill-slim"
+name: lobster-doctor
+description: 🦞 龙虾医生 — Workspace 健康管家。体检+清理+技能瘦身+Memory归档。说句话就能用。
 ---
 
-# Lobster Doctor
+# 🦞 龙虾医生
 
-> 🦞 龙虾医生 — Workspace 健康管家。体检+清理+技能瘦身+Memory归档。说句话就能用。
+你的 OpenClaw workspace 会越来越臃肿——会话历史堆积、临时文件堆积、技能描述膨胀。龙虾医生帮你自动治理。
 
-- **Category:** Health
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lobster-doctor-skill-slim`
-- **Source URL:** [https://clawhub.ai/skills/lobster-doctor-skill-slim](https://clawhub.ai/skills/lobster-doctor-skill-slim)
+## 核心功能
 
-## Overview
+| 功能 | 一句话触发 |
+|------|-----------|
+| 体检诊断 | 「给龙虾做个体检」 |
+| 安全清理 | 「帮我清理一下」 |
+| 技能瘦身 | 「技能太多了」 |
+| Memory归档 | 「归档过期记忆」 |
+| 会话健康 | 「会话健康怎么样」 |
+| cron巡检 | 「检查僵尸任务」 |
 
+## 独家功能：技能瘦身
 
-## Installation
-To install this skill, run the following command in your terminal:
+**问题**：每个技能的 description 都注入系统提示。100+ 技能 = 每轮白白烧掉几千 tokens。
+
+**解法**：精简 description，只保留核心功能句。
+
+**效果**：每轮节省 ~574 tokens。
+
+## 安全机制
+
+- 预览优先：任何修改都先展示预览
+- 自动备份：清理前自动备份到 `.cleanup-backup/`
+- 白名单保护：核心文件永不删除
+- 零 API 调用：纯本地运行
+
+## 安装
+
 ```bash
-hermes skills install clawhub/lobster-doctor-skill-slim
+clawhub install lobster-doctor-skill-slim
 ```
+
+## 更新日志
+
+- v2.1.0: Memory归档命令、修复去重算法
+- v2.0.0: 会话健康监控、周报生成
+
+## License
+
+MIT

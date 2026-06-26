@@ -1,35 +1,214 @@
 ---
-name: "AI版MBTI测试"
-description: "You have two MBTIs — one in reality, one in the AI world. 8 mirror questions reveal your dual personality. 你有两个MBTI——一个在现实，一个在AI世界。8道镜像题，测出你的双面人格。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
+name: "MBTI镜像"
+version: "1.0.0"
+description: "You have two MBTIs — one in reality, one in the AI world. 8 mirror questions reveal your dual personality.\n你有两个MBTI——一个在现实，一个在AI世界。8道镜像题，测出你的双面人格。"
 author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mbti-mirror"
-sourceUrl: "https://clawhub.ai/skills/mbti-mirror"
+tags: ["MBTI", "人格测试", "AI时代", "镜像", "社交", "趣味测试"]
+category: "entertainment"
+platform: ["openclaw"]
+requires_multi_agent: false
 ---
 
-# AI版MBTI测试
+# MBTI镜像
 
-> You have two MBTIs — one in reality, one in the AI world. 8 mirror questions reveal your dual personality. 你有两个MBTI——一个在现实，一个在AI世界。8道镜像题，测出你的双面人格。
+> 你有两个人格——一个活在现实，一个藏在AI世界里。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mbti-mirror`
-- **Source URL:** [https://clawhub.ai/skills/mbti-mirror](https://clawhub.ai/skills/mbti-mirror)
+---
 
-## Overview
+## 你发现了吗？
 
+你在现实中是个安静内向的人——
+但跟 AI 聊天的时候，你废话特别多。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mbti-mirror
+你在公司从不发脾气——
+但 AI 出了幻觉，你直接骂它"你在说什么？"
+
+你对同事的好成绩说"不错"然后沉默——
+但 AI 写了一段好文案，你脱口而出"牛啊！"
+
+**你在AI世界里，是另一个你。**
+
+---
+
+## 这不是普通的MBTI测试
+
+传统MBTI：93道选择题 → 20分钟 → 给你四个字母 → 结束。
+
+MBTI镜像：**8道AI世界 vs 现实世界的对照题 → 测出你的两个MBTI → 告诉你镜子两面差多远。**
+
+每道题都分两半——
+先问你跟AI怎么相处，再问你跟真人怎么相处。
+
+然后你会看到一面镜子：
+
 ```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🪞 MBTI镜像 · 你的双面画像
+
+  现实世界            AI世界
+  ISTJ                ENFP
+「可靠的螺丝钉」    「放飞的蝴蝶」
+
+I ████████░░ 82%     ░░░░░░████ E 78%
+S ████████░░ 75%     ░░░░████░░ N 65%
+T ██████░░░░ 62%     ░░░░░░████ F 72%
+J ████████░░ 85%     ░░░░████░░ P 58%
+
+镜像指数：75%（差异显著）
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+---
+
+## 8道镜像题，每道都是AI时代的新话题
+
+这些题目你在任何MBTI测试里都不会遇到——
+
+> 🪞 AI出现幻觉（一本正经胡说八道），你的第一反应是什么？
+> 那如果同事犯了同样的错呢？
+
+> 🪞 AI做出了超预期的好结果，你会夸它吗？
+> 那同事做得好呢？你怎么表达？
+
+> 🪞 AI回复很慢，一直转圈。你焦虑吗？
+> 那朋友迟到15分钟呢？
+
+> 🪞 你心情不好的时候，跟AI说过吗？
+> 那现实中你跟谁说？
+
+**每一道题，都在照出你在两个世界里的不同反应。**
+
+---
+
+## 镜像指数——你的两面差多远？
+
+```
+  0%              50%              100%
+  |────────────────|────────🔹───── |
+  完全一致        半面镜像        完全相反
+```
+
+- **0%** — 表里如一，两个世界里你都一样
+- **25%** — 轻微差异，只有一个维度不同
+- **50%** — 半面镜像，AI释放了你的一部分
+- **75%** — 差异显著，AI面前的你大不相同
+- **100%** — 完全相反，两个世界里你是两个人
+
+**大多数人的镜像指数在 50%-75% 之间——**
+**你在AI面前比你以为的更不一样。**
+
+---
+
+## 你的角色名，不只是四个字母
+
+每个MBTI都有一个生动的角色名——而且现实版和AI版完全不同：
+
+```
+现实世界：ISTJ「可靠的螺丝钉」
+AI世界：ENFP「一天给AI发100条消息的人」
+```
+
+```
+现实世界：INTJ「沉默的棋手」
+AI世界：INFP「在AI面前终于说真话的人」
+```
+
+```
+现实世界：ESFJ「操心命的居委会主任」
+AI世界：ENTJ「把AI当下属管的CEO」
+```
+
+**这种反差，才是分享朋友圈时最炸裂的部分。**
+
+---
+
+## 人格漂移——跟AI处久了，你变了吗？
+
+这不是测一次就结束的工具。
+
+过一个月再来测一次 → 你会看到：
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 你的人格漂移轨迹
+
+  2026.05  ISTJ → ENFP  镜像 75%
+  2026.07  ISTJ → INFP  镜像 58% ↓
+  2026.09  ISTP → INFP  镜像 45% ↓
+
+  发现：你在现实中也开始随性了（J→P）
+  AI世界正在影响你的真实人格。
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**跟AI处久了，两个你正在融合。**
+
+这件事，只有在AI时代才会发生。
+
+---
+
+## 朋友圈怎么发？
+
+测完自动生成分享文案：
+
+> 🪞 我的MBTI镜像结果：
+> 现实世界：ISTJ「可靠的螺丝钉」
+> AI世界：ENFP「一天给AI发100条消息的人」
+> 镜像指数：75%
+> 原来我在AI面前是个完全不同的人😂
+> → 你也来测测？
+
+**你朋友看到这条，一定会问："你在AI世界里居然是ENFP？？"**
+
+然后ta也去测了。然后ta也发了朋友圈。
+
+---
+
+## 使用方法
+
+### 30秒上手
+
+1. 进入 → 看到开场画面
+2. 回答 8 道镜像题（每题2分钟，共约10分钟）
+3. 看到你的双面画像 + 差异解读
+4. 复制分享文案发朋友圈
+
+### 指令
+
+```
+直接开始    → 进入测试
+/重测      → 重新测一次（看看你变了没）
+/状态      → 查看你的历史结果和漂移轨迹
+```
+
+---
+
+## 内容安全
+
+- 这是趣味测试，不是临床诊断
+- 不收集任何个人敏感信息
+- 不做心理评判，只呈现有趣的差异
+- 所有结果基于你的自述，AI不做价值判断
+
+---
+
+## 适用平台
+
+- **任何 AI 平台**（单Agent即可运行，无需多Agent支持）
+- OpenClaw / WorkBuddy / 任何支持 Skill 的环境
+
+---
+
+## 版本规划
+
+### V1.0（当前）
+- 8道AI×现实镜像对照题
+- 双面MBTI结果 + 32个角色名
+- 差异解读 + 镜像指数
+- 分享文案生成
+- /重测 + 人格漂移追踪
+
+### V2.0（规划）
+- 朋友对比（两人镜像PK）
+- 更多AI场景题（用AI画画/写代码/做PPT时的你）
+- 群体画像（一群人的平均镜像）

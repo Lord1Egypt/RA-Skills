@@ -1,0 +1,19 @@
+﻿name: meddic-b2b-sales-review
+version: 1.4.0
+description: Structured B2B sales review using original PTC MEDDIC Six-Step methodology. Gates and win rates follow the authentic PTC six-step framework; enhanced D1-D9/S1-S7 gates are labeled as VP-level depth tools for deeper review.
+author: Dick Dunkel
+homepage: https://clawhub.ai/skills/meddic-b2b-sales-review
+license: MIT-0
+tags:
+  - sales
+  - meddic
+  - review
+  - coaching
+  - debrief
+category: sales
+dependencies: []
+entry: SKILL.md
+files:
+  - SKILL.md
+  - STRUCTURE.txt
+  - references/**

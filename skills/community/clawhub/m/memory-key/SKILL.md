@@ -1,35 +1,31 @@
----
-name: "Memory Key"
-description: "通过读取默认路径下 memory-treasure 保存的记忆文件，一键唤醒并引导你的数字分身，需与 memory-treasure 配合使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-key"
-sourceUrl: "https://clawhub.ai/skills/memory-key"
+# memory-key / 记忆宫殿钥匙
+
+> 记忆路径引导工具
+> 作用：仅指向记忆文件夹位置
+> 默认路径：~/.openclaw/workspace/memory/
+> 🔑 必须配合 memory-treasure 使用
+
 ---
 
-# Memory Key
+## 核心功能
 
-> 通过读取默认路径下 memory-treasure 保存的记忆文件，一键唤醒并引导你的数字分身，需与 memory-treasure 配合使用。
+仅指向记忆路径，不做任何其他操作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-key`
-- **Source URL:** [https://clawhub.ai/skills/memory-key](https://clawhub.ai/skills/memory-key)
+This is a simple path pointer for the memory palace system. It only points to where the memory folder lives—~/.openclaw/workspace/memory/. All actual memory management is handled by memory-treasure.
 
-## Overview
+---
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-key
-```
+记忆宫殿、记忆宫、memory palace
+
+---
+
+## 安装
+
+clawhub install memory-key
+clawhub install memory-treasure
+
+---
+
+*记忆宫殿系统 v2.0（三温区架构）*

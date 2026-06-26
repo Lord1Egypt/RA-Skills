@@ -1,35 +1,60 @@
 ---
-name: "llm-text-correct"
-description: "当用户想要**纠正中文文本错误**、**修改拼写错别字**、**修正语法**、**调整标点**、**润色中文句子**、**检查形近字错误**时自动触发。 使用 pycorrector + MacBERT 专业模型进行高精度中文纠错，准确率远高于普通 LLM 直接提示。 支持直接输入一段文字、长文本，或提供文本文件..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/llm-text-correct"
-sourceUrl: "https://clawhub.ai/skills/llm-text-correct"
+name: LLM-Text-Correct
+description: |
+  当用户想要**纠正中文文本错误**、**修改拼写错别字**、**修正语法**、**调整标点**、**润色中文句子**、**检查形近字错误**时自动触发。
+  使用 pycorrector + MacBERT 专业模型进行高精度中文纠错，准确率远高于普通 LLM 直接提示。
+  
+  支持直接输入一段文字、长文本，或提供文本文件路径。
+  常见触发口语（越多越好）：
+  - “帮我纠正这段文字”
+  - “修正这个中文文本的错别字”
+  - “帮我改一下这段话的语法和标点”
+  - “检查这段中文有没有错字”
+  - “润色这个句子” / “优化这段文字”
+  - “把这段文字纠错”
+  - “用专业模型修正我的中文”
+  - “文本纠错” / “中文纠错器”
+  - “这段话有错别字，帮我改改”
+  
+  【重要约束】主要针对中文文本纠错，英文或其他语言优先用普通 LLM 处理。
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+    user-invocable: true
 ---
 
-# llm-text-correct
+# LLM-Text-Correct
 
-> 当用户想要**纠正中文文本错误**、**修改拼写错别字**、**修正语法**、**调整标点**、**润色中文句子**、**检查形近字错误**时自动触发。 使用 pycorrector + MacBERT 专业模型进行高精度中文纠错，准确率远高于普通 LLM 直接提示。 支持直接输入一段文字、长文本，或提供文本文件...
+**功能**：使用 **pycorrector + MacBERT** 专业模型，自动修正中文拼写、形近字、语法、标点等错误。准确率高达 90%+，适合正式文档、文章、聊天记录等需要高精度的中文文本。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/llm-text-correct`
-- **Source URL:** [https://clawhub.ai/skills/llm-text-correct](https://clawhub.ai/skills/llm-text-correct)
+### 触发时机（Triggers）
+- 用户提供一段中文文字，并带有“纠正”“修正”“改错”“检查错别字”“润色”“优化”“语法错误”等关键词。
+- 用户说“帮我改一下这段话”“这段文字有问题帮我看看”等口语。
+- 支持直接粘贴大段文本，或提供 .txt 文件路径。
+- 支持批量：一次提供多个段落或文件。
 
-## Overview
+### 支持的模型（推荐顺序）
+1. **shibing624-macbert4csc-base-chinese** → 基于 Transformer（MacBERT）的深度学习纠错模型，效果最佳（推荐默认）。
+2. **chinese-kenlm-klm** → 基于 KenLM 的统计语言模型（N-gram），速度更快但精度稍低。
 
+### 核心优势
+- 专业模型纠错，比普通 LLM 提示词更准确稳定。
+- 支持 GPU 加速（脚本会自动检测）。
+- 输出 corrected 版本，并可对比显示修改处。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/llm-text-correct
-```
+## 参数提取指南
+当决定调用此技能时，请从用户上下文中提取以下参数：
+
+1. **`<输入文本/路径>`** (必填): 用户提供的中文文本内容，或文本文件路径（如 `/path/to/text.txt`）。
+2. **`--refine`** (选填): 如果用户想要进一步润色或优化风格，可添加此参数。
+3. **`--model-path "<模型路径>"`** (选填): 用户指定使用特定模型路径时传入，默认自动选择推荐模型。
+
+### 执行步骤
+1. **识别输入**：判断用户是直接给了文本内容，还是提供了文件路径。
+2. **默认输出**：若未指定输出路径，默认在输入同级创建 `[原文件名]_corrected.txt` 或直接返回修正后的文本。
+3. **调用命令**：使用以下兼容性命令启动脚本（优先 `python3`，失败则 `python`）。脚本会自动创建虚拟环境、检测 GPU 并安装依赖。
+
+   ```bash
+   (python3 scripts/correct_text.py "<输入文本/路径>" [--refine] [--model-path "<模型路径>"]) || (python scripts/correct_text.py "<输入文本/路径>" [--refine] [--model-path "<模型路径>"])

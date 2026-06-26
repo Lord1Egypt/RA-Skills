@@ -1,35 +1,422 @@
 ---
-name: "mcp-best-practices"
-description: "Build, secure, and optimize production MCP servers with the TypeScript SDK (spec 2025-11-25, SDK v1.29 / v2 alpha). Use when building or reviewing MCP server..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-best-practices"
-sourceUrl: "https://clawhub.ai/skills/mcp-best-practices"
+name: mcp-best-practices
+description: Build, secure, and optimize production MCP servers with the TypeScript SDK (spec 2025-11-25, SDK v1.29 / v2 alpha). Use when building or reviewing MCP servers or tools - covering transports, tool and schema design, error handling, security and OAuth, performance, known SDK bugs, content vs structuredContent delivery, v2 migration, MCP Apps, extensions, and the Registry.
+metadata:
+  version: "0.6.0"
+  upstream: "@modelcontextprotocol/sdk@1.29.0, @modelcontextprotocol/server@2.0.0-alpha.2, @modelcontextprotocol/ext-apps@1.7.4"
 ---
 
-# mcp-best-practices
+# MCP Best Practices
 
-> Build, secure, and optimize production MCP servers with the TypeScript SDK (spec 2025-11-25, SDK v1.29 / v2 alpha). Use when building or reviewing MCP server...
+Decision reference for building production MCP servers with the TypeScript SDK. Not a tutorial - assumes you already have a working server and need to make it correct, fast, and secure.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-best-practices`
-- **Source URL:** [https://clawhub.ai/skills/mcp-best-practices](https://clawhub.ai/skills/mcp-best-practices)
+## Quick Reference
 
-## Overview
+| Component | Current | Next |
+|-----------|---------|------|
+| Spec | **2025-11-25** ([spec.modelcontextprotocol.io](https://spec.modelcontextprotocol.io)) | Unreleased [draft](https://modelcontextprotocol.io/specification/draft/changelog): stateless/sessionless overhaul (see "Spec Draft Direction") |
+| TS SDK (stable) | **v1.29.0** (`@modelcontextprotocol/sdk`) | v2 alpha published |
+| TS SDK (v2) | **Alpha** (`2.0.0-alpha.2` on npm, Apr 2026): `/server`, `/client`, `/core`, `/hono`, `/express`, `/node`, `/fastify` | Stable pending; only alpha published |
+| JSON Schema | **2020-12** default (explicit `$schema` supported) | - |
+| Transport | **Streamable HTTP** (remote), **stdio** (local) | SSE + WebSocket removed in v2 |
+| Extensions | **MCP Apps** (Stable, SEP-1865), **Auth Extensions** (official) | Domain-specific WGs |
+| Registry | **Preview** with v0.1 API freeze since 2025-10-24 ([registry](https://modelcontextprotocol.io/registry/about)) | GA pending |
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-best-practices
+**v1 imports** (production today):
+```typescript
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 ```
+
+**v2 imports** (when stable):
+```typescript
+import { McpServer } from "@modelcontextprotocol/server";
+import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/server";
+```
+
+## Server Setup
+
+### Transport Decision
+
+| Scenario | Transport | Key Config |
+|----------|-----------|------------|
+| Remote, stateless (K8s, CF Workers) | `WebStandardStreamableHTTPServerTransport` | `sessionIdGenerator: undefined`, `enableJsonResponse: true` |
+| Remote, stateful (long tasks, SSE) | `WebStandardStreamableHTTPServerTransport` | `sessionIdGenerator: () => randomUUID()` |
+| Local CLI / Claude Desktop | `StdioServerTransport` | Default |
+| Legacy SSE clients | SSE removed in v2 - migrate to Streamable HTTP | - |
+
+### Stateless Pattern (recommended for remote deployment)
+
+Per-request server+transport creation is the canonical pattern. Maintainer @ihrpr confirms: "each transport should have an instance of MCPServer" ([#343](https://github.com/modelcontextprotocol/typescript-sdk/issues/343)). Sharing instances leaks cross-client data (GHSA-345p-7cg4-v4c7).
+
+```typescript
+app.post("/mcp", async (c) => {
+  const server = new McpServer({ name: "my-server", version: "1.0.0" });
+  // Register tools, resources, prompts...
+  registerTools(server);
+
+  const transport = new WebStandardStreamableHTTPServerTransport({
+    sessionIdGenerator: undefined,   // stateless - no session tracking
+    enableJsonResponse: true,        // JSON responses, no SSE streaming
+  });
+
+  // All tools/resources must be registered before connect() (#893)
+  try {
+    await server.connect(transport);
+    return transport.handleRequest(c.req.raw);
+  } finally {
+    await transport.close();
+    await server.close();
+  }
+});
+```
+
+**What to hoist to module level** (don't recreate per request):
+- Zod schemas (they never change)
+- Annotation objects (`{ readOnlyHint: true, ... }`)
+- Tool description strings
+- Payment configs, upstream API clients
+
+The McpServer itself must be per-request, but its constant inputs should not be.
+
+> For deep dive on transports, sessions, HTTP/2 gotchas, and K8s deployment: see `references/transport-patterns.md`
+
+### Framework Integration
+
+**Hono** (web-standard):
+```typescript
+import { Hono } from "hono";
+const app = new Hono();
+app.post("/mcp", handleMcpRequest);  // WebStandardStreamableHTTPServerTransport
+app.get("/mcp", handleMcpSse);       // Optional: SSE for server notifications
+app.delete("/mcp", handleMcpDelete); // Optional: session termination
+```
+
+**Cloudflare Workers**: Same pattern - `WebStandardStreamableHTTPServerTransport` works natively in Workers runtime.
+
+**Express/Node** (v2): Use `@modelcontextprotocol/express` middleware with `NodeStreamableHTTPServerTransport` (wraps the Web Standard transport for `IncomingMessage`/`ServerResponse`).
+
+## Tool Design
+
+### Registration API
+
+**v1 (current stable)** - `server.tool(name, description, zodShape, annotations, handler)`. Positional overloads are ambiguous; same fields as v2 below minus `outputSchema`.
+
+**v2 (migration target)** - `registerTool()` with config object:
+```typescript
+server.registerTool("search_docs", {
+  title: "Document Search",
+  description: "Search documents by keyword or phrase",
+  inputSchema: z.object({
+    query: z.string().describe("Search query"),
+    max_results: z.number().optional().describe("Max results (default 20)"),
+  }),
+  outputSchema: z.object({
+    results: z.array(z.object({ id: z.string(), text: z.string() })),
+    has_more: z.boolean(),
+  }),
+  annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
+}, async ({ query, max_results }) => {
+  const result = await fetchDocs(query, max_results);
+  return {
+    // Both channels carry IDENTICAL bytes. Divergent payloads = the text block
+    // silently vanishes on Claude Code/Codex/Copilot. See "Tool Result Delivery" below.
+    structuredContent: result,
+    content: [{ type: "text", text: JSON.stringify(result) }],
+  };
+});
+```
+
+### Naming
+
+Spec (2025-11-25): 1-128 chars, case-sensitive. Allowed: `A-Za-z0-9_-.`
+
+**DO**: `search_docs`, `get_user_profile`, `admin.tools.list`
+**DON'T**: `search` (too generic, collides across servers), `Search Docs` (spaces not allowed)
+
+Service-prefix your tools (`github_*`, `jira_*`) when multiple servers are active - LLMs confuse generic names across servers.
+
+### Schema Rules
+
+`.describe()` on every field - this is what LLMs use for argument generation.
+
+> For complete Zod-to-JSON-Schema conversion rules, what breaks silently, outputSchema/structuredContent patterns: see `references/tool-schema-guide.md`
+
+**Critical bugs** (detail + status in the Known SDK Bugs table below; conversion deep-dive in the reference):
+- `z.union()`/`z.discriminatedUnion()` silently produce empty schemas on all released v1 ([#1643](https://github.com/modelcontextprotocol/typescript-sdk/issues/1643)) - use flat `z.object()` + `z.enum()` discriminator.
+- Raw JSON Schema objects throw at registration since v1.28 ([#1596](https://github.com/modelcontextprotocol/typescript-sdk/issues/1596)); `z.transform()` is silently stripped ([#702](https://github.com/modelcontextprotocol/typescript-sdk/issues/702)).
+- Client AJV rejects unstripped `structuredContent` extras (Zod v4 emits `additionalProperties: false`): `.parse()` upstream data before assigning, or `.passthrough()` for intentional extras.
+
+### Annotations
+
+All are optional hints (untrusted from untrusted servers per spec):
+
+| Annotation | Default | Meaning |
+|------------|---------|---------|
+| `readOnlyHint` | `false` | Tool doesn't modify its environment |
+| `destructiveHint` | `true` | May perform destructive updates (only when readOnly=false) |
+| `idempotentHint` | `false` | Repeated calls with same args have no additional effect |
+| `openWorldHint` | `true` | Interacts with external entities (APIs, web) |
+
+Set them accurately - clients use them for consent prompts and auto-approval decisions.
+
+**The "Lethal Trifecta"**: combining (1) access to private data + (2) exposure to untrusted content + (3) external communication ability creates data-theft conditions (demonstrated via a malicious calendar event + MCP calendar server + code-execution tool). Design tool sets so no single agent holds all three.
+
+## Tool Result Delivery: `content` vs `structuredContent`
+
+**The footgun:** when a tool returns BOTH a text `content` block and `structuredContent`, several major clients (Claude Code, Codex CLI, VS Code Copilot, Goose) silently drop the text block and forward only `structuredContent` to the model. If the two payloads differ, the human-readable one vanishes. This is **client behavior the spec does not constrain** - not an SDK transform. Don't return both channels expecting both to reach the model.
+
+### Empirically tested - Claude Code 2.1.165 (MCP 2025-11-25)
+
+Measured with `claude -p --output-format=stream-json`, reading the exact `tool_result` the model received:
+
+| Tool returns | What the model receives |
+|--------------|-------------------------|
+| One text block, no `structuredContent` | text verbatim |
+| `content: []` + `structuredContent` | `JSON.stringify(structuredContent)` as a string in the content slot - works |
+| text block + `structuredContent` | **text block silently dropped**; `structuredContent` wins |
+| text + `structuredContent` + `outputSchema` | same - **`outputSchema` makes zero difference** |
+| two text blocks, no `structuredContent` | both preserved verbatim |
+
+`structuredContent` is **not a separate typed channel to the model** on Claude Code - it is stringified into the standard `tool_result` content slot, so it costs the **same tokens** as the equivalent JSON-as-text. It does not buy cheaper or out-of-band structured data.
+
+Intentional, per Anthropic maintainer ([anthropics/claude-code#9962](https://github.com/anthropics/claude-code/issues/9962)): structuredContent support landed in Claude Code v2.0.21 and "we made `structuredContent` the default when both formats are present... optimizing for agent performance." Reproduced across unrelated servers (Laravel, Roblox Studio, YouTube) - host-side precedence, not a server bug.
+
+### What the spec actually says (2025-11-25)
+
+- `content` is **required** on `CallToolResult` (`content: ContentBlock[]`); `structuredContent?` and `isError?` are optional. An empty `content: []` is schema-valid.
+- Backwards-compat **SHOULD** (the only relevant normative line): *"a tool that returns structured content SHOULD also return the serialized JSON in a TextContent block."*
+- **No precedence rule.** The spec never says which field a client should prefer when both are present ([Discussion #1563](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/1563); clarification in flight via SEP-1624 -> SEP-2200). That gap is the documented root cause of client divergence.
+- `outputSchema`: servers **MUST** produce conforming `structuredContent`; clients **SHOULD** (not MUST) validate it.
+
+The official TypeScript SDK passes both fields through **verbatim** on server and client (the only mutation is optional outputSchema validation, which can throw). Any stringify-into-content you observe is the host harness, not the SDK.
+
+### Cross-client behavior (the matrix above is Claude Code only)
+
+| Client | When both `content` + `structuredContent` present |
+|--------|---------------------------------------------------|
+| Claude Code CLI, OpenAI Codex CLI, VS Code Copilot, Goose | **shadow** - only `structuredContent` reaches the model (text dropped) |
+| Cursor, Claude.ai web, ChatGPT MCP connector | prefer `content` / surface both to the model |
+| Google ADK (framework) | forwards both by default; content-only is opt-in |
+
+VS Code maintainer's framing ([microsoft/vscode#290063](https://github.com/microsoft/vscode/issues/290063)): *"structuredContent actually should not be presented to the model, its use case is PTC [programmatic tool calling]."* Clients disagree on enforcing that, so portable servers can't rely on it either way. (Non-Claude-Code rows come from issue trackers/maintainer statements, not the stream-json harness - treat exact delivery as client-version-dependent.)
+
+### The rule for server authors
+
+- **DON'T** return divergent `content` and `structuredContent` (e.g. a rendered ASCII table as text + different JSON as structured). On shadowing clients the text silently disappears and only the JSON reaches the model.
+- **DO**, if you emit `structuredContent`, mirror the **same bytes** into a text block: `content: [{ type: "text", text: JSON.stringify(payload) }]`. This is the spec's backwards-compat SHOULD. Shadowing clients use the structured copy; others fall back to the identical text - either way the model gets the data. Mirroring does not double tokens on shadowing clients (they drop the text).
+- **PREFER one channel per tool / per mode.** For a human-readable rendering (table, summary) to reach the model, return it as **text only, no `structuredContent`** - or expose a `format: "table" | "json"` arg (`table` -> text-only; `json` -> JSON mirrored into both channels). Both are empirically valid on Claude Code and keep one channel per call.
+- `outputSchema` gates client-side validation only; it does **not** make the text block survive on shadowing clients.
+
+## Error Handling
+
+Two distinct mechanisms with different LLM visibility:
+
+| Type | LLM Sees It? | Use For |
+|------|--------------|---------|
+| **Tool error** (`isError: true` in CallToolResult) | Yes - enables self-correction | Input validation, API failures, business logic errors |
+| **Protocol error** (JSON-RPC error response) | Maybe - clients MAY expose | Unknown tool, malformed request, server crash |
+
+Per SEP-1303 (merged into spec 2025-11-25): input validation errors MUST be tool execution errors, not protocol errors. The LLM needs to see "date must be in the future" to self-correct.
+
+```typescript
+// DO: Tool execution error - LLM can self-correct
+return {
+  isError: true,
+  content: [{ type: "text", text: "Date must be in the future. Current date: 2026-03-25" }],
+};
+
+// DON'T: Protocol error for validation - LLM can't see this
+throw new McpError(ErrorCode.InvalidParams, "Invalid date");
+```
+
+**Known SDK behavior**: When the SDK converts an `McpError` thrown from a tool handler into a `CallToolResult`, the `error.data` field is dropped. If you embed structured data in McpError's `data` field, it may not reach the client. The x402/MPP MCP ecosystem standardized on `isError: true` tool results with `structuredContent` for this reason. (One exception: code `-32042` "Payment Required" survives McpServer end-to-end with `error.data` intact - see `references/error-handling.md`.)
+
+> For full error taxonomy, code examples, and payment error patterns: see `references/error-handling.md`
+
+## Resources and Instructions
+
+### Server Instructions
+
+Set in the initialization response - acts as a system-level hint to the LLM about how to use your server:
+
+```typescript
+const server = new McpServer({
+  name: "docs-api",
+  version: "1.0.0",
+  instructions: "Knowledge base API. Use search_docs for full-text search, get_doc for retrieval by ID. All tools are read-only.",
+});
+```
+
+### Resource Registration
+
+Expose documentation or structured data via `docs://` URI scheme:
+
+```typescript
+server.resource("search-operators", "docs://search-operators", {
+  title: "Search Operators Guide",
+  description: "Supported search operators and syntax",
+  mimeType: "text/markdown",
+}, async () => ({
+  contents: [{ uri: "docs://search-operators", text: operatorsMarkdown }],
+}));
+```
+
+## Performance
+
+### Module-Level Caching
+
+The McpServer must be per-request, but everything else can be shared:
+
+```typescript
+// Module-level (created once)
+const SCHEMAS = {
+  search: z.object({ query: z.string().describe("Search query") }),
+  fetch: z.object({ id: z.string().describe("Resource ID") }),
+};
+const READ_ONLY_ANNOTATIONS = {
+  readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true,
+} as const;
+
+// Per-request (created each time)
+function createMcpServer(ctx: Context) {
+  const server = new McpServer({ name: "my-server", version: "1.0.0" });
+  server.tool("search", "Search", SCHEMAS.search, READ_ONLY_ANNOTATIONS, handler);
+  return server;
+}
+```
+
+### Token Bloat Mitigation
+
+Tool definitions consume context window before any conversation starts. GitHub MCP: 20,444 tokens for 80 tools (SEP-1576).
+
+**Strategies**:
+1. **5-15 tools per server** - community sweet spot. Split beyond that.
+2. **Outcome-oriented tools** - bundle multi-step operations into single tools (e.g., `track_order(email)` not `get_user` + `list_orders` + `get_status`).
+3. **Response granularity** - return curated results, not raw API dumps. 800-token user object vs 20-token summary.
+4. **`outputSchema` + `structuredContent`** - typed output for programmatic/PTC clients. Caveat: on shadowing clients (Claude Code et al.) `structuredContent` is stringified into the model's context at the **same token cost as text** - it is not a free out-of-band channel. See "Tool Result Delivery: content vs structuredContent".
+5. **Dynamic tool loading** - register only relevant tool subsets based on request context (e.g., `?tools=search,fetch` query parameter).
+
+### No-Parameter Tools
+
+For tools with no inputs, use explicit empty schema:
+```typescript
+inputSchema: { type: "object" as const, additionalProperties: false }
+```
+
+## Security
+
+### Top Threats (real-world incidents, 2025-2026)
+
+| Attack | Example | Mitigation |
+|--------|---------|------------|
+| **Tool poisoning** | Hidden instructions in descriptions (WhatsApp MCP, Apr 2025) | Review tool descriptions; clients should display them |
+| **Supply chain** | Malicious npm packages (Smithery breach, Oct 2025) | Pin versions, audit dependencies |
+| **Command injection** | `child_process.exec` with unsanitized input (CVE-2025-53967) | Never interpolate user input into shell commands |
+| **Stdio config injection** | User-controlled input reaches `StdioServerParameters` without sanitization (OX Security disclosure, 2026-04-15) | Sanitize stdio config inputs in client code; prefer first-party servers; treat by Anthropic as "by design" - not patched in SDK |
+| **Cross-server shadowing** | Malicious server overrides legitimate tool names | Service-prefix tool names; validate tool sources |
+| **Token theft** | Over-privileged PATs with broad scopes | Minimal scopes; OAuth 2.1 Resource Indicators (RFC 8707) |
+| **Token passthrough** | Server accepts/forwards tokens not issued for it | Validate audience claim; never transit client tokens to upstream APIs |
+| **SSRF** | Malicious OAuth metadata URLs targeting internal services | HTTPS enforcement, block private IPs, validate redirect targets |
+| **Confused deputy** | Proxy server consent cookies exploited via DCR | Per-client consent before forwarding to third-party auth |
+| **Session hijacking** | Stolen/guessed session IDs for impersonation | Cryptographically random IDs, bind to user identity, never use for auth |
+| **Cross-client response leak** | Shared `McpServer`/transport reused across clients ([CVE-2026-25536](https://nvd.nist.gov/vuln/detail/cve-2026-25536), affects v1.10.0-1.25.3) | **Require SDK ≥ v1.26.0**; per-request server+transport |
+| **UriTemplate ReDoS** | Malicious URI patterns ([CVE-2026-0621](https://github.com/modelcontextprotocol/typescript-sdk/pull/1365)) | Upgrade to v1.25.2+ / v2.0.0-alpha.1+ |
+
+### Server-Side Requirements (spec normative)
+
+- **Validate all inputs** at tool boundaries
+- **Implement access controls** per user/session
+- **Rate limit** tool invocations
+- **Sanitize outputs** before returning to client
+- **Validate `Origin` header** - respond 403 for invalid origins (2025-11-25 requirement)
+- **Require `MCP-Protocol-Version` header** on all requests after initialization (spec 2025-06-18+)
+- **Bind local servers to localhost** (127.0.0.1) only
+
+### Auth (OAuth 2.1)
+
+MCP normatively requires **OAuth 2.1** ([draft-ietf-oauth-v2-1-13](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13); "Authorization servers MUST implement OAuth 2.1"), not 2.0 - PKCE mandatory, implicit flow removed. Servers are OAuth 2.1 Resource Servers; clients MUST send Resource Indicators (RFC 8707) binding tokens to your server.
+
+- **Validate audience** - reject tokens not issued for your server (passthrough is forbidden)
+- **PKCE `S256`**, **short-lived tokens**, **minimal scopes** (elevate via `WWW-Authenticate` challenges)
+- Use a tested validation library (Keycloak, Auth0, ...) - don't roll your own; never log Authorization headers/tokens/secrets
+
+> For full security attack/mitigation patterns and auth implementation details: see `references/security-auth.md`
+
+## Known SDK Bugs
+
+| Issue | Severity | Status | Workaround |
+|-------|----------|--------|------------|
+| [#1643](https://github.com/modelcontextprotocol/typescript-sdk/issues/1643) - `z.union()`/`z.discriminatedUnion()` silently dropped | High | Fixed in v2 line ([PR #1796](https://github.com/modelcontextprotocol/typescript-sdk/pull/1796)); v1.x backport [PR #2017](https://github.com/modelcontextprotocol/typescript-sdk/pull/2017) still open | Use flat `z.object()` + `z.enum()` - bug present on all released v1 |
+| [#1699](https://github.com/modelcontextprotocol/typescript-sdk/issues/1699) - Transport closure stack overflow (15-25+ concurrent) | High | Fixed in PR #1788 (closed 2026-04-02) | Upgrade to ≥ v1.29.0 / v2 alpha |
+| [#1619](https://github.com/modelcontextprotocol/typescript-sdk/issues/1619) - HTTP/2 + SSE Content-Length error | Medium | Closed (reclassified to upstream `@hono/node-server#266`) | Use `enableJsonResponse: true` or avoid HTTP/2 upstream |
+| [#893](https://github.com/modelcontextprotocol/typescript-sdk/issues/893) - Dynamic registration after connect blocked | Medium | Open | Register all tools/resources before `connect()` |
+| [#1596](https://github.com/modelcontextprotocol/typescript-sdk/issues/1596) - Plain JSON Schema silently dropped | Fixed | v1.28.0 | Upgrade to v1.28+ |
+| Client AJV strict rejects unstripped `structuredContent` extras | High | Behavior, not bug | Server `.parse()` upstream data before returning, or use `.passthrough()` |
+| GHSA-345p-7cg4-v4c7 / [CVE-2026-25536](https://nvd.nist.gov/vuln/detail/cve-2026-25536) - Shared instances leak cross-client data | Critical | Fixed v1.26.0 | **Require ≥ v1.26.0** (or v2.0.0-alpha.1+); per-request server+transport |
+| [CVE-2026-0621](https://github.com/modelcontextprotocol/typescript-sdk/pull/1365) - UriTemplate ReDoS | Medium | Fixed v1.25.2 / v2.0.0-alpha.1 | Upgrade |
+
+## V2 Migration
+
+> For comprehensive migration guide with all breaking changes and before/after code: see `references/v2-migration.md`
+
+**Key breaking changes**:
+1. Package split: `@modelcontextprotocol/sdk` -> `@modelcontextprotocol/server` + `/client` + `/core`
+2. ESM only, Node.js 20+
+3. Zod v4 required (or any Standard Schema library)
+4. `McpError` -> `ProtocolError` (from `@modelcontextprotocol/core`)
+5. `extra` parameter -> structured `ctx` with `ctx.mcpReq`
+6. `server.tool()` -> `registerTool()` (config object, not positional args)
+7. SSE server transport removed (clients can still connect to legacy SSE servers)
+8. `@modelcontextprotocol/hono` and `@modelcontextprotocol/express` middleware packages
+9. DNS rebinding protection enabled by default for localhost servers
+
+v1.x gets 6 more months of support after v2 stable ships. No rush, but write new code with v2 patterns in mind.
+
+## Spec Draft Direction (post-2025-11-25, unreleased)
+
+2025-11-25 is the latest **released** revision (everything above targets it). The next spec is still an unversioned [draft](https://modelcontextprotocol.io/specification/draft/changelog) - not implementable in any released SDK - but it sets a clear direction worth knowing before you commit design decisions today. The TS SDK has begun landing the wire-contract types on `main` against a `2026-07-28` target ([#2252](https://github.com/modelcontextprotocol/typescript-sdk/pull/2252), 2026-06-08).
+
+Decision-relevant shifts:
+
+- **MCP becomes stateless and sessionless.** The draft removes the `initialize`/`notifications/initialized` handshake and the `Mcp-Session-Id` header entirely ([SEP-2575](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2575), [SEP-2567](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2567)). Every request carries its protocol version, client identity, and capabilities in `_meta`. Servers needing cross-call state return a **server-minted handle from a creation tool and accept it as an ordinary tool argument** - not protocol sessions. This validates the skill's existing "prefer stateless" stance; do not build new servers on session affinity.
+- **`server/discover` RPC** replaces initialize-time negotiation for advertising versions/capabilities/identity (SEP-2575).
+- **Multi Round-Trip Requests (MRTR)** replace server-initiated requests (`roots/list`, `sampling/createMessage`, `elicitation/create`): a tool returns `inputRequests`; the client answers with `inputResponses` on the next call ([SEP-2322](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2322)).
+- **Formal feature lifecycle** (Active/Deprecated/Removed, 12-month minimum window, [deprecated registry](https://modelcontextprotocol.io/specification/draft/deprecated), [SEP-2596](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2596)). Under it, **Roots, Sampling, and Logging are now formally Deprecated** (SEP-2577, the advisory deprecation above made formal) and the **HTTP+SSE transport is reclassified Deprecated** (SEP-2596).
+- **Auth**: OAuth 2.0 Dynamic Client Registration is **deprecated in favor of Client ID Metadata Documents (CIMD)** ([PR #2858](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2858)); clients MUST validate a present `iss` (RFC 9207, [SEP-2468](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2468)) and key persisted credentials by issuer ([SEP-2352](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2352)).
+- **Caching**: list/read results gain required `ttlMs` + `cacheScope` (`public`/`private`) via a `CacheableResult` interface ([SEP-2549](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2549)); tools SHOULD be returned in deterministic order for prompt-cache hits.
+- **HTTP**: Streamable HTTP POSTs require `Mcp-Method`/`Mcp-Name` headers, with optional `x-mcp-header` to mirror tool params into headers ([SEP-2243](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2243)).
+- **Schemas loosen**: `inputSchema`/`outputSchema` accept any JSON Schema 2020-12 keywords (with `$ref` resolution), and `structuredContent` may be any JSON value ([SEP-2106](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2106)).
+
+The `content` vs `structuredContent` dual-delivery footgun is **unchanged** in the draft - the backwards-compat SHOULD persists and no precedence rule landed, so the guidance above still holds.
+
+## Extensions
+
+MCP extensions are optional, strictly additive capabilities on top of the core protocol. Both sides negotiate support during initialization via `extensions` in capabilities.
+
+**Identifiers**: `{vendor-prefix}/{extension-name}`. Official: `io.modelcontextprotocol/*`. Third-party: reversed domain (e.g., `com.example/my-ext`).
+
+### Official Extensions
+
+| Extension | Identifier | Purpose |
+|-----------|-----------|---------|
+| **MCP Apps** | `io.modelcontextprotocol/ui` | Interactive HTML UIs in chat (charts, forms, dashboards) |
+| **OAuth Client Credentials** | `io.modelcontextprotocol/oauth-client-credentials` | Machine-to-machine auth (CI/CD, daemons, server-to-server) |
+| **Enterprise-Managed Auth** | `io.modelcontextprotocol/enterprise-managed-authorization` | Centralized access control via enterprise IdP |
+
+**Client support**: Claude (web + Desktop), ChatGPT, VS Code Copilot, Goose, Postman, MCPJam all support MCP Apps. Auth extensions not yet widely adopted.
+
+> For MCP Apps architecture, ext-apps SDK, and build patterns: see `references/mcp-apps.md`
+> For extensions system, auth extensions, and MCP Registry: see `references/extensions-registry.md`
+
+### Server Capabilities Beyond Tools
+
+| Capability | Purpose | v2 API |
+|-----------|---------|--------|
+| **Elicitation** | Request structured user input mid-tool | `ctx.mcpReq.elicitInput()` |
+| **Sampling** | Request LLM completion from client | `ctx.mcpReq.requestSampling()` |
+| **Tasks** | Long-running ops with lifecycle management | Official extension (SEP-2663) |
+| **Progress** | Incremental progress on requests | `ctx.mcpReq.sendProgress()` |
+
+**Deprecation / status notice**: [SEP-2577](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577) (final, 2026-05-15) advisory-deprecates **Roots, Sampling, and Logging** - no wire changes, features stay functional for 1+ year, but design new servers without them. **Tasks** moved out of the core `2025-11-25` spec (the experimental `tasks` feature there is removed) into an official extension ([SEP-2663](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2663), final, 2026-05-15): a server may answer `tools/call` with an async task handle the client polls via `tasks/get`, `tasks/update`, `tasks/cancel`.

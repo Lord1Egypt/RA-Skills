@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Linux Security Guardian Memory",
+  "type": "object",
+  "required": ["version","updated","server","last_audit","cves","pending_actions","ssl_certs","stats"],
+  "properties": {
+    "version": { "type": "string" },
+    "updated": { "type": "string", "format": "date-time" },
+    "server": {
+      "type": "object",
+      "properties": {
+        "hostname":   { "type": "string" },
+        "ip":         { "type": "string" },
+        "os":         { "type": "string" },
+        "kernel":     { "type": "string" }
+      }
+    },
+    "last_audit": {
+      "type": "object",
+      "properties": {
+        "date":            { "type": "string", "format": "date" },
+        "score":           { "type": "integer", "minimum": 0, "maximum": 100 },
+        "grade":           { "enum": ["A","B","C","F"] },
+        "critical":        { "type": "integer" },
+        "high":            { "type": "integer" },
+        "medium":          { "type": "integer" },
+        "low":             { "type": "integer" },
+        "auto_fixed":      { "type": "integer" },
+        "pending_confirm": { "type": "integer" },
+        "email_sent":      { "type": "boolean" }
+      }
+    },
+    "cves": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["cve_id","package","cvss","severity","found_date","status"],
+        "properties": {
+          "cve_id":         { "type": "string" },
+          "package":        { "type": "string" },
+          "cvss":           { "type": "number" },
+          "severity":       { "enum": ["CRITICAL","HIGH","MEDIUM","LOW"] },
+          "found_date":     { "type": "string", "format": "date" },
+          "status":         { "enum": ["active","patch_available","patch_pending","patched","false_positive"] },
+          "action_id":      { "type": ["string","null"] }
+        }
+      }
+    },
+    "pending_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id","type","status","queued"],
+        "properties": {
+          "id":       { "type": "string" },
+          "type":     { "enum": ["patch","config","service","user","firewall","other"] },
+          "status":   { "enum": ["pending","approved","denied","skipped","expired","executed"] },
+          "queued":   { "type": "string", "format": "date" },
+          "expires":  { "type": "string", "format": "date" },
+          "summary":  { "type": "string" }
+        }
+      }
+    },
+    "ssl_certs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["domain","expiry","days_left","status"],
+        "properties": {
+          "domain":       { "type": "string" },
+          "expiry":       { "type": "string", "format": "date" },
+          "days_left":    { "type": "integer" },
+          "status":       { "enum": ["valid","expiring_soon","critical","expired"] },
+          "last_checked": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "total_audits":       { "type": "integer" },
+        "avg_score_30d":      { "type": "number" },
+        "cves_found_total":   { "type": "integer" },
+        "cves_patched_total": { "type": "integer" },
+        "auto_actions_total": { "type": "integer" },
+        "trend":              { "enum": ["improving","stable","worsening","insufficient-data"] }
+      }
+    }
+  }
+}

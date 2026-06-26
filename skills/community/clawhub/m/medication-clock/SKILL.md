@@ -1,35 +1,92 @@
 ---
-name: "medication-clock"
-description: "优甲乐智能服药提醒系统 - 每日6:30提醒，智能统计，数据导出。适合甲状腺疾病患者建立规律服药习惯。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medication-clock"
-sourceUrl: "https://clawhub.ai/skills/medication-clock"
+name: medication-clock
+description: 优甲乐智能服药提醒系统 - 每日6:30提醒，智能统计，数据导出。适合甲状腺疾病患者建立规律服药习惯。
+icon: 🕐
+color: "#3B82F6"
+tags: [health, medication, thyroid, reminder, smart-clock]
+metadata:
+  openclaw:
+    requires:
+      bins: [python3]
 ---
 
-# medication-clock
+# 优甲乐服药提醒与记录 Skill
 
-> 优甲乐智能服药提醒系统 - 每日6:30提醒，智能统计，数据导出。适合甲状腺疾病患者建立规律服药习惯。
+## 功能描述
+这是一个专门管理优甲乐（甲状腺素）服用的智能提醒和记录系统。帮助用户建立规律的服药习惯，并提供服药记录查询和报表功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medication-clock`
-- **Source URL:** [https://clawhub.ai/skills/medication-clock](https://clawhub.ai/skills/medication-clock)
+## 核心功能
 
-## Overview
+### 1. 智能提醒系统
+- **首次提醒**：每天 6:30 AM 首次提醒服用优甲乐
+- **重复提醒**：如果未确认，每15分钟重复提醒一次
+- **提醒方式**：通过当前会话渠道发送提醒消息
+- **停止条件**：用户确认服药后停止当日提醒
 
+### 2. 服药记录
+- **自动记录**：每次服药确认时自动记录时间
+- **状态标记**：记录是否按时服药（6:30-7:00之间为按时）
+- **数据存储**：存储在 `medication-records.json` 文件中
+- **历史记录**：保留所有服药历史数据
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/medication-clock
+### 3. 查询与报表功能
+- **今日状态**：查询今日是否已服药
+- **历史查询**：按日期范围查询服药记录
+- **统计报表**：生成服药依从性统计
+- **导出功能**：支持导出为 CSV 格式
+
+## 使用方法
+
+### 启动每日提醒
 ```
+/medication-clock start
+```
+启动每日优甲乐服药提醒系统。
+
+### 确认服药
+```
+/medication-clock taken
+```
+确认已服用优甲乐，停止当日提醒。
+
+### 查询状态
+```
+/medication-clock status
+```
+查询今日服药状态和近期服药记录。
+
+### 生成报表
+```
+/medication-clock report [days]
+```
+生成指定天数的服药统计报表（默认7天）。
+
+### 导出数据
+```
+/medication-clock export
+```
+导出所有服药记录为 CSV 格式。
+
+### 停止提醒
+```
+/medication-clock stop
+```
+停止每日服药提醒。
+
+## 数据存储
+服药记录存储在：
+- `medication-records.json` - JSON 格式的完整记录
+- `medication-stats.json` - 统计数据和状态信息
+
+## 技术实现
+- 使用 OpenClaw 的 cron 系统进行定时提醒
+- 使用文件系统存储记录数据
+- 支持多会话环境下的提醒和记录
+
+## 安全与隐私
+- 所有数据仅存储在本地
+- 不涉及外部网络传输
+- 用户完全控制数据访问
+
+## 配置说明
+首次使用前，系统会自动创建数据文件并设置每日提醒任务。

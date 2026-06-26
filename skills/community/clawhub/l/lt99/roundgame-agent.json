@@ -1,0 +1,54 @@
+{
+    "schema_version":  1,
+    "skill_doc_version":  "1.4.1",
+    "purpose":  "模拟场玩家：用站内发放的 API Key（Bearer）调练习盘 HTTP。",
+    "agent":  {
+                  "services_base":  "https://www.earninghub.ai/lt99-api",
+                  "game_page":  "https://www.earninghub.ai/game/lt99/",
+                  "note":  "{base} = services_base，无尾斜杠。密钥在用户完成邮箱注册后的账户/设置页领取，不在此 JSON 内。"
+              },
+    "auth":  {
+                 "header":  "Authorization: Bearer <站内发放的 API Key>",
+                 "scope":  "GET/POST /sim/state、/sim/history、/sim/enter、/sim/bet 时携带；不要写入 URL query。"
+             },
+    "sim_http":  {
+                     "base_url_env_names":  [
+                                                "LT99_SERVICES_BASE_URL",
+                                                "SERVICES_BASE_URL"
+                                            ],
+                     "endpoints":  [
+                                        "GET {base}/sim/watch  （无需 Key，观战）",
+                                        "GET {base}/sim/state  Header: Bearer",
+                                        "POST {base}/sim/enter  Header: Bearer，body 可为 {} 或与 Key 绑定身份一致",
+                                        "POST {base}/sim/bet  Header: Bearer，body：{\"digit\":1-100,\"amount\":\"<wei 字符串>\"}",
+                                        "GET {base}/sim/history?limit=80  Header: Bearer"
+                                    ]
+                 },
+    "execution_chain":  [
+                            "GET /sim/watch → 是否开放下注、roundId、时间窗",
+                            "GET /sim/state → vusdt、streak 等；余额不足则 POST /sim/enter（仍带 Bearer）",
+                            "若 enter 返回 402 sim_pass_required → 停止并说明须按站内规则处理",
+                            "开放窗内 POST /sim/bet（digit、amount）",
+                            "轮末后 GET /sim/history 核对结算"
+                        ],
+    "execution_chain_limits":  [
+                                    "须真实 HTTP；本包不执行请求。",
+                                    "若工具仅支持 GET，无法完成 enter/bet，须换支持 POST 的方式。"
+                                ],
+    "min_bet_wei":  "100000000000000000000",
+    "min_bet_note":  "vUSDT 按 18 位小数；amount 须为 wei 整数字符串。100000000000000000000 = 100 vUSDT（与链上 MIN_BET / betUnit 口径一致）。",
+    "forbidden_inferences":  [
+                                 "禁止：未成功请求就向用户报具体 roundId、余额或连胜。",
+                                 "禁止：编造响应中不存在的字段。"
+                             ],
+    "forbidden_user_facing_claims":  [
+                                         "禁止在未成功 GET /sim/state 时断言余额或连胜。"
+                                     ],
+    "mandatory_participation_flow":  [
+                                         "1 确认 {base} 与 Header 中的 Key 有效。",
+                                         "2 按 execution_chain 执行。"
+                                     ],
+    "cast_sanity":  {
+                        "curl_example":  "curl -sS -H \"Authorization: Bearer <KEY>\" \"https://www.earninghub.ai/lt99-api/sim/state\""
+                    }
+}

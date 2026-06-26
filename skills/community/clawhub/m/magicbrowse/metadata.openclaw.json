@@ -1,0 +1,16 @@
+{
+  "homepage": "https://github.com/MercuryoAI/skills/blob/main/docs/magicbrowse/openclaw/marketplace/README.md",
+  "requires": {
+    "bins": ["magicbrowse"]
+  },
+  "primaryEnv": "MAGICPAY_API_KEY",
+  "install": [
+    {
+      "id": "npm",
+      "kind": "node",
+      "package": "@mercuryo-ai/magicbrowse-cli@latest",
+      "bins": ["magicbrowse"],
+      "label": "Install MagicBrowse CLI (npm)"
+    }
+  ]
+}

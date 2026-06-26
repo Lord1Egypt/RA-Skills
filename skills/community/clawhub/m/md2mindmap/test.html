@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>思维导图 - 思维导图</title>
+<style>
+* { margin: 0; padding: 0; }
+html { font-family: ui-sans-serif, system-ui, sans-serif; }
+#mindmap { display: block; width: 100vw; height: 100vh; }
+.markmap-dark { background: #27272a; color: white; }
+</style>
+<link rel="stylesheet" href="https://unpkg.com/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://unpkg.com/markmap-view@0.18.12/dist/browser/index.js"></script>
+<script src="https://unpkg.com/markmap-toolbar@0.18.12/dist/index.js"></script>
+<script>(r => { setTimeout(r); })(function renderToolbar() {
+  const { markmap, mm } = window;
+  const { el } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script>
+<script>((getMarkmap, getOptions, root2, jsonOptions) => {
+  const markmap = getMarkmap();
+  window.mm = markmap.Markmap.create("svg#mindmap", (getOptions || markmap.deriveOptions)(jsonOptions), root2);
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.documentElement.classList.add("markmap-dark");
+  }
+})(() => window.markmap,null,{'content': '思维导图', 'children': [{'content': '测试思维导图', 'children': [{'content': '一级标题', 'children': [{'content': '二级标题', 'children': [{'content': '三级标题', 'children': []}]}]},{'content': '功能测试', 'children': [{'content': '功能1', 'children': []},{'content': '功能2', 'children': [{'content': '子功能2.1', 'children': []},{'content': '子功能2.2', 'children': []}]},{'content': '功能3', 'children': []}]},{'content': '边界测试', 'children': [{'content': '空内容测试', 'children': []},{'content': '特殊字符测试', 'children': []},{'content': '中文支持', 'children': []}]}]}]},{})</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "meituan",
+  "version": "2.2.0",
+  "description": "Meituan public decision skill for visible merchant, fee, discount, ETA, threshold, and review-risk tradeoffs.",
+  "main": "SKILL.md",
+  "keywords": [
+    "meituan",
+    "美团",
+    "waimai",
+    "外卖",
+    "local-life",
+    "food-delivery",
+    "takeout",
+    "delivery",
+    "coupon",
+    "threshold",
+    "refund",
+    "decision",
+    "public-data",
+    "no-login",
+    "openclaw-skill"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

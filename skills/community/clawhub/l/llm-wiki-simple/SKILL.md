@@ -1,35 +1,136 @@
----
-name: "llm-wiki-simple"
-description: "自动扫描原始资料，分类整理并格式化生成结构化个人知识库，支持分类、更新和索引管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/llm-wiki-simple"
-sourceUrl: "https://clawhub.ai/skills/llm-wiki-simple"
----
+# LLM Wiki — 个人知识库自动构建
 
-# llm-wiki-simple
+将原始资料（文章/笔记/论文）通过 LLM 理解、提炼、重组，生成结构化的个人知识库。
 
-> 自动扫描原始资料，分类整理并格式化生成结构化个人知识库，支持分类、更新和索引管理。
+> ⚠️ **核心理念**：这不是文件搬运，而是 LLM 驱动的知识加工。原始资料是"原材料"，Wiki 是"精炼产品"。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/llm-wiki-simple`
-- **Source URL:** [https://clawhub.ai/skills/llm-wiki-simple](https://clawhub.ai/skills/llm-wiki-simple)
+## 触发条件
 
-## Overview
+用户输入以下任一指令时触发：
+- `执行 LLM Wiki 自动构建流程`
+- `初始化 LLM Wiki`
+- `扫描 Raw 目录`
 
+## 首次使用
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/llm-wiki-simple
+如果检测到项目根目录不存在 `00_Raw/`、`01_Wiki/`、`02_System/` 三个目录，需先创建以下结构并向用户说明：
+
 ```
+项目根目录/
+├── 00_Raw/              # 原始资料目录（只读，不修改）
+│   ├── Articles/        # 文章
+│   ├── Notes/           # 笔记
+│   ├── Papers/          # 论文
+│   └── CodeSnippets/    # 代码片段
+├── 01_Wiki/             # 结构化 Wiki 目录（可读写）
+│   ├── AI/              # AI/LLM/大模型相关
+│   ├── Code/            # 编程/代码/架构相关
+│   ├── Concepts/        # 算法/原理/数据结构等
+│   └── Tools/           # 工具/CLI/DevOps相关
+└── 02_System/
+    ├── Schema.md        # Wiki 页面格式规范
+    └── CLAUDE.md        # 自动化构建规则
+```
+
+向用户说明：
+- **`00_Raw/`**：存放原始资料，AI 只读不修改
+- **`01_Wiki/`**：LLM 理解后重新撰写的结构化知识库，非原始文件搬运
+- **`02_System/`**：系统配置文件，定义格式规范和分类规则
+
+> 💡 **建议**：使用 [Obsidian](https://obsidian.md/) 打开项目根目录查看，支持双向链接和知识图谱可视化，体验更佳。
+
+## 自动构建流程
+
+### 1. 扫描
+遍历 `00_Raw/` 下所有 `.md`、`.txt`、`.pdf` 文件。
+- `.pdf` 文件：使用 `read` 工具读取文本内容；如含图表/公式，使用 `look_at` 工具辅助提取
+
+### 2. 理解（LLM 核心步骤）
+**不是复制内容，而是理解后重新撰写：**
+- **提炼定义**：用一句话概括该技术/概念的本质
+- **归纳要点**：从原始资料中提取关键原理、使用场景、优缺点、常见误区
+- **整理细节**：梳理技术细节、参数说明、最佳实践
+- **提取代码**：从原始资料中提取或补全可运行的代码示例
+- **建立关联**：分析内容，自动添加 `[[双向链接]]` 到 Wiki 中已有页面
+
+### 3. 分类规则
+
+| 分类 | 关键词 |
+|------|--------|
+| **AI/** | LLM、GPT、Claude、大模型、RAG、Agent、Transformer、Embedding、微调、Prompt工程 |
+| **Code/** | Python、Java、JavaScript、前端、后端、API、数据库、架构、设计模式 |
+| **Concepts/** | 算法、数据结构、网络、操作系统、HTTP、TCP、编译器、原理、理论 |
+| **Tools/** | Git、Docker、Nginx、Linux、K8s、命令、CLI、CI/CD、AI工具、效率工具、部署、监控、插件 |
+
+**规则**：
+- 每个源文件只能归入一个分类目录，不可重复
+- 多关键词匹配时，按上表顺序取第一个
+- 无法分类时，询问用户：
+  1. 是否需要新建分类文件夹（如 `01_Wiki/Other/`）
+  2. 或保存到最接近的现有分类目录下
+
+### 4. 生成
+按以下格式重新组织内容（严格遵守）：
+
+```markdown
+# 标题（文件名即页面标题）
+
+## 定义
+一句话清晰定义该技术/概念。
+
+## 核心要点
+- 关键原理（核心机制/工作原理）
+- 使用场景（何时使用/适用场景）
+- 优缺点（优势/局限）
+- 常见误区（易错点/注意事项）
+
+## 技术细节
+- 关键参数/配置说明
+- 实现思路/算法步骤
+- 性能优化/最佳实践
+
+## 代码示例（如有）
+\`\`\`语言
+简洁可运行的示例代码
+
+## 关联页面
+[[相关概念1]] [[相关技术2]]
+
+## 来源
+00_Raw/xxx.md
+```
+
+### 5. 写入
+写入 `01_Wiki/{分类}/`，文件名与原始文件一致（扩展名统一为 `.md`）。
+
+### 6. 索引
+更新 `01_Wiki/Index.md`，按分类列出所有页面，添加双向链接。
+
+### 7. 去重
+同名页面覆盖更新，保留手动修改的关联页面部分。
+
+### 8. 报告
+输出构建摘要（新增/更新/跳过数量）。
+
+## 特殊处理
+
+- 空文件或无法提取内容的文件：跳过，记录到 `02_System/build.log`
+- 分类无法确定：询问用户，不擅自放入 Uncategorized
+- 页面已存在：比较内容，如有变更则更新
+
+## 代码风格
+
+- **语言**：中文为主，技术术语保留英文原文
+- **链接**：使用 Obsidian 双向链接语法 `[[页面名]]`
+- **代码块**：必须标明语言
+- **标题层级**：仅使用 `#`（页面标题）和 `##`（章节）
+- **列表**：使用 `-` 无序列表
+
+## 禁止行为
+
+- ❌ 修改 `00_Raw/` 下任何原始文件
+- ❌ 删除已有 Wiki 页面（仅允许更新）
+- ❌ 生成不符合 Schema 结构的页面
+- ❌ 在 Wiki 页面中包含 API 密钥、敏感信息
+- ❌ 使用 `#` `##` 之外的标题层级
+- ❌ 直接搬运原始文件内容而不经过 LLM 理解提炼

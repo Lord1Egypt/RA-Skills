@@ -1,0 +1,46 @@
+{
+  "name": "local-file-manager",
+  "version": "1.0.0",
+  "description": "本地文件系统管理工具 - 文件读写、目录遍历、搜索、移动、删除等操作。",
+  "author": "local",
+  "license": "MIT",
+  "main": "scripts/file_manager.py",
+  "scripts": {
+    "list": "scripts/list_files.sh",
+    "read": "scripts/read_file.py",
+    "write": "scripts/write_file.py",
+    "search": "scripts/search_files.py"
+  },
+  "dependencies": {
+    "python": ">=3.8"
+  },
+  "requirements": [
+    "python3 >= 3.8"
+  ],
+  "capabilities": [
+    "file-system",
+    "data-management"
+  ],
+  "permissions": {
+    "file_system": {
+      "read": [
+        "~/.openclaw/workspace/**"
+      ],
+      "write": [
+        "~/.openclaw/workspace/**"
+      ],
+      "delete": [
+        "~/.openclaw/workspace/**"
+      ]
+    }
+  },
+  "configuration": {
+    "max_file_size": 10485760
+  },
+  "documentation": "README.md",
+  "tags": [
+    "filesystem",
+    "file-manager",
+    "storage"
+  ]
+}

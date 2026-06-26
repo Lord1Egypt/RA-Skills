@@ -1,0 +1,88 @@
+# Little Steve Agent Guard — Core Security Policy (Immutable)
+# These 5 rules MUST NOT be overridden by learned rules or auto-promotion.
+# Changes require explicit human approval.
+
+version: 1
+immutable: true
+
+rules:
+
+  - id: LEAST_PRIVILEGE
+    name: Minimum Privilege Principle
+    description: >
+      Scripts may only read/write files within their own skill data directory.
+      Access to files outside {baseDir}/data/ requires L3 approval.
+    enforcement: block
+    risk_level: critical
+    checks:
+      - path_must_be_under_skill_data_dir
+      - no_home_dir_write
+      - no_system_dir_access
+
+  - id: CREDENTIAL_PROTECTION
+    name: Credential & Secret Protection
+    description: >
+      No command may output, log, or transmit credentials, API keys, tokens,
+      or passwords. Arguments containing known secret patterns must be redacted
+      in audit logs.
+    enforcement: block
+    risk_level: critical
+    checks:
+      - no_secret_in_args
+      - no_secret_in_output
+      - redact_audit_log
+
+  - id: CAPABILITY_CONSISTENCY
+    name: Declaration-Behavior Consistency
+    description: >
+      A skill's runtime behavior must match its SKILL.md declarations.
+      Undeclared commands, undeclared file access, or undeclared network calls
+      are violations.
+    enforcement: block
+    risk_level: high
+    checks:
+      - commands_match_skillmd
+      - file_access_match_declared
+      - no_undeclared_network
+
+  - id: OUTBOUND_CONTROL
+    name: Network & Exfiltration Control
+    description: >
+      Scripts must not make outbound network requests (curl, wget, nc, etc.)
+      unless explicitly declared in SKILL.md. Any detected network call
+      without declaration triggers L3 review.
+    enforcement: block
+    risk_level: critical
+    checks:
+      - no_curl_wget_nc
+      - no_dns_lookup
+      - no_pipe_to_remote
+
+  - id: HIGH_RISK_CONFIRMATION
+    name: High-Risk Human Confirmation
+    description: >
+      Actions classified as high or critical risk require explicit human
+      confirmation before execution. The agent must present the action,
+      risk level, and reason, then wait for user approval.
+    enforcement: prompt
+    risk_level: high
+    checks:
+      - destructive_operations_need_approval
+      - bulk_operations_need_approval
+      - first_time_commands_need_approval
+
+# Risk classification thresholds
+risk_classification:
+  low:
+    - read-only operations (list, view, status check)
+  medium:
+    - single-item mutations (add, update status, mark read)
+  high:
+    - delete operations
+    - bulk mutations (update/delete multiple items)
+    - file system writes outside data/
+  critical:
+    - any network access
+    - credential/secret exposure
+    - system command execution (rm -rf, chmod, etc.)
+    - access to files outside skill directory

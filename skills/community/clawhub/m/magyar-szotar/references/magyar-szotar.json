@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "verzió": "1.0",
+    "leírás": "Magyar értelmező kéziszótár - alap szavak jelentéssel, szinonimákkal"
+  },
+  "szavak": {
+    "macerás": {
+      "jelentés": "nehézséget okozó, problémás, sok bajjal járó",
+      "szinonimák": ["problémás", "nehéz", "bonyolult", "körültekintő"],
+      "példa": "Ez egy macerás feladat, sok időt vesz igénybe."
+    },
+    "kolibri": {
+      "jelentés": "apró, gyors mozgású trópusi madár; metaforikusan: gyors, precíz digitális társ",
+      "szinonimák": ["hummingbird", "gyors", "precíz"],
+      "példa": "Kolibri mint asszisztens: gyors és hatékony."
+    },
+    "hatékony": {
+      "jelentés": "eredményes, célratörő, kevés ráfordítással sokat elérő",
+      "szinonimák": ["eredményes", "produktív", "célratörő"],
+      "példa": "Ez egy hatékony megoldás a problémára."
+    },
+    "precíz": {
+      "jelentés": "pontos, aprólékos, részletekre figyelő",
+      "szinonimák": ["pontos", "aprólékos", "gondos"],
+      "példa": "Precíz munkát végzett a feladaton."
+    }
+  }
+}

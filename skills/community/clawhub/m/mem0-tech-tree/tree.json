@@ -1,0 +1,2322 @@
+{
+  "version": 5,
+  "nodes": {
+    "n0001": {
+      "id": "n0001",
+      "content": "已掌握macOS系统操作/终端(zsh)/Homebrew",
+      "keywords": [
+        "掌握",
+        "macOS",
+        "系统",
+        "操作",
+        "终端",
+        "zsh",
+        "Homebrew"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 1,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774237301.81792
+    },
+    "n0002": {
+      "id": "n0002",
+      "content": "已掌握Python 3.9.6+pip，核心开发语言",
+      "keywords": [
+        "掌握",
+        "Python",
+        "3.9",
+        "pip",
+        "核心",
+        "开发",
+        "语言"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 1,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774237301.818028
+    },
+    "n0003": {
+      "id": "n0003",
+      "content": "已掌握Node.js v25.8.1+npm",
+      "keywords": [
+        "掌握",
+        "Node",
+        "js",
+        "v25.8",
+        "npm"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 1,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774237301.818103
+    },
+    "n0004": {
+      "id": "n0004",
+      "content": "已掌握Git+SSH远程连接",
+      "keywords": [
+        "掌握",
+        "Git",
+        "SSH",
+        "远程",
+        "连接"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 1,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774237301.818162
+    },
+    "n0005": {
+      "id": "n0005",
+      "content": "已掌握tmux+vim+jq等CLI工具",
+      "keywords": [
+        "掌握",
+        "tmux",
+        "vim",
+        "jq",
+        "CLI",
+        "工具"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 1,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774237301.818246
+    },
+    "n0006": {
+      "id": "n0006",
+      "content": "已掌握playwright浏览器自动化(CDP连接Chrome)",
+      "keywords": [
+        "掌握",
+        "playwright",
+        "浏览器",
+        "自动化",
+        "CDP",
+        "连接",
+        "Chrome"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.818351
+    },
+    "n0007": {
+      "id": "n0007",
+      "content": "已掌握ffmpeg音视频处理(Homebrew版,无drawtext)",
+      "keywords": [
+        "掌握",
+        "ffmpeg",
+        "音视频",
+        "处理",
+        "Homebrew",
+        "drawtext"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.818487
+    },
+    "n0008": {
+      "id": "n0008",
+      "content": "已掌握edge-tts文字转语音",
+      "keywords": [
+        "掌握",
+        "edge",
+        "tts",
+        "文字",
+        "语音"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.818552
+    },
+    "n0009": {
+      "id": "n0009",
+      "content": "已安装PyTorch 2.2.2(本机无CUDA)",
+      "keywords": [
+        "安装",
+        "PyTorch",
+        "2.2",
+        "本机",
+        "CUDA"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.818673
+    },
+    "n0010": {
+      "id": "n0010",
+      "content": "已安装openai SDK+tiktoken+jieba+pillow",
+      "keywords": [
+        "安装",
+        "openai",
+        "SDK",
+        "tiktoken",
+        "jieba",
+        "pillow"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.81877
+    },
+    "n0011": {
+      "id": "n0011",
+      "content": "已安装lancedb向量库+SQLAlchemy ORM",
+      "keywords": [
+        "安装",
+        "lancedb",
+        "向量",
+        "SQLAlchemy",
+        "ORM"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.8188741
+    },
+    "n0012": {
+      "id": "n0012",
+      "content": "已安装whisper语音识别+pyjianyingdraft剪映草稿解析",
+      "keywords": [
+        "安装",
+        "whisper",
+        "语音",
+        "识别",
+        "pyjianyingdraft",
+        "剪映",
+        "草稿",
+        "解析"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.819
+    },
+    "n0013": {
+      "id": "n0013",
+      "content": "已掌握Chrome(主力浏览器)+已安装Docker/Ollama(待用)",
+      "keywords": [
+        "掌握",
+        "Chrome",
+        "主力",
+        "浏览器",
+        "安装",
+        "Docker",
+        "Ollama",
+        "待用"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.819144
+    },
+    "n0014": {
+      "id": "n0014",
+      "content": "已配置OpenAI API(glm-5-turbo等模型)",
+      "keywords": [
+        "配置",
+        "OpenAI",
+        "API",
+        "glm",
+        "turbo",
+        "模型"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.819249
+    },
+    "n0015": {
+      "id": "n0015",
+      "content": "已部署Trae IDE+OpenClaw网关(launchd服务)",
+      "keywords": [
+        "部署",
+        "Trae",
+        "IDE",
+        "OpenClaw",
+        "网关",
+        "launchd",
+        "服务"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.819353
+    },
+    "n0016": {
+      "id": "n0016",
+      "content": "已安装豆包/通义千问AI+Canva设计工具",
+      "keywords": [
+        "安装",
+        "豆包",
+        "通义",
+        "千问",
+        "AI",
+        "Canva",
+        "设计",
+        "工具"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.819455
+    },
+    "n0017": {
+      "id": "n0017",
+      "content": "核心Skills:tavily/Baidu-Search/Mem0/Desktop-Control/weather",
+      "keywords": [
+        "核心",
+        "Skills",
+        "tavily",
+        "Baidu",
+        "Search",
+        "Mem0",
+        "Desktop",
+        "Control",
+        "weather"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.8196218
+    },
+    "n0018": {
+      "id": "n0018",
+      "content": "辅助Skills:Cursor/Find-Skills/Vetter/Ontology/iMessage",
+      "keywords": [
+        "辅助",
+        "Skills",
+        "Cursor",
+        "Find",
+        "Skills",
+        "Vetter",
+        "Ontology",
+        "iMessage"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.819768
+    },
+    "n0019": {
+      "id": "n0019",
+      "content": "创作Skills:AI-PPT/TreeMind/evomap/Copy.ai/Self-Improve",
+      "keywords": [
+        "创作",
+        "Skills",
+        "AI",
+        "PPT",
+        "TreeMind",
+        "evomap",
+        "Copy",
+        "ai",
+        "Self",
+        "Improve"
+      ],
+      "branches": [
+        "技术",
+        "工作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.819909
+    },
+    "n0020": {
+      "id": "n0020",
+      "content": "掌握CDP+playwright即梦AI自动化(ProseMirror+canvas)",
+      "keywords": [
+        "掌握",
+        "CDP",
+        "playwright",
+        "AI",
+        "自动化",
+        "ProseMirror",
+        "canvas"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 3,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774410101.8200462
+    },
+    "n0021": {
+      "id": "n0021",
+      "content": "掌握ffmpeg+edge-tts视频配音合成管线",
+      "keywords": [
+        "掌握",
+        "ffmpeg",
+        "edge",
+        "tts",
+        "视频",
+        "配音",
+        "合成",
+        "管线"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 3,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774410101.820128
+    },
+    "n0022": {
+      "id": "n0022",
+      "content": "掌握抖音Chrome自动化发布(targetId已保存)",
+      "keywords": [
+        "掌握",
+        "抖音",
+        "Chrome",
+        "自动化",
+        "发布",
+        "targetId",
+        "保存"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 3,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774410101.820252
+    },
+    "n0023": {
+      "id": "n0023",
+      "content": "ComfyUI部署方案确定(需CUDA,本机待部署)",
+      "keywords": [
+        "ComfyUI",
+        "部署",
+        "方案",
+        "确定",
+        "CUDA",
+        "本机",
+        "部署"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 3,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774410101.820391
+    },
+    "n0024": {
+      "id": "n0024",
+      "content": "精通即梦AI全自动化:playwright→ProseMirror→canvas→下载",
+      "keywords": [
+        "精通",
+        "AI",
+        "自动化",
+        "playwright",
+        "ProseMirror",
+        "canvas",
+        "下载"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 4,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774496501.820554
+    },
+    "n0025": {
+      "id": "n0025",
+      "content": "完整视频管线:豆包文案→即梦生图→Seedance→配音→合成→发布",
+      "keywords": [
+        "完整",
+        "视频",
+        "管线",
+        "豆包",
+        "文案",
+        "即梦生",
+        "Seedance",
+        "配音",
+        "合成",
+        "发布"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 4,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774496501.8207119
+    },
+    "n0026": {
+      "id": "n0026",
+      "content": "教训:抖音自动化花1亿token,浏览器截图疯狂消耗",
+      "keywords": [
+        "教训",
+        "抖音",
+        "自动化",
+        "token",
+        "浏览器",
+        "截图",
+        "疯狂",
+        "消耗"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.820857
+    },
+    "n0027": {
+      "id": "n0027",
+      "content": "教训:程序化素材没人看,内容质量>包装",
+      "keywords": [
+        "教训",
+        "程序化",
+        "素材",
+        "没人",
+        "内容",
+        "质量",
+        "包装"
+      ],
+      "branches": [
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.820968
+    },
+    "n0028": {
+      "id": "n0028",
+      "content": "教训:剪映UI自动化不可靠,即梦AI>纯代码管线",
+      "keywords": [
+        "教训",
+        "剪映",
+        "UI",
+        "自动化",
+        "可靠",
+        "AI",
+        "代码",
+        "管线"
+      ],
+      "branches": [
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.82111
+    },
+    "n0029": {
+      "id": "n0029",
+      "content": "原则:AI当工具人,人当导演,不负责创意审美",
+      "keywords": [
+        "原则",
+        "AI",
+        "工具",
+        "人当",
+        "导演",
+        "负责",
+        "创意",
+        "审美"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.821234
+    },
+    "n0030": {
+      "id": "n0030",
+      "content": "OpenClaw赚钱路径:教学>部署>Skills>量化",
+      "keywords": [
+        "OpenClaw",
+        "赚钱",
+        "路径",
+        "教学",
+        "部署",
+        "Skills",
+        "量化"
+      ],
+      "branches": [
+        "技术",
+        "工作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.821331
+    },
+    "n0031": {
+      "id": "n0031",
+      "content": "即梦AI月会员:Seedance图生视频+文字转视频",
+      "keywords": [
+        "AI",
+        "会员",
+        "Seedance",
+        "图生",
+        "视频",
+        "文字",
+        "视频"
+      ],
+      "branches": [
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.821461
+    },
+    "n0032": {
+      "id": "n0032",
+      "content": "已安装剪映/美图秀秀/汽水音乐(辅助)",
+      "keywords": [
+        "安装",
+        "剪映",
+        "美图秀",
+        "汽水",
+        "音乐",
+        "辅助"
+      ],
+      "branches": [
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.821557
+    },
+    "n0033": {
+      "id": "n0033",
+      "content": "抖音阿拉口木(966403340)2700粉,2月停更",
+      "keywords": [
+        "抖音",
+        "阿拉",
+        "口木",
+        "966403340",
+        "2700"
+      ],
+      "branches": [
+        "内容创作",
+        "生活"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.821725
+    },
+    "n0034": {
+      "id": "n0034",
+      "content": "内容方向:情绪价值风景片+卡通动物IP(长期)",
+      "keywords": [
+        "内容",
+        "方向",
+        "情绪",
+        "价值",
+        "风景",
+        "卡通",
+        "动物",
+        "IP",
+        "长期"
+      ],
+      "branches": [
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.8218381
+    },
+    "n0035": {
+      "id": "n0035",
+      "content": "学习BM25+Task-Skill Dependency Graph",
+      "keywords": [
+        "学习",
+        "BM25",
+        "Task",
+        "Skill",
+        "Dependency",
+        "Graph"
+      ],
+      "branches": [
+        "学习",
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.8219368
+    },
+    "n0036": {
+      "id": "n0036",
+      "content": "学习人类大脑记忆模型→科技树架构设计",
+      "keywords": [
+        "学习",
+        "人类",
+        "大脑",
+        "记忆",
+        "模型",
+        "科技",
+        "架构设计"
+      ],
+      "branches": [
+        "学习",
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.822022
+    },
+    "n0037": {
+      "id": "n0037",
+      "content": "已掌握Office+WPS+PDF工具+解压",
+      "keywords": [
+        "掌握",
+        "Office",
+        "WPS",
+        "PDF",
+        "工具",
+        "解压"
+      ],
+      "branches": [
+        "工作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.8220952
+    },
+    "n0038": {
+      "id": "n0038",
+      "content": "已安装微信/企微/QQ/WhatsApp/腾讯会议",
+      "keywords": [
+        "安装",
+        "微信",
+        "企微",
+        "QQ",
+        "WhatsApp",
+        "腾讯",
+        "会议"
+      ],
+      "branches": [
+        "工作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.822231
+    },
+    "n0039": {
+      "id": "n0039",
+      "content": "已安装Notion/百度网盘/TreeMind/Copy.ai",
+      "keywords": [
+        "安装",
+        "Notion",
+        "百度网",
+        "TreeMind",
+        "Copy",
+        "ai"
+      ],
+      "branches": [
+        "工作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.82233
+    },
+    "n0040": {
+      "id": "n0040",
+      "content": "大先生:47岁扬州销售管理,高毛品/订单/促销",
+      "keywords": [
+        "先生",
+        "47",
+        "扬州",
+        "销售",
+        "管理",
+        "高毛品",
+        "订单",
+        "促销"
+      ],
+      "branches": [
+        "生活",
+        "工作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 3,
+      "created": "2026-03-27 11:41:41",
+      "timestamp": 1774323701.8224618
+    },
+    "n0041": {
+      "id": "n0041",
+      "content": "已掌握ripgrep(rg)超快文本搜索",
+      "keywords": [
+        "已掌握ripgrep",
+        "rg",
+        "超快文本搜索"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:40:34",
+      "timestamp": 1774586434.4828212
+    },
+    "n0042": {
+      "id": "n0042",
+      "content": "已安装yt-dlp视频下载工具(YouTube/B站/抖音)",
+      "keywords": [
+        "已安装yt",
+        "dlp视频下载工具",
+        "YouTube",
+        "B站",
+        "抖音"
+      ],
+      "branches": [
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:40:34",
+      "timestamp": 1774586434.485631
+    },
+    "n0043": {
+      "id": "n0043",
+      "content": "已安装ImageMagick图片处理CLI(缩放/裁剪/水印/格式转换)",
+      "keywords": [
+        "已安装ImageMagick图片处理CLI",
+        "缩放",
+        "裁剪",
+        "水印",
+        "格式转换"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:40:34",
+      "timestamp": 1774586434.488429
+    },
+    "n0044": {
+      "id": "n0044",
+      "content": "已安装pandoc文档格式互转(markdown/docx/pdf等)",
+      "keywords": [
+        "已安装pandoc文档格式互转",
+        "markdown",
+        "docx",
+        "pdf等"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:40:34",
+      "timestamp": 1774586434.491319
+    },
+    "n0045": {
+      "id": "n0045",
+      "content": "已安装sox音频处理CLI(音量/格式/拼接/淡入淡出)",
+      "keywords": [
+        "已安装sox音频处理CLI",
+        "音量",
+        "格式",
+        "拼接",
+        "淡入淡出"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:40:34",
+      "timestamp": 1774586434.494698
+    },
+    "n0046": {
+      "id": "n0046",
+      "content": "已安装GitHub CLI(gh)命令行操作GitHub仓库",
+      "keywords": [
+        "已安装GitHub",
+        "CLI",
+        "gh",
+        "命令行操作GitHub仓库"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:40:34",
+      "timestamp": 1774586434.4975848
+    },
+    "n0047": {
+      "id": "n0047",
+      "content": "已安装bat(增强cat语法高亮)+eza(增强ls)+fzf(模糊搜索)",
+      "keywords": [
+        "已安装bat",
+        "增强cat语法高亮",
+        "eza",
+        "增强ls",
+        "fzf",
+        "模糊搜索"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:40:34",
+      "timestamp": 1774586434.5005782
+    },
+    "n0048": {
+      "id": "n0048",
+      "content": "已安装zoxide(cd增强)+tldr(简化man手册)",
+      "keywords": [
+        "已安装zoxide",
+        "cd增强",
+        "tldr",
+        "简化man手册"
+      ],
+      "branches": [
+        "技术"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:40:34",
+      "timestamp": 1774586434.503496
+    },
+    "n0049": {
+      "id": "n0049",
+      "content": "已安装OBS Studio屏幕录制和直播软件(教程视频制作)",
+      "keywords": [
+        "已安装OBS",
+        "Studio屏幕录制和直播软件",
+        "教程视频制作"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "medium",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:45:14",
+      "timestamp": 1774586714.9200919
+    },
+    "n0050": {
+      "id": "n0050",
+      "content": "本机为Intel i9+16GB+核显1.5GB,不适合本地SD/ComfyUI,继续用即梦AI云端方案",
+      "keywords": [
+        "本机为Intel",
+        "GB",
+        "核显",
+        "GB",
+        "不适合本地SD",
+        "ComfyUI",
+        "继续用即梦AI云端方案"
+      ],
+      "branches": [
+        "技术",
+        "内容创作"
+      ],
+      "tier": 2,
+      "state": "unlocked",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 12:46:42",
+      "timestamp": 1774586802.3892028
+    },
+    "n0051": {
+      "id": "n0051",
+      "content": "商业模式:aishort.top/GitHub热门prompt→改造成OpenClaw skill→发ClawdHub(英文)和国内平台(付费)",
+      "keywords": [
+        "商业模式",
+        "aishort",
+        "top",
+        "GitHub热门prompt→改造成OpenClaw",
+        "skill→发ClawdHub",
+        "英文",
+        "和国内平台",
+        "付费"
+      ],
+      "branches": [
+        "其他"
+      ],
+      "tier": 2,
+      "state": "new",
+      "importance": "high",
+      "types": [
+        "semantic"
+      ],
+      "access_count": 0,
+      "created": "2026-03-27 13:01:13",
+      "timestamp": 1774587673.6939788
+    }
+  },
+  "edges": [
+    {
+      "from": "n0001",
+      "to": "n0007",
+      "type": "dependency",
+      "similarity": 0.309,
+      "branch": "技术"
+    },
+    {
+      "from": "n0004",
+      "to": "n0006",
+      "type": "dependency",
+      "similarity": 0.338,
+      "branch": "技术"
+    },
+    {
+      "from": "n0006",
+      "to": "n0013",
+      "type": "related",
+      "similarity": 0.401,
+      "branch": "技术"
+    },
+    {
+      "from": "n0006",
+      "to": "n0020",
+      "type": "dependency",
+      "similarity": 0.571,
+      "branch": "技术"
+    },
+    {
+      "from": "n0006",
+      "to": "n0022",
+      "type": "dependency",
+      "similarity": 0.429,
+      "branch": "技术"
+    },
+    {
+      "from": "n0006",
+      "to": "n0024",
+      "type": "dependency",
+      "similarity": 0.286,
+      "branch": "技术"
+    },
+    {
+      "from": "n0006",
+      "to": "n0026",
+      "type": "related",
+      "similarity": 0.267,
+      "branch": "技术"
+    },
+    {
+      "from": "n0007",
+      "to": "n0021",
+      "type": "dependency",
+      "similarity": 0.289,
+      "branch": "技术"
+    },
+    {
+      "from": "n0008",
+      "to": "n0021",
+      "type": "dependency",
+      "similarity": 0.474,
+      "branch": "技术"
+    },
+    {
+      "from": "n0009",
+      "to": "n0023",
+      "type": "dependency",
+      "similarity": 0.298,
+      "branch": "技术"
+    },
+    {
+      "from": "n0013",
+      "to": "n0022",
+      "type": "dependency",
+      "similarity": 0.267,
+      "branch": "技术"
+    },
+    {
+      "from": "n0015",
+      "to": "n0023",
+      "type": "dependency",
+      "similarity": 0.252,
+      "branch": "技术"
+    },
+    {
+      "from": "n0015",
+      "to": "n0030",
+      "type": "related",
+      "similarity": 0.286,
+      "branch": "技术"
+    },
+    {
+      "from": "n0020",
+      "to": "n0022",
+      "type": "related",
+      "similarity": 0.286,
+      "branch": "技术"
+    },
+    {
+      "from": "n0020",
+      "to": "n0024",
+      "type": "dependency",
+      "similarity": 0.714,
+      "branch": "技术"
+    },
+    {
+      "from": "n0021",
+      "to": "n0025",
+      "type": "dependency",
+      "similarity": 0.447,
+      "branch": "技术"
+    },
+    {
+      "from": "n0026",
+      "to": "n0022",
+      "type": "dependency",
+      "similarity": 0.267,
+      "branch": "技术"
+    },
+    {
+      "from": "n0030",
+      "to": "n0023",
+      "type": "dependency",
+      "similarity": 0.252,
+      "branch": "技术"
+    },
+    {
+      "from": "n0007",
+      "to": "n0021",
+      "type": "dependency",
+      "similarity": 0.289,
+      "branch": "内容创作"
+    },
+    {
+      "from": "n0008",
+      "to": "n0021",
+      "type": "dependency",
+      "similarity": 0.474,
+      "branch": "内容创作"
+    },
+    {
+      "from": "n0012",
+      "to": "n0032",
+      "type": "related",
+      "similarity": 0.289,
+      "branch": "内容创作"
+    },
+    {
+      "from": "n0021",
+      "to": "n0025",
+      "type": "dependency",
+      "similarity": 0.447,
+      "branch": "内容创作"
+    },
+    {
+      "from": "n0031",
+      "to": "n0025",
+      "type": "dependency",
+      "similarity": 0.316,
+      "branch": "内容创作"
+    },
+    {
+      "from": "n0019",
+      "to": "n0039",
+      "type": "related",
+      "similarity": 0.387,
+      "branch": "工作"
+    },
+    {
+      "from": "n0027",
+      "to": "n0028",
+      "type": "related",
+      "similarity": 0.333,
+      "branch": "内容创作"
+    }
+  ],
+  "branches": {
+    "技术": {
+      "tier": 4,
+      "node_count": 37,
+      "top_keywords": [
+        "掌握",
+        "安装",
+        "自动化",
+        "AI",
+        "Skills",
+        "部署",
+        "工具",
+        "playwright"
+      ]
+    },
+    "内容创作": {
+      "tier": 4,
+      "node_count": 17,
+      "top_keywords": [
+        "掌握",
+        "AI",
+        "视频",
+        "安装",
+        "剪映",
+        "管线",
+        "抖音",
+        "ffmpeg"
+      ]
+    },
+    "工作": {
+      "tier": 2,
+      "node_count": 6,
+      "top_keywords": [
+        "Skills",
+        "TreeMind",
+        "Copy",
+        "ai",
+        "安装",
+        "创作",
+        "AI",
+        "PPT"
+      ]
+    },
+    "生活": {
+      "tier": 2,
+      "node_count": 2,
+      "top_keywords": [
+        "抖音",
+        "阿拉",
+        "口木",
+        "966403340",
+        "2700",
+        "先生",
+        "47",
+        "扬州"
+      ]
+    },
+    "学习": {
+      "tier": 2,
+      "node_count": 2,
+      "top_keywords": [
+        "学习",
+        "BM25",
+        "Task",
+        "Skill",
+        "Dependency",
+        "Graph",
+        "人类",
+        "大脑"
+      ]
+    },
+    "其他": {
+      "tier": 2,
+      "node_count": 1,
+      "top_keywords": [
+        "已安装OBS",
+        "Studio屏幕录制和直播软件",
+        "教程视频制作"
+      ]
+    }
+  },
+  "catalog": {
+    "掌握": [
+      "n0001",
+      "n0002",
+      "n0003",
+      "n0004",
+      "n0005",
+      "n0006",
+      "n0007",
+      "n0008",
+      "n0013",
+      "n0020",
+      "n0021",
+      "n0022",
+      "n0037"
+    ],
+    "macOS": [
+      "n0001"
+    ],
+    "系统": [
+      "n0001"
+    ],
+    "操作": [
+      "n0001"
+    ],
+    "终端": [
+      "n0001"
+    ],
+    "zsh": [
+      "n0001"
+    ],
+    "Homebrew": [
+      "n0001",
+      "n0007"
+    ],
+    "Python": [
+      "n0002"
+    ],
+    "3.9": [
+      "n0002"
+    ],
+    "pip": [
+      "n0002"
+    ],
+    "核心": [
+      "n0002",
+      "n0017"
+    ],
+    "开发": [
+      "n0002"
+    ],
+    "语言": [
+      "n0002"
+    ],
+    "Node": [
+      "n0003"
+    ],
+    "js": [
+      "n0003"
+    ],
+    "v25.8": [
+      "n0003"
+    ],
+    "npm": [
+      "n0003"
+    ],
+    "Git": [
+      "n0004"
+    ],
+    "SSH": [
+      "n0004"
+    ],
+    "远程": [
+      "n0004"
+    ],
+    "连接": [
+      "n0004",
+      "n0006"
+    ],
+    "tmux": [
+      "n0005"
+    ],
+    "vim": [
+      "n0005"
+    ],
+    "jq": [
+      "n0005"
+    ],
+    "CLI": [
+      "n0005",
+      "n0046"
+    ],
+    "工具": [
+      "n0005",
+      "n0016",
+      "n0029",
+      "n0037"
+    ],
+    "playwright": [
+      "n0006",
+      "n0020",
+      "n0024"
+    ],
+    "浏览器": [
+      "n0006",
+      "n0013",
+      "n0026"
+    ],
+    "自动化": [
+      "n0006",
+      "n0020",
+      "n0022",
+      "n0024",
+      "n0026",
+      "n0028"
+    ],
+    "CDP": [
+      "n0006",
+      "n0020"
+    ],
+    "Chrome": [
+      "n0006",
+      "n0013",
+      "n0022"
+    ],
+    "ffmpeg": [
+      "n0007",
+      "n0021"
+    ],
+    "音视频": [
+      "n0007"
+    ],
+    "处理": [
+      "n0007"
+    ],
+    "drawtext": [
+      "n0007"
+    ],
+    "edge": [
+      "n0008",
+      "n0021"
+    ],
+    "tts": [
+      "n0008",
+      "n0021"
+    ],
+    "文字": [
+      "n0008",
+      "n0031"
+    ],
+    "语音": [
+      "n0008",
+      "n0012"
+    ],
+    "安装": [
+      "n0009",
+      "n0010",
+      "n0011",
+      "n0012",
+      "n0013",
+      "n0016",
+      "n0032",
+      "n0038",
+      "n0039"
+    ],
+    "PyTorch": [
+      "n0009"
+    ],
+    "2.2": [
+      "n0009"
+    ],
+    "本机": [
+      "n0009",
+      "n0023"
+    ],
+    "CUDA": [
+      "n0009",
+      "n0023"
+    ],
+    "openai": [
+      "n0010"
+    ],
+    "SDK": [
+      "n0010"
+    ],
+    "tiktoken": [
+      "n0010"
+    ],
+    "jieba": [
+      "n0010"
+    ],
+    "pillow": [
+      "n0010"
+    ],
+    "lancedb": [
+      "n0011"
+    ],
+    "向量": [
+      "n0011"
+    ],
+    "SQLAlchemy": [
+      "n0011"
+    ],
+    "ORM": [
+      "n0011"
+    ],
+    "whisper": [
+      "n0012"
+    ],
+    "识别": [
+      "n0012"
+    ],
+    "pyjianyingdraft": [
+      "n0012"
+    ],
+    "剪映": [
+      "n0012",
+      "n0028",
+      "n0032"
+    ],
+    "草稿": [
+      "n0012"
+    ],
+    "解析": [
+      "n0012"
+    ],
+    "主力": [
+      "n0013"
+    ],
+    "Docker": [
+      "n0013"
+    ],
+    "Ollama": [
+      "n0013"
+    ],
+    "待用": [
+      "n0013"
+    ],
+    "配置": [
+      "n0014"
+    ],
+    "OpenAI": [
+      "n0014"
+    ],
+    "API": [
+      "n0014"
+    ],
+    "glm": [
+      "n0014"
+    ],
+    "turbo": [
+      "n0014"
+    ],
+    "模型": [
+      "n0014",
+      "n0036"
+    ],
+    "部署": [
+      "n0015",
+      "n0023",
+      "n0023",
+      "n0030"
+    ],
+    "Trae": [
+      "n0015"
+    ],
+    "IDE": [
+      "n0015"
+    ],
+    "OpenClaw": [
+      "n0015",
+      "n0030"
+    ],
+    "网关": [
+      "n0015"
+    ],
+    "launchd": [
+      "n0015"
+    ],
+    "服务": [
+      "n0015"
+    ],
+    "豆包": [
+      "n0016",
+      "n0025"
+    ],
+    "通义": [
+      "n0016"
+    ],
+    "千问": [
+      "n0016"
+    ],
+    "AI": [
+      "n0016",
+      "n0019",
+      "n0020",
+      "n0024",
+      "n0028",
+      "n0029",
+      "n0031"
+    ],
+    "Canva": [
+      "n0016"
+    ],
+    "设计": [
+      "n0016"
+    ],
+    "Skills": [
+      "n0017",
+      "n0018",
+      "n0018",
+      "n0019",
+      "n0030"
+    ],
+    "tavily": [
+      "n0017"
+    ],
+    "Baidu": [
+      "n0017"
+    ],
+    "Search": [
+      "n0017"
+    ],
+    "Mem0": [
+      "n0017"
+    ],
+    "Desktop": [
+      "n0017"
+    ],
+    "Control": [
+      "n0017"
+    ],
+    "weather": [
+      "n0017"
+    ],
+    "辅助": [
+      "n0018",
+      "n0032"
+    ],
+    "Cursor": [
+      "n0018"
+    ],
+    "Find": [
+      "n0018"
+    ],
+    "Vetter": [
+      "n0018"
+    ],
+    "Ontology": [
+      "n0018"
+    ],
+    "iMessage": [
+      "n0018"
+    ],
+    "创作": [
+      "n0019"
+    ],
+    "PPT": [
+      "n0019"
+    ],
+    "TreeMind": [
+      "n0019",
+      "n0039"
+    ],
+    "evomap": [
+      "n0019"
+    ],
+    "Copy": [
+      "n0019",
+      "n0039"
+    ],
+    "ai": [
+      "n0019",
+      "n0039"
+    ],
+    "Self": [
+      "n0019"
+    ],
+    "Improve": [
+      "n0019"
+    ],
+    "ProseMirror": [
+      "n0020",
+      "n0024"
+    ],
+    "canvas": [
+      "n0020",
+      "n0024"
+    ],
+    "视频": [
+      "n0021",
+      "n0025",
+      "n0031",
+      "n0031"
+    ],
+    "配音": [
+      "n0021",
+      "n0025"
+    ],
+    "合成": [
+      "n0021",
+      "n0025"
+    ],
+    "管线": [
+      "n0021",
+      "n0025",
+      "n0028"
+    ],
+    "抖音": [
+      "n0022",
+      "n0026",
+      "n0033",
+      "n0042"
+    ],
+    "发布": [
+      "n0022",
+      "n0025"
+    ],
+    "targetId": [
+      "n0022"
+    ],
+    "保存": [
+      "n0022"
+    ],
+    "ComfyUI": [
+      "n0023"
+    ],
+    "方案": [
+      "n0023"
+    ],
+    "确定": [
+      "n0023"
+    ],
+    "精通": [
+      "n0024"
+    ],
+    "下载": [
+      "n0024"
+    ],
+    "完整": [
+      "n0025"
+    ],
+    "文案": [
+      "n0025"
+    ],
+    "即梦生": [
+      "n0025"
+    ],
+    "Seedance": [
+      "n0025",
+      "n0031"
+    ],
+    "教训": [
+      "n0026",
+      "n0027",
+      "n0028"
+    ],
+    "token": [
+      "n0026"
+    ],
+    "截图": [
+      "n0026"
+    ],
+    "疯狂": [
+      "n0026"
+    ],
+    "消耗": [
+      "n0026"
+    ],
+    "程序化": [
+      "n0027"
+    ],
+    "素材": [
+      "n0027"
+    ],
+    "没人": [
+      "n0027"
+    ],
+    "内容": [
+      "n0027",
+      "n0034"
+    ],
+    "质量": [
+      "n0027"
+    ],
+    "包装": [
+      "n0027"
+    ],
+    "UI": [
+      "n0028"
+    ],
+    "可靠": [
+      "n0028"
+    ],
+    "代码": [
+      "n0028"
+    ],
+    "原则": [
+      "n0029"
+    ],
+    "人当": [
+      "n0029"
+    ],
+    "导演": [
+      "n0029"
+    ],
+    "负责": [
+      "n0029"
+    ],
+    "创意": [
+      "n0029"
+    ],
+    "审美": [
+      "n0029"
+    ],
+    "赚钱": [
+      "n0030"
+    ],
+    "路径": [
+      "n0030"
+    ],
+    "教学": [
+      "n0030"
+    ],
+    "量化": [
+      "n0030"
+    ],
+    "会员": [
+      "n0031"
+    ],
+    "图生": [
+      "n0031"
+    ],
+    "美图秀": [
+      "n0032"
+    ],
+    "汽水": [
+      "n0032"
+    ],
+    "音乐": [
+      "n0032"
+    ],
+    "阿拉": [
+      "n0033"
+    ],
+    "口木": [
+      "n0033"
+    ],
+    "966403340": [
+      "n0033"
+    ],
+    "2700": [
+      "n0033"
+    ],
+    "方向": [
+      "n0034"
+    ],
+    "情绪": [
+      "n0034"
+    ],
+    "价值": [
+      "n0034"
+    ],
+    "风景": [
+      "n0034"
+    ],
+    "卡通": [
+      "n0034"
+    ],
+    "动物": [
+      "n0034"
+    ],
+    "IP": [
+      "n0034"
+    ],
+    "长期": [
+      "n0034"
+    ],
+    "学习": [
+      "n0035",
+      "n0036"
+    ],
+    "BM25": [
+      "n0035"
+    ],
+    "Task": [
+      "n0035"
+    ],
+    "Skill": [
+      "n0035"
+    ],
+    "Dependency": [
+      "n0035"
+    ],
+    "Graph": [
+      "n0035"
+    ],
+    "人类": [
+      "n0036"
+    ],
+    "大脑": [
+      "n0036"
+    ],
+    "记忆": [
+      "n0036"
+    ],
+    "科技": [
+      "n0036"
+    ],
+    "架构设计": [
+      "n0036"
+    ],
+    "Office": [
+      "n0037"
+    ],
+    "WPS": [
+      "n0037"
+    ],
+    "PDF": [
+      "n0037"
+    ],
+    "解压": [
+      "n0037"
+    ],
+    "微信": [
+      "n0038"
+    ],
+    "企微": [
+      "n0038"
+    ],
+    "QQ": [
+      "n0038"
+    ],
+    "WhatsApp": [
+      "n0038"
+    ],
+    "腾讯": [
+      "n0038"
+    ],
+    "会议": [
+      "n0038"
+    ],
+    "Notion": [
+      "n0039"
+    ],
+    "百度网": [
+      "n0039"
+    ],
+    "先生": [
+      "n0040"
+    ],
+    "47": [
+      "n0040"
+    ],
+    "扬州": [
+      "n0040"
+    ],
+    "销售": [
+      "n0040"
+    ],
+    "管理": [
+      "n0040"
+    ],
+    "高毛品": [
+      "n0040"
+    ],
+    "订单": [
+      "n0040"
+    ],
+    "促销": [
+      "n0040"
+    ],
+    "已掌握ripgrep": [
+      "n0041"
+    ],
+    "rg": [
+      "n0041"
+    ],
+    "超快文本搜索": [
+      "n0041"
+    ],
+    "已安装yt": [
+      "n0042"
+    ],
+    "dlp视频下载工具": [
+      "n0042"
+    ],
+    "YouTube": [
+      "n0042"
+    ],
+    "B站": [
+      "n0042"
+    ],
+    "已安装ImageMagick图片处理CLI": [
+      "n0043"
+    ],
+    "缩放": [
+      "n0043"
+    ],
+    "裁剪": [
+      "n0043"
+    ],
+    "水印": [
+      "n0043"
+    ],
+    "格式转换": [
+      "n0043"
+    ],
+    "已安装pandoc文档格式互转": [
+      "n0044"
+    ],
+    "markdown": [
+      "n0044"
+    ],
+    "docx": [
+      "n0044"
+    ],
+    "pdf等": [
+      "n0044"
+    ],
+    "已安装sox音频处理CLI": [
+      "n0045"
+    ],
+    "音量": [
+      "n0045"
+    ],
+    "格式": [
+      "n0045"
+    ],
+    "拼接": [
+      "n0045"
+    ],
+    "淡入淡出": [
+      "n0045"
+    ],
+    "已安装GitHub": [
+      "n0046"
+    ],
+    "gh": [
+      "n0046"
+    ],
+    "命令行操作GitHub仓库": [
+      "n0046"
+    ],
+    "已安装bat": [
+      "n0047"
+    ],
+    "增强cat语法高亮": [
+      "n0047"
+    ],
+    "eza": [
+      "n0047"
+    ],
+    "增强ls": [
+      "n0047"
+    ],
+    "fzf": [
+      "n0047"
+    ],
+    "模糊搜索": [
+      "n0047"
+    ],
+    "已安装zoxide": [
+      "n0048"
+    ],
+    "cd增强": [
+      "n0048"
+    ],
+    "tldr": [
+      "n0048"
+    ],
+    "简化man手册": [
+      "n0048"
+    ],
+    "已安装OBS": [
+      "n0049"
+    ],
+    "Studio屏幕录制和直播软件": [
+      "n0049"
+    ],
+    "教程视频制作": [
+      "n0049"
+    ]
+  },
+  "stats": {
+    "total_nodes": 51,
+    "total_edges": 25,
+    "total_dedup": 0,
+    "last_reindex": "2026-03-27 12:45:14"
+  }
+}

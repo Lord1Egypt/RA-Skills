@@ -1,0 +1,43 @@
+# Temp files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Cache
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# Build artifacts
+build/
+dist/
+*.egg-info
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.venv/
+venv/
+
+# Whisper models
+models/*.bin
+whisper.cpp/models/*.bin
+
+# Pocket-TTS
+pockettts/venv/
+
+# Temporary audio files
+*.wav.tmp
+*.ogg.tmp
+*.mp3.tmp
+
+# OS-specific
+Thumbs.db
+.DS_Store

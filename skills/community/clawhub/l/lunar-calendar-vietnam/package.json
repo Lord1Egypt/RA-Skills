@@ -1,0 +1,14 @@
+{
+  "name": "lunar-calendar-vietnam",
+  "version": "1.0.0",
+  "description": "Kỹ năng tra cứu Lịch Âm Việt Nam cho OpenClaw",
+  "main": "scripts/amlich_calculator.js",
+  "scripts": {
+    "test": "node scripts/amlich_calculator.js --solar $(date +%Y-%m-%d)"
+  },
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.8"
+  }
+}

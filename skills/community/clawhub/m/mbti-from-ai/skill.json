@@ -1,0 +1,10 @@
+{
+  "name": "mbti-from-ai",
+  "version": "0.2.0",
+  "description": "分析用户与 AI 的聊天历史，根据沟通方式和思维模式推断 MBTI 人格类型，生成结构化 JSON 并在网页上展示可视化画像。",
+  "author": "mingxi",
+  "triggers": ["/mbti", "/mbti-from-ai"],
+  "allowed_tools": ["Bash", "Read", "Glob", "Grep", "Write"],
+  "entry": "SKILL.md"
+}
+

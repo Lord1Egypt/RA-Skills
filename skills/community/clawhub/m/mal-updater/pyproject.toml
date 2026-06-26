@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mal-updater"
+version = "0.1.4"
+description = "Conservative multi-provider anime -> MyAnimeList sync worker and recommendation engine"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "MAL-Updater contributors" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = []
+crunchyroll = [
+  "curl_cffi>=0.14.0"
+]
+
+[project.scripts]
+mal-updater = "mal_updater.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

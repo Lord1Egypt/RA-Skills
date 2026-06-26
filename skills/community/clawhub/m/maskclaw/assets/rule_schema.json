@@ -1,0 +1,124 @@
+{
+  "name": "rule_schema",
+  "description": "隐私规则 Schema 模板",
+  "version": "1.0.0",
+  "type": "privacy_rule",
+  "fields": {
+    "rule_id": {
+      "type": "string",
+      "required": true,
+      "description": "规则唯一标识符，格式: {user_id}_{timestamp}_{seq}",
+      "example": "user_001_20260325_001"
+    },
+    "user_id": {
+      "type": "string",
+      "required": true,
+      "description": "用户唯一标识"
+    },
+    "app_context": {
+      "type": "string",
+      "required": true,
+      "description": "应用上下文，如 wechat, dingtalk, taobao",
+      "examples": ["wechat", "dingtalk", "alipay", "taobao"]
+    },
+    "sensitive_type": {
+      "type": "string",
+      "required": true,
+      "enum": [
+        "name",
+        "phone",
+        "id_card",
+        "bank_card",
+        "address",
+        "location",
+        "email",
+        "medical_record",
+        "password",
+        "payment"
+      ],
+      "description": "敏感数据类型"
+    },
+    "risk_level": {
+      "type": "string",
+      "required": true,
+      "enum": ["H", "S", "N"],
+      "description": "风险等级: H(高风险), S(中风险), N(低风险)"
+    },
+    "strategy": {
+      "type": "string",
+      "required": true,
+      "enum": ["allow", "block", "mask", "ask", "defer", "interrupt"],
+      "description": "处理策略"
+    },
+    "scene": {
+      "type": "string",
+      "required": false,
+      "description": "场景描述"
+    },
+    "replacement": {
+      "type": "string",
+      "required": false,
+      "description": "替代值（用于 replace 策略）"
+    },
+    "trigger_count": {
+      "type": "integer",
+      "required": false,
+      "default": 1,
+      "description": "触发次数"
+    },
+    "confidence": {
+      "type": "number",
+      "required": false,
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "default": 0.5,
+      "description": "置信度"
+    },
+    "source": {
+      "type": "string",
+      "required": false,
+      "enum": ["builtin", "evolution", "rule", "user"],
+      "default": "evolution",
+      "description": "规则来源"
+    },
+    "created_ts": {
+      "type": "integer",
+      "required": true,
+      "description": "创建时间戳"
+    },
+    "updated_ts": {
+      "type": "integer",
+      "required": false,
+      "description": "更新时间戳"
+    },
+    "expires_ts": {
+      "type": "integer",
+      "required": false,
+      "description": "过期时间戳"
+    },
+    "status": {
+      "type": "string",
+      "required": false,
+      "enum": ["active", "disabled", "pending"],
+      "default": "active",
+      "description": "规则状态"
+    }
+  },
+  "example": {
+    "rule_id": "user_001_20260325_001",
+    "user_id": "user_001",
+    "app_context": "dingtalk",
+    "sensitive_type": "medical_record",
+    "risk_level": "H",
+    "strategy": "block",
+    "scene": "发送给同事",
+    "replacement": null,
+    "trigger_count": 3,
+    "confidence": 0.82,
+    "source": "evolution",
+    "created_ts": 1700000000,
+    "updated_ts": 1700000100,
+    "expires_ts": 1700604800,
+    "status": "active"
+  }
+}

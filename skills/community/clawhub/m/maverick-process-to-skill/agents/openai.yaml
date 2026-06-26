@@ -1,0 +1,4 @@
+interface:
+  display_name: "Process To Skill"
+  short_description: "Capture and save explained processes as reusable skills"
+  default_prompt: "Use $maverick-process-to-skill to automate a user-described process, then offer to save it as a reusable skill for future one-command use."

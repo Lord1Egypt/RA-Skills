@@ -1,0 +1,3 @@
+# MDClaw OpenClaw 技能依赖
+
+requests>=2.31.0

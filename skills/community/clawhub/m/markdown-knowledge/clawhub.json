@@ -1,0 +1,170 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openclaw/clawhub/main/schemas/skill.json",
+  "name": "markdown-knowledge",
+  "version": "1.1.2",
+  "display_name": {
+    "zh_CN": "Markdown 知识库",
+    "en_US": "Markdown Knowledge Base"
+  },
+  "description": {
+    "zh_CN": "将本地 Markdown 知识库与 OpenClaw 集成，支持语义检索和上下文注入",
+    "en_US": "Integrate your local Markdown knowledge base with OpenClaw for semantic search and context injection"
+  },
+  "author": {
+    "name": "aaronjager92",
+    "email": "aaronjager92@example.com",
+    "github": "https://github.com/your-repo"
+  },
+  "tags": [
+    "markdown-knowledge",
+    "markdown",
+    "retrieval",
+    "productivity"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/your-repo/markdown-knowledge",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/markdown-knowledge.git"
+  },
+  "issues": "https://github.com/your-repo/markdown-knowledge/issues",
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "python": ">=3.8"
+  },
+  "requirements": {
+    "system": [],
+    "python": [],
+    "npm": []
+  },
+  "install": {
+    "method": "clawhub",
+    "command": "clawhub install aaronjager92/markdown-knowledge",
+    "requires": ["python>=3.8"],
+    "steps": [
+      {
+        "name": "install_skill",
+        "type": "clawhub",
+        "command": "clawhub install aaronjager92/markdown-knowledge"
+      },
+      {
+        "name": "create_config",
+        "type": "shell",
+        "command": "python3 ~/.openclaw/skills/markdown-knowledge/scripts/knowledge_base.py init",
+        "description": {
+          "zh_CN": "初始化知识库配置并构建初始索引",
+          "en_US": "Initialize knowledge base config and build initial index"
+        }
+      }
+    ],
+    "post_install_message": {
+      "zh_CN": "✅ 安装完成！请将 Markdown 文档放入 ~/Knowledge 目录，然后运行 `python3 ~/.openclaw/skills/markdown-knowledge/scripts/knowledge_base.py build` 构建索引。",
+      "en_US": "✅ Installation complete! Place your Markdown documents in ~/Knowledge and run `python3 ~/.openclaw/skills/markdown-knowledge/scripts/knowledge_base.py build` to build the index."
+    }
+  },
+  "configuration": {
+    "knowledge_path": {
+      "type": "path",
+      "required": true,
+      "default": "~/Knowledge",
+      "description": {
+        "zh_CN": "Markdown 文档所在目录路径",
+        "en_US": "Directory path containing Markdown documents"
+      }
+    },
+    "index_path": {
+      "type": "path",
+      "required": false,
+      "default": "~/.openclaw/skills/markdown-knowledge/index.json",
+      "description": {
+        "zh_CN": "索引文件存储路径",
+        "en_US": "Path for storing the search index"
+      }
+    },
+    "search_top_k": {
+      "type": "number",
+      "required": false,
+      "default": 3,
+      "min": 1,
+      "max": 10,
+      "description": {
+        "zh_CN": "检索返回的最大结果数",
+        "en_US": "Maximum number of search results to return"
+      }
+    },
+    "auto_refresh": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": {
+        "zh_CN": "是否自动定时刷新索引",
+        "en_US": "Whether to automatically refresh the index periodically"
+      }
+    }
+  },
+  "permissions": {
+    "filesystem": {
+      "read": [
+        "${config.knowledge_path}/**/*.md"
+      ],
+      "write": [
+        "${config.index_path}"
+      ]
+    },
+    "network": {
+      "required": false
+    }
+  },
+  "triggers": {
+    "automatic": false,
+    "patterns": []
+  },
+  "commands": [
+    {
+      "name": "build",
+      "description": "构建或更新知识库索引",
+      "args": []
+    },
+    {
+      "name": "search",
+      "description": "搜索知识库内容",
+      "args": [
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "搜索查询词"
+        }
+      ]
+    },
+    {
+      "name": "stats",
+      "description": "查看知识库统计信息",
+      "args": []
+    }
+  ],
+  "screenshots": [],
+  "changelog": {
+    "1.1.2": {
+      "date": "2026-04-04",
+      "changes": {
+        "zh_CN": "【BUG修复】移除 global_memory 模块（未打包导致 import 报错）\n【路径修复】SKILL_DIR 改为动态检测，解决 clawhub 安装到 workspace/skills 后路径失效问题\n【索引优化】build 时改用 ripgrep 扫描文件列表，加速索引构建\n【自动安装】init 命令新增 ripgrep 自动检测和安装（跨平台支持 Linux/macOS/Windows）",
+        "en_US": "【BUG Fix】Removed global_memory module (missing file caused import error)\n【Path Fix】SKILL_DIR now auto-detects actual install path, fixing workspace/skills installation issue\n【Index Optimize】build uses ripgrep for file scanning, faster indexing\n【Auto Install】init now auto-detects and installs ripgrep (cross-platform: Linux/macOS/Windows)"
+      }
+    },
+    "1.1.0": {
+      "date": "2026-03-26",
+      "changes": {
+        "zh_CN": "【目录结构】按标准 skill 结构重组，新建 scripts/(knowledge_base.py)、references/(PROJECT.md、README.md)、assets/ 目录\n【核心理念】新增 1.2.1/1.5 章节，阐述"在 AI 时代留下点什么"的设计初衷\n【使用场景】新增 4.4/4.5 章节：气象专家模式、专业投资配置、构建第二大脑、日常知识积累四大场景\n【知识整理】新增知识存储规范（前言matter模板、命名规则、目录结构建议）\n【主动刷新】提示用户新增内容后需主动说"刷新知识库索引"确保索引更新\n【路径修复】修复 knowledge_base.py 的模块路径引用问题\n【代码清理】清理 __pycache__，统一配置加载到 src/config.py",
+        "en_US": "【Directory Structure】Reorganized to standard skill structure: scripts/(knowledge_base.py), references/(PROJECT.md, README.md), assets/\n【Core Philosophy】Added 1.2.1/1.5 explaining the design vision: "leaving something behind in the AI era"\n【Usage Scenarios】Added 4.4/4.5: Weather Expert Mode, Professional Investment, Building Second Brain, Daily Knowledge Accumulation\n【Knowledge Organization】Added best practices for storing knowledge (frontmatter template, naming rules, directory structure)\n【Active Refresh】Reminder for users to explicitly say "refresh knowledge index" after adding new content\n【Path Fix】Fixed module import paths in knowledge_base.py\n【Code Cleanup】Removed __pycache__, unified config loading into src/config.py"
+      }
+    },
+    "1.0.0": {
+      "date": "2024-03-25",
+      "changes": {
+        "zh_CN": "初始版本发布",
+        "en_US": "Initial release"
+      }
+    }
+  }
+}

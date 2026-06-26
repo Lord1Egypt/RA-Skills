@@ -1,0 +1,4 @@
+markdown>=3.5.0
+pdfkit>=1.0.0
+imgkit>=1.2.3
+wkhtmltopdf>=0.2.0

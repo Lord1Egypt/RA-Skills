@@ -1,35 +1,34 @@
 ---
-name: "Message in a Bottle"
-description: "Randomly retrieve an inspirational or thoughtful message in a bottle, including life insights, stories, wishes, or quotes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/message-in-a-bottle"
-sourceUrl: "https://clawhub.ai/skills/message-in-a-bottle"
+name: message-in-a-bottle
+description: Randomly retrieve a message in a bottle (drift bottle) containing life insights, small stories, wishes, or inspirational quotes. Use when the user asks for a drift bottle, message in a bottle, random message, or needs inspiration/wisdom. Trigger words: 漂流瓶, message in a bottle, drift bottle, 随机消息, 瓶中信.
 ---
 
 # Message in a Bottle
 
-> Randomly retrieve an inspirational or thoughtful message in a bottle, including life insights, stories, wishes, or quotes.
+Get a random message in a bottle containing life insights, stories, wishes, or inspirational thoughts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/message-in-a-bottle`
-- **Source URL:** [https://clawhub.ai/skills/message-in-a-bottle](https://clawhub.ai/skills/message-in-a-bottle)
+## Usage
 
-## Overview
+When triggered, run the script to randomly select and return a drift bottle message:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/message-in-a-bottle
+python3 scripts/get_bottle.py
 ```
+
+The script will randomly return one of the pre-written drift bottle messages.
+
+## Message Types
+
+The drift bottles may contain:
+
+- Life insights and wisdom
+- Short stories or anecdotes
+- Wishes and blessings
+- Inspirational quotes
+- Thoughtful reflections
+
+## Extending Messages
+
+To add new drift bottle messages, edit `scripts/get_bottle.py` and add new entries to the `messages` list.
+
+Each message should be concise, meaningful, and capable of standing alone.

@@ -1,0 +1,54 @@
+{
+  "name": "lottery-predictor-v3.6",
+  "version": "3.6.0",
+  "description": "基于 V3.6 智能评分系统的双色球预测工具，8 项维度评分 + 金手指波动，≥4 球命中率 46.1%",
+  "author": "小四（CFO）",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skills/tree/main/lottery-predictor-v3.6",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "lottery-predictor-v3.6"
+  },
+  "keywords": [
+    "彩票",
+    "预测",
+    "双色球",
+    "智能评分",
+    "V3.6",
+    "数据分析",
+    "金手指"
+  ],
+  "pricing": {
+    "type": "freemium",
+    "freeCalls": 3,
+    "paidPrice": 29,
+    "paidCurrency": "CNY",
+    "paidPeriod": "month",
+    "paidFeatures": [
+      "无限次预测",
+      "历史预测记录",
+      "准确率验证",
+      "多期对比分析",
+      "优先支持"
+    ]
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "system": [
+      "sqlite3"
+    ],
+    "env": [
+      "LOTTERY_DB_PATH"
+    ]
+  },
+  "scripts": {
+    "predict": "scripts/v2.15_prediction.py",
+    "verify": "scripts/verify.py"
+  },
+  "permissions": {
+    "filesystem": "read",
+    "network": "none",
+    "execute": ["python3", "sqlite3"]
+  }
+}

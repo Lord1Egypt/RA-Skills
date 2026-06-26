@@ -1,0 +1,12 @@
+- Work linearly and deterministically.
+- Run `marktplaats-copy-qa` before touching Marktplaats; stop if it fails.
+- Keep descriptions around 3200-3500 characters, with a hard stop below 2800.
+- Use natural SEO in prose; never publish `Zoektermen:` or keyword-dump footers.
+- Include one subtle product-relevant typo/search variant in context.
+- Prefer one dedicated browser window/tab for a single ad flow.
+- Avoid extra screens, helper windows, and parallel UI actions.
+- Rotate photos only when preview/orientation shows it is needed.
+- Use ASCII-safe text if live rendering shows mojibake.
+- Verify live seller-view as source of truth.
+- Keep the flow understandable for simpler models like GPT-4.5 simple.
+- One step, one verification, then next step.

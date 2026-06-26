@@ -1,0 +1,32 @@
+{
+  "id": "memory-core-plus",
+  "kind": "memory",
+  "name": "Memory Core Plus",
+  "description": "Enhanced workspace memory with auto-recall and auto-capture",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "autoRecall": {
+        "type": "boolean",
+        "default": true,
+        "description": "Automatically inject relevant memories into context before each agent turn"
+      },
+      "autoRecallMaxResults": {
+        "type": "number",
+        "default": 5,
+        "description": "Maximum number of memories to inject per turn"
+      },
+      "autoCapture": {
+        "type": "boolean",
+        "default": true,
+        "description": "Automatically capture important information from conversations to memory"
+      },
+      "autoCaptureMaxMessages": {
+        "type": "number",
+        "default": 10,
+        "description": "Maximum number of recent messages to analyze for capture"
+      }
+    }
+  }
+}

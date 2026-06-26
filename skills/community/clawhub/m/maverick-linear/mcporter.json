@@ -1,0 +1,10 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-linear": {
+      "baseUrl": "https://mcp.linear.app/mcp",
+      "transport": "http",
+      "auth": "oauth"
+    }
+  }
+}

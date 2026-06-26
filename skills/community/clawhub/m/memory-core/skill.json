@@ -1,0 +1,98 @@
+{
+  "name": "memory-core",
+  "version": "0.1.3",
+  "description": "OpenClaw Agent 长期记忆核心 (基于 LanceDB)。提供基于意图(Intent)与场景(Scene)的防污染记忆存储与检索能力。",
+  "author": "OpenClaw Workspace",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "long-term-memory",
+    "lancedb",
+    "vector-search",
+    "context"
+  ],
+  "trigger": {
+    "patterns": [
+      "记住",
+      "回忆",
+      "忘记",
+      "memory",
+      "remember",
+      "forget",
+      "context",
+      "上下文"
+    ]
+  },
+  "tools": ["exec"],
+  "entry": "scripts/main.py",
+  "config": {
+    "schema": {
+      "embedding_provider": {
+        "type": "string",
+        "description": "向量化提供商：siliconflow/openai/ollama/local_mock",
+        "default": "siliconflow"
+      },
+      "embedding_model": {
+        "type": "string",
+        "description": "向量化模型名（如 BAAI/bge-m3 或 Ollama 模型名）",
+        "default": "BAAI/bge-m3"
+      },
+      "embedding_api_key": {
+        "type": "string",
+        "description": "云端向量化 API Key（可留空，siliconflow 会尝试读取 openclaw.json）",
+        "default": "",
+        "secret": true
+      },
+      "embedding_base_url": {
+        "type": "string",
+        "description": "云端向量化 Base URL（OpenAI 兼容 /v1）或 Ollama 地址",
+        "default": ""
+      },
+      "max_results": {
+        "type": "number",
+        "description": "单次检索返回记忆条数上限",
+        "default": 5
+      },
+      "auto_budget": {
+        "type": "boolean",
+        "description": "是否启用按 agent 模型自动调整检索预算（更适配小上下文模型）",
+        "default": true
+      },
+      "default_tier": {
+        "type": "string",
+        "description": "无法识别模型时使用的预算档位：small/medium/large",
+        "default": "medium"
+      },
+      "max_chars_per_memory": {
+        "type": "number",
+        "description": "单条记忆返回文本的最大字符数（避免长记忆撑爆上下文）",
+        "default": 600
+      },
+      "max_total_chars": {
+        "type": "number",
+        "description": "本次检索返回文本的总字符预算（所有记忆 text 总和上限）",
+        "default": 1800
+      },
+      "min_score": {
+        "type": "number",
+        "description": "相似度阈值（0关闭过滤；建议0.2~0.35）",
+        "default": 0
+      },
+      "embedding_timeout_sec": {
+        "type": "number",
+        "description": "向量化请求超时（秒）",
+        "default": 15
+      },
+      "embedding_max_input_chars": {
+        "type": "number",
+        "description": "向量化输入最大字符数（仅影响embedding，不影响原文存储）",
+        "default": 2000
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.9",
+    "packages": ["lancedb", "numpy", "requests"]
+  },
+  "platforms": ["darwin", "linux"]
+}

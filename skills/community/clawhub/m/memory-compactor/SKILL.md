@@ -1,35 +1,48 @@
 ---
-name: "Memory Compactor"
-description: "记忆压缩整理 - 自动整理和压缩长期记忆"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-compactor"
-sourceUrl: "https://clawhub.ai/skills/memory-compactor"
+name: memory-compactor
+description: 记忆压缩整理 - 自动整理和压缩长期记忆
 ---
 
-# Memory Compactor
+# Memory Compactor - 记忆压缩器
 
-> 记忆压缩整理 - 自动整理和压缩长期记忆
+## 功能
+定期整理记忆文件，压缩冗余内容，清理过期信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-compactor`
-- **Source URL:** [https://clawhub.ai/skills/memory-compactor](https://clawhub.ai/skills/memory-compactor)
+## 压缩规则
 
-## Overview
+### L1 日记 (memory/YYYY-MM-DD.md)
+- **压缩周期**: 7天后
+- **保留内容**: 关键决策、重要事件、教训总结
+- **压缩方式**: 蒸馏为关键要点
 
+### L2 分类 (memory/categories/*.md)
+- **压缩周期**: 30天后
+- **保留内容**: 模式化知识、偏好设定
+- **清理内容**: 过时的一次性信息
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-compactor
+### L3 记忆 (MEMORY.md)
+- **压缩周期**: 每周
+- **保留内容**: 核心身份、长期目标、关键规则
+- **清理内容**: 已完成的临时任务
+
+## 执行时机
+
+1. **定时触发**: 每周日22:00
+2. **手动触发**: 用户说"整理记忆"
+3. **自动触发**: 记忆文件超过阈值
+
+## 压缩算法
+
 ```
+输入：原始记忆文件
+↓ 重要性评分
+↓ 关联动作检查（能关联则保留）
+↓ 压缩摘要
+↓ 去重合并
+输出：精简后的记忆
+```
+
+## 使用方式
+
+- 定时任务自动执行
+- 或用户说"整理记忆"触发

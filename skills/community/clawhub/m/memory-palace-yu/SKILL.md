@@ -1,35 +1,203 @@
----
-name: "记忆宫-彧哥版"
-description: "激活并加载你的记忆数据，使 AI 以你的身份和方法论成为数字分身，与您个性化对话和继承知识。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-palace-yu"
-sourceUrl: "https://clawhub.ai/skills/memory-palace-yu"
+# 记忆宫 (Memory Palace)
+
+> 通用记忆激活工具 - 让 AI 成为你的数字分身
+
 ---
 
-# 记忆宫-彧哥版
+## 是什么
 
-> 激活并加载你的记忆数据，使 AI 以你的身份和方法论成为数字分身，与您个性化对话和继承知识。
+**记忆宫**是一个 OpenClaw Skill，它能：
+- 激活沉睡的记忆
+- 让 AI 记住你是谁
+- 让 AI 继承你的知识和方法论
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-palace-yu`
-- **Source URL:** [https://clawhub.ai/skills/memory-palace-yu](https://clawhub.ai/skills/memory-palace-yu)
+**本质**：一个"唤醒"工具，让 AI 知道去哪读取你的记忆数据。
 
-## Overview
+---
 
+## 适用人群
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 想让 AI 成为自己"数字分身"的人
+- 有大量笔记/知识想传承给 AI 的人
+- 想让 AI 记住自己风格和方法论的人
+
+---
+
+## 安装
+
+### 方式1：从 ClawHub 安装（推荐）
+
 ```bash
-hermes skills install clawhub/memory-palace-yu
+clawhub install memory-palace
 ```
+
+### 方式2：手动安装
+
+```bash
+# 1. 克隆或下载本仓库
+# 2. 复制到你的 skills 目录
+cp -r memory-palace ~/.openclaw/workspace/skills/
+```
+
+---
+
+## 配置
+
+### 1. 准备记忆数据
+
+在任意位置创建 `memory/` 文件夹，放入你的记忆文件：
+
+```
+memory/
+├── 00-概念定义.md     # 你的核心概念（如 SOUL.md）
+├── insights/         # 深度洞察
+├── daily/            # 每日记录
+└── ...
+```
+
+**推荐结构**：
+
+| 文件/文件夹 | 作用 |
+|-------------|------|
+| `00-概念定义.md` | 定义 AI 的身份、性格、方法论 |
+| `insights/` | 你的核心洞察和知识 |
+| `daily/` | 日常记录 |
+| `2026-03-22.md` | 按日期的记录 |
+
+### 2. 配置路径（可选）
+
+如果你的 `memory/` 不在默认位置，可以创建配置文件：
+
+```bash
+# 在 workspace 根目录创建
+echo "/你的/自定义/路径/memory" > .memory-path
+```
+
+---
+
+## 使用
+
+### 唤醒方式
+
+安装后，只要说：
+
+> "记忆宫"
+
+AI 就会自动：
+1. 读取你的 memory/ 文件夹
+2. 加载核心概念
+3. 知道你过去的洞察
+4. 继承你的方法论
+
+### 之后
+
+AI 就会以"你的数字分身"的身份与你对话：
+- 记得你是谁
+- 用你的方式思考
+- 用你的方法论解决问题
+
+---
+
+## 记忆数据示例
+
+### 核心概念文件示例
+
+```markdown
+# 我的身份
+
+- 我是：[你的名字]
+- 我的能力：[擅长什么]
+- 我的方法论：[核心方法]
+
+## 性格
+
+- 风格1
+- 风格2
+
+## 核心原则
+
+- 原则1
+- 原则2
+```
+
+### 日常记录示例
+
+```markdown
+# 2026-03-22
+
+## 重要决定
+
+- 决定A
+- 决定B
+
+## 洞察
+
+- 洞察A
+- 洞察B
+```
+
+---
+
+## 更新记忆
+
+### 添加新记忆
+
+直接在 `memory/` 中添加文件即可：
+- 新建 `2026-03-23.md` 记录今天的事
+- 更新 `insights/` 中的洞察
+
+### 触发更新
+
+下次说"记忆宫"时，AI 会读取最新内容。
+
+---
+
+## 进阶
+
+### 让 AI 自动记住对话
+
+可以在每次对话结束时，让 AI 自动把重要内容写入 `memory/`。
+
+### 多人使用
+
+多人可以：
+- 各自创建不同的 `memory/`
+- 安装同一个 Skill
+- 配置不同的路径
+
+---
+
+## 常见问题
+
+### Q: memory/ 必须在这个位置吗？
+A: 不一定。你可以在任何位置创建 `memory/`，只要配置 `.memory-path` 指向它。
+
+### Q: 文件格式有要求吗？
+A: 用 `.md` 格式（Markdown），AI 最容易理解。
+
+### Q: 忘记说"记忆宫"怎么办？
+A: 随时可以说，AI 会重新加载。
+
+### Q: 想删除记忆怎么办？
+A: 直接删除或编辑 `memory/` 中的文件。
+
+---
+
+## 技术细节
+
+- **触发关键词**：记忆宫、memory palace
+- **读取路径**：`memory/` 文件夹
+- **文件格式**：Markdown (.md)
+- **依赖**：OpenClaw
+
+---
+
+## 更多信息
+
+- 项目主页：GitHub
+- 问题反馈：Issue
+
+---
+
+*记忆宫 v1.0*
+*让每个人都有属于自己的数字分身*

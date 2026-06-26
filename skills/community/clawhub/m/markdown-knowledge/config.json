@@ -1,0 +1,13 @@
+{
+  "knowledge_path": "/home/raspi/Knowledge",
+  "index_path": "/home/raspi/.openclaw/workspace/skills/markdown-knowledge/index.json",
+  "search_top_k": 3,
+  "auto_refresh": true,
+  "refresh_interval": 3600,
+  "exclude_patterns": [
+    ".markdown",
+    ".trash",
+    "@Recycle",
+    "node_modules"
+  ]
+}

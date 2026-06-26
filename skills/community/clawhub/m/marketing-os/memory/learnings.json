@@ -1,0 +1,45 @@
+{
+    "version": "1.0.0",
+    "description": "Learnings memory — stores validated insights from campaign executions for future strategy refinement",
+    "schema_version": "2024-01",
+    "last_updated": "",
+    "learnings": [
+        {
+            "learning_id": "EXAMPLE-LEARNING-001",
+            "timestamp": "2024-01-15T09:00:00Z",
+            "source_campaign_id": "EXAMPLE-CAMPAIGN-001",
+            "source_mission_id": "EXAMPLE-MISSION-001",
+            "category": "template",
+            "title": "[EXAMPLE] Sample learning — replace with real data",
+            "description": "This is an example entry showing the expected structure",
+            "evidence": "System initialization",
+            "evidence_type": "SYSTEM",
+            "impact": "none",
+            "confidence": "low",
+            "actionable": false,
+            "applied_in": [],
+            "tags": [
+                "example",
+                "template"
+            ]
+        }
+    ],
+    "patterns": {
+        "description": "Recurring patterns identified across multiple learnings",
+        "items": []
+    },
+    "metadata": {
+        "total_learnings": 1,
+        "by_category": {
+            "channel_performance": 0,
+            "audience_behavior": 0,
+            "content_effectiveness": 0,
+            "timing": 0,
+            "budget_optimization": 0,
+            "competitive_response": 0,
+            "other": 0
+        },
+        "high_confidence_count": 0,
+        "actionable_count": 0
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "openai-compatible": {
+    "family": "openai",
+    "base_url": "https://example.com/v1",
+    "api_key": "sk-xxx",
+    "model": "gpt-5.4"
+  },
+  "anthropic-compatible": {
+    "family": "anthropic",
+    "base_url": "https://api.anthropic.com",
+    "api_key": "sk-ant-xxx",
+    "model": "claude-sonnet-4-5"
+  },
+  "gemini-compatible": {
+    "family": "gemini",
+    "base_url": "https://generativelanguage.googleapis.com",
+    "api_key": "AIza...",
+    "model": "gemini-2.5-pro"
+  },
+  "glm-compatible": {
+    "family": "glm",
+    "base_url": "https://example-glm-gateway.com/v1",
+    "api_key": "sk-xxx",
+    "model": "glm-5"
+  }
+}

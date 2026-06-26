@@ -1,35 +1,97 @@
 ---
-name: "永久记忆系统"
-description: "永久记忆自动归档系统。每次对话自动记录，语义搜索，跨会话继承。重启不丢、永不覆盖、0学习成本。用于用户提到记忆、历史、之前说过、记得什么等场景。"
-category: "other"
-source: "ClawHub"
-tags: [longterm, memory, openclaw]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/longterm-memory"
-sourceUrl: "https://clawhub.ai/skills/longterm-memory"
+name: longterm-memory
+description: 永久记忆自动归档系统。每次对话自动记录，语义搜索，跨会话继承。重启不丢、永不覆盖、0学习成本。用于用户提到记忆、历史、之前说过、记得什么等场景。
 ---
 
 # 永久记忆系统
 
-> 永久记忆自动归档系统。每次对话自动记录，语义搜索，跨会话继承。重启不丢、永不覆盖、0学习成本。用于用户提到记忆、历史、之前说过、记得什么等场景。
+自动将对话中的重要信息永久写入 `MEMORY.md`，每次会话结束后自动沉淀。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/longterm-memory`
-- **Source URL:** [https://clawhub.ai/skills/longterm-memory](https://clawhub.ai/skills/longterm-memory)
+## 核心原则
 
-## Overview
+**只追加，不覆盖。记忆永不丢失。**
 
+## 工作原理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/longterm-memory
+```
+每次会话
+├── 对话进行中
+│   ├── 用户提到重要信息 → 即时写入 MEMORY.md
+│   └── 日常记录 → 追加到 memory/YYYY-MM-DD.md
+├── 会话结束
+│   ├── 总结本次关键决策 → 更新 MEMORY.md
+│   └── 记录会话摘要 → memory/YYYY-MM-DD.md
+└── 新会话开始
+    └── 读取 MEMORY.md + 最新日记 → 上下文完整继承
+```
+
+## 何时写入 MEMORY.md
+
+| 触发场景 | 示例 |
+|---------|------|
+| 用户明确说"记住..." | "记住我偏好 Markdown 格式" |
+| 做决策 | "决定用 PostgreSQL，不用 MySQL" |
+| 暴露偏好 | "我不喜欢回复里有多余的客套话" |
+| 项目关键信息 | "这个项目叫 X，用户是 Y" |
+| 联系方式/地址 | 任何真实的私密数据 |
+
+## 何时写入日记
+
+所有对话内容都追加到 `memory/YYYY-MM-DD.md`，即使看起来不重要的闲聊也记录。日记是原始素材，MEMORY.md 是提炼后的精华。
+
+## 格式规范
+
+### MEMORY.md 格式
+```markdown
+## 用户偏好
+- 回复语言：中文
+- 格式偏好：简洁，不要多余客套
+
+## 项目
+- 当前项目：xxx
+- 技术栈：React + Node.js
+
+## 重要决策
+- 2026-05-03：决定用 PostgreSQL 而非 MySQL
+
+## 联系人
+- 小M：外部执行助手
+```
+
+### 日记格式
+```markdown
+# 2026-05-03 日记
+
+## 会话摘要
+- 主题：项目技术选型
+- 关键决策：选用 PostgreSQL
+- 未解决问题：部署方案待定
+
+## 对话记录（精选）
+[用户]：这个项目用什么数据库好？
+[太初]：我建议用 PostgreSQL，原因有三...
+[用户]：好，就用 PostgreSQL。
+```
+
+## 搜索记忆
+
+当用户问"之前说过什么..."、"记得上次..."时：
+1. 搜索 `MEMORY.md` 全文
+2. 搜索 `memory/*.md` 最新日记
+3. 综合给出答案，说明来源
+
+## 安装
+
+本技能无需额外配置，直接启用即可。
+
+## 文件结构
+
+```
+longterm-memory/
+├── SKILL.md           ← 本文件
+├── scripts/
+│   └── archive.py    ← 可选：离线归档脚本
+├── README.md         ← 使用说明
+├── LISTING_ZH.md     ← 中文上架文案
+└── LISTING_EN.md     ← 英文上架文案
 ```

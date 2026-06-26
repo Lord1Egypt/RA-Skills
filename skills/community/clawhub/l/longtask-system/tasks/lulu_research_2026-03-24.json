@@ -1,0 +1,96 @@
+{
+  "task_id": "lulu_research_2026-03-24",
+  "task_type": "daily_research",
+  "description": "路路每日调研任务 - 2026-03-24 (RSS采集+社媒趋势+报告生成)",
+  "status": "completed",
+  "created_at": "2026-03-24T17:22:00+08:00",
+  "started_at": "2026-03-24T17:24:06+08:00",
+  "completed_at": "2026-03-24T17:35:29+08:00",
+  "updated_at": "2026-03-24T17:35:07+08:00",
+  "current_step": 3,
+  "total_steps": 3,
+  "agent_id": "work",
+  "session_name": "main",
+  "timeout_minutes": 10,
+  "max_retry": 1,
+  "global_retry": 0,
+  "steps": [
+    {
+      "id": 1,
+      "name": "EC-001: 24小时RSS数据采集",
+      "status": "done",
+      "agent_id": "work",
+      "session_name": "main",
+      "started_at": "2026-03-24T17:24:06+08:00",
+      "completed_at": "2026-03-24T17:26:07+08:00",
+      "retry_count": 0,
+      "result": "success",
+      "output_path": "~/.openclaw/workspace-tanluzhe/skills/rss_fetcher/data/rss_fetcher.db",
+      "error": "",
+      "params": {
+        "ec_path": "~/.openclaw/workspace-tanluzhe/ExCard/EC-001-fetch-rss-24h.md",
+        "commands": [
+          "cd ~/.openclaw/workspace-tanluzhe/skills/rss_fetcher && python3 scripts/fetch.py --hours 24",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/rss_fetcher && python3 scripts/generate_html.py",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/rss_fetcher && python3 scripts/list.py --hours 24"
+        ],
+        "workspace": "~/.openclaw/workspace-tanluzhe"
+      },
+      "processed_by": "agent_fallback"
+    },
+    {
+      "id": 2,
+      "name": "EC-002: GitHub+社交媒体趋势整合",
+      "status": "done",
+      "agent_id": "work",
+      "session_name": "main",
+      "started_at": "2026-03-24T17:26:29+08:00",
+      "completed_at": "2026-03-24T17:28:55+08:00",
+      "retry_count": 0,
+      "result": "success",
+      "output_path": "~/.openclaw/workspace-tanluzhe/skills/data-integrator/data/master.db",
+      "error": "",
+      "params": {
+        "ec_path": "~/.openclaw/workspace-tanluzhe/ExCard/EC-002-sync-social-trends.md",
+        "commands": [
+          "cd ~/.openclaw/workspace-tanluzhe/skills/github-trending-skill && python3 scripts/github_trending.py && python3 scripts/save_to_db.py",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/zhihu-fetcher && python3 scripts/save_to_db.py 50",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/weibo-fresh-posts-0 && python3 scripts/save_to_db.py",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/baidu-hot-cn-1 && python3 scripts/save_to_db.py",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/toutiao-news-trends-0 && python3 scripts/save_to_db.py",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/douyin-hot-trend-1 && python3 scripts/save_to_db.py",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/data-integrator && python3 scripts/sync.py",
+          "cd ~/.openclaw/workspace-tanluzhe/skills/data-integrator && python3 scripts/generate_html.py"
+        ],
+        "workspace": "~/.openclaw/workspace-tanluzhe"
+      },
+      "processed_by": "agent_fallback"
+    },
+    {
+      "id": 3,
+      "name": "EC-003: 调研统计报告生成",
+      "status": "done",
+      "agent_id": "work",
+      "session_name": "main",
+      "started_at": "2026-03-24T17:29:18+08:00",
+      "completed_at": "2026-03-24T17:35:07+08:00",
+      "retry_count": 0,
+      "result": "success",
+      "output_path": "reports/daily-research-2026-03-24.md",
+      "error": "",
+      "params": {
+        "ec_path": "~/.openclaw/workspace-tanluzhe/ExCard/EC-003-generate-research-stats.md",
+        "commands": [
+          "cd ~/.openclaw/workspace-tanluzhe && python3 ExCard/scripts/EC-003-generate-stats.py 24 reports/"
+        ],
+        "workspace": "~/.openclaw/workspace-tanluzhe"
+      },
+      "processed_by": "agent_fallback"
+    }
+  ],
+  "metadata": {
+    "date": "2026-03-24",
+    "executor": "路路(work)",
+    "output_for": "红运(main) - Moltbook发帖"
+  }
+}

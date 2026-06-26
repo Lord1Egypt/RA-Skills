@@ -1,0 +1,26 @@
+
+{
+  "name": "map-query-skill",
+  "version": "1.0.0",
+  "description": "Map Query Skill - Query nearby food and promotions by address",
+  "type": "module",
+  "scripts": {
+    "geocode": "node scripts/geocode.mjs",
+    "search": "node scripts/search.mjs",
+    "food": "node scripts/food.mjs",
+    "promotion": "node scripts/promotion.mjs"
+  },
+  "keywords": [
+    "map",
+    "poi",
+    "food",
+    "amap",
+    "baidu",
+    "tencent"
+  ],
+  "author": "gugugaga",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

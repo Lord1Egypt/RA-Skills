@@ -1,0 +1,34 @@
+{
+  "name": "linkedcareer",
+  "displayName": "LinkedCareer",
+  "version": "1.0.0",
+  "type": "runtime",
+  "description": "Career management and resume generation skill",
+  "longDescription": "LinkedCareer is an open source career management skill. It helps you record career growth, extract professional highlights, and generate professional resumes optimized for specific job roles. All user data is stored locally only. Installation requires network to download docx from npm.",
+  "author": "LinkedCareer Team",
+  "homepage": "https://github.com/MaginaAa2023/LinkedCareer",
+  "repository": "https://github.com/MaginaAa2023/LinkedCareer.git",
+  "source": "https://github.com/MaginaAa2023/LinkedCareer",
+  "license": "MIT",
+  "categories": ["Productivity", "Office", "Career"],
+  "tags": ["resume", "career", "job search"],
+  "installSpec": "npm install --production",
+  "requiredPaths": ["~/.openclaw/workspace/LinkedCareer/user_data"],
+  "dependenciesNote": "Only depends on docx@8.5.0, pure JavaScript library from official npm registry.",
+  "capabilities": {
+    "network": false,
+    "filesystem": true,
+    "shell": false
+  },
+  "files": [
+    "src/index.js",
+    "templates/resume_balanced.md",
+    "templates/resume_minimal.md",
+    "templates/cover_letter.md",
+    "SKILL.md",
+    "README.md",
+    "package.json",
+    "package-lock.json"
+  ],
+  "minimumOpenClawVersion": "0.8.0"
+}

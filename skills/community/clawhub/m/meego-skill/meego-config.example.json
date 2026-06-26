@@ -1,0 +1,6 @@
+{
+  "app_id": "cli_xxxxxxxxxxxxxxxx",
+  "app_secret": "your_app_secret_here",
+  "tenant_access_token": "your_tenant_access_token_here",
+  "user_access_token": "your_user_access_token_here（如需要以用户身份操作，可选）"
+}

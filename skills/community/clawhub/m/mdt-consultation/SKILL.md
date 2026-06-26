@@ -1,35 +1,135 @@
 ---
-name: "MDT Consultation"
-description: "Agent MDT 多学科会诊——多个智能体并行协作完成复杂任务。类似医院MDT会诊，针对大事/难事/重要文件，同时派发多个专科agent并行分析，最后综合研判出高质量输出。使用场景：(1) 重要合同签署前审查 (2) 重要公文/领导讲话稿打磨 (3) 品牌宣传多平台内容策划 (4) 重大决策分析 (5) 技术方..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mdt-consultation"
-sourceUrl: "https://clawhub.ai/skills/mdt-consultation"
+name: mdt-consultation
+description: Agent MDT 多学科会诊——多个智能体并行协作完成复杂任务。类似医院MDT会诊，针对大事/难事/重要文件，同时派发多个专科agent并行分析，最后综合研判出高质量输出。使用场景：(1) 重要合同签署前审查 (2) 重要公文/领导讲话稿打磨 (3) 品牌宣传多平台内容策划 (4) 重大决策分析 (5) 技术方案评审 (6) 任何需要多角度分析的任务。触发词："MDT会诊"、"多学科会诊"、"联合分析"、"大家一起看"、"全面评审"、"综合审查"、"会诊一下"。
 ---
 
-# MDT Consultation
+# Agent MDT 多学科会诊
 
-> Agent MDT 多学科会诊——多个智能体并行协作完成复杂任务。类似医院MDT会诊，针对大事/难事/重要文件，同时派发多个专科agent并行分析，最后综合研判出高质量输出。使用场景：(1) 重要合同签署前审查 (2) 重要公文/领导讲话稿打磨 (3) 品牌宣传多平台内容策划 (4) 重大决策分析 (5) 技术方...
+## 核心理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mdt-consultation`
-- **Source URL:** [https://clawhub.ai/skills/mdt-consultation](https://clawhub.ai/skills/mdt-consultation)
+像医院MDT（多学科会诊）一样，遇到复杂任务时**并行派发**多个专科agent，各司其职，最后由主持人综合研判，产出高质量结果。
 
-## Overview
+## 会诊流程
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mdt-consultation
 ```
+1. 📋 接诊分诊 → 判断任务类型，选择对应会诊模板
+2. 🔄 并行会诊 → sessions_spawn 同时派发各专科任务
+3. 💬 即时确认 → 立即回复用户（不阻塞前台），告知已派发哪些科室
+4. 📥 异步收集 → 子agent结果自然到达，逐条 NO_REPLY 静默收集
+5. 📝 综合研判 → 最后一个结果到达时，编译完整报告
+6. ✅ 质控审核 → 视需要补充合规/风险审核
+7. 📤 交付报告 → 按模板输出标准化报告
+```
+
+## 会诊模板
+
+按任务类型选择对应模板，详细定义见 [references/templates.md](references/templates.md)：
+
+| 任务类型 | 关键词 | 核心科室 |
+|----------|--------|----------|
+| **合同审查** | 合同、协议、条款 | shield + law + devil |
+| **公文明代** | 公文、讲话稿、汇报材料 | content + sage + devil + shield |
+| **品牌宣传** | 宣传、多平台、内容策划 | director + writer-xhs + writer-mp + designer + analyzer |
+| **战略决策** | 决策、立项、评估 | brain + devil + analyzer + law |
+| **技术评审** | 技术方案、架构、选型 | brain + game-dev/claude-code + tester-security + tester-perf |
+| **医疗方案评审** | 医疗项目、药事管理、健康方案 | medical + pharmacist + health-advisor + law + devil |
+
+## 执行规则
+
+### 分诊原则
+- 自动识别任务类型，匹配最合适的会诊模板
+- 复杂任务可组合多个模板（如：技术+合规）
+- 用户可指定参与的"科室"
+
+### 并行派发
+- 用 `sessions_spawn` 同时派发，`runTimeoutSeconds` 设60-120
+- **必须使用 `agentId` 参数**调用正式agent（如 `agentId: "shield"`），而非 `model` 参数
+- 使用 `model` 参数只覆盖模型，不会加载 agent 的 workspace/SOUL.md/skills → 那是临时工
+- 每个 agent 收到明确的任务指令和审查重点
+- Devil 必须参与——防止群体思维，专挑毛病
+- 主导不参与并行（负责最后的综合研判）
+
+### ⚡ 异步调度（不阻塞前台）
+
+**核心原则：派完即回，结果到了再汇报。前台聊天全程畅通。**
+
+执行步骤：
+1. 记录本次会诊的期望子agent列表（如 `["shield", "devil", "law"]`）
+2. `sessions_spawn` 派发所有子agent
+3. **立即回复用户**，告知已派发哪些科室、预计等待时间
+4. **不要**调用 `sessions_yield`（这会阻塞前台）
+5. 子agent完成事件到达时，在脑中记录结果，回复 `NO_REPLY`
+6. 当**最后一个期望的子agent**结果到达时：
+   - 编译完整会诊报告
+   - 正式交付给用户
+
+**判断"最后一个"的方法：**
+- spawn N 个 → 收到 N 个 completion 事件 → 最后一个到达时输出报告
+- 如果某个超时（timeout），进入**降级策略**（见下方）
+
+### ⚠️ 超时降级策略（Gemini审查建议，2026-03-25 新增）
+
+当部分科室agent超时时，不能无限等待，也不能带着残缺报告交付：
+
+**降级规则：**
+1. **1个agent超时**：标注该科室"未参与"，其余结果正常编译
+2. **2个及以上超时**：CEO根据缺失科室职能，用已有知识**临时补充**缺失维度
+3. **主导科室（如shield在合同审查中）超时**：升级为CEO亲自补审，报告标注"CEO临时替代"
+4. **Devil超时**：CEO必须自行补充风险分析，不可跳过Devil环节
+
+**科室权重优先级（矛盾时裁决参考）：**
+```
+法律意见 > 合规意见 > 专业意见 > 业务意见
+  law      shield     各科室     其他
+```
+
+**会诊存档：**
+- 每次MDT报告自动归档到 `memory/mdt-reports/<YYYY-MM-DD>_<任务类型>.md`
+- 包含：参与科室、各科结论、综合研判、最终评分
+
+### 综合研判
+- 对比各科室意见，标注共识和分歧
+- 分歧点需给出主导的判断和理由
+- 输出标准化报告（按模板格式）
+- 报告末尾附"会诊签名"（各科室核心结论）
+
+### 质控规则
+- 涉及对外内容：必须过 shield 合规
+- 涉及法律风险：必须过 law
+- 涉及重大决策：devil 意见不可忽略
+- Devil 提出的风险点，报告中必须逐条回应
+
+## 质量评估（Eval）
+
+每次会诊报告交付后，使用 [references/eval.md](references/eval.md) 中的标准进行自动评分：
+
+**6条核心 Eval：**
+1. ✅ E1 分科完整度 — 所有科室意见都收录
+2. ✅ E2 分歧处理 — 分歧点有主持人判断
+3. ✅ E3 风险标注 — 每个风险有等级
+4. ✅ E4 行动建议 — 至少2条具体可执行建议
+5. ✅ E5 结构化输出 — 按标准模板分节
+6. ✅ E6 Devil覆盖率 — Devil每个风险点都被回应
+
+**评分<5分时：** 自动分析失败原因，优化对应环节，记录到 `memory/evolution/mdt-consultation.md`
+
+## 会诊模板库
+
+详见 [references/templates.md](references/templates.md)，包含5大场景的完整模板：
+- 合同审查会诊
+- 重要公文明代会诊
+- 品牌宣传MDT会诊
+- 战略决策MDT会诊
+- 技术方案MDT会诊
+- 医疗方案评审MDT会诊
+
+每个模板含：适用场景、会诊科室表、并行任务定义、输出格式。
+
+## 自定义会诊
+
+用户可随时自定义会诊：
+```
+"帮我组织一个MDT会诊，参与科室：brain、devil、law，任务：..."
+```
+
+未匹配到预设模板时，主导根据任务性质自动分诊，选择最相关的 3-5 个 agent 参与。

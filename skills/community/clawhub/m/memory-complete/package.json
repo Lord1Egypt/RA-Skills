@@ -1,0 +1,32 @@
+{
+  "name": "memory-complete",
+  "version": "4.0.0",
+  "description": "Complete Memory System - Unified integration of all memory features",
+  "main": "scripts/complete_memory_system.py",
+  "scripts": {
+    "init": "python scripts/init_complete_database.py",
+    "verify": "python scripts/verify_complete_install.py",
+    "test": "python scripts/complete_memory_system.py"
+  },
+  "keywords": [
+    "memory",
+    "sqlite",
+    "lancedb",
+    "tom",
+    "emotional",
+    "retrieval",
+    "gbrain",
+    "mempalace",
+    "ollama"
+  ],
+  "author": "Erbing",
+  "license": "MIT",
+  "dependencies": {
+    "sqlite3": "^3.0.0",
+    "numpy": "^1.21.0",
+    "requests": "^2.28.0"
+  },
+  "optionalDependencies": {
+    "lancedb": "^0.5.0"
+  }
+}

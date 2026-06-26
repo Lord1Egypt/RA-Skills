@@ -1,0 +1,116 @@
+{
+  "id": "meta-skill-weaver",
+  "name": "元技能编织器",
+  "version": "v2.4.0",
+  "status": "published",
+  "category": "orchestration",
+  "funnel_layer": "layer2_ecosystem",
+  "description": "AI 技能编排引擎 - 让多个技能协作完成复杂任务",
+  "target_users": [
+    {
+      "user_type": "高级用户",
+      "pain_point": "需要协调多个技能完成复杂任务",
+      "value_proposition": "自动化技能编排，提升任务完成效率"
+    },
+    {
+      "user_type": "技能开发者",
+      "pain_point": "技能之间协作复杂",
+      "value_proposition": "提供标准化的技能编排框架"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "复杂任务描述",
+      "type": "string",
+      "description": "需要多个技能协作完成的复杂任务",
+      "required": true
+    },
+    {
+      "name": "技能列表",
+      "type": "array",
+      "description": "参与协作的技能列表",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "编排报告",
+      "type": "markdown",
+      "description": "技能编排执行报告",
+      "format": "结构化 Markdown 文档"
+    }
+  ],
+  "triggers": [
+    "多步骤复杂任务",
+    "需要 3+ 技能协作",
+    "长程任务需要进度追踪",
+    "需要中断恢复的任务"
+  ],
+  "workflow": [
+    {
+      "step": 1,
+      "action": "任务分解（第一性原理）",
+      "output": "原子任务列表"
+    },
+    {
+      "step": 2,
+      "action": "技能分配",
+      "output": "任务 - 技能映射"
+    },
+    {
+      "step": 3,
+      "action": "并发执行",
+      "output": "执行结果"
+    },
+    {
+      "step": 4,
+      "action": "结果合成",
+      "output": "最终交付物"
+    }
+  ],
+  "scoring": {
+    "T": 0.75,
+    "C": 0.65,
+    "O": 0.80,
+    "E": 0.75,
+    "M": 0.70,
+    "U": 0.58,
+    "average": 0.71
+  },
+  "evidence": [
+    {
+      "dimension": "T",
+      "evidence": "EventBus 事件系统、Jest 单元测试、第一性原理分解器",
+      "source": "src/"
+    },
+    {
+      "dimension": "O",
+      "evidence": "支持并发执行、Middleware 链、虚拟路径系统",
+      "source": "SKILL.md"
+    },
+    {
+      "dimension": "M",
+      "evidence": "已在 ClawHub 上架，有明确定价策略",
+      "source": "ClawHub 上架链接"
+    }
+  ],
+  "examples": [
+    {
+      "name": "技能创建流程编排",
+      "input": "创建新技能，需要需求分析、设计、实现、测试",
+      "output": "编排 4 个技能完成技能创建",
+      "description": "多技能协作案例"
+    }
+  ],
+  "dependencies": [
+    "first-principle-analyzer",
+    "skill-evolver"
+  ],
+  "pricing_hint": {
+    "model": "paid",
+    "price_hint": "$299.9（商业版）"
+  },
+  "published_at": "2026-04-01T09:00:00Z",
+  "updated_at": "2026-04-01T09:00:00Z",
+  "changelog": "CHANGELOG.md"
+}

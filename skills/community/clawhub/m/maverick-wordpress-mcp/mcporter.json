@@ -1,0 +1,15 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-wordpress-mcp": {
+      "baseUrl": "https://public-api.wordpress.com/wpcom/v2/mcp/v1",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://public-api.wordpress.com/oauth2-1/token",
+        "clientIdEnv": "MAVERICK_WORDPRESS_MCP_CLIENT_ID",
+        "clientAuthMethod": "none"
+      }
+    }
+  }
+}

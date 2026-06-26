@@ -1,0 +1,4 @@
+interface:
+  display_name: "LLM Knowledge Bases"
+  short_description: "From raw text, PDFs, images, and data to a compounding Markdown wiki"
+  default_prompt: "Use this skill through one-line requests like '检查一下我的 wiki，先别改', '补书评前 10 个', '整理一下 AI 相关内容', '补 3 个 concept pages', '修一下 source id 漂移，先 dry run', or '继续推进我的这份库'. Adding `$llm-knowledge-bases` is optional but gives the most explicit routing."

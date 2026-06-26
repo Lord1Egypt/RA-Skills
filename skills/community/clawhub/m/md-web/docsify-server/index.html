@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <title>MD Web</title>
+    <meta name="description" content="share and display markdown files online" />
+    <link rel="stylesheet" href="assets/vue.css" />
+    <link rel="stylesheet" href="assets/toc.css" />
+    <style>
+      .anchor {
+        font-weight: bold;
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.4),
+          0 0 30px rgba(0, 0, 0, 0.075);
+      }
+
+      .app-name {
+        width: 150px;
+      }
+
+      section.cover h1 {
+        margin: 1.5rem 0 1.5rem;
+      }
+
+      section.cover p {
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.4),
+          0 0 30px rgba(0, 0, 0, 0.075);
+      }
+
+      .app-sub-sidebar li:before {
+        content: "○";
+      }
+
+      .page_toc {
+        top: 12rem;
+      }
+
+      .github-corner {
+        transform: scale(0.7);
+        transform-origin: top right;
+        opacity: 0.35;
+        transition: opacity 0.3s;
+      }
+
+      .github-corner:hover {
+        opacity: 1;
+      }
+
+      @media screen and (max-width: 1300px) {
+        .nav {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="body--ready">
+    <div id="app">Loading...</div>
+    <script>
+      window.$docsify = {
+        name: "<p>MD Web</p>",
+        nameLink: "/index.html#/",
+        repo: "https://github.com/rockbenben/aishort-skills/tree/main/skills/md-web",
+        notFoundPage: "README.md",
+        auto2top: true,
+
+        loadNavbar: false,
+        mergeNavbar: true,
+        topMargin: 40,
+
+        loadSidebar: false,
+
+        maxLevel: 4,
+        subMaxLevel: 2,
+
+        search: {
+          maxAge: 86400000,
+          paths: "auto",
+          placeholder: "Search",
+          noData: "No results found",
+          depth: 2,
+          hideOtherSidebarContent: false,
+        },
+
+        toc: {
+          scope: ".markdown-section",
+          headings: "h2, h3, h4, h5, h6",
+          title: "",
+        },
+      };
+    </script>
+
+    <script src="assets/docsify.min.js"></script>
+    <script src="assets/search.min.js"></script>
+    <script src="assets/zoom-image.min.js"></script>
+    <script src="assets/toc.js"></script>
+    <script src="assets/countable.min.js"></script>
+  </body>
+</html>

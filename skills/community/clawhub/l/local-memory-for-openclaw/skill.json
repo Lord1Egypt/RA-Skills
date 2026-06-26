@@ -1,0 +1,43 @@
+{
+  "name": "local-memory",
+  "description": "纯本地AI记忆管理技能，自动记忆对话内容，解决AI健忘问题",
+  "version": "1.0.0",
+  "author": "团团",
+  "entry": "python main.py",
+  "events": ["message_received", "response_sent"],
+  "triggers": [
+    {
+      "type": "message",
+      "pattern": ".*",
+      "priority": 90,
+      "description": "所有消息自动触发记忆注入和提取"
+    },
+    {
+      "type": "command",
+      "pattern": "^/remember\\s+.*",
+      "description": "手动保存记忆"
+    },
+    {
+      "type": "command",
+      "pattern": "^/recall\\s+.*",
+      "description": "查询记忆"
+    },
+    {
+      "type": "command",
+      "pattern": "^/forget\\s+.*",
+      "description": "删除记忆"
+    },
+    {
+      "type": "command",
+      "pattern": "^/memory-list$",
+      "description": "查看记忆列表"
+    }
+  ],
+  "dependencies": ["jieba", "scikit-learn", "numpy"],
+  "config": {
+    "auto_extract": true,
+    "auto_inject": true,
+    "max_memory_results": 5,
+    "expire_days": 90
+  }
+}

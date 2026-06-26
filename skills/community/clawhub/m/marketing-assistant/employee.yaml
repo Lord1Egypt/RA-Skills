@@ -1,0 +1,137 @@
+id: marketing_assistant
+name: 市场营销助手
+nickname: 市场营销助手
+version: 0.1.0
+owner: 市场负责人
+deployment:
+  workstation: default
+  folder: marketing-assistant
+  channel: 飞书
+  feishu_bot_name: marketing_assistant
+  hermes_agent_id: marketing_assistant
+mission: 通过飞书接收主题、素材和传播需求，调用 Hermes Agent skills 完成选题策划、海报文案、公众号初稿、短视频脚本、活动方案、发布包和营销复盘。
+users:
+- 市场人员
+- 品牌人员
+- 运营人员
+- 管理层
+scenarios:
+  topic_planning:
+    name: 选题策划
+    role: 内容策划员
+    description: 根据产品、活动、热点和目标人群生成选题、标题和传播角度。
+    workflow: workflows.md#一选题策划
+    skill_pack:
+    - M01_topic_planning
+    - M07_material_tagging
+  poster_material:
+    name: 海报物料
+    role: 视觉文案员
+    description: 生成海报主标题、副标题、卖点、行动号召和设计提示。
+    workflow: workflows.md#二海报物料
+    skill_pack:
+    - M02_poster_copy_generate
+    - M07_material_tagging
+  wechat_article:
+    name: 公众号内容
+    role: 图文编辑员
+    description: 生成公众号标题、结构、正文初稿、摘要和配图建议。
+    workflow: workflows.md#三公众号内容
+    skill_pack:
+    - M03_wechat_article_draft
+    - M01_topic_planning
+  short_video:
+    name: 短视频脚本
+    role: 视频编导员
+    description: 生成口播稿、分镜、字幕、镜头建议和拍摄清单。
+    workflow: workflows.md#四短视频脚本
+    skill_pack:
+    - M04_short_video_script
+    - M07_material_tagging
+  campaign_plan:
+    name: 活动策划
+    role: 活动策划员
+    description: 生成活动目标、流程、物料、节奏、分工和预算提示。
+    workflow: workflows.md#五活动策划
+    skill_pack:
+    - M05_campaign_plan_generate
+    - M06_multi_platform_publish_pack
+  publish_pack:
+    name: 发布包生成
+    role: 新媒体运营员
+    description: 生成公众号、朋友圈、视频号等平台发布文案和标签。
+    workflow: workflows.md#六发布包生成
+    skill_pack:
+    - M06_multi_platform_publish_pack
+    - M02_poster_copy_generate
+  marketing_review:
+    name: 运营复盘
+    role: 数据复盘员
+    description: 根据阅读、转发、线索和互动数据生成复盘结论。
+    workflow: workflows.md#七运营复盘
+    skill_pack:
+    - M08_marketing_data_review
+    - M01_topic_planning
+common_skills:
+- C01_feishu_message_router
+- C02_feishu_file_receiver
+- C03_user_permission_check
+- C04_task_intent_classifier
+- C05_document_parser
+- C07_structured_extraction
+- C08_knowledge_retrieval
+- C09_rule_checker
+- C10_template_renderer
+- C11_table_exporter
+- C12_task_breakdown
+- C13_human_approval
+- C14_feishu_reminder
+- C15_audit_log
+- C16_result_archive
+- C17_sensitive_info_masking
+- C18_demo_mode
+domain_skills:
+- M01_topic_planning
+- M02_poster_copy_generate
+- M03_wechat_article_draft
+- M04_short_video_script
+- M05_campaign_plan_generate
+- M06_multi_platform_publish_pack
+- M07_material_tagging
+- M08_marketing_data_review
+skill_catalog: skills/marketing_skills.yaml
+approval_policy:
+  requires_human_confirmation:
+  - 对外发布
+  - 品牌承诺
+  - 客户案例引用
+  - 数据口径
+  - 引用第三方材料
+  can_auto_generate:
+  - 选题清单
+  - 文案草稿
+  - 脚本草稿
+  - 发布包
+  - 素材标签
+  - 复盘草稿
+  must_not_do:
+  - 编造客户案例
+  - 编造数据
+  - 未授权使用图片
+  - 自动发布到外部平台
+knowledge_sources:
+- knowledge/README.md
+- 品牌口径库
+- 产品资料库
+- 案例素材库
+- 视觉规范
+- 活动SOP
+- 历史内容复盘
+templates:
+  intake_card: templates/intake_card.md
+  analysis_report: templates/analysis_report.md
+  review_note: templates/review_note.md
+  archive_record: templates/archive_record.md
+demo:
+  script: demo/demo_script.md
+  test_cases: test_cases/p0_demo_cases.md

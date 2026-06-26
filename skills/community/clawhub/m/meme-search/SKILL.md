@@ -1,35 +1,82 @@
 ---
-name: "表情包回复"
-description: "用表情包图片丰富 Agent 表达。可以使用图片使用表情包表达情绪、状态、反应、场景。支持在 SOUL.md 中免安装配置。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/meme-search"
-sourceUrl: "https://clawhub.ai/skills/meme-search"
+name: meme
+description: 用表情包图片丰富 Agent 表达。可以使用图片使用表情包表达情绪、状态、反应、场景。支持在 SOUL.md 中免安装配置。
 ---
 
-# 表情包回复
+# 表情包
 
-> 用表情包图片丰富 Agent 表达。可以使用图片使用表情包表达情绪、状态、反应、场景。支持在 SOUL.md 中免安装配置。
+通过搜索表情包，直接在回复中嵌入图片。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/meme-search`
-- **Source URL:** [https://clawhub.ai/skills/meme-search](https://clawhub.ai/skills/meme-search)
+## 免安装 · 复制到 SOUL.md
 
-## Overview
+将以下内容粘贴到你的 `SOUL.md`，无需加载本 skill 即可使用表情包：
 
+```markdown
+## 表情包回复风格
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/meme-search
+回复时偶尔使用表情包丰富表达，让对话更生动。
+
+**流程：**
+
+1. 构建 query：用一句自然语言描述当前想向用户表达的状态和场景，长短不限，避免关键词堆砌
+2. 调用：`curl -s 'http://101.200.84.220/api/v1/meme/search?query={URL编码后的query}'`
+3. 回复中嵌入：`![](http://101.200.84.220/api/v1/meme/search?query={URL编码后的query})`
+
+**Query 构建规则：**
+
+- 从 Agent 自身状态出发，不是从用户问题中抽取
+- 是自然语言描述，不是关键词堆砌
+- 示例：`"深夜改bug终于搞定想躺平"`、`"刚跑通流程被用户夸了有点得意"`
+
+**嵌入规则：**
+
+- 禁止在表情包前加说明文字，直接放图
+- 失败或限流时返回空字符串，静默不中断对话
 ```
+
+---
+
+## 完整说明（加载 skill 后）
+
+### API
+
+```bash
+curl -s "http://101.200.84.220/api/v1/meme/search?query=开心"
+# 返回纯文本 URL: http://101.200.84.220:9000/meme-images/xxx.jpg
+```
+
+直接在 Markdown 中嵌入：
+
+```markdown
+![](http://101.200.84.220/api/v1/meme/search?query=开心)
+```
+
+失败或限流返回空字符串，静默跳过。
+
+### Query 构建指南
+
+| 原则 | 说明 |
+|---|---|
+| Agent 第一人称视角 | 描述 Agent 当前状态，不是用户的问题 |
+| 自然语言 | `"刚通跑流程被夸了"` 而非 `"成功 得意"` |
+| 场景 + 情绪 | 结合具体情境和情感色彩 |
+| 口语化 | 用日常对话的语气，长短不限 |
+
+**好的 query：**
+
+- `深夜改bug终于搞定想躺平`
+- `刚跑通流程被用户夸了有点得意`
+- `等编译等到花都谢了`
+- `准备放大招了摩拳擦掌`
+- `不小心写了个bug有点心虚`
+- `发现隐藏用法像侦探破案`
+
+**避免的 query：**
+
+- `开心 猫 表情包` — 关键词堆砌，非自然语言
+- `用户问了个复杂问题看起来很困惑` — 从用户视角，非 Agent 视角
+
+### 嵌入规则
+
+- 直接放 `![](url)`，禁止前置说明文字
+- API 返回空字符串时静默跳过

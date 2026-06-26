@@ -1,0 +1,51 @@
+{
+  "skill_name": "meta-ads-cli",
+  "skill_version": "2.1.0",
+  "skill_author": "community-generated skill template; not an official Meta package",
+  "official_cli": {
+    "package_name": "meta-ads",
+    "pinned_version": "1.0.1",
+    "package_url": "https://pypi.org/project/meta-ads/1.0.1/",
+    "pypi_json_url": "https://pypi.org/pypi/meta-ads/1.0.1/json",
+    "docs_url": "https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-cli/ads-cli-overview",
+    "summary_from_pypi": "CLI for interacting with the Meta Marketing API",
+    "description_claim_from_pypi": "Official CLI for the Meta Marketing API.",
+    "copyright_from_pypi_description": "Copyright (c) Meta Platforms, Inc. and affiliates. All rights reserved.",
+    "license_expression_from_pypi": "LicenseRef-Proprietary",
+    "requires_python": ">=3.12",
+    "requires_dist": [
+      "click>=8.1",
+      "facebook-business>=20.0",
+      "python-dotenv>=1.0",
+      "rich>=13.0"
+    ],
+    "required_env_vars": ["ACCESS_TOKEN", "AD_ACCOUNT_ID"],
+    "optional_env_vars": ["BUSINESS_ID"],
+    "observed_at_utc": "2026-04-30T19:50:00Z"
+  },
+  "wheel_hashes_sha256": [
+    {"filename":"meta_ads-1.0.1-cp312-cp312-macosx_15_0_arm64.whl","sha256":"a4ad47c845fd6c7c7434e5aab1a6ab7f702e51f421e9b005ba275d0e85cf2c47"},
+    {"filename":"meta_ads-1.0.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl","sha256":"8242dc9da9096e96b20484d61928bf698427faae7fc1cff85b2f0c174a19bb00"},
+    {"filename":"meta_ads-1.0.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl","sha256":"4521a6fd07dd32110ed3b284fcf8e52e5a5f7eb59d4ae4e9559c3591810e9995"},
+    {"filename":"meta_ads-1.0.1-cp312-cp312-musllinux_1_2_aarch64.whl","sha256":"45c47f4b06bdb1226844c4db0d4581d64a0c3038b026d7f542a43718ca7772f6"},
+    {"filename":"meta_ads-1.0.1-cp312-cp312-musllinux_1_2_x86_64.whl","sha256":"eb47359388a3af9367b470e1171479490961e9fdcb04a3433de5d2455a10a184"},
+    {"filename":"meta_ads-1.0.1-cp313-cp313-macosx_11_0_arm64.whl","sha256":"49a77bb29662c1ff9267161aca6317a6e7acc40a973dcff2e208f36c5d03629c"},
+    {"filename":"meta_ads-1.0.1-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl","sha256":"1feb2c08631d2ef2d951bce1626ba891cda5dfb5fe34fb8a35f5e3baad006adb"},
+    {"filename":"meta_ads-1.0.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl","sha256":"8443446a23df1739df19dea081cd325ab0c0f7ade0408adb5377bc1ed6e7b36f"},
+    {"filename":"meta_ads-1.0.1-cp313-cp313-musllinux_1_2_aarch64.whl","sha256":"3c0ee5066ebb0bcf96f9e81a5986b4fecd45a867b2083261b4ed7493f4d92005"},
+    {"filename":"meta_ads-1.0.1-cp313-cp313-musllinux_1_2_x86_64.whl","sha256":"a695aea1e5b4bead2f449051c94d7127ad7fe7d1988248431a6acadd84c09b21"}
+  ],
+  "credential_contract": {
+    "primary_credential": "Meta Marketing API access token supplied through ACCESS_TOKEN",
+    "ad_account_scope": "AD_ACCOUNT_ID must point to the intended account; prefer explicit --ad-account-id when operating across accounts.",
+    "least_privilege": "Use read-only access for reporting and only grant write permission for approved mutation tasks.",
+    "secrets_policy": "Do not pass tokens as command-line arguments; keep them in environment variables or the official CLI auth store."
+  },
+  "permission_boundary": {
+    "can_affect_ad_spend": true,
+    "can_modify_campaign_assets": true,
+    "can_modify_catalogs_or_datasets": true,
+    "local_shell_execution": true,
+    "persistent_logging_by_default": false
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "feature_name": "文章管理",
+  "business_goal": "后台管理文章，支持列表筛选与增删改",
+  "entities": [
+    {
+      "name": "Article",
+      "fields": [
+        { "name": "id", "type": "int", "required": true, "description": "主键" },
+        { "name": "title", "type": "string", "required": true },
+        { "name": "content", "type": "text", "required": true },
+        { "name": "author_id", "type": "int", "required": true },
+        { "name": "status", "type": "enum", "enum": ["draft", "active"], "default": "active" },
+        { "name": "created_at", "type": "datetime" },
+        { "name": "updated_at", "type": "datetime" }
+      ]
+    }
+  ],
+  "actions": [
+    { "method": "GET", "path": "/admin/article/index", "action": "index" },
+    { "method": "GET", "path": "/admin/article/listAjax", "action": "listAjax" },
+    { "method": "POST", "path": "/admin/article/save", "action": "save" },
+    { "method": "POST", "path": "/admin/article/delete", "action": "delete" }
+  ],
+  "ui_pages": ["admin/article/index"],
+  "constraints": ["兼容 layui table", "支持 where/like/between/orderBy"],
+  "acceptance": ["可预览 diff", "确认后写入"]
+  ,
+  "assumptions": [
+    "列表页默认 Admin 模块，路由 /admin/article/*",
+    "删除行为为硬删（直接 DELETE），未明确软删需求",
+    "author_id 关联 members 表，本期仅存 ID 不做联查"
+  ],
+  "evidence": [
+    { "claim": "字段列表来自需求原文逐条映射", "source": "requirement", "detail": "id/title/content/status/author_id/created_at/updated_at 均在需求文本中明确" },
+    { "claim": "default module=Admin", "source": "context", "detail": "context.json defaults.new_backoffice_module=Admin" },
+    { "claim": "where/like/between 筛选类型来自 query_contract", "source": "pattern", "detail": "project_pattern_profile.json field_heuristics: id→where, title→like, created_at→between" }
+  ],
+  "confidence": "high",
+  "ambiguities": [
+    {
+      "topic": "删除行为：软删还是硬删",
+      "impact": "影响 Model 是否需要 SoftDeletes、列表是否需要回收站",
+      "default_resolution": "默认硬删，等后续需求明确",
+      "confidence": "medium"
+    }
+  ]
+}

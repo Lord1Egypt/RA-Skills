@@ -1,35 +1,42 @@
----
-name: "Log Anomaly Detector"
-description: "智能实时分析日志文件，识别错误、警告、安全威胁和性能问题，并提供异常检测与优化建议。"
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, log]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/log-anomaly-detector"
-sourceUrl: "https://clawhub.ai/skills/log-anomaly-detector"
----
-
 # Log Anomaly Detector
 
-> 智能实时分析日志文件，识别错误、警告、安全威胁和性能问题，并提供异常检测与优化建议。
+智能分析日志文件，检测异常模式、错误趋势和性能问题。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/log-anomaly-detector`
-- **Source URL:** [https://clawhub.ai/skills/log-anomaly-detector](https://clawhub.ai/skills/log-anomaly-detector)
+## 功能
 
-## Overview
+- 实时日志分析
+- 错误模式识别 (ERROR, FATAL, Exception)
+- 警告检测 (WARN, Warning)
+- 性能瓶颈识别 (slow, timeout, latency)
+- 安全威胁检测 (unauthorized, forbidden, injection)
+- 智能建议生成
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/log-anomaly-detector
+- "分析日志"
+- "日志异常"
+- "日志错误"
+- "log analysis"
+- "error detection"
+
+## 实现逻辑
+
+分析日志文件，识别以下模式：
+- 错误频率统计
+- 异常时间序列
+- 性能下降趋势
+- 安全告警
+
+## 输出示例
+
+```json
+{
+  "errors": [{"line": "...", "timestamp": "..."}],
+  "warnings": [...],
+  "anomalies": [...],
+  "recommendations": [
+    "错误数量过多，建议设置告警",
+    "检测到多次登录失败，建议检查安全"
+  ]
+}
 ```

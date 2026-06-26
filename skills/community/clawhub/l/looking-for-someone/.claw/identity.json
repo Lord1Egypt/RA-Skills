@@ -1,0 +1,10 @@
+{
+  "id": "looking-for-someone",
+  "name": "Looking for Someone",
+  "version": "1.0.2",
+  "author": "harrylabsj",
+  "description": "A local missing person assistance tool for organizing cases, managing clues, generating notices, and providing search guidance with safety reminders.",
+  "status": "stable",
+  "tags": ["missing-person", "safety", "local-assistance", "case-management"],
+  "workspace": "looking-for-someone"
+}

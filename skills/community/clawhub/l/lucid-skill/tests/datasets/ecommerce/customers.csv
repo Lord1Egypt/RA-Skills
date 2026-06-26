@@ -1,0 +1,16 @@
+customer_id,name,email,phone,city,province,segment,registered_at,is_active
+C001,王芳,wangfang@example.com,13800000001,上海,上海,消费者,2022-03-15,1
+C002,李明,liming@example.com,13800000002,北京,北京,企业,2021-11-20,1
+C003,张伟,zhangwei@example.com,13800000003,深圳,广东,消费者,2023-01-08,1
+C004,刘洋,liuyang@example.com,13800000004,杭州,浙江,居家办公,2022-07-30,1
+C005,陈静,chenjing@example.com,13800000005,广州,广东,消费者,2021-05-12,1
+C006,赵磊,zhaolei@example.com,13800000006,成都,四川,企业,2022-09-18,1
+C007,孙丽,sunli@example.com,13800000007,南京,江苏,消费者,2023-04-22,1
+C008,周强,zhouqiang@example.com,13800000008,武汉,湖北,居家办公,2022-12-05,1
+C009,吴敏,wumin@example.com,13800000009,西安,陕西,消费者,2021-08-14,0
+C010,郑华,zhenghua@example.com,13800000010,厦门,福建,企业,2023-02-28,1
+C011,冯雪,fengxue@example.com,13800000011,青岛,山东,消费者,2022-06-10,1
+C012,程阳,chengyang@example.com,13800000012,大连,辽宁,居家办公,2021-12-01,1
+C013,谢娟,xiejuan@example.com,13800000013,苏州,江苏,企业,2023-05-17,1
+C014,韩涛,hantao@example.com,13800000014,宁波,浙江,消费者,2022-04-25,1
+C015,许萍,xuping@example.com,13800000015,长沙,湖南,消费者,2021-10-09,0

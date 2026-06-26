@@ -1,0 +1,13 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-trello": {
+      "command": "uv",
+      "args": ["run", "--script", "scripts/server.py"],
+      "env": {
+        "MAVERICK_TRELLO_MCP_ACCESS_TOKEN": "${MAVERICK_TRELLO_MCP_ACCESS_TOKEN}",
+        "MAVERICK_TRELLO_MCP_API_KEY": "${MAVERICK_TRELLO_MCP_API_KEY}"
+      }
+    }
+  }
+}

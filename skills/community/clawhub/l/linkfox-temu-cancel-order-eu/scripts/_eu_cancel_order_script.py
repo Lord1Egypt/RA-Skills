@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+"""Factory for thin EU cancel-order API CLI scripts (buyer + seller)."""
+
+import sys
+
+import _temu_eu_common  # noqa: F401
+
+from _temu_common import load_json_arg
+from _temu_eu_common import extract_business_params, run_and_print
+
+def run_cli(api_type: str, usage: str) -> None:
+    if len(sys.argv) < 2:
+        print(f"Usage: {usage}", file=sys.stderr)
+        sys.exit(1)
+    params = load_json_arg(sys.argv)
+    run_and_print(params, api_type, extract_business_params(params))

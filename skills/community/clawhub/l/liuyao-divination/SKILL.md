@@ -1,35 +1,82 @@
 ---
-name: "六爻预测"
-description: "提供专业六爻预测功能，进行中国传统易学占卜。支持起卦、排盘、纳甲、寻世应、定六亲、配六神及吉凶判断。使用此 skill 可以获得完整的六爻卦象，包含本卦、变卦、世爻应爻、六亲、六神、空亡信息和吉凶预测。触发词：六爻预测、六爻占卜、起卦、排盘、/liuyao"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liuyao-divination"
-sourceUrl: "https://clawhub.ai/skills/liuyao-divination"
+name: liuyao-divination
+description: 提供专业六爻预测功能，进行中国传统易学占卜。支持起卦、排盘、纳甲、寻世应、定六亲、配六神及吉凶判断。使用此 skill 可以获得完整的六爻卦象，包含本卦、变卦、世爻应爻、六亲、六神、空亡信息和吉凶预测。触发词：六爻预测、六爻占卜、起卦、排盘、/liuyao
 ---
 
-# 六爻预测
+# 六爻预测 Skill
 
-> 提供专业六爻预测功能，进行中国传统易学占卜。支持起卦、排盘、纳甲、寻世应、定六亲、配六神及吉凶判断。使用此 skill 可以获得完整的六爻卦象，包含本卦、变卦、世爻应爻、六亲、六神、空亡信息和吉凶预测。触发词：六爻预测、六爻占卜、起卦、排盘、/liuyao
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liuyao-divination`
-- **Source URL:** [https://clawhub.ai/skills/liuyao-divination](https://clawhub.ai/skills/liuyao-divination)
+通过 Python 脚本完成完整六爻占卜流程：起卦 → 排盘 → 纳甲 → 定六亲 → 配六神 → 吉凶判断。
 
-## Overview
+## 使用方法
 
+脚本路径：`/home/node/.openclaw/skills/liuyao-divination/liuyao_standalone.py`
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 执行起卦
+
 ```bash
-hermes skills install clawhub/liuyao-divination
+python3 /home/node/.openclaw/skills/liuyao-divination/liuyao_standalone.py "占卜问题" --sex 男
 ```
+
+参数说明：
+- 第一个参数：所占事项（问题描述）
+- `--sex`：卦主性别（男/女，默认男）
+
+### 输出格式
+
+```
+【占卜问题】{question}
+【卦主】{sex}
+
+【日期】{year}年 {month}月 {day}日 {hour}时
+【旬空】{lacks}
+
+【本卦六爻】
+上爻：{state} {六亲}{纳甲} {六神} {世/应}
+五爻：...
+（从上至下排列）
+
+【变卦六爻】（如有变爻则显示）
+...
+
+【卦宫】{宫名}
+【世爻】第X爻
+【应爻】第X爻
+【缺失六亲】{defects}
+
+【吉凶判断】
+结果：{大吉/吉/小吉/平/小凶/凶/大凶}
+分析：{详细说明}
+```
+
+## 六爻基础知识
+
+- **六爻顺序**：初爻 → 二爻 → 三爻 → 四爻 → 五爻 → 上爻
+- **六亲**：父母、官鬼、兄弟、妻财、子孙
+- **六神**：青龙、朱雀、勾陈、腾蛇、白虎、玄武
+- **吉凶等级**：大吉、吉、小吉、平、小凶、凶、大凶
+
+## 用神参考
+
+| 用神 | 所主事项 |
+|------|----------|
+| 妻财 | 求财、婚姻、财物、投资 |
+| 官鬼 | 功名、官职、工作、疾病、诉讼 |
+| 父母 | 长辈、房屋、文书、考试 |
+| 子孙 | 晚辈、医药、出行、解忧 |
+| 兄弟 | 朋友、竞争、合作 |
+
+## 工作流程
+
+1. 用户提出占卜问题和性别
+2. 执行 `liuyao_standalone.py` 获取卦象数据
+3. 将输出结果整理成易读格式呈现给用户
+4. 结合用神参考给出专业解读建议
+
+---
+
+## 相关链接
+
+- **GitHub 仓库**: https://github.com/QiChenX/LiuYaoDivining
+- **ClawHub 展示**: https://clawhub.ai/qichenx/liuyao-divination

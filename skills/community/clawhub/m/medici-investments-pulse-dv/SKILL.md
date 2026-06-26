@@ -1,35 +1,32 @@
 ---
-name: "Medici Investments — Market Pulse Monitor"
-description: "Provides a quick, high-level overview of the market's current state."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medici-investments-pulse-dv"
-sourceUrl: "https://clawhub.ai/skills/medici-investments-pulse-dv"
+id: 'medici-investments-pulse'
+name: 'Medici Investments - Market Pulse'
+description: 'Provides a quick, high-level overview of the market''s current state.'
+version: '1.0.0'
+author: 'DaVinci'
+last_amended_at: null
+trigger_patterns: []
+pre_conditions:
+  git_repo_required: false
+  tools_available: []
+expected_output_format: 'natural_language'
 ---
 
-# Medici Investments — Market Pulse Monitor
+# Medici Investments - Market Pulse
 
-> Provides a quick, high-level overview of the market's current state.
+Provides a quick, high-level overview of the market's current state.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medici-investments-pulse-dv`
-- **Source URL:** [https://clawhub.ai/skills/medici-investments-pulse-dv](https://clawhub.ai/skills/medici-investments-pulse-dv)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/medici-investments-pulse-dv
+medici-investments pulse
 ```
+
+## Output
+
+A concise summary of:
+- Major index performance (S&P 500, Nasdaq, Dow)
+- Key sector rotation trends
+- Volatility levels (VIX)
+- Market sentiment indicators
+- Upcoming economic events

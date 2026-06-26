@@ -1,0 +1,4 @@
+interface:
+  display_name: "QuickBooks"
+  short_description: "Work with QuickBooks invoices, expenses, customers, and reports"
+  default_prompt: "Use the available QuickBooks runtime tools to help the user inspect accounting data, create invoices, review expenses, and summarize financial reports."

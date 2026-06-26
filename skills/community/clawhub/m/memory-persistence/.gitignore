@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.egg-info/
+dist/
+build/
+.env
+*.log
+
+# Data directories (created on first use)
+memory_data/
+shared_memory/
+
+.cache/

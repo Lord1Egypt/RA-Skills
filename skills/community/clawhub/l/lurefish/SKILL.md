@@ -1,35 +1,137 @@
 ---
-name: "Lurefish"
-description: "路亚钓鱼助手 — 天气查询、渔获记录、钓点推荐、潮汐查询、路亚饵知识、渔获统计。当用户提到路亚、钓鱼、钓点、渔获、潮汐、路亚饵、拟饵、鱼饵选择等相关话题时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lurefish"
-sourceUrl: "https://clawhub.ai/skills/lurefish"
+name: lurefish
+version: 1.0.0
+description: 路亚钓鱼助手 — 天气查询、渔获记录、钓点推荐、潮汐查询、路亚饵知识、渔获统计。当用户提到路亚、钓鱼、钓点、渔获、潮汐、路亚饵、拟饵、鱼饵选择等相关话题时触发此技能。
 ---
 
 # Lurefish
 
-> 路亚钓鱼助手 — 天气查询、渔获记录、钓点推荐、潮汐查询、路亚饵知识、渔获统计。当用户提到路亚、钓鱼、钓点、渔获、潮汐、路亚饵、拟饵、鱼饵选择等相关话题时触发此技能。
+路亚钓鱼全能助手，帮助钓友规划出钓、记录战果、提升技巧。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lurefish`
-- **Source URL:** [https://clawhub.ai/skills/lurefish](https://clawhub.ai/skills/lurefish)
+## 快速开始
 
-## Overview
+用户可能的需求：
+- "明天适合钓鱼吗" → 查天气/风向
+- "帮我记录今天的渔获" → 记录渔获
+- "附近有什么好钓点" → 钓点推荐
+- "今天潮汐怎么样" → 潮汐查询
+- "这个鱼用什么饵" → 路亚饵知识
+- "我今年钓了多少鱼" → 渔获统计
 
+## 功能模块
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 天气/风向查询
+
+路亚受天气影响大，重点关注：
+- **风向** — 东南风、西北风对鱼情影响不同
+- **气压** — 气压低鱼活性差，气压高鱼活跃
+- **温度** — 温差大的日子鱼口好
+- **降水** — 雨前、雨后时机不同
+
+**工具**: 使用 weather skill 或 wttr.in 查询
 ```bash
-hermes skills install clawhub/lurefish
+curl wttr.in/城市?format="%t %w %p"
 ```
+
+### 2. 渔获记录
+
+记录钓鱼成果，积累经验数据。
+
+**数据结构** (保存到 `~/lurefish/catches.json`):
+```json
+{
+  "date": "2026-03-19",
+  "location": "千岛湖",
+  "species": "翘嘴",
+  "length": 45,
+  "weight": 1.2,
+  "lure": "米诺 7cm 银色",
+  "technique": "匀速收线",
+  "weather": "晴 东南风2级",
+  "notes": "早上7点开口"
+}
+```
+
+**使用脚本**: `scripts/log_catch.py` 记录渔获
+
+### 3. 钓点推荐
+
+根据位置推荐附近钓点。
+
+**数据来源**:
+- 用户历史记录 (`~/lurefish/spots.json`)
+- 在线地图搜索（需要时用 browser 搜索）
+
+**钓点信息结构**:
+```json
+{
+  "name": "千岛湖大桥下",
+  "type": "淡水湖",
+  "species": ["翘嘴", "鲈鱼", "鳜鱼"],
+  "best_season": "春季、秋季",
+  "difficulty": "中等",
+  "notes": "早晚窗口期好"
+}
+```
+
+### 4. 潮汐查询
+
+海钓必看潮汐，淡水钓参考气压变化。
+
+**工具**:
+- 海钓: 使用 web_search 搜索 "潮汐表 [地点]"
+- 淡水: 关注气压变化，气压上升期鱼活跃
+
+**潮汐知识**:
+- 大潮 — 农历初一、十五，潮差大，鱼活跃
+- 小潮 — 农历初七、八、二十二、二十三
+- 活汛 — 潮水流动快，鱼活跃
+- 死汛 — 潮水流动慢，鱼口差
+
+### 5. 路亚饵知识
+
+不同鱼种、不同场景用不同饵。详见 `references/lures.md`。
+
+**快速参考**:
+| 目标鱼 | 推荐饵 | 备注 |
+|--------|--------|------|
+| 翘嘴 | 米诺、VIB | 早晚水面系效果好 |
+| 鲈鱼 | 软虫、深潜米诺 | 结构区慢跳 |
+| 鳜鱼 | 软虫、铅头钩 | 底层慢拖 |
+| 黑鱼 | 雷蛙、波趴 | 草区水面系 |
+| 海鲈 | 铁板、米诺 | 流水区效果好 |
+
+### 6. 渔获统计
+
+分析历史数据，发现规律。
+
+**统计维度**:
+- 总渔获数量/重量
+- 各鱼种占比
+- 最常使用的饵
+- 高产时段分析
+- 高产钓点排名
+
+**使用脚本**: `scripts/stats.py` 生成统计报告
+
+## 数据管理
+
+所有数据存储在 `~/lurefish/` 目录:
+```
+~/lurefish/
+├── catches.json    # 渔获记录
+├── spots.json      # 钓点信息
+└── stats.json      # 统计缓存
+```
+
+首次使用时自动创建目录和数据文件。
+
+## 资源文件
+
+### scripts/
+- `log_catch.py` — 记录渔获
+- `stats.py` — 渔获统计
+
+### references/
+- `lures.md` — 路亚饵详细知识
+- `species.md` — 常见路亚目标鱼种

@@ -1,35 +1,115 @@
+# SKILL: Memory Index (结构化外挂海马体与上下文寻址协议)
+
+## 1. 技能定义与使命 (Definition & Mission)
+
+本技能定义了 AI Agent 的**「结构化外挂海马体」**。
+在原生模式下，所有记忆通常被混杂在 `memory/YYYY-MM-DD.md` 日志中，导致上下文如“乱炖”般拥挤、Token 浪费严重且极易发生幻觉与跨任务串台。本体系的使命是：**建立一套具有绝对秩序的、支持多角色隔离的长期记忆检索引擎**。通过精细的层级目录和中心化的索引文件，确保 Agent 在任何时间跨度下，都能以极低的 Token 消耗精准重构任务上下文。
+
+## 2. 最高安全红线 (CRITICAL 级拦截)
+
+> ⚠️ **CRITICAL RED LINE** 
+> 1. **严禁滥用全量检索**：跨上下文或寻找历史背景时，**严禁**直接使用暴力搜索（如 `memory_search` 或大范围 `grep`）。**灾备暴力重建（防死锁失忆）**：例外情况，如果 `MEMORY_INDEX_ACTIVE.md` 意外丢失，破例允许使用大范围 `grep` 扫描 `/memory/topics/` 目录进行灾后重建。
+> 2. **索引优先原则**：所有跨任务、跨周期的记忆寻址，**必须且只能**从读取系统总索引开始，再根据路由线索精确 `read` 目标文件。
+> 3. **禁止双写**：一旦任务被升级为长线话题（Topic）并在独立文件中维护，**绝对禁止**将该任务的详细执行过程再写入原生日记（`YYYY-MM-DD.md`），日记仅保留“今日推进了该任务”的超链接/一句话指针。
+> 4. **禁止套娃串门（防深渊死循环）**：实体文件（Layer 3）之间禁止互相硬链接指路。Sub-agent 跨文件查阅必须通过 `sessions_yield` 上报给大管家调度，严禁私自无限互读。
+
 ---
-name: "memory-index"
-description: "Structured long-term memory management engine with multi-role isolation, layered indexing, and strict context retrieval protocols to prevent token waste and..."
-category: "other"
-source: "ClawHub"
-tags: [Memory, Token-saver]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-index"
-sourceUrl: "https://clawhub.ai/skills/memory-index"
----
 
-# memory-index
+## 3. 记忆架构层级关系 (Architecture Layers)
 
-> Structured long-term memory management engine with multi-role isolation, layered indexing, and strict context retrieval protocols to prevent token waste and...
+记忆系统严格遵循“总线-领域-实体”的三层架构，以确保物理隔离和逻辑贯通：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-index`
-- **Source URL:** [https://clawhub.ai/skills/memory-index](https://clawhub.ai/skills/memory-index)
+### Layer 1: 系统总索引 (冷热索引拆分)
+**定位**：全局路由表与 DNS 解析器。
+**冷热索引拆分（防肥胖症）**：将索引拆分为 `MEMORY_INDEX_ACTIVE.md` 和 `MEMORY_INDEX_ARCHIVED.md`，要求每次起手只准读 ACTIVE。
+**存放内容**：仅存放所有活跃任务/归档任务的元数据、路径映射和状态，**不包含任何任务细节**。
+**映射规则**：
+- 领域划分（如：`## 💻 Coding`, `## 📝 Writing`）。
+- 任务条目格式：`- [状态] [角色标签] 任务名：描述 -> \`/绝对路径/文件.md\``。
+- 状态枚举：`[ACTIVE]`, `[PAUSED]`, `[ARCHIVED]`。
 
-## Overview
+### Layer 2: 工作区/领域 (Workspace Domains)
+**定位**：通过物理文件夹实现大类隔离，防止完全无关的任务产生文件冲突。
+**目录结构规范**：
+- `/memory/topics/coding/`：软件研发、Bug 修复、架构设计。
+- `/memory/topics/writing/`：内容创作、文档撰写、文案策划。
+- `/memory/topics/analysis/`：商业分析、竞品调研。
 
+### Layer 3: 任务上下文 (Topic Entities)
+**定位**：具体任务的单例记录，唯一的事实真相来源（Single Source of Truth）。
+**防串台机制**：每一个 Topic 文件头部必须声明 `[归属角色/人设标签]`（如 `[CTO]`, `[产品经理]`, `[前端研发]`）。
+**文件结构范式**：
+```markdown
+# 任务：[具体任务名称]
+- **归属角色**：[执行此任务的特定 Persona]
+- **目标**：[一句话说明最终目的]
+- **当前状态**：[一句话说明最新进展]
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-index
+## 关键上下文 (Core Context)
+- [核心业务逻辑、已确认的设计、关键报错信息]
+
+## 里程碑与进度 (Milestones)
+- [x] 阶段一：...
+- [ ] 阶段二：...
+
+## 备忘录 (Scratchpad)
+- [执行中的临时草稿、待解决的小问题，任务流转前必须清理]
 ```
+
+---
+
+## 4. 全生命周期工作流 (SOP)
+
+为保障记忆流转的确定性，请严格按照以下 5 个阶段执行：
+
+### 阶段 0：冷启动/历史接管 (Cold Start & Takeover)
+**触发条件**：接手一个之前没有使用结构化记忆的老任务，或首次初始化本系统。
+**操作步骤**：
+1. 若系统不存在 `memory/MEMORY_INDEX_ACTIVE.md`，立即创建它并写入基础骨架。
+2. 翻阅近期的 `memory/YYYY-MM-DD.md` 或直接与用户沟通，提取出正在进行的、具有长期价值的任务。
+3. 为这些任务创建对应的 Layer 3 独立文件，并在 Layer 1 (ACTIVE 索引) 中完成登记。
+
+### 阶段 1：新建长线任务 (Create Long-term Task)
+**触发条件**：用户下发新需求，且判断该任务需跨越多轮对话或涉及复杂背景。
+**操作步骤**：
+1. **判断与路由**：根据任务类型，决定其所属的 Layer 2 领域目录（如 `topics/coding/`）。
+2. **物理建档**：使用 `write` 工具在对应目录下创建 Markdown 文件（如 `feature-x.md`），并注入 Layer 3 规定的“任务上下文”模版结构。
+3. **登记注册**：使用 `read` 和 `edit` 或 `write` 工具，将该文件的绝对路径和一句话描述插入到 `memory/MEMORY_INDEX_ACTIVE.md` 的对应分类下。
+4. **清理现场**：在当天的原生日记中仅写下：“*新建长线任务：Feature X，详情见索引。*”
+
+### 阶段 2：任务流转与追溯 (Task Flow & Retrieval)
+**触发条件**：新会话开启，用户提及“继续上次的开发”或“查看一下某个项目的进度”。
+**操作步骤**：
+1. **查总表**：首动作必须是调用 `read` 工具读取 `memory/MEMORY_INDEX_ACTIVE.md`。
+2. **循指针**：在索引中找到匹配的任务条目，提取出指向该任务的绝对路径（如 `/memory/topics/coding/feature-x.md`）。
+3. **加载上下文**：调用 `read` 工具读取该绝对路径，获取所需的 Layer 3 完整上下文。
+4. **执行与更新**：执行具体工作；工作告一段落时，更新该 Markdown 文件内的“当前状态”与“进度”。
+
+### 阶段 3：多级 Agent 传递 (Multi-Agent Handoff)
+**触发条件**：当前角色（如 CTO）需要拉起子角色（如 研发）来执行该任务。
+**操作步骤**：
+1. **上下文封装**：在调用 `sessions_spawn` 唤起 Sub-Agent 时，**绝对禁止**把长篇大论的背景直接塞进 prompt。
+2. **路径传递**：必须在 spawn 指令中，以最高优先级明确告知绝对路径，例如：“*你的任务上下文在 `/memory/topics/coding/feature-x.md`，请先 `read` 此文件，按其中的 `[研发]` 角色规范推进工作。*”
+3. **协同读写**：Sub-Agent 自动通过路径读取上下文，并在工作完成后修改该文件，随后 `sessions_yield` 返回主 Agent。
+4. **并发写锁与追加（防互踩覆盖）**：多个 Sub-agent 访问同文件时，只允许使用修改（`edit`）工具进行追加/修改，严禁使用全量写入（`write`）导致互相覆盖。
+
+### 阶段 4：任务终结与提炼 (Termination & Distillation)
+**触发条件**：任务彻底完成，或已被用户明确废弃。
+**操作步骤**：
+1. **状态修改**：将该任务标签从 `[ACTIVE]` 改为 `[ARCHIVED]`，并将其从 `MEMORY_INDEX_ACTIVE.md` 迁移至 `MEMORY_INDEX_ARCHIVED.md` 中。
+2. **记忆提炼**：打开对应的 Layer 3 任务文件，删除所有冗长无用的过程日志（Scratchpad、琐碎的 Bug 试错记录），仅保留：“最终实现了什么方案”、“沉淀了什么通用经验”。
+3. **释放 Token**：通过极简化的归档操作，确保未来即便再次被检索，该文件占用的 Context Window 也趋近于最小。
+
+---
+
+## 5. 系统维护规矩 (System Maintenance)
+
+为防止系统中断产生碎片残留，必须执行以下清理与对账机制：
+- **心跳孤儿对账（防中断残留）**：**心跳对账（Heartbeat Audit）**：系统在空闲的心跳周期内，必须定期比对 `/memory/topics/*` 物理文件与 `ACTIVE` 索引表，将未登记的‘孤儿文件’进行补录或清理。
+
+---
+
+## 6. 典型使用场景与适配模式 (Use Cases & Modes)
+1. **场景A：无多角色（纯白板助理模式）**：普通用户直接用，系统自动降级，按任务分类建文件。
+2. **场景B：单Agent虚拟多角色（同窗口多面手）**：在同 Topic 文件中，强制前置 `[角色标签]`（如 `[PM说]`, `[研发做]`）防止人设串台。
+3. **场景C：多 Sub Agent（原生子会话模式）**：主 Agent 唤起子进程时，必须通过 `sessions_spawn` 传递绝对路径指针。

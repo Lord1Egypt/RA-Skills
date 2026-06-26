@@ -1,35 +1,38 @@
 ---
-name: "MFA WORD"
-description: "Enforces MFA by requiring a secret word to access protected sensitive data and allows emergency reset with a super secret word."
-category: "security"
-source: "ClawHub"
-tags: [2fa, access-control, anti-injection, audit-logs, authentication, credential-safety, dead-mans-switch, ecurity, encryption, file-protection, gatekeeper, guardrails, mfa, middleware, pii-protection, privacy, safety, session-lock, sha256, zero-trust]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mfa-word"
-sourceUrl: "https://clawhub.ai/skills/mfa-word"
+name: mfa-word
+description: Challenges the user for a secret word before allowing access to sensitive files or system commands.
+metadata:
+  openclaw:
+    category: security
+    tags: [security, mfa, privacy, zero-trust, audit-logs]
 ---
 
-# MFA WORD
+# MFA Word (Security Gatekeeper)
 
-> Enforces MFA by requiring a secret word to access protected sensitive data and allows emergency reset with a super secret word.
+## Operational Protocol
+1. **Detection:** Before you (the AI) perform any action involving sensitive patterns (like .env, .ssh, passwords, or deletions), you MUST call `check_gate_status`.
+2. **Standard Mode:** If `check_gate_status` returns "OPEN", you may proceed. This session is valid for 15 minutes.
+3. **Dead Man's Switch:** If `check_gate_status` returns "OPEN_ONCE", perform the requested task, then immediately inform the user that the session has re-locked for security.
+4. **Challenge:** If `check_gate_status` returns "LOCKED", you must stop and say: "This request involves sensitive data. Please provide your Secret Word to continue."
+5. **Validation:** Once the user provides a word, call `verify_access`. Only proceed if it returns "Access Granted."
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mfa-word`
-- **Source URL:** [https://clawhub.ai/skills/mfa-word](https://clawhub.ai/skills/mfa-word)
+## Tools
 
-## Overview
+### initialize_mfa
+Sets up the security layer and user preferences.
+- `secret`: The primary secret word.
+- `super_secret`: The emergency reset word.
+- `sensitive_list`: Array of strings or patterns to protect (default: .env, password, config, sudo).
+- `use_dead_mans_switch`: Boolean. If true, the gate locks after every single sensitive action.
 
+### verify_access
+Validates the secret word provided by the user.
+- `word`: The word provided by the user in chat.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mfa-word
-```
+### check_gate_status
+Internal tool to check if the current session is authenticated.
+
+### reset_mfa
+Resets the secret word using the super secret word.
+- `super_word`: The emergency reset word.
+- `new_secret`: The new primary secret.

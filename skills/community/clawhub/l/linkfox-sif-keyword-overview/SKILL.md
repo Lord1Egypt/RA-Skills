@@ -1,35 +1,160 @@
 ---
-name: "Sif Keyword Overview"
-description: "亚马逊市场关键词竞争度的SIF概览分析。当用户提到关键词竞争度、供需比、竞品数量、关键词搜索量估算、市场竞争力评估、关键词热度排名、广告竞争分析、某个关键词下的商品数量、keyword competition, supply-demand ratio, competitor count, search popul..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkfox-sif-keyword-overview"
-sourceUrl: "https://clawhub.ai/skills/linkfox-sif-keyword-overview"
+name: linkfox-sif-keyword-overview
+version: 1.0.1
+category: product-sourcing
+description: 亚马逊市场关键词竞争度的SIF概览分析。当用户提到关键词竞争度、供需比、竞品数量、关键词搜索量估算、市场竞争力评估、关键词热度排名、广告竞争分析、某个关键词下的商品数量、keyword competition, supply-demand ratio, competitor count, search popularity, market competition analysis, SIF, keyword overview时触发此技能。即使用户未明确说"SIF"，只要其需求涉及评估亚马逊上关键词层面的竞争强度、供需平衡或搜索结果商品数量，也应触发此技能。
 ---
 
-# Sif Keyword Overview
+# SIF Keyword Overview
 
-> 亚马逊市场关键词竞争度的SIF概览分析。当用户提到关键词竞争度、供需比、竞品数量、关键词搜索量估算、市场竞争力评估、关键词热度排名、广告竞争分析、某个关键词下的商品数量、keyword competition, supply-demand ratio, competitor count, search popul...
+This skill guides you on how to query and analyze keyword-level competition data on Amazon, helping sellers assess market competitiveness and supply-demand dynamics for specific keywords.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkfox-sif-keyword-overview`
-- **Source URL:** [https://clawhub.ai/skills/linkfox-sif-keyword-overview](https://clawhub.ai/skills/linkfox-sif-keyword-overview)
+## Core Concepts
 
-## Overview
+The SIF Keyword Overview tool provides a comprehensive snapshot of competition metrics for a given keyword on Amazon. It returns the number of competing products across different placement types (organic, sponsored, video ads, brand ads, etc.), estimated weekly search volume, keyword popularity ranking, and the supply-demand ratio.
 
+**Supply-demand ratio**: Calculated as `total search result product count / monthly search volume`. A lower ratio indicates less competition and greater opportunity. This is a key metric for identifying blue-ocean keywords.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/linkfox-sif-keyword-overview
+**Keyword popularity ranking**: Represents where this keyword ranks among all keywords on the marketplace by monthly search volume. A smaller number means higher search popularity (rank 1 is the most popular). When a user says "ranking improved," it means the numeric value decreased; "ranking dropped" means the value increased.
+
+## Data Fields
+
+| Field | API Name | Description |
+|-------|----------|-------------|
+| Keyword | keyword | The queried keyword text |
+| Keyword Popularity Rank | keywordPopularityRank | Monthly search volume rank among all keywords (lower = more popular) |
+| Estimated Weekly Search Volume | estimatedWeeklySearchVolume | Estimated weekly search count on Amazon |
+| Supply-Demand Ratio | supplyDemandRatio | Product count / monthly search volume (lower = less competition) |
+| Total Search Result Products | totalSearchResultProductCount | Total products shown under this keyword (organic + ads + recommendations) |
+| Natural Search Products | naturalSearchProductCount | Products in organic search results (excluding ads) |
+| Sponsored Products (SP) Count | sponsoredProductsCount | Products running Sponsored Products ads |
+| Brand Ad Products | brandAdProductCount | Products running Brand Ads |
+| Video Ad Products | videoAdProductCount | Products running Video Ads |
+| Total Paid Advertising Products | paidAdvertisingProductCount | All PPC ad products combined (SP + Brand + Video, etc.) |
+| Amazon's Choice Products | amazonChoiceProductCount | Products with the Amazon's Choice badge |
+| Top Rated Products | topRatedProductCount | Products in the Top Rated recommendation section |
+| Search Recommendation Products | searchRecommendationProductCount | Products recommended by Amazon during search |
+| Editorial Recommendations Products | editorialRecommendationsProductCount | Products in Editorial Recommendations section |
+| Recommendation Non-ad Products | recNonadProductCount | Products in recommendation slots classified as non-ad (organic recommendations) |
+| Recommendation Ad Products | recAdProductCount | Products in recommendation slots classified as ads |
+| SIF-Tracked Exposed ASINs | trackedAsinTotalCount | Deduplicated count of ASINs that SIF tracked with any exposure score (natural/ad/recommendation) — upstream field `totalAsinNum` |
+| Total Marketplace Keywords | totalMarketplaceKeywordCount | Total number of keywords in the marketplace |
+| Data Period Start Date | dataPeriodStartDate | ABA week start date for the returned data (yyyy-MM-dd) |
+| Data Period End Date | dataPeriodEndDate | ABA week end date for the returned data (yyyy-MM-dd) |
+| Data Update Time | keywordDataUpdateTime | Last update timestamp for this keyword's data |
+
+## Supported Marketplaces
+
+13 marketplaces: US (United States), UK (United Kingdom), DE (Germany), CA (Canada), JP (Japan), FR (France), ES (Spain), IT (Italy), MX (Mexico), AU (Australia), AE (United Arab Emirates), BR (Brazil), SA (Saudi Arabia).
+
+Default marketplace is **US**. Use US when the user does not specify a marketplace. Codes outside this list will be rejected by the API pattern.
+
+**Important**: The `keyword` parameter should ideally be in the language of the target marketplace. For example, use German keywords for DE, Japanese for JP, etc. If the user provides keywords in a different language, translate them to the marketplace's local language before querying.
+
+## API Usage
+
+This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, and response structure. You can also execute `scripts/sif_keyword_overview.py` directly to run queries.
+
+## Parameter Guide
+
+1. **keyword** (required): The search keyword to analyze. Should be translated to the target marketplace's language for best results. Maximum length: 1000 characters.
+2. **country** (optional): The Amazon marketplace code. Defaults to `US`. See Supported Marketplaces above for valid codes.
+3. **last7d** (optional, boolean, default `true`): Use the latest 7 days. When `false`, the API uses `startDate`/`endDate`.
+4. **startDate** (optional, `yyyy-MM-dd`): Start date for a custom window. Takes effect when `last7d=false`.
+5. **endDate** (optional, `yyyy-MM-dd`): End date paired with `startDate`.
+
+### Usage Examples
+
+**1. Basic keyword competition check**
+Query: "How competitive is the keyword 'wireless charger' on Amazon US?"
+```json
+{"keyword": "wireless charger", "country": "US"}
 ```
+
+**2. Check competition in a non-US marketplace**
+Query: "How many competitors are there for 'Handyhulle' on Amazon Germany?"
+```json
+{"keyword": "Handyhulle", "country": "DE"}
+```
+
+**3. Supply-demand analysis for product research**
+Query: "What's the supply-demand ratio for 'yoga mat' in the US?"
+```json
+{"keyword": "yoga mat", "country": "US"}
+```
+
+**4. Advertising competition assessment**
+Query: "How many sellers are running ads on 'dog leash' in the UK?"
+```json
+{"keyword": "dog leash", "country": "UK"}
+```
+
+**5. Multi-marketplace comparison (multiple calls)**
+Query: "Compare the competition for 'bluetooth speaker' across US, UK, and DE"
+- Call 1: `{"keyword": "bluetooth speaker", "country": "US"}`
+- Call 2: `{"keyword": "bluetooth speaker", "country": "UK"}`
+- Call 3: `{"keyword": "Bluetooth Lautsprecher", "country": "DE"}`
+
+**6. Specific date range**
+Query: "Competition for 'yoga mat' between 2026-03-08 and 2026-03-14"
+```json
+{"keyword": "yoga mat", "country": "US", "last7d": false, "startDate": "2026-03-08", "endDate": "2026-03-14"}
+```
+
+## Display Rules
+
+1. **Present data clearly**: Show query results in a well-structured table format. Include all relevant metrics the user asked about.
+2. **Highlight key metrics**: When showing results, emphasize the supply-demand ratio, keyword popularity rank, and total product count as these are the most actionable metrics.
+3. **Ranking clarification**: When displaying keyword popularity rank, remind users that lower values mean higher search popularity.
+4. **Supply-demand interpretation**: When showing the supply-demand ratio, provide context: values below 1 suggest high demand relative to supply (opportunity); values above 5 suggest a saturated market.
+5. **Ad competition breakdown**: When users ask about advertising competition, break down the total paid advertising count into its components (SP, Brand, Video) for a more detailed view.
+6. **Error handling**: When a query fails, explain the reason based on the `msg` field and suggest adjusting query parameters (e.g., check keyword spelling, try a different marketplace).
+7. **Data freshness & period**: Always surface `keywordDataUpdateTime` (last refresh) plus `dataPeriodStartDate` ~ `dataPeriodEndDate` (the ABA week the counts describe). Do not present product counts without naming the period.
+8. **No subjective advice**: Present data objectively without making business recommendations unless specifically asked.
+## Important Limitations
+
+- **Single keyword per request**: Each API call queries one keyword at a time. For multi-keyword comparisons, make separate calls.
+- **Single record response**: The API typically returns one data record per keyword (`total` is usually 1).
+- **Marketplace coverage**: 13 Amazon marketplaces — IN / NL / SE / PL / TR / SG are no longer supported. Keywords not found in the queried marketplace will return empty results.
+- **Time window**: Defaults to the latest 7 days. Pass `last7d=false` plus `startDate`/`endDate` for a custom ABA week range.
+- **Keyword language**: For best accuracy, keywords should be in the local language of the target marketplace.
+
+## User Expression & Scenario Quick Reference
+
+**Applicable** -- Keyword-level competition and market assessment:
+
+| User Says | Scenario |
+|-----------|----------|
+| "How competitive is XX keyword" | Competition intensity check |
+| "How many products are there for XX" | Search result product count |
+| "What's the supply-demand ratio for XX" | Supply-demand analysis |
+| "How many sellers are advertising on XX" | Ad competition assessment |
+| "Is XX keyword a blue ocean" | Market opportunity evaluation |
+| "Search volume for XX keyword" | Search popularity estimation |
+| "How popular is XX keyword on Amazon" | Keyword popularity ranking |
+| "Compare competition across marketplaces" | Multi-market competition comparison |
+| "How many SIF-tracked ASINs are active on this keyword" | Deduplicated tracked-ASIN count (`trackedAsinTotalCount`) |
+| "Competition for this keyword in a specific week" | Custom date range via `startDate`/`endDate` |
+
+**Not applicable** -- Needs beyond keyword competition overview:
+
+- Historical keyword ranking trends over time (use ABA Data Explorer instead)
+- Click share and conversion share by ASIN (use ABA Data Explorer instead)
+- Advertising bid strategy and PPC optimization
+- Product reviews, listing optimization
+- ASIN-level sales estimation
+- Detailed keyword search trend analysis over weeks/months
+
+
+**Feedback:**
+
+Auto-detect and report feedback via the Feedback API when any of the following apply:
+1. The functionality or purpose described in this skill does not match actual behavior
+2. The skill's results do not match the user's intent
+3. The user expresses dissatisfaction or praise about this skill
+4. Anything you believe could be improved
+
+Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+
+---
+*For more high-quality, professional cross-border e-commerce skills, set [LinkFox Skills](https://skill.linkfox.com/).*

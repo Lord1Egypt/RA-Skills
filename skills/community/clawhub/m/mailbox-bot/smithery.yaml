@@ -1,0 +1,45 @@
+name: mailbox-bot
+displayName: mailbox.bot
+description: Postal mail API for AI agents. 29 MCP tools for outbound physical mail, existing-address inbound context, linked postal threads, and launching-soon mailing address beta workflows with street + mailbox number.
+version: 5.1.5
+type: remote
+url: https://mailbox.bot/api/mcp
+transport: streamable-http
+protocolVersion: "2025-11-25"
+
+auth:
+  type: bearer
+  instructions: "Sign up at https://mailbox.bot/signup, create an agent API key in the dashboard, and use sk_agent_test_ keys for sandbox (no charges)."
+
+tools: 29
+
+categories:
+  - communication
+  - automation
+  - legal
+
+tags:
+  - postal-mail
+  - certified-mail
+  - print-and-mail
+  - physical-mail
+  - mailing-address
+  - mailbox-address
+  - inbound-context
+  - forwarding
+  - postal-threads
+  - letters
+  - postcards
+  - batch-mail
+  - webhooks
+  - ai-agents
+
+homepage: https://mailbox.bot
+repository: https://github.com/arbengine/mailbox-bot-skill
+documentation: https://mailbox.bot/mcp-install
+openapi: https://mailbox.bot/openapi.json
+
+pricing:
+  model: pay-per-use
+  base: "$0/mo"
+  details: https://mailbox.bot/pricing

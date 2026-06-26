@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 2900" width="100%" style="max-width: 440px;">
+  <style>
+    text { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; }
+  </style>
+  <rect width="440" height="2900" rx="16" fill="#F7F8FA"/>
+
+  <rect x="20" y="20" width="400" height="90" rx="12" fill="#1A1A2E"/>
+  <text x="220" y="52" text-anchor="middle" fill="#FFFFFF" font-size="20" font-weight="bold">支付核销一体化</text>
+  <text x="220" y="76" text-anchor="middle" fill="#A0A0B8" font-size="14">三方对接方案 · CRM服务商 / POS / 品牌方</text>
+  <text x="220" y="98" text-anchor="middle" fill="#666" font-size="12">当前范围：折扣券 · 手动选券 · 移动支付</text>
+
+  <rect x="20" y="130" width="400" height="200" rx="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="20" y="130" width="400" height="38" rx="12" fill="#8E44AD"/>
+  <rect x="20" y="156" width="400" height="12" fill="#8E44AD"/>
+  <text x="36" y="155" fill="#FFFFFF" font-size="15" font-weight="bold">业务场景</text>
+  <text x="36" y="192" fill="#333" font-size="13">顾客到店点餐，出示付款码结账</text>
+  <text x="36" y="214" fill="#333" font-size="13">POS扫码后自动识别会员身份</text>
+  <text x="36" y="236" fill="#333" font-size="13">屏幕展示该会员名下可用折扣券</text>
+  <text x="36" y="258" fill="#333" font-size="13">收银员手动选中 → 抵扣 → 完成支付+核销</text>
+  <rect x="36" y="272" width="370" height="44" rx="6" fill="#F3E5F5"/>
+  <text x="46" y="290" fill="#6A1B9A" font-size="12" font-weight="bold">核心价值：顾客无需主动出示会员码/找券</text>
+  <text x="46" y="306" fill="#6A1B9A" font-size="12">解决门店员工不口播、顾客不知道有券的问题</text>
+
+  <rect x="20" y="350" width="400" height="720" rx="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="20" y="350" width="400" height="38" rx="12" fill="#2C3E50"/>
+  <rect x="20" y="376" width="400" height="12" fill="#2C3E50"/>
+  <text x="36" y="375" fill="#FFFFFF" font-size="15" font-weight="bold">完整技术链路</text>
+
+  <rect x="36" y="400" width="14" height="14" rx="3" fill="#3498DB"/>
+  <text x="56" y="412" fill="#555" font-size="12">POS端</text>
+  <rect x="120" y="400" width="14" height="14" rx="3" fill="#E74C3C"/>
+  <text x="140" y="412" fill="#555" font-size="12">支付通道</text>
+  <rect x="230" y="400" width="14" height="14" rx="3" fill="#27AE60"/>
+  <text x="250" y="412" fill="#555" font-size="12">CRM服务商</text>
+  <rect x="340" y="400" width="14" height="14" rx="3" fill="#9B59B6"/>
+  <text x="360" y="412" fill="#555" font-size="12">支付平台</text>
+
+  <rect x="36" y="430" width="370" height="56" rx="8" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5"/>
+  <text x="50" y="452" fill="#2471A3" font-size="14" font-weight="bold">Step 1 · POS扫顾客付款码</text>
+  <text x="50" y="474" fill="#555" font-size="12">收银员扫枪扫描顾客付款码（被扫模式）</text>
+
+  <line x1="220" y1="486" x2="220" y2="506" stroke="#999" stroke-width="2" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#999"/></marker></defs>
+
+  <rect x="36" y="506" width="370" height="72" rx="8" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1.5"/>
+  <text x="50" y="528" fill="#C0392B" font-size="14" font-weight="bold">Step 2 · 支付通道换取用户身份</text>
+  <text x="50" y="548" fill="#555" font-size="12">付款码 → 支付平台「一码两用」接口</text>
+  <text x="50" y="566" fill="#555" font-size="12">返回用户唯一标识（短时间内可用两次）</text>
+  <line x1="220" y1="578" x2="220" y2="598" stroke="#999" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="36" y="598" width="370" height="72" rx="8" fill="#E8F8F5" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="50" y="620" fill="#1E8449" font-size="14" font-weight="bold">Step 3 · POS调CRM接口查会员</text>
+  <text x="50" y="640" fill="#555" font-size="12">接口1：用户标识 → 查询是否会员 + 会员信息</text>
+  <text x="50" y="658" fill="#555" font-size="12">接口2：会员ID → 查询名下可用券列表</text>
+  <line x1="220" y1="670" x2="220" y2="690" stroke="#999" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="36" y="690" width="370" height="72" rx="8" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5"/>
+  <text x="50" y="712" fill="#2471A3" font-size="14" font-weight="bold">Step 4 · POS展示可用券</text>
+  <text x="50" y="732" fill="#555" font-size="12">屏幕显示：「该会员有N张折扣券，是否使用？」</text>
+  <text x="50" y="750" fill="#555" font-size="12">收银员手动选中（当前不做自动最优选）</text>
+  <line x1="220" y1="762" x2="220" y2="782" stroke="#999" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="36" y="782" width="370" height="72" rx="8" fill="#EBF5FB" stroke="#3498DB" stroke-width="1.5"/>
+  <text x="50" y="804" fill="#2471A3" font-size="14" font-weight="bold">Step 5 · POS计算折后价并支付</text>
+  <text x="50" y="824" fill="#555" font-size="12">选中券后重新计算订单金额</text>
+  <text x="50" y="842" fill="#555" font-size="12">调支付通道完成扣款（付款码第二次使用）</text>
+  <line x1="220" y1="854" x2="220" y2="874" stroke="#999" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="36" y="874" width="370" height="72" rx="8" fill="#E8F8F5" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="50" y="896" fill="#1E8449" font-size="14" font-weight="bold">Step 6 · 回调CRM完成核销</text>
+  <text x="50" y="916" fill="#555" font-size="12">支付成功后，回调CRM完成券核销</text>
+  <text x="50" y="934" fill="#555" font-size="12">CRM更新券状态（已使用）+ 记录核销流水</text>
+  <line x1="220" y1="946" x2="220" y2="966" stroke="#999" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="36" y="966" width="370" height="56" rx="8" fill="#F5EEF8" stroke="#8E44AD" stroke-width="1.5"/>
+  <text x="50" y="988" fill="#6C3483" font-size="14" font-weight="bold">Step 7 · 完成</text>
+  <text x="50" y="1008" fill="#555" font-size="12">顾客收到支付凭证（折后金额），全程数秒</text>
+
+  <rect x="20" y="1090" width="400" height="340" rx="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="20" y="1090" width="400" height="38" rx="12" fill="#27AE60"/>
+  <rect x="20" y="1116" width="400" height="12" fill="#27AE60"/>
+  <text x="36" y="1115" fill="#FFFFFF" font-size="15" font-weight="bold">CRM服务商职责</text>
+  <text x="36" y="1150" fill="#1E8449" font-size="14" font-weight="bold">需提供的接口（共3个）</text>
+  <rect x="36" y="1164" width="370" height="48" rx="6" fill="#E8F8F5"/>
+  <text x="46" y="1182" fill="#333" font-size="13" font-weight="bold">接口A：会员身份查询</text>
+  <text x="46" y="1200" fill="#666" font-size="12">入参：用户标识 → 返回：是否会员/等级/ID</text>
+  <rect x="36" y="1220" width="370" height="48" rx="6" fill="#E8F8F5"/>
+  <text x="46" y="1238" fill="#333" font-size="13" font-weight="bold">接口B：可用券列表查询</text>
+  <text x="46" y="1256" fill="#666" font-size="12">入参：会员ID → 返回：券列表（类型/面额/规则）</text>
+  <rect x="36" y="1276" width="370" height="48" rx="6" fill="#E8F8F5"/>
+  <text x="46" y="1294" fill="#333" font-size="13" font-weight="bold">接口C：券核销</text>
+  <text x="46" y="1312" fill="#666" font-size="12">入参：券ID+订单号+门店 → 返回：核销结果</text>
+  <text x="36" y="1348" fill="#1E8449" font-size="14" font-weight="bold">交付物</text>
+  <text x="36" y="1370" fill="#555" font-size="13">• 接口文档（含字段定义、错误码、调用示例）</text>
+  <text x="36" y="1392" fill="#555" font-size="13">• 测试环境 + 测试账号（含有券的测试会员）</text>
+  <text x="36" y="1414" fill="#555" font-size="13">• 明确券类型范围：当前仅返回折扣券</text>
+
+  <rect x="20" y="1450" width="400" height="440" rx="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="20" y="1450" width="400" height="38" rx="12" fill="#3498DB"/>
+  <rect x="20" y="1476" width="400" height="12" fill="#3498DB"/>
+  <text x="36" y="1475" fill="#FFFFFF" font-size="15" font-weight="bold">POS服务商职责</text>
+  <text x="36" y="1510" fill="#2471A3" font-size="14" font-weight="bold">需要改动的环节</text>
+  <rect x="36" y="1524" width="370" height="64" rx="6" fill="#EBF5FB"/>
+  <text x="46" y="1542" fill="#333" font-size="13" font-weight="bold">改动1：扫码后增加身份识别步骤</text>
+  <text x="46" y="1560" fill="#666" font-size="12">扫付款码 → 先调支付通道换用户标识</text>
+  <text x="46" y="1576" fill="#666" font-size="12">→ 再调CRM接口查会员 → 查券</text>
+  <rect x="36" y="1596" width="370" height="64" rx="6" fill="#EBF5FB"/>
+  <text x="46" y="1614" fill="#333" font-size="13" font-weight="bold">改动2：结账页增加券展示+选择UI</text>
+  <text x="46" y="1632" fill="#666" font-size="12">非会员/无券：正常流程不变</text>
+  <text x="46" y="1648" fill="#666" font-size="12">有券：弹出券列表，收银员点选后重算金额</text>
+  <rect x="36" y="1668" width="370" height="48" rx="6" fill="#EBF5FB"/>
+  <text x="46" y="1686" fill="#333" font-size="13" font-weight="bold">改动3：支付成功后回调核销</text>
+  <text x="46" y="1704" fill="#666" font-size="12">支付完成 → 调CRM接口完成券核销</text>
+  <text x="36" y="1738" fill="#2471A3" font-size="14" font-weight="bold">关键约束</text>
+  <text x="36" y="1760" fill="#555" font-size="13">• 整个识别+查券流程需控制在秒级</text>
+  <text x="36" y="1782" fill="#555" font-size="13">• 查询失败/超时 → 降级为正常支付流程</text>
+  <text x="36" y="1804" fill="#555" font-size="13">• 非会员直接跳过，不影响现有结账速度</text>
+  <rect x="36" y="1820" width="370" height="56" rx="6" fill="#FFF3E0"/>
+  <text x="46" y="1840" fill="#E65100" font-size="13" font-weight="bold">这是POS端改动最大的部分</text>
+  <text x="46" y="1858" fill="#E65100" font-size="12">改变了现有结账主流程，需POS团队评估排期</text>
+
+  <rect x="20" y="1910" width="400" height="260" rx="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="20" y="1910" width="400" height="38" rx="12" fill="#E67E22"/>
+  <rect x="20" y="1936" width="400" height="12" fill="#E67E22"/>
+  <text x="36" y="1935" fill="#FFFFFF" font-size="15" font-weight="bold">品牌方（业务/协调）职责</text>
+  <text x="36" y="1972" fill="#555" font-size="13">• 推动POS团队排期，确认改动意愿和时间</text>
+  <text x="36" y="1996" fill="#555" font-size="13">• 确认支付通道是否支持一码两用</text>
+  <text x="36" y="2020" fill="#555" font-size="13">• 定义业务规则：</text>
+  <text x="52" y="2042" fill="#555" font-size="13">- 哪些券类型参与核销（当前仅折扣券）</text>
+  <text x="52" y="2064" fill="#555" font-size="13">- 多张券时的选择逻辑（手动 vs 自动）</text>
+  <text x="52" y="2086" fill="#555" font-size="13">- 异常处理：超时/无券时的收银员提示语</text>
+  <text x="36" y="2112" fill="#555" font-size="13">• 协调三方联调时间，提供测试门店</text>
+  <text x="36" y="2136" fill="#555" font-size="13">• 组织三方技术对齐会</text>
+  <text x="36" y="2160" fill="#999" font-size="12">• 后续：推动促销中心立项（自动选券/多券型）</text>
+
+  <rect x="20" y="2190" width="400" height="370" rx="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="20" y="2190" width="400" height="38" rx="12" fill="#2C3E50"/>
+  <rect x="20" y="2216" width="400" height="12" fill="#2C3E50"/>
+  <text x="36" y="2215" fill="#FFFFFF" font-size="15" font-weight="bold">联调推进节奏（建议）</text>
+
+  <rect x="36" y="2240" width="8" height="80" rx="4" fill="#27AE60"/>
+  <text x="54" y="2258" fill="#1E8449" font-size="13" font-weight="bold">Phase 1 · 接口准备</text>
+  <text x="54" y="2278" fill="#555" font-size="12">CRM方：输出接口文档 + 开放测试环境</text>
+  <text x="54" y="2296" fill="#555" font-size="12">POS方：确认支付通道身份获取方式</text>
+  <text x="54" y="2314" fill="#555" font-size="12">品牌方：确认支付通道一码两用能力</text>
+
+  <rect x="36" y="2330" width="8" height="64" rx="4" fill="#3498DB"/>
+  <text x="54" y="2348" fill="#2471A3" font-size="13" font-weight="bold">Phase 2 · 各自开发</text>
+  <text x="54" y="2368" fill="#555" font-size="12">CRM方：接口开发（如有调整）</text>
+  <text x="54" y="2386" fill="#555" font-size="12">POS方：结账流程改造 + 券展示UI</text>
+
+  <rect x="36" y="2404" width="8" height="64" rx="4" fill="#E67E22"/>
+  <text x="54" y="2422" fill="#E67E22" font-size="13" font-weight="bold">Phase 3 · 三方联调</text>
+  <text x="54" y="2442" fill="#555" font-size="12">POS ↔ CRM接口联调（查会员/查券/核销）</text>
+  <text x="54" y="2462" fill="#555" font-size="12">POS ↔ 支付通道联调（一码两用）</text>
+
+  <rect x="36" y="2478" width="8" height="64" rx="4" fill="#8E44AD"/>
+  <text x="54" y="2496" fill="#6C3483" font-size="13" font-weight="bold">Phase 4 · 门店试点</text>
+  <text x="54" y="2516" fill="#555" font-size="12">选数家测试门店，真实场景验证</text>
+  <text x="54" y="2536" fill="#555" font-size="12">关注：响应速度 / 异常降级 / 收银员体验</text>
+
+  <rect x="20" y="2580" width="400" height="300" rx="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="20" y="2580" width="400" height="38" rx="12" fill="#C0392B"/>
+  <rect x="20" y="2606" width="400" height="12" fill="#C0392B"/>
+  <text x="36" y="2605" fill="#FFFFFF" font-size="15" font-weight="bold">边界说明 &amp; 风险提示</text>
+  <text x="36" y="2640" fill="#333" font-size="14" font-weight="bold">本期范围</text>
+  <text x="36" y="2662" fill="#555" font-size="13">本期仅做折扣券（手动选券、单支付通道）</text>
+  <text x="36" y="2730" fill="#333" font-size="14" font-weight="bold">不含（后续迭代）</text>
+  <text x="36" y="2752" fill="#999" font-size="13">商品券 / 兑换券 / 买赠券</text>
+  <text x="36" y="2772" fill="#999" font-size="13">自动最优选券（需促销中心支撑）</text>
+  <text x="36" y="2792" fill="#999" font-size="13">储值余额自动抵扣</text>
+  <text x="36" y="2820" fill="#C0392B" font-size="14" font-weight="bold">主要风险</text>
+  <text x="36" y="2842" fill="#C0392B" font-size="13">POS改动涉及结账主流程，排期可能较长</text>
+  <text x="36" y="2862" fill="#C0392B" font-size="13">支付通道一码两用能力需确认（未验证）</text>
+</svg>

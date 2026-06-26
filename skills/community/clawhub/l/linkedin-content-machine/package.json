@@ -1,0 +1,52 @@
+{
+  "name": "linkedin-content-machine",
+  "version": "1.0.0",
+  "description": "AI-Powered LinkedIn Post Generator for Creators - Transform YouTube videos into 10 LinkedIn posts per video",
+  "author": "Sanny",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appincubator/linkedin-content-machine"
+  },
+  "license": "MIT",
+  "keywords": [
+    "linkedin",
+    "content-marketing",
+    "youtube-to-linkedin",
+    "creator-marketing",
+    "ai-content-generator"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "bash quickstart",
+    "email-templates": "./linkedin-email-template",
+    "sample-posts": "cat linkedin-samples.md"
+  },
+  "main": "README.md",
+  "files": [
+    "README.md",
+    "SKILL.md",
+    "linkedin-email-template",
+    "linkedin-samples.md",
+    "linkedin-post-generator",
+    "linkedin-research",
+    "quickstart"
+  ],
+  "config": {
+    "price": 199,
+    "price_per_post": 20,
+    "hours_saved_per_video": 10,
+    "target_creators": 10,
+    "conversion_rate": 0.3
+  },
+  "meta": {
+    "category": "Productivity",
+    "subcategory": "Content Creation",
+    "fit_for_sale": true,
+    "market_size": "Millions of YouTube creators",
+    "pain_point": "Wasted audience reach on LinkedIn",
+    "solution_speed": "10 posts in 10 minutes",
+    "roi": "90% cheaper than agencies, 50% cheaper than freelancers"
+  }
+}

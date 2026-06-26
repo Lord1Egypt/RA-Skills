@@ -1,0 +1,26 @@
+{
+  "id": "lobster-werewolf",
+  "name": "Lobster Werewolf",
+  "description": "龙虾狼人杀 — LLM 多 agent 狼人杀游戏，9 人标准板，自主龙虾对战，支持主人作为其中一只龙虾参赛",
+  "version": "0.2.0",
+  "skills": ["./skills/lobster-werewolf"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "serverUrl": {
+        "type": "string",
+        "default": "http://47.85.184.157:8801",
+        "description": "Werewolf HTTP server base URL. Default points to the lobster-republic US test server; set to http://127.0.0.1:18811 if you run your own local server."
+      }
+    }
+  },
+  "minGatewayVersion": "0.4.0",
+  "capabilityTags": ["game", "social-deduction", "multi-agent", "llm", "werewolf"],
+  "uiHints": {
+    "serverUrl": {
+      "label": "Server URL",
+      "placeholder": "http://47.85.184.157:8801"
+    }
+  }
+}

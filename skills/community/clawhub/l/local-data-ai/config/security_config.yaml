@@ -1,0 +1,78 @@
+# 安全配置
+security:
+  # 沙箱配置
+  sandbox:
+    enabled: true
+    isolate_filesystem: true
+    restrict_network: true
+    max_memory_percent: 40
+    temp_data_ttl: 3600  # 临时数据存活时间（秒）
+  
+  # 内容过滤
+  content_filter:
+    enabled: true
+    block_categories:
+      - "pornographic"
+      - "violent"
+      - "illegal"
+      - "extremist"
+    action: "block"  # block/log/warn
+    
+  # 文件类型限制
+  file_restrictions:
+    allowed_extensions:
+      - ".pdf"
+      - ".doc"
+      - ".docx"
+      - ".xls"
+      - ".xlsx"
+      - ".ppt"
+      - ".pptx"
+      - ".txt"
+      - ".csv"
+      - ".md"
+      - ".jpg"
+      - ".jpeg"
+      - ".png"
+      - ".gif"
+      - ".tiff"
+      - ".bmp"
+    max_file_size: 209715200  # 200MB
+    scan_zip: true
+  
+  # 审计日志
+  audit_log:
+    enabled: true
+    retention_days: 90
+    encryption: "AES-256"
+    hash_verification: true
+    export_formats: ["pdf", "excel", "json"]
+    
+  # 访问控制
+  access_control:
+    enabled: false  # 企业版功能
+    rbac_enabled: false
+    session_timeout: 3600
+    max_concurrent_sessions: 10
+
+# 合规配置
+compliance:
+  # 等保 2.0
+  level2:
+    identity_auth: true
+    access_control: true
+    audit_log: true
+    data_encryption: true
+  
+  # 个保法
+  personal_info_protection:
+    data_minimization: true
+    purpose_limitation: true
+    storage_limitation: true
+    no_cross_border: true
+  
+  # 数据安全法
+  data_security:
+    classification: false  # 企业版功能
+    backup_required: true
+    destruction_verification: true

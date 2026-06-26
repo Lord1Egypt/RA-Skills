@@ -1,0 +1,20 @@
+{
+  "name": "lingxing-erp",
+  "version": "1.0.0",
+  "description": "领星 ERP 数据查询",
+  "config": {
+    "ACCESS_KEY": "",
+    "SECRET_KEY": "",
+    "BASE_URL": "https://openapi.lingxing.com"
+  },
+  "functions": [
+    {
+      "name": "get_today_orders",
+      "description": "查询今日订单",
+      "parameters": {
+        "page": "页码（默认1）",
+        "page_size": "每页数量（默认20）"
+      }
+    }
+  ]
+}

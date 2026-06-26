@@ -1,0 +1,14 @@
+{
+  "name": "mac-clamshell-mode",
+  "version": "1.0.0",
+  "description": "Mac Clamshell Mode Assistant - Configure MacBook to run with lid closed",
+  "keywords": ["mac", "clamshell", "lid", "sleep", "power", "macos"],
+  "author": "keenlycat",
+  "license": "MIT",
+  "scripts": {
+    "test": "./test-skill.sh"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

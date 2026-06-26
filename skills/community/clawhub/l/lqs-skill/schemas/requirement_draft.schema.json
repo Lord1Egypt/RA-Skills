@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lqs.local/skill/schemas/requirement_draft.schema.json",
+  "title": "RequirementDraft",
+  "type": "object",
+  "required": ["feature_name", "entities", "actions"],
+  "properties": {
+    "feature_name": { "type": "string", "minLength": 1 },
+    "business_goal": { "type": "string" },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "fields"],
+        "properties": {
+          "name": { "type": "string" },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "type"],
+              "properties": {
+                "name": { "type": "string" },
+                "type": { "type": "string" },
+                "required": { "type": "boolean" },
+                "default": {},
+                "enum": { "type": "array", "items": { "type": "string" } },
+                "description": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["method", "path", "action"],
+        "properties": {
+          "method": { "type": "string" },
+          "path": { "type": "string" },
+          "action": { "type": "string" },
+          "params": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "ui_pages": { "type": "array", "items": { "type": "string" } },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "acceptance": { "type": "array", "items": { "type": "string" } },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "source"],
+        "properties": {
+          "claim": { "type": "string" },
+          "source": { "type": "string", "enum": ["requirement", "context", "pattern", "history"] },
+          "detail": { "type": "string" }
+        }
+      }
+    },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic", "impact"],
+        "properties": {
+          "topic": { "type": "string" },
+          "impact": { "type": "string" },
+          "default_resolution": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    }
+  }
+}

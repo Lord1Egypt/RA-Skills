@@ -1,0 +1,28 @@
+{
+  "default_limit": 10,
+  "max_limit": 50,
+  "year_min": 2020,
+  "deduplicate": true,
+  "cache_enabled": true,
+  "cache_ttl_hours": 24,
+  "s2_api_key": "",
+  "sources": {
+    "openalex": {
+      "enabled": true,
+      "base_url": "https://api.openalex.org/works",
+      "rate_limit": 10000
+    },
+    "semantic_scholar": {
+      "enabled": true,
+      "base_url": "https://api.semanticscholar.org/graph/v1/paper/search",
+      "rate_limit": 1000,
+      "rate_limit_window": 300
+    },
+    "arxiv": {
+      "enabled": true,
+      "base_url": "http://export.arxiv.org/api/query",
+      "rate_limit": 1,
+      "rate_limit_window": 3
+    }
+  }
+}

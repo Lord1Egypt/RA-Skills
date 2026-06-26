@@ -1,0 +1,23 @@
+{
+  "skill_name": "md-to-docx",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把 test_chinese_book.md 转成 Word 文档，用 docs/正文模板.doc 作为模板，输出到 /tmp/test_output_chinese.docx",
+      "expected_output": "A .docx file with: Chinese typesetting (宋体/黑体), chapter title centered 18pt, section titles centered 16pt, body text 10.5pt with first-line indent, 2 Mermaid diagrams rendered as PNG images, code blocks with language labels, tables with borders, block quotes in italic, and page margins matching the template.",
+      "files": ["test_chinese_book.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "Convert test_english_tech.md to a Word document without any template. Save to /tmp/test_output_english.docx",
+      "expected_output": "A .docx file with: default Chinese typesetting applied (since no template), all 4 headings rendered correctly, 1 Mermaid diagram rendered as PNG, code blocks preserved, table with headers, block quote formatted. The document should be readable and well-formatted even without a custom template.",
+      "files": ["test_english_tech.md"]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我把 test_no_mermaid.md 导出为 Word，输出到 /tmp/test_output_report.docx",
+      "expected_output": "A .docx file with: proper heading hierarchy (h1 for title, h2 for sections, h3 for subsections), bullet and numbered lists formatted with correct indentation, table with borders and header styling, block quote with italic formatting, no Mermaid-related errors. The weekly report should look professional.",
+      "files": ["test_no_mermaid.md"]
+    }
+  ]
+}

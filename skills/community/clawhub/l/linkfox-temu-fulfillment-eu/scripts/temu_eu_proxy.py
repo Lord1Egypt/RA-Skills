@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""
+Temu EU Fulfillment API generic proxy (site=eu, semi-managed, order-shipping by default).
+
+Usage:
+  python temu_eu_proxy.py '{
+    "accessToken": "TEMU_EU_TOKEN",
+    "tokenPurpose": "order-shipping",
+    "type": "<TEMU_API_TYPE>",
+    "params": {"request": {}}
+  }'
+"""
+
+import json
+import sys
+
+from _temu_common import load_json_arg, parse_nested_body, require_text
+from _temu_eu_common import DEFAULT_SITE, eu_proxy_call
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: temu_eu_proxy.py '<JSON>'", file=sys.stderr)
+        sys.exit(1)
+    params = load_json_arg(sys.argv)
+    params.setdefault("site", DEFAULT_SITE)
+    api_type = require_text(params, "type")
+    result = parse_nested_body(eu_proxy_call(params, api_type))
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+
+if __name__ == "__main__":
+    main()

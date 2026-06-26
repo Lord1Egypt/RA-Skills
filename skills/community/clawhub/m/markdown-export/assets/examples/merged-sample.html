@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>统一导出</title>
+  
+  
+  
+  <style type="text/css">:root {
+--bg: #08111f;
+--bg-2: #101b30;
+--panel: rgba(11, 18, 33, 0.72);
+--panel-2: rgba(17, 27, 48, 0.78);
+--text: #e6edf7;
+--muted: #92a4c4;
+--line: rgba(144, 164, 196, 0.18);
+--accent: #6ee7f2;
+--accent-2: #7c3aed;
+--quote: rgba(110, 231, 242, 0.08);
+--code-bg: #050a14;
+}
+* {
+box-sizing: border-box;
+}
+body {
+margin: 0;
+font-family: "Space Grotesk", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+color: var(--text);
+background:
+radial-gradient(circle at 10% 10%, rgba(110, 231, 242, 0.14), transparent 22rem),
+radial-gradient(circle at 90% 20%, rgba(124, 58, 237, 0.18), transparent 24rem),
+linear-gradient(180deg, #050a14 0%, #09111f 45%, #0b1628 100%);
+line-height: 1.78;
+}
+.ambient {
+position: fixed;
+inset: auto;
+width: 40vw;
+height: 40vw;
+border-radius: 999px;
+filter: blur(80px);
+opacity: 0.25;
+pointer-events: none;
+}
+.ambient-a {
+top: -8vw;
+right: -10vw;
+background: #7c3aed;
+}
+.ambient-b {
+left: -12vw;
+top: 24vh;
+background: #0891b2;
+}
+.midnight-page {
+position: relative;
+z-index: 1;
+max-width: 1220px;
+margin: 0 auto;
+padding: 58px 24px 80px;
+}
+.launch-header h1 {
+margin: 0;
+font-size: clamp(2.9rem, 7vw, 5.8rem);
+line-height: 0.94;
+letter-spacing: -0.06em;
+max-width: 12ch;
+}
+.eyebrow,
+.toc-label {
+margin: 0 0 12px;
+color: var(--accent);
+font-size: 0.82rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+font-weight: 800;
+}
+.meta-row {
+margin-top: 14px;
+color: var(--muted);
+display: flex;
+gap: 14px;
+flex-wrap: wrap;
+}
+.midnight-layout {
+display: grid;
+grid-template-columns: minmax(0, 270px) minmax(0, 1fr);
+gap: 24px;
+align-items: start;
+margin-top: 28px;
+}
+.toc-panel,
+.content-panel {
+background: var(--panel);
+border: 1px solid var(--line);
+border-radius: 30px;
+box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+backdrop-filter: blur(22px);
+}
+.toc-panel {
+position: sticky;
+top: 24px;
+padding: 20px;
+}
+.content-panel {
+padding: 34px clamp(20px, 4vw, 46px) 48px;
+}
+#TOC ul,
+.toc-panel ul {
+list-style: none;
+padding-left: 0;
+}
+a {
+color: var(--accent);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+color: #f3f7ff;
+line-height: 1.1;
+letter-spacing: -0.03em;
+}
+h2 {
+margin-top: 2.3rem;
+font-size: clamp(1.9rem, 4vw, 2.8rem);
+}
+h3 {
+color: #b9c8e4;
+}
+blockquote {
+margin: 1.7rem 0;
+padding: 1rem 1.2rem;
+background: var(--quote);
+border-left: 4px solid var(--accent);
+border-radius: 0 18px 18px 0;
+}
+code,
+pre {
+font-family: "JetBrains Mono", "SFMono-Regular", monospace;
+}
+code {
+background: rgba(110, 231, 242, 0.12);
+color: #aef8ff;
+padding: 0.14rem 0.38rem;
+border-radius: 0.42rem;
+}
+pre {
+background: var(--code-bg);
+color: #d9e3f0;
+padding: 1rem 1.1rem;
+border-radius: 20px;
+overflow-x: auto;
+border: 1px solid rgba(146, 164, 196, 0.14);
+}
+pre code {
+background: transparent;
+color: inherit;
+padding: 0;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.6rem 0;
+}
+th,
+td {
+padding: 0.9rem 0.95rem;
+border-bottom: 1px solid var(--line);
+text-align: left;
+}
+th {
+color: #b8f4fa;
+}
+img {
+max-width: 100%;
+border-radius: 22px;
+border: 1px solid var(--line);
+}
+@media (max-width: 920px) {
+.midnight-layout {
+grid-template-columns: 1fr;
+}
+.toc-panel {
+position: static;
+}
+}
+</style>
+</head>
+<body class="theme-product-midnight">
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <main class="midnight-page">
+    <header class="launch-header">
+      <p class="eyebrow">Launch Notes</p><h1>统一导出</h1>
+      <div class="meta-row">
+        
+        
+      </div>
+    </header>
+    <section class="midnight-layout">
+            <article class="content-panel">
+        <h1 id="统一导出--一个-skill--两种格式">统一导出- 一个 skill-
+        两种格式</h1>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

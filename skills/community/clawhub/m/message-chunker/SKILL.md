@@ -1,35 +1,120 @@
 ---
-name: "message-chunker"
+name: message-chunker
 description: "智能消息分段工具。自动将长消息拆分成多条发送，避免飞书API消息长度限制。当需要发送长消息（如汇报、方案、日志）时自动激活。"
-category: "other"
-source: "ClawHub"
-tags: [v1]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/message-chunker"
-sourceUrl: "https://clawhub.ai/skills/message-chunker"
 ---
 
-# message-chunker
+# Message Chunker - 消息分段工具
 
-> 智能消息分段工具。自动将长消息拆分成多条发送，避免飞书API消息长度限制。当需要发送长消息（如汇报、方案、日志）时自动激活。
+智能分段发送长消息，确保每条消息不超过平台限制。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/message-chunker`
-- **Source URL:** [https://clawhub.ai/skills/message-chunker](https://clawhub.ai/skills/message-chunker)
+## 触发条件
 
-## Overview
+当消息满足以下任一条件时自动分段：
+- 消息长度超过 4000 字符
+- 包含多个独立章节/表格
+- 发送失败（Status 400）后重试
 
+## 平台限制
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/message-chunker
+| 平台 | 单条限制 | 建议 |
+|------|---------|------|
+| 飞书 | ~4KB | 每条≤4000字符 |
+| Telegram | 4096字符 | 每条≤4000字符 |
+| Discord | 2000字符 | 每条≤1900字符 |
+| WhatsApp | 65536字符 | 较宽松 |
+
+## 分段规则
+
+### 1. 按章节分段
 ```
+## 章节1
+内容...
+
+--- 分段 ---
+
+## 章节2
+内容...
+```
+
+### 2. 按表格分段
+```
+表格1内容...
+
+--- 分割 ---
+
+表格2内容...
+```
+
+### 3. 按段落分段
+- 优先在 `---` 分隔线处分段
+- 其次在空行处分段
+- 避免在句子中间分段
+
+## 使用方法
+
+### 自动模式（推荐）
+在回复长消息时，Agent会自动判断并分段：
+
+```
+# 第1条消息（分段1/n）
+内容...
+
+# 系统自动发送第2条
+内容续...
+
+# 系统自动发送第3条
+内容续...
+```
+
+### 手动标记分段
+在消息中插入分段标记：
+
+```
+{{CHUNK}}
+```
+
+Agent会在标记处自动分段。
+
+## 示例
+
+**原始长消息**（10KB）：
+```
+# 汇报
+## 第一部分
+[大量内容]
+## 第二部分
+[大量内容]
+## 第三部分
+[大量内容]
+```
+
+**分段后**：
+```
+第1条: # 汇报\n## 第一部分\n[大量内容]
+第2条: ## 第二部分\n[大量内容]
+第3条: ## 第三部分\n[大量内容]
+```
+
+## 配置
+
+在 `TOOLS.md` 中可自定义：
+
+```yaml
+message-chunker:
+  maxChunkSize: 4000  # 单条最大字符数
+  splitOnHeadings: true  # 在标题处分段
+  splitOnTables: true  # 表格后分段
+  includeContinuation: true  # 添加"续"标记
+```
+
+## 注意事项
+
+1. **不要过度分段** - 能合并的内容尽量合并
+2. **保持完整性** - 单个表格不要拆分
+3. **添加续接标记** - 让用户知道还有下文
+4. **重试机制** - 分段后仍失败则记录到失败队列
+
+---
+
+*创建时间: 2026-03-10*
+*创建者: 01-老鹰*

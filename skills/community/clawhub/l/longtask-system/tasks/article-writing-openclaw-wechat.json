@@ -1,0 +1,42 @@
+{
+  "task_name": "标准文章写作-微信发布OpenClaw插件",
+  "created_by": "红运",
+  "created_at": "2026-03-22T23:52:00+08:00",
+  "status": "running",
+  "current_step": 0,
+  "steps": [
+    {
+      "step_id": 1,
+      "agent_id": "bibi",
+      "ec_card": "EC-001",
+      "task": "执行标准文章创作：主题为'微信发布OpenClaw插件'，字数1500-2000字。读取选题清单（如有），撰写文章并保存到 articles/2026-03-22/draft/ 目录。",
+      "status": "pending",
+      "output": "articles/2026-03-22/draft/openclaw-wechat-plugin.md"
+    },
+    {
+      "step_id": 2,
+      "agent_id": "tutu",
+      "ec_card": "EC-001",
+      "task": "执行文章配图服务：为笔笔创作的文章配图。读取文章中的配图标记，搜索或生成图片，完成配图后保存到 articles/2026-03-22/articles_final/ 目录。",
+      "status": "pending",
+      "depends_on": [
+        1
+      ],
+      "input": "articles/2026-03-22/draft/openclaw-wechat-plugin.md",
+      "output": "articles/2026-03-22/articles_final/openclaw-wechat-plugin.md"
+    },
+    {
+      "step_id": 3,
+      "agent_id": "tutu",
+      "ec_card": "EC-003",
+      "task": "执行文章插图检查与修复：检查配图质量，评估是否需要修复，生成检查报告。",
+      "status": "pending",
+      "depends_on": [
+        2
+      ],
+      "input": "articles/2026-03-22/articles_final/openclaw-wechat-plugin.md",
+      "output": "articles/2026-03-22/articles_final/插图检查报告.md"
+    }
+  ],
+  "started_at": "2026-03-22T23:53:48+08:00"
+}

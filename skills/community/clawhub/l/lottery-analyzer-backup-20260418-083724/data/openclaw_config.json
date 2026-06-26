@@ -1,0 +1,7 @@
+{
+  "auto_analyze": true,
+  "notify_on_success": true,
+  "notify_on_failure": true,
+  "analyze_after_update": true,
+  "max_log_entries": 100
+}

@@ -1,0 +1,106 @@
+{
+  "profile": {
+    "sex": "male",
+    "height_cm": 175,
+    "weight_kg": 84,
+    "waist_cm": 98,
+    "rapid_weight_gain_pct_6m": 2
+  },
+  "vitals": {
+    "systolic": 136,
+    "diastolic": 86,
+    "resting_hr": 82,
+    "hba1c": 5.9,
+    "ldl": 142,
+    "hdl": 42,
+    "triglycerides": 165
+  },
+  "routine": {
+    "sleep_hours": 6.3,
+    "sleep_schedule_shift_hours": 1.5,
+    "insomnia_or_daytime_fatigue": true,
+    "steps_per_day": 5600,
+    "exercise_days_per_week": 2,
+    "sitting_hours_per_day": 9.5
+  },
+  "habits": {
+    "smoking_current": false,
+    "alcohol_heavy_or_binge": true,
+    "late_caffeine_or_late_night_eating": true
+  },
+  "medical": {
+    "chronic_disease_burden": 1,
+    "multi_med_adherence_issues": false,
+    "strong_family_history": true
+  },
+  "supplements": [
+    {
+      "name": "Omega-3",
+      "status": "Safe to continue"
+    },
+    {
+      "name": "Fat burner",
+      "status": "Avoid for now"
+    },
+    {
+      "name": "Ashwagandha",
+      "status": "Needs clinician review"
+    }
+  ],
+  "reports": {
+    "week_range": "2026-03-16 to 2026-03-22",
+    "risk_score_start": 52,
+    "risk_score_end": 44,
+    "adherence_avg": 76,
+    "sleep_avg_hours": 6.4,
+    "sleep_consistency": "medium",
+    "steps_avg": 6200,
+    "training_sessions_completed": 2,
+    "training_sessions_target": 3,
+    "waist_delta_cm": -0.8,
+    "weight_delta_kg": -0.6,
+    "wins": [
+      "晚饭后散步坚持了5天",
+      "工作日都按时喝水",
+      "睡前刷手机时间减少"
+    ],
+    "gaps": [
+      "力量训练次数不足",
+      "周末睡眠节律偏移"
+    ],
+    "blockers": [
+      "加班导致训练中断"
+    ],
+    "next_week_focus": [
+      "固定周一三五训练",
+      "23:30前上床",
+      "午后不喝含咖啡因饮料"
+    ],
+    "month": "2026-03",
+    "adherence_trend": "up",
+    "monthly_stable_habits": [
+      "工作日饮水提醒执行稳定"
+    ],
+    "monthly_improvements": [
+      "腰围下降",
+      "静息心率下降"
+    ],
+    "monthly_regressions": [
+      "周末熬夜仍然明显"
+    ],
+    "recovery_stress_concerns": "轻度工作压力",
+    "plan_keep": [
+      "喝水提醒",
+      "饭后散步"
+    ],
+    "plan_reduce": [
+      "临时加练"
+    ],
+    "plan_add": [
+      "周二周四20分钟力量补课"
+    ],
+    "medical_follow_up_flags": [
+      "建议复查血脂"
+    ]
+  }
+}

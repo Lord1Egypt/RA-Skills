@@ -1,0 +1,70 @@
+{
+  "version": "2.0",
+  "index": {
+    "maxSizeKB": 25,
+    "maxLineLength": 150,
+    "archiveThreshold": 0.9,
+    "archivePath": "memory/index-archive.md",
+    "lruSize": 5
+  },
+  "topic": {
+    "directory": "memory/topics/",
+    "maxSizeKB": 50,
+    "enableVersioning": false,
+    "requireReferences": true,
+    "requireContradictionMarking": true
+  },
+  "transcript": {
+    "directory": "memory/transcripts/",
+    "splitBy": "day",
+    "archiveDays": 90,
+    "compressFormat": "gzip"
+  },
+  "autoDream": {
+    "enabled": false,
+    "schedule": "23:00",
+    "timezone": "Asia/Shanghai",
+    "notifyOnComplete": false,
+    "notifyChannel": "feishu",
+    "similarityThreshold": 0.8,
+    "minImportance": 0.2,
+    "dryRun": true
+  },
+  "domains": {
+    "default": {
+      "name": "通用",
+      "importanceBase": 0.5,
+      "keywordsWeight": 0.3
+    },
+    "投资": {
+      "name": "投资理财",
+      "importanceBase": 0.8,
+      "keywordsWeight": 0.5
+    },
+    "项目": {
+      "name": "项目开发",
+      "importanceBase": 0.7,
+      "keywordsWeight": 0.4
+    },
+    "资产": {
+      "name": "资产档案",
+      "importanceBase": 0.7,
+      "keywordsWeight": 0.3
+    },
+    "知识": {
+      "name": "知识沉淀",
+      "importanceBase": 0.5,
+      "keywordsWeight": 0.4
+    }
+  },
+  "search": {
+    "defaultSearchTranscripts": false,
+    "maxResults": 50,
+    "minImportanceThreshold": 0.3,
+    "rankingWeights": {
+      "importance": 0.4,
+      "relevance": 0.4,
+      "recency": 0.2
+    }
+  }
+}

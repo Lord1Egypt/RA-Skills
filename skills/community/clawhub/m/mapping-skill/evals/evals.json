@@ -1,0 +1,38 @@
+{
+  "skill_name": "Mapping-Skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请抓取一个 OpenReview 会议的作者信息，提取邮箱、主页和 Scholar，并整理成结构化表格。",
+      "expected_output": "能够优先选择 OpenReview API 或对应脚本，输出结构化作者信息，并说明结果统计。",
+      "files": [],
+      "expectations": [
+        "优先使用 OpenReview API 或 openreview_scraper.py 而不是盲目网页搜索",
+        "输出中包含作者、邮箱、主页或 Scholar 等关键字段",
+        "结果是结构化的，便于导出 CSV 或入表"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "请根据一个实验室主页 URL 提取所有成员信息，并尽量补齐邮箱、主页、Scholar 和研究方向。",
+      "expected_output": "能够根据页面结构选择实验室爬取模式，并输出结构化成员结果。",
+      "files": [],
+      "expectations": [
+        "能够根据页面结构判断使用卡片模式、两阶段模式或邮箱反向定位法",
+        "考虑邮箱补全策略而不是只抽取首页显式字段",
+        "输出包含成员基础信息与联系方式"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "请读取飞书多维表格中的论文作者数据，为有邮箱的作者批量生成个性化推荐邮件，并回写到新字段。",
+      "expected_output": "能够识别飞书工作流需求，按读取表格、研究方向映射、生成邮件、批量更新字段的流程执行。",
+      "files": [],
+      "expectations": [
+        "识别这是 OpenClaw / 飞书工作流而不是单纯文本生成任务",
+        "读取 field-mappings.md、email-templates.md 或等价资源来支撑邮件生成",
+        "输出包括成功/失败统计和失败原因摘要"
+      ]
+    }
+  ]
+}

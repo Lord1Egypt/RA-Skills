@@ -1,35 +1,34 @@
 ---
-name: "Memory Cache"
-description: "High-performance temporary storage system using Redis. Supports namespaced keys (mema:*), TTL management, and JSON serialization for session context and API..."
-category: "other"
-source: "ClawHub"
-tags: [cache, performance, redis, state]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-cache"
-sourceUrl: "https://clawhub.ai/skills/memory-cache"
+name: memory-cache
+description: High-performance temporary storage system using Redis. Supports namespaced keys (mema:*), TTL management, and session context caching. Use for: (1) Saving agent state, (2) Caching API results, (3) Sharing data between sub-agents.
+metadata: {"openclaw":{"requires":{"bins":["python3"],"env":["REDIS_URL"]},"install":[{"id":"pip-dependencies","kind":"exec","command":"pip install -r requirements.txt"}]}}
 ---
 
 # Memory Cache
 
-> High-performance temporary storage system using Redis. Supports namespaced keys (mema:*), TTL management, and JSON serialization for session context and API...
+Standardized Redis-backed caching system for OpenClaw agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-cache`
-- **Source URL:** [https://clawhub.ai/skills/memory-cache](https://clawhub.ai/skills/memory-cache)
+## Prerequisites
+- **Binary**: `python3` must be available on the host.
+- **Credentials**: `REDIS_URL` environment variable (e.g., `redis://localhost:6379/0`).
 
-## Overview
+## Setup
+1. Copy `env.example.txt` to `.env`.
+2. Configure your connection in `.env`.
+3. Dependencies are listed in `requirements.txt`.
 
+## Core Workflows
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-cache
-```
+### 1. Store and Retrieve
+- **Store**: `python3 $WORKSPACE/skills/memory-cache/scripts/cache_manager.py set mema:cache:<name> <value> [--ttl 3600]`
+- **Fetch**: `python3 $WORKSPACE/skills/memory-cache/scripts/cache_manager.py get mema:cache:<name>`
+
+### 2. Search & Maintenance
+- **Scan**: `python3 $WORKSPACE/skills/memory-cache/scripts/cache_manager.py scan [pattern]`
+- **Ping**: `python3 $WORKSPACE/skills/memory-cache/scripts/cache_manager.py ping`
+
+## Key Naming Convention
+Strictly enforce the `mema:` prefix:
+- `mema:context:*` – Session state.
+- `mema:cache:*` – Volatile data.
+- `mema:state:*` – Persistent state.

@@ -1,35 +1,46 @@
----
-name: "Malayalam Language Skill (മലയാളം)"
-description: "Understands Malayalam and Manglish WhatsApp messages and replies politely using culturally appropriate language in matching script style."
-category: "other"
-source: "ClawHub"
-tags: [india, language, malayalam, manglish, whatsapp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/malayalam-whatsapp"
-sourceUrl: "https://clawhub.ai/skills/malayalam-whatsapp"
+# Malayalam WhatsApp Skill (മലയാളം വാട്സ്അപ്പ് കഴിവ്)
+
+WhatsApp വഴി വരുന്ന മലയാളം / Manglish സന്ദേശങ്ങൾ
+ശരിയായി മനസ്സിലാക്കി, സാംസ്കാരികമായി വിനയത്തോടെ മറുപടി നൽകാനുള്ള skill.
+
 ---
 
-# Malayalam Language Skill (മലയാളം)
+## When to Use
+- User sends Malayalam script (Unicode U+0D00–U+0D7F)
+- User writes Manglish: "namaskaram", "sughamano", "nanni"
+- User asks for Malayalam translations
 
-> Understands Malayalam and Manglish WhatsApp messages and replies politely using culturally appropriate language in matching script style.
+---
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/malayalam-whatsapp`
-- **Source URL:** [https://clawhub.ai/skills/malayalam-whatsapp](https://clawhub.ai/skills/malayalam-whatsapp)
+## Common Phrases
 
-## Overview
+| Malayalam | Manglish | Meaning |
+|----------|----------|---------|
+| നമസ്കാരം | namaskaram | Hello |
+| നന്ദി | nanni | Thank you |
+| ശരി | sheri | Okay |
+| അതെ | athe | Yes |
+| ഇല്ല | illa | No |
+| സുഖമാണോ? | sughamano? | How are you? |
+| എന്ത് സഹായം വേണം? | entha sahayam venam? | What help do you need? |
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/malayalam-whatsapp
-```
+## Response Style
+
+- User മലയാളത്തിൽ എഴുതിയാൽ → മലയാളത്തിൽ തന്നെ മറുപടി
+- User Manglish ആണെങ്കിൽ → Manglish ഉപയോഗിക്കുക
+- വിനയം പുലർത്തുക:
+  - ചേട്ടാ / ചേച്ചി
+  - സാർ / മാഡം
+- Soft particles ഉപയോഗിക്കുക:
+  - അല്ലേ?
+  - അല്ലോ?
+  - കേട്ടോ?
+
+---
+
+## Example Responses
+
+### Manglish
+

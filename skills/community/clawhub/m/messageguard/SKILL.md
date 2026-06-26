@@ -1,35 +1,19 @@
----
-name: "MessageGuard"
-description: "Filters outgoing text for sensitive data using regex patterns and configurable actions like masking, blocking, or warning to prevent secret leaks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/messageguard"
-sourceUrl: "https://clawhub.ai/skills/messageguard"
----
 
-# MessageGuard
+### MessageGuard: Outgoing Message Filter Skill
 
-> Filters outgoing text for sensitive data using regex patterns and configurable actions like masking, blocking, or warning to prevent secret leaks.
+**Purpose**: MessageGuard filters outgoing text to prevent secret leaks and sensitive data exposure by using pattern-based detection and configurable actions (mask, block, or warn).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/messageguard`
-- **Source URL:** [https://clawhub.ai/skills/messageguard](https://clawhub.ai/skills/messageguard)
+### Advanced Configuration Options:
 
-## Overview
+- **`mode`**: Determines the global action for matched patterns. Options are:
+  - `mask`: Replace sensitive data with the `mask_char`.
+  - `block`: Prevent the message from being sent entirely.
+  - `warn`: Allow the message but generate warnings.
+- **`mask_char`**: The character(s) used to replace sensitive content when `mode` is set to `mask`.
+- **`patterns`**: Define or customize regex-based detections. Built-ins exist for API keys, credentials, and more (e.g., AWS keys, JWTs). Add new patterns based on your requirements.
+- **`logging`**: Enable detections to be logged as structured JSON for monitoring, debugging, or compliance needs. Configure the `log_path` for the output location.
+- **Custom Patterns**: Users can define their custom patterns to override built-ins or extend functionalities. This supports regex and granular action control (mask, block, warn).
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/messageguard
-```
+**Installation**
+1. Clone the repository: `git clone git@github.com:AndrewAndrewsen/MessageGuard.git`.
+2. Navigate to the directory. The skill is dependency-free, relying only on the Python standard library.

@@ -1,0 +1,42 @@
+{
+  "name": "llm-memory-integration",
+  "version": "9.0.1",
+  "license": "MIT-0",
+  "author": "xkzs2007",
+  "homepage": "https://clawhub.ai/skill/llm-memory-integration",
+  "binaries": {
+    "required": ["python3"],
+    "description": "Python 3 运行时"
+  },
+  "pythonDependencies": {
+    "required": [],
+    "optional": [],
+    "description": "无外部依赖"
+  },
+  "envVars": {
+    "required": [],
+    "optional": ["CNB_PRIVATE_WORKSPACE"],
+    "description": "CNB_PRIVATE_WORKSPACE 指向本地私有配置目录"
+  },
+  "network": {
+    "required": false,
+    "description": "无网络访问"
+  },
+  "files": {
+    "read": [],
+    "write": [],
+    "description": "仅访问用户通过 CNB_PRIVATE_WORKSPACE 指定的目录"
+  },
+  "security": {
+    "native_extensions": false,
+    "subprocess_calls": false,
+    "network_access": false,
+    "system_reads": false,
+    "code_execution": false,
+    "description": "纯本地操作，无网络访问，无敏感信息，仅访问用户指定目录"
+  },
+  "hooks": {
+    "postinstall": "hooks/bootstrap-extra-files.py",
+    "description": "本地链接钩子，将私有配置目录链接到工作区"
+  }
+}

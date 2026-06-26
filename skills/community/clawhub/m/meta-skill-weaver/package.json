@@ -1,0 +1,33 @@
+{
+  "name": "meta-skill-weaver",
+  "version": "2.5.0",
+  "description": "AI skill orchestration engine for complex multi-step tasks",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "orchestration",
+    "workflow",
+    "event-driven",
+    "infrastructure",
+    "meta-skill"
+  ],
+  "author": "pagoda111king",
+  "license": "MIT",
+  "clawhub": {
+    "slug": "meta-skill-weaver",
+    "name": "Meta Skill Weaver",
+    "tags": [
+      "orchestration",
+      "workflow",
+      "event-driven",
+      "infrastructure",
+      "meta-skill"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}

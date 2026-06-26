@@ -1,0 +1,86 @@
+[
+  {
+    "slot_id": "S001",
+    "doctor_id": "D001",
+    "date": "2026-03-17",
+    "time": "09:00",
+    "available": true
+  },
+  {
+    "slot_id": "S002",
+    "doctor_id": "D002",
+    "date": "2026-03-17",
+    "time": "13:30",
+    "available": true
+  },
+  {
+    "slot_id": "S003",
+    "doctor_id": "D003",
+    "date": "2026-03-18",
+    "time": "10:00",
+    "available": true
+  },
+  {
+    "slot_id": "S004",
+    "doctor_id": "D004",
+    "date": "2026-03-17",
+    "time": "14:00",
+    "available": true
+  },
+  {
+    "slot_id": "S005",
+    "doctor_id": "D005",
+    "date": "2026-03-18",
+    "time": "09:30",
+    "available": true
+  },
+  {
+    "slot_id": "S006",
+    "doctor_id": "D006",
+    "date": "2026-03-17",
+    "time": "10:30",
+    "available": true
+  },
+  {
+    "slot_id": "S007",
+    "doctor_id": "D007",
+    "date": "2026-03-17",
+    "time": "08:30",
+    "available": true
+  },
+  {
+    "slot_id": "S008",
+    "doctor_id": "D008",
+    "date": "2026-03-18",
+    "time": "11:00",
+    "available": true
+  },
+  {
+    "slot_id": "S009",
+    "doctor_id": "D009",
+    "date": "2026-03-17",
+    "time": "15:00",
+    "available": true
+  },
+  {
+    "slot_id": "S010",
+    "doctor_id": "D010",
+    "date": "2026-03-17",
+    "time": "16:00",
+    "available": true
+  },
+  {
+    "slot_id": "S011",
+    "doctor_id": "D011",
+    "date": "2026-03-18",
+    "time": "13:00",
+    "available": true
+  },
+  {
+    "slot_id": "S012",
+    "doctor_id": "D012",
+    "date": "2026-03-19",
+    "time": "09:00",
+    "available": true
+  }
+]

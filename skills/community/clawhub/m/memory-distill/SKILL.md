@@ -1,35 +1,157 @@
 ---
-name: "Memory Distill"
-description: "对话记忆蒸馏系统。从对话中提取关键信息、压缩长对话为精简摘要、自动分类存储到结构化文件、支持定期清理过期内容。支持 Cron 定时自动执行和 HEARTBEAT 心跳集成。触发词：蒸馏记忆、整理对话、压缩上下文、记忆压缩、清理对话、记忆整理、上下文压缩、定时蒸馏。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-distill"
-sourceUrl: "https://clawhub.ai/skills/memory-distill"
+name: memory-distill
+description: 对话记忆蒸馏系统。从对话中提取关键信息、压缩长对话为精简摘要、自动分类存储到结构化文件、支持定期清理过期内容。支持 Cron 定时自动执行和 HEARTBEAT 心跳集成。触发词：蒸馏记忆、整理对话、压缩上下文、记忆压缩、清理对话、记忆整理、上下文压缩、定时蒸馏。
 ---
 
-# Memory Distill
+# 记忆蒸馏 (Memory Distill)
 
-> 对话记忆蒸馏系统。从对话中提取关键信息、压缩长对话为精简摘要、自动分类存储到结构化文件、支持定期清理过期内容。支持 Cron 定时自动执行和 HEARTBEAT 心跳集成。触发词：蒸馏记忆、整理对话、压缩上下文、记忆压缩、清理对话、记忆整理、上下文压缩、定时蒸馏。
+将对话上下文蒸馏为结构化记忆文件，解决会话上下文溢出问题。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-distill`
-- **Source URL:** [https://clawhub.ai/skills/memory-distill](https://clawhub.ai/skills/memory-distill)
+## 核心功能
 
-## Overview
+| 功能 | 说明 |
+|------|------|
+| 提取关键信息 | 决策、任务、知识点、重要日期、联系信息 |
+| 压缩摘要 | 长对话精简为核心要点 |
+| 分类存储 | 按类别写入对应的 memory 文件 |
+| 过期清理 | 标记或删除过期内容 |
+| 定时执行 | Cron 定时自动蒸馏 |
+| 心跳集成 | HEARTBEAT 轮询时触发 |
 
+## 触发方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-distill
+### 1. 手动触发
+说："蒸馏记忆"、"整理对话"、"压缩上下文"
+
+### 2. Cron 定时（推荐）
+
+配置定时任务，每天自动执行记忆蒸馏。
+
+**配置命令：**
 ```
+/openclaw cron add
+```
+
+**Cron Job 配置示例：**
+```json
+{
+  "name": "每日记忆蒸馏",
+  "schedule": { "kind": "cron", "expr": "0 22 * * *", "tz": "Asia/Shanghai" },
+  "payload": {
+    "kind": "systemEvent",
+    "text": "执行记忆蒸馏：分析今日对话，提取决策、任务、知识点，写入 MEMORY.md 和 memory/YYYY-MM-DD.md，生成摘要报告。"
+  },
+  "sessionTarget": "main",
+  "delivery": { "mode": "announce" }
+}
+```
+
+**时间表达式说明：**
+- `0 22 * * *` = 每天 22:00
+- `0 9,18 * * *` = 每天 9:00 和 18:00
+- `0 22 * * 1-5` = 周一到周五 22:00
+
+### 3. HEARTBEAT 集成
+
+在 `HEARTBEAT.md` 中添加记忆蒸馏任务：
+
+```markdown
+# HEARTBEAT.md
+
+## 定期检查
+- [ ] 记忆蒸馏：检查今日对话量，若超过阈值则执行蒸馏
+```
+
+**Heartbeat vs Cron 选择：**
+| 场景 | 推荐方式 |
+|------|----------|
+| 固定时间执行 | Cron |
+| 根据对话量动态触发 | HEARTBEAT |
+| 多任务批量检查 | HEARTBEAT |
+
+## 工作流程
+
+### 步骤 1: 分析对话内容
+
+扫描当前会话历史，识别信息类型：
+
+| 类型 | 标识词 | 存储位置 |
+|------|--------|----------|
+| 决策 | 决定、确认、定下来 | `MEMORY.md` |
+| 任务 | 要做、待办、记得 | `memory/YYYY-MM-DD.md` |
+| 知识点 | 新概念、新发现 | `MEMORY.md` |
+| 临时信息 | 验证码、临时链接 | `memory/YYYY-MM-DD.md` |
+| 项目信息 | 项目名、成员、状态 | `MEMORY.md` |
+| 个人偏好 | 我喜欢、我偏好 | `USER.md` |
+
+### 步骤 2: 提取与分类
+
+结构化输出：
+```markdown
+## [日期] 记忆蒸馏摘要
+
+### 决策
+- [决策内容] - 上下文：[背景]
+
+### 任务
+- [ ] [任务描述] - 截止：[日期]
+
+### 知识点
+- [知识点名称]：[详细说明]
+```
+
+### 步骤 3: 写入记忆文件
+
+- `MEMORY.md` ← 重要决策、项目信息、核心知识点
+- `memory/YYYY-MM-DD.md` ← 当日摘要、临时任务
+
+### 步骤 4: 生成报告
+
+```
+📊 记忆蒸馏完成
+
+✅ 提取：决策 x 条 | 任务 x 条 | 知识点 x 条
+📝 写入：MEMORY.md +x 条 | memory/YYYY-MM-DD.md +x 条
+
+⚠️ 建议 /reset 重置上下文
+```
+
+### 步骤 5: 清理过期内容
+
+检查 `memory/` 目录，提示归档或删除超过保留期的文件。
+
+## 配置文件
+
+`memory/distill-config.json`：
+```json
+{
+  "retentionDays": 30,
+  "autoClean": false,
+  "autoReset": false,
+  "categories": ["decision", "task", "knowledge", "temporary"],
+  "schedule": "0 22 * * *"
+}
+```
+
+## 快速配置定时蒸馏
+
+执行以下命令配置每日 22:00 自动蒸馏：
+
+```
+让小飞配置一个每天 22:00 自动执行记忆蒸馏的 cron job
+```
+
+或手动在 OpenClaw 配置中添加 cron 任务。
+
+## 最佳实践
+
+1. **每日定时** - 配置 cron 每天 22:00 自动执行
+2. **重置前确认** - 蒸馏完成后再执行 `/reset`
+3. **分类存储** - 长期与每日分开，避免臃肿
+4. **定期清理** - 设置 retentionDays 自动过期
+
+## 注意事项
+
+- 蒸馏不删除记忆文件，只提取和整理
+- `/reset` 清空会话上下文，不影响记忆文件
+- 敏感信息需手动标记处理

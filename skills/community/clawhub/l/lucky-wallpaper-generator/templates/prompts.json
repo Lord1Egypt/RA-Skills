@@ -1,0 +1,126 @@
+{
+  "series": {
+    "wealth": {
+      "name": "招财系列",
+      "nameEn": "Wealth Series",
+      "description": "招财进宝、财源滚滚主题",
+      "colors": ["#FFD700", "#FF4444", "#FFFFFF"],
+      "elements": ["golden coins", "treasure bowl", "lucky cat", "gold ingots", "treasure chest"],
+      "texts": ["招财进宝", "财源滚滚", "暴富", "日进斗金", "恭喜发财"],
+      "prompts": [
+        "A minimalist lucky wallpaper with golden coins and treasure bowl, soft gradient background in red and gold, Chinese prosperity symbols, elegant typography, high quality, 4K, phone wallpaper style",
+        "Golden ingots and lucky cat, prosperity wallpaper, red and gold gradient, Chinese style, phone wallpaper, 4K quality, elegant design",
+        "Abundance and wealth wallpaper, gold coins raining, treasure chest, luxurious red gold theme, elegant design, minimalist style",
+        "Chinese New Year wealth wallpaper, golden dragon and coins, red and gold theme, prosperity symbols, phone wallpaper, high quality",
+        "Good fortune and money wallpaper, golden treasure bowl, lucky bamboo, wealth symbols, elegant minimalist design"
+      ]
+    },
+    "lucky": {
+      "name": "好运系列",
+      "nameEn": "Lucky Series",
+      "description": "接好运、转运主题",
+      "colors": ["#FF69B4", "#9370DB", "#FFD700"],
+      "elements": ["four-leaf clover", "rainbow", "koi fish", "horseshoe", "lucky stars"],
+      "texts": ["接好运", "好运连连", "时来运转", "一切顺利", "心想事成"],
+      "prompts": [
+        "A beautiful good luck wallpaper with four-leaf clover and rainbow, soft pink and purple gradient background, lucky symbols, dreamy atmosphere, high quality, 4K, phone wallpaper style",
+        "Lucky koi fish swimming upwards, good fortune wallpaper, soft blue and pink gradient, Chinese style, phone wallpaper, 4K quality",
+        "Good luck symbols, four leaf clover, horseshoe, dreamy clouds, soft pastel colors, minimalist design, phone wallpaper",
+        "Rainbow and lucky stars, good fortune wallpaper, colorful gradient background, dreamy atmosphere, cute style, 4K quality",
+        "Lucky deer and clover field, good fortune theme, soft green and pink colors, dreamy atmosphere, phone wallpaper"
+      ]
+    },
+    "healing": {
+      "name": "治愈系列",
+      "nameEn": "Healing Series",
+      "description": "心灵治愈、解压主题",
+      "colors": ["#87CEEB", "#98FB98", "#FFFFFF"],
+      "elements": ["clouds", "stars", "moon", "lotus", "waves", "meditation"],
+      "texts": ["一切都会好的", "慢慢来", "深呼吸", "平安喜乐", "静心"],
+      "prompts": [
+        "A calming healing wallpaper with soft clouds and stars, blue and green gradient background, peaceful atmosphere, minimalist design, high quality, 4K, phone wallpaper style",
+        "Healing nature scene, soft moonlight, gentle waves, calming blue tones, zen atmosphere, phone wallpaper, minimalist style",
+        "Peaceful meditation scene, soft lotus flowers, misty background, healing colors, minimalist zen design, 4K quality",
+        "Starry night sky, soft moon and clouds, calming purple and blue gradient, dreamy atmosphere, healing wallpaper, phone style",
+        "Gentle ocean waves at sunset, peaceful healing scene, soft orange and blue colors, zen atmosphere, minimalist design"
+      ]
+    },
+    "career": {
+      "name": "事业系列",
+      "nameEn": "Career Series",
+      "description": "事业成功、考试顺利主题",
+      "colors": ["#1E3A5F", "#FFD700", "#FFFFFF"],
+      "elements": ["trophy", "mountain peak", "ladder", "sunrise", "stars", "eagle"],
+      "texts": ["前程似锦", "金榜题名", "步步高升", "旗开得胜", "逢考必过"],
+      "prompts": [
+        "A professional success wallpaper with golden trophy and stars, deep blue and gold color scheme, motivational atmosphere, high quality, 4K, phone wallpaper style",
+        "Career success ladder, reaching the top, golden sunrise, professional theme, elegant design, phone wallpaper, minimalist style",
+        "Mountain peak success, golden sunrise, achievement theme, blue and gold colors, inspiring atmosphere, 4K quality",
+        "Golden eagle soaring, career success theme, blue sky and sunrise, motivational atmosphere, elegant design, phone wallpaper",
+        "Victory and achievement, golden medal and stars, deep blue background, professional theme, minimalist elegant design"
+      ]
+    }
+  },
+  "styles": {
+    "minimal": {
+      "name": "极简风",
+      "description": "简洁、留白、现代感",
+      "modifiers": ["minimalist", "clean", "simple", "elegant", "modern"]
+    },
+    "cute": {
+      "name": "可爱风",
+      "description": "圆润、甜美、少女感",
+      "modifiers": ["cute", "kawaii", "soft", "adorable", "pastel"]
+    },
+    "luxury": {
+      "name": "奢华风",
+      "description": "金色、华丽、高级感",
+      "modifiers": ["luxurious", "golden", "elegant", "premium", "sophisticated"]
+    },
+    "zen": {
+      "name": "禅意风",
+      "description": "宁静、东方、禅修感",
+      "modifiers": ["zen", "peaceful", "eastern", "meditative", "serene"]
+    }
+  },
+  "sizes": {
+    "wallpaper": {
+      "width": 1080,
+      "height": 1920,
+      "name": "手机壁纸",
+      "ratio": "9:16"
+    },
+    "avatar": {
+      "width": 500,
+      "height": 500,
+      "name": "头像",
+      "ratio": "1:1"
+    },
+    "post": {
+      "width": 1242,
+      "height": 1660,
+      "name": "小红书封面",
+      "ratio": "3:4"
+    },
+    "story": {
+      "width": 1080,
+      "height": 1920,
+      "name": "朋友圈/Story",
+      "ratio": "9:16"
+    }
+  },
+  "textStyles": {
+    "elegant": {
+      "font": "serif",
+      "effects": ["gold gradient", "subtle shadow"]
+    },
+    "modern": {
+      "font": "sans-serif",
+      "effects": ["clean", "minimal"]
+    },
+    "cute": {
+      "font": "rounded",
+      "effects": ["soft shadow", "pastel colors"]
+    }
+  }
+}

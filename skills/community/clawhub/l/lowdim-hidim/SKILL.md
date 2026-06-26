@@ -1,35 +1,161 @@
 ---
-name: "Low-Dim Solve High-Dim"
-description: "用低维方法解决高维复杂系统问题 - 降维建模、低维表征、子空间分解、稀疏约束。突破维度灾难，降低计算成本。应用于随机控制、强化学习、信号处理、AI推理等。"
-category: "mlops"
-source: "ClawHub"
-tags: [dimension-reduction, machine-learning, mathematics, optimization, stochastic-control]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lowdim-hidim"
-sourceUrl: "https://clawhub.ai/skills/lowdim-hidim"
+name: lowdim-hidim
+version: 1.0.0
+description: 用低维方法解决高维复杂系统问题 - 降维建模、低维表征、子空间分解、稀疏约束。突破维度灾难，降低计算成本。应用于随机控制、强化学习、信号处理、AI推理等。
+keywords: [低维解高维,降维求解,高维系统优化,随机控制降维,维度灾难,子空间分解,稀疏表示]
 ---
 
-# Low-Dim Solve High-Dim
+# Low-Dimensional Methods for High-Dimensional Problems
+低维解高维
 
-> 用低维方法解决高维复杂系统问题 - 降维建模、低维表征、子空间分解、稀疏约束。突破维度灾难，降低计算成本。应用于随机控制、强化学习、信号处理、AI推理等。
+## 核心思想
 
-- **Category:** MLOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lowdim-hidim`
-- **Source URL:** [https://clawhub.ai/skills/lowdim-hidim](https://clawhub.ai/skills/lowdim-hidim)
+用低维方法解决高维问题，是**高维复杂系统高效求解**的核心技术路径。
 
-## Overview
+通过**降维建模、低维表征、子空间分解、稀疏约束**等手段，把高维非线性、高维随机、高维耦合系统转化为易计算、易求解的低维问题，**突破维度灾难**，大幅降低计算与优化成本。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lowdim-hidim
+## 一、为什么存在"维度灾难"？
+
+高维空间中，数据点呈指数增长，搜索、优化、积分的计算量爆炸：
+
 ```
+2D: 100点覆盖空间
+10D: 需要 10^10 个点才能同等覆盖
+100D: 宇宙原子数都不够用
+```
+
+**维度灾难** → 计算不可行 → 必须降维！
+
+---
+
+## 二、核心方法体系
+
+### 1. 降维分解（Dimension Reduction）
+- **PCA（主成分分析）**：找最大方差方向
+- **t-SNE**：保持局部结构的流形展开
+- **UMAP**：更快更强的流形学习
+- **自编码器**：非线性降维的深度学习方法
+
+### 2. 子空间学习（Subspace Learning）
+- **CCA**：典型相关分析
+- **LDA**：线性判别分析
+- **QR分解**：正交投影到低维子空间
+
+### 3. 稀疏表示（Sparse Representation）
+- **LASSO**：L1稀疏约束
+- **压缩感知**：稀疏信号降维采样
+- **字典学习**：过完备字典的稀疏编码
+
+### 4. 低秩近似（Low-Rank Approximation）
+- **SVD截断**：保留最大奇异值
+- **Nystrom近似**：大矩阵的低秩近似
+- **随机投影**：Johnson-Lindenstrauss引理
+
+### 5. 流形学习（Manifold Learning）
+- **Isomap**：测地距离保持
+- **LLE（局部线性嵌入）**：局部线性结构保持
+- **核方法**：非线性升维后再降维
+
+### 6. 平均场近似（Mean-Field Approximation）
+- 高维随机系统 → 平均场方程
+- 大规模多智能体 → 单智能体代表性行为
+- 统计物理 → 平均场论
+
+### 7. LQG降维（LQG Reduction）
+- **线性二次高斯控制**的降维方法
+- 协方差矩阵的低秩分解
+- 卡尔曼滤波的降维扩展
+
+---
+
+## 三、典型应用场景
+
+### 随机控制（Stochastic Control）
+```
+高维：N个智能体的联合控制（状态维度：N×状态维度）
+ ↓ 降维
+低维：平均场近似 → 单智能体最优控制
+ ↓ 重构
+N个智能体的次优但高效的控制策略
+```
+
+### 强化学习（Reinforcement Learning）
+- 状态空间太大 → 用自编码器降维
+- 策略梯度高维 → 低维潜空间策略学习
+- 值函数高维 → 稀疏编码近似
+
+### 信号处理（Signal Processing）
+- 压缩感知：稀疏信号远低于奈奎斯特率采样
+- 字典学习：图像/语音的低维表征
+- PCA降噪：主成分去噪
+
+### AI大模型推理
+- **KV Cache压缩**：attention矩阵的低秩近似
+- **权重量化**：FP16 → INT8 → INT4 → 低秩分解
+- **LoRA**：低秩适配器，不改全参数
+
+### 工业控制
+- 复杂非线性系统的线性化 + 降维
+- 模型预测控制（MPC）的降维求解
+- 分布式控制的子系统分解
+
+---
+
+## 四、方法选择指南
+
+| 场景 | 推荐方法 |
+|------|---------|
+| 线性数据降维 | PCA, LDA |
+| 非线性流形 | t-SNE, UMAP, Isomap |
+| 稀疏信号 | LASSO, 压缩感知 |
+| 高维优化 | 随机投影, 低秩近似 |
+| 多智能体系统 | 平均场近似 |
+| 时序/动态系统 | 卡尔曼滤波 + 降维 |
+| 神经网络压缩 | SVD, 量化, LoRA |
+
+---
+
+## 五、为什么低维解高维可行？
+
+**核心洞察**：高维数据通常有**低维内在结构**！
+
+- 图像：虽然像素可能百万，但人脸的变化方向只有几十维
+- 语音：声道形状变化有限，潜在维度低
+- 控制策略：最优策略往往在低维流形上
+
+**自然规律**：真实复杂系统虽然描述变量多，但**有效自由度**少。
+
+---
+
+## 六、问答扩展
+
+**Q: 降维后信息有损失怎么办？**
+A: 选择性保留：保留方差最大的方向（PCA），或保留重建误差最小的方向（自编码器）。
+
+**Q: 如何判断问题有低维结构？**
+A: 看奇异值谱：衰减快 → 低秩 → 可降维；缓慢衰减 → 需要更多维度。
+
+**Q: 和随机控制怎么结合？**
+A: HJB方程高维不可解 → 用低秩分解/稀疏策略近似 → 得到次优但可计算的控制。
+
+**Q: 在AI大模型里怎么用？**
+A: LoRA：训练时只更新低秩适配器，冻结原模型。剪枝：删除不重要的连接。量化：减少权重精度。
+
+---
+
+## 七、极简科普版
+
+**什么是降维？**
+想象3D物体在墙上的影子是2D的。影子保留了物体的主要形状，但信息减少了。降维就是这个"影子"的过程。
+
+**为什么有用？**
+因为真实世界的规律往往比描述方式简单。就像一张人脸照片有100万像素，但识别身份只需要几十个特征就够了。
+
+**核心思想**
+"少即是多"——用最少的维度抓住问题的本质。
+
+---
+
+*For advanced AI problem solving, stochastic control, and optimization*

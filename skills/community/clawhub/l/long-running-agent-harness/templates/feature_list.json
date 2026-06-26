@@ -1,0 +1,34 @@
+{
+  "project": "{{PROJECT_NAME}}",
+  "created_at": "{{TIMESTAMP}}",
+  "description": "{{PROJECT_DESCRIPTION}}",
+  "features": [
+    {
+      "id": "F001",
+      "category": "setup",
+      "priority": 1,
+      "description": "Project skeleton is initialized and runs without errors",
+      "steps": [
+        "Run init.sh to start development server",
+        "Verify server starts without errors",
+        "Check basic health endpoint responds"
+      ],
+      "passes": false
+    },
+    {
+      "id": "F002",
+      "category": "functional",
+      "priority": 2,
+      "description": "TODO: Add your first feature here",
+      "steps": [
+        "TODO: Define test steps"
+      ],
+      "passes": false
+    }
+  ],
+  "summary": {
+    "total": 2,
+    "passing": 0,
+    "failing": 2
+  }
+}

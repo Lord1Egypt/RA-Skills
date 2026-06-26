@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stripe"
+  short_description: "Read and update Stripe payments, customers, invoices, and subscriptions"
+  default_prompt: "Use the Stripe MCP tools to help the user inspect payment data, manage customers and products, create invoices or payment links, and review account balances."

@@ -1,0 +1,29 @@
+{
+  "lessons": [
+    {
+      "key": "abc|g_darwin|darwin",
+      "error_hash": "abc",
+      "gene_id": "g_darwin",
+      "environment": "darwin",
+      "confidence": 0.65,
+      "times_applied": 2,
+      "times_succeeded": 2,
+      "times_failed": 0,
+      "created_at": "2026-03-12T06:38:18.613Z",
+      "last_applied": "2026-03-12T06:38:18.613Z"
+    },
+    {
+      "key": "abc|g_linux|linux",
+      "error_hash": "abc",
+      "gene_id": "g_linux",
+      "environment": "linux",
+      "confidence": 0.6,
+      "times_applied": 1,
+      "times_succeeded": 1,
+      "times_failed": 0,
+      "created_at": "2026-03-12T06:38:18.614Z",
+      "last_applied": "2026-03-12T06:38:18.614Z"
+    }
+  ],
+  "version": 1
+}

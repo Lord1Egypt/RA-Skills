@@ -1,0 +1,7 @@
+interface:
+  display_name: "Live Site Polish"
+  short_description: "Live browser redesign with review"
+  brand_color: "#0F766E"
+  default_prompt: "Use $live-site-polish as the only design-related and browser-use-related skill for this task. All browser interaction must go through playwright-cli only: inspect the live page, propose 3 directions, let the user choose one, self-check alignment and spacing after each patch, then iterate with a reused visual reviewer that returns excellent, acceptable, or bad. Do not combine it with other skills in those categories or invoke superpowers:brainstorming."
+policy:
+  allow_implicit_invocation: false

@@ -1,35 +1,52 @@
----
-name: "Markdown to PDF (Styled)"
-description: "Convert Markdown files to styled PDFs using pandoc and wkhtmltopdf with built-in or custom CSS style options."
-category: "other"
-source: "ClawHub"
-tags: [export, markdown, pandoc, pdf, wkhtmltopdf]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/markdown-to-pdf-styled"
-sourceUrl: "https://clawhub.ai/skills/markdown-to-pdf-styled"
----
+# md-to-pdf
 
-# Markdown to PDF (Styled)
+**version:** 1.0.0  
+**author:** 大总管  
+**description:** Convert Markdown (.md) files to styled PDF documents with pandoc + wkhtmltopdf
 
-> Convert Markdown files to styled PDFs using pandoc and wkhtmltopdf with built-in or custom CSS style options.
+Use this skill to convert Markdown to PDF with consistent styles.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/markdown-to-pdf-styled`
-- **Source URL:** [https://clawhub.ai/skills/markdown-to-pdf-styled](https://clawhub.ai/skills/markdown-to-pdf-styled)
+## Quick Start
 
-## Overview
+1. Ensure dependencies exist:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/markdown-to-pdf-styled
+pandoc --version
+wkhtmltopdf --version
 ```
+
+2. Run conversion:
+
+```bash
+bash {baseDir}/scripts/md2pdf.sh /abs/path/doc.md
+```
+
+## Style Options
+
+Use built-in styles:
+
+- `clean` (default): simple business style
+- `modern`: blue, presentation-friendly
+- `paper`: serif, reading-friendly
+
+Examples:
+
+```bash
+bash {baseDir}/scripts/md2pdf.sh /abs/path/doc.md --style clean
+bash {baseDir}/scripts/md2pdf.sh /abs/path/doc.md /abs/path/out.pdf --style modern
+bash {baseDir}/scripts/md2pdf.sh /abs/path/doc.md --style paper
+```
+
+## Custom CSS
+
+Pass an absolute CSS path:
+
+```bash
+bash {baseDir}/scripts/md2pdf.sh /abs/path/doc.md /abs/path/doc.pdf --style /abs/path/custom.css
+```
+
+## Notes
+
+- Script enables local CSS loading via `--enable-local-file-access`.
+- If output title warning appears, set Markdown metadata `title:`.
+- For detailed usage and troubleshooting, read `{baseDir}/references/usage.md`.

@@ -1,0 +1,22 @@
+{
+  "name": "llc-formation-timeline-guide",
+  "version": "1.0.0",
+  "description": "LLC formation timeline guide for LLCClass.com, covering state approval times, EIN timing, expedited filing, and delays.",
+  "keywords": [
+    "llc",
+    "llc-timeline",
+    "llc-processing-time",
+    "ein",
+    "business-formation",
+    "llcclass"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/zh/how-long/",
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/zh/how-long/",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  }
+}

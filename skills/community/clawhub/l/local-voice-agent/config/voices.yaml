@@ -1,0 +1,79 @@
+# Voice Agent Configuration
+# Edit this file to customize STT/TTS settings
+
+# Speech-to-Text (Whisper.cpp)
+stt:
+  # Model: tiny (fast, 90%), small (balanced, 95%), medium (accurate, 98%)
+  model: tiny
+  
+  # Default language: en (English), ne (Nepali), hi (Hindi), etc.
+  language: en
+  
+  # Whisper.cpp installation path
+  whisper_dir: ~/.local/whisper.cpp
+  
+  # CPU threads for transcription
+  threads: 4
+
+# Text-to-Speech (Pocket-TTS)
+tts:
+  # TTS server URL (VPS instance)
+  url: http://localhost:5000
+  
+  # Default voice (use voice ID from /v1/voices endpoint)
+  # Note: Custom voices need embeddings. Use built-in voices for now:
+  # - alba (female), marius (male), javert (male), hannah, etc.
+  voice: alba
+  
+  # Output format: wav, mp3
+  format: wav
+  
+  # Audio quality: 16000, 22050, 44100 Hz
+  sample_rate: 24000
+
+# Performance Settings
+performance:
+  # Enable faster-than-realtime processing
+  realtime: true
+  
+  # Cache transcriptions (true/false)
+  cache_stt: false
+  
+  # Cache TTS generations (true/false)
+  cache_tts: true
+  
+  # Cache directory
+  cache_dir: ~/.cache/voice-agent
+
+# OpenClaw Integration
+openclaw:
+  # Enable OpenClaw AI integration
+  enabled: true
+  
+  # OpenClaw session key (auto-detected if running in OpenClaw)
+  session_key: ""
+  
+  # Default model for AI responses
+  model: qwen3.5-plus
+
+# Voice Commands (Custom triggers)
+voice_commands:
+  # Wake word (set to "" to disable)
+  wake_word: ""
+  
+  # Custom command mappings
+  custom:
+    "what's the weather": "weather"
+    "morning briefing": "briefing"
+    "good night": "shutdown"
+
+# Logging
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+  
+  # Log file path
+  file: ~/.local/log/voice-agent.log
+  
+  # Enable console output
+  console: true

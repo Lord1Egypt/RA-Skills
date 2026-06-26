@@ -1,0 +1,190 @@
+{
+  "七杀格": {
+    "七杀格_未分类": {
+      "count": 297,
+      "percentage": 0.11
+    },
+    "以劫合煞": {
+      "count": 8530,
+      "percentage": 3.24
+    },
+    "煞印相生": {
+      "count": 10488,
+      "percentage": 3.99
+    },
+    "煞邀食制": {
+      "count": 6911,
+      "percentage": 2.63
+    }
+  },
+  "伤官格": {
+    "伤官佩印": {
+      "count": 8067,
+      "percentage": 3.07
+    },
+    "伤官格_未分类": {
+      "count": 335,
+      "percentage": 0.13
+    },
+    "伤官生财": {
+      "count": 12519,
+      "percentage": 4.76
+    },
+    "伤官驾煞": {
+      "count": 5444,
+      "percentage": 2.07
+    }
+  },
+  "印格": {
+    "印多用财": {
+      "count": 10295,
+      "percentage": 3.91
+    },
+    "印带煞兼食伤": {
+      "count": 3776,
+      "percentage": 1.44
+    },
+    "印带财煞": {
+      "count": 1642,
+      "percentage": 0.62
+    },
+    "印格_未分类": {
+      "count": 620,
+      "percentage": 0.24
+    },
+    "印绶喜比": {
+      "count": 3043,
+      "percentage": 1.16
+    },
+    "印绶喜食": {
+      "count": 14777,
+      "percentage": 5.62
+    },
+    "印绶用官": {
+      "count": 5640,
+      "percentage": 2.14
+    },
+    "印赖煞生": {
+      "count": 6065,
+      "percentage": 2.31
+    }
+  },
+  "建禄月劫格": {
+    "建禄月劫_未分类": {
+      "count": 2198,
+      "percentage": 0.84
+    },
+    "禄劫用伤食": {
+      "count": 11207,
+      "percentage": 4.26
+    },
+    "禄劫用官": {
+      "count": 13115,
+      "percentage": 4.99
+    },
+    "禄劫用煞": {
+      "count": 4755,
+      "percentage": 1.81
+    },
+    "禄劫用财": {
+      "count": 16973,
+      "percentage": 6.45
+    }
+  },
+  "正官格": {
+    "正官格": {
+      "count": 26276,
+      "percentage": 9.99
+    }
+  },
+  "财格": {
+    "弃财就煞": {
+      "count": 2028,
+      "percentage": 0.77
+    },
+    "用财喜比": {
+      "count": 4660,
+      "percentage": 1.77
+    },
+    "财喜食生": {
+      "count": 3404,
+      "percentage": 1.29
+    },
+    "财带七煞": {
+      "count": 1516,
+      "percentage": 0.58
+    },
+    "财旺生官": {
+      "count": 9619,
+      "percentage": 3.66
+    },
+    "财格_未分类": {
+      "count": 1952,
+      "percentage": 0.74
+    },
+    "财格佩印": {
+      "count": 12048,
+      "percentage": 4.58
+    },
+    "财用伤官": {
+      "count": 8368,
+      "percentage": 3.18
+    },
+    "财用煞印": {
+      "count": 4930,
+      "percentage": 1.87
+    },
+    "财用食印": {
+      "count": 3970,
+      "percentage": 1.51
+    }
+  },
+  "阳刃格": {
+    "阳刃格_未分类": {
+      "count": 799,
+      "percentage": 0.3
+    },
+    "阳刃用官": {
+      "count": 2296,
+      "percentage": 0.87
+    },
+    "阳刃用煞": {
+      "count": 4449,
+      "percentage": 1.69
+    },
+    "阳刃用财": {
+      "count": 3504,
+      "percentage": 1.33
+    }
+  },
+  "食神格": {
+    "弃食就煞印": {
+      "count": 1265,
+      "percentage": 0.48
+    },
+    "食神制煞": {
+      "count": 2660,
+      "percentage": 1.01
+    },
+    "食神合煞存财": {
+      "count": 2138,
+      "percentage": 0.81
+    },
+    "食神吐秀": {
+      "count": 9053,
+      "percentage": 3.44
+    },
+    "食神带煞印": {
+      "count": 1181,
+      "percentage": 0.45
+    },
+    "食神格_未分类": {
+      "count": 400,
+      "percentage": 0.15
+    },
+    "食神生财": {
+      "count": 9767,
+      "percentage": 3.71
+    }
+  }
+}

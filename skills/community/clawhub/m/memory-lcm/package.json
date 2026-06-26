@@ -1,0 +1,15 @@
+{
+  "name": "memory-lcm",
+  "version": "1.0.0",
+  "description": "Tony Spark LCM - Lossless Context Manager for OpenClaw",
+  "main": "src/index.js",
+  "bin": {
+    "tony-lcm": "./bin/tony-lcm.js"
+  },
+  "dependencies": {
+    "sql.js": "^1.11.0"
+  },
+  "scripts": {
+    "start": "node bin/tony-lcm.js"
+  }
+}

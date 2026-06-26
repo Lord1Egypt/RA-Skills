@@ -1,0 +1,21 @@
+{
+  "name": "mbti-master",
+  "version": "1.0.0",
+  "description": "Comprehensive MBTI personality analysis tool with quick testing, cognitive function analysis, and compatibility matching",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "bash scripts/quick_test.sh",
+    "analysis": "bash scripts/type_analysis.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/mbti-master.git"
+  },
+  "keywords": ["mbti", "personality", "psychology", "jung", "cognitive-functions"],
+  "author": "申建",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/mbti-master/issues"
+  },
+  "homepage": "https://github.com/yourusername/mbti-master#readme"
+}

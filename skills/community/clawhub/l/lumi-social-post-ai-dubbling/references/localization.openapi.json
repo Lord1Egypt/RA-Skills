@@ -1,0 +1,199 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lumi - Localization",
+    "description": "Start and track video translation, dubbing, and subtitle tasks",
+    "version": "1.0.0"
+  },
+  "tags": [{ "name": "Localization" }],
+  "paths": {
+    "/api/v1/localization": {
+      "post": {
+        "summary": "Start a video localization job (translate, dub, subtitle, OCR)",
+        "description": "Starts an async job to translate/dub/subtitle a video. Poll GET /api/v1/localization?taskId= to track progress. When status=completed, use outputUrl as the translated video URL.",
+        "tags": ["Localization"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "vid": { "type": "string", "description": "Video ID from /api/v1/videos" },
+                  "sourceUrl": { "type": "string", "description": "OSS URL of the source video" },
+                  "sourceLang": { "type": "string", "description": "Source language code, e.g. zh, en, ja, ko" },
+                  "targetLang": { "type": "string", "description": "Target language code, e.g. en, zh, ko, ja, es, fr" },
+                  "title": { "type": "string", "description": "Display title for this task" },
+                  "dubbing": { "type": "boolean", "description": "Enable AI TTS voice dubbing" },
+                  "dubbingVoiceId": { "type": "number", "description": "TTS voice ID from /api/v1/tts. Defaults to 455." },
+                  "backgroundMusic": {
+                    "type": "number",
+                    "enum": [0, 1, 2],
+                    "description": "0=keep original music, 1=mute all, 2=keep sound effects only"
+                  },
+                  "subtitle": { "type": "boolean", "description": "Burn translated subtitles into the video" },
+                  "subtitleStyle": { "type": "string", "description": "Subtitle style code, e.g. tpl-31-1-T. Omit for no burnt-in subtitles." },
+                  "ocr": { "type": "boolean", "description": "Translate on-screen text (OCR)" },
+                  "copyright": { "type": "boolean", "description": "Run async music copyright detection" },
+                  "autoPublish": {
+                    "type": "object",
+                    "description": "Auto-publish to social platforms when translation completes",
+                    "properties": {
+                      "text": { "type": "string", "description": "Post caption/title" },
+                      "tiktokConnectionIds": { "type": "array", "items": { "type": "string" } },
+                      "youtubeConnectionIds": { "type": "array", "items": { "type": "string" } },
+                      "instagramConnectionIds": { "type": "array", "items": { "type": "string" } }
+                    },
+                    "required": ["text"]
+                  }
+                },
+                "required": ["vid", "sourceUrl", "sourceLang", "targetLang"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Localization task created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "taskId": { "type": "string", "description": "Use this to poll task status" },
+                        "vid": { "type": "string" },
+                        "status": { "type": "string" }
+                      },
+                      "required": ["taskId", "vid", "status"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List or get localization tasks",
+        "description": "Query tasks by taskId (single task lookup), vid, or status. Poll this endpoint after starting a localization job. When status=completed, outputUrl contains the translated video URL.",
+        "tags": ["Localization"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "taskId",
+            "in": "query",
+            "required": false,
+            "description": "Look up a specific task by ID",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "vid",
+            "in": "query",
+            "required": false,
+            "description": "Filter tasks by video ID",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["pending", "running", "completed", "failed"] }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "default": 10 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tasks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "taskId": { "type": "string" },
+                          "vid": { "type": "string" },
+                          "title": { "type": "string", "nullable": true },
+                          "status": { "type": "string", "enum": ["pending", "running", "completed", "failed"] },
+                          "step": { "type": "string" },
+                          "sourceLang": { "type": "string", "nullable": true },
+                          "targetLang": { "type": "string", "nullable": true },
+                          "modules": {
+                            "type": "object",
+                            "properties": {
+                              "visual": { "type": "boolean" },
+                              "ocr": { "type": "boolean" },
+                              "subtitle": { "type": "boolean" },
+                              "dubbing": { "type": "boolean" }
+                            }
+                          },
+                          "outputUrl": { "type": "string", "nullable": true, "description": "Translated video URL — available when status=completed" },
+                          "failureReason": { "type": "string", "nullable": true },
+                          "publishStatus": { "type": "string", "nullable": true, "enum": ["pending", "published", "failed"] },
+                          "progress": {
+                            "type": "object",
+                            "nullable": true,
+                            "properties": {
+                              "type": { "type": "string" },
+                              "progress": { "type": "number" }
+                            }
+                          },
+                          "createdAt": { "type": "string" },
+                          "updatedAt": { "type": "string" }
+                        },
+                        "required": ["taskId", "vid", "status", "step", "createdAt", "updatedAt"]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": { "type": "integer" },
+                        "page": { "type": "integer" },
+                        "limit": { "type": "integer" },
+                        "totalPages": { "type": "integer" }
+                      }
+                    }
+                  },
+                  "required": ["tasks", "pagination"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [{ "url": "https://lumipath.cn", "description": "Production" }]
+}

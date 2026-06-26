@@ -1,0 +1,18 @@
+{
+  "memory_type": "procedure",
+  "abstraction_level": 2,
+  "role_scope": "planner",
+  "session_id": "sess_demo_001",
+  "task_id": "task_openclaw_skill",
+  "title": "Create skill files before prompt tuning",
+  "summary": "Create the physical skill file structure and a runnable local helper before spending time tuning prompt text.",
+  "details": {
+    "why": "You need a runnable loop before iteration is meaningful."
+  },
+  "keywords": ["skill", "files", "helper", "iteration"],
+  "tags": ["procedure", "implementation"],
+  "source_refs": ["example-file"],
+  "importance": 0.88,
+  "confidence": 0.91,
+  "success_score": 0.86
+}

@@ -1,0 +1,46 @@
+{
+  "name": "macos-desktop-control",
+  "version": "1.5.3",
+  "description": "macOS 桌面控制工具 - 截屏、进程管理、系统信息、剪贴板、应用控制",
+  "author": "张长沙",
+  "license": "MIT",
+  "platform": "darwin",
+  "scripts": {
+    "install": "bash scripts/install.sh",
+    "check-permissions": "bash scripts/check_permissions.sh",
+    "screenshot": "bash scripts/screenshot.sh",
+    "processes": "bash scripts/processes.sh",
+    "system-info": "bash scripts/system_info.sh",
+    "clipboard-get": "bash scripts/clipboard.sh get",
+    "clipboard-set": "bash scripts/clipboard.sh set"
+  },
+  "keywords": [
+    "macos",
+    "desktop-control",
+    "automation",
+    "screenshot",
+    "process",
+    "applescript"
+  ],
+  "requirements": {
+    "bins": [
+      "screencapture",
+      "ps",
+      "osascript",
+      "pbcopy",
+      "pbpaste"
+    ],
+    "python": "3.6+",
+    "pip": [
+      "pyautogui",
+      "pyscreeze",
+      "pillow",
+      "psutil"
+    ]
+  },
+  "permissions": {
+    "Accessibility": "鼠标键盘控制",
+    "AppleEvents": "应用控制",
+    "ScreenCapture": "截屏"
+  }
+}

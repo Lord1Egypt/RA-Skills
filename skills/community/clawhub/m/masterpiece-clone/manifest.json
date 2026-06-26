@@ -1,0 +1,51 @@
+{
+  "name": "masterpiece-clone",
+  "display_name": "MasterPiece Clone",
+  "description": "Transfer the style of a reference image to a target photo using advanced image-to-image processing",
+  "version": "1.0.2",
+  "author": "your-name",
+  "type": "api",
+  "category": "image-generation",
+  "endpoint": "https://api.ngmob.com/api/v1/workflows/Awtk0EnhqBGkoOExvseI/run",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer {{API_KEY}}"
+  },
+  "request_body": {
+    "inputs": {
+      "Image Input": "{{image}}",
+      "Image Input 1": "{{image_1}}"
+    }
+  },
+  "inputs": [
+    {
+      "name": "image",
+      "type": "string",
+      "required": true,
+      "description": "Publicly accessible image URL"
+    },
+    {
+      "name": "image_1",
+      "type": "string",
+      "required": true,
+      "description": "Publicly accessible second image URL"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "result",
+      "type": "string",
+      "description": "Generated image URL"
+    }
+  ],
+  "polling": {
+    "enabled": true,
+    "url": "https://api.ngmob.com/api/v1/workflows/executions/{{task_id}}",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer {{API_KEY}}"
+    },
+    "result_path": "outputs[0].url"
+  }
+}

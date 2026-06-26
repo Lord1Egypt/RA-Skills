@@ -1,35 +1,34 @@
 ---
-name: "Locu"
-description: "Manage tasks and projects via Locu's Public API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/locu"
-sourceUrl: "https://clawhub.ai/skills/locu"
+name: locu
+description: Manage tasks and projects via Locu's Public API.
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎯",
+        "requires": { "env": ["LOCU_API_TOKEN"] },
+        "primaryEnv": "LOCU_API_TOKEN",
+      },
+  }
 ---
 
-# Locu
+# Locu Skill
 
-> Manage tasks and projects via Locu's Public API.
+Use the Locu Public API to interact with your workspace.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/locu`
-- **Source URL:** [https://clawhub.ai/skills/locu](https://clawhub.ai/skills/locu)
+## Authentication
+- `LOCU_API_TOKEN`: Your Personal Access Token (PAT).
 
-## Overview
+## Commands
 
+### User Info
+- Get my info: `curl -X GET "https://api.locu.app/api/v1/me" -H "Authorization: Bearer $LOCU_API_TOKEN"`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/locu
-```
+### Tasks
+- List tasks: `curl -X GET "https://api.locu.app/api/v1/tasks" -H "Authorization: Bearer $LOCU_API_TOKEN"`
+
+### Projects
+- List projects: `curl -X GET "https://api.locu.app/api/v1/projects" -H "Authorization: Bearer $LOCU_API_TOKEN"`
+
+## Usage Notes
+Always parse the JSON output to extract details about tasks (id, name, done status, type). Locu tasks can be native or integrated from Linear/Jira.

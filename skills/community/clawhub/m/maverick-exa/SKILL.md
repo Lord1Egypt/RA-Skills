@@ -1,35 +1,33 @@
 ---
-name: "Maverick Exa"
-description: "Exa MCP workflow for web and people research plus hosted MCP server setup using a fixed tool set (`web_search_exa`, `web_search_advanced_exa`, `people_search..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/maverick-exa"
-sourceUrl: "https://clawhub.ai/skills/maverick-exa"
+name: maverick-exa
+description: Exa MCP workflow for web and people research plus hosted MCP server setup using a fixed tool set (`web_search_exa`, `web_search_advanced_exa`, `people_search_exa`). Use for requests to run Exa web discovery, constrained/advanced Exa queries, person/profile lookup, troubleshoot Exa MCP tool or rate-limit issues, or produce concise source-linked research summaries from Exa results.
 ---
 
-# Maverick Exa
+# Exa MCP Skill
 
-> Exa MCP workflow for web and people research plus hosted MCP server setup using a fixed tool set (`web_search_exa`, `web_search_advanced_exa`, `people_search...
+## Workflow
+1. Clarify the research goal, scope, and output format.
+2. Select one enabled tool using the guide below: `web_search_exa`, `web_search_advanced_exa`, `people_search_exa`.
+3. Prefer the hosted Exa MCP endpoint with fixed tools in the URL query.
+4. Return concise findings with links and explicit unknowns.
+5. On rate limits (`429`), reduce query breadth or require an API key.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/maverick-exa`
-- **Source URL:** [https://clawhub.ai/skills/maverick-exa](https://clawhub.ai/skills/maverick-exa)
+## Tool Policy
+- Enabled now: `web_search_exa`, `web_search_advanced_exa`, `people_search_exa`.
+- Keep all other Exa tools disabled unless the user explicitly asks to expand.
 
-## Overview
+## Tool Selection Guide
+- Use `web_search_exa` for fast, broad discovery when the user asks general web research.
+  Example intent: "Find the latest docs and announcements about X."
+- Use `web_search_advanced_exa` for precision research when you must constrain by domains, freshness, depth, or richer query controls.
+  Example intent: "Search only official docs and recent sources for X."
+- Use `people_search_exa` when the task is about identifying people, roles, background, or profile-style information.
+  Example intent: "Find people working on X at company Y."
 
+## Selection Rules
+- Start with `web_search_exa` when speed and coverage matter more than strict filtering.
+- Choose `web_search_advanced_exa` when `web_search_exa` returns noisy or insufficiently targeted results.
+- Choose `people_search_exa` only for person-centric requests, not generic topic research.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/maverick-exa
-```
+## Config Reference
+- Read `references/exa-mcp-setup.md` for URL templates and generic MCP snippets.

@@ -1,0 +1,43 @@
+name: memory-manager
+version: 1.0.0
+description: 本地记忆管理，压缩检测，自动快照，语义搜索
+author: clawd
+homepage: https://clawhub.com/skills/memory-manager
+
+triggers:
+  - 记忆管理
+  - 记忆压缩
+  - 记忆快照
+  - 保存记忆
+  - 记忆搜索
+  - memory manager
+  - memory snapshot
+  - 记忆分析
+
+features:
+  - 三层记忆架构（情景/语义/程序）
+  - 压缩风险检测
+  - 自动快照
+  - 语义搜索
+  - 记忆使用统计
+
+config:
+  MEMORY_PATH:
+    type: string
+    default: ~/clawd/memory
+    description: 记忆存储根目录
+  COMPRESSION_THRESHOLD:
+    type: number
+    default: 80
+    description: 压缩风险阈值（百分比）
+
+pricing:
+  basic: free
+  pro: $2.99/month
+  team: $7.99/month
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot
+  node: ">=18.0.0"

@@ -1,0 +1,213 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lumi - Videos",
+    "description": "Upload videos and manage the video library",
+    "version": "1.0.0"
+  },
+  "tags": [{ "name": "Videos" }],
+  "paths": {
+    "/api/v1/videos/upload": {
+      "post": {
+        "summary": "Register a video from a public URL into the library",
+        "description": "Use this for any publicly accessible video URL (not Chinese platforms). Returns vid and OSS-hosted url for use in social-posts or localization.",
+        "tags": ["Videos"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": { "type": "string", "description": "Publicly accessible video URL (.mp4, .avi, .mov, .mkv, .webm, .flv, .wmv)" },
+                  "filename": { "type": "string", "description": "Original filename, e.g. my-video.mp4" },
+                  "title": { "type": "string", "description": "Display title for the library" }
+                },
+                "required": ["url"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Video registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "vid": { "type": "string", "description": "Video ID" },
+                    "url": { "type": "string", "description": "OSS-hosted URL — use this in social-posts mediaUrls or localization sourceUrl" },
+                    "title": { "type": "string" },
+                    "filename": { "type": "string" },
+                    "status": { "type": "string" },
+                    "createdAt": { "type": "string" }
+                  },
+                  "required": ["vid", "url", "title", "filename", "status"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/videos": {
+      "post": {
+        "summary": "Download from Douyin/Bilibili/Xiaohongshu and upload to library",
+        "description": "Crawls Chinese video platforms to extract the real video URL, uploads to OSS, and registers in the library. Falls back to direct URL if crawl fails. Use the returned url in social-posts or localization.",
+        "tags": ["Videos"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "Video URL. Supports: douyin.com, bilibili.com, xiaohongshu.com, xhslink.com, or any direct video URL"
+                  },
+                  "filename": { "type": "string", "description": "Original filename, e.g. douyin-video.mp4" },
+                  "title": { "type": "string", "description": "Display title for the library" }
+                },
+                "required": ["url"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Video downloaded and registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": { "type": "string", "description": "OSS-hosted URL — use this in social-posts mediaUrls or localization sourceUrl" },
+                    "vid": { "type": "string", "description": "Video ID" }
+                  },
+                  "required": ["url", "vid"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List videos in the library",
+        "description": "Returns paginated list of the user's videos with processing and publish status.",
+        "tags": ["Videos"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Max 50",
+            "schema": { "type": "integer", "default": 10, "maximum": 50 }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Search by title or filename",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated video list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "videos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "vid": { "type": "string" },
+                          "title": { "type": "string" },
+                          "status": {
+                            "type": "string",
+                            "enum": ["uploaded", "translating", "translated", "published", "failed", "scheduled"]
+                          },
+                          "progress": {
+                            "type": "object",
+                            "nullable": true,
+                            "properties": {
+                              "type": { "type": "string" },
+                              "progress": { "type": "number" }
+                            }
+                          },
+                          "failedReason": { "type": "string", "nullable": true },
+                          "platforms": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "platform": { "type": "string" },
+                                "status": { "type": "string", "enum": ["live", "pending", "failed"] },
+                                "publishId": { "type": "string", "nullable": true },
+                                "accountId": { "type": "string", "nullable": true }
+                              }
+                            }
+                          },
+                          "createdAt": { "type": "string" },
+                          "updatedAt": { "type": "string" }
+                        },
+                        "required": ["vid", "title", "status", "platforms", "createdAt", "updatedAt"]
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "total": { "type": "integer" },
+                        "page": { "type": "integer" },
+                        "limit": { "type": "integer" },
+                        "totalPages": { "type": "integer" }
+                      }
+                    }
+                  },
+                  "required": ["videos", "pagination"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [{ "url": "https://lumipath.cn", "description": "Production" }]
+}

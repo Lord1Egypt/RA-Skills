@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "longbridge-cli"
+version = "1.0.0"
+description = "长桥 LongPort OpenAPI CLI 工具"
+requires-python = ">=3.9"
+dependencies = [
+    "longbridge",
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+longbridge = "longbridge_cli.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["longbridge_cli*"]

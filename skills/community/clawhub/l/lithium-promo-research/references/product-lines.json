@@ -1,0 +1,37 @@
+{
+  "product_lines": [
+    {
+      "id": "square_assembly",
+      "name": "方形电池组装线",
+      "name_en": "Prismatic Battery Assembly Line",
+      "keywords": ["prismatic", "square battery", "方形电池", "棱柱电池"]
+    },
+    {
+      "id": "cylindrical_assembly",
+      "name": "大小圆柱电池组装线",
+      "name_en": "Cylindrical Battery Assembly Line",
+      "keywords": ["cylindrical", "18650", "21700", "圆柱电池", "圆柱电芯"]
+    },
+    {
+      "id": "pouch_assembly",
+      "name": "软包电池组装线",
+      "name_en": "Pouch Battery Assembly Line",
+      "keywords": ["pouch", "soft pack", "软包电池", " pouch cell"]
+    },
+    {
+      "id": "stacking_machine",
+      "name": "切叠一体机",
+      "name_en": "Cutting & Stacking Machine",
+      "keywords": ["stacking", "cutting", "切叠", "叠片", "Z-shaped"]
+    },
+    {
+      "id": "electrolyte_filling",
+      "name": "注液机",
+      "name_en": "Electrolyte Filling Machine",
+      "keywords": ["electrolyte", "filling", "注液", "注液机", "electrolyte injection"]
+    }
+  ],
+  "version": "1.0",
+  "last_updated": "2026-04-23",
+  "note": "此列表可动态扩展，新增产品线时按相同格式添加"
+}

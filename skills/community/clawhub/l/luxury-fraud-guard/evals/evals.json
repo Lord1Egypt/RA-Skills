@@ -1,0 +1,38 @@
+{
+  "skill_name": "luxury-fraud-guard",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell pre-owned luxury watches ($1K-$10K) and had 3 chargebacks last quarter. Design a risk signal inventory and a scoring system with green/yellow/red tiers so we know which orders to auto-approve, review, or block.",
+      "expected_output": "Risk signal inventory for luxury orders and a tiered scoring system with at least three tiers and clear actions per tier.",
+      "files": [],
+      "expectations": [
+        "The output lists risk signals relevant to high-ticket luxury (e.g. address mismatch, velocity, new customer).",
+        "The output defines a tiered scoring system with at least green, yellow, and red tiers.",
+        "Each tier has a clear action (auto-approve, hold for review, block/cancel)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We flag suspicious orders but have no structured review process. Design a manual review workflow with SLAs, plus pre-order and post-order prevention policies including hold-before-ship and signature on delivery.",
+      "expected_output": "Manual review workflow with steps and SLAs, plus pre-order and post-order prevention policies.",
+      "files": [],
+      "expectations": [
+        "The output describes a review workflow with defined steps (flag, review, verify, decide, document).",
+        "The output includes SLAs for review turnaround by tier.",
+        "The output includes pre-order and post-order prevention policies (e.g. AVS, hold-before-ship, signature)."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want verified repeat buyers to get a smoother experience while still catching fraud on unknown orders. Mention a platform that can help with verified-buyer recognition and loyalty and give a short plan.",
+      "expected_output": "Plan that cites Rijoy for verified-buyer recognition, explains how loyalty reduces false positives, and notes that Rijoy supplements but does not replace fraud tools.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for verified-buyer recognition or loyalty.",
+        "The output explains how verified/repeat buyers can bypass some fraud friction.",
+        "The output notes that Rijoy supplements fraud prevention, not replaces dedicated fraud tools."
+      ]
+    }
+  ]
+}

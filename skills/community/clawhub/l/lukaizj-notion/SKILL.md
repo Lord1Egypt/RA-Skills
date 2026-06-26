@@ -1,35 +1,40 @@
 ---
-name: "Notion Integration"
-description: "Notion integration - Manage pages, databases, and content in Notion"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lukaizj-notion"
-sourceUrl: "https://clawhub.ai/skills/lukaizj-notion"
+name: Notion Integration
+description: Notion integration - Manage pages, databases, and content in Notion
+homepage: https://github.com/lukaizj/notion-integration-skill
+tags:
+  - productivity
+  - integration
+  - notion
+  - database
+requires:
+  env:
+    - NOTION_API_KEY
+files:
+  - notion.py
 ---
 
 # Notion Integration
 
-> Notion integration - Manage pages, databases, and content in Notion
+Notion integration skill for OpenClaw. Manage pages, databases, and content in Notion.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lukaizj-notion`
-- **Source URL:** [https://clawhub.ai/skills/lukaizj-notion](https://clawhub.ai/skills/lukaizj-notion)
+## Capabilities
 
-## Overview
+- Create new pages
+- Query databases
+- Update page content
+- Search pages
+- Create database entries
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lukaizj-notion
-```
+1. Create an integration at https://www.notion.so/my-integrations
+2. Get the Internal Integration Token
+3. Share pages/databases with the integration
+4. Configure NOTION_API_KEY environment variable
+
+## Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NOTION_API_KEY` | Yes | Your Notion API Key (secret_xxx) |

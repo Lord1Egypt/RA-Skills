@@ -1,0 +1,26 @@
+{
+  "name": "local-mcp-server",
+  "version": "1.0.0",
+  "description": "Run a full Model Context Protocol (MCP) server in Termux. Exposes Read, Bash, Grep, glob tools for local Ollama models. Privacy-first, offline-capable, ~10MB.",
+  "category": "Developer Tools",
+  "tags": ["mcp", "local-ai", "ollama", "developer-tools", "privacy"],
+  "price": {
+    "oneTime": 39,
+    "subscription": null,
+    "currency": "USD"
+  },
+  "requirements": [
+    "Termux (Android) or Linux environment",
+    "Node.js v16+",
+    "Ollama installed (optional, for LLM integration)",
+    "pnpm or npm"
+  ],
+  "author": {
+    "name": "Cod3Black",
+    "email": "support@cod3black.agency"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cod3black/local-mcp-server"
+  }
+}

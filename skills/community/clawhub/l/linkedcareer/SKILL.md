@@ -1,35 +1,38 @@
 ---
-name: "LinkedCareer"
-description: "Career management and resume generation skill"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkedcareer"
-sourceUrl: "https://clawhub.ai/skills/linkedcareer"
+name: linkedcareer
+displayName: LinkedCareer
+description: Career management and resume generation skill
+metadata:
+  openclaw:
+    type: runtime
+    requires:
+      bins: ["node"]
+    install: npm install --production
+    commands:
+      - name: init
+        description: Initialize career profile
+      - name: deepdive
+        description: Extract career highlights
+      - name: record
+        description: Record work growth
+      - name: resume
+        description: Generate professional resume
+      - name: import
+        description: Import existing resume
 ---
-
 # LinkedCareer
-
-> Career management and resume generation skill
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkedcareer`
-- **Source URL:** [https://clawhub.ai/skills/linkedcareer](https://clawhub.ai/skills/linkedcareer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/linkedcareer
+## Features
+- Guided onboarding to build career profile
+- Deep dive analysis to find hidden achievements
+- Regular growth tracking (daily/weekly/monthly)
+- Multiple professional resume templates
+- JD matching to optimize resume for roles
+- Runtime: No network requests, all data stored locally
+- Installation: Requires network to download docx from npm
+## Quick Start
+```
+/linkedcareer init
+/linkedcareer deepdive
+/linkedcareer record
+/linkedcareer resume
 ```

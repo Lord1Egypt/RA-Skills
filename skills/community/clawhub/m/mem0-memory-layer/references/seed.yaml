@@ -1,0 +1,1600 @@
+meta:
+  id: finance-bp-131-v6.1
+  version: v6.1
+  blueprint_id: finance-bp-131
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-25T09:19:02.935254+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: null
+    evidence_verify_ratio: null
+    evidence_invalid: 0
+    evidence_verified: null
+    evidence_auto_fixed: null
+    audit_coverage: 20 finance-universal not_applicable + 6 AIL warn + 5 DAT warn/fail + 1 DAT pass = 32 items reviewed across
+      applicable scope
+    audit_pass_rate: 1/12 (8% applicable items pass; 11 warn/fail/missing capture the architectural boundaries and divergences
+      worth surfacing as constraints)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 0
+      warn: 0
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  - id: EQ-02
+    trigger: always
+    action: MUST prepend user_disclosure_template (translated to user locale) to first user-facing response
+    violation_code: EQ-02-V
+    violation_signal: First agent response to user does not contain audit warning phrase
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-131. Evidence verify ratio
+    = 0.0% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-131-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-001
+    name: Personal AI Assistant with Image+Text Memory (agno)
+    positive_terms:
+    - personal assistant
+    - image memory
+    - multimodal memory
+    - agno
+    data_domain: mixed
+    negative_terms:
+    - air-gapped deployments (uses hosted MemoryClient)
+    - workloads without OpenAI API access
+  - uc_id: UC-002
+    name: AI Study Buddy with Spaced Repetition
+    positive_terms:
+    - study assistant
+    - spaced repetition
+    - learning tracking
+    - struggle areas
+    data_domain: mixed
+    negative_terms:
+    - non-educational chatbots
+  - uc_id: UC-003
+    name: Healthcare Assistant (Google ADK)
+    positive_terms:
+    - healthcare
+    - patient memory
+    - Google ADK
+    - HIPAA-adjacent
+    data_domain: domain_specific
+    negative_terms:
+    - HIPAA-compliant workloads without caller-side PII redaction (see BD-028)
+    - non-medical chatbots
+  - uc_id: UC-004
+    name: Memory-Aware Movie Recommender (Grok-3 + Qdrant)
+    positive_terms:
+    - recommender system
+    - movie
+    - Grok-3
+    - local Qdrant
+    - 384-dim embedder
+    data_domain: behavioral
+    negative_terms:
+    - workloads needing OpenAI text-embedding-3 quality
+  - uc_id: UC-005
+    name: Voice Diet Assistant (Cartesia)
+    positive_terms:
+    - voice assistant
+    - diet
+    - food preferences
+    - Cartesia voice
+    data_domain: mixed
+    negative_terms:
+    - text-only chatbots
+  - uc_id: UC-006
+    name: Voice Assistant with Persistent Memory (ElevenLabs)
+    positive_terms:
+    - voice assistant
+    - ElevenLabs
+    data_domain: mixed
+    negative_terms:
+    - text-only chatbots
+  - uc_id: UC-007
+    name: Personalized Search with Stored Preferences
+    positive_terms:
+    - personalized search
+    - preference-aware ranking
+    - rerank
+    data_domain: behavioral
+    negative_terms:
+    - global / non-personalized search
+  - uc_id: UC-008
+    name: Multi-LLM Memory Co-Write
+    positive_terms:
+    - multi-LLM
+    - memory writing
+    - extraction comparison
+    data_domain: mixed
+    negative_terms:
+    - simple single-LLM workloads
+  - uc_id: UC-009
+    name: AWS Strands Agent with Elasticache Vector + Neptune Graph
+    positive_terms:
+    - AWS
+    - Strands
+    - Elasticache
+    - Neptune graph
+    data_domain: mixed
+    negative_terms:
+    - non-AWS deployments
+    - users expecting in-SDK graph configuration (this is a custom integration)
+  - uc_id: UC-010
+    name: Fitness Tracking Assistant
+    positive_terms:
+    - fitness
+    - workout tracking
+    - goals
+    data_domain: domain_specific
+    negative_terms:
+    - non-fitness verticals
+  - uc_id: UC-011
+    name: Self-Hosted vLLM with mem0
+    positive_terms:
+    - vLLM
+    - self-hosted LLM
+    - air-gapped
+    data_domain: technical_demo
+    negative_terms:
+    - users without GPU infrastructure
+  - uc_id: UC-012
+    name: Multi-Agent Personal Learning System (LlamaIndex)
+    positive_terms:
+    - multi-agent
+    - LlamaIndex
+    - AgentWorkflow
+    - shared memory
+    data_domain: mixed
+    negative_terms:
+    - single-agent setups
+  - uc_id: UC-013
+    name: Next.js Mem0 Demo
+    positive_terms:
+    - Next.js
+    - TypeScript SDK
+    - web app demo
+    data_domain: technical_demo
+    negative_terms:
+    - Python-only stacks
+  - uc_id: UC-014
+    name: Multimodal (Image+Text) Vite Demo
+    positive_terms:
+    - multimodal
+    - Vite
+    - image + text memory
+    data_domain: mixed
+    negative_terms:
+    - text-only flows
+  - uc_id: UC-015
+    name: OpenAI Built-in Tools + mem0
+    positive_terms:
+    - OpenAI Assistants
+    - built-in tools
+    - file_search
+    data_domain: mixed
+    negative_terms:
+    - non-OpenAI LLM stacks
+  - uc_id: UC-016
+    name: YouTube Assistant Chrome Extension
+    positive_terms:
+    - YouTube
+    - Chrome extension
+    - video assistant
+    data_domain: mixed
+    negative_terms:
+    - non-browser clients
+  - uc_id: UC-017
+    name: Graph DB Demos (Neo4j / Memgraph / Kuzu / Neptune notebooks)
+    positive_terms:
+    - graph DB
+    - Neo4j
+    - Memgraph
+    - Kuzu
+    - parallel graph
+    data_domain: technical_demo
+    negative_terms:
+    - users expecting graph_store config field in MemoryConfig (does not exist in OSS v2.0.0)
+  - uc_id: UC-018
+    name: Customer Support Chatbot with Persistent Customer Memory
+    positive_terms:
+    - customer support
+    - persistent memory
+    - chatbot
+    data_domain: behavioral
+    negative_terms:
+    - one-shot anonymous queries
+  - uc_id: UC-019
+    name: AutoGen Multi-Agent + Mem0 Memory
+    positive_terms:
+    - AutoGen
+    - multi-agent
+    - shared memory
+    data_domain: mixed
+    negative_terms:
+    - single-agent setups
+  - uc_id: UC-020
+    name: AutoGen "Teachability" Capability Adapter
+    positive_terms:
+    - AutoGen
+    - Teachability
+    - corrections learning
+    data_domain: technical_demo
+    negative_terms:
+    - non-AutoGen frameworks
+  - uc_id: UC-021
+    name: Canonical retrieve→generate→store Integration Pattern (SKILL.md normative)
+    positive_terms:
+    - retrieve generate store
+    - canonical pattern
+    - chat function
+    - integration prototype
+    data_domain: mixed
+    negative_terms:
+    - workloads where the integrator wants to skip Phase 2 LLM extraction (use infer=False instead)
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 33
+    fatal_constraints_count: 1
+    non_fatal_constraints_count: 51
+    use_cases_count: 21
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 8 source groups: context_gather(1),
+        cross_cutting(8), dedup_md5(1), entity_extract(2), hybrid_search(11), llm_extract(3), and 2 more.'
+      key_decisions: 33 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-001
+      type: B
+      summary: Memory.add() and Memory.search() are deliberately NOT in MemoryBase abstract surface
+    - id: BD-026
+      type: missing
+      summary: No graph store integration in core SDK v2.0.0 OSS despite AGENTS.md doc claim
+    - id: BD-027
+      type: missing
+      summary: No batched-tx retry / rollback on partial vector-store insert failure in _add_to_vector_store
+    - id: BD-028
+      type: missing
+      summary: No PII redaction in vector-store payloads
+    - id: BD-029
+      type: missing
+      summary: No rate-limiting / token-budget enforcement on the LLM extraction call
+    - id: BD-030
+      type: missing
+      summary: Hosted-vs-OSS async-processing semantics not disambiguated in SKILL.md
+    - id: BD-031
+      type: missing
+      summary: No multi-vendor LLM fallback when extraction returns malformed JSON
+    - id: BD-032
+      type: missing
+      summary: No data-versioning / tombstone in vector store — delete() is hard-delete
+    - id: BD-033
+      type: missing
+      summary: No length cap on memory text stored in payload
+    - id: BD-005
+      type: B/BA
+      summary: Hash-based dedup uses md5(text), NOT semantic similarity
+    - id: BD-009
+      type: BA/M
+      summary: Entity dedup threshold = score >= 0.95 cosine similarity (top_k=1 search vs new insert)
+    - id: BD-023
+      type: M/B
+      summary: Entity extraction uses spaCy NER (deterministic NLP), NOT LLM
+    - id: BD-004
+      type: B/BA
+      summary: Reranker is OFF by default (MemoryConfig.reranker=None AND search(rerank=False))
+    - id: BD-006
+      type: BA
+      summary: Default search threshold = 0.1 with validation to [0,1]
+    - id: BD-007
+      type: B
+      summary: Default top_k = 20 for search() and get_all()
+    - id: BD-008
+      type: M/BA
+      summary: internal_limit = max(top_k*4, 60) over-fetch ratio
+    - id: BD-010
+      type: M/BA
+      summary: ENTITY_BOOST_WEIGHT = 0.5 in fusion formula
+    - id: BD-011
+      type: M
+      summary: BM25 normalization via length-adaptive logistic sigmoid with hardcoded breakpoints (≤3, ≤6, ≤9, ≤15 terms)
+    - id: BD-012
+      type: B/BA
+      summary: Threshold gate APPLIES TO SEMANTIC SCORE ONLY (BM25 / entity-boost cannot rescue sub-threshold candidates)
+    - id: BD-014
+      type: B/RC
+      summary: Filters MUST contain user_id OR agent_id OR run_id (raises ValueError otherwise)
+    - id: BD-015
+      type: B
+      summary: Top-level entity kwargs are REJECTED in v3 (must use filters={...} dict syntax)
+    - id: BD-017
+      type: B/T
+      summary: AsyncMemory uses asyncio.to_thread, NOT async-native client APIs
+    - id: BD-018
+      type: B
+      summary: Memory.chat() raises NotImplementedError — no built-in retrieve-and-answer loop
+    - id: BD-003
+      type: B
+      summary: Default LLM and embedder = OpenAI; default reranker provider = cohere (only when user instantiates RerankerConfig
+        without args)
+    - id: BD-013
+      type: B
+      summary: infer=True default for add() = LLM extracts facts; infer=False = raw message stored as-is
+    - id: BD-024
+      type: B/T
+      summary: 'JSON-mode response_format used for the extraction LLM call: {"type": "json_object"}'
+    - id: BD-016
+      type: B/T
+      summary: messages table evicts to most-recent 10 per session_scope on every save_messages
+    - id: BD-019
+      type: B
+      summary: PostHog telemetry ON by default with hardcoded vendor API key; sampling rate 0.1 hot-path, 1.0 lifecycle
+    - id: BD-020
+      type: T
+      summary: MD5 of caller IDs in telemetry payload
+    - id: BD-021
+      type: T/B
+      summary: History db default path = ~/.mem0/history.db (env override MEM0_DIR)
+    - id: BD-022
+      type: B
+      summary: Schema migration is automatic on first instantiation if old history table is detected
+    - id: BD-002
+      type: B
+      summary: Default vector store provider is Qdrant
+    - id: BD-025
+      type: B/M
+      summary: UUID-to-integer mapping in extraction prompt (anti-hallucination)
+resources:
+  packages:
+  - name: pydantic v2
+    version_pin: latest
+  - name: spaCy (entity extraction)
+    version_pin: latest
+  - name: posthog (telemetry client)
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install pydantic v2
+    - python3 -m pip install spaCy (entity extraction)
+    - python3 -m pip install posthog (telemetry client)
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: mem0-C-001
+    when: When configuring MemoryConfig for self-hosted Memory in OSS v2.0.0 following AGENTS.md/LLM.md graph examples
+    action: Do not include any graph_store / graph_db / graph kwarg in MemoryConfig; treat graph memory as hosted-platform-only
+      or use out-of-tree integration (UC-009 strands_agent / UC-017 examples/graph-db-demo notebooks). Surface the gap explicitly
+      in your skill or wrapper so users see a hard error rather than silent no-op.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  regular:
+  - id: mem0-C-002
+    when: When selecting an LLM/vector/embedder/graph/reranker provider for OSS v2.0.0 Python SDK based on documentation
+    action: Always confirm provider availability against utils/factory.py provider_to_class dicts (LlmFactory L37-56, VectorStoreFactory
+      L168-193, EmbedderFactory L140-152, RerankerFactory L220-226). Do not use AGENTS.md L362-369 numbers as the source of
+      truth.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-003
+    when: When integrating self-hosted Memory and reading SKILL.md L135 'Wait 2-3s after add() before searching'
+    action: 'For self-hosted Memory: call search() immediately after add() with no sleep. For hosted MemoryClient: keep the
+      2-3s wait or use mem0 event list for status polling. Distinguish the two modes explicitly in any wrapper or skill you
+      build.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-004
+    when: When deploying mem0 OSS in any environment with privacy/compliance requirements or before forking the SDK
+    action: 'Set MEM0_TELEMETRY=false in env BEFORE first Memory() instantiation; OR fork mem0/memory/telemetry.py L15 PROJECT_API_KEY
+      to your own PostHog. Note: caller IDs are MD5-hashed in mem0/memory/utils.py:200-215, but vector store class FQN, embedder
+      class FQN, function path, and event timing still leak. Anonymous user_id is generated silently with no install-time
+      consent prompt.'
+    severity: high
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-005
+    when: When wiring mem0 into an agent and looking for a built-in chat/answer method
+    action: 'Implement the SKILL.md ''Common integration pattern'' (L101-131) yourself: (1) memory.search(query, filters={''user_id'':...})
+      to retrieve context, (2) call your own LLM with the memories as system context, (3) memory.add([{role:''user'',content:...},{role:''assistant'',content:...}],
+      user_id=...) to store the exchange. Do not assume chat() is implemented in any future minor version without checking
+      the source.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-006
+    when: When calling Memory.add(), Memory.search(), or Memory.get_all() in v2.0.0 OSS (which ships v3 search semantics)
+    action: 'Always pass entity scope inside filters dict: filters={''user_id'': ''alice''} or filters={''agent_id'': ''bot1''}
+      or filters={''run_id'': ''session-42''}. Do not pass user_id, agent_id, run_id as top-level kwargs. At least one of
+      the three keys must be present, otherwise _validate_filters raises ValueError.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-007
+    when: When designing memory ingestion volume and expecting near-duplicate consolidation at scale
+    action: 'Treat dedup correctness as conditional on top-10 retrieval quality + LLM extraction quality. To raise consolidation
+      rate: (a) shrink session_scope so the top-10 cap covers more of the relevant history; (b) consider periodic offline
+      consolidation jobs that re-run extraction over the full corpus; (c) do not increase top-10 cap arbitrarily without measuring
+      LLM prompt-budget impact.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-008
+    when: When tuning the search() threshold parameter for retrieval quality
+    action: Keep threshold ≤ noise-floor of your embedder family (OpenAI text-embedding-3 is ~0.3-0.4; the 0.1 default is
+      intentionally permissive). For workloads relying on exact keyword/quote matches (legal citations, code snippets), do
+      not tighten threshold above 0.2 — strong BM25 matches with weak semantic similarity will be filtered out before fusion.
+    severity: low
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-009
+    when: When subclassing MemoryBase to build an alternative backend or memory implementation
+    action: Implement only the 5 abstract methods (get, get_all, update, delete, history) in your subclass. Reuse Memory's
+      add()/search() concrete implementation, or write your own concrete add()/search() — do NOT promote them to abstract.
+      The boundary is 'we own how memories are created from messages; you can swap how they are stored/retrieved by ID'.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-010
+    when: When adding a new vector store backend by subclassing VectorStoreBase
+    action: 'Implement all 11 required abstract methods. Optionally override keyword_search (defaults to None — disables BM25/keyword
+      fusion in hybrid search) and search_batch (defaults to per-query loop — works but slow). Follow AGENTS.md L394-402 7-step
+      provider recipe: create mem0/vector_stores/<name>.py, inherit base, add config, register in factory.py L168-193, add
+      tests.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-011
+    when: When adding a new LLM provider by subclassing LLMBase, especially for non-OpenAI-compatible models (Ollama models
+      without grammar, vLLM models, custom inference)
+    action: Implement generate_response and ensure that when response_format={'type':'json_object'} is passed in kwargs, your
+      provider returns valid JSON text. If your underlying API has no JSON mode, prepend a system instruction and post-validate;
+      the extract_json fallback in mem0/memory/utils.py:125-142 handles loose JSON but does NOT recover arbitrary natural-language
+      replies — caller will see [] (silent extraction failure).
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-012
+    when: When adding a new embedding provider by subclassing EmbeddingBase
+    action: Implement embed(text, memory_action). The memory_action hint lets providers route to different model variants
+      (e.g. text-embedding-3 'asymmetric' query vs document modes). For batch performance, override embed_batch(texts, memory_action)
+      to use the provider's native batch endpoint — Phase 3 always tries embed_batch first.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-013
+    when: When adding a new reranker provider by subclassing BaseReranker
+    action: Implement rerank(query, documents, top_k). Each output document MUST have a 'rerank_score' field (float). Handle
+      your own provider errors gracefully — uncaught exceptions cause the pipeline to log warning + fall back to the un-reranked
+      list (silent quality regression). Register in mem0/utils/factory.py:220-226 RerankerFactory.provider_to_class.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-014
+    when: When refactoring _add_to_vector_store or wrapping mem0 add() in a custom backgrounded handler
+    action: 'Preserve strict stage order: every Phase N reads outputs of Phase N-1. Phase 0''s bounded message buffer feeds
+      Phase 2''s prompt; Phase 1''s retrieved memories feed Phase 2''s UUID-to-int mapping; Phase 2''s extraction feeds Phase
+      3''s embedding batch; etc. Do not move LLM extraction to background or parallelize Phase 6 vector insert with Phase
+      8 message persist.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-015
+    when: When designing a high-concurrency workload using AsyncMemory and expecting true async fan-out
+    action: 'Treat AsyncMemory as an asyncio-friendly facade, not native async I/O. For high-throughput concurrent search()/add():
+      (a) increase the default thread pool size via asyncio.get_event_loop().set_default_executor(ThreadPoolExecutor(max_workers=N));
+      (b) batch operations where possible; (c) for true async, wrap your own backend client and bypass AsyncMemory.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-016
+    when: When choosing or switching the vector_store backend in MemoryConfig
+    action: Verify keyword_search availability for your backend choice in mem0/vector_stores/<name>.py. If switching from
+      Qdrant to a vector-only backend (chroma/faiss/etc), expect hybrid search degradation to vector-only and adjust threshold/top_k
+      accordingly. After switching backends, re-index from scratch — embedding cosine geometry differs across embedder families
+      and stored vectors are not portable across embedders.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-017
+    when: When initializing MemoryConfig in production where vendor / cost / data-residency constraints apply
+    action: Explicitly override LlmConfig.provider, EmbeddingConfig.provider, and (if used) RerankerConfig.provider in MemoryConfig
+      — do not rely on the OpenAI/cohere defaults. Document the chosen providers in your skill or wrapper. Be aware that switching
+      embedders requires re-indexing stored vectors (cosine geometry differs).
+    severity: medium
+    kind: domain_rule
+    modality: should_not
+    consequence: null
+  - id: mem0-C-018
+    when: When migrating from v2 to v3 expecting reranker to fire automatically
+    action: Pass rerank=True explicitly on every search() call where you want reranking; OR wrap Memory.search() in your own
+      helper that injects rerank=True. Configure RerankerConfig in MemoryConfig (without args defaults to cohere; pass {'provider':'huggingface'/'sentence_transformer'/'llm_reranker'/'zero_entropy'}
+      to override). Verify self.reranker is not None or rerank() never fires.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-019
+    when: When evaluating retrieval quality with default threshold=0.1 on production traffic
+    action: 'Measure your embedder''s empirical noise floor: search() with threshold=0.0 over a held-out query set, plot semantic_score
+      histogram of relevant vs irrelevant memories, set threshold to the inflection point (typically 0.3-0.5 for OpenAI text-embedding-3).
+      Re-validate after any embedder switch (BD-002).'
+    severity: medium
+    kind: domain_rule
+    modality: should_not
+    consequence: null
+  - id: mem0-C-020
+    when: When porting code from v2 (top_k=100 default) to v3, or when the default 20 results are insufficient
+    action: 'Pass top_k explicitly: search(query, filters={...}, top_k=N). Be aware that internal_limit = max(top_k*4, 60)
+      drives the actual vector_store.search size — raising top_k linearly raises backend RPC payload. The 60 absolute floor
+      ensures BM25 normalization has enough signal even for small top_k.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-021
+    when: When switching to a non-OpenAI embedder while expecting entity-store behavior to remain stable
+    action: 'After switching embedders: empirically measure your embedder''s cosine distribution over a sample of (entity,
+      near-duplicate-entity) and (entity, unrelated-entity) pairs; pick a threshold where false-merge rate ≤ false-split rate
+      × 10 (false merge is much costlier than over-extraction). Patch mem0/memory/main.py:426 and 918 directly — there is
+      no config knob for this in v2.0.0.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-022
+    when: When tuning hybrid search relevance via ENTITY_BOOST_WEIGHT or normalizer parameters
+    action: 'If raising ENTITY_BOOST_WEIGHT above 0.5: tighten entity dedup (BD-009) above 0.95 to prevent false-merged entities
+      from dominating. If switching BM25 normalizer: re-validate breakpoint thresholds (≤3, ≤6, ≤9, ≤15 terms) in mem0/utils/scoring.py:16-40.
+      Always run an A/B regression on a held-out query set after any constant change.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-023
+    when: When deciding whether to pay the LLM extraction cost on every add() call
+    action: 'Default to infer=True for memory-layer use cases (chatbots, agents, personalization). Use infer=False only for:
+      (a) transcript archival where raw messages must be replayable; (b) cost-sensitive batch ingestion with downstream re-extraction.
+      Never mix the two modes within the same session_scope — payload schema differs (infer=False writes role/actor_id, infer=True
+      writes extracted memory text).'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-024
+    when: When the Phase 0 context window of 10 messages is insufficient or excessive for your extraction quality / cost tradeoff
+    action: Patch BOTH mem0/memory/storage.py:282-291 (eviction LIMIT) AND mem0/memory/main.py:703 (get_last_messages limit)
+      to keep them consistent. Increasing the cap raises Phase 2 LLM prompt cost linearly; decreasing it reduces cross-message
+      disambiguation quality. Document the chosen value in your fork or wrapper.
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-025
+    when: When deploying mem0 in a multi-tenant or shared-host environment
+    action: Set MEM0_DIR=/tenant-specific-path before instantiating Memory(), OR pass MemoryConfig(history_db_path='/path/to/tenant-N/history.db').
+      Single-user dev / single-tenant deployments may keep the default. Audit your deployment for accidental tenant collisions
+      on shared servers (e.g. multiple workers running as same OS user).
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-026
+    when: When upgrading mem0 SDK across versions where the history table schema may have changed
+    action: 'Before any SDK upgrade in production: cp ~/.mem0/history.db ~/.mem0/history.db.backup-$(date +%Y%m%d). Inspect
+      the new mem0/memory/storage.py:_migrate_history_table after upgrade to verify which columns will be dropped. Single-process
+      SQLite is safe for the auto-migration; shared db (rare for SQLite) is not.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-027
+    when: When entity-aware retrieval quality requires semantic entity recognition beyond syntactic NER (e.g. linking 'the
+      CEO' to 'Tim Cook')
+    action: 'Either: (a) accept syntactic-only entity coverage and rely on semantic_score for the rest of retrieval; (b) fork
+      mem0/utils/entity_extraction.py to call your LLM with an entity-extraction prompt; (c) inject a pre-processor that resolves
+      coreferences before add(). The spaCy approach is intentional cost optimization (avoid second LLM round-trip per add()).'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-028
+    when: When using a non-OpenAI LLM provider whose JSON-mode support is uncertain
+    action: '(a) Verify your LLM model supports response_format={''type'':''json_object''} (test with a manual call). (b)
+      Instrument add() calls to monitor returned-memory count vs message-list length: if many adds return [], extraction is
+      silently failing. (c) For OSS/local models, consider adding a strict-grammar wrapper or post-extraction validator. (d)
+      Switch to a model with native JSON mode if extraction quality is critical.'
+    severity: high
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-029
+    when: When refactoring _add_to_vector_store or designing an alternative extraction pipeline
+    action: 'Preserve the uuid_mapping bidirectional dict: dict[int_str → uuid] before LLM call, dict[uuid → int_str] for
+      parsing the LLM''s response. After LLM returns extracted memories with int IDs, remap back to UUIDs before issuing UPDATE/DELETE
+      against the vector store. If you must change the mapping representation, A/B test against a corpus of UUIDs to verify
+      non-regression on hallucination rate.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-030
+    when: When operating mem0 in production with vector store backends prone to transient failures (network, rate-limit, OOM)
+    action: '(a) Wrap add() in retry-with-backoff at the application layer — on exception, do NOT trust that history reflects
+      vector store state. (b) Periodically reconcile: SELECT id FROM history WHERE event=''ADD'' MINUS vector_store.list ids
+      → these are orphaned history rows, vector_store.insert with original payload from history.new_memory column. (c) Monitor
+      add() exception rate; spikes correlate with cross-store divergence.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-031
+    when: When using mem0 with health, financial, legal, or other regulated personal data
+    action: 'Implement a PII redaction step in your wrapper BEFORE calling add(): pass messages through Presidio / spaCy +
+      regex / your compliance stack, replacing PII spans with tokens (e.g. <NAME_1>, <SSN>). Note the related risk: PostHog
+      telemetry only sees MD5-hashed caller IDs (mem0-C-004) but the actual memory text never reaches telemetry — so this
+      is a stored-data compliance issue, not transmission. Document redaction policy alongside your mem0 deployment.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-032
+    when: When ingesting large transcripts or batched messages via single add() calls
+    action: '(a) Cap your add() message-list length to ~10-20 messages or estimate token count and stay under 50% of model
+      context. (b) For large transcripts, chunk and call add() multiple times. (c) Monitor: if len(add_result) == 0 for a
+      non-trivial input, treat as extraction failure not ''nothing to extract''. (d) Implement client-side rate limiting against
+      your LLM provider''s quota.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-033
+    when: When operating mem0 in production where LLM provider reliability varies
+    action: 'Wrap Memory.add() in a retry-and-failover layer: on len(result)==0 OR exception, retry with the same model after
+      backoff; on repeated failure, retry with a different LLM provider configured as fallback. Emit observability events
+      on each retry/fallback. Track success-rate per provider. Without this, transient LLM hiccups silently lose memories
+      with no audit trail.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-034
+    when: When implementing audit / compliance flows requiring 'what was deleted' visibility, or when planning recovery from
+      accidental deletes
+    action: 'If you need soft-delete semantics: (a) wrap Memory.delete() and instead set a custom payload flag (e.g. metadata.deleted_at
+      = timestamp), filter it out in your search wrapper. (b) For accidental-delete recovery, take vector store snapshots
+      on a schedule. (c) For audit, supplement SQLite history with your own event log capturing full pre-delete payload. The
+      built-in history table is event-only audit, NOT a snapshot store.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-035
+    when: When using a managed vector store with a per-record payload size limit (Pinecone, hosted Qdrant, etc.)
+    action: '(a) Verify your vector store''s payload-size limit and add a pre-flight truncation/split at the wrapper level:
+      if len(memory_text) > limit, truncate or split into multiple memories before add(). (b) Catch backend-specific size
+      errors in your add() wrapper and degrade gracefully (log + skip vs hard fail). (c) Monitor average and p99 memory text
+      length to size your truncation policy.'
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-036
+    when: When extending mem0 payload schema to surface a new field at the top level of get()/search() responses
+    action: 'Patch BOTH locations consistently: (a) mem0/memory/main.py:807-816 to add the new key into the payload dict written
+      to vector store. (b) mem0/memory/main.py:988-994 (get) AND :1401-1434 (search formatter) core_and_promoted_keys set
+      to add the new key, so it surfaces at top level on responses instead of being buried under metadata. Forgetting either
+      side leaves the field invisible or in the wrong location.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-037
+    when: When implementing a new vector store backend that has embedded/local mode similar to Qdrant's RocksDB-backed local
+      files
+    action: 'If your backend has a single-process embedded mode with file-level locking: detect that mode in your VectorStoreBase
+      subclass __init__ and reuse the same client instance for both the main collection and the ''_entities'' collection.
+      Reference implementation: mem0/memory/main.py:393-410 _init_entity_store branches on isinstance(self.vector_store, Qdrant)
+      and the embedded flag.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-038
+    when: When tempted to 'clean up' history table rows during operation (e.g. delete events older than N days, or update
+      old_memory text)
+    action: Treat history table as immutable audit log on the operational path. If you need to age out old history, do so
+      via a separate offline export-then-truncate process during maintenance windows; never UPDATE/DELETE rows from a running
+      application instance. For test isolation use Memory.reset() (which DROPs everything cleanly), not row-level mutation.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-039
+    when: When parsing Memory.search() or Memory.get() results, or when adding custom backend fields
+    action: '(a) Consumer code: rely on the 7 fields existing in every memory dict; check for None on the optional 5 before
+      use. (b) Backend extension: write any custom field into payload but ensure it surfaces under metadata, not as a top-level
+      promoted key (unless added through the procedure in mem0-C-036). (c) Do not add new required fields to MemoryItem without
+      a SDK major version bump — every consumer expects exactly these 7.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-040
+    when: When designing session lifecycle and choosing how to set/reuse run_id across user interactions
+    action: '(a) For continuous personalization (chatbot remembers across all sessions for one user): omit run_id, rely on
+      user_id alone — accept context bleed across sessions. (b) For session-isolated workflows (each conversation independent):
+      always pass a fresh run_id (e.g. uuid4()) per session. (c) For audit isolation (each task / sub-agent kept separate):
+      combine agent_id + run_id per task. Document your run_id strategy.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-041
+    when: When customizing or replacing the ADDITIVE_EXTRACTION_PROMPT in mem0/configs/prompts.py
+    action: 'Preserve the agent-only branch behavior: when agent_id is present and user_id is absent, your prompt should bias
+      the LLM toward agent-scratch semantics (e.g. ''these are notes the agent makes for itself, not user-facing facts'').
+      Without this hint, agent-only extraction produces user-style memory text that conflates agent state with user state.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-042
+    when: When the memory store grows past ~10K memories per user_id and dedup quality starts degrading
+    action: '(a) Monitor: for a sample of add() calls, log how many semantically-similar existing memories sit at rank 11-30;
+      if non-trivial, the top-10 cap is the bottleneck. (b) Mitigation: shrink session_scope so each scope''s existing-memory
+      pool is smaller; OR fork _add_to_vector_store at L707-714 to raise the limit (linear LLM prompt cost growth). (c) Schedule
+      offline consolidation jobs that re-extract over the full corpus.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-043
+    when: When using mem0 v3 advanced filter operators for compound queries
+    action: 'Use nested dict syntax: filters={''AND'': [...], ''OR'': [...], ''NOT'': [...], ''metadata.field'': {''eq'':
+      value, ''gt'': value}}. The advanced operators must remain inside filters; mem0/memory/main.py:1239-1314 _parse_advanced_filters
+      dispatches based on key shape. Test compound filters in dev before shipping — error messages are not always clear about
+      which clause is malformed.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-044
+    when: When tuning hybrid search relevance and seeing items that 'should be top-K' showing up only because of BM25/entity
+      boost from beyond rank 20
+    action: 'Trace whether high-final-score items consistently come from semantic ranks 20-60 or 60+. If from 20-60, current
+      4× is fine. If from 60+, raise the multiplier (cost: linearly higher backend RPC). Patch mem0/memory/main.py:1356-1359
+      directly — there is no config knob in v2.0.0. Always A/B test on held-out queries after change.'
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-045
+    when: When advocating mem0 OSS adoption to stakeholders or making capacity-planning decisions based on doc-stated benchmarks
+    action: (a) Run your own benchmark on your workload, not on LOCOMO. (b) Compare against the alternative you would otherwise
+      choose (full-context, naive vector store, your existing memory layer) — not against generic 'OpenAI Memory'. (c) Distinguish
+      hosted MemoryClient performance (the benchmark target) from self-hosted Memory performance (potentially different —
+      extraction LLM choice, vector store choice all dominate).
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-046
+    when: When extending mem0 with a new provider
+    action: 'Follow the 7 steps in order. After step 3, verify by instantiating MemoryConfig(<category>={''provider'': ''your_name'',
+      ...}) — if KeyError raised, the factory registration was missed. Reference an existing provider as template (e.g. for
+      LLM, copy mem0/llms/ollama.py structure).'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-047
+    when: When operating mem0 in an environment that needs partial telemetry — e.g. allow operational metrics but block lifecycle
+      events that leak deployment timing
+    action: 'For all-or-nothing: MEM0_TELEMETRY=false. For selective control: import mem0.memory.telemetry; replace _sampling_before_send
+      with a custom predicate that filters by event name; do this BEFORE first Memory() instantiation. Alternative: vendor
+      a forked telemetry.py with the bound logic. Document which events you suppress for compliance auditors.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-048
+    when: When parsing return values of add(), search(), or get_all()
+    action: '(a) For add(): result is a list — iterate directly: for entry in result: print(entry[''event''], entry[''memory'']).
+      (b) For search() and get_all(): result is dict — unwrap: memories = result[''results'']; for m in memories: ... (c)
+      Do not write code that expects ''relations'' to exist on any response shape in OSS v2.0.0; that key only exists in hosted/future
+      versions. (d) Use response_envelope helpers (if you write your own wrapper) to abstract the difference safely.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-049
+    when: When deploying mem0 for non-English content, domain-specific jargon, or alternative embedders where BM25 score distributions
+      differ from English-OpenAI baseline
+    action: (a) Sample raw BM25 scores from your workload across query lengths; if distribution differs significantly from
+      sigmoid output (most scores cluster at 0 or 1, not spread), the breakpoints are mis-tuned. (b) Patch mem0/utils/scoring.py:16-40
+      get_bm25_params with breakpoints fitted to your distribution. (c) Always re-run end-to-end retrieval evaluation after
+      change — sigmoid steepness affects fusion weighting.
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: mem0-C-050
+    when: When choosing between MemoryClient and Memory, or when copy-pasting code from cross-mode examples
+    action: 'Identify the mode at the top of any mem0 integration: hosted = `from mem0 import MemoryClient; client = MemoryClient(api_key=...)`;
+      OSS self-hosted = `from mem0 import Memory; m = Memory(MemoryConfig(...))`. Document the chosen mode in your code header.
+      Do not mix patterns from cross-mode examples without verifying applicability — graph features (mem0-C-001), wait-2-3s
+      (mem0-C-003), and the sync/eventual-consistency model all differ.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: mem0-C-051
+    when: When designing backup / restore / point-in-time recovery for mem0-backed systems
+    action: '(a) Schedule periodic vector_store snapshots (Qdrant snapshot API, Pinecone collection backup, etc.). (b) Schedule
+      periodic SQLite history.db backups. (c) Restore procedure: restore vector_store snapshot to time T, replay history events
+      from T onwards if needed. (d) Do not rely on history alone for restore — UPDATE events keep old_memory text but DELETE
+      events do not preserve full payload.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: mem0-C-052
+    when: When designing backfill, replay, or batch re-processing flows that re-run entity extraction over historic memories
+    action: '(a) Avoid retroactive _link_entities_for_memory calls in production data path. (b) For backfill: process strictly
+      in chronological order (oldest first); never re-link a memory with entities extracted from later memories. (c) Add a
+      created_at comparison guard before linking if you must support out-of-order processing. (d) Document any backfill scripts
+      to disclose the time-ordering invariant they assume.'
+    severity: low
+    kind: domain_rule
+    modality: must
+    consequence: null
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-131 / Personal AI Assistant with Image+Text Memory (agno)
+    version: v6.1
+    intent_keywords:
+    - personal assistant
+    - image memory
+    - multimodal memory
+    - agno
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (2 distinct values, balanced distribution)
+      groups:
+      - group_id: complete_strategy
+        name: Complete Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 16
+        ucs:
+        - uc_id: UC-001
+          name: Personal AI Assistant with Image+Text Memory (agno)
+          short_description: Build a personal AI assistant with persistent multimodal memory
+          sample_triggers:
+          - personal assistant
+          - image memory
+          - multimodal memory
+        - uc_id: UC-002
+          name: AI Study Buddy with Spaced Repetition
+          short_description: Track topics studied, schedule spaced repetition, and remember struggle areas across study sessions
+          sample_triggers:
+          - study assistant
+          - spaced repetition
+          - learning tracking
+        - uc_id: UC-003
+          name: Healthcare Assistant (Google ADK)
+          short_description: Healthcare assistant that stores patient info scoped by user_id
+          sample_triggers:
+          - healthcare
+          - patient memory
+          - Google ADK
+        - uc_id: UC-004
+          name: Memory-Aware Movie Recommender (Grok-3 + Qdrant)
+          short_description: Recommend movies using Grok-3 with persistent user-preference memory in a local Qdrant collection
+            (embedding_model_dims=384)
+          sample_triggers:
+          - recommender system
+          - movie
+          - Grok-3
+        - uc_id: UC-005
+          name: Voice Diet Assistant (Cartesia)
+          short_description: Voice-driven diet assistant that remembers food preferences, allergies, and dietary patterns
+            across voice sessions
+          sample_triggers:
+          - voice assistant
+          - diet
+          - food preferences
+        - uc_id: UC-006
+          name: Voice Assistant with Persistent Memory (ElevenLabs)
+          short_description: Voice assistant using ElevenLabs TTS/STT, with mem0 for cross-session memory of user preferences
+          sample_triggers:
+          - voice assistant
+          - ElevenLabs
+        - uc_id: UC-007
+          name: Personalized Search with Stored Preferences
+          short_description: Personalize search results using stored user preferences as a re-ranking signal on top of standard
+            search
+          sample_triggers:
+          - personalized search
+          - preference-aware ranking
+          - rerank
+        - uc_id: UC-009
+          name: AWS Strands Agent with Elasticache Vector + Neptune Graph
+          short_description: AWS-stack agent with Elasticache vector and Neptune graph backends
+          sample_triggers:
+          - AWS
+          - Strands
+          - Elasticache
+        - uc_id: UC-010
+          name: Fitness Tracking Assistant
+          short_description: Track workout sessions, fitness goals, and progress across check-ins
+          sample_triggers:
+          - fitness
+          - workout tracking
+          - goals
+        - uc_id: UC-012
+          name: Multi-Agent Personal Learning System (LlamaIndex)
+          short_description: Multi-agent learning system using LlamaIndex AgentWorkflow with FunctionAgents and shared mem0
+            memory layer
+          sample_triggers:
+          - multi-agent
+          - LlamaIndex
+          - AgentWorkflow
+        - uc_id: UC-013
+          name: Next.js Mem0 Demo
+          short_description: Reference Next.js app demonstrating client-side mem0 integration via the TypeScript SDK
+          sample_triggers:
+          - Next.js
+          - TypeScript SDK
+          - web app demo
+        - uc_id: UC-014
+          name: Multimodal (Image+Text) Vite Demo
+          short_description: Vite-based demo of multimodal memory (image + text) with the TypeScript SDK
+          sample_triggers:
+          - multimodal
+          - Vite
+          - image + text memory
+        - uc_id: UC-016
+          name: YouTube Assistant Chrome Extension
+          short_description: Chrome extension that watches YouTube and answers questions about previously-watched videos using
+            mem0 for cross-video memory
+          sample_triggers:
+          - YouTube
+          - Chrome extension
+          - video assistant
+        - uc_id: UC-018
+          name: Customer Support Chatbot with Persistent Customer Memory
+          short_description: Customer support chatbot that remembers customer preferences, past tickets, account details across
+            sessions
+          sample_triggers:
+          - customer support
+          - persistent memory
+          - chatbot
+        - uc_id: UC-019
+          name: AutoGen Multi-Agent + Mem0 Memory
+          short_description: Microsoft AutoGen multi-agent setup with mem0 as the shared memory layer
+          sample_triggers:
+          - AutoGen
+          - multi-agent
+          - shared memory
+        - uc_id: UC-021
+          name: Canonical retrieve→generate→store Integration Pattern (SKILL.md normative)
+          short_description: Canonical mem0 chat(user_input, user_id) integration pattern
+          sample_triggers:
+          - retrieve generate store
+          - canonical pattern
+          - chat function
+      - group_id: extension_example
+        name: Extension Example
+        description: ''
+        emoji: 📦
+        uc_count: 5
+        ucs:
+        - uc_id: UC-008
+          name: Multi-LLM Memory Co-Write
+          short_description: Write to the same memory store from multiple different LLMs (e.g
+          sample_triggers:
+          - multi-LLM
+          - memory writing
+          - extraction comparison
+        - uc_id: UC-011
+          name: Self-Hosted vLLM with mem0
+          short_description: Run mem0 fully self-hosted with vLLM as the LLM provider — air-gapped reference implementation
+          sample_triggers:
+          - vLLM
+          - self-hosted LLM
+          - air-gapped
+        - uc_id: UC-015
+          name: OpenAI Built-in Tools + mem0
+          short_description: Combine OpenAI Assistants API built-in tools (file_search, code_interpreter, etc.) with mem0
+            memory layer
+          sample_triggers:
+          - OpenAI Assistants
+          - built-in tools
+          - file_search
+        - uc_id: UC-017
+          name: Graph DB Demos (Neo4j / Memgraph / Kuzu / Neptune notebooks)
+          short_description: Notebook demonstrations of how to layer graph databases on TOP of mem0 — these are NOT graph
+            integration inside the OSS SDK (see BD-026); the notebook
+          sample_triggers:
+          - graph DB
+          - Neo4j
+          - Memgraph
+        - uc_id: UC-020
+          name: AutoGen "Teachability" Capability Adapter
+          short_description: Adapter that exposes mem0 as an AutoGen "Teachability" capability so AutoGen agents can learn
+            from corrections
+          sample_triggers:
+          - AutoGen
+          - Teachability
+          - corrections learning
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-001
+      beginner_prompt: Try personal ai assistant with image+text memory (agno)
+      auto_selected: true
+    - uc_id: UC-002
+      beginner_prompt: Try ai study buddy with spaced repetition
+      auto_selected: true
+    - uc_id: UC-003
+      beginner_prompt: Try healthcare assistant (google adk)
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 21 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Healthcare Assistant (Google ADK)
+    - AI Study Buddy with Spaced Repetition
+    - Personal AI Assistant with Image+Text Memory (agno)
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

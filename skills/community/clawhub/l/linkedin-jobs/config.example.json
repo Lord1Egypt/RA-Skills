@@ -1,0 +1,65 @@
+{
+  "_instructions": "Copy this file to 'config.json' and customize your settings. All fields are optional - defaults will be used if not specified.",
+
+  "defaults": {
+    "_comment": "Default filters applied when user doesn't specify",
+    "experience": "2",
+    "remote": "1,3",
+    "date_posted": "r86400",
+    "max_pages": 2,
+    "job_type": ""
+  },
+
+  "scraper": {
+    "_comment": "Scraper behavior settings",
+    "delay_min": 1.5,
+    "delay_max": 3.5,
+    "fetch_details": true,
+    "timeout": 15
+  },
+
+  "notifications": {
+    "_comment": "How job notifications are formatted",
+    "notify_on_empty": false,
+    "max_jobs_per_notification": 20,
+    "include_tech_stack": true,
+    "include_requirements": true,
+    "include_role_summary": true,
+    "description_preview_length": 300,
+    "group_by_location": true
+  },
+
+  "custom_geo_ids": {
+    "_comment": "Add your custom city geo IDs here. These override built-in geo_ids.json",
+    "_example": "my city: 123456789"
+  },
+
+  "filter_codes": {
+    "_comment": "Reference only - do not modify",
+    "experience": {
+      "1": "Internship",
+      "2": "Entry level",
+      "3": "Associate",
+      "4": "Mid-Senior level",
+      "5": "Director",
+      "6": "Executive"
+    },
+    "job_type": {
+      "F": "Full-time",
+      "P": "Part-time",
+      "C": "Contract",
+      "T": "Temporary",
+      "I": "Internship"
+    },
+    "remote": {
+      "1": "On-site",
+      "2": "Remote",
+      "3": "Hybrid"
+    },
+    "date_posted": {
+      "r86400": "Last 24 hours",
+      "r604800": "Last week",
+      "r2592000": "Last month"
+    }
+  }
+}

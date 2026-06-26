@@ -1,35 +1,28 @@
 ---
-name: "Mac Multi-Instance Deployment"
-description: "Public-safe Mac multi-instance deployment skill for generic OpenClaw-style workspace layout, boundary notes, sample config, and pack validation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mac-multi-instance-deployment"
-sourceUrl: "https://clawhub.ai/skills/mac-multi-instance-deployment"
+name: mac-multi-instance-deployment
+description: Public-safe Mac multi-instance deployment skill for generic OpenClaw-style workspace layout, boundary notes, sample config, and pack validation.
+version: 1.0.4
 ---
 
-# Mac Multi-Instance Deployment
+# Mac Multi-Instance Deployment / Mac 多实例部署
 
-> Public-safe Mac multi-instance deployment skill for generic OpenClaw-style workspace layout, boundary notes, sample config, and pack validation.
+Keep a generic Mac multi-instance workspace public-safe.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mac-multi-instance-deployment`
-- **Source URL:** [https://clawhub.ai/skills/mac-multi-instance-deployment](https://clawhub.ai/skills/mac-multi-instance-deployment)
+## Checklist
 
-## Overview
+- `main`: routing and shared docs
+- `workbench`: active edits and tests
+- `publish`: release bundles
+- `archive`: snapshots and references
+- `private`: secrets and runtime state
+- Use placeholder paths in `config/local-multi-instance.example.env`
+- Review `references/instances.md`
+- Run `./validate_repo.sh`
+- Run `./generate_public_pack.sh --dry-run`
 
+## Guardrails
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mac-multi-instance-deployment
-```
+- Use generic labels only.
+- Keep one workspace root per role.
+- Keep private files out of public packs.
+- Keep runtime state local.

@@ -1,0 +1,37 @@
+{
+  "slug": "memory-system-optimizer",
+  "name": "Memory System Optimizer",
+  "description": "OpenCLAW 记忆系统优化 v2.0 - 四层架构 + 自我反思 + 情绪识别 + 任务规划 + 12项增强功能",
+  "version": "2.0.0",
+  "author": {
+    "name": "Odin",
+    "contact": "wanglinhong"
+  },
+  "tags": ["memory", "openclaw", "optimization", "ai", "agent", "agent-framework"],
+  "files": [
+    "SKILL.md",
+    "scripts/auto-memlog.sh",
+    "scripts/memlog.sh",
+    "scripts/memory-gc.sh",
+    "scripts/memory-decay.js",
+    "scripts/memory-extract.js",
+    "config/NOW.md",
+    "config/INDEX.md",
+    "config-files/SOUL.md",
+    "config-files/IDENTITY.md",
+    "config-files/USER.md",
+    "config-files/AGENTS.md",
+    "config-files/TOOLS.md",
+    "config-files/MEMORY.md",
+    "config-files/FEEDBACK-LOG.md",
+    "config-files/AUTONOMY.md",
+    "config-files/SKILLS.md",
+    "config-files/MULTI-INSTANCE.md",
+    "config-files/SECURITY.md",
+    "config-files/TRAINING.md",
+    "config-files/tacit_knowledge.md"
+  ],
+  "dependencies": {
+    "openclaw": ">=3.0.0"
+  }
+}

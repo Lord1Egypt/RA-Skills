@@ -1,0 +1,13 @@
+Order ID,Order Date,Ship Date,Customer Name,Segment,City,State,Region,Category,Sub-Category,Product Name,Sales,Quantity,Discount,Profit
+CA-2024-001,2024-01-05,2024-01-10,Alice Wang,Consumer,Shanghai,Shanghai,East,Technology,Phones,iPhone 15 Pro,8999,1,0,1200
+CA-2024-002,2024-01-06,2024-01-11,Bob Li,Corporate,Beijing,Beijing,North,Furniture,Chairs,Herman Miller Aeron,12500,2,0.1,3000
+CA-2024-003,2024-01-07,2024-01-12,Carol Zhang,Consumer,Shenzhen,Guangdong,South,Office Supplies,Paper,A4 Copy Paper,45,10,0,15
+CA-2024-004,2024-01-10,2024-01-15,David Chen,Home Office,Hangzhou,Zhejiang,East,Technology,Laptops,MacBook Pro 14,14999,1,0.05,2500
+CA-2024-005,2024-01-12,2024-01-17,Eve Liu,Consumer,Guangzhou,Guangdong,South,Furniture,Tables,Standing Desk,3200,1,0,800
+CA-2024-006,2024-01-15,2024-01-20,Frank Wu,Corporate,Chengdu,Sichuan,West,Office Supplies,Binders,3-Ring Binder Set,89,5,0.15,20
+CA-2024-007,2024-02-01,2024-02-06,Grace Sun,Consumer,Nanjing,Jiangsu,East,Technology,Accessories,AirPods Pro,1999,2,0,400
+CA-2024-008,2024-02-03,2024-02-08,Henry Zhao,Home Office,Wuhan,Hubei,Central,Furniture,Bookcases,Bookshelf 5-Tier,1580,1,0.1,300
+CA-2024-009,2024-02-10,2024-02-15,Iris Huang,Corporate,Xiamen,Fujian,South,Technology,Phones,Samsung Galaxy S24,6999,3,0.05,1500
+CA-2024-010,2024-02-15,2024-02-20,Jack Yang,Consumer,Dalian,Liaoning,North,Office Supplies,Storage,File Cabinet,450,2,0,120
+CA-2024-011,2024-03-01,2024-03-06,Karen Xu,Consumer,Suzhou,Jiangsu,East,Technology,Laptops,ThinkPad X1 Carbon,9999,1,0.1,1800
+CA-2024-012,2024-03-05,2024-03-10,Leo Ma,Corporate,Qingdao,Shandong,North,Furniture,Chairs,Ergonomic Office Chair,2800,3,0,700

@@ -1,0 +1,12 @@
+{
+  "name": "Lip Sync by VideoAny",
+  "tagline": "Create lip-sync videos from one portrait and one audio track.",
+  "description": "Generate lip-sync videos via VideoAny at https://videoany.io/lip-sync. Choose model (Creatify Aurora, VEED Fabric 1.0, ByteDance OmniHuman v1.5), set 480p/720p resolution, upload image+audio or use direct URLs, and produce downloadable lipsync results.",
+  "category": "utility",
+  "tags": ["lip-sync", "lipsync", "talking-photo", "audio-to-mouth-sync", "videoany", "aurora", "fabric", "omnihuman"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://videoany.io/lip-sync",
+  "homepage": "https://videoany.io/lip-sync"
+}

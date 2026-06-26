@@ -1,0 +1,19 @@
+{
+  "soulpod_version": "0.1.0",
+  "created_at": "2026-05-09",
+  "model_preference": {
+    "provider": "openrouter",
+    "model": "auto",
+    "temperature": 0.7,
+    "max_tokens": 512
+  },
+  "conversation": {
+    "max_history": 20,
+    "save_transcript": true,
+    "transcript_dir": "conversations/"
+  },
+  "tts_provider": "minimax",
+  "minimax_voice_id": "middle_reliable",
+  "voice_description": "沉稳高管，权威可靠，适合成熟稳重型角色",
+  "edge_voice": "yunyang"
+}

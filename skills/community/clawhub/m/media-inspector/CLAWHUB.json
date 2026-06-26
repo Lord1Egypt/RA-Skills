@@ -1,0 +1,9 @@
+{
+  "name": "media-inspector",
+  "displayName": "Media Inspector",
+  "description": "本地音视频文件分析工具 - 扫描、提取元数据、语音转文字、生成摘要和关键片段",
+  "version": "1.0.0",
+  "author": "chen su",
+  "tags": ["media", "video", "audio", "transcription", "ffmpeg", "whisper"],
+  "license": "MIT"
+}

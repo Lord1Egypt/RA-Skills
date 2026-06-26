@@ -1,0 +1,12 @@
+{
+  "accounts": [
+    {
+      "name": "gmail",
+      "imap_host": "imap.gmail.com",
+      "user": "xxx@gmail.com",
+      "pass": "应用专用密码",
+      "mode": "recent",
+      "recent_days": 7
+    }
+  ]
+}

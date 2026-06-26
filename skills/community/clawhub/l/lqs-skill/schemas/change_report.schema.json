@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lqs.local/skill/schemas/change_report.schema.json",
+  "title": "ChangeReport",
+  "type": "object",
+  "required": ["mode", "summary", "files"],
+  "properties": {
+    "mode": { "type": "string", "enum": ["dry-run", "write"] },
+    "summary": {
+      "type": "object",
+      "required": ["added", "modified", "skipped"],
+      "properties": {
+        "added": { "type": "integer" },
+        "modified": { "type": "integer" },
+        "skipped": { "type": "integer" }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "status"],
+        "properties": {
+          "path": { "type": "string" },
+          "status": { "type": "string", "enum": ["added", "modified", "skipped"] },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

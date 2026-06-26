@@ -1,35 +1,135 @@
 ---
-name: "Mental Models Cn"
-description: "108 个思维模型，16 个系列，含周期分析实战指南"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mental-models-cn"
-sourceUrl: "https://clawhub.ai/skills/mental-models-cn"
+name: mental-models-cn
+description: 108 个思维模型，16 个系列，含周期分析实战指南
+version: 2.8.0
+author: gmilton09
+homepage: https://github.com/openclaw/openclaw
+public: true
+triggers:
+  - "思维模型"
+  - "分析框架"
+  - "决策模型"
+  - "如何分析"
+  - "用什么模型"
+  - "系统思考"
+  - "周期分析"
+  - "芒格"
+  - "麦肯锡"
+  - "/mental-model"
+metadata: {
+  "clawdbot": {
+    "emoji": "🧠",
+    "tags": [
+      "analysis",
+      "decision-making",
+      "mental-models",
+      "framework",
+      "strategy",
+      "mckinsey",
+      "munger",
+      "consulting",
+      "business",
+      "cognitive-science",
+      "psychology",
+      "innovation",
+      "leadership",
+      "cycle-analysis"
+    ],
+    "category": "business-analysis",
+    "subcategory": "strategic-thinking",
+    "difficulty": "intermediate",
+    "audience": ["professionals", "students", "entrepreneurs", "managers", "investors"],
+    "public": true
+  }
+}
 ---
 
-# Mental Models Cn
+# 🧠 思维模型库 (Mental Models)
 
-> 108 个思维模型，16 个系列，含周期分析实战指南
+**版本**: 2.8.0 | **108 个模型** | **16 个系列** | **公开技能** ✅
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mental-models-cn`
-- **Source URL:** [https://clawhub.ai/skills/mental-models-cn](https://clawhub.ai/skills/mental-models-cn)
+---
 
-## Overview
+## 📚 16 个系列（108 个模型）
 
+**基础分析（6 个）**: PESTEL、SWOT、波特五力、MECE、系统思维、第一性原理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mental-models-cn
-```
+**决策思维（8 个）**: 二阶效应、奥卡姆剃刀、汉隆剃刀、逆向思维、博弈论、比较优势、机会成本、精益创业
+
+**趋势分析（5 个）**: 周期理论、幂律分布、反脆弱、临界质量、长期主义
+
+**概率思维（3 个）**: 概率思维、贝叶斯定理、幸存者偏差
+
+**商业战略（3 个）**: 网络效应、蓝海战略
+
+**心理实验（6 个）**: 斯坦福监狱、米尔格拉姆、阿希从众、认知失调、棉花糖、看不见的大猩猩
+
+**群体心理（8 个）**: 群体极化、信息级联、羊群效应、社会认同、集体智慧、沉默的螺旋、破窗理论、旁观者效应
+
+**经济心理（10 个）**: 稀缺心态、损失厌恶、锚定效应、可得性启发、社会比较、控制错觉、从众行为、心理账户、现状偏见、悲观偏差
+
+**认知科学（8 个）**: 双系统思维、元认知、注意力管理、确认偏误、框架效应、认知负荷、后见之明
+
+**学习成长（8 个）**: 刻意练习、费曼技巧、成长型思维、学习金字塔、间隔重复、知识复利、T 型人才、心流理论
+
+**人际沟通（8 个）**: 非暴力沟通、情感账户、六度分隔、邓巴数字、互惠原则、承诺一致、社会证明、喜好原理
+
+**创新创造（7 个）**: 设计思维、SCAMPER、组合创新、约束驱动创新、MVP、颠覆式创新、第二曲线
+
+**领导管理（7 个）**: 情境领导、仆人式领导、OKR、敏捷管理、精益管理、变革管理、文化塑造
+
+**芒格智慧（10 个）**: 多元思维、逆向思维、能力圈、人类误判心理学、Lollapalooza 效应、护城河理论、检查清单、等待与行动、复利思维、道德诚信
+
+**麦肯锡方法（10 个）**: MECE、7S 模型、三层面理论、GE 矩阵、安索夫矩阵、价值链分析、情景规划、问题树、假设驱动、金字塔原理
+
+**周期分析（1 个）**: 周期分析实战指南（五步法框架 + 工具箱 + 案例）
+
+---
+
+## 📝 更新日志
+
+### v2.8.0 (2026-03-21) - 公开技能发布
+- ✅ 设置技能为公开可见（public: true）
+- ✅ 修复其他机器人搜索不到的问题
+- ✅ 完善 metadata（subcategory、audience）
+- ✅ 增加触发词（如何分析、用什么模型、系统思考）
+- ✅ 安装命令：`clawhub install mental-models-cn`
+
+### v2.7.0 (2026-03-21) - ClawHub 发布修复
+- ✅ 修复 ClawHub 搜索索引问题
+- ✅ 优化元数据，解除 VirusTotal 误报
+- ✅ 支持直接安装（无需 --force）
+- ✅ 安装命令：`clawhub install mental-models-cn`
+
+### v2.6.0 (2026-03-15) - 周期分析增强
+- ✅ 新增周期分析实战指南
+- ✅ 五步法框架 + 工具箱
+- ✅ 3 个历史案例（2008 危机、中国房地产、美股科技）
+- ✅ 推荐引擎优化（5 个周期场景）
+
+### v2.5.0 (2026-03-15) - 麦肯锡方法论
+- ✅ 新增 10 个麦肯锡经典框架
+- ✅ 新增 4 个麦肯锡案例
+- ✅ 总模型数：97 → 107 个
+
+### v2.4.0 (2026-03-15) - 芒格智慧
+- ✅ 新增 10 个芒格思维模型
+- ✅ 总模型数：87 → 97 个
+
+### v2.3.0 (2026-03-15) - 领导管理
+- ✅ 新增 7 个领导力模型
+- ✅ 总模型数：80 → 87 个
+
+### v2.2.0 (2026-03-15) - 创新创造
+- ✅ 新增 7 个创新方法模型
+- ✅ 总模型数：73 → 80 个
+
+---
+
+## 📄 许可证
+
+MIT License
+
+---
+
+*最后更新：2026-03-15 | v2.6.0 | 108 个模型*

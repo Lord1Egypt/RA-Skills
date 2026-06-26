@@ -1,35 +1,38 @@
 ---
-name: "Memory Tree"
-description: "🌳 记忆树 — 周报自动生成，永久记忆标记，关键词搜索。说句话就能用。"
-category: "other"
-source: "ClawHub"
-tags: [embedding, memory, ollama, search]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-tree"
-sourceUrl: "https://clawhub.ai/skills/memory-tree"
+name: memory-tree
+description: 🌳 记忆树 — 周报自动生成，永久记忆标记，关键词搜索。说句话就能用。
 ---
 
-# Memory Tree
+# 🌳 记忆树
 
-> 🌳 记忆树 — 周报自动生成，永久记忆标记，关键词搜索。说句话就能用。
+让 OpenClaw 拥有人类般的记忆——记住重要的，忘记过期的。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-tree`
-- **Source URL:** [https://clawhub.ai/skills/memory-tree](https://clawhub.ai/skills/memory-tree)
+## 核心功能
 
-## Overview
+| 功能 | 命令 |
+|------|------|
+| 生成周报 | `python3 scripts/memory_tree.py weekly` |
+| 搜索记忆 | `python3 scripts/memory_tree.py search "关键词"` |
+| 标记永久 | `python3 scripts/memory_tree.py mark "标题"` |
 
+## 一句话使用
 
-## Installation
-To install this skill, run the following command in your terminal:
+- 「生成周报」— 自动统计本周新记、遗忘、永久记忆
+- 「搜索记忆 关键词」— 本地关键词搜索
+- 「记住这个」— 标记为永久记忆 📌
+
+## 特点
+
+- **零依赖**：无需 Ollama，纯本地运行
+- **自动推送**：周报自动检测已启用的渠道（飞书等）
+- **永久记忆**：📌 标记永不衰减
+
+## 安装
+
 ```bash
-hermes skills install clawhub/memory-tree
+clawhub install memory-tree
 ```
+
+## License
+
+MIT

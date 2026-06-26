@@ -1,35 +1,44 @@
----
-name: "Local Task Runner"
-description: "Executes Node.js code snippets or scripts locally with isolation, cleanup, and timeout, serving as a lightweight alternative to spawning subagents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-task-runner"
-sourceUrl: "https://clawhub.ai/skills/local-task-runner"
----
-
 # Local Task Runner
 
-> Executes Node.js code snippets or scripts locally with isolation, cleanup, and timeout, serving as a lightweight alternative to spawning subagents.
+This skill provides a mechanism to execute Node.js code snippets or full scripts locally on the host machine.
+It is the **default execution method** when subagent spawning is unavailable or inefficient.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-task-runner`
-- **Source URL:** [https://clawhub.ai/skills/local-task-runner](https://clawhub.ai/skills/local-task-runner)
+## Purpose
 
-## Overview
+- **Replace Subagents**: Instead of spawning a full subagent for simple tasks, use this skill to run code directly.
+- **Safety**: Isolates execution logic, handles cleanup, and enforces timeouts.
+- **Convenience**: No manual file management required (`write` + `exec` + `rm`).
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+When you need to perform a calculation, check system status, or run a utility script:
+
+1.  Construct the Node.js code as a string.
+2.  Call `run_task` (or execute via CLI) with the code.
+
+### Command Line Interface
+
 ```bash
-hermes skills install clawhub/local-task-runner
+# Execute a task
+node skills/local-task-runner/index.js run --code "console.log('Hello World')"
+
+# Execute with timeout (ms)
+node skills/local-task-runner/index.js run --code "while(true){}" --timeout 5000
+```
+
+### Response Format
+
+Success:
+```
+[TASK: <id>] Completed in 123ms
+--- STDOUT ---
+...
+```
+
+Error:
+```
+[TASK: <id>] Failed in 123ms
+Error: ...
+--- STDERR ---
+...
 ```

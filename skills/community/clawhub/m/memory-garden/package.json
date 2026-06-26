@@ -1,0 +1,47 @@
+{
+  "name": "memory-garden",
+  "version": "1.0.0",
+  "description": "N-count validated knowledge for AI agents. Patterns that prove themselves through repeated use.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build",
+    "test": "echo 'No TypeScript tests yet' && exit 0"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "memory-garden",
+    "mcp",
+    "knowledge-management",
+    "ai-memory",
+    "pattern-extraction",
+    "validated-patterns",
+    "local-first",
+    "community-knowledge",
+    "n-count"
+  ],
+  "author": "Memory Garden Team",
+  "license": "MIT",
+  "homepage": "https://github.com/live-neon/memory-garden",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/live-neon/memory-garden.git"
+  },
+  "bugs": {
+    "url": "https://github.com/live-neon/memory-garden/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.3.0"
+  },
+  "files": [
+    "dist/",
+    "bin/",
+    "SKILL.md"
+  ]
+}

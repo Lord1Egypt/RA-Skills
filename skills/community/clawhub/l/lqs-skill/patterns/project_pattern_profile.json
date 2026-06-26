@@ -1,0 +1,97 @@
+{
+  "source": {
+    "controllers": [
+      "application/modules/Admin/controllers/Post.php",
+      "application/modules/Admin/controllers/Members.php",
+      "application/modules/Admin/controllers/Orders.php"
+    ],
+    "views": [
+      "application/modules/Admin/views/post/index.tpl",
+      "application/modules/Admin/views/members/index.tpl",
+      "application/modules/Admin/views/orders/index.tpl"
+    ],
+    "base": "application/controllers/BackendBase.php",
+    "trait": "application/library/repositories/HoutaiRepository.php"
+  },
+  "controller_patterns": {
+    "base_class": "BackendBaseController",
+    "traits": ["repositories\\HoutaiRepository"],
+    "confidence": "high",
+    "required_methods": [
+      "indexAction",
+      "getModelClass",
+      "getPkName",
+      "getLogDesc"
+    ],
+    "common_overrides": [
+      "listAjaxIteration",
+      "getSearchWhereParam",
+      "formatKey",
+      "saveAfterCallback",
+      "listAjaxWhere",
+      "getDesc"
+    ],
+    "ajax_actions": ["listAjaxAction", "saveAction", "deleteAction|delAction", "delAllAction"]
+  },
+  "query_contract": {
+    "where": "exact match params",
+    "search": "prefix like (value%)",
+    "like": "contains like (%value%)",
+    "between": "range params between[field][from|to]",
+    "orderBy": "orderBy[field]=asc|desc",
+    "pagination": ["page", "limit"],
+    "special": ["__undefined__ as empty"],
+    "confidence": "high",
+    "field_heuristics": {
+      "id_like_fields": "prefer where",
+      "text_fields": "prefer like",
+      "time_fields": "prefer between"
+    }
+  },
+  "response_contract": {
+    "listAjax": {
+      "fields": ["count", "data", "msg", "desc", "code"],
+      "success_code": 0
+    },
+    "ajax_helpers": ["ajaxSuccess", "ajaxError", "ajaxReturn", "ajaxSuccessMsg"],
+    "confidence": "high"
+  },
+  "view_patterns": {
+    "includes": ["header.tpl", "fooler.tpl"],
+    "layout": ["search-form", "layui-table", "toolbar", "operate-toolbar", "dialog-form"],
+    "table_data": "lay-data uses {%url('listAjax')%}",
+    "search_names": ["where[*]", "search[*]", "like[*]", "between[*]", "orderBy[*]"],
+    "form_convention": "dialog id usually user-edit-dialog, lay-filter=form-save",
+    "confidence": "high"
+  },
+  "naming_rules": {
+    "controller": "{Entity}Controller",
+    "model": "{Entity}Model",
+    "view_dir": "lowercase entity",
+    "pk_default": "id",
+    "admin_module": "Admin"
+  },
+  "migration_rules": {
+    "prefix": "typecho_",
+    "must_have": ["up", "down"],
+    "execution": "generate only, no auto run"
+  },
+  "known_exceptions": [
+    {
+      "topic": "delete action naming",
+      "variants": ["deleteAction", "delAction", "delAllAction"],
+      "default_pick": "delAction",
+      "confidence": "medium"
+    },
+    {
+      "topic": "list query key",
+      "variants": ["where", "search", "like", "between"],
+      "default_pick": "mix by field type",
+      "confidence": "high"
+    }
+  ],
+  "update_policy": {
+    "on_each_requirement": "append at least one validated pattern or one corrected assumption",
+    "on_conflict": "preserve old pattern and add conflict note with confidence downgrade"
+  }
+}

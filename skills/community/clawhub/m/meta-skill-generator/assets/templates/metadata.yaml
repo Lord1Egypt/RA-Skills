@@ -1,0 +1,56 @@
+# 技能元数据模板
+
+# 技能唯一标识符
+id: "skill_xxx"
+
+# 技能显示名称
+name: "skill_xxx"
+
+# 技能描述（触发语义检索的关键）
+description: |
+  技能的具体描述，说明功能和使用场景。
+  这部分内容会被向量化存入 ChromaDB 用于语义检索。
+
+# 版本号（语义版本）
+version: "1.0.0"
+
+# 技能分类
+category: "general"  # general | utility | data | api | meta
+
+# 标签（用于分类和检索）
+tags:
+  - tag1
+  - tag2
+
+# 输入参数定义
+inputs:
+  - name: "param1"
+    type: "string"
+    required: true
+    description: "参数1的说明"
+    default: "默认值"
+
+# 输出定义
+outputs:
+  - name: "result"
+    type: "object"
+    description: "返回结果"
+
+# 依赖（可选）
+dependencies:
+  - package_name
+  - another_package
+
+# 示例（可选）
+examples:
+  - inputs:
+      param1: "value1"
+    expected_output:
+      success: true
+      result: "..."
+
+# 创建时间（自动生成）
+created_at: "2024-01-01T00:00:00Z"
+
+# 最后更新（自动生成）
+updated_at: "2024-01-01T00:00:00Z"

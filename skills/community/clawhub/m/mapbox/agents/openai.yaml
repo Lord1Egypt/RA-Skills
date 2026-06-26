@@ -1,0 +1,7 @@
+interface:
+  display_name: "Mapbox Maps"
+  short_description: "Build and debug Mapbox maps, styles, and APIs."
+  default_prompt: "Use $mapbox to build, debug, or explain a Mapbox integration, including GL JS map setup, layers, styles, token handling, geocoding, or routing."
+
+policy:
+  allow_implicit_invocation: true

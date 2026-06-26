@@ -1,0 +1,12 @@
+{
+  "name": "lobpay-agent",
+  "version": "1.0.0",
+  "description": "LobPay Agent Skill - X402 commerce on Base",
+  "type": "module",
+  "dependencies": {
+    "@x402/fetch": "^2.0.0",
+    "@x402/evm": "^2.0.0",
+    "viem": "^2.0.0",
+    "axios": "^1.6.0"
+  }
+}

@@ -1,35 +1,32 @@
 ---
-name: "mee6"
+name: mee6
+# A skill for controlling the Mee6 Discord bot (leveling, moderation, custom commands).
 description: "Mee6 operations via Discord message tool (channel=discord)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mee6"
-sourceUrl: "https://clawhub.ai/skills/mee6"
+metadata:
+  { "openclaw": { "emoji": "🤖", "requires": { "config": ["channels.discord.token"] } } }
 ---
 
-# mee6
+# Mee6 (Discord bot)
 
-> Mee6 operations via Discord message tool (channel=discord).
+Use the `message` tool exactly like the `discord` skill, but target the Mee6
+bot when issuing commands. This skill exists purely to give the agent a
+reference for common Mee6 actions and any bot-specific quirks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mee6`
-- **Source URL:** [https://clawhub.ai/skills/mee6](https://clawhub.ai/skills/mee6)
+* Always set `channel: "discord"`.
+* Start messages with the server's prefix (usually `!`).
+* Mention Mee6 by ID or @Mee6 when required.
+* Gating is handled via the same `channels.discord.actions.*` config as the
+  `discord` skill; no additional permissions are needed.
 
-## Overview
+## Common commands
 
+- **Check level** – `!level @user`
+- **Give xp** – `!give-xp @user <amount>`
+- **Create role** – `!role create <rolename>`
+- **Enable plugin** – `!plugins enable <plugin-name>`
+- **Disable plugin** – `!plugins disable <plugin-name>`
+- **Set prefix** – `!prefix <new-prefix>`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mee6
-```
+> The agent should only emit Mee6 commands when the user explicitly requests
+> interaction with the Mee6 bot. Avoid sending raw commands for unrelated
+> Discord actions; use the generic `discord` skill for everything else.

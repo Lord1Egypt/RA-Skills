@@ -1,0 +1,37 @@
+{
+  "name": "@clawhub/lobster-companion",
+  "version": "1.0.0",
+  "description": "龙虾伴侣技能：基于P2P加密通讯的伴侣协调系统",
+  "author": "柏然 <xiaoboren0@gmail.com> (https://github.com/xiaoboren)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaoboren/openclaw-skills.git"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "companion",
+    "relationship",
+    "coordination",
+    "p2p"
+  ],
+  "files": [
+    "SKILL.md",
+    "install.sh",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "@clawhub/secure-p2p-messenger": "^1.0.0",
+    "@clawhub/lobster-friends-protocol": "^1.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "emoji": "🦞❤️",
+    "requires": {
+      "bins": ["bash", "jq", "openssl", "sqlite3", "curl"]
+    }
+  }
+}

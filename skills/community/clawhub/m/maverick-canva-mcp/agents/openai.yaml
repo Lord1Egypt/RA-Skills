@@ -1,0 +1,4 @@
+interface:
+  display_name: "Canva"
+  short_description: "Read and manage Canva designs, assets, exports, and templates"
+  default_prompt: "Use the Canva MCP tools to help the user search designs, inspect assets, export files, and manage Canva creative workflows."

@@ -1,35 +1,42 @@
 ---
-name: "Local Password Generator & Strength Check"
-description: "Generate secure random passwords and check password strength. Supports custom length and character types (uppercase, lowercase, numbers, symbols). Pure local..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-password"
-sourceUrl: "https://clawhub.ai/skills/local-password"
+name: local-password
+description: Generate secure random passwords and check password strength. Supports custom length and character types (uppercase, lowercase, numbers, symbols). Pure local operation, no external dependencies. Use when users need to generate new secure passwords or check password strength.
 ---
 
-# Local Password Generator & Strength Check
-
-> Generate secure random passwords and check password strength. Supports custom length and character types (uppercase, lowercase, numbers, symbols). Pure local...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-password`
-- **Source URL:** [https://clawhub.ai/skills/local-password](https://clawhub.ai/skills/local-password)
+# local-password
 
 ## Overview
 
+A simple local tool for generating secure random passwords and checking password strength. Fully configurable: choose password length, enable/disable different character types. Estimates password entropy and crack time. All operations run locally, no data leaves your machine.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Features
+
+- **Generate secure random passwords**: Custom length and character set options
+- **Password strength check**: Calculate entropy and estimate crack time
+- **Flexible options**: Include/exclude uppercase, lowercase, numbers, symbols
+- **Avoid ambiguous characters**: Option to exclude similar looking characters (0O1lI)
+
+## Usage
+
+### Generate password
 ```bash
-hermes skills install clawhub/local-password
+# Default: 16 characters, all character types
+python3 scripts/generate.py
+
+# Custom length with no symbols
+python3 scripts/generate.py --length 20 --no-symbols
+
+# Exclude ambiguous characters
+python3 scripts/generate.py --length 12 --no-ambiguous
 ```
+
+### Check password strength
+```bash
+python3 scripts/check.py "your-password-here"
+```
+
+## Resources
+
+### scripts/
+- `generate.py` - Generate secure random password with custom options
+- `check.py` - Check password strength and estimate entropy/crack time

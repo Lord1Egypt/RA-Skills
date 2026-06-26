@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trello"
+  short_description: "Work with Trello boards, lists, cards, and comments"
+  default_prompt: "Use the Trello MCP tools to help the user inspect boards, manage cards, update lists, and coordinate Trello workflows."

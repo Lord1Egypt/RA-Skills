@@ -1,0 +1,16 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-linear": {
+      "baseUrl": "https://mcp.linear.app/mcp",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://api.linear.app/oauth/token",
+        "clientIdEnv": "MAVERICK_LINEAR_MCP_CLIENT_ID",
+        "clientSecretEnv": "MAVERICK_LINEAR_MCP_CLIENT_SECRET",
+        "clientAuthMethod": "client_secret_basic"
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "framework": "Human-GEO Framework V1.0",
+  "detection_patterns": [
+    "repetitive_sentence_structure",
+    "rule_of_three_lists",
+    "repetitive_cadence",
+    "robotic_transitions",
+    "sycophantic_intros",
+    "significance_inflation",
+    "promotional_fluff",
+    "vague_attributions",
+    "passive_voice_overuse",
+    "cliché_metaphors"
+  ],
+  "banned_vocabulary": {
+    "tier_1_instant_death": [
+      "delve",
+      "tapestry",
+      "unwavering",
+      "pivotal",
+      "comprehensive",
+      "landscape",
+      "testament",
+      "in conclusion",
+      "moreover",
+      "furthermore"
+    ],
+    "tier_2_ai_signs": [
+      "elevate",
+      "unlock",
+      "seamless",
+      "empower",
+      "harness",
+      "dive into",
+      "embark",
+      "transformative",
+      "innovative",
+      "cutting-edge"
+    ]
+  },
+  "stylistic_rules": {
+    "sentence_length_variation": "Mix 5-word sentences with 25-word sentences.",
+    "active_voice_ratio": "> 85%",
+    "social_proof_requirement": "At least one specific community citation per 500 words."
+  }
+}

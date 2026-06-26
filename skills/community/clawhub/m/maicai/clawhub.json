@@ -1,0 +1,22 @@
+{
+  "name": "maicai",
+  "version": "1.0.0",
+  "description": "便宜买菜雷达 - 帮用户比较多多买菜、美团买菜、7FRESH、盒马鲜生等平台的蔬菜和菜篮子到手价，找到真正更省的买菜路径",
+  "keywords": [
+    "maicai",
+    "grocery",
+    "vegetables",
+    "duoduomaicai",
+    "meituan-maicai",
+    "7fresh",
+    "hema",
+    "dingdong-maicai",
+    "cheap-groceries",
+    "basket-compare",
+    "fresh-food",
+    "china-ecommerce"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/maicai"
+}

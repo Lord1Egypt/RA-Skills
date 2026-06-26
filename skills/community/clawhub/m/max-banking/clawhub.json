@@ -1,0 +1,14 @@
+{
+  "slug": "max-banking",
+  "name": "MaxBank Skill",
+  "display_name": "MaxBank Skill",
+  "tagline": "Conecta OpenClaw ao MaxBank para consultar saldo, PIX e boletos",
+  "description": "Skill oficial MaxBank para OpenClaw. Permite consultar saldo da conta, fazer PIX e pagar boletos.",
+  "category": "productivity",
+  "tags": ["banking", "pix", "boleto", "saldo", "openclaw", "maxbank"],
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "pricing": "free",
+  "support_url": "https://github.com/maxter/mcp-payment-skill/issues",
+  "homepage": "https://github.com/maxter/mcp-payment-skill"
+}

@@ -1,0 +1,199 @@
+{
+  "mermaidConfig": {
+    "theme": "forest",
+    "themeVariables": {
+      "primaryColor": "#BB2528",
+      "primaryTextColor": "#fff",
+      "primaryBorderColor": "#7C0000",
+      "lineColor": "#F8B229",
+      "secondaryColor": "#006100",
+      "tertiaryColor": "#fff",
+      "noteBkgColor": "#fff5ad",
+      "noteTextColor": "#333",
+      "fontFamily": "\"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif",
+      "fontSize": "16px"
+    },
+    "flowchart": {
+      "useMaxWidth": true,
+      "htmlLabels": true,
+      "curve": "basis"
+    },
+    "sequence": {
+      "diagramMarginX": 50,
+      "diagramMarginY": 10,
+      "actorMargin": 50,
+      "width": 150,
+      "height": 65,
+      "boxMargin": 10,
+      "boxTextMargin": 5,
+      "noteMargin": 10,
+      "messageMargin": 35,
+      "mirrorActors": false,
+      "bottomMarginAdj": 1,
+      "useMaxWidth": true
+    },
+    "gantt": {
+      "titleTopMargin": 25,
+      "barHeight": 20,
+      "barGap": 4,
+      "topPadding": 50,
+      "leftPadding": 75,
+      "gridLineStartPadding": 35,
+      "fontSize": 11,
+      "fontFamily": "\"Segoe UI\", sans-serif",
+      "numberSectionStyles": 4,
+      "axisFormat": "%Y-%m-%d",
+      "useMaxWidth": true
+    }
+  },
+  "puppeteerConfig": {
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-accelerated-2d-canvas",
+      "--disable-gpu",
+      "--window-size=1920,1080"
+    ],
+    "headless": "new",
+    "timeout": 30000,
+    "defaultViewport": {
+      "width": 1200,
+      "height": 800,
+      "deviceScaleFactor": 2
+    }
+  },
+  "exportConfig": {
+    "formats": ["png", "svg", "pdf"],
+    "defaultFormat": "png",
+    "outputDirectory": "./exports",
+    "scaleFactors": {
+      "web": 1.0,
+      "retina": 2.0,
+      "print": 3.0
+    },
+    "themes": ["default", "forest", "dark", "neutral"],
+    "defaultTheme": "forest",
+    "backgroundColors": {
+      "transparent": "transparent",
+      "white": "#ffffff",
+      "black": "#000000",
+      "light": "#f5f5f5",
+      "dark": "#1a1a1a"
+    },
+    "quality": {
+      "png": 0.92,
+      "jpeg": 0.85
+    }
+  },
+  "batchProcessing": {
+    "maxConcurrent": 4,
+    "timeoutPerDiagram": 60000,
+    "retryAttempts": 3,
+    "retryDelay": 5000,
+    "skipOnError": false,
+    "logLevel": "info"
+  },
+  "optimization": {
+    "svg": {
+      "plugins": [
+        "removeDoctype",
+        "removeXMLProcInst",
+        "removeComments",
+        "removeMetadata",
+        "removeEditorsNSData",
+        "cleanupAttrs",
+        "inlineStyles",
+        "minifyStyles",
+        "convertStyleToAttrs",
+        "cleanupIDs",
+        "removeRasterImages",
+        "removeUselessDefs",
+        "cleanupNumericValues",
+        "cleanupListOfValues",
+        "convertColors",
+        "removeUnknownsAndDefaults",
+        "removeNonInheritableGroupAttrs",
+        "removeUselessStrokeAndFill",
+        "removeViewBox",
+        "cleanupEnableBackground",
+        "removeHiddenElems",
+        "removeEmptyText",
+        "convertShapeToPath",
+        "moveElemsAttrsToGroup",
+        "moveGroupAttrsToElems",
+        "collapseGroups",
+        "convertPathData",
+        "convertTransform",
+        "removeEmptyAttrs",
+        "removeEmptyContainers",
+        "mergePaths",
+        "removeUnusedNS",
+        "sortAttrs",
+        "removeTitle",
+        "removeDesc",
+        "removeDimensions",
+        "removeAttrs",
+        "removeElementsByAttr",
+        "addClassesToSVGElement",
+        "removeStyleElement",
+        "removeScriptElement"
+      ]
+    },
+    "png": {
+      "compressionLevel": 9,
+      "filters": "all",
+      "palette": false,
+      "colors": 256,
+      "dither": 0.5
+    }
+  },
+  "integration": {
+    "ciCd": {
+      "githubActions": {
+        "workflowTemplate": "mermaid-export.yml",
+        "cacheKey": "mermaid-exports-${{ runner.os }}"
+      },
+      "gitlabCI": {
+        "image": "node:18-alpine",
+        "cachePaths": ["node_modules/", "exports/"]
+      }
+    },
+    "documentation": {
+      "markdownPattern": "!\\[.*\\]\\(exports/.*\\.(png|svg)\\)",
+      "autoUpdate": true,
+      "relativePaths": true
+    }
+  },
+  "templates": {
+    "architecture": {
+      "theme": "forest",
+      "width": 1600,
+      "scale": 2.0,
+      "format": "png",
+      "background": "transparent"
+    },
+    "workflow": {
+      "theme": "default",
+      "width": 1200,
+      "scale": 1.5,
+      "format": "svg",
+      "background": "white"
+    },
+    "presentation": {
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080,
+      "scale": 2.0,
+      "format": "png",
+      "background": "#1a1a1a"
+    },
+    "documentation": {
+      "theme": "neutral",
+      "width": 800,
+      "scale": 1.0,
+      "format": "svg",
+      "background": "transparent"
+    }
+  }
+}

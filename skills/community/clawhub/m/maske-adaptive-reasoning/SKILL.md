@@ -1,35 +1,134 @@
 ---
-name: "马斯克自适应推理"
+name: adaptive-reasoning
 description: "自适应推理评估系统。自动评估任务复杂度并动态调整推理级别。在每次用户消息时触发，评估是否需要扩展思考（推理模式）来提高响应质量。用于复杂问题预处理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/maske-adaptive-reasoning"
-sourceUrl: "https://clawhub.ai/skills/maske-adaptive-reasoning"
+version: 1.0.0
+author: skillforge-JOJO
+keywords: [reasoning, adaptive, complexity, assessment, thinking, deep-thinking, evaluation]
 ---
 
-# 马斯克自适应推理
+# Adaptive Reasoning — 自适应推理评估
 
-> 自适应推理评估系统。自动评估任务复杂度并动态调整推理级别。在每次用户消息时触发，评估是否需要扩展思考（推理模式）来提高响应质量。用于复杂问题预处理。
+**一句话描述**: 自动评估任务复杂度并动态调整推理级别。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/maske-adaptive-reasoning`
-- **Source URL:** [https://clawhub.ai/skills/maske-adaptive-reasoning](https://clawhub.ai/skills/maske-adaptive-reasoning)
+---
 
-## Overview
+## 功能概述
 
+在每次响应前进行自我复杂度评估，动态调整推理级别。根据任务复杂度自动决定是否启用深度思考模式。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/maske-adaptive-reasoning
-```
+---
+
+## 快速评估
+
+在每次请求时进行心理评分（0-10分）：
+
+| 信号 | 权重 | 示例 |
+|------|------|------|
+| **多步逻辑** | +3 | 规划、证明、调试链 |
+| **模糊性** | +2 | 微妙问题、权衡、"视情况而定" |
+| **代码架构** | +2 | 系统设计、重构、安全审查 |
+| **数学/形式推理** | +2 | 计算、算法、逻辑谜题 |
+| **新颖问题** | +1 | 无明确模式，需要创造力 |
+| **高风险** | +1 | 生产变更、不可逆操作 |
+
+**减分项**:
+- 常规/重复任务: -2
+- 明确单一答案: -2
+- 简单查找/获取: -3
+
+---
+
+## 决策阈值
+
+| 分数 | 行动 |
+|------|------|
+| ≤2 | 保持快速。无需推理。 |
+| 3-5 | 标准响应。轻度内部思考。 |
+| 6-7 | 考虑启用推理或明确暂停思考。 |
+| ≥8 | **激活扩展思考。** 复杂问题需要。 |
+
+---
+
+## 自动激活
+
+**无需询问。直接激活。**
+
+| 分数 | 行动 |
+|------|------|
+| ≤5 | 正常响应。无变化。 |
+| 6-7 | 静默启用推理。在响应末尾添加 🧠 |
+| ≥8 | 启用推理。在响应末尾添加 🧠🔥 |
+
+### 视觉指示器
+
+始终在响应**末尾**附加推理图标：
+
+- **分数 6-7:** `🧠` (思考模式激活)
+- **分数 ≥8:** `🧠🔥` (深度思考模式)
+- **分数 ≤5:** 无图标 (快速模式)
+
+---
+
+## 使用示例
+
+### 低复杂度 (分数: 1)
+> "东京现在几点？"
+→ 简单查找。立即回答。无图标。
+
+### 中等复杂度 (分数: 4)
+> "重构这个函数使其更易读"
+→ 标准响应带简要说明。无图标。
+
+### 高复杂度 (分数: 7)
+> "为这个API设计缓存策略，考虑这些约束..."
+→ 启用推理。深思熟虑的响应以 🧠 结尾
+
+### 极高复杂度 (分数: 9)
+> "调试为什么这个分布式系统在负载下有竞态条件"
+→ 启用扩展思考。深度分析以 🧠🔥 结尾
+
+---
+
+## 何时不升级
+
+- 用户明确要求快速回答 ("直接告诉我", "快速", "tldr")
+- 时间敏感请求，速度比深度更重要
+- 对话/社交消息 (闲聊、问候)
+- 当前会话已在推理模式
+- 用户之前在此对话中禁用了推理
+
+---
+
+## 自动降级
+
+完成复杂任务（分数 ≥6）后，如果下一条消息简单（分数 ≤3）：
+- 静默禁用推理以节省token
+- 恢复正常快速响应
+
+---
+
+## 核心参数
+
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| multi_step_logic | int | +3 | 多步逻辑权重 |
+| ambiguity | int | +2 | 模糊性权重 |
+| code_architecture | int | +2 | 代码架构权重 |
+| math_reasoning | int | +2 | 数学推理权重 |
+| novel_problem | int | +1 | 新颖问题权重 |
+| high_stakes | int | +1 | 高风险权重 |
+| routine_penalty | int | -2 | 常规任务惩罚 |
+| simple_answer_penalty | int | -2 | 简单答案惩罚 |
+| lookup_penalty | int | -3 | 查找任务惩罚 |
+
+---
+
+## 版本历史
+
+| 版本 | 日期 | 变化 |
+|------|------|------|
+| v1.0.0 | 2026-04-12 | ClawHub发布版 |
+
+---
+
+*🎩 马斯克出品 | 打造地表最强智能体*

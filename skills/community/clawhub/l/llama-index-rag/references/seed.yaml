@@ -1,0 +1,1549 @@
+meta:
+  id: finance-bp-135-v6.1
+  version: v6.1
+  blueprint_id: finance-bp-135
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-25T09:07:14.457065+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: null
+    evidence_verify_ratio: null
+    evidence_invalid: 0
+    evidence_verified: null
+    evidence_auto_fixed: null
+    audit_coverage: 20 finance-universal not_applicable + 6 AIL warn/fail + 5 DAT warn/fail/pass = 31 items reviewed across
+      applicable scope
+    audit_pass_rate: 1/11 (9% applicable items pass; 10 warn/fail/missing capture the architectural boundaries and divergences
+      worth surfacing as constraints)
+    audit_fail_total: 0
+    audit_finance_universal:
+      pass: 0
+      warn: 0
+      fail: 0
+    audit_subdomain_totals:
+      pass: 0
+      warn: 0
+      fail: 0
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  - id: EQ-02
+    trigger: always
+    action: MUST prepend user_disclosure_template (translated to user locale) to first user-facing response
+    violation_code: EQ-02-V
+    violation_signal: First agent response to user does not contain audit warning phrase
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-135. Evidence verify ratio
+    = 0.0% and audit fail total = 0. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-135-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-001
+    name: Standard RAG over local files
+    positive_terms:
+    - RAG
+    - VectorStoreIndex
+    - from_documents
+    - as_query_engine
+    data_domain: mixed
+    negative_terms:
+    - agent
+    - workflow
+    - tool calling
+    ambiguity_question: Single-shot Q&A over docs vs. multi-turn chat (use ChatEngine) vs. tool-calling (use FunctionAgent)
+  - uc_id: UC-002
+    name: Hybrid (dense + sparse) retrieval with QueryFusionRetriever
+    positive_terms:
+    - hybrid
+    - fusion
+    - RRF
+    - BM25
+    - ensemble
+    data_domain: mixed
+    negative_terms:
+    - semantic_hybrid
+    - auto_merging
+    ambiguity_question: QueryFusion (multi-query) vs. SEMANTIC_HYBRID (single-query, vector-store-native hybrid)
+  - uc_id: UC-003
+    name: Sub-question decomposition over multi-doc corpus
+    positive_terms:
+    - sub-question
+    - decomposition
+    - multi-doc
+    - compare
+    data_domain: mixed
+    negative_terms:
+    - agent
+    - react
+    ambiguity_question: SubQuestion (LLM decomposes once, fans out) vs. Agent (loop with tool calls)
+  - uc_id: UC-004
+    name: Auto-merging retrieval with hierarchical chunks
+    positive_terms:
+    - auto-merging
+    - hierarchical
+    - parent-child
+    - recursive
+    data_domain: mixed
+    negative_terms:
+    - semantic_splitter
+    ambiguity_question: Auto-merging (coverage-based merge) vs. RecursiveRetriever (IndexNode hops)
+  - uc_id: UC-005
+    name: Function-calling agent with tool-equipped LLM (workflow-based)
+    positive_terms:
+    - agent
+    - function calling
+    - tool
+    - FunctionAgent
+    - workflow
+    data_domain: mixed
+    negative_terms:
+    - react
+    - codeact
+    ambiguity_question: FunctionAgent (native tools) vs ReActAgent (text-based) vs CodeActAgent (code execution)
+  - uc_id: UC-006
+    name: Multi-agent workflow with specialized agents
+    positive_terms:
+    - multi-agent
+    - AgentWorkflow
+    - handoff
+    - orchestration
+    data_domain: mixed
+    negative_terms:
+    - single agent
+    ambiguity_question: Multi-agent (handoff between agents) vs. agents-as-tools (one root agent calls others)
+  - uc_id: UC-007
+    name: Property graph index for structured knowledge extraction
+    positive_terms:
+    - knowledge graph
+    - property graph
+    - entity extraction
+    - Cypher
+    data_domain: mixed
+    negative_terms:
+    - vector
+    ambiguity_question: PropertyGraph (LPG, schema-aware) vs. KnowledgeGraphIndex (legacy triple store)
+  - uc_id: UC-008
+    name: RAG over SQL databases with NL→SQL
+    positive_terms:
+    - SQL
+    - NLSQL
+    - text2sql
+    - structured
+    data_domain: mixed
+    negative_terms:
+    - vector only
+    ambiguity_question: SQLAutoVector (router) vs SQLJoin (combine) vs pgvector_sql_query_engine (single backend)
+  - uc_id: UC-009
+    name: Custom workflow with checkpointing and human-in-the-loop
+    positive_terms:
+    - workflow
+    - checkpoint
+    - human-in-the-loop
+    - step
+    - event
+    data_domain: mixed
+    negative_terms:
+    - agent
+    - query engine
+    ambiguity_question: Workflow (general DAG) vs Agent (LLM-driven loop) vs QueryEngine (one-shot pipeline)
+  - uc_id: UC-010
+    name: Citation-tracked RAG
+    positive_terms:
+    - citation
+    - source attribution
+    - footnote
+    data_domain: mixed
+    negative_terms:
+    - no_text
+    ambiguity_question: CitationQueryEngine (LLM emits citations) vs. NodeWithScore source list (programmatic only)
+  - uc_id: UC-011
+    name: Query transformations (HyDE, multi-step decomposition)
+    positive_terms:
+    - HyDE
+    - multi-step
+    - query rewrite
+    - hypothetical document
+    data_domain: mixed
+    negative_terms:
+    - fusion
+    ambiguity_question: HyDE (single rewrite) vs. multi-step (sequential refinement) vs. fusion (parallel variants)
+  - uc_id: UC-012
+    name: Document summarization index
+    positive_terms:
+    - document summary
+    - summary index
+    - DocumentSummaryIndex
+    data_domain: mixed
+    negative_terms:
+    - chunks
+    - vector
+    ambiguity_question: DocumentSummaryIndex (doc-level) vs. SummaryIndex (linear list) vs. TreeIndex (hierarchical)
+  - uc_id: UC-013
+    name: Ingestion pipeline with cache and dedup
+    positive_terms:
+    - ingestion
+    - pipeline
+    - ETL
+    - cache
+    - dedup
+    data_domain: mixed
+    negative_terms:
+    - from_documents
+    ambiguity_question: IngestionPipeline (DAG with cache) vs. BaseIndex.from_documents (one-shot)
+  - uc_id: UC-014
+    name: Custom node postprocessor / reranker
+    positive_terms:
+    - rerank
+    - postprocess
+    - MMR
+    - lost-in-the-middle
+    data_domain: mixed
+    negative_terms:
+    - raw retrieval
+    ambiguity_question: LLMRerank (slow, accurate) vs SentenceTransformerRerank (fast cross-encoder) vs LongContextReorder
+      (no model)
+  - uc_id: UC-015
+    name: Structured output with Pydantic / Output parsers
+    positive_terms:
+    - pydantic
+    - structured output
+    - JSON mode
+    - function calling
+    data_domain: mixed
+    negative_terms:
+    - text
+    - string
+    ambiguity_question: Native function calling (FunctionAgent) vs. response_synthesizer output_cls (parse on synthesis)
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 26
+    fatal_constraints_count: 5
+    non_fatal_constraints_count: 47
+    use_cases_count: 15
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 8 source groups: cross_cutting(6),
+        doc_ingest(1), index_build(4), node_parse(3), postprocess(2), retrieve(4), and 2 more.'
+      key_decisions: 26 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-021
+      type: missing
+      summary: SentenceSplitter chunking silently degrades on CJK / multilingual corpora
+    - id: BD-022
+      type: missing
+      summary: No log warning when Refine drops chunks due to context overflow
+    - id: BD-023
+      type: missing
+      summary: Embedding-model / query-model consistency is not enforced or recorded in storage
+    - id: BD-024
+      type: missing
+      summary: asyncio_run thread-detour breaks contextvar mutations and produces silent warnings in production servers
+    - id: BD-025
+      type: missing
+      summary: SemanticSplitterNodeParser has no max-chunk-size cap
+    - id: BD-026
+      type: missing
+      summary: ServiceContext hard-removal breaks all pre-v0.10 tutorials with no fallback
+    - id: BD-011
+      type: B/BA
+      summary: IngestionPipeline cache key = SHA-256(node_content + transform_dict_repr) with `<__main__.X at 0x...>` reprs
+        stripped
+    - id: BD-009
+      type: B/BA
+      summary: Default embedding lazy-initializes to OpenAIEmbedding (text-embedding-ada-002, 1536 dim)
+    - id: BD-012
+      type: T
+      summary: delete()/update()/refresh() use logger.warning, not DeprecationWarning; auto-delegate to delete_ref_doc / update_ref_doc
+        / refresh_ref_docs
+    - id: BD-014
+      type: B
+      summary: ServiceContext.__init__ and from_defaults raise ValueError (hard removal, not warning)
+    - id: BD-019
+      type: B
+      summary: VectorStoreIndex._build_index_from_nodes runs sync by default; async only when use_async=True
+    - id: BD-002
+      type: B/BA
+      summary: SentenceSplitter chunk_overlap default is 200 tokens (NOT 20)
+    - id: BD-006
+      type: M/BA
+      summary: SemanticSplitterNodeParser.breakpoint_percentile_threshold = 95
+    - id: BD-007
+      type: B/BA
+      summary: SemanticSplitterNodeParser.buffer_size = 1 (single sentence per group)
+    - id: BD-015
+      type: B/BA
+      summary: SentenceTransformerRerank defaults — model="cross-encoder/stsb-distilroberta-base", top_n=2, max_length=512,
+        trust_remote_code Field=False but __init__=True
+    - id: BD-017
+      type: B/BA
+      summary: LLMRerank defaults — top_n=10, choice_batch_size=10
+    - id: BD-001
+      type: B/BA
+      summary: DEFAULT_SIMILARITY_TOP_K = 2 is the universal retriever default
+    - id: BD-004
+      type: M
+      summary: RRF fusion uses fixed k=60.0 from Cormack et al. SIGIR'09
+    - id: BD-005
+      type: M
+      summary: Embedding similarity default = cosine (SimilarityMode.DEFAULT)
+    - id: BD-016
+      type: B/BA
+      summary: QueryFusionRetriever defaults — use_async=True, num_queries=4
+    - id: BD-003
+      type: B/M
+      summary: Default response mode is COMPACT (not REFINE)
+    - id: BD-008
+      type: B/BA
+      summary: Default LLM lazy-initializes to OpenAI gpt-3.5-turbo (via resolve_llm("default"))
+    - id: BD-010
+      type: B/BA
+      summary: DEFAULT_CONTEXT_WINDOW = 3900 tokens, DEFAULT_NUM_OUTPUTS = 256 tokens
+    - id: BD-018
+      type: B
+      summary: Refine silently returns prev response when refine_template overflows context
+    - id: BD-020
+      type: T
+      summary: BaseSynthesizer reads Settings._prompt_helper (private attr) before falling back to PromptHelper.from_llm_metadata
+    - id: BD-013
+      type: B
+      summary: ChatMode.REACT and ChatMode.OPENAI are removed (raise ValueError); replaced by ReActAgent / FunctionAgent from
+        agent.workflow
+resources:
+  packages:
+  - name: nltk (sentence tokenization)
+    version_pin: latest
+  - name: nest_asyncio
+    version_pin: latest
+  - name: workflows (external workflow primitive)
+    version_pin: latest
+  - name: pydantic (v2)
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install nltk (sentence tokenization)
+    - python3 -m pip install nest_asyncio
+    - python3 -m pip install workflows (external workflow primitive)
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: '?'
+    when: When porting code from a llama-index v0.9 era tutorial / blog / Stack Overflow answer that constructs a ServiceContext
+      object
+    action: Delete every ServiceContext.from_defaults / ServiceContext(...) / set_global_service_context(...) call. Replace
+      with attribute assignments on the module-level Settings singleton (e.g. Settings.llm = OpenAI(...), Settings.embed_model
+      = OpenAIEmbedding(...), Settings.node_parser = SentenceSplitter(chunk_overlap=20)) BEFORE any index/query construction.
+      Do not pass a ServiceContext kwarg to BaseIndex.from_documents.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When designing a workflow where the index is persisted to storage today and re-loaded later (possibly by a different
+      process / different developer) for query
+    action: Do not rely on storage_context to remember which embedder built the index. Treat the embed model identity as caller-managed
+      state — always reconstruct the index with the same explicit embed_model that was used at index time, or fail loudly
+      when re-loading. Read llamaindex-C-004 for the remedy.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When persisting an index to disk / vector store today for later re-load and query
+    action: 'At index time: write a sidecar file (e.g. {storage_dir}/embed_model.json) with {''provider_class'': type(embed_model).__module__
+      + ''.'' + type(embed_model).__name__, ''model_name'': getattr(embed_model, ''model_name'', None), ''embed_dim'': getattr(embed_model,
+      ''embed_dim'', None) or len(embed_model.get_text_embedding(''probe''))}. At re-load: read the sidecar, compare against
+      Settings.embed_model or the embed_model passed to load_index_from_storage, raise EmbedModelMismatchError on any drift.
+      Do not fall back to the new embedder.'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When constructing SentenceSplitter for documents that contain Chinese / Japanese / Korean / other punctuation-light
+      scripts
+    action: 'Pass paragraph_separator that matches the corpus (e.g. ''\n\n'' for Chinese article markup, or a custom regex).
+      Pass chunking_tokenizer_fn that produces a list of strings (e.g. lambda text: list(jieba.cut_for_search(text)) for Chinese,
+      or a Stanza/spaCy CJK pipeline). Do NOT rely on the secondary CJK regex — it is fallback-only. Verify by running splitter.get_nodes_from_documents([Document(text=sample_zh)])
+      on a CJK sample and asserting len(nodes) > 1 with reasonable boundaries.'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When porting code from a v0.9 era tutorial that constructs a chat engine via index.as_chat_engine(chat_mode=ChatMode.REACT/OPENAI)
+    action: Replace as_chat_engine(chat_mode=ChatMode.REACT) with ReActAgent.from_tools([QueryEngineTool.from_defaults(query_engine=index.as_query_engine())],
+      llm=...) and call .run() / await .run() on the agent. Similarly replace ChatMode.OPENAI with FunctionAgent.from_tools([...],
+      llm=...) — note FunctionAgent requires an LLM with achat_with_tools support. The new agents are async-native; sync chat
+      is no longer available via this path.
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  regular:
+  - id: '?'
+    when: When constructing a SentenceSplitter or relying on Settings.node_parser default for production embedding workloads
+    action: 'Pass chunk_overlap explicitly: SentenceSplitter(chunk_size=1024, chunk_overlap=20) for cost optimization, or
+      chunk_overlap=100-200 for high-recall workloads. Do not assume Settings.chunk_overlap returns DEFAULT_CHUNK_OVERLAP=20
+      — settings.py:169-183 reads it from node_parser.chunk_overlap and the default node_parser is SentenceSplitter, so Settings.chunk_overlap
+      returns 200. If you need parity with TokenTextSplitter (which uses 20), say so explicitly in code.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When designing a production query path that uses ResponseMode.REFINE or ResponseMode.COMPACT (the factory default)
+      with an LLM whose context window is unknown or smaller than ~16k tokens
+    action: Before calling synthesize/aget_response, compute total_tokens = sum(prompt_helper.token_count(node.get_content())
+      for node in nodes) + len(query_tokens) + refine_template_tokens + DEFAULT_NUM_OUTPUTS, and assert total_tokens < llm.metadata.context_window
+      - safety_buffer (e.g. 256). If the assertion fails, switch to TREE_SUMMARIZE (which has explicit overflow handling)
+      or shrink similarity_top_k. Wrap the synthesizer in a custom subclass that logs whenever the early-return branch is
+      hit. Do not rely on Refine to surface overflow.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When adding SentenceTransformerRerank to a node_postprocessors pipeline, especially with a non-vendor / community
+      HuggingFace model ID
+    action: 'Always pass trust_remote_code=False explicitly: SentenceTransformerRerank(model=''...'', trust_remote_code=False,
+      top_n=2). If the model genuinely requires trust_remote_code=True (some BAAI/bge variants do), document that decision
+      in code with a comment and pin the model revision (model=''org/name@commit_sha'') to prevent silent code changes from
+      upstream. Do NOT trust class-level Pydantic Field introspection to infer the runtime default.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When using IngestionPipeline with an IngestionCache and iterating on custom TransformComponent code in development
+      or production
+    action: 'Treat cache identity as a caller responsibility. For production: pin a manual version/checksum field inside your
+      custom transform''s to_dict() output (e.g. {''version'': ''my_transform-v3'', ''code_sha'': hashlib.sha256(inspect.getsource(my_func).encode()).hexdigest()[:8]})
+      so a code change forces hash drift. Or skip the cache (cache=None) for transforms under active development. Do not assume
+      restarting the process clears the cache — it persists in IngestionCache backend.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When subclassing TransformComponent for use inside an IngestionPipeline that has a non-None cache argument
+    action: Override to_dict() (or extend the inherited dict) to inject either a manually-bumped 'version' string OR an inspect.getsource()-based
+      'code_sha' field. The field must change whenever the transform's behavior changes. Verify by running pipeline.run()
+      once, modifying the transform's logic, running again, and asserting the cache miss happens.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When choosing SemanticSplitterNodeParser for documents whose downstream LLM context window or embedding model max_seq_length
+      is bounded
+    action: Either (a) add a manual post-processing step that splits any node with token_count > max_acceptable on character/sentence
+      boundaries before sending to the index, OR (b) lower breakpoint_percentile_threshold (e.g. 80-90) to force more cuts
+      on uniform documents, OR (c) chain SemanticSplitter → TokenTextSplitter as a safety net. Treat the 'semantic' label
+      as a strategy hint, not a size guarantee.
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When building a production ingestion pipeline that uses SemanticSplitterNodeParser as the node parser
+    action: 'Use a TransformComponent list like [SemanticSplitterNodeParser(...), TokenTextSplitter(chunk_size=embedder.max_seq_length,
+      chunk_overlap=20)] in IngestionPipeline.transformations. The TokenTextSplitter will subdivide any oversized semantic
+      chunk into model-acceptable pieces. After running the pipeline, validate: for n in nodes: assert len(tokenizer.encode(n.get_content()))
+      <= embedder.max_seq_length, halt deploy on assertion failure.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When wiring LlamaIndex sync APIs (query, retrieve, chat) into an async server (FastAPI, Starlette, Sanic) or a Jupyter
+      notebook with a running loop
+    action: 'Use the async-native entry methods: aquery / aretrieve / achat / asynthesize. Do not call the sync wrappers from
+      inside an event loop. If you must, instrument both sides explicitly — set tracing context BEFORE calling the sync method
+      and re-set AFTER, do not rely on the contextvar to flow through. For OpenTelemetry/Datadog/Sentry tracing, prefer the
+      async APIs end-to-end.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When wiring LlamaIndex into an async web framework, a Jupyter notebook with a running event loop, or any code that
+      already runs inside asyncio.run() / loop.run_until_complete()
+    action: 'In FastAPI: async def endpoint(): return await query_engine.aquery(q). In Jupyter: response = await query_engine.aquery(q)
+      (top-level await is supported). Audit any call to query() / retrieve() / synthesize() / chat() inside async code and
+      convert to the async sibling. Confirm by grepping the codebase: rg ''\.query\('' and replacing with .aquery( inside
+      async def bodies.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When initializing LlamaIndex in any environment with vendor / data-residency / cost constraints, or when using a
+      non-OpenAI provider exclusively
+    action: 'At startup (before any index construction): from llama_index.core import Settings; Settings.llm = <YourLLM>(model=''...'');
+      Settings.embed_model = <YourEmbedder>(model=''...''). Document the chosen models in code/config so future readers know
+      the brand was deliberate. For air-gapped or cost-sensitive deployments use Ollama / vLLM / fastembed via the matching
+      llama-index-llms-* / llama-index-embeddings-* integration packages. Verify that no lazy-default code path runs by setting
+      both before the first import of any index/retriever class that reads Settings.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When choosing similarity_top_k for any retriever in a workload that is not pure short-form factual Q&A
+    action: 'Pass similarity_top_k explicitly: VectorIndexRetriever(index, similarity_top_k=10) for typical RAG, similarity_top_k=20
+      for synthesis-heavy workloads, similarity_top_k=2 only for cost-critical short Q&A. Calibrate empirically: measure recall@k
+      on a held-out query set with k in {2,5,10,20} and pick the smallest k that meets your target. Be aware that increasing
+      top_k increases downstream synthesis token cost roughly linearly.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When designing a custom BaseIndex subclass to implement an alternative index structure (e.g. a custom graph index
+      or a managed-platform index wrapper)
+    action: Implement exactly these 5 methods. _build_index_from_nodes consumes List[BaseNode] and returns the IndexStruct
+      subclass. _insert handles per-node insertion after initial build. _delete_node removes by node_id. ref_doc_info is a
+      property returning Dict[str, RefDocInfo] for change-detection. as_retriever returns a BaseRetriever subclass. Verify
+      by trying to instantiate your subclass with an empty list — if Python raises 'Can't instantiate abstract class', a method
+      is missing.
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When subclassing BaseRetriever to wrap a custom backend (e.g. a managed search service, a custom hybrid algorithm,
+      a domain-specific filter chain)
+    action: 'Implement def _retrieve(self, query_bundle: QueryBundle) -> List[NodeWithScore]. For network-bound backends,
+      also implement async def _aretrieve(self, query_bundle: QueryBundle) -> List[NodeWithScore] with the backend''s native
+      async client. Inherit from BaseRetriever directly (not from a concrete subclass) to get PromptMixin (template overrides)
+      + DispatcherSpanMixin (instrumentation) for free.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When subclassing BaseQueryEngine to build a custom end-to-end retrieve+synthesize pipeline (e.g. a domain-specific
+      routed query engine)
+    action: 'Implement both: def _query(self, query_bundle: QueryBundle) -> RESPONSE_TYPE and async def _aquery(self, query_bundle:
+      QueryBundle) -> RESPONSE_TYPE. If a true async path is unavailable, _aquery may still need to exist — even as a thin
+      wrapper that delegates via asyncio_run or asyncio.to_thread — to satisfy the abstract contract. Verify by instantiating
+      the subclass and calling both query() and aquery() once each.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When subclassing BaseSynthesizer to add a custom response combine strategy (e.g. citation-injection, custom Refine
+      variant)
+    action: 'Implement both methods: def get_response(self, query_str: str, text_chunks: Sequence[str], **kwargs) -> RESPONSE_TEXT_TYPE
+      and async def aget_response(self, query_str: str, text_chunks: Sequence[str], **kwargs) -> RESPONSE_TEXT_TYPE. For streaming
+      support, use llm.astream_complete in aget_response and yield/return the StreamingResponse. Do not implement aget_response
+      as await asyncio.to_thread(self.get_response, ...) if you need real streaming.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When configuring a Refine response synthesizer (or get_response_synthesizer factory) for a workload that needs both
+      token streaming and Pydantic-validated structured output
+    action: 'Pick one: (a) streaming=True, structured_answer_filtering=False — get token-by-token streaming, no per-chunk
+      relevance filtering; OR (b) streaming=False, structured_answer_filtering=True — get one-shot validated structured output,
+      no streaming. For workflows that need both, implement a custom synthesizer subclass that streams the raw LLM output
+      to a buffer, then validates the buffer once complete (defeats partial streaming UX, but is the only correct path).'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When choosing FunctionAgent vs ReActAgent for a non-OpenAI / non-Anthropic / non-Gemini LLM provider
+    action: 'Verify support: hasattr(llm, ''achat_with_tools'') AND llm.metadata.is_function_calling_model. If False, use
+      ReActAgent (text-based ReAct loop, no native tool API needed) instead. For partially-supporting LLMs, test with a single
+      tool call before scaling. Document which LLM was tested in code/comments.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When defining FunctionTools for use with FunctionAgent and leaving allow_parallel_tool_calls at the default
+    action: 'Either (a) audit each tool for thread/coroutine safety: no module-level state mutation, no shared file handle,
+      idempotent on retry; OR (b) pass allow_parallel_tool_calls=False to FunctionAgent constructor to force serialized execution
+      (loses some latency benefit but matches the safer mental model). For tools that mutate external systems (write to a
+      database, send an email), default to allow_parallel_tool_calls=False unless the tool itself implements idempotency keys.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When configuring QueryFusionRetriever for a deployment using a local single-thread LLM (Ollama, llama.cpp, vLLM
+      single-replica) or a cost-sensitive remote LLM
+    action: Set use_async=False for local single-thread LLMs. Set num_queries=1 if you only need rank fusion across multiple
+      retrievers and want to skip the LLM query-expansion cost (saves 3 LLM calls per retrieval). Document the choice in code
+      so future readers know the defaults were deliberately overridden.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When wiring LLMRerank as a node_postprocessor for a retriever whose similarity_top_k or LLM capability is unclear
+    action: 'Set choice_batch_size=5 for stronger LLMs (GPT-4-class), choice_batch_size=3 for weaker / smaller LLMs (7B-13B
+      local models). Set top_n explicitly such that top_n <= retriever.similarity_top_k. Empirically calibrate: rerank a known-truth
+      set with batch_size in {3,5,10} and pick the largest size that still preserves rank order on held-out queries.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When constructing a query engine for a workload where reranking would meaningfully improve precision (recall-padded
+      top_k, hybrid retrieval, multi-doc corpus)
+    action: 'Pass postprocessors explicitly: query_engine = index.as_query_engine(node_postprocessors=[SentenceTransformerRerank(model=''BAAI/bge-reranker-v2-m3'',
+      top_n=3, trust_remote_code=False)]). For multiple postprocessors, pass a list — they execute in order. Verify by inspecting
+      query_engine._node_postprocessors after construction.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When wiring SentenceTransformerRerank for any non-English corpus and leaving the model parameter at default
+    action: 'Pass an explicit multilingual model: SentenceTransformerRerank(model=''BAAI/bge-reranker-v2-m3'', top_n=3, trust_remote_code=False,
+      max_length=512). For Chinese-only deployments, BAAI/bge-reranker-v2-m3 or BAAI/bge-reranker-large-zh are reasonable
+      choices. Always verify the chosen model''s HuggingFace card explicitly states multilingual training data — pick by the
+      language label, not by popularity.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When pairing SentenceTransformerRerank with a SentenceSplitter or other parser whose chunk_size exceeds 512 tokens
+    action: Either (a) set SentenceTransformerRerank(max_length=2048) (or whatever covers your chunk_size + query length)
+      IF the chosen model supports longer inputs (most BAAI/bge-reranker-v2-* support up to 8192); OR (b) ensure chunk_size
+      <= 480 (leaving ~32 tokens for the query) at the upstream node parser to fit within 512. Verify by checking model.config.max_position_embeddings
+      on the loaded cross-encoder.
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When selecting response_mode for a query engine deployment with non-trivial chunk count or non-large context LLM
+    action: 'Match mode to workload: COMPACT for large-context LLMs (16k+); TREE_SUMMARIZE for whole-document summaries (regardless
+      of LLM size); REFINE for ordered chain-of-thought; SIMPLE_SUMMARIZE only when sum(chunk_tokens) < context_window with
+      safety margin; ACCUMULATE / COMPACT_ACCUMULATE for per-chunk independent answers (then concat). Document the choice
+      with reasoning in code comments.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When ingesting a large document corpus (1000+ nodes) and choosing between sync and async build paths
+    action: 'For batch / offline ingestion: set use_async=True, show_progress=False — gets concurrent embedding without nest_asyncio
+      monkey-patch. For interactive / debug ingestion: use_async=False — sequential, easier to step through. Avoid use_async=True
+      + show_progress=True inside an async server (FastAPI startup hook, async background task) — the nest_asyncio.apply()
+      side effect can interfere with other async libraries.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When constructing a custom LLM subclass or using an integration that may not auto-populate llm.metadata.context_window
+      for the specific model
+    action: 'After constructing the LLM, verify llm.metadata.context_window matches the model''s actual capacity (e.g. assert
+      llm.metadata.context_window >= 100000 for Claude 3.5 Sonnet''s 200k context). For custom LLMs, override the metadata
+      property to return CompletionResponseGen-compatible values: LLMMetadata(context_window=200000, num_output=4096, ...).
+      Check PromptHelper.from_llm_metadata behavior post-fix by inspecting prompt_helper.context_window.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When building a multi-retriever fusion pipeline or considering whether to write a custom fusion algorithm
+    action: Use QueryFusionRetriever(retrievers=[r1, r2, ...], mode=FUSION_MODES.RECIPROCAL_RANK, similarity_top_k=10). The
+      k=60 default is a paper-validated fusion-rank dampener that works across diverse retrievers with heterogeneous score
+      scales. If you want to tune k, fork the function and run an A/B comparison against the paper default on your held-out
+      query set; document the result.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When configuring similarity computation for an embedder whose normalization status is unknown
+    action: 'Verify normalization: vec = embed_model.get_text_embedding(''probe''); assert abs(np.linalg.norm(vec) - 1.0)
+      < 0.01 indicates L2-normalized. If not normalized, configure VectorStoreQuery with similarity mode set to DOT_PRODUCT,
+      OR pre-normalize vectors at index/query time. Most modern text embedders output normalized vectors; raw word vectors
+      / older sentence-transformers may not.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When using SemanticSplitterNodeParser on a corpus whose style differs significantly from medium-length English prose
+    action: 'For technical / uniform docs: lower threshold to 80-90 to force more breakpoints. For dialogue / short sentences:
+      raise buffer_size to 2 or 3 to stabilize per-group embeddings. Calibrate by parsing a sample of 10 representative documents
+      and inspecting the resulting chunk count and length distribution; aim for chunks ~500-1500 tokens. Document the chosen
+      values with one-line rationale in code.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When auditing existing code for deprecated llama-index API usage or running CI deprecation checks
+    action: 'Add a CI grep step: rg -n ''\.delete\(|\.update\(|\.refresh\('' --type py | grep -v ''delete_ref_doc\|update_ref_doc\|refresh_ref_docs''
+      to find candidate sites. Manually verify each is on a BaseIndex subclass (not on dict/list .update etc.) and migrate
+      to the _ref_doc variants. Optionally monkeypatch logger to convert these specific warnings to errors during CI.'
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When building a production IngestionPipeline expecting cache to cover both node parsing AND embedding steps
+    action: Construct pipeline = IngestionPipeline(transformations=[SentenceSplitter(...), embed_model], cache=IngestionCache(...),
+      docstore=..., docstore_strategy=DocstoreStrategy.UPSERTS). Embedding (an instance of BaseEmbedding subclass that implements
+      TransformComponent) MUST appear in the transformations list explicitly. Verify by running pipeline.run() twice on identical
+      input and asserting the second run is fast (cache hit on both transformations).
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When designing a query engine for a workload where retrieved chunks may contain PII / regulated content / disallowed
+      content
+    action: 'Add a postprocessor explicitly: query_engine = index.as_query_engine(node_postprocessors=[PIINodePostprocessor(llm=llm),
+      <other postprocessors>]). For domain-specific filtering (e.g. financial advice disclaimer, jailbreak-prompt rejection),
+      implement a custom BaseNodePostprocessor subclass that returns a filtered List[NodeWithScore]. Do not assume the synthesizer
+      LLM will refuse — it sees the chunks and may quote them.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When subclassing BaseIndex or wrapping from_documents in a custom factory function
+    action: 'If you reimplement from_documents (or wrap it), preserve the loop: for doc in documents: docstore.set_document_hash(doc.id_,
+      doc.hash). Verify by ingesting a document, modifying its content, and calling index.refresh_ref_docs([modified_doc])
+      — assert the modified doc gets re-embedded. The hash is computed by the Document subclass''s hash property; do not override
+      hash without ensuring it remains a deterministic function of content.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When tuning the alpha parameter for HYBRID retrieval and switching between vector store backends
+    action: Read the integration package's source for the chosen backend (e.g. llama_index.vector_stores.qdrant.QdrantVectorStore.query)
+      to confirm alpha's direction and range. Test with alpha=0.0 and alpha=1.0 on a known query — observe which extreme returns
+      dense-only vs sparse-only results. Document the chosen alpha value with one-line rationale in code. When switching backends,
+      re-tune alpha from scratch.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When optimizing throughput for production batch ingestion or high-concurrency query serving
+    action: 'At each hop verify and override: VectorStoreIndex(..., use_async=True), QueryFusionRetriever(..., use_async=True),
+      and ensure each sub-retriever''s BaseRetriever subclass implements _aretrieve natively (not the asyncio.to_thread fallback).
+      Run a quick benchmark: time 100 sequential aretrieve() calls, then 100 concurrent via asyncio.gather, and confirm the
+      concurrent path is significantly faster.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When pinning dependencies for a production deployment using FunctionAgent / ReActAgent / AgentWorkflow / custom
+      Workflow subclasses
+    action: In requirements.txt / pyproject.toml, pin both llama-index-core==<X.Y.Z> AND workflows==<A.B.C> (or whichever
+      package owns the actual Workflow class — verify via pip show). Subscribe to the workflows package's changelog separately
+      from llama-index. When upgrading either package, re-run integration tests for any custom @step / @event subclasses.
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When subclassing BaseSynthesizer and considering how to access PromptHelper
+    action: In your custom subclass, prefer prompt_helper = self._prompt_helper or Settings.prompt_helper (public attribute
+      access). The base class's reach into _prompt_helper is a maintenance trap that depends on Settings's internals; a future
+      refactor of Settings could break it without notice. Document any private-attribute reach with a comment explaining why.
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When deploying LlamaIndex to production with audit/observability/SLA monitoring requirements
+    action: Construct callback_manager = CallbackManager([LangFuseCallbackHandler(...)]) (or your chosen handler) and pass
+      to Settings.callback_manager = ... before any index/query construction. Or pass to specific entry points like BaseIndex.from_documents(callback_manager=cm)
+      and as_query_engine(callback_manager=cm). Audit that no code path constructs an index/query without referencing the
+      configured callback_manager.
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When scoping a new integration package (storage / vector store / reader / parser / postprocessor) and estimating
+      implementation effort
+    action: Before committing to writing a new BaseDocumentStore / BaseKVStore / BaseChatStore subclass, count the @abstractmethod
+      members in the corresponding base file and budget at least 1-2 days per 5 methods (each needs unit-test coverage). For
+      new readers / parsers / postprocessors (≤4 abstracts), 0.5-1 day is realistic. Validate the count by running grep '@abstractmethod'
+      on the base file before estimating.
+    severity: low
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When deploying LlamaIndex in any environment that does not use OpenAI as the primary LLM provider
+    action: 'At application startup, before any from llama_index.core import VectorStoreIndex / RetrieverQueryEngine / etc.:
+      from llama_index.core import Settings; Settings.llm = <YourLLM>(model=''...'', ...); Settings.embed_model = <YourEmbedder>(model=''...'',
+      ...). Verify by inspecting type(Settings.llm).__module__ — confirm it is your chosen provider''s module, not openai.
+      Add a startup assertion: assert ''openai'' not in type(Settings.llm).__module__ for non-OpenAI deployments.'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When promoting a prototype using the SimpleVectorStore default into a production deployment
+    action: 'Install a persistent vector store integration: pip install llama-index-vector-stores-qdrant (or your chosen backend).
+      Construct: vector_store = QdrantVectorStore(client=..., collection_name=...), storage_context = StorageContext.from_defaults(vector_store=vector_store),
+      index = VectorStoreIndex.from_documents(docs, storage_context=storage_context). After switching, re-validate similarity_top_k
+      and any similarity threshold by running a known-truth eval set; expect minor score-distribution drift requiring threshold
+      re-tuning.'
+    severity: medium
+    kind: domain_rule
+    modality: should_not
+    consequence: null
+  - id: '?'
+    when: When changing the embedding model in a production deployment
+    action: 'Plan embedder swap as a full re-index operation: (1) build a new index with the new embedder into a new storage_context
+      (or new collection in the vector store); (2) point query traffic at the new index; (3) delete the old index after validating
+      quality. Do NOT in-place swap Settings.embed_model on a populated index. For SemanticSplitter, swapping the splitter''s
+      embedder requires re-parsing all source documents from scratch.'
+    severity: high
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When designing an ingestion pipeline where document metadata (categories, tags, ACL) may change independently of
+      text content
+    action: 'Either (a) subclass Document and override the hash property to include metadata fields you care about: hash =
+      sha256((self.text + json.dumps(self.metadata, sort_keys=True)).encode()).hexdigest(); OR (b) bypass refresh_ref_docs
+      for metadata changes — call index.delete_ref_doc(doc_id, delete_from_docstore=True) followed by index.insert(updated_doc).
+      Verify by mutating a doc''s metadata, calling refresh_ref_docs, and asserting the doc was actually re-embedded.'
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When constructing an IngestionPipeline with a docstore for any non-trivial ETL workflow
+    action: 'Pass docstore_strategy explicitly: IngestionPipeline(transformations=..., docstore=docstore, docstore_strategy=DocstoreStrategy.UPSERTS)
+      for replace-on-id semantics, or DocstoreStrategy.UPSERTS_AND_DELETE for full-sync semantics (input is the source of
+      truth — anything not in input is deleted). Document the choice in code with a comment explaining why. Test by running
+      pipeline.run() once with full input, then with reduced input, and asserting docstore state matches expectation.'
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: null
+  - id: '?'
+    when: When choosing AutoMergingRetriever for a workload to get parent-context expansion at retrieval time
+    action: 'Use HierarchicalNodeParser upstream: nodes = HierarchicalNodeParser.from_defaults(chunk_sizes=[2048, 512, 128]).get_nodes_from_documents(docs);
+      leaf_nodes = get_leaf_nodes(nodes); index = VectorStoreIndex(leaf_nodes, storage_context=storage_context_with_docstore_for_parents);
+      retriever = AutoMergingRetriever(index.as_retriever(similarity_top_k=10), storage_context=...). Verify by inspecting
+      node.relationships on a sample — confirm NodeRelationship.PARENT entries exist before relying on AutoMergingRetriever.'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+  - id: '?'
+    when: When designing a multi-source ingestion pipeline where different readers produce documents with different metadata
+      shapes
+    action: 'Define a canonical metadata schema in caller code (e.g. a Pydantic model: class DocMetadata(BaseModel): source:
+      str; ingested_at: datetime; tags: List[str]; ...). After each reader.load_data(), validate doc.metadata against the
+      schema and reject/normalize on drift. Document required keys in a project-level metadata-schema.md. Without this discipline,
+      metadata filters and postprocessors silently miss documents whose metadata doesn''t have the expected key.'
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: null
+  - id: '?'
+    when: When inspecting performance / tracing of a query engine pipeline that mixes sync entry methods with async server
+      context
+    action: 'Audit every call site: rg ''asyncio_run\('' in production dependencies; verify each is on a code path that''s
+      only ever called from sync top-level (CLI tools, batch scripts) and NEVER from inside an async server. For async server
+      deployments, use aquery / aretrieve / asynthesize end-to-end and avoid the sync wrappers entirely. Add CI assertion:
+      in async server modules, no .query() or .retrieve() calls (use ruff custom rules or grep).'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: null
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-135 / Standard RAG over local files
+    version: v6.1
+    intent_keywords:
+    - RAG
+    - VectorStoreIndex
+    - from_documents
+    - as_query_engine
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (3 distinct values, balanced distribution)
+      groups:
+      - group_id: complete_strategy
+        name: Complete Strategy
+        description: ''
+        emoji: 📦
+        uc_count: 12
+        ucs:
+        - uc_id: UC-001
+          name: Standard RAG over local files
+          short_description: Index a local document collection and answer free-text questions over it
+          sample_triggers:
+          - RAG
+          - VectorStoreIndex
+          - from_documents
+        - uc_id: UC-002
+          name: Hybrid (dense + sparse) retrieval with QueryFusionRetriever
+          short_description: Improve recall by combining BM25 + dense vectors; fuse rankings with RRF / RSF / DBSF / SIMPLE
+          sample_triggers:
+          - hybrid
+          - fusion
+          - RRF
+        - uc_id: UC-003
+          name: Sub-question decomposition over multi-doc corpus
+          short_description: Decompose complex questions into sub-questions, run each against a separate doc/index, synthesize
+          sample_triggers:
+          - sub-question
+          - decomposition
+          - multi-doc
+        - uc_id: UC-004
+          name: Auto-merging retrieval with hierarchical chunks
+          short_description: Retrieve fine-grained chunks for precision, then merge to parents for context
+          sample_triggers:
+          - auto-merging
+          - hierarchical
+          - parent-child
+        - uc_id: UC-005
+          name: Function-calling agent with tool-equipped LLM (workflow-based)
+          short_description: Build an agent that picks tools and chains tool calls to answer queries
+          sample_triggers:
+          - agent
+          - function calling
+          - tool
+        - uc_id: UC-006
+          name: Multi-agent workflow with specialized agents
+          short_description: Coordinate multiple specialized agents (researcher, writer, critic) via event-based handoffs
+          sample_triggers:
+          - multi-agent
+          - AgentWorkflow
+          - handoff
+        - uc_id: UC-007
+          name: Property graph index for structured knowledge extraction
+          short_description: Extract entities and relations from text, query as a graph
+          sample_triggers:
+          - knowledge graph
+          - property graph
+          - entity extraction
+        - uc_id: UC-008
+          name: RAG over SQL databases with NL→SQL
+          short_description: Answer questions that span structured (SQL) and unstructured (vector) data
+          sample_triggers:
+          - SQL
+          - NLSQL
+          - text2sql
+        - uc_id: UC-009
+          name: Custom workflow with checkpointing and human-in-the-loop
+          short_description: Build long-running pipelines with state, parallel branches, and pause-for-human points
+          sample_triggers:
+          - workflow
+          - checkpoint
+          - human-in-the-loop
+        - uc_id: UC-010
+          name: Citation-tracked RAG
+          short_description: Generate answers with inline citations to source nodes/passages
+          sample_triggers:
+          - citation
+          - source attribution
+          - footnote
+        - uc_id: UC-011
+          name: Query transformations (HyDE, multi-step decomposition)
+          short_description: Rewrite/expand the query before retrieval for higher recall
+          sample_triggers:
+          - HyDE
+          - multi-step
+          - query rewrite
+        - uc_id: UC-012
+          name: Document summarization index
+          short_description: Pre-summarize each document, retrieve via summary, answer with full text
+          sample_triggers:
+          - document summary
+          - summary index
+          - DocumentSummaryIndex
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 1
+        ucs:
+        - uc_id: UC-013
+          name: Ingestion pipeline with cache and dedup
+          short_description: ETL — documents → nodes → embeddings → vector store, with hash-based dedup and cache
+          sample_triggers:
+          - ingestion
+          - pipeline
+          - ETL
+      - group_id: extension_example
+        name: Extension Example
+        description: ''
+        emoji: 📦
+        uc_count: 2
+        ucs:
+        - uc_id: UC-014
+          name: Custom node postprocessor / reranker
+          short_description: Rerank or filter retrieved nodes before sending to LLM
+          sample_triggers:
+          - rerank
+          - postprocess
+          - MMR
+        - uc_id: UC-015
+          name: Structured output with Pydantic / Output parsers
+          short_description: Force LLM output to conform to a Pydantic schema for downstream consumption
+          sample_triggers:
+          - pydantic
+          - structured output
+          - JSON mode
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-001
+      beginner_prompt: Try standard rag over local files
+      auto_selected: true
+    - uc_id: UC-002
+      beginner_prompt: Try hybrid (dense + sparse) retrieval with queryfusionretriever
+      auto_selected: true
+    - uc_id: UC-003
+      beginner_prompt: Try sub-question decomposition over multi-doc corpus
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 15 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Sub-question decomposition over multi-doc corpus
+    - Hybrid (dense + sparse) retrieval with QueryFusionRetriever
+    - Standard RAG over local files
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

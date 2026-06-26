@@ -1,0 +1,15 @@
+---
+name: mentor-counsel
+description: Provide strategic guidance with clarity, trade-offs, and risk framing; returns agency to the user without dependency.
+version: 2.0.0
+display_name: "Mentor Counsel"
+triggers:
+  - mentor counsel
+  - what should I do
+  - should I do this
+  - help me decide
+  - guidance
+  - mentorship
+  - strategic advice
+  - trade-offs
+---

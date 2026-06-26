@@ -1,35 +1,24 @@
 ---
-name: "全闭环管道"
+name: mega-pipeline
 description: "全闭环自动化管道 — Hunter→Skill Factory→Orchestrator→Dashboard→Profit。将Phase 1-3所有组件串联为自动运行的超级管道。核心能力：(1) 一键全流程 (2) 定时自动运行 (3) 异常自愈 (4) 利润报告"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, automation, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mega-pipeline"
-sourceUrl: "https://clawhub.ai/skills/mega-pipeline"
+version: 1.0.0
+author: Apex Catalyst
 ---
 
-# 全闭环管道
+# Mega Pipeline — 全闭环自动化
 
-> 全闭环自动化管道 — Hunter→Skill Factory→Orchestrator→Dashboard→Profit。将Phase 1-3所有组件串联为自动运行的超级管道。核心能力：(1) 一键全流程 (2) 定时自动运行 (3) 异常自愈 (4) 利润报告
+## 管道流程
+```
+Step 1: Hunter Scan (市场扫描)
+Step 2: Skill Check (缺口分析)  
+Step 3: Auto-Generate (自动补全)
+Step 4: Dashboard (状态刷新)
+Step 5: Profit Report (利润报告)
+Step 6: Resilience (自愈检查)
+```
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mega-pipeline`
-- **Source URL:** [https://clawhub.ai/skills/mega-pipeline](https://clawhub.ai/skills/mega-pipeline)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 命令
 ```bash
-hermes skills install clawhub/mega-pipeline
+python3 scripts/run_pipeline.py        # 执行完整管道
+python3 scripts/run_pipeline.py --status  # 管道状态
 ```

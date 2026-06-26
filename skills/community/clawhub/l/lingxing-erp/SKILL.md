@@ -1,35 +1,12 @@
----
-name: "领星 ERP"
-description: "Integrate with Lingxing ERP to query today's orders, product inventory, and retrieve product lists via OpenClaw."
-category: "other"
-source: "ClawHub"
-tags: [amazon, erp, lingxing, orders]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lingxing-erp"
-sourceUrl: "https://clawhub.ai/skills/lingxing-erp"
----
+# 领星 ERP 技能
+用于 OpenClaw 对接领星 ERP，查询订单、库存、商品数据。
 
-# 领星 ERP
+## 配置项
+- ACCESS_KEY: 领星开放平台 AccessKey
+- SECRET_KEY: 领星开放平台 SecretKey
+- BASE_URL: 领星 API 域名（默认 https://openapi.lingxing.com）
 
-> Integrate with Lingxing ERP to query today's orders, product inventory, and retrieve product lists via OpenClaw.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lingxing-erp`
-- **Source URL:** [https://clawhub.ai/skills/lingxing-erp](https://clawhub.ai/skills/lingxing-erp)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lingxing-erp
-```
+## 功能
+- 查询今日订单
+- 查询商品库存
+- 获取商品列表

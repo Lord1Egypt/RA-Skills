@@ -1,0 +1,5 @@
+aiohttp>=3.9.0
+mlx-whisper>=0.4.3
+mlx-lm>=0.31.0
+soundfile>=0.12.0
+numpy>=1.24.0

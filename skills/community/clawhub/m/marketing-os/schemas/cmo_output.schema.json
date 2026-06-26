@@ -1,0 +1,277 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "marketing-os/schemas/cmo_output.schema.json",
+    "title": "CMO Analysis Output",
+    "description": "Structured output from Virtual CMO market analysis and strategy formulation",
+    "type": "object",
+    "required": [
+        "analysis_id",
+        "timestamp",
+        "market_opportunities",
+        "target_segments",
+        "priority_score",
+        "recommended_actions",
+        "risks",
+        "next_steps",
+        "confidence_level"
+    ],
+    "properties": {
+        "analysis_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for this analysis"
+        },
+        "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of analysis generation"
+        },
+        "market_opportunities": {
+            "type": "array",
+            "description": "Scored and ranked market opportunities",
+            "items": {
+                "type": "object",
+                "required": [
+                    "opportunity_id",
+                    "title",
+                    "description",
+                    "signal_strength",
+                    "priority_score",
+                    "confidence"
+                ],
+                "properties": {
+                    "opportunity_id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "signal_strength": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 10
+                    },
+                    "market_size_estimate": {
+                        "type": "string"
+                    },
+                    "competition_level": {
+                        "type": "string",
+                        "enum": [
+                            "low",
+                            "medium",
+                            "high"
+                        ]
+                    },
+                    "capability_alignment": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 10
+                    },
+                    "urgency": {
+                        "type": "string",
+                        "enum": [
+                            "immediate",
+                            "short-term",
+                            "long-term",
+                            "evergreen"
+                        ]
+                    },
+                    "evidence": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "priority_score": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                    },
+                    "confidence": {
+                        "type": "string",
+                        "enum": [
+                            "high",
+                            "medium",
+                            "low"
+                        ]
+                    }
+                }
+            }
+        },
+        "target_segments": {
+            "type": "array",
+            "description": "Identified target audience segments",
+            "items": {
+                "type": "object",
+                "required": [
+                    "segment_id",
+                    "name",
+                    "description"
+                ],
+                "properties": {
+                    "segment_id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "size_estimate": {
+                        "type": "string"
+                    },
+                    "pain_points": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "channels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "buying_triggers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "priority_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Overall strategic priority score"
+        },
+        "recommended_actions": {
+            "type": "array",
+            "description": "Concrete actions with priority and ownership",
+            "items": {
+                "type": "object",
+                "required": [
+                    "action",
+                    "priority",
+                    "owner"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string"
+                    },
+                    "priority": {
+                        "type": "string",
+                        "enum": [
+                            "critical",
+                            "high",
+                            "medium",
+                            "low"
+                        ]
+                    },
+                    "expected_impact": {
+                        "type": "string"
+                    },
+                    "risk_level": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 10
+                    },
+                    "owner": {
+                        "type": "string",
+                        "enum": [
+                            "cmo",
+                            "operator"
+                        ]
+                    },
+                    "estimated_timeline": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "risks": {
+            "type": "array",
+            "description": "Identified risks with severity and mitigation",
+            "items": {
+                "type": "object",
+                "required": [
+                    "description",
+                    "severity",
+                    "mitigation"
+                ],
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "severity": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 10
+                    },
+                    "probability": {
+                        "type": "string",
+                        "enum": [
+                            "high",
+                            "medium",
+                            "low"
+                        ]
+                    },
+                    "mitigation": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "next_steps": {
+            "type": "array",
+            "description": "Immediate next actions",
+            "items": {
+                "type": "object",
+                "required": [
+                    "action",
+                    "owner",
+                    "deadline_type"
+                ],
+                "properties": {
+                    "action": {
+                        "type": "string"
+                    },
+                    "owner": {
+                        "type": "string",
+                        "enum": [
+                            "cmo",
+                            "operator"
+                        ]
+                    },
+                    "deadline_type": {
+                        "type": "string",
+                        "enum": [
+                            "immediate",
+                            "short-term",
+                            "long-term"
+                        ]
+                    }
+                }
+            }
+        },
+        "confidence_level": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Overall confidence in the analysis"
+        },
+        "data_gaps": {
+            "type": "array",
+            "description": "Missing data that would improve analysis quality",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

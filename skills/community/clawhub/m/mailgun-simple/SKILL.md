@@ -1,35 +1,31 @@
 ---
-name: "Mailgun Simple"
-description: "Send outbound emails via the Mailgun API. Uses MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_REGION, and MAILGUN_FROM."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mailgun-simple"
-sourceUrl: "https://clawhub.ai/skills/mailgun-simple"
+name: mailgun-simple
+description: Send outbound emails via the Mailgun API. Uses MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_REGION, and MAILGUN_FROM.
+metadata: {"openclaw": {"requires": {"bins": ["node"], "env": ["MAILGUN_API_KEY", "MAILGUN_DOMAIN", "MAILGUN_REGION", "MAILGUN_FROM"]}, "primaryEnv": "MAILGUN_API_KEY", "install": [{"id": "npm-deps", "kind": "node", "package": "mailgun.js@12.7.0 form-data@4.0.1", "label": "Install Mailgun SDK dependencies"}]}}
 ---
 
 # Mailgun Simple
 
-> Send outbound emails via the Mailgun API. Uses MAILGUN_API_KEY, MAILGUN_DOMAIN, MAILGUN_REGION, and MAILGUN_FROM.
+Send outbound emails using the official Mailgun JS SDK.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mailgun-simple`
-- **Source URL:** [https://clawhub.ai/skills/mailgun-simple](https://clawhub.ai/skills/mailgun-simple)
+## Environment Variables
 
-## Overview
+| Variable | Required | Default | Description |
+|---|---|---|---|
+| `MAILGUN_API_KEY` | **Yes** | — | Your private Mailgun API key. |
+| `MAILGUN_DOMAIN` | **Yes** | `aicommander.dev` | Your verified sending domain. |
+| `MAILGUN_REGION` | **Yes** | `EU` | API region: `EU` or `US`. |
+| `MAILGUN_FROM` | No | `Postmaster <postmaster@{domain}>` | Default sender address. |
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mailgun-simple
+npm install mailgun.js@12.7.0 form-data@4.0.1
+```
+
+## Tools
+
+### Send Email
+```bash
+MAILGUN_API_KEY=xxx MAILGUN_DOMAIN=example.com MAILGUN_REGION=EU node scripts/send_email.js <to> <subject> <text> [from]
 ```

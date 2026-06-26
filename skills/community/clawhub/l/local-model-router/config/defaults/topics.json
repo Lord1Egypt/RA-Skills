@@ -1,0 +1,49 @@
+{
+  "topics": [
+    {
+      "id": "llm",
+      "emoji": "🧠",
+      "label": "LLM / 大语言模型",
+      "description": "大语言模型最新进展",
+      "search": {
+        "queries": ["LLM latest news", "大语言模型 最新"],
+        "must_include": ["LLM", "large language model"],
+        "exclude": ["tutorial", "beginner guide"]
+      },
+      "display": {
+        "max_items": 8,
+        "style": "detailed"
+      }
+    },
+    {
+      "id": "ai-agent",
+      "emoji": "🤖",
+      "label": "AI Agent",
+      "description": "AI 代理最新动态",
+      "search": {
+        "queries": ["AI Agent news", "AI 代理 最新"],
+        "must_include": ["AI Agent", "agent"],
+        "exclude": ["tutorial"]
+      },
+      "display": {
+        "max_items": 8,
+        "style": "detailed"
+      }
+    },
+    {
+      "id": "coding",
+      "emoji": "💻",
+      "label": "编程开发",
+      "description": "编程开发工具和技巧",
+      "search": {
+        "queries": ["programming news", "开发工具 最新"],
+        "must_include": ["programming", "developer"],
+        "exclude": ["tutorial"]
+      },
+      "display": {
+        "max_items": 5,
+        "style": "detailed"
+      }
+    }
+  ]
+}

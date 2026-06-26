@@ -1,35 +1,53 @@
 ---
-name: "Ehunt Temu Store Query"
-description: "通过 EHunt Temu 店铺查询（网关路由 `ehunt/temu/storeQuery`）按多维度筛选 Temu 店铺（店名/ID、国家站点、后台类目、全托管/半托管、总/周/月销量与销售额、评分、评论、粉丝、商品数、开店时间等）。当用户提到 EHunt Temu 店铺、Temu 店铺分析、Temu sel..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkfox-ehunt-temu-store-query"
-sourceUrl: "https://clawhub.ai/skills/linkfox-ehunt-temu-store-query"
+name: linkfox-ehunt-temu-store-query
+version: 1.0.0
+category: product-sourcing
+description: 通过 EHunt Temu 店铺查询（网关路由 `ehunt/temu/storeQuery`）按多维度筛选 Temu 店铺（店名/ID、国家站点、后台类目、全托管/半托管、总/周/月销量与销售额、评分、评论、粉丝、商品数、开店时间等）。当用户提到 EHunt Temu 店铺、Temu 店铺分析、Temu seller、Temu 店铺排行、Temu 半托管店铺、Temu 销售额、temu stores、Temu store query 时触发。即使用户未写 EHunt，只要在 Temu 上找店铺、筛店铺数据或分析店铺表现，也应触发此技能。
 ---
 
-# Ehunt Temu Store Query
+# EHunt Temu 店铺查询（`ehunt/temu/storeQuery`）
 
-> 通过 EHunt Temu 店铺查询（网关路由 `ehunt/temu/storeQuery`）按多维度筛选 Temu 店铺（店名/ID、国家站点、后台类目、全托管/半托管、总/周/月销量与销售额、评分、评论、粉丝、商品数、开店时间等）。当用户提到 EHunt Temu 店铺、Temu 店铺分析、Temu sel...
+在具备 LinkFox「第三方数据服务」MCP 时，对应网关路由 **`ehunt/temu/storeQuery`** 调用（MCP 展示名：**Temu 店铺查询**，确切工具名以当前环境下发的工具元数据为准）。鉴权与上游路由由网关处理；若响应含根级 `code` 字段，是否成功以实网为准。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkfox-ehunt-temu-store-query`
-- **Source URL:** [https://clawhub.ai/skills/linkfox-ehunt-temu-store-query](https://clawhub.ai/skills/linkfox-ehunt-temu-store-query)
+## 要点
 
-## Overview
+- **分页**：`page` 从 1 起；`pageSize` 默认 20、最大 100。
+- **区间入参**：`*Min` / `*Max` 成对出现（总/周/月销量、总/周/月销售额、评分、评论、粉丝、商品数），组成上游区间。
+- **站点**：`siteId` 国家站点 ID，多个逗号分隔（如 `211`=美国、`76`=英国）。
+- **类目**：`category` 后台类目 ID，多个逗号分隔。
+- **托管模式**：`isLocal`（0=全托管，1=半托管，字符串）。
+- **开店时间**：`listedTimeBegin` / `listedTimeEnd`（YYYY-MM-DD）。
+- **排序**：`sortBy` 为「字段-方向」字符串，如 `order_week_count-0`（周销量降序，默认）、`order_count-0`、`total_revenue-0`、`rating-0`。
 
+## 脚本（可选）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/linkfox-ehunt-temu-store-query
+命令行调试：`python scripts/ehunt_temu_store_query.py '<JSON>'`（需 `LINKFOXAGENT_API_KEY`）。详见 [references/api.md](references/api.md) 末尾。
+
+## 参考
+
+入参/出参表见 [references/api.md](references/api.md)。
+
+<!-- LF_LARGE_RESPONSE_BLOCK -->
+## Handling Large Responses
+
+To avoid overflowing the agent context, persist the response to disk and extract only the fields you need:
+
 ```
+python scripts/response_io.py run --script scripts/ehunt_temu_store_query.py --out-dir <DIR> '<params>'
+python scripts/response_io.py read <file> --fields "<paths>"   # or --path "<JMESPath>"
+```
+
+> Pick `--out-dir` outside any git working tree (e.g. `/tmp/...` on Unix, `%TEMP%/...` on Windows). Persisted responses may contain PII, pricing, or auth-sensitive data — do not commit them. Files are not auto-deleted; clean up when the task is done.
+
+`run` writes the full response to a file and emits only a schema preview + file path. `read` projects specific fields, with `--limit/--offset` for slicing and `--format json|jsonl|csv|table` for output.
+
+**When to prefer this pattern** — apply your judgment based on the response characteristics, e.g.:
+- High field count per record, or fields you don't need
+- Batch/paginated results (multiple items per call)
+- Long-text fields (descriptions, reviews, HTML, time series)
+- Output reused across later steps rather than consumed immediately
+
+For small, single-use responses, calling the main script directly is fine.
+
+⚠️ The preview is a truncated schema + sample, not the full data. Any field-level decision must read from the persisted file via `read`.
+<!-- /LF_LARGE_RESPONSE_BLOCK -->

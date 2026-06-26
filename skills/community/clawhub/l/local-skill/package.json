@@ -1,0 +1,23 @@
+{
+  "name": "@acme/skill-local",
+  "version": "0.2.0",
+  "description": "Local skill repository prepared for publish and pre-publish inspection.",
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "bash scripts/check.sh",
+    "publish:dry-run": "bash scripts/publish.sh --dry-run",
+    "publish": "bash scripts/publish.sh"
+  },
+  "keywords": [
+    "skill",
+    "release",
+    "local"
+  ]
+}

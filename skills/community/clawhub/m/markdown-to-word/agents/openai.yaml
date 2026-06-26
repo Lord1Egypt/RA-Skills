@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown to Word"
+  short_description: "Convert Markdown into polished DOCX with built-in or custom templates"
+  default_prompt: "Use $markdown-to-word to convert a Markdown file or Markdown string into a polished Word DOCX."

@@ -1,0 +1,15 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-canva-mcp": {
+      "baseUrl": "https://mcp.canva.com/mcp",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://mcp.canva.com/token",
+        "clientIdEnv": "MAVERICK_CANVA_MCP_CLIENT_ID",
+        "clientAuthMethod": "none"
+      }
+    }
+  }
+}

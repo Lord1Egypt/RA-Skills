@@ -1,0 +1,15 @@
+{
+  "imports": [],
+  "mcpServers": {
+    "maverick-notion": {
+      "baseUrl": "https://mcp.notion.com/mcp",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://mcp.notion.com/token",
+        "clientIdEnv": "MAVERICK_NOTION_MCP_CLIENT_ID",
+        "clientAuthMethod": "none"
+      }
+    }
+  }
+}

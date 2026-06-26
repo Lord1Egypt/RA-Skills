@@ -1,0 +1,30 @@
+{
+  "name": "mcp-storyboard",
+  "version": "2.1.0",
+  "description": "MCP 多场景分镜文生图制作助手",
+  "type": "module",
+  "main": "storyboard-mcp.js",
+  "bin": {
+    "storyboard-mcp": "./storyboard-mcp.js"
+  },
+  "scripts": {
+    "start": "node storyboard-mcp.js",
+    "test": "node scripts/storyboard.py"
+  },
+  "keywords": [
+    "mcp",
+    "storyboard",
+    "image-generation",
+    "bizyair",
+    "文生图",
+    "分镜"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,35 +1,53 @@
 ---
-name: "mcp-company-search"
-description: "Search corporate registries across multiple jurisdictions via L402 API. Find companies by name and jurisdiction for due diligence, compliance, and business r..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcp-company-search"
-sourceUrl: "https://clawhub.ai/skills/mcp-company-search"
+name: mcp-company-search
+description: Search corporate registries across multiple jurisdictions via L402 API. Find companies by name and jurisdiction for due diligence, compliance, and business research.
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - npx
+      env:
+        - L402_API_BASE_URL
+    emoji: 🏢
 ---
 
-# mcp-company-search
+# Company Search (L402)
 
-> Search corporate registries across multiple jurisdictions via L402 API. Find companies by name and jurisdiction for due diligence, compliance, and business r...
+Search corporate registries across jurisdictions — find companies by name for due diligence and compliance.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcp-company-search`
-- **Source URL:** [https://clawhub.ai/skills/mcp-company-search](https://clawhub.ai/skills/mcp-company-search)
+## Setup
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mcp-company-search
+```json
+{
+  "mcpServers": {
+    "company-search": {
+      "command": "npx",
+      "args": ["-y", "@vbotholemu/mcp-company-search"],
+      "env": {
+        "L402_API_BASE_URL": "https://api.nautdev.com"
+      }
+    }
+  }
+}
 ```
+
+## Tools
+
+### `search_companies`
+Search companies by name within a jurisdiction.
+
+| Parameter    | Type   | Required | Description |
+|-------------|--------|----------|-------------|
+| name        | string | yes      | Company name to search |
+| jurisdiction| string | yes      | Jurisdiction code |
+
+### `list_jurisdictions`
+List all supported jurisdictions and their codes.
+
+## When to Use
+
+- KYC / due diligence checks
+- Business partner verification
+- Compliance research
+- Corporate registry lookups

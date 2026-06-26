@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/lockPdf",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": {
+      "url": "https://pdfapihub.com/sample.pdf",
+      "password": "viewerPass",
+      "owner_password": "adminPass456",
+      "permissions": { "print": true, "print_highres": true, "copy": false, "modify": false, "annotate": true, "fill_forms": true },
+      "output": "url"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": { "success": true, "output": "url", "filename": "contract.pdf", "url": "https://cdn.pdfapihub.com/locked/abc123.pdf", "original_size_bytes": 184320, "output_size_bytes": 195000 }
+  }
+}

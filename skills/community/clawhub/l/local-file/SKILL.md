@@ -1,35 +1,15 @@
----
-name: "Local File"
-description: "Read, summarize, and search contents of local text, markdown, JSON, DOCX, and PDF files within authorized paths under 10MB."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-file"
-sourceUrl: "https://clawhub.ai/skills/local-file"
----
+# Local File Reader
 
-# Local File
+读取本地文件内容（支持 .txt, .md, .json, .docx, .pdf 等）
 
-> Read, summarize, and search contents of local text, markdown, JSON, DOCX, and PDF files within authorized paths under 10MB.
+## 触发条件
+用户提到：读取文件、查看文件、打开文件、读一下 xxx 文件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-file`
-- **Source URL:** [https://clawhub.ai/skills/local-file](https://clawhub.ai/skills/local-file)
+## 用法
+- 读取：read <文件路径>
+- 总结：summarize <文件路径>
+- 搜索：search <关键词> <文件路径>
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/local-file
-```
+## 限制
+- 只能读取工作区和用户明确授权的路径
+- 大文件（>10MB）会拒绝

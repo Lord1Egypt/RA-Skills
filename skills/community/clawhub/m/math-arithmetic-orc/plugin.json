@@ -1,0 +1,44 @@
+{
+  "name": "math-arithmetic-ocr",
+  "version": "1.0.0",
+  "description": "识别图片中的K12算式（加减乘除、竖式、分数、方程等），返回结构化结果",
+  "author": "Your Name",
+  "skills": [
+    {
+      "action": "recognize-arithmetic",
+      "description": "识别算式图片，返回文本检测结果和结构化信息",
+      "parameters": [
+        {
+          "name": "imageBase64",
+          "type": "string",
+          "required": false,
+          "description": "图片的 Base64 编码（不含 data:image/xxx;base64, 前缀）"
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "required": false,
+          "description": "图片的 URL 地址（优先使用，如果同时提供 imageBase64 则忽略此项）"
+        },
+        {
+          "name": "rejectNonArithmetic",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "是否拒绝非算式图片（设为 true 时，风景人物等非算式图会返回错误）"
+        },
+        {
+          "name": "enableDispMidResult",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "是否展示竖式算式的中间结果和格式控制字符"
+        }
+      ],
+      "permissions": [
+        "network.request"      // 需要访问腾讯云 API
+      ]
+    }
+  ]
+}
+

@@ -1,35 +1,79 @@
 ---
-name: "龙虾量化研究公司"
-description: "龙虾量化研究公司 multi-agent 架构。一键召唤完整的量化投研团队，包含直属、研究、执行、内容四大部门共17名专家。触发词：召唤团队、公司架构、龙虾公司、量化团队、研究团队。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/lobster-quant-company"
-sourceUrl: "https://clawhub.ai/skills/lobster-quant-company"
+name: lobster-quant-company
+description: 龙虾量化研究公司 multi-agent 架构。一键召唤完整的量化投研团队，包含直属、研究、执行、内容四大部门共17名专家。触发词：召唤团队、公司架构、龙虾公司、量化团队、研究团队。
 ---
 
-# 龙虾量化研究公司
+# 龙虾量化研究公司 🦞
 
-> 龙虾量化研究公司 multi-agent 架构。一键召唤完整的量化投研团队，包含直属、研究、执行、内容四大部门共17名专家。触发词：召唤团队、公司架构、龙虾公司、量化团队、研究团队。
+完整的量化投研 multi-agent 团队，开箱即用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/lobster-quant-company`
-- **Source URL:** [https://clawhub.ai/skills/lobster-quant-company](https://clawhub.ai/skills/lobster-quant-company)
+## 公司架构
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/lobster-quant-company
 ```
+董事长·合伙人（你）
+    └── 🦞 总管（总经理·AI助手）
+            ├── 直属团队
+            │   ├── 合规顾问
+            │   ├── 总风险评估师
+            │   └── 秘书助理
+            ├── 研究团队
+            │   ├── A股量化研究专家
+            │   ├── 虚拟货币量化研究专家
+            │   ├── 博彩量化研究专家
+            │   └── 数据工程师
+            ├── 执行团队
+            │   ├── 项目经理 (PM)
+            │   ├── 产品经理 (PO)
+            │   ├── 量化开发工程师
+            │   ├── 前端工程师
+            │   ├── 后端工程师
+            │   ├── 测试工程师
+            │   └── 运维工程师
+            └── 内容团队
+                ├── 写手
+                ├── 去AI化助手
+                └── 审核
+```
+
+## 标准工作流程
+
+**量化策略研发流程：**
+1. 研报分析 → A股/加密/博彩专家
+2. 合规审查 → 合规顾问
+3. 风险评估 → 总风险评估师
+4. 需求拆解 → PM / PO
+5. 策略开发 → 量化开发工程师
+6. 测试上线 → 测试 + 运维
+
+**内容创作流程：**
+1. 写手撰写初稿
+2. 去AI化助手润色
+3. 审核终审发布
+
+## 召唤 Agent
+
+按需召唤，不用全部启动。说出你需要谁，总管负责调度：
+
+- "让A股专家分析这份研报" → 召唤 researcher_a
+- "让PM拆解需求" → 召唤 pm
+- "让写手写一篇文章" → 召唤 writer
+- "全员风险评估" → 召唤 risk_officer + 相关专家
+
+## Agent 配置
+
+详见 `references/agents-config.json`，包含所有17名成员的角色、职责、模型配置。
+
+## 数据规范
+
+- **A股回测：** 必须使用 sxsc-tushare 真实数据（见 TOOLS.md），严禁模拟数据
+- **加密回测：** 使用交易所真实历史数据
+- **合规红线：** 所有策略上线前必须经合规顾问审查
+
+## 快速开始
+
+说出以下任意指令激活：
+- `召唤团队` — 查看公司全员状态
+- `公司架构` — 展示组织结构图
+- `召唤 [角色名]` — 启动指定专家
+- `量化任务：[描述]` — 自动走标准研发流程
+- `内容任务：[主题]` — 自动走内容创作流程

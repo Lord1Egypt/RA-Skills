@@ -1,0 +1,16 @@
+{
+  "homepage": "https://github.com/MercuryoAI/skills/blob/main/docs/magicpay/openclaw/marketplace/README.md",
+  "requires": {
+    "bins": ["magicpay"]
+  },
+  "primaryEnv": "MAGICPAY_API_KEY",
+  "install": [
+    {
+      "id": "npm",
+      "kind": "node",
+      "package": "@mercuryo-ai/magicpay-cli@latest",
+      "bins": ["magicpay"],
+      "label": "Install MagicPay CLI (npm)"
+    }
+  ]
+}

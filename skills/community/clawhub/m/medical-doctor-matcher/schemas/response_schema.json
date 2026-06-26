@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "case_summary": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string"
+    },
+    "recommended_specialties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "top_recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hospital_name": {
+            "type": "string"
+          },
+          "doctor_name": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "match_score": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "next_available_slot": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "registration": {
+      "type": "object"
+    },
+    "escort": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

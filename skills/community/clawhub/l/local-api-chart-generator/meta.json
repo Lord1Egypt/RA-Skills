@@ -1,0 +1,9 @@
+{
+  "name": "local-api-chart-generator",
+  "slug": "local-api-chart-generator",
+  "created_at": "2026-04-20T05:00:00.000Z",
+  "updated_at": "2026-04-20T08:00:00.000Z",
+  "version": "1.0.0",
+  "description": "专为调用本地数据接口并生成图表展示定制的 Skill。接收自然语言指令，自动提取参数，请求本地接口，生成 HTML 柱状图并返回完整的 HTML 源码。",
+  "tags": ["local-api", "chart", "echart", "bar-chart", "data-visualization"]
+}

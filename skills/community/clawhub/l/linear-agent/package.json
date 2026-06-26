@@ -1,0 +1,29 @@
+{
+  "name": "linear-agent",
+  "version": "1.0.2",
+  "description": "OpenClaw skill for full Linear project management via GraphQL API",
+  "main": "index.js",
+  "bin": {
+    "linear-agent": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test/smoke.js"
+  },
+  "keywords": [
+    "linear",
+    "project-management",
+    "openclaw",
+    "clawhub",
+    "graphql",
+    "issues",
+    "sprints"
+  ],
+  "author": "clawhub",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

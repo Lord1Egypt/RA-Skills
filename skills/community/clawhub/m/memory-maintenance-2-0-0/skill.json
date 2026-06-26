@@ -1,0 +1,49 @@
+{
+  "id": "memory-maintenance-2.0.0",
+  "name": "记忆维护技能",
+  "description": "智能记忆管理技能，负责任务执行、记忆维护、失败重试和进度汇报",
+  "version": "2.0.0",
+  "author": "妹妹",
+  "created_at": "2026-03-31T14:15:00+08:00",
+  "capabilities": [
+    "memory_management",
+    "task_execution",
+    "progress_reporting",
+    "error_handling",
+    "auto_recovery"
+  ],
+  "runtime": "subagent",
+  "mode": "session",
+  "entry": "src/execute_task.py",
+  "config": {
+    "max_retries": 3,
+    "timeout_multiplier": 2,
+    "checkpoint_interval": 5,
+    "success_categories": [
+      "定时任务",
+      "配置",
+      "学习",
+      "习惯",
+      "偏好",
+      "设备",
+      "决策",
+      "总结"
+    ]
+  },
+  "dependencies": [
+    "openclaw",
+    "sessions",
+    "cron"
+  ],
+  "usage": {
+    "initialization": "openclaw skills install memory-maintenance-2.0.0",
+    "spawn_session": "sessions_spawn(agent_id='memory-maintenance-2.0.0', task='...', mode='session')",
+    "check_status": "openclaw sessions list --filter=memory-maintenance-2.0.0"
+  },
+  "examples": [
+    "配置定时任务",
+    "创建新技能",
+    "查询天气",
+    "整理记忆文件"
+  ]
+}

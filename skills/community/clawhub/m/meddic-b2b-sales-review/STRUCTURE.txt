@@ -1,0 +1,49 @@
+meddic-b2b-sales-review/
+├── SKILL.md
+├── STRUCTURE.txt
+├── _meta.json
+└── references/
+    ├── review-opportunity.md
+    ├── review-project.md
+    ├── review-pipeline.md
+    ├── review-loss.md
+    ├── review-1on1.md
+    ├── review-visit.md
+    ├── methods/
+    │   ├── six-step.md
+    │   ├── meddic.md
+    │   ├── go-no-go.md
+    │   ├── recall-triggers.md
+    │   └── three-layer-agent.md
+    ├── scoring/
+    │   ├── stage-win-rates.md
+    │   ├── stage-gate-validation.md
+    │   └── meddic-calibration.md
+    ├── gates/
+    │   ├── enhanced-discovery-gates.md
+    │   └── enhanced-scope-gates.md
+    ├── distilled/
+    │   ├── visit-review-patterns.md
+    │   ├── action-recommendation-rules.md
+    │   ├── manager-judgement-rules.md
+    │   ├── follow-up-prioritization.md
+    │   ├── inquiry-patterns.md
+    │   ├── champion-vs-coach.md
+    │   ├── field-judgment.md
+    │   ├── practical-vs-display.md
+    │   ├── package-strategy.md
+    │   └── tactical-skills.md
+    ├── guidance/
+    │   ├── next-best-action.md
+    │   ├── strategic-direction.md
+    │   └── manager-intervention.md
+    ├── decision/
+    │   ├── forecast-calibration.md
+    │   ├── resource-allocation.md
+    │   └── go-no-go-decision.md
+    └── templates/
+        ├── output-format.md
+        ├── questions.md
+        ├── input-checklists.md
+        ├── follow-up-template.md
+        └── scorecards.md

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lobstersearch": {
+      "url": "https://mcp.lobstersearch.ai/mcp",
+      "transport": "streamable-http"
+    }
+  }
+}

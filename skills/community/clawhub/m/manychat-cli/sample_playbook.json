@@ -1,0 +1,28 @@
+{
+  "steps": [
+    {
+      "id": "find_lead",
+      "endpoint": "/fb/subscriber/findBySystemField",
+      "payload": {
+        "field_name": "email",
+        "field_value": "{{vars.email}}"
+      }
+    },
+    {
+      "id": "tag_lead",
+      "endpoint": "/fb/subscriber/addTagByName",
+      "payload": {
+        "subscriber_id": "{{results.find_lead.data.0.id}}",
+        "tag_name": "AI Qualified Lead"
+      }
+    },
+    {
+      "id": "trigger_followup",
+      "endpoint": "/fb/sending/sendFlow",
+      "payload": {
+        "subscriber_id": "{{results.find_lead.data.0.id}}",
+        "flow_ns": "qualified_lead_followup"
+      }
+    }
+  ]
+}

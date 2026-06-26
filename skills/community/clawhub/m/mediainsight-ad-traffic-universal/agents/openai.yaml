@@ -1,0 +1,16 @@
+interface:
+  display_name: "媒体广告流量市场分析"
+  short_description: "查询部分行业广告流量分布与趋势，附赠两份年度市场分析 PDF"
+  brand_color: "#1F6FEB"
+  default_prompt: "帮我查询广告流量分布或趋势。先用公开共享的 demo token 试跑；如果我需要更多行业、更多媒体或更细颗粒度分析，再提示我切换自己的 token。"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mediainsight-open-api"
+      description: "MediaInsight MCP server for get_ttc_token"
+      transport: "streamable_http"
+      url: "https://open-api-mediainsight.cn.miaozhen.com/mcp_server/mcp"
+
+policy:
+  allow_implicit_invocation: true

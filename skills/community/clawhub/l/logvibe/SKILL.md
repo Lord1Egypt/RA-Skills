@@ -1,35 +1,20 @@
----
-name: "Logvibe"
-description: "Colorizes HTTP status codes in log files for quick visual identification of successes, redirects, client, and server errors in your terminal."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/logvibe"
-sourceUrl: "https://clawhub.ai/skills/logvibe"
----
+# LogVibe
 
-# Logvibe
+LogVibe colorizes HTTP status codes in log files to instantly highlight successes, redirects, client errors, and server errors directly in your terminal. Perfect for developers and sysadmins who need to scan logs quickly and catch issues at a glance.
 
-> Colorizes HTTP status codes in log files for quick visual identification of successes, redirects, client, and server errors in your terminal.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/logvibe`
-- **Source URL:** [https://clawhub.ai/skills/logvibe](https://clawhub.ai/skills/logvibe)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/logvibe
+# Process a log file
+python logvibe.py access.log
+
+# Pipe logs directly
+tail -f access.log | python logvibe.py
+
+# Check a single line
+echo "192.168.1.1 - - [10/Oct/2023:13:55:36] "GET /index.html HTTP/1.1" 404 203" | python logvibe.py
 ```
+
+## Price
+
+$2.50

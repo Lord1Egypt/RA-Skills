@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>OpenClaw Agent — OS Live</title>
+  <script src="https://cdn.jsdelivr.net/npm/trtc-sdk-v5/trtc.js"></script>
+  <script src="https://unpkg.com/@tencentcloud/lite-chat@4.2.7/standard.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Background & Video */
+    body {
+      background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop') no-repeat center center fixed;
+      background-size: cover;
+    }
+    body::before {
+      content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 0;
+    }
+    
+    .main-container {
+      position: absolute; 
+      left: 0; right: 0; bottom: 220px;
+      margin: 0 auto;
+      display: flex; gap: 0;
+      justify-content: center;
+      align-items: center; /* 垂直居中 */
+      height: calc(100vh - 300px); max-height: 800px; min-height: 480px;
+      z-index: 1;
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .main-container.maximized {
+      position: fixed !important; inset: 40px 10px 80px 10px !important; width: auto !important; height: auto !important; max-width: none !important; max-height: none !important; z-index: 90 !important; left: 0 !important; bottom: 0 !important;
+    }
+
+    /* 包含 Avatar, Video 和 Danmaku 的大包装容器 */
+    .live-wrapper {
+      position: relative;
+      display: flex;
+      height: 100%;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.1);
+      background: rgba(30, 35, 45, 0.4);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px; /* 添加一点内边距让内部元素和边框有距离感 */
+    }
+
+    /* Avatar Container (叠加在 live-wrapper 左侧，突破边界) */
+    #avatar-container {
+      position: absolute;
+      left: -12px; /* 稍微跨越左边界 */
+      bottom: -4%; /* 稍微突破下边界 */
+      height: 108%; /* 缩小尺寸，避免过大 */
+      aspect-ratio: 2/3; /* 匹配视频原始比例 1080:1620 */
+      z-index: 6; pointer-events: none;
+      display: none; /* 隐藏直到直播开始 */
+      filter: drop-shadow(10px 0 20px rgba(0,0,0,0.5));
+    }
+    #avatar-container video {
+      width: 100%; height: 100%;
+      object-fit: fill;
+      position: absolute; inset: 0;
+      transition: opacity 0.3s ease;
+    }
+    #avatar-idle { opacity: 1; }
+    #avatar-action { opacity: 0; }
+    #avatar-container.talking #avatar-idle { opacity: 0; }
+    #avatar-container.talking #avatar-action { opacity: 1; }
+
+    /* Video Wrap (Dashboard 推流区域) */
+    #video-wrap {
+      position: relative;
+      height: 100%;
+      aspect-ratio: 16/9; /* 匹配推流画面比例 */
+      background: #000; /* 推流底色 */
+      border-radius: 12px; /* 左右对称圆角 */
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      flex-shrink: 0;
+      transition: all 0.3s;
+      margin-left: 0; 
+      border: none;
+    }
+    #video-wrap.maximized { position: fixed !important; inset: 40px 10px 80px 10px !important; width: auto !important; height: auto !important; max-width: none !important; max-height: none !important; z-index: 90 !important; aspect-ratio: auto !important; margin-left: 0; }
+    #video-content { flex: 1; position: relative; min-height: 0; width: 100%; display: flex; flex-direction: row; overflow: hidden;}
+    #remote-video-container { flex: 1; position: relative; display: flex; flex-direction: column; min-width: 0; background: #000; }
+    #remote-video { width: 100%; height: 100%; position: absolute; inset: 0; }
+    #remote-video video, #remote-video > div {
+      width: 100% !important; height: 100% !important;
+      object-fit: fill !important; /* 精确填满 16:9 容器 */
+    }
+    #placeholder {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1e1e2f, #12141d);
+      color: #94a3b8; z-index: 2;
+    }
+    #placeholder .icon {
+      font-size: 64px; margin-bottom: 16px; animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+    /* Vertical Divider */
+    .vertical-divider {
+      width: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+
+    /* Online Count Badge */
+    .online-count {
+      position: absolute; right: 16px;
+      display: flex; align-items: center; gap: 4px;
+      color: #94a3b8; font-size: 12px; cursor: pointer;
+      padding: 2px 8px; border-radius: 12px;
+      transition: all 0.2s;
+    }
+    .online-count:hover { background: rgba(255,255,255,0.1); color: #e2e8f0; }
+    .online-count svg { opacity: 0.7; }
+
+    /* Member Panel */
+    .member-panel {
+      width: 0; overflow: hidden; flex-shrink: 0;
+      background: rgba(0, 0, 0, 0.2); /* 改为与弹幕区一样的透明背景 */
+      border-left: 0px solid rgba(255,255,255,0.1); /* 默认无边框，消除绿线 */
+      border-radius: 12px;
+      display: flex; flex-direction: column;
+      transition: width 0.3s ease, margin-left 0.3s ease, border-left-width 0.3s ease;
+    }
+    .member-panel.open { width: 200px; margin-left: 6px; border-left-width: 1px; border: 1px solid rgba(255,255,255,0.05); }
+    .member-panel-header {
+      padding: 12px; font-size: 13px; color: #cbd5e1; font-weight: 500;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .member-panel-close { cursor: pointer; color: #64748b; font-size: 16px; }
+    .member-panel-close:hover { color: #fff; }
+    .member-list { flex: 1; overflow-y: auto; padding: 8px; }
+    .member-item {
+      padding: 6px 8px; font-size: 12px; color: #e2e8f0;
+      border-radius: 6px; margin-bottom: 2px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .member-item .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+
+    /* Live Chat Window (Danmaku) */
+    .danmaku-window {
+      width: 280px;
+      display: flex; flex-direction: column; flex-shrink: 0;
+      background: rgba(0, 0, 0, 0.2); /* 增加一点底色区分 */
+      height: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-left: 6px; /* 和左侧视频拉开间距 */
+      overflow: hidden; /* 防止内部输入框溢出圆角 */
+    }
+
+    /* OS Overlay */
+    .os-overlay {
+      position: absolute; inset: 0; z-index: 10;
+      pointer-events: none; display: flex; flex-direction: column;
+    }
+    .os-overlay > * { pointer-events: auto; }
+
+    /* Desktop Icons (Hidden/Removed, moved to Dock) */
+    .desktop-icons { display: none; }
+
+    /* Windows */
+    .window {
+      position: absolute;
+      background: rgba(30, 35, 45, 0.85);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      display: flex; flex-direction: column; overflow: hidden;
+      transition: width 0.3s, height 0.3s, transform 0.3s, opacity 0.3s;
+    }
+    .window.maximized { position: fixed !important; inset: 40px 10px 80px 10px !important; width: auto !important; height: auto !important; max-width: none !important; max-height: none !important; z-index: 90 !important; }
+    .window.closed { transform: scale(0.9); opacity: 0; pointer-events: none; }
+    
+    .window-header {
+      height: 40px; background: rgba(0,0,0,0.3); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; position: relative;
+      padding: 0 16px; font-size: 13px; color: #cbd5e1; font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.05); cursor: grab;
+    }
+    .window-title { flex: 1; text-align: center; }
+    .window-header:active { cursor: grabbing; }
+    .window-controls { position: absolute; left: 16px; display: flex; gap: 8px; cursor: pointer; user-select: none; }
+    .window-controls span { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; font-size: 10px; opacity: 1; transition: all 0.2s; color: transparent; }
+    .window-controls:hover span { color: rgba(0,0,0,0.5); }
+    .window-controls .btn-close { background: #ff5f56; border: 1px solid #e0443e; }
+    .window-controls .btn-min { background: #ffbd2e; border: 1px solid #dea123; }
+    .window-controls .btn-max { background: #27c93f; border: 1px solid #1aab29; }
+
+    .top-header { display: none; }
+    .top-header > * { pointer-events: auto; }
+    
+    .top-header .logo {
+      display: flex; align-items: center; gap: 12px; color: #fff; font-size: 24px; font-weight: 800;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .top-header .logo img {
+      width: 48px; height: 48px; object-fit: contain;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+    }
+
+    .top-header .user-info {
+      display: flex; align-items: center; gap: 12px; color: #e2e8f0; font-size: 14px;
+      background: rgba(15, 20, 25, 0.5); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: 6px 16px; border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .btn-login {
+      background: transparent; color: #fff; border: none; padding: 4px;
+      font-size: 15px; font-weight: 600; cursor: pointer; transition: color 0.2s;
+    }
+    .btn-login:hover { color: #fde047; }
+    .user-avatar {
+      width: 30px; height: 30px; border-radius: 50%; background: #fde047;
+      display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 13px;
+    }
+    .danmaku-messages { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; scroll-behavior: smooth; }
+    .danmaku-messages::-webkit-scrollbar { width: 6px; }
+    .danmaku-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .danmaku-msg {
+      background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 8px 12px;
+      font-size: 13px; color: #fff; line-height: 1.4; word-break: break-word;
+    }
+    .danmaku-msg .sender { color: #4ade80; font-weight: 600; margin-right: 6px; }
+    .danmaku-input-wrap {
+      display: flex; padding: 12px; border-top: 1px solid rgba(255,255,255,0.05);
+      background: transparent; gap: 8px; align-items: center; flex-shrink: 0;
+    }
+    .danmaku-input-wrap input {
+      flex: 1; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px; padding: 0 12px; height: 34px; color: #fff; font-size: 13px; outline: none; transition: border-color 0.2s;
+    }
+    .danmaku-input-wrap input:focus { border-color: #0ea5e9; }
+    .danmaku-input-wrap input::placeholder { color: rgba(255,255,255,0.4); }
+    .danmaku-input-wrap button {
+      background: #fde047; color: #1e293b; border: none; border-radius: 6px;
+      padding: 0 16px; height: 34px; line-height: 34px; cursor: pointer; font-size: 13px; font-weight: 600; transition: background 0.2s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .danmaku-input-wrap button:hover:not(:disabled) { background: #eab308; }
+    .danmaku-input-wrap button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Login Popup */
+    .login-popup {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 9999;
+      display: none; align-items: center; justify-content: center;
+    }
+    .login-box {
+      background: #1e232d; padding: 32px; border-radius: 16px; width: 360px; color: #fff;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
+    }
+    .login-box h3 { margin-bottom: 24px; font-size: 20px; text-align: center; }
+    .login-box input {
+      width: 100%; padding: 12px 16px; margin-bottom: 20px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff; font-size: 14px;
+    }
+    .login-box button {
+      width: 100%; padding: 12px; background: #0ea5e9; color: #fff; border: none; border-radius: 8px;
+      font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .login-box button:hover { background: #0284c7; }
+
+    .window-content {
+      flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 14px;
+    }
+    #log { padding: 12px; font-family: "Consolas", monospace; font-size: 12px; color: #94a3b8; gap: 6px; }
+
+    /* Log Window */
+    .log-window { width: 500px; height: 350px; left: 120px; top: 80px; }
+    #log .ok { color: #4ade80; }
+    #log .err { color: #f87171; }
+    #log .inf { color: #38bdf8; }
+
+    /* Bottom Input Area */
+    .bottom-input-area {
+      position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; width: 100%;
+    }
+    .suggested-actions { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; justify-content: center;}
+    .suggested-actions button {
+      background: rgba(30, 35, 45, 0.3); /* 调高透明度，原本是 0.85 */
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1); color: #e2e8f0;
+      padding: 10px 18px; border-radius: 50px; font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .suggested-actions button:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+    .floating-input {
+      display: flex; align-items: center;
+      background: #fde047; border-radius: 30px;
+      padding: 8px 16px; width: 640px; max-width: 90vw;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3); gap: 12px;
+    }
+    
+    .input-icon-btn {
+      background: transparent; border: none; outline: none;
+      width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; padding: 0; transition: transform 0.2s;
+    }
+    .input-icon-btn img {
+      width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+    }
+    .input-icon-btn:hover:not(:disabled) { transform: scale(1.15); }
+    .input-icon-btn:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }
+    .input-icon-btn.recording {
+      animation: mic-pulse 1.5s infinite;
+      filter: drop-shadow(0 0 6px #ef4444);
+    }
+    @keyframes mic-pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .floating-input input {
+      flex: 1; background: transparent; border: none; outline: none;
+      font-size: 14px; color: #1f2937; font-weight: 500;
+    }
+    .floating-input input::placeholder { color: rgba(31, 41, 55, 0.6); }
+    #btn-send {
+      background: #1f2937; color: #fde047; border: none; border-radius: 50%;
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    #btn-send:hover:not(:disabled) { transform: scale(1.1); }
+    #btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    #chat-char-count { font-size: 12px; color: rgba(31,41,55,0.6); font-weight: 600; margin-right: 4px; }
+
+    /* macOS Dock */
+    .mac-dock {
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 24px;
+      display: flex; align-items: flex-end; padding: 10px 18px; gap: 16px; z-index: 50;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.4);
+    }
+    .dock-icon {
+      width: 48px; height: 48px; position: relative; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+      transform-origin: bottom;
+    }
+    .dock-icon img {
+      width: 100%; height: 100%; border-radius: 12px; object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: inherit;
+      clip-path: inset(6% round 12px);
+    }
+    .dock-icon:hover { transform: scale(1.3) translateY(-10px); z-index: 10; margin: 0 12px; }
+    .dock-icon:hover img { box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+    .dock-dot {
+      position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; background: rgba(255,255,255,0.8); border-radius: 50%; display: none;
+    }
+    .dock-icon.active .dock-dot { display: block; }
+    
+    .dock-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.2); margin: 0 4px 6px; }
+
+    /* Floating Top Menu Bar (macOS style) */
+    .mac-menubar {
+      position: absolute; top: 0; left: 0; right: 0; height: 32px;
+      background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; font-size: 13px; font-weight: 500; color: #fff; z-index: 100;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    .mac-menubar-left { display: flex; align-items: center; gap: 4px; }
+    .mac-menubar-right { display: flex; align-items: center; gap: 16px; }
+    .mac-logo-btn { display: flex; align-items: center; font-size: 14px; font-weight: bold; cursor: pointer; gap: 8px; padding: 2px 6px; border-radius: 4px;}
+    .mac-logo-btn:hover { background: rgba(255,255,255,0.2); }
+    .mac-logo-btn img { width: 16px; height: 16px; object-fit: contain; }
+    .mac-menu-item { cursor: pointer; padding: 2px 8px; border-radius: 4px; transition: background 0.2s;
+      white-space: nowrap; flex-shrink: 0; }
+    .mac-menu-item:hover { background: rgba(255,255,255,0.2); }
+    
+    .mac-dropdown {
+      position: absolute; top: 28px; left: 0;
+      background: rgba(35, 40, 50, 0.4);
+      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      padding: 6px; display: none; flex-direction: column; min-width: 150px; z-index: 200;
+    }
+    .mac-dropdown.show { display: flex; }
+    .mac-dropdown-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px; color: #e2e8f0; font-size: 13px; cursor: pointer; border-radius: 6px; transition: background 0.2s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .mac-dropdown-item:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    
+    .mac-tray-item { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 2px 8px; border-radius: 4px; transition: background 0.2s;
+      white-space: nowrap; flex-shrink: 0;}
+    .mac-tray-item:hover { background: rgba(255,255,255,0.2); }
+    .mac-tray-icon img { width: 16px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); }
+    
+    #info-state { color: #cbd5e1; }
+    #info-state.live { color: #4ade80; }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1200px) {
+      #video-wrap { width: 95%; }
+    }
+    @media (max-width: 900px) {
+      .main-container { width: 100%; height: calc(100vh - 260px); bottom: 180px; }
+      #video-wrap { border-radius: 0; box-shadow: none; }
+      #video-content { flex-direction: column; }
+      .danmaku-window { width: 100%; height: 200px; flex-shrink: 0; }
+      .vertical-divider { width: 100%; height: 1px; }
+      .log-window { width: 400px; left: 20px; }
+      .desktop-icons { top: 70px; left: 16px; gap: 16px; }
+    }
+    @media (max-width: 600px) {
+      .desktop-icons { flex-direction: row; flex-wrap: wrap; left: 10px; top: 70px; right: 10px; gap: 12px; z-index: 20; }
+      .desktop-icon { width: 56px; }
+      .desktop-icon .icon-img { width: 40px; height: 40px; border-radius: 10px; }
+      .desktop-icon .icon-text { font-size: 11px; }
+      .bottom-input-area { bottom: 90px; }
+      .suggested-actions { margin-bottom: 8px; gap: 8px; padding: 0 10px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; width: 100%; -webkit-overflow-scrolling: touch; }
+      .suggested-actions::-webkit-scrollbar { display: none; }
+      .suggested-actions button { font-size: 11px; padding: 6px 12px; white-space: nowrap; flex-shrink: 0; }
+      .floating-input { padding: 6px 12px; width: calc(100vw - 20px); max-width: none; }
+      .log-window { 
+        width: calc(100vw - 20px) !important; 
+        left: 10px !important; 
+        right: 10px !important; 
+        top: 80px !important; 
+        height: 360px !important;
+        max-width: none;
+      }
+      .taskbar { padding: 0 8px; height: 44px; }
+      .taskbar-tray { gap: 10px; }
+      #tray-clock { display: none; }
+      .start-menu { left: 8px; bottom: 50px; }
+    }
+    @media (max-height: 600px) {
+      #video-wrap { bottom: 150px; max-height: calc(100vh - 170px); }
+      .suggested-actions { display: none; }
+      .bottom-input-area { bottom: 80px; }
+      .log-window { height: calc(100vh - 80px) !important; top: 10px !important; }
+    }
+
+    /* Send Animation Bubble */
+    .fly-bubble {
+      position: fixed;
+      left: 0; top: 0;
+      background: #fde047;
+      color: #1f2937;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 9999;
+      box-shadow: 0 4px 15px rgba(253, 224, 71, 0.6);
+      offset-anchor: center;
+      offset-rotate: auto;
+    }
+
+    /* Dock Toast Notification */
+    .dock-toast {
+      position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(10px);
+      background: rgba(30, 35, 45, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 12px;
+      padding: 10px 20px; color: #e2e8f0; font-size: 13px; font-weight: 500;
+      white-space: nowrap; z-index: 60; pointer-events: none;
+      opacity: 0; transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .dock-toast.show {
+      opacity: 1; transform: translateX(-50%) translateY(0);
+    }
+    /* =========================================
+       MUSIC PLAYER WIDGET
+       ========================================= */
+    .music-player {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px 10px 10px;
+      background: rgba(30, 35, 45, 0.6);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 40px; /* Pill shape */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      z-index: 50;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .music-player.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .music-player .vinyl-container {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #111;
+      box-shadow: inset 0 0 0 4px #222, 0 2px 8px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Inner circle for the record */
+    .music-player .vinyl-container::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #1e232d;
+      border: 2px solid #333;
+      z-index: 2;
+    }
+
+    .music-player .vinyl-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: spin 4s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .music-player.playing .vinyl-cover {
+      animation-play-state: running;
+    }
+
+    .music-player .song-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 180px;
+    }
+
+    .music-player .song-name {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    }
+
+    .music-player .artist-name {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .music-player .equalizer {
+      display: flex;
+      align-items: flex-end;
+      height: 12px;
+      gap: 2px;
+      margin-left: 8px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .music-player.playing .equalizer {
+      opacity: 1;
+    }
+
+    .music-player .eq-bar {
+      width: 3px;
+      background: #00d2ff;
+      border-radius: 2px 2px 0 0;
+      animation: eq-bounce 1s infinite ease-in-out alternate;
+    }
+
+    .music-player .eq-bar:nth-child(1) { animation-duration: 0.7s; height: 60%; }
+    .music-player .eq-bar:nth-child(2) { animation-duration: 0.5s; height: 100%; }
+    .music-player .eq-bar:nth-child(3) { animation-duration: 0.9s; height: 40%; }
+    .music-player .eq-bar:nth-child(4) { animation-duration: 0.6s; height: 80%; }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes eq-bounce {
+      0% { transform: scaleY(0.2); transform-origin: bottom; }
+      100% { transform: scaleY(1); transform-origin: bottom; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Popup -->
+  <div class="login-popup" id="login-popup">
+    <div class="login-box">
+      <h3>Login to OpenClaw Live</h3>
+      <input type="text" id="login-userid" value="__VIEWER_USERID__" placeholder="Enter User ID" />
+      <button onclick="doLogin()">Login</button>
+    </div>
+  </div>
+
+  <!-- Confirm Popup -->
+  <div class="login-popup" id="confirm-popup">
+    <div class="login-box" style="text-align: center;">
+      <h3 id="confirm-title">Confirm</h3>
+      <p id="confirm-msg" style="margin-bottom: 24px; color: #cbd5e1; font-size: 15px;"></p>
+      <div style="display: flex; gap: 12px; justify-content: center;">
+        <button style="background: rgba(255,255,255,0.1); color: #fff;" onclick="hideConfirmPopup()">Cancel</button>
+        <button id="confirm-btn" style="background: #ef4444;">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Header -->
+  <div class="top-header">
+    <div class="logo">
+      <img src="assets/icons/apple.png" alt="logo" />
+      <span>OpenClaw Live</span>
+    </div>
+    <div class="user-info" id="header-user-info">
+      <button class="btn-login" onclick="showLoginPopup()">Login</button>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="live-wrapper">
+      <!-- Avatar (transparent video: VP9 Alpha for Chrome, HEVC Alpha for Safari) -->
+      <div id="avatar-container">
+        <video id="avatar-idle" loop muted playsinline autoplay></video>
+        <video id="avatar-action" loop muted playsinline></video>
+      </div>
+
+      <!-- Dashboard Push Stream Area -->
+      <div id="video-wrap" class="window">
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="btn-close" onclick="closeWindow(this)">×</span>
+            <span class="btn-min" onclick="minWindow(this)">-</span>
+            <span class="btn-max" onclick="maxWindow(this)">+</span>
+          </div>
+          <div class="window-title">OpenClaw Screen</div>
+          <div class="online-count" id="online-count" onclick="toggleMemberList()" title="在线观众">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span id="online-num">0</span>
+          </div>
+        </div>
+        <div id="video-content">
+          <div id="remote-video-container">
+            <div id="placeholder">
+              <div class="icon">◈</div>
+              <div style="font-size: 18px; font-weight: 500;">等待连接直播流...</div>
+              <div style="font-size: 13px; color: #64748b; margin-top: 8px;">登录后将自动连接</div>
+            </div>
+            <div id="remote-video"></div>
+            <!-- 主播摄像头画面（右下角 PiP 小窗） -->
+            <div id="host-cam" style="display:none; position:absolute; bottom:8px; right:8px; width:192px; height:144px; border-radius:10px; overflow:hidden; border:2px solid rgba(255,255,255,0.2); box-shadow:0 4px 16px rgba(0,0,0,0.5); z-index:5; background:#000;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danmaku + Members Panel -->
+      <div class="danmaku-window" id="danmaku-window">
+        <div class="danmaku-messages window-content" id="danmaku-area"></div>
+        <div class="danmaku-input-wrap">
+          <input type="text" id="danmaku-input" placeholder="发送互动弹幕..." maxlength="100" disabled />
+          <button id="btn-danmaku-send" onclick="sendDanmakuMessage()" disabled>发送</button>
+        </div>
+      </div>
+      <div class="member-panel" id="member-panel">
+        <div class="member-panel-header">
+          <span>在线观众</span>
+          <span class="member-panel-close" onclick="toggleMemberList()">×</span>
+        </div>
+        <div class="member-list" id="member-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="os-overlay">
+    <div id="minimized-sidebar"></div>
+    <div class="desktop-icons">
+      <div class="desktop-icon" onclick="joinLive()" id="icon-connect">
+        <img class="icon-img" src="assets/icons/live_start.png" alt="Connect" />
+        <div class="icon-text">Connect</div>
+      </div>
+      <div class="desktop-icon" onclick="leaveLive()" id="icon-disconnect">
+        <img class="icon-img" src="assets/icons/live_end.png" alt="Disconnect" />
+        <div class="icon-text">Disconnect</div>
+      </div>
+      <div class="desktop-icon" onclick="toggleWindow('log-window')">
+        <img class="icon-img" src="assets/icons/log.png" alt="System Log" />
+        <div class="icon-text">System Log</div>
+      </div>
+      <div class="desktop-icon">
+        <img class="icon-img" src="assets/icons/email.png" alt="Email" />
+        <div class="icon-text">Email</div>
+      </div>
+      <div class="desktop-icon">
+        <img class="icon-img" src="assets/icons/music_player.png" alt="Music Player" />
+        <div class="icon-text">Music Player</div>
+      </div>
+    </div>
+
+    <div class="window log-window" id="log-window" style="display: none;">
+      <div class="window-header">
+        <div class="window-controls">
+          <span class="btn-close" onclick="closeWindow(this)">×</span>
+          <span class="btn-min" onclick="minWindow(this)">-</span>
+          <span class="btn-max" onclick="maxWindow(this)">+</span>
+        </div>
+        <div class="window-title">System Log</div>
+      </div>
+      <div class="window-content" id="log" style="flex: 1; min-height: 0;"></div>
+    </div>
+
+    <div class="bottom-input-area">
+      <div class="suggested-actions">
+        <button onclick="fillAction('讲个简短的故事')">讲个简短的故事</button>
+        <button onclick="fillAction('查询深圳的天气')">查询深圳的天气</button>
+        <button onclick="fillAction('播放陈奕迅歌曲')">播放陈奕迅歌曲</button>
+      </div>
+      <div class="floating-input">
+        <button id="btn-voice" class="input-icon-btn" disabled title="按住语音输入 (限 Chrome/Edge/Safari)" onmousedown="startVoice(event)" onmouseup="stopVoice(event)" ontouchstart="startVoice(event)" ontouchend="stopVoice(event)">
+          <img src="assets/icons/mic.png" alt="Mic" />
+        </button>
+
+        <input type="text" id="chat-input" placeholder="Agent awaits your response..." maxlength="200" disabled />
+        <div id="chat-char-count">0/200</div>
+
+        <button id="btn-send" disabled onclick="sendChatMessage()">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="dock-toast" id="dock-toast"></div>
+    <div class="mac-dock">
+      <div class="dock-icon active" onclick="showMainWindow()" id="icon-connect" title="OpenClaw Live">
+        <img src="assets/icons/live_start.png" alt="OpenClaw Live" />
+        <div class="dock-dot"></div>
+      </div>
+      <div class="dock-icon" onclick="toggleWindow('log-window')" title="System Log">
+        <img src="assets/icons/log.png" alt="System Log" />
+        <div class="dock-dot"></div>
+      </div>
+      <div class="dock-icon" onclick="launchSkillApp('email-skill', 'Email')" title="Email">
+        <img src="assets/icons/email.png" alt="Email" />
+        <div class="dock-dot"></div>
+      </div>
+      <div class="dock-icon" onclick="launchSkillApp('music-search', 'Music')" title="Music Player">
+        <img src="assets/icons/music_player.png" alt="Music Player" />
+        <div class="dock-dot"></div>
+      </div>
+      <div class="dock-icon" onclick="launchSkillApp('weather', 'Weather')" title="Weather">
+        <img src="assets/icons/weather.png" alt="Weather" />
+        <div class="dock-dot"></div>
+      </div>
+    </div>
+
+    <!-- macOS Top Menu Bar -->
+    <div class="mac-menubar">
+      <div class="mac-menubar-left">
+        <div style="position: relative;">
+          <div class="mac-logo-btn" onclick="toggleMenu('logo-menu', event)" style="padding-right: 12px;">
+            <img src="assets/icons/apple.png" alt="logo" />
+          </div>
+          <div class="mac-dropdown" id="logo-menu">
+            <div class="mac-dropdown-item" onclick="closePageAction()">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+              Close Page
+            </div>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div class="mac-menu-item" style="font-weight: bold; margin-left: 0;" onclick="toggleMenu('live-menu', event)">OpenClaw Live</div>
+          <div class="mac-dropdown" id="live-menu">
+            <div class="mac-dropdown-item" onclick="joinLive(); closeMenus()">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#4ade80" stroke-width="2" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Start Live
+            </div>
+            <div class="mac-dropdown-item" onclick="leaveLive(); closeMenus()">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#f87171" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect></svg>
+              Stop Live
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mac-menubar-right">
+        <div class="mac-tray-item"><span id="info-state">OFFLINE</span></div>
+        <div class="mac-tray-item mac-tray-icon" id="tray-mute" onclick="toggleMute()" title="Toggle Mute">
+          <img src="assets/icons/speaker-on.png" alt="Speaker" id="speaker-img" />
+        </div>
+        <div class="mac-tray-item" onclick="handleUserClick()" title="Account">
+          <span id="header-user-text">Login</span>
+        </div>
+        <div class="mac-tray-item" id="tray-clock">00:00</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Music Player Widget -->
+  <div id="music-player" class="music-player">
+    <div class="vinyl-container">
+      <img id="music-cover" class="vinyl-cover" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=100&auto=format&fit=crop" alt="Cover">
+    </div>
+    <div class="song-info">
+      <div id="song-name" class="song-name">Searching...</div>
+      <div id="artist-name" class="artist-name">Agent Music Search</div>
+    </div>
+    <div class="equalizer">
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+    </div>
+  </div>
+
+  <script>
+    // ── 动态身份：每次打开页面生成新 userid，通过 API 签发 usersig ──
+    let SDK_APP_ID = 0, STR_ROOM_ID = '', USER_ID = '', USER_SIG = '';
+    let IM_SDKAPPID = 0, IM_USERID = '', IM_USERSIG = '', IM_BOT_USERID = '@RBT#001';
+
+    // Fallback: 尝试读取模板硬编码值（兼容旧部署方式）
+    try {
+      SDK_APP_ID  = __SDKAPPID__;
+      STR_ROOM_ID = '__ROOM_ID__';
+      IM_BOT_USERID = '__IM_BOT_USERID__';
+    } catch(e) {
+      console.warn('Template placeholders not replaced, will use API mode');
+    }
+
+    function _randomStr(len) {
+      const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+      let s = '';
+      for (let i = 0; i < len; i++) s += chars[Math.floor(Math.random() * chars.length)];
+      return s;
+    }
+
+    // 动态生成唯一 viewer userid
+    const _dynamicUserId = 'viewer-' + _randomStr(6);
+
+    async function _fetchUserSig() {
+      try {
+        addLog('API → /api/gen-usersig?userid=' + _dynamicUserId, 'inf');
+        const resp = await fetch('/api/gen-usersig?userid=' + encodeURIComponent(_dynamicUserId));
+        if (!resp.ok) throw new Error('API error: ' + resp.status);
+        const data = await resp.json();
+        SDK_APP_ID = data.sdkappid || SDK_APP_ID;
+        STR_ROOM_ID = data.room_id || STR_ROOM_ID;
+        IM_BOT_USERID = data.im_bot_userid || IM_BOT_USERID;
+        USER_ID = data.userid;
+        USER_SIG = data.usersig;
+        // TRTC 和 IM 共用同一个 userid/usersig
+        IM_SDKAPPID = SDK_APP_ID;
+        IM_USERID = data.userid;
+        IM_USERSIG = data.usersig;
+        addLog('API ← gen-usersig OK: sdkappid=' + SDK_APP_ID + ' room=' + STR_ROOM_ID + ' user=' + USER_ID, 'ok');
+        // 更新登录框默认值
+        const loginInput = document.getElementById('login-userid');
+        if (loginInput) loginInput.value = USER_ID;
+        return true;
+      } catch(e) {
+        addLog('API ← gen-usersig FAIL: ' + (e.message || e), 'err');
+        // Fallback: 使用模板硬编码值
+        USER_ID = '__VIEWER_USERID__';
+        USER_SIG = '__USERSIG__';
+        IM_USERID = '__IM_USERID__';
+        IM_USERSIG = '__IM_USERSIG__';
+        IM_SDKAPPID = SDK_APP_ID;
+        return false;
+      }
+    }
+
+    let imChat = null;    // IM SDK 实例
+    let imReady = false;  // IM SDK 就绪状态
+
+    let trtc = null;
+    let muted = false;
+    let streamerUserId = null; // 记录推流者 userId，用于精确静音控制
+    let ingestBotUserId = null; // 记录音乐 StreamIngest 机器人 userId
+
+    // 主播身份：配置的 streamer userid 登录后切换为主播角色并发布本地音视频
+    const HOST_USER_ID = '__STREAMER_USERID__';
+    function _isHost() { return USER_ID === HOST_USER_ID; }
+
+    // Audio Ducking: TTS 播报时降低音乐音量，TTS 停止后恢复
+    const _MUSIC_VOL_NORMAL = 100;  // 正常音乐音量
+    const _MUSIC_VOL_DUCKED = 10;   // TTS 播报时音乐音量（降低到 10%）
+    let _musicDucked = false;        // 当前是否处于 ducking 状态
+
+    // Window Controls Logic
+    function closeWindow(btn) {
+      const win = btn.closest('.window');
+      if (win.id === 'video-wrap') {
+        document.querySelector('.main-container').style.display = 'none';
+      } else {
+        win.style.display = 'none';
+      }
+      win.classList.remove('maximized');
+    }
+    function minWindow(btn) {
+      const win = btn.closest('.window');
+      if (win.id === 'video-wrap') {
+        document.querySelector('.main-container').style.display = 'none';
+      } else {
+        win.style.display = 'none';
+      }
+      win.classList.remove('maximized');
+    }
+    function maxWindow(btn) {
+      const win = btn.closest('.window');
+      win.classList.toggle('maximized');
+    }
+
+    // Dock App Launcher: send silent IM message to activate skill
+    let _toastTimer = null;
+    function showDockToast(text) {
+      const toast = document.getElementById('dock-toast');
+      toast.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(_toastTimer);
+      _toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    let _skillLaunchCooldown = false;
+    async function launchSkillApp(skillName, displayName) {
+      if (_skillLaunchCooldown) {
+        addLog('Skill launch: cooldown, skip duplicate click', 'inf');
+        return;
+      }
+      _skillLaunchCooldown = true;
+      setTimeout(() => { _skillLaunchCooldown = false; }, 5000);
+
+      showDockToast('正在准备 ' + displayName + ' 应用...');
+      _emitTaskPreview('收到指令：安装' + skillName);
+      if (!imChat || !imReady) {
+        addLog('IM not ready, cannot launch ' + skillName, 'err');
+        return;
+      }
+      try {
+        const msg = imChat.createTextMessage({
+          to: IM_BOT_USERID,
+          conversationType: TencentCloudChat.TYPES.CONV_C2C,
+          payload: { text: '安装' + skillName },
+        });
+        await imChat.sendMessage(msg);
+        addLog('Skill launch: sent "安装' + skillName + '" → ' + IM_BOT_USERID, 'ok');
+      } catch (e) {
+        addLog('Skill launch failed: ' + (e.message || e), 'err');
+      }
+    }
+
+    // Show main live window (from Dock Connect icon)
+    function showMainWindow() {
+      const mc = document.querySelector('.main-container');
+      mc.style.display = 'flex';
+      const vw = document.getElementById('video-wrap');
+      vw.classList.remove('maximized');
+      // Auto join if not connected
+      if (!trtc) joinLive();
+    }
+
+    // Toggle window visibility (for log-window etc.)
+    function toggleWindow(winId) {
+      const win = document.getElementById(winId);
+      if (!win) return;
+      if (win.style.display === 'none') {
+        win.style.display = 'flex';
+      } else {
+        win.style.display = 'none';
+      }
+    }
+
+    // Draggable Windows
+    function makeDraggable(windowEl, headerEl) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      headerEl.onmousedown = dragMouseDown;
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        windowEl.style.top = (windowEl.offsetTop - pos2) + "px";
+        windowEl.style.left = (windowEl.offsetLeft - pos1) + "px";
+        windowEl.style.right = 'auto'; 
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+
+    // Mac Menu Logic
+    function toggleMenu(menuId, event) {
+      event.stopPropagation();
+      const menu = document.getElementById(menuId);
+      const isShowing = menu.classList.contains('show');
+      closeMenus();
+      if (!isShowing) {
+        menu.classList.add('show');
+      }
+    }
+
+    function closeMenus() {
+      document.querySelectorAll('.mac-dropdown').forEach(m => m.classList.remove('show'));
+    }
+
+    document.addEventListener('click', closeMenus);
+
+    // Custom Confirm Popup Logic
+    let pendingConfirmAction = null;
+
+    function showConfirmPopup(title, msg, action) {
+      document.getElementById('confirm-title').textContent = title;
+      document.getElementById('confirm-msg').textContent = msg;
+      pendingConfirmAction = action;
+      document.getElementById('confirm-popup').style.display = 'flex';
+    }
+
+    function hideConfirmPopup() {
+      document.getElementById('confirm-popup').style.display = 'none';
+      pendingConfirmAction = null;
+    }
+
+    document.getElementById('confirm-btn').addEventListener('click', () => {
+      if (pendingConfirmAction) pendingConfirmAction();
+      hideConfirmPopup();
+    });
+
+    function closePageAction() {
+      closeMenus();
+      showConfirmPopup('Close Page', 'Are you sure you want to close this page?', () => {
+        window.close(); // Only works if the script opened the window, otherwise browser blocks it.
+        // Fallback: Clear body content and show a message
+        document.body.innerHTML = '<div style="display:flex;height:100vh;width:100vw;align-items:center;justify-content:center;color:#fff;background:#000;font-size:24px;">页面已关闭，您可以安全离开。</div>';
+      });
+    }
+
+    function fillAction(text) {
+      const input = document.getElementById('chat-input');
+      if (!input.disabled) {
+        input.value = text;
+        updateCharCount();
+      }
+    }
+
+    // 预上报 task 事件到 Dashboard（不等 Agent，瞬间响应）
+    function _emitTaskPreview(text, kind = 'task') {
+      fetch('/api/emit-task', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, kind }),
+      }).catch(() => {}); // fire-and-forget
+    }
+
+    // 静默发送 IM 消息（语音识别自动发送用，不更新输入框，但有发送动画）
+    async function _sendSilent(message) {
+      if (!message || !imChat || !imReady || chatCooldown) return;
+      playSendAnimation(message);
+      _emitTaskPreview('收到指令：' + message);
+      try {
+        const msg = imChat.createTextMessage({
+          to: IM_BOT_USERID,
+          conversationType: TencentCloudChat.TYPES.CONV_C2C,
+          payload: { text: message },
+        });
+        await imChat.sendMessage(msg);
+        addLog('Voice msg sent → ' + IM_BOT_USERID + ': ' + message, 'ok');
+      } catch (e) {
+        addLog('Voice send error: ' + (e.message || e), 'err');
+      }
+      startCooldown();
+    }
+
+    // 静默激活 IM 通道：每个用户登录后通过 IM SDK 直接发"启动直播"给 timbot
+    // 不上报 Dashboard、不触发 TTS，纯通道激活
+    async function _triggerStartLive() {
+      if (!imChat || !imReady) return;
+      try {
+        const msg = imChat.createTextMessage({
+          to: IM_BOT_USERID,
+          conversationType: TencentCloudChat.TYPES.CONV_C2C,
+          payload: { text: '启动直播' },
+        });
+        await imChat.sendMessage(msg);
+        addLog('Channel activate: 启动直播 → ' + IM_BOT_USERID, 'inf');
+      } catch(e) {
+        addLog('Channel activate failed: ' + (e.message || e), 'err');
+      }
+    }
+
+    function addLog(msg, cls = '') {
+      const el = document.getElementById('log');
+      const ts = new Date().toLocaleTimeString();
+      const div = document.createElement('div');
+      if (cls) div.className = cls;
+      div.textContent = `[${ts}] ${msg}`;
+      el.appendChild(div);
+      el.scrollTop = el.scrollHeight;
+      while (el.children.length > 100) el.removeChild(el.firstChild);
+    }
+
+    function setStatus(text, isLive = false) {
+      const st = document.getElementById('info-state');
+      st.textContent = text.toUpperCase();
+      st.className = isLive ? 'live' : '';
+    }
+
+    async function toggleMute() {
+      muted = !muted;
+      
+      // 纯本地静音：直接操作页面中所有 audio/video 元素的 muted 属性
+      _syncAudioMuted(muted);
+      
+      const img = document.getElementById('speaker-img');
+      if (img) {
+        img.src = muted ? 'assets/icons/speaker-off.png' : 'assets/icons/speaker-on.png';
+      }
+      addLog('Speaker: ' + (muted ? 'MUTED' : 'UNMUTED'), 'inf');
+    }
+
+    function _syncAudioMuted(isMuted) {
+      // TRTC SDK 播放远端音频时会在页面中创建 <audio> 元素
+      // 直接设置所有 audio 元素的 muted 属性实现本地静音
+      document.querySelectorAll('audio').forEach(a => { a.muted = isMuted; });
+      // 同时检查 video 元素（某些场景音频混在 video 中）
+      document.querySelectorAll('video').forEach(v => { v.muted = isMuted; });
+    }
+
+    async function joinLive() {
+      const icon = document.getElementById('icon-connect');
+      icon.style.pointerEvents = 'none';
+      icon.style.opacity = '0.5';
+      setStatus('CONNECTING...');
+
+      try {
+        trtc = TRTC.create();
+
+        trtc.on(TRTC.EVENT.REMOTE_VIDEO_AVAILABLE, async ({ userId, streamType }) => {
+          addLog(`视频流: ${userId} [${streamType}]`, 'inf');
+
+          if (userId === HOST_USER_ID) {
+            // 主播的摄像头画面 → 右上角 PiP 小窗（非主播订阅）
+            if (!_isHost()) {
+              const hostCam = document.getElementById('host-cam');
+              await trtc.startRemoteVideo({ userId, streamType, view: hostCam, option: { fillMode: 'cover' } });
+              hostCam.style.display = 'block';
+              addLog(`主播摄像头: ${userId}`, 'ok');
+            }
+          } else {
+            // Dashboard 推流画面 → 主视频区
+            streamerUserId = userId;
+            const view = document.getElementById('remote-video');
+            await trtc.startRemoteVideo({ userId, streamType, view, option: { fillMode: 'contain' } });
+            document.getElementById('placeholder').style.display = 'none';
+            if (_avatarSupported) document.getElementById('avatar-container').style.display = 'flex';
+            setStatus('LIVE', true);
+            addLog(`播放: ${userId}`, 'ok');
+          }
+        });
+
+        trtc.on(TRTC.EVENT.REMOTE_AUDIO_AVAILABLE, async ({ userId }) => {
+          addLog(`音频流: ${userId}`, 'inf');
+          // 识别音乐 StreamIngest 机器人
+          if (userId.startsWith('ingest-bot-')) {
+            ingestBotUserId = userId;
+            addLog(`音乐推流机器人: ${userId}`, 'ok');
+            // 如果当前 TTS 正在播报，立刻 duck 音乐音量
+            if (_musicDucked && typeof trtc.setRemoteAudioVolume === 'function') {
+              try { await trtc.setRemoteAudioVolume(userId, _MUSIC_VOL_DUCKED); } catch(e) {}
+            }
+          }
+          // 确保刚接入的音频流能同步当前的静音状态（纯本地 DOM 控制）
+          if (muted) {
+            setTimeout(() => _syncAudioMuted(true), 100);
+          }
+        });
+
+        trtc.on(TRTC.EVENT.REMOTE_VIDEO_UNAVAILABLE, ({ userId }) => {
+          if (userId === HOST_USER_ID) {
+            document.getElementById('host-cam').style.display = 'none';
+            addLog(`主播摄像头断开: ${userId}`, 'inf');
+          } else {
+            addLog(`视频断开: ${userId}`, 'err');
+            document.getElementById('placeholder').style.display = 'flex';
+            document.getElementById('avatar-container').style.display = 'none';
+            setStatus('WAITING');
+          }
+        });
+
+        trtc.on(TRTC.EVENT.KICKED_OUT, ({ reason }) => {
+          addLog(`被移出: ${reason}`, 'err');
+          setStatus('ERROR');
+          cleanup();
+        });
+
+        trtc.on(TRTC.EVENT.CONNECTION_STATE_CHANGED, ({ prevState, state }) => {
+          addLog(`连接: ${prevState} → ${state}`, 'inf');
+          if (state === 'DISCONNECTED') {
+            setStatus('OFFLINE');
+            cleanup();
+          }
+        });
+
+        trtc.on(TRTC.EVENT.ERROR, err => {
+          addLog('ERR: ' + (err.message || err), 'err');
+        });
+
+        // 主播以 ANCHOR 角色进房，其他人以 AUDIENCE 角色进房
+        const role = _isHost() ? TRTC.TYPE.ROLE_ANCHOR : TRTC.TYPE.ROLE_AUDIENCE;
+        addLog(`加入 ${STR_ROOM_ID}... (role=${_isHost() ? 'ANCHOR' : 'AUDIENCE'})`);
+        await trtc.enterRoom({
+          sdkAppId:  SDK_APP_ID,
+          userId:    USER_ID,
+          userSig:   USER_SIG,
+          strRoomId: STR_ROOM_ID,
+          scene:     TRTC.TYPE.SCENE_LIVE,
+          role:      role,
+        });
+
+        addLog('已进房，等待视频...', 'ok');
+        setStatus('WAITING');
+
+        // 主播：发布本地音视频 + 本地预览
+        if (_isHost()) {
+          try {
+            // 本地摄像头预览到右上角小窗
+            const hostCam = document.getElementById('host-cam');
+            await trtc.startLocalVideo({ view: hostCam, option: {
+              profile: '240p',
+              fillMode: 'cover',
+            }});
+            hostCam.style.display = 'block';
+            addLog('主播: 本地摄像头已发布 (240p)', 'ok');
+
+            await trtc.startLocalAudio();
+            addLog('主播: 本地麦克风已发布', 'ok');
+          } catch (e) {
+            addLog('主播: 发布本地流失败 - ' + (e.message || e), 'err');
+          }
+        }
+
+      } catch (e) {
+        addLog('失败: ' + (e.message || JSON.stringify(e)), 'err');
+        setStatus('ERROR');
+        cleanup();
+        console.error(e);
+      }
+    }
+
+    function cleanup() {
+      const icon = document.getElementById('icon-connect');
+      icon.style.pointerEvents = 'auto';
+      icon.style.opacity = '1';
+      document.getElementById('placeholder').style.display = 'flex';
+      document.getElementById('avatar-container').style.display = 'none';
+      document.getElementById('host-cam').style.display = 'none';
+      muted = false;
+      streamerUserId = null; // 重置推流者 userId
+      const img = document.getElementById('speaker-img');
+      if (img) img.src = 'assets/icons/speaker-on.png';
+    }
+
+    async function leaveLive() {
+      try {
+        if (trtc) {
+          // 主播：先停止本地流
+          if (_isHost()) {
+            try { await trtc.stopLocalVideo(); } catch(e) {}
+            try { await trtc.stopLocalAudio(); } catch(e) {}
+          }
+          await trtc.exitRoom();
+          trtc.destroy();
+          trtc = null;
+        }
+        addLog('已离开', 'ok');
+        setStatus('OFFLINE');
+      } catch (e) {
+        addLog('离开失败: ' + e.message, 'err');
+      }
+      cleanup();
+    }
+
+    // 语音输入 Web Speech API
+    let recognition = null;
+    let isRecording = false;
+    let _voiceFinalText = '';  // 语音识别的最终结果（松开后自动发送）
+
+    // 初始化语音识别
+    function initSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        document.getElementById('btn-voice').style.display = 'none'; // 不支持则隐藏
+        return;
+      }
+      
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;  // 按住只识别一段
+      recognition.interimResults = true; // 返回中间结果
+      recognition.lang = 'zh-CN';      // 中文
+
+      recognition.onstart = function() {};
+
+      recognition.onresult = function(event) {
+        let finalTranscript = '';
+        let interimTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+
+        const input = document.getElementById('chat-input');
+
+        if (finalTranscript) {
+          _voiceFinalText = finalTranscript;
+          input.value = finalTranscript;
+          updateCharCount();
+        } else if (interimTranscript) {
+          input.value = interimTranscript;
+        }
+      };
+
+      recognition.onerror = function(event) {
+        console.error("Speech recognition error:", event.error);
+        if (event.error === 'not-allowed') {
+          addDanmaku('System', '请在浏览器设置中允许使用麦克风。', true);
+        }
+        _voiceFinalText = '';
+        stopVoice();
+      };
+
+      recognition.onend = function() {
+        const textToSend = _voiceFinalText;
+        _voiceFinalText = '';
+        stopVoice(true);
+        if (textToSend && imChat && imReady && !chatCooldown) {
+          // 静默发送：不更新输入框，直接后台发 IM
+          _sendSilent(textToSend);
+        }
+      };
+    }
+
+    function startVoice(e) {
+      if (e) e.preventDefault();
+      const btn = document.getElementById('btn-voice');
+      if (typeof chatCooldown !== 'undefined' && chatCooldown) return;
+      if (!recognition || btn.disabled || isRecording) return;
+      
+      try {
+        _voiceFinalText = '';
+        isRecording = true;
+        btn.classList.add('recording');
+        document.getElementById('chat-input').placeholder = '正在聆听 (松开发送)...';
+        recognition.start();
+      } catch (err) {
+        console.warn("Recognition already started or error", err);
+      }
+    }
+
+    function stopVoice(eOrFromOnEnd) {
+      const fromOnEnd = (eOrFromOnEnd === true);
+      if (eOrFromOnEnd && typeof eOrFromOnEnd.preventDefault === 'function') {
+         eOrFromOnEnd.preventDefault();
+      }
+      
+      if (!isRecording) return;
+      
+      if (!fromOnEnd && recognition) {
+        try { recognition.stop(); } catch(err){}
+      }
+      
+      isRecording = false;
+      const btn = document.getElementById('btn-voice');
+      btn.classList.remove('recording');
+      document.getElementById('chat-input').placeholder = "Agent awaits your response...";
+    }
+
+    // Chat Interaction via IM SDK (v10: timbot channel)
+    const CHAT_COOLDOWN_SEC = 5;
+    const CHAT_MAX_LEN = 200;
+    let chatCooldown = false;
+    let chatCooldownTimer = null;
+    let currentUser = null;
+
+    function showLoginPopup() {
+      document.getElementById('login-popup').style.display = 'flex';
+    }
+
+    function hideLoginPopup() {
+      document.getElementById('login-popup').style.display = 'none';
+    }
+
+    function handleUserClick() {
+      if (imReady) {
+        showConfirmPopup('Log Out', 'Are you sure you want to log out?', () => {
+          doLogout();
+        });
+      } else {
+        showLoginPopup();
+      }
+    }
+
+    async function doLogout() {
+      if (imChat) {
+        try { await imChat.logout(); } catch(e){}
+      }
+      imReady = false;
+      currentUser = null;
+      document.getElementById('header-user-text').textContent = 'Login';
+      document.getElementById('chat-input').disabled = true;
+      document.getElementById('btn-send').disabled = true;
+      const danmakuInput = document.getElementById('danmaku-input');
+      if(danmakuInput) danmakuInput.disabled = true;
+      const btnDanmakuSend = document.getElementById('btn-danmaku-send');
+      if(btnDanmakuSend) btnDanmakuSend.disabled = true;
+      const voiceBtn = document.getElementById('btn-voice');
+      if (voiceBtn) voiceBtn.disabled = true;
+      addLog('Logged out from IM', 'inf');
+    }
+
+    async function doLogin() {
+      const input = document.getElementById('login-userid');
+      const userId = input.value.trim();
+      if (!userId) {
+        alert('Please enter a User ID');
+        return;
+      }
+
+      const btn = document.querySelector('#login-popup button');
+      btn.textContent = 'Logging in...';
+      btn.disabled = true;
+
+      // 如果用户修改了 userId，重新获取对应的 userSig
+      if (userId !== USER_ID) {
+        try {
+          addLog('API → /api/gen-usersig?userid=' + userId + ' (re-sign)', 'inf');
+          const resp = await fetch('/api/gen-usersig?userid=' + encodeURIComponent(userId));
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.usersig) {
+              USER_ID = data.userid;
+              USER_SIG = data.usersig;
+              IM_USERID = data.userid;
+              IM_USERSIG = data.usersig;
+              addLog('API ← gen-usersig re-sign OK: user=' + userId, 'ok');
+            }
+          } else {
+            addLog('API ← gen-usersig re-sign FAIL: HTTP ' + resp.status, 'err');
+          }
+        } catch(e) {
+          addLog('API ← gen-usersig re-sign ERROR: ' + (e.message || e), 'err');
+        }
+      }
+
+      try {
+        if (!window.TencentCloudChat) throw new Error('IM SDK not loaded');
+
+        imChat = TencentCloudChat.create({ SDKAppID: Number(SDK_APP_ID) });
+        imChat.setLogLevel(1);
+
+        imChat.on(TencentCloudChat.EVENT.SDK_READY, async () => {
+          imReady = true;
+          currentUser = userId;
+          document.getElementById('chat-input').disabled = false;
+          document.getElementById('btn-send').disabled = false;
+          document.getElementById('danmaku-input').disabled = false;
+          document.getElementById('btn-danmaku-send').disabled = false;
+          const voiceBtn = document.getElementById('btn-voice');
+          if (voiceBtn) voiceBtn.disabled = false;
+          
+          initSpeechRecognition();
+          addLog('IM SDK ready', 'ok');
+
+          // 自动开始直播
+          if (!trtc) joinLive();
+
+          // 静默发送"启动直播"给 Agent（确保 Agent 进入直播模式，后续消息才有响应）
+          _triggerStartLive();
+
+          // Update header
+          const userText = document.getElementById('header-user-text');
+          if (userText) userText.textContent = userId;
+          hideLoginPopup();
+
+          // Join IM Group (群已由服务端预创建，观众只需加入)
+          try {
+            await imChat.joinGroup({ groupID: STR_ROOM_ID, type: TencentCloudChat.TYPES.GRP_AVCHATROOM });
+            _localSelfJoined = true;
+            addLog('Joined IM group: ' + STR_ROOM_ID, 'ok');
+            addDanmaku('System', 'Joined live group chat.', true);
+            _pollOnlineCount(); // 立即刷新在线人数
+            // 上报欢迎事件到 Dashboard（TTS 会播报）
+            _emitTaskPreview('欢迎 ' + userId + ' 进入直播间', 'info');
+          } catch (e) {
+            if (e.code === 10013) {
+              _localSelfJoined = true;
+              addLog('Already in IM group', 'ok');
+              addDanmaku('System', 'Reconnected to live group chat.', true);
+              _pollOnlineCount();
+            } else {
+              addLog('Failed to join group: ' + (e.message || e.code || e), 'err');
+              addDanmaku('System', 'Failed to join chat. Retrying...', true);
+              // 延迟重试一次
+              setTimeout(async () => {
+                try {
+                  await imChat.joinGroup({ groupID: STR_ROOM_ID, type: TencentCloudChat.TYPES.GRP_AVCHATROOM });
+                  addLog('Joined IM group (retry): ' + STR_ROOM_ID, 'ok');
+                  addDanmaku('System', 'Joined live group chat.', true);
+                } catch(e2) {
+                  addLog('Join group retry failed: ' + (e2.message || e2), 'err');
+                }
+              }, 3000);
+            }
+          }
+        });
+
+        imChat.on(TencentCloudChat.EVENT.MESSAGE_RECEIVED, (event) => {
+          event.data.forEach(msg => {
+            if (msg.conversationType === TencentCloudChat.TYPES.CONV_GROUP && msg.to === STR_ROOM_ID) {
+              if (msg.type === TencentCloudChat.TYPES.MSG_TEXT) {
+                addDanmaku(msg.from, msg.payload.text);
+              }
+            }
+          });
+        });
+
+        imChat.on(TencentCloudChat.EVENT.SDK_NOT_READY, () => {
+          imReady = false;
+          addLog('IM SDK not ready', 'err');
+        });
+
+        imChat.on(TencentCloudChat.EVENT.KICKED_OUT, () => {
+          imReady = false;
+          addDanmaku('System', 'Kicked out of IM.', true);
+        });
+
+        await imChat.login({ userID: userId, userSig: USER_SIG });
+        addLog('IM login success: ' + userId, 'ok');
+      } catch (e) {
+        alert('Login failed: ' + (e.message || JSON.stringify(e)));
+        addLog('IM login failed: ' + (e.message || e), 'err');
+      } finally {
+        btn.textContent = 'Login';
+        btn.disabled = false;
+      }
+    }
+
+    function addDanmaku(sender, text, isSystem = false) {
+      const area = document.getElementById('danmaku-area');
+      const div = document.createElement('div');
+      div.className = 'danmaku-msg';
+      if (isSystem) {
+        div.style.color = '#94a3b8';
+        div.style.fontStyle = 'italic';
+        div.textContent = text;
+      } else {
+        const span = document.createElement('span');
+        span.className = 'sender';
+        span.textContent = sender + ':';
+        div.appendChild(span);
+        div.appendChild(document.createTextNode(' ' + text));
+      }
+      area.appendChild(div);
+      area.scrollTop = area.scrollHeight;
+      while (area.children.length > 50) area.removeChild(area.firstChild);
+    }
+
+    function updateCharCount() {
+      const input = document.getElementById('chat-input');
+      const counter = document.getElementById('chat-char-count');
+      const len = input.value.length;
+      counter.textContent = `${len}/${CHAT_MAX_LEN}`;
+      counter.style.color = len > CHAT_MAX_LEN ? '#f87171' : (len > 160 ? '#facc15' : 'rgba(31, 41, 55, 0.6)');
+    }
+
+    function startCooldown() {
+      chatCooldown = true;
+      const btn = document.getElementById('btn-send');
+      let remaining = CHAT_COOLDOWN_SEC;
+      btn.innerHTML = `<span style="font-size:12px;font-weight:bold">${remaining}</span>`;
+      chatCooldownTimer = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          clearInterval(chatCooldownTimer);
+          chatCooldownTimer = null;
+          chatCooldown = false;
+          btn.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>`;
+          btn.disabled = false;
+        } else {
+          btn.innerHTML = `<span style="font-size:12px;font-weight:bold">${remaining}</span>`;
+        }
+      }, 1000);
+    }
+
+    function playSendAnimation(message) {
+      const input = document.getElementById('chat-input');
+      const video = document.getElementById('video-wrap');
+      if (!input || !video) return;
+
+      const inputRect = input.getBoundingClientRect();
+      const videoRect = video.getBoundingClientRect();
+
+      const bubble = document.createElement('div');
+      bubble.className = 'fly-bubble';
+      bubble.textContent = message.length > 20 ? message.substring(0, 20) + '...' : message;
+      
+      // 起点：输入框中心
+      const startX = inputRect.left + inputRect.width / 2;
+      const startY = inputRect.top + inputRect.height / 2;
+      // 终点：视频区域右侧偏中
+      const endX = videoRect.left + videoRect.width * 0.75;
+      const endY = videoRect.top + videoRect.height * 0.5;
+
+      // 贝塞尔曲线控制点（向上抛物线然后飞向右侧）
+      const ctrlX = startX + (endX - startX) * 0.3;
+      const ctrlY = Math.min(startY, endY) - 150; 
+
+      bubble.style.offsetPath = `path('M ${startX},${startY} Q ${ctrlX},${ctrlY} ${endX},${endY}')`;
+      document.body.appendChild(bubble);
+
+      const animation = bubble.animate([
+        // 起点：被横向拉伸压扁，出射速度快（ease-out）
+        { offsetDistance: '0%', transform: 'scale(1.2, 0.8)', opacity: 1, offset: 0, easing: 'ease-out' },
+        // 中段前部：恢复原状，飞行速度变慢（进入 linear 匀速较慢阶段）
+        { offsetDistance: '40%', transform: 'scale(1, 1)', opacity: 1, offset: 0.25, easing: 'linear' },
+        // 中段后部：准备加速
+        { offsetDistance: '60%', transform: 'scale(1, 1)', opacity: 1, offset: 0.75, easing: 'ease-in' },
+        // 终点：加速吸附（ease-in），沿着路径方向极度拉伸并且缩小直至消失（Genie effect）
+        { offsetDistance: '100%', transform: 'scale(1.5, 0.1)', opacity: 0, offset: 1 }
+      ], {
+        duration: 700,
+        fill: 'forwards'
+      });
+
+      animation.onfinish = () => bubble.remove();
+    }
+
+    async function sendChatMessage() {
+      const input = document.getElementById('chat-input');
+      const btn = document.getElementById('btn-send');
+      const message = input.value.trim();
+
+      if (!message) return;
+      if (message.length > CHAT_MAX_LEN) {
+        addDanmaku('System', `消息过长 (${message.length}/${CHAT_MAX_LEN})`, true);
+        return;
+      }
+      if (chatCooldown) return;
+      if (!imChat || !imReady) {
+        addDanmaku('System', 'IM 未就绪，请稍候', true);
+        return;
+      }
+
+      playSendAnimation(message);
+
+      btn.disabled = true;
+      input.disabled = true;
+      input.value = '';
+      updateCharCount();
+
+      // 预上报 task → Dashboard 瞬间响应（agent_bus 文件级去重会自动过滤 Agent 的重复 emit）
+      _emitTaskPreview('收到指令：' + message);
+
+      try {
+        const msg = imChat.createTextMessage({
+          to: IM_BOT_USERID,
+          conversationType: TencentCloudChat.TYPES.CONV_C2C,
+          payload: { text: message },
+        });
+        await imChat.sendMessage(msg);
+        addLog('IM msg sent → ' + IM_BOT_USERID, 'ok');
+      } catch (e) {
+        addDanmaku('System', '发送失败: ' + (e.message || e.code || e), true);
+        addLog('IM send error: ' + (e.message || e), 'err');
+      }
+
+      input.disabled = false;
+      input.focus();
+      startCooldown();
+    }
+
+    async function sendDanmakuMessage() {
+      const input = document.getElementById('danmaku-input');
+      const btn = document.getElementById('btn-danmaku-send');
+      const message = input.value.trim();
+
+      if (!message) return;
+      if (!imChat || !imReady) {
+        addDanmaku('System', 'IM 未就绪，请稍候', true);
+        return;
+      }
+
+      btn.disabled = true;
+      input.disabled = true;
+      addDanmaku(currentUser, message);
+      input.value = '';
+
+      try {
+        const msg = imChat.createTextMessage({
+          to: STR_ROOM_ID,
+          conversationType: TencentCloudChat.TYPES.CONV_GROUP,
+          payload: { text: message },
+        });
+        await imChat.sendMessage(msg);
+        addLog('Group msg sent: ' + message, 'ok');
+      } catch (e) {
+        addDanmaku('System', '发送失败: ' + (e.message || e.code || e), true);
+        addLog('Danmaku send error: ' + (e.message || e), 'err');
+      }
+
+      input.disabled = false;
+      btn.disabled = false;
+      input.focus();
+    }
+
+    // Bindings — cache DOM refs to avoid repeated getElementById
+    const _chatInput = document.getElementById('chat-input');
+    const _trayClock = document.getElementById('tray-clock');
+    _chatInput.addEventListener('input', updateCharCount);
+    _chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey && !chatCooldown) {
+        e.preventDefault();
+        sendChatMessage();
+      }
+    });
+    
+    const _danmakuInput = document.getElementById('danmaku-input');
+    if (_danmakuInput) {
+      _danmakuInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendDanmakuMessage();
+        }
+      });
+    }
+
+    // Clock: update every 30s (minute-level precision sufficient for taskbar)
+    function _updateClock() {
+      const now = new Date();
+      _trayClock.textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+    _updateClock();
+    setInterval(_updateClock, 30000);
+
+    // ── Online Members ──
+    let _memberPanelOpen = false;
+
+    function toggleMemberList() {
+      const panel = document.getElementById('member-panel');
+      _memberPanelOpen = !_memberPanelOpen;
+      panel.classList.toggle('open', _memberPanelOpen);
+      if (_memberPanelOpen) _fetchMembers();
+    }
+
+    async function _fetchMembers() {
+      try {
+        addLog('API → /api/online-members (panel)', 'inf');
+        const resp = await fetch('/api/online-members');
+        if (!resp.ok) { addLog('API ← online-members FAIL: HTTP ' + resp.status, 'err'); return; }
+        const data = await resp.json();
+        if (data.error) addLog('API ← online-members warn: ' + data.error, 'err');
+        else addLog('API ← online-members OK: count=' + (data.count || 0), 'ok');
+        document.getElementById('online-num').textContent = data.count || 0;
+        const list = document.getElementById('member-list');
+        list.innerHTML = '';
+        (data.members || []).forEach(m => {
+          const div = document.createElement('div');
+          div.className = 'member-item';
+          div.innerHTML = '<span class="dot"></span>' + (m.Member_Account || 'unknown');
+          list.appendChild(div);
+        });
+      } catch(e) { addLog('API ← online-members ERROR: ' + (e.message || e), 'err'); }
+    }
+
+    // 每 40 秒刷新在线人数（API 缓存粒度为 40 秒）
+    let _localSelfJoined = false; // 本地标记：自己是否已加入群
+
+    async function _pollOnlineCount() {
+      try {
+        const resp = await fetch('/api/online-members');
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.error) addLog('API ← online-members poll warn: ' + data.error, 'err');
+          let count = data.count || 0;
+          // 本地补偿：如果自己已加入但 API 缓存还没更新，至少显示 1
+          if (_localSelfJoined && count === 0) count = 1;
+          document.getElementById('online-num').textContent = count;
+          if (_memberPanelOpen) {
+            const list = document.getElementById('member-list');
+            list.innerHTML = '';
+            (data.members || []).forEach(m => {
+              const div = document.createElement('div');
+              div.className = 'member-item';
+              div.innerHTML = '<span class="dot"></span>' + (m.Member_Account || 'unknown');
+              list.appendChild(div);
+            });
+          }
+        }
+      } catch(e) {}
+    }
+    setInterval(_pollOnlineCount, 40000);
+    setTimeout(_pollOnlineCount, 3000);
+
+    // ── Avatar Video Source (Safari ↔ Chrome compatibility) ──
+    // Safari 不支持 VP9 Alpha WebM，需要 HEVC Alpha MOV
+    // 优先使用本地文件，本地不存在时回退到 GitHub raw URL
+    const _isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    let _avatarSupported = true;
+    const _AVATAR_GITHUB_BASE = 'https://raw.githubusercontent.com/jerryang-cool/LiveClaw/main/assets/avatar';
+
+    (function _initAvatarSources() {
+      const idleVideo = document.getElementById('avatar-idle');
+      const actionVideo = document.getElementById('avatar-action');
+
+      function _checkLocal(url, onSuccess, onFail) {
+        const req = new XMLHttpRequest();
+        req.open('HEAD', url, false);
+        try { req.send(); return req.status === 200; } catch(e) { return false; }
+      }
+
+      if (_isSafari) {
+        const localIdle = 'assets/avatar/idle_alpha.mov';
+        const localAction = 'assets/avatar/action_alpha.mov';
+        const remoteIdle = _AVATAR_GITHUB_BASE + '/idle_alpha.mov';
+        const remoteAction = _AVATAR_GITHUB_BASE + '/action_alpha.mov';
+
+        if (_checkLocal(localIdle)) {
+          idleVideo.src = localIdle;
+          actionVideo.src = localAction;
+          addLog('Avatar: Safari → local HEVC Alpha .mov', 'ok');
+        } else {
+          idleVideo.src = remoteIdle;
+          actionVideo.src = remoteAction;
+          addLog('Avatar: Safari → GitHub HEVC Alpha .mov (local not found)', 'ok');
+        }
+      } else {
+        const localIdle = 'assets/avatar/idle_alpha.webm';
+        const localAction = 'assets/avatar/action_alpha.webm';
+        const remoteIdle = _AVATAR_GITHUB_BASE + '/idle_alpha.webm';
+        const remoteAction = _AVATAR_GITHUB_BASE + '/action_alpha.webm';
+
+        if (_checkLocal(localIdle)) {
+          idleVideo.src = localIdle;
+          actionVideo.src = localAction;
+          addLog('Avatar: VP9 Alpha .webm (local)', 'ok');
+        } else {
+          idleVideo.src = remoteIdle;
+          actionVideo.src = remoteAction;
+          addLog('Avatar: VP9 Alpha .webm (GitHub fallback)', 'ok');
+        }
+      }
+    })();
+
+    // ── Avatar State Polling (VP9/HEVC alpha native transparency) ──
+    let _avatarState = 'idle';
+    let _lastTtsPlaying = false;
+    let _ttsOffSince = 0; // tts_playing 变为 false 的时间戳
+    const _AVATAR_OFF_DELAY = 500; // tts 停止后延迟 500ms 再切 idle（防抖）
+    const _avatarContainer = document.getElementById('avatar-container');
+    const _avatarAction = document.getElementById('avatar-action');
+
+    async function _pollAvatarState() {
+      try {
+        const resp = await fetch('/api/agent-state');
+        if (resp.ok) {
+          const data = await resp.json();
+          const now = Date.now();
+          const ttsPlaying = !!data.tts_playing;
+
+          if (ttsPlaying) {
+            // TTS 正在播放 → 立即切换到 action
+            _ttsOffSince = 0;
+            if (_avatarState !== 'action') {
+              _avatarState = 'action';
+              _avatarContainer.classList.add('talking');
+              _avatarAction.play().catch(() => {});
+              addLog('API ← agent-state: tts_playing=true → avatar ACTION', 'inf');
+            }
+            // Audio Ducking: TTS 播报时降低音乐音量
+            if (!_musicDucked && ingestBotUserId && trtc && typeof trtc.setRemoteAudioVolume === 'function') {
+              try {
+                await trtc.setRemoteAudioVolume(ingestBotUserId, _MUSIC_VOL_DUCKED);
+                _musicDucked = true;
+              } catch(e) {}
+            }
+          } else {
+            // TTS 停止 → 延迟一小段时间再切 idle（防止网络抖动导致闪烁）
+            if (_ttsOffSince === 0) _ttsOffSince = now;
+            if (now - _ttsOffSince >= _AVATAR_OFF_DELAY) {
+              if (_avatarState !== 'idle') {
+                _avatarState = 'idle';
+                _avatarContainer.classList.remove('talking');
+                _avatarAction.pause();
+                addLog('API ← agent-state: tts_playing=false → avatar IDLE', 'inf');
+              }
+              // Audio Ducking: TTS 停止后恢复音乐音量
+              if (_musicDucked && ingestBotUserId && trtc && typeof trtc.setRemoteAudioVolume === 'function') {
+                try {
+                  await trtc.setRemoteAudioVolume(ingestBotUserId, _MUSIC_VOL_NORMAL);
+                  _musicDucked = false;
+                } catch(e) {}
+              }
+            }
+          }
+        }
+      } catch(e) {}
+    }
+    setInterval(_pollAvatarState, 300);
+
+    // ── Song State Polling ──
+    const _musicPlayer = document.getElementById('music-player');
+    const _musicCover = document.getElementById('music-cover');
+    const _songName = document.getElementById('song-name');
+    const _artistName = document.getElementById('artist-name');
+    let _lastSongState = false;
+    let _lastSongName = '';
+    let _songPlayingSince = 0;  // 开始播放的时间戳
+    const _SONG_MAX_DURATION = 10 * 60 * 1000; // 10 分钟超时兜底
+
+    async function _pollSongState() {
+      try {
+        const resp = await fetch('/api/song-state');
+        if (resp.ok) {
+          const data = await resp.json();
+          let playing = !!data.playing;
+
+          // 超时兜底：如果 playing=true 超过 10 分钟，强制视为停止
+          if (playing && _songPlayingSince > 0 && (Date.now() - _songPlayingSince > _SONG_MAX_DURATION)) {
+            addLog('API ← song-state: force stop (exceeded 10min timeout)', 'inf');
+            playing = false;
+          }
+          if (playing) {
+            const newName = data.song_name || '未知歌曲';
+            const newArtist = data.artist_name || 'Agent Music Search';
+            _songName.textContent = newName;
+            _songName.title = newName;
+            _artistName.textContent = newArtist;
+            _artistName.title = newArtist;
+            
+            if (data.cover_url && data.cover_url !== _musicCover.src) {
+               _musicCover.src = data.cover_url;
+            }
+
+            if (!_lastSongState) {
+              _musicPlayer.classList.add('show', 'playing');
+              _lastSongState = true;
+              _lastSongName = newName;
+              _songPlayingSince = Date.now();  // 记录开始播放时间
+              addLog('API ← song-state: playing → "' + newName + '" - ' + newArtist, 'ok');
+            } else if (newName !== _lastSongName) {
+              // 切歌：歌名变了，刷新超时计时
+              _lastSongName = newName;
+              _songPlayingSince = Date.now();
+              addLog('API ← song-state: switched → "' + newName + '" - ' + newArtist, 'ok');
+            }
+          } else {
+            if (_lastSongState) {
+              _musicPlayer.classList.remove('show', 'playing');
+              _lastSongState = false;
+              _lastSongName = '';
+              _songPlayingSince = 0;  // 重置计时
+              addLog('API ← song-state: stopped (StreamIngest task ended)', 'inf');
+            }
+          }
+        }
+      } catch(e) {}
+    }
+    setInterval(_pollSongState, 1000);
+
+    // ── Stream Ingest Log Polling (TRTC 媒体流 API 日志) ──
+    let _lastStreamLogCount = 0;
+    async function _pollStreamLog() {
+      try {
+        const resp = await fetch('/api/stream-log');
+        if (resp.ok) {
+          const logs = await resp.json();
+          if (logs.length > _lastStreamLogCount) {
+            // 只显示新增的日志
+            for (let i = _lastStreamLogCount; i < logs.length; i++) {
+              const entry = logs[i];
+              const cls = entry.kind === 'error' ? 'err' : (entry.kind === 'stream' ? 'ok' : 'inf');
+              addLog('STREAM ' + entry.msg, cls);
+            }
+            _lastStreamLogCount = logs.length;
+          }
+        }
+      } catch(e) {}
+    }
+    setInterval(_pollStreamLog, 2000);
+
+    // Init: DOM is already parsed since script is at end of body
+    (async function _init() {
+      console.log('DOM ready — init');
+      try {
+        makeDraggable(document.getElementById('log-window'), document.querySelector('#log-window .window-header'));
+        // 先获取动态身份
+        await _fetchUserSig();
+        console.log('Login popup triggered');
+        setTimeout(showLoginPopup, 500);
+    // ── Assets Fallback: GitHub raw URL when local files missing ──
+    const _ASSETS_GITHUB_BASE = 'https://raw.githubusercontent.com/jerryang-cool/LiveClaw/main/';
+    document.querySelectorAll('img[src^="assets/"]').forEach(img => {
+      const originalSrc = img.getAttribute('src');
+      img.onerror = function() {
+        if (!this.dataset.fallback) {
+          this.dataset.fallback = '1';
+          this.src = _ASSETS_GITHUB_BASE + originalSrc;
+        }
+      };
+    });
+
+      } catch (e) {
+        console.error('Error in initialization:', e);
+      }
+    })();
+  </script>
+</body>
+</html>

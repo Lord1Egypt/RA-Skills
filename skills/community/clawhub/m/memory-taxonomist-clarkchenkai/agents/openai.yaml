@@ -1,0 +1,7 @@
+interface:
+  display_name: "Memory Taxonomist"
+  short_description: "Turn raw notes into typed, retrievable memory."
+  default_prompt: "Use $memory-taxonomist to classify this information into facts, preferences, procedures, unresolved questions, and exceptions before storing it."
+
+policy:
+  allow_implicit_invocation: true

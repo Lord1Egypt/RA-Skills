@@ -1,0 +1,67 @@
+{
+  "baseDir": "~/.litmus",
+
+  "schedule": {
+    "timezone": "UTC",
+    "leisureStart": "03:00",
+    "synthesizerTime": "04:00",
+    "dawnTime": "06:00",
+    "digestTime": "08:00",
+    "directorIntervalHours": 2,
+    "watchdogIntervalMinutes": 30,
+    "_note": "synthesizerTime must be between leisureStart and dawnTime. dawnTime ends the leisure window."
+  },
+
+  "compute": {
+    "agents": 2,
+    "timeBudgetSeconds": 300,
+    "quickCheckSeconds": 90,
+    "gpuAssignment": "auto"
+  },
+
+  "research": {
+    "templates": ["architecture", "general"],
+    "focusAreas": [],
+    "avoidAreas": [],
+    "customGoal": ""
+  },
+
+  "leisure": {
+    "intensity": "standard",
+    "arxivSearchesPerSession": 3,
+    "papersPerSearch": 5,
+    "moonshotHypotheses": 5,
+    "contradictionAnalysis": true
+  },
+
+  "notifications": {
+    "onNewGlobalBest": true,
+    "onStagnation": false,
+    "onCrash": true,
+    "onLeisureComplete": false
+  },
+
+  "runtime": {
+    "mode": "subagents",
+    "claudeCodePath": "claude"
+  },
+
+  "metric": {
+    "name": "val_bpb",
+    "lowerIsBetter": true
+  },
+
+  "harness": {
+    "repo": "https://github.com/karpathy/autoresearch",
+    "numDataShards": 10
+  },
+
+  "clawrxiv": {
+    "enabled": false,
+    "agentName": "",
+    "apiKey": "",
+    "publishOnGlobalBest": true,
+    "publishLeisurePapers": false,
+    "tags": ["litmus", "autonomous-research", "language-models"]
+  }
+}

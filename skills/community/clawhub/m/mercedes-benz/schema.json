@@ -1,0 +1,90 @@
+[
+  {
+    "name": "get_mbusa_dealers",
+    "description": "Searches for official Mercedes-Benz USA (MBUSA) dealerships based on a provided US zip code. Returns dealer info and a Google Maps URL. ALWAYS format the Google Maps URL as a Markdown link (e.g., [Get Directions](url)) so the user can easily open it in their maps app.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "zip_code": {
+          "type": "string",
+          "description": "The 5-digit United States zip code."
+        },
+        "start": { "type": "integer", "default": 0 },
+        "count": { "type": "integer", "default": 10 }
+      },
+      "required": ["zip_code"]
+    }
+  },
+  {
+    "name": "get_mbusa_inventory",
+    "description": "Searches for NEW Mercedes-Benz vehicle inventory near a specific zip code. Returns vehicle details including image URLs, dealer links, and Google Maps directions. ALWAYS format the output with Markdown links.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "zip": { "type": "string", "description": "The 5-digit US zip code. Required." },
+            "dealerId": { "type": "string", "description": "5-digit dealer code if known." },
+            "distance": { "type": "integer", "enum": [10, 25, 50, 100, 200, 500, 1000] },
+            "minPrice": { "type": "integer" },
+            "maxPrice": { "type": "integer" },
+            "bodyStyle": { "type": "string", "enum": ["CABRDS", "CPE", "SDN", "SUV", "WGN"] },
+            "brand": { "type": "string", "enum": ["AMG", "MAYBACH"] },
+            "classId": { "type": "string", "enum": ["C", "CLA", "CLE", "E", "EQB", "EQE", "EQS", "G", "GLA", "GLB", "GLC", "GLE", "GLS", "AMGGT"] },
+            "model": { 
+              "type": "string", 
+              "enum": ["E53EW4", "C43W4", "GLA250W4", "S580V4", "C63W4SE", "CLA35C4", "CLA45C4S", "CLE53A4", "CLE53C4", "AMGEQEV4", "E53ES4", "AMGEQEX4", "AMGEQSV4", "G63W4", "GLA35W4", "GLB35W4", "GLC43C4", "GLC43W4", "GLC63C4E", "GLC63W4E", "GLE53W4", "GLE53C4", "GLE63W4S", "GLE63C4S", "GLS63W4", "GT43C4", "AMGGT43", "GT53C4", "AMGGT55", "GT63C4", "AMGGT63", "AMGGT63X", "GT63C4SE", "AMGGT63E", "S63EV4", "SL43R", "SL55R4", "SL63R4", "SL63ER4", "C300W4", "C300W", "CLA250C4", "CLA250C", "CLA350E4", "CLE300A4", "CLE300C4", "CLE450A4", "E350W4", "CLE450C4", "E350W", "E450S4", "E450W4", "EQB250W", "EQB300W4", "EQB350W4", "EQE350V4", "EQE350X4", "EQE350V", "EQE350X", "EQE500V4", "EQE500X4", "EQS450V4", "EQS450V", "EQS450X", "EQS580V4", "G550W4", "G580W4E", "GLA250W", "GLB250W4", "GLB250W", "GLC300C4", "GLC300W4", "GLC300W", "GLC350E4", "GLE350W4", "GLE350W", "GLE450C4", "GLE450W4", "GLE450E4", "GLE580W4", "GLS450W4", "GLS580W4", "EQS680Z4", "GLS600Z4", "S580Z4", "S680Z4", "SL680Z4", "S500V4", "S580EV4"] 
+            },
+            "exteriorColor": { "type": "string", "enum": ["BLK", "BLU", "BWN", "GRN", "GRY", "RED", "SLV", "WHT", "YLW", "OTR"] },
+            "interiorColor": { "type": "string", "enum": ["BGE", "BLK", "BWN", "GRY", "RED", "OTR"] },
+            "year": { "type": "integer", "enum": [2024, 2025, 2026] },
+            "highwayFuelEconomy": { "type": "string", "enum": ["0_19", "20_30", "30_40", "40_1000000"] },
+            "passengerCapacity": { "type": "integer", "enum": [2, 4, 5, 7] },
+            "fuelType": { "type": "string", "enum": ["E", "G", "PH", "PPH"] },
+            "start": { "type": "integer", "default": 0 },
+            "count": { "type": "integer", "default": 12 }
+          },
+          "required": ["zip"]
+        }
+      }
+    }
+  },
+  {
+    "name": "get_mbusa_used_inventory",
+    "description": "Searches for CERTIFIED PRE-OWNED (CPO) and USED Mercedes-Benz vehicle inventory near a specific zip code. Returns vehicle details including image URLs, dealer links, and Google Maps directions. ALWAYS format the output with Markdown links.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "type": "object",
+          "properties": {
+            "zip": { "type": "string", "description": "The 5-digit US zip code. Required." },
+            "invType": { "type": "string", "enum": ["cpo", "pre"], "description": "Required. Use 'cpo' for Certified Pre-Owned, 'pre' for standard used." },
+            "dealerId": { "type": "string", "description": "5-digit dealer code if known." },
+            "distance": { "type": "integer", "enum": [10, 25, 50, 100, 200, 500, 1000] },
+            "minPrice": { "type": "integer" },
+            "maxPrice": { "type": "integer" },
+            "mileage": { "type": "string", "enum": ["0_5000", "5000_10000", "10000_50000", "50000_100000", "100000_200000"] },
+            "bodyStyle": { "type": "string", "enum": ["CABRDS", "CPE", "SDN", "SUV", "WGN"] },
+            "brand": { "type": "string", "enum": ["AMG", "MAYBACH"] },
+            "classId": { "type": "string", "enum": ["A", "C", "CLA", "CLE", "CLK", "E", "EQB", "EQE", "EQS", "G", "GL", "GLA", "GLB", "GLC", "GLE", "GLK", "GLS", "M", "AMGGT", "S", "SL", "SLC", "SLK"] },
+            "model": { 
+              "type": "string", 
+              "enum": ["E53EW4", "C43W4", "GLA250W4", "S580V4", "C63W4SE", "CLA35C4", "CLA45C4S", "CLE53A4", "CLE53C4", "AMGEQEV4", "E53ES4", "AMGEQEX4", "AMGEQSV4", "G63W4", "GLA35W4", "GLB35W4", "GLC43C4", "GLC43W4", "GLC63C4E", "GLC63W4E", "GLE53W4", "GLE53C4", "GLE63W4S", "GLE63C4S", "GLS63W4", "GT43C4", "AMGGT43", "GT53C4", "AMGGT55", "GT63C4", "AMGGT63", "AMGGT63X", "GT63C4SE", "AMGGT63E", "S63EV4", "SL43R", "SL55R4", "SL63R4", "SL63ER4", "C300W4", "C300W", "CLA250C4", "CLA250C", "CLA350E4", "CLE300A4", "CLE300C4", "CLE450A4", "E350W4", "CLE450C4", "E350W", "E450S4", "E450W4", "EQB250W", "EQB300W4", "EQB350W4", "EQE350V4", "EQE350X4", "EQE350V", "EQE350X", "EQE500V4", "EQE500X4", "EQS450V4", "EQS450V", "EQS450X", "EQS580V4", "G550W4", "G580W4E", "GLA250W", "GLB250W4", "GLB250W", "GLC300C4", "GLC300W4", "GLC300W", "GLC350E4", "GLE350W4", "GLE350W", "GLE450C4", "GLE450W4", "GLE450E4", "GLE580W4", "GLS450W4", "GLS580W4", "EQS680Z4", "GLS600Z4", "S580Z4", "S680Z4", "SL680Z4", "S500V4", "S580EV4"] 
+            },
+            "exteriorColor": { "type": "string", "enum": ["BLK", "BLU", "BWN", "GRN", "GRY", "RED", "SLV", "WHT", "YLW", "OTR"] },
+            "interiorColor": { "type": "string", "enum": ["BGE", "BLK", "BWN", "GRY", "RED", "OTR"] },
+            "year": { "type": "integer", "enum": [2020, 2021, 2022, 2023, 2024, 2025, 2026] },
+            "highwayFuelEconomy": { "type": "string", "enum": ["0_19", "20_30", "30_40", "40_1000000"] },
+            "passengerCapacity": { "type": "integer", "enum": [2, 4, 5, 7] },
+            "fuelType": { "type": "string", "enum": ["E", "G", "PH", "PPH"] },
+            "start": { "type": "integer", "default": 0 },
+            "count": { "type": "integer", "default": 12 }
+          },
+          "required": ["zip", "invType"]
+        }
+      }
+    }
+  }
+]

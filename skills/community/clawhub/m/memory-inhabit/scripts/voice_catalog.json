@@ -1,0 +1,104 @@
+{
+  "minimax": {
+    "zh-CN": {
+      "male": {
+        "male-qn-qingse":        {"id": "male-qn-qingse",        "name": "青涩青年",      "desc": "青春稚嫩，适合年轻害羞型角色"},
+        "male-qn-jingying":      {"id": "male-qn-jingying",      "name": "精英青年",      "desc": "成熟干练，适合职场精英型角色"},
+        "male-qn-badao":         {"id": "male-qn-badao",         "name": "霸道青年",      "desc": "强势霸道，适合腹黑控制型角色"},
+        "male-qn-daxuesheng":    {"id": "male-qn-daxuesheng",    "name": "青年大学生",    "desc": "青春洋溢，适合学生型角色"},
+        "bingjiao_didi":         {"id": "bingjiao_didi",         "name": "病娇弟弟",      "desc": "病态执念，适合偏执型角色"},
+        "junlang_nanyou":         {"id": "junlang_nanyou",         "name": "俊朗男友",      "desc": "帅气温柔，适合偶像系角色"},
+        "chunzhen_xuedi":         {"id": "chunzhen_xuedi",         "name": "纯真学弟",      "desc": "纯真可爱，适合阳光少年"},
+        "lengdan_xiongzhang":     {"id": "lengdan_xiongzhang",     "name": "冷淡学长",      "desc": "高冷疏离，适合高冷学长"},
+        "badao_shaoye":           {"id": "badao_shaoye",           "name": "霸道少爷",      "desc": "傲娇少爷，适合贵族公子"},
+        "Chinese (Mandarin)_Unrestrained_Young_Man": {"id": "Chinese (Mandarin)_Unrestrained_Young_Man", "name": "不羁青年",  "desc": "潇洒冷酷但温柔，适合霸道腹黑型角色"},
+        "Chinese (Mandarin)_Gentleman":              {"id": "Chinese (Mandarin)_Gentleman",              "name": "温润男声",  "desc": "磁性柔和，适合温柔体贴型角色"},
+        "Chinese (Mandarin)_Lyrical_Voice":          {"id": "Chinese (Mandarin)_Lyrical_Voice",          "name": "抒情男声",  "desc": "深沉浪漫，适合忧郁内敛型角色"},
+        "Chinese (Mandarin)_Pure-hearted_Boy":        {"id": "Chinese (Mandarin)_Pure-hearted_Boy",        "name": "清澈邻家弟弟","desc": "阳光清爽，适合阳光开朗型角色"},
+        "Chinese (Mandarin)_Straightforward_Boy":     {"id": "Chinese (Mandarin)_Straightforward_Boy",     "name": "率真弟弟",  "desc": "认真直接，适合正直热血型角色"},
+        "Chinese (Mandarin)_Reliable_Executive":      {"id": "Chinese (Mandarin)_Reliable_Executive",      "name": "沉稳高管",  "desc": "权威可靠，适合成熟稳重型角色"},
+        "Chinese (Mandarin)_Male_Announcer":          {"id": "Chinese (Mandarin)_Male_Announcer",          "name": "播报男声",  "desc": "磁性权威，适合冷静专业型角色"},
+        "Chinese (Mandarin)_Radio_Host":              {"id": "Chinese (Mandarin)_Radio_Host",              "name": "电台男主播", "desc": "流畅优雅，适合从容淡定型角色"},
+        "Chinese (Mandarin)_Sincere_Adult":           {"id": "Chinese (Mandarin)_Sincere_Adult",           "name": "真诚青年",  "desc": "诚恳真挚，适合温暖治愈型角色"},
+        "Chinese (Mandarin)_Gentle_Senior":           {"id": "Chinese (Mandarin)_Gentle_Senior",           "name": "温柔学长",  "desc": "柔和细腻，适合暖男学长"},
+        "Chinese (Mandarin)_Stubborn_Friend":         {"id": "Chinese (Mandarin)_Stubborn_Friend",         "name": "嘴硬竹马",  "desc": "傲娇倔强，适合别扭青梅竹马"},
+        "Chinese (Mandarin)_Southern_Young_Man":      {"id": "Chinese (Mandarin)_Southern_Young_Man",      "name": "南方小哥",  "desc": "亲切随和，适合邻家大哥"},
+        "Chinese (Mandarin)_Humorous_Elder":          {"id": "Chinese (Mandarin)_Humorous_Elder",          "name": "搞笑大爷",  "desc": "爽朗幽默，适合老年谐星型角色"},
+        "Chinese (Mandarin)_Wise_Women":              {"id": "Chinese (Mandarin)_Wise_Women",              "name": "阅历姐姐",  "desc": "知性成熟，适合御姐型角色"},
+        "Chinese (Mandarin)_Gentle_Youth":             {"id": "Chinese (Mandarin)_Gentle_Youth",             "name": "温润青年",  "desc": "文雅温和，适合书卷气角色"},
+        "clever_boy":                  {"id": "clever_boy",                  "name": "聪明男童",  "desc": "机灵乖巧，适合天才少年"},
+        "cute_boy":                    {"id": "cute_boy",                    "name": "可爱男童",  "desc": "稚嫩可爱，适合正太角色"}
+      },
+      "female": {
+        "female-shaonv":              {"id": "female-shaonv",              "name": "少女音色",    "desc": "青春活泼，适合开朗少女"},
+        "female-yujie":               {"id": "female-yujie",               "name": "御姐音色",    "desc": "成熟魅力，适合御姐型角色"},
+        "female-chengshu":            {"id": "female-chengshu",            "name": "成熟女性",    "desc": "知性稳重，适合职场精英女性"},
+        "female-tianmei":             {"id": "female-tianmei",             "name": "甜美女性",    "desc": "温柔甜美，适合治愈型角色"},
+        "tianxin_xiaoling":            {"id": "tianxin_xiaoling",            "name": "甜心小玲",    "desc": "可爱俏皮，适合活泼少女"},
+        "qiaopi_mengmei":              {"id": "qiaopi_mengmei",              "name": "俏皮萌妹",    "desc": "精灵古怪，适合俏皮少女"},
+        "wumei_yujie":                 {"id": "wumei_yujie",                 "name": "妩媚御姐",    "desc": "成熟妩媚，适合性感御姐"},
+        "diadia_xuemei":               {"id": "diadia_xuemei",               "name": "嗲嗲学妹",    "desc": "撒娇甜蜜，适合撒娇学妹"},
+        "danya_xuejie":                {"id": "danya_xuejie",                "name": "淡雅学姐",    "desc": "优雅淡然，适合气质学姐"},
+        "Chinese (Mandarin)_Mature_Woman":   {"id": "Chinese (Mandarin)_Mature_Woman",   "name": "傲娇御姐",  "desc": "外冷内热，适合傲娇型角色"},
+        "Chinese (Mandarin)_Warm_Bestie":    {"id": "Chinese (Mandarin)_Warm_Bestie",    "name": "温暖闺蜜",  "desc": "温暖陪伴，适合贴心闺蜜"},
+        "Chinese (Mandarin)_Sweet_Lady":     {"id": "Chinese (Mandarin)_Sweet_Lady",     "name": "甜美女声",  "desc": "柔和甜美，适合温柔女性"},
+        "Chinese (Mandarin)_Warm_Girl":      {"id": "Chinese (Mandarin)_Warm_Girl",      "name": "温暖少女",  "desc": "阳光温暖，适合阳光女孩"},
+        "Chinese (Mandarin)_Crisp_Girl":     {"id": "Chinese (Mandarin)_Crisp_Girl",     "name": "清脆少女",  "desc": "清亮干脆，适合爽朗少女"},
+        "Chinese (Mandarin)_Soft_Girl":      {"id": "Chinese (Mandarin)_Soft_Girl",      "name": "柔和少女",  "desc": "轻柔温和，适合柔和少女"},
+        "Chinese (Mandarin)_Kind-hearted_Elder": {"id": "Chinese (Mandarin)_Kind-hearted_Elder", "name": "花甲奶奶", "desc": "慈祥和蔼，适合老年女性"},
+        "Chinese (Mandarin)_Kind-hearted_Antie": {"id": "Chinese (Mandarin)_Kind-hearted_Antie", "name": "热心大婶", "desc": "热情爽朗，适合社区大妈"},
+        "Chinese (Mandarin)_News_Anchor":    {"id": "Chinese (Mandarin)_News_Anchor",    "name": "新闻女声",  "desc": "专业沉稳，适合冷静播报"},
+        "Chinese (Mandarin)_Cute_Spirit":    {"id": "Chinese (Mandarin)_Cute_Spirit",    "name": "憨憨萌兽",  "desc": "可爱萌宠，适合吉祥物型角色"},
+        "lovely_girl":                 {"id": "lovely_girl",                 "name": "萌萌女童",  "desc": "稚嫩可爱，适合萝莉角色"}
+      }
+    },
+    "zh-HK": {
+      "female": {
+        "Cantonese_ProfessionalHost（F)": {"id": "Cantonese_ProfessionalHost（F)", "name": "专业女主持", "desc": "专业大气，适合港剧女主持"},
+        "Cantonese_GentleLady":          {"id": "Cantonese_GentleLady",          "name": "温柔女声",  "desc": "温婉大方，适合港剧大小姐"}
+      },
+      "male": {
+        "Cantonese_ProfessionalHost（M)": {"id": "Cantonese_ProfessionalHost（M)", "name": "专业男主持", "desc": "成熟专业，适合港剧男主持"},
+        "Cantonese_PlayfulMan":          {"id": "Cantonese_PlayfulMan",          "name": "活泼男声",  "desc": "轻松幽默，适合谐星角色"},
+        "Cantonese_CuteGirl":            {"id": "Cantonese_CuteGirl",            "name": "可爱女孩",  "desc": "娇俏可爱，适合可爱女生"},
+        "Cantonese_KindWoman":           {"id": "Cantonese_KindWoman",           "name": "善良女声",  "desc": "温柔善良，适合邻家姐姐"}
+      }
+    }
+  },
+  "edge": {
+    "zh-CN": {
+      "male": {
+        "yunxi":    {"id": "zh-CN-YunxiNeural",    "name": "阳光少年", "desc": "阳光少年男声，活泼开朗"},
+        "yunjian":  {"id": "zh-CN-YunjianNeural",  "name": "热情男声", "desc": "热情澎湃，适合运动/热血场景"},
+        "yunyang":  {"id": "zh-CN-YunyangNeural",  "name": "专业稳重", "desc": "专业播音，权威可靠"},
+        "yunxia":   {"id": "zh-CN-YunxiaNeural",   "name": "可爱男声", "desc": "可爱少年，适合卡通/萌系"}
+      },
+      "female": {
+        "xiaoxiao": {"id": "zh-CN-XiaoxiaoNeural", "name": "温暖女声", "desc": "温暖柔和，适合新闻/小说"},
+        "xiaoyi":   {"id": "zh-CN-XiaoyiNeural",   "name": "活泼女声", "desc": "活泼俏皮，适合卡通/喜剧"}
+      },
+      "special": {
+        "xiaobei":  {"id": "zh-CN-liaoning-XiaobeiNeural", "name": "东北话",  "desc": "东北口音，幽默风趣"},
+        "xiaoni":   {"id": "zh-CN-shaanxi-XiaoniNeural",   "name": "陕西话",  "desc": "陕西方言，明快清脆"}
+      }
+    },
+    "zh-HK": {
+      "female": {
+        "HiuGaai":  {"id": "zh-HK-HiuGaaiNeural",  "name": "港普女声1", "desc": "香港普通话，友善积极"},
+        "HiuMaan":  {"id": "zh-HK-HiuMaanNeural",  "name": "港普女声2", "desc": "香港普通话，友善温柔"}
+      },
+      "male": {
+        "WanLung":  {"id": "zh-HK-WanLungNeural",  "name": "港普男声", "desc": "香港普通话，友善稳重"}
+      }
+    },
+    "zh-TW": {
+      "female": {
+        "HsiaoChen": {"id": "zh-TW-HsiaoChenNeural", "name": "台湾女声1", "desc": "台湾国语，友善自然"},
+        "HsiaoYu":   {"id": "zh-TW-HsiaoYuNeural",   "name": "台湾女声2", "desc": "台湾国语，友善柔和"}
+      },
+      "male": {
+        "YunJhe":   {"id": "zh-TW-YunJheNeural",   "name": "台湾男声", "desc": "台湾国语，友善稳重"}
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "name": "agent-harness",
+  "displayName": "Agent Harness",
+  "version": "1.0.0",
+  "description": "Long-running agent workflow automation — feature tracking, progress management, and session orchestration across multiple Claude Code sessions",
+  "author": "wwk",
+  "category": "automation",
+  "capabilities": [
+    "project-initialization",
+    "feature-tracking",
+    "progress-management",
+    "session-orchestration",
+    "automated-testing-workflow"
+  ],
+  "commands": {
+    "harness-init": {
+      "description": "Initialize a new project with harness templates",
+      "parameters": {
+        "description": {
+          "type": "string",
+          "required": true,
+          "description": "High-level project description"
+        }
+      }
+    },
+    "harness-run": {
+      "description": "Start a coding session with the incremental workflow",
+      "parameters": {}
+    },
+    "harness-status": {
+      "description": "Show current project progress and next features",
+      "parameters": {}
+    },
+    "harness-feature": {
+      "description": "Add a new feature to the feature list",
+      "parameters": {
+        "description": {
+          "type": "string",
+          "required": true,
+          "description": "Feature description"
+        },
+        "priority": {
+          "type": "number",
+          "required": false,
+          "description": "Priority level (1-5, default 3)"
+        }
+      }
+    },
+    "harness-commit": {
+      "description": "Commit current work and update progress",
+      "parameters": {}
+    }
+  },
+  "files": {
+    "templates": {
+      "feature_list.json": "Feature tracking template",
+      "claude-progress.txt": "Progress log template",
+      "init.sh": "Development server startup script template"
+    },
+    "prompts": {
+      "initializer.md": "Initializer agent prompt",
+      "coder.md": "Coding agent prompt"
+    },
+    "scripts": {
+      "harness.sh": "Main harness orchestrator script"
+    }
+  },
+  "dependencies": {
+    "bash": ">=4.0",
+    "git": ">=2.0",
+    "python3": ">=3.7"
+  }
+}

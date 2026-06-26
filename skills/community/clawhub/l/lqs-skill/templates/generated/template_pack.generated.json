@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "generated_at": "2026-03-17",
+  "origin": "mined_from_existing_admin_code",
+  "templates": {
+    "controller": {
+      "path": ".skill/templates/generated/admin_controller.txt",
+      "target": "application/modules/{{module}}/controllers/{{Entity}}.php",
+      "defaults": {
+        "module": "Admin",
+        "base_controller": "BackendBaseController",
+        "pk": "id"
+      }
+    },
+    "model": {
+      "path": ".skill/templates/generated/admin_model.txt",
+      "target": "application/models/{{Entity}}Model.php",
+      "defaults": {
+        "pk": "id",
+        "timestamps": "true"
+      }
+    },
+    "view": {
+      "path": ".skill/templates/generated/admin_index_view.txt",
+      "target": "application/modules/{{module}}/views/{{entity}}/index.tpl",
+      "defaults": {
+        "module": "Admin"
+      }
+    },
+    "migration": {
+      "path": ".skill/templates/generated/migration_create_table.txt",
+      "target": "migrations/{{timestamp}}_create_{{table}}.php",
+      "defaults": {
+        "prefix": "typecho_"
+      }
+    }
+  },
+  "contracts": {
+    "query": ["where", "search", "like", "between", "orderBy", "page", "limit"],
+    "response": ["count", "data", "msg", "desc", "code"]
+  }
+}

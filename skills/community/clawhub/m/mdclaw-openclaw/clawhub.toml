@@ -1,0 +1,12 @@
+# MDClaw OpenClaw Registry Metadata
+
+name: MDClaw 多模态
+description: MDClaw OpenClaw API 技能，支持TTS、文生图、文生视频、图生视频等
+version: 2.0.0
+
+# 凭据声明
+credentials:
+  - id: MDCLAW_API_KEY
+    type: api_key
+    required: true
+    description: MDClaw API Key，通过 X-API-Key header 传递

@@ -1,0 +1,24 @@
+{
+  "name": "long-task-handler",
+  "version": "1.0.0",
+  "description": "长任务处理技能 - 后台执行、进度反馈、不阻塞队列",
+  "main": "task-manager.js",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "task",
+    "background",
+    "queue",
+    "long-running",
+    "progress"
+  ],
+  "author": "Frankie 助理",
+  "license": "MIT",
+  "openclaw": {
+    "type": "skill",
+    "minVersion": "1.0.0"
+  }
+}

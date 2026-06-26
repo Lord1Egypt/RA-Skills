@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{name}} - 个人简历</title>
+  
+  <style>
+    @page {
+      size: A4;
+      margin: 2.5cm 2cm;
+      @top-center {
+        content: "{{name}} - 个人简历";
+        font-size: 10pt;
+        color: #666;
+      }
+      @bottom-center {
+        content: "第 " counter(page) " 页 / 共 " counter(pages) " 页";
+        font-size: 9pt;
+        color: #666;
+      }
+    }
+    body {
+      font-family: "Microsoft YaHei", "思源黑体", Calibri, Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1 {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #1a365d;
+      margin: 0 0 10px 0;
+    }
+    h2 {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #2b6cb0;
+      margin: 20px 0 10px 0;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #3182ce;
+    }
+    h3 {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #2c5282;
+      margin: 10px 0 5px 0;
+    }
+    .highlight {
+      font-weight: 700;
+      color: #2b6cb0;
+    }
+    .section {
+      margin-bottom: 15px;
+    }
+    .achievement-item {
+      margin: 3px 0;
+    }
+    .page-break {
+      page-break-after: always;
+    }
+  </style>
+</head>
+<body>
+  <!-- 头部信息 -->
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <h1>{{name}}</h1>
+    <div style="color: #666;">
+      电话：{{phone}} | 邮箱：{{email}} | 所在城市：{{city}} | 期望岗位：{{expectedPosition}}
+    </div>
+    {{#if highlights}}
+    <div style="margin-top: 1rem; padding: 0.75rem; background-color: #ebf8ff; border-radius: 0.25rem; border: 1px solid #bee3f8;">
+      <div style="font-weight: bold; color: #2c5282; margin-bottom: 0.25rem;">核心亮点</div>
+      <ul style="list-style-type: disc; padding-left: 1.25rem;">
+        {{#each highlights}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/if}}
+  </div>
+
+  <!-- 工作经历 -->
+  <div class="section">
+    <h2>工作经历</h2>
+    {{#each experiences}}
+    <div class="mb-4">
+      <div class="flex justify-between">
+        <h3>{{this.company}} · {{this.position}}</h3>
+        <div class="text-gray-600">{{this.startTime}} - {{this.endTime}}</div>
+      </div>
+      <div class="mb-1"><strong>工作职责：</strong>{{this.description}}</div>
+      <div><strong>主要业绩：</strong></div>
+      <ul class="list-disc pl-5">
+        {{#each this.achievements}}
+        <li class="achievement-item">{{{this}}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/each}}
+  </div>
+
+  <!-- 核心技能 -->
+  <div class="section">
+    <h2>核心技能</h2>
+    {{#each skills}}
+    <div class="mb-2">
+      <strong>{{@key}}：</strong>{{join this '、'}}
+    </div>
+    {{/each}}
+  </div>
+
+  <!-- 教育经历 -->
+  <div class="section">
+    <h2>教育经历</h2>
+    {{#each education}}
+    <div class="mb-2">
+      <div style="display: flex; justify-content: space-between;">
+        <strong>{{this.school}} · {{this.major}} · {{this.degree}}</strong>
+        <div style="color: #666;">{{this.startTime}} - {{this.endTime}}</div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Minimal runtime for the MinerU 2.5 OpenVINO workflow used by this skill.
+# The skill assumes you download a preconverted OV bundle such as:
+# snake7gun/MinerU2.5-Pro-2604-1.2B-int4-ov
+
+openvino-genai>=2026.0.0,<2027
+mineru-vl-utils>=0.2.7
+pypdfium2
+Pillow
+
+# Optional local demo UI
+# gradio>=4.36,<6
+
+# Optional smoke-only fallbacks if you want richer non-MinerU diagnostics.
+# PyMuPDF>=1.26.0
+# pypdf>=5.0.0

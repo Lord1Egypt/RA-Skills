@@ -1,0 +1,36 @@
+[
+  {
+    "name": "LoveClaw-每日匹配",
+    "schedule": {
+      "kind": "cron",
+      "expr": "50 19 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "执行每日八字匹配任务。请运行: cd ~/.openclaw/workspace/skills/loveclaw/scripts && node cloud-cron.js match"
+    },
+    "sessionTarget": "isolated",
+    "delivery": {
+      "mode": "none"
+    },
+    "enabled": true
+  },
+  {
+    "name": "LoveClaw-晚间报告",
+    "schedule": {
+      "kind": "cron",
+      "expr": "0 20 * * *",
+      "tz": "Asia/Shanghai"
+    },
+    "payload": {
+      "kind": "agentTurn",
+      "message": "执行每日八字匹配晚间报告，步骤如下：\n\n1. 运行命令：cd ~/.openclaw/workspace/skills/loveclaw/scripts && node cloud-cron.js report\n2. 从命令输出中找到 【REPORTS_JSON】 和 【REPORTS_JSON_END】 之间的内容，解析为 JSON 数组\n3. 对数组中每一条 channel 不为 webchat 的记录，使用 message 工具发送通知：\n   - channel：使用 item.channel 字段（如 feishu、telegram）\n   - target：使用 item.notificationTarget 字段（为空则用 item.target）\n   - 内容：直接使用 item.message 字段，不要修改\n4. 若该条记录的 item.partnerPhotoUrl 不为空字符串，则在发送文字消息之后，额外再发一条图片消息到同一个 channel 和 target，内容为该图片 URL\n5. webchat 用户无需推送，跳过\n6. 若 JSON 数组为空，则不发送任何消息，静默退出"
+    },
+    "sessionTarget": "isolated",
+    "delivery": {
+      "mode": "announce"
+    },
+    "enabled": true
+  }
+]

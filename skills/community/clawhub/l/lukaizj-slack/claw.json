@@ -1,0 +1,18 @@
+{
+  "version": "0.1.0",
+  "name": "slack",
+  "description": "Slack integration - Send messages, manage channels, and automate Slack workflows",
+  "instructions": "instructions.md",
+  "tools": {
+    "auto_preload": false,
+    "entries": [
+      {"name": "slack_send_message", "description": "Send a message to Slack channel", "parameters": {"type": "object", "properties": {"channel": {"type": "string"}, "text": {"type": "string"}}, "required": ["channel", "text"]}},
+      {"name": "slack_list_channels", "description": "List all Slack channels", "parameters": {"type": "object", "properties": {}}},
+      {"name": "slack_create_channel", "description": "Create a new Slack channel", "parameters": {"type": "object", "properties": {"name": {"type": "string"}}, "required": ["name"]}}
+    ]
+  },
+  "env": [{"name": "SLACK_BOT_TOKEN", "description": "Slack Bot User OAuth Token", "required": true}],
+  "tags": ["productivity", "integration", "slack", "messaging"],
+  "author": "lukaizj",
+  "homepage": "https://github.com/lukaizj/slack-integration-skill"
+}

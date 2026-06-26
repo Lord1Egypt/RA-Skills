@@ -1,0 +1,30 @@
+{
+  "plan_config": {
+    "company_name": "（请填写企业名称）",
+    "department": "（请填写部门名称）",
+    "business_scope": "城市无人机配送",
+    "device_types": ["multirotor"],
+    "compliance_standard": "CAAC",
+    "custom_risk_types": [],
+    "emergency_contacts": {
+      "commander": {"name": "", "phone": "", "role": "应急总指挥"},
+      "ops_manager": {"name": "", "phone": "", "role": "运维主管"},
+      "safety_officer": {"name": "", "phone": "", "role": "安全监督员"},
+      "external_liaison": {"name": "", "phone": "", "role": "外联协调员"}
+    },
+    "operating_regions": [
+      {
+        "name": "（区域名称）",
+        "center_lat": 0.0,
+        "center_lon": 0.0,
+        "radius_km": 5.0,
+        "special_restrictions": []
+      }
+    ],
+    "training_schedule": {
+      "frequency": "quarterly",
+      "last_drill_date": null,
+      "next_drill_date": null
+    }
+  }
+}

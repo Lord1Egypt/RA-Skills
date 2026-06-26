@@ -1,35 +1,391 @@
 ---
-name: "md-to-nanobanana-ppt"
-description: "将Markdown分析报告转换为完整PPT：先提供5种以上配色方案供用户选择，再拆分为不超过20张幻灯片，生成对应的 nano-banana 图片提示词，调用 nano-banana2-apiyi 出图，最后合成 `.pptx` 并按文件大小分流交付。当用户需要把 Markdown 报告转成 PPT、从现有报告生..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/md-to-nanobanana-ppt"
-sourceUrl: "https://clawhub.ai/skills/md-to-nanobanana-ppt"
+name: md-to-nanobanana-ppt
+description: 将Markdown分析报告转换为完整PPT：先提供5种以上配色方案供用户选择，再拆分为不超过20张幻灯片，生成对应的 nano-banana 图片提示词，调用 nano-banana2-apiyi 出图，最后合成 `.pptx` 并按文件大小分流交付。当用户需要把 Markdown 报告转成 PPT、从现有报告生成可演示文件、或批量生成带视觉页的汇报材料时使用。交付规则：PPT ≤ 30MB 直接在飞书发送；PPT > 30MB 必须向用户索要邮箱地址，并调用 email-mail-master skill 使用 QQ 邮箱发送附件。每个关键节点都要通过飞书回进度。
 ---
 
-# md-to-nanobanana-ppt
+# Markdown转NanoBanana PPT（增强版）
 
-> 将Markdown分析报告转换为完整PPT：先提供5种以上配色方案供用户选择，再拆分为不超过20张幻灯片，生成对应的 nano-banana 图片提示词，调用 nano-banana2-apiyi 出图，最后合成 `.pptx` 并按文件大小分流交付。当用户需要把 Markdown 报告转成 PPT、从现有报告生...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/md-to-nanobanana-ppt`
-- **Source URL:** [https://clawhub.ai/skills/md-to-nanobanana-ppt](https://clawhub.ai/skills/md-to-nanobanana-ppt)
+将Markdown分析报告转换为完整的PPT演示文稿：
+1. **配色方案** - 先提供至少5种风格方案供用户选择
+2. **PPT大纲文件** - NanoBanana可直接导入的MD格式幻灯片结构
+3. **图片提示词** - 每张幻灯片（除结尾页外）对应的AI绘图提示词
+4. **生成图片** - 使用nano-banana2-apiyi生成每页图片
+5. **合成PPT** - 将所有图片按顺序合成为PPT文件
+6. **分流交付** - 按 30MB 阈值决定是飞书直接发送还是 email-mail-master 邮件发送
 
-## Overview
+## 输出目录规范
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/md-to-nanobanana-ppt
+**所有输出文件统一保存到以下目录：**
 ```
+~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/
+```
+
+目录结构：
+```
+~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/
+├── pic/                    # 生成的幻灯片图片
+│   ├── 幻灯片01.png
+│   ├── 幻灯片02.png
+│   └── ...
+└── [PPT文件名].pptx        # 合成的PPT文件
+```
+
+## 核心原则
+
+1. **长任务必须拆分** - 执行前先创建plan.md，拆分任务步骤，每步标记[x]已完成
+2. **进度可视化** - 每个关键节点完成后立即通过飞书消息回复进度
+3. **幻灯片数量限制** - 不超过20张，在范围内尽可能精简
+4. **结尾页无图** - 结尾页不生成图片
+5. **交付先测大小** - PPT 合成后必须先检查文件大小，再决定走飞书还是 QQ 邮箱
+6. **输出目录统一** - 所有图片和PPT文件必须保存到 `~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/` 目录
+
+## 长任务拆分规范
+
+**重要：当任务需要多个步骤（>3步）且可能耗时较长时，必须遵循以下流程：**
+
+### 判断标准
+- 步骤数量 > 3
+- 预估耗时 > 1分钟
+- 涉及外部API调用（如图片生成）
+
+### 执行流程
+1. **创建 plan.md** - 在工作区创建任务拆分文件
+2. **拆分任务** - 将大任务拆分为清晰的子步骤
+3. **逐个执行** - 严格按顺序执行每个子步骤
+4. **标记完成** - 每完成一步，在plan.md中标记`[x]`及完成时间
+5. **飞书通知** - 每个关键节点完成后回复进度到飞书
+
+### plan.md 格式
+```markdown
+# 任务计划：XXX
+
+## 步骤
+- [ ] Step 1: 描述
+- [ ] Step 2: 描述  
+- [ ] Step 3: 描述
+
+## 执行记录
+```
+
+### 示例 plan.md
+```markdown
+# 任务计划：MD转PPT（尚品宅配产品打分报告）
+
+## 步骤
+- [ ] Step 1: 读取MD文件，分析主题
+- [ ] Step 2: 提供5种以上配色方案
+- [ ] Step 3: 等待用户选择配色
+- [ ] Step 4: 生成幻灯片结构
+- [ ] Step 5: 生成图片提示词
+- [ ] Step 6: 生成图片
+- [ ] Step 7: 合成PPT并检查文件大小
+- [ ] Step 8: 按大小分流交付（飞书 / QQ邮箱）
+
+## 执行记录
+- [x] Step 1 - 2026-03-30 17:05 完成
+- [x] Step 2 - 2026-03-30 17:05 完成
+- [ ] Step 3 - 等待用户选择配色方案
+```
+
+## 进度反馈机制
+
+**重要：每个关键步骤完成时，必须立即通过飞书消息回复进度日志**
+
+### 进度日志格式
+```
+【进度更新】
+✅ 已完成：Step X - 描述
+🔄 进行中：Step Y - 描述
+📋 等待中：Step Z - 描述
+```
+
+### 关键节点列表
+
+| 节点 | 步骤 | 消息内容 |
+|------|------|---------|
+| 1 | 开始 | 🔄 **Step 1/8** - 正在读取Markdown文件... |
+| 2 | 文件读取完成 | ✅ **Step 1/8** - 文件读取完成，正在分析主题... |
+| 3 | 配色方案已提供 | 📋 **Step 2/8** - 配色方案已提供，等待选择... |
+| 4 | 用户选择完成 | ✅ **Step 3/8** - 用户选择配色方案[X]，开始生成幻灯片结构... |
+| 5 | 幻灯片结构完成 | ✅ **Step 4/8** - 幻灯片结构生成完成（共N张），开始生成图片提示词... |
+| 6 | 提示词生成完成 | ✅ **Step 5/8** - 图片提示词生成完成，开始生成图片... |
+| 7 | 图片生成进度 | 🔄 **Step 6/8** - 图片生成中：{current}/{total} ({percentage}%) |
+| 8 | 所有图片生成完成 | ✅ **Step 6/8** - 所有图片生成完成（N张），开始合成PPT... |
+| 9 | PPT合成完成 | ✅ **Step 7/8** - PPT合成完成，正在检查文件大小... |
+| 10 | 文件≤30MB | ✅ **Step 8/8** - 文件小于等于30MB，正在通过飞书发送PPT... |
+| 11 | 文件>30MB | 📋 **Step 8/8** - 文件超过30MB，需要用户提供邮箱地址以通过QQ邮箱发送... |
+| 12 | 全部完成 | 🎉 **全部完成！** 输出文件：xxx，交付方式：飞书 / QQ邮箱 |
+
+### 飞书消息示例
+
+```
+【进度更新】
+🔄 Step 1/8 - 正在读取Markdown文件...
+   文件：选品分析报告.md
+
+✅ Step 1/8 - 文件读取完成
+   主题：尚品宅配选品分析报告
+   数据：3个品类、7个评估维度
+
+📋 Step 2/8 - 配色方案已提供
+   方案A：深蓝+金色（高端商务）
+   方案B：深灰蓝+红色（专业数据）
+   方案C：深海蓝+天蓝（现代科技）
+   方案D：深蓝+活力橙（活力商务）
+   方案E：深灰+玫红（简约专业）
+   方案F：青绿+薄荷（清新自然）
+   请回复 A/B/C/D/E/F 选择配色方案
+
+✅ Step 3/8 - 用户选择方案D
+   配色：活力商务（深蓝#1e3d59 + 活力橙#ee6c4d）
+   开始生成幻灯片结构...
+
+✅ Step 4/8 - 幻灯片结构生成完成
+   共生成10张幻灯片
+   开始生成图片提示词...
+
+✅ Step 5/8 - 图片提示词生成完成
+   开始调用nano-banana生成图片...
+
+🔄 Step 6/8 - 图片生成中：3/9 (33%)
+   幻灯片01.png ✓
+   幻灯片02.png ✓
+   幻灯片03.png ✓
+   幻灯片04.png 生成中...
+
+✅ Step 7/8 - PPT合成完成
+   文件大小：18.42MB
+   正在通过飞书发送...
+
+或
+
+✅ Step 7/8 - PPT合成完成
+   文件大小：42.83MB
+   该文件超过30MB
+   请提供收件邮箱地址，我将通过QQ邮箱发送附件
+```
+
+## 完整工作流程
+
+### Step 1：读取输入文件并分析主题
+- 读取Markdown内容
+- 分析报告主题（品牌、行业、场景）
+- 识别主要章节和关键数据
+- **飞书进度：读取完成、主题分析完成**
+
+### Step 2：根据标题和内容主题思考配色方案
+**重要：必须先提供配色方案供用户选择**
+
+1. 分析MD标题和内容主题
+2. 根据主题**自行思考**匹配的配色方案（至少5种），每种包含：
+   - 主色调（颜色代码+颜色名）
+   - 辅色（颜色代码+颜色名）
+   - 风格描述
+   - 适用场景
+   - 英文配色描述
+
+**配色思考逻辑：**
+- 报告标题含"产品落地"、"评估"、"筛选" → 活力商务/简约专业风格
+- 报告标题含"科技"、"技术"、"AI"、"数据" → 现代科技/专业数据风格
+- 报告标题含"品牌"、"高端"、"旗舰" → 高端商务风格
+- 报告标题含"消费"、"生活"、"清新" → 清新自然风格
+- 根据内容复杂度，可叠加"专业数据"、"活力商务"等补充风格
+
+**配色方案输出格式：**
+
+| 方案 | 主色调 | 辅色 | 风格 | 适用场景 | 英文配色描述 |
+|------|--------|------|------|---------|------------|
+| 方案A | #xxx（颜色名） | #xxx（颜色名） | 风格描述 | 适用场景 | English description with color codes |
+
+**示例（标题：尚品宅配产品落地评估）：**
+根据标题主题"产品落地评估"，推荐以下方案：
+
+| 方案 | 主色调 | 辅色 | 风格 | 适用场景 | 英文配色描述 |
+|------|--------|------|------|---------|------------|
+| 方案A | #1e3d59（深蓝） | #ee6c4d（活力橙） | 活力商务 | 商业分析报告 | Deep blue (#1e3d59) combined with vibrant orange (#ee6c4d), dynamic business style |
+| ... | ... | ... | ... | ... | ... |
+
+- **飞书进度：配色方案已提供，等待选择**
+
+### Step 3：用户确认配色方案
+等待用户选择配色方案后，再进行下一步。
+
+- **飞书进度：用户选择完成，开始生成幻灯片结构**
+
+### Step 4：优化拆分幻灯片（不超过20张）
+**重要：必须在20张以内尽可能精简**
+
+拆分原则：
+1. **封面页** - 标题、副标题、日期、版本信息（1张）
+2. **目录页** - 列出所有主要章节（1张）
+3. **核心内容页** - 每页一个核心概念，内容精简
+4. **数据页** - 表格数据尽量合并在一页内展示
+5. **总结页** - 最终建议和结论（1张）
+6. **结尾页** - 感谢观看（**不生成图片**）
+
+- **飞书进度：幻灯片结构生成完成（共N张），开始生成图片提示词**
+
+### Step 5：生成图片提示词
+使用用户选中的配色方案，按照规范生成提示词：
+
+- **飞书进度：图片提示词生成完成，开始生成图片**
+
+### Step 6：使用nano-banana2-apiyi生成图片
+为每张幻灯片**（除结尾页外）**生成图片：
+
+**重要：必须将幻灯片内容 + 图片要求一起发送给nano-banana2-apiyi**
+
+1. 提取每张幻灯片的标题和内容
+2. 提取每张幻灯片的【nano-banana图片提示词】
+3. **组合发送给nano-banana2-apiyi的prompt格式：**
+
+   ```
+   [内容]：「幻灯片标题：XXX」
+   「内容摘要：XXX」
+
+   [要求]：
+   [用户选择的配色方案英文描述], Used for PowerPoint presentations, 16:9 widescreen ratio, All text in the image must be rendered in Chinese characters (禁止使用英文标签、英文说明文字，所有内容必须以中文呈现), It is prohibited to add any text or labels unrelated to the content
+   ```
+
+**关键说明：**
+- `[内容]`区域使用中文引号「」包起来，作为**图片内容描述**，告诉模型这张幻灯片要展示什么内容
+- 「」内的文字是**内容描述」，不是要在图片上直接显示的文字
+- 图片上实际显示的文字由模型根据内容描述和[要求]中的风格指引来生成
+- 所有要求图片显示的文字必须在中文环境下以中文呈现
+
+**示例（幻灯片2：目录）：**
+```
+[内容]：「目录页：展示6个章节，分别是打分规则、数据清洗记录、标准化得分、企业定位评估、综合得分与决策、结论」
+「章节列表：01打分规则 / 02数据清洗记录 / 03标准化得分 / 04企业定位评估 / 05综合得分与决策 / 06结论」
+
+[要求]：
+Minimalist professional table of contents page with deep teal background (#006266) and mint green accent (#1dd1a1), left side has mint green vertical line decoration, right side displays 6 chapters numbered 01-06 vertically with white bold Chinese text (chapter titles rendered in Chinese characters), chapter titles in light mint color, mint green circular icons for numbers, simple leaf-inspired geometric shapes as decoration, clean and natural aesthetic, All text in the image must be rendered in Chinese characters, Used for PowerPoint presentations, 16:9 widescreen ratio, It is prohibited to add any text or labels unrelated to the content
+```
+
+4. 调用nano-banana2-apiyi生成图片
+5. 图片命名规则：`幻灯片XX.png`
+6. **保存到 `~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/pic/` 文件夹**
+
+- **飞书进度：实时更新生成进度**
+
+### Step 7：合成PPT
+将所有生成的图片合成为PPT文件：
+
+1. 使用python-pptx库创建PPT
+2. 每张图片插入一页幻灯片
+3. 结尾页单独创建（不使用图片，纯色背景+感谢文字）
+4. 幻灯片尺寸：16:9宽屏
+5. **保存到 `~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/` 目录**，命名为与MD文件同名的`.pptx`
+6. 合成完成后**立即检查PPT文件大小**（单位：MB）
+
+- **飞书进度：PPT合成完成，并开始检查文件大小**
+
+### Step 8：按文件大小分流交付
+#### 情况A：PPT文件 ≤ 30MB
+1. 直接在当前飞书对话中发送该 `.pptx` 文件
+2. 回复用户文件已发送
+3. 同时告知本地输出路径
+
+#### 情况B：PPT文件 > 30MB
+1. **不要直接在飞书对话中发送PPT**
+2. 立即告知用户：文件超过30MB，需改用QQ邮箱附件发送
+3. **向用户索要收件邮箱地址**（必须由用户明确提供，禁止猜测）
+4. 收到邮箱地址后，调用 **email-mail-master** skill，使用QQ邮箱发送该 `.pptx` 文件作为附件
+5. 邮件发送成功后，在飞书中回复：已通过QQ邮箱发送，并说明收件地址
+6. 同时告知本地输出路径
+
+#### 文件大小判断规则
+- 使用本地文件真实大小判断，不按估算值
+- 阈值固定为 **30MB**
+- `30MB 以下（含 30MB）` → 飞书直接发送
+- `大于 30MB` → email-mail-master + QQ邮箱发送
+- 检查文件大小时，优先使用以下命令之一获取**字节数**：
+  - macOS / Linux：`stat -f%z <file>`（macOS）或 `stat -c%s <file>`（Linux）
+  - Python：`python3 -c "import os; print(os.path.getsize('xxx.pptx'))"`
+- 统一换算规则：`MB = bytes / 1024 / 1024`
+- 回复用户时必须明确写出：`文件大小：XX.XXMB`
+
+#### 飞书直接发送执行规范（≤30MB）
+1. 检查 `.pptx` 文件大小
+2. 若 `≤ 30MB`，直接使用消息发送能力把 `.pptx` 文件发到当前飞书对话
+3. 回复用户：
+   - 已通过飞书发送PPT
+   - 文件名
+   - 文件大小
+   - 本地输出路径
+4. 不再要求用户提供邮箱
+
+#### email-mail-master 执行规范（>30MB）
+1. 检查 `.pptx` 文件大小
+2. 若 `> 30MB`，先在飞书中提示：
+   - 当前PPT超过30MB
+   - 飞书不直接发送
+   - 需要用户提供收件邮箱地址
+3. 只有在用户明确提供邮箱地址后，才允许继续执行
+4. 调用 `email-mail-master` skill 时，默认使用 **QQ邮箱** 作为发件邮箱
+5. 邮件标题建议格式：`<PPT文件名>`
+6. 邮件正文建议格式：`请查收附件 <PPT文件名>。`
+7. 邮件发送成功后，必须在飞书中回复：
+   - 已通过QQ邮箱发送
+   - 收件地址
+   - 文件名
+   - 文件大小
+   - 本地输出路径
+8. 若用户未提供邮箱地址，则流程停在"等待用户提供邮箱"这一步，不得擅自继续
+
+#### email-mail-master 推荐命令模板
+```bash
+python3 skills/email-mail-master/scripts/mail.py send \
+  --to user@example.com \
+  --subject "文件名.pptx" \
+  --content "请查收附件 文件名.pptx。" \
+  --attach "/absolute/path/to/file.pptx"
+```
+
+- **飞书进度：根据文件大小进入对应交付分支**
+
+### Step 9：保存交付
+- **图片统一保存到 `~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/pic/` 目录**
+- **PPT文件保存到 `~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/` 目录**
+- **必须先检查文件大小，再决定交付方式**
+- 若文件 ≤ 30MB：飞书对话框直接发送PPT
+- 若文件 > 30MB：等待用户提供邮箱后，通过 email-mail-master skill 的QQ邮箱发送PPT附件
+- 最终回复中必须包含：
+  - 文件名
+  - 文件大小
+  - 本地输出路径
+  - 实际交付方式（飞书 / QQ邮箱）
+- **飞书进度：全部完成，输出文件路径 + 实际交付方式**
+
+## 输出产物
+
+1. **配色方案列表** - 至少5种选项
+2. **用户选择确认** - 等待用户回复方案编号
+3. **PPT大纲MD文件** - 包含幻灯片结构和提示词
+4. **图片文件夹** - `~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/pic/幻灯片01.png` ~ `幻灯片XX.png`（不含结尾页）
+5. **PPT文件** - `~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/[PPT文件名].pptx`
+6. **交付记录** - 飞书直接发送 / QQ邮箱附件发送（二选一）
+7. **幻灯片数量统计**
+
+## 核心规则
+
+| 规则 | 说明 |
+|------|------|
+| **原文不变** | md内的原文内容不应该改变，如果是中文请保持完整的中文输入，如果是英文请保持完整英文输出 |
+| **内容引号描述** | 发送给nano-banana的[内容]区域，必须用中文引号「」包起来作为内容描述，告诉模型要展示什么，而不是直接渲染文字 |
+| **中文强制声明** | [要求]部分必须包含"All text in the image must be rendered in Chinese characters"，确保图片内所有文字以中文呈现 |
+| **进度可视化** | 每个节点完成后立即飞书回复进度日志 |
+| **20张上限** | 幻灯片数量不允许超过20张 |
+| **内容精简** | 在20张内尽可能减少页数 |
+| **结尾页无图** | 结尾页不生成图片提示词 |
+| **配色先于生成** | 必须先提供至少5种方案供用户选择 |
+| **30MB分流交付** | PPT ≤ 30MB 直接发飞书；PPT > 30MB 必须改走 email-mail-master 的QQ邮箱附件发送 |
+| **邮箱必须用户提供** | 超过30MB时，必须向用户索要明确的收件邮箱地址，禁止擅自猜测或复用历史模糊地址 |
+
+## 技术依赖
+
+- **nano-banana2-apiyi** - 图片生成（需配置APIYI_API_KEY）
+- **python-pptx** - PPT合成
+- **Python 3.x** - 运行环境

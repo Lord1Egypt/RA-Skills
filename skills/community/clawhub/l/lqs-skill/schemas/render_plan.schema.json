@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lqs.local/skill/schemas/render_plan.schema.json",
+  "title": "RenderPlan",
+  "type": "object",
+  "required": ["entity", "artifacts", "outputs"],
+  "properties": {
+    "entity": { "type": "string" },
+    "module": { "type": "string" },
+    "artifacts": { "type": "array", "items": { "type": "string" } },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["artifact", "template", "target", "variables"],
+        "properties": {
+          "artifact": { "type": "string" },
+          "template": { "type": "string" },
+          "target": { "type": "string" },
+          "variables": { "type": "object" }
+        }
+      }
+    }
+  }
+}

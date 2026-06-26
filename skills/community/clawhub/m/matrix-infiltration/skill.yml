@@ -1,0 +1,15 @@
+---
+name: matrix-infiltration
+description: Analyze social environments and discourse patterns. Map resistance vectors, sentiment dynamics, and how skepticism spreads across communities.
+version: 1.0.0
+display_name: "Matrix Infiltration"
+triggers:
+  - analyze community
+  - infiltration analysis
+  - social dynamics
+  - resistance mapping
+  - community sentiment
+  - discourse analysis
+  - skepticism vectors
+  - response simulation
+---

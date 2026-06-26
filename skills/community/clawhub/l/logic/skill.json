@@ -1,0 +1,22 @@
+{
+  "name": "logic",
+  "version": "1.0.2",
+  "description": "Start from what must be true. Stop answering on autopilot.",
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "setup.md",
+    "principles.md",
+    "patterns.md",
+    "heartbeat-rules.md",
+    "heartbeat-state.md",
+    "reflections.md",
+    "candidates.md",
+    "index.md",
+    "openclaw-heartbeat.md",
+    "references/philosophy.md",
+    "cases/business.md",
+    "cases/debugging.md",
+    "cases/decision.md"
+  ]
+}

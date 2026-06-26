@@ -1,0 +1,64 @@
+name: media_sync
+description: Organize + download media into /mnt/jellyfin_media. Track progress.
+
+requires:
+  binaries:
+    - name: yt-dlp
+      install:
+        brew: yt-dlp
+        apt: |
+          curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+          chmod a+rx /usr/local/bin/yt-dlp
+mounts:
+  - path: /mnt/jellyfin_media
+    description: Media library root. Skill reads and writes here. Mount your media library.
+  - path: /tmp
+    description: Progress logs written here during downloads (media_sync_*.log).
+
+tools:
+  - name: check_or_suggest_folder
+    description: >
+      Check folder exists under /mnt/jellyfin_media.
+      Returns: FOUND_EXACT (exists), FOUND_SIMILAR (close matches),
+      CLEAN (new, safe to create), NO_TARGET_PROVIDED (empty name, lists top-level).
+      Call before any download.
+    parameters:
+      type: object
+      properties:
+        folder_name:
+          type: string
+          description: "Subfolder to find. e.g. 'Hollywood' or 'Shows/Breaking Bad/Season 2'. Empty = list top-level."
+          default: ""
+    container:
+      command: ["/bin/bash", "/home/$USER/.openclaw/skills/media_sync/check_or_suggest_folder.sh", "{{folder_name}}"]
+
+  - name: download_media
+    description: >
+      Download URLs into /mnt/jellyfin_media/<subfolder>. Creates folder if missing.
+      Logs progress to /tmp/media_sync_progress.log.
+      Only call after user confirms destination.
+    parameters:
+      type: object
+      properties:
+        subfolder:
+          type: string
+          description: "Target path relative to /mnt/jellyfin_media. e.g. 'Hollywood' or 'Shows/Breaking Bad/Season 2'."
+        links:
+          type: string
+          description: "URLs space-separated."
+      required:
+        - subfolder
+        - links
+    container:
+      command: ["/bin/bash", "/home/$USER/.openclaw/skills/media_sync/downloader.sh", "{{subfolder}}", "{{links}}"]
+
+  - name: check_download_status
+    description: >
+      Read progress of active/recent download session.
+      Returns per-file: percent, speed, ETA, size, errors.
+      Call when user asks for update. No params.
+    parameters:
+      type: object
+      properties: {}
+    container:
+      command: ["/bin/bash", "/home/$USER/.openclaw/skills/media_sync/check_download_status.sh"]

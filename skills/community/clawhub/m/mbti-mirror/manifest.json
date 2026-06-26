@@ -1,0 +1,12 @@
+{
+  "name": "MBTI镜像",
+  "version": "1.0.0",
+  "description": "你有两个MBTI——一个在现实，一个在AI世界。8道镜像题，测出你的双面人格。AI时代独有的人格测试，镜像指数告诉你两个你差多远。",
+  "author": "",
+  "tags": ["MBTI", "人格测试", "AI时代", "镜像", "社交", "趣味测试", "人格漂移"],
+  "category": "entertainment",
+  "platform": ["openclaw"],
+  "requires_multi_agent": false,
+  "icon": "assets/icon.svg",
+  "entry": "skill.json"
+}

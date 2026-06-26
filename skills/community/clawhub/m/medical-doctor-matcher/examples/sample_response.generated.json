@@ -1,0 +1,75 @@
+{
+  "case_summary": "主诉：发热三天，咳嗽，胸闷；病史：既往有轻度哮喘史，无药物过敏史；地区：朝阳区",
+  "risk_level": "低",
+  "risk_note": "暂未命中急危重症关键词，可做普通门诊匹配。",
+  "recommended_specialties": [
+    "呼吸内科",
+    "全科医学科",
+    "心内科"
+  ],
+  "top_recommendations": [
+    {
+      "hospital_id": "H002",
+      "hospital_name": "中日友好医院",
+      "hospital_region": "朝阳区",
+      "doctor_id": "D001",
+      "doctor_name": "张晨",
+      "department": "呼吸内科",
+      "doctor_title": "主任医师",
+      "match_score": 105.35,
+      "next_available_slot": "2026-03-17 09:00",
+      "reason": "科室与推断目标科室“呼吸内科”一致；医生擅长方向覆盖：发热, 咳嗽, 哮喘；医院与用户所在区域一致；近期可约：2026-03-17 09:00；医院等级：三甲，医生评分：4.9"
+    },
+    {
+      "hospital_id": "H001",
+      "hospital_name": "北京协和医院",
+      "hospital_region": "东城区",
+      "doctor_id": "D003",
+      "doctor_name": "王越",
+      "department": "呼吸内科",
+      "doctor_title": "主任医师",
+      "match_score": 94.95,
+      "next_available_slot": "2026-03-18 10:00",
+      "reason": "科室与推断目标科室“呼吸内科”一致；医生擅长方向覆盖：咳嗽, 胸闷；近期可约：2026-03-18 10:00；医院等级：三甲，医生评分：4.9"
+    },
+    {
+      "hospital_id": "H001",
+      "hospital_name": "北京协和医院",
+      "hospital_region": "东城区",
+      "doctor_id": "D011",
+      "doctor_name": "杨涛",
+      "department": "心内科",
+      "doctor_title": "副主任医师",
+      "match_score": 92.6,
+      "next_available_slot": "2026-03-18 13:00",
+      "reason": "科室与推断目标科室“心内科”一致；医生擅长方向覆盖：胸闷；近期可约：2026-03-18 13:00；医院等级：三甲，医生评分：4.7"
+    }
+  ],
+  "registration": {
+    "enabled": true,
+    "booking_id": "REG-F7F0B28D",
+    "hospital_name": "中日友好医院",
+    "doctor_name": "张晨",
+    "department": "呼吸内科",
+    "appointment_time": "2026-03-17 09:00",
+    "note": "这是模拟挂号结果，未连接真实医院挂号系统。"
+  },
+  "escort": {
+    "enabled": true,
+    "escort_order_id": "ESC-14283A4E",
+    "companion_name": "王阿姨",
+    "service_area": "朝阳区",
+    "service_time": "2026-03-17 09:00",
+    "service_tags": [
+      "门诊陪诊",
+      "取药",
+      "代办"
+    ],
+    "note": "这是模拟陪诊安排，未连接真实陪诊平台。"
+  },
+  "notes": [
+    "本结果用于就医分流与预约建议，不替代医生面诊。",
+    "若出现呼吸困难、持续胸痛、意识障碍等情况，应优先急诊。",
+    "挂号与陪诊为模拟流程。"
+  ]
+}

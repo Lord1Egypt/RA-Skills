@@ -1,0 +1,7 @@
+interface:
+  display_name: "List Starred Services"
+  short_description: "直接打印 TCE 收藏服务原始输出"
+  default_prompt: "Use $list-running-starred-services to run bytedcli tce list-starred-service and print the raw output directly."
+
+policy:
+  allow_implicit_invocation: true

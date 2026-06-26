@@ -1,0 +1,8 @@
+{
+  "name": "mcp-server-scanner",
+  "version": "1.0.0",
+  "description": "Scans MCP servers for security vulnerabilities, configuration issues, and data leakage risks",
+  "author": "eve-agent",
+  "license": "MIT",
+  "keywords": ["mcp", "security", "scanner", "compliance", "enterprise"]
+}

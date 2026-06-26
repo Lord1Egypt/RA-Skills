@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "fact_types": {
+    "preference": {
+      "description": "User preferences and choices",
+      "base_importance": 1.2,
+      "patterns_en": [
+        "(?i)\\bi\\s+prefer\\b",
+        "(?i)\\bi\\s+like\\s+(?:to|using|working)\\b",
+        "(?i)\\bi\\s+(?:always|usually|typically)\\s+(?:use|choose|go with)\\b",
+        "(?i)\\bmy\\s+(?:favorite|preferred|go-to)\\b",
+        "(?i)\\bi'd\\s+rather\\b"
+      ],
+      "patterns_ru": [
+        "(?i)\\b(?:предпочитаю|нравится|люблю\\s+(?:использовать|работать))\\b",
+        "(?i)\\b(?:обычно|всегда|как правило)\\s+(?:использую|выбираю|делаю)\\b",
+        "(?i)\\bмой\\s+(?:любимый|предпочтительный)\\b",
+        "(?i)\\bлучше\\s+(?:буду|бы)\\b"
+      ]
+    },
+    "decision": {
+      "description": "Decisions made during conversation",
+      "base_importance": 1.5,
+      "patterns_en": [
+        "(?i)\\b(?:let's|we'll|I'll)\\s+(?:go with|use|pick|choose|stick with)\\b",
+        "(?i)\\b(?:decided|decision|settled on|agreed)\\b",
+        "(?i)\\b(?:the plan is|going forward)\\b",
+        "(?i)\\bwe\\s+(?:chose|picked|selected)\\b"
+      ],
+      "patterns_ru": [
+        "(?i)\\b(?:решили|решение|договорились|определились)\\b",
+        "(?i)\\b(?:давай|будем|выбираем|берём|остановимся на)\\b",
+        "(?i)\\b(?:план такой|дальше будем)\\b",
+        "(?i)\\b(?:выбрали|взяли|остановились)\\b"
+      ]
+    },
+    "identity": {
+      "description": "Personal/professional identity facts",
+      "base_importance": 1.3,
+      "patterns_en": [
+        "(?i)\\bi\\s+(?:am|work as|work at|work for|live in|moved to)\\b",
+        "(?i)\\bmy\\s+(?:name|job|role|title|company|team|city)\\b",
+        "(?i)\\bi'm\\s+(?:a|an|the)\\s+\\w+(?:er|or|ist|ant|ent)\\b",
+        "(?i)\\bi\\s+(?:speak|know|study)\\s+\\w+(?:ish|ese|ian|ch)\\b"
+      ],
+      "patterns_ru": [
+        "(?i)\\bя\\s+(?:работаю|живу|переехал|учусь)\\b",
+        "(?i)\\b(?:меня зовут|мое имя|моя должность|моя роль)\\b",
+        "(?i)\\bя\\s+(?:из|в)\\s+\\w+",
+        "(?i)\\bмоя\\s+(?:компания|команда|работа)\\b"
+      ]
+    },
+    "task": {
+      "description": "Active tasks and to-dos",
+      "base_importance": 1.4,
+      "patterns_en": [
+        "(?i)\\b(?:need to|have to|must|should|TODO|to-do|task)\\b",
+        "(?i)\\b(?:deadline|due|by\\s+(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|tomorrow|next))\\b",
+        "(?i)\\bremind\\s+me\\s+to\\b",
+        "(?i)\\b(?:working on|building|implementing|fixing)\\b"
+      ],
+      "patterns_ru": [
+        "(?i)\\b(?:нужно|надо|необходимо|задача|сделать)\\b",
+        "(?i)\\b(?:дедлайн|срок|к\\s+(?:понедельник|вторник|среда|четверг|пятниц|суббот|воскресень|завтра))\\b",
+        "(?i)\\b(?:напомни|не забыть)\\b",
+        "(?i)\\b(?:работаю над|делаю|строю|чиню|пишу)\\b"
+      ]
+    },
+    "guardrail": {
+      "description": "Critical rules that must never be forgotten",
+      "base_importance": 10.0,
+      "patterns_en": [
+        "(?i)\\bnever\\s+\\w+\\b",
+        "(?i)\\balways\\s+\\w+\\b(?!.*(?:use|prefer|like))",
+        "(?i)\\b(?:must\\s+(?:not|never|always)|critical|rule|guardrail)\\b",
+        "(?i)\\bdon'?t\\s+(?:ever|you\\s+dare)\\b",
+        "(?i)\\b(?:remember\\s+this|never\\s+forget|this\\s+is\\s+critical)\\b",
+        "(?i)\\b(?:safety|security|permission|approval)\\s+(?:rule|requirement|gate)\\b",
+        "(?i)\\bwithout\\s+(?:my|explicit|user)\\s+(?:approval|permission|confirmation)\\b"
+      ],
+      "patterns_ru": [
+        "(?i)\\bникогда\\s+(?:не\\s+)?\\w+",
+        "(?i)\\bвсегда\\s+\\w+\\b(?!.*(?:использую|предпочитаю|нравится))",
+        "(?i)\\b(?:обязательно|критично|важно|правило)\\b",
+        "(?i)\\b(?:запомни\\s+это|никогда\\s+не\\s+забывай|это\\s+критично)\\b",
+        "(?i)\\b(?:безопасность|разрешение|одобрение)\\b",
+        "(?i)\\bбез\\s+(?:моего|явного)\\s+(?:одобрения|разрешения|подтверждения)\\b"
+      ]
+    },
+    "contact": {
+      "description": "People, contacts, relationships",
+      "base_importance": 1.1,
+      "patterns_en": [
+        "(?i)\\bmy\\s+(?:boss|manager|colleague|friend|partner|wife|husband|client)\\b",
+        "(?i)\\b(?:report to|work with|collaborate with|meeting with)\\b\\s+[A-Z]"
+      ],
+      "patterns_ru": [
+        "(?i)\\b(?:мой|моя)\\s+(?:начальник|менеджер|коллега|друг|партнёр|жена|муж|клиент)\\b",
+        "(?i)\\b(?:работаю с|встреча с|созвон с)\\b\\s+[А-ЯЁA-Z]"
+      ]
+    },
+    "project": {
+      "description": "Project names, repos, tools in active use",
+      "base_importance": 1.3,
+      "patterns_en": [
+        "(?i)\\b(?:project|repo|repository|codebase|app|service|bot|channel)\\s*(?:called|named|is)?\\s*[\"'`]?\\w",
+        "(?i)\\b(?:github|gitlab|bitbucket)\\.\\w+/\\w+",
+        "(?i)\\b@\\w+\\b"
+      ],
+      "patterns_ru": [
+        "(?i)\\b(?:проект|репо|бот|канал|сервис)\\s+[\"'`«]?\\w",
+        "(?i)\\b@\\w+\\b"
+      ]
+    },
+    "tech_stack": {
+      "description": "Technologies, tools, frameworks in use",
+      "base_importance": 1.0,
+      "patterns_en": [
+        "(?i)\\b(?:using|use|run|deploy|built with|stack|framework)\\s+\\w+",
+        "(?i)\\b(?:python|node|rust|go|typescript|react|vue|docker|k8s|postgres|redis|sqlite)\\b"
+      ],
+      "patterns_ru": [
+        "(?i)\\b(?:использую|используем|пишу на|деплою на|стек)\\s+\\w+",
+        "(?i)\\b(?:python|node|rust|go|typescript|react|vue|docker|postgres|redis|sqlite)\\b"
+      ]
+    }
+  },
+  "explicit_remember": {
+    "patterns_en": [
+      "(?i)\\b(?:remember\\s+(?:this|that)|don'?t\\s+forget|keep\\s+in\\s+mind|note\\s+(?:this|that))\\b",
+      "(?i)\\b(?:save\\s+(?:this|that)|store\\s+(?:this|that)|write\\s+(?:this|that)\\s+down)\\b",
+      "(?i)\\bfor\\s+(?:future|later)\\s+reference\\b"
+    ],
+    "patterns_ru": [
+      "(?i)\\b(?:запомни|не\\s+забудь|имей\\s+в\\s+виду|заметь|учти)\\b",
+      "(?i)\\b(?:сохрани|запиши|зафиксируй)\\b",
+      "(?i)\\b(?:на\\s+будущее|для\\s+справки)\\b"
+    ],
+    "importance_boost": 1.5
+  },
+  "explicit_forget": {
+    "patterns_en": [
+      "(?i)\\b(?:forget\\s+(?:about|that)|remove\\s+from\\s+memory|delete\\s+(?:this|that))\\b",
+      "(?i)\\b(?:no\\s+longer|not\\s+anymore|outdated|obsolete)\\b"
+    ],
+    "patterns_ru": [
+      "(?i)\\b(?:забудь|удали|убери\\s+из\\s+памяти)\\b",
+      "(?i)\\b(?:уже\\s+не\\s+актуально|устарело|неактуально|больше\\s+не)\\b"
+    ]
+  }
+}

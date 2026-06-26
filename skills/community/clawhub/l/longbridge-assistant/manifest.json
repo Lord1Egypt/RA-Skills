@@ -1,0 +1,28 @@
+{
+  "name": "longbridge-assistant",
+  "version": "2.0.0",
+  "displayName": "Longbridge Assistant",
+  "description": "AI agent for managing Long Bridge broker account",
+  "author": "dingjienantju@gmail.com",
+  "license": "MIT",
+  "homepage": "https://open.longportapp.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/longbridge-assistant"
+  },
+  "keywords": ["investment", "finance", "broker", "portfolio", "longbridge"],
+  "category": "investment",
+  "visibility": "private",
+  "requirements": {
+    "bins": ["python3"],
+    "env": ["LONGBRIDGE_APP_KEY", "LONGBRIDGE_APP_SECRET", "LONGBRIDGE_ACCESS_TOKEN"]
+  },
+  "commands": {
+    "run": "./run.sh",
+    "setup": "./setup.sh"
+  },
+  "metadata": {
+    "emoji": "🦞",
+    "minOpenClawVersion": "2026.3.0"
+  }
+}

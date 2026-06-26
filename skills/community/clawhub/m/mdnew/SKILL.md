@@ -1,35 +1,23 @@
 ---
-name: "Mdnew"
-description: "Fetch clean, token-efficient Markdown from any URL using markdown.new, optimized for deep analysis with JS support and stripped of boilerplate content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mdnew"
-sourceUrl: "https://clawhub.ai/skills/mdnew"
+name: mdnew
+description: Fetch clean, agent-optimized Markdown from any URL using the markdown.new service. Use when web_fetch or browser fails to provide clean content, or when you need a token-efficient version of a web page for deep analysis.
 ---
 
-# Mdnew
+# mdnew
 
-> Fetch clean, token-efficient Markdown from any URL using markdown.new, optimized for deep analysis with JS support and stripped of boilerplate content.
+Fetch clean Markdown from any URL using the `markdown.new` three-tier conversion pipeline (Header Negotiation -> Workers AI -> Browser Rendering).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mdnew`
-- **Source URL:** [https://clawhub.ai/skills/mdnew](https://clawhub.ai/skills/mdnew)
+## Usage
 
-## Overview
+Run the script with a target URL:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/mdnew
+python3 scripts/mdnew.py <url>
 ```
+
+## Why use mdnew?
+
+1. **Token Efficiency**: Reduces content size by up to 80% compared to raw HTML.
+2. **Clean Data**: Strips boilerplate, ads, and nav menus, leaving only core content.
+3. **JS Execution**: Automatically handles JS-heavy pages via Cloudflare Browser Rendering fallback.
+4. **Agent-First**: Includes `x-markdown-tokens` tracking to help manage context windows.

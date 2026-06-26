@@ -1,0 +1,44 @@
+{
+  "lastUpdated": "2026-04-08",
+  "version": "1.2.0",
+  "totalEntries": 0,
+  "categories": [
+    {
+      "id": "design-layout",
+      "name": "Design & Layout",
+      "keywords": [
+        "UI",
+        "UX",
+        "color",
+        "font",
+        "typography",
+        "layout",
+        "design",
+        "visual",
+        "branding",
+        "Figma"
+      ],
+      "file": "design-layout.md",
+      "count": 0
+    },
+    {
+      "id": "workflow",
+      "name": "Workflow & Automation",
+      "keywords": [
+        "efficiency",
+        "management",
+        "tool",
+        "automation",
+        "process",
+        "project",
+        "CI/CD",
+        "DevOps",
+        "pipeline",
+        "script"
+      ],
+      "file": "workflow.md",
+      "count": 0
+    }
+  ],
+  "absorbedSkills": []
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory Landscape Review"
+  short_description: "Review and reorganize memory layers"
+  default_prompt: "Audit my memory layers and propose what should move into durable repo or personal memory."

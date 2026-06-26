@@ -1,0 +1,22 @@
+{
+  "SOUL": {
+    "path": "SOUL.md",
+    "purpose": "行为准则、个性偏好、沟通风格"
+  },
+  "AGENTS": {
+    "path": "AGENTS.md",
+    "purpose": "工作流程、代理规则、交互模式"
+  },
+  "MEMORY": {
+    "path": "MEMORY.md",
+    "purpose": "用户偏好、项目背景、长期记忆"
+  },
+  "TOOLS": {
+    "path": "TOOLS.md",
+    "purpose": "工具配置、集成注意事项、坑"
+  },
+  "BOOTSTRAP": {
+    "path": "BOOTSTRAP.md",
+    "purpose": "会话启动规则、新任务判断"
+  }
+}

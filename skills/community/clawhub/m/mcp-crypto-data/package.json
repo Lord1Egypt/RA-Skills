@@ -1,0 +1,33 @@
+{
+  "name": "@vbotholemu/mcp-crypto-data",
+  "version": "1.0.0",
+  "description": "MCP tool for cryptocurrency data — prices, network fees, and Lightning Network stats via L402 API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "mcp-crypto-data": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "crypto",
+    "bitcoin",
+    "lightning",
+    "price",
+    "l402"
+  ],
+  "author": "Blue-Trianon-Ventures",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "skill_name": "lobstercash",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "hey i need to buy a yearly subscription to Acme Analytics, it's $47.99/year. their checkout is at https://acme-analytics.com/pricing, they're a US company. this is my first time using lobster btw",
+      "expected_output": "A plan that includes: session version check before other commands; agents list and registration (first-time user); cards request with amount 47.99 and description (not setup as first move); show approvalUrl and wait for user confirmation (no polling); cards list then cards reveal with merchant name 'Acme Analytics', URL 'https://acme-analytics.com', and country US; use revealed card details to complete checkout.",
+      "files": [],
+      "expectations": [
+        "Plan includes a session version check (npm view / lobstercash --version) before any payment commands",
+        "Plan runs 'agents list' as the first lobstercash command (after version check) — before any card, crypto, or wallet commands",
+        "Plan checks 'agents list' output and matches by runtime name (e.g. Cursor selects 'Cursor', Claude Code selects 'Claude Code'); uses 'set-active' if the match isn't active; only runs 'agents register' if no matching agent exists",
+        "If registering, --image-url uses a preset from lobster.cash/agent-avatars/, a user-provided URL, or is omitted — does not invent URLs",
+        "Plan uses 'cards request' command with --amount 47.99",
+        "Plan does NOT use 'setup' as the first payment-related command (cards request bundles setup)",
+        "Plan shows approvalUrl to user and explicitly waits for user confirmation (no polling)",
+        "Plan uses 'cards list' followed by 'cards reveal' with merchant details",
+        "Plan includes merchant-name 'Acme Analytics', merchant-url containing 'acme-analytics.com', and merchant-country US in cards reveal"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to call this paid API endpoint: https://stableenrich.dev/api/v1/people/search",
+      "expected_output": "A plan that includes: version check; agents list and registration; lobstercash status before any crypto operation; branch for insufficient funds with crypto request, approval URL, wait for user, status again; lobstercash crypto x402 fetch to call the endpoint; if GET fails or returns an error, try POST; if fetch fails retry with --debug; report the API response body not payment mechanics.",
+      "files": [],
+      "expectations": [
+        "Plan includes a session version check (npm view / lobstercash --version) before any payment commands",
+        "Plan runs 'agents list' as the first lobstercash command (after version check) — before any crypto or wallet commands",
+        "Plan checks 'agents list' output and matches by runtime name (e.g. Cursor selects 'Cursor', Claude Code selects 'Claude Code'); uses 'set-active' if the match isn't active; only runs 'agents register' if no matching agent exists",
+        "If registering, --image-url uses a preset from lobster.cash/agent-avatars/, a user-provided URL, or is omitted — does not invent URLs",
+        "Plan runs 'lobstercash status' before 'crypto x402 fetch' (status-before-crypto anti-pattern)",
+        "Plan uses 'crypto x402 fetch' to call the endpoint (not curl or generic HTTP)",
+        "Plan includes a strategy for trying POST if GET fails or the endpoint requires it",
+        "Plan includes a branch for insufficient funds using 'crypto request'",
+        "Plan mentions retrying with '--debug' flag on failure",
+        "Plan mentions reporting the API response body, not payment mechanics"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I used the purch skill to buy something on Amazon and it gave me back a serialized transaction: 4hXTCkRzt9WyecNzV1XPgCDfGAZzQKNxLXgynz5QDuWWPSAZBZSHptvWRL3BjCvzUXRdKvHL2b8x3GfGb. What do I do with this?",
+      "expected_output": "A plan that includes: version check; agents list and registration; lobstercash status to check wallet readiness before any crypto operation; crypto tx create with --type serialized and --serialized-transaction passing the base58 payload; parse the output for transactionId, messageToSign, and messageToSignEncoding; crypto tx approve with --id, --message, and --encoding; optionally crypto tx status to verify; report the explorer link to the user.",
+      "files": [],
+      "expectations": [
+        "Plan includes a session version check (npm view / lobstercash --version) before any payment commands",
+        "Plan runs 'agents list' as the first lobstercash command (after version check) — before any crypto or wallet commands",
+        "Plan checks 'agents list' output and matches by runtime name (e.g. Cursor selects 'Cursor', Claude Code selects 'Claude Code'); uses 'set-active' if the match isn't active; only runs 'agents register' if no matching agent exists",
+        "If registering, --image-url uses a preset from lobster.cash/agent-avatars/, a user-provided URL, or is omitted — does not invent URLs",
+        "Plan runs 'lobstercash status' before 'crypto tx create' (status-before-crypto anti-pattern)",
+        "Plan uses 'crypto tx create' with --type serialized and --serialized-transaction",
+        "Plan parses the create output for transactionId, messageToSign, and messageToSignEncoding",
+        "Plan uses 'crypto tx approve' with --id, --message, and --encoding from the create output",
+        "Plan mentions 'crypto tx status' as a way to verify the transaction if needed",
+        "Plan reports the explorer link to the user, not raw transaction hash"
+      ]
+    }
+  ]
+}

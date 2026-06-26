@@ -1,35 +1,22 @@
+# 极简记忆自动同步 Skill
+
+## 核心功能
+自动监听用户与助理的所有对话，实时写入当日Markdown记忆文件，彻底解决手动同步漏存问题。
+
+## 版本优势
+✅ 100%零依赖：只用Node.js原生API，不需要安装任何第三方包
+✅ 极简逻辑：只做纯文件写入，没有任何复杂逻辑，绝对稳定不报错
+✅ 完全兼容：适配所有版本的OpenClaw，不会出现API不兼容问题
+✅ 格式一致：和之前手动写入的记忆文件格式完全统一
+
+## 存储格式
+```markdown
+#### 对话记录：2026年03月17日 08:35
+- 爸爸：这是测试消息
+- 张褐：收到爸爸的测试消息啦😀
 ---
-name: "Memory Auto Sync"
-description: "Automatically records and saves all user-assistant conversations daily as Markdown files with zero dependencies and full OpenClaw compatibility."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-auto-sync"
-sourceUrl: "https://clawhub.ai/skills/memory-auto-sync"
----
-
-# Memory Auto Sync
-
-> Automatically records and saves all user-assistant conversations daily as Markdown files with zero dependencies and full OpenClaw compatibility.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-auto-sync`
-- **Source URL:** [https://clawhub.ai/skills/memory-auto-sync](https://clawhub.ai/skills/memory-auto-sync)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/memory-auto-sync
 ```
+
+## 安装方法
+1. 把`memory-auto-sync`整个目录放到`~/.openclaw/skills/`下
+2. 重启OpenClaw网关即可自动加载生效

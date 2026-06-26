@@ -1,0 +1,47 @@
+{
+  "slug": "medication-side-effect-visit-log",
+  "name": "Medication Side Effect Visit Log",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Create a clinician-ready timeline and visit brief for possible side effects after a medication or supplement start, stop, or change.",
+  "author": "OpenClaw",
+  "license": "MIT-0",
+  "language": "en",
+  "category": "Healthcare Navigation",
+  "target_user": "Patients, caregivers, and family members preparing for a doctor or pharmacist conversation about symptoms after a medication or supplement change.",
+  "tags": [
+    "health-literacy",
+    "medication-safety",
+    "side-effects",
+    "patient-advocacy",
+    "visit-prep",
+    "symptom-log",
+    "pharmacist-questions"
+  ],
+  "trigger_keywords": [
+    "medication side effect log",
+    "side effect tracker",
+    "medication symptoms",
+    "side effects after new medicine",
+    "doctor visit side effect notes",
+    "pharmacist questions",
+    "medication change symptoms",
+    "side effect timeline",
+    "medicine reaction notes"
+  ],
+  "use_cases": [
+    "Prepare a clinician-ready side effect timeline after a medication or supplement change",
+    "Track symptom onset, duration, frequency, severity, and context factors",
+    "Separate observed facts from concerns before a medical visit",
+    "Generate neutral questions for a doctor, pharmacist, nurse line, or clinic",
+    "Create an ongoing tracking table without medical decision-making"
+  ],
+  "requires": {},
+  "requires_api": false,
+  "requiresApi": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "hasExecutableCode": false
+}

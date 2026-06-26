@@ -1,0 +1,7 @@
+interface:
+  display_name: "Private Document AI with OpenVINO"
+  short_description: "Turn local PDFs, invoices, screenshots, and diagrams into structured data or notebook/code outputs with MinerU on OpenVINO, including custom invoice field extraction."
+  default_prompt: "Use $local-document-ai-openvino to parse a local PDF or image with MinerU on OpenVINO. For to-data runs, you can also specify custom key fields such as invoice_number, invoice_date, total_amount, or vendor_name and return a structured JSON result for those requested fields."
+
+policy:
+  allow_implicit_invocation: true

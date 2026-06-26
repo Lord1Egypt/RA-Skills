@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Bridge",
+  "version": "1.0.0",
+  "description": "LinkedIn Automation Bridge - connects local Python CLI to browser",
+  "permissions": [
+    "tabs",
+    "cookies",
+    "scripting",
+    "alarms",
+    "debugger"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "ws://localhost/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

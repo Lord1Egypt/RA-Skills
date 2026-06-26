@@ -1,35 +1,19 @@
----
-name: "Map your memories"
-description: "Visualize and explore geo-tagged memories on interactive maps with clustering, temporal playback, and shareable, privacy-controlled overlays."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/memory-map"
-sourceUrl: "https://clawhub.ai/skills/memory-map"
----
+# Memory Map
 
-# Map your memories
+Render memories as geographic and conceptual maps. Pin memories to real-world locations, visualize movement patterns, and discover spatial clusters — turning life experiences into explorable, shareable map layers.
 
-> Visualize and explore geo-tagged memories on interactive maps with clustering, temporal playback, and shareable, privacy-controlled overlays.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/memory-map`
-- **Source URL:** [https://clawhub.ai/skills/memory-map](https://clawhub.ai/skills/memory-map)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/memory-map
+memory-map render <user-id>        # Generate memory map
+memory-map overlay <user-id>       # Add memory pins to existing map
+memory-map export <user-id>        # Export as interactive HTML/GeoJSON
 ```
+
+## Features
+
+- Geo-tagged memory visualization with clustering
+- Temporal playback (watch memories unfold over time)
+- Conceptual map mode (non-geographic topic clustering)
+- Shareable embeddable map widgets
+- Privacy controls per memory pin

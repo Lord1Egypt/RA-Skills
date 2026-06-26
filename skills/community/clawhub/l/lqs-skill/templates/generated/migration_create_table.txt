@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * Auto-generated migration template from LQS project patterns.
+ * Note: generate only, do not auto-execute.
+ */
+class {{class_name}}
+{
+    public function up()
+    {
+        $table = '{{table}}';
+
+        // 安全说明：优先使用结构化字段描述 `fields_json` 来生成字段定义，
+        // `fields_json` 应为 JSON 数组，每项为 {"name":"col","type":"varchar","length":255,"nullable":false,"default":null}
+        // 如果未提供 `fields_json`（空字符串），将回退到传统的 `fields_block` 文本插入（不推荐）。
+        $fieldsSql = '';
+        if (!empty('{{fields_json}}')) {
+            $fields = json_decode('{{fields_json}}', true);
+            if (!is_array($fields)) {
+                throw new \Exception('Invalid fields_json provided for migration {{class_name}}');
+            }
+            $parts = [];
+            $typeWhitelist = ['int','bigint','varchar','text','datetime','timestamp','tinyint','boolean','float','double','decimal'];
+            foreach ($fields as $f) {
+                if (!isset($f['name']) || !preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $f['name'])) {
+                    throw new \Exception('Invalid column name in fields_json for migration {{class_name}}');
+                }
+                $name = $f['name'];
+                $type = isset($f['type']) ? strtolower($f['type']) : 'varchar';
+                if (!in_array($type, $typeWhitelist)) {
+                    throw new \Exception('Unsupported column type: ' . $type);
+                }
+                $col = "`{$name}` ";
+                if ($type === 'varchar') {
+                    $len = isset($f['length']) ? intval($f['length']) : 255;
+                    $col .= "VARCHAR({$len})";
+                } elseif ($type === 'int') {
+                    $col .= 'INT';
+                } elseif ($type === 'bigint') {
+                    $col .= 'BIGINT';
+                } elseif ($type === 'text') {
+                    $col .= 'TEXT';
+                } elseif ($type === 'datetime') {
+                    $col .= 'DATETIME';
+                } elseif ($type === 'timestamp') {
+                    $col .= 'TIMESTAMP';
+                } elseif ($type === 'tinyint') {
+                    $col .= 'TINYINT';
+                } elseif ($type === 'boolean') {
+                    $col .= 'TINYINT(1)';
+                } elseif ($type === 'float' || $type === 'double' || $type === 'decimal') {
+                    $col .= strtoupper($type);
+                }
+                $col .= isset($f['nullable']) && $f['nullable'] ? ' NULL' : ' NOT NULL';
+                if (array_key_exists('default', $f) && $f['default'] !== null) {
+                    $col .= " DEFAULT '" . addslashes($f['default']) . "'";
+                }
+                $parts[] = $col;
+            }
+            $fieldsSql = implode("\n", $parts);
+        } else {
+            // 回退：使用原始占位（注意安全）
+            $fieldsSql = "{{fields_block}}";
+        }
+
+        $sql = <<<SQL
+CREATE TABLE IF NOT EXISTS `{$table}` (
+{$fieldsSql}
+{{indexes_block}}
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+SQL;
+        \DB::statement($sql);
+    }
+
+    public function down()
+    {
+        // Optional custom down logic
+        {{down_drop_table}}
+        $table = '{{table}}';
+        $sql = "DROP TABLE IF EXISTS `{$table}`";
+        \DB::statement($sql);
+    }
+}

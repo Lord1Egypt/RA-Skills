@@ -1,0 +1,52 @@
+# Memory System Configuration
+
+# Storage Backend: github | gitee | local | sqlite
+STORAGE_BACKEND: "local"
+
+# Embedding Settings
+USE_EMBEDDING: false
+EMBEDDING_MODEL: "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_DIM: 384
+
+# Storage Backend Configs
+storage:
+  local:
+    base_path: "./memory_data"
+  sqlite:
+    base_path: "./memory.db"
+  github:
+    repo: "your-username/your-repo"
+    branch: "main"
+    token_env: "GITHUB_TOKEN"
+    base_path: "memory/"
+  gitee:
+    repo: "your-username/your-repo"
+    branch: "master"
+    token_env: "GITEE_TOKEN"
+    base_path: "memory/"
+
+# Search Settings
+DEFAULT_TOP_K: 5
+SIMILARITY_THRESHOLD: 0.7
+
+# Shared Memory Settings
+SHARED_MEMORY_ENABLED: true
+SHARED_MEMORY_BACKEND: "local"  # github | gitee | local | sqlite
+SHARED_MEMORY_PATH: "./shared_memory"
+
+# Shared Memory Storage Backend Configs (separate repo)
+shared_storage:
+  local:
+    base_path: "./shared_memory"
+  sqlite:
+    base_path: "./shared_memory.db"
+  github:
+    repo: "shared-username/shared-repo"
+    branch: "main"
+    token_env: "SHARED_GITHUB_TOKEN"
+    base_path: "shared/"
+  gitee:
+    repo: "shared-username/shared-repo"
+    branch: "master"
+    token_env: "SHARED_GITEE_TOKEN"
+    base_path: "shared/"

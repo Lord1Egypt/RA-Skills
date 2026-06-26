@@ -1,0 +1,76 @@
+{
+  "sources": [
+    {
+      "id": "openai-rss",
+      "type": "rss",
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog/rss.xml",
+      "enabled": true,
+      "priority": true,
+      "topics": ["llm", "ai-agent"]
+    },
+    {
+      "id": "anthropic-rss",
+      "type": "rss",
+      "name": "Anthropic Blog",
+      "url": "https://www.anthropic.com/blog/rss.xml",
+      "enabled": true,
+      "priority": true,
+      "topics": ["llm", "ai-agent"]
+    },
+    {
+      "id": "google-ai-blog",
+      "type": "rss",
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
+      "enabled": true,
+      "priority": true,
+      "topics": ["llm", "ai-agent"]
+    },
+    {
+      "id": "meta-ai-blog",
+      "type": "rss",
+      "name": "Meta AI Blog",
+      "url": "https://ai.meta.com/blog/rss/",
+      "enabled": true,
+      "priority": false,
+      "topics": ["llm", "ai-agent"]
+    },
+    {
+      "id": "microsoft-ai-blog",
+      "type": "rss",
+      "name": "Microsoft AI Blog",
+      "url": "https://www.microsoft.com/en-us/research/blog/feed/",
+      "enabled": true,
+      "priority": false,
+      "topics": ["llm", "ai-agent"]
+    },
+    {
+      "id": "mit-tech",
+      "type": "rss",
+      "name": "MIT Technology Review",
+      "url": "https://www.technologyreview.com/feed/",
+      "enabled": true,
+      "priority": false,
+      "topics": ["tech", "ai"]
+    },
+    {
+      "id": "techcrunch-ai",
+      "type": "rss",
+      "name": "TechCrunch AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "enabled": true,
+      "priority": false,
+      "topics": ["llm", "ai-agent", "news"]
+    },
+    {
+      "id": "hacker-news",
+      "type": "rss",
+      "name": "Hacker News",
+      "url": "https://hnrss.org/frontpage",
+      "enabled": true,
+      "priority": false,
+      "topics": ["llm", "ai-agent", "coding"]
+    }
+  ]
+}

@@ -1,35 +1,35 @@
 ---
-name: "六爻纳甲技能"
-description: "六爻纳甲排盘与断卦技能。支持起卦、纳甲、装卦、六亲、世应、六神排布，以及自动化断卦分析。"
-category: "other"
-source: "ClawHub"
-tags: [chinese-culture, divination, i-ching]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/liuyao-najia-skill"
-sourceUrl: "https://clawhub.ai/skills/liuyao-najia-skill"
+name: liuyao-najia-skill
+description: 六爻纳甲排盘与断卦技能。支持起卦、纳甲、装卦、六亲、世应、六神排布，以及自动化断卦分析。
+version: 3.0.0
+author: 天工长老
 ---
 
-# 六爻纳甲技能
+# 六爻纳甲技能 v3.0.0
 
-> 六爻纳甲排盘与断卦技能。支持起卦、纳甲、装卦、六亲、世应、六神排布，以及自动化断卦分析。
+> "六爻通神，纳甲断卦。"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/liuyao-najia-skill`
-- **Source URL:** [https://clawhub.ai/skills/liuyao-najia-skill](https://clawhub.ai/skills/liuyao-najia-skill)
+## 功能
 
-## Overview
+- ✅ 铜钱起卦 / 数字起卦
+- ✅ 纳甲装卦
+- ✅ 六亲排布
+- ✅ 世应定位
+- ✅ 六神排布
+- ✅ 五行生克分析
+- ✅ 自动化断卦
+- ✅ 应期推算
+- ✅ 特殊格局识别
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/liuyao-najia-skill
+python3 scripts/liuyao_pan.py --method "coin"
+python3 scripts/liuyao_pan.py --method "number" --numbers "3,5,7,2,8,9"
+python3 scripts/liuyao_pan.py --question "财运"
 ```
+
+## 变更
+
+v3.0.0: 自动化断卦、应期推算、特殊格局识别
+v2.0.0: 六神排布、五行生克分析

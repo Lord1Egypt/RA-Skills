@@ -1,0 +1,54 @@
+{
+  "memoryCore": {
+    "verbose": true,
+    
+    "apiKey": "sk-BrwHc1ZiaEGQ1GecD3D760384b874795A194882c2cF3AbE6",
+    "baseUrl": "https://api.edgefn.net/v1",
+    
+    "embeddingProvider": {
+      "type": "edgefn",
+      "model": "BAAI/bge-m3",
+      "dimensions": 1024,
+      "timeout": 15000,
+      "resilience": {
+        "maxRetries": 3,
+        "baseDelay": 1000
+      }
+    },
+    
+    "rerankProvider": {
+      "type": "edgefn",
+      "model": "bge-reranker-v2-m3",
+      "timeout": 15000
+    },
+    
+    "embeddingService": {
+      "defaultProvider": "edgefn",
+      "cacheEnabled": true
+    },
+    
+    "memoryService": {
+      "autoEmbed": true,
+      "defaultSearchOptions": {
+        "useReranker": true,
+        "topKInitial": 15,
+        "topKFinal": 5,
+        "embeddingWeight": 0.4,
+        "rerankerWeight": 0.6,
+        "minScore": 0.1
+      }
+    },
+    
+    "flomo": {
+      "parseTags": true,
+      "extractDates": true,
+      "defaultCategory": "未分类"
+    },
+    
+    "storage": {
+      "type": "memory",
+      "persistToFile": true,
+      "filePath": "./data/memories.json"
+    }
+  }
+}

@@ -1,35 +1,22 @@
----
-name: "Literature Review Polisher"
-description: "Polish and improve literature review for students and researchers"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/literature-review-polisher"
-sourceUrl: "https://clawhub.ai/skills/literature-review-polisher"
----
-
-# Literature Review Polisher
-
-> Polish and improve literature review for students and researchers
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/literature-review-polisher`
-- **Source URL:** [https://clawhub.ai/skills/literature-review-polisher](https://clawhub.ai/skills/literature-review-polisher)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/literature-review-polisher
-```
+--- 
+name: literature-review-polisher 
+description: Polish and improve literature review for students and researchers 
+version: 1.0.0 
+author: jeoyee 
+language: r 
+tags: academic,writing,literature-review,research 
+--- 
+ 
+# Literature Review Polisher 
+ 
+A skill to analyze and polish literature review with Kimi AI. 
+ 
+## Features 
+- Structure analysis 
+- Citation density check 
+- Critical thinking score 
+- AI-powered polishing 
+ 
+## Requirements 
+- R 4.3+ 
+- Packages: stringr, magrittr, httr, jsonlite 

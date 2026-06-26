@@ -1,0 +1,103 @@
+tests:
+- name: systemd-service-create
+  input: 为 /opt/myapp/server 创建 systemd 服务，要求以 myapp 用户运行，失败自动重启，开机自启
+  expected_keywords:
+  - '[Unit]'
+  - '[Service]'
+  - '[Install]'
+  - User=myapp
+  - Restart
+  - WantedBy
+  - daemon-reload
+  expected_not:
+  - chmod 777
+- name: systemd-timer-create
+  input: 创建一个 systemd timer，每天凌晨 2 点执行备份脚本 /opt/scripts/backup.sh
+  expected_keywords:
+  - .timer
+  - .service
+  - OnCalendar
+  - 02:00
+  - oneshot
+  - enable
+  expected_not:
+  - crontab
+- name: journalctl-troubleshoot
+  input: nginx 服务启动失败，如何用 journalctl 排查原因？
+  expected_keywords:
+  - journalctl
+  - -u nginx
+  - systemctl status
+  expected_not:
+  - rm -rf
+- name: firewalld-port-open
+  input: 使用 firewalld 开放 8080 和 8443 端口，允许 192.168.1.0/24 网段访问 3306 端口
+  expected_keywords:
+  - firewall-cmd
+  - add-port
+  - permanent
+  - reload
+  - rich-rule
+  expected_not:
+  - iptables -F
+- name: iptables-basic-setup
+  input: 用 iptables 配置基本防火墙：默认拒绝入站，允许 SSH/HTTP/HTTPS，允许已建立连接
+  expected_keywords:
+  - iptables
+  - INPUT
+  - DROP
+  - ESTABLISHED
+  - RELATED
+  - dport
+  - ACCEPT
+  expected_not:
+  - ACCEPT all
+- name: nat-port-forward
+  input: 服务器有公网 IP，需要将外部 8080 端口转发到内网 192.168.1.100 的 80 端口
+  expected_keywords:
+  - DNAT
+  - PREROUTING
+  - ip_forward
+  - FORWARD
+  expected_not:
+  - iptables -F
+- name: security-hardening
+  input: 新装的 Linux 服务器需要做安全加固，列出关键步骤
+  expected_keywords:
+  - SSH
+  - 防火墙
+  - 密码
+  - sudo
+  - SUID
+  - 更新
+  expected_not:
+  - chmod 777
+  - setenforce 0
+- name: fail2ban-setup
+  input: 配置 fail2ban 保护 SSH，3 次失败登录后封禁 IP 1 小时
+  expected_keywords:
+  - fail2ban
+  - jail
+  - sshd
+  - maxretry
+  - bantime
+  expected_not:
+  - iptables -F
+- name: service-failed-debug
+  input: systemctl status 显示服务状态为 failed，ExecMainStatus=203，如何排查？
+  expected_keywords:
+  - journalctl
+  - ExecStart
+  - 权限
+  - 路径
+  - '203'
+  expected_not:
+  - rm -rf
+- name: package-version-lock
+  input: 如何锁定 nginx 的版本，防止自动更新？同时需要在 Ubuntu 和 RHEL 上操作
+  expected_keywords:
+  - apt-mark
+  - hold
+  - versionlock
+  expected_not:
+  - rm -rf

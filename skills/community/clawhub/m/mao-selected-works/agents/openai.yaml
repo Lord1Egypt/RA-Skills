@@ -1,0 +1,7 @@
+interface:
+  display_name: "毛选检索"
+  short_description: "导入《毛选》文本，建立卷次/标题/关键词/混合检索与向量检索能力"
+  default_prompt: "Use $mao-selected-works to import Mao Selected Works from EPUB, build a local index, or search by volume, title, keyword, or hybrid retrieval."
+
+policy:
+  allow_implicit_invocation: true

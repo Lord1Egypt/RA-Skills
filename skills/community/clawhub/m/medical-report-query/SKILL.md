@@ -1,35 +1,64 @@
 ---
-name: "Medical Report Query"
-description: "醫療報表查詢技能 - Oracle/SQLServer醫療資料庫報表查詢與分析。適用於診所、社區醫院的日常營運報表需求。觸發詞：報表、查詢、門診、住院、藥品、醫保、統計。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/medical-report-query"
-sourceUrl: "https://clawhub.ai/skills/medical-report-query"
+name: Medical Report Query
+description: 醫療報表查詢技能 - Oracle/SQLServer醫療資料庫報表查詢與分析。適用於診所、社區醫院的日常營運報表需求。觸發詞：報表、查詢、門診、住院、藥品、醫保、統計。
+version: 1.0.0
+author: 贾维斯
+slug: medical-report-query
 ---
 
 # Medical Report Query
 
-> 醫療報表查詢技能 - Oracle/SQLServer醫療資料庫報表查詢與分析。適用於診所、社區醫院的日常營運報表需求。觸發詞：報表、查詢、門診、住院、藥品、醫保、統計。
+醫療報表智能查詢技能，專為診所和社區醫院設計。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/medical-report-query`
-- **Source URL:** [https://clawhub.ai/skills/medical-report-query](https://clawhub.ai/skills/medical-report-query)
+## 功能
 
-## Overview
+### 1. 門診報表
+- 會員註冊統計
+- 醫生工作量統計
+- 收費明細查詢
+- 科室收入分析
 
+### 2. 住院報表
+- 住院人數統計
+- 床位使用率分析
+- 出院結算查詢
+- 費用結構分析
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/medical-report-query
+### 3. 藥品報表
+- 藥品庫存查詢
+- 藥品消耗統計
+- 採購訂單追踪
+- 效期预警
+
+### 4. 醫保報表
+- 醫保結算對帳
+- 統籌基金統計
+- 自付比例分析
+
+## 使用方式
+
+**門診統計：**
 ```
+查詢本月門診人數統計
+```
+
+**藥品庫存：**
+```
+查詢某藥品的庫存情況
+```
+
+**醫保對帳：**
+```
+生成本月醫保結算對帳單
+```
+
+## 支援資料庫
+
+- **HIS庫**：Oracle - 門診/住院/醫保/藥品
+- **ERP庫**：LXls - 會員/績效/庫存
+
+## 注意事項
+
+- 報表僅供參考，具體數字需與系統核對
+- 敏感資料需進行脫敏處理
+- 報表格式可自訂（Markdown/Excel/HTML）

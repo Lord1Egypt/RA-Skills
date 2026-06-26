@@ -1,35 +1,79 @@
----
-name: "Marketing Drafter"
-description: "AI-powered tool generating consistent, SEO-optimized marketing content for emails, social media, ads, and landing pages with A/B testing and batch processing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/marketing-drafter"
-sourceUrl: "https://clawhub.ai/skills/marketing-drafter"
----
-
 # Marketing Drafter
 
-> AI-powered tool generating consistent, SEO-optimized marketing content for emails, social media, ads, and landing pages with A/B testing and batch processing.
+**Version:** 1.0.0  
+**Author:** Midas Skills  
+**License:** MIT
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/marketing-drafter`
-- **Source URL:** [https://clawhub.ai/skills/marketing-drafter](https://clawhub.ai/skills/marketing-drafter)
+## Description
+AI content generation for emails, social posts, ads, landing pages. Brand voice consistency, A/B testing, batch generation.
 
-## Overview
+## Value Proposition
+AI-powered content generation for social posts, emails, ads, landing pages. One-shot prompts, batch generation, brand voice consistency.
 
+## Category
+marketing-automation
+
+## Tags
+content-generation, ai-copy, email, social-media, ads
+
+## Skill Type
+marketing
+
+## Pricing
+- **Free:** $0
+- **Pro:** $39.99
+
+## Key Features
+- ✅ Multi-channel content generation
+- ✅ Brand voice consistency
+- ✅ A/B testing variants
+- ✅ Batch processing
+- ✅ Template-based generation
+- ✅ Image caption generation
+- ✅ SEO-optimized copy
+- ✅ Tone customization
+- ✅ Plagiarism-free guarantee
+- ✅ Performance scoring (predicted CTR)
+
+## Use Cases
+- Generate email campaign sequences
+- Social media post drafts (Twitter, LinkedIn, Instagram)
+- Ad copy (Google, Facebook, TikTok)
+- Landing page headlines & CTAs
+- Email subject lines (high CTR variants)
+- Blog post outlines & drafts
+- Product descriptions
+- Sales pitch variations
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/marketing-drafter
+npm install marketing-drafter
+# or
+pip install marketing-drafter
 ```
+
+## Quick Start
+```javascript
+const MarketingDrafter = require('marketing-drafter');
+
+const drafter = new MarketingDrafter({
+  model: 'gpt-4',
+  apiKey: process.env.OPENAI_API_KEY
+});
+
+const emails = await drafter.generateEmails({
+  topic: 'New SaaS product launch',
+  audience: 'B2B founders',
+  tone: 'professional-friendly',
+  variants: 5
+});
+
+console.log(emails);
+```
+
+## Repository
+https://github.com/midas-skills/marketing-drafter
+
+## Support
+📧 support@midas-skills.com  
+🔗 Docs: https://docs.midas-skills.com/marketing-drafter

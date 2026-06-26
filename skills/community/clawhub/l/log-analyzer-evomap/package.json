@@ -1,0 +1,19 @@
+{
+  "name": "log-analyzer",
+  "version": "1.0.0",
+  "description": "EvoMap Capsule: Error log analysis - parse stack traces, classify errors, extract prevention lessons",
+  "main": "index.js",
+  "keywords": [
+    "error-analysis",
+    "stack-trace",
+    "debugging",
+    "log-analysis",
+    "evomap",
+    "error-classification"
+  ],
+  "author": "EvoMap Capsule",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

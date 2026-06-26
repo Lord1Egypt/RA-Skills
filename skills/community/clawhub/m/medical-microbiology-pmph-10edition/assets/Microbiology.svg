@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2e86c1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#bg)" stroke="#2980b9" stroke-width="3"/>
+  <!-- Microbe shape 1 (cocci) -->
+  <circle cx="75" cy="85" r="18" fill="#85c1e9" opacity="0.9"/>
+  <circle cx="105" cy="80" r="16" fill="#85c1e9" opacity="0.9"/>
+  <circle cx="90" cy="65" r="15" fill="#85c1e9" opacity="0.9"/>
+  <!-- Microbe shape 2 (bacillus) -->
+  <ellipse cx="100" cy="130" rx="25" ry="10" fill="#f1948a" opacity="0.9" transform="rotate(-15 100 130)"/>
+  <!-- DNA helix -->
+  <path d="M55 50 Q65 45 65 55 Q65 65 75 60" stroke="#f9e79f" stroke-width="2.5" fill="none" opacity="0.8"/>
+  <path d="M125 40 Q135 35 135 45 Q135 55 145 50" stroke="#f9e79f" stroke-width="2.5" fill="none" opacity="0.8"/>
+  <!-- Flagellum -->
+  <path d="M125 130 Q140 125 145 115 Q150 105 145 100" stroke="#f1948a" stroke-width="2" fill="none" opacity="0.7"/>
+  <!-- Text -->
+  <text x="100" y="175" text-anchor="middle" fill="white" font-size="11" font-family="Arial, sans-serif" font-weight="bold">MICROBIOLOGY</text>
+</svg>

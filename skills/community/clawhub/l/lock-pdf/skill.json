@@ -1,0 +1,24 @@
+{
+  "name": "Lock PDF",
+  "description": "Add password protection and encryption to a PDF. Supports AES-256, AES-128, RC4-128 encryption and granular permissions.",
+  "method": "POST",
+  "endpoint": "/v1/lockPdf",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "URL to the PDF" },
+        { "name": "base64_pdf", "type": "string", "required": false, "description": "Base64-encoded PDF" },
+        { "name": "password", "type": "string", "required": true, "description": "User password (required to open)" },
+        { "name": "owner_password", "type": "string", "required": false, "description": "Owner password (required to change permissions)" },
+        { "name": "encryption", "type": "string", "required": false, "default": "aes256", "enum": ["aes256", "aes128", "rc4"], "description": "Encryption algorithm" },
+        { "name": "permissions", "type": "object", "required": false, "description": "Granular permissions: print, copy, modify, annotate, fill_forms, extract, assemble" },
+        { "name": "input_password", "type": "string", "required": false, "description": "Password to decrypt the input if already encrypted" },
+        { "name": "output", "type": "string", "required": false, "default": "file", "enum": ["file", "url", "base64"], "description": "Output mode" }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field"
+    }
+  }
+}

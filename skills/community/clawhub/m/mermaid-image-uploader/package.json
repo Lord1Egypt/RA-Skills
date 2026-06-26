@@ -1,0 +1,26 @@
+{
+  "name": "mermaid-image-uploader",
+  "version": "1.0.0",
+  "description": "Mermaid 图片生成与图床上传技能 - 专为公众号文章设计",
+  "main": "mermaid_uploader.py",
+  "scripts": {
+    "convert": "python mermaid_uploader.py",
+    "test": "python mermaid_uploader.py --test"
+  },
+  "keywords": [
+    "mermaid",
+    "image",
+    "upload",
+    "wechat",
+    "公众号",
+    "diagram"
+  ],
+  "author": "AI Assistant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coder-knock/mermaid-image-uploader.git"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

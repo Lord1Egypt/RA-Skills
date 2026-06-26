@@ -1,0 +1,4 @@
+interface:
+  display_name: "Monday.com"
+  short_description: "Read and update Monday.com boards, items, and workspaces"
+  default_prompt: "Use the Monday.com MCP tools to help the user read boards, query items, create tasks, and post updates in their Monday.com workspace."

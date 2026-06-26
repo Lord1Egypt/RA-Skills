@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSHML Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d1117; --surface: #161b22; --surface2: #21262d; --border: #30363d;
+    --text: #c9d1d9; --text-dim: #8b949e; --text-bright: #f0f6fc;
+    --accent: #58a6ff; --green: #3fb950; --red: #f85149; --yellow: #d29922;
+    --purple: #bc8cff; --orange: #f0883e;
+    --grad1: linear-gradient(135deg, #3d2e6b 0%, #251c42 100%);
+    --grad2: linear-gradient(135deg, #5a4a8e 0%, #352d5a 100%);
+    --grad3: linear-gradient(135deg, #6b5aaa 0%, #3d2e6b 100%);
+    --grad4: linear-gradient(135deg, #6e3a5a 0%, #422238 100%);
+    --grad5: linear-gradient(135deg, #7a4a60 0%, #4a2a3a 100%);
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 0; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 24px; }
+
+  /* Header */
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+  .header h1 { font-size: 22px; font-weight: 600; color: var(--text-bright); }
+  .header h1 span { color: var(--accent); font-weight: 400; font-size: 14px; margin-left: 8px; }
+  .header-controls { display: flex; align-items: center; gap: 16px; }
+  .refresh-info { font-size: 12px; color: var(--text-dim); }
+  .toggle-wrap { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-dim); cursor: pointer; }
+  .toggle-wrap input { accent-color: var(--accent); cursor: pointer; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .status-dot.live { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .status-dot.off { background: var(--text-dim); }
+
+  /* Stat Cards */
+  .stat-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { border-radius: 12px; padding: 20px; border: 1px solid var(--border); }
+  .stat-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-dim); margin-bottom: 8px; }
+  .stat-card .value { font-size: 28px; font-weight: 700; color: var(--text-bright); }
+  .stat-card .sub { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .stat-card:nth-child(1) { background: var(--grad1); }
+  .stat-card:nth-child(2) { background: var(--grad2); }
+  .stat-card:nth-child(3) { background: var(--grad3); }
+  .stat-card:nth-child(4) { background: var(--grad4); }
+  .stat-card:nth-child(5) { background: var(--grad5); }
+
+  /* Sections */
+  .section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .section h2 { font-size: 16px; font-weight: 600; color: var(--text-bright); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section h2 .badge { font-size: 11px; background: var(--surface2); color: var(--text-dim); padding: 2px 8px; border-radius: 10px; font-weight: 400; }
+
+  /* Grid layout for sections */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* Progress bar */
+  .progress-bar { background: var(--surface2); border-radius: 8px; height: 24px; overflow: hidden; display: flex; }
+  .progress-bar .seg { height: 100%; transition: width 0.5s ease; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--bg); min-width: 0; }
+  .seg.proven { background: var(--green); }
+  .seg.pending { background: var(--yellow); }
+  .seg.failed { background: var(--red); }
+
+  .progress-bar-single { background: var(--surface2); border-radius: 8px; height: 20px; overflow: hidden; }
+  .progress-bar-single .fill { height: 100%; border-radius: 8px; transition: width 0.5s ease; background: var(--accent); }
+
+  /* KV rows */
+  .kv-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .kv-row:last-child { border-bottom: none; }
+  .kv-row .k { color: var(--text-dim); }
+  .kv-row .v { color: var(--text-bright); font-weight: 500; }
+  .kv-row .v.green { color: var(--green); }
+  .kv-row .v.red { color: var(--red); }
+  .kv-row .v.yellow { color: var(--yellow); }
+  .kv-row .v.purple { color: var(--purple); }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 8px 10px; color: var(--text-dim); font-weight: 500; border-bottom: 1px solid var(--border); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface2); }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; }
+  .tag.success { background: rgba(63, 185, 80, 0.15); color: var(--green); }
+  .tag.warn { background: rgba(210, 153, 34, 0.15); color: var(--yellow); }
+  .tag.error { background: rgba(248, 81, 73, 0.15); color: var(--red); }
+  .tag.info { background: rgba(88, 166, 255, 0.15); color: var(--accent); }
+  .tag.purple { background: rgba(188, 140, 255, 0.15); color: var(--purple); }
+
+  /* Event list */
+  .event-item { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .event-item:last-child { border-bottom: none; }
+  .event-item .event-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .event-item .event-time { color: var(--text-dim); font-size: 11px; font-family: monospace; }
+  .event-item .event-detail { color: var(--text-dim); font-size: 12px; }
+
+  /* Empty state */
+  .empty { text-align: center; padding: 24px; color: var(--text-dim); font-size: 13px; }
+
+  /* Settings */
+  .setting-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .setting-row:last-child { border-bottom: none; }
+  .setting-row .setting-key { color: var(--accent); font-family: monospace; font-size: 12px; min-width: 200px; }
+  .setting-row .setting-val { color: var(--text); font-family: monospace; font-size: 12px; word-break: break-all; }
+
+  .loading { text-align: center; padding: 48px; color: var(--text-dim); font-size: 15px; }
+  .footer { text-align: center; padding: 24px 0 12px; font-size: 12px; color: var(--text-dim); }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container" id="app">
+  <div class="loading">Loading dashboard data...</div>
+</div>
+<script>
+(function() {
+  let autoRefresh = true;
+  let refreshTimer = null;
+  let lastData = null;
+
+  function fmt(d) {
+    if (!d) return '--';
+    try {
+      const dt = new Date(d);
+      return dt.toLocaleDateString() + ' ' + dt.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    } catch { return d; }
+  }
+
+  function fmtBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
+    return (b/1048576).toFixed(1) + ' MB';
+  }
+
+  function pct(n, d) { return d > 0 ? Math.round((n/d)*100) : 0; }
+
+  function escHtml(s) {
+    if (typeof s !== 'string') s = String(s == null ? '' : s);
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function render(data) {
+    lastData = data;
+    const fb = data.feedback || [];
+    const proven = fb.filter(f => f.status === 'proven').length;
+    const pending = fb.filter(f => f.status === 'pending').length;
+    const failed = fb.filter(f => f.status === 'failed').length;
+    const fbTotal = fb.length;
+    const successRate = fbTotal > 0 ? pct(proven, proven + failed) : 0;
+
+    const lessons = (data.knowledge && data.knowledge.lessons) || [];
+    const lessonCount = lessons.length;
+    const avgConf = lessonCount > 0 ? (lessons.reduce((s,l) => s + (l.confidence || 0), 0) / lessonCount) : 0;
+
+    // Improvement trend
+    let trend = 'stable';
+    if (lessonCount >= 3) {
+      const sorted = [...lessons].sort((a,b) => (a.created_at||'').localeCompare(b.created_at||''));
+      const recent = sorted.slice(-3);
+      const older = sorted.slice(0, Math.max(1, Math.floor(sorted.length/2)));
+      const recentAvg = recent.reduce((s,l) => s + (l.confidence||0), 0) / recent.length;
+      const olderAvg = older.reduce((s,l) => s + (l.confidence||0), 0) / older.length;
+      if (recentAvg > olderAvg + 0.05) trend = 'improving';
+      else if (recentAvg < olderAvg - 0.05) trend = 'declining';
+    }
+
+    const pred = data.predictor;
+    const predSamples = pred ? (pred.sample_count || (pred.samples ? pred.samples.length : 0)) : 0;
+    const predReady = predSamples >= 20;
+    const predStatus = predReady ? 'Ready' : 'Warming Up';
+
+    const genes = data.genes || [];
+    const clusters = data.clusters || [];
+
+    // Top genes by usage in lessons
+    const geneUsage = {};
+    lessons.forEach(l => { geneUsage[l.gene_id] = (geneUsage[l.gene_id]||0) + (l.times_applied||0); });
+    const topGenes = Object.entries(geneUsage).sort((a,b) => b[1]-a[1]).slice(0, 8);
+
+    // Events (only EvolutionEvent type)
+    const events = (data.recentEvents || []).filter(e => e.type === 'EvolutionEvent').reverse();
+
+    const trendClass = trend === 'improving' ? 'green' : trend === 'declining' ? 'red' : 'yellow';
+    const trendIcon = trend === 'improving' ? '&#9650;' : trend === 'declining' ? '&#9660;' : '&#9644;';
+
+    const app = document.getElementById('app');
+    app.innerHTML = `
+      <div class="header">
+        <h1>Local Self-Healing Machine Learning <span>v${escHtml(data.version)}</span></h1>
+        <div class="header-controls">
+          <span class="refresh-info" id="refresh-info">Updated: ${fmt(data.timestamp)}</span>
+          <label class="toggle-wrap">
+            <span class="status-dot ${autoRefresh ? 'live' : 'off'}"></span>
+            <input type="checkbox" id="auto-refresh-toggle" ${autoRefresh ? 'checked' : ''}>
+            Auto-refresh (30s)
+          </label>
+        </div>
+      </div>
+
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="label">Genes</div>
+          <div class="value">${genes.length}</div>
+          <div class="sub">${data.capsules ? data.capsules.length : 0} capsules</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Success Rate</div>
+          <div class="value">${successRate}%</div>
+          <div class="sub">${proven} proven / ${proven+failed} resolved</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Lessons Learned</div>
+          <div class="value">${lessonCount}</div>
+          <div class="sub">Avg confidence: ${(avgConf*100).toFixed(0)}%</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Fixes Tracked</div>
+          <div class="value">${fbTotal}</div>
+          <div class="sub">${pending} pending</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Predictor</div>
+          <div class="value">${predStatus}</div>
+          <div class="sub">${predSamples}/20 samples</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="section">
+          <h2>Feedback Loop <span class="badge">${fbTotal} entries</span></h2>
+          ${fbTotal > 0 ? `
+            <div class="progress-bar" style="margin-bottom:12px">
+              ${proven > 0 ? `<div class="seg proven" style="width:${pct(proven,fbTotal)}%">${proven}</div>` : ''}
+              ${pending > 0 ? `<div class="seg pending" style="width:${pct(pending,fbTotal)}%">${pending}</div>` : ''}
+              ${failed > 0 ? `<div class="seg failed" style="width:${pct(failed,fbTotal)}%">${failed}</div>` : ''}
+            </div>
+            <div class="kv-row"><span class="k">Proven</span><span class="v green">${proven}</span></div>
+            <div class="kv-row"><span class="k">Pending</span><span class="v yellow">${pending}</span></div>
+            <div class="kv-row"><span class="k">Failed</span><span class="v red">${failed}</span></div>
+            <div class="kv-row"><span class="k">Success Rate</span><span class="v">${successRate}%</span></div>
+          ` : '<div class="empty">No feedback data yet. Run the evolver to generate feedback.</div>'}
+        </div>
+
+        <div class="section">
+          <h2>Knowledge Base <span class="badge">${lessonCount} lessons</span></h2>
+          <div class="kv-row"><span class="k">Total Lessons</span><span class="v">${lessonCount}</span></div>
+          <div class="kv-row"><span class="k">Avg Confidence</span><span class="v">${(avgConf*100).toFixed(1)}%</span></div>
+          <div class="kv-row"><span class="k">Trend</span><span class="v ${trendClass}">${trendIcon} ${trend}</span></div>
+          <div class="kv-row"><span class="k">Embeddings Cache</span><span class="v">${fmtBytes(data.embeddingsCacheSize || 0)}</span></div>
+          ${topGenes.length > 0 ? `
+            <h2 style="margin-top:16px">Top Genes <span class="badge">by usage</span></h2>
+            <table>
+              <thead><tr><th>Gene ID</th><th>Applications</th></tr></thead>
+              <tbody>${topGenes.map(([id,count]) => `<tr><td><code>${escHtml(id)}</code></td><td>${count}</td></tr>`).join('')}</tbody>
+            </table>
+          ` : ''}
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="section">
+          <h2>Predictor <span class="badge">${predReady ? 'ready' : 'warming up'}</span></h2>
+          <div class="kv-row"><span class="k">Status</span><span class="v ${predReady ? 'green' : 'yellow'}">${predStatus}</span></div>
+          <div class="kv-row"><span class="k">Samples</span><span class="v">${predSamples} / 20</span></div>
+          <div style="margin:12px 0">
+            <div class="progress-bar-single">
+              <div class="fill" style="width:${Math.min(100, pct(predSamples, 20))}%; background:${predReady ? 'var(--green)' : 'var(--accent)'}"></div>
+            </div>
+          </div>
+          ${pred && pred.trained_at ? `<div class="kv-row"><span class="k">Last Trained</span><span class="v">${fmt(pred.trained_at)}</span></div>` : ''}
+          ${pred && pred.version ? `<div class="kv-row"><span class="k">Model Version</span><span class="v">${pred.version}</span></div>` : ''}
+        </div>
+
+        <div class="section">
+          <h2>Error Clusters <span class="badge">${clusters.length} clusters</span></h2>
+          ${clusters.length > 0 ? `
+            <table>
+              <thead><tr><th>Label</th><th>Errors</th><th>First Seen</th><th>Last Seen</th></tr></thead>
+              <tbody>${clusters.map(c => `
+                <tr>
+                  <td>${escHtml(c.label || c.id)}</td>
+                  <td>${c.error_count || 0}</td>
+                  <td style="font-size:11px">${fmt(c.first_seen)}</td>
+                  <td style="font-size:11px">${fmt(c.last_seen)}</td>
+                </tr>
+              `).join('')}</tbody>
+            </table>
+          ` : '<div class="empty">No error clusters detected yet.</div>'}
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="section">
+          <h2>Settings <span class="badge">read-only</span></h2>
+          <div class="setting-row"><span class="setting-key">EVOLVE_STRATEGY</span><span class="setting-val">${escHtml(data.env.EVOLVE_STRATEGY)}</span></div>
+          <div class="setting-row"><span class="setting-key">OLLAMA_URL</span><span class="setting-val">${escHtml(data.env.OLLAMA_URL)}</span></div>
+          <div class="setting-row"><span class="setting-key">OLLAMA_EMBED_MODEL</span><span class="setting-val">${escHtml(data.env.OLLAMA_EMBED_MODEL)}</span></div>
+        </div>
+
+        <div class="section">
+          <h2>Recent Events <span class="badge">last ${events.length}</span></h2>
+          ${events.length > 0 ? events.map(e => {
+            const outcome = e.outcome || {};
+            const statusClass = outcome.status === 'success' ? 'success' : outcome.status === 'failure' ? 'error' : 'info';
+            const ts = (e.meta && e.meta.at) || '';
+            const signals = (e.signals || []).join(', ');
+            const genesUsed = (e.genes_used || []).join(', ');
+            return `<div class="event-item">
+              <div class="event-header">
+                <span class="tag ${e.intent === 'repair' ? 'error' : e.intent === 'innovate' ? 'purple' : 'info'}">${escHtml(e.intent || 'unknown')}</span>
+                <span class="tag ${statusClass}">${escHtml(outcome.status || '?')}</span>
+                <span class="event-time">${escHtml(fmt(ts))}</span>
+              </div>
+              <div class="event-detail">Genes: ${escHtml(genesUsed)} | Signals: ${escHtml(signals)}${outcome.score != null ? ' | Score: '+outcome.score : ''}</div>
+            </div>`;
+          }).join('') : '<div class="empty">No evolution events recorded yet.</div>'}
+        </div>
+      </div>
+
+      <div class="footer">
+        Built by <a href="https://mastermindshq.business" target="_blank" rel="noopener">Joe Che</a>
+      </div>
+    `;
+
+    // Bind toggle
+    const toggle = document.getElementById('auto-refresh-toggle');
+    if (toggle) {
+      toggle.addEventListener('change', function() {
+        autoRefresh = this.checked;
+        if (autoRefresh) startAutoRefresh();
+        else stopAutoRefresh();
+        // Re-render to update dot
+        if (lastData) render(lastData);
+      });
+    }
+  }
+
+  function fetchData() {
+    fetch('/api/data')
+      .then(r => r.json())
+      .then(data => render(data))
+      .catch(err => {
+        console.error('Failed to fetch data:', err);
+        document.getElementById('app').innerHTML = '<div class="loading">Failed to load data. Is the server running?</div>';
+      });
+  }
+
+  function startAutoRefresh() {
+    stopAutoRefresh();
+    refreshTimer = setInterval(fetchData, 30000);
+  }
+
+  function stopAutoRefresh() {
+    if (refreshTimer) { clearInterval(refreshTimer); refreshTimer = null; }
+  }
+
+  // Initial load
+  fetchData();
+  startAutoRefresh();
+})();
+</script>
+</body>
+</html>

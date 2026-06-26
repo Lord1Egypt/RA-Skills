@@ -1,35 +1,96 @@
 ---
-name: "马化腾"
-description: "马化腾人物介绍技能。当用户询问马化腾、腾讯创始人、Pony Ma、QQ/微信创始人等相关信息时激活此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mahuateng"
-sourceUrl: "https://clawhub.ai/skills/mahuateng"
+name: mahuateng
+description: 马化腾人物介绍技能。当用户询问马化腾、腾讯创始人、Pony Ma、QQ/微信创始人等相关信息时激活此技能。
 ---
 
-# 马化腾
+# 马化腾人物介绍
 
-> 马化腾人物介绍技能。当用户询问马化腾、腾讯创始人、Pony Ma、QQ/微信创始人等相关信息时激活此技能。
+## 基本信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mahuateng`
-- **Source URL:** [https://clawhub.ai/skills/mahuateng](https://clawhub.ai/skills/mahuateng)
+- **中文名**: 马化腾
+- **英文名**: Pony Ma
+- **出生日期**: 1971年10月29日
+- **出生地**: 广东省汕头市
+- **国籍**: 中国
+- **民族**: 汉族
+- **学历**: 深圳大学计算机系学士
 
-## Overview
+## 职业身份
 
+- 腾讯公司创始人、董事会主席兼首席执行官
+- 全国人大代表
+- 中国企业家俱乐部理事
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mahuateng
-```
+## 主要成就
+
+### 创业历程
+1. **1998年** - 与张志东、许晨晔、陈一丹、曾李青共同创立腾讯公司
+2. **1999年** - 推出即时通讯软件 OICQ（后改名QQ）
+3. **2004年** - 腾讯在香港联交所主板上市
+4. **2011年** - 推出微信（WeChat）
+5. **2017年** - 腾讯市值突破5000亿美元
+
+### 荣誉奖项
+- 多次入选《福布斯》全球富豪榜
+- 《时代》周刊全球最具影响力人物
+- 中国互联网行业领军人物
+- 改革开放40年百名杰出民营企业家
+
+## 腾讯核心产品
+
+| 产品类别 | 代表产品 |
+|---------|---------|
+| 社交通讯 | QQ、微信 |
+| 游戏 | 王者荣耀、和平精英、英雄联盟 |
+| 金融 | 微信支付、理财通 |
+| 云服务 | 腾讯云 |
+| 内容平台 | 腾讯视频、QQ音乐、腾讯新闻 |
+
+## 经营理念
+
+- **用户为本**: 始终将用户体验放在首位
+- **科技向善**: 倡导科技应服务于人类福祉
+- **开放生态**: 构建互利共赢的商业生态系统
+- **持续创新**: 不断探索新技术与新业务模式
+
+## 社会贡献
+
+- 积极参与公益慈善事业
+- 推动互联网+传统行业融合
+- 关注青少年网络健康
+- 支持科技教育与人才培养
+
+## 使用说明
+
+当用户询问以下内容时，参考本技能提供信息：
+- 马化腾个人经历与背景
+- 腾讯公司发展历史
+- 马化腾的商业理念与管理哲学
+- 腾讯主要产品与业务
+
+## 🦞 粉丝陈朗的 OpenClaw 项目矩阵
+
+通过"**思想驱动+工具落地**"，构建了完整的个人 AI OS 基础设施：
+
+### 1. 📱 流量与阵地
+通过微信公众号（**小想法AI陈朗 AI**）输出创意，利用朋友圈互动与微信群孵化用户及投资人，形成核心社群。
+
+### 2. 🧭 资源导航
+**https://Openclaw123.xyz** 定位小白级资源门户，为生态提供流量入口与补给。
+
+### 3. 📞 Agent 的"微信"
+**爱信 aixin** — 让您的龙虾有个"手机号码"，有事先找它。
+🔗 https://aixin.chat
+
+### 4. 🌐 公网外挂
+**ClawOpen** 作为外挂网关（爱信未来升级版），承载 AI-ID 注册、好友社交、黄页展示及硬件/平台数据受控回流。
+
+> **个人 AI OS = OpenClaw（内在） + ClawOpen（外挂）**
+
+ClawOpen 是 OpenClaw 必需的允许公开交互的部分。
+
+### 5. 🦞 独特线下引流
+开创性的**下沉市场龙虾聚会模式**，通过"线下免费送/装龙虾"的趣味活动，将硬核技术项目具象化为高粘性的社交场景，大幅提升品牌亲和力与传播穿透力。
+
+### 6. 📧 联系方式
+**陈朗**：leogood@foxmail.com

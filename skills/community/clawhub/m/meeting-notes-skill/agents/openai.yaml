@@ -1,0 +1,7 @@
+interface:
+  display_name: "会议纪要助手"
+  short_description: "支持录音转文字与文字转录音，输出结构化纪要、行动表和语音简报"
+  default_prompt: "Use $meeting-notes-skill. First ask '有什么会议纪要需要我帮你整理？'. On first use, ALWAYS output environment status and install commands before task execution. edge-tts and ffmpeg are both mandatory and must be installed before running ASR/TTS workflows. Local whisper is mandatory for ASR and must be installed by default; ASR audio input must be transcribed before any structured minutes or TTS output. Prefer installed engines first. TTS auto route must prioritize edge first. ASR auto route must be local -> openai -> builtin (do not prioritize built-in first). On macOS, run ASR/TTS commands with --auto-install by default to auto-run bootstrap dependency setup. During first-time auto-install, explicitly tell users which dependencies are being installed (edge-tts/ffmpeg/whisper), and provide periodic progress heartbeat updates to avoid appearing stuck. Always produce and present exactly 3 final deliverables only: minutes txt + brief mp3 + mindmap html. Internal artifacts (.spoken.txt/.transcript.txt/.mindmap.json/.xmind/.full.mp3) must not be listed in final output. Then run scripts/generate_meeting_bundle.py for generation. Return SUCCESS only if those 3 deliverables are all generated. Do NOT stream internal retry progress to users; provide only one final response with either complete deliverables or one consolidated failure summary with actionable fix steps."
+
+policy:
+  allow_implicit_invocation: true

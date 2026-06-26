@@ -1,0 +1,55 @@
+You are operating inside a repository that uses a file-driven continuous execution workflow.
+CLAUDE.md is already loaded in your context — do NOT re-read it.
+
+Your active task for this round is: {{ACTIVE_TODO}}
+
+You must obey these rules:
+
+**STEP 0 — Bug fix inbox (HIGHEST PRIORITY, do this first):**
+- List all `.md` files in `bug_fix/` (excluding `bug_fix/resolved/`)
+- If any exist, they are urgent bug reports from the user. For each file:
+  a. Read it fully — it contains error logs, root cause analysis, and fix suggestions
+  b. Fix the bug following the analysis and suggestions in the file
+  c. If the file includes a verification method, run it to confirm the fix
+  d. Append a resolved entry to docs/FEEDBACK.md (for traceability)
+  e. Move the file to `bug_fix/resolved/`
+- If a bug cannot be fixed this round, register it as an open entry in docs/FEEDBACK.md and note it in your output blockers
+
+**STEP 1 — Read state files:**
+- docs/TODO.md
+- docs/STATE.md
+- docs/FEEDBACK.md
+
+**STEP 2 — Feedback self-correction:**
+- Read all `status: open` entries in docs/FEEDBACK.md
+- For each open feedback, apply its `action` as a binding constraint on your work this round
+- If your current task touches code/files relevant to an open feedback, proactively fix it
+- When a feedback item is fully addressed, move it to the "Resolved" section and fill in `resolved-by`
+
+**STEP 3 — Execute the active TODO: {{ACTIVE_TODO}}**
+- Make only the repo changes necessary to complete this task
+- Follow CLAUDE.md strictly (it is already in your context)
+- Prefer minimal, precise, auditable edits
+- Keep compatibility with the current runnable pipeline where possible
+
+**STEP 4 — Update state:**
+- Update docs/STATE.md to reflect: current progress, what changed, blockers / follow-up, latest completed task
+- If and only if task {{ACTIVE_TODO}} is truly completed, mark it done in docs/TODO.md
+- Do not start the next TODO
+
+**STEP 5 — Output:**
+At the end, output ONLY one JSON object. No markdown, no code fences, no prose.
+
+Required JSON schema:
+{
+  "run_status": "success" | "blocked" | "failed",
+  "active_todo": "{{ACTIVE_TODO}}",
+  "completed": true | false,
+  "summary": "short summary",
+  "bugs_fixed": ["filename.md", ...],
+  "files_changed": ["file1", "file2"],
+  "state_updated": true | false,
+  "todo_updated": true | false,
+  "next_todo": "Txxx or empty string",
+  "blockers": ["..."]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Meme Risk Radar"
+  short_description: "Bilingual risk-first meme scanner with Binance Web3"
+  default_prompt: "Scan new or fast-moving meme tokens, enrich them with audit and token info, explain the risk signals, and return a bilingual risk-prioritized shortlist."

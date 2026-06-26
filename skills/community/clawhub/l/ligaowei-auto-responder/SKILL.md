@@ -1,35 +1,89 @@
 ---
-name: "李高伟自动回复助手"
-description: "飞书自动回复助手。定时扫描用户的私聊消息，发现业务咨询问题（商户、费率、结算等）后自动回复对方。触发场景：(1) cron定时扫描未回复消息 (2) 用户说「帮我回复」「自动回复一下」手动触发。用于收钱吧内部员工的消息自动响应。"
-category: "other"
-source: "ClawHub"
-tags: [auto-responder, cron, feishu, dm]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ligaowei-auto-responder"
-sourceUrl: "https://clawhub.ai/skills/ligaowei-auto-responder"
+name: ligaowei-auto-responder
+description: 飞书自动回复助手。定时扫描用户的私聊消息，发现业务咨询问题（商户、费率、结算等）后自动回复对方。触发场景：(1) cron定时扫描未回复消息 (2) 用户说「帮我回复」「自动回复一下」手动触发。用于收钱吧内部员工的消息自动响应。
 ---
 
 # 李高伟自动回复助手
 
-> 飞书自动回复助手。定时扫描用户的私聊消息，发现业务咨询问题（商户、费率、结算等）后自动回复对方。触发场景：(1) cron定时扫描未回复消息 (2) 用户说「帮我回复」「自动回复一下」手动触发。用于收钱吧内部员工的消息自动响应。
+> 定时扫描戚文珺的未回复私聊消息，发现商户相关问题后自动回复对方。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ligaowei-auto-responder`
-- **Source URL:** [https://clawhub.ai/skills/ligaowei-auto-responder](https://clawhub.ai/skills/ligaowei-auto-responder)
+## 适用场景
 
-## Overview
+**两种触发方式：**
+1. **手动触发** — 用户转发消息说「帮我回复」「自动回复一下」→ 立即处理该消息
+2. **自动扫描** — 每30秒扫描未回复私聊消息，发现业务咨询直接回复
 
+## 能处理的问题类型
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ligaowei-auto-responder
+| 类型 | 举例 |
+|------|------|
+| 💰 商户问题 | "商户费率多少？""结算到账多久？""退款流程" |
+| 📊 交易查询 | "帮我查一下流水""交易记录怎么查" |
+| 📋 流程咨询 | "商户入驻怎么弄""需要什么材料" |
+
+**自动跳过：**
+- 纯问候（"在吗""在不在" → 只回一句"在的"）
+- 个人私事、闲聊
+- 需要用户本人决策的问题
+- 上级布置任务
+
+## 工作流
+
+### Step 1: 检测消息
+
+搜索最近发给戚文珺但未处理的同事消息：
+
+- **私聊消息**：用 `feishu_im_user_search_messages` 搜索 `chat_type="p2p"`，`relative_time="last_30_minutes"`，`sender_type="user"`。过滤掉发送者是戚文珺本人的消息。
+
+### Step 2: 去重
+
+检查记录文件，跳过已回复的消息ID。
+
+### Step 3: 判断是否可回复
+
+对每条未回复消息判断：
+
+- **问候类**（"在吗""在不在""忙吗"） → 回复一句"在的"，记录并结束
+- **纯闲聊/个人私事** → 跳过，不回复
+- **需要决策/审批** → 跳过
+- **上级/老板布置任务** → 跳过
+- **业务咨询** → 继续处理
+
+### Step 4: 关键词匹配
+
+对业务咨询类消息进行关键词匹配：
+
+| 主题 | 关键词 | 回复内容 |
+|------|--------|----------|
+| 商户问题 | 商户, 商家, 费率, 结算, 退款, 交易, 流水, 收款 | 此为ai助手自动回复，若有疑义，稍后联系 |
+| 到账打款 | 到账, 打款 | 本消息由 AI 自动生成，仅供参考\n每月20号左右打款，若有问题可咨询涂雅青 |
+
+**匹配规则**：消息文本中包含任一关键词即视为匹配
+
+### Step 5: 合成回复
+
+按匹配的主题选择对应回复模板：
+
+| 主题 | 回复模板 |
+|------|----------|
+| 商户问题 | 此为ai助手自动回复，若有疑义，稍后联系 |
+| 到账打款 | 本消息由 AI 自动生成，仅供参考<br>每月20号左右打款，若有问题可咨询涂雅青 |
+
+### Step 6: 发送回复
+
+使用 `feishu_im_user_message` 工具 `action=reply`，回复原消息。
+
+### Step 7: 记录归档
+
+在 `memory/ligaowei-auto-responder.md` 追加记录：
 ```
+## YYYY-MM-DD HH:MM
+- 消息ID: om_xxx | 发送者: 姓名 | 问题: 问题摘要
+- 已回复 ✅ | 回复摘要: 回复内容
+```
+
+## 配置信息
+
+- 戚文珺 open_id: `ou_a63ddcd1219a304eef62d46cb4e3f59a`
+- 戚文珺姓名：戚文珺
+- 自动回复记录：/workspace/memory/ligaowei-auto-responder.md

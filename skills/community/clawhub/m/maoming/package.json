@@ -1,0 +1,28 @@
+{
+  "name": "maoming",
+  "version": "1.0.0",
+  "description": "茂名市 - 南方油城 · 中国荔乡 · 滨海绿城",
+  "keywords": [
+    "maoming",
+    "guangdong",
+    "oil-city",
+    "lychee",
+    "beach",
+    "travel",
+    "茂名",
+    "广东",
+    "石化",
+    "荔枝",
+    "滨海",
+    "旅游",
+    "冼夫人"
+  ],
+  "author": "LeoCryptoFlow",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "travel",
+    "languages": ["zh", "en"],
+    "acceptLicenseTerms": true
+  }
+}

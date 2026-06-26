@@ -1,35 +1,52 @@
 ---
-name: "主力建仓扫描"
-description: "主力建仓前兆扫描 - 通过量价数据识别主力悄悄吸筹的潜力股。当用户要求"扫股"、"主力扫描"、"找主力"、"识别建仓"时使用。每日盘后（15:30后）运行效果最佳，也可盘中实时扫描全市场候选。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/main-force-scan"
-sourceUrl: "https://clawhub.ai/skills/main-force-scan"
+name: main-force-scan
+description: 主力建仓前兆扫描 - 通过量价数据识别主力悄悄吸筹的潜力股。当用户要求"扫股"、"主力扫描"、"找主力"、"识别建仓"时使用。每日盘后（15:30后）运行效果最佳，也可盘中实时扫描全市场候选。
 ---
 
-# 主力建仓扫描
+# 主力建仓前兆扫描
 
-> 主力建仓前兆扫描 - 通过量价数据识别主力悄悄吸筹的潜力股。当用户要求"扫股"、"主力扫描"、"找主力"、"识别建仓"时使用。每日盘后（15:30后）运行效果最佳，也可盘中实时扫描全市场候选。
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/main-force-scan`
-- **Source URL:** [https://clawhub.ai/skills/main-force-scan](https://clawhub.ai/skills/main-force-scan)
+通过量价数据分析，识别处于**低位横盘+温和放量+主力异动**阶段的股票，筛选出主力可能正在悄悄吸筹的候选标的。
 
-## Overview
+## 筛选逻辑
 
+| 条件 | 标准 | 说明 |
+|------|------|------|
+| 横盘 | 近5日振幅 < 前10日振幅×70% | 波动收窄，非趋势股 |
+| 放量 | 近3日均量 > 前10日均量×1.3 | 温和放量，不过激 |
+| 价位 | 在近12日高低点中部位置 | 不能追高，不捡垃圾 |
+| 异动 | 近3日出现放量但不涨≥1.5% | 主力吸筹特征 |
+| 趋势 | 近12日整体涨幅 > -5% | 非下降通道 |
+| 过滤 | 排除ST、成交额<3000万、股价>100元 | 规避垃圾和超高价 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方式
+
 ```bash
-hermes skills install clawhub/main-force-scan
+# 每日盘后运行（推荐15:30后）
+bash ~/.openclaw/workspace/scripts/main-force-scan.sh
+
+# 报告输出到
+~/.openclaw/workspace/memory/main-force-scan-YYYY-MM-DD.md
 ```
+
+## 报告字段说明
+
+- **评分**：综合评分越高，主力建仓特征越明显（满分100）
+- **放量倍数**：近期量能相对 baseline 的倍数，>1.5x 较明显
+- **异动**：✅ 表示近3日出现过"量增价稳"特征；⚠️ 表示无明显异动但其他特征符合
+- **趋势**：近12日整体涨跌幅，趋势向上加分
+
+## 候选处理流程
+
+1. 扫描全市场主板股票（沪市+深市主板，150只/批次）
+2. 符合条件者按评分排序，输出Top20
+3. 结合大盘环境、板块热度综合判断
+4. **低评分候选仅供观察，不直接入场**
+5. 优先关注评分>7.0 且有异动✅的标的
+
+## 风险提示
+
+- 主力建仓前兆不等于一定会涨
+- 熊市环境下信号失真率高
+- 仅供参考，不构成投资建议

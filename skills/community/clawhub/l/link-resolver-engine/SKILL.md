@@ -1,35 +1,73 @@
 ---
-name: "link-resolver-engine"
-description: "当用户想要**下载抖音视频**、**下载B站视频**、**解析无水印直链**、**提取最高画质视频**、**把视频下下来**、**保存抖音/B站视频**时自动触发。 专门处理哔哩哔哩（Bilibili/B站）和抖音（Douyin）的任意视频链接（包括短链 b23.tv、douyin.com、bilibili.co..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/link-resolver-engine"
-sourceUrl: "https://clawhub.ai/skills/link-resolver-engine"
+name: link-resolver-engine
+description: |
+  当用户想要**下载抖音视频**、**下载B站视频**、**解析无水印直链**、**提取最高画质视频**、**把视频下下来**、**保存抖音/B站视频**时自动触发。
+  专门处理哔哩哔哩（Bilibili/B站）和抖音（Douyin）的任意视频链接（包括短链 b23.tv、douyin.com、bilibili.com 等）。
+  自动识别平台，优先使用 yt-dlp 获取最高画质，失败时自动切换备用方案，最后本地下载并用 ffmpeg 合并音视频，保存到 downloads 文件夹。
+  
+  【重要约束】仅支持 B站 和 抖音 链接，其他任何平台的链接一律不处理。
+  
+  常见触发口语（越多越好）：
+  - “帮我下载这个抖音视频”
+  - “帮我下载这个抖音视频：[链接]”
+  - “解析这个B站链接”
+  - “解析这个B站链接的无水印最高画质：[链接]”
+  - “Bilibili视频无水印下载”
+  - “抖音最高画质直链”
+  - “把这个视频下下来”
+  - “把这个视频下下来：[链接]”
+  - “下载Douyin/B站视频”
+  - “提取视频直链”
+  - “视频下载器”
+  - “帮我保存这个抖音/B站视频”
+  - “给我这个视频的无水印版本”
+  - “帮我处理这个视频链接”
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+    user-invocable: true
 ---
 
 # link-resolver-engine
 
-> 当用户想要**下载抖音视频**、**下载B站视频**、**解析无水印直链**、**提取最高画质视频**、**把视频下下来**、**保存抖音/B站视频**时自动触发。 专门处理哔哩哔哩（Bilibili/B站）和抖音（Douyin）的任意视频链接（包括短链 b23.tv、douyin.com、bilibili.co...
+**功能**：高性能、智能、双平台视频链接解析与下载引擎。专为 OpenClaw Skill 生态设计，支持 **B站（Bilibili）** 和 **抖音（Douyin）** 视频链接的自动识别、智能解析与无水印下载。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/link-resolver-engine`
-- **Source URL:** [https://clawhub.ai/skills/link-resolver-engine](https://clawhub.ai/skills/link-resolver-engine)
+### 触发时机（Triggers）
+- 用户直接发抖音或B站视频链接，并带有“下载”“解析”“直链”“无水印”“最高画质”“下下来”“保存”等关键词。
+- 用户说“帮我处理这个视频链接”“给我这个视频的最高画质版本”等口语指令。
+- 支持批量处理：一次发多个链接也行。
+- 自动检测短链并跳转。
 
-## Overview
+### 核心优势
+- 完全离线运行（仅在需要时使用网络下载视频）。
+- 采用“主方案 + 备用方案”双保险机制，确保最高成功率。
+- 自动检测平台（支持短链自动跳转）。
+- 下载完成后按指定目录保存 `.mp4` 文件。
 
+## 参数提取指南
+当决定调用此技能时，请从用户上下文中提取以下参数：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/link-resolver-engine
-```
+1. **`<视频链接>`** (必填): 用户提供的完整链接或短链（如 `b23.tv`、`v.douyin.com` 等）。
+2. **`<文件名前缀>`** (选填): 用户如果明确指定了保存的文件名。
+3. **`<下载目录>`** (选填): 用户如果明确指定了保存路径。若未指定，无需添加此参数（默认 `./downloads`）。
+4. **`<格式代码>`** (选填): 用户如果明确提出了特定的画质或格式要求。
+
+### B站下载方案
+1. **第一优先** → 使用 `yt-dlp`（最稳定、最快，支持最高画质）
+2. **第二备用** → 自动展开 `b23.tv` 短链接 → 获取无水印直链 → `requests` + `ffmpeg` 合并
+3. **第三兜底** → 两步都失败时给出清晰错误提示
+
+### 抖音下载方案
+1. **第一优先** → 短链展开 → PC 端最高画质无水印直链下载
+2. **第二备用** → 移动端轻量模式下载（兼容性极强）
+3. **第三兜底** → 优先保证画质，失败后自动降级
+
+### 执行步骤
+1. **解析链接**：识别用户的源链接（支持单个或批量 B站/抖音视频链接或短链，自动判断平台）。
+2. **默认目标**：若未指定下载目录，默认保存在 `./downloads` 文件夹（支持 `--filename-prefix` 或自动生成带时间戳的文件名）。
+3. **调用命令**：使用以下兼容性命令启动脚本（优先 `python3`，失败则 `python`）。脚本会自动创建虚拟环境、检查依赖并初始化。
+
+   ```bash
+   (python3 scripts/video_snapper.py -u "<视频链接>" [-p "<文件名前缀>"] [-d "<下载目录>"] [-f "<格式代码>"]) || (python scripts/video_snapper.py -u "<视频链接>" [-p "<文件名前缀>"] [-d "<下载目录>"] [-f "<格式代码>"])

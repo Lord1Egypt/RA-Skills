@@ -1,35 +1,70 @@
 ---
-name: "Local Life Hotspot"
-description: "搜索当天真实热门话题，选择一个深度创作，生成简约图片，自动发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-life-hotspot"
-sourceUrl: "https://clawhub.ai/skills/local-life-hotspot"
+name: local-life-hotspot
+displayName: 单话题深度创作助手
+version: 6.0.0
+description: 搜索当天真实热门话题，选择一个深度创作，生成简约图片，自动发布。
 ---
 
-# Local Life Hotspot
+# 单话题深度创作助手 v6.0
 
-> 搜索当天真实热门话题，选择一个深度创作，生成简约图片，自动发布。
+## 核心理念
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-life-hotspot`
-- **Source URL:** [https://clawhub.ai/skills/local-life-hotspot](https://clawhub.ai/skills/local-life-hotspot)
+**真实热点 + 深度内容 + 简约图片**
 
-## Overview
+## v6.0 更新要点
 
+### 1. 确保当天真实热点
+✅ 多重试机制（3 次重试）
+✅ 多查询搜索（3 个查询词）
+✅ 搜索失败明确提示，不使用示例数据
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 2. 简化图片生成
+✅ 纯色背景（根据领域配色）
+✅ 居中显示标题
+✅ 快速生成，不复杂
+
+### 3. 深度文案结构
+✅ 话题引入
+✅ 概念解释
+✅ 核心要点
+✅ 实操指南（3 阶段）
+✅ 行动建议
+✅ 常见问题（Q&A）
+✅ 互动引导
+
+## 快速使用
+
 ```bash
-hermes skills install clawhub/local-life-hotspot
+# 搜索当天热点并创作
+python ~/.openclaw/skills/local-life-hotspot/run.py -k "职场干货" -a
+
+# 指定具体话题
+python ~/.openclaw/skills/local-life-hotspot/run.py -k "减肥" -t "16+8 轻断食" -a
 ```
+
+## 参数说明
+
+| 参数 | 简写 | 说明 | 默认值 |
+|------|------|------|--------|
+| `--keyword` | `-k` | 搜索关键词 | `职场干货` |
+| `--auto-publish` | `-a` | 自动发布 | `false` |
+| `--topic` | `-t` | 指定话题 | 自动选择 |
+
+## 图片配色
+
+| 领域 | 背景色 |
+|------|--------|
+| 减肥 | 粉色 (255, 182, 193) |
+| 职场 | 蓝色 (100, 149, 237) |
+| 学习 | 橙色 (255, 218, 185) |
+| 科技 | 紫色 (138, 43, 226) |
+| 美食 | 橙色 (255, 165, 0) |
+| 生活 | 粉色 (255, 192, 203) |
+
+## 更新日志 v6.0
+
+- ✅ 确保搜索当天真实热门话题
+- ✅ 搜索失败时明确提示，不使用示例数据
+- ✅ 简化图片生成（纯色背景 + 标题）
+- ✅ 优化发布流程
+

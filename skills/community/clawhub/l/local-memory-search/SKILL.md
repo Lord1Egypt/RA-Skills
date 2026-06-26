@@ -1,35 +1,33 @@
----
-name: "Local Memory Search"
-description: "Performs fast local semantic search on OpenClaw memory files using TF-IDF without external dependencies or APIs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/local-memory-search"
-sourceUrl: "https://clawhub.ai/skills/local-memory-search"
----
-
 # Local Memory Search
 
-> Performs fast local semantic search on OpenClaw memory files using TF-IDF without external dependencies or APIs.
+Lightweight semantic search for OpenClaw memory files. No external API needed.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/local-memory-search`
-- **Source URL:** [https://clawhub.ai/skills/local-memory-search](https://clawhub.ai/skills/local-memory-search)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/local-memory-search
+python3 search.py "your query"
 ```
+
+Build index:
+```bash
+python3 search.py --build
+```
+
+## Features
+
+- Searches MEMORY.md and memory/*.md
+- TF-IDF based semantic matching
+- Zero external dependencies
+- Fast local execution
+- Returns top snippets with file path and line numbers
+
+## How It Works
+
+1. Builds inverted index of all memory files
+2. Uses TF-IDF scoring for relevance
+3. Returns ranked results with context
+
+## Requirements
+
+- Python 3.8+
+- No pip packages needed (uses stdlib only)

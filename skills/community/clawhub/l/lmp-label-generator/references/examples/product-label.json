@@ -1,0 +1,163 @@
+{
+  "lmp": {
+    "version": "1.21",
+    "created": "2026-03-12T00:00:00Z",
+    "modified": "2026-03-12T00:00:00Z",
+    "generator": "OpenClaw lmp-label-generator skill v1.0.0"
+  },
+  "metadata": {
+    "name": "标准产品标签",
+    "description": "60×40mm 零售产品标签，含公司名、产品名、EAN13条码、价格",
+    "category": "产品",
+    "tags": ["零售", "产品", "示例"]
+  },
+  "canvas": {
+    "width": 60,
+    "height": 40,
+    "unit": "mm",
+    "dpi": 203,
+    "orientation": "landscape",
+    "backgroundColor": "#FFFFFF"
+  },
+  "print": {
+    "pageSize": { "width": 60, "height": 40, "unit": "mm" },
+    "margin": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
+  },
+  "elements": [
+    {
+      "id": "rect-001",
+      "type": "rectangle",
+      "name": "外边框",
+      "position": { "x": 0.5, "y": 0.5, "unit": "mm" },
+      "size": { "width": 59, "height": 39 },
+      "layer": 0,
+      "locked": true,
+      "visible": true,
+      "style": {
+        "fill": "transparent",
+        "stroke": "#CCCCCC",
+        "strokeWidth": 0.3,
+        "strokeStyle": "solid",
+        "cornerRadius": 1
+      }
+    },
+    {
+      "id": "text-001",
+      "type": "text",
+      "name": "公司名称",
+      "position": { "x": 2, "y": 2, "unit": "mm" },
+      "size": { "width": 56, "height": 5 },
+      "layer": 1,
+      "locked": false,
+      "visible": true,
+      "content": "示例公司 Example Co.",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#888888",
+        "align": "center",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "line-001",
+      "type": "line",
+      "name": "顶部分隔线",
+      "position": { "x": 2, "y": 8, "unit": "mm" },
+      "size": { "width": 56, "height": 0.3 },
+      "layer": 1,
+      "locked": true,
+      "visible": true,
+      "startPoint": { "x": 0, "y": 0 },
+      "endPoint": { "x": 56, "y": 0 },
+      "style": {
+        "stroke": "#EEEEEE",
+        "strokeWidth": 0.3,
+        "strokeStyle": "solid",
+        "startArrow": false,
+        "endArrow": false
+      }
+    },
+    {
+      "id": "text-002",
+      "type": "text",
+      "name": "产品名称",
+      "position": { "x": 2, "y": 9, "unit": "mm" },
+      "size": { "width": 40, "height": 8 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "产品名称",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#000000",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-003",
+      "type": "text",
+      "name": "价格",
+      "position": { "x": 44, "y": 9, "unit": "mm" },
+      "size": { "width": 14, "height": 8 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "¥99.00",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#CC0000",
+        "align": "right",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-004",
+      "type": "text",
+      "name": "产品规格",
+      "position": { "x": 2, "y": 17, "unit": "mm" },
+      "size": { "width": 56, "height": 4 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "规格：100×50×30mm  重量：250g",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#666666",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "barcode-001",
+      "type": "barcode",
+      "name": "EAN13条码",
+      "position": { "x": 5, "y": 22, "unit": "mm" },
+      "size": { "width": 50, "height": 15 },
+      "layer": 3,
+      "locked": false,
+      "visible": true,
+      "barcode": {
+        "type": "EAN13",
+        "content": "6901234567890",
+        "displayText": true,
+        "textPosition": "bottom",
+        "textSize": 12,
+        "foregroundColor": "#000000",
+        "backgroundColor": "#FFFFFF"
+      }
+    }
+  ]
+}

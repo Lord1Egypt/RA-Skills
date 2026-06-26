@@ -1,0 +1,59 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="80" x2="1440" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7E7C6"/>
+      <stop offset="0.55" stop-color="#E6C79C"/>
+      <stop offset="1" stop-color="#B46A3A"/>
+    </linearGradient>
+    <linearGradient id="card" x1="320" y1="180" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8EE" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#F6E6CE" stop-opacity="0.88"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1180 220) rotate(90) scale(220 220)">
+      <stop stop-color="#FFF5CC"/>
+      <stop offset="1" stop-color="#FFF5CC" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="240" y="120" width="1120" height="660" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#7A431E" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <circle cx="1310" cy="150" r="72" fill="#FFF5CC" fill-opacity="0.85"/>
+  <circle cx="1310" cy="150" r="104" stroke="#FFF5CC" stroke-opacity="0.32" stroke-width="2"/>
+
+  <g opacity="0.2">
+    <path d="M120 700C280 620 420 620 580 700" stroke="#7D3F1D" stroke-width="3"/>
+    <path d="M180 760C340 680 500 680 660 760" stroke="#7D3F1D" stroke-width="3"/>
+    <path d="M920 720C1080 640 1240 640 1400 720" stroke="#7D3F1D" stroke-width="3"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="286" y="154" width="1028" height="592" rx="36" fill="url(#card)"/>
+  </g>
+
+  <rect x="338" y="206" width="248" height="248" rx="28" fill="#F0D5AA"/>
+  <rect x="382" y="252" width="160" height="160" rx="80" fill="#A95A32"/>
+  <path d="M462 294C434 330 424 360 424 388C424 427 456 454 494 454C532 454 564 427 564 388C564 360 554 330 526 294C517 281 504 272 494 272C484 272 471 281 462 294Z" fill="#FFF4E3"/>
+  <circle cx="470" cy="384" r="8" fill="#A95A32"/>
+  <circle cx="518" cy="384" r="8" fill="#A95A32"/>
+  <path d="M466 418C484 432 504 432 522 418" stroke="#A95A32" stroke-width="6" stroke-linecap="round"/>
+
+  <text x="640" y="330" fill="#723816" font-size="76" font-family="Georgia, 'Times New Roman', serif" font-weight="700">MeritLoop</text>
+  <text x="642" y="395" fill="#9B5B30" font-size="40" font-family="Georgia, 'Times New Roman', serif">念伴 · 本地优先的赛博修行陪伴者</text>
+
+  <text x="642" y="488" fill="#5F3118" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif">Chant on schedule. Dedicate with intention. Track your daily merit.</text>
+  <text x="642" y="532" fill="#5F3118" font-size="28" font-family="'Helvetica Neue', Arial, sans-serif">Built for local-first ritual companions, shrine robots, and future Buddhist communities.</text>
+
+  <rect x="642" y="594" width="170" height="54" rx="27" fill="#A95A32"/>
+  <text x="683" y="629" fill="#FFF9F0" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Local-First</text>
+
+  <rect x="830" y="594" width="162" height="54" rx="27" fill="#E8C083"/>
+  <text x="871" y="629" fill="#6A3517" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Merit Score</text>
+
+  <rect x="1010" y="594" width="188" height="54" rx="27" fill="#F4E6D0"/>
+  <text x="1058" y="629" fill="#6A3517" font-size="24" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700">Future Community</text>
+
+  <text x="338" y="806" fill="#6A3517" font-size="22" font-family="'Helvetica Neue', Arial, sans-serif">A Buddhist ritual-tech concept for chanting, dedication, and daily spiritual rhythm.</text>

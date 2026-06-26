@@ -1,35 +1,33 @@
 ---
-name: "买手妈妈返利助手"
-description: "买手妈妈母婴社交电商返利工具，专注母婴消费群体，提供母婴商品优惠券查找和返利服务，覆盖淘宝京东拼多多等平台。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/maishou-mama"
-sourceUrl: "https://clawhub.ai/skills/maishou-mama"
+name: 买手妈妈返利助手
+description: 买手妈妈母婴社交电商返利工具，专注母婴消费群体，提供母婴商品优惠券查找和返利服务，覆盖淘宝京东拼多多等平台。
+version: 0.1.0
 ---
 
 # 买手妈妈返利助手
 
-> 买手妈妈母婴社交电商返利工具，专注母婴消费群体，提供母婴商品优惠券查找和返利服务，覆盖淘宝京东拼多多等平台。
+买手妈妈母婴社交电商返利工具。专注为宝妈群体提供母婴商品的大额优惠券和返利服务，覆盖淘宝、京东、拼多多等主流电商平台，涵盖尿裤湿巾、喂养洗护、童装玩具等母婴品类。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/maishou-mama`
-- **Source URL:** [https://clawhub.ai/skills/maishou-mama](https://clawhub.ai/skills/maishou-mama)
+## 触发词
 
-## Overview
+买手妈妈、买手妈妈返利、maishou mama、母婴返利、宝妈返利、母婴优惠券
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/maishou-mama
+- **母婴专区返利**：专注母婴品类的高佣商品筛选
+- **大额优惠券**：母婴商品隐藏优惠券查找
+- **品牌正品保障**：品牌直营模式，7天无理由退换
+- **宝妈社群推广**：生成适合宝妈群的推广素材
+
+## 输出格式
+
+```
+👶 买手妈妈返利查询
+
+商品：[商品名称]
+品类：[母婴品类]
+售价：¥[价格]
+优惠券：[券描述]
+返利比例：[X]%
+预计返利：¥[金额]
 ```

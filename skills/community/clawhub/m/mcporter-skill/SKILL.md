@@ -1,35 +1,47 @@
 ---
-name: "mcporter"
-description: "Manage and interact with MCP servers and tools via the mcporter CLI, supporting listing, configuring, authenticating, calling tools, and generating CLI/types."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mcporter-skill"
-sourceUrl: "https://clawhub.ai/skills/mcporter-skill"
----
+name: mcporter
+description: Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.
+homepage: https://github.com/pdxfinder/mcporter
+metadata: {"clawdbot":{"emoji":"🔌","os":["darwin","linux","windows"],"requires":{"bins":["mcporter"]},"install":[{"id":"brew","kind":"brew","formula":"pdxfinder/tap/mcporter","bins":["mcporter"],"label":"Install mcporter (brew)"}]}}
 
 # mcporter
 
-> Manage and interact with MCP servers and tools via the mcporter CLI, supporting listing, configuring, authenticating, calling tools, and generating CLI/types.
+Use `mcporter` to manage MCP (Model Context Protocol) servers and tools.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mcporter-skill`
-- **Source URL:** [https://clawhub.ai/skills/mcporter-skill](https://clawhub.ai/skills/mcporter-skill)
+## Requirements
+- `mcporter` CLI installed (via Homebrew: `brew install pdxfinder/tap/mcporter`)
+- MCP server configuration in `~/.config/mcporter/`
 
-## Overview
+## Common Commands
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### List Configured Servers
 ```bash
-hermes skills install clawhub/mcporter-skill
+mcporter list
 ```
+
+### Authentication
+```bash
+mcporter auth --help
+```
+
+### Call MCP Tools
+```bash
+mcporter call <server-name> <tool-name> [arguments...]
+```
+
+### Generate CLI/Types
+```bash
+mcporter generate cli <server-name>
+mcporter generate types <server-name>
+```
+
+### Config Management
+```bash
+mcporter config --help
+```
+
+## Notes
+- mcporter supports both HTTP and stdio MCP servers
+- Ad-hoc server creation is supported
+- CLI generation creates typed wrappers for MCP tools
+- Use `exec` tool to run mcporter commands

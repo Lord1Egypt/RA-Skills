@@ -1,0 +1,14 @@
+# Mimic Skill - Python 依赖
+#
+# 核心脚本（weibo_collect, bilibili_subtitle_batch, speech_analysis 等）
+# 只使用 Python 标准库，无需额外安装。
+#
+# 以下为可选依赖，仅在使用特定功能时需要：
+
+# --- 抖音视频语音转文字（douyin_whisper_batch.py）---
+# 需要 ffmpeg 系统工具 + openai-whisper Python 包
+# 安装 ffmpeg:
+#   macOS: brew install ffmpeg
+#   Ubuntu: sudo apt install ffmpeg
+# 安装 whisper:
+openai-whisper>=20231117    # 可选：仅抖音视频转文字时需要

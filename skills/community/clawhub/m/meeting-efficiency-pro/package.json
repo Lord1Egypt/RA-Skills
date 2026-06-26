@@ -1,0 +1,55 @@
+{
+  "name": "meeting-efficiency-pro",
+  "version": "1.0.1",
+  "description": "AI-powered meeting optimization tool for OpenClaw - Save 20%+ of meeting time with intelligent analysis and automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/test.js",
+    "demo": "node scripts/demo.js",
+    "setup": "node scripts/setup.js"
+  },
+  "keywords": [
+    "meeting",
+    "ai",
+    "productivity",
+    "calendar",
+    "automation",
+    "openclaw",
+    "skill"
+  ],
+  "author": "ClawHub",
+  "license": "Commercial",
+  "dependencies": {
+    "openai": "^4.0.0",
+    "googleapis": "^128.0.0",
+    "node-schedule": "^2.1.0",
+    "ical": "^0.8.0",
+    "dotenv": "^16.0.0",
+    "axios": "^1.0.0",
+    "chalk": "^4.1.0",
+    "inquirer": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawhub/meeting-efficiency-pro"
+  },
+  "bugs": {
+    "url": "https://github.com/clawhub/meeting-efficiency-pro/issues"
+  },
+  "homepage": "https://clawhub.com/skills/meeting-efficiency-pro",
+  "clawhub": {
+    "price": 69,
+    "category": "productivity",
+    "tags": [
+      "meetings",
+      "ai",
+      "automation",
+      "calendar",
+      "productivity"
+    ],
+    "min_openclaw_version": "1.5.0"
+  }
+}

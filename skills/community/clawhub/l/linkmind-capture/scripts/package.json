@@ -1,0 +1,34 @@
+{
+  "name": "linkmind-scripts",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "tsx setup.ts",
+    "typecheck": "tsc --noEmit",
+    "weibo": "tsx weibo.ts",
+    "xiaohongshu": "tsx xiaohongshu.ts",
+    "download-images": "tsx download-images.ts",
+    "test:weibo": "tsx test-weibo.ts",
+    "test:weibo:e2e": "tsx test-weibo.ts --e2e",
+    "test:xhs": "tsx test-xiaohongshu.ts",
+    "test:xhs:e2e": "tsx test-xiaohongshu.ts --e2e",
+    "wechat": "tsx wechat.ts",
+    "test:wechat": "tsx test-wechat.ts",
+    "test:wechat:e2e": "tsx test-wechat.ts --e2e",
+    "xiaoyuzhou": "tsx xiaoyuzhou.ts",
+    "test:xiaoyuzhou": "tsx test-xiaoyuzhou.ts",
+    "test:xiaoyuzhou:e2e": "tsx test-xiaoyuzhou.ts --e2e",
+    "transcript": "tsx extract-transcript.ts",
+    "test:transcript": "tsx test-transcript.ts",
+    "test:transcript:e2e": "tsx test-transcript.ts --e2e"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.1.0"
+  }
+}

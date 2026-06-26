@@ -1,0 +1,15 @@
+{
+  "name": "mdgs-tavily-search-skill",
+  "version": "1.0.0",
+  "description": "使用 Tavily API 进行网络搜索、网页提取、抓取、映射和研究",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["tavily", "search", "ai", "web-scraping"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tavily/core": "^0.7.2"
+  }
+}

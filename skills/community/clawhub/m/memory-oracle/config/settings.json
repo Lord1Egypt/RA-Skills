@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "paths": {
+    "workspace": "~/.openclaw/workspace",
+    "db": "~/.openclaw/workspace/memory-oracle.db",
+    "memory_md": "~/.openclaw/workspace/MEMORY.md",
+    "daily_logs": "~/.openclaw/workspace/memory",
+    "reflections": "~/.openclaw/workspace/memory/reflections",
+    "failed_reflections": "~/.openclaw/workspace/memory/failed_reflections",
+    "pending_queue": "~/.openclaw/workspace/memory-oracle-pending.json"
+  },
+  "recall": {
+    "budget_tokens": 2000,
+    "slot_guardrails_pct": 0.10,
+    "slot_fresh_pct": 0.30,
+    "slot_relevant_pct": 0.60,
+    "fresh_window_hours": 24,
+    "max_facts_per_slot": 10,
+    "chars_per_token": 4,
+    "fallback_to_grep": true
+  },
+  "capture": {
+    "min_content_length": 8,
+    "max_content_length": 500,
+    "flush_interval_turns": 10,
+    "dedup_similarity_threshold": 0.85
+  },
+  "scoring": {
+    "default_importance": 1.0,
+    "guardrail_importance": 10.0,
+    "new_topic_boost": 1.5,
+    "pattern_meta_score": 2.0,
+    "decay_rate_per_day": 0.05,
+    "access_boost_per_hit": 0.1,
+    "max_score": 10.0,
+    "min_score": 0.01,
+    "archive_threshold": 0.2,
+    "delete_threshold": 0.05,
+    "delete_min_age_days": 90,
+    "priority_boost_multiplier": 1.3,
+    "priority_decay_multiplier": 0.7,
+    "superseded_multiplier": 0.1
+  },
+  "reflection": {
+    "light_enabled": true,
+    "deep_enabled": true,
+    "deep_day_of_week": 0,
+    "confidence_threshold": 0.5,
+    "deep_lookback_days": 7,
+    "max_stale_candidates": 20
+  },
+  "maintenance": {
+    "memory_md_max_facts": 50,
+    "memory_md_max_chars": 15000,
+    "cold_archive_after_days": 7,
+    "vacuum_interval_days": 7,
+    "max_daily_log_age_days": 30
+  },
+  "api": {
+    "model": "claude-sonnet-4-20250514",
+    "max_tokens": 1000,
+    "base_url": "https://api.anthropic.com/v1/messages",
+    "timeout_seconds": 30
+  },
+  "cron": {
+    "heavy_pipeline_hour": 3,
+    "heavy_pipeline_minute": 0,
+    "timezone": "auto"
+  }
+}

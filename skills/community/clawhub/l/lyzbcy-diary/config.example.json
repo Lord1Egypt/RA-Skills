@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "schedule": "0 22 * * *",
+  "channel": "",
+  "target": "",
+  "persona": {
+    "name": "AI助手",
+    "mood": "cheerful",
+    "style": "casual"
+  },
+  "retentionDays": 90,
+  "includeInteractions": true,
+  "includeReflections": true,
+  "weeklySummary": false,
+  "monthlySummary": false,
+  "_setupNote": "首次使用请填写 channel、target 和 persona.name"
+}

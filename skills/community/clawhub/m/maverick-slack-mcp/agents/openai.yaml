@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slack"
+  short_description: "Search messages and interact with Slack workspaces"
+  default_prompt: "Use the Slack MCP tools to help the user search messages, read channels, and send messages in their Slack workspace."

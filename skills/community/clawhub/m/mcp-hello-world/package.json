@@ -1,0 +1,22 @@
+{
+  "name": "mcp-hello-world",
+  "version": "1.0.0",
+  "description": "最小可行 MCP 服务器 - ClawHub Skill",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node src/test.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "mcp",
+    "hello-world",
+    "clawhub"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "zod": "^4.3.6"
+  }
+}

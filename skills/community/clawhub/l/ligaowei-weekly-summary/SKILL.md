@@ -1,35 +1,92 @@
 ---
-name: "李高伟周报生成"
-description: "为李高伟（收钱吧培训师）生成每周工作总结。支持按自定义周期（默认上周五至本周四）自动查询飞书日历日程和聊天记录，产出的总结以洞察分析为主而非事项罗列。触发场景：用户说"周报"、"周总结"、"本周内容"、"总结本周"、"周回顾"。"
-category: "other"
-source: "ClawHub"
-tags: [report, weekly-summary]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ligaowei-weekly-summary"
-sourceUrl: "https://clawhub.ai/skills/ligaowei-weekly-summary"
+name: ligaowei-weekly-summary
+description: 为李高伟（收钱吧培训师）生成每周工作总结。支持按自定义周期（默认上周五至本周四）自动查询飞书日历日程和聊天记录，产出的总结以洞察分析为主而非事项罗列。触发场景：用户说"周报"、"周总结"、"本周内容"、"总结本周"、"周回顾"。
 ---
 
-# 李高伟周报生成
+# Ligaowei Weekly Summary
 
-> 为李高伟（收钱吧培训师）生成每周工作总结。支持按自定义周期（默认上周五至本周四）自动查询飞书日历日程和聊天记录，产出的总结以洞察分析为主而非事项罗列。触发场景：用户说"周报"、"周总结"、"本周内容"、"总结本周"、"周回顾"。
+为李高伟生成每周工作总结。核心原则：**不罗列事项，提炼洞察**。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ligaowei-weekly-summary`
-- **Source URL:** [https://clawhub.ai/skills/ligaowei-weekly-summary](https://clawhub.ai/skills/ligaowei-weekly-summary)
+## 工作流程
 
-## Overview
+### Step 1: 确认时间范围
 
+默认周期：**上周五 → 本周四**（与考核周期对齐）。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ligaowei-weekly-summary
-```
+如果用户指定了其他周期，按用户要求调整。
+
+### Step 2: 查询日程数据
+
+调用 `feishu_calendar_event(action=list, ...)` 查询该时间范围内的所有日程。
+
+注意：
+- `start_time` 和 `end_time` 使用 ISO 8601 格式（含时区），如 `2026-05-08T00:00:00+08:00`
+- 留意每条日程的 `self_rsvp_status`（accept/needs_action/decline）判断用户是否实际参与
+- 区分用户自己组织的日程（`event_organizer` 的 `user_id` 是用户本人）和他人的邀约
+- 日程标题前的 emoji 保留（如 🤖📚 等）
+
+### Step 3: 查询聊天记录
+
+通过 `feishu_im_user_search_messages` 分两类查询：
+
+**A. 用户发出的消息**（了解用户主动沟通的内容）：
+- `sender_ids: [用户open_id]`
+- `relative_time: last_7_days`（或覆盖时间范围的参数）
+
+**B. @用户的群消息**（了解团队/他人找用户的事）：
+- `chat_type: group`
+- `mention_ids: [用户open_id]`
+
+注意：
+- 有 `has_more: true` 时继续翻页
+- 关注 `chat_name` 字段识别对话对象/群名
+- 合并转发消息（msg_type=merge_forward）的内容包含关键对话脉络
+
+### Step 4: 按维度分析数据
+
+不要按天罗列事项。从以下维度提炼：
+
+#### 1️⃣ 整体判断
+- 本周的工作密度和节奏（高密度交付/正常推进/相对轻松）
+- 用户角色的定位（培训师/组织者/问题解决者/管理协同者）
+
+#### 2️⃣ 核心工作线索
+识别本周最重要的 3-5 条工作线索，每条包含：
+- **发现/背景**：从什么场景发现或触发
+- **做了什么**：实际推进的动作
+- **结果/影响**：落地了什么，推动了什么
+- **意义**：这件事对团队或业务有什么价值
+
+常见的线索类型：
+- **新人培训体系**：培训场次、主题覆盖、验收闭环
+- **业务痛点发现与解决**：从培训/沟通中发现业务问题，推动解决
+- **管理型工作**：服务之星评选、数据搜集、团队通知
+- **话术/内容建设**：话术讨论会、内容输出、协同产出
+- **个人能力建设**：培训、学习、AI技能提升等
+
+#### 3️⃣ 关键数字（如适用）
+精选 3-5 个最有代表的数据，不要堆砌。
+
+#### 4️⃣ 角色转变观察（如适用）
+- 用户在某些工作中的角色是否有升维（如从执行者变成组织者）
+- 是否有新的职责或能力要求出现
+
+#### 5️⃣ 下周重点关注
+精选 3-5 条下周需要跟进/留意的事项。
+
+### Step 5: 输出格式
+
+使用 Markdown 格式输出，结构参考 `references/template.md`。
+
+关键要求：
+- **不要使用表格结构**做日程罗列
+- 每个线索段落控制在 3-7 行，精炼有信息量
+- 语言风格：成熟、理性、有洞察力，符合李高伟的培训师身份
+- 适当使用加粗强调核心结论
+
+## 资源
+
+### references/
+
+- `template.md` - 每周总结的参考模板，包含各维度的输出结构示例
+- `user_profile.md` - 李高伟的基本信息（open_id、部门、角色），用于快速获取查询参数

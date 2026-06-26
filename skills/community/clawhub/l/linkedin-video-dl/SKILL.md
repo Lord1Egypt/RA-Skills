@@ -1,35 +1,38 @@
----
-name: "Linkedin Video Downloader"
-description: "Download videos from public LinkedIn posts as MP4 files without authentication or dependencies, saving them at the best available quality."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkedin-video-dl"
-sourceUrl: "https://clawhub.ai/skills/linkedin-video-dl"
----
+SKILL.md
 
-# Linkedin Video Downloader
+# linkedin-video-dl
 
-> Download videos from public LinkedIn posts as MP4 files without authentication or dependencies, saving them at the best available quality.
+Use linkedin-video-dl to download videos from LinkedIn posts. Takes a public post URL and saves the MP4 video to the current directory. No authentication required for public posts.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkedin-video-dl`
-- **Source URL:** [https://clawhub.ai/skills/linkedin-video-dl](https://clawhub.ai/skills/linkedin-video-dl)
+## Setup (once)
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/linkedin-video-dl
+cd linkedin-video-dl && go build -o linkedin-video-dl .
 ```
+
+Or install globally:
+
+```bash
+go install .
+```
+
+## Common commands
+
+Download video:          `linkedin-video-dl "<post-url>"`
+
+## Example
+
+```bash
+linkedin-video-dl "https://www.linkedin.com/posts/midudev_anthropic-ha-acusado-a-deepseek-activity-7432111870431449089-9evi"
+```
+
+## Notes
+
+- Only works with **public** LinkedIn posts that contain video.
+- No authentication or API keys needed.
+- Zero external dependencies — built entirely with Go's standard library.
+- Videos are downloaded from LinkedIn's CDN (`dms.licdn.com`) at the best available quality.
+- Downloads use a temporary `.tmp` file and rename on completion — safe to interrupt without leaving corrupt files.
+- Output filename is derived from the post URL slug (truncated to 80 chars).
+- If a file with the same name already exists, the download is skipped to avoid overwriting.
+- Progress bar is shown during download with percentage, downloaded size, and total size.

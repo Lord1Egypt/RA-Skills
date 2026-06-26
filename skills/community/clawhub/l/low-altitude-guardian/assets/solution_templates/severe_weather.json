@@ -1,0 +1,80 @@
+{
+  "template_id": "SOL-ENV-001",
+  "name": "极端天气应对方案",
+  "crisis_type": "environment_threat.severe_weather",
+  "applicable_levels": ["L2", "L3", "L4"],
+  "applicable_devices": ["multirotor", "fixed_wing", "evtol"],
+  "version": "1.0.0",
+  "preconditions": {
+    "weather_threat_type": ["strong_wind", "thunderstorm", "heavy_rain", "hail"],
+    "battery_level": ">10%",
+    "gps_available": true
+  },
+  "actions": [
+    {
+      "step": 1,
+      "action": "assess_weather_severity",
+      "params": {"check_wind": true, "check_precipitation": true, "check_lightning": true},
+      "timeout_ms": 2000,
+      "description": "快速评估天气威胁的类型和严重程度"
+    },
+    {
+      "step": 2,
+      "action": "reduce_altitude",
+      "params": {"target_altitude_agl": 30, "descent_rate": 3.0},
+      "timeout_ms": 15000,
+      "condition": "threat_type == 'strong_wind'",
+      "description": "大风天气降低高度，低空风速通常较小"
+    },
+    {
+      "step": 3,
+      "action": "find_emergency_shelter",
+      "params": {"search_radius_m": 1000, "types": ["covered_area", "open_field", "helipad"]},
+      "timeout_ms": 3000,
+      "description": "搜索最近的遮蔽区域或安全降落点"
+    },
+    {
+      "step": 4,
+      "action": "navigate_to_shelter",
+      "params": {"max_speed": "adaptive", "heading_into_wind": true},
+      "timeout_ms": null,
+      "description": "迎风飞向安全区域，保持最大飞行稳定性"
+    },
+    {
+      "step": 5,
+      "action": "emergency_landing",
+      "params": {"descent_rate": 1.5, "wind_compensation": true},
+      "timeout_ms": 30000,
+      "description": "执行抗风着陆"
+    },
+    {
+      "step": 6,
+      "action": "post_landing_secure",
+      "params": {"lock_propellers": true, "power_down": false},
+      "timeout_ms": 5000,
+      "description": "降落后锁定螺旋桨，保持系统待机等待天气好转"
+    }
+  ],
+  "expected_outcome": {
+    "device_status": "正常至轻微损伤",
+    "payload_status": "完好",
+    "human_risk": "none",
+    "mission_status": "暂停，天气恢复后可继续"
+  },
+  "fallback": "total_power_loss",
+  "historical_success_rate": 0.90,
+  "risk_assessment": {
+    "residual_risks": [
+      "天气可能在降落前急剧恶化",
+      "大风中降落控制精度降低",
+      "雷击风险（金属机身）",
+      "冰雹可能损伤螺旋桨或机身"
+    ],
+    "mitigation": [
+      "预判天气变化趋势，提前行动",
+      "选择背风侧降落",
+      "远离高导电结构物",
+      "如有冰雹直接就近降落不做长距离飞行"
+    ]
+  }
+}

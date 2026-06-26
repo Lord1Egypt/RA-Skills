@@ -1,35 +1,31 @@
----
-name: "email skill"
-description: "Manage and read emails via the mailbox CLI with JSON outputs, supporting listing, showing, deleting, and monitoring emails securely and efficiently."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/mailbox"
-sourceUrl: "https://clawhub.ai/skills/mailbox"
----
+# Mailbox CLI (OpenClaw Skill)
 
-# email skill
+Use the mailbox CLI as a tool to read and manage email. OpenClaw handles
+channel delivery and scheduling. The mailbox CLI returns structured JSON
+outputs and optional text summaries.
 
-> Manage and read emails via the mailbox CLI with JSON outputs, supporting listing, showing, deleting, and monitoring emails securely and efficiently.
+## Requirements
+- mailbox CLI installed (`npm install -g mailbox-cli`)
+- Credentials in `~/.config/mailbox/auth.json`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/mailbox`
-- **Source URL:** [https://clawhub.ai/skills/mailbox](https://clawhub.ai/skills/mailbox)
+## Commands (examples)
+- `mailbox account list --json`
+- `mailbox email list --limit 20 --json`
+- `mailbox email show <email_uid> --account-id <account_id> --json`
+- `mailbox email show <email_uid> --account-id <account_id> --preview --no-html --json`
+- `mailbox email show <email_uid> --account-id <account_id> --preview --no-html --strip-urls --json`
+- `mailbox email delete <email_uid> --account-id <account_id> --folder INBOX --confirm --json`
+- `mailbox digest run --json`
+- `mailbox monitor run --json`
+- `mailbox inbox --limit 15 --text`
 
-## Overview
+## Safety rules
+- Always use `--json` for automation and check `success`.
+- Include `--account-id` for destructive operations.
+- Destructive operations default to dry-run unless `--confirm` is provided.
+- Prefer `--dry-run` before mutating when available.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/mailbox
-```
+## Output contract
+- JSON response includes `success` and `error` fields.
+- `error` is an object with `{ code, message, detail? }`.
+- Exit codes: 0 success, 1 operation failed, 2 invalid usage.

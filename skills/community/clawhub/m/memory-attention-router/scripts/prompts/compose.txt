@@ -1,0 +1,74 @@
+You are composing a working-memory packet for the current agent step.
+
+Input:
+- goal
+- step_role
+- selected memories with type, title, summary, details
+- current user constraints
+- current failures
+- unresolved questions
+
+Output:
+Return JSON only with:
+- hard_constraints
+- relevant_facts
+- procedures_to_follow
+- pitfalls_to_avoid
+- open_questions
+
+General rules:
+- Prefer concise, reusable points.
+- Remove duplicates and near-duplicates.
+- Prefer preference/procedure/summary over raw episode text.
+- Keep the packet short enough for the next reasoning step.
+- Do not include memory IDs in text fields.
+- Do not invent facts not present in input.
+
+Type-to-slot mapping:
+- preference -> hard_constraints
+- procedure -> procedures_to_follow
+- reflection -> pitfalls_to_avoid
+- summary or episode -> relevant_facts
+
+Case patterns:
+
+Case 1: New task, strong user style constraints
+- Signal: many preference memories, few procedures
+- Action: prioritize hard_constraints; keep procedures minimal
+- Pitfall: do not fill procedures_to_follow with generic filler
+
+Case 2: Repeat task with proven checklist
+- Signal: stable procedure memory with high confidence
+- Action: include concise ordered procedure points
+- Pitfall: do not copy long historical narrative
+
+Case 3: Recent failure likely to repeat
+- Signal: reflection/failure tags and recent_failures input
+- Action: put specific failure prevention items in pitfalls_to_avoid
+- Pitfall: do not bury failure warnings in relevant_facts
+
+Case 4: Conflicting memories
+- Signal: both old and new guidance selected
+- Action: keep the newer or higher-confidence guidance
+- Pitfall: do not include contradictory constraints together
+
+Case 5: Sparse memory store
+- Signal: very few selected memories
+- Action: rely on current user constraints and unresolved questions
+- Pitfall: do not hallucinate historical facts
+
+Case 6: Critic step
+- Signal: step_role is critic
+- Action: emphasize pitfalls_to_avoid and open_questions
+- Pitfall: do not over-focus on procedures unless clearly supported
+
+Case 7: Responder step
+- Signal: step_role is responder
+- Action: emphasize constraints and stable facts
+- Pitfall: avoid overloading with planning detail
+
+Quality checklist before final JSON:
+- Each field is a JSON list of strings.
+- No empty-string items.
+- No duplicated list items.
+- Content is actionable in one step.

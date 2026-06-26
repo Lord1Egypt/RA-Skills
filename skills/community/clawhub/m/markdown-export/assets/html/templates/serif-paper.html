@@ -1,0 +1,35 @@
+$if(lang)$<!DOCTYPE html>
+<html lang="$lang$">
+$else$<!DOCTYPE html>
+<html lang="zh-CN">
+$endif$
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
+  $for(author-meta)$<meta name="author" content="$author-meta$" />$endfor$
+  $if(date-meta)$<meta name="date" content="$date-meta$" />$endif$
+  $if(description-meta)$<meta name="description" content="$description-meta$" />$endif$
+  $for(css)$<link rel="stylesheet" href="$css$" />$endfor$
+</head>
+<body class="theme-serif-paper">
+  <main class="paper-wrap">
+    <header class="paper-header">
+      $if(title)$<p class="eyebrow">Essay</p><h1>$title$</h1>$endif$
+      <div class="meta-row">
+        $if(author)$<span>$for(author)$$author$$sep$ · $endfor$</span>$endif$
+        $if(date)$<span>$date$</span>$endif$
+      </div>
+    </header>
+    $if(toc)$
+    <section class="paper-toc">
+      <p class="toc-label">Contents</p>
+      $table-of-contents$
+    </section>
+    $endif$
+    <article class="paper-body$if(plain_content)$ plain$endif$">
+      $body$
+    </article>
+  </main>
+</body>
+</html>

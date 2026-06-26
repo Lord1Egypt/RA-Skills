@@ -1,0 +1,184 @@
+# Operator Execution Tracking Prompt
+
+## PURPOSE
+This prompt is used by the Marketing Operator to track execution progress, collect metrics, and generate feedback for the CMO.
+
+## INPUT SPECIFICATION
+
+### active_campaign (required)
+```json
+{
+  "campaign_id": "string",
+  "mission_id": "string",
+  "name": "string",
+  "status": "active",
+  "tasks": ["array of task objects with current status"],
+  "target_metrics": {
+    "primary_kpi": { "metric": "string", "target": "string" },
+    "secondary_kpis": [{ "metric": "string", "target": "string" }]
+  },
+  "budget_allocated": "number",
+  "budget_spent": "number",
+  "start_date": "ISO 8601",
+  "end_date": "ISO 8601"
+}
+```
+
+### execution_data (from adapters/APIs)
+```json
+{
+  "channel_metrics": {
+    "channel_name": {
+      "impressions": "number",
+      "clicks": "number",
+      "conversions": "number",
+      "cost": "number",
+      "engagement_rate": "number"
+    }
+  },
+  "task_updates": [
+    {
+      "task_id": "string",
+      "new_status": "string",
+      "result": "string",
+      "blockers": ["string"]
+    }
+  ]
+}
+```
+
+## INSTRUCTIONS
+
+1. Review all active tasks and update statuses:
+   - pending → in_progress (if dependencies met and work started)
+   - in_progress → completed (if result achieved)
+   - in_progress → blocked (if blocker identified, log reason)
+   - in_progress → failed (if 3 retry attempts exhausted)
+   - Any → cancelled (if mission priority changed)
+
+2. For each completed task:
+   - Record actual result vs expected result
+   - Capture time spent vs estimated effort
+   - Note any deviations from plan
+
+3. Calculate campaign-level metrics:
+   - Task completion rate: completed / total
+   - Budget utilization: spent / allocated
+   - Timeline adherence: on_track | at_risk | delayed
+   - Performance vs targets: for each KPI, actual / target
+
+4. Check escalation triggers:
+   - Performance < 50% of target at campaign midpoint → FLAG
+   - Budget > 80% spent with < 50% tasks complete → FLAG
+   - Critical task blocked > 24h → FLAG
+   - Any task failed → LOG and assess impact
+
+5. Generate feedback for CMO:
+   - Factual summary of what happened
+   - Measured metrics (label as [MEASURED] or [ESTIMATED])
+   - Specific learnings (what worked, what didn't, why)
+   - Issues with severity and impact
+   - Concrete recommendations for strategy adjustment
+
+6. Update memory:
+   - Write campaign updates to memory/campaigns.json
+   - Write new learnings to memory/learnings.json
+
+## OUTPUT STRUCTURE
+
+### Execution Status Report
+```json
+{
+  "report_id": "UUID",
+  "campaign_id": "ref",
+  "timestamp": "ISO 8601",
+  "overall_status": "on_track | at_risk | delayed | completed | failed",
+  "task_summary": {
+    "total": 12,
+    "completed": 5,
+    "in_progress": 3,
+    "pending": 2,
+    "blocked": 1,
+    "failed": 1
+  },
+  "budget_status": {
+    "allocated": 5000,
+    "spent": 2100,
+    "remaining": 2900,
+    "utilization_pct": 42
+  },
+  "performance_vs_target": [
+    {
+      "metric": "string",
+      "target": "string",
+      "actual": "string",
+      "pct_of_target": 65,
+      "label": "[MEASURED]"
+    }
+  ],
+  "escalations": [
+    {
+      "type": "performance | budget | timeline | blocker",
+      "description": "string",
+      "severity": "critical | high | medium",
+      "recommended_action": "string"
+    }
+  ],
+  "blockers": [
+    {
+      "task_id": "string",
+      "blocker": "string",
+      "duration": "string",
+      "proposed_resolution": "string"
+    }
+  ]
+}
+```
+
+### CMO Feedback
+```json
+{
+  "feedback_id": "UUID",
+  "mission_id": "ref",
+  "campaign_id": "ref",
+  "timestamp": "ISO 8601",
+  "execution_result": "string — factual, concise summary",
+  "metrics": {
+    "impressions": 15000,
+    "clicks": 450,
+    "conversions": 23,
+    "cost": 2100,
+    "ctr": 3.0,
+    "conversion_rate": 5.1,
+    "cpa": 91.30,
+    "roas": 2.4
+  },
+  "learnings": [
+    "[MEASURED] LinkedIn posts with data-driven headlines got 3x more engagement than question-based headlines",
+    "[INFERENCE] Target segment responds better to case-study format than listicle format"
+  ],
+  "issues": [
+    {
+      "description": "string",
+      "severity": 7,
+      "impact": "string",
+      "resolution": "string"
+    }
+  ],
+  "recommendations": [
+    "Shift 30% of budget from Display to LinkedIn based on 3x higher CTR",
+    "Test long-form content — 2 data points suggest higher conversion"
+  ],
+  "confidence_in_data": 82
+}
+```
+
+## CONSTRAINTS
+
+- NEVER report estimated metrics as measured — always label
+- NEVER skip the learning section — every execution produces learnings
+- NEVER ignore blocked tasks — escalate within 24h
+- Budget tracking must be to the cent
+- All timestamps must be ISO 8601
+- Recommendations must be specific enough that CMO can act on them
+- If no data is available for a metric, state: "DATA PENDING — ETA: {date}"

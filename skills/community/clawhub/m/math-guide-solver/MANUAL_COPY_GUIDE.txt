@@ -1,0 +1,195 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║                                                                      ║
+║       📋 手动复制指南 - Math-Solver v1.1.0 文件                      ║
+║                                                                      ║
+║       由于路径问题，使用此指南手动复制文件                           ║
+║                                                                      ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+📍 文件位置
+═══════════════════════════════════════════════════════════════════════
+
+源文件在云端：
+  ✓ /mnt/user-data/outputs/CHANGELOG.md
+  ✓ /mnt/user-data/outputs/README_v1.1.0.md
+  ✓ /mnt/user-data/outputs/GITHUB_UPDATE_SCRIPT.sh
+
+目标目录（你的本地 math-solver）：
+  ? /Users/yshajoy/downloads/math\ resolve\ skill/math-solver/
+
+═══════════════════════════════════════════════════════════════════════
+
+⚠️ 问题诊断
+═══════════════════════════════════════════════════════════════════════
+
+路径中有空格："math resolve skill"
+
+解决方案：请先找到你的 math-solver 目录的实际路径
+
+在终端中执行：
+
+  find ~ -type d -name "math-solver" 2>/dev/null
+
+或者：
+
+  find ~ -type d -name "*math*" 2>/dev/null
+
+═══════════════════════════════════════════════════════════════════════
+
+✅ 方案 1：使用 present_files 下载文件
+═══════════════════════════════════════════════════════════════════════
+
+下面的文件已经生成，你可以直接下载：
+
+1. CHANGELOG.md
+   - 点击上面的文件列表中的 "CHANGELOG"
+   - 下载到你的电脑
+
+2. README_v1.1.0.md  
+   - 点击上面的文件列表中的 "README v1.1.0"
+   - 下载到你的电脑
+
+3. GITHUB_UPDATE_SCRIPT.sh
+   - 点击上面的文件列表中的 "GITHUB UPDATE SCRIPT"
+   - 下载到你的电脑
+
+然后手动复制到你的 math-solver 目录：
+
+  # 对于 CHANGELOG.md，直接复制内容
+
+  # 对于 README_v1.1.0.md，复制内容后重命名为 README.md
+
+═══════════════════════════════════════════════════════════════════════
+
+✅ 方案 2：通过 Mac 文件管理器操作
+═══════════════════════════════════════════════════════════════════════
+
+1. 打开 Finder
+
+2. 按快捷键 Cmd + Shift + G（前往文件夹）
+
+3. 输入：/mnt/user-data/outputs
+
+4. 你会看到以下文件：
+   - CHANGELOG.md
+   - README_v1.1.0.md
+   - GITHUB_UPDATE_SCRIPT.sh
+   - math_solution_demo.html
+   - ... 其他文件
+
+5. 将这些文件复制到你的 math-solver 目录
+
+   对于 README_v1.1.0.md：
+   - 复制到 math-solver 目录
+   - 重命名为 README.md
+   - 如果存在旧 README.md，先备份为 README.md.bak
+
+═══════════════════════════════════════════════════════════════════════
+
+✅ 方案 3：我为你直接生成到你的本地路径
+═══════════════════════════════════════════════════════════════════════
+
+请告诉我：
+
+1. 你的 math-solver 目录的完整路径
+
+   在终端中执行：
+   pwd  (当你在 math-solver 目录时)
+
+   然后告诉我输出的路径
+
+2. 或者告诉我你的 math-solver 在哪里：
+   - Desktop?
+   - Downloads?
+   - 其他位置?
+
+然后我可以直接生成文件到正确的位置。
+
+═══════════════════════════════════════════════════════════════════════
+
+🎯 推荐方案：方案 1（最简单）
+═══════════════════════════════════════════════════════════════════════
+
+步骤：
+
+1️⃣ 向上滚动查看文件列表，看到以下文件：
+   - CHANGELOG
+   - README v1.1.0
+   - GITHUB UPDATE SCRIPT
+
+2️⃣ 点击每个文件下载
+
+3️⃣ 在你的 math-solver 目录中：
+   - 粘贴 CHANGELOG.md
+   - 粘贴 README_v1.1.0.md 并重命名为 README.md
+   - 粘贴 GITHUB_UPDATE_SCRIPT.sh
+
+4️⃣ 运行脚本：
+   bash GITHUB_UPDATE_SCRIPT.sh
+
+═══════════════════════════════════════════════════════════════════════
+
+📝 文件内容预览
+═══════════════════════════════════════════════════════════════════════
+
+CHANGELOG.md
+─────────────────────────────────────────────────────────
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.1.0] - 2026-03-21
+
+### Added
+- ✨ LaTeX formula automatic rendering to PNG images
+- ✨ Formula embedding directly in solution steps
+- ...
+
+### Changed
+- 📦 Updated dependencies: added matplotlib >= 3.5.0, Pillow >= 9.0.0
+- ...
+
+## [1.0.0] - 2026-03-20
+
+### Added
+- Initial release of Math-Solver Skill
+- ...
+
+
+README_v1.1.0.md
+─────────────────────────────────────────────────────────
+# 🧮 Math-Solver Skill
+
+## 📌 Latest Version: v1.1.0
+
+**Release Date**: March 21, 2026
+
+### ✨ What's New in v1.1.0
+
+🎨 **Formula Rendering**
+- LaTeX formulas now automatically render as beautiful PNG images
+- Formulas embed directly in solution steps (not collected at the end)
+- No more raw LaTeX code in the output
+
+...
+
+═══════════════════════════════════════════════════════════════════════
+
+💡 快速参考
+═══════════════════════════════════════════════════════════════════════
+
+在云端的文件都已准备好。现在只需：
+
+1. 下载文件
+2. 复制到 math-solver 目录
+3. 运行脚本
+4. 完成！
+
+═══════════════════════════════════════════════════════════════════════
+
+需要帮助？请告诉我：
+1. 你的 math-solver 目录的完整路径
+2. 或者告诉我它在哪个位置
+
+我可以直接为你处理！
+

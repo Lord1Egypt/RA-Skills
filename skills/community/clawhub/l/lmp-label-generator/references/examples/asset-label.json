@@ -1,0 +1,161 @@
+{
+  "lmp": {
+    "version": "1.21",
+    "created": "2026-03-12T00:00:00Z",
+    "modified": "2026-03-12T00:00:00Z",
+    "generator": "OpenClaw lmp-label-generator skill v1.0.0"
+  },
+  "metadata": {
+    "name": "IT资产标签",
+    "description": "50×25mm 固定资产管理标签，含资产编号、二维码、参数表",
+    "category": "资产",
+    "tags": ["资产管理", "IT设备", "示例"]
+  },
+  "canvas": {
+    "width": 50,
+    "height": 25,
+    "unit": "mm",
+    "dpi": 203,
+    "orientation": "landscape",
+    "backgroundColor": "#FFFFFF"
+  },
+  "print": {
+    "pageSize": { "width": 50, "height": 25, "unit": "mm" },
+    "margin": { "top": 0, "right": 0, "bottom": 0, "left": 0 }
+  },
+  "elements": [
+    {
+      "id": "rect-001",
+      "type": "rectangle",
+      "name": "左侧色块",
+      "position": { "x": 0, "y": 0, "unit": "mm" },
+      "size": { "width": 10, "height": 25 },
+      "layer": 0,
+      "locked": true,
+      "visible": true,
+      "style": {
+        "fill": "#1A56DB",
+        "stroke": "transparent",
+        "strokeWidth": 0,
+        "strokeStyle": "solid"
+      }
+    },
+    {
+      "id": "text-001",
+      "type": "text",
+      "name": "公司标识",
+      "position": { "x": 0, "y": 5, "unit": "mm" },
+      "size": { "width": 10, "height": 15 },
+      "layer": 1,
+      "locked": true,
+      "visible": true,
+      "content": "IT",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#FFFFFF",
+        "align": "center",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-002",
+      "type": "text",
+      "name": "标题",
+      "position": { "x": 11, "y": 1, "unit": "mm" },
+      "size": { "width": 25, "height": 5 },
+      "layer": 1,
+      "locked": true,
+      "visible": true,
+      "content": "固定资产",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#1A56DB",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-003",
+      "type": "text",
+      "name": "资产编号",
+      "position": { "x": 11, "y": 7, "unit": "mm" },
+      "size": { "width": 28, "height": 6 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "IT-2026-001234",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "color": "#000000",
+        "align": "left",
+        "verticalAlign": "middle"
+      }
+    },
+    {
+      "id": "text-004",
+      "type": "text",
+      "name": "设备信息",
+      "position": { "x": 11, "y": 14, "unit": "mm" },
+      "size": { "width": 28, "height": 10 },
+      "layer": 2,
+      "locked": false,
+      "visible": true,
+      "content": "笔记本电脑\n使用人：张三\n购入：2026-01",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 12,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#555555",
+        "align": "left",
+        "verticalAlign": "top",
+        "lineHeight": 1.4
+      }
+    },
+    {
+      "id": "qrcode-001",
+      "type": "qrcode",
+      "name": "资产二维码",
+      "position": { "x": 40, "y": 2, "unit": "mm" },
+      "size": { "width": 19, "height": 19 },
+      "layer": 3,
+      "locked": false,
+      "visible": true,
+      "qrcode": {
+        "content": "https://assets.example.com/IT-2026-001234",
+        "errorCorrectionLevel": "M",
+        "foregroundColor": "#000000",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    {
+      "id": "text-005",
+      "type": "text",
+      "name": "扫码查详情",
+      "position": { "x": 40, "y": 21, "unit": "mm" },
+      "size": { "width": 19, "height": 3 },
+      "layer": 2,
+      "locked": true,
+      "visible": true,
+      "content": "扫码查看详情",
+      "style": {
+        "fontFamily": "Arial",
+        "fontSize": 12,
+        "fontWeight": "normal",
+        "fontStyle": "normal",
+        "color": "#888888",
+        "align": "center",
+        "verticalAlign": "middle"
+      }
+    }
+  ]
+}

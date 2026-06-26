@@ -1,0 +1,6 @@
+{
+  "mode": "parse",
+  "file": "./test_inputs/ov_invoice.png",
+  "out": "./artifacts/parse_manifest_test",
+  "debug": false
+}

@@ -1,0 +1,48 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Lumi - Insights",
+    "description": "Get account analytics (followers, views, likes, etc.) for connected social accounts",
+    "version": "1.0.0"
+  },
+  "tags": [{ "name": "Insights" }],
+  "paths": {
+    "/api/v1/insights": {
+      "get": {
+        "summary": "Get analytics for a connected account",
+        "description": "Returns platform-specific metrics for a connected social account. Supported platforms: TikTok, YouTube, Instagram, Facebook. Get connectionId from GET /api/v1/connections.",
+        "tags": ["Insights"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "example": "Bearer {{LUMI_API_KEY}}",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "connectionId",
+            "in": "query",
+            "required": true,
+            "description": "Account connection ID from GET /api/v1/connections",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Platform-specific analytics metrics. Structure varies by platform but typically includes followers, views, likes, comments, and engagement metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Insights object — fields vary by platform (TikTok, YouTube, Instagram, Facebook)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [{ "url": "https://lumipath.cn", "description": "Production" }]
+}

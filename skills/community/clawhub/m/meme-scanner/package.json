@@ -1,0 +1,8 @@
+{
+  "name": "meme-scanner",
+  "version": "2.0.0",
+  "description": "基于 GMGN 官方 API 的 Meme 币扫链工具",
+  "main": "scripts/meme_scanner_v2.py",
+  "author": "hanguang254",
+  "license": "MIT"
+}

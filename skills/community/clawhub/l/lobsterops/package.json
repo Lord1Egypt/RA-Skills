@@ -1,0 +1,34 @@
+{
+  "name": "lobsterops",
+  "version": "1.0.0",
+  "description": "AI Agent Observability & Debug Console - Flight recorder and debug console for AI agents",
+  "main": "index.js",
+  "scripts": {
+    "start": "node example.js",
+    "test": "jest --forceExit",
+    "test:watch": "jest --watch",
+    "demo": "node example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noeldelisle/LobsterOps.git"
+  },
+  "keywords": [],
+  "author": "Lobster Actual",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/noeldelisle/LobsterOps/issues"
+  },
+  "homepage": "https://github.com/noeldelisle/LobsterOps#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.99.2",
+    "express": "^4.22.1",
+    "express-session": "^1.19.0",
+    "sqlite3": "^6.0.1",
+    "uuid": "^9.0.1"
+  }
+}

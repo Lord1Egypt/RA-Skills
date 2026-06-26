@@ -1,35 +1,48 @@
----
-name: "Mael"
-description: "Membantu membuat dan memposting status LinkedIn dengan isi sesuai permintaan, menyesuaikan tone formal dan menyertakan hashtag relevan."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/linkedin22"
-sourceUrl: "https://clawhub.ai/skills/linkedin22"
----
+# 💼 LinkedIn — Post ke LinkedIn
 
-# Mael
+## When to Use
+Gunakan skill ini ketika user meminta untuk:
+- Post ke LinkedIn
+- Share sesuatu di LinkedIn
+- Update status LinkedIn
+- "Post LinkedIn: ..."
+- "Share ke LinkedIn: ..."
+- "LinkedIn post tentang ..."
 
-> Membantu membuat dan memposting status LinkedIn dengan isi sesuai permintaan, menyesuaikan tone formal dan menyertakan hashtag relevan.
+## How to Use
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/linkedin22`
-- **Source URL:** [https://clawhub.ai/skills/linkedin22](https://clawhub.ai/skills/linkedin22)
+Jalankan script Python berikut dengan teks post sebagai argumen:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/linkedin22
+python3 ~/.openclaw/workspace/linkedin_post.py "<isi post>"
 ```
+
+### Contoh
+```bash
+python3 ~/.openclaw/workspace/linkedin_post.py "OpenClaw sekarang bisa auto-post ke LinkedIn 🦀"
+```
+
+### Output sukses
+```
+✅ Post berhasil!
+🔗 https://www.linkedin.com/feed/update/urn:li:activity:xxxx
+```
+
+### Output gagal
+```
+❌ Error 401.
+```
+
+## Rules
+- Maksimal 3000 karakter per post
+- Selalu konfirmasi ke user sebelum posting: "Yakin mau post ini ke LinkedIn?"
+- Tampilkan link post setelah berhasil
+- LinkedIn lebih formal dari Twitter — sesuaikan tone konten
+- Kalau user tidak kasih teks, tanya dulu sebelum post
+- Hashtag disarankan untuk reach lebih luas
+
+## Tips Konten LinkedIn
+- Gunakan line break untuk keterbacaan
+- Tambah hashtag relevan di akhir: #AI #Automation #OpenClaw
+- Tone profesional tapi tetap personal
+- Maksimal 3-5 hashtag biar tidak spammy

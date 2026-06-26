@@ -1,0 +1,20 @@
+{
+  "name": "mem0-skill",
+  "version": "1.0.0",
+  "description": "Mem0 深层记忆系统技能",
+  "main": "mem0_skill.py",
+  "scripts": {
+    "test": "python3 mem0.py test"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "memory",
+    "mem0"
+  ],
+  "author": "OpenClaw User",
+  "license": "MIT",
+  "dependencies": {
+    "mem0ai": "^1.0.8"
+  }
+}

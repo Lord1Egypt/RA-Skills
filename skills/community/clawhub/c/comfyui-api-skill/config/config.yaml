@@ -1,0 +1,35 @@
+# ComfyUI API 配置文件
+
+# ComfyUI 服务配置
+server:
+  # ComfyUI 服务地址
+  url: ""
+  # API 密钥（可选，如果 ComfyUI 启用了鉴权）
+  api_key: null
+
+# 执行配置
+execution:
+  # 默认超时时间（秒）- 图像生成默认 5 分钟
+  timeout: 300
+  # 视频生成超时时间（秒）- 视频生成默认 15 分钟
+  video_timeout: 900
+  # 轮询间隔（秒）
+  poll_interval: 2
+  # 最大重试次数
+  max_retries: 3
+
+# 文件路径配置
+paths:
+  # 工作流存储目录
+  workflows_dir: "workflows"
+  # 默认输出目录
+  output_dir: "output"
+  # 临时文件目录
+  temp_dir: "temp"
+
+# 日志配置
+logging:
+  # 日志级别：DEBUG, INFO, WARNING, ERROR
+  level: "INFO"
+  # 日志文件路径（null 表示不记录到文件）
+  file: null

@@ -1,35 +1,157 @@
 ---
-name: "Company Scan"
-description: "快速筛选符合行业、地区、融资等条件的企业，返回包含基本信息的结构化列表。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/company-scan-iyiou"
-sourceUrl: "https://clawhub.ai/skills/company-scan-iyiou"
+name: company-scan
+description: 企业扫描助手：快速筛选出符合特定条件的企业并返回结构化列表。
+当用户想要查找、筛选、扫描某类企业时，必须使用本 skill。
+典型触发场景包括：
+- "帮我找找上海市融资到B轮以上的生物医药公司"
+- "有哪些脑机接口方向的初创企业"
+- "长三角做可控核聚变的公司都有哪些"
+- "最近一年融资超过1亿的人工智能公司"
+- "合肥有哪些算力基础设施企业"
+只要涉及按行业/赛道/地区/融资状态批量查找企业，就应使用本 skill。
+  企业扫描助手：快速筛选出符合特定条件的企业并返回结构化列表。
+  当用户想要查找、筛选、扫描某类企业时，必须使用本 skill。
+  典型触发场景包括：
+  - "帮我找找上海市融资到B轮以上的生物医药公司"
+  - "有哪些脑机接口方向的初创企业"
+  - "长三角做可控核聚变的公司都有哪些"
+  - "最近一年融资超过1亿的人工智能公司"
+  - "合肥有哪些算力基础设施企业"
+  只要涉及按行业/赛道/地区/融资状态批量查找企业，就应使用本 skill。
+allowed-tools: 
+disable: false
 ---
 
-# Company Scan
+# 企业扫描 (Company Scan)
 
-> 快速筛选符合行业、地区、融资等条件的企业，返回包含基本信息的结构化列表。
+从亿欧数据库批量检索企业，输出结构化 Markdown 列表。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/company-scan-iyiou`
-- **Source URL:** [https://clawhub.ai/skills/company-scan-iyiou](https://clawhub.ai/skills/company-scan-iyiou)
+---
 
-## Overview
+## 处理流程
 
+### 第一步：意图解析 & 关键词拆解
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/company-scan-iyiou
+分析用户请求，提取以下维度：
+
+| 维度 | 示例 | 对应参数 |
+|------|------|----------|
+| 行业/赛道 | "生物医药"、"脑机接口" | `concepts` |
+| 融资轮次下限 | "B轮以上" | `min_invest_round` |
+| 融资轮次上限 | "早期/初创" | `max_invest_round` |
+| 融资金额下限 | "融资超过1亿" | `min_invest_amount_wan` |
+| 最近融资时间 | "最近融资"、"去年以来" | `latest_invest_after` |
+| 省份 | "上海"、"长三角" | `--provinces` |
+| 城市 | "合肥"、"杭州" | `--cities` |
+
+**行业/赛道关键词拆解规则（重要）：**
+
+若用户给出领域/赛道词（如"生物医药"、"算力基础设施"、"脑机接口"），须先拆解为搜索关键词：
+- 分析该领域产业上中下游的**核心技术关键词**，不超过 5 个
+- 分析该领域的**核心产品/应用关键词**，不超过 5 个
+- 合计不超过 10 个关键词，作为 `concepts` 数组传入
+
+示例拆解（生物医药）：
+> 技术关键词：基因工程、细胞治疗、抗体药物、生物制剂、靶向治疗  
+> 产品关键词：创新药、医疗器械、体外诊断、疫苗、CRO/CDMO  
+
+**地区映射规则：**
+- "长三角" → `--provinces "上海,江苏,浙江"`
+- "京津冀" → `--provinces "北京,天津,河北"`
+- 具体城市 → 优先用 `--cities`
+- 未指定地区 → 默认 `--country 44`（中国大陆）
+
+**融资轮次说明：**
 ```
+种子轮 → 天使轮 → Pre-A轮 → A轮 → A+轮 → Pre-B轮 → B轮 → B+轮
+→ Pre-C轮 → C轮 → C+轮 → D轮 → E轮 → F轮 ... → 战略投资 → Pre-IPO → 已上市
+```
+- "B轮以上" → `--min-invest-round "B轮"`
+- "早期/初创" → `--max-invest-round "Pre-B轮"`
+- "1亿以上" → `--min-invest-amount-wan 10000`（单位：万元）
+- "最近融资" → `--latest-invest-after <当前日期减1年>`
+
+---
+
+### 第二步：调用搜索脚本
+
+使用 `bash_tool` 执行以下脚本，**必须加 `--output-temp`**，由脚本自动选择系统临时目录（跨平台兼容 macOS / Linux / Windows），将结果写入文件以避免终端输出截断：
+
+```bash
+python {skill_dir}/scripts/search_companies.py \
+  --concepts "关键词1,关键词2,关键词3" \
+  [--min-invest-round "B轮"] \
+  [--max-invest-round "Pre-B轮"] \
+  [--min-invest-amount-wan 10000] \
+  [--latest-invest-after "2024-01-01"] \
+  [--provinces "上海,江苏,浙江"] \
+  [--cities "合肥"] \
+  [--country 44] \
+  [--max-results 50] \
+  [--output-format markdown] \
+  --output-temp
+```
+
+**参数说明：**
+- `--concepts`：逗号分隔的关键词列表（第一步拆解出的所有关键词）
+- `--max-results`：默认 50，用户明确要"全部"时可设 100
+- 未指定地区时必须加 `--country 44`
+- `--output-temp`：**必填**，让脚本自动写入系统临时目录（`tempfile.gettempdir()`），stdout 仅输出一行含路径的确认消息
+
+**脚本位置：** `{skill_dir}/scripts/search_companies.py`
+
+---
+
+### 第三步：读取并展示结果
+
+bash 命令执行成功后，stdout 会输出一行确认消息，其中包含实际写入的文件路径，例如：
+
+```
+✅ 结果已写入：/tmp/company_scan_result.md（共 50 家企业）
+# 或 Windows 下：
+✅ 结果已写入：C:\Users\xxx\AppData\Local\Temp\company_scan_result.md（共 50 家企业）
+```
+
+从该消息中提取路径，使用 `Read` 工具读取文件，将内容完整展示给用户。
+
+> ⚠️ **不要直接把 bash stdout 当输出** — bash 工具有输出字符上限，50 条数据会被截断；
+> 通过 `Read` 工具读取文件可获得完整内容。
+
+文件内容包含：
+- 查询条件摘要
+- 企业总数 & 展示数量
+- 完整字段表格（简称、全称、简介、行业、融资轮次、投资方、融资时间、估值、省份、链接）
+- 亿欧数据链接提示
+
+---
+
+## 完整示例
+
+**用户：** "帮我找找上海市融资到B轮以上的生物医药公司"
+
+**第一步拆解：**
+- 地区：上海 → `--cities "上海"`
+- 融资：B轮以上 → `--min-invest-round "B轮"`
+- 领域：生物医药 →
+  - 技术：基因工程、细胞治疗、抗体药物、生物制剂、靶向治疗
+  - 产品：创新药、医疗器械、体外诊断、疫苗、CRO
+
+**第二步命令：**
+```bash
+python scripts/search_companies.py \
+  --concepts "基因工程,细胞治疗,抗体药物,生物制剂,靶向治疗,创新药,医疗器械,体外诊断,疫苗,CRO" \
+  --min-invest-round "B轮" \
+  --cities "上海" \
+  --max-results 50 \
+  --output-temp
+```
+
+**第三步：** 从 stdout 确认消息中提取文件路径，使用 `Read` 工具读取该文件并展示给用户。
+
+---
+
+## 注意事项
+
+- 若脚本报错"API 调用失败"，检查网络连通性后重试，或提示用户稍后再试
+- 若返回 0 条结果，建议放宽筛选条件（减少关键词、放宽融资轮次或取消地区限制）后重新搜索
+- 不要将 `concepts` 关键词设得过于宽泛（如"科技"），应保持领域精准度

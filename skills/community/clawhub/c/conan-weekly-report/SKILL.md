@@ -1,35 +1,212 @@
 ---
-name: "柯南周报"
-description: "名侦探柯南动画周报技能。每周自动收集并整理柯南最新剧情进展，包括主线剧情、特别篇、角色动态等。使用 DuckDuckGo HTML 搜索获取真实网页数据。"
-category: "other"
-source: "ClawHub"
-tags: [anime, conan, weekly-report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/conan-weekly-report"
-sourceUrl: "https://clawhub.ai/skills/conan-weekly-report"
+name: conan-weekly-report
+version: 1.0.2
+description: 名侦探柯南动画周报技能。每周自动收集并整理柯南最新剧情进展，包括主线剧情、特别篇、角色动态等。使用 DuckDuckGo HTML 搜索获取真实网页数据。
+author: 拓海
+tags: [anime, conan, weekly-report, entertainment, japanese-animation]
 ---
 
-# 柯南周报
+# 柯南周报 📺🔍
 
-> 名侦探柯南动画周报技能。每周自动收集并整理柯南最新剧情进展，包括主线剧情、特别篇、角色动态等。使用 DuckDuckGo HTML 搜索获取真实网页数据。
+**名侦探柯南动画周报技能** - 每周自动收集并整理柯南最新剧情进展
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/conan-weekly-report`
-- **Source URL:** [https://clawhub.ai/skills/conan-weekly-report](https://clawhub.ai/skills/conan-weekly-report)
+---
 
-## Overview
+## 🎯 功能特点
 
+- **自动搜索** - 每周六晚 9 点自动搜索最新剧情
+- **主线追踪** - 关注黑衣组织、APTX-4869 等主线剧情
+- **特别篇报道** - 剧场版、特别篇、联动剧集信息
+- **角色动态** - 声优变动、角色登场、制作信息
+- **多源整理** - 整合知乎、百科、官方等多渠道信息
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/conan-weekly-report
+---
+
+## ⏰ 默认执行时间
+
+- **每周六 21:00** (Asia/Shanghai UTC+8)
+- 可通过 cron 配置修改
+
+---
+
+## 📋 输出内容
+
+每期周报包含：
+
+1. **新播出集数** - 集数、标题、播出日期
+2. **重大剧情进展** - 主线剧情推进
+3. **特别篇信息** - 剧场版、特别篇、联动
+4. **角色/声优动态** - 登场角色、声优变动
+5. **制作信息** - 编剧、导演、制作团队
+6. **来源链接** - 方便查看详情
+
+---
+
+## 🚀 使用方法
+
+### 手动触发
 ```
+柯南周报
+```
+
+### 自动执行（推荐）
+```bash
+# 添加定时任务（每周六 21:00）
+openclaw cron add \
+  --name "柯南周报" \
+  --cron "0 21 * * 6" \
+  --tz "Asia/Shanghai" \
+  --system-event "柯南周报" \
+  --session "main"
+```
+
+### 查看已安装
+```bash
+openclaw skills list | grep conan
+```
+
+---
+
+## 🔍 搜索源
+
+技能使用 **DuckDuckGo HTML 搜索接口** 进行资讯收集：
+
+- **无需 API 密钥** - 直接使用公开 HTML 接口
+- **真实 HTTP 请求** - 使用 Node.js `https` 模块发起实际网络请求
+- **结果解析** - 正则表达式提取标题和链接
+- **请求限流** - 内置 1.5 秒延迟避免请求过快
+- **超时保护** - 10 秒超时防止卡死
+
+搜索结果可能来自以下渠道（取决于搜索查询）：
+- 百度百科、维基百科 - 集数列表和剧情简介
+- 哔哩哔哩 - 播出信息和预告
+- 新浪微博 - 声优和制作动态
+- 动漫资讯站 - 新番放送表
+
+---
+
+## 📝 示例输出
+
+```
+📺 柯南周报 | 2026 年第 10 周
+
+【新播出】
+• 第 1245 集 - 《东京晴空塔之谜（前篇）》
+• 第 1246 集 - 《东京晴空塔之谜（后篇）》
+
+【主线进展】
+• 黑衣组织成员"朗姆"身份进一步揭露
+• 灰原哀发现 APTX-4869 新线索
+
+【特别篇】
+• 2 小时特别篇《30 号杀人事件》3 月播出
+
+【声优动态】
+• 毛利兰声优山崎和佳奈恢复活动
+
+详情链接：[知乎](...) [百科](...)
+```
+
+---
+
+## ⚙️ 配置选项
+
+### 修改执行时间
+编辑 cron 任务：
+```bash
+openclaw cron edit <任务 ID> --cron "0 20 * * 6"
+```
+
+### 修改时区
+```bash
+openclaw cron edit <任务 ID> --tz "Asia/Tokyo"
+```
+
+### 暂停/恢复
+```bash
+openclaw cron disable <任务 ID>  # 暂停
+openclaw cron enable <任务 ID>   # 恢复
+```
+
+---
+
+## 📦 安装
+
+### 从 ClawHub 安装
+```bash
+clawhub install conan-weekly-report
+```
+
+### 手动安装
+```bash
+# 克隆到本地 skills 目录
+git clone https://github.com/你的用户名/conan-weekly-report.git \
+  ~/.openclaw/workspace/skills/conan-weekly-report
+
+# 重启 OpenClaw
+openclaw gateway restart
+```
+
+---
+
+## 🎯 使用场景
+
+| 场景 | 说明 |
+|------|------|
+| **柯南粉丝** | 每周自动接收最新剧情 |
+| **补番党** | 快速了解近期进展 |
+| **主线追踪** | 不错过黑衣组织剧情 |
+| **资讯整理** | 自动收集多渠道信息 |
+
+---
+
+## 📌 注意事项
+
+1. **网络依赖** - 需要联网搜索最新信息
+2. **搜索限制** - 部分网站可能有反爬限制
+3. **时区设置** - 确保 cron 时区正确
+4. **推送渠道** - 需配置 QQ/Telegram 等推送
+
+---
+
+## 🔄 更新日志
+
+### v1.0.2 (2026-03-15)
+- 🔧 修复 ClawHub 审核问题 - 确保代码与描述一致
+- ✅ 完善网络请求实现（真实 HTTP 请求 + 超时保护）
+- ✅ 改进搜索结果解析逻辑（DuckDuckGo HTML 接口）
+- ✅ 添加请求限流（1.5 秒延迟）避免被封禁
+- ✅ 更新 package.json 依赖和元数据
+- 📝 完善 README.md 和 SKILL.md 文档
+
+### v1.0.1 (2026-03-10)
+- 🔧 修复安全检测问题 - 完善网络请求实现
+- ✅ 添加真实 HTTP 搜索功能（DuckDuckGo）
+- ✅ 支持 Webhook 推送报告
+- ✅ 自动保存报告到本地文件
+- 📦 更新 package.json 元数据
+
+### v1.0.0 (2026-03-08)
+- ✨ 初始版本发布
+- ✅ 支持自动搜索和整理
+- ✅ 支持定时任务
+- ✅ 多源信息整合
+
+---
+
+## 📞 反馈与建议
+
+- GitHub Issues: [提交问题](https://github.com/你的用户名/conan-weekly-report/issues)
+- 作者：拓海
+- 版本：1.0.0
+
+---
+
+## 📄 许可证
+
+MIT License
+
+---
+
+*名侦探柯南 © 青山刚昌/小学馆·读卖电视台·TMS*
+*本技能仅供学习交流，请勿用于商业用途*

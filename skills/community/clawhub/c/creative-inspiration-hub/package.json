@@ -1,0 +1,10 @@
+{
+  "name": "creative-inspiration-hub",
+  "version": "1.2.0",
+  "description": "Creative Inspiration Hub - 本地规则引擎版创意灵感孵化器，帮助创意工作者突破瓶颈",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "python3 scripts/test.py"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "lane_type": "external_context",
+  "status": "completed",
+  "confidence": "medium",
+  "findings": [
+    {
+      "code": "SOURCE_INDEPENDENCE_WEAK",
+      "severity": "medium",
+      "summary": "Public context makes the general need plausible, but independent claim-specific support is weak."
+    }
+  ],
+  "positives": [
+    {
+      "code": "PUBLIC_CONTEXT_PARTIAL",
+      "summary": "Public context partially supports the general location and need category."
+    }
+  ],
+  "decision": {
+    "public_context_plausibility": "some_found",
+    "source_independence": "weak"
+  },
+  "limitations": [
+    "Search results were treated as context, not claimant linkage or proof of use."
+  ]
+}

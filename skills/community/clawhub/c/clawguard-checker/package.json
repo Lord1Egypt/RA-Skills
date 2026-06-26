@@ -1,0 +1,15 @@
+{
+  "name": "clawguard-checker",
+  "version": "3.0.0",
+  "description": "ClawGuard v3 - Configuration Checker with Hardening Advisor",
+  "main": "src/checker.js",
+  "scripts": {
+    "check": "node cli.js",
+    "check:deep": "node cli.js --deep",
+    "fix": "node cli.js --fix"
+  },
+  "keywords": ["clawguard", "security", "checker", "openclaw"],
+  "author": "ClawGuard Team",
+  "license": "MIT",
+  "dependencies": {}
+}

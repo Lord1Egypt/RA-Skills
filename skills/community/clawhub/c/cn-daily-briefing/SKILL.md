@@ -1,35 +1,98 @@
 ---
-name: "每日简报生成器"
-description: "每日简报生成器 - 自动收集新闻/热点/行业动态，生成结构化中文简报。适合每天早上运行获取当日信息摘要。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-daily-briefing"
-sourceUrl: "https://clawhub.ai/skills/cn-daily-briefing"
+name: daily-briefing
+description: 每日简报生成器 - 自动收集新闻/热点/行业动态，生成结构化中文简报。适合每天早上运行获取当日信息摘要。
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins: [curl]
+    emoji: "📰"
+    homepage: https://clawhub.ai/skills/cn-daily-briefing
 ---
 
-# 每日简报生成器
+# 每日简报生成器 📰
 
-> 每日简报生成器 - 自动收集新闻/热点/行业动态，生成结构化中文简报。适合每天早上运行获取当日信息摘要。
+自动收集多源信息，生成结构化中文简报，帮助快速了解当日重要新闻、行业动态和技术趋势。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-daily-briefing`
-- **Source URL:** [https://clawhub.ai/skills/cn-daily-briefing](https://clawhub.ai/skills/cn-daily-briefing)
+## 什么时候使用
 
-## Overview
+- 每天早上需要快速了解当日重要新闻时
+- 需要跟踪特定行业/领域的最新动态时
+- 需要一份结构化的信息摘要用于团队分享或个人参考时
+- 不想在大量信息源中手动筛选时
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-daily-briefing
+1. **多源信息聚合**：从主流新闻网站、技术社区、行业博客自动收集信息
+2. **智能分类**：自动将信息分为时政要闻、科技动态、行业趋势、财经资讯等类别
+3. **重点提炼**：提取每条信息的核心要点，避免冗长原文
+4. **结构化输出**：生成层级分明的Markdown简报，便于阅读和分享
+5. **个性化定制**：支持指定关注的领域、关键词和排除项
+6. **真实数据抓取**：运行 `python scripts/fetch_news.py` 即可获取当日真实新闻数据（非模拟）
+
+## 使用说明
+
+### 快速开始
+
+用户可以说"给我今天的简报"或"生成一份今日科技简报"，助手会自动执行以下步骤：
+1. 获取当前日期
+2. 收集各信息源最新内容
+3. 分类整理和提炼
+4. 输出结构化简报
+
+### 详细工作流
+
+当用户请求生成简报时，按以下流程执行：
+
+1. **确定简报范围**
+   - 确认用户是否指定了关注的领域（如科技、金融、医疗）
+   - 确认时间范围（今日、本周、自定义）
+   - 确认输出格式偏好（详细版、精简版）
+
+2. **信息收集**
+   - 使用 `curl` 或 `fetch` 获取各信息源的最新内容
+   - 信息源推荐：Hacker News、GitHub Trending、36氪、InfoQ、TechCrunch等
+   - 优先选择中文信息源
+
+3. **内容筛选和分类**
+   - 按相关性排序，过滤低质量或重复内容
+   - 分类标准：
+     - 🔥 热门话题：当日讨论度最高的事件
+     - 🏢 行业动态：企业新闻、产品发布、融资事件
+     - 🔧 技术趋势：新框架、新技术、开源项目
+     - 💰 财经资讯：市场动态、经济政策
+     - 📅 时政要闻：重要政策法规变化
+
+4. **内容提炼**
+   - 每条信息提炼为：标题 + 一句话摘要 + 关键影响
+   - 保持客观中立，注明信息来源
+   - 每条不超过100字
+
+5. **生成简报**
+   - 使用统一的Markdown格式
+   - 包含日期、分类索引和内容汇总
+
+## 输出示例
+
+```markdown
+# 📰 每日简报 — 2026年5月21日
+
+## 🔥 热门话题
+1. **OpenClaw 2.0 发布** — 新版本支持多Agent协作模式
+   影响：AI Agent开发门槛进一步降低
+
+2. **腾讯推出SkillHub中文镜像** — SkillHub访问速度提升300%
+   影响：国内开发者使用ClawHub生态更方便
+
+## 🏢 行业动态
+- **字节跳动发布豆包3.0** — 推理能力提升40%
+
+## 🔧 技术趋势
+- **Rust 2026 edition 草案公布** — 带来更好的异步支持
 ```
+
+## 注意事项
+
+- 信息源的可用性会影响简报质量，建议在可访问网络的环境下使用
+- 简报内容仅供参考，重要决策前建议核实原始信息来源
+- 如需跟踪特定领域，请明确告知关注的关键词

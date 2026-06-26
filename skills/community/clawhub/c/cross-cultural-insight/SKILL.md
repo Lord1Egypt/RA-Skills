@@ -1,35 +1,38 @@
----
-name: "Cross-Cultural Insigh"
-description: "Provides cultural risk analysis for brand names, color symbolism, and market entry strategies across 50+ regions to ensure global brand compliance."
-category: "translation"
-source: "ClawHub"
-tags: [branding, culture, international, localization, market entry]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cross-cultural-insight"
-sourceUrl: "https://clawhub.ai/skills/cross-cultural-insight"
----
+# Cross-Cultural Insight — 跨文化商业智能
 
-# Cross-Cultural Insigh
+覆盖 50+ 文化区域的全球化品牌合规引擎。品牌命名、颜色选择、符号使用、市场进入策略——在进入新市场前，先过一遍文化红线。
 
-> Provides cultural risk analysis for brand names, color symbolism, and market entry strategies across 50+ regions to ensure global brand compliance.
+## 核心能力
 
-- **Category:** Translation
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cross-cultural-insight`
-- **Source URL:** [https://clawhub.ai/skills/cross-cultural-insight](https://clawhub.ai/skills/cross-cultural-insight)
+- **品牌命名审查**：检测品牌名在目标市场的文化风险（谐音、禁忌、歧义）
+- **颜色符号指南**：每个市场的吉祥/禁忌颜色，常用符号的文化含义
+- **市场进入评估**：文化距离、合规难度、本地化成本综合评分
+- **Hofstede 文化维度**：个人主义/权力距离/不确定性规避等量化对比
 
-## Overview
+## 使用方式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cross-cultural-insight
 ```
+GET http://8.145.54.67:3000/skill/cross-cultural-insight?brand_name=品牌名&target_market=JP&product_type=fashion
+```
+
+### 可选参数
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| brand_name | 待审查品牌名 | `?brand_name=Nova` |
+| target_market | 目标市场代码 | `?target_market=global` |
+| product_type | 产品类型 | `?product_type=tech` |
+
+## 定价
+
+¥0.50 / 次（AI收自动结算）
+
+## 覆盖市场
+
+中国、日本、韩国、印度、美国、英国、法国、德国、巴西、墨西哥、沙特、阿联酋、印尼、泰国、越南、尼日利亚、南非等 50+ 地区。
+
+## 真实案例（致命教训）
+
+- **Nova**：西班牙语中"no va"=不工作，雪佛兰Nova在南美销量惨淡
+- **Puffs**：德语中俚语意为"妓院"，宝洁改名
+- **白象**：中文吉祥物，英语文化中"white elephant"=昂贵无用之物

@@ -1,0 +1,8 @@
+﻿{
+  "name": "codex-delete-republish-test",
+  "displayName": "Codex Delete Republish Test",
+  "version": "0.0.1",
+  "description": "验证 ClawHub 删除后是否允许同 slug 重新发布。",
+  "author": "davidme6",
+  "license": "MIT"
+}

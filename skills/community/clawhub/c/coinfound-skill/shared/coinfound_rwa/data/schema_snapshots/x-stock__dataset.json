@@ -1,0 +1,26 @@
+{
+  "captured_at": "2026-03-20T00:00:00+00:00",
+  "endpoint_key": "x-stock.dataset",
+  "inferred_schema": {
+    "type": "absent"
+  },
+  "notes": [
+    "Live probe with ticker=NVDA returned code=0 and message=success without a data field.",
+    "Treat this as empty_success rather than a transport failure."
+  ],
+  "sample_request": {
+    "method": "GET",
+    "path": "/v1/c/rwa/x-stock/dataset/NVDA",
+    "path_params": {
+      "ticker": "NVDA"
+    },
+    "query": {},
+    "url": "https://api.coinfound.org/api/kakyoin/v1/c/rwa/x-stock/dataset/NVDA"
+  },
+  "sample_response_excerpt": {
+    "code": 0,
+    "message": "success"
+  },
+  "shape_family": "empty_success",
+  "snapshot_path": "shared/coinfound_rwa/data/schema_snapshots/x-stock__dataset.json"
+}

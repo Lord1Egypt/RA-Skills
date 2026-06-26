@@ -1,0 +1,7 @@
+interface:
+  display_name: "Codex Image Server"
+  short_description: "Expose Codex image generation as a local HTTP API"
+  brand_color: "#2F8CFF"
+  default_prompt: "Use $codex-image-server to add a local Codex image generation HTTP server to this project."
+policy:
+  allow_implicit_invocation: true

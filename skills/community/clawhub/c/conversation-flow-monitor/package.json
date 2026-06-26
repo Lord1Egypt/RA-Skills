@@ -1,0 +1,25 @@
+{
+  "name": "conversation-flow-monitor",
+  "version": "1.0.1",
+  "description": "Monitors and prevents conversation flow issues by implementing robust error handling, timeouts, and recovery mechanisms for reliable agent interactions.",
+  "author": "CoPilot AI Assistant",
+  "license": "MIT",
+  "keywords": ["conversation", "monitoring", "error-handling", "timeout", "recovery", "reliability"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/conversation-flow-monitor.git"
+  },
+  "homepage": "https://clawhub.ai/skills/conversation-flow-monitor",
+  "bugs": {
+    "url": "https://github.com/your-username/conversation-flow-monitor/issues"
+  },
+  "main": "scripts/conversation_monitor.py",
+  "scripts": {
+    "test": "python scripts/test_monitor.py",
+    "lint": "flake8 scripts/ --max-line-length=88"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "flake8": "^3.9.2"
+  }
+}

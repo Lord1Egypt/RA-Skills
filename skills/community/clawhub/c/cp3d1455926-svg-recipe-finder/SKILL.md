@@ -1,35 +1,130 @@
----
-name: "Recipe Finder"
-description: "推荐适合现有食材的菜谱，提供详细做法、烹饪技巧及营养信息，支持随机和个性化推荐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cp3d1455926-svg-recipe-finder"
-sourceUrl: "https://clawhub.ai/skills/cp3d1455926-svg-recipe-finder"
----
+# 🍳 Recipe Finder - 菜谱助手
 
-# Recipe Finder
+## 触发规则
 
-> 推荐适合现有食材的菜谱，提供详细做法、烹饪技巧及营养信息，支持随机和个性化推荐。
+**关键词：**
+- 菜谱、食谱、怎么做菜
+- 今天吃什么、推荐菜
+- 食材、烹饪方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cp3d1455926-svg-recipe-finder`
-- **Source URL:** [https://clawhub.ai/skills/cp3d1455926-svg-recipe-finder](https://clawhub.ai/skills/cp3d1455926-svg-recipe-finder)
+**场景：**
+- 用户不知道吃什么
+- 用户有食材不知道怎么做
+- 用户想学新菜
 
-## Overview
+## 功能描述
 
+### 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cp3d1455926-svg-recipe-finder
+1. **食材推荐菜谱**
+   - 输入现有食材
+   - 推荐可做的菜
+   - 显示难度和时间
+
+2. **随机推荐**
+   - 今日推荐菜
+   - 根据口味推荐
+   - 根据季节推荐
+
+3. **菜谱详情**
+   - 食材清单
+   - 详细步骤
+   - 烹饪技巧
+
+4. **营养分析**
+   - 卡路里计算
+   - 营养成分
+   - 健康建议
+
+## 权限需求
+
+- [x] 文件读写（收藏菜谱）
+- [ ] 网络访问（菜谱 API）
+
+## 示例对话
+
 ```
+用户：今天吃什么
+助手：🍳 今日推荐菜谱：
+
+1️⃣ 宫保鸡丁 ⭐⭐⭐
+   难度：中级 | 时间：20 分钟
+   食材：鸡胸肉、花生、干辣椒
+   口味：麻辣
+
+2️⃣ 番茄炒蛋 ⭐
+   难度：简单 | 时间：10 分钟
+   食材：番茄、鸡蛋
+   口味：酸甜
+
+3️⃣ 红烧肉 ⭐⭐⭐⭐
+   难度：高级 | 时间：60 分钟
+   食材：五花肉、冰糖、料酒
+   口味：甜咸
+
+想吃哪个？我告诉你详细做法！
+
+用户：我有土豆和牛肉
+助手：🥔 用土豆和牛肉可以做：
+
+1️⃣ 土豆烧牛肉
+   难度：中级 | 时间：40 分钟
+   
+2️⃣ 土豆牛肉汤
+   难度：简单 | 时间：30 分钟
+   
+3️⃣ 咖喱土豆牛肉
+   难度：中级 | 时间：35 分钟
+
+想学哪个？
+
+用户：怎么做番茄炒蛋
+助手：🍅 **番茄炒蛋**
+
+📝 食材：
+- 番茄 2 个
+- 鸡蛋 3 个
+- 葱花 适量
+- 盐、糖 少许
+
+👨‍🍳 步骤：
+1. 番茄切块，鸡蛋打散
+2. 热锅凉油，炒鸡蛋盛出
+3. 炒番茄出汁
+4. 加入鸡蛋翻炒
+5. 加盐、糖调味
+6. 撒葱花出锅
+
+💡 技巧：
+- 鸡蛋加少许水更嫩
+- 番茄去皮口感更好
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/recipe-finder/favorites.json
+{
+  "favorites": [
+    {
+      "name": "番茄炒蛋",
+      "added_date": "2026-03-16",
+      "cook_count": 5
+    }
+  ]
+}
+```
+
+## 待办事项
+
+- [ ] 菜谱数据库
+- [ ] 食材匹配算法
+- [ ] 详细步骤
+- [ ] 收藏功能
+- [ ] 营养计算
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

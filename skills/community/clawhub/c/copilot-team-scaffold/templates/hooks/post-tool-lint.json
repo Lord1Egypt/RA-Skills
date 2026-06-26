@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/post-tool-lint.js",
+        "windows": "node .github/hooks/post-tool-lint.js",
+        "timeout": 15
+      }
+    ]
+  }
+}

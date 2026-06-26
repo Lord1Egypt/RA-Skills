@@ -1,0 +1,106 @@
+# genome.yml — Context Assembler 的可优化基因组
+# 这是 Context Assembler 的"可变内核"，类似 Autoresearch 的 train.py
+# 所有选择策略参数都在这里，assembler.py 只负责执行
+
+version: "0.1.0"
+description: "Context selection strategy for OpenClaw agent tasks"
+
+# === 来源权重（每种 context 来源的基础重要性）===
+source_weights:
+  MEMORY.md: 1.0
+  daily_notes: 0.6
+  AGENTS.md: 0.2
+  TOOLS.md: 0.3
+  HEARTBEAT.md: 0.2
+  preferences_md: 0.5
+
+# === 任务类型的来源偏好与 token 预算 ===
+task_profiles:
+  daily_evolution_check:
+    sources: [MEMORY.md, daily_notes, preferences_md]
+    max_tokens: 2000
+    require_identity: true
+    require_rules_core: true
+    recency_range_days: 7
+  nas_ops:
+    sources: [MEMORY.md, daily_notes, TOOLS.md]
+    max_tokens: 1500
+    require_rules_core: true
+    recency_range_days: 14
+  coding:
+    sources: [MEMORY.md, TOOLS.md]
+    max_tokens: 2000
+    require_rules_core: true
+    recency_range_days: 30
+  research:
+    sources: [MEMORY.md, daily_notes]
+    max_tokens: 2500
+    recency_range_days: 60
+  skill_dev:
+    sources: [MEMORY.md, daily_notes]
+    max_tokens: 1800
+    require_rules_core: true
+    recency_range_days: 30
+  routine:
+    sources: [MEMORY.md, HEARTBEAT.md]
+    max_tokens: 800
+    recency_range_days: 3
+  chat:
+    sources: [MEMORY.md]
+    max_tokens: 500
+    recency_range_days: 7
+
+# === 任务分类关键词 ===
+task_keywords:
+  daily_evolution_check: [进化自检, 自我进化, growth, evolution, 反思, self-review, 成长质量, daily check, 自省]
+  nas_ops: [NAS, 硬盘, ZFS, SMART, Docker, 容器, Frigate, GPU, UPS, 快照, 镜像, 磁盘, pool, tank]
+  coding: [写代码, 脚本, Python, git, 部署, 编译, 修复, 重构, 代码, script, code, debug]
+  research: [搜索, 查, 调研, 分析, 对比, 总结, research, analyze, compare]
+  routine: [心跳, cron, 定时, 健康检查, 仪表盘, heartbeat, dashboard]
+  skill_dev: [skill, 发布, ClawHub, clawhub, 技能, 安装, install]
+  chat: [闲聊, 问候, 天气, 笑话, 推荐]
+
+# === 时间线坍缩规则 ===
+timeline:
+  collapse_same_failure_threshold: 2   # 同一路径失败 ≥2 次 → 坍缩为禁止令
+  high_value_signals:                  # 高价值事件标记
+    - "收到.*正反馈"
+    - "解决.*问题"
+    - "修复.*完成"
+    - "发布.*成功"
+  noise_patterns:
+    - "健康检查.*正常"
+    - "cron.*ok"
+    - "心跳.*OK"
+    - "^背景$"
+    - "^发布$"
+    - "^其他$"
+    - "^其他发现$"
+
+# === 同义词映射（轻量语义扩展，替代 embedding）===
+# 键 → 同义/相关的词列表。assembler 匹配时自动展开，零延迟。
+# 从 memory 高频词 + 领域知识手工维护。
+synonyms:
+  进化自检: [自检, self-review, self-check, 反思, 元认知, meta-cognition]
+  NAS: [nas, 存储, storage, 文件服务器, fileserver, tank, zpool]
+  硬盘: [disk, SMART, 坏道, realloc, sector, 磁盘, storage]
+  Docker: [docker, 容器, container, 镜像, image, compose]
+  ZFS: [zfs, pool, snapshot, 快照, scrub, ARC, 数据集, dataset]
+  Frigate: [frigate, 摄像头, camera, NVR, 监控, detection]
+  skill: [skill, 技能, ClawHub, clawhub, 发布, publish]
+  Context: [context, 上下文, assembler, 组装, memory, 内存]
+  cron: [cron, 定时, 任务, job, schedule, heartbeat]
+  故障: [失败, 错误, 超时, timeout, error, fail, bug, 异常, crash]
+  正反馈: [好, 不错, 感谢, 对, 认可, 正确, agree, thanks]
+  密码: [password, vaultwarden, bitwarden, 登录, 认证, 证书, cert]
+  教程: [tutorial, 指南, guide, 文档, doc, 说明, howto]
+  养虾: [水产, 养殖, 虾, 水质, 换水, 水族, aquarium]
+  AI模型: [模型, model, LLM, deepseek, minimax, openclaw, 推理]
+  GPU: [gpu, nvidia, cuda, 显卡, 编码, encode]
+  UPS: [ups, 电源, 电池, battery, 断电, nut]
+
+# === 衰减 ===
+staleness:
+  halflife_days: 14
+  stale_threshold_days: 90
+  stale_weight_penalty: 0.3

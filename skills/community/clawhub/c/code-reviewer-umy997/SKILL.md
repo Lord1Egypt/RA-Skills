@@ -1,35 +1,41 @@
 ---
-name: "Code Reviewer Umy997"
-description: "进行代码审查和质量检查。当用户提交代码审查请求或需要代码质量分析时使用此Skill。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-reviewer-umy997"
-sourceUrl: "https://clawhub.ai/skills/code-reviewer-umy997"
+name: code-reviewer-umy997
+description: 进行代码审查和质量检查。当用户提交代码审查请求或需要代码质量分析时使用此Skill。
 ---
 
-# Code Reviewer Umy997
+# 代码审查助手
 
-> 进行代码审查和质量检查。当用户提交代码审查请求或需要代码质量分析时使用此Skill。
+## 审查流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-reviewer-umy997`
-- **Source URL:** [https://clawhub.ai/skills/code-reviewer-umy997](https://clawhub.ai/skills/code-reviewer-umy997)
+1. **代码结构分析**
+   - 检查文件组织
+   - 验证命名规范
+   - 评估模块化程度
 
-## Overview
+2. **质量检查**
+   - 识别代码异味
+   - 检查安全漏洞
+   - 验证测试覆盖率
 
+3. **改进建议**
+   - 提供具体修改建议
+   - 解释改进理由
+   - 建议最佳实践
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/code-reviewer-umy997
-```
+## 审查标准
+
+- **可读性**：代码是否易于理解
+- **可维护性**：代码是否易于修改
+- **性能**：是否存在性能问题
+- **安全性**：是否存在安全风险
+
+## 特殊场景处理
+
+### 紧急修复
+优先检查关键功能的完整性
+
+### 新功能开发
+重点关注设计模式和架构决策
+
+### 重构任务
+评估重构的影响和风险

@@ -1,35 +1,26 @@
----
-name: "Contract Reviewer Dongjie"
-description: "Analyzes contract text to extract key clauses, risks, party obligations, compliance notes, and negotiation recommendations for faster legal review."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/contract-reviewer-dongjie"
-sourceUrl: "https://clawhub.ai/skills/contract-reviewer-dongjie"
----
-
 # Contract Reviewer Dongjie
 
-> Analyzes contract text to extract key clauses, risks, party obligations, compliance notes, and negotiation recommendations for faster legal review.
+This skill analyzes legal contract text and extracts structured insights including:
+- Key clauses (termination, liability, confidentiality, payment)
+- Risk indicators
+- Obligations for each party
+- Compliance-related notes
+- Negotiation recommendations
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/contract-reviewer-dongjie`
-- **Source URL:** [https://clawhub.ai/skills/contract-reviewer-dongjie](https://clawhub.ai/skills/contract-reviewer-dongjie)
+## How it works
+The skill reads contract text, detects clause patterns, and returns structured findings.
 
-## Overview
+## Example
+Input:
+"The service provider may terminate this agreement at any time without notice."
 
+Output:
+- Clause: Termination
+- Risk: High
+- Note: Unilateral termination without notice.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/contract-reviewer-dongjie
-```
+## Intended users
+Consultants, freelancers, small business owners, and analysts who need fast contract review.
+
+## Version
+0.1.0

@@ -1,0 +1,85 @@
+# AGENT_REGISTRY.yaml — Agent 注册表
+# 每个参与项目的 Agent 在此注册。新 Agent 加入只需追加一行。
+# 注意：本文件仅记录 Agent 的平台角色，不记录个人身份信息。
+# 敏感信息（API Key、Token）不存储于此文件。
+
+schema_version: "1.0"
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+
+agents:
+  # ===== 编排者（Orchestrator）=====
+  - id: orchestrator
+    name: 编排者
+    platform: ""                    # 如：minimax-openclaw / claude-code
+    role: orchestrator
+    capabilities:
+      - task-planning
+      - milestone-tracking
+      - cross-agent-coordination
+      - structured-handoff-writing
+    tools: []
+    status: active                  # active | inactive
+    joined: "YYYY-MM-DD"
+    handoff_read_path: null         # 编排者通过 PROJECT_STATE 读写，不读 handoff
+    handoff_write_path: null
+
+  # ===== 人类决策者（Human）=====
+  - id: human-decider
+    name: 人类决策者
+    platform: human
+    role: human
+    capabilities:
+      - strategic-decision
+      - final-approval
+      - expert-judgment
+    tools: []
+    status: active
+    joined: "YYYY-MM-DD"
+    handoff_read_path: null
+    handoff_write_path: null
+
+  # ===== 审核者（Reviewer）=====
+  - id: reviewer
+    name: 审核Agent
+    platform: ""                    # 如：anthropic / openai
+    role: reviewer
+    capabilities:
+      - language-audit
+      - compliance-check
+      - structured-instruction-writing
+    tools: []                       # 如：web-search, figma-remote
+    status: inactive                # 项目启动后改为 active
+    joined: "YYYY-MM-DD"
+    handoff_read_path: "handoffs/from-reviewer/"
+    handoff_write_path: "handoffs/to-executor/"
+
+  # ===== 执行者（Executor）=====
+  - id: executor
+    name: 执行Agent
+    platform: ""                    # 如：openai-codex
+    role: executor
+    capabilities:
+      - pptx-generation
+      - document-generation
+      - chart-generation
+    tools: []                       # 如：pptxgenjs, puppeteer
+    status: inactive
+    joined: "YYYY-MM-DD"
+    handoff_read_path: "handoffs/to-executor/"
+    handoff_write_path: "output/"
+
+  # ===== 研究者（Researcher）=====
+  - id: researcher
+    name: 研究Agent
+    platform: ""                    # 如：google-gemini
+    role: researcher
+    capabilities:
+      - deep-research
+      - technical-analysis
+      - policy-research
+    tools: []
+    status: inactive
+    joined: "YYYY-MM-DD"
+    handoff_read_path: "research/"
+    handoff_write_path: "research/output/"

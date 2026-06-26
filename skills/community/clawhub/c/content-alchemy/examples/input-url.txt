@@ -1,0 +1,9 @@
+Please turn this web page into a reusable outcome instead of a plain summary:
+
+https://www.paulgraham.com/read.html
+
+Focus on:
+- structured notes
+- key insights
+- practical next steps
+- a reusable takeaway

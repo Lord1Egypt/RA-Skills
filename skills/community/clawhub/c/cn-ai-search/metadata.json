@@ -1,0 +1,8 @@
+{
+  "name": "cn-ai-search",
+  "version": "1.0.0",
+  "description": "中文AI Agent专用多平台聚合搜索工具，开箱即用，国内网络友好，自动总结结果",
+  "requires_api_key": true,
+  "api_key_required": "TAVILY_API_KEY",
+  "platforms": ["baidu", "weixin", "zhihu", "bilibili", "weibo", "xiaohongshu", "douyin"]
+}

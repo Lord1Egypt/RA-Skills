@@ -1,0 +1,9 @@
+{
+  "name": "cpa-china-2026-pro",
+  "version": "1.0.0",
+  "description": "中国注册会计师2026全能专家 — 六科教材+2025真题精讲（会计/审计/财管/战略/经济法/税法）",
+  "author": "Wang Dongjie, CGMA/AICPA&CIMA",
+  "license": "MIT",
+  "keywords": ["cpa", "china", "accounting", "audit", "finance", "tax", "strategy", "law", "注册会计师", "2026"],
+  "repository": "https://github.com/yjkj999999/cpa-china-2026-pro"
+}

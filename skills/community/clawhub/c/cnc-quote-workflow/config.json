@@ -1,0 +1,41 @@
+{
+  "name": "cnc-quote-workflow",
+  "version": "2.0.1",
+  "description": "CNC智能报价Workflow - 多Agent协作闭环（工业稳定版）",
+  "author": {
+    "name": "Timo",
+    "email": "miscdd@163.com",
+    "alias": "海狸 (Beaver)",
+    "motto": "靠得住、能干事、在状态"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cnc",
+    "quote",
+    "workflow",
+    "multi-agent",
+    "rag",
+    "manufacturing"
+  ],
+  "dependencies": {
+    "python": ">=3.8",
+    "pyyaml": ">=6.0"
+  },
+  "openclaw": {
+    "priority": "P0",
+    "category": "workflow",
+    "main_track": "Workflow Hacker",
+    "sub_track": "Agent Worker",
+    "triggers": [
+      "CNC报价",
+      "智能报价",
+      "制造报价Workflow"
+    ]
+  },
+  "stability": {
+    "mode": "production",
+    "enable_uniskill": false,
+    "rule_only_fallback": true,
+    "security_sandbox": true
+  }
+}

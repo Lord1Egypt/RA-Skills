@@ -1,35 +1,24 @@
 ---
-name: "Clawise"
-description: "Account, access, and operations infrastructure for AI agents — phone verification, email inboxes, CAPTCHA solving, credential vault, and identity management."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawise"
-sourceUrl: "https://clawhub.ai/skills/clawise"
+name: clawise
+description: Account, access, and operations infrastructure for AI agents — phone verification, email inboxes, CAPTCHA solving, credential vault, and identity management.
+metadata: {"openclaw":{"requires":{"env":["CLAWISE_API_KEY"]},"primaryEnv":"CLAWISE_API_KEY","homepage":"https://clawise.dev"}}
 ---
 
 # Clawise
 
-> Account, access, and operations infrastructure for AI agents — phone verification, email inboxes, CAPTCHA solving, credential vault, and identity management.
+Account, access, and operations infrastructure for AI agents.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawise`
-- **Source URL:** [https://clawhub.ai/skills/clawise](https://clawhub.ai/skills/clawise)
+Clawise gives your agent everything it needs to exist and operate on the internet.
 
-## Overview
+- **Mail** — Dedicated email inboxes for your agent
+- **Phone** — Phone numbers and SMS verification
+- **Captcha** — Solve reCAPTCHA, hCaptcha, Turnstile, and more
+- **Vault** — Securely store passwords, TOTP secrets, and API keys
+- **Identity** — Agent identity and access management
 
+## Getting Started
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawise
-```
+1. Get your API key at [clawise.dev](https://clawise.dev)
+2. Set `CLAWISE_API_KEY` in your environment
+
+Documentation: [docs.clawise.dev](https://docs.clawise.dev)

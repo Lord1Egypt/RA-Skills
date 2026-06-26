@@ -1,0 +1,23 @@
+{
+  "backup": {
+    "enabled": true,
+    "retention_days": 7,
+    "directory": "skills/.backups"
+  },
+  "conflict": {
+    "auto_backup": true,
+    "generate_diff": true,
+    "require_manual_review": true
+  },
+  "notification": {
+    "enabled": true,
+    "channel": "whatsapp",
+    "target": "<YOUR_PHONE_NUMBER>",
+    "on_conflict_only": false
+  },
+  "update": {
+    "auto_apply_safe": true,
+    "auto_apply_conflicts": false,
+    "ignore_whitespace": true
+  }
+}

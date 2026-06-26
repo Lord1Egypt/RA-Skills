@@ -1,0 +1,13 @@
+﻿{
+  "simulation_type": "optoelectronic",
+  "name": "high_temperature_template",
+  "description": "Template for a user-configured high-temperature simulation. Configure thermal limits, degradation assumptions, and temperature-dependent parameters before running.",
+  "requires_configuration": true,
+  "base_template": "optoelectronic_template",
+  "temperature_K": "<CONFIGURE_HIGH_TEMPERATURE_K>",
+  "temperature_dependent_parameters": "<CONFIGURE_MOBILITY_LIFETIME_BANDGAP_OR_RATE_MODELS>",
+  "device_stack": "<CONFIGURE_OR_COPY_DEVICE_STACK_FROM_YOUR_PROJECT_CONFIG>",
+  "optical_generation": "<CONFIGURE_OPTICAL_GENERATION>",
+  "bias_range": "<CONFIGURE_BIAS_RANGE>",
+  "output_dir": "output/opto_high_temperature_configured_project"
+}

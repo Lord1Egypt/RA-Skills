@@ -1,0 +1,13 @@
+{
+  "emoji": "📈",
+  "version": "1.0.0",
+  "requires": {
+    "pip": ["requests"],
+    "env": []
+  },
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "funding_harvester.py"
+  }
+}

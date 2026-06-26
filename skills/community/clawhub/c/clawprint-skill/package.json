@@ -1,0 +1,26 @@
+{
+  "name": "@clawprint/openclaw-skill",
+  "version": "0.1.0",
+  "description": "Business infrastructure for AI agents - create LLCs, open bank accounts, accept payments",
+  "scripts": {
+    "clawprint": "node scripts/clawprint.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "ai-agents",
+    "llc",
+    "banking",
+    "payments",
+    "business-formation"
+  ],
+  "author": "Christophe Labasky <clabasky@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clabasky/clawprint-skill.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

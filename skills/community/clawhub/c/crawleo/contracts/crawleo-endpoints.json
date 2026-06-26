@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0.0",
+  "base_url": "https://api.crawleo.dev",
+  "auth": {
+    "primary_header": "x-api-key",
+    "primary_env_var": "CRAWLEO_API_KEY",
+    "alternate_header": "Authorization: Bearer YOUR_API_KEY",
+    "secret_handling": "Never print, log, echo, or persist API key values."
+  },
+  "source_policy": {
+    "primary": "Crawleo endpoint-specific documentation",
+    "secondary": "Crawleo docs index, MCP overview, authentication docs, API introduction, and OpenAPI snapshot where it agrees",
+    "ambiguity_phrase": "not specified in Crawleo docs",
+    "notes": [
+      "Endpoint-specific docs are used where OpenAPI omits documented endpoints.",
+      "The local OpenAPI snapshot lists /search, /google-maps, and /crawl only; endpoint docs also document /google-search and /headful-browser."
+    ]
+  },
+  "mcp": {
+    "endpoint": "https://api.crawleo.dev/mcp",
+    "source": {
+      "path": ".gsd/research/crawleo-docs/md/overview.md",
+      "url": "https://docs.crawleo.dev/mcp/overview.md"
+    },
+    "tools": [
+      { "name": "search_web", "maps_to_endpoint": "/search", "documented_cost": "10 credits per page of results" },
+      { "name": "google_search", "maps_to_endpoint": "/google-search", "documented_cost": "10 credits per request" },
+      { "name": "google_maps", "maps_to_endpoint": "/google-maps", "documented_cost": "10 credits per request in MCP overview; conflicts with endpoint doc cost of 30 credits per request" },
+      { "name": "crawl_web", "maps_to_endpoint": "/crawl", "documented_cost": "1 credit per URL for HTTP request; 10 credits per URL for browser rendering" },
+      { "name": "headful_browser", "maps_to_endpoint": "/headful-browser", "documented_cost": "50 credits per URL" }
+    ]
+  },
+  "endpoints": [
+    {
+      "id": "search",
+      "name": "Bing Search API",
+      "method": "GET",
+      "path": "/search",
+      "url": "https://api.crawleo.dev/search",
+      "mcp_tool": "search_web",
+      "description": "Bing-powered real-time web search with optional auto-crawling and page content extraction for LLM/RAG workflows.",
+      "sources": [
+        { "path": ".gsd/research/crawleo-docs/md/search.md", "url": "https://docs.crawleo.dev/api-reference/endpoint/search.md" },
+        { "path": ".gsd/research/crawleo-docs/md/overview.md", "url": "https://docs.crawleo.dev/mcp/overview.md" },
+        { "path": ".gsd/research/crawleo-docs/openapi.json.json", "url": "https://docs.crawleo.dev/openapi.json" }
+      ],
+      "cost": "10 credits per page via max_pages / MCP search_web cost; exact cost for example-only count parameter is not specified in Crawleo docs",
+      "parameters": [
+        { "in": "header", "name": "x-api-key", "type": "string", "required": true, "default": null, "limits_or_enum": null, "description": "Crawleo API key; Authorization Bearer is documented as an alternative." },
+        { "in": "query", "name": "query", "type": "string", "required": true, "default": null, "limits_or_enum": null, "description": "Search query string." },
+        { "in": "query", "name": "max_pages", "type": "integer", "required": false, "default": 1, "limits_or_enum": "not specified in Crawleo docs", "description": "Maximum number of result pages to fetch; each page costs 10 credits." },
+        { "in": "query", "name": "setLang", "type": "string", "required": false, "default": null, "limits_or_enum": "examples: en, es, fr, de", "description": "Language code for search results." },
+        { "in": "query", "name": "cc", "type": "string", "required": false, "default": null, "limits_or_enum": "examples: US, GB, DE", "description": "Country code for search results." },
+        { "in": "query", "name": "geolocation", "type": "string", "required": false, "default": null, "limits_or_enum": "random is documented", "description": "Geographic location for localized results." },
+        { "in": "query", "name": "device", "type": "string", "required": false, "default": "desktop", "limits_or_enum": ["desktop", "mobile", "tablet"], "description": "Device type to simulate." },
+        { "in": "query", "name": "copilot_answer", "type": "boolean", "required": false, "default": true, "limits_or_enum": null, "description": "Include Copilot answers." },
+        { "in": "query", "name": "questions_answers", "type": "boolean", "required": false, "default": true, "limits_or_enum": null, "description": "Include People Also Ask question-answer cards." },
+        { "in": "query", "name": "related_queries", "type": "boolean", "required": false, "default": true, "limits_or_enum": null, "description": "Include related search query suggestions." },
+        { "in": "query", "name": "sidebar", "type": "boolean", "required": false, "default": true, "limits_or_enum": null, "description": "Include sidebar data such as knowledge panels and local results." },
+        { "in": "query", "name": "direct_answer", "type": "boolean", "required": false, "default": true, "limits_or_enum": null, "description": "Include direct answer boxes and instant answers." },
+        { "in": "query", "name": "raw_html", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Return original HTML source of each result page." },
+        { "in": "query", "name": "enhanced_html", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Return cleaned HTML with ads, scripts, and tracking removed." },
+        { "in": "query", "name": "page_text", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Return extracted plain text from each result page." },
+        { "in": "query", "name": "markdown", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Return structured Markdown." },
+        { "in": "query", "name": "auto_crawling", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Automatically crawl each search result URL and include page content." },
+        { "in": "query", "name": "count", "type": "integer", "required": false, "default": "not specified in Crawleo docs", "limits_or_enum": "not specified in Crawleo docs", "description": "Appears in Crawleo example requests but not in the visible parameter table." }
+      ],
+      "examples": [
+        { "label": "Basic search", "request": "GET /search?query=machine%20learning&count=10" },
+        { "label": "Markdown auto-crawling", "request": "GET /search?query=AI%20agents&auto_crawling=true&markdown=true" }
+      ],
+      "response_shape": {
+        "top_level_fields": ["query", "pages_fetched", "pages", "total_results", "search_results", "related_queries", "credits"],
+        "result_fields": ["title", "link", "date", "snippet", "source", "page_content", "enhanced_html", "page_markdown"]
+      },
+      "errors": "not specified in Crawleo docs",
+      "ambiguities": [
+        "The `count` query parameter appears in examples but is not listed in the visible parameter table.",
+        "Search endpoint error response table is not specified in Crawleo docs."
+      ]
+    },
+    {
+      "id": "google_search",
+      "name": "Google Search API",
+      "method": "GET",
+      "path": "/google-search",
+      "url": "https://api.crawleo.dev/google-search",
+      "mcp_tool": "google_search",
+      "description": "Real-time Google SERP data including web, news, images, places, shopping, knowledge graph, People Also Ask, related searches, and answer boxes.",
+      "sources": [
+        { "path": ".gsd/research/crawleo-docs/md/google-search.md", "url": "https://docs.crawleo.dev/api-reference/endpoint/google-search.md" },
+        { "path": ".gsd/research/crawleo-docs/md/overview.md", "url": "https://docs.crawleo.dev/mcp/overview.md" }
+      ],
+      "cost": "10 credits per request",
+      "parameters": [
+        { "in": "header", "name": "x-api-key", "type": "string", "required": true, "default": null, "limits_or_enum": null, "description": "Crawleo API key; Authorization Bearer is documented as an alternative." },
+        { "in": "query", "name": "q", "type": "string", "required": true, "default": null, "limits_or_enum": null, "description": "Search query." },
+        { "in": "query", "name": "gl", "type": "string", "required": false, "default": "us", "limits_or_enum": "ISO 3166-1 alpha-2 examples: us, gb, eg, de, fr", "description": "Country for search results." },
+        { "in": "query", "name": "hl", "type": "string", "required": false, "default": "en", "limits_or_enum": "IETF language tag examples: en, ar, fr, de", "description": "Language for results." },
+        { "in": "query", "name": "tbs", "type": "string", "required": false, "default": null, "limits_or_enum": ["qdr:h", "qdr:d", "qdr:w", "qdr:m", "qdr:y"], "description": "Time-based freshness filter." },
+        { "in": "query", "name": "page", "type": "integer", "required": false, "default": 1, "limits_or_enum": "1-indexed; upper bound not specified in Crawleo docs", "description": "Page number of results." },
+        { "in": "query", "name": "num", "type": "integer", "required": false, "default": 10, "limits_or_enum": "1-100", "description": "Number of results per page." },
+        { "in": "query", "name": "type", "type": "string", "required": false, "default": "search", "limits_or_enum": ["search", "news", "images", "places", "shopping"], "description": "Google result vertical." }
+      ],
+      "examples": [
+        { "label": "Basic Google search", "request": "GET /google-search?q=best%20CRM%20software&gl=us&hl=en&num=10" },
+        { "label": "News search", "request": "GET /google-search?q=AI&type=news&tbs=qdr:d" },
+        { "label": "Places search", "request": "GET /google-search?q=coffee&type=places&gl=us" },
+        { "label": "Shopping search", "request": "GET /google-search?q=laptop&type=shopping" }
+      ],
+      "response_shape": {
+        "top_level_fields": ["parameters", "google_search_results", "knowledgeGraph", "peopleAlsoAsk", "relatedSearches", "answerBox"],
+        "result_fields": ["title", "link", "snippet", "position"]
+      },
+      "errors": [
+        { "status": 400, "description": "Missing required parameter `q`" },
+        { "status": 401, "description": "Invalid or missing API key" },
+        { "status": 402, "description": "Insufficient credits" },
+        { "status": 429, "description": "Rate limit exceeded" },
+        { "status": 500, "description": "Internal server error" }
+      ],
+      "ambiguities": ["Google Search is documented in endpoint-specific docs and docs index but absent from the local OpenAPI snapshot."]
+    },
+    {
+      "id": "google_maps",
+      "name": "Google Maps API",
+      "method": "GET",
+      "path": "/google-maps",
+      "url": "https://api.crawleo.dev/google-maps",
+      "mcp_tool": "google_maps",
+      "description": "Google Maps business/place/landmark search with structured place data.",
+      "sources": [
+        { "path": ".gsd/research/crawleo-docs/md/google-maps.md", "url": "https://docs.crawleo.dev/api-reference/endpoint/google-maps.md" },
+        { "path": ".gsd/research/crawleo-docs/md/overview.md", "url": "https://docs.crawleo.dev/mcp/overview.md" },
+        { "path": ".gsd/research/crawleo-docs/openapi.json.json", "url": "https://docs.crawleo.dev/openapi.json" }
+      ],
+      "cost": "Endpoint doc: 30 credits per request. MCP overview: 10 credits per request. Preserve as source conflict.",
+      "parameters": [
+        { "in": "header", "name": "x-api-key", "type": "string", "required": true, "default": null, "limits_or_enum": null, "description": "Crawleo API key; Authorization Bearer is documented as an alternative." },
+        { "in": "query", "name": "q", "type": "string", "required": true, "default": null, "limits_or_enum": null, "description": "Business name, landmark, address, keyword, or category + location query." },
+        { "in": "query", "name": "hl", "type": "string", "required": false, "default": "not specified in Crawleo docs", "limits_or_enum": "ISO 639-1 examples: en, ar, fr, de", "description": "Language code for returned text." },
+        { "in": "query", "name": "ll", "type": "string", "required": false, "default": null, "limits_or_enum": "format @latitude,longitude,zoomz; zoom 1z-21z", "description": "Location bias." },
+        { "in": "query", "name": "placeId", "type": "string", "required": false, "default": null, "limits_or_enum": null, "description": "Google Place ID for exact place lookup." },
+        { "in": "query", "name": "cid", "type": "string", "required": false, "default": null, "limits_or_enum": null, "description": "Google numeric business/customer ID for exact business lookup." }
+      ],
+      "parameter_combinations": ["q", "q + hl", "q + ll", "q + ll + hl", "q + placeId", "q + placeId + hl", "q + cid", "q + cid + hl"],
+      "examples": [
+        { "label": "Basic Maps search", "request": "GET /google-maps?q=restaurants%20in%20Paris&hl=fr" },
+        { "label": "Location-biased search", "request": "GET /google-maps?q=coffee%20shops&ll=%4048.8566%2C2.3522%2C15z&hl=fr" },
+        { "label": "Place lookup", "request": "GET /google-maps?q=Le%20Comptoir&placeId=ChIJLU7jZClu5kcR4PcOOO6p3I0" }
+      ],
+      "response_shape": {
+        "top_level_fields": ["parameters", "google_maps_results", "credits"],
+        "result_fields": ["position", "title", "address", "rating", "ratingCount", "phoneNumber", "website", "type", "types", "priceLevel", "placeId", "cid", "latitude", "longitude", "openingHours", "thumbnailUrl"]
+      },
+      "errors": [
+        { "status": 400, "description": "Missing required query parameter `q`" },
+        { "status": 401, "description": "Invalid or missing API key" },
+        { "status": 403, "description": "Inactive account or expired subscription" },
+        { "status": 429, "description": "Credits exhausted or concurrent request limit reached" },
+        { "status": 500, "description": "Internal server error" }
+      ],
+      "ambiguities": ["Google Maps cost differs between endpoint doc and MCP overview.", "Default for `hl` is not specified in Crawleo docs."]
+    },
+    {
+      "id": "crawl",
+      "name": "Crawler API",
+      "method": "GET",
+      "path": "/crawl",
+      "url": "https://api.crawleo.dev/crawl",
+      "mcp_tool": "crawl_web",
+      "description": "Direct URL crawling API with optional JavaScript rendering, content extraction, screenshots, and multiple output formats.",
+      "sources": [
+        { "path": ".gsd/research/crawleo-docs/md/crawler.md", "url": "https://docs.crawleo.dev/api-reference/endpoint/crawler.md" },
+        { "path": ".gsd/research/crawleo-docs/md/overview.md", "url": "https://docs.crawleo.dev/mcp/overview.md" },
+        { "path": ".gsd/research/crawleo-docs/openapi.json.json", "url": "https://docs.crawleo.dev/openapi.json" }
+      ],
+      "cost": "1 credit per URL when render_js=false; 10 credits per URL when render_js=true",
+      "parameters": [
+        { "in": "header", "name": "x-api-key", "type": "string", "required": true, "default": null, "limits_or_enum": null, "description": "Crawleo API key; Authorization Bearer is documented as an alternative." },
+        { "in": "query", "name": "urls", "type": "string", "required": true, "default": null, "limits_or_enum": "single URL or comma-separated URLs", "description": "URL or URLs to crawl." },
+        { "in": "query", "name": "render_js", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Enable browser rendering; changes cost from 1 to 10 credits per URL." },
+        { "in": "query", "name": "geolocation", "type": "string", "required": false, "default": null, "limits_or_enum": "ISO 3166-1 alpha-2 examples: us, gb, de", "description": "Country code for geolocation." },
+        { "in": "query", "name": "raw_html", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Return raw HTML." },
+        { "in": "query", "name": "enhanced_html", "type": "boolean", "required": false, "default": true, "limits_or_enum": null, "description": "Return cleaned/sanitized HTML." },
+        { "in": "query", "name": "page_text", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Return plain text extraction." },
+        { "in": "query", "name": "markdown", "type": "boolean", "required": false, "default": true, "limits_or_enum": null, "description": "Return Markdown conversion." },
+        { "in": "query", "name": "screenshot", "type": "boolean", "required": false, "default": false, "limits_or_enum": "only available when render_js=true", "description": "Capture screenshot." },
+        { "in": "query", "name": "screenshot_full_page", "type": "boolean", "required": false, "default": false, "limits_or_enum": "screenshot=true and render_js=true required for screenshot output", "description": "Capture full-page screenshot instead of viewport only." }
+      ],
+      "examples": [
+        { "label": "Basic crawl with Markdown", "request": "GET /crawl?urls=https://example.com&markdown=true" },
+        { "label": "Rendered crawl with screenshot", "request": "GET /crawl?urls=https://example.com&render_js=true&screenshot=true" }
+      ],
+      "response_shape": {
+        "top_level_fields": ["results", "credits", "successful_pages"],
+        "result_fields": ["url", "status_code", "raw_html", "enhanced_html", "markdown", "page_text", "screenshot", "error"]
+      },
+      "errors": "not specified in Crawleo docs",
+      "ambiguities": ["Crawler endpoint error response table is not specified in Crawleo docs."]
+    },
+    {
+      "id": "headful_browser",
+      "name": "Headful Browser API",
+      "method": "GET",
+      "path": "/headful-browser",
+      "url": "https://api.crawleo.dev/headful-browser",
+      "mcp_tool": "headful_browser",
+      "description": "Premium headed browser crawling with anti-bot evasion, SOAX residential proxies, screenshots, and multiple output formats.",
+      "sources": [
+        { "path": ".gsd/research/crawleo-docs/md/headful-browser.md", "url": "https://docs.crawleo.dev/api-reference/endpoint/headful-browser.md" },
+        { "path": ".gsd/research/crawleo-docs/md/overview.md", "url": "https://docs.crawleo.dev/mcp/overview.md" }
+      ],
+      "cost": "50 credits per URL; failed requests cost 0 credits",
+      "parameters": [
+        { "in": "header", "name": "x-api-key", "type": "string", "required": true, "default": null, "limits_or_enum": null, "description": "Crawleo API key; Authorization Bearer is documented as an alternative." },
+        { "in": "query", "name": "urls", "type": "string", "required": true, "default": null, "limits_or_enum": "single URL or comma-separated URLs", "description": "One or more URLs to crawl." },
+        { "in": "query", "name": "country", "type": "string", "required": false, "default": "us", "limits_or_enum": "examples: us, gb, de, fr, jp, in, br, ca, au, and more", "description": "Residential proxy geolocation country code." },
+        { "in": "query", "name": "output_format", "type": "string", "required": false, "default": "markdown", "limits_or_enum": ["markdown", "enhanced_html", "raw_html", "page_text"], "description": "Output format for crawled page content." },
+        { "in": "query", "name": "screenshot", "type": "boolean", "required": false, "default": false, "limits_or_enum": null, "description": "Capture full-page screenshot returned as URL." }
+      ],
+      "examples": [
+        { "label": "Basic headful crawl", "request": "GET /headful-browser?urls=https://example.com&output_format=markdown" },
+        { "label": "Headful crawl with screenshot", "request": "GET /headful-browser?urls=https://example.com&screenshot=true" }
+      ],
+      "response_shape": {
+        "top_level_fields": ["status", "data", "credits_used", "credits_remaining"],
+        "result_fields": ["url", "markdown", "raw_html", "enhanced_html", "page_text", "screenshot", "blocked"]
+      },
+      "errors": "not specified in Crawleo docs",
+      "ambiguities": [
+        "Headful Browser is documented in endpoint-specific docs and docs index but absent from the local OpenAPI snapshot.",
+        "Headful Browser endpoint error response table is not specified in Crawleo docs."
+      ]
+    }
+  ]
+}

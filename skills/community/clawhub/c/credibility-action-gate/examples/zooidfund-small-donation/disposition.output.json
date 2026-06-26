@@ -1,0 +1,177 @@
+{
+  "review_type": "credibility-action-gate",
+  "review_version": "0.1.0",
+  "reviewed_at": "2026-05-27T21:09:49.938Z",
+  "status": "completed",
+  "analysis_only": true,
+  "policy": {
+    "policy_name": "zooidfund-small-donation-example",
+    "policy_version": "0.1.0",
+    "action_domain": "zooidfund",
+    "requested_action": {
+      "type": "donation",
+      "size": 5,
+      "unit": "configured_unit",
+      "is_repeat_action": true
+    },
+    "authority": {
+      "max_autonomous_action_size": 10,
+      "small_test_action_size": 1,
+      "serious_action_threshold": 5
+    }
+  },
+  "disposition": "monitor_until_new_evidence",
+  "confidence": "low_to_medium",
+  "action_size_guidance": "do_not_repeat_without_new_record_support",
+  "maximum_recommended_size": 0,
+  "reasons": [
+    {
+      "code": "MULTIPLE_MEDIUM_OR_CROSS_LANE_CONCERNS",
+      "severity": "medium",
+      "summary": "Multiple material concerns appear across the record.",
+      "refs": [
+        "evidence:IDENTITY_OR_LINKAGE_UNVERIFIED",
+        "external_context:SOURCE_INDEPENDENCE_WEAK",
+        "graph_history:REPEATED_RECIPIENT_PATTERN"
+      ]
+    },
+    {
+      "code": "REQUESTED_ACTION_SIZE_NOT_FULLY_SUPPORTED",
+      "severity": "medium",
+      "summary": "At least one lane only partially supports, or cannot confirm, the requested action size.",
+      "refs": [
+        "evidence:supports_requested_action_size"
+      ]
+    },
+    {
+      "code": "SOURCE_INDEPENDENCE_WEAK",
+      "severity": "medium",
+      "summary": "External context does not provide strong independent support.",
+      "refs": [
+        "external_context:source_independence"
+      ]
+    },
+    {
+      "code": "REPEAT_ACTION_WITHOUT_FRESH_REASON",
+      "severity": "medium",
+      "summary": "Repeat action lacks a fresh reason on the current record.",
+      "refs": [
+        "repeat_or_top_up_support"
+      ]
+    }
+  ],
+  "missing_lanes": [],
+  "lane_summary": [
+    {
+      "lane_type": "evidence",
+      "status": "completed",
+      "confidence": "medium",
+      "highest_severity": "medium",
+      "finding_count": 1
+    },
+    {
+      "lane_type": "external_context",
+      "status": "completed",
+      "confidence": "medium",
+      "highest_severity": "medium",
+      "finding_count": 1
+    },
+    {
+      "lane_type": "graph_history",
+      "status": "completed",
+      "confidence": "medium",
+      "highest_severity": "medium",
+      "finding_count": 1
+    }
+  ],
+  "lane_details": [
+    {
+      "lane_type": "evidence",
+      "status": "completed",
+      "confidence": "medium",
+      "findings": [
+        {
+          "code": "IDENTITY_OR_LINKAGE_UNVERIFIED",
+          "severity": "medium",
+          "summary": "The campaign record supports a plausible need, but claimant linkage is only partial.",
+          "evidence_refs": []
+        }
+      ],
+      "positives": [
+        {
+          "code": "CLAIM_SPECIFIC_DOCUMENT_PRESENT",
+          "summary": "The record includes a claim-specific document and dated campaign text."
+        }
+      ],
+      "decision": {
+        "supports_core_claim": "partial",
+        "supports_requested_action_size": "partial",
+        "claimant_linkage": "partial",
+        "repeat_or_top_up_support": "none"
+      },
+      "limitations": [
+        "Document authenticity was not independently verified.",
+        "The record does not provide a fresh marginal reason for a repeat or top-up action."
+      ],
+      "highest_severity": "medium"
+    },
+    {
+      "lane_type": "external_context",
+      "status": "completed",
+      "confidence": "medium",
+      "findings": [
+        {
+          "code": "SOURCE_INDEPENDENCE_WEAK",
+          "severity": "medium",
+          "summary": "Public context makes the general need plausible, but independent claim-specific support is weak.",
+          "evidence_refs": []
+        }
+      ],
+      "positives": [
+        {
+          "code": "PUBLIC_CONTEXT_PARTIAL",
+          "summary": "Public context partially supports the general location and need category."
+        }
+      ],
+      "decision": {
+        "public_context_plausibility": "some_found",
+        "source_independence": "weak"
+      },
+      "limitations": [
+        "Search results were treated as context, not claimant linkage or proof of use."
+      ],
+      "highest_severity": "medium"
+    },
+    {
+      "lane_type": "graph_history",
+      "status": "completed",
+      "confidence": "medium",
+      "findings": [
+        {
+          "code": "REPEATED_RECIPIENT_PATTERN",
+          "severity": "medium",
+          "summary": "The recipient or related record appears in prior action history, so repeat support needs a fresh reason.",
+          "evidence_refs": []
+        }
+      ],
+      "positives": [
+        {
+          "code": "NO_HARD_BLOCKER_PATTERN",
+          "summary": "No configured hard blocker appeared in the reviewed history."
+        }
+      ],
+      "decision": {
+        "repeat_or_top_up_support": "none"
+      },
+      "limitations": [
+        "The history lane reviews pattern risk; it does not determine mission priority."
+      ],
+      "highest_severity": "medium"
+    }
+  ],
+  "integration_guidance": {
+    "does_not_execute_action": true,
+    "use_as_gate_not_mission_selector": true,
+    "avoid_public_accusation": "Use record-scoped language unless independent evidence supports a stronger public claim."
+  }
+}

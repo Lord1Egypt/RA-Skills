@@ -1,0 +1,40 @@
+# Knowledge Workflow 配置
+
+# 存储配置
+storage:
+  default_type: "local"  # local|feishu|obsidian
+  base_path: "~/kb"
+
+# 打标配置
+tagging:
+  auto_tag: true
+  confidence_threshold: 0.6
+  taxonomy:
+    themes:
+      - 投资/基金
+      - 投资/股票
+      - 产品/设计
+      - 技术/AI
+      - 知识管理
+      - 个人/健康
+    scenes:
+      - 场景/晨会
+      - 场景/决策前
+      - 场景/写作时
+    actions:
+      - 行动/立即执行
+      - 行动/调研
+      - 行动/分享
+
+# 知识发芽配置
+evolution:
+  default_type: "spark"  # spark|model|cross|habit|subconscious
+  auto_evolve: true
+
+# 产出配置
+output:
+  default_type: "article"  # article|weekly|monthly
+  auto_publish: false
+  style:
+    tone: "conversational"
+    length: 1000

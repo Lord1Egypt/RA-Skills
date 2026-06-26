@@ -1,0 +1,90 @@
+{
+  "10": {
+    "inputs": {
+      "unet_name": "z_image_turbo_bf16.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {"title": "Load Diffusion Model"}
+  },
+  "11": {
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "lumina2"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {"title": "Load CLIP"}
+  },
+  "12": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {"title": "Load VAE"}
+  },
+  "3": {
+    "inputs": {
+      "width": 768,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {"title": "Empty Latent Image"}
+  },
+  "4": {
+    "inputs": {
+      "text": "photorealistic portrait of a beautiful young woman, natural skin texture, soft natural lighting, shallow depth of field, 85mm lens, f/1.8, professional photography, film grain, authentic look, detailed eyes, natural makeup, flowing hair, elegant pose, studio quality, no AI artifacts, sharp focus, high resolution",
+      "clip": ["11", 0]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {"title": "Positive Prompt"}
+  },
+  "5": {
+    "inputs": {
+      "text": "text, watermark, low quality, ugly, deformed, blurry, plastic skin, airbrushed, cartoon, 3d render, cgi, digital art, painting, drawing, anime, doll-like, unnatural, oversaturated, HDR, fake, artificial, smooth skin, perfect skin, AI generated, disfigured, mutated, bad anatomy",
+      "clip": ["11", 0]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {"title": "Negative Prompt"}
+  },
+  "6": {
+    "inputs": {
+      "shift": 3,
+      "model": ["10", 0]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {"title": "ModelSamplingAuraFlow"}
+  },
+  "7": {
+    "inputs": {
+      "seed": 12345,
+      "steps": 35,
+      "cfg": 5.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1.0,
+      "model": ["6", 0],
+      "positive": ["4", 0],
+      "negative": ["5", 0],
+      "latent_image": ["3", 0]
+    },
+    "class_type": "KSampler",
+    "_meta": {"title": "KSampler"}
+  },
+  "8": {
+    "inputs": {
+      "samples": ["7", 0],
+      "vae": ["12", 0]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {"title": "VAE Decode"}
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "comfyui",
+      "images": ["8", 0]
+    },
+    "class_type": "SaveImage",
+    "_meta": {"title": "Save Image"}
+  }
+}

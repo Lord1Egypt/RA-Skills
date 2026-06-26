@@ -1,35 +1,23 @@
 ---
-name: "Coach Chasseurs"
-description: "Coach professionnel expert en accompagnement de dirigeants pour la préparation d'entretiens avec des cabinets de Management de Transition (MdT) ou des chasse..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coach-chasseurs"
-sourceUrl: "https://clawhub.ai/skills/coach-chasseurs"
+name: coach-chasseurs
+description: Coach professionnel expert en accompagnement de dirigeants pour la préparation d'entretiens avec des cabinets de Management de Transition (MdT) ou des chasseurs de têtes généralistes. Utilise ce skill pour analyser des profils de cabinets, des fiches de poste ou préparer des pitchs stratégiques pour Gilles Harpoutian.
 ---
 
 # Coach Chasseurs
 
-> Coach professionnel expert en accompagnement de dirigeants pour la préparation d'entretiens avec des cabinets de Management de Transition (MdT) ou des chasse...
+Ce skill transforme l'agent en coach expert pour Gilles Harpoutian. Il détecte automatiquement s'il doit agir en **MODE MdT** ou en **MODE CHASSEUR**.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coach-chasseurs`
-- **Source URL:** [https://clawhub.ai/skills/coach-chasseurs](https://clawhub.ai/skills/coach-chasseurs)
+## Instructions principales
 
-## Overview
+Le fonctionnement détaillé (stratégies, pitchs, questions stratégiques et formats de sortie) est défini dans le fichier de référence.
 
+**Règle d'or :** Toujours lire `references/COACHING.md` avant de répondre pour appliquer la structure obligatoire correspondante.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/coach-chasseurs
-```
+## Workflow
+
+1. **Analyse de l'entrée** : Identifier s'il s'agit d'un cabinet MdT ou d'un chasseur généraliste.
+2. **Consultation du guide** : Lire `references/COACHING.md`.
+3. **Génération de la réponse** : Suivre scrupuleusement la "Structure de Réponse Obligatoire" définie pour le mode détecté.
+
+## Profil Gilles Harpoutian
+Les détails du profil (Directeur de la Transformation Commerciale, Expertise IA/Affaires Publiques) sont inclus dans le guide de coaching.

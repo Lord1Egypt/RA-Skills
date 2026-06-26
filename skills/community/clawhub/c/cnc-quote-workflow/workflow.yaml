@@ -1,0 +1,79 @@
+name: CNC智能报价Workflow
+version: 2.0.0
+author: Timo (miscdd@163.com)
+description: 多Agent协作智能报价闭环
+
+# 主赛道：Workflow Hacker
+# 副赛道：Agent Worker
+
+agents:
+  - id: agent1_parser
+    name: 输入解析Agent
+    type: parser
+    description: 接收文本/STEP描述，调用hybrid_retriever
+    input: text/step_description
+    output: structured_query
+    calls: hybrid_retriever
+    timeout: 30s
+    
+  - id: agent2_rag
+    name: RAG检索Agent
+    type: retriever
+    description: 案例检索 + 风险控制
+    input: structured_query
+    output: retrieved_cases
+    calls:
+      - case_retriever
+      - risk_control
+    timeout: 60s
+    parallel: true
+      
+  - id: agent3_meta
+    name: 元认知审核Agent
+    type: meta_cognitive
+    description: UniSkill V4自我辩论 + 竞品分析
+    input: retrieved_cases
+    output: final_quote
+    calls:
+      - uniskill_v4
+      - self_debate
+      - competitor_analysis
+    timeout: 120s
+    retry: 2
+
+workflow:
+  steps:
+    - step: 1
+      agent: agent1_parser
+      description: 解析用户输入
+      
+    - step: 2
+      agent: agent2_rag
+      description: RAG检索与风险评估
+      parallel: true
+      
+    - step: 3
+      agent: agent3_meta
+      description: 元认知审核生成最终报价
+
+output:
+  format: quote_report
+  components:
+    - 报价明细
+    - 风险预警
+    - 竞品对比
+    - 元认知辩论记录
+    - 自动提醒配置
+  
+  notifications:
+    - type: calendar
+      enabled: true
+    - type: email
+      enabled: true
+
+metadata:
+  story: "10年制造业老师傅用 ClawHub 已发布的 CNC Quote Skill + OpenClaw Workflow，实现从黑盒24h 到白盒10min 的智能报价闭环"
+  competition:
+    main_track: Workflow Hacker
+    sub_track: Agent Worker
+  clawhub_skill: https://clawhub.com/timo2026/cnc-quote-system

@@ -1,0 +1,140 @@
+# Report Delivery Configuration
+
+delivery:
+  # Report output location
+  output_dir: "./output/reports"
+  archive_reports: true
+  retention_days: 90
+
+  # Primary delivery channel
+  channel: "slack"  # Options: slack, email, telegram, file
+
+  # Schedule
+  schedule:
+    weekly_report:
+      cron: "0 9 * * 1"         # Monday 9 AM
+      description: "Weekly competitive intelligence briefing"
+    daily_alerts:
+      cron: "0 8 * * 1-5"       # Weekdays 8 AM
+      description: "Daily alert digest"
+
+  # Slack Configuration
+  slack:
+    webhook_url: "https://hooks.slack.com/services/T00/B00/xxxxxxxx"
+    channel: "#competitive-intel"
+    username: "CI Agent"
+    icon_emoji: ":male-detective:"
+    message_format: "full"  # Options: full, summary, link_only
+
+  # Email Configuration
+  email:
+    smtp_host: "smtp.gmail.com"
+    smtp_port: 587
+    smtp_username: "ci-agent@yourcompany.com"
+    smtp_password: ""  # Use app password
+    use_tls: true
+    to:
+      - "team@yourcompany.com"
+      - "founder@yourcompany.com"
+    cc: []
+    bcc: []
+    subject_template: "CI Briefing — Week {{week_number}} ({{date_range}})"
+
+  # Telegram Configuration
+  telegram:
+    bot_token: ""
+    chat_id: ""
+    parse_mode: "MarkdownV2"
+
+# Alert Configuration
+alerts:
+  enabled: true
+  cooldown_hours: 24  # Don't re-alert for same competitor/type within window
+
+  rules:
+    - name: "price_drop_significant"
+      description: "Any competitor drops price by threshold or more"
+      type: price_change
+      metric: price
+      direction: drop
+      threshold:
+        percent: 10
+        absolute_zar: 50
+      window: 24h
+      priority: high
+      channels: [slack, email]
+
+    - name: "price_increase"
+      description: "Competitor raises prices (good for us)"
+      type: price_change
+      metric: price
+      direction: increase
+      threshold:
+        percent: 15
+      window: 24h
+      priority: medium
+      channels: [slack]
+
+    - name: "new_plan_tier"
+      description: "Competitor adds or removes a pricing tier"
+      type: plan_change
+      metric: plan_count
+      direction: any
+      window: 24h
+      priority: high
+      channels: [slack, email]
+
+    - name: "review_rating_drop"
+      description: "Competitor's average rating drops significantly"
+      type: review_change
+      metric: average_rating
+      direction: drop
+      threshold_stars: 1.0
+      window: 7d
+      priority: medium
+      channels: [slack]
+
+    - name: "review_volume_spike"
+      description: "Unusual spike in review volume (good or bad)"
+      type: review_change
+      metric: review_count
+      direction: increase
+      threshold_percent: 200
+      window: 24h
+      priority: low
+      channels: [slack]
+
+    - name: "social_engagement_spike"
+      description: "Viral post or unusual engagement"
+      type: social_change
+      metric: engagement_rate
+      direction: increase
+      threshold_percent: 300
+      window: 24h
+      priority: medium
+      channels: [slack]
+
+    - name: "new_product_feature"
+      description: "New feature or product page detected"
+      type: product_change
+      metric: new_pages
+      direction: any
+      window: 24h
+      priority: high
+      channels: [slack, email, telegram]
+
+    - name: "leadership_change"
+      description: "New hire in executive position"
+      type: hiring
+      metric: executive_hire
+      window: 7d
+      priority: high
+      channels: [slack, email]
+
+    - name: "funding_round"
+      description: "Competitor raised money"
+      type: news
+      metric: funding
+      window: 7d
+      priority: high
+      channels: [slack, email, telegram]

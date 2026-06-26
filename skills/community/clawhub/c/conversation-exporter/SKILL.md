@@ -1,35 +1,231 @@
 ---
-name: "conversation-exporter"
-description: "对话历史导出工具 - 将 WorkBuddy 的对话历史导出为多种格式（JSON/Markdown/TXT），包含时间线、元数据、统计数据、成就里程碑和 Skills 使用记录，便于归档分析和分享"
-category: "other"
-source: "ClawHub"
-tags: [conversation-export, data-export, file-conversion, workbuddy-skill]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/conversation-exporter"
-sourceUrl: "https://clawhub.ai/skills/conversation-exporter"
+description: 对话历史导出工具 - 将 WorkBuddy 的对话历史导出为多种格式（JSON/Markdown/TXT），包含时间线、元数据、统计数据、成就里程碑和 Skills 使用记录，便于归档分析和分享
 ---
 
-# conversation-exporter
+# 对话历史导出工具
 
-> 对话历史导出工具 - 将 WorkBuddy 的对话历史导出为多种格式（JSON/Markdown/TXT），包含时间线、元数据、统计数据、成就里程碑和 Skills 使用记录，便于归档分析和分享
+将 WorkBuddy 的对话历史导出为多种格式（JSON、Markdown、TXT），便于归档、分析和分享。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/conversation-exporter`
-- **Source URL:** [https://clawhub.ai/skills/conversation-exporter](https://clawhub.ai/skills/conversation-exporter)
+## 触发条件
 
-## Overview
+当用户需要以下操作时使用此 Skill：
 
+- 导出对话历史
+- 保存会话记录
+- 生成对话摘要
+- 分析对话数据
+- 归档工作记忆
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/conversation-exporter
+## 功能特性
+
+### 支持的导出格式
+
+1. **JSON 格式**（`conversation_history.json`）
+   
+   - 结构化数据，便于程序处理
+   - 包含完整的时间线、元数据、统计信息
+   - 支持数据导入到其他系统
+
+2. **Markdown 格式**（`conversation_history.md`）
+   
+   - 易读的文档格式
+   - 适合归档和查看
+   - 支持语法高亮和富文本
+
+3. **TXT 格式**（`conversation_history.txt`）
+   
+   - 纯文本，兼容性最好
+   - 无格式干扰
+   - 适合日志分析
+
+### 导出内容
+
+- **时间线**：按时间顺序的所有交互事件
+- **元数据**：日期范围、项目信息、统计数据
+- **工作记忆**：从 WorkBuddy 工作记忆目录提取的长期记录
+- **项目信息**：项目名称、描述、关键文件路径
+- **成就里程碑**：完成的功能、版本迭代、重要决策
+- **Skills 使用记录**：已安装的 Skills 列表和使用统计
+
+### 安全特性
+
+- ✅ **UTF-8 编码**：避免中文乱码
+- ✅ **本地处理**：不涉及外部服务
+- ✅ **数据过滤**：自动过滤敏感信息
+- ✅ **格式验证**：导出前验证数据完整性
+
+## 使用指南
+
+### 基本用法
+
+用户请求导出对话历史时：
+
+1. **确定导出格式**
+   
+   - 默认导出所有三种格式
+   - 用户可指定特定格式（如 "只导出 JSON"）
+
+2. **读取工作记忆**
+   
+   - 读取长期记忆文件
+   - 读取最近的日期文件（今天 + 过去 7 天）
+   - 读取自动化任务目录获取自动化任务信息
+
+3. **构建导出数据**
+   
+   - 解析时间线事件
+   - 统计数据
+   - 生成摘要
+
+4. **输出文件**
+   
+   - 文件名格式：`对话历史_YYYY-MM-DD.{ext}`
+   - 保存到工作区根目录
+   - 使用 UTF-8 BOM 编码（增强兼容性）
+
+### 高级选项
+
+- **日期范围**：导出指定时间段的对话
+- **事件过滤**：按类型过滤事件（如 "只导出 Skills 安装记录"）
+- **详细程度**：简洁模式 vs 完整模式
+- **包含附件**：是否包含生成的文件列表
+
+## 数据结构
+
+### JSON 格式结构
+
+```json
+{
+  "conversation_history": {
+    "metadata": {
+      "export_date": "ISO 8601 日期时间",
+      "date_range": {
+        "start": "YYYY-MM-DD",
+        "end": "YYYY-MM-DD"
+      },
+      "workspace": "工作区路径",
+      "project": "项目名称"
+    },
+    "timeline": [
+      {
+        "date": "YYYY-MM-DD",
+        "time": "HH:MM",
+        "type": "事件类型",
+        "action": "操作描述",
+        "details": {}
+      }
+    ],
+    "statistics": {
+      "total_days": 0,
+      "total_events": 0,
+      "events_by_type": {}
+    },
+    "achievements": [],
+    "skills_summary": {},
+    "automations": []
+  }
+}
 ```
+
+### Markdown 格式结构
+
+```markdown
+# 对话历史摘要
+
+## 元数据
+- 导出日期：...
+- 时间范围：...
+- 项目：...
+
+## 时间线
+### YYYY-MM-DD
+- [HH:MM] 事件类型：操作描述
+
+## 统计数据
+...
+
+## 成就里程碑
+...
+```
+
+## 配置选项
+
+### 文件编码
+
+- JSON/MD: `utf-8-sig`（带 BOM，增强兼容性）
+- TXT: `utf-8-sig`
+
+### 文件路径
+
+- 默认：工作区根目录，文件名格式为 `对话历史_{date}.{ext}`
+- 可通过参数指定自定义路径
+
+## 注意事项
+
+1. **隐私保护**
+   
+   - 自动过滤 API Keys、密码等敏感信息
+   - 不导出完整的对话内容，只保留摘要
+   - 用户可手动编辑导出文件删除敏感信息
+
+2. **性能考虑**
+   
+   - 大量历史数据可能影响导出速度
+   - 建议定期清理工作记忆（7天以上数据可归档）
+
+3. **编码问题**
+   
+   - 始终使用 UTF-8 编码
+   - 对于 Windows 系统，建议使用 `utf-8-sig` 避免 Excel 打开乱码
+
+## 示例工作流
+
+### 完整导出
+
+1. 用户请求："导出对话历史"
+2. 读取工作记忆文件
+3. 解析并构建数据结构
+4. 生成三种格式的文件
+5. 显示导出摘要和文件路径
+
+### 部分导出
+
+1. 用户请求："导出最近的 3 天对话"
+2. 按日期范围过滤数据
+3. 生成指定格式文件
+4. 返回结果
+
+### 类型过滤
+
+1. 用户请求："导出 Skills 安装记录"
+2. 过滤事件类型为 `skill_installation`
+3. 生成导出文件
+4. 返回结果
+
+## 错误处理
+
+- 工作记忆文件不存在：提示用户首次使用，无历史数据
+- 编码错误：自动尝试多种编码方式
+- 文件写入失败：检查权限和磁盘空间
+
+## 技术实现
+
+### 依赖工具
+
+- 文件读取工具：读取工作记忆文件
+- 文件写入工具：写入导出文件
+- 目录列表工具：列出工作记忆目录
+
+### 无需外部依赖
+
+- 本 Skill 不依赖外部 API
+- 不使用网络连接
+- 完全本地处理
+
+## 更新日志
+
+- **v1.0** (2026-03-25)
+  - 初始版本
+  - 支持 JSON、MD、TXT 三种格式
+  - UTF-8 编码，避免乱码
+  - 完整的工作记忆解析

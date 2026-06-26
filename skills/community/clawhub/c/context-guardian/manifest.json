@@ -1,0 +1,10 @@
+{
+  "name": "context-guardian",
+  "version": "1.0.1",
+  "description": "Proactive context monitoring with smart 3-level alerts. Know when to restart before quality degrades.",
+  "author": "brucey0017",
+  "tags": ["monitoring", "context", "alerts", "proactive", "quality"],
+  "openclaw": {
+    "minVersion": "2026.2.0"
+  }
+}

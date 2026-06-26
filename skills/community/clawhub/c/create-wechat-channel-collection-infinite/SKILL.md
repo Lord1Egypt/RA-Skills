@@ -1,35 +1,81 @@
 ---
-name: "创建微信视频号合集_无限"
-description: "在微信视频号后台创建视频合集。触发场景：创建视频号合集、新建视频号合集、在视频号后台创建合集、创建视频合集。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/create-wechat-channel-collection-infinite"
-sourceUrl: "https://clawhub.ai/skills/create-wechat-channel-collection-infinite"
+name: create-wechat-channel-collection-infinite
+description: 在微信视频号后台创建视频合集。触发场景：创建视频号合集、新建视频号合集、在视频号后台创建合集、创建视频合集。
+version: 1.0.0.0
 ---
 
 # 创建微信视频号合集_无限
 
-> 在微信视频号后台创建视频合集。触发场景：创建视频号合集、新建视频号合集、在视频号后台创建合集、创建视频合集。
+用于在微信视频号后台（channels.weixin.qq.com）创建视频合集。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/create-wechat-channel-collection-infinite`
-- **Source URL:** [https://clawhub.ai/skills/create-wechat-channel-collection-infinite](https://clawhub.ai/skills/create-wechat-channel-collection-infinite)
+## 触发场景
 
-## Overview
+用户说：
+- "创建视频号合集"
+- "新建视频号合集"
+- "在视频号后台创建合集"
+- "创建视频合集"
+- "创建视频号合集"
 
+## 重要注意事项
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/create-wechat-channel-collection-infinite
-```
+⚠️ **视频号后台是 SPA 单页应用！**
+- 视频号后台是单页应用（SPA），页面切换不会刷新 URL
+- 每次操作前先查看当前 tabs，了解标签页状态
+- 创建合集表单会打开在新标签页中
+
+⚠️ **Tab 标签页管理：**
+- 视频号后台可能打开多个标签页
+- 每次操作前必须先调用 `tabs` 查看当前所有标签页
+- 使用最近打开的标签页的 targetId 进行操作
+
+## 操作流程
+
+### 第一步：进入视频号后台并导航
+
+1. 导航到 `https://channels.weixin.qq.com/`
+2. 获取当前 tabs，找到视频号后台标签页的 targetId
+3. 确认已登录（页面应显示内容管理界面）
+
+### 第二步：进入合集管理页面
+
+1. 从左侧导航菜单：点击**"内容管理"**菜单
+2. 在展开的子菜单中：点击**"视频"**子菜单
+3. 在视频页面：点击中间的**"合集"**标签页
+
+### 第三步：创建新合集
+
+1. 在合集页面，找到右侧的**"创建合集"**按钮
+2. 点击"创建合集"按钮，弹出创建对话框
+3. 在对话框的输入框中填写合集标题
+4. 点击对话框右下角的**"创建"**按钮完成创建
+
+### 第四步：确认创建成功
+
+1. 创建成功后对话框关闭
+2. 合集列表刷新，新合集出现在列表中
+3. 可选：用 snapshot 确认当前页面状态
+
+## 关键元素参考
+
+| 元素 | 描述 | 操作方式 |
+|------|------|---------|
+| 内容管理 | 左侧导航主菜单 | 点击展开子菜单 |
+| 视频 | 内容管理子菜单项 | 点击进入视频列表 |
+| 合集 | 视频页面中间标签 | 点击切换到合集视图 |
+| 创建合集按钮 | 合集页面右侧 | 点击打开创建对话框 |
+| 标题输入框 | 创建对话框内 | 输入合集标题 |
+| 创建按钮 | 创建对话框右下角 | 点击确认创建 |
+
+## 技术要点总结
+
+1. **操作前先 tabs** — 确认当前有哪些标签页，找到正确目标
+2. **SPA 模式** — 页面内容切换靠 JS，URL 可能不变，状态以快照为准
+3. **创建表单在对话框中** — 填写标题后直接点创建按钮
+4. **创建后刷新列表** — 新合集自动出现在合集列表中
+
+## 常见失败原因
+
+- ❌ 未登录 → 先导航到视频号后台完成登录
+- ❌ 在旧标签页操作 → 对话框已在新标签/窗口打开
+- ❌ 未填写标题就点创建 → 可能创建失败或合集名为空

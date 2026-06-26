@@ -1,0 +1,13 @@
+{
+  "date": "03/25/2026",
+  "vendor": "ACME MART",
+  "items": [
+    { "description": "Coffee", "quantity": 1, "amount": 4.5 },
+    { "description": "Bagel", "quantity": 1, "amount": 3.25 }
+  ],
+  "subtotal": 7.75,
+  "tax": 0.75,
+  "total": 8.5,
+  "currency": "$",
+  "category": "Food & Drink"
+}

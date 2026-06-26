@@ -1,0 +1,29 @@
+# ComfyUI Skills for OpenClaw
+
+Project: ComfyUI_Skills_OpenClaw
+Primary keywords: OpenClaw, ComfyUI, Skills, 小龙虾
+Language: English + Chinese
+License: MIT
+
+## One-line summary
+An OpenClaw-oriented skill layer that turns ComfyUI API-format workflows into callable agent skills for local or remote image generation.
+
+## Core capabilities
+- Discover enabled workflows from a local registry.
+- Map natural-language-derived args into ComfyUI workflow node fields via schema.
+- Queue prompt jobs to ComfyUI servers and wait for completion.
+- Download generated images to local outputs.
+- Support multi-server workflow namespaces (`<server_id>/<workflow_id>`).
+
+## Entry points
+- Skill spec: `SKILL.md`
+- Workflow registry CLI: `scripts/registry.py`
+- Generation runner: `scripts/comfyui_client.py`
+- Server manager CLI: `scripts/server_manager.py`
+- Local web dashboard: `ui/app.py` and `ui/static/`
+
+## Typical use
+1. Add/configure ComfyUI servers.
+2. Register workflows and schema mappings.
+3. Call a workflow with `--workflow <server_id>/<workflow_id> --args '{...}'`.
+4. Return local generated image path(s).

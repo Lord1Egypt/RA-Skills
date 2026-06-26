@@ -1,0 +1,49 @@
+{
+  "name": "crawleo",
+  "displayName": "Crawleo OpenClaw Skill",
+  "version": "0.1.2",
+  "description": "OpenClaw skill package for Crawleo web search, Google Search, Google Maps, crawling, and headful browser crawling.",
+  "brand": "Crawleo",
+  "entrypoint": "./src/index.js",
+  "instructions": "./SKILL.md",
+  "contract": "./contracts/crawleo-endpoints.json",
+  "environment": [
+    {
+      "name": "CRAWLEO_API_KEY",
+      "requiredForLiveCalls": true,
+      "secret": true,
+      "description": "Crawleo API key sent with the x-api-key header. Never log or echo the value."
+    }
+  ],
+  "capabilities": {
+    "restEndpoints": [
+      { "path": "/search", "name": "Bing Search API", "mcpTool": "search_web" },
+      { "path": "/google-search", "name": "Google Search API", "mcpTool": "google_search" },
+      { "path": "/google-maps", "name": "Google Maps API", "mcpTool": "google_maps" },
+      { "path": "/crawl", "name": "Crawler API", "mcpTool": "crawl_web" },
+      { "path": "/headful-browser", "name": "Headful Browser API", "mcpTool": "headful_browser" }
+    ],
+    "mcpTools": [
+      "search_web",
+      "google_search",
+      "google_maps",
+      "crawl_web",
+      "headful_browser"
+    ]
+  },
+  "verification": {
+    "offlineByDefault": true,
+    "defaultCommands": [
+      "npm test",
+      "npm run verify:contracts",
+      "npm run verify:examples",
+      "npm run verify:scaffold",
+      "npm run verify:final"
+    ],
+    "liveCallsRequire": [
+      "CRAWLEO_API_KEY",
+      "CRAWLEO_ENABLE_LIVE_TESTS=1"
+    ]
+  },
+  "status": "REST wrappers implemented; default verification is offline and optional live tests are explicitly gated"
+}

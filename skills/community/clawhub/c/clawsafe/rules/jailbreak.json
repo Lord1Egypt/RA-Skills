@@ -1,0 +1,115 @@
+{
+  "name": "Jailbreak",
+  "category": "jailbreak",
+  "description": "检测试图通过角色扮演或其他方式绕过安全限制的攻击（中英文）",
+  "patterns": [
+    {
+      "id": "dan_mode",
+      "pattern": "(?:DAN|Do Anything Now|Jailbreak)",
+      "weight": 0.95,
+      "severity": "critical"
+    },
+    {
+      "id": "dev_mode",
+      "pattern": "(?:developer|dev)\\s+mode(?:\\s+enabled)?",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "role_play",
+      "pattern": "(?:roleplay|role\\s*play|act\\s+as)\\s+(?:a|an|the)?\\s+(?:character|AI|assistant|bot|model)",
+      "weight": 0.7,
+      "severity": "medium"
+    },
+    {
+      "id": "simulation",
+      "pattern": "(?:simulate|simulation|imagine|pretend)\\s+(?:you\\s+are|being|to\\s+be)",
+      "weight": 0.6,
+      "severity": "medium"
+    },
+    {
+      "id": "bypass_safety",
+      "pattern": "(?:bypass|disable|turn\\s+off)(?:\\s+your)?\\s+(?:safety|restrictions|filter|guidelines)",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "unrestricted",
+      "pattern": "(?:unrestricted|unlocked|unfiltered)\\s+(?:mode|version|AI|assistant)",
+      "weight": 0.95,
+      "severity": "critical"
+    },
+    {
+      "id": "evil_mode",
+      "pattern": "(?:evil|harmful|malicious)\\s+(?:mode|version|prompt|persona)",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "god_mode",
+      "pattern": "(?:god\\s+mode|omniscient|all\\s+knowing)",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "no_ethics",
+      "pattern": "(?:no\\s+ethics|no\\s+morals|without\\s+ethics|ignore\\s+ethics)",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "test_mode",
+      "pattern": "(?:test\\s+mode|debug\\s+mode)\\s*(?:enabled|on|active)?",
+      "weight": 0.7,
+      "severity": "high"
+    },
+    {
+      "id": "cn_dan_mode",
+      "pattern": "(?:DAN|越狱|超级模式|无限模式)",
+      "weight": 0.95,
+      "severity": "critical"
+    },
+    {
+      "id": "cn_dev_mode",
+      "pattern": "(?:开发者|开发模式|测试模式)(?:开启|启用|激活)?",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "cn_roleplay",
+      "pattern": "(?:角色扮演|假设|假装|模拟)(?:你|自己|是)(?:一个?|款|个)",
+      "weight": 0.7,
+      "severity": "medium"
+    },
+    {
+      "id": "cn_bypass",
+      "pattern": "(?:绕过|突破|关闭|禁用)(?:安全|限制|过滤|审查|规则)",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "cn_no_limit",
+      "pattern": "(?:没有限制|不受限制|无限制|解除限制|取消限制)",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "cn_unrestricted",
+      "pattern": "(?:无限制|无限|不受约束|完全开放)(?:模式|版本|AI|助手)",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "cn_evil",
+      "pattern": "(?:邪恶|恶意|有害|危险)(?:模式|角色|设定|人格)",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "cn_ignore_rules",
+      "pattern": "(?:不必遵守|无需遵循|可以忽略)(?:任何|所有)?(?:道德|伦理|法律|规则|限制)",
+      "weight": 0.85,
+      "severity": "critical"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": "0.2.17",
+  "dependencies": {
+    "agent-spectrum": {
+      "skill_name": "agent-spectrum",
+      "min_version": "0.0.0",
+      "default_repo_url": "https://github.com/aelf-hzz780/agent-spectrum-skill",
+      "skill_subdir": "skills/agent-spectrum",
+      "env_override": "CLAWS_TEMPLE_AGENT_SPECTRUM_SOURCE"
+    },
+    "resonance-contract": {
+      "skill_name": "resonance-contract",
+      "min_version": "4.0.0",
+      "default_repo_url": "https://github.com/aelf-hzz780/agent-resonance-skill",
+      "skill_subdir": "skills/resonance-contract",
+      "env_override": "CLAWS_TEMPLE_RESONANCE_CONTRACT_SOURCE"
+    },
+    "tomorrowdao-agent-skills": {
+      "skill_name": "tomorrowdao-agent-skills",
+      "min_version": "0.2.2",
+      "default_repo_url": "https://github.com/TomorrowDAOProject/tomorrowDAO-skill",
+      "skill_subdir": ".",
+      "env_override": "CLAWS_TEMPLE_TOMORROWDAO_SOURCE"
+    },
+    "portkey-ca-agent-skills": {
+      "skill_name": "portkey-ca-agent-skills",
+      "min_version": "2.3.0",
+      "default_repo_url": "https://github.com/Portkey-Wallet/ca-agent-skills.git",
+      "skill_subdir": ".",
+      "env_override": "CLAWS_TEMPLE_PORTKEY_CA_SOURCE"
+    }
+  }
+}

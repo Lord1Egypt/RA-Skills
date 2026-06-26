@@ -1,35 +1,18 @@
 ---
-name: "Cortex Query (Deprecated)"
+name: cortex-query
+version: 1.1.0
 description: "[DEPRECATED] This skill has been merged into cortex-engine. Install clawhub.ai/idapixl/cortex-engine instead."
-category: "other"
-source: "ClawHub"
+author: idapixl
 tags: [deprecated]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cortex-query"
-sourceUrl: "https://clawhub.ai/skills/cortex-query"
 ---
 
-# Cortex Query (Deprecated)
+# Deprecated — Use cortex-engine
 
-> [DEPRECATED] This skill has been merged into cortex-engine. Install clawhub.ai/idapixl/cortex-engine instead.
+This skill has been consolidated into **[cortex-engine](https://clawhub.ai/idapixl/cortex-engine)**.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cortex-query`
-- **Source URL:** [https://clawhub.ai/skills/cortex-query](https://clawhub.ai/skills/cortex-query)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cortex-query
+Install the replacement:
 ```
+clawhub install cortex-engine
+```
+
+The new skill includes everything from cortex-query plus memory-grounded code review workflows, pinned package versions, and source verification links.

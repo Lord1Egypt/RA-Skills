@@ -1,0 +1,11 @@
+{
+  "name": "clawhub-skill-template",
+  "version": "1.0.0",
+  "description": "ClawHub技能开发标准模板，一键初始化新技能项目，帮助你快速发布技能到ClawHub",
+  "main": "SKILL.md",
+  "keywords": ["clawhub", "template", "skill", "development", "generator", "chinese"],
+  "author": "xiatian5",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {}
+}

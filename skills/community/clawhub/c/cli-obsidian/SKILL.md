@@ -1,35 +1,39 @@
----
-name: "Cli Obsidian"
-description: "Command-line tool to create, read, search, and export Obsidian notes locally with JSON output support for agent integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cli-obsidian"
-sourceUrl: "https://clawhub.ai/skills/cli-obsidian"
----
+# cli-obsidian
 
-# Cli Obsidian
+**Obsidian 命令行工具 - 让 AI Agent 直接操作你的笔记**
 
-> Command-line tool to create, read, search, and export Obsidian notes locally with JSON output support for agent integration.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cli-obsidian`
-- **Source URL:** [https://clawhub.ai/skills/cli-obsidian](https://clawhub.ai/skills/cli-obsidian)
+- 命令行创建/搜索/管理笔记
+- 支持标签系统
+- JSON 输出，完美对接 AI Agent
+- 跨平台支持（Win/Mac/Linux）
 
-## Overview
+## 安装
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cli-obsidian
+pip install cli-obsidian
 ```
+
+## 使用
+
+```bash
+# 创建笔记
+cli-obsidian create "会议记录" --tag work
+
+# 搜索笔记
+cli-obsidian search "AI Agent"
+
+# 列出笔记
+cli-obsidian list --tag work
+```
+
+## 定价
+
+- **标准版**: ¥68 一次性
+- 永久使用授权
+- 免费更新
+
+## 作者
+
+CLI Skill Factory

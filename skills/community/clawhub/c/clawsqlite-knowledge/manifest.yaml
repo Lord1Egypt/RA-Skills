@@ -1,0 +1,17 @@
+name: clawsqlite-knowledge
+version: 1.0.2
+description: Knowledge base skill wrapping the clawsqlite knowledge CLI for ingest/search/maintenance.
+author: Ernest Yu
+license: MIT
+permissions:
+  - network  # only used indirectly via configured scraper/embedding if enabled
+entry: SKILL.md
+tags:
+  - knowledge
+  - sqlite
+  - search
+  - cli
+models:
+  - gpt-*
+  - claude-*
+  - gemini-*

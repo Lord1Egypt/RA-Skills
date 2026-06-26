@@ -1,0 +1,15 @@
+# Panda Workflow — Python dependencies
+# Install: pip install -r requirements.txt
+
+# Core
+openai>=1.0.0          # DeepSeek API calls (M1.5/M2)
+pyyaml>=6.0            # config.yaml parsing
+requests>=2.28         # Metricool API, HTTP calls (M6/M5)
+
+# Media processing
+numpy>=1.24            # Array ops
+opencv-python>=4.8     # cv2 — video frame analysis (M5 QA)
+Pillow>=10.0           # Image processing
+
+# Optional but recommended
+python-dotenv>=1.0     # .env file support

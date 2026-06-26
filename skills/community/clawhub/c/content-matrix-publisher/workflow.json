@@ -1,0 +1,212 @@
+{
+  "name": "content-matrix-publisher",
+  "version": "1.0.0",
+  "description": "智能内容矩阵分发工作流",
+  "author": "OpenClaw Agent",
+  "created": "2026-03-25",
+  "tags": ["content", "multi-platform", "automation", "xiaohongshu", "wechat"],
+  
+  "skills": {
+    "agent-reach": {
+      "role": "数据采集",
+      "description": "多平台热点搜索和内容抓取",
+      "required": true,
+      "config": {
+        "platforms": ["xiaohongshu", "weibo", "zhihu", "twitter"],
+        "max_results": 10
+      }
+    },
+    "summarize": {
+      "role": "内容提炼",
+      "description": "热点内容摘要和核心观点提取",
+      "required": true,
+      "config": {
+        "format": "markdown",
+        "max_length": 500
+      }
+    },
+    "xiaohongshu-mcp": {
+      "role": "小红书发布",
+      "description": "小红书图文内容发布",
+      "required": false,
+      "config": {
+        "auto_publish": false,
+        "save_draft": true
+      }
+    },
+    "card-renderer": {
+      "role": "视觉增强",
+      "description": "生成知识卡片配图",
+      "required": false,
+      "config": {
+        "styles": ["Mac Pro", "cyberpunk", "bauhaus"],
+        "output_format": "png"
+      }
+    },
+    "公众号助手": {
+      "role": "公众号发布",
+      "description": "微信公众号文章生成和发布",
+      "required": false,
+      "config": {
+        "style": "刘润风格",
+        "word_count": 3000,
+        "auto_cover": true
+      }
+    }
+  },
+
+  "workflow": {
+    "phases": [
+      {
+        "id": "discovery",
+        "name": "热点发现",
+        "estimated_time": "5min",
+        "steps": [
+          {
+            "skill": "agent-reach",
+            "action": "search",
+            "params": {
+              "platform": "xiaohongshu",
+              "query": "${topic}",
+              "limit": 10
+            }
+          },
+          {
+            "skill": "agent-reach",
+            "action": "search",
+            "params": {
+              "platform": "weibo",
+              "query": "${topic}",
+              "limit": 5
+            }
+          }
+        ],
+        "output": "hot_content_list"
+      },
+      {
+        "id": "extraction",
+        "name": "内容提炼",
+        "estimated_time": "3min",
+        "steps": [
+          {
+            "skill": "summarize",
+            "action": "extract",
+            "params": {
+              "source": "${hot_content_list}",
+              "format": "markdown",
+              "extract_type": "key_points"
+            }
+          }
+        ],
+        "output": "core_content"
+      },
+      {
+        "id": "creation",
+        "name": "内容创作",
+        "estimated_time": "10min",
+        "steps": [
+          {
+            "action": "generate_content",
+            "params": {
+              "base": "${core_content}",
+              "style": "original",
+              "platforms": ["xiaohongshu", "wechat"]
+            }
+          }
+        ],
+        "output": "created_content"
+      },
+      {
+        "id": "distribution",
+        "name": "多平台发布",
+        "estimated_time": "5min",
+        "parallel": true,
+        "steps": [
+          {
+            "skill": "card-renderer",
+            "action": "generate",
+            "params": {
+              "content": "${created_content.xiaohongshu}",
+              "style": "Mac Pro"
+            }
+          },
+          {
+            "skill": "xiaohongshu-mcp",
+            "action": "publish",
+            "params": {
+              "title": "${created_content.xiaohongshu.title}",
+              "content": "${created_content.xiaohongshu.body}",
+              "images": ["${card_image_path}"]
+            }
+          },
+          {
+            "skill": "公众号助手",
+            "action": "publish",
+            "params": {
+              "title": "${created_content.wechat.title}",
+              "content": "${created_content.wechat.body}",
+              "auto_cover": true
+            }
+          }
+        ],
+        "output": "publish_results"
+      },
+      {
+        "id": "report",
+        "name": "发布报告",
+        "estimated_time": "1min",
+        "steps": [
+          {
+            "action": "generate_report",
+            "params": {
+              "results": "${publish_results}"
+            }
+          }
+        ],
+        "output": "final_report"
+      }
+    ]
+  },
+
+  "triggers": {
+    "manual": {
+      "type": "command",
+      "description": "手动触发：/content-matrix-publish <topic>"
+    },
+    "scheduled": {
+      "type": "cron",
+      "description": "定时触发：每天早9点自动发布",
+      "schedule": "0 9 * * *"
+    },
+    "webhook": {
+      "type": "http",
+      "description": "API 触发：POST /api/content-matrix"
+    }
+  },
+
+  "error_handling": {
+    "retry_policy": {
+      "max_retries": 3,
+      "backoff": "exponential",
+      "initial_delay_ms": 1000
+    },
+    "fallback": {
+      "hot_content_fail": "use_local_topic_library",
+      "image_generate_fail": "use_template_image",
+      "publish_fail": "save_to_draft"
+    }
+  },
+
+  "monitoring": {
+    "metrics": [
+      "discovery_time",
+      "creation_time",
+      "publish_success_rate",
+      "platform_engagement"
+    ],
+    "alerts": {
+      "publish_fail_rate > 0.3": "alert_admin",
+      "discovery_time > 10min": "optimize_search"
+    }
+  }
+}

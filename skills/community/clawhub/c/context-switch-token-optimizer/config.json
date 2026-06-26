@@ -1,0 +1,32 @@
+{
+  "context_switch": {
+    "similarity_threshold": 0.7,
+    "continuity_threshold": 0.35,
+    "compress_relevance_threshold": 0.3,
+    "continuity_bonus_for_partial": 0.3,
+    "drift_similarity_cap": 0.65,
+    "time_decay_factor": 0.95,
+    "max_topic_history": 10,
+    "memory_relevance_threshold": 0.5
+  },
+  "token_optimization": {
+    "enabled": true,
+    "token_limit": 80000,
+    "compression_threshold": 56000,
+    "context_cleanup_threshold": 0.8,
+    "memory_load_limit": 2000,
+    "optimization_interval": 300,
+    "max_history_size": 100
+  },
+  "memory_search": {
+    "max_search_results": 5,
+    "keyword_limit": 5,
+    "search_depth": 2,
+    "file_types": ["*.md"]
+  },
+  "optimization_settings": {
+    "auto_optimization": true,
+    "health_score_threshold": 70,
+    "suggestions_check_interval": 600
+  }
+}

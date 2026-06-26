@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "(?i)(cnb|cnb\\.cool|仓库|代码仓库|repo|repository|issue|问题|pull request|合并请求|PR|MR|merge request|分支|branch|标签|tag|release|发布|构建|build|CI|CD|pipeline|组织|organization|成员|member|权限|permission|工作空间|workspace|镜像|registry|安全|security|收藏|star|关注|follow|贡献者|contributor|标签管理|label|知识库|knowledgebase|任务|mission|徽章|badge|计费|charge|活动|activity|事件|event|AI对话|ai chat|auto pr)",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "用户的请求涉及 CNB 平台相关操作。请考虑使用 cnb-openapi 技能来查询和调用 CNB API，以获取准确的数据和执行相关操作。"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "course-builder-agent",
+  "displayName": "课件自动生产线",
+  "description": "输入文案，自动生成带数字人讲解的课件视频。一条龙：文案分页→中文幻灯片→配音→字幕→数字人驱动→合成视频。",
+  "version": "1.0.0",
+  "author": "智美人团队",
+  "tags": ["course", "education", "video", "digital-human", "automation", "content-creation"],
+  "emoji": "🎬",
+  "install": {
+    "commands": ["pip3 install edge-tts Pillow --break-system-packages || pip install edge-tts Pillow"],
+    "files": ["SKILL.md", "scripts/build.py"]
+  },
+  "entry": {
+    "prompt": "course-builder> 生成课件 文案.txt --digital-human 照片.jpg",
+    "examples": [
+      "course-builder> 生成课件 第03节文案.txt",
+      "course-builder> 生成课件 文案.txt --voice zh-CN-YunyangNeural --digital-human 讲师.jpg",
+      "course-builder> 生成课件 文案.txt --style light"
+    ]
+  }
+}

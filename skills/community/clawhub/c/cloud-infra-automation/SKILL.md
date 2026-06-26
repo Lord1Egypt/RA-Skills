@@ -1,35 +1,50 @@
----
-name: "Cloud Infra Automation"
-description: "Automate provisioning and management of AWS, GCP, and Azure infrastructure using Terraform, Ansible, and CloudFormation templates."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cloud-infra-automation"
-sourceUrl: "https://clawhub.ai/skills/cloud-infra-automation"
----
+# Cloud Infrastructure Automation
 
-# Cloud Infra Automation
+Automate cloud infrastructure with IaC.
 
-> Automate provisioning and management of AWS, GCP, and Azure infrastructure using Terraform, Ansible, and CloudFormation templates.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cloud-infra-automation`
-- **Source URL:** [https://clawhub.ai/skills/cloud-infra-automation](https://clawhub.ai/skills/cloud-infra-automation)
+### Multi-Cloud Support
+- AWS
+- Google Cloud Platform
+- Azure
 
-## Overview
+### Infrastructure as Code
+- Terraform templates
+- Ansible playbooks
+- CloudFormation
 
+### Automation
+- Server provisioning
+- Configuration management
+- Deployment pipelines
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
+
 ```bash
-hermes skills install clawhub/cloud-infra-automation
+# Initialize AWS
+./cloud.sh init aws
+
+# Create infrastructure
+./cloud.sh apply prod
+
+# Destroy
+./cloud.sh destroy prod
 ```
+
+## Templates
+
+- Web application
+- Database setup
+- Kubernetes cluster
+- Serverless functions
+
+## Requirements
+
+- Terraform
+- Ansible
+- AWS/GCP/Azure CLI
+
+## Author
+
+Sunshine-del-ux

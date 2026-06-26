@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200,height=675">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Noto Sans JP', sans-serif; }</style>
+</head>
+<body class="bg-white w-[1200px] h-[675px] overflow-hidden">
+  
+  <div class="h-full px-16 py-10">
+    
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="text-sm font-medium text-slate-400 tracking-wider uppercase mb-2">
+        {{EYEBROW}}
+      </div>
+      <h1 class="text-3xl font-black text-slate-900">
+        {{TITLE}}
+      </h1>
+    </div>
+    
+    <!-- Two Columns -->
+    <div class="grid grid-cols-2 gap-8 mb-8">
+      
+      <!-- Do Column -->
+      <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-6">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white text-2xl">
+            ✓
+          </div>
+          <div class="font-bold text-xl text-emerald-800">{{DO_TITLE}}</div>
+        </div>
+        
+        <div class="space-y-4">
+          {{#DO_ITEMS}}
+          <div class="bg-white rounded-lg p-4 border border-emerald-100">
+            <div class="font-semibold text-slate-800 mb-1">{{ITEM_TITLE}}</div>
+            <div class="text-slate-500 text-sm">{{ITEM_DESCRIPTION}}</div>
+          </div>
+          {{/DO_ITEMS}}
+        </div>
+      </div>
+      
+      <!-- Don't Column -->
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white text-2xl">
+            ✗
+          </div>
+          <div class="font-bold text-xl text-red-800">{{DONT_TITLE}}</div>
+        </div>
+        
+        <div class="space-y-4">
+          {{#DONT_ITEMS}}
+          <div class="bg-white rounded-lg p-4 border border-red-100">
+            <div class="font-semibold text-slate-800 mb-1">{{ITEM_TITLE}}</div>
+            <div class="text-slate-500 text-sm">{{ITEM_DESCRIPTION}}</div>
+          </div>
+          {{/DONT_ITEMS}}
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Bottom Message -->
+    <div class="bg-navy-900 text-white rounded-lg px-6 py-4 text-center">
+      <span class="font-bold">原則：</span>
+      {{PRINCIPLE}}
+    </div>
+    
+  </div>
+
+</body>
+</html>

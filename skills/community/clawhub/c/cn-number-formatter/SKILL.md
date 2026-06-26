@@ -1,35 +1,19 @@
----
-name: "Cn Number Formatter"
-description: "数字格式化工具，支持千分位分隔、科学计数法和百分比格式转换。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-number-formatter"
-sourceUrl: "https://clawhub.ai/skills/cn-number-formatter"
----
+# cn-number-formatter
 
-# Cn Number Formatter
+数字格式化工具。支持千分位、科学计数法、百分比等格式。
 
-> 数字格式化工具，支持千分位分隔、科学计数法和百分比格式转换。
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-number-formatter`
-- **Source URL:** [https://clawhub.ai/skills/cn-number-formatter](https://clawhub.ai/skills/cn-number-formatter)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cn-number-formatter
+python3 scripts/format_num.py --number 1234567 --thousands
+python3 scripts/format_num.py --number 0.123 --percent
+python3 scripts/format_num.py --number 1000000 --scientific
 ```
+
+纯Python标准库。
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

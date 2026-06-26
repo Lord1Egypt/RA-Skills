@@ -1,35 +1,55 @@
 ---
-name: "Code Right Publish"
-description: "传个系统名和邮箱，Code-Right 自动生成软著申报材料（Word+截图）， 完成后 ZIP 发到邮箱。适合集成到自动化流程里用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-right-create-task"
-sourceUrl: "https://clawhub.ai/skills/code-right-create-task"
+name: code-right-create-task
+title: Code-Right — 一键创建软著材料任务
+description: >-
+  传个系统名和邮箱，Code-Right 自动生成软著申报材料（Word+截图），
+  完成后 ZIP 发到邮箱。适合集成到自动化流程里用。
+tags: [软著, 软件著作权, 知识产权, 申报材料, 材料生成, 自动生成, 软著申请, 著作权登记]
 ---
 
-# Code Right Publish
+## 用来干嘛的
 
-> 传个系统名和邮箱，Code-Right 自动生成软著申报材料（Word+截图）， 完成后 ZIP 发到邮箱。适合集成到自动化流程里用。
+你手头有个软件系统要申请软著，不想自己写那几十页材料？用这个 skill 就行：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-right-create-task`
-- **Source URL:** [https://clawhub.ai/skills/code-right-create-task](https://clawhub.ai/skills/code-right-create-task)
+1. 告诉它系统名称（比如"智慧仓储管理系统"）
+2. 留个接收邮箱
+3. 后台自动跑——写描述、截图、生成 Word、打包发邮件
 
-## Overview
+全程不需要你动手，等邮件收 ZIP 就行。
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/code-right-create-task
+python scripts/create_task.py \
+  --system-name "智慧仓储管理系统" \
+  --notify-email "admin@example.com"
 ```
+
+### 参数
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--system-name` | 是 | 软件系统名称 |
+| `--notify-email` | 是 | 收下载链接的邮箱 |
+| `--access-token` | 否 | 会话 token（跟踪任务用） |
+
+### 输出
+
+成功返回：
+```json
+{"taskId": 42, "status": "pending"}
+```
+
+任务在后台处理，3-5 分钟后邮件通知你下载。
+
+## 谁该用
+
+- 开发了软件系统、需要批量申请软著的
+- 接了客户软著外包、要自动化出材料的
+- 想把创建任务这步集成到自己工单系统里
+
+## 注意事项
+
+- 确保 `softcraft.cloud` 能访问
+- 一个任务大约 3-5 分钟处理完
+- 可以同时创建多个任务，后台队列处理

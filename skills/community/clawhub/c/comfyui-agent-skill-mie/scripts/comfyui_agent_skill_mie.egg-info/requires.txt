@@ -1,0 +1,5 @@
+requests
+websockets
+
+[dev]
+pytest>=7.0

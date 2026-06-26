@@ -1,35 +1,54 @@
 ---
-name: "cn-time-parser"
-description: "智能识别中文时间关键词并转换为具体日期和时间戳；使用lunisolar模块处理农历计算，chinese-workday模块处理节日和工作日判断；支持解析复杂农历日期和判断节假日；当用户需要解析自然语言中的时间信息、计算特定日期、处理农历节日转换时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-time-parser"
-sourceUrl: "https://clawhub.ai/skills/cn-time-parser"
+name: cn-time-parser
+description: 智能识别中文时间关键词并转换为具体日期和时间戳；使用lunisolar模块处理农历计算，chinese-workday模块处理节日和工作日判断；支持解析复杂农历日期和判断节假日；当用户需要解析自然语言中的时间信息、计算特定日期、处理农历节日转换时使用
 ---
 
-# cn-time-parser
+# 时间解析器
 
-> 智能识别中文时间关键词并转换为具体日期和时间戳；使用lunisolar模块处理农历计算，chinese-workday模块处理节日和工作日判断；支持解析复杂农历日期和判断节假日；当用户需要解析自然语言中的时间信息、计算特定日期、处理农历节日转换时使用
+## 任务目标
+- 本Skill用于：解析中文自然语言中的时间关键词，转换为具体的日期和时间戳
+- 能力包含：识别常见中文时间关键词（今天、昨天、明天、前天、今年、去年等）、处理传统农历节日、解析具体农历日期（如农历二月二十五）、判断工作日和节假日、计算特定日期的时间戳
+- 触发条件：用户提问中包含时间相关关键词，需要获取具体日期或时间戳
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-time-parser`
-- **Source URL:** [https://clawhub.ai/skills/cn-time-parser](https://clawhub.ai/skills/cn-time-parser)
+## 前置准备
+- 依赖说明：需要安装Node.js环境，以及dayjs、lunisolar和chinese-workday模块
+- 准备命令：在使用前执行 `cd /workspace/projects/cn-time-parser && npm install`
 
-## Overview
+## 操作步骤
+- 标准流程：
+  1. 分析用户提问，提取时间关键词
+  2. 调用脚本处理时间关键词：
+     - 脚本调用示例：`node scripts/parse-time.js --query "今天的天气怎么样"`
+  3. 根据返回的具体日期进行后续操作
+- 可选分支：
+  - 当检测到农历节日关键词时：使用lunisolar模块进行农历转换
+  - 当需要判断节假日时：使用chinese-workday模块获取节日信息和工作日判断
+  - 当需要时间戳时：自动生成Unix时间戳
 
+## 使用示例
+- 示例1：
+  - 场景/输入：用户问"明天是什么日子"
+  - 预期产出：解析出明天的具体日期（如2023-10-05）
+  - 关键要点：根据当前系统时间计算明天
+- 示例2：
+  - 场景/输入：用户问"去年过年是哪一天"
+  - 预期产出：解析出去年春节的具体日期
+  - 关键要点：使用农历转换功能
+- 示例3：
+  - 场景/输入：用户问"黄龙的生日是农历二月二十五，明年他的生日是公历的哪一天？"
+  - 预期产出：解析出明年农历二月二十五对应的公历日期
+  - 关键要点：支持解析具体农历日期并进行年份调整
+- 示例4：
+  - 场景/输入：用户问"今年五一是不是工作日？"
+  - 预期产出：解析出五一的日期，并提供isWorkday和isHoliday字段
+  - 关键要点：使用chinese-workday模块判断节假日
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-time-parser
-```
+## 资源索引
+- 脚本：见 [scripts/parse-time.js](scripts/parse-time.js)(用途与参数：解析时间关键词，支持--query参数传入用户提问)
+- 参考：见 [references/time-keywords.md](references/time-keywords.md)(何时读取：需要了解所有支持的时间关键词时)
+
+## 注意事项
+- 脚本会根据当前系统时间进行计算，确保系统时间准确
+- 农历转换基于lunisolar库，支持常见传统节日
+- 节假日和工作日判断基于chinese-workday库
+- 时间戳为毫秒级Unix时间戳

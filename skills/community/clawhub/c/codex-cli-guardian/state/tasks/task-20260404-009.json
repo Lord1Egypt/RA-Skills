@@ -1,0 +1,8 @@
+{
+  "task_id": "20260404-009",
+  "description": "用 Python 写一个 Markdown 转 HTML 的转换工具，支持标题、列表、代码块，保存为 md2html.py",
+  "status": "done",
+  "summary": "已创建 [md2html.py](/Users/qztcm09/.openclaw/workspace/tmp/codex/md2html.py)。这个脚本支持：  - 标题：`#` 到 `######` - 无序列表：`-`、`*`、`+` - 代码块：三反引号围起来的 fenced code block  用法示例：  ```bash python3 md2html.py input.md python3 md2html.py inpu",
+  "started_at": "2026-04-04T15:43:19+08:00",
+  "finished_at": "2026-04-04T15:44:01+08:00"
+}

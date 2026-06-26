@@ -1,0 +1,65 @@
+{
+  "captured_at": "2026-03-20T00:00:00+00:00",
+  "endpoint_key": "stable-coin.market-cap.timeseries",
+  "inferred_schema": {
+    "items": {
+      "properties": {
+        "aggregates": {
+          "items": {
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "name",
+              "value"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "time": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "aggregates",
+        "time"
+      ],
+      "type": "object"
+    },
+    "type": "array"
+  },
+  "notes": [
+    "Live timeseries returns grouped aggregates by network when no ticker is supplied."
+  ],
+  "sample_request": {
+    "method": "GET",
+    "path": "/v1/c/rwa/stable-coin/market-cap/timeseries",
+    "path_params": {},
+    "query": {},
+    "url": "https://api.coinfound.org/api/kakyoin/v1/c/rwa/stable-coin/market-cap/timeseries"
+  },
+  "sample_response_excerpt": {
+    "code": 0,
+    "data_length": 1900,
+    "data_preview": [
+      {
+        "aggregates": [
+          {
+            "name": "BNB Chain",
+            "value": 4112213825.7413
+          }
+        ],
+        "time": 1672502400000
+      }
+    ],
+    "message": "success"
+  },
+  "shape_family": "timeseries_aggregate",
+  "snapshot_path": "shared/coinfound_rwa/data/schema_snapshots/stable-coin__market-cap__timeseries.json"
+}

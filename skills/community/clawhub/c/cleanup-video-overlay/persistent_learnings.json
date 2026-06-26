@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "updated_at_utc": null,
+  "runs": [],
+  "aggregate": {
+    "runs": 0,
+    "total_frames": 0,
+    "total_estimated_spend_usd": 0.0,
+    "reason_counter": {}
+  }
+}

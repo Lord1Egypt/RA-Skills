@@ -1,0 +1,212 @@
+spec_version: "0.1"
+
+skill_identity:
+  slug: "design-md-hardening"
+  display_name: "Design MD Hardening"
+  id: "cocoloop.design-md-hardening"
+  name: "Design MD Hardening"
+  version: "0.1.0"
+  owner: "tanshow"
+  homepage: "local://cocoloop-skill-factory/output/design-md-hardening"
+  target_platforms:
+    - platform: "codex"
+      support_level: "supported_public"
+      standard_source: "https://developers.openai.com/codex/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin"
+      note: "主流程验证平台"
+    - platform: "claude_code"
+      support_level: "supported_public"
+      standard_source: "https://code.claude.com/docs/en/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin_skill"
+      note: "兼容验证平台"
+
+intent:
+  goal: "为视觉排版任务把 design_md 官方实例接入 skill-factory 的协议、文档和生成链"
+  target_user: "维护 skill-factory 的作者"
+  use_scenarios:
+    - "为 PPT 生成 Skill 附带 DESIGN.md 官方实例"
+    - "为网页信息图 Skill 附带稳定的设计入口"
+    - "让视觉任务的设计输入进入正式协议"
+
+scope:
+  must_have:
+    - "design_md 顶层协议"
+    - "7 个官方设计预设"
+    - "最终 Skill 输出 references/design.md"
+    - "平台校验检查设计资产"
+  nice_to_have:
+    - "继续保留扩展风格参考"
+  excluded:
+    - "不处理图片或字体资源复制"
+
+inputs:
+  - name: "visual_task_rules"
+    required: true
+    description: "当前视觉任务的流程约束与预设要求"
+    constraints:
+      note: "需要覆盖网页、信息图、演示稿等视觉排版任务"
+      type: "workspace_docs"
+      allowed_values: []
+      source: "workspace_scan"
+
+outputs:
+  - name: "design_md_protocol"
+    format: "yaml+markdown"
+    description: "统一设计输入协议与生成链实现"
+    minimum_contents:
+      - "design_md"
+      - "references/design.md"
+      - "references/design-md/index.md"
+
+output_profile:
+  has_visual_output: true
+  visual_output_types:
+    - "webpage"
+    - "infographic"
+    - "ppt"
+    - "showcase_graphic"
+
+research_gate:
+  skill_identity:
+    status: "ready"
+    cocoloop_checked: true
+    clawhub_checked: true
+    slug_available: true
+    note: "示例名称已完成双源去重"
+  target_environment:
+    status: "ready"
+    current_environment: "codex / claude code authoring workspace on macOS"
+    target_environment: "codex / claude code authoring workspace on macOS"
+    current_environment_is_target: true
+    note: "本轮主要验证本地 authoring 与渲染链"
+  implementation_approach:
+    status: "ready"
+    selected_execution_plane: "Skill + CLI"
+    note: "需要通过 factory builder 和校验脚本完成渲染链验证"
+
+interaction_contract:
+  research:
+    ask_one_question_per_turn: true
+    max_questions: 10
+    count_confirmation_questions: true
+    overflow_strategy: "write_open_gaps_then_continue"
+
+success_criteria:
+  - "视觉任务可在 spec 中稳定表达设计来源"
+  - "渲染结果包含默认 design.md 实例"
+  - "用户可在官方预设和自带 DESIGN.md 之间切换"
+
+failure_modes:
+  - mode: "design_input_not_rendered"
+    description: "spec 中存在 design_md，但最终 Skill 没有输出设计入口"
+    user_impact: "视觉任务起步不稳定"
+
+fallback_policy:
+  allowed: true
+  summary: "当用户没有提供 DESIGN.md 时，回退到官方预设或自定义风格简报"
+  fallback_outputs:
+    - "references/design.md"
+
+dependencies:
+  - name: "design-md library"
+    kind: "reference"
+    required: true
+    note: "本地官方设计预设库"
+
+design_md:
+  enabled: true
+  applies_to:
+    - "webpage"
+    - "infographic"
+    - "ppt"
+    - "showcase_graphic"
+  source_mode: "preset"
+  preset_id: "nothing"
+  preset_ref: "cocoloop-skill-factory/ref/design-md/nothing.md"
+  user_provided_ref: ""
+  custom_style_notes:
+    - "允许黑白工业感页面"
+    - "需要正式把官方预设映射到最终 Skill"
+  official_library_ref: "cocoloop-skill-factory/ref/design-md/index.md"
+  prompt_user_to_use_first: true
+  output_path: "references/design.md"
+
+research_evidence:
+  coverage_status:
+    status: "covered"
+    note: "已覆盖协议、文档与生成链"
+  evidence_refs:
+    - source_type: "workspace_doc"
+      mechanism: "visual_flow"
+      solution_name: "skill-factory docs"
+      ref: "cocoloop-skill-factory/ref/design.md"
+      note: "提供视觉任务的风格来源规则"
+    - source_type: "web_repo"
+      mechanism: "design preset analysis"
+      solution_name: "awesome-design-md"
+      ref: "https://github.com/VoltAgent/awesome-design-md"
+      note: "提供 DESIGN.md 预设参考"
+  open_gaps: []
+
+primary_domain: "frontend_design"
+peer_domains:
+  - "document_artifacts"
+  - "docs_research"
+
+domain_supplements:
+  engineering_delivery: {}
+  frontend_design:
+    style_constraints:
+      - "视觉任务必须收口到 design_md"
+  browser_ui_testing: {}
+  document_artifacts:
+    style_constraints:
+      - "PPT 类任务允许官方预设或用户自带 DESIGN.md"
+  docs_research: {}
+  workflow_integration: {}
+  deploy_platform_ops: {}
+  security_risk_review: {}
+
+adapters:
+  codex:
+    status: "draft"
+    entry_points:
+      - "SKILL.md"
+      - "references/design.md"
+    mapping_notes:
+      - "视觉任务先读 design.md"
+    known_gaps: []
+  claude_code:
+    status: "draft"
+    entry_points:
+      - "SKILL.md"
+      - "references/design.md"
+    mapping_notes:
+      - "保持与 codex 一致的设计入口"
+    known_gaps: []
+  openclaw:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  copaw:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  molili:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+    source_root: ""
+    active_root: ""
+    activation_strategy: ""
+    verification_steps: []
+  hermes_agent:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []

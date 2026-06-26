@@ -1,0 +1,45 @@
+{
+  "name": "macos-computer-use-skill",
+  "version": "0.2.2",
+  "description": "Top-level macOS computer-use skill with a bundled standalone runtime and MCP server, zero local Claude dependency.",
+  "homepage": "https://github.com/wimi321/macos-computer-use-skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wimi321/macos-computer-use-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wimi321/macos-computer-use-skill/issues"
+  },
+  "type": "module",
+  "bin": {
+    "macos-computer-use-skill": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "start": "node dist/cli.js",
+    "check": "tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": [
+    "skill",
+    "portable-skill",
+    "computer-use",
+    "macos",
+    "automation",
+    "mcp",
+    "claude-code"
+  ],
+  "author": "haoc",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

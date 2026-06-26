@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PRODUCT_NAME}} — 萤火虫空压机</title>
+<style>
+:root{
+  --color-primary:#1B8C3A;--color-primary-dark:#0E5C25;--color-primary-light:#4CAF50;
+  --color-primary-bg:#E8F5E9;--color-secondary:#1565C0;--color-secondary-dark:#0D47A1;
+  --color-secondary-light:#42A5F5;--color-accent:#F57C00;--color-accent-hover:#E65100;
+  --color-text:#1A1A1A;--color-text2:#555555;--color-text3:#888888;
+  --color-bg:#FAFAFA;--color-bg2:#F0F2F5;--color-border:#E0E0E0;--color-white:#FFFFFF;
+  --font-stack:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Helvetica Neue",Arial,sans-serif;
+  --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-xl:20px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.10);--shadow-md:0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg:0 10px 15px rgba(0,0,0,0.10);--shadow-card:0 8px 30px rgba(0,0,0,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-stack);color:var(--color-text);background:var(--color-bg);line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Top Bar */
+.topbar{background:var(--color-primary-dark);color:var(--color-white);padding:8px 0;font-size:0.8rem}
+.topbar__inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.topbar__contact span{margin-right:20px}
+.topbar__lang a{color:var(--color-white);text-decoration:none;margin-left:10px;opacity:0.7}
+.topbar__lang a.active{opacity:1;font-weight:600}
+
+/* Header */
+.header{padding:16px 0;background:var(--color-white);border-bottom:1px solid var(--color-border)}
+.header__inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.header__brand{display:flex;align-items:center;gap:12px}
+.header__logo{height:40px}
+.header__name{font-size:1.2rem;font-weight:700;color:var(--color-primary-dark)}
+.header__tagline{font-size:0.75rem;color:var(--color-text3)}
+.header__cta{background:var(--color-accent);color:var(--color-white);padding:10px 24px;border-radius:var(--radius-md);font-weight:600;text-decoration:none;transition:background 0.3s}
+.header__cta:hover{background:var(--color-accent-hover)}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--color-primary-dark) 0%,var(--color-primary) 50%,#0A3A14 100%);color:var(--color-white);padding:60px 0;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(76,175,80,0.2) 0%,transparent 50%)}
+.hero__inner{max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;z-index:1}
+.hero__title{font-size:2.5rem;font-weight:700;line-height:1.25;margin-bottom:16px}
+.hero__subtitle{font-size:1.125rem;opacity:0.9;margin-bottom:24px;line-height:1.6}
+.hero__image{text-align:center}
+.hero__image img{max-width:100%;max-height:400px;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.hero__image .placeholder{width:100%;height:300px;background:rgba(255,255,255,0.1);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:1rem}
+
+/* Metrics */
+.metrics{padding:40px 0;background:var(--color-white)}
+.metrics__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.metric__value{font-size:2rem;font-weight:700;color:var(--color-primary)}
+.metric__label{font-size:0.875rem;color:var(--color-text3);margin-top:4px}
+
+/* Section Titles */
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{font-size:2rem;font-weight:700;color:var(--color-primary-dark)}
+.section-title p{color:var(--color-text3);margin-top:8px}
+
+/* Specs Table */
+.specs{padding:60px 0;background:var(--color-bg)}
+.specs__table{width:100%;border-collapse:collapse;background:var(--color-white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+.specs__table thead{background:var(--color-primary)}
+.specs__table thead th{color:var(--color-white);padding:14px 20px;text-align:left;font-weight:600;font-size:0.95rem}
+.specs__table thead th:last-child{text-align:right}
+.specs__table td{padding:12px 20px;border-bottom:1px solid var(--color-border)}
+.specs__table td:last-child{text-align:right;font-weight:600;color:var(--color-primary-dark)}
+.specs__table tbody tr:hover{background:var(--color-primary-bg)}
+
+/* Features */
+.features{padding:60px 0;background:var(--color-white)}
+.features__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature-card{background:var(--color-white);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:28px 24px;transition:all 0.3s}
+.feature-card:hover{box-shadow:var(--shadow-card);border-color:var(--color-primary)}
+.feature-card__icon{width:48px;height:48px;background:var(--color-primary-bg);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px}
+.feature-card__title{font-size:1.1rem;font-weight:600;color:var(--color-primary-dark);margin-bottom:8px}
+.feature-card__desc{font-size:0.9rem;color:var(--color-text2);line-height:1.6}
+
+/* 3D Viewer */
+.viewer3d{padding:60px 0;background:var(--color-bg2)}
+.viewer3d__container{background:var(--color-white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+#viewer3d__canvas{width:100%;height:500px;display:block}
+
+/* CTA */
+.cta{padding:60px 0;background:linear-gradient(135deg,var(--color-primary-dark),var(--color-primary));color:var(--color-white);text-align:center}
+.cta h2{font-size:2rem;font-weight:700;margin-bottom:12px}
+.cta p{font-size:1.1rem;opacity:0.9;margin-bottom:24px}
+.cta__buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.cta__btn{display:inline-block;padding:14px 36px;border-radius:var(--radius-md);font-weight:600;font-size:1.05rem;text-decoration:none;transition:all 0.3s}
+.cta__btn--primary{background:var(--color-accent);color:var(--color-white)}
+.cta__btn--primary:hover{background:var(--color-accent-hover);transform:translateY(-2px)}
+.cta__btn--outline{background:transparent;color:var(--color-white);border:2px solid var(--color-white)}
+.cta__btn--outline:hover{background:var(--color-white);color:var(--color-primary)}
+
+/* Footer */
+.footer{background:#0A1F0E;color:rgba(255,255,255,0.7);padding:40px 0 20px;font-size:0.875rem}
+.footer__grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+.footer__brand img{height:36px;margin-bottom:12px}
+.footer__brand p{line-height:1.8}
+.footer h4{color:var(--color-white);font-size:1rem;margin-bottom:16px}
+.footer a{color:rgba(255,255,255,0.7);text-decoration:none;line-height:2;transition:color 0.3s}
+.footer a:hover{color:var(--color-primary-light)}
+.footer__bottom{text-align:center;padding-top:24px;margin-top:24px;border-top:1px solid rgba(255,255,255,0.1);font-size:0.8rem;color:rgba(255,255,255,0.4)}
+
+/* Responsive */
+@media(max-width:1024px){
+  .hero__inner{grid-template-columns:1fr}.hero__image{order:-1}
+  .features__grid{grid-template-columns:repeat(2,1fr)}
+  .metrics__grid{grid-template-columns:repeat(2,1fr)}
+  .footer__grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .hero__title{font-size:1.8rem}
+  .section-title h2{font-size:1.5rem}
+  .features__grid{grid-template-columns:1fr}
+  .metrics__grid{grid-template-columns:repeat(2,1fr)}
+  .footer__grid{grid-template-columns:1fr}
+  .cta__buttons{flex-direction:column;align-items:center}
+}
+@media print{
+  .header__cta,.cta,.topbar{display:none}
+  body{background:white}
+}
+{{EXTRA_CSS}}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar__contact">
+      <span>📞 {{CTA_PHONE}} ({{CTA_PERSON}})</span>
+      <span>📧 aifirefly@163.com</span>
+    </div>
+    <div class="topbar__lang">
+      <a href="?lang=zh" class="active">中文</a>
+      <a href="?lang=en">EN</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="header__inner">
+    <div class="header__brand">
+      <img class="header__logo" src="{{LOGO_PATH}}" alt="萤火虫空压机" />
+      <div>
+        <div class="header__name">萤火虫空压机</div>
+        <div class="header__tagline">专注空压机节能 · 为企业省气省电</div>
+      </div>
+    </div>
+    <a class="header__cta" href="tel:{{CTA_PHONE}}">📞 {{CTA_PHONE}}</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero__inner">
+    <div>
+      <h1 class="hero__title">{{PRODUCT_NAME}}</h1>
+      <p class="hero__subtitle">{{PRODUCT_DESCRIPTION}}</p>
+      <p style="opacity:0.8;font-size:0.95rem">{{PRODUCT_NAME_EN}}</p>
+    </div>
+    <div class="hero__image">
+      {{MAIN_IMAGE_HTML}}
+    </div>
+  </div>
+</section>
+
+<!-- Metrics -->
+{{METRICS_HTML}}
+
+<!-- Specs -->
+<section class="specs" id="specs">
+  <div class="container">
+    <div class="section-title">
+      <h2>技术参数 / Specifications</h2>
+      <p>{{PRODUCT_CATEGORY}} · {{PRODUCT_NAME}}</p>
+    </div>
+    <table class="specs__table">
+      <thead>
+        <tr><th>参数项目 / Parameter</th><th>数值 / Value</th></tr>
+      </thead>
+      <tbody>
+        {{SPECS_TABLE_ROWS}}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>产品特点 / Key Features</h2>
+    </div>
+    <div class="features__grid">
+      {{FEATURES_HTML}}
+    </div>
+  </div>
+</section>
+
+<!-- 3D Viewer -->
+{{VIEWER3D_HTML}}
+
+<!-- Gallery -->
+{{GALLERY_HTML}}
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>获取报价与技术咨询</h2>
+    <p>专业团队为您提供一对一节能解决方案</p>
+    <div class="cta__buttons">
+      <a class="cta__btn cta__btn--primary" href="tel:{{CTA_PHONE}}">📞 立即咨询：{{CTA_PHONE}}</a>
+      <a class="cta__btn cta__btn--outline" href="http://www.fireflies.net.cn">🌐 访问官网</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h4>广州市萤火虫智能装备技术有限公司</h4>
+        <p>
+          主营业务：空气压缩机、余热回收机、制氮机、激光干燥机、冷冻干燥机、精密过滤器、排水器、智能控制系统及成套设备整体综合解决方案
+        </p>
+        <p style="margin-top:8px">品牌理念："节能自然萤火虫" — 为客户节资、为环境减排</p>
+      </div>
+      <div>
+        <h4>快速链接</h4>
+        <a href="#">产品中心</a><br/>
+        <a href="#">节能方案</a><br/>
+        <a href="#">成功案例</a><br/>
+        <a href="#">关于我们</a>
+      </div>
+      <div>
+        <h4>联系我们</h4>
+        <p>📞 {{CTA_PHONE}}（{{CTA_PERSON}}）</p>
+        <p>📧 aifirefly@163.com</p>
+        <p>🌐 www.fireflies.net.cn</p>
+        <p>📍 广州市</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      © {{CURRENT_YEAR}} 广州市萤火虫智能装备技术有限公司 · 萤火虫空压机 · 保留所有权利
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

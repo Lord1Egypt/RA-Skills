@@ -1,35 +1,40 @@
 ---
-name: "CoinGecko"
-description: "Fetch real-time crypto prices, market caps, 24h changes, trending coins, and token details from CoinGecko's free API for thousands of cryptocurrencies."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coingecko"
-sourceUrl: "https://clawhub.ai/skills/coingecko"
+name: coingecko
+description: Fetch crypto prices, market data, and token info from the CoinGecko free API. Use when the user asks about crypto prices, market caps, 24h changes, trending coins, or token lookups. Covers BTC, ETH, SOL, and thousands of altcoins. Also supports Solana token lookups by contract address.
 ---
 
-# CoinGecko
+# CoinGecko Crypto Price Skill
 
-> Fetch real-time crypto prices, market caps, 24h changes, trending coins, and token details from CoinGecko's free API for thousands of cryptocurrencies.
+Fetches crypto market data from the CoinGecko free API (no key required, ~30 req/min rate limit).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coingecko`
-- **Source URL:** [https://clawhub.ai/skills/coingecko](https://clawhub.ai/skills/coingecko)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Price check (one or more coins)
 ```bash
-hermes skills install clawhub/coingecko
+python3 scripts/price.py bitcoin ethereum solana
 ```
+Returns: price, 24h change, market cap, volume for each coin.
+
+### Search for a coin by name/ticker
+```bash
+python3 scripts/search.py "pepe"
+```
+Returns: matching coin IDs, symbols, and market cap ranks.
+
+### Token lookup by contract address (Solana, Ethereum, etc.)
+```bash
+python3 scripts/token.py solana <contract_address>
+```
+Returns: token name, price, 24h change, market cap, liquidity info.
+
+### Trending coins
+```bash
+python3 scripts/trending.py
+```
+Returns: top trending coins on CoinGecko.
+
+## Coin IDs
+CoinGecko uses slug IDs (e.g., `bitcoin`, `ethereum`, `solana`, `dogecoin`). Use `search.py` to find the correct ID if unsure.
+
+## Rate Limits
+Free API: ~30 calls/min. Cache results when doing bulk lookups. Avoid calling in tight loops.

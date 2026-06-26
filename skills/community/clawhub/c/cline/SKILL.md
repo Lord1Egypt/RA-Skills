@@ -1,35 +1,19 @@
 ---
-name: "Cline"
-description: "Automation skill for Cline."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cline"
-sourceUrl: "https://clawhub.ai/skills/cline"
----
-
-# Cline
-
-> Automation skill for Cline.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cline`
-- **Source URL:** [https://clawhub.ai/skills/cline](https://clawhub.ai/skills/cline)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cline
-```
+name: cline
+description: >
+  Run the local Cline CLI to plan/build/code and return the output.
+requirements:
+  - command: cline
+    description: Cline CLI must be installed and on PATH
+usage:
+  - title: Run Cline headless
+    command: cline -y "<TASK>"
+    notes: |
+      Use for coding, scaffolding, debugging, and multi-step plans.
+      Keep prompts short and task-oriented.
+examples:
+  - 'cline -y "Create hello.sh that prints date and uname -a."'
+  - 'cline -y "Refactor this repo: add README and scripts folder."'
+safety:
+  - Never paste secrets.
+  - Ask before destructive commands.

@@ -1,0 +1,11 @@
+{
+  "slug": "content-batch-processor",
+  "name": "批量内容处理工具",
+  "version": "1.0.0",
+  "summary": "高效处理大量文本内容，支持格式化、摘要、关键词提取、批量转换等多种批处理操作。",
+  "author": "productivity-tools-dev",
+  "license": "MIT-0",
+  "tags": ["batch", "processing", "text", "content", "automation", "productivity"],
+  "createdAt": "2026-03-29T14:00:00.000Z",
+  "updatedAt": "2026-03-29T14:00:00.000Z"
+}

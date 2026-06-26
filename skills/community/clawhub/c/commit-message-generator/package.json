@@ -1,0 +1,49 @@
+{
+  "name": "commit-message-generator",
+  "displayName": "Git 提交信息生成器",
+  "version": "1.0.0",
+  "description": "根据代码变更内容自动生成符合 Conventional Commits 规范的 Git 提交信息，包含类型、范围、简短描述、详细说明和关联的 Issue/需求号",
+  "author": "Leo",
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "commit",
+    "提交信息",
+    "Conventional Commits",
+    "自动化",
+    "开发工具"
+  ],
+  "categories": [
+    "开发工具",
+    "代码质量",
+    "自动化"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace-skills",
+    "directory": "commit-message-generator"
+  },
+  "engines": {
+    "openclaw": ">=2026.1.0"
+  },
+  "activationEvents": [
+    "onKeyword:生成提交信息",
+    "onKeyword:提交信息",
+    "onKeyword:commit message",
+    "onKeyword:git commit",
+    "onKeyword:生成 commit 信息"
+  ],
+  "contributes": {
+    "skills": [
+      {
+        "id": "commit-message-generator",
+        "label": "Git 提交信息生成器",
+        "path": "./SKILL.md"
+      }
+    ]
+  },
+  "scripts": {
+    "validate": "python3 ~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/quick_validate.py .",
+    "package": "python3 ~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py . ../"
+  }
+}

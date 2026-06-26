@@ -1,35 +1,176 @@
----
-name: "Content Hot Tracker"
-description: "实时追踪微博、知乎、抖音等平台热点话题，分析趋势并提供内容选题和爆款标题建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-hot-tracker"
-sourceUrl: "https://clawhub.ai/skills/content-hot-tracker"
----
+# SKILL.md - Content Hot Tracker
 
-# Content Hot Tracker
+## Skill Metadata
 
-> 实时追踪微博、知乎、抖音等平台热点话题，分析趋势并提供内容选题和爆款标题建议。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-hot-tracker`
-- **Source URL:** [https://clawhub.ai/skills/content-hot-tracker](https://clawhub.ai/skills/content-hot-tracker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/content-hot-tracker
+```yaml
+name: Content Hot Tracker
+identifier: content-hot-tracker
+version: 1.0.0
+description: 追踪多平台热点话题，分析趋势，为内容创作者提供选题建议和爆款方向
+author: xiaohong
+tags: [内容创作, 热点, 社媒, 运营, 选题]
+categories: [productivity, social-media]
 ```
+
+## What This Skill Does
+
+1. **热点追踪** - 实时监控微博、知乎、抖音、小红书、B站 等平台的热搜/热门话题
+2. **趋势分析** - 分析话题热度趋势，识别上升期话题
+3. **选题建议** - 根据热点生成内容选题方向
+4. **竞品分析** - 分析同领域创作者的热门内容
+5. **标题建议** - 提供爆款标题模板和写作方向
+
+## When to Use
+
+- 日常内容选题枯竭时
+- 追热点不知道如何切入时
+- 想了解行业最新动态时
+- 不知道什么内容能火时
+
+## How It Works
+
+### 1. 热点追踪
+
+使用 web_search 工具搜索各平台实时热点：
+
+```
+搜索格式: "{平台} 热搜榜 {日期}"
+例如: "微博热搜 2026-03-13" / "抖音热门话题 今天"
+```
+
+### 2. 趋势分析
+
+分析话题热度：
+- 上升期话题：优先追，流量红利期
+- 平稳期话题：可追，需差异化角度
+- 下降期话题：避免，已过热度高峰
+
+### 3. 选题生成
+
+根据热点提供 3-5 个具体选题方向：
+- 观点类：针对热点事件的观点输出
+- 知识类：热点相关的知识科普
+- 故事类：热点相关的真实经历/案例
+- 盘点类：热点事件的综合整理
+- 预测类：热点事件的未来展望
+
+### 4. 竞品分析
+
+搜索同领域热门内容：
+- "关键词 + 爆款 / 10万+ / 点赞过万"
+- 分析高赞内容的共同特点
+
+### 5. 标题建议
+
+提供 5-8 个备选标题：
+- 数字开头型
+- 悬念型
+- 对话型
+- 情绪型
+
+## Output Format
+
+### 热点汇总
+
+```
+📈 今日热点 TOP 5
+
+1. [话题名称] - 热度: 🔥🔥🔥🔥🔥
+   平台: 微博/抖音/知乎
+   分类: 娱乐/科技/社会/美食
+   
+2. ...
+```
+
+### 选题建议
+
+```
+📝 选题推荐
+
+【观点类】
+"从XX事件看XX现象，这才是真相"
+
+【知识类】
+"5分钟带你了解XX事件的来龙去脉"
+
+【故事类】
+"亲身经历：我是如何被XX事件影响的"
+```
+
+### 标题库
+
+```
+🔥 爆款标题备选
+
+1. "90%的人都搞错了XX，这才是正确答案"
+2. "为什么XX突然爆火？答案和你想的不一样"
+3. "看完这篇，你就明白XX为什么这么火"
+```
+
+## Examples
+
+### Example 1: 科技热点
+
+```
+输入: 追踪今天科技领域的热点话题
+
+输出:
+📈 科技热点
+1. #AI Agent# - 热度 🔥🔥🔥🔥
+2. #OpenClaw# - 热度 🔥🔥🔥
+
+📝 选题建议
+- "AI Agent 是什么？普通人如何利用它赚钱"
+- "深度测评：我用 AI Agent 自动化运营自媒体的一天"
+```
+
+### Example 2: 美食热点
+
+```
+输入: 追踪今天的美食热点
+
+输出:
+📈 美食热点
+1. #螺蛳粉# - 热度 🔥🔥🔥🔥🔥
+2. #空气炸锅# - 热量 🔥🔥🔥
+
+📝 选题建议
+- "螺蛳粉的N种神仙吃法，最后一种太绝"
+- "空气炸锅万能食谱，收藏这一篇就够了"
+```
+
+## Configuration
+
+### 偏好设置
+
+可以自定义以下设置：
+- 偏好平台：微博/抖音/小红书/知乎/B站
+- 内容领域：科技/美食/职场/情感/娱乐
+- 选题风格：深度/轻松/干货/故事
+
+### 设置命令
+
+```
+# 设置偏好领域
+设置内容领域为[科技]
+
+# 设置偏好平台
+主要追踪[微博]和[抖音]
+```
+
+## Limitations
+
+- 热点数据来自搜索，可能不完全实时
+- 某些平台可能需要 VPN
+- 趋势分析基于公开数据，可能有偏差
+
+## Changelog
+
+### v1.0.0 (2026-03-13)
+- 初始版本
+- 支持多平台热点追踪
+- 提供选题和标题建议
+
+---
+
+*此技能可以帮助自媒体创作者快速找到热门选题，提高内容产出效率*

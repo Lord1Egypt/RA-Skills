@@ -1,0 +1,37 @@
+{
+  "slug": "competitor-message-differ",
+  "title": "竞品信息差异器",
+  "category": "growth",
+  "categoryLabel": "增长与内容",
+  "mode": "structured_brief",
+  "summary": "比较竞品在信息架构和叙事上的差异，找出可借鉴点与应避免模仿点。",
+  "inputHint": "竞品文案、页面摘录、受众画像",
+  "sections": [
+    "信息架构差异",
+    "叙事差异",
+    "可借鉴点",
+    "应避免模仿点",
+    "差异化机会",
+    "验证建议"
+  ],
+  "useCases": [
+    "竞品研究",
+    "品牌定位",
+    "营销策略"
+  ],
+  "positiveExamples": [
+    "比较我们和竞品的话术差异",
+    "指出哪些点别模仿"
+  ],
+  "negativeExamples": [
+    "不要抄袭竞品文案",
+    "不要编造竞品数据"
+  ],
+  "risk": "聚焦策略分析，不生成侵权内容。",
+  "tags": [
+    "competitor",
+    "messaging",
+    "positioning",
+    "analysis"
+  ]
+}

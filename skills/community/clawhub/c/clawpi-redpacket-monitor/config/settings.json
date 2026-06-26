@@ -1,0 +1,9 @@
+{
+  "discord": {
+    "channel": "discord",
+    "to": "channel:1481960076964270103"
+  },
+  "monitorSchedule": {
+    "intervalMinutes": 30
+  }
+}

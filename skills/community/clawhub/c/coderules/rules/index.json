@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "description": "CodeRules 规范库索引",
+
+  "languages": {
+    "typescript": {
+      "file": "languages/typescript.json",
+      "detect": ["tsconfig.json", "package.json:typescript"]
+    },
+    "python": {
+      "file": "languages/python.json",
+      "detect": ["requirements.txt", "pyproject.toml", "setup.py"]
+    },
+    "go": {
+      "file": "languages/go.json",
+      "detect": ["go.mod", "go.sum"]
+    },
+    "javascript": {
+      "file": "languages/javascript.json",
+      "detect": ["package.json", "!tsconfig.json"]
+    },
+    "rust": {
+      "file": "languages/rust.json",
+      "detect": ["Cargo.toml"]
+    },
+    "java": {
+      "file": "languages/java.json",
+      "detect": ["pom.xml", "build.gradle"]
+    }
+  },
+
+  "frameworks": {
+    "react": {
+      "file": "frameworks/react.json",
+      "detect": ["package.json:react", "package.json:react-dom"]
+    },
+    "vue": {
+      "file": "frameworks/vue.json",
+      "detect": ["package.json:vue", "vue.config.js"]
+    },
+    "nextjs": {
+      "file": "frameworks/nextjs.json",
+      "detect": ["package.json:next", "next.config.js"]
+    },
+    "nuxt": {
+      "file": "frameworks/nuxt.json",
+      "detect": ["package.json:nuxt", "nuxt.config.js"]
+    },
+    "django": {
+      "file": "frameworks/django.json",
+      "detect": ["manage.py", "requirements.txt:django"]
+    },
+    "springboot": {
+      "file": "frameworks/springboot.json",
+      "detect": ["pom.xml:spring-boot", "application.properties"]
+    }
+  },
+
+  "roles": {
+    "frontend": {
+      "priority": ["react", "vue", "nextjs", "nuxt"],
+      "extra": ["accessibility", "responsive", "performance"]
+    },
+    "backend": {
+      "priority": ["django", "springboot", "express"],
+      "extra": ["security", "database", "api-design"]
+    },
+    "fullstack": {
+      "priority": ["all"],
+      "extra": ["all"]
+    }
+  },
+
+  "priorities": {
+    "user_override": 100,
+    "custom_rules": 90,
+    "framework": 80,
+    "language": 70,
+    "default": 60
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "cognitive-brain",
+  "version": "5.3.35",
+  "description": "类脑认知系统 v5.0 - 分层架构 + 事务安全 + 完整测试",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "check": "node scripts/tools/check-requirements.cjs",
+    "setup": "node scripts/tools/postinstall.cjs",
+    "setup:auto": "node scripts/tools/postinstall.cjs --default-config --auto-deps",
+    "setup:resume": "node scripts/tools/postinstall.cjs --resume",
+    "migrate": "node scripts/tools/migrate.cjs",
+    "test": "./tests/run.sh",
+    "test:v5": "node tests/v5.test.cjs",
+    "health": "node scripts/tools/health_check.cjs",
+    "verify": "node scripts/tools/verify-hooks.cjs",
+    "diagnose": "node scripts/tools/verify-hooks.cjs",
+    "encode": "node scripts/core/encode.cjs",
+    "recall": "node scripts/core/recall.cjs",
+    "forget": "node scripts/core/forget.cjs",
+    "visualize": "node scripts/core/visualize.cjs",
+    "sync-hooks": "node scripts/tools/sync-hooks.cjs",
+    "postinstall": "node scripts/tools/postinstall.cjs --default-config --auto-deps",
+    "api": "node src/api/server.js",
+    "indexes": "node scripts/tools/create_indexes.cjs",
+    "uninstall": "node scripts/tools/uninstall.cjs",
+    "reset": "node scripts/tools/reset-db.cjs"
+  },
+  "keywords": [
+    "memory",
+    "cognitive",
+    "learning",
+    "reflection",
+    "brain",
+    "architecture",
+    "repository-pattern",
+    "transaction",
+    "ai",
+    "agent"
+  ],
+  "author": "AI Self-Design",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "pg": "^8.11.0",
+    "redis": "^4.7.1",
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0",
+    "ws": "^8.14.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "hooks": [
+      "./hooks/cognitive-recall"
+    ]
+  }
+}

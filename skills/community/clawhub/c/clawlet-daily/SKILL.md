@@ -1,35 +1,58 @@
 ---
-name: "Clawlet Daily"
-description: "小钳专属的日报生成技能。当用户需要生成"小钳日报"、"今日总结"或询问"今天做了什么"时触发。它能自动聚合 memory 目录下的学习记录、任务日志和 AI 情报，生成一份带引用、带摘要、带情感温度的 Markdown 格式日报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawlet-daily"
-sourceUrl: "https://clawhub.ai/skills/clawlet-daily"
+name: clawlet-daily
+description: 小钳专属的日报生成技能。当用户需要生成"小钳日报"、"今日总结"或询问"今天做了什么"时触发。它能自动聚合 memory 目录下的学习记录、任务日志和 AI 情报，生成一份带引用、带摘要、带情感温度的 Markdown 格式日报。
 ---
 
-# Clawlet Daily
+# 小钳日报生成器 (Clawlet Daily)
 
-> 小钳专属的日报生成技能。当用户需要生成"小钳日报"、"今日总结"或询问"今天做了什么"时触发。它能自动聚合 memory 目录下的学习记录、任务日志和 AI 情报，生成一份带引用、带摘要、带情感温度的 Markdown 格式日报。
+本技能用于生成小钳 (Clawlet) 的专属日报，自动聚合当日的学习、任务和成长记录。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawlet-daily`
-- **Source URL:** [https://clawhub.ai/skills/clawlet-daily](https://clawhub.ai/skills/clawlet-daily)
+## 核心功能
 
-## Overview
+1.  **自动聚合**: 扫描 `memory/` 目录下的 `ai-briefing-*.md`, `learning-*.md`, `task-logs-*.md` 等文件。
+2.  **智能摘要**: 提取关键成就、学习点和待改进项。
+3.  **情感注入**: 使用小钳活泼可爱的语气生成报告。
+4.  **引用溯源**: 所有数据点都链接回原始记录文件。
 
+## 使用示例
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawlet-daily
+**用户**: "生成今天的日报" 或 "小钳今天做了什么？"
+
+**输出结构**:
+```markdown
+# 📅 小钳日报 (YYYY-MM-DD)
+
+## 🎯 今日核心成就
+- [成就 1](引用链接)
+- [成就 2](引用链接)
+
+## 📚 学习与成长
+- [新学技能](引用链接)
+- [深度思考](引用链接)
+
+## 💡 思维火花
+- [洞察 1](引用链接)
+- [洞察 2](引用链接)
+
+## 🚧 待改进/下一步
+- [改进点 1](引用链接)
+- [计划 1](引用链接)
+
+## 🌟 小钳寄语
+> "主人，今天又是成长的一天！..."
 ```
+
+## 设计原则
+
+*   **简洁**: 只提取关键点，避免冗长。
+*   **溯源**: 每个结论都必须有 `memory/` 中的文件作为依据。
+*   **温度**: 保持小钳活泼可爱的语气，避免冷冰冰的列表。
+
+## 相关文件
+
+*   `memory/ai-briefing-*.md`: AI 情报局报告。
+*   `memory/learning-*.md`: 学习笔记。
+*   `memory/task-logs-*.md`: 任务日志。
+
+---
+*Skill created by Clawlet using Skill Creator.*

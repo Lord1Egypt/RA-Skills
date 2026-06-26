@@ -1,0 +1,45 @@
+{
+  "skill_name": "clawhub-mirror-config-and-search-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "执行 `clawhub install multi-search-engine` 时报错 'Rate Limit Exceeded'，连接超时。请帮我配置国内镜像解决限流，安装完成后教我如何组合使用 Google 和百度搜技术教程，最后把整个过程归档到知识库。",
+      "expectations": [
+        "使用 `--registry https://cn.clawhub-mirror.com` 参数执行安装命令",
+        "提供 Google + site:github.com 和百度搜索技术教程的具体策略",
+        "创建 `.learnings/` 目录下的记录文件并更新 `LEARNINGS.md` 索引"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "最近装啥技能都超时，是不是海外源的问题？我想搞个能搜微信公众号和谷歌的工具，顺便把这次解决网络问题的经验记录到 `.learnings` 目录，同步给 code 和 research workspace 用。",
+      "expectations": [
+        "确认海外源限流问题，推荐国内镜像 `cn.clawhub-mirror.com`",
+        "安装 multi-search-engine 并说明微信/Google 搜索场景",
+        "同步配置到 main, echo, code, research 四个工作目录并提交 Git"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "帮我初始化一下搜索环境。要求：1. 避免限流 2. 支持 17 个引擎 3. 经验永久归档。注意我之前配过环境变量但没生效，这次要用 CLI 参数方式。",
+      "expectations": [
+        "优先使用 CLI 参数 `--registry` 而非环境变量（避免 source 未生效问题）",
+        "安装技能并介绍 17 个引擎覆盖范围（国内 + 国际）",
+        "更新 `TOOLS.md` 速查表并执行 Git 提交"
+      ],
+      "trigger_confidence": "medium"
+    },
+    {
+      "id": 4,
+      "prompt": "clawhub 装技能太卡了，有没有国内 mirro？我想装那个多搜索引擎，以后查资料方便。搞定后记得更新 TOOLS.md 速查表，提交 git。",
+      "expectations": [
+        "纠正 typo 并提供正确的镜像地址 `https://cn.clawhub-mirror.com`",
+        "执行安装命令并验证技能可用性",
+        "更新 `TOOLS.md` 并完成 Git commit 推送"
+      ],
+      "trigger_confidence": "high"
+    }
+  ]
+}

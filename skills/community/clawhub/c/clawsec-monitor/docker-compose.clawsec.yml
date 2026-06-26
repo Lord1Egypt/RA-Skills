@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  clawsec:
+    build:
+      context: .
+      dockerfile: Dockerfile.clawsec
+    image: clawsec-monitor:latest
+    container_name: clawsec
+    restart: unless-stopped
+
+    ports:
+      # Expose proxy on all interfaces so AI agents on the host can reach it.
+      # To restrict to loopback only: "127.0.0.1:8888:8888"
+      - "8888:8888"
+
+    volumes:
+      # Persist logs, threats.jsonl, PID file, and the generated CA key+cert.
+      - clawsec_data:/tmp/clawsec
+
+    environment:
+      # Override any config key via env var prefix CLAWSEC_
+      # e.g. CLAWSEC_LOG_LEVEL=DEBUG
+      - CLAWSEC_LOG_LEVEL=${CLAWSEC_LOG_LEVEL:-INFO}
+
+    # Give Docker enough time to drain in-flight connections on stop
+    stop_grace_period: 10s
+
+    # Healthcheck: proxy port accepting connections
+    healthcheck:
+      test: ["CMD-SHELL", "python3 -c \"import socket; s=socket.socket(); s.connect(('127.0.0.1',8888)); s.close()\""]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  clawsec_data:
+    driver: local

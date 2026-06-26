@@ -1,0 +1,5 @@
+{
+  "success": true,
+  "message": "Read query complete",
+  "output": "Tables_in_example_db\nwp_options\nwp_posts\nwp_postmeta\nwp_users"
+}

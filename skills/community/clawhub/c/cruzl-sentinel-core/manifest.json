@@ -1,0 +1,7 @@
+{
+  "name": "cruzl-sentinel-core",
+  "version": "1.0.1",
+  "description": "Onchain strategy intelligence",
+  "author": "cruzl.eth",
+  "entry": "index.js"
+}

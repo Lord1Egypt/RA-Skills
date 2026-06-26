@@ -1,0 +1,23 @@
+{
+  "domain": "",
+  "current_phase": "init",
+  "iteration": 0,
+  "max_iterations": 10,
+  "last_score": {
+    "total": 0,
+    "breadth": 0,
+    "depth": 0,
+    "thickness": 0,
+    "effectiveness": 0
+  },
+  "status": "running",
+  "started_at": "",
+  "updated_at": "",
+  "target_repo": "",
+  "github_branch": "",
+  "active_council": "",
+  "experts_added_mid_loop": [],
+  "history": [],
+  "build_failures": 0,
+  "score_regressions": 0
+}

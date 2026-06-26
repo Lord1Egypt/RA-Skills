@@ -1,35 +1,161 @@
 ---
-name: "跨境电商资讯日报"
-description: "跨境电商资讯查询 Skill。当用户想知道"跨境电商日报"、"跨境电商资讯"、"Shopee/TikTok Shop/Temu/亚马逊/Lazada 最近动态"、"东南亚电商"、"跨境平台政策"、"选品趋势"、"跨境物流"、"跨境支付"、"出海动态"等任何跨境电商相关资讯时使用。即使用户只说"跨境电商"、"出海资..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cross-border-news"
-sourceUrl: "https://clawhub.ai/skills/cross-border-news"
+name: cross-border-ecommerce
+description: 跨境电商资讯查询 Skill。当用户想知道"跨境电商日报"、"跨境电商资讯"、"Shopee/TikTok Shop/Temu/亚马逊/Lazada 最近动态"、"东南亚电商"、"跨境平台政策"、"选品趋势"、"跨境物流"、"跨境支付"、"出海动态"等任何跨境电商相关资讯时使用。即使用户只说"跨境电商"、"出海资讯"、"电商日报"，或问"Shopee 最近有什么变化"、"TikTok Shop 新政策"等，也应该触发本 Skill。Skill 会从多个跨境电商资讯源抓取最新动态并整理成中文 markdown 简报。**不要 undertrigger**——用户问跨境电商资讯而你不调本 Skill 就是在用过时信息回答。
 ---
 
-# 跨境电商资讯日报
+# 跨境电商资讯 Skill
 
-> 跨境电商资讯查询 Skill。当用户想知道"跨境电商日报"、"跨境电商资讯"、"Shopee/TikTok Shop/Temu/亚马逊/Lazada 最近动态"、"东南亚电商"、"跨境平台政策"、"选品趋势"、"跨境物流"、"跨境支付"、"出海动态"等任何跨境电商相关资讯时使用。即使用户只说"跨境电商"、"出海资...
+为跨境卖家提供一站式电商资讯聚合，覆盖 Shopee、TikTok Shop、Temu、亚马逊、Lazada 等主流平台，关注政策更新、选品趋势、物流支付、行业动态等。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cross-border-news`
-- **Source URL:** [https://clawhub.ai/skills/cross-border-news](https://clawhub.ai/skills/cross-border-news)
+## 关注平台
 
-## Overview
+- **Shopee**: 泰国、越南、菲律宾、马来西亚、新加坡、台湾
+- **TikTok Shop**: 全球各站点
+- **Temu**: 全球扩张动态
+- **亚马逊**: 全球站点政策
+- **Lazada**: 东南亚市场
+- **其他**: Coupang、OZON、美客多、速卖通等新兴平台
 
+## 资讯类型
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **平台政策**: 新规则、费率调整、入驻要求变化
+- **选品趋势**: 爆款分析、品类报告、季节性选品
+- **物流支付**: 物流政策、仓储变化、支付通道更新
+- **行业动态**: 平台融资、收购、人事变动、数据报告
+- **市场机会**: 新站点开放、蓝海品类、政策红利
+
+## 资讯来源
+
+从以下渠道抓取最新资讯：
+
+### 主要资讯源
+
+1. **雨果跨境** (cifnews.com)
+   - 中国跨境电商综合服务平台
+   - 覆盖全平台资讯
+
+2. **亿邦动力** (ebrun.com)
+   - 电商行业媒体
+   - 深度报道和分析
+
+3. **跨境知道** (ikjzd.com)
+   - 跨境电商知识社区
+   - 实操干货较多
+
+### 平台官方渠道
+
+- Shopee 卖家中心公告
+- TikTok Shop 卖家大学
+- Temu 卖家后台通知
+- 亚马逊卖家论坛
+
+## 工作流
+
+### 默认路径：综合日报（宽问题首选）
+
+用户问"跨境电商日报"、"今天跨境电商有什么"、"最近跨境动态"等宽问题时，从多个源抓取最新资讯。
+
 ```bash
-hermes skills install clawhub/cross-border-news
+# 示例：从雨果跨境抓取最新文章
+curl -sH "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" "https://www.cifnews.com/"
 ```
+
+### 按平台查询
+
+用户明确提到特定平台时，优先搜索该平台相关资讯。
+
+| 用户说 | 查询重点 |
+|---|---|
+| "Shopee 最近有什么" | Shopee 各站点政策、活动、选品 |
+| "TikTok Shop 新政策" | TikTok Shop 规则更新、新功能 |
+| "Temu 动态" | Temu 扩张、招商政策、运营技巧 |
+| "亚马逊政策" | 亚马逊新规、FBA 变化、广告政策 |
+| "Lazada 资讯" | Lazada 东南亚市场动态 |
+
+### 按资讯类型查询
+
+| 用户说 | 查询重点 |
+|---|---|
+| "选品趋势" / "爆款分析" | 品类报告、选品建议、热销榜单 |
+| "平台政策" / "新规" | 各平台规则变化、合规要求 |
+| "物流动态" | 仓储、配送、清关政策 |
+| "支付变化" | 收款方式、汇率、费率 |
+
+## 给用户的输出格式
+
+### 日报式输出
+
+```markdown
+**跨境电商日报 · YYYY-MM-DD**
+
+## 平台政策
+1. **<标题>** — <来源>
+   <摘要 50 字内>
+   <链接>
+
+## 选品趋势
+2. ...
+
+## 物流支付
+3. ...
+
+## 行业动态
+4. ...
+
+## 市场机会
+5. ...
+```
+
+**编号贯穿全文**（1, 2, 3 ... N），方便用户快速定位。
+
+### 按平台分类输出
+
+当用户问特定平台时：
+
+```markdown
+**Shopee 近期动态**
+
+## 政策更新
+1. **<标题>** — <来源>
+   <摘要>
+   <链接>
+
+## 活动促销
+2. ...
+
+## 选品建议
+3. ...
+```
+
+### 元信息只写人话
+
+**OK**（用户能直接懂）：
+- "共 15 条"
+- "时间范围：最近 3 天"
+- "数据来源：雨果跨境、亿邦动力"
+
+**不 OK**（技术细节泄漏）：
+- ❌ curl 命令或 API 端点
+- ❌ HTTP 状态码
+- ❌ 抓取技术细节
+
+## 常见错误处理
+
+- **网站访问失败**：尝试备用源，告知用户部分信息可能缺失
+- **无最新资讯**：扩展时间窗口（最近 7 天）或建议用户访问原文
+- **内容重复**：去重后展示，避免信息冗余
+
+## 注意事项
+
+- 跨境电商资讯更新频繁，优先抓取最近 24-72 小时的内容
+- 平台政策变化快，重要政策务必让用户核实原文
+- 不同站点政策可能不同，注意区分（如 Shopee 泰国站 vs 越南站）
+- 保持中立，不推荐违规操作或灰色地带策略
+
+## 不要做
+
+- 不要编造或猜测资讯内容
+- 不要把过时信息当作新闻
+- 不要遗漏重要平台（用户关注的主要平台）
+- 不要在摘要中丢失原文链接
+- 不要把抓取技术细节展示给用户

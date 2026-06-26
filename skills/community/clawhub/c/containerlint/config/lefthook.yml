@@ -1,0 +1,41 @@
+# ContainerLint -- lefthook configuration
+# Installed by: containerlint hooks install
+# Documentation: https://containerlint.pages.dev/docs/hooks
+#
+# This configuration integrates ContainerLint with git hooks via lefthook.
+# Pre-commit: scans staged files for container security issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    containerlint-check:
+      run: |
+        CONTAINERLINT_SKILL_DIR="${CONTAINERLINT_SKILL_DIR:-$HOME/.openclaw/skills/containerlint}"
+        if [[ -f "$CONTAINERLINT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$CONTAINERLINT_SKILL_DIR/scripts/patterns.sh"
+          source "$CONTAINERLINT_SKILL_DIR/scripts/analyzer.sh"
+          hook_containerlint_check
+        else
+          echo "[ContainerLint] Skill not found at $CONTAINERLINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Container security issues detected in staged files!
+        Run 'containerlint scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    containerlint-full-scan:
+      run: |
+        CONTAINERLINT_SKILL_DIR="${CONTAINERLINT_SKILL_DIR:-$HOME/.openclaw/skills/containerlint}"
+        if [[ -f "$CONTAINERLINT_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$CONTAINERLINT_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[ContainerLint] Skill not found at $CONTAINERLINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        ContainerLint detected container security issues in your codebase.
+        Run 'containerlint scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

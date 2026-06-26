@@ -1,0 +1,11 @@
+{
+  "name": "cn-report-generator",
+  "version": "1.0.0",
+  "description": "企业日报/周报自动生成。从MEMORY.md和daily log自动生成结构化报告。",
+  "author": "freedompixels",
+  "tags": ["report", "daily", "weekly", "automation", "chinese"],
+  "trigger": {
+    "type": "intent",
+    "keywords": ["生成日报", "生成周报", "生成月报", "写日报", "写周报", "自动生成报告"]
+  }
+}

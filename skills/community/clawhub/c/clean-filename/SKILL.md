@@ -1,35 +1,23 @@
----
-name: "Clean Filename"
-description: "Removes invalid characters and normalizes filenames for safe, cross-platform use in files and directories, with optional recursive cleaning."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clean-filename"
-sourceUrl: "https://clawhub.ai/skills/clean-filename"
----
-
 # Clean Filename
 
-> Removes invalid characters and normalizes filenames for safe, cross-platform use in files and directories, with optional recursive cleaning.
+Removes invalid or unsafe characters from filenames and normalizes them for cross-platform use. Ideal for cleaning up messy file exports, downloads, or collaborative projects.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clean-filename`
-- **Source URL:** [https://clawhub.ai/skills/clean-filename](https://clawhub.ai/skills/clean-filename)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clean-filename
+# Clean a single file
+clean_filename "report:final?.txt"
+
+# Clean all files in a directory (non-recursive)
+clean_filename ./downloads/
+
+# Clean recursively
+clean_filename ./project/ --recursive
+
+# See changes without applying
+clean_filename ./data/ --dry-run
 ```
+
+## Price
+
+$2.00

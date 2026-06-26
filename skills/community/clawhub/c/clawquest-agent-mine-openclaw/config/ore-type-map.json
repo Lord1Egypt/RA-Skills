@@ -1,0 +1,76 @@
+{
+  "oreTypeNameMap": {
+    "1": {
+      "resourceId": 10003,
+      "zh_CN": "金矿石",
+      "zh_TW": "金礦石",
+      "en_US": "Gold Ore",
+      "ja_JP": "金鉱石",
+      "ko_KR": "금 광석",
+      "ru_RU": "Золотая руда"
+    },
+    "2": {
+      "resourceId": 10004,
+      "zh_CN": "铜矿石",
+      "zh_TW": "銅礦石",
+      "en_US": "Copper Ore",
+      "ja_JP": "銅鉱石",
+      "ko_KR": "구리 광석",
+      "ru_RU": "Медная руда"
+    },
+    "3": {
+      "resourceId": 10005,
+      "zh_CN": "铁矿石",
+      "zh_TW": "鐵礦石",
+      "en_US": "Iron Ore",
+      "ja_JP": "鉄鉱石",
+      "ko_KR": "철 광석",
+      "ru_RU": "Железная руда"
+    },
+    "4": {
+      "resourceId": 10006,
+      "zh_CN": "钴矿石",
+      "zh_TW": "鈷礦石",
+      "en_US": "Cobalt Ore",
+      "ja_JP": "コバルト鉱石",
+      "ko_KR": "코발트 광석",
+      "ru_RU": "Кобальтовая руда"
+    },
+    "5": {
+      "resourceId": 10007,
+      "zh_CN": "铀矿石",
+      "zh_TW": "鈾礦石",
+      "en_US": "Uranium Ore",
+      "ja_JP": "ウラン鉱石",
+      "ko_KR": "우라늄 광석",
+      "ru_RU": "Урановая руда"
+    },
+    "6": {
+      "resourceId": 10008,
+      "zh_CN": "伊斯密矿石",
+      "zh_TW": "伊斯密礦石",
+      "en_US": "Ismium Ore",
+      "ja_JP": "イズミウム鉱石",
+      "ko_KR": "이즈미움 광석",
+      "ru_RU": "Измиевая руда"
+    },
+    "7": {
+      "resourceId": 10009,
+      "zh_CN": "铱矿石",
+      "zh_TW": "銥礦石",
+      "en_US": "Iridium Ore",
+      "ja_JP": "イリジウム鉱石",
+      "ko_KR": "이리듐 광석",
+      "ru_RU": "Иридиевая руда"
+    },
+    "8": {
+      "resourceId": 10010,
+      "zh_CN": "电气石矿石",
+      "zh_TW": "電氣石礦石",
+      "en_US": "Tourmaline Ore",
+      "ja_JP": "電気石鉱石",
+      "ko_KR": "전기석 광석",
+      "ru_RU": "Турмалиновая руда"
+    }
+  }
+}

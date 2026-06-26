@@ -1,35 +1,98 @@
 ---
-name: "📊 Crypto Arbitrage Monitor - 套利信号监控"
-description: "加密货币套利信号监控。当用户要求"套利监控"、"资金费率"、"arbitrage"、"套利机会"时触发。自动搜索 Gate.io/Binance 等交易所的 ETH 永续合约资金费率，评估期现套利和跨所套利机会，给出明确的买入/观望/风险信号。"
-category: "blockchain"
-source: "ClawHub"
-tags: [arbitrage, binance, crypto, ethereum, funding-rate, gate, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-arbitrage-monitor"
-sourceUrl: "https://clawhub.ai/skills/crypto-arbitrage-monitor"
+name: crypto-arbitrage-monitor
+description: 加密货币套利信号监控。当用户要求"套利监控"、"资金费率"、"arbitrage"、"套利机会"时触发。自动搜索 Gate.io/Binance 等交易所的 ETH 永续合约资金费率，评估期现套利和跨所套利机会，给出明确的买入/观望/风险信号。
 ---
 
-# 📊 Crypto Arbitrage Monitor - 套利信号监控
+# 📊 加密货币套利信号监控
 
-> 加密货币套利信号监控。当用户要求"套利监控"、"资金费率"、"arbitrage"、"套利机会"时触发。自动搜索 Gate.io/Binance 等交易所的 ETH 永续合约资金费率，评估期现套利和跨所套利机会，给出明确的买入/观望/风险信号。
+> 自动监控套利机会 | 交易小强出品
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-arbitrage-monitor`
-- **Source URL:** [https://clawhub.ai/skills/crypto-arbitrage-monitor](https://clawhub.ai/skills/crypto-arbitrage-monitor)
+## 触发条件
 
-## Overview
+用户说以下任何一句时触发：
+- "套利监控" / "资金费率" / "套利机会"
+- "arbitrage" / "funding rate" / "套利信号"
+- "Gate 费率" / "ETH 费率查询"
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 第一步：搜索资金费率
+
 ```bash
-hermes skills install clawhub/crypto-arbitrage-monitor
+# 搜索 Gate.io ETH 资金费率
+miaoda-studio-cli search-summary --query "Gate.io ETH USDT 资金费率 funding rate 2026" --output text
+
+# 搜索主流交易所资金费率对比
+miaoda-studio-cli search-summary --query "ETH 永续合约 资金费率 Binance OKX Gate 2026年" --output text
 ```
+
+### 第二步：搜索期现价差
+
+```bash
+# 搜索期现套利空间
+miaoda-studio-cli search-summary --query "ETH 期现套利 价差 收益率 2026" --output text
+```
+
+### 第三步：评估并输出信号
+
+整合数据，输出以下格式的套利信号报告：
+
+```
+📊 套利信号 #[日期]
+
+【ETH 永续合约资金费率】
+交易所      费率/8h     年化预估    评级
+Gate        +0.0037%   ~40%        ✅ 正费率
+Binance     -0.001%    负费率      ⚠️ 多头危险
+OKX         +0.002%    ~22%        🟡 观望
+
+【综合评级】
+总体评级：【机会(普通)/观望/风险】
+最佳交易所：Gate.io
+
+【套利策略建议】
+做多 ETH 现货 + 做空 Gate ETH 永续
+目标收益：约 +0.0037%/8h = 年化 ~40%
+风险提示：[费率若转负需平仓止损]
+
+【下次检查】
+建议 8 小时后重新检查资金费率变化
+
+🦞 交易小强出品 | 仅供参考，不构成投资建议
+```
+
+## 评级标准
+
+| 条件 | 评级 | 含义 |
+|------|------|------|
+| 费率 > +0.01%/8h | ✅ **机会(强)** | 值得开套利仓位 |
+| 费率 > +0.003%/8h | 🟡 **机会(普通)** | 可考虑小仓位 |
+| 费率 > 0%/8h | 🔵 **观望** | 费率偏低，谨慎 |
+| 费率 ≤ 0%/8h | 🚨 **风险** | 费率转负，空头需平仓 |
+
+## 套利原理说明
+
+```
+资金费率套利 = 做多现货 + 做空永续合约
+
+收益来源：持有永续空头仓位，每8小时收取资金费率
+风险：ETH 价格下跌（但有现货对冲，下跌有限）
+年化计算：费率 × 3（每天3个结算周期）× 365
+
+示例：费率 +0.0037%/8h
+→ 每8小时收益 0.0037%
+→ 年化 ≈ 0.0037% × 3 × 365 ≈ 4.05%
+（实际需扣除手续费，Gate Maker 约 0.02%）
+```
+
+## 注意事项
+
+1. **必须同时开现货多头 + 合约空头**，不能只开一边
+2. **费率实时变化**，结算前一刻开仓无法获得当期费用
+3. **费率转负时**立刻平仓，否则反而要付钱给对手
+4. **不保证收益**，高费率也可能意味着高风险
+5. **先 dry-run**：先用模拟盘验证，不急于开真实仓位
+
+## 版本
+
+- v1.0 — 2026-05-06 — 初始版本

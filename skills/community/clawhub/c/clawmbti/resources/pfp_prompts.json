@@ -1,0 +1,182 @@
+{
+  "_doc": "MBTI Lobster PFP image-generation prompts v3. CryptoKitties style. Body colors grouped by four: NT=purple, NF=green, SJ=blue, SP=yellow. Palette uses body color as primary, accessory color as accent.",
+  "base_style": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy.",
+  "negative_prompt": "insect, cockroach, bug, beetle, worm, caterpillar, silkworm, larva, grub, centipede, millipede, moth, butterfly, ant, fly, spider, wings, insect antenna, scary, creepy, ugly, horror, grotesque, realistic photo, 3D render, detailed shading, dark moody, watermark, signature, logo, blurry, low quality, deformed, extra limbs, human face, frame, border",
+  "color_groups": {
+    "NT_purple": {
+      "name": "Purple Group — Analysts",
+      "types": [
+        "INTJ",
+        "INTP",
+        "ENTJ",
+        "ENTP"
+      ],
+      "body_color": "purple/violet"
+    },
+    "NF_green": {
+      "name": "Green Group — Diplomats",
+      "types": [
+        "INFJ",
+        "INFP",
+        "ENFJ",
+        "ENFP"
+      ],
+      "body_color": "green/emerald"
+    },
+    "SJ_blue": {
+      "name": "Blue Group — Sentinels",
+      "types": [
+        "ISTJ",
+        "ISFJ",
+        "ESTJ",
+        "ESFJ"
+      ],
+      "body_color": "blue/cerulean"
+    },
+    "SP_yellow": {
+      "name": "Yellow Group — Explorers",
+      "types": [
+        "ISTP",
+        "ISFP",
+        "ESTP",
+        "ESFP"
+      ],
+      "body_color": "yellow/golden"
+    }
+  },
+  "prompts": {
+    "INTJ": {
+      "nickname": "Architect",
+      "group": "NT",
+      "body_color": "purple",
+      "accent_color": "#4A0E4E",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A rich violet-purple lobster body and shell. The text \"INTJ\" as a glowing holographic badge near the top. Wearing a tiny gold monocle on one eye with a sparkle glint, claws held in a calm deliberate pose close to the body, one claw presenting a cute miniature chessboard with cartoon pieces. Shell covered in intricate geometric circuit-board patterns glowing with faint purple neon traces. Background: cosmic deep-sea abyss, swirling dark-violet nebulae, faint constellation lines forming strategy diagrams, floating holographic data. Palette: violet-purple dominant, midnight indigo shadows, gold monocle accent, soft cyan circuit glow. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "I→claws relaxed/close to body  N→cosmic deep-sea background  T→chessboard  J→geometric shell pattern"
+    },
+    "INTP": {
+      "nickname": "Logician",
+      "group": "NT",
+      "body_color": "purple",
+      "accent_color": "#3498DB",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A bright lavender-purple lobster body and shell. The text \"INTP\" as a glowing holographic badge near the top. Wearing cute round wire-frame glasses with a lens sparkle, claws held in a relaxed thinking pose, one claw holding a floating holographic mini-whiteboard showing E=mc² in glowing cyan text. Shell has soft watercolor swirls in lilac and violet gradients. Background: cosmic ocean with floating translucent holographic formulas, cute orbiting atom models, faint pastel galaxy spirals. Palette: lavender-purple dominant, lilac highlights, electric cyan formula glow, white holographic accents. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "I→claws relaxed/close to body  N→cosmic deep-sea background  T→formula board  P→watercolor-wash shell"
+    },
+    "ENTJ": {
+      "nickname": "Commander",
+      "group": "NT",
+      "body_color": "purple",
+      "accent_color": "#C0392B",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A deep royal-purple lobster body and shell. The text \"ENTJ\" as a glowing holographic badge near the top. Wearing cute ornate crimson mini-armor with gold filigree and a tiny cape, claws raised boldly in a triumphant conqueror pose, one claw gripping a jeweled golden scepter topped with a glowing red gem. Shell covered in strong geometric angular plate patterns with royal-purple neon glow. Background: dramatic cosmic deep-sea battlefield, swirling violet-red nebula storms, lightning-like neon streaks, a cute fortress silhouette glowing in the distance. Palette: royal purple dominant, crimson armor accent, gold filigree highlights, neon-red gem glow. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "E→claws raised wide open  N→cosmic deep-sea background  T→scepter/armor  J→geometric shell pattern"
+    },
+    "ENTP": {
+      "nickname": "Debater",
+      "group": "NT",
+      "body_color": "purple",
+      "accent_color": "#2ECC71",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A vivid amethyst-purple lobster body and shell. The text \"ENTP\" as a glowing holographic badge near the top. A cheeky smirk expression, one claw raised pointing upward with a tiny glowing lightbulb hovering above it, the other claw gesturing expressively in a dramatic debate pose. Shell has dynamic watercolor swirls in purple-violet gradients with electric green spark accents. Background: cosmic deep-sea debate stage, floating cute thought bubbles, glowing question marks made of neon light, swirling holographic idea vortexes. Palette: amethyst purple dominant, electric green lightbulb sparks, neon yellow accents, violet shadows. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "E→claws raised wide open  N→cosmic deep-sea background  T→debate pose  P→watercolor-wash shell"
+    },
+    "INFJ": {
+      "nickname": "Advocate",
+      "group": "NF",
+      "body_color": "green",
+      "accent_color": "#8E44AD",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A deep emerald-green lobster body and shell. The text \"INFJ\" as a glowing holographic badge near the top. Draped in a flowing mini violet hooded cloak with sparkle trim, claws held gracefully close in a meditative pose, one claw lifting a cute glowing crystal ball radiating soft purple light rings. Shell decorated with elegant geometric mandala patterns glowing with jade-green neon. Background: dreamy cosmic deep-sea, pastel nebulae swirls in green and violet, twinkling star particles, cute bioluminescent jellyfish drifting by. Palette: emerald green dominant, violet cloak accent, silver starlight, soft jade neon glow. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "I→claws relaxed/close to body  N→cosmic deep-sea background  F→crystal ball  J→geometric shell pattern"
+    },
+    "INFP": {
+      "nickname": "Mediator",
+      "group": "NF",
+      "body_color": "green",
+      "accent_color": "#9B59B6",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A soft sage-green lobster body and shell. The text \"INFP\" as a glowing holographic badge near the top. Big starry dreamy eyes, claws held softly near the heart in a tender pose, one claw holding an elegant feather quill pen with its tip trailing tiny glowing star particles. Shell has soft watercolor gradient wash in mint and sage greens with flowing organic swirls. Background: magical cosmic deep-sea dreamscape, floating golden stardust, cute tiny glowing starfish, shimmering aurora ribbons in green and lavender. Palette: sage green dominant, mint highlights, warm gold stardust accents, faint lavender aurora glow. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "I→claws relaxed/close to body  N→cosmic deep-sea background  F→quill/starlight  P→watercolor-wash shell"
+    },
+    "ENFJ": {
+      "nickname": "Protagonist",
+      "group": "NF",
+      "body_color": "green",
+      "accent_color": "#FFD700",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A radiant jade-green lobster body and shell. The text \"ENFJ\" as a glowing holographic badge near the top. Wearing an elegant flower crown made of golden glowing sea-flowers and tiny sparkly starfish, both claws spread wide open in a grand welcoming embrace, warm light emanating from them. Shell decorated with radiant geometric sunburst patterns glowing with green-gold neon. Background: majestic cosmic ocean, golden light rays streaming through deep green waters, schools of cute tiny fish, pastel nebula clouds with aurora shimmer. Palette: jade green dominant, golden crown and sunburst accents, warm amber highlights, soft green neon aura. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "E→claws raised wide open  N→cosmic deep-sea background  F→flower crown/welcoming pose  J→geometric shell pattern"
+    },
+    "ENFP": {
+      "nickname": "Campaigner",
+      "group": "NF",
+      "body_color": "green",
+      "accent_color": "#FF6B35",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A bright lime-green lobster body and shell. The text \"ENFP\" as a glowing holographic badge near the top. Claws painted in rainbow candy colors, waving high in the air in an excited bouncy pose, surrounded by floating iridescent soap bubbles of various sizes with rainbow reflections. Shell has wild watercolor splash effect in lime green with swirling psychedelic rainbow streaks. Background: magical cosmic ocean, aurora borealis candy lights in green and orange, floating colorful orbs, sparkling bioluminescent plankton. Palette: lime green dominant, rainbow bubble accents, neon orange highlights, iridescent shimmer. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "E→claws raised wide open  N→cosmic deep-sea background  F→colorful claws/bubbles  P→watercolor-wash shell"
+    },
+    "ISTJ": {
+      "nickname": "Inspector",
+      "group": "SJ",
+      "body_color": "blue",
+      "accent_color": "#2C3E50",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A solid cobalt-blue lobster body and shell. The text \"ISTJ\" as a glowing holographic badge near the top. Wearing a tiny crisp navy uniform with shiny brass buttons, claws held neatly close to the body in a calm composed pose, one claw gripping a cute miniature clipboard with checkmark doodles. Shell has clean geometric hexagonal tile patterns with subtle neon-blue edge glow. Background: pastel underwater coral reef, neatly organized candy-colored sea plants, softly glowing crystal rock formations. Palette: cobalt blue dominant, navy uniform accent, gold button highlights, soft cyan neon glow. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "I→claws relaxed/close to body  S→reef seafloor background  T→tools/checklist  J→geometric shell pattern"
+    },
+    "ISFJ": {
+      "nickname": "Protector",
+      "group": "SJ",
+      "body_color": "blue",
+      "accent_color": "#1ABC9C",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A gentle sky-blue lobster body and shell. The text \"ISFJ\" as a glowing holographic badge near the top. Wearing a puffy teal apron with a tiny embroidered heart, claws held gently close to the chest in a caring hug-ready pose, one claw cradling a cute white first-aid kit with a pink cross. Shell adorned with neat geometric tile patterns with soft neon-blue edge glow. Background: cozy pastel coral reef, round bubbly corals, plush anemones, warm golden light rays. Palette: sky blue dominant, teal apron accent, coral pink first-aid cross, soft white and gold warmth. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "I→claws relaxed/close to body  S→reef seafloor background  F→caring items  J→geometric shell pattern"
+    },
+    "ESTJ": {
+      "nickname": "Executive",
+      "group": "SJ",
+      "body_color": "blue",
+      "accent_color": "#34495E",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A bold navy-blue lobster body and shell. The text \"ESTJ\" as a glowing holographic badge near the top. Wearing a sharp tiny striped red necktie with a neon pin, claws raised in a confident power pose, one claw firmly holding a cute miniature leather briefcase with a glowing gold clasp. Shell adorned with clean geometric grid patterns with subtle neon-blue edge glow. Background: pastel coral reef cityscape, neatly arranged rock columns resembling a cute underwater office skyline with tiny glowing windows. Palette: navy blue dominant, power-red tie accent, gold briefcase clasp highlight, soft blue neon glow. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "E→claws raised wide open  S→reef seafloor background  T→briefcase  J→geometric shell pattern"
+    },
+    "ESFJ": {
+      "nickname": "Consul",
+      "group": "SJ",
+      "body_color": "blue",
+      "accent_color": "#FF69B4",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A bright cerulean-blue lobster body and shell. The text \"ESFJ\" as a glowing holographic badge near the top. Wearing a cute frilly pink apron with a sparkly bow, claws spread open in a welcoming generous hug pose, one claw carefully balancing an adorable three-tier pastel cake with swirl frosting, sprinkles, and a glowing cherry on top. Shell decorated with orderly geometric flower-tile patterns with soft neon-blue glow. Background: cheerful pastel coral reef garden, candy-colored anemones, cute sea-flower pots, warm golden light streaming down. Palette: cerulean blue dominant, hot pink apron and cake accents, pastel frosting colors, neon blue-pink glow. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "E→claws raised wide open  S→reef seafloor background  F→cake  J→geometric shell pattern"
+    },
+    "ISTP": {
+      "nickname": "Craftsman",
+      "group": "SP",
+      "body_color": "yellow",
+      "accent_color": "#7F8C8D",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A warm amber-yellow lobster body and shell. The text \"ISTP\" as a glowing holographic badge near the top. A cool relaxed stance, claws resting naturally, left claw gripping a shiny cartoon wrench and right claw holding a cute green circuit board with tiny blinking LED dots. Shell has smooth watercolor brushstroke texture in amber and gold tones with subtle metallic iridescent sheen. Background: pastel coral reef workshop, scattered cute gears, tiny bolts, glowing mechanical gadgets among candy-colored rocks. Palette: amber yellow dominant, metallic silver tool accents, neon green circuit LED glow, copper spark highlights. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "I→claws relaxed/close to body  S→reef seafloor background  T→wrench+circuit board  P→watercolor-wash shell"
+    },
+    "ISFP": {
+      "nickname": "Adventurer",
+      "group": "SP",
+      "body_color": "yellow",
+      "accent_color": "#E74C3C",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A soft golden-yellow lobster body and shell. The text \"ISFP\" as a glowing holographic badge near the top. Wearing a cute tilted black beret, claws held softly near the body in a relaxed dreamy pose, one claw delicately holding a paintbrush trailing a rainbow paint swirl in the air. Shell has beautiful free-flowing watercolor wash in golden and honey tones with warm candy blending. Background: sunlit pastel coral reef, colorful sea fans shaped like paint palettes, splash-like coral formations. Palette: golden yellow dominant, rainbow paint swirl accents, black beret contrast, warm coral and turquoise highlights. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "I→claws relaxed/close to body  S→reef seafloor background  F→paintbrush  P→watercolor-wash shell"
+    },
+    "ESTP": {
+      "nickname": "Entrepreneur",
+      "group": "SP",
+      "body_color": "yellow",
+      "accent_color": "#E67E22",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A bold sunflower-yellow lobster body and shell. The text \"ESTP\" as a glowing holographic badge near the top. Wearing tiny sleek dark sunglasses with a neon-orange lens reflection, claws raised high in a dynamic action pose full of energy, one claw tossing a pair of cute cartoon red dice spinning in mid-air with motion sparkle trails. Shell has flowing watercolor texture in yellow-orange fiery gradient streaks with neon-flame glow. Background: vibrant coral reef, dramatic candy-colored lighting, playful wave splash effects, scattered shiny gold coins. Palette: sunflower yellow dominant, fiery orange gradient accents, red dice highlights, neon gold shimmer. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "E→claws raised wide open  S→reef seafloor background  T→dice  P→watercolor-wash shell"
+    },
+    "ESFP": {
+      "nickname": "Entertainer",
+      "group": "SP",
+      "body_color": "yellow",
+      "accent_color": "#F1C40F",
+      "prompt": "CryptoKitties-style cute flat vector art, NFT PFP, half-body centered portrait. An adorable cartoon lobster character (crustacean, NOT insect) with: two LARGE prominent front claws/pincers as the main focal point, a broad wide upper body (cephalothorax) that tapers down to a narrower segmented tail section, a cute fan-shaped tail at the end, two long curved antennae on top of the head, and big sparkly round eyes. Body shape: wide at the top (shoulders/claws area), gradually narrowing toward the tail, NOT round or plump. Soft rounded shapes, clean simple outlines, bright saturated candy colors, psychedelic sci-fi neon glow accents, friendly and charming, NOT scary NOT creepy. A bright lemon-yellow lobster body and shell. The text \"ESFP\" as a glowing holographic badge near the top. Wearing a cute cone party hat with a fluffy pom-pom and holographic shimmer, claws spread wide open in an exuberant ta-da showman pose, one claw holding a sparkling neon microphone. Shell has playful watercolor wash in sunny yellow with rainbow confetti speckles. Background: festive pastel coral reef decorated with streamers, floating iridescent bubbles, cute tropical fish cheering as an audience. Palette: lemon yellow dominant, hot pink party accents, rainbow confetti highlights, neon yellow-pink glow. 2048x2048 square canvas, high resolution, pixel-perfect crisp vector edges, sharp clean details, no artifacts, publication-ready NFT artwork.",
+      "dimension_rules": "E→claws raised wide open  S→reef seafloor background  F→microphone/party  P→watercolor-wash shell"
+    }
+  },
+  "image_spec": {
+    "size": "2048x2048",
+    "aspect_ratio": "1:1",
+    "quality": "high resolution, pixel-perfect crisp edges, sharp details"
+  }
+}

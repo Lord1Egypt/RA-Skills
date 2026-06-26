@@ -1,0 +1,35 @@
+{
+  "name": "coze-image",
+  "version": "1.0.0",
+  "description": "Generate images using Coze AI platform with automatic Base64 encoding",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "image",
+    "generation",
+    "coze",
+    "ai",
+    "text-to-image"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "coze-image"
+  },
+  "engines": {
+    "python": ">=3.8",
+    "openclaw": ">=1.0.0"
+  },
+  "dependencies": {
+    "requests": "*"
+  },
+  "clawhub": {
+    "type": "skill",
+    "entryPoint": "coze_image_skill.py",
+    "skillName": "coze-image",
+    "category": "media",
+    "autoUpdate": true
+  }
+}

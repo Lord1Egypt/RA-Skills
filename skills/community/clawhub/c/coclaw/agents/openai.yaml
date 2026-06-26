@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coclaw"
+  short_description: "List and buy AI services on Stellar via x402"
+  default_prompt: "Use this skill to list AI services on Coclaw (sell side) or browse listings and call them directly with x402 payment (buy side). Results come back in the same response."

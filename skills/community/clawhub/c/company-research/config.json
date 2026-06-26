@@ -1,0 +1,16 @@
+{
+  "name": "company-research",
+  "engines": [
+    {"name": "Baidu", "url": "https://www.baidu.com/s?wd={keyword}", "region": "cn", "usage": "primary"},
+    {"name": "360", "url": "https://www.so.com/s?q={keyword}", "region": "cn", "usage": "verify"},
+    {"name": "WeChat", "url": "https://wx.sogou.com/weixin?type=2&query={keyword}", "region": "cn", "usage": "articles"},
+    {"name": "Toutiao", "url": "https://so.toutiao.com/search?keyword={keyword}", "region": "cn", "usage": "news"}
+  ],
+  "data_sources": [
+    {"name": "企查查", "url": "https://www.qcc.com/search?key={keyword}", "type": "enterprise"},
+    {"name": "天眼查", "url": "https://www.tianyancha.com/search?key={keyword}", "type": "enterprise"},
+    {"name": "爱企查", "url": "https://aiqicha.baidu.com/s?q={keyword}", "type": "enterprise"}
+  ],
+  "region": "苏州",
+  "focus_area": "苏州工业园区"
+}

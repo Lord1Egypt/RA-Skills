@@ -1,0 +1,205 @@
+spec_version: "0.1"
+
+skill_identity:
+  slug: "structured-visual-storytelling"
+  display_name: "Visual Storytelling"
+  id: "structured-visual-storytelling-factory-example"
+  name: "Structured Visual Storytelling Factory Example"
+  version: "0.1.0"
+  owner: "tanshow"
+  homepage: "local://cocoloop-skill-factory/output/structured-visual-storytelling"
+  target_platforms:
+    - platform: "codex"
+      support_level: "supported_public"
+      standard_source: "https://developers.openai.com/codex/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin"
+      note: "结构化视觉叙事能力样例"
+
+intent:
+  goal: "把视觉叙事任务收口成统一共享生产线，再分发到具体产物 adapter"
+  target_user: "需要批量生产 PPT、网页信息图或展示图 Skill 的工厂维护者"
+  use_scenarios:
+    - "生成毕业答辩 PPT Skill"
+    - "生成网页信息图 Skill"
+    - "生成单页展示图 Skill"
+
+scope:
+  must_have:
+    - "统一 story_units"
+    - "design_md 接入"
+    - "文字层级规则"
+    - "信息图元素规则"
+    - "adapter 路由"
+  nice_to_have:
+    - "更多视觉叙事产物适配器"
+  excluded:
+    - "具体视觉素材自动生成"
+
+output_profile:
+  has_visual_output: true
+  visual_output_types:
+    - "ppt"
+    - "web_infographic"
+    - "showcase_graphic"
+
+research_gate:
+  skill_identity:
+    status: "ready"
+    cocoloop_checked: true
+    clawhub_checked: true
+    slug_available: true
+    note: "示例名称已完成双源去重"
+  target_environment:
+    status: "ready"
+    current_environment: "codex authoring workspace on macOS"
+    target_environment: "codex visual artifact authoring workflow"
+    current_environment_is_target: true
+    note: "当前样例先验证本地结构化视觉叙事协议"
+  implementation_approach:
+    status: "ready"
+    selected_execution_plane: "Skill + CLI"
+    note: "需要 Skill 规则与本地生成链共同工作"
+
+interaction_contract:
+  research:
+    ask_one_question_per_turn: true
+    max_questions: 10
+    count_confirmation_questions: true
+    overflow_strategy: "write_open_gaps_then_continue"
+
+visual_storytelling:
+  enabled: true
+  artifact_family: "visual_narrative_artifact"
+  story_units:
+    - "cover"
+    - "context"
+    - "problem"
+    - "method"
+    - "evidence"
+    - "result"
+    - "comparison"
+    - "closing"
+  text_hierarchy:
+    required_layers:
+      - "kicker"
+      - "headline"
+      - "summary"
+      - "body"
+      - "metric"
+      - "annotation"
+    emphasis_modes:
+      - "size_contrast"
+      - "summary_line"
+      - "metric_cards"
+  infographic_elements:
+    required: true
+    minimum_per_artifact: 2
+    allowed_types:
+      - "process_flow"
+      - "comparison_block"
+      - "metric_cards"
+      - "matrix"
+      - "timeline"
+  output_adapters:
+    - "ppt"
+    - "web_infographic"
+    - "showcase_graphic"
+  editability_target: "editable"
+  validation_checks:
+    - "not_text_heavy"
+    - "has_text_hierarchy"
+    - "has_infographic_elements"
+
+design_md:
+  enabled: true
+  applies_to:
+    - "ppt"
+    - "web_infographic"
+    - "showcase_graphic"
+  source_mode: "preset"
+  preset_id: "apple"
+  preset_ref: "cocoloop-skill-factory/ref/design-md/apple.md"
+  user_provided_ref: ""
+  custom_style_notes:
+    - "共享视觉叙事层必须先读取 design.md"
+    - "优先用清楚层级和信息图结构表达关键结论"
+  official_library_ref: "cocoloop-skill-factory/ref/design-md/index.md"
+  prompt_user_to_use_first: true
+  output_path: "references/design.md"
+
+inputs:
+  - name: "source_material"
+    required: true
+    description: "需要转换为视觉叙事产物的原始材料、主题或结构化内容"
+    constraints:
+      note: "需要足以判断产物类型、叙事单元和目标读者"
+      type: "text_or_files"
+      allowed_values: []
+      source: "user_provided"
+
+outputs:
+  - name: "visual_storytelling_plan"
+    format: "markdown+yaml"
+    description: "视觉叙事共享主线、设计入口和 adapter 选择结果"
+    minimum_contents:
+      - "story_units"
+      - "design_md"
+      - "text_hierarchy"
+      - "infographic_elements"
+      - "output_adapters"
+
+fallback_policy:
+  allowed: true
+  summary: "如果具体 adapter 暂不可用，先交付结构化视觉叙事计划和设计约束"
+  fallback_outputs:
+    - "visual_storytelling_plan"
+
+dependencies:
+  - name: "design-md library"
+    kind: "reference"
+    required: true
+    note: "用于为视觉叙事产物提供默认设计入口"
+
+research_evidence:
+  coverage_status:
+    status: "complete"
+    note: "已覆盖共享视觉叙事抽象、design_md 接入、adapter 分流和生成链校验"
+  evidence_refs:
+    - source_type: "local_output"
+      mechanism: "capability_abstraction"
+      solution_name: "presentation-generation"
+      ref: "output/structured-visual-storytelling/reference-skill-analysis.md"
+      note: "用于抽象 PPT 与网页信息图的共享生产线"
+    - source_type: "local_capability"
+      mechanism: "factory_reference"
+      solution_name: "structured-visual-storytelling"
+      ref: "atomic-capability/structured-visual-storytelling/index.md"
+      note: "用于确认共享规则和 adapter 边界"
+  open_gaps: []
+
+primary_domain: "document_artifacts"
+peer_domains:
+  - "frontend_design"
+
+domain_supplements:
+  document_artifacts:
+    artifact_types:
+      - "ppt"
+      - "html_slides"
+    default_execution_plane: "Skill + CLI"
+  frontend_design:
+    visual_outputs:
+      - "web_infographic"
+      - "showcase_graphic"
+
+adapters:
+  codex:
+    status: "ready"
+    entry_points:
+      - "SKILL.md"
+      - "references/design.md"
+      - "references/visual-storytelling.md"
+    mapping_notes:
+      - "通过 factory-skill-builder 生成最小 Codex Skill 骨架"
+    known_gaps: []

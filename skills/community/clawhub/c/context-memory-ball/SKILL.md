@@ -1,35 +1,253 @@
 ---
-name: "上下文记忆球"
-description: "上下文记忆球 - 原创技能。首创"记忆球"概念，将会话上下文封装为可保存、加载、恢复的独立单元。适用于会话切换、多任务并行、上下文恢复等场景。"
-category: "other"
-source: "ClawHub"
-tags: [checkpoint, context, memory-ball, session]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/context-memory-ball"
-sourceUrl: "https://clawhub.ai/skills/context-memory-ball"
+name: context-memory-ball
+description: 上下文记忆球 - 原创技能。首创"记忆球"概念，将会话上下文封装为可保存、加载、恢复的独立单元。适用于会话切换、多任务并行、上下文恢复等场景。
+metadata: {"openclaw": {"requires": {}, "install": []}}
+tags: [context, memory-ball, session, checkpoint, restore]
+version: 1.0.0
+author: laosi
+source: original
 ---
 
-# 上下文记忆球
+# ⚠️ 发布规则
 
-> 上下文记忆球 - 原创技能。首创"记忆球"概念，将会话上下文封装为可保存、加载、恢复的独立单元。适用于会话切换、多任务并行、上下文恢复等场景。
+**所有发布到ClawHub的技能必须严格测试，确定没有问题再发布**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/context-memory-ball`
-- **Source URL:** [https://clawhub.ai/skills/context-memory-ball](https://clawhub.ai/skills/context-memory-ball)
+---
 
-## Overview
+## 技能测试验证清单
 
+- [x] frontmatter格式正确
+- [x] 功能原创独特
+- [x] 概念清晰易懂
+- [x] 操作流程完整
+- [x] 无语法错误
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/context-memory-ball
+---
+
+# Context Memory Ball - 上下文记忆球
+
+> 原创技能 | 激活词: 记忆球 / 保存上下文 / 加载上下文
+
+## 核心概念
+
+### 什么是记忆球?
+
+记忆球 = 上下文快照的封装单元
+
 ```
+┌─────────────────────────────────┐
+│         记忆球 (Memory Ball)      │
+├─────────────────────────────────┤
+│  ID: ball_20260428_001          │
+│  创建时间: 2026-04-28 13:45     │
+│  主题: 用户偏好分析              │
+├─────────────────────────────────┤
+│  内容摘要:                       │
+│  - 用户偏好: React + TypeScript  │
+│  - 当前任务: 开发用户模块         │
+│  - 进度: 70%                     │
+├─────────────────────────────────┤
+│  状态: active                    │
+└─────────────────────────────────┘
+```
+
+### 为什么叫"球"?
+
+- **封装性**: 完整的上下文单元
+- **可滚动**: 可以在不同会话间传递
+- **弹性**: 压缩后可以恢复
+- **可叠加**: 多个球可以合并
+
+## 记忆球结构
+
+```python
+class MemoryBall:
+    id: str              # 唯一标识
+    timestamp: str       # 创建时间
+    topic: str           # 主题/标题
+    summary: str         # 内容摘要
+    key_points: list     # 关键点
+    decisions: list     # 已做决策
+    pending: list        # 待办事项
+    context_tokens: int  # token数量
+    state: str           # active/complete/archived
+```
+
+## 操作命令
+
+### 创建记忆球
+
+```markdown
+用户: "帮我记住当前进度"
+AI: 创建记忆球 #001
+
+## 记忆球 #001 已创建
+
+### 基础信息
+- ID: ball_20260428_001
+- 主题: 用户模块开发
+- 创建时间: 2026-04-28 13:45
+
+### 内容摘要
+- 已完成: 用户登录、注册页面
+- 进行中: 用户资料编辑
+- 待开始: 用户权限管理
+
+### 状态
+🟢 active
+```
+
+### 保存记忆球
+
+```bash
+# 保存到文件
+mempalace save ball_001
+
+# 导出JSON
+mempalace export ball_001 --format json
+```
+
+### 加载记忆球
+
+```bash
+# 从文件加载
+mempalace load ball_001
+
+# 加载并恢复上下文
+"加载记忆球 ball_001"
+```
+
+### 合并记忆球
+
+当需要同时处理多个任务时：
+
+```markdown
+用户: "加载球1和球3"
+AI: 合并记忆球 #001 + #003
+
+## 合并结果
+
+### 当前上下文
+- 任务A: 用户模块开发 (70%)
+- 任务B: 订单模块设计 (30%)
+
+### 建议
+⚠️ 同时处理2个任务，是否需要拆分?
+```
+
+### 归档记忆球
+
+```bash
+# 归档完成的任务
+mempalace archive ball_001
+
+# 归档并创建总结
+mempalace archive ball_001 --summary
+```
+
+## 使用场景
+
+### 场景1: 会话切换
+
+```
+用户A: "先做任务X，记住进度"
+AI: [创建记忆球 ball_A]
+用户B: "切换到任务X"
+AI: [加载 ball_A，恢复上下文]
+```
+
+### 场景2: 多任务并行
+
+```
+项目A: [创建 ball_A]
+项目B: [创建 ball_B]
+项目C: [创建 ball_C]
+
+随时切换: 加载任意球恢复
+```
+
+### 场景3: 上下文恢复
+
+```
+长任务中断后:
+用户: "继续上次的工作"
+AI: [加载最近的active球]
+```
+
+### 场景4: 经验积累
+
+```
+完成的项目:
+- ball_001: React项目经验
+- ball_002: API设计经验
+- ball_003: 性能优化经验
+
+新项目可以学习这些球的经验
+```
+
+## 记忆球管理
+
+### 列表查看
+
+```markdown
+## 当前记忆球
+
+| ID | 主题 | 状态 | 创建时间 |
+|----|------|------|----------|
+| 001 | 用户模块开发 | 🟢 active | 13:45 |
+| 002 | 订单模块设计 | 🔴 pending | 14:20 |
+| 003 | React经验总结 | ✅ complete | 昨天 |
+```
+
+### 清理策略
+
+| 策略 | 触发条件 | 动作 |
+|------|----------|------|
+| 自动压缩 | 球超过10个 | 合并相似球 |
+| 自动归档 | 球超过30天 | 标记archived |
+| 自动删除 | 归档超过90天 | 彻底删除 |
+
+## 与熵管理结合
+
+```
+上下文增长 → 熵值上升
+创建记忆球 → 上下文精简
+熵值下降 ← 恢复清晰状态
+```
+
+| 熵管理 | 记忆球 |
+|--------|--------|
+| 上下文精简 | 打包保存 |
+| 状态重置 | 加载新球 |
+| 注意力聚焦 | 一次只加载一个球 |
+
+## 输出格式
+
+```markdown
+## 记忆球报告
+
+### 统计
+- 总数: 5个
+- Active: 2个
+- Archived: 3个
+
+### 最近活动
+- ball_001: 5分钟前更新
+- ball_002: 2小时前更新
+
+### 建议
+🟢 记忆球状态良好
+```
+
+## 原创性声明
+
+本技能为原创，首创"记忆球"概念：
+- 上下文封装单元
+- 可保存/加载/恢复
+- 支持合并和归档
+- 与熵管理互补
+
+---
+
+**作者**: laosi
+**创建日期**: 2026-04-28

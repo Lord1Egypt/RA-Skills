@@ -1,35 +1,49 @@
 ---
-name: "Comment Replies"
-description: "Draft short, high-clarity replies for comments, objections, and pre-sale questions. Use when responding to public comments on TikTok, X, Instagram, YouTube,..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/comment-replies"
-sourceUrl: "https://clawhub.ai/skills/comment-replies"
+name: comment-replies
+description: Draft short, high-clarity replies for comments, objections, and pre-sale questions. Use when responding to public comments on TikTok, X, Instagram, YouTube, or product pages, especially when replies need to reduce hesitation, answer common questions, and move the conversation to the next step without sounding pushy.
 ---
 
 # Comment Replies
 
-> Draft short, high-clarity replies for comments, objections, and pre-sale questions. Use when responding to public comments on TikTok, X, Instagram, YouTube,...
+Draft replies that remove doubt and keep momentum.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/comment-replies`
-- **Source URL:** [https://clawhub.ai/skills/comment-replies](https://clawhub.ai/skills/comment-replies)
+## Workflow
 
-## Overview
+1. Identify the comment type.
+   - product question
+   - trust objection
+   - shipping / price / fit concern
+   - positive interest but unclear next step
 
+2. Infer the real hesitation behind the wording.
+   - trust
+   - relevance
+   - value
+   - logistics
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/comment-replies
-```
+3. Write a short public reply.
+   - answer the concern
+   - keep context clear
+   - open the next step
+
+4. If useful, add a softer alternate version.
+
+## Output format
+
+Return:
+- intent label
+- primary short reply
+- softer alternate reply
+- optional CTA line
+
+## Quality bar
+
+- Prefer short public replies over paragraphs.
+- Answer the hesitation, not only the literal words.
+- Keep claims safe and realistic.
+- Avoid robotic phrasing or hard-sell language.
+- Do not invent product details, pricing, shipping, or policy terms.
+
+## Resources
+
+Read `references/output-template.md` for a compact response structure.

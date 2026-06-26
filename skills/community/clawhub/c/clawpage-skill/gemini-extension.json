@@ -1,0 +1,5 @@
+{
+  "name": "clawpage-skill",
+  "version": "0.1.0",
+  "description": "Turn long text into interactive Clawpage web apps and dashboards. Routes to page/template create or update workflows and publishes a URL via @clawpage.ai/cli (npm)."
+}

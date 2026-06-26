@@ -1,35 +1,23 @@
 ---
-name: "Cmd Executor"
+name: cmd-executor
 description: "Executes Windows shell commands locally on the OpenClaw gateway, returning output and errors for automation and system management."
-category: "other"
-source: "ClawHub"
+source: ClawHub
+version: 0.0.2
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cmd-executor"
-sourceUrl: "https://clawhub.ai/skills/cmd-executor"
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
 ---
 
 # Cmd Executor
 
-> Executes Windows shell commands locally on the OpenClaw gateway, returning output and errors for automation and system management.
+# Cmd Executor
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cmd-executor`
-- **Source URL:** [https://clawhub.ai/skills/cmd-executor](https://clawhub.ai/skills/cmd-executor)
+## Description
+Runs any Windows command locally and replies with the output.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cmd-executor
+### Usage
+Send a message starting with `Run command:` followed by the command.
+Example:
 ```
+Run command: dir "C:\Users\Md Sadik Laskar\Documents"
+```
+The assistant will reply with the listing.

@@ -1,0 +1,23 @@
+{
+  "name": "clklog-deployment",
+  "version": "1.0.0",
+  "description": "帮助用户在本地环境中快速部署 ClkLog 开源用户行为分析系统，支持 Docker Compose（标准/快速模式）和源码部署两种方式，包含环境检查、部署引导、常见问题排查及开源协议提醒。支持自定义事件分析，漏斗分析，元事件管理，日志查询等功能",
+  "author": "真圆氦狗",
+  "license": "AGPL-3.0",
+  "triggers": [
+    "部署 ClkLog",
+    "安装 ClkLog",
+    "ClkLog 本地部署",
+    "ClkLog 私有化部署",
+    "搭建 ClkLog"
+  ],
+  "platforms": ["Linux", "macOS"],
+  "prerequisites": {
+    "docker": "24+",
+    "dockerCompose": "2.27.0+",
+    "memory": "8GB",
+    "cpu": "4核",
+    "disk": "100GB"
+  },
+  "tags": ["ClkLog", "用户行为分析", "埋点", "ClickHouse", "Docker", "部署"]
+}

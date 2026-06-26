@@ -1,0 +1,12 @@
+{
+  "name": "comic-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Utilities for comic",
+  "scripts": {
+    "test": "npx -y bun test"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}

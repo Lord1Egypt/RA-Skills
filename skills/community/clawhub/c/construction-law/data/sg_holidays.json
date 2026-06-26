@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "source": "https://www.mom.gov.sg/employment-practices/public-holidays",
+    "last_verified": "2026-05-09",
+    "refresh_procedure": "Check MOM gazette annually (typically published Oct-Nov for next year). Update this file, run tests, bump version.",
+    "notes": "Sunday in-lieu days are derived automatically by sop_calculator.py per Holidays Act 1998 s.4(2) — do NOT list them here. Only list the gazetted dates."
+  },
+  "2025": {
+    "source": "eGazette No. 2493 — Singapore Public Holidays 2025 (published 5 Aug 2024)",
+    "url": "https://assets.egazette.gov.sg/2024/Government%20Gazette/Others/2493.pdf",
+    "dates": [
+      "2025-01-01",
+      "2025-01-29",
+      "2025-01-30",
+      "2025-03-31",
+      "2025-04-18",
+      "2025-05-01",
+      "2025-05-12",
+      "2025-06-07",
+      "2025-08-09",
+      "2025-10-20",
+      "2025-12-25"
+    ],
+    "names": [
+      "New Year's Day",
+      "Chinese New Year Day 1",
+      "Chinese New Year Day 2",
+      "Hari Raya Puasa",
+      "Good Friday",
+      "Labour Day",
+      "Vesak Day",
+      "Hari Raya Haji",
+      "National Day",
+      "Deepavali",
+      "Christmas Day"
+    ],
+    "notes": "HRP and HRH are subject to moon sighting and may shift by ±1 day; gazette is authoritative."
+  },
+  "2026": {
+    "source": "eGazette No. 2258 — Singapore Public Holidays 2026 (published 2025)",
+    "url": "https://assets.egazette.gov.sg/2025/Government%20Gazette/Others/2258.pdf",
+    "dates": [
+      "2026-01-01",
+      "2026-02-17",
+      "2026-02-18",
+      "2026-03-21",
+      "2026-04-03",
+      "2026-05-01",
+      "2026-05-27",
+      "2026-05-31",
+      "2026-08-09",
+      "2026-11-08",
+      "2026-12-25"
+    ],
+    "names": [
+      "New Year's Day",
+      "Chinese New Year Day 1",
+      "Chinese New Year Day 2",
+      "Hari Raya Puasa",
+      "Good Friday",
+      "Labour Day",
+      "Hari Raya Haji",
+      "Vesak Day",
+      "National Day",
+      "Deepavali",
+      "Christmas Day"
+    ],
+    "notes": "HRP and HRH are subject to moon sighting and may shift by ±1 day; gazette is authoritative.",
+    "mom_press_release": "https://www.mom.gov.sg/newsroom/press-releases/2025/0616-public-holidays-for-2026"
+  },
+  "2027": {
+    "source": "MOM gazette — Singapore Public Holidays 2027 (provisional — verify when gazetted, expected Nov 2026)",
+    "url": "https://www.mom.gov.sg/employment-practices/public-holidays",
+    "dates": [
+      "2027-01-01",
+      "2027-02-06",
+      "2027-02-07",
+      "2027-03-26",
+      "2027-05-01",
+      "2027-05-11",
+      "2027-05-21",
+      "2027-08-09",
+      "2027-10-28",
+      "2027-12-25"
+    ],
+    "names": [
+      "New Year's Day",
+      "Chinese New Year Day 1",
+      "Chinese New Year Day 2",
+      "Hari Raya Puasa",
+      "Labour Day",
+      "Vesak Day",
+      "Hari Raya Haji",
+      "National Day",
+      "Deepavali",
+      "Christmas Day"
+    ],
+    "notes": "Provisional — verify when gazetted (expected Nov 2026). HRP and HRH subject to moon sighting."
+  }
+}

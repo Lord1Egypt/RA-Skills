@@ -1,0 +1,36 @@
+{
+  "name": "crayfish-diary",
+  "version": "1.0.0",
+  "displayName": "Crayfish Diary",
+  "description": "A WorkBuddy skill for quick diary and memo recording with automatic year/month/day directory organization. Start recording with '帮我记一下' and end with '结束记录'.",
+  "author": "italks",
+  "license": "MIT",
+  "keywords": [
+    "diary",
+    "memo",
+    "notes",
+    "markdown",
+    "productivity"
+  ],
+  "categories": [
+    "productivity",
+    "note-taking"
+  ],
+  "triggers": [
+    "帮我记一下",
+    "help me record",
+    "start recording",
+    "结束记录",
+    "end recording",
+    "finish recording"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/italks/crayfish-diary.git"
+  },
+  "readme": "README.md",
+  "icon": "crayfish_icon.svg",
+  "engines": {
+    "workbuddy": ">=1.0.0"
+  }
+}

@@ -1,0 +1,24 @@
+# Corpus Builder - Requirements
+
+# ChromaDB 向量数据库
+chromadb>=0.5.0
+
+# 嵌入模型（语义向量化）
+sentence-transformers>=2.2.2
+
+# 配置文件解析
+pyyaml>=6.0.1
+
+# CLI 美化输出
+rich>=13.7.0
+
+# 内存监控
+psutil>=5.9.8
+
+# sqlite3 版本兼容（ChromaDB 需要 sqlite3 >= 3.35.0）
+# 如果系统 sqlite3 版本过低，安装此包作为替代
+pysqlite3-binary>=0.5.2
+
+# LLM API 调用（AI 标注）
+# 使用 OpenAI 兼容 API 调用 DashScope Coding
+openai>=1.0.0

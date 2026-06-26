@@ -1,0 +1,49 @@
+{
+  "template_name": "twitter_standard",
+  "description": "Standard Twitter post template with optimal formatting",
+  "max_length": 280,
+  "recommended_length": 240,
+  "structure": {
+    "hook": "Attention-grabbing first line",
+    "value": "Main content or insight",
+    "cta": "Call to action",
+    "hashtags": "Relevant hashtags",
+    "link": "Optional shortened link"
+  },
+  "examples": [
+    {
+      "type": "educational",
+      "template": "Did you know? {fact}\n\n{explanation}\n\nLearn more: {link}\n\n{hashtags}",
+      "example": "Did you know? AI can now write better than 80% of humans.\n\nNew models understand context and nuance like never before.\n\nLearn more: bit.ly/ai-writing\n\n#AI #Writing #Technology"
+    },
+    {
+      "type": "promotional",
+      "template": "🎉 New Feature Alert! {feature}\n\n{benefit}\n\nTry it now: {link}\n\n{hashtags}",
+      "example": "🎉 New Feature Alert! Automated content scheduling!\n\nSave 10+ hours per week on social media management.\n\nTry it now: bit.ly/try-scheduling\n\n#ProductLaunch #SocialMedia #Automation"
+    },
+    {
+      "type": "engagement",
+      "template": "Question: {question}\n\nReply with your answer! 👇\n\n{hashtags}",
+      "example": "Question: What's your biggest content creation challenge?\n\nReply with your answer! 👇\n\n#ContentCreation #Marketing #Poll"
+    }
+  ],
+  "hashtag_strategy": {
+    "branded": 1,
+    "industry": 2,
+    "trending": 1,
+    "max_total": 4
+  },
+  "best_practices": [
+    "Keep main message under 200 characters",
+    "Place hashtags at the end",
+    "Use emojis sparingly (1-2 max)",
+    "Include visual when possible",
+    "Mention relevant accounts (@username)",
+    "Use sentence case, not all caps"
+  ],
+  "scheduling": {
+    "optimal_times": ["8-10 AM", "12-1 PM", "6-9 PM"],
+    "best_days": ["Tuesday", "Wednesday", "Thursday"],
+    "frequency": "3-5 times per day"
+  }
+}

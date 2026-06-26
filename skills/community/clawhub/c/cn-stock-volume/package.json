@@ -1,0 +1,35 @@
+{
+  "name": "cn-stock-volume",
+  "version": "3.1.0",
+  "description": "获取 A 股市场核心数据：三大指数点位及涨跌幅、涨跌家数比。成交量数据支持手动补充。",
+  "author": "shinelp100",
+  "license": "MIT",
+  "keywords": [
+    "A 股",
+    "股票",
+    "指数",
+    "上证指数",
+    "深证成指",
+    "创业板指",
+    "涨跌家数",
+    "同花顺问财"
+  ],
+  "categories": [
+    "金融",
+    "数据查询"
+  ],
+  "scripts": {
+    "report": "python3 scripts/generate_report.py",
+    "fetch": "python3 scripts/fetch_data.py",
+    "manual": "python3 scripts/补数据.py"
+  },
+  "main": "scripts/generate_report.py",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shinelp100/cn-stock-volume.git"
+  },
+  "homepage": "https://github.com/shinelp100/cn-stock-volume#readme",
+  "bugs": {
+    "url": "https://github.com/shinelp100/cn-stock-volume/issues"
+  }
+}

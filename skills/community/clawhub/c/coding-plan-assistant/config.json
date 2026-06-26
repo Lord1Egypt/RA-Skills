@@ -1,0 +1,144 @@
+{
+  "version": "1.0.0",
+  "name": "coding-plan-assistant",
+  "description": "管理各种编程助手的注册、购买和凭据配置流程",
+  "platforms": {
+    "github-copilot": {
+      "name": "GitHub Copilot",
+      "envKey": "GITHUB_COPILOT_TOKEN",
+      "registerUrl": "https://github.com/features/copilot/signup",
+      "pricingUrl": "https://github.com/features/copilot#pricing",
+      "freeTier": "学生免费（需验证）",
+      "pricing": "$10/月 或 $100/年",
+      "billing": "订阅制",
+      "steps": [
+        "访问 GitHub Copilot 页面",
+        "登录 GitHub 账户",
+        "选择个人版或学生版",
+        "学生需验证教育邮箱",
+        "完成支付（个人版）",
+        "在 IDE 中安装 Copilot 插件"
+      ],
+      "references": ["references/github-copilot.md"]
+    },
+    "claude-code": {
+      "name": "Claude Code",
+      "envKey": "CLAUDE_API_KEY",
+      "registerUrl": "https://claude.ai/signup",
+      "pricingUrl": "https://www.anthropic.com/pricing",
+      "freeTier": "有限免费额度",
+      "pricing": "$20/月 (Pro)",
+      "billing": "订阅制 + 按量",
+      "steps": [
+        "访问 Claude 官网",
+        "注册 Anthropic 账户",
+        "验证邮箱",
+        "选择 Pro 订阅或 API 访问",
+        "在 API 设置中生成 Key",
+        "配置到本地环境"
+      ],
+      "references": ["references/claude-code.md"]
+    },
+    "gemini-cli": {
+      "name": "Gemini CLI",
+      "envKey": "GEMINI_API_KEY",
+      "registerUrl": "https://makersuite.google.com/app/apikey",
+      "pricingUrl": "https://ai.google.dev/pricing",
+      "freeTier": "每分钟 60 次请求（免费）",
+      "pricing": "$0.00025/1K tokens (Flash)",
+      "billing": "按量付费",
+      "steps": [
+        "访问 Google AI Studio",
+        "登录 Google 账户",
+        "创建新项目",
+        "在 API 页面生成 Key",
+        "启用 Gemini API",
+        "下载并配置 Gemini CLI"
+      ],
+      "references": ["references/gemini-cli.md"]
+    },
+    "codex-openai": {
+      "name": "Codex (OpenAI)",
+      "envKey": "OPENAI_API_KEY",
+      "registerUrl": "https://platform.openai.com/signup",
+      "pricingUrl": "https://openai.com/api/pricing",
+      "freeTier": "新用户 $5 赠金（3 个月）",
+      "pricing": "$0.002/1K tokens",
+      "billing": "按量付费",
+      "steps": [
+        "访问 OpenAI 平台",
+        "注册账户",
+        "验证手机号",
+        "绑定支付方式",
+        "在 API Keys 页面创建 Key",
+        "配置到环境变量"
+      ],
+      "references": ["references/codex-openai.md"]
+    },
+    "qwen-code": {
+      "name": "阿里云百炼 Qwen Code",
+      "envKey": "QWEN_API_KEY",
+      "registerUrl": "https://bailian.console.aliyun.com",
+      "pricingUrl": "https://help.aliyun.com/pricing/bailian",
+      "freeTier": "新用户免费额度",
+      "pricing": "按模型和 tokens 计费",
+      "billing": "按量付费",
+      "steps": [
+        "访问阿里云百炼控制台",
+        "登录阿里云账户",
+        "开通百炼服务",
+        "创建 API Key",
+        "选择 Qwen 模型",
+        "配置到本地环境"
+      ],
+      "references": ["references/qwen-code.md"]
+    },
+    "baidu-paddle": {
+      "name": "百度飞桨",
+      "envKey": "BAIDU_API_KEY",
+      "registerUrl": "https://ai.baidu.com",
+      "pricingUrl": "https://cloud.baidu.com/pricing",
+      "freeTier": "每日免费调用额度",
+      "pricing": "按调用次数计费",
+      "billing": "按量付费",
+      "steps": [
+        "访问百度智能云",
+        "注册百度账户",
+        "实名认证",
+        "创建应用获取 AK/SK",
+        "开通文心一言服务",
+        "配置到本地环境"
+      ],
+      "references": ["references/baidu-paddle.md"]
+    },
+    "openrouter": {
+      "name": "OpenRouter",
+      "envKey": "OPENROUTER_API_KEY",
+      "registerUrl": "https://openrouter.ai/signup",
+      "pricingUrl": "https://openrouter.ai/models",
+      "freeTier": "有免费模型可用",
+      "pricing": "$0.0001-0.1/1K tokens",
+      "billing": "按量付费（预充值）",
+      "steps": [
+        "访问 OpenRouter 官网",
+        "注册账户",
+        "充值账户（最低 $5）",
+        "在 Keys 页面创建 API Key",
+        "选择需要的模型",
+        "配置到本地环境"
+      ],
+      "references": ["references/openrouter.md"]
+    }
+  },
+  "security": {
+    "envPath": ".openclaw/.env",
+    "maskPattern": "...***",
+    "rotationReminder": "90 天"
+  },
+  "recommendations": {
+    "student": "github-copilot",
+    "individual": "openrouter",
+    "enterprise": "claude-code",
+    "free-first": "openrouter"
+  }
+}

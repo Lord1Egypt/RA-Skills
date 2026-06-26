@@ -1,0 +1,7 @@
+interface:
+  display_name: "Claws Temple Bounty"
+  short_description: "Route explicit Claws Temple Bounty path requests in Chinese or English, not generic numbered tasks."
+  default_prompt: "Use $claws-temple-bounty only when this user is explicitly inside the branded Claws Temple Bounty 2.0 path, then guide the next task in a branded, summary-first way."
+
+policy:
+  allow_implicit_invocation: false

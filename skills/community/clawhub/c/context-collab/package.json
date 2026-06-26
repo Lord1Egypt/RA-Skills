@@ -1,0 +1,57 @@
+{
+  "name": "context",
+  "version": "1.0.0",
+  "description": "Multi-agent collaboration protocol engine — shared spaces with auto-injected context",
+  "author": "luojingwei",
+  "license": "MIT",
+  "keywords": ["collaboration", "multi-agent", "context", "space", "protocol"],
+  "repository": "https://github.com/luojingwei123/context",
+  "openclaw": {
+    "type": "plugin",
+    "minVersion": "0.9.0",
+    "config": {
+      "serverUrl": {
+        "type": "string",
+        "default": "http://localhost:3100",
+        "description": "Context Server URL"
+      },
+      "autoInject": {
+        "type": "boolean",
+        "default": true,
+        "description": "Auto-inject protocol files into system prompt"
+      },
+      "token": {
+        "type": "string",
+        "default": "",
+        "description": "Auth token for Context Server API"
+      }
+    },
+    "tools": [
+      "context_create_space",
+      "context_lookup_space",
+      "context_read_file",
+      "context_write_file",
+      "context_list_files",
+      "context_delete_file",
+      "context_get_protocol",
+      "context_update_task",
+      "context_add_member",
+      "context_list_members",
+      "context_get_annotations",
+      "context_resolve_annotation",
+      "context_search_files",
+      "context_notify_member"
+    ],
+    "commands": [
+      "ctx_create",
+      "ctx_info",
+      "ctx_files",
+      "ctx_tasks",
+      "ctx_team"
+    ],
+    "hooks": [
+      "before_prompt_build",
+      "agent:bootstrap"
+    ]
+  }
+}

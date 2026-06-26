@@ -1,0 +1,202 @@
+spec_version: "0.1"
+
+skill_identity:
+  slug: "spec-schema-hardening"
+  display_name: "Schema Hardening"
+  id: "cocoloop.spec-schema-hardening"
+  name: "Spec Schema Hardening"
+  version: "0.2.0"
+  owner: "tanshow"
+  homepage: "codex-prd/spec-schema-and-protocol.md"
+  target_platforms:
+    - platform: "codex"
+      support_level: "supported_public"
+      standard_source: "https://developers.openai.com/codex/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin"
+      note: "主平台"
+    - platform: "claude_code"
+      support_level: "supported_public"
+      standard_source: "https://code.claude.com/docs/en/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin_skill"
+      note: "保留兼容"
+    - platform: "openclaw"
+      support_level: "supported_public"
+      standard_source: "https://docs.openclaw.ai/tools/clawhub"
+      validation_mode: "public_validator"
+      publish_mode: "clawhub"
+      note: "保留 adapter 位置"
+
+intent:
+  goal: "为 skill-factory 建立统一的结构化结果协议"
+  target_user: "需要构建、迁移或审查 Skill 的作者"
+  use_scenarios:
+    - "先形成统一 spec，再继续补齐研究和构建文档"
+    - "在多平台模板之前定义稳定结果边界"
+
+scope:
+  must_have:
+    - "提供结构化 spec schema 定义"
+    - "提供平台无关 spec 模板"
+    - "提供研究证据和评分边界规则"
+  nice_to_have:
+    - "补充任务域补充块示例"
+    - "补充 output 样例"
+  excluded:
+    - "不实现完整发布器"
+    - "不定义具体实现路径"
+
+inputs:
+  - name: "product_rules"
+    required: true
+    description: "来自 prd 和 codex-prd 的产品规则"
+    constraints:
+      note: "需要足以支撑结果协议字段收口"
+      type: "document_set"
+      allowed_values: []
+      source: "workspace_scan"
+
+outputs:
+  - name: "spec_schema_docs"
+    format: "markdown"
+    description: "结构化协议与评分说明文档"
+    minimum_contents:
+      - "包含字段语义"
+      - "包含研究证据规则"
+  - name: "spec_template"
+    format: "yaml"
+    description: "平台无关 spec 模板"
+    minimum_contents:
+      - "包含 core 字段"
+      - "包含 domain_supplements 和 adapters"
+
+output_profile:
+  has_visual_output: false
+  visual_output_types: []
+
+research_gate:
+  skill_identity:
+    status: "ready"
+    cocoloop_checked: true
+    clawhub_checked: true
+    slug_available: true
+    note: "示例名称已完成双源去重"
+  target_environment:
+    status: "ready"
+    current_environment: "codex / claude code / openclaw authoring analysis workspace"
+    target_environment: "multi-platform skill authoring workflow"
+    current_environment_is_target: false
+    note: "当前环境用于协议设计，目标环境是多平台 authoring 适配"
+  implementation_approach:
+    status: "ready"
+    selected_execution_plane: "Skill + CLI"
+    note: "模板与协议需要配合本地 builder / validator 脚本验证"
+
+interaction_contract:
+  research:
+    ask_one_question_per_turn: true
+    max_questions: 10
+    count_confirmation_questions: true
+    overflow_strategy: "write_open_gaps_then_continue"
+
+success_criteria:
+  - "spec.yaml 已经进入模板体系"
+  - "主 Skill 和构建参考已经引用结构化协议层"
+  - "评分结果保持在协议本体之外"
+
+failure_modes:
+  - mode: "schema_only_in_discussion"
+    description: "规则只停留在讨论里，没有形成模板和产物"
+    user_impact: "后续构建无法复用"
+  - mode: "evidence_not_traceable"
+    description: "研究证据没有进入协议层"
+    user_impact: "协议可信度不足"
+
+fallback_policy:
+  allowed: true
+  summary: "允许先形成平台无关协议，再逐步补平台样例"
+  fallback_outputs:
+    - "先保留 adapter 骨架"
+    - "先保留 open_gaps 说明"
+
+dependencies:
+  - name: "codex-prd"
+    kind: "document_set"
+    required: true
+    note: "提供需求基线"
+  - name: "template_index"
+    kind: "document"
+    required: true
+    note: "提供模板落点"
+
+research_evidence:
+  coverage_status:
+    status: "sufficient"
+    note: "当前仓库内的流程、模板和质量文档已经覆盖主要协议落点"
+  evidence_refs:
+    - source_type: "workspace"
+      mechanism: "construction_flow"
+      solution_name: "main skill and construction docs"
+      ref: "cocoloop-skill-factory/SKILL.md"
+      note: "用于确认统一 spec 的流程位置"
+    - source_type: "workspace"
+      mechanism: "template_system"
+      solution_name: "template index"
+      ref: "cocoloop-skill-factory/utils/template/index.md"
+      note: "用于确认 spec 模板的落点"
+    - source_type: "workspace"
+      mechanism: "quality_review"
+      solution_name: "benchmark and quality"
+      ref: "codex-prd/benchmark-and-quality.md"
+      note: "用于确认 spec review 的质量定位"
+  open_gaps:
+    - gap_type: "adapter_examples"
+      impact_level: "medium"
+      note: "仍需补不同平台的真实 adapter 例子"
+
+primary_domain: "docs_research"
+peer_domains:
+  - "engineering_delivery"
+
+domain_supplements:
+  docs_research:
+    expected_findings:
+      - "统一协议层先于平台模板"
+    comparison_focus:
+      - "平台模板承接协议，不重新定义核心边界"
+    decision_outputs:
+      - "形成 schema 文档和平台无关模板"
+  engineering_delivery:
+    delivery_shape:
+      - "确认研究证据如何进入协议"
+    execution_preferences:
+      - "比较协议、模板、评分三层边界"
+    automation_boundaries:
+      - "确定 spec review 不进入协议本体"
+
+adapters:
+  codex:
+    status: "draft"
+    entry_points:
+      - "SKILL.md"
+      - "utils/template/spec-template.yaml"
+    mapping_notes:
+      - "主协议字段直接作为构建准备输入"
+    known_gaps: []
+  claude_code:
+    status: "draft"
+    entry_points:
+      - "SKILL.md"
+    mapping_notes:
+      - "保留同一份结果协议的兼容表达"
+    known_gaps:
+      - "仍需补真实示例"
+  openclaw:
+    status: "draft"
+    entry_points:
+      - "SKILL.md"
+    mapping_notes:
+      - "先保留 adapter 骨架"
+    known_gaps:
+      - "仍需补真实示例"

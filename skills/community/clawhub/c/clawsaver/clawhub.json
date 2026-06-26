@@ -1,0 +1,59 @@
+{
+  "name": "clawsaver",
+  "version": "1.0.0",
+  "title": "ClawSaver — Session Debouncer for Cost Reduction",
+  "description": "Session-level message batching to reduce model calls and token costs by 20–40%. Transparent, observable, and production-ready.",
+  "author": "OpenClaw Contributors",
+  "license": "MIT",
+  "repository": "https://github.com/openclaw/skills",
+  "homepage": "https://github.com/openclaw/skills/tree/main/clawsaver",
+  "categories": [
+    "optimization",
+    "performance",
+    "cost-reduction"
+  ],
+  "keywords": [
+    "batching",
+    "debouncing",
+    "cost-reduction",
+    "token-optimization",
+    "model-efficiency",
+    "session-management",
+    "performance",
+    "savings"
+  ],
+  "features": [
+    "Automatic session-level message batching",
+    "Configurable debounce timing (200ms–3s)",
+    "Built-in metrics and observability",
+    "Pre-tuned configuration profiles (Conservative, Aggressive, Real-Time)",
+    "Zero external dependencies",
+    "Production-ready with full test suite"
+  ],
+  "documentation": {
+    "quick_start": "README.md",
+    "setup": "QUICKSTART.md",
+    "integration": "INTEGRATION.md",
+    "overview": "SUMMARY.md",
+    "architecture": "DECISION_RECORD.md"
+  },
+  "tags": [
+    "production-ready",
+    "v1.0.0",
+    "tested",
+    "zero-dependencies",
+    "observable"
+  ],
+  "tested": true,
+  "maintained": true,
+  "author_contact": "https://github.com/openclaw",
+  "compatibility": {
+    "minNode": "16.0.0",
+    "type": "agent-utility"
+  },
+  "metrics": {
+    "expectedCostSavings": "20-40%",
+    "expectedLatency": "+800ms (tunable)",
+    "memoryPerSession": "1-2 KB"
+  }
+}

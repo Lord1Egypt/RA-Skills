@@ -1,0 +1,11 @@
+thresholds:
+  pricing:
+    absolute: 0.05
+  features:
+    added: true
+    removed: true
+
+alerts:
+  - type: pricing_change
+    channel: log
+    enabled: true

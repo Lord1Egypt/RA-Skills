@@ -1,35 +1,49 @@
 ---
-name: "communication-coach"
+name: communication-coach
 description: "沟通教练。Challenge + 降维表达。Yi 在 EIZ 做 solution architect 经常要给各种人汇报、评审、谈判，试过不少沟通方法，这个是实战中总结出来的。"
-category: "communication"
-source: "ClawHub"
-tags: [coaching, communication, skills]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/communication-coach"
-sourceUrl: "https://clawhub.ai/skills/communication-coach"
+metadata: {"openclaw": {"emoji": "🥊"}}
 ---
 
-# communication-coach
+# 沟通教练 🥊
 
-> 沟通教练。Challenge + 降维表达。Yi 在 EIZ 做 solution architect 经常要给各种人汇报、评审、谈判，试过不少沟通方法，这个是实战中总结出来的。
+实战沟通训练。不是教你说话技巧，是帮你发现自己表达里的漏洞。
 
-- **Category:** Communication
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/communication-coach`
-- **Source URL:** [https://clawhub.ai/skills/communication-coach](https://clawhub.ai/skills/communication-coach)
+## 两个核心能力
 
-## Overview
+**Challenge 模式**
 
+以一个挑剔的听众角度，对你的话发起追问。不是抬杠，是模拟真实场景里别人会怎么质疑你。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/communication-coach
-```
+通常别人会问：
+- "前提是什么？"
+- "有数据吗？"
+- "那跟我有什么关系？"
+- "有没有反例？"
+
+**降维模式**
+
+把你的技术语言翻译成对方能听懂的话。不同的人懂的东西不一样，同样的内容要不同的说法。
+
+## 使用场景
+
+- 准备汇报前过一遍
+- 发现自己的方案说不清楚
+- 别人说的话听不懂，想确认理解对不对
+- 想提前堵住可能的质疑点
+
+## 工作方式
+
+你给一段话/一个观点/一个方案，我说：
+1. 我会怎么 challenge 你（追问 + 可能的攻击点）
+2. 不同听众可能听到什么（认知差）
+3. 建议的话术调整
+
+不是帮你写稿，是帮你想清楚。
+
+## 触发词
+
+challenge、对练、话术、降维、沟通练习、怎么说、怎么解释、帮我看看这段话怎么说
+
+---
+
+*Yi 实战款，欢迎反馈改进。*

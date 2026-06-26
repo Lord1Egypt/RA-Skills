@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connect Wallet — Credara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#fafaf8;--offwhite:#f2f0ec;--cream:#e8e4dc;
+  --black:#111;--charcoal:#333;--gray:#777;--light-gray:#bbb;--faint:#eee;
+  --red:#c62828;--red-bright:#e53935;--red-dark:#8e0000;--red-faint:rgba(198,40,40,.06);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+}
+html{scroll-behavior:smooth;background:var(--white);color:var(--black);font-family:var(--sans)}
+body{overflow-x:hidden}
+::selection{background:var(--red);color:var(--white)}
+a{color:var(--red);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.7}
+button{cursor:pointer;font-family:var(--sans)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 3rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,248,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav-mark{font-family:var(--serif);font-size:1.4rem;font-style:italic;cursor:pointer;color:var(--black);text-decoration:none}
+.nav-links{display:flex;gap:.25rem;align-items:center}
+.nav-link{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.45rem .9rem;color:var(--gray);background:none;border:none;text-decoration:none;transition:color .2s}
+.nav-link:hover{color:var(--black);opacity:1}
+.nav-link.active{color:var(--red)}
+.nav-right{display:flex;gap:.75rem}
+.nav-btn{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid var(--cream);color:var(--charcoal);background:none;transition:all .2s;text-decoration:none;display:inline-block}
+.nav-btn:hover{border-color:var(--charcoal);opacity:1}
+.nav-btn.primary{background:var(--red);color:var(--white);border-color:var(--red)}
+.nav-btn.primary:hover{background:var(--red-bright)}
+
+/* CONNECT PAGE */
+.connect-wrap{max-width:720px;margin:0 auto;padding:7rem 2rem 4rem;text-align:center}
+.connect-wrap h1{font-family:var(--serif);font-size:2.2rem;font-weight:400;margin-bottom:.5rem}
+.connect-wrap .subtitle{color:var(--gray);font-size:.9rem;line-height:1.7;max-width:520px;margin:0 auto 2.5rem}
+
+.wallet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;text-align:center}
+/* coming-soon banner */
+.coming-banner{background:var(--offwhite);border:1px solid var(--cream);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.75rem;margin-bottom:2.5rem;text-align:left}
+.coming-banner-dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0}
+.coming-banner p{font-size:.75rem;color:var(--charcoal);line-height:1.5}
+.coming-banner strong{color:var(--black)}
+
+/* disabled wallet cards */
+.wallet-grid{opacity:.5;pointer-events:none;user-select:none}
+.wallet-card{padding:2rem 1.5rem;border:1px solid var(--cream);background:var(--offwhite)}
+.wallet-icon{width:56px;height:56px;margin:0 auto 1rem;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center}
+.wallet-icon svg{width:28px;height:28px;stroke:var(--charcoal);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.wallet-card h3{font-size:.88rem;font-weight:600;margin-bottom:.35rem}
+.wallet-card p{font-size:.72rem;color:var(--gray);line-height:1.6;margin-bottom:1.25rem}
+.wallet-card button{width:100%;padding:.65rem;border:1px solid var(--light-gray);background:var(--cream);color:var(--gray);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--sans);cursor:not-allowed}
+
+.skip-link{display:inline-block;margin-top:2.5rem;font-size:.8rem;color:var(--gray)}
+.skip-link:hover{color:var(--black)}
+
+/* FOOTER */
+footer{padding:3rem 0;border-top:1px solid var(--cream);margin-top:4rem}
+.footer-inner{max-width:860px;margin:0 auto;padding:0 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-mark{font-family:var(--serif);font-style:italic;font-size:1.1rem}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.68rem;color:var(--gray);text-decoration:none}
+.footer-links a:hover{color:var(--black);opacity:1}
+.footer-copy{font-size:.68rem;color:var(--light-gray)}
+
+@media(max-width:680px){
+  nav{padding:0 1.25rem}
+  .connect-wrap{padding:5.5rem 1.25rem 2.5rem}
+  .nav-links{display:none}
+  .wallet-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-mark" href="/">Credara</a>
+  <div class="nav-links">
+    <a class="nav-link" href="/marketplace">Marketplace</a>
+    <a class="nav-link" href="/courses">Courses</a>
+    <a class="nav-link" href="/creator">Creators</a>
+    <a class="nav-link" href="/guide">Guide</a>
+    <a class="nav-link" href="/docs">Docs</a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-btn" href="/dashboard">Dashboard</a>
+    <a class="nav-btn primary" href="/signup">Get Started</a>
+  </div>
+</nav>
+
+<div class="connect-wrap">
+  <h1>Connect your wallet</h1>
+  <p class="subtitle">Your account includes a non-custodial wallet on Base. Connect to enable on-chain credentials and payments.</p>
+
+  <div class="coming-banner">
+    <div class="coming-banner-dot"></div>
+    <p><strong>Launching with Base mainnet.</strong> Every new agent already receives a soulbound identity NFT — wallet connect for your personal account is the next step. Check back when mainnet deploys.</p>
+  </div>
+
+  <div class="wallet-grid">
+    <div class="wallet-card">
+      <div class="wallet-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9m-9 9a9 9 0 019-9"/></svg>
+      </div>
+      <h3>MetaMask</h3>
+      <p>Connect with the most popular browser extension wallet.</p>
+      <button onclick="alert('Wallet connection launches with Base mainnet \u2014 coming soon.')">Connect</button>
+    </div>
+
+    <div class="wallet-card">
+      <div class="wallet-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M22 10H18a2 2 0 000 4h4"/><circle cx="18" cy="12" r=".5" fill="currentColor"/></svg>
+      </div>
+      <h3>Coinbase Wallet</h3>
+      <p>Use Coinbase Wallet for seamless Base-native integration.</p>
+      <button onclick="alert('Wallet connection launches with Base mainnet \u2014 coming soon.')">Connect</button>
+    </div>
+
+    <div class="wallet-card">
+      <div class="wallet-icon">
+        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+      </div>
+      <h3>WalletConnect</h3>
+      <p>Scan a QR code to connect any WalletConnect-compatible wallet.</p>
+      <button onclick="alert('Wallet connection launches with Base mainnet \u2014 coming soon.')">Connect</button>
+    </div>
+  </div>
+
+  <a href="/dashboard" class="skip-link">Skip for now &#8594;</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-mark">Credara</span>
+    <div class="footer-links">
+      <a href="/marketplace">Marketplace</a>
+      <a href="/courses">Courses</a>
+      <a href="/guide">Guide</a>
+      <a href="/docs">Docs</a>
+      <a href="https://clawhub.com/skills/credara" target="_blank">ClawHub</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/disclosures">Legal</a>
+    </div>
+    <span class="footer-copy">&copy; 2026 Credara</span>
+  </div>
+</footer>
+
+</body>
+</html>

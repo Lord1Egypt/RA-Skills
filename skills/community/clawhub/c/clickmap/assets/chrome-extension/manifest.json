@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "ClickMap POI",
+  "version": "0.2.0",
+  "description": "Mark named points-of-interest on web pages and sync them to a local bridge.",
+  "permissions": ["storage", "activeTab", "scripting", "tabs", "commands"],
+  "host_permissions": ["http://127.0.0.1/*"],
+  "action": {
+    "default_title": "ClickMap",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "commands": {
+    "toggle-marking": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+4"
+      },
+      "description": "Toggle ClickMap marking on the active tab"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

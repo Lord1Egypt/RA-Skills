@@ -1,0 +1,41 @@
+﻿{
+  "name": "official_photogeneration_coupling_template",
+  "purpose": "Guarded COMSOL Semiconductor plus optical-generation coupling template for a user-configured optoelectronic project.",
+  "requires_configuration": true,
+  "official_examples_to_probe": [
+    "<CONFIGURE_RELEVANT_OFFICIAL_EXAMPLE_1>",
+    "<CONFIGURE_RELEVANT_OFFICIAL_EXAMPLE_2>"
+  ],
+  "physics_tags": {
+    "semiconductor": "<CONFIGURE_SEMICONDUCTOR_PHYSICS_TAG>",
+    "electromagnetic_waves": "<CONFIGURE_OPTICAL_PHYSICS_TAG>",
+    "component": "<CONFIGURE_COMPONENT_TAG>"
+  },
+  "active_generation_domains": "<CONFIGURE_ACTIVE_GENERATION_DOMAIN_NAMES_OR_SELECTIONS>",
+  "transport_only_domains": "<CONFIGURE_TRANSPORT_ONLY_DOMAIN_NAMES_OR_SELECTIONS>",
+  "electrode_or_optical_only_domains": "<CONFIGURE_ELECTRODE_OR_PASSIVE_DOMAIN_NAMES_OR_SELECTIONS>",
+  "coupling_mode": "<CONFIGURE_COUPLING_MODE>",
+  "generation_expression": {
+    "name": "<CONFIGURE_GENERATION_VARIABLE_NAME>",
+    "formula": "<CONFIGURE_GENERATION_EXPRESSION_WITH_UNITS>",
+    "units": "<CONFIGURE_GENERATION_UNITS>",
+    "parameters": "<CONFIGURE_REQUIRED_PARAMETERS>",
+    "required_checks": [
+      "Confirm source-term units.",
+      "Assign generation only to physically active domains.",
+      "Compare integrated generation with absorbed optical power or another conservation check."
+    ]
+  },
+  "solve_sequence": "<CONFIGURE_SOLVE_SEQUENCE>",
+  "exports": "<CONFIGURE_EXPORTS>",
+  "validation_thresholds": {
+    "generation_power_balance_relative_error_max": "<CONFIGURE_THRESHOLD>",
+    "passive_domain_generation_fraction_max": "<CONFIGURE_THRESHOLD>",
+    "expected_metric_bounds": "<CONFIGURE_PROJECT_SPECIFIC_BOUNDS>"
+  },
+  "notes": [
+    "Feature and property keys for official COMSOL examples must be confirmed from the installed COMSOL version.",
+    "Use simplified source terms only for debugging unless the user explicitly validates them for the configured project.",
+    "Define bias polarity and operating region from the user's own device or system configuration."
+  ]
+}

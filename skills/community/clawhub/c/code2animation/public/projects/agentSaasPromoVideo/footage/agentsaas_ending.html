@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agentsaas Ending</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./agentsaas_styles.css" />
+</head>
+
+<body>
+    <div class="particle-container" id="particles"></div>
+    <div class="final-content">
+        <div class="logo" id="logo">A</div>
+        <div class="final-text" id="final">
+            <div>Computer researches.</div>
+            <div>Computer <span class="highlight-italic">builds.</span></div>
+        </div>
+    </div>
+
+    <script>
+        const ptcContainer = document.getElementById('particles');
+        const icons = ['✨', '🚀', '🧠', '⚡', '🌐', '📊'];
+
+        const rand = (seed) => {
+            const x = Math.sin(seed * 999) * 10000;
+            return x - Math.floor(x);
+        };
+
+        for (let i = 0; i < 60; i++) {
+            const angle = rand(i + 1) * Math.PI * 2;
+            const dist = 800 + rand(i + 11) * 400;
+            const z = rand(i + 21) * 500;
+            const el = document.createElement('div');
+            el.className = 'particle';
+            el.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
+            el.style.setProperty('--dy', `${Math.sin(angle) * dist}px`);
+            el.style.setProperty('--dz', `${z}px`);
+            ptcContainer.appendChild(el);
+        }
+
+        for (let i = 0; i < 15; i++) {
+            const angle = rand(i + 101) * Math.PI * 2;
+            const dist = 600 + rand(i + 111) * 300;
+            const rotation = rand(i + 121) * 60 - 30;
+            const el = document.createElement('div');
+            el.className = 'icon';
+            el.textContent = icons[i % icons.length];
+            el.style.setProperty('--start', `${0.2 + i * 0.05}`);
+            el.style.setProperty('--dx', `${Math.cos(angle) * (dist / 3)}px`);
+            el.style.setProperty('--dy', `${Math.sin(angle) * (dist / 3)}px`);
+            el.style.setProperty('--rot', `${rotation}deg`);
+            ptcContainer.appendChild(el);
+        }
+    </script>
+</body>
+
+</html>

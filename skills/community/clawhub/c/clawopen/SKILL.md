@@ -1,35 +1,55 @@
----
-name: "clawopen"
-description: "ClawOpen provides a curated, community-maintained directory of OpenClaw resources, including docs, plugins, tools, and discussion platforms."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawopen"
-sourceUrl: "https://clawhub.ai/skills/clawopen"
----
+# ClawOpen - OpenClaw 资源导航
 
-# clawopen
+> 🦞 OpenClaw 生态资源一站式导航
 
-> ClawOpen provides a curated, community-maintained directory of OpenClaw resources, including docs, plugins, tools, and discussion platforms.
+## 官方入口
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawopen`
-- **Source URL:** [https://clawhub.ai/skills/clawopen](https://clawhub.ai/skills/clawopen)
+🔗 **https://openclaw123.xyz/**
 
-## Overview
+## 什么是 ClawOpen？
 
+ClawOpen 是 OpenClaw 社区维护的资源导航站，帮助用户快速找到：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawopen
+- 📚 官方文档与教程
+- 🛠️ 技能市场与插件
+- 💬 社区讨论与支持
+- 🎓 学习资源与案例
+- 🔧 开发者工具与 API
+
+## 特性
+
 ```
+┌─────────────────────────────────────┐
+│      🦞 OpenClaw123 资源导航        │
+├─────────────────────────────────────┤
+│  ⭐ 收藏功能 - 一键收藏常用资源      │
+│  🔄 持续更新 - 社区共建维护          │
+│  🆓 开源免费 - GitHub 托管          │
+└─────────────────────────────────────┘
+```
+
+## 快速访问
+
+| 资源 | 链接 |
+|------|------|
+| 🏠 导航首页 | [openclaw123.xyz](https://openclaw123.xyz/) |
+| 💻 开源仓库 | [GitHub](https://github.com) |
+
+## 使用方式
+
+1. 访问 https://openclaw123.xyz/
+2. 浏览分类资源卡片
+3. 点击卡片右上角 ⭐ 收藏到「我的收藏」
+4. 随时快速访问常用资源
+
+## 参与贡献
+
+这是一个开源项目，欢迎社区成员：
+- 提交新资源链接
+- 修复失效链接
+- 改进分类结构
+- 完善资源描述
+
+---
+
+**ClawOpen** — 你的 OpenClaw 生态指南针 🧭

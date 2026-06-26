@@ -1,35 +1,90 @@
 ---
-name: "Coupon Finder Cn"
-description: "自动发现和领取电商优惠券，支持淘宝/京东/拼多多/美团。购物前查券，省下的就是赚到的。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coupon-finder-cn"
-sourceUrl: "https://clawhub.ai/skills/coupon-finder-cn"
+name: coupon-finder
+version: 1.0.0
+slug: coupon-finder-cn
+description: 自动发现和领取电商优惠券，支持淘宝/京东/拼多多/美团。购物前查券，省下的就是赚到的。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎫",
+        "requires": { "bins": ["python3", "curl"] },
+        "install": [],
+      },
+  }
 ---
 
-# Coupon Finder Cn
+# 优惠券发现技能
 
-> 自动发现和领取电商优惠券，支持淘宝/京东/拼多多/美团。购物前查券，省下的就是赚到的。
+自动发现并领取电商优惠券，购物前必备。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coupon-finder-cn`
-- **Source URL:** [https://clawhub.ai/skills/coupon-finder-cn](https://clawhub.ai/skills/coupon-finder-cn)
+## 功能
 
-## Overview
+1. **自动查券**: 输入商品链接，自动查找可用优惠券
+2. **隐藏券发现**: 发现店铺隐藏优惠券
+3. **叠加计算**: 计算最优优惠组合
+4. **过期提醒**: 已领取优惠券过期前提醒
+5. **历史对比**: 查看历史优惠券力度
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/coupon-finder-cn
+**查优惠券**:
 ```
+这个商品有什么优惠券？https://item.taobao.com/item.htm?id=123
+```
+
+**领券**:
+```
+帮我领取这个商品的所有优惠券
+```
+
+**最优方案**:
+```
+买这个怎么最省钱？https://item.jd.com/123.html
+```
+
+**查过期**:
+```
+我有哪些优惠券快过期了？
+```
+
+## 输出示例
+
+```
+🎫 优惠券查询结果
+
+商品：小米 14 Ultra
+原价：¥5,999
+
+✅ 可用优惠券：
+├─ 店铺券：满 5000-300
+├─ 平台券：满 5000-200
+├─ 会员券：满 5000-100
+└─ 隐藏券：满 5000-150（点击领取）
+
+💰 最优组合：
+├─ 原价：¥5,999
+├─ 优惠：-¥750
+└─ 到手：¥5,249
+
+🔗 领券链接：[点击查看]
+⏰ 有效期：3 天
+```
+
+## 变现模式
+
+- 免费：每日 5 次查询
+- 付费 (¥15/月)：无限查询 + 隐藏券
+- 付费 (¥39/月)：+ 自动领券 + 过期提醒
+
+## 优势
+
+- ✅ 刚需高频
+- ✅ 用户主动使用
+- ✅ 数据公开
+- ✅ 可对接 CPS 分成
+
+---
+
+**声明**: 优惠券信息来自公开数据，以实际下单为准。

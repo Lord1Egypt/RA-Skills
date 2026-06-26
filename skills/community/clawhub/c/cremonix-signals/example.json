@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "generated_at": "2026-03-09T16:17:30.505091Z",
+  "tier": "free",
+  "delay_hours": 4,
+  "active_window_hours": 6,
+  "btc": {
+    "regime_1h": "BTC_Trend_Up",
+    "regime_4h": "BTC_Chop_Mean_Reversion",
+    "setup": {
+      "exists": false
+    }
+  },
+  "eth": {
+    "regime_1h": "ETH_Trend_Up",
+    "regime_4h": "ETH_Chop_Mean_Reversion",
+    "setup": {
+      "exists": false
+    }
+  },
+  "upgrade": {
+    "available": true,
+    "name": "Cremonix Signals API - Paid Tier",
+    "description": "Real-time signals with model confidence scores",
+    "price": {
+      "amount": 25.0,
+      "currency": "USD",
+      "interval": "month"
+    },
+    "features": [
+      "Real-time signals (zero delay)",
+      "Model confidence scores",
+      "All active combos (not just featured)",
+      "Priority support"
+    ],
+    "payment_methods": [
+      "lightning",
+      "card"
+    ],
+    "urls": {
+      "human": "https://app.cremonix.com/api-subscribe",
+      "agent_api": "https://app.cremonix.com/api-subscribe/create",
+      "docs": "https://docs.cremonix.com/openclaw",
+      "billing": "https://app.cremonix.com/billing"
+    },
+    "agent_example": {
+      "method": "POST",
+      "url": "https://app.cremonix.com/api-subscribe/create",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "user_type": "agent",
+        "tier": "paid",
+        "payment_method": "lightning"
+      }
+    }
+  },
+  "cta": {
+    "url": "https://cremonix.com",
+    "setup_message": "Cremonix runs multiple ML models 24/7 and executes automatically on Kraken. Funds never leave your exchange. \ud83d\udc8e Want real-time signals? Upgrade at app.cremonix.com/api-subscribe",
+    "no_setup_message": "No high probability setup currently. Cremonix blocked trading in this regime \u2014 knowing when NOT to trade is the edge. \ud83d\udc8e Upgrade to paid tier for real-time signals at app.cremonix.com/api-subscribe"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "company-research",
+  "version": "1.2.0",
+  "description": "企业背景调查工具，面向中国电信客户经理。通过公共搜索引擎搜集企业公开信息，生成企业概况、近期动态和商机雷达报告。",
+  "engines": 4,
+  "region": "苏州",
+  "requires_api_key": false,
+  "requires_bins": ["agent-browser"],
+  "agent_browser_source": "https://github.com/vercel-labs/agent-browser",
+  "license": "MIT"
+}

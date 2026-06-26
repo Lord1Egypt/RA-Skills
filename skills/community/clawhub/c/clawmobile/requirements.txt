@@ -1,0 +1,18 @@
+# ClawMobile Skill Python Dependencies
+
+# HTTP Requests
+requests>=2.31.0
+
+# YAML Configuration
+PyYAML>=6.0
+
+# Optional: Testing dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Optional: Code quality
+flake8>=6.0.0
+black>=23.0.0
+
+# Optional: Type checking
+mypy>=1.0.0

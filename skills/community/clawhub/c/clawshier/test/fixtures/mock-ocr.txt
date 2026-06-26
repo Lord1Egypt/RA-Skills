@@ -1,0 +1,7 @@
+ACME MART
+123 Example Ave
+03/25/2026
+Coffee 4.50
+Bagel 3.25
+Tax 0.75
+Total $8.50

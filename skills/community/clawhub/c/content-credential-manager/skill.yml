@@ -1,0 +1,19 @@
+name: content-credential-manager
+display_name: 内容创业凭证管理器
+version: 1.0.0
+description: |
+  管理内容创业技能矩阵的 API 凭证配置状态。
+  解决"技能装了却用不了"的核心问题：追踪微信公众号、小红书、美图、阶跃星辰 TTS 等平台的凭证配置，提供一键状态扫描和配置引导。
+triggers:
+  - 哪些技能可以用了
+  - 凭证配置好了吗
+  - 为什么XX技能不能用
+  - 开始内容创作前检查环境
+  - 新技能安装后登记凭证状态
+tags:
+  - credentials
+  - content-creation
+  - xiaohongshu
+  - wechat
+  - automation
+  - productivity

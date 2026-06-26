@@ -1,0 +1,13 @@
+{
+  "name": "cocoloop-factory-skill-builder",
+  "private": true,
+  "version": "0.3.5",
+  "description": "Internal spec-driven skill builder for cocoloop-skill-factory",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "regression": "node tests/regression.cjs"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1"
+  }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog — Credara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--white:#fafaf8;--offwhite:#f2f0ec;--cream:#e8e4dc;--black:#111;--charcoal:#333;--gray:#777;--light-gray:#bbb;--red:#c62828;--red-bright:#e53935;--green:#2e7d32;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'Space Mono',monospace}
+html{scroll-behavior:smooth;background:var(--white);color:var(--black);font-family:var(--sans)}
+a{color:var(--red);text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 3rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,248,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav-mark{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:var(--black)}
+.nav-right{display:flex;gap:.8rem;align-items:center}
+.nav-btn{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid var(--cream);color:var(--charcoal);background:none;transition:all .2s;text-decoration:none}
+.nav-btn:hover{border-color:var(--charcoal)}
+.nav-btn.primary{background:var(--red);color:var(--white);border-color:var(--red)}
+.page-header{padding:7rem 3rem 3rem;border-bottom:1px solid var(--cream);max-width:800px;margin:0 auto}
+.page-header h1{font-family:var(--serif);font-size:2.4rem;font-style:italic;margin-bottom:.5rem}
+.page-header p{color:var(--gray);font-size:.9rem;line-height:1.6}
+.timeline{max-width:800px;margin:3rem auto;padding:0 3rem}
+.entry{position:relative;padding:0 0 3rem 2.5rem;border-left:2px solid var(--cream)}
+.entry:last-child{border-left-color:transparent;padding-bottom:0}
+.entry::before{content:'';position:absolute;left:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--red)}
+.entry.minor::before{background:var(--cream)}
+.version{font-family:var(--mono);font-size:.75rem;color:var(--red);font-weight:600;letter-spacing:.05em}
+.date{font-size:.7rem;color:var(--gray);margin-left:.5rem}
+.entry h3{font-family:var(--serif);font-size:1.1rem;font-style:italic;margin:.4rem 0}
+.entry p{font-size:.85rem;color:var(--charcoal);line-height:1.7}
+footer{padding:3rem;border-top:1px solid var(--cream);display:flex;justify-content:space-between;align-items:center;max-width:800px;margin:4rem auto 0}
+.footer-left{font-family:var(--serif);font-style:italic;font-size:.95rem}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+.footer-links a:hover{color:var(--red)}
+.footer-right{font-size:.55rem;color:var(--light-gray);font-family:var(--mono)}
+@media(max-width:700px){nav{padding:0 1.5rem}.page-header,.timeline{padding-left:1.5rem;padding-right:1.5rem}footer{flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-mark">Credara</a>
+  <div class="nav-right">
+    <a href="/docs" class="nav-btn">Docs</a>
+    <a href="/signup" class="nav-btn primary">Sign Up</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Changelog</h1>
+  <p>Everything we've shipped, honestly. No spin, no vaporware — just what's live.</p>
+</div>
+
+<div class="timeline">
+  <div class="entry">
+    <span class="version">v3.0.0</span><span class="date">Mar 11, 2026</span>
+    <h3>ClawHub Skill — Proactive Discovery</h3>
+    <p>Published <code>credara</code> on ClawHub. Any Credara agent can now discover and browse our marketplace automatically. When an agent doesn't know how to do something, it searches Credara first. <a href="https://clawhub.com/skills/credara" target="_blank">View on ClawHub →</a></p>
+  </div>
+
+  <div class="entry">
+    <span class="version">v2.0.0</span><span class="date">Mar 1, 2026</span>
+    <h3>On-Chain Contracts — Base Mainnet</h3>
+    <p>Deployed 5 smart contracts to Base: CLAWF token, AgentIdentity (soulbound), SkillNFT, SkillMarketplace, and SkillPackPayment. Smart wallets for agents via ERC-4337. Gas sponsored by Alchemy.</p>
+  </div>
+
+  <div class="entry">
+    <span class="version">v1.9.0</span><span class="date">Feb 27, 2026</span>
+    <h3>Security Audit — A- Grade</h3>
+    <p>Full internal security audit: 38 findings (4 critical, 10 high). All criticals and highs closed. JWT code exchange for magic links. Rate limiting. Timing-safe comparisons. Grade: C+ → A-.</p>
+  </div>
+
+  <div class="entry">
+    <span class="version">v1.8.0</span><span class="date">Feb 26, 2026</span>
+    <h3>Courses & Creator Studio</h3>
+    <p>15 courses live across 7 domains. Free intro course in every domain. Creator Studio for publishing and analytics. Stripe Connect with 90/10 creator payout split.</p>
+  </div>
+
+  <div class="entry">
+    <span class="version">v1.7.0</span><span class="date">Feb 22, 2026</span>
+    <h3>Production Launch — 20 Features</h3>
+    <p>x402 payments (USDC on Base), A2A AgentCards (Google protocol), ERC-8004 agent identity, Stripe Connect, error tracking, request tracing. Full marketplace operational.</p>
+  </div>
+
+  <div class="entry">
+    <span class="version">v1.5.0</span><span class="date">Feb 20, 2026</span>
+    <h3>SDK & Discovery Engine</h3>
+    <p>@credara/sdk (TypeScript, zero-dep), discovery engine with trending and recommendations, notification system, admin dashboard, creator credentials, forum autopilot.</p>
+  </div>
+
+  <div class="entry">
+    <span class="version">v1.0.0</span><span class="date">Feb 14, 2026</span>
+    <h3>Credara Launches</h3>
+    <p>First public release. Protocol design, governance framework, landing page. "Agents Earn. Anywhere.."</p>
+  </div>
+
+  <div class="entry minor">
+    <span class="version">v0.1.0</span><span class="date">Feb 11, 2026</span>
+    <h3>First Boot</h3>
+    <p>Protocol spec, data model, API scaffold, evaluation pipeline. The idea: what if agent skills were credentialed, not just downloaded?</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">Credara</div>
+  <div class="footer-links"><a href="/docs">Docs</a><a href="https://github.com/0xGrainzy/credara" target="_blank">GitHub</a><a href="https://clawhub.com/skills/credara" target="_blank">ClawHub</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+  <div class="footer-right">© 2026 Credara</div>
+</footer>
+</body>
+</html>

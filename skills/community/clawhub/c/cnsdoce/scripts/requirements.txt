@@ -1,0 +1,10 @@
+# cnsdoce 技能依赖
+pandas>=1.5.0
+openpyxl>=3.0.0
+sentence-transformers>=2.2.0
+chromadb>=0.4.0
+faiss-cpu>=1.7.0
+
+# LLM API调用依赖 *(2026-05新增)*
+volcengine-python-sdk>=0.1.0  # 豆包API（优先使用，有免费额度）
+requests>=2.28.0              # DeepSeek API（备选）

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$title$</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 15mm;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "SimHei", sans-serif;
+            font-size: 10pt;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 封面 */
+        .cover {
+            text-align: center;
+            padding: 60px 20px;
+            page-break-after: always;
+        }
+        
+        .cover h1 {
+            font-size: 24pt;
+            color: #1a5f7a;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #1a5f7a;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .cover .subtitle {
+            font-size: 14pt;
+            color: #666;
+            margin-top: 30px;
+        }
+        
+        .cover .info {
+            margin-top: 80px;
+            font-size: 10pt;
+            color: #888;
+        }
+        
+        .cover .logo {
+            font-size: 48pt;
+            margin-bottom: 30px;
+        }
+        
+        /* 报告信息 */
+        .report-info {
+            background: linear-gradient(135deg, #1a5f7a 0%, #2d8eb6 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .report-info h2 {
+            margin: 0 0 10px 0;
+            font-size: 16pt;
+        }
+        
+        .report-info p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+        
+        /* 目录 */
+        .toc {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            page-break-after: always;
+        }
+        
+        .toc h2 {
+            color: #1a5f7a;
+            margin-top: 0;
+        }
+        
+        .toc-item {
+            padding: 5px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        /* 章节标题 */
+        h1 {
+            color: #1a5f7a;
+            font-size: 18pt;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a5f7a;
+        }
+        
+        h2 {
+            color: #2d8eb6;
+            font-size: 14pt;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        
+        h3 {
+            color: #3a9fcf;
+            font-size: 12pt;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 9pt;
+            page-break-inside: avoid;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #1a5f7a 0%, #2d8eb6 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4f8;
+        }
+        
+        /* 卡片样式 */
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            page-break-inside: avoid;
+        }
+        
+        .card-title {
+            font-weight: bold;
+            color: #1a5f7a;
+            margin-bottom: 10px;
+            font-size: 11pt;
+        }
+        
+        /* 标签 */
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 8pt;
+            margin: 2px;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        /* 列表 */
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        /* 代码块 */
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 8pt;
+            border-left: 4px solid #1a5f7a;
+        }
+        
+        /* 分隔线 */
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ddd, transparent);
+            margin: 30px 0;
+        }
+        
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        
+        .stat-value {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #1a5f7a;
+        }
+        
+        .stat-label {
+            font-size: 9pt;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        /* 评估部分 */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .swot-item {
+            padding: 15px;
+            border-radius: 8px;
+            page-break-inside: avoid;
+        }
+        
+        .swot-strengths {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+        }
+        
+        .swot-weaknesses {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+        }
+        
+        .swot-opportunities {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+        }
+        
+        .swot-threats {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+        }
+        
+        .swot-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 11pt;
+        }
+        
+        /* 结论框 */
+        .conclusion {
+            background: linear-gradient(135deg, #1a5f7a 0%, #2d8eb6 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .conclusion h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .rating {
+            font-size: 36pt;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        /* 页脚 */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 8pt;
+            color: #999;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* 截图说明 */
+        .screenshot-section {
+            margin: 20px 0;
+        }
+        
+        .screenshot-item {
+            background: #f8f9fa;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .screenshot-item .num {
+            width: 30px;
+            height: 30px;
+            background: #1a5f7a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        /* 分页 */
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* 风险指示器 */
+        .risk-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .risk-low { background: #28a745; }
+        .risk-medium { background: #ffc107; }
+        .risk-high { background: #dc3545; }
+        
+        /* 打印优化 */
+        @media print {
+            .card, table, .swot-item, .stat-card {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+$body$
+</body>
+</html>

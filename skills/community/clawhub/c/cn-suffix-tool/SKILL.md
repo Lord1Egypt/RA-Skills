@@ -1,35 +1,18 @@
----
-name: "Cn Suffix Tool"
-description: "Adds a specified suffix to each line of input text using a simple Python script with no external dependencies."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-suffix-tool"
-sourceUrl: "https://clawhub.ai/skills/cn-suffix-tool"
----
+# cn-suffix-tool
 
-# Cn Suffix Tool
+文本后缀添加工具。为每行添加指定后缀。
 
-> Adds a specified suffix to each line of input text using a simple Python script with no external dependencies.
+## 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-suffix-tool`
-- **Source URL:** [https://clawhub.ai/skills/cn-suffix-tool](https://clawhub.ai/skills/cn-suffix-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cn-suffix-tool
+python3 scripts/add_suffix.py --text "第一行\n第二行" --suffix ";"
+python3 scripts/add_suffix.py --text "第一行\n第二行" --suffix " ✓"
 ```
+
+纯Python标准库。
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

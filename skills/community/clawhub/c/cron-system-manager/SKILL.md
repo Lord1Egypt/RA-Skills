@@ -1,35 +1,213 @@
 ---
-name: "Cron System Manager"
-description: "雨晴定时任务系统管理器。当需要检查cron任务状态、修改任务配置、排查重复职责、优化任务安排时触发此技能。也是主人确认的"主动发现+解决问题"能力核心。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cron-system-manager"
-sourceUrl: "https://clawhub.ai/skills/cron-system-manager"
+name: cron-system-manager
+description: 雨晴定时任务系统管理器。当需要检查cron任务状态、修改任务配置、排查重复职责、优化任务安排时触发此技能。也是主人确认的"主动发现+解决问题"能力核心。
+version: 1.0.0
 ---
 
-# Cron System Manager
+# Cron系统管理器 — 雨晴定时任务技能
 
-> 雨晴定时任务系统管理器。当需要检查cron任务状态、修改任务配置、排查重复职责、优化任务安排时触发此技能。也是主人确认的"主动发现+解决问题"能力核心。
+> 这是雨晴的核心技能之一，管理所有定时任务的职责分工、规则制定和主动优化。
+> 每次对话都要遵循本技能定义的角色分工。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cron-system-manager`
-- **Source URL:** [https://clawhub.ai/skills/cron-system-manager](https://clawhub.ai/skills/cron-system-manager)
+---
 
-## Overview
+## 一、核心原则
 
+1. **飞书推送规则（永久，禁止违反）：**
+   - ✅ 唯一推送：只有每日早间新闻 → 推送飞书
+   - ✅ 响应交互：主人在飞书主动对话/回复时 → 在飞书响应
+   - ❌ 禁止主动：不主动在飞书发起对话或推送任何内容
+   - ❌ 禁止推送：其他所有情况（复盘、自检、Skills更新等）→ 不推飞书
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cron-system-manager
+2. **超时失败自动补救原则（2026-03-25确立）：**
+   - cron 执行超时 → 立刻调高超时时间 → 立刻在独立会话重试
+   - 不等主人来问 → 主动告知主人补救状态
+   - 完整闭环：发现 → 修复 → 重试 → 告知
+
+2. **职责唯一性原则：** 每个任务必须有且只有一个核心职责，不允许两个任务做同样的事
+
+3. **主动发现问题：** HEARTBEAT每小时cron、每日复盘cron都有检查职责冲突的义务，发现即修复并汇报
+
+4. **新建任务前必查：** 新建任务必须先确认与现有任务无职责重叠，方可创建
+
+---
+
+## 二、当前定时任务矩阵（2026-03-25最终版）
+
+| 任务 | ID | 触发时间 | 核心职责 | 禁止事项 |
+|------|-----|---------|---------|---------|
+| 每日早间新闻 | f7a98a38 | 06:37 北京 | 天气+新闻+飞书推送 | - |
+| 每日自我复盘 | a3f08238 | 23:37 北京 | 全面检查+复盘+主动改进 | ❌不发飞书 |
+| 每小时自检 | 848b23b5 | 每小时:00 | ERRORS+cron状态+Skills+职能冲突 | ❌不发飞书 ❌不做复盘 |
+| Skills每日更新 | 00cd2069 | 03:00 北京 | clawhub检查+Skills更新 | ❌不发飞书 |
+| 每周总结 | c5fd7eec | 周日09:00 | 周报生成+保存+清理 | ❌不发飞书 |
+
+---
+
+## 三、HEARTBEAT（消息触发）
+
+### 触发规则
+- 每条消息进入时自动执行
+- 5秒内完成，极简判断
+
+### 职责（P0极简）
 ```
+读取 /workspace/ERRORS.md 头部20行：
+  → 有❌/P0紧急问题？
+      能修复 → 直接修复 + 告知主人
+      不能修 → 告知主人需要协助
+  → 无紧急问题？
+      HEARTBEAT_OK（静默）
+```
+
+### 禁止事项
+- ❌ 不检查常规cron状态
+- ❌ 不读记忆文件
+- ❌ 不生成复盘
+- ❌ 不扫描职能冲突
+- ❌ 不做任何常规检查
+
+---
+
+## 四、每小时自检cron（定时执行）
+
+### 触发规则
+- 每小时:00执行
+
+### 职责（常规检查）
+```
+1. ERRORS.md 常规问题扫描
+   - 有无P1/P2问题？
+   - 有无超过24小时未解决的状态？
+
+2. 所有cron任务状态
+   - 有error的任务？
+   - 连续2次以上error？
+   - 有idle但不该idle的任务？
+
+3. 每日自检（24小时周期）
+   - Skills目录有无更新？
+   - MEMORY.md有无损坏？
+   - 有无职能冲突？
+```
+
+### 输出
+- 有error：summary写'⚠️ 发现问题：[描述]，已[处理]'
+- 无error：HEARTBEAT_OK
+
+---
+
+## 五、每日自我复盘cron（定时执行）
+
+### 触发规则
+- 北京时间 23:37执行
+
+### 职责（全面版7件事）
+```
+1. cron任务全面状态检查
+2. 职能冲突扫描（发现即记录）
+3. 系统完整性检查
+4. 读取今日工作记录
+5. 生成复盘（简洁版）
+6. 主动改进建议（根据今日发现）
+7. 保存到 /workspace/memory/每日复盘-YYYY-MM-DD.md
+```
+
+### 禁止事项
+- ❌ 不发飞书消息
+- ❌ 不做系统完整性之外的深度扫描
+
+---
+
+## 六、职能冲突检测机制
+
+### 每次复盘cron执行时必做
+1. 检查是否有两个任务做了同样的事
+2. 检查是否有任务重复推送飞书
+3. 检查是否有HEARTBEAT和cron做同样的检查
+
+### 发现冲突时
+- 立即记录到 /workspace/memory/职能冲突-YYYY-MM-DD.md
+- 立即修复（更新任务prompt或重新分配职责）
+- 在当日复盘中汇报
+
+---
+
+## 七、新建任务检查流程
+
+当主人要求新建定时任务时：
+```
+Step 1：确认新任务的核心职责（一句话描述）
+Step 2：与现有任务矩阵逐项比对，确认无重叠
+Step 3：确认触发时间不与其他任务冲突
+Step 4：确认推送目标（飞书 or 不推飞书）
+Step 5：告知主人检查结果，有冲突则提出合并建议
+Step 6：主人确认后创建
+```
+
+---
+
+## 八、Token消耗参考
+
+| 任务 | 单次 | 每日 | 每月 |
+|------|------|------|------|
+| PDF类生成任务（天气/财经/教学/理财） | ~200K | ~800K | ~24M |
+| 每小时自检 | ~1.2K | ~29K | ~864K |
+| 每日自我复盘 | ~100K | 100K | ~3M |
+| Skills每日更新 | ~5K | 5K | ~150K |
+| HEARTBEAT | ~500 | ~10K | ~300K |
+| 每周总结 | ~100K | — | ~400K |
+| **合计** | | **~944K/天** | **~28.3M/月** |
+
+> ⚠️ PDF类生成任务包含多个搜索+HTML生成+部署步骤，**超时时间统一定为600秒**，不得低于此值。
+
+---
+
+## 九、文件路径速查
+
+| 文件 | 路径 |
+|------|------|
+| HEARTBEAT规则 | /workspace/HEARTBEAT.md |
+| ERRORS追踪 | /workspace/ERRORS.md |
+| 每日记忆 | /workspace/memory/YYYY-MM-DD.md |
+| 每日复盘 | /workspace/memory/每日复盘-YYYY-MM-DD.md |
+| 职能冲突 | /workspace/memory/职能冲突-YYYY-MM-DD.md |
+| 主动改进 | /workspace/memory/主动改进-YYYY-MM-DD.md |
+| 每小时日志 | /workspace/memory/hourly-check-YYYY-MM-DD.log |
+
+---
+
+_整理：雨晴 🌧️☀️_
+_更新：2026-03-25 00:23_
+
+---
+
+## 七、ERRORS.md主动清理机制
+
+### 清理原则
+- ERRORS.md只保留当前P0/P1问题
+- 问题解决后立即从主文件删除，不堆积
+- 完整历史移至：`/workspace/memory/问题解决手册.md`
+
+### 清理触发时机
+- 每日复盘cron执行时顺手检查
+- 问题解决后立即清理
+- 每周总结时做一次全面清理
+
+### 清理标准
+| 状态 | 处理方式 |
+|------|---------|
+| P0紧急未解决 | 留在ERRORS.md |
+| P1/P2已解决 | 立即删除，移至历史文档 |
+| 超过7天的"处理中"记录 | 评估：能解决吗？→是→解决；否→更新说明 |
+| 超过30天的任何记录 | 全部清理，保留摘要 |
+
+---
+
+## 八、问题解决参考
+
+遇到问题时参考：
+- `/workspace/memory/问题解决手册.md` — 完整问题解决流程+今日经验
+- `/workspace/memory/飞书推送系统化排错手册.md` — 飞书推送专项排错
+- `/workspace/ERRORS.md` — 当前所有问题的追踪记录
+

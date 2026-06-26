@@ -1,0 +1,53 @@
+{
+  "name": "codex-sessions-manager",
+  "version": "0.3.2",
+  "description": "Complete local Codex session management: list, filter, export, delete, trash, restore, verify, and cleanup — via CLI or MCP server.",
+  "type": "module",
+  "bin": {
+    "codex-sessions": "dist/cli/index.js",
+    "codex-sessions-mcp": "dist/mcp/server.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "docs/SAFETY.md",
+    "SKILL.md",
+    "agents/openai.yaml",
+    "examples/codex-sessions-manager.SKILL.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "codex",
+    "openai",
+    "session",
+    "cli",
+    "mcp",
+    "cleanup",
+    "delete",
+    "management"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1939869736luosi/codex-sessions-manager.git"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "cli": "node dist/cli/index.js",
+    "mcp": "node dist/mcp/server.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "better-sqlite3": "^12.6.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^24.3.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
+  }
+}

@@ -1,0 +1,21 @@
+# profile: arkv3
+# 火山方舟普通 v3 端点(自购 Key,非 AgentPlan 套餐)
+#
+# 为什么不需要 relay?
+#   方舟普通 v3 端点本身就原生支持 OpenAI Responses API(/api/v3/responses),
+#   Codex CLI 可以直连,无需任何本地中转服务。
+#
+# 注意:这是 /api/v3,跟 AgentPlan 的 /api/plan/v3 是不同路径,Key 也不同。
+
+model = "doubao-seed-1-6-250615"
+model_provider = "arkv3"
+
+[model_providers.arkv3]
+name = "Volcengine Ark v3"
+base_url = "https://ark.cn-beijing.volces.com/api/v3"
+wire_api = "responses"
+env_key = "ARK_V3_API_KEY"
+
+request_max_retries = 4
+stream_max_retries = 5
+responses_websockets_v2 = true

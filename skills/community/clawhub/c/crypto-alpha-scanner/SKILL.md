@@ -1,35 +1,92 @@
 ---
-name: "Crypto Alpha Scanner"
-description: "Automated crypto market intelligence - prices, sentiment, trending coins, and Polymarket hot markets. Zero dependencies, 100% reliability. Perfect for alpha channels and market monitoring."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-alpha-scanner"
-sourceUrl: "https://clawhub.ai/skills/crypto-alpha-scanner"
+name: crypto-alpha-scanner
+version: 1.0.0
+description: Automated crypto market intelligence - prices, sentiment, trending coins, and Polymarket hot markets. Zero dependencies, 100% reliability. Perfect for alpha channels and market monitoring.
+author: nix
+tags: [crypto, alpha, market-data, sentiment, polymarket, coingecko, fear-greed]
 ---
 
-# Crypto Alpha Scanner
+# 📡 Crypto Alpha Scanner
 
-> Automated crypto market intelligence - prices, sentiment, trending coins, and Polymarket hot markets. Zero dependencies, 100% reliability. Perfect for alpha channels and market monitoring.
+**Reliable market intelligence in one command.**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-alpha-scanner`
-- **Source URL:** [https://clawhub.ai/skills/crypto-alpha-scanner](https://clawhub.ai/skills/crypto-alpha-scanner)
+No API keys. No external dependencies. Just Python stdlib.
 
-## Overview
+## Features
 
+- 📊 **Live Prices** — BTC, ETH, SOL with 24h change
+- 😱 **Fear & Greed Index** — Market sentiment gauge
+- 🔥 **Trending Coins** — What's hot on CoinGecko
+- 🎯 **Polymarket Hot** — Top prediction markets by volume
+- 💡 **Auto Insights** — Actionable commentary based on data
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
+
 ```bash
-hermes skills install clawhub/crypto-alpha-scanner
+# Generate alpha report
+python3 scripts/scanner.py
+
+# Output to file
+python3 scripts/scanner.py > report.txt
+
+# Post to Telegram (with bot token)
+python3 scripts/scanner.py | ./scripts/post_telegram.sh
 ```
+
+## Sample Output
+
+```
+🤖 Alpha Report | 2026-02-11 19:00 UTC
+
+📊 Market Pulse
+🔴 BTC: $67,216 (-2.3%)
+🔴 ETH: $1,943 (-3.2%)
+🔴 SOL: $80 (-3.9%)
+😱 Fear/Greed: 11 (Extreme Fear)
+
+🔥 Trending: LayerZero, Uniswap, Bitcoin, Hyperliquid
+
+🎯 Polymarket Hot
+• Will Trump nominate Judy Shelton...? ($5.1M)
+• Will the Fed decrease rates...? ($3.3M)
+
+💡 Extreme fear = historically strong buy zone.
+
+— Nix 🔥
+```
+
+## Data Sources
+
+| Source | Data | Rate Limit |
+|--------|------|------------|
+| CoinGecko | Prices, trending | 30/min |
+| Alternative.me | Fear/Greed | Unlimited |
+| Polymarket Gamma | Markets | Unlimited |
+
+## Cron Setup
+
+Run hourly for consistent alpha:
+
+```bash
+# Add to crontab
+0 * * * * python3 /path/to/scripts/scanner.py >> /var/log/alpha.log
+```
+
+## Customization
+
+Edit `scripts/scanner.py` to:
+- Add more coins
+- Change formatting
+- Add custom insights
+- Integrate with your channels
+
+## Why This Skill?
+
+✅ **100% Reliable** — Only uses APIs that work  
+✅ **Zero Setup** — No API keys needed  
+✅ **Fast** — Runs in <3 seconds  
+✅ **Portable** — Pure Python, runs anywhere
+
+---
+
+*Built by Nix 🔥 | Free alpha, forever*

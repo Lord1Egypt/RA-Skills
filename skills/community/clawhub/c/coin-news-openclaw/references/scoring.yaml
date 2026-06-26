@@ -1,0 +1,617 @@
+defaults:
+  recency_half_life_hours: 18
+  duplicate_title_similarity_threshold: 0.88
+  min_output_score: 15
+weights:
+  source_weight_multiplier: 35
+  token_match: 18
+  topic_match: 10
+  title_keyword_bonus: 8
+  negative_keyword_penalty: -20
+token_aliases:
+  BTC:
+  - bitcoin
+  - btc
+  ETH:
+  - ethereum
+  - ether
+  - eth
+  BNB:
+  - binance coin
+  - bnb
+  - binance
+  SOL:
+  - solana
+  - sol
+  XRP:
+  - ripple
+  - xrp
+  USDT:
+  - tether
+  - usdt
+  USDC:
+  - usd coin
+  - usdc
+  ADA:
+  - cardano
+  - ada
+  DOGE:
+  - dogecoin
+  - doge
+  AVAX:
+  - avalanche
+  - avax
+  DOT:
+  - polkadot
+  - dot
+  LINK:
+  - chainlink
+  - link
+  TRX:
+  - tron
+  - trx
+  MATIC:
+  - polygon
+  - matic
+  SHIB:
+  - shiba inu
+  - shib
+  LTC:
+  - litecoin
+  - ltc
+  UNI:
+  - uniswap
+  - uni
+  ATOM:
+  - cosmos
+  - atom
+  XLM:
+  - stellar
+  - xlm
+  ETC:
+  - ethereum classic
+  - etc
+  BCH:
+  - bitcoin cash
+  - bch
+  FET:
+  - fetch.ai
+  - fet
+  NEAR:
+  - near protocol
+  - near
+  APT:
+  - aptos
+  - apt
+  ARB:
+  - arbitrum
+  - arb
+  OP:
+  - optimism
+  - op
+  TIA:
+  - celestia
+  - tia
+  SEI:
+  - sei
+  SUI:
+  - sui
+  WLD:
+  - worldcoin
+  - wld
+  PEPE:
+  - pepe
+  WIF:
+  - dogwifhat
+  - wif
+  ONDO:
+  - ondo
+  JUP:
+  - jupiter
+  - jup
+  ZEC:
+  - zcash
+  - zec
+  XMR:
+  - monero
+  - xmr
+  BASE:
+  - base
+  - base chain
+  ZK:
+  - zkSync
+  - zksync
+  - zk sync
+  MANTA:
+  - manta
+  - manta network
+  BLUR:
+  - blur
+  - nft marketplace
+  RNDR:
+  - render
+  - rndr
+  TAO:
+  - bittensor
+  - tao
+  GRT:
+  - the graph
+  - grt
+  AAVE:
+  - aave
+  MKR:
+  - maker
+  - mkr
+  CRV:
+  - curve
+  - crv
+  LDO:
+  - lido
+  - ldo
+  ENA:
+  - ethena
+  - ena
+  PENDLE:
+  - pendle
+  SAND:
+  - sandbox
+  - sand
+  MANA:
+  - decentraland
+  - mana
+  AXS:
+  - axie infinity
+  - axs
+  IMX:
+  - immutable x
+  - imx
+  OKB:
+  - okb
+  - okx
+  KCS:
+  - kucoin
+  - kcs
+  INJ:
+  - injective
+  - inj
+  FTM:
+  - fantom
+  - ftm
+  ALGO:
+  - algorand
+  - algo
+  VET:
+  - vechain
+  - vet
+  FIL:
+  - filecoin
+  - fil
+  TON:
+  - toncoin
+  - ton
+  ICP:
+  - internet computer
+  - icp
+topic_keywords:
+  regulation:
+  - sec
+  - regulation
+  - lawsuit
+  - compliance
+  - enforcement
+  - sec chair
+  - gary gensler
+  etf:
+  - etf
+  - spot etf
+  - fund flow
+  - bitcoin etf
+  - ethereum etf
+  - institutional inflow
+  - grayscale
+  - blackrock
+  - fidelity
+  defi:
+  - defi
+  - dex
+  - staking
+  - lending
+  - yield
+  - liquidity
+  - tvl
+  - airdrop
+  - points
+  stablecoin:
+  - stablecoin
+  - usdt
+  - usdc
+  - busd
+  - dai
+  - circle
+  - tether
+  security:
+  - exploit
+  - hack
+  - phishing
+  - rug pull
+  - scam
+  - vulnerability
+  - breach
+  nft:
+  - nft
+  - nfts
+  - opensea
+  - magic eden
+  - nft marketplace
+  layer2:
+  - layer 2
+  - layer2
+  - l2
+  - rollup
+  - zk rollup
+  - optimistic
+  - scaling
+  ai_crypto:
+  - ai crypto
+  - ai token
+  - ai agent
+  - decentralized ai
+  memecoin:
+  - meme coin
+  - memecoin
+  - meme token
+  exchange:
+  - exchange
+  - listing
+  - delisting
+  - trading volume
+  - binance
+  - coinbase
+  - kraken
+  - bybit
+  - okx
+  adoption:
+  - adoption
+  - mainstream
+  - institutional
+  - enterprise
+  - treasury
+  - el salvador
+  upgrade:
+  - upgrade
+  - hard fork
+  - network upgrade
+  - ethereum upgrade
+  - dencun
+  - cancun
+  macro:
+  - fed
+  - interest rate
+  - inflation
+  - recession
+  - btc dominance
+  - market cap
+  mining:
+  - mining
+  - miner
+  - hash rate
+  - halving
+  - block reward
+  web3:
+  - web3
+  - web 3
+  - decentralized web
+  - dapp
+  - decentralized app
+  - dao
+  - governance
+  - smart contract
+  crypto_general:
+  - cryptocurrency
+  - crypto market
+  - digital asset
+  - blockchain
+  - crypto industry
+  - virtual asset
+  innovation:
+  - innovation
+  - breakthrough
+  - new technology
+  - protocol launch
+  - mainnet launch
+  - new chain
+  - tech upgrade
+  - roadmap
+negative_keywords:
+- sponsored
+- advertorial
+- giveaway
+- price prediction
+- 100x
+- 1000x
+- moon shot
+- get rich
+- buy now
+- must buy
+- limited time
+- exclusive offer
+- click here
+- sign up bonus
+dynamic_tokens:
+  fetched_at: '2026-03-26T02:55:46.573789Z'
+  token_aliases:
+    BTC:
+    - bitcoin
+    - btc
+    ETH:
+    - ethereum
+    - eth
+    USDT:
+    - tether
+    - usdt
+    BNB:
+    - bnb
+    XRP:
+    - xrp
+    USDC:
+    - usdc
+    SOL:
+    - solana
+    - sol
+    TRX:
+    - tron
+    - trx
+    FIGR_HELOC:
+    - figure heloc
+    - figr_heloc
+    DOGE:
+    - dogecoin
+    - doge
+    USDS:
+    - usds
+    WBT:
+    - whitebit coin
+    - wbt
+    ADA:
+    - cardano
+    - ada
+    HYPE:
+    - hyperliquid
+    - hype
+    BCH:
+    - bitcoin cash
+    - bch
+    LEO:
+    - leo token
+    - leo
+    LINK:
+    - chainlink
+    - link
+    XMR:
+    - monero
+    - xmr
+    USDE:
+    - ethena usde
+    - usde
+    XLM:
+    - stellar
+    - xlm
+    CC:
+    - canton
+    - cc
+    USD1:
+    - usd1
+    LTC:
+    - litecoin
+    - ltc
+    DAI:
+    - dai
+    M:
+    - memecore
+    - m
+    RAIN:
+    - rain
+    AVAX:
+    - avalanche
+    - avax
+    HBAR:
+    - hedera
+    - hbar
+    PYUSD:
+    - paypal usd
+    - pyusd
+    ZEC:
+    - zcash
+    - zec
+    SUI:
+    - sui
+    SHIB:
+    - shiba inu
+    - shib
+    TAO:
+    - bittensor
+    - tao
+    TON:
+    - toncoin
+    - ton
+    CRO:
+    - cronos
+    - cro
+    WLFI:
+    - world liberty financial
+    - wlfi
+    XAUT:
+    - tether gold
+    - xaut
+    USYC:
+    - circle usyc
+    - usyc
+    MNT:
+    - mantle
+    - mnt
+    UNI:
+    - uniswap
+    - uni
+    PAXG:
+    - pax gold
+    - paxg
+    DOT:
+    - polkadot
+    - dot
+    BUIDL:
+    - blackrock usd institutional digital liquidity fund
+    - buidl
+    PI:
+    - pi network
+    - pi
+    OKB:
+    - okb
+    USDG:
+    - global dollar
+    - usdg
+    USDF:
+    - falcon usd
+    - usdf
+    SKY:
+    - sky
+    AAVE:
+    - aave
+    ASTER:
+    - aster
+    NEAR:
+    - near protocol
+    - near
+    SIREN:
+    - siren
+    HTX:
+    - htx dao
+    - htx
+    PEPE:
+    - pepe
+    RLUSD:
+    - ripple usd
+    - rlusd
+    BGB:
+    - bitget token
+    - bgb
+    ETC:
+    - ethereum classic
+    - etc
+    ICP:
+    - internet computer
+    - icp
+    BFUSD:
+    - bfusd
+    USDY:
+    - ondo us dollar yield
+    - usdy
+    ONDO:
+    - ondo
+    GT:
+    - gate
+    - gt
+    PUMP:
+    - pump.fun
+    - pump
+    QNT:
+    - quant
+    - qnt
+    KCS:
+    - kucoin
+    - kcs
+    KAS:
+    - kaspa
+    - kas
+    JTRSY:
+    - janus henderson anemoy treasury fund
+    - jtrsy
+    POL:
+    - pol (ex-matic)
+    - pol
+    WLD:
+    - worldcoin
+    - wld
+    EUTBL:
+    - spiko eu t-bills money market fund
+    - eutbl
+    RENDER:
+    - render
+    MORPHO:
+    - morpho
+    ENA:
+    - ethena
+    - ena
+    NEXO:
+    - nexo
+    USTB:
+    - superstate short duration u.s. government securities fund (ustb)
+    - ustb
+    USDTB:
+    - usdtb
+    ATOM:
+    - cosmos hub
+    - atom
+    APT:
+    - aptos
+    - apt
+    USDD:
+    - usdd
+    ALGO:
+    - algorand
+    - algo
+    HASH:
+    - provenance blockchain
+    - hash
+    NIGHT:
+    - midnight
+    - night
+    TRUMP:
+    - official trump
+    - trump
+    FIL:
+    - filecoin
+    - fil
+    FLR:
+    - flare
+    - flr
+    OUSG:
+    - ousg
+    XDC:
+    - xdc network
+    - xdc
+    BDX:
+    - beldex
+    - bdx
+    VET:
+    - vechain
+    - vet
+    ARB:
+    - arbitrum
+    - arb
+    YLDS:
+    - ylds
+    GHO:
+    - gho
+    FET:
+    - artificial superintelligence alliance
+    - fet
+    STABLE:
+    - ​​stable
+    - stable
+    USD0:
+    - usual usd
+    - usd0
+    BONK:
+    - bonk
+    JUP:
+    - jupiter
+    - jup
+    ZRO:
+    - layerzero
+    - zro
+    JST:
+    - just
+    - jst
+    TUSD:
+    - trueusd
+    - tusd

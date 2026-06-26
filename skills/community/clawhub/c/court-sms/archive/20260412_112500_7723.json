@@ -1,0 +1,46 @@
+{
+  "id": "20260412_112500_7723",
+  "timestamp": "2026-04-12T11:25:00+08:00",
+  "sms_raw": "苏州市虎丘区人民法院向您发送了(2025)苏0505民初7723号案件相关文书。如若链接打不开请联系;如需咨询案件相关情况，请联系法律咨询热线12368。点击链接查阅：https://zxfw.court.gov.cn/zxfw/#/pagesAjkj/app/wssd/index?qdbh=ace6daa8d8fe4a81a0a9513c79b171a7&sdbh=b27a4a3d3f7a4089a62d37af77a8467c&sdsin=0f249efc323b5e81b152556729c6947e",
+  "parsed": {
+    "type": "document_delivery",
+    "case_number": "(2025)苏0505民初7723号",
+    "parties": ["上海钧阳机电工程有限公司", "苏州中交路劲地产有限公司"],
+    "court": "苏州市虎丘区人民法院"
+  },
+  "download": {
+    "source_url": "https://zxfw.court.gov.cn/zxfw/#/pagesAjkj/app/wssd/index?qdbh=ace6daa8d8fe4a81a0a9513c79b171a7&sdbh=b27a4a3d3f7a4089a62d37af77a8467c&sdsin=0f249efc323b5e81b152556729c6947e",
+    "params": {
+      "qdbh": "ace6daa8d8fe4a81a0a9513c79b171a7",
+      "sdbh": "b27a4a3d3f7a4089a62d37af77a8467c",
+      "sdsin": "0f249efc323b5e81b152556729c6947e"
+    },
+    "method": "curl",
+    "status": "success",
+    "document_title": "民事判决书",
+    "api_response": {
+      "c_fymc": "苏州市虎丘区人民法院",
+      "c_fybh": "1201",
+      "dt_cjsj": "2026-03-25T01:37:26.000+00:00",
+      "documents": [
+        {
+          "c_wsmc": "民事判决书2025-7723上海钧阳机电工程有限公司承揽合同纠纷普",
+          "c_wsbh": "81c6f6f5f7ea4ab69039bbc34c55967a",
+          "dt_cjsj": "2026-03-25T01:37:26.000+00:00"
+        }
+      ]
+    }
+  },
+  "document": {
+    "type": "一审判决书",
+    "sent_at": "2026-03-25T09:37:26+08:00",
+    "received_at": "2026-04-12T11:23:00+08:00",
+    "appeal_deadline": "2026-04-09T23:59:59+08:00",
+    "appeal_days_remaining": -3
+  },
+  "archive": {
+    "matched_case": null,
+    "target_path": "(2025)苏0505民初7723号 上海钧阳机电工程有限公司与苏州中交路劲地产有限公司承揽合同纠纷/民事判决书（上海钧阳机电工程有限公司与苏州中交路劲地产有限公司承揽合同纠纷）_20260412收.pdf",
+    "summary": "一审判决：被告给付原告质保金95,778.70元及逾期利息（LPR 1.5倍），驳回被告全部反诉请求。上诉期已于2026-04-09届满。"
+  }
+}

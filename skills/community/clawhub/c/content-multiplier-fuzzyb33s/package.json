@@ -1,0 +1,9 @@
+{
+  "name": "content-repurposer",
+  "version": "1.0.0",
+  "description": "Repurpose a single piece of content into 10+ marketing formats",
+  "scripts": {
+    "repurpose": "python scripts/repurpose.py"
+  },
+  "dependencies": {}
+}

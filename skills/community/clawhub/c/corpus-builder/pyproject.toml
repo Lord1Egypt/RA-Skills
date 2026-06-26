@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "corpus-builder"
+version = "1.1.0"
+description = "语料库构建工具 - 针对中文小说优化，支持智能分块、AI 标注、向量化存储"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "OpenClaw Community"}
+]
+keywords = [
+    "corpus",
+    "chinese-novel",
+    "nlp",
+    "chromadb",
+    "vector-database",
+    "ai-annotation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "chromadb>=0.4.0",
+    "sentence-transformers>=2.2.0",
+    "pyyaml>=6.0.1",
+    "rich>=13.7.0",
+    "psutil>=5.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "pytest>=7.0.0",
+]
+sqlite-compat = [
+    "pysqlite3-binary>=0.5.0; python_version < '3.12'"
+]
+
+[project.scripts]
+corpus-builder = "scripts.build_corpus.py:main"
+
+[project.urls]
+Homepage = "https://github.com/openclaw/openclaw"
+Documentation = "https://github.com/openclaw/openclaw/tree/main/skills/corpus-builder"
+Repository = "https://github.com/openclaw/openclaw.git"
+Issues = "https://github.com/openclaw/openclaw/issues"
+Changelog = "https://github.com/openclaw/openclaw/blob/main/skills/corpus-builder/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scripts*"]
+
+[tool.ruff]
+target-version = "py38"
+line-length = 100
+
+[tool.ruff.lint]
+extend-select = [
+    "F",  # Pyflakes
+    "E",  # Pycodestyle errors
+    "W",  # Pycodestyle warnings
+    "I",  # isort
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]

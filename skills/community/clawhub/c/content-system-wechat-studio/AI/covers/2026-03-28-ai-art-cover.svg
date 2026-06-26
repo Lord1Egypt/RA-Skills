@@ -1,0 +1,62 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="108" y1="66" x2="1174" y2="664" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5EEE2"/>
+      <stop offset="1" stop-color="#F0E1BE"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="188" y1="130" x2="1076" y2="586" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#FBF4E6"/>
+    </linearGradient>
+    <linearGradient id="line" x1="231" y1="0" x2="1048" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C99946" stop-opacity="0"/>
+      <stop offset="0.48" stop-color="#C99946"/>
+      <stop offset="1" stop-color="#C99946" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="152" y="98" width="976" height="528" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.47451 0 0 0 0 0.337255 0 0 0 0 0.152941 0 0 0 0.12 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="164" cy="118" r="112" fill="#FFF7E8" fill-opacity="0.78"/>
+  <circle cx="1134" cy="608" r="132" fill="#F7E7BC" fill-opacity="0.55"/>
+  <path d="M96 96H1184V624H96V96Z" stroke="#D6B57A" stroke-opacity="0.38" stroke-width="2" stroke-dasharray="6 10"/>
+  <path d="M120 140H1160" stroke="url(#line)" stroke-width="2"/>
+  <path d="M120 580H1160" stroke="url(#line)" stroke-width="2"/>
+
+  <g filter="url(#shadow)">
+    <rect x="188" y="130" width="904" height="456" rx="30" fill="url(#panel)"/>
+    <rect x="188.75" y="130.75" width="902.5" height="454.5" rx="29.25" stroke="#DFCDA7" stroke-opacity="0.9" stroke-width="1.5"/>
+  </g>
+
+  <rect x="242" y="188" width="150" height="38" rx="19" fill="#F5E7C7"/>
+  <text x="317" y="213" text-anchor="middle" fill="#9A6A1F" font-size="20" font-weight="700" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">AI 认知科普</text>
+
+  <text x="242" y="314" fill="#3F3427" font-size="68" font-weight="800" letter-spacing="1" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">当 AI 越会执行，</text>
+  <text x="242" y="406" fill="#3F3427" font-size="68" font-weight="800" letter-spacing="1" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">艺术生的优势</text>
+  <text x="242" y="498" fill="#B4832D" font-size="68" font-weight="800" letter-spacing="1" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">反而越明显</text>
+
+  <text x="244" y="546" fill="#78644A" font-size="24" font-weight="500" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">AI 压缩执行，放大审美、表达与理解人的能力</text>
+
+  <g opacity="0.95">
+    <rect x="940" y="206" width="96" height="96" rx="24" fill="#F8ECD2"/>
+    <rect x="974" y="224" width="28" height="60" rx="14" fill="#B4832D"/>
+    <rect x="960" y="248" width="56" height="12" rx="6" fill="#E1C183"/>
+  </g>
+
+  <g opacity="0.92">
+    <rect x="892" y="344" width="176" height="132" rx="26" fill="#F4E6C4"/>
+    <path d="M930 444C950 406 981 385 1017 380C1026 379 1032 369 1031 360C1030 350 1020 344 1012 346C963 354 922 384 897 432C893 440 897 450 905 454C913 458 925 454 930 444Z" fill="#C8963E"/>
+    <circle cx="953" cy="390" r="18" fill="#D6B57A"/>
+    <circle cx="1008" cy="418" r="26" fill="#E8C98E"/>
+  </g>
+
+  <text x="1042" y="548" text-anchor="end" fill="#8C744E" font-size="22" font-weight="600" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">Abigale-on the way</text>
+</svg>

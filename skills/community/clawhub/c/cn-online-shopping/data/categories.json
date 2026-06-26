@@ -1,0 +1,151 @@
+{
+  "categories": {
+    "electronics": {
+      "name": "Electronics",
+      "keywords": ["手机", "电脑", "笔记本", "平板", "相机", "耳机", "充电器", "数据线", "电子", "数码", "智能手表", "耳机", "音响", "电视", "显示器", "键盘", "鼠标", "phone", "laptop", "computer", "camera", "headphone", "earphone", "charger", "cable", "tablet", "watch", "speaker", "tv", "monitor", "keyboard", "mouse"],
+      "recommended_platforms": ["jd", "tmall", "suning"],
+      "best_choice": "jd",
+      "notes": "High-value electronics should prioritize JD self-operated for authenticity and after-sales guarantee"
+    },
+    "electronics_accessories": {
+      "name": "Electronics Accessories",
+      "keywords": ["手机壳", "贴膜", "数据线", "充电器", "充电宝", "支架", "保护套", "case", "screen protector", "cable", "charger", "power bank", "holder", "stand"],
+      "recommended_platforms": ["taobao", "tmall", "jd"],
+      "best_choice": "taobao",
+      "notes": "Accessories have obvious price advantage on Taobao with rich options"
+    },
+    "clothing_women": {
+      "name": "Women's Clothing",
+      "keywords": ["女装", "裙子", "连衣裙", "上衣", "衬衫", "外套", "裤子", "牛仔裤", "毛衣", "大衣", "内衣", "睡衣", "women clothing", "dress", "skirt", "blouse", "shirt", "coat", "jacket", "pants", "jeans", "sweater", "underwear", "lingerie"],
+      "recommended_platforms": ["taobao", "douyin", "xiaohongshu"],
+      "best_choice": "taobao",
+      "notes": "Women's clothing has most styles on Taobao, Douyin live streaming has good discounts, Xiaohongshu has quality recommendations"
+    },
+    "clothing_men": {
+      "name": "Men's Clothing",
+      "keywords": ["男装", "T恤", "衬衫", "外套", "夹克", "裤子", "牛仔裤", "西装", "运动服", "men clothing", "t-shirt", "shirt", "jacket", "coat", "pants", "jeans", "suit", "sportswear"],
+      "recommended_platforms": ["taobao", "tmall", "jd"],
+      "best_choice": "taobao",
+      "notes": "Men's clothing has most options on Taobao, Tmall has brand authenticity"
+    },
+    "clothing_kids": {
+      "name": "Kids Clothing",
+      "keywords": ["童装", "儿童服装", "婴儿服", "kids clothing", "children clothes", "baby clothes"],
+      "recommended_platforms": ["tmall", "taobao", "jd"],
+      "best_choice": "tmall",
+      "notes": "Kids clothing recommended from Tmall brand stores with guaranteed quality"
+    },
+    "shoes": {
+      "name": "Shoes & Footwear",
+      "keywords": ["鞋", "运动鞋", "高跟鞋", "靴子", "凉鞋", "拖鞋", "shoes", "sneakers", "heels", "boots", "sandals", "slippers"],
+      "recommended_platforms": ["tmall", "jd", "taobao"],
+      "best_choice": "tmall",
+      "notes": "Brand shoes choose Tmall or JD for authentic guarantee"
+    },
+    "bags": {
+      "name": "Bags & Luggage",
+      "keywords": ["包", "背包", "手提包", "钱包", "行李箱", "bag", "backpack", "handbag", "wallet", "luggage", "suitcase"],
+      "recommended_platforms": ["tmall", "taobao", "vip"],
+      "best_choice": "tmall",
+      "notes": "Brand bags choose Tmall, value for money choose Vipshop"
+    },
+    "jewelry_accessories": {
+      "name": "Jewelry & Accessories",
+      "keywords": ["首饰", "项链", "耳环", "戒指", "手链", "手表", "眼镜", "帽子", "围巾", "jewelry", "necklace", "earrings", "ring", "bracelet", "watch", "glasses", "hat", "scarf"],
+      "recommended_platforms": ["taobao", "xiaohongshu", "tmall"],
+      "best_choice": "taobao",
+      "notes": "Fashion accessories have rich options on Taobao and Xiaohongshu"
+    },
+    "beauty": {
+      "name": "Beauty & Skincare",
+      "keywords": ["化妆品", "护肤品", "口红", "粉底", "眼影", "面膜", "香水", "makeup", "cosmetics", "skincare", "lipstick", "foundation", "eyeshadow", "mask", "perfume"],
+      "recommended_platforms": ["tmall", "xiaohongshu", "jd"],
+      "best_choice": "tmall",
+      "notes": "Beauty and skincare should prioritize Tmall flagship stores, Xiaohongshu for reference"
+    },
+    "home_decor": {
+      "name": "Home Decor",
+      "keywords": ["家居", "装饰", "家具", "灯具", "窗帘", "地毯", "抱枕", "壁画", "花瓶", "home decor", "furniture", "lighting", "curtain", "carpet", "pillow", "painting", "vase"],
+      "recommended_platforms": ["taobao", "pdd", "tmall"],
+      "best_choice": "taobao",
+      "notes": "Home decor has most options on Taobao, Pinduoduo has lowest prices"
+    },
+    "home_storage": {
+      "name": "Storage & Organization",
+      "keywords": ["收纳", "整理箱", "衣架", "置物架", "储物", "storage", "organizer", "box", "hanger", "shelf"],
+      "recommended_platforms": ["pdd", "taobao", "tmall"],
+      "best_choice": "pdd",
+      "notes": "Storage products have very competitive prices on Pinduoduo"
+    },
+    "kitchen": {
+      "name": "Kitchen Supplies",
+      "keywords": ["厨房", "厨具", "餐具", "锅", "刀具", "碗", "盘子", "厨房电器", "kitchen", "cookware", "utensils", "pot", "knife", "bowl", "plate", "appliance"],
+      "recommended_platforms": ["tmall", "jd", "taobao"],
+      "best_choice": "tmall",
+      "notes": "Kitchen supplies have guaranteed quality on Tmall"
+    },
+    "daily_necessities": {
+      "name": "Daily Necessities",
+      "keywords": ["日用品", "洗发水", "沐浴露", "牙膏", "纸巾", "清洁用品", "daily necessities", "shampoo", "shower gel", "toothpaste", "tissue", "cleaning"],
+      "recommended_platforms": ["pdd", "taobao", "jd"],
+      "best_choice": "pdd",
+      "notes": "Daily necessities have best prices on Pinduoduo"
+    },
+    "sports": {
+      "name": "Sports & Outdoors",
+      "keywords": ["运动", "健身器材", "瑜伽", "跑步", "球类", "户外", "露营", "sports", "fitness", "yoga", "running", "ball", "outdoor", "camping"],
+      "recommended_platforms": ["tmall", "jd", "taobao"],
+      "best_choice": "tmall",
+      "notes": "Sports products have most brands on Tmall"
+    },
+    "toys": {
+      "name": "Toys",
+      "keywords": ["玩具", "积木", "玩偶", "益智玩具", "toys", "blocks", "doll", "educational toys"],
+      "recommended_platforms": ["tmall", "taobao", "jd"],
+      "best_choice": "tmall",
+      "notes": "Toys recommended from Tmall brand stores with safety guarantee"
+    },
+    "books": {
+      "name": "Books",
+      "keywords": ["书", "图书", "小说", "教材", "童书", "books", "novel", "textbook", "children book"],
+      "recommended_platforms": ["jd", "tmall", "taobao"],
+      "best_choice": "jd",
+      "notes": "Books have fast delivery on JD with authentic guarantee"
+    },
+    "pet": {
+      "name": "Pet Supplies",
+      "keywords": ["宠物", "狗粮", "猫粮", "宠物玩具", "pet", "dog food", "cat food", "pet toys"],
+      "recommended_platforms": ["tmall", "taobao", "jd"],
+      "best_choice": "tmall",
+      "notes": "Pet supplies have guaranteed quality on Tmall"
+    },
+    "auto": {
+      "name": "Auto Supplies",
+      "keywords": ["汽车", "车品", "行车记录仪", "车载", "汽车用品", "car", "dashcam", "auto accessories"],
+      "recommended_platforms": ["jd", "tmall", "taobao"],
+      "best_choice": "jd",
+      "notes": "Auto supplies have guaranteed quality on JD with complete installation services"
+    },
+    "food": {
+      "name": "Food",
+      "keywords": ["食品", "零食", "水果", "生鲜", "茶叶", "咖啡", "food", "snacks", "fruit", "fresh", "tea", "coffee"],
+      "recommended_platforms": ["tmall", "jd", "pdd"],
+      "best_choice": "tmall",
+      "notes": "Food recommended from Tmall Supermarket or JD Fresh"
+    },
+    "diy": {
+      "name": "Crafts & DIY",
+      "keywords": ["手工", "DIY", "材料包", "手作", "craft", "DIY", "handmade"],
+      "recommended_platforms": ["taobao", "pdd", "tmall"],
+      "best_choice": "taobao",
+      "notes": "Craft and DIY materials have most options on Taobao"
+    },
+    "collectibles": {
+      "name": "Collectibles",
+      "keywords": ["收藏", "手办", "模型", "盲盒", "邮票", "硬币", "collectibles", "figure", "model", "blind box"],
+      "recommended_platforms": ["taobao", "tmall", "jd"],
+      "best_choice": "taobao",
+      "notes": "Collectibles have rich options on Taobao"
+    }
+  }
+}

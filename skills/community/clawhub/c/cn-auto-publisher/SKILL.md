@@ -1,35 +1,93 @@
 ---
-name: "多平台内容自动发布"
-description: "多平台内容自动发布。支持知乎回答/文章、小红书图文笔记一键发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-auto-publisher"
-sourceUrl: "https://clawhub.ai/skills/cn-auto-publisher"
+name: cn-auto-publisher
+version: 1.0.0
+description: |
+  多平台内容自动发布。支持知乎回答/文章、小红书图文笔记一键发布。
+metadata:
+  openclaw:
+    emoji: "🚀"
+    category: "content"
+    tags: ["publish", "zhihu", "xiaohongshu", "automation", "content"]
 ---
 
 # 多平台内容自动发布
 
-> 多平台内容自动发布。支持知乎回答/文章、小红书图文笔记一键发布。
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-auto-publisher`
-- **Source URL:** [https://clawhub.ai/skills/cn-auto-publisher](https://clawhub.ai/skills/cn-auto-publisher)
+一键将内容发布到知乎或小红书，告别重复操作。
 
-## Overview
+**支持平台**：
+- 知乎（回答 + 文章）
+- 小红书（图文笔记）
 
+> ⚠️ 微信公众号暂不支持：微信官方明确禁止自动化发布，有封号风险
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-auto-publisher
+## 使用方法
+
+### 发布知乎回答
+
 ```
+帮我把以下内容发布到知乎问题 https://www.zhihu.com/question/xxx：
+[你的内容]
+```
+
+### 发布知乎文章
+
+```
+帮我在知乎发布一篇文章，标题是"xxx"，内容如下：
+[你的内容]
+```
+
+### 发布小红书笔记
+
+```
+帮我在小红书发布一篇笔记，标题是"xxx"，内容如下：
+[你的内容]
+```
+
+## 执行流程
+
+### 知乎回答发布
+
+1. 用户提供：问题URL + 回答内容
+2. 使用浏览器自动化打开问题页面
+3. 点击"写回答"按钮
+4. 通过剪贴板粘贴写入内容（Draft.js编辑器兼容）
+5. 点击"发布回答"
+6. 返回发布结果和链接
+
+### 知乎文章发布
+
+1. 用户提供：文章标题 + 文章内容
+2. 使用浏览器自动化打开写作页面
+3. 填写标题和正文
+4. 点击"发布"
+5. 返回发布结果和链接
+
+### 小红书笔记发布
+
+1. 用户提供：笔记标题 + 正文 + 图片路径（可选）
+2. 使用浏览器自动化打开小红书创作者页面
+3. 上传图片（如有）
+4. 填写标题和正文
+5. 点击"发布"
+6. 返回发布结果
+
+## 前置条件
+
+- 需要用户已在浏览器中登录知乎/小红书账号
+- Cookie持久化存储在 `~/.qclaw/zhihu_cookies.json` 或 `~/.qclaw/xiaohongshu_cookies.json`
+- 首次使用会检测登录状态，如未登录会提示用户手动登录
+
+## 注意事项
+
+- 发布频率建议：知乎每天不超过2篇，小红书每天不超过3篇
+- 内容必须符合平台规则，避免违规
+- 首次发布前请确认已登录对应平台
+
+## 技术实现
+
+- 浏览器自动化：Playwright + Chrome
+- 内容写入：剪贴板粘贴（兼容Draft.js/TipTap等虚拟编辑器）
+- 反检测：禁用WebDriver标识、自定义User-Agent
+- Cookie持久化：JSON文件存储

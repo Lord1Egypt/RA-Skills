@@ -1,0 +1,13 @@
+{
+  "name": "compress-image",
+  "private": true,
+  "type": "module",
+  "description": "Standalone compress-image skill package",
+  "scripts": {
+    "doctor": "node scripts/doctor.mjs",
+    "ensure-ready": "node scripts/ensure-ready.mjs",
+    "setup": "node scripts/setup.mjs",
+    "compress": "npx -y bun scripts/main.ts",
+    "test": "npm --prefix scripts test"
+  }
+}

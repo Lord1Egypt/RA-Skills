@@ -1,0 +1,183 @@
+spec_version: "0.1"
+
+skill_identity:
+  slug: ""
+  display_name: ""
+  id: ""
+  name: ""
+  version: ""
+  owner: ""
+  homepage: ""
+  target_platforms:
+    - platform: ""
+      support_level: ""
+      standard_source: ""
+      validation_mode: ""
+      publish_mode: ""
+      note: ""
+
+intent:
+  goal: ""
+  target_user: ""
+  use_scenarios: []
+
+scope:
+  must_have: []
+  nice_to_have: []
+  excluded: []
+
+inputs:
+  - name: ""
+    required: true
+    description: ""
+    constraints:
+      note: ""
+      type: ""
+      allowed_values: []
+      source: ""
+
+outputs:
+  - name: ""
+    format: ""
+    description: ""
+    minimum_contents: []
+
+output_profile:
+  has_visual_output: false
+  visual_output_types: []
+
+research_gate:
+  skill_identity:
+    status: ""
+    cocoloop_checked: false
+    clawhub_checked: false
+    slug_available: false
+    note: ""
+  target_environment:
+    status: ""
+    current_environment: ""
+    target_environment: ""
+    current_environment_is_target: true
+    note: ""
+  implementation_approach:
+    status: ""
+    selected_execution_plane: ""
+    note: ""
+
+interaction_contract:
+  research:
+    ask_one_question_per_turn: true
+    max_questions: 10
+    count_confirmation_questions: true
+    detect_current_environment_first: true
+    confirm_target_environment_before_writing: true
+    overflow_strategy: "write_open_gaps_then_continue"
+
+success_criteria: []
+
+failure_modes:
+  - mode: ""
+    description: ""
+    user_impact: ""
+
+fallback_policy:
+  allowed: true
+  summary: ""
+  fallback_outputs: []
+
+dependencies:
+  - name: ""
+    kind: ""
+    required: true
+    note: ""
+
+design_md:
+  enabled: false
+  applies_to: []
+  source_mode: ""
+  preset_id: ""
+  preset_ref: ""
+  user_provided_ref: ""
+  custom_style_notes: []
+  official_library_ref: "cocoloop-skill-factory/ref/design-md/index.md"
+  prompt_user_to_use_first: true
+  output_path: "references/design.md"
+
+visual_storytelling:
+  enabled: false
+  artifact_family: ""
+  story_units: []
+  text_hierarchy:
+    required_layers: []
+    emphasis_modes: []
+  infographic_elements:
+    required: false
+    minimum_per_artifact: 0
+    allowed_types: []
+  output_adapters: []
+  editability_target: ""
+  validation_checks: []
+
+research_evidence:
+  coverage_status:
+    status: ""
+    note: ""
+  evidence_refs:
+    - source_type: ""
+      mechanism: ""
+      solution_name: ""
+      ref: ""
+      note: ""
+  open_gaps:
+    - gap_type: ""
+      impact_level: ""
+      note: ""
+
+primary_domain: ""
+peer_domains: []
+
+domain_supplements:
+  engineering_delivery: {}
+  frontend_design: {}
+  browser_ui_testing: {}
+  document_artifacts: {}
+  docs_research: {}
+  workflow_integration: {}
+  deploy_platform_ops: {}
+  security_risk_review: {}
+
+adapters:
+  codex:
+    status: ""
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  claude_code:
+    status: ""
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  openclaw:
+    status: ""
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  copaw:
+    status: ""
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  molili:
+    status: ""
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+    source_root: ""
+    active_root: ""
+    activation_strategy: ""
+    verification_steps: []
+  hermes_agent:
+    status: ""
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []

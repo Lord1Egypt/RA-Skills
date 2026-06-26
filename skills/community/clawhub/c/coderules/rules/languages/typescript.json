@@ -1,0 +1,96 @@
+{
+  "name": "TypeScript",
+  "version": "5.0+",
+  "priority": 70,
+
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+
+  "rules": {
+    "types": {
+      "noAny": {
+        "enabled": true,
+        "message": "禁止使用 any 类型，请使用 unknown 或定义具体类型",
+        "alternative": "unknown | 具体类型"
+      },
+      "preferInterface": {
+        "enabled": true,
+        "message": "优先使用 interface 定义对象类型，复杂联合类型可使用 type"
+      },
+      "explicitReturn": {
+        "enabled": true,
+        "message": "函数必须有明确的返回类型注解"
+      }
+    },
+
+    "naming": {
+      "variables": "camelCase",
+      "functions": "camelCase",
+      "classes": "PascalCase",
+      "interfaces": "PascalCase，不加 I 前缀",
+      "typeAliases": "PascalCase",
+      "constants": "UPPER_SNAKE_CASE",
+      "private": "_camelCase",
+      "enums": "PascalCase",
+      "enumMembers": "PascalCase"
+    },
+
+    "structure": {
+      "oneClassPerFile": true,
+      "exportType": "named",
+      "importOrder": ["外部库", "内部模块", "相对路径", "样式文件"],
+      "fileExtension": {
+        "react": ".tsx",
+        "node": ".ts",
+        "shared": ".ts"
+      }
+    },
+
+    "bestPractices": {
+      "useConst": {
+        "enabled": true,
+        "message": "优先使用 const，仅当需要重新赋值时使用 let，禁止使用 var"
+      },
+      "optionalChaining": {
+        "enabled": true,
+        "message": "使用可选链 (?.) 替代 && 链式判断"
+      },
+      "nullishCoalescing": {
+        "enabled": true,
+        "message": "使用空值合并 (??) 替代 || 处理 null/undefined"
+      }
+    }
+  },
+
+  "promptTemplates": [
+    "使用 TypeScript 严格模式，所有类型必须明确定义",
+    "禁止使用 any 类型，如有需要请使用 unknown 并进行类型收窄",
+    "函数必须有明确的返回类型注解",
+    "优先使用 const，仅在需要重新赋值时使用 let",
+    "接口命名使用 PascalCase，不加 I 前缀",
+    "使用可选链 (?.) 和空值合并 (??) 简化代码"
+  ],
+
+  "examples": {
+    "good": [
+      "interface User {\n  id: number;\n  name: string;\n  email?: string;\n}\n\nconst getUser = (id: number): Promise<User> => {\n  return fetch(`/api/users/${id}`).then(res => res.json());\n};",
+      "const config: Config = {\n  host: process.env.HOST ?? 'localhost',\n  port: Number(process.env.PORT) || 3000\n};"
+    ],
+    "bad": [
+      "const getUser = (id): any => { ... }",
+      "var name = 'test';",
+      "interface IUser { ... }"
+    ]
+  }
+}

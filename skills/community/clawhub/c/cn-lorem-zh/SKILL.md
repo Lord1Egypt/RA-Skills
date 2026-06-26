@@ -1,35 +1,72 @@
 ---
-name: "Cn Lorem Zh"
+slug: cn-lorem-zh
+name: Cn Lorem Zh
+version: "1.0.0"
 description: "cn lorem zh"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-lorem-zh"
-sourceUrl: "https://clawhub.ai/skills/cn-lorem-zh"
+keywords: tool, utility
+license: MIT-0
+tags:
+  - tools
 ---
 
-# Cn Lorem Zh
 
-> cn lorem zh
+# Chinese Lorem Ipsum
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-lorem-zh`
-- **Source URL:** [https://clawhub.ai/skills/cn-lorem-zh](https://clawhub.ai/skills/cn-lorem-zh)
+Generate Chinese placeholder text for design and layout testing.
 
-## Overview
+## Features
 
+- Pure Python standard library, no external dependencies
+- Multiple paragraph styles covering technology, business, design
+- Command-line interface with count parameter
+- JSON output for easy parsing
+- Random selection for variety
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Use Cases
+
+- UI/UX design mockups - fill placeholder text
+- Layout testing with realistic Chinese content
+- Document templates
+- Educational materials
+
+## Example Output
+
+Input:
 ```bash
-hermes skills install clawhub/cn-lorem-zh
+python3 scripts/lorem_zh.py --count 3
 ```
+
+Output:
+```json
+{
+  "paragraphs": [
+    "人工智能正在深刻改变各行各业的运作方式...",
+    "数字化转型已成为企业发展的必然趋势...",
+    "用户体验是产品成功的核心要素之一..."
+  ],
+  "count": 3
+}
+```
+
+## Content Themes
+
+The tool uses carefully curated paragraphs covering:
+- Technology and AI trends
+- Business and digital transformation
+- Design and user experience
+- Data-driven decision making
+- Cloud computing and edge computing
+
+Each paragraph is 2-4 sentences, suitable for placeholder text.
+
+## Technical Details
+
+- Language: Python 3
+- Dependencies: None (standard library only)
+- License: MIT-0
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

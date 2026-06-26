@@ -1,0 +1,43 @@
+{
+  "name": "SSRF Detection",
+  "category": "ssrf",
+  "description": "检测服务端请求伪造模式",
+  "severity": "critical",
+  "patterns": [
+    {
+      "id": "ssrf_localhost",
+      "pattern": "localhost|127\\.0\\.0\\.1|::1|0\\.0\\.0\\.0",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "本地地址访问"
+    },
+    {
+      "id": "ssrf_internal_ip",
+      "pattern": "10\\.\\d+\\.\\d+\\.\\d+|172\\.(?:1[6-9]|2\\d|3[01])\\.\\d+\\.\\d+|192\\.168\\.\\d+\\.\\d+",
+      "weight": 0.85,
+      "severity": "high",
+      "description": "内网 IP 访问"
+    },
+    {
+      "id": "ssrf_metadata",
+      "pattern": "169\\.254\\.169\\.254|metadata\\.google\\.internal",
+      "weight": 0.9,
+      "severity": "critical",
+      "description": "云元数据端点"
+    },
+    {
+      "id": "ssrf_file_protocol",
+      "pattern": "file://",
+      "weight": 0.85,
+      "severity": "high",
+      "description": "File 协议访问"
+    },
+    {
+      "id": "ssrf_protocol",
+      "pattern": "^https?://|ftp://|gopher://|dict://",
+      "weight": 0.4,
+      "severity": "medium",
+      "description": "URL 协议检测（通用）"
+    }
+  ]
+}

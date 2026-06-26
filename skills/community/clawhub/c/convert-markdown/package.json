@@ -1,0 +1,61 @@
+{
+  "name": "convert-markdown",
+  "version": "1.0.3",
+  "description": "基于 MarkItDown 的多格式文档转换工具，支持 PDF、Word、PowerPoint、Excel 等批量转 Markdown",
+  "author": "Microsoft + OpenClaw Community",
+  "license": "MIT",
+  "main": "scripts/cli.py",
+  "bin": {
+    "convert-markdown": "./bin/convert-markdown.js"
+  },
+  "scripts": {
+    "convert": "node bin/convert-markdown.js convert",
+    "batch": "node bin/convert-markdown.js batch"
+  },
+  "keywords": [
+    "markdown",
+    "converter",
+    "pdf",
+    "docx",
+    "xlsx",
+    "pptx",
+    "markitdown",
+    "document"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "references/",
+    "SKILL.md",
+    "manifest.json"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "skills": {
+    "commands": {
+      "convert": {
+        "description": "转换文件或目录为 Markdown",
+        "usage": "npx convert-markdown convert --input <path> [--output <path>]",
+        "options": {
+          "--input": "输入文件或目录路径（必需）",
+          "--output": "输出文件或目录路径（可选）",
+          "--overwrite": "覆盖已存在的文件",
+          "--recursive": "递归处理子目录"
+        }
+      },
+      "batch": {
+        "description": "批量转换目录",
+        "usage": "npx convert-markdown batch --source <dir> --target <dir>",
+        "options": {
+          "--source": "源目录（必需）",
+          "--target": "目标目录（必需）",
+          "--include": "包含的格式，如 .pdf,.docx,.xlsx",
+          "--exclude": "排除的格式"
+        }
+      }
+    }
+  }
+}

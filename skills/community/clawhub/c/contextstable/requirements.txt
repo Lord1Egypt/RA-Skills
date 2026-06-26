@@ -1,0 +1,5 @@
+langchain>=0.1.0
+langchain-community>=0.0.10
+sentence-transformers>=2.2.0
+faiss-cpu>=1.7.4
+pydantic>=2.0.0

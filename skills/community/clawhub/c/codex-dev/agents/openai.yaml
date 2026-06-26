@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Dev / 异步开发"
+  short_description: "Async Codex jobs with receipts, artifacts, and workdir control"
+  default_prompt: "Use $codex-dev to dispatch a background Codex task, return a receipt immediately, and optionally notify Telegram on completion. 也可以用它把开发任务放到后台执行并先返回作业回执。"

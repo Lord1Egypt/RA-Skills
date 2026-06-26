@@ -1,35 +1,238 @@
 ---
-name: "cpn_modeling_tool"
-description: "当用户描述业务流程并提到 CPN、Petri 网、建模、FS 规则、工序依赖、库所、变迁等关键词时触发。也适用于电商订单、餐厅点餐、审批流程、工程工序等场景，即使用户未明确提到 CPN，只要描述了实体间的先后依赖关系也应触发。当用户不懂 CPN 但想建模、或说"帮我画流程"、"我有个业务想建模"时也触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cpn-modeling"
-sourceUrl: "https://clawhub.ai/skills/cpn-modeling"
+name: cpn-modeling
+description: 当用户描述业务流程并提到 CPN、Petri 网、建模、FS 规则、工序依赖、库所、变迁等关键词时触发。也适用于电商订单、餐厅点餐、审批流程、工程工序等场景，即使用户未明确提到 CPN，只要描述了实体间的先后依赖关系也应触发。当用户不懂 CPN 但想建模、或说"帮我画流程"、"我有个业务想建模"时也触发。
 ---
 
-# cpn_modeling_tool
+# CPN 建模
 
-> 当用户描述业务流程并提到 CPN、Petri 网、建模、FS 规则、工序依赖、库所、变迁等关键词时触发。也适用于电商订单、餐厅点餐、审批流程、工程工序等场景，即使用户未明确提到 CPN，只要描述了实体间的先后依赖关系也应触发。当用户不懂 CPN 但想建模、或说"帮我画流程"、"我有个业务想建模"时也触发。
+## 模式判断
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cpn-modeling`
-- **Source URL:** [https://clawhub.ai/skills/cpn-modeling](https://clawhub.ai/skills/cpn-modeling)
+收到用户输入后，先判断意图：
 
-## Overview
+| 用户意图 | 处理方式 |
+|---------|---------|
+| 描述了完整业务流程，要求建模 | → **建模输出**（三部分） |
+| 有业务想法但描述模糊、或说"不懂 CPN" | → **交互引导模式** |
+| 询问"如何建模"、"怎么识别库所" | → **建模指导**，参考 `references/modeling-guide.md` |
+| 要求看示例 | → 展示 `references/example-restaurant.md` |
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cpn-modeling
+## 交互引导模式
+
+**触发条件**：用户描述模糊、不熟悉 CPN 概念、或明确说"帮我一步步来"。
+
+**核心原则**：用业务语言提问，不暴露 CPN 术语，每次只问一个问题，用户回答后立即给出反馈并推进。
+
+### 引导流程
+
 ```
+第1步：了解业务场景
+第2步：梳理流程步骤
+第3步：识别参与者和资源
+第4步：找出依赖关系
+第5步：确认并生成模型
+```
+
+---
+
+### 第1步：了解业务场景
+
+**问**：
+> "你想建模的是什么业务？用一句话描述它的目标，比如'顾客下单到收货'或'员工请假到审批通过'。"
+
+收到回答后，用自己的话复述一遍，确认理解正确，然后进入第2步。
+
+---
+
+### 第2步：梳理流程步骤
+
+**问**：
+> "这个流程从头到尾，大概经过哪几个环节？不用精确，先列出来，比如：下单 → 付款 → 备货 → 发货 → 签收。"
+
+收到回答后：
+1. 将每个环节整理为**动作**（变迁）和**状态**（库所）的对应关系，展示给用户确认：
+
+```
+你描述的流程：
+  [顾客待下单] → 下单 → [订单已提交] → 付款 → [付款已完成] → ...
+```
+
+2. 问：**"这个顺序对吗？有没有遗漏的环节？"**
+
+---
+
+### 第3步：识别参与者和资源
+
+**问**：
+> "这个流程里，除了主流程，还有没有其他参与方或资源？比如：库存、审批人、账户余额、服务员……这些东西会不会影响流程能不能继续？"
+
+收到回答后，将资源整理为**资源库所**，展示：
+
+```
+识别到的资源：
+  库存（初始状态：充足）→ 备货时需要消耗
+  审批人（初始状态：空闲）→ 审批时需要占用
+```
+
+问：**"这些资源对吗？还有其他的吗？"**
+
+---
+
+### 第4步：找出依赖关系
+
+针对流程中每个"等待"或"条件"，逐一确认：
+
+**问**：
+> "流程里有没有'必须等某件事完成，才能做下一步'的情况？比如：付款完成后才能备货，或者库存充足才能接单。"
+
+收到回答后，将每条依赖整理并分类，展示：
+
+```
+依赖关系：
+  ① 付款完成 → 才能备货（同链顺序）
+  ② 备货完成 → 才能发货（同链顺序）
+  ③ 库存充足 → 才能备货（资源依赖）
+```
+
+问：**"还有其他依赖吗？"**
+
+---
+
+### 第5步：确认并生成
+
+汇总前四步的信息，展示完整摘要：
+
+```
+流程名称：[用户描述]
+库所（状态节点）：P1 顾客_待下单 / P2 订单_已提交 / ...
+变迁（动作节点）：T1 下单 / T2 付款 / ...
+资源库所：库存_充足（初始有 token）/ ...
+依赖关系：DEP1 付款→备货 / DEP2 库存→备货 / ...
+```
+
+**问**：
+> "以上内容准确吗？有需要调整的地方吗？确认后我就生成完整的 CPN 模型（JSON + 可视化）。"
+
+用户确认后，执行**建模输出**（三部分）。
+
+---
+
+### 引导过程中的原则
+
+- **每次只问一个问题**，不要把多个问题堆在一起
+- **用业务语言**，不说"库所"、"变迁"、"token"，说"状态"、"动作"、"资源"
+- **每步给反馈**，把用户的回答整理成结构化内容展示，让用户看到进展
+- **允许回退**，用户说"不对"时，回到上一步重新确认
+- **遇到模糊描述**，举例帮助用户理解，如"比如付款是一个动作，付款完成是一个状态"
+
+---
+
+## 建模输出
+
+从自然语言业务场景描述中提取 CPN 模型，依次输出三种格式。
+
+### 提取规则
+
+**1. 库所（Place）** — 名词性实体 + 状态词，命名格式：`{实体名}_{状态}`
+
+**2. 变迁（Transition）** — 动词性业务动作，命名格式：`{动作}{实体名}`；若变迁不消耗任何资源也不产生并发分支，应合并库所而非保留变迁
+
+**3. 着色集合（Color Set）** — 只对**影响流程走向**的属性建模；库所名称已编码的状态不需要额外颜色集合；人工参与者资源库所用 `ResourceType: ["空闲"]`
+
+**4. 依赖关系（Dependency）**
+- `arc_sequence`：同链内顺序，token 自然流动
+- `guard_condition`：跨链依赖，变迁加守卫条件
+- `fusion_place`：跨子项目状态共享，融合库所
+
+**5. 子项目划分** — 按**并发角色链**划分，不按顺序阶段划分
+- 每个独立运行的参与者（员工、主管、HR）是一条链
+- 人工参与者必须建模为**资源库所**（初始 token = 可用数量），消耗后归还
+- 判断标准：两个子项目能否同时有 token 在流动？不能则合并
+
+### 输出步骤
+
+**第一部分：JSON**（格式参考 `references/json-schema.md`）
+
+**第二部分：CPN XML**（格式参考 `references/cpn-xml-template.md`）
+- 每个子项目对应一个 `<page>`
+- `fusion_place` → 目标 page 创建同名融合库所
+- `guard_condition` → 变迁的 `<condition>` 写入守卫
+
+**第三部分：HTML 可视化**（格式参考 `references/html-viz-template.md`）
+- 将 JSON 对象替换模板中的 `__CPN_DATA__`
+- 使用 Write 工具直接写入文件，**不要**把 HTML 内容输出到对话中
+- 写入路径：`/tmp/<project_id>.html`
+- 写入完成后，根据操作系统告知用户打开方式：
+
+**macOS：**
+```bash
+open /tmp/<project_id>.html
+```
+
+**Windows：**
+```powershell
+Start-Process /tmp/<project_id>.html
+```
+
+**Linux：**
+```bash
+xdg-open /tmp/<project_id>.html
+```
+
+### HTML 可视化 ⚠️ 关键约束（必读）
+
+生成 HTML 时必须严格遵循以下约束，否则会出现空白页面或运行卡死。
+
+**1. chain 与 subproject 名必须一致**
+- 模板的 `chainColorMap` 按 `subproject` 名建索引，绘制时通过 `node.chain` 查询
+- 若链名（如"挂号链"）≠ 阶段名（如"挂号阶段"），会导致所有节点颜色回退到链色[0]
+- **每条数据的 `chain` 和 `subproject` 字段值必须相同**（如都叫"挂号阶段"）
+- `THEMES[].chains` 的 key 也必须与 subproject 名一致
+
+**2. guard_condition 依赖必须指向库所 ID**
+- `dependency_rules` 中 `predecessor` 应为变迁的**输出库所** ID，非变迁 ID
+- `guardDeps` 检查的是 `tokenMap[pid]`，tokenMap 只存库所，不存变迁
+- 用变迁 ID 会导致守卫永远为 false，对应变迁永远无法触发 → 流程卡死
+
+**3. JS 语法必须 ES5/ES5.1 兼容**
+- 禁止用 `**` 幂运算符（用 `x*x` 或 `Math.pow`）
+- 禁止用 `??` 空值合并、`?.` 可选链
+- 禁止用 `for...of`（用 `forEach`）
+- 尽量用 `function(){}` 代替箭头函数（兼容旧浏览器）
+- 用 `Math.max.apply(null, arr)` 代替 `Math.max(...arr)`
+- 代码分离到多个 `<script>` 块中，每块加 `"use strict"`
+
+**4. 例子：正确的 guard_condition**
+```json
+// ❌ 错误：predecessor 是变迁 ID，tokenMap 里没有
+{ "id": "DEP3", "mechanism": "guard_condition", "predecessor": "T3", "successor": "T4" }
+
+// ✅ 正确：predecessor 是库所 ID（T3 的输出库所）
+{ "id": "DEP3", "mechanism": "guard_condition", "predecessor": "P5", "successor": "T4" }
+```
+
+### 输出质量检查
+
+1. `dependency_rules` 是否覆盖所有"才能/完成后"依赖
+2. 多输入变迁的所有输入库所是否都能获得 token（防死锁）
+3. ⚠️ 写入 HTML 前确认 `__CPN_DATA__` 已替换为实际 JSON，不得输出含占位符的文件
+4. 每个 `<page>` 是否与 JSON 子项目一一对应
+5. 子项目是否按**角色链**划分（不是顺序阶段）——两个子项目能否同时有 token 流动？
+6. 每个人工参与者是否建模为资源库所（有初始 token，消耗后归还）
+7. 是否存在无意义变迁（只搬运 token，无资源消耗）——若有，合并库所或删除
+8. ⚠️ JSON 中 `chain` === `subproject`，且 THEMES chains key 匹配
+9. ⚠️ `guard_condition` 的 `predecessor` 必须是库所 ID（变迁的输出库所）
+10. ⚠️ JS 语法 ES5 兼容：无 `**`/`??`/`?.`/`for...of`/`...`展开
+
+---
+
+## 参考文件
+
+> 以下文件不会自动加载，需要时用 Read 工具主动读取。
+
+- 建模方法论：`references/modeling-guide.md`
+- 经典示例（餐厅点餐）：`references/example-restaurant.md`
+- JSON 格式：`references/json-schema.md`
+- CPN XML 格式：`references/cpn-xml-template.md`
+- HTML 可视化模板：`references/html-viz-template.md`

@@ -1,0 +1,130 @@
+{
+  "ISTJ": {
+    "nickname_cn": "檢查官",
+    "nickname_en": "Inspector",
+    "color": "#2C3E50",
+    "description": "Quiet and serious, succeeding through thoroughness and reliability.",
+    "lobster": "A meticulous lobster in uniform, checklist gripped firmly in one claw",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ISTJ.webp"
+  },
+  "ISFJ": {
+    "nickname_cn": "守護者",
+    "nickname_en": "Protector",
+    "color": "#1ABC9C",
+    "description": "Quiet, friendly, and responsible, fulfilling duties with quiet dedication.",
+    "lobster": "A warm lobster in an apron, cradling a first-aid kit in both claws",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ISFJ.webp"
+  },
+  "INFJ": {
+    "nickname_cn": "提倡者",
+    "nickname_en": "Advocate",
+    "color": "#8E44AD",
+    "description": "Seeks meaning and connection, wanting to understand what motivates others.",
+    "lobster": "A mysterious lobster in a flowing cape, holding a crystal ball aloft",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/INFJ.webp"
+  },
+  "INTJ": {
+    "nickname_cn": "策略家",
+    "nickname_en": "Architect",
+    "color": "#4A0E4E",
+    "description": "Driven by a powerful desire to implement ideas and achieve goals.",
+    "lobster": "A brooding lobster in a monocle, cradling a chessboard with calm intensity",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/INTJ.webp"
+  },
+  "ISTP": {
+    "nickname_cn": "工匠",
+    "nickname_en": "Craftsman",
+    "color": "#7F8C8D",
+    "description": "Tolerant and flexible, a quiet observer who acts decisively when a problem arises.",
+    "lobster": "A steel-grey lobster, one claw gripping a wrench, the other holding a circuit board",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ISTP.webp"
+  },
+  "ISFP": {
+    "nickname_cn": "冒險家",
+    "nickname_en": "Adventurer",
+    "color": "#E74C3C",
+    "description": "Quiet, friendly, and sensitive — lives in the present and prefers to show rather than tell.",
+    "lobster": "An artistic lobster in a beret, paintbrush clasped delicately in one claw",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ISFP.webp"
+  },
+  "INFP": {
+    "nickname_cn": "調停者",
+    "nickname_en": "Mediator",
+    "color": "#9B59B6",
+    "description": "An idealist, loyal to the people and causes that matter most.",
+    "lobster": "A dreamy lobster clutching a quill pen, surrounded by drifting starlight",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/INFP.webp"
+  },
+  "INTP": {
+    "nickname_cn": "邏輯學家",
+    "nickname_en": "Logician",
+    "color": "#3498DB",
+    "description": "Seeks logical explanations for everything that captures their interest.",
+    "lobster": "A scholarly lobster in round glasses, holding up a formula-covered board",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/INTP.webp"
+  },
+  "ESTP": {
+    "nickname_cn": "企業家",
+    "nickname_en": "Entrepreneur",
+    "color": "#E67E22",
+    "description": "Flexible and tolerant, takes a pragmatic approach focused on immediate results.",
+    "lobster": "A slick lobster in shades, claws waving a pair of dice with effortless cool",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ESTP.webp"
+  },
+  "ESFP": {
+    "nickname_cn": "表演者",
+    "nickname_en": "Entertainer",
+    "color": "#F1C40F",
+    "description": "Outgoing, friendly, and accepting — loves life and the people in it.",
+    "lobster": "A festive lobster in a party hat, microphone raised high in one claw",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ESFP.webp"
+  },
+  "ENFP": {
+    "nickname_cn": "探險家",
+    "nickname_en": "Campaigner",
+    "color": "#FF6B35",
+    "description": "Enthusiastic and imaginative, sees life as full of exciting possibilities.",
+    "lobster": "A vibrant lobster waving colorful claws, surrounded by floating bubbles",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ENFP.webp"
+  },
+  "ENTP": {
+    "nickname_cn": "辯論家",
+    "nickname_en": "Debater",
+    "color": "#2ECC71",
+    "description": "A quick-witted and curious thinker who never backs down from an intellectual challenge.",
+    "lobster": "An animated lobster mid-argument, one claw pointing skyward, the other gesturing emphatically",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ENTP.webp"
+  },
+  "ESTJ": {
+    "nickname_cn": "總經理",
+    "nickname_en": "Executive",
+    "color": "#34495E",
+    "description": "Practical, realistic, and decisive — moves quickly to get things done.",
+    "lobster": "A no-nonsense lobster in a tie, briefcase swinging from one claw",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ESTJ.webp"
+  },
+  "ESFJ": {
+    "nickname_cn": "執政官",
+    "nickname_en": "Consul",
+    "color": "#FF69B4",
+    "description": "Warm-hearted, conscientious, and cooperative — actively works to create harmony.",
+    "lobster": "A cheerful lobster in an apron, presenting a freshly baked cake",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ESFJ.webp"
+  },
+  "ENFJ": {
+    "nickname_cn": "主人公",
+    "nickname_en": "Protagonist",
+    "color": "#FFD700",
+    "description": "Warm, empathetic, and responsible — highly attuned to others' feelings and needs.",
+    "lobster": "A radiant lobster with a flower crown, both claws open wide in welcome",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ENFJ.webp"
+  },
+  "ENTJ": {
+    "nickname_cn": "指揮官",
+    "nickname_en": "Commander",
+    "color": "#C0392B",
+    "description": "Decisive and driven to lead — quick to spot flawed processes and push for improvement.",
+    "lobster": "A general lobster in full armor, scepter raised triumphantly in one claw",
+    "image": "https://pub-statics.finchain.global/clawmbti-nft/ENTJ.webp"
+  }
+}

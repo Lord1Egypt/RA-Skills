@@ -1,0 +1,8 @@
+{
+  "task_id": "20260405-002",
+  "description": "审查 /Users/qztcm09/.openclaw/workspace/tmp/codex/wars-timeline.html，重点检查：1. 代码质量（HTML结构、CSS规范、JS逻辑）2. 交互效果是否符合预期 3. 是否有bug或错误 4. 数据是否准确（战争名称、时间、死亡人数）5. 性能问题 6. 可改进的地方 输出详细审查报告。",
+  "status": "failed",
+  "summary": "任务执行完毕",
+  "started_at": "2026-04-04T16:18:42+08:00",
+  "finished_at": "2026-04-04T16:18:51+08:00"
+}

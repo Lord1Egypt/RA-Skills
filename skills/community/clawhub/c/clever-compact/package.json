@@ -1,0 +1,24 @@
+{
+  "name": "clever-compact",
+  "version": "2.2.3",
+  "description": "Lossless compaction plugin for OpenClaw \u2014 fixes /new amnesia, compaction loss, and memory drift.",
+  "author": "Axiom Stream Group <kit@axiomstreamgroup.com>",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/jfulmines-star/clever-compact",
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "compaction",
+    "memory",
+    "context",
+    "continuity"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "engines": {
+    "openclaw": ">=2026.3.7"
+  }
+}

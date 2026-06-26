@@ -1,0 +1,20 @@
+{
+  "name": "clawguard",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "test": "node --loader ts-node/esm tests/manual.ts"
+  },
+  "dependencies": {
+    "redis": "^5.11.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  }
+}

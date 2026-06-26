@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openclaw.ai/schemas/plugin-manifest.v1.json",
+  "id": "config-tracker",
+  "name": "Config Tracker",
+  "version": "1.0.0",
+  "description": "自动追踪并提交 OpenClaw 配置文件和关键 markdown 文件的变更",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "main": "./config-tracker.js",
+  "kind": "skill",
+  "capabilities": [
+    "hook:before_prompt_build"
+  ],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "启用配置追踪器"
+      },
+      "workspaceFiles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "AGENTS.md",
+          "USER.md",
+          "SOUL.md",
+          "MEMORY.md",
+          "TOOLS.md",
+          "HEARTBEAT.md",
+          "IDENTITY.md"
+        ],
+        "description": "要追踪的 workspace 下的文件列表"
+      },
+      "openclawConfig": {
+        "type": "string",
+        "default": "~/.openclaw/openclaw.json",
+        "description": "OpenClaw 配置文件路径"
+      },
+      "commitMessagePrefix": {
+        "type": "string",
+        "default": "auto: track config changes",
+        "description": "提交信息前缀"
+      },
+      "gitUserName": {
+        "type": "string",
+        "default": "OpenClaw Bot",
+        "description": "Git 用户名"
+      },
+      "gitUserEmail": {
+        "type": "string",
+        "default": "openclaw@localhost",
+        "description": "Git 用户邮箱"
+      }
+    }
+  },
+  "hooks": [
+    "before_prompt_build"
+  ],
+  "files": [
+    "config-tracker.js",
+    "index.js",
+    "SKILL.md"
+  ]
+}

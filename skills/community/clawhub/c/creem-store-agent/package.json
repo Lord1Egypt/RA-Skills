@@ -1,0 +1,33 @@
+{
+  "name": "creem-store-agent",
+  "version": "1.0.0",
+  "description": "OpenClaw skill — AI-powered Creem store monitor with churn analysis and autonomous actions",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "demo": "tsx demo/demo-script.ts",
+    "demo:server": "tsx demo/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "creem": "^1.4.0",
+    "@anthropic-ai/sdk": "^0.78.0",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0",
+    "@types/node-telegram-bot-api": "^0.64.0",
+    "vitest": "^3.0.0",
+    "@vitest/coverage-v8": "^3.0.0",
+    "tsx": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "license": "MIT"
+}

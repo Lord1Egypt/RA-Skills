@@ -1,35 +1,80 @@
 ---
-name: "Novel Writer"
-description: "长篇小说持续创作技能。当需要写小说、写网文、写重生穿越文、每天定期写章节、更新小说大纲、维护人物关系时使用此技能。自动读取故事总纲、前文、范本，确保章节连贯、风格一致。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cq-novel-writer"
-sourceUrl: "https://clawhub.ai/skills/cq-novel-writer"
+name: novel-writer
+description: 长篇小说持续创作技能。当需要写小说、写网文、写重生穿越文、每天定期写章节、更新小说大纲、维护人物关系时使用此技能。自动读取故事总纲、前文、范本，确保章节连贯、风格一致。
 ---
 
-# Novel Writer
+# Novel Writer - 小说写作技能
 
-> 长篇小说持续创作技能。当需要写小说、写网文、写重生穿越文、每天定期写章节、更新小说大纲、维护人物关系时使用此技能。自动读取故事总纲、前文、范本，确保章节连贯、风格一致。
+## 核心工作流
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cq-novel-writer`
-- **Source URL:** [https://clawhub.ai/skills/cq-novel-writer](https://clawhub.ai/skills/cq-novel-writer)
+每次写新章节前必须执行：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cq-novel-writer
 ```
+1. 读取 ~/.openclaw/workspace/novel/故事总纲.md
+   → 了解当前进度、人物、伏笔
+
+2. 读取前1章内容
+   → 确保剧情连贯、人物一致
+
+3. 读取范本 ~/Desktop/重生78.txt 的1-2段
+   → 学习网文节奏、爽点设计
+
+4. 写新章节（4000-5000字）
+   → 存到 ~/.openclaw/workspace/novel/
+
+5. 更新故事总纲的章节摘要
+   → 添加：章节号、标题、主要内容
+
+6. 复制到 ~/Desktop/小说合并版.txt
+   → 方便用户查看
+```
+
+## 写作规范
+
+### 章节结构
+- 每章4000-5000字
+- 1-2个场景
+- 结尾留钩子（下章预告）
+- 每章结尾写"（本章完）"
+
+### 人物设定
+- 男主：善良正义、有分寸、不滥情
+- 能力展示：村里展医术，回城后展命理道术
+- 能力来源：川西小山村道观传承（掩护）
+
+### 爽点模式
+```
+困难出现 → 贵人相助/自己化解 → 打脸 → 积累人脉
+```
+
+### 时间线管理
+- 1978年春：重生养病
+- 1978年夏：高考
+- 注意：不要写成修仙文！
+
+## 人物命名规范
+
+- 男主：李为东（1959年出生，2019年去世，1978年重生）
+- 家人：大弟李为西、二弟李为北、小妹李小巧
+- 女主：王秀英（同学）、其他待定
+
+## 注意事项
+
+- **不要写灵力/功法**：1978年男主没有道术功法，那是重生前的传承
+- **感知力可以有**：命理高手的敏锐感知是合理的
+- **年代细节**：粮票、煤油灯、1978年物价
+- **感情线克制**：男主有分寸，不主动招惹
+
+## 自动写作Cron
+
+如需要，设置每1小时自动执行：
+```
+工作目录：~/.openclaw/workspace/novel/
+每次写1章，写完更新总纲
+```
+
+## 参考文件
+
+- 故事总纲：故事总纲.md
+- 范本：~/Desktop/重生78.txt（已下载）
+- 当前章节：重生78之道门神医-第X章.txt

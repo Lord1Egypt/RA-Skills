@@ -1,0 +1,9 @@
+# Content Publisher Pro - 示例配置
+# 复制此文件为 config.yaml 并替换占位符
+
+github:
+  token: "ghp_YOUR_GITHUB_TOKEN_HERE"
+  repo: "your-username/your-username.github.io"
+
+devto:
+  api_key: "YOUR_DEVTO_API_KEY_HERE"

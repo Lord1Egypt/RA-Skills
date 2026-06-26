@@ -1,35 +1,43 @@
 ---
-name: "Crypto Market Analysis"
-description: "此技能由Tradingbase团队开发，旨在提供全面的加密货币市场分析技能。从币安获取所有币种的实时行情数据，计算多种技术指标（MACD, KDJ, RSI, CCI, BOLL, WR, PSY, BRAR, DMI），并利用用户连接的LLM进行市场分析。支持短期（默认1小时K线）和中长期（默认1天K线）分析，..."
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, binance, crypto, market, technical-indicators]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-market-analysis"
-sourceUrl: "https://clawhub.ai/skills/crypto-market-analysis"
+name: crypto-market-analysis
+description: "此技能由Tradingbase团队开发，旨在提供全面的加密货币市场分析技能。从币安获取所有币种的实时行情数据，计算多种技术指标（MACD, KDJ, RSI, CCI, BOLL, WR, PSY, BRAR, DMI），并利用用户连接的LLM进行市场分析。支持短期（默认1小时K线）和中长期（默认1天K线）分析，用户可自由选择时间周期，并以结构化报告格式输出分析结果。当用户需要对加密货币市场进行技术分析、获取行情数据或生成分析报告时使用此技能。"
 ---
 
-# Crypto Market Analysis
+# 加密货币市场分析技能
 
-> 此技能由Tradingbase团队开发，旨在提供全面的加密货币市场分析技能。从币安获取所有币种的实时行情数据，计算多种技术指标（MACD, KDJ, RSI, CCI, BOLL, WR, PSY, BRAR, DMI），并利用用户连接的LLM进行市场分析。支持短期（默认1小时K线）和中长期（默认1天K线）分析，...
+本技能旨在为用户提供全面的加密货币市场分析能力。
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-market-analysis`
-- **Source URL:** [https://clawhub.ai/skills/crypto-market-analysis](https://clawhub.ai/skills/crypto-market-analysis)
+## 功能特性
 
-## Overview
+- **行情数据获取**: 从币安交易所获取所有支持币种的实时行情数据。
+- **技术指标计算**: 自动计算以下技术指标：
+    - MACD (12,26,9,close)
+    - KDJ (14,3,3)
+    - RSI (close,6,12,24)
+    - CCI (20)
+    - BOLL (20,2,close)
+    - WR (9)
+    - PSY (12,6)
+    - BRAR (26)
+    - DMI (14,6)
+- **灵活的时间周期**:
+    - **短期分析**: 默认使用1小时K线数据。
+    - **中长期分析**: 默认使用1天K线数据。
+    - 用户可以在分析时选择自定义时间周期。
+- **LLM 市场分析**: 将行情数据和计算出的技术指标作为上下文，传递给用户当前连接的大语言模型（LLM）进行深入的市场分析。
+- **结构化报告输出**: 按照指定格式（请参考示例）输出详细的市场分析报告。
 
+## 如何使用
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crypto-market-analysis
-```
+当您需要进行加密货币市场分析、获取行情数据或生成分析报告时，可以调用此技能。技能将引导您选择需要分析的币种和时间周期。
+
+## 注意事项
+
+- **API 依赖**: 本技能依赖于币安（Binance）的公共 API。
+- **LLM 连接**: 确保您的 OpenClaw 已连接并配置了可用的 LLM 服务，以便进行市场分析。
+- **TA-Lib 依赖**: 本技能的指标计算功能依赖于 `TA-Lib` 库。如果您的环境中未安装 `TA-Lib`，技能将在后台尝试自动安装。在某些特殊情况下，自动安装可能会失败（例如，缺少C++编译环境）。如果遇到安装问题，请尝试手动安装：`pip install TA-Lib`。
+
+## 资源
+
+- `scripts/`: 包含获取行情数据和计算技术指标的 Python 脚本。
+- `references/`: 包含技术指标的详细计算公式和Binance API 文档参考。

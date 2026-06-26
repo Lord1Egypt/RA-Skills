@@ -1,0 +1,9 @@
+{
+  "name": "cloud-shrimp-reading-assistant",
+  "version": "0.1.0",
+  "description": "【自研系统技能】原认知读书助手 - 读书指导/思维模型提取",
+  "main": "src/index.js",
+  "keywords": ["reading", "learning", "mental-models", "cloud-shrimp"],
+  "author": "王的奴隶 · 严谨专业版",
+  "license": "Commercial"
+}

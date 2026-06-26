@@ -1,0 +1,7 @@
+interface:
+  display_name: "Cloudflare Mail Address Creator"
+  short_description: "Create one or many mail addresses through the Cloudflare temp-mail admin API."
+  default_prompt: "Use $cloudflare-mail-address-creator to create one or more Cloudflare temporary mail addresses through the admin API."
+
+policy:
+  allow_implicit_invocation: true

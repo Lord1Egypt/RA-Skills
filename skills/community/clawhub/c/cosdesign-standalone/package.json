@@ -1,0 +1,18 @@
+{
+  "name": "cosdesign",
+  "version": "1.0.0",
+  "description": "设计风格精准复刻工具 — 从 URL 提取色彩、字体、间距、布局，输出 Design Token / CSS / Tailwind 规范",
+  "homepage": "https://github.com/Cosmofang/cosdesign",
+  "keywords": [
+    "cosdesign", "design-system", "design-token", "color-palette", "typography",
+    "设计复刻", "设计分析", "CSS变量", "Tailwind配置", "web-design"
+  ],
+  "author": "Cosmofang",
+  "license": "MIT",
+  "scripts": {
+    "analyze": "node scripts/analyze.js",
+    "compare": "node scripts/compare.js",
+    "export": "node scripts/export.js",
+    "define-style": "node scripts/define-style.js"
+  }
+}

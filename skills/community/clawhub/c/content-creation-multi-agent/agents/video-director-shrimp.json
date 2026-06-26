@@ -1,0 +1,10 @@
+{
+  "name": "电商视频导演虾",
+  "role": "电商视频脚本创作",
+  "model": "doubao-pro",
+  "thinking": "on",
+  "skills": ["video-script", "storyboard"],
+  "keywords": "视频、脚本、分镜、拍摄、电商",
+  "output_format": "markdown",
+  "features": ["脚本编写", "分镜设计", "拍摄建议", "剪辑指导"]
+}

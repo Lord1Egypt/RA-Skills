@@ -1,0 +1,52 @@
+{
+  "createdAt": "2026-03-28T13:15:22.032Z",
+  "sourceDir": "/mnt/c/Users/Admin/AndroidStudioProjects/ClawHub Publisher",
+  "outputDir": "/mnt/c/Users/Admin/AndroidStudioProjects/ClawHub Publisher/.clawhub-publisher/clawhub-publisher",
+  "slug": "clawhub-publisher",
+  "summary": {
+    "filesCopied": 16,
+    "filesRemoved": 0,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "copiedFiles": [
+    ".clawhub-publisher/clawhub-publisher.zip",
+    ".clawhub-publisher/demo-publish-skill.zip",
+    ".clawhub-publisher/demo-publish-skill/SKILL.md",
+    ".clawhub-publisher/demo-publish-skill/notes.txt",
+    ".clawhub-publisher/demo-publish-skill/publish-report.json",
+    ".gitignore",
+    "README.md",
+    "SKILL.md",
+    "examples/demo-skill/README.md",
+    "examples/demo-skill/SKILL.md",
+    "examples/demo-skill/hooks/postinstall.sh",
+    "examples/demo-skill/notes.txt",
+    "package-lock.json",
+    "package.json",
+    "src/index.ts",
+    "tsconfig.json"
+  ],
+  "removedFiles": [],
+  "issues": [],
+  "stats": {
+    "fileCount": 33,
+    "emptyFiles": 0,
+    "likelyHookFiles": 2,
+    "binaryFiles": 4,
+    "docsFiles": 4
+  },
+  "metadata": {
+    "frontmatterRaw": {
+      "name": "clawhub-publisher",
+      "description": "Use the bundled ClawHub Publisher CLI to validate, prepare, zip, and publish OpenClaw skills to ClawHub with clearer validation, cleaner packaging, and safer publish prompts."
+    },
+    "name": "clawhub-publisher",
+    "description": "Use the bundled ClawHub Publisher CLI to validate, prepare, zip, and publish OpenClaw skills to ClawHub with clearer validation, cleaner packaging, and safer publish prompts.",
+    "hooks": []
+  },
+  "recommendations": [
+    "Package looks healthy. Consider shipping a zip alongside the publish for manual backup/testing."
+  ]
+}

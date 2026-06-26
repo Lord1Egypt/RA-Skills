@@ -1,0 +1,63 @@
+{
+  "name": "首席风险官",
+  "version": "1.0.0",
+  "description": "帮助企业识别、评估和管理各类风险",
+  "author": "AI Agent",
+  "license": "MIT",
+  "tags": ["风险", "管理", "合规", "监控"],
+  "main": "cro_skill.py",
+  "dependencies": {
+    "python": ">=3.8"
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "risk_type": {"type": "string", "description": "风险类型"},
+      "company_info": {"type": "object", "description": "企业信息"},
+      "risk_factors": {"type": "array", "items": {"type": "string"}, "description": "风险因素"}
+    },
+    "required": ["risk_type"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "status": {"type": "string"},
+      "risk_type": {"type": "string"},
+      "assessment": {"type": "object"},
+      "recommendations": {"type": "array", "items": {"type": "string"}}
+    }
+  },
+  "examples": [
+    {
+      "input": {
+        "risk_type": "市场风险",
+        "company_info": {
+          "name": "测试企业",
+          "industry": "金融",
+          "size": "大型"
+        },
+        "risk_factors": ["利率波动", "汇率风险", "竞争对手行动"]
+      },
+      "output": {
+        "status": "success",
+        "risk_type": "市场风险",
+        "assessment": {
+          "risk_level": "高",
+          "risk_score": 85,
+          "identified_risks": ["利率波动", "汇率风险", "竞争对手行动"],
+          "impact_analysis": {
+            "financial": "可能导致10-20%的收入损失",
+            "reputational": "可能影响企业品牌形象",
+            "operational": "可能导致业务中断"
+          }
+        },
+        "recommendations": [
+          "立即启动应急预案",
+          "建立风险监控指标",
+          "定期进行压力测试",
+          "寻求专业咨询服务"
+        ]
+      }
+    }
+  ]
+}

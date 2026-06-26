@@ -1,35 +1,67 @@
----
-name: "Cross Bot Communication"
-description: "Enables bots in the same group or channel to automatically detect each other, verify identities, and communicate seamlessly without configuration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cross-bot-communication"
-sourceUrl: "https://clawhub.ai/skills/cross-bot-communication"
----
+# Cross-Bot Communication
 
-# Cross Bot Communication
+> 跨 Bot 通信的智能解决方案
 
-> Enables bots in the same group or channel to automatically detect each other, verify identities, and communicate seamlessly without configuration.
+## 架构
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cross-bot-communication`
-- **Source URL:** [https://clawhub.ai/skills/cross-bot-communication](https://clawhub.ai/skills/cross-bot-communication)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cross-bot-communication
 ```
+用户 → subagent(接收) → 主agent(决策) → subagent(执行) → 目标Bot
+         传递信息        查表/判断         发送消息
+```
+
+**核心："记忆在哪里不重要，重要的是能调用"**
+
+---
+
+## 完整流程（含扫描）
+
+```
+1. 安装 skill
+   ↓
+2. 扫描已有群/频道 → 构建社交关系表
+   ↓
+3. 检查硬性条件:
+   - bot 在同一群？
+   - 是管理员？
+   - 在频道？
+   ↓
+4. 满足 → 直接用
+   不满足 → 诚实告知 + 建议方案
+   ↓
+5. 用户: "联系 XXX"
+   ↓
+6. subagent 接收 → 传递给主agent
+   ↓
+7. 主agent 决策 → 生成指令
+   ↓
+8. subagent 执行 → 发送消息
+```
+
+---
+
+## 功能
+
+- ✅ 零配置自动检测
+- ✅ 已有群/频道自动扫描
+- ✅ 关系绑定 (主人 ↔ bot)
+- ✅ 智能通信方式选择
+- ✅ 找不到时诚实告知
+
+## 硬性条件
+
+| 条件 | 状态 | 处理 |
+|------|------|------|
+| 同一群 | ✅ | 可尝试 |
+| 是管理员 | ✅ | 直接艾特 |
+| 同一频道 | ✅ | 频道中转 |
+| 都不满足 | ❌ | 诚实告知 |
+
+## 安装
+
+**安装位置：** 主 agent
+
+---
+
+## 更新日志
+
+- 2026-03-12: 添加已有群/频道扫描 + 条件检查逻辑

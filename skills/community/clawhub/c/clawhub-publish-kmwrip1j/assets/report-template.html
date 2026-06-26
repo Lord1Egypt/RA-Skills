@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="$html_lang">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>$page_title</title>
+    <link rel="icon" type="image/png" sizes="256x256" href="data:image/png;base64,{FAVICON_BASE64}" />
+    <style>
+$embedded_css
+    </style>
+  </head>
+  <body class="theme-$theme_key">
+    <aside class="report-sidebar">
+      <div class="sidebar-brand">
+        <strong>$toolbar_title</strong>
+        <span>$toolbar_subtitle</span>
+      </div>
+      <div class="sidebar-jump">
+        <span class="sidebar-label">$jump_label</span>
+        <nav class="sidebar-nav" aria-label="$jump_label">
+$nav_links
+        </nav>
+      </div>
+      <div class="sidebar-actions">
+        <div class="sidebar-row">
+          <a class="action-button" href="$github_url" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="action-button" href="$clawhub_url" target="_blank" rel="noreferrer">Clawhub</a>
+        </div>
+        <button type="button" class="action-button" data-action="download-html">$download_html</button>
+        <button type="button" class="action-button" data-action="export-pdf">$export_pdf</button>
+        <button type="button" class="action-button is-primary" data-action="share">$share_label</button>
+      </div>
+    </aside>
+
+    <div class="hero-compact-bar" aria-hidden="true">
+      <div class="hero-compact-badge">$badge_svg</div>
+      <div class="hero-compact-copy">
+        <span class="hero-compact-code">$type_code</span>
+        <span class="hero-compact-label">$type_label</span>
+      </div>
+      <a class="hero-compact-github" href="$github_url" target="_blank" rel="noreferrer" aria-label="GitHub"><svg width="26" height="26" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </div>
+
+    <main class="page-shell">
+      <section class="hero-card">
+        <a class="hero-github-link" href="$github_url" target="_blank" rel="noreferrer" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+        <div class="hero-badge">$badge_svg</div>
+        <div class="hero-copy">
+          <p class="hero-family eyebrow">$family_label</p>
+          <h1>
+            <span class="hero-type-code">$type_code</span>
+            <span class="hero-type-label">$type_label</span>
+          </h1>
+          <div class="hero-supporting-copy">
+            <p class="confidence">$confidence_label</p>
+            <p class="snapshot">$snapshot</p>
+          </div>
+        </div>
+        <p class="snapshot snapshot-standalone">$snapshot</p>
+      </section>
+
+      <section id="profile" class="section-card">
+        <h2>$section_profile</h2>
+        <div class="dimension-grid">
+$dimension_cards
+        </div>
+      </section>
+
+      <section id="people" class="section-card">
+        <div class="section-head">
+          <h2>$section_people</h2>
+        </div>
+        <div class="people-grid">$people_cards</div>
+      </section>
+
+      <section id="narrative" class="section-card prose-card">
+        <h2>$section_narrative</h2>
+        <div class="prose-block">$type_narrative</div>
+      </section>
+
+      <section id="functions" class="section-card prose-card">
+        <h2>$section_functions</h2>
+        <div class="prose-block">$function_validation</div>
+      </section>
+
+      <section id="strengths" class="double-grid">
+        <section class="section-card">
+          <h2>$section_strengths</h2>
+          <div class="stack-list">$strength_cards</div>
+        </section>
+        <section class="section-card">
+          <h2>$section_blindspots</h2>
+          <div class="stack-list">$blindspot_cards</div>
+        </section>
+      </section>
+
+      <section id="pressure" class="section-card">
+        <h2>$section_pressure</h2>
+        <div class="stack-list">$pressure_cards</div>
+      </section>
+
+      <section id="evidence" class="section-card">
+        <h2>$section_evidence</h2>
+        <div class="stack-list">$evidence_cards</div>
+      </section>
+
+      <section id="adjacent" class="section-card">
+        <h2>$section_adjacent</h2>
+        <div class="stack-list">$adjacent_cards</div>
+      </section>
+
+      <section id="uncertainty" class="section-card">
+        <h2>$section_uncertainty</h2>
+        <div class="stack-list">$uncertainty_cards</div>
+      </section>
+
+      <footer class="report-footer">
+        <p>$footer_note</p>
+      </footer>
+    </main>
+
+    <script>
+      const reportActions = $action_payload;
+      const buttons = document.querySelectorAll(".action-button");
+
+      function rememberDefaultLabel(button) {
+        if (!button.dataset.defaultLabel) {
+          button.dataset.defaultLabel = button.textContent;
+        }
+      }
+
+      function flashLabel(button, label) {
+        rememberDefaultLabel(button);
+        button.textContent = label;
+        window.setTimeout(() => {
+          button.textContent = button.dataset.defaultLabel;
+        }, 1600);
+      }
+
+      function downloadBlob(blob, filename) {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1200);
+      }
+
+      buttons.forEach((button) => rememberDefaultLabel(button));
+
+      document.querySelector(".hero-compact-github")?.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+
+      (function () {
+        var bar = document.querySelector(".hero-compact-bar");
+        if (!bar) return;
+
+        bar.addEventListener("click", function (e) {
+          if (e.target.closest(".hero-compact-github")) return;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      })();
+
+      document.querySelector('[data-action="download-html"]')?.addEventListener("click", () => {
+        const htmlDoc = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+        downloadBlob(new Blob([htmlDoc], { type: "text/html;charset=utf-8" }), reportActions.fileBase + ".html");
+      });
+
+      document.querySelector('[data-action="export-pdf"]')?.addEventListener("click", () => {
+        window.print();
+      });
+
+      document.querySelector('[data-action="share"]')?.addEventListener("click", async (event) => {
+        const button = event.currentTarget;
+        const shareData = {
+          title: reportActions.pageTitle,
+          text: reportActions.shareText,
+        };
+        if (window.location.protocol !== "file:") {
+          shareData.url = window.location.href;
+        }
+
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (error) {
+            if (error && error.name === "AbortError") {
+              return;
+            }
+          }
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          const payload = shareData.url ? shareData.text + "\n" + shareData.url : shareData.text;
+          await navigator.clipboard.writeText(payload);
+          flashLabel(button, reportActions.copiedLabel);
+        }
+      });
+
+      /* Scroll-spy: highlight the nav link matching the current viewport section */
+      (function () {
+        const links = document.querySelectorAll(".sidebar-link");
+        const ids = Array.from(links).map(function (a) { return a.getAttribute("href"); });
+        const sections = ids.map(function (id) { return document.querySelector(id); }).filter(Boolean);
+
+        function update() {
+          var current = "";
+          for (var i = sections.length - 1; i >= 0; i--) {
+            if (sections[i].getBoundingClientRect().top <= 120) {
+              current = ids[i];
+              break;
+            }
+          }
+          links.forEach(function (link) {
+            if (link.getAttribute("href") === current) {
+              link.classList.add("is-active");
+            } else {
+              link.classList.remove("is-active");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", update, { passive: true });
+        update();
+      })();
+
+      (function () {
+        const heroCard = document.querySelector(".hero-card");
+        const heroCompactBar = document.querySelector(".hero-compact-bar");
+        const pageShell = document.querySelector(".page-shell");
+        if (!heroCard || !heroCompactBar || !pageShell) return;
+
+        let compactStart = 140;
+        let compactEnd = 260;
+
+        function clamp(value, min, max) {
+          return Math.min(max, Math.max(min, value));
+        }
+
+        function computeThreshold() {
+          const heroHeight = heroCard.offsetHeight || 0;
+          const heroTop = heroCard.getBoundingClientRect().top + window.scrollY;
+          const shellRect = pageShell.getBoundingClientRect();
+          const shellStyles = window.getComputedStyle(pageShell);
+          const shellPaddingLeft = parseFloat(shellStyles.paddingLeft || "0") || 0;
+          const compactLeft = shellRect.left + shellPaddingLeft;
+          const compactWidth = Math.max(0, shellRect.width - shellPaddingLeft);
+          const fadeLead = Math.max(48, Math.min(160, Math.round(heroHeight * 0.22)));
+          const fadeRange = Math.max(72, Math.min(180, Math.round(heroHeight * 0.3)));
+
+          heroCompactBar.style.left = compactLeft + "px";
+          heroCompactBar.style.width = compactWidth + "px";
+          compactStart = heroTop + fadeLead;
+          compactEnd = compactStart + fadeRange;
+        }
+
+        function updateHeroState() {
+          const progress = clamp((window.scrollY - compactStart) / Math.max(1, compactEnd - compactStart), 0, 1);
+          document.documentElement.style.setProperty("--hero-compact-progress", progress.toFixed(4));
+          document.body.classList.toggle("is-hero-compact", progress > 0.98);
+        }
+
+        computeThreshold();
+        window.addEventListener("resize", function () {
+          computeThreshold();
+          updateHeroState();
+        });
+        window.addEventListener("scroll", updateHeroState, { passive: true });
+        updateHeroState();
+      })();
+    </script>
+  </body>
+</html>

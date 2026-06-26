@@ -1,0 +1,10 @@
+{
+  "slug": "clean-dad-jokes",
+  "name": "Clean Dad Jokes",
+  "version": "0.1.0",
+  "category": "Creative Writing",
+  "description": "Generate, polish, and adapt clean dad jokes, puns, and short family-friendly joke sets.",
+  "tags": ["humor", "jokes", "puns", "writing", "family-friendly", "dad-jokes", "openclaw"],
+  "license": "MIT-0",
+  "author": "Abdullah"
+}

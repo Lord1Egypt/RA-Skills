@@ -1,0 +1,19 @@
+{
+  "name": "codex-task-waker-kimi-test",
+  "agentId": "kimi-agent",
+  "schedule": {
+    "kind": "every",
+    "everyMs": 600000,
+    "anchorMs": 1772938800000
+  },
+  "sessionTarget": "main",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "systemEvent",
+    "text": "请读取 /root/.openclaw/skills/codex-agent/tasks/codex-task-waker.prompt.md 并严格执行。"
+  },
+  "delivery": {
+    "mode": "none"
+  },
+  "deleteAfterRun": false
+}

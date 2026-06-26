@@ -1,35 +1,49 @@
 ---
-name: "Contract Analyzer"
-description: "Analyze and review contract documents. Use when extracting key clauses, detecting high-risk terms, comparing two contracts, generating a contract summary, or..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/contract-analyzer"
-sourceUrl: "https://clawhub.ai/skills/contract-analyzer"
+name: "contract-analyzer"
+description: "Analyze and review contract documents. Use when extracting key clauses, detecting high-risk terms, comparing two contracts, generating a contract summary, or getting a contract review checklist."
 ---
 
-# Contract Analyzer
+# Contract Reviewer
 
-> Analyze and review contract documents. Use when extracting key clauses, detecting high-risk terms, comparing two contracts, generating a contract summary, or...
+## Triggers on
+contract review, analyze contract, risk clauses, compare contracts, contract summary, contract checklist, legal document review
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/contract-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/contract-analyzer](https://clawhub.ai/skills/contract-analyzer)
+## What This Skill Does
+Analyze and review contract documents. Use when extracting key clauses, detecting high-risk terms, comparing two contracts, generating a contract summary, or getting a contract review checklist.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Commands
+### analyze
 ```bash
-hermes skills install clawhub/contract-analyzer
+bash scripts/script.sh analyze [args]
 ```
+
+### risk
+```bash
+bash scripts/script.sh risk [args]
+```
+
+### compare
+```bash
+bash scripts/script.sh compare [args]
+```
+
+### summary
+```bash
+bash scripts/script.sh summary [args]
+```
+
+### checklist
+```bash
+bash scripts/script.sh checklist [args]
+```
+
+### help
+```bash
+bash scripts/script.sh help
+```
+
+## Requirements
+- bash 4+
+- python3 (standard library)
+
+Powered by BytesAgain | bytesagain.com

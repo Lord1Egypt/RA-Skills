@@ -1,0 +1,9 @@
+{
+  "id": "humanizer-zh",
+  "name": "Humanizer ZH",
+  "layer": "create",
+  "executor": "humanizer_zh_v1",
+  "input_kind": "markdown_or_text",
+  "output_kind": "humanized_markdown",
+  "description": "Apply a constrained Chinese humanization pass that removes obvious AI-writing traces without changing facts, structure, or core claims."
+}

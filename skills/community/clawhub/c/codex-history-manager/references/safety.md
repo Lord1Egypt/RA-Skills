@@ -1,0 +1,21 @@
+# Safety
+
+- Write commands default to dry run unless `--apply` is present.
+- Every write command creates a timestamped backup directory under `backups/`.
+- Database backup: full copy of `~/.codex/state_5.sqlite`
+- Rollout backup: tarball with every affected rollout file plus a text manifest
+- The tool only mutates:
+  - `threads.cwd`
+  - `threads.model_provider`
+  - `threads.model` when `--model` is supplied
+  - `session_meta.payload.cwd`
+  - `session_meta.payload.model_provider`
+  - `session_meta.payload.id` for cloned threads
+  - `turn_context.payload.model` when `--model` is supplied
+- The tool does not rewrite visible user or assistant message bodies.
+- Prefer `clone-thread` when the user wants the same history usable from two workspaces.
+- Prefer `clone-workspace` when the user wants the same history usable from two workspaces.
+- `change-provider-all` can touch every local rollout file. Dry-run it first and sanity check the scope count.
+- `apply-dangerous-edit` is the highest-risk command. It rewrites stored history content, not just metadata.
+- Before `apply-dangerous-edit`, the agent must present the plan warning and exact change list in the conversation and receive explicit user approval.
+- `apply-dangerous-edit` requires all of: a saved plan file, the exact `plan_id`, `--acknowledge-history-rewrite`, and `--apply`.

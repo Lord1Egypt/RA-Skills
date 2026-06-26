@@ -1,35 +1,224 @@
 ---
-name: "content-security-policy"
-description: "内容安全策略技能 — 敏感信息脱敏 + 危险指令过滤 + 动作权限判断 + 多层级权限管理。当用户要求"安全检查"、"脱敏处理"，或涉及删除、修改配置、群发等敏感操作时激活。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-security-policy"
-sourceUrl: "https://clawhub.ai/skills/content-security-policy"
+AIGC:
+    ContentProducer: Minimax Agent AI
+    ContentPropagator: Minimax Agent AI
+    Label: AIGC
+    ProduceID: "00000000000000000000000000000000"
+    PropagateID: "00000000000000000000000000000000"
+    ReservedCode1: 3044022056fb283ee15723a9c876c4f14c6ef0da4f05c3d120a606e486f94579f6ca952e02201d4bb965f73d7dbc8d79eadcf0e986a270ec8fbb19536839055e77f038c7fc80
+    ReservedCode2: 304502207adbec6c2b59ae1ee0f30cbafe62ca831647060d02a6b00201c11ce649e62feb022100e825163bdb7ad2384ef482c0e2b0e96347acdd731c8f67eb430432cd3827c3ba
+description: 内容安全策略技能 — 敏感信息脱敏 + 危险指令过滤 + 动作权限判断 + 多层级权限管理。当用户要求"安全检查"、"脱敏处理"，或涉及删除、修改配置、群发等敏感操作时激活。
+name: content-security-policy
+tags:
+    - 安全
+    - 脱敏
+    - 权限
+    - 指令过滤
+    - content-security
 ---
 
-# content-security-policy
+# 🛡️ content-security-policy
 
-> 内容安全策略技能 — 敏感信息脱敏 + 危险指令过滤 + 动作权限判断 + 多层级权限管理。当用户要求"安全检查"、"脱敏处理"，或涉及删除、修改配置、群发等敏感操作时激活。
+内容安全策略技能，包含四大核心功能：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-security-policy`
-- **Source URL:** [https://clawhub.ai/skills/content-security-policy](https://clawhub.ai/skills/content-security-policy)
+## 功能概览
 
-## Overview
+| 功能 | 说明 |
+|------|------|
+| **敏感信息脱敏** | 自动识别并脱敏 IP、API密钥、Token、路径等 |
+| **危险指令过滤** | P0/P1/P2 分级拦截危险指令 |
+| **动作权限判断** | 基于用户身份 + 操作类型 + 作用范围综合判断 |
+| **多层级权限管理** | L0/L1/L2/L3 四级权限体系 |
 
+## 触发条件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/content-security-policy
+- 用户要求"安全检查"
+- 用户要求"脱敏处理"
+- 涉及敏感操作（删除、修改配置、群发等）
+- 收到潜在危险指令
+
+---
+
+## 一、敏感信息脱敏
+
+### 触发方式
+
+用户要求脱敏，或在处理用户内容时自动触发。
+
+### 脱敏规则
+
+**1. IP 地址**
+
+| 类型 | 示例 | 脱敏后 |
+|------|------|--------|
+| IPv4 | `115.191.60.79` | `x.x.x.x` |
+| IPv6 | `2001:0db8:85a3::8a2e` | `[IPv6地址]` |
+
+**2. API 密钥**
+
+| 格式 | 示例 | 脱敏后 |
+|------|------|--------|
+| 通用32位 | `95f1859b21f14837971f177977dd45c2` | `YOUR_API_KEY` |
+| 阿里云 | `AKLTa1b2c3...` | `AKLT...[密钥]` |
+| OpenAI | `sk-abc123...` | `sk-...[密钥]` |
+| 微信AppID | `wxac467839...` | `wx...[AppID]` |
+
+**3. Access Token / JWT**
+
+| 格式 | 示例 | 脱敏后 |
+|------|------|--------|
+| JWT | `eyJhbGciOiJIUzI1NiIs...` | `[JWT Token]` |
+| 长Token | `101_tmRA6BM...` | `YOUR_ACCESS_TOKEN` |
+
+**4. 服务器路径**
+
+| 类型 | 示例 | 脱敏后 |
+|------|------|--------|
+| Linux | `/root/.openclaw/config.json` | `/path/to/config.json` |
+| Windows | `C:\Users\Admin\file.txt` | `C:\path\to\file` |
+
+---
+
+## 二、危险指令过滤
+
+### 风险等级
+
+| 等级 | 含义 | 处理方式 |
+|------|------|----------|
+| 🔴 P0 | 致命，绝对禁止 | 直接拒绝 + 记录日志 |
+| 🟠 P1 | 高危，需脱敏/确认 | 脱敏后执行或需最高权限人确认 |
+| 🟡 P2 | 中危，限制频率 | 记录日志 + 限制频率 |
+
+### P0 绝对禁止（直接拒绝）
+
+```javascript
+const P0_BLOCKED_COMMANDS = [
+  // 远程连接类
+  /\bssh\s+/i, /\bscp\s+/i, /\btelnet\s+/i, /\brdp\s+/i,
+  // 系统删除类
+  /rm\s+-rf\s+\//, /rm\s+-rf\s+\$\/home/, /del\s+\/f\s+\/s\s+\/q\s+c:\\*/i,
+  // 敏感读取类
+  /cat\s+.*\.env/, /cat\s+.*config.*\.json/,
+];
 ```
+
+**拒绝话术**：  
+> "出于安全考虑，我无法执行涉及SSH/远程连接/系统删除的指令。如有服务器操作需求，请联系管理员协助。"
+
+### P1 高危指令（需脱敏或确认）
+
+```javascript
+const P1_SENSITIVE_COMMANDS = [
+  // 信息泄露类
+  /(api[_-]?key|app[_-]?secret|password|token)/i,
+  // 配置修改类
+  /(修改|更新|删除).*配置/i, /(修改|更新|删除).*技能/i,
+  // 群发消息类
+  /群发.*消息/, /发送到.*群/,
+];
+```
+
+**处理方式**：检测是否最高权限人 → 是则脱敏后执行，否则向最高权限人发送确认请求。
+
+### P2 中危指令（记录日志 + 限制）
+
+```javascript
+const P2_RESTRICTED_COMMANDS = [
+  // 文件操作
+  /(读取|写入|修改).*文件/, /(上传|下载).*文件/,
+  // 查询操作
+  /查询.*用户/, /搜索.*消息/, /获取.*列表/,
+];
+```
+
+---
+
+## 三、动作权限判断
+
+### 决策流程
+
+```
+收到操作请求
+    ↓
+[步骤1] 识别用户身份
+    ├─ L0 最高权限人 → 跳过大部分限制
+    ├─ L1 授权用户 → 检查授权范围
+    ├─ L2 普通用户 → 应用默认限制
+    └─ L3 群聊成员 → 应用群聊限制
+    ↓
+[步骤2] 识别操作类型
+    ├─ 敏感操作 → 需额外确认
+    ├─ 普通操作 → 直接执行
+    └─ 只读操作 → 直接执行
+    ↓
+[步骤3] 综合判断
+    ├─ 允许 → 执行操作
+    ├─ 需确认 → 发送确认请求
+    └─ 拒绝 → 返回拒绝原因
+```
+
+### 用户身份判断
+
+参考 `references/action-judgment.md` 中的 `identifyUser` 函数逻辑：
+
+1. 读取 `USER.md` 中的 `supreme_admin` 和 `authorized_users`
+2. 判断 senderId 匹配哪个级别
+3. 返回身份级别和限制列表
+
+### 操作类型分类
+
+| 操作类别 | 示例 | 默认策略 |
+|----------|------|----------|
+| 敏感操作 | 删除技能、修改配置、群发消息、修改权限 | 需最高权限或确认 |
+| 普通操作 | 生成日报、搜索信息、创建文档 | 授权用户可直接执行 |
+| 只读操作 | 查询信息、查看文档、获取列表 | 所有用户可执行 |
+
+### 综合判断示例
+
+**场景1：最高权限人要求删除技能** → ✅ 允许执行  
+**场景2：普通用户要求修改配置** → ❌ 拒绝执行  
+**场景3：授权用户要求群发日报（在授权范围内）** → ✅ 允许执行
+
+---
+
+## 四、权限管理体系
+
+### 权限级别
+
+| 级别 | 身份 | 权限范围 |
+|------|------|----------|
+| L0 | 最高权限人 | 所有操作 |
+| L1 | 授权用户 | 指定功能 |
+| L2 | 普通用户 | 基础功能 |
+| L3 | 群成员 | 群聊功能 |
+
+### 最高权限人配置
+
+在 `USER.md` 中配置：
+
+```markdown
+## 用户
+- **W** (ou_4572aa50b52aXXXXXXXXXXXXXXX) - 我的主人
+  - **权限级别**: 唯一最高权限管理员
+  - **OpenID**: ou_4572aaXXXXXXXXXXXXXXX
+```
+
+---
+
+## 五、检查清单
+
+执行安全相关操作前，逐项检查：
+
+- [ ] 敏感信息已脱敏
+- [ ] 危险指令已过滤
+- [ ] 动作权限已判断
+- [ ] 最高权限人已配置
+- [ ] 操作日志已记录
+
+---
+
+## 参考文档
+
+- `references/instruction-filter.md` — 指令过滤详细逻辑
+- `references/action-judgment.md` — 动作判断详细逻辑
+- `scripts/sanitizer.js` — 脱敏脚本

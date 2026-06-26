@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% set active = "dashboard" %}
+{% block title %}Dashboard — Communication DNA{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-6">Dashboard</h2>
+
+<!-- Stats Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-blue-400">{{ stats.transcriptions }}</div>
+        <div class="text-gray-400 text-sm mt-1">Transcriptions</div>
+    </div>
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-green-400">{{ stats.speakers }}</div>
+        <div class="text-gray-400 text-sm mt-1">Speakers</div>
+    </div>
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-purple-400">{{ stats.segments }}</div>
+        <div class="text-gray-400 text-sm mt-1">Segments</div>
+    </div>
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-orange-400">{{ "{:,}".format(stats.total_words) }}</div>
+        <div class="text-gray-400 text-sm mt-1">Total Words</div>
+    </div>
+    {% if int_stats %}
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-cyan-400">{{ int_stats.linked_crm }}</div>
+        <div class="text-gray-400 text-sm mt-1">CRM Linked</div>
+    </div>
+    <div class="stat-card">
+        <div class="text-3xl font-bold text-pink-400">{{ int_stats.linked_kb }}</div>
+        <div class="text-gray-400 text-sm mt-1">KB Linked</div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Quick Search -->
+<form action="/search" method="get" class="mb-8">
+    <input type="text" name="q" placeholder="Search transcripts..." 
+           class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500">
+</form>
+
+<div class="grid md:grid-cols-2 gap-6">
+    <!-- Recent Transcriptions -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-4">Recent Transcriptions</h3>
+        {% if recent %}
+        <div class="space-y-2">
+            {% for t in recent %}
+            <a href="/transcription/{{ t.id }}" class="block p-3 rounded hover:bg-gray-700 transition-colors">
+                <div class="font-medium">{{ t.title or 'Untitled' }}</div>
+                <div class="text-sm text-gray-400">{{ t.date or 'No date' }} · {{ t.context or '' }} · {{ "{:,}".format(t.word_count or 0) }} words</div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-gray-500">No transcriptions yet. <a href="/ingest" class="text-blue-400 hover:underline">Ingest one!</a></p>
+        {% endif %}
+    </div>
+
+    <!-- Top Speakers -->
+    <div class="card">
+        <h3 class="text-lg font-semibold mb-4">Top Speakers by Word Count</h3>
+        {% if top_speakers %}
+        <div class="space-y-3">
+            {% for s in top_speakers %}
+            <a href="/speaker/{{ s.id }}" class="flex items-center justify-between p-2 rounded hover:bg-gray-700">
+                <span class="font-medium">{{ s.name }}</span>
+                <div class="text-right text-sm">
+                    <span class="text-gray-300">{{ "{:,}".format(s.total_words) }} words</span>
+                    <span class="text-gray-500 ml-2">{{ s.t_count }} trans</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-gray-500">No speakers yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

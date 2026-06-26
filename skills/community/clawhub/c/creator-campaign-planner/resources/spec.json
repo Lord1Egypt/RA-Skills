@@ -1,0 +1,37 @@
+{
+  "slug": "creator-campaign-planner",
+  "title": "创作者合作排期师",
+  "category": "growth",
+  "categoryLabel": "增长与内容",
+  "mode": "structured_brief",
+  "summary": "规划 KOL/KOC 合作节奏、素材复用、跟进节拍与目标映射。",
+  "inputHint": "目标人群、预算、渠道、时间",
+  "sections": [
+    "合作目标",
+    "合作对象分层",
+    "内容节奏",
+    "素材复用",
+    "风险控制",
+    "复盘指标"
+  ],
+  "useCases": [
+    "内容投放",
+    "合作排期",
+    "素材治理"
+  ],
+  "positiveExamples": [
+    "给我一个创作者合作排期",
+    "按素材复用率设计节奏"
+  ],
+  "negativeExamples": [
+    "不要承诺投放效果",
+    "不要生成违规投放方案"
+  ],
+  "risk": "输出为策划案，不执行投放。",
+  "tags": [
+    "creator",
+    "campaign",
+    "influencer",
+    "planning"
+  ]
+}

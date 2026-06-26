@@ -1,0 +1,64 @@
+{
+  "instance": {
+    "name": "<INSTANCE_NAME>",
+    "timezone": "UTC",
+    "default_disk_mount": "/"
+  },
+  "runtime": {
+    "mode": "script-only",
+    "openclaw_no_agent": true,
+    "threshold_only_alerts": false,
+    "max_line_chars": 240
+  },
+  "openclaw": {
+    "enabled": true,
+    "home": "<ABSOLUTE_PATH_TO_OPENCLAW_HOME>",
+    "jobs_file": "<ABSOLUTE_PATH_TO_OPENCLAW_HOME>/cron/jobs.json",
+    "list_command": {"argv": ["openclaw", "cron", "list", "--json"]},
+    "include_paused": true,
+    "include_delivery_errors": true,
+    "logs": []
+  },
+  "system": {
+    "cron_service": "cron.service",
+    "include_systemd_timers": true,
+    "failed_units_command": {"argv": ["systemctl", "--failed", "--no-pager", "--plain"]},
+    "timer_list_command": {"argv": ["systemctl", "list-timers", "--all", "--no-pager", "--plain"]}
+  },
+  "registry": {
+    "enabled": false,
+    "task_registry_file": "",
+    "callback_notes_file": "",
+    "callback_key_prefix": "cronrun_",
+    "callback_key_source": "first_8_chars_of_openclaw_job_id"
+  },
+  "privacy": {
+    "redact_secrets": true,
+    "redact_patterns": [
+      "(?i)(token|api[_-]?key|secret|password|authorization|bearer)\\s*[:=]\\s*\\S+",
+      "(?i)Authorization:\\s*Bearer\\s+\\S+",
+      "[A-Za-z0-9_\\-]{32,}\\.[A-Za-z0-9_\\-]{16,}\\.[A-Za-z0-9_\\-]{16,}",
+      "sk-[A-Za-z0-9]{20,}"
+    ]
+  },
+  "delivery": {
+    "channel": "telegram",
+    "target": "<DESTINATION_CHAT_ID_OR_TOPIC_TARGET>",
+    "use_openclaw_cron_delivery": true,
+    "deliver": "origin",
+    "include_force_rerun_button_only_if_issues": false
+  },
+  "system_crons": {
+    "crontab_commands": [{"argv": ["crontab", "-l"]}],
+    "crontab_files": ["/etc/crontab", "/etc/cron.d/*"],
+    "run_parts_dirs": [
+      {"path": "/etc/cron.hourly", "frequency": "hourly", "expected_log_freshness_minutes": 180},
+      {"path": "/etc/cron.daily", "frequency": "daily", "expected_log_freshness_minutes": 1800},
+      {"path": "/etc/cron.weekly", "frequency": "weekly", "expected_log_freshness_minutes": 11520},
+      {"path": "/etc/cron.monthly", "frequency": "monthly", "expected_log_freshness_minutes": 50000}
+    ],
+    "ignore_lines_matching": ["^#", "^$", "^PAUSED"]
+  },
+  "known_system_jobs": [],
+  "known_project_validations": []
+}

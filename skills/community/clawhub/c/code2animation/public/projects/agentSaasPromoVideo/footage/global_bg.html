@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Background</title>
+    <style>
+        :root { --t: 0; }
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            height: 100vh;
+            width: 100vw;
+        }
+        .bg-gradient {
+            --p: clamp(0, calc(var(--t) / 10), 1);
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, rgba(0,0,0,0) 70%),
+                        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, rgba(0,0,0,0) 60%);
+            transform: scale(calc(1 + var(--p) * 0.1));
+            opacity: calc(0.8 + var(--p) * 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "captured_at": "2026-03-20T00:00:00+00:00",
+  "endpoint_key": "platforms.detail.asset.dataset",
+  "inferred_schema": {
+    "properties": {
+      "list": {
+        "items": {
+          "properties": {
+            "assetClass": {
+              "type": "string"
+            },
+            "domicile": {
+              "type": "string"
+            },
+            "marketCap": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "networks": {
+              "items": {
+                "properties": {
+                  "contractAddress": {
+                    "type": "string"
+                  },
+                  "holders": {
+                    "type": "number"
+                  },
+                  "holdersChange30d": {
+                    "type": "number"
+                  },
+                  "marketCap": {
+                    "type": "number"
+                  },
+                  "marketCapChange7d": {
+                    "type": "number"
+                  },
+                  "networkName": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "contractAddress",
+                  "holders",
+                  "holdersChange30d",
+                  "marketCap",
+                  "marketCapChange7d",
+                  "networkName"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "regulatoryFramework": {
+              "type": "string"
+            },
+            "ticker": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "assetClass",
+            "domicile",
+            "marketCap",
+            "name",
+            "networks",
+            "regulatoryFramework",
+            "ticker"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "list"
+    ],
+    "type": "object"
+  },
+  "notes": [
+    "Snapshot captured with platform=tether-holdings.",
+    "Platform asset datasets contain nested networks and are suitable for dataset_nested_networks."
+  ],
+  "sample_request": {
+    "method": "GET",
+    "path": "/v1/c/rwa/platforms/tether-holdings/asset/dataset",
+    "path_params": {
+      "platform": "tether-holdings"
+    },
+    "query": {},
+    "url": "https://api.coinfound.org/api/kakyoin/v1/c/rwa/platforms/tether-holdings/asset/dataset"
+  },
+  "sample_response_excerpt": {
+    "code": 0,
+    "data_keys": [
+      "list"
+    ],
+    "list_length": 7,
+    "message": "success"
+  },
+  "shape_family": "dataset_nested_networks",
+  "snapshot_path": "shared/coinfound_rwa/data/schema_snapshots/platforms__detail__asset__dataset.json"
+}

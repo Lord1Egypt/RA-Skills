@@ -1,0 +1,11 @@
+{
+  "name": "cn-auto-publisher",
+  "version": "1.0.0",
+  "description": "多平台内容自动发布。支持知乎回答/文章、小红书图文笔记一键发布。",
+  "author": "freedompixels",
+  "tags": ["publish", "zhihu", "xiaohongshu", "automation", "content", "chinese"],
+  "trigger": {
+    "type": "intent",
+    "keywords": ["发布知乎", "发布小红书", "发布文章", "发布回答", "发布笔记", "多平台发布", "自动发布"]
+  }
+}

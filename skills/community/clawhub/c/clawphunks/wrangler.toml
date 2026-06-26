@@ -1,0 +1,6 @@
+name = "clawphunks"
+account_id = "e637b514208eef42597ba94aab8fe85c"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "clawphunks"

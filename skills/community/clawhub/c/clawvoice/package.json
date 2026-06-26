@@ -1,0 +1,49 @@
+{
+  "name": "clawvoice",
+  "version": "1.1.2",
+  "description": "Voice calling plugin for OpenClaw — give your AI agent a phone number",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "test": "npm run build && NODE_ENV=test node --test \"tests/**/*.test.cjs\""
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "voice",
+    "telephony"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ClawVoice/clawvoice.git"
+  },
+  "homepage": "https://github.com/ClawVoice/clawvoice#readme",
+  "bugs": {
+    "url": "https://github.com/ClawVoice/clawvoice/issues"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.1.0",
+    "ws": "^8.19.0"
+  },
+  "bundledDependencies": [
+    "ws",
+    "@clack/prompts"
+  ],
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^5.9.2"
+  },
+  "openclaw": {
+    "extensions": [
+      "./openclaw-extension.mjs"
+    ]
+  },
+  "bundleDependencies": [
+    "ws",
+    "@clack/prompts"
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claws-temple.local/faction-proposals.schema.json",
+  "title": "Claws Temple Faction Proposals",
+  "type": "object",
+  "required": [
+    "version",
+    "environment",
+    "is_test_only",
+    "launch_blocker",
+    "dependency_min_version",
+    "ca_write_dependency_skill",
+    "ca_write_dependency_min_version",
+    "vote_token_symbol",
+    "vote_amount_display",
+    "vote_amount_minimal_unit",
+    "token_balance_tool_name",
+    "token_allowance_tool_name",
+    "success_telegram_group_url",
+    "success_telegram_template",
+    "success_bonus_note",
+    "dependency_invocation",
+    "dao_alias",
+    "dao_id",
+    "dao_url",
+    "dao_create_tx_id",
+    "factions"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "is_test_only": {
+      "type": "boolean"
+    },
+    "launch_blocker": {
+      "type": "string"
+    },
+    "dependency_min_version": {
+      "type": "string"
+    },
+    "ca_write_dependency_skill": {
+      "type": "string"
+    },
+    "ca_write_dependency_min_version": {
+      "type": "string"
+    },
+    "vote_token_symbol": {
+      "type": "string"
+    },
+    "vote_amount_display": {
+      "type": "string"
+    },
+    "vote_amount_minimal_unit": {
+      "type": "number"
+    },
+    "token_balance_tool_name": {
+      "type": "string"
+    },
+    "token_allowance_tool_name": {
+      "type": "string"
+    },
+    "success_telegram_group_url": {
+      "type": "string"
+    },
+    "success_telegram_template": {
+      "type": "object",
+      "required": ["zh-CN", "en"],
+      "properties": {
+        "zh-CN": { "type": "string" },
+        "en": { "type": "string" }
+      }
+    },
+    "success_bonus_note": {
+      "type": "object",
+      "required": ["zh-CN", "en"],
+      "properties": {
+        "zh-CN": { "type": "string" },
+        "en": { "type": "string" }
+      }
+    },
+    "dependency_invocation": {
+      "type": "object",
+      "required": [
+        "dependency_skill",
+        "tool_name",
+        "approve_tool_name",
+        "cli_fallback",
+        "ca_write_dependency_skill",
+        "ca_write_tool_name",
+        "network_id",
+        "preflight_mode",
+        "send_mode",
+        "preferred_ca_write_transport",
+        "validation_failure_switch_rule",
+        "state_reconciliation_priority",
+        "approve_payload",
+        "vote_payload"
+      ],
+      "properties": {
+        "dependency_skill": { "type": "string" },
+        "tool_name": { "type": "string" },
+        "approve_tool_name": { "type": "string" },
+        "cli_fallback": { "type": "string" },
+        "ca_write_dependency_skill": { "type": "string" },
+        "ca_write_tool_name": { "type": "string" },
+        "network_id": { "type": "string" },
+        "preflight_mode": { "type": "string" },
+        "send_mode": { "type": "string" },
+        "preferred_ca_write_transport": { "type": "string" },
+        "validation_failure_switch_rule": { "type": "string" },
+        "state_reconciliation_priority": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string" }
+        },
+        "approve_payload": {
+          "type": "object",
+          "required": [
+            "spender_field",
+            "symbol_field",
+            "amount_field"
+          ],
+          "properties": {
+            "spender_field": { "type": "string" },
+            "symbol_field": { "type": "string" },
+            "amount_field": { "type": "string" }
+          }
+        },
+        "vote_payload": {
+          "type": "object",
+          "required": [
+            "proposal_id_field",
+            "vote_option_field",
+            "vote_option_value",
+            "vote_amount_field",
+            "vote_amount_minimal_unit"
+          ],
+          "properties": {
+            "proposal_id_field": { "type": "string" },
+            "vote_option_field": { "type": "string" },
+            "vote_option_value": { "type": "number" },
+            "vote_amount_field": { "type": "string" },
+            "vote_amount_minimal_unit": { "type": "number" }
+          }
+        }
+      }
+    },
+    "factions": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "brand_key",
+          "display_name",
+          "internal_proposal_name",
+          "proposal_page_label",
+          "imagery_reference",
+          "core_stance",
+          "proposal_id",
+          "proposal_url",
+          "proposal_lookup_url",
+          "proposal_url_status",
+          "proposal_tx_id",
+          "ends_at",
+          "is_test_only"
+        ],
+        "properties": {
+          "brand_key": { "type": "string" },
+          "display_name": {
+            "type": "object",
+            "required": ["zh-CN", "en"],
+            "properties": {
+              "zh-CN": { "type": "string" },
+              "en": { "type": "string" }
+            }
+          },
+          "internal_proposal_name": { "type": "string" },
+          "proposal_page_label": { "type": "string" },
+          "imagery_reference": { "type": "string" },
+          "core_stance": {
+            "type": "object",
+            "required": ["zh-CN", "en"],
+            "properties": {
+              "zh-CN": { "type": "string" },
+              "en": { "type": "string" }
+            }
+          },
+          "proposal_id": { "type": "string" },
+          "proposal_url": { "type": "string" },
+          "proposal_lookup_url": { "type": "string" },
+          "proposal_url_status": { "type": "string" },
+          "proposal_tx_id": { "type": "string" },
+          "ends_at": { "type": "string" },
+          "is_test_only": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

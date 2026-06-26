@@ -1,0 +1,32 @@
+{
+  "channels": {
+    "wechat": {
+      "enabled": false,
+      "webhook": ""
+    },
+    "dingtalk": {
+      "enabled": false,
+      "webhook": ""
+    },
+    "email": {
+      "enabled": false,
+      "smtp": "smtp.qq.com",
+      "from": "",
+      "to": "",
+      "password": ""
+    }
+  },
+  "notify_rules": {
+    "price_drop": true,
+    "price_rise": false,
+    "out_of_stock": true,
+    "back_in_stock": true,
+    "promotion": true
+  },
+  "alert_threshold": {
+    "min_price_drop": 5,
+    "min_price_drop_pct": 0.05,
+    "max_price": 999,
+    "min_price": 0.01
+  }
+}

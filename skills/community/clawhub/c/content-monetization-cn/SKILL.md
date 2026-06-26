@@ -1,35 +1,87 @@
 ---
-name: "Content Monetization Cn"
-description: "内容变现助手 - 帮助用户通过技术内容赚钱，从选题到发布到变现的全流程指导。适合技术博主、公众号作者、掘金/知乎创作者。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-monetization-cn"
-sourceUrl: "https://clawhub.ai/skills/content-monetization-cn"
+name: content-monetization-cn
+version: 1.0.0
+description: 内容变现助手 - 帮助用户通过技术内容赚钱，从选题到发布到变现的全流程指导。适合技术博主、公众号作者、掘金/知乎创作者。
 ---
 
-# Content Monetization Cn
+# 内容变现助手 Skill
 
-> 内容变现助手 - 帮助用户通过技术内容赚钱，从选题到发布到变现的全流程指导。适合技术博主、公众号作者、掘金/知乎创作者。
+## 描述
+帮助用户通过技术内容赚钱：从选题到发布到变现的全流程指导。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-monetization-cn`
-- **Source URL:** [https://clawhub.ai/skills/content-monetization-cn](https://clawhub.ai/skills/content-monetization-cn)
+## 适用人群
+- 技术博主
+- 公众号作者
+- 掘金/知乎创作者
+- 想做知识付费的人
 
-## Overview
+## 功能
 
+### 1. 选题推荐
+- 热点追踪（HN/掘金/知乎热榜）
+- 关键词分析（搜索量/竞争度）
+- 变现潜力评估
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/content-monetization-cn
+### 2. 内容生成
+- 标题优化（点击率最大化）
+- 结构模板（教程/对比/案例）
+- SEO 优化（关键词布局）
+
+### 3. 发布策略
+- 最佳发布时间
+- 平台选择建议
+- 标签优化
+
+### 4. 变现转化
+- 文末引导话术
+- 私域引流方法
+- 付费转化路径
+
+## 使用方法
+
 ```
+用户：帮我写一篇掘金文章，主题是 OpenClaw 安装
+
+Agent：
+1. 分析热点关键词
+2. 生成标题选项（3-5 个）
+3. 输出文章大纲
+4. 生成完整文章
+5. 推荐发布时间
+6. 提供变现引导话术
+```
+
+## 输出格式
+
+```
+📝 掘金文章方案
+
+🎯 推荐标题（选一个）：
+1. [标题1] - 预估点击率：高
+2. [标题2] - 预估点击率：中
+3. [标题3] - 预估点击率：中
+
+📊 文章结构：
+- 开头：[钩子]
+- 正文：[X 个要点]
+- 结尾：[引导转化]
+
+⏰ 发布时间：[具体时间]
+🏷️ 推荐标签：[标签列表]
+
+💰 变现话术：
+[文末引导语]
+
+需要我生成完整文章吗？
+```
+
+## 收益预估
+
+| 平台 | 浏览量 | 咨询转化 | 预估收入 |
+|------|--------|----------|----------|
+| 掘金 | 1000 | 1-3% | ¥50-150 |
+| 知乎 | 5000 | 0.5-1% | ¥100-250 |
+| 小红书 | 2000 | 2-5% | ¥100-500 |
+
+---
+**创建时间**：2026-03-12

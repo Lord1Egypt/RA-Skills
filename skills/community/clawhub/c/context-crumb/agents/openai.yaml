@@ -1,0 +1,4 @@
+interface:
+  display_name: "ContextCrumb"
+  short_description: "Compress large files before agent reading"
+  default_prompt: "Use $contextcrumb to load a large local document cheaply before reading it into context."

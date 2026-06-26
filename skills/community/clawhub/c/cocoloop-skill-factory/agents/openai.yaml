@@ -1,0 +1,4 @@
+interface:
+  display_name: "CocoLoop Skill Factory"
+  short_description: "引导需求、检索参考、装配多平台 Skill 产物的工厂"
+  default_prompt: "Use $cocoloop-skill-factory to turn a rough skill idea into a complete multi-platform skill package."

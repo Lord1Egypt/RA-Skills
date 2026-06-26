@@ -1,0 +1,49 @@
+# Creator SKILL — MCP tool contract (Clawhub / OpenClaw)
+# Runtime: deinai_mcp/tools/*.py
+
+skill:
+  displayName: Creator SKILL
+  slug: creator-skill
+
+service:
+  name: creator-skill
+  baseUrl: https://deinai.ai
+  endpoint: https://deinai.ai/mcp
+  transport: streamable-http
+  auth:
+    type: bearer
+    header: Authorization
+    tokenCreateUrl: https://deinai.ai/api/v1/mcp/tokens
+    tokenCreateAuth: Bearer <user login JWT>
+
+tools:
+  - name: ping
+    description: Health check
+    parameters: {}
+
+  - name: get_location_ids
+    description: Resolve location names to IDs before searchInfluencers
+    required: [platform, location_text]
+    parameters:
+      platform:
+        enum: [tiktok, instagram, youtube]
+      location_text:
+        type: array
+        items: string
+        minItems: 1
+
+  - name: searchInfluencers
+    description: AI influencer search; credits charged per influencer returned
+    required: [query, platform]
+    parameters:
+      query: { type: string }
+      platform: { enum: [tiktok, instagram, youtube] }
+      page: { type: integer, default: 0, minimum: 0 }
+      page_size: { type: integer, default: 20, minimum: 1, maximum: 50 }
+    responses:
+      success: { code: 0 }
+      insufficient_credits: { code: 402, errorCode: CREDITS_INSUFFICIENT, feature: search }
+
+resources:
+  - uri: app://info
+    description: Application name and version

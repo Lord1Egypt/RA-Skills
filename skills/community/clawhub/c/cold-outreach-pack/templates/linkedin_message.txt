@@ -1,0 +1,95 @@
+# LinkedIn Message Templates
+
+## Connection Request Templates
+
+### Template 1: Value-First
+```
+Hi [Name], I read your post about [topic] and found your perspective on [specific insight] really valuable. Would love to connect and follow your content!
+```
+
+### Template 2: Industry Peer
+```
+Hi [Name], fellow [industry] professional here. Always looking to expand my network with people doing interesting work in our space!
+```
+
+### Template 3: Mutual Interest
+```
+Hi [Name], saw your work on [project/topic] - that's fascinating! I'd love to connect and stay updated on what you're building.
+```
+
+### Template 4: Direct Approach
+```
+Hi [Name], I help [target audience] with [solution]. Noticed you're [relevant context]. Would be great to connect!
+```
+
+## Follow-Up Messages (After Accept)
+
+### Message 1: Thank You + Soft Ask
+```
+Thanks for connecting, [Name]!
+
+I noticed [specific thing about their work/background]. That's really interesting because [relevant insight].
+
+I'd love to learn more about [specific topic] - would you be open to a quick chat?
+```
+
+### Message 2: Value Add (No Ask)
+```
+Hi [Name], no response needed - just wanted to share this [article/resource] that relates to what you mentioned about [topic].
+
+[Link]
+
+Hope you find it useful!
+```
+
+### Message 3: Soft Pitch
+```
+Hi [Name], been enjoying following your posts about [topic].
+
+I wanted to mention - I help [target audience] with [solution]. If you ever know someone who might benefit, I'd appreciate an intro.
+
+Happy to return the favor anytime!
+```
+
+## Voice Message Scripts
+
+### For High-Value Targets
+```
+"Hi [Name], just wanted to say I really enjoyed your recent post about [topic]. Your point about [specific insight] really stuck with me. I'd love to connect and learn more about your work at [Company]. Thanks!"
+```
+
+## Engagement Comments
+
+### Before Connecting, Comment On:
+- Their recent posts
+- Company announcements
+- Industry discussions
+
+### Example Comments:
+```
+"Great point about [topic]. I think [related insight] is also important here."
+
+"Totally agree. We've seen similar results with [example]."
+
+"This is fascinating! Have you considered [related angle]?"
+```
+
+## Profile Optimization
+
+### Headline Template
+```
+[Current Role] | [Expertise] | [Result You've Achieved]
+
+Example: "Founder @ SaaS Co | Helping B2B teams automate outreach | 10M+ emails sent"
+```
+
+### About Section Template
+```
+[Hook - what you do]
+
+[Social proof - results, logos, numbers]
+
+[Who you help + how]
+
+[CTA - how to connect]
+```

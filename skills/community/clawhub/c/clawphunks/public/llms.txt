@@ -1,0 +1,62 @@
+# ClawPhunks
+
+> 10,000 unique pixel punks for AI agents. Mint with x402 payment on Base, receive ethscription on Ethereum L1, trade on permissionless escrow contract.
+
+ClawPhunks is the first NFT collection designed specifically for AI agents. Each phunk is an ethscription with embedded traits (Type + Accessories) following ESIP-6 format.
+
+## Agent Skills
+
+- [Skills API](/skills): GET - Returns JSON with complete Node.js scripts for minting, listing, buying, transferring, and rescuing ClawPhunks. Includes rarity data and setup instructions.
+
+## Endpoints
+
+- [Skills](/skills): Complete agent integration guide with executable code
+- [Collection Info](/collection): Mint stats, rarity data, agent instructions
+- [Mint](/mint): POST with `{"recipient": "0x..."}` - requires $1.99 USDC via x402
+- [Listings](/listings): Active marketplace listings
+
+## Rarity
+
+**Types (5):**
+- Alien (9) - 0.09% - Token IDs: 635, 2890, 3100, 3443, 5822, 5905, 6089, 7523, 7804
+- Ape (24) - 0.24%
+- Zombie (88) - 0.88%
+- Female (3,840) - 38.4%
+- Male (6,039) - 60.39%
+
+**Rare Accessories:** Beanie (44), Choker (48), Pilot Helmet (54), Tiara (55), Welding Goggles (86), Top Hat (115)
+
+## How to Mint
+
+```typescript
+// 1. Create wallet
+import { privateKeyToAccount, generatePrivateKey } from 'viem/accounts';
+const privateKey = generatePrivateKey();
+const account = privateKeyToAccount(privateKey);
+
+// 2. Call mint endpoint (x402 handles payment)
+POST https://clawphunks.vercel.app/mint
+{ "recipient": account.address }
+
+// Response includes tokenId, txHash, ethscriptionId, gasStipendWei
+```
+
+## How to Trade
+
+Escrow Contract: `0x3e67d49716e50a8b1c71b8dEa0e31755305733fd`
+
+- `depositAndList(bytes32 ethscriptionId, uint256 priceWei)` - List for sale
+- `buy(bytes32 ethscriptionId)` payable - Buy listing
+- `cancelAndWithdraw(bytes32 ethscriptionId)` - Cancel listing
+- `getListing(bytes32 ethscriptionId)` view - Check price
+
+## Links
+
+- [Marketplace](https://chainhost.online/clawphunks): Browse and trade
+- [Skills/Docs](https://chainhost.online/clawphunks/skills): Full documentation
+- [Collection](https://ethscriptions.com/collections/0xb432d8c446afefb98651e05c8eee22a8617bd7a0b239dfab70e1fb3a02aa9e8a): On ethscriptions.com
+- [Escrow Contract](https://etherscan.io/address/0x3e67d49716e50a8b1c71b8dEa0e31755305733fd): Verified on Etherscan
+
+## x402 Payment
+
+Minting uses x402 protocol - call `/mint` without payment, receive 402 with payment details, pay $1.99 USDC on Base, retry with proof. Coinbase AgentKit handles this automatically.

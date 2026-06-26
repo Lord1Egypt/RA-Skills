@@ -1,0 +1,18 @@
+{
+  "insideJokes": [],
+  "firsts": {
+    "firstChat": "",
+    "firstPersonalShare": "",
+    "firstConflict": "",
+    "firstResolution": ""
+  },
+  "milestones": [
+    { "type": "7days", "date": "", "acknowledged": false },
+    { "type": "30days", "date": "", "acknowledged": false },
+    { "type": "100conversations", "date": "", "acknowledged": false },
+    { "type": "365days", "date": "", "acknowledged": false }
+  ],
+  "userStories": [],
+  "promises": [],
+  "giftList": []
+}

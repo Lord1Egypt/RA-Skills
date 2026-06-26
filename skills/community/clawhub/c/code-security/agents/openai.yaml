@@ -1,0 +1,4 @@
+interface:
+  display_name: "安全审查"
+  short_description: "检查代码中的真实安全风险，并给出可直接落地的修复方案。"
+  default_prompt: "使用 $code-security 审查这段代码的安全问题并给出修复建议。"

@@ -1,0 +1,12 @@
+{
+  "name": "code-archaeology",
+  "version": "2.5.0",
+  "description": "Code Archaeology skill for analyzing legacy codebases and extracting business rules",
+  "main": "convert-to-ai-plan-generator.cjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["code-archaeology", "legacy-analysis", "business-rules", "migration-planning"],
+  "author": "OpenClaw Team",
+  "license": "MIT"
+}

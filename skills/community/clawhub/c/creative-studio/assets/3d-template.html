@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PRODUCT_NAME}} — 3D互动展示</title>
+<style>
+:root{--bg:#1a1a2e;--panel-bg:rgba(10,15,30,0.9);--accent:#4CAF50;--green:#1B8C3A;--text:#e8edff;--text2:#8899bb}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);overflow:hidden;height:100vh;user-select:none}
+#canvas3d{position:fixed;inset:0;z-index:1}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;pointer-events:none}
+.topbar>*{pointer-events:auto}
+.topbar__brand{display:flex;align-items:center;gap:10px}
+.topbar__logo{width:36px;height:36px;background:linear-gradient(135deg,#1B8C3A,#4CAF50);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:14px}
+.topbar__title{color:var(--text);font-size:1.1rem;font-weight:600}
+.topbar__subtitle{color:var(--text2);font-size:0.75rem}
+.topbar__mode{display:flex;gap:6px;background:var(--panel-bg);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:4px}
+.mode-btn{padding:8px 14px;border-radius:6px;border:none;background:transparent;color:var(--text2);font-size:0.78rem;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.mode-btn:hover{color:var(--text)}
+.mode-btn--active{background:rgba(76,175,80,0.15);color:var(--accent)}
+.bottombar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:8px;background:var(--panel-bg);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:8px 16px}
+.bottombar__hint{display:flex;align-items:center;gap:6px;color:var(--text2);font-size:0.72rem;border-right:1px solid rgba(255,255,255,0.08);padding-right:14px;margin-right:6px}
+.bottombar__hint:last-child{border-right:none;padding-right:0;margin-right:0}
+.bottombar__key{background:rgba(255,255,255,0.08);padding:3px 7px;border-radius:4px;font-size:0.68rem;color:var(--text)}
+.infopanel{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:12px}
+.infocard{background:var(--panel-bg);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 16px;width:200px;transition:all 0.3s;cursor:pointer}
+.infocard:hover{border-color:var(--accent);box-shadow:0 0 20px rgba(76,175,80,0.15)}
+.infocard--active{border-color:var(--accent);box-shadow:0 0 20px rgba(76,175,80,0.25)}
+.infocard__label{font-size:0.68rem;color:var(--text2);text-transform:uppercase;letter-spacing:2px}
+.infocard__value{font-size:0.9rem;color:var(--accent);font-weight:600;margin-top:2px}
+.infocard__detail{font-size:0.7rem;color:var(--text2);margin-top:2px}
+.loading{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity 0.5s}
+.loading--done{opacity:0;pointer-events:none}
+.loading__spinner{width:40px;height:40px;border:3px solid rgba(255,255,255,0.1);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading"><div class="loading__spinner"></div></div>
+
+<div class="topbar">
+  <div class="topbar__brand">
+    <div class="topbar__logo">萤</div>
+    <div>
+      <div class="topbar__title">{{PRODUCT_NAME}}</div>
+      <div class="topbar__subtitle">{{PRODUCT_SUBTITLE}}</div>
+    </div>
+  </div>
+  <div class="topbar__mode">
+    <button class="mode-btn mode-btn--active" data-view="normal">整机视图</button>
+    <button class="mode-btn" data-view="exploded">分解视图</button>
+    <button class="mode-btn" data-view="wireframe">线框模式</button>
+  </div>
+</div>
+
+<div class="bottombar">
+  <div class="bottombar__hint"><span class="bottombar__key">🖱 拖拽</span> 旋转</div>
+  <div class="bottombar__hint"><span class="bottombar__key">滚轮</span> 缩放</div>
+  <div class="bottombar__hint"><span class="bottombar__key">右键</span> 平移</div>
+  <div class="bottombar__hint"><span class="bottombar__key">R</span> 复位</div>
+  <div class="bottombar__hint"><span class="bottombar__key">A</span> 自动旋转</div>
+</div>
+
+<div class="infopanel" id="infoPanel">
+  {{INFO_CARDS_HTML}}
+</div>
+
+<canvas id="canvas3d"></canvas>
+
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/* ========== SETUP ========== */
+const canvas=document.getElementById('canvas3d');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.2;
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color('#1a1a2e');
+scene.fog=new THREE.Fog('#1a1a2e',8,35);
+
+const camera=new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,0.5,50);
+camera.position.set(5,3,7);
+camera.lookAt(0,0.5,0);
+
+const controls=new OrbitControls(camera,renderer.domElement);
+controls.target.set(0,0.5,0);
+controls.enableDamping=true;
+controls.dampingFactor=0.08;
+controls.minDistance=3;
+controls.maxDistance=15;
+controls.maxPolarAngle=Math.PI*0.65;
+controls.update();
+
+/* ========== LIGHTING ========== */
+const ambient=new THREE.AmbientLight('#4466aa',1.2);
+scene.add(ambient);
+const sun=new THREE.DirectionalLight('#ffffff',4);
+sun.position.set(8,10,5);
+sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+sun.shadow.camera.near=0.5;sun.shadow.camera.far=50;
+sun.shadow.camera.left=-10;sun.shadow.camera.right=10;
+sun.shadow.camera.top=10;sun.shadow.camera.bottom=-10;
+sun.shadow.bias=-0.0002;
+scene.add(sun);
+const fill=new THREE.DirectionalLight('#88aacc',1.5);
+fill.position.set(-3,4,-2);
+scene.add(fill);
+const rim=new THREE.DirectionalLight('#aaccff',1.8);
+rim.position.set(0,2,6);
+scene.add(rim);
+
+/* ========== GROUND ========== */
+const groundGeo=new THREE.PlaneGeometry(20,20);
+const groundMat=new THREE.MeshStandardMaterial({color:'#222233',roughness:0.8,metalness:0.3});
+const ground=new THREE.Mesh(groundGeo,groundMat);
+ground.rotation.x=-Math.PI/2;
+ground.position.y=-1.2;
+ground.receiveShadow=true;
+scene.add(ground);
+
+const grid=new THREE.GridHelper(12,20,'#334466','#222244');
+grid.position.y=-1.19;
+scene.add(grid);
+
+/* ========== MATERIALS ========== */
+const matDarkMetal=new THREE.MeshStandardMaterial({color:'#2a3040',roughness:0.35,metalness:0.9});
+const matLightMetal=new THREE.MeshStandardMaterial({color:'#4a5568',roughness:0.3,metalness:0.85});
+const matPrimary=new THREE.MeshStandardMaterial({color:'#1B8C3A',roughness:0.25,metalness:0.8});
+const matAccentMat=new THREE.MeshStandardMaterial({color:'#F57C00',roughness:0.2,metalness:0.85});
+const matBlack=new THREE.MeshStandardMaterial({color:'#1a1a1a',roughness:0.5,metalness:0.4});
+const matPipe=new THREE.MeshStandardMaterial({color:'#556677',roughness:0.25,metalness:0.9});
+const matPlastic=new THREE.MeshStandardMaterial({color:'#222233',roughness:0.6,metalness:0.1});
+const matRotor=new THREE.MeshStandardMaterial({color:'#8899aa',roughness:0.2,metalness:0.95});
+
+/* ========== HELPER FUNCTIONS ========== */
+function createBox(w,h,d,mat,pos){const g=new THREE.BoxGeometry(w,h,d);const m=new THREE.Mesh(g,mat);if(pos)m.position.set(pos[0],pos[1],pos[2]);m.castShadow=true;m.receiveShadow=true;return m}
+function createCyl(rTop,rBot,h,seg,mat,pos){const g=new THREE.CylinderGeometry(rTop,rBot,h,seg||48);const m=new THREE.Mesh(g,mat);if(pos)m.position.set(pos[0],pos[1],pos[2]);m.castShadow=true;m.receiveShadow=true;return m}
+
+/* ========== BUILD PRODUCT MODEL ========== */
+const product=new THREE.Group();
+const parts={};
+
+{{MODEL_CODE}}
+
+/* Position entire product */
+product.position.set(0,0.1,0);
+
+/* Annotation dots */
+const dotGeo=new THREE.SphereGeometry(0.04,16,16);
+const dotMat=new THREE.MeshBasicMaterial({color:'#4CAF50'});
+const annotations=[];
+{{ANNOTATION_CODE}}
+
+scene.add(product);
+
+/* ========== PARTICLES ========== */
+const particlesGeo=new THREE.BufferGeometry();
+const particlesCount=80;
+const posArr=new Float32Array(particlesCount*3);
+function rand(min,max){return min+Math.random()*(max-min)}
+for(let i=0;i<particlesCount*3;i+=3){
+  posArr[i]=rand(-2,2);posArr[i+1]=rand(-0.5,2.2);posArr[i+2]=rand(-1.5,1.5);
+}
+particlesGeo.setAttribute('position',new THREE.BufferAttribute(posArr,3));
+const particlesMat=new THREE.PointsMaterial({color:'#4CAF50',size:0.015,transparent:true,opacity:0.5,depthWrite:false});
+const particles=new THREE.Points(particlesGeo,particlesMat);
+particles.position.copy(product.position);
+scene.add(particles);
+
+/* ========== STATE ========== */
+let viewMode='normal';
+let autoRotate=false;
+const originalPositions={};
+Object.keys(parts).forEach(k=>{originalPositions[k]=parts[k].position.clone()});
+
+/* ========== ANIMATION LOOP ========== */
+const clock=new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  const dt=Math.min(clock.getDelta(),0.1);
+  controls.update();
+  if(autoRotate){
+    const target=controls.target;
+    const offset=camera.position.clone().sub(target);
+    offset.applyAxisAngle(new THREE.Vector3(0,1,0),dt*0.3);
+    camera.position.copy(target).add(offset);
+  }
+  annotations.forEach(d=>{
+    const s=1+Math.sin(Date.now()*0.005)*0.2;
+    d.scale.setScalar(s);
+    d.material.opacity=0.6+Math.sin(Date.now()*0.005)*0.4;
+  });
+  const pos=particles.geometry.attributes.position.array;
+  for(let i=1;i<pos.length;i+=3){
+    pos[i]+=dt*0.15;
+    if(pos[i]>2.2)pos[i]=-0.5;
+  }
+  particles.geometry.attributes.position.needsUpdate=true;
+  renderer.render(scene,camera);
+}
+
+/* ========== VIEW MODES ========== */
+function setViewMode(mode){
+  viewMode=mode;
+  product.traverse(child=>{
+    if(child.isMesh&&child.material.wireframe!==undefined){
+      child.material.wireframe=(mode==='wireframe');
+      if(mode==='wireframe'){child.material.opacity=1;child.material.transparent=false}
+    }
+  });
+  {{EXPLODED_OFFSETS}}
+  Object.keys(parts).forEach(k=>{
+    const p=parts[k];
+    const orig=originalPositions[k]||new THREE.Vector3(0,0,0);
+    const offsets={{EXPLODED_OFFSETS_MAP}};
+    const off=offsets[k]||[0,0,0];
+    const target=mode==='exploded'?new THREE.Vector3(orig.x+off[0],orig.y+off[1],orig.z+off[2]):orig;
+    p.position.lerp(target,0.15);
+  });
+  document.querySelectorAll('.mode-btn').forEach(b=>{
+    b.classList.toggle('mode-btn--active',b.dataset.view===mode);
+  });
+}
+
+/* Event listeners */
+document.querySelectorAll('.mode-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>setViewMode(btn.dataset.view));
+});
+window.addEventListener('keydown',e=>{
+  if(e.key==='r'||e.key==='R'){
+    camera.position.set(5,3,7);controls.target.set(0,0.5,0);controls.update();
+    if(viewMode==='exploded')setViewMode('normal');
+  }
+  if(e.key==='a'||e.key==='A')autoRotate=!autoRotate;
+  if(e.key==='1')setViewMode('normal');
+  if(e.key==='2')setViewMode('exploded');
+  if(e.key==='3')setViewMode('wireframe');
+});
+
+document.querySelectorAll('.infocard').forEach(card=>{
+  card.addEventListener('mouseenter',()=>{
+    const part=card.dataset.part;
+    if(parts[part]){
+      parts[part].traverse(c=>{if(c.isMesh){c.material.emissive=new THREE.Color('#003322');c.material.emissiveIntensity=0.5}});
+    }
+    annotations.forEach(d=>{if(d.userData.part===part)d.material.color.set('#F57C00')});
+  });
+  card.addEventListener('mouseleave',()=>{
+    const part=card.dataset.part;
+    if(parts[part]){
+      parts[part].traverse(c=>{if(c.isMesh){c.material.emissive=new THREE.Color('#000000');c.material.emissiveIntensity=0}});
+    }
+    annotations.forEach(d=>{if(d.userData.part===part)d.material.color.set('#4CAF50')});
+  });
+  card.addEventListener('click',()=>{
+    const part=card.dataset.part;
+    if(parts[part]){
+      const wp=new THREE.Vector3();
+      parts[part].getWorldPosition(wp);
+      camera.position.copy(wp).add(new THREE.Vector3(1.5,0.8,1.5));
+      controls.target.copy(wp);controls.update();
+      card.classList.add('infocard--active');
+      setTimeout(()=>card.classList.remove('infocard--active'),1500);
+    }
+  });
+});
+
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
+
+setTimeout(()=>{document.getElementById('loading').classList.add('loading--done')},800);
+animate();
+</script>
+</body>
+</html>

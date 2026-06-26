@@ -1,0 +1,93 @@
+{
+  "data_sources": [
+    {"name": "IPCC Reports & Data", "url": "https://www.ipcc.ch/", "type": "scientific_consensus", "coverage": "Assessment Reports (AR6 current), Special Reports, Methodology"},
+    {"name": "NASA Climate", "url": "https://climate.nasa.gov/", "type": "scientific", "coverage": "Global temperature, sea level, ice sheets, CO2"},
+    {"name": "NOAA Climate.gov", "url": "https://www.climate.gov/", "type": "scientific", "coverage": "US + global climate data, El Niño/La Niña"},
+    {"name": "Copernicus Climate (C3S)", "url": "https://climate.copernicus.eu/", "type": "scientific", "coverage": "ERA5 reanalysis, seasonal forecasts, EU focus"},
+    {"name": "World Resources Institute (WRI)", "url": "https://www.wri.org/", "type": "policy", "coverage": "Climate policy, energy, food, forests, water"},
+    {"name": "IEA Data & Statistics", "url": "https://www.iea.org/data-and-statistics", "type": "energy", "coverage": "Global energy supply, emissions, investment, technology"},
+    {"name": "IRENA Data", "url": "https://www.irena.org/Data", "type": "renewable_energy", "coverage": "Renewable capacity, costs, policies, 190+ countries"},
+    {"name": "Carbon Brief", "url": "https://www.carbonbrief.org/", "type": "analysis", "coverage": "Climate science, energy, policy fact-checks"},
+    {"name": "Our World in Data — Environment", "url": "https://ourworldindata.org/environment", "type": "analytics", "coverage": "Interactive charts, long-run data"},
+    {"name": "Global Carbon Project", "url": "https://www.globalcarbonproject.org/", "type": "scientific", "coverage": "Global carbon budgets, emissions by country/sector"},
+    {"name": "Climate Action Tracker", "url": "https://climateactiontracker.org/", "type": "policy", "coverage": "Country NDC assessments, warming projections"},
+    {"name": "UNFCCC", "url": "https://unfccc.int/", "type": "treaty", "coverage": "COP decisions, NDC registry, Paris Agreement"},
+    {"name": "CDP (Carbon Disclosure Project)", "url": "https://www.cdp.net/", "type": "corporate", "coverage": "23K+ corporate/urban disclosures on emissions"},
+    {"name": "BloombergNEF", "url": "https://about.bnef.com/", "type": "commercial", "coverage": "Energy transition investment, technology cost curves"},
+    {"name": "MSCI ESG Ratings", "url": "https://www.msci.com/our-solutions/esg-investing/esg-ratings", "type": "esg", "coverage": "8,500+ companies ESG rated"}
+  ],
+  "climate_domains": [
+    {
+      "id": "emissions",
+      "name": "Greenhouse Gas Emissions",
+      "subs": ["CO2 from fossil fuels", "Methane (CH4)", "Land use change", "Scope 1/2/3 accounting", "Carbon budget tracking", "Per-capita emissions comparison"],
+      "key_metric": "GtCO2e/year, cumulative budget: ~500 GtCO2 for 1.5°C (from 2020)"
+    },
+    {
+      "id": "renewable_energy",
+      "name": "Renewable Energy & Transition",
+      "subs": ["Solar PV (utility/rooftop)", "Wind (onshore/offshore)", "Green hydrogen", "Battery storage (grid-scale)", "Nuclear (SMR/fusion)", "Geothermal", "Hydropower"],
+      "key_metric": "Global renewable capacity (GW), LCOE ($/MWh), investment ($/year)"
+    },
+    {
+      "id": "carbon_markets",
+      "name": "Carbon Markets & Pricing",
+      "subs": ["EU ETS", "China National ETS", "UK ETS", "Voluntary carbon markets", "Article 6 (Paris Agreement)", "Carbon border adjustment (CBAM)"],
+      "key_metric": "Carbon price ($/tCO2), market coverage (% global emissions)"
+    },
+    {
+      "id": "climate_impacts",
+      "name": "Physical Climate Impacts",
+      "subs": ["Extreme weather attribution", "Sea level rise (mm/yr)", "Arctic amplification", "Drought & water stress", "Agricultural yield impacts", "Biodiversity loss", "Climate migration patterns"],
+      "key_metric": "Global mean temperature anomaly (°C), sea level rise rate"
+    },
+    {
+      "id": "adaptation_resilience",
+      "name": "Adaptation & Resilience",
+      "subs": ["Coastal defense / managed retreat", "Climate-resilient agriculture", "Urban heat island mitigation", "Water infrastructure hardening", "Early warning systems", "Climate insurance / risk transfer"],
+      "key_metric": "Adaptation finance gap ($), lives/homes protected"
+    },
+    {
+      "id": "climate_finance",
+      "name": "Climate Finance & Investment",
+      "subs": ["Green bonds / sustainability-linked bonds", "Climate VC/PE", "Blended finance", "Loss & Damage Fund", "Fossil fuel divestment", "Transition finance taxonomy"],
+      "key_metric": "Annual climate finance flows ($B), $100B/year commitment"
+    },
+    {
+      "id": "esg_sustainability",
+      "name": "ESG & Corporate Sustainability",
+      "subs": ["ISSB / IFRS S1-S2", "EU CSRD / ESRS", "SEC climate disclosure rule", "TCFD recommendations", "TNFD (nature)", "Greenwashing enforcement"],
+      "key_metric": "Disclosure coverage (companies/regions)"
+    },
+    {
+      "id": "climate_policy",
+      "name": "Climate Policy & Governance",
+      "subs": ["NDCs (Nationally Determined Contributions)", "Net-zero targets (country/corporate)", "Fossil fuel subsidy reform", "Just transition frameworks", "Climate litigation trends"],
+      "key_metric": "Warming pathway (°C), net-zero target year"
+    },
+    {
+      "id": "technology_innovation",
+      "name": "Climate Tech & Innovation",
+      "subs": ["Direct air capture (DAC)", "Carbon capture & storage (CCS)", "Advanced nuclear (fusion/SMR)", "Long-duration energy storage", "Alternative proteins", "Sustainable aviation fuel (SAF)", "Green steel/cement"],
+      "key_metric": "Technology readiness level (TRL), cost trajectory"
+    }
+  ],
+  "emissions_by_region": {
+    "annual_CO2_rank": [
+      {"rank": 1, "country": "China", "share_pct": 31, "per_capita_t": 8.0},
+      {"rank": 2, "country": "United States", "share_pct": 14, "per_capita_t": 14.9},
+      {"rank": 3, "country": "India", "share_pct": 7.5, "per_capita_t": 1.9},
+      {"rank": 4, "country": "EU27", "share_pct": 7, "per_capita_t": 6.2},
+      {"rank": 5, "country": "Russia", "share_pct": 5, "per_capita_t": 12.1}
+    ]
+  },
+  "paris_agreement_timeline": {
+    "2015": "Adopted at COP21, 196 parties",
+    "2020": "First NDC submissions due",
+    "2023": "First Global Stocktake (COP28)",
+    "2025": "Updated NDCs due (COP30, Belém)",
+    "2030": "Interim target: 45% emissions reduction (from 2010)",
+    "2050": "Net-zero target for most developed economies"
+  }
+}
+（内容由AI生成，仅供参考）

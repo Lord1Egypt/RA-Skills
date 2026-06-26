@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>豆包爱学：AI如何重塑学习方式</title>
+  <meta name="description" content="字节跳动旗下豆包推出"爱学"功能，从直接给答案转变为引导式教学，让学生从被动接收转向主动探索。">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+        "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+      color: #333333;
+      background: #fff;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    /* 标题样式 */
+    h1 {
+      font-size: 23px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      text-align: left;
+      letter-spacing: 0.5px;
+    }
+    /* 元信息区域 */
+    .meta-info {
+      font-size: 14px;
+      color: #888888;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .meta-info .original-tag {
+      background: #f0f0f0;
+      color: #888888;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    /* 导语/引用框 - 橄榄绿配色 */
+    .intro-box {
+      background: #f5f5f0;
+      border-left: 4px solid #556b2f;
+      padding: 16px 18px;
+      margin: 24px 0;
+      color: #556b2f;
+    }
+    .intro-box p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .intro-box strong {
+      color: #556b2f;
+      font-weight: 600;
+    }
+    /* 二级标题 - 橄榄绿点缀 */
+    h2 {
+      font-size: 20px;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+      font-weight: 600;
+      border-left: 4px solid #556b2f;
+      padding-left: 14px;
+    }
+    /* 三级标题 */
+    h3 {
+      font-size: 17px;
+      margin-top: 32px;
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    /* 段落正文 */
+    p {
+      margin: 16px 0;
+      font-size: 16px;
+      color: #333333;
+      line-height: 1.8;
+    }
+    /* 引用块 */
+    blockquote {
+      border-left: 4px solid #444444;
+      padding: 14px 16px;
+      margin: 24px 0;
+      color: #555555;
+      background: #f9f9f9;
+      border-radius: 4px;
+    }
+    /* 高亮文本 - 浅蓝虚线下划线 */
+    .highlight-dotted {
+      border-bottom: 2px dotted #556b2f;
+      padding-bottom: 1px;
+      color: #333;
+    }
+    /* 蓝色高亮文字 */
+    .highlight-blue {
+      color: #556b2f;
+      font-weight: 600;
+    }
+    /* 橄榄绿高亮 */
+    .highlight-olive {
+      color: #556b2f;
+      font-weight: 600;
+    }
+    /* 数据高亮盒子 */
+    .data-box {
+      background: #f5f5f0;
+      border-left: 4px solid #556b2f;
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 4px;
+    }
+    .data-box p {
+      margin: 0;
+      font-size: 15px;
+      color: #556b2f;
+    }
+    /* 列表样式 */
+    ul, ol {
+      margin-left: 20px;
+      line-height: 1.8;
+    }
+    li {
+      margin: 8px 0;
+      font-size: 16px;
+      color: #333333;
+    }
+    /* 强调文字 */
+    strong {
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    /* 分隔线 - 橄榄绿细线 */
+    .separator {
+      border: none;
+      border-top: 1px solid #556b2f;
+      margin: 40px 0;
+      opacity: 0.4;
+    }
+    /* 图片样式 */
+    .article-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      margin: 28px auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-caption {
+      text-align: center;
+      font-size: 14px;
+      color: #888888;
+      margin-top: 12px;
+      font-style: italic;
+    }
+    .image-source {
+      text-align: center;
+      font-size: 13px;
+      color: #556b2f;
+      margin-top: 8px;
+    }
+    /* 图片署名区域 */
+    .image-credit {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #888888;
+    }
+    /* 标签样式 - Emoji形式 */
+    .tags {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 13px;
+      color: #666;
+    }
+    /* 作者信息区域 */
+    .author-box {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 32px 0;
+    }
+    .author-box h4 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      color: #1a1a1a;
+    }
+    .author-box p {
+      margin: 8px 0;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 标题 -->
+<h1>豆包爱学：AI如何从"给答案"变成"教知识"</h1>
+
+<!-- 元信息 -->
+<div class="meta-info">
+  <span class="original-tag">原创</span>
+  <span>十字路口Crossing</span>
+  <span>•</span>
+  <span>2026年3月21日</span>
+  <span>•</span>
+  <span>阅读 3007</span>
+</div>
+
+<!-- 导语框 -->
+<div class="intro-box">
+  <p>字节跳动旗下<strong>豆包</strong>推出"爱学"功能，从直接给答案转变为<strong>引导式教学</strong>。学生遇到难题，AI不再直接给出答案，而是通过提问引导学生自主思考。本文深入解析这一功能的核心差异，以及它如何重新定义AI教育的逻辑。</p>
+</div>
+
+<!-- 分隔线 -->
+<hr class="separator">
+
+<!-- 正文 -->
+<p>我最近看到一则很有意思的新闻：豆包上线了一个新功能叫"爱学"。</p>
+
+<p>说实话，第一眼看到这个名字的时候，我以为又是一个"AI拍照解题"的常规功能。但仔细研究之后，我发现这个功能的逻辑完全不一样——<span class="highlight-blue">它不是来给答案的，而是来教你怎么思考的</span>。</p>
+
+<h2>01 从"给答案"到"教方法"的根本转变</h2>
+
+<p>我采访了一位正在使用这个功能的学生，他告诉我一个很有意思的细节：</p>
+
+<blockquote>
+  <p>以前用别的App拍照搜题，秒出答案，爽是爽了，但下次遇到类似的题还是不会。用豆包爱学，它会先问我"你具体卡在哪里了"，然后根据我的回答一步步引导，最后我自己把答案做出来了，那种成就感完全不一样。</p>
+</blockquote>
+
+<p>这种<span class="highlight-dotted">"苏格拉底式提问法"</span>，正是豆包爱学与传统拍照解题工具的核心差异。</p>
+
+<h2>02 它是如何工作的？</h2>
+
+<p>具体来说，当学生用豆包爱学扫描一道题时，它的工作流程是这样的：</p>
+
+<ul>
+  <li><strong>第一步：理解问题</strong> — AI先分析这道题考察的是什么知识点</li>
+  <li><strong>第二步：诊断卡点</strong> — 通过提问了解学生具体卡在哪里</li>
+  <li><strong>第三步：引导思考</strong> — 给出提示而不是答案，让学生自己推理</li>
+  <li><strong>第四步：检验理解</strong> — 用类似的题目验证学生是否真正掌握</li>
+</ul>
+
+<p>这个流程听起来简单，但要做到"<span class="highlight-olive">不直接给答案但能让学生真正学会</span>"，其实对AI的要求非常高。</p>
+
+<h2>03 马斯克的预言与AI教育的未来</h2>
+
+<p>说到AI教育，我想起了马斯克最近的一个预测。他说：</p>
+
+<div class="data-box">
+  <p>随着AI掌握个性化教学，<strong>大学的主要功能将从学术教育转向物理社交和同伴互动</strong>。未来上大学的唯一理由，可能就是在物理环境里认识人，而不是学知识。</p>
+</div>
+
+<p>这个预言听起来很激进，但如果我们看现在的趋势，其实已经有了一些端倪：</p>
+
+<ul>
+  <li><strong>知识获取</strong>：AI可以比任何老师更精准、更耐心地教你任何知识点</li>
+  <li><strong>技能训练</strong>：AI可以无限次重复练习，即时反馈</li>
+  <li><strong>社交价值</strong>：在物理环境里与同龄人互动，可能成为大学仅存的核心价值</li>
+</ul>
+
+<p>当然，这个转变不会一夜发生。但<span class="highlight-dotted">豆包爱学这样的功能，正在加速这个进程</span>。</p>
+
+<!-- 图片 -->
+<figure>
+  <img src="cover-image.jpg" alt="豆包爱学功能界面" class="article-image">
+  <p class="image-credit">👓 �忍 🎨</p>
+</figure>
+
+<h2>04 我的思考</h2>
+
+<p>作为一个关注AI教育的人，我认为豆包爱学的出现，标志着<span class="highlight-blue">AI教育从"工具时代"进入"方法时代"</span>。</p>
+
+<p>过去的AI教育工具，大多是围绕"如何更快地给学生答案"。这当然有价值，但它的局限性也很明显——学生可以快速完成作业，但没有真正学会。</p>
+
+<p>豆包爱学尝试解决的问题更根本：<span class="highlight-olive">如何让学生真正理解一个知识点，而不是简单地记忆答案</span>。</p>
+
+<p>这条路肯定更难走，但它的意义也更大。</p>
+
+<!-- 分隔线 -->
+<hr class="separator">
+
+<!-- 作者信息 -->
+<div class="author-box">
+  <h4>关于作者</h4>
+  <p>Jack，公众号"十字路口Crossing"主理人，关注AI、教育与未来工作方式。</p>
+  <p>如果你对AI教育感兴趣，欢迎关注我的公众号交流。</p>
+</div>
+
+<!-- 标签 -->
+<div class="tags">
+  <span class="tag">👓 阅读</span>
+  <span class="tag">📚 教育</span>
+  <span class="tag">🤖 AI</span>
+  <span class="tag">💡 深度思考</span>
+</div>
+
+</body>
+</html>

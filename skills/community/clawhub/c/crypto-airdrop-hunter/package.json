@@ -1,0 +1,19 @@
+{
+  "name": "isma-airdrop-finder",
+  "version": "1.0.0",
+  "description": "Airdrop discovery and daily market reports for Isma",
+  "main": "scripts/generate_airdrop_report.js",
+  "scripts": {
+    "airdrop-daily": "node scripts/generate_airdrop_report.js --period=daily",
+    "airdrop-weekly": "node scripts/generate_airdrop_report.js --period=weekly",
+    "market-report": "node scripts/market_daily_report.js"
+  },
+  "keywords": [
+    "crypto",
+    "airdrop",
+    "market-analysis",
+    "trading"
+  ],
+  "author": "Kira",
+  "license": "MIT"
+}

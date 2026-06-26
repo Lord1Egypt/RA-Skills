@@ -1,35 +1,20 @@
 ---
-name: "Contract Risk Scan"
-description: "Scan contracts for common risk clauses and potential issues. Use when the user asks about 合同风险、合同审查、条款风险、合同问题、帮我看合同、合同检查, or wants to identify problematic cl..."
-category: "domain"
-source: "ClawHub"
-tags: [contract, legal, review, risk]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/contract-risk-scan"
-sourceUrl: "https://clawhub.ai/skills/contract-risk-scan"
+name: contract-risk-scan
+description: "Redirect: contract-risk-scan has been merged into contract-risk-helper. Use contract-risk-helper for local contract risk scanning, common clause checks, severity levels, and suggested revisions."
 ---
 
-# Contract Risk Scan
+# Contract Risk Scan Redirect
 
-> Scan contracts for common risk clauses and potential issues. Use when the user asks about 合同风险、合同审查、条款风险、合同问题、帮我看合同、合同检查, or wants to identify problematic cl...
+`contract-risk-scan` has been merged into `contract-risk-helper`.
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/contract-risk-scan`
-- **Source URL:** [https://clawhub.ai/skills/contract-risk-scan](https://clawhub.ai/skills/contract-risk-scan)
+Use `contract-risk-helper` for 合同风险、合同审查、条款风险、合同检查、contract risk, and contract review tasks. The maintained target covers common risk patterns, severity levels, and suggested revisions.
 
-## Overview
+## Handoff
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/contract-risk-scan
+```text
+`contract-risk-scan` 已合并到 `contract-risk-helper`。请安装或调用 `contract-risk-helper`，它支持中英文合同常见风险条款扫描、严重程度分类和修改建议。
 ```
+
+## Legal Boundary
+
+This is preliminary risk identification only. It does not provide legal advice and does not replace a qualified lawyer.

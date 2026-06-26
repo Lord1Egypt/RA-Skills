@@ -1,0 +1,16 @@
+﻿{
+  "simulation_type": "optical",
+  "name": "high_intensity_template",
+  "description": "Topic-neutral high-intensity optical simulation template. Configure the user's own optical load and thermal-risk criteria before running.",
+  "requires_configuration": true,
+  "base_template": "standard_optical.json",
+  "variation": {
+    "parameter": "incident_intensity",
+    "value": "<CONFIGURE_HIGH_INTENSITY_WITH_UNIT>",
+    "reason": "Use only when high-flux operation is relevant to the configured project."
+  },
+  "device_stack": "<CONFIGURE_OR_COPY_DEVICE_STACK_FROM_YOUR_PROJECT_CONFIG>",
+  "wavelengths_nm": "<CONFIGURE_WAVELENGTH_LIST_NM>",
+  "polarization": "<CONFIGURE_POLARIZATION>",
+  "output_dir": "output/optical_high_intensity_configured_project"
+}

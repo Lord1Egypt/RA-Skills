@@ -1,0 +1,14 @@
+{
+  "name": "content-creator-skill",
+  "version": "0.2.0",
+  "description": "OpenClaw skill scaffold for tracking YouTube creators and preparing update summaries.",
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check:release": "node scripts/check-release.js",
+    "release:dry": "npm run check:release && npm test",
+    "test": "node --test"
+  }
+}

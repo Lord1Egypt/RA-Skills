@@ -1,0 +1,12 @@
+{
+  "name": "Craw Figma Connector",
+  "id": "1645240177311500804",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  },
+  "documentAccess": "dynamic-page"
+}

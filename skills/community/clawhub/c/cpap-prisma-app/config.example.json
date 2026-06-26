@@ -1,0 +1,9 @@
+{
+  "email": "your@email.com",
+  "password": "your_password",
+  "api_base": "https://my.prismacloud.com",
+  "timezone": "Europe/Berlin",
+  "vault_path": "/path/to/your/obsidian/vault",
+  "log_dir": "30 Bereiche/Gesundheit/CPAP/Logs",
+  "language": "en"
+}

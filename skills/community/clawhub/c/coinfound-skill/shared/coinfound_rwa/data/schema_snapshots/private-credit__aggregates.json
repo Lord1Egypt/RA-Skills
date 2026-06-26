@@ -1,0 +1,49 @@
+{
+  "captured_at": "2026-03-20T00:00:00+00:00",
+  "endpoint_key": "private-credit.aggregates",
+  "inferred_schema": {
+    "properties": {
+      "activeLoansValue": {
+        "type": "number"
+      },
+      "currentAvgAPR": {
+        "type": "number"
+      },
+      "totalLoans": {
+        "type": "number"
+      },
+      "totalLoansValue": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "activeLoansValue",
+      "currentAvgAPR",
+      "totalLoans",
+      "totalLoansValue"
+    ],
+    "type": "object"
+  },
+  "notes": [
+    "Live response confirmed currentAvgAPR and totalLoans, which are omitted from the field table."
+  ],
+  "sample_request": {
+    "method": "GET",
+    "path": "/v1/c/rwa/private-credit/aggregates",
+    "path_params": {},
+    "query": {},
+    "url": "https://api.coinfound.org/api/kakyoin/v1/c/rwa/private-credit/aggregates"
+  },
+  "sample_response_excerpt": {
+    "code": 0,
+    "data_keys": [
+      "activeLoansValue",
+      "currentAvgAPR",
+      "totalLoans",
+      "totalLoansValue"
+    ],
+    "message": "success"
+  },
+  "shape_family": "envelope_object",
+  "snapshot_path": "shared/coinfound_rwa/data/schema_snapshots/private-credit__aggregates.json"
+}

@@ -1,0 +1,208 @@
+{
+  "$schema": "./docs/schema.md",
+  "version": "1.0.0",
+  "description": "Production-quality example correlation rules for OpenClaw correlation-memory plugin. These rules demonstrate the extended schema with lifecycle states, learned_from attribution, and realistic confidence scores. Adapt for your own deployment.",
+  "rules": [
+    {
+      "id": "cr-config-001",
+      "created": "2026-03-25T00:00:00Z",
+      "trigger_context": "config-change",
+      "trigger_keywords": [
+        "config",
+        "setting",
+        "openclaw.json",
+        "modify",
+        "jq",
+        "change"
+      ],
+      "must_also_fetch": [
+        "backup-location",
+        "rollback-instructions",
+        "recent-changes"
+      ],
+      "relationship_type": "constrains",
+      "confidence": 0.95,
+      "lifecycle": {
+        "state": "promoted"
+      },
+      "learned_from": "config-misconfiguration-leads-to-service-outage",
+      "usage_count": 11,
+      "notes": "Any config change should trigger a backup check and rollback plan. Confidence is high because config errors are costly and predictable."
+    },
+    {
+      "id": "cr-error-001",
+      "created": "2026-03-25T00:00:00Z",
+      "trigger_context": "backup-operation",
+      "trigger_keywords": [
+        "backup",
+        "git push",
+        "commit",
+        "workspace"
+      ],
+      "must_also_fetch": [
+        "last-backup-time",
+        "backup-status",
+        "recovery-procedures"
+      ],
+      "relationship_type": "related_to",
+      "confidence": 0.9,
+      "lifecycle": {
+        "state": "promoted"
+      },
+      "learned_from": "backup-verification-failed-silently",
+      "usage_count": 6,
+      "notes": "Backups are only reliable if you verify them. Always fetch last-backup-time to know if a backup actually ran."
+    },
+    {
+      "id": "cr-session-001",
+      "created": "2026-03-25T00:00:00Z",
+      "trigger_context": "error-debugging",
+      "trigger_keywords": [
+        "error",
+        "fail",
+        "400",
+        "bug",
+        "broken",
+        "crash"
+      ],
+      "must_also_fetch": [
+        "recovery-procedures",
+        "recent-changes",
+        "similar-errors"
+      ],
+      "relationship_type": "diagnosed_by",
+      "confidence": 0.9,
+      "lifecycle": {
+        "state": "proposal"
+      },
+      "learned_from": "tool-call-errors-recur-without-context",
+      "usage_count": 14,
+      "notes": "Error debugging without recent changes context is guesswork. Promoted because this fires often and always helps."
+    },
+    {
+      "id": "cr-backup-001",
+      "created": "2026-03-25T00:00:00Z",
+      "trigger_context": "session-recovery",
+      "trigger_keywords": [
+        "checkpoint",
+        "recover",
+        "handoff",
+        "crash",
+        "restart"
+      ],
+      "must_also_fetch": [
+        "last-checkpoint",
+        "current-work",
+        "blockers",
+        "next-actions"
+      ],
+      "relationship_type": "continues",
+      "confidence": 0.95,
+      "lifecycle": {
+        "state": "promoted"
+      },
+      "learned_from": "session-handoff-without-context-loses-work",
+      "usage_count": 9,
+      "notes": "Session recovery is only useful if you know what was in progress. Always fetch current-work and next-actions."
+    },
+    {
+      "id": "cr-gateway-001",
+      "created": "2026-03-25T00:00:00Z",
+      "trigger_context": "gateway-operations",
+      "trigger_keywords": [
+        "gateway",
+        "restart",
+        "deploy",
+        "service"
+      ],
+      "must_also_fetch": [
+        "backup-procedure",
+        "health-check",
+        "rollback-instructions"
+      ],
+      "relationship_type": "constrains",
+      "confidence": 0.99,
+      "lifecycle": {
+        "state": "promoted"
+      },
+      "learned_from": "gateway-restart-without-health-check-causes-downtime",
+      "usage_count": 5,
+      "notes": "Gateway operations are high-stakes. Confidence near 1.0 because getting this wrong means total service loss."
+    },
+    {
+      "id": "cr-plugin-001",
+      "created": "2026-03-25T00:00:00Z",
+      "trigger_context": "plugin-management",
+      "trigger_keywords": [
+        "plugin",
+        "install",
+        "enable",
+        "add-plugin"
+      ],
+      "must_also_fetch": [
+        "validation-checklist",
+        "installation-steps",
+        "rollback-instructions",
+        "plugin-validation-results"
+      ],
+      "relationship_type": "enables",
+      "confidence": 0.99,
+      "lifecycle": {
+        "state": "promoted"
+      },
+      "learned_from": "plugin-installed-without-validation-broke-gateway",
+      "usage_count": 3,
+      "notes": "Plugin changes can crash the gateway. Always validate and have rollback ready."
+    },
+    {
+      "id": "cr-git-001",
+      "created": "2026-03-25T00:00:00Z",
+      "trigger_context": "git-operations",
+      "trigger_keywords": [
+        "git checkout",
+        "git switch",
+        "git stash",
+        "branch switch"
+      ],
+      "must_also_fetch": [
+        "workspace-backup-status",
+        "uncommitted-files-check",
+        "git-stash-procedure"
+      ],
+      "relationship_type": "requires",
+      "confidence": 0.95,
+      "lifecycle": {
+        "state": "promoted"
+      },
+      "learned_from": "workspace-file-loss-during-branch-switch",
+      "usage_count": 4,
+      "notes": "Switching branches with uncommitted work risks data loss. Always check for uncommitted files first."
+    },
+    {
+      "id": "cr-security-001",
+      "created": "2026-03-25T00:00:00Z",
+      "trigger_context": "security-audit",
+      "trigger_keywords": [
+        "security",
+        "audit",
+        "vulnerability",
+        "harden",
+        "expose",
+        "credential"
+      ],
+      "must_also_fetch": [
+        "security-practices",
+        "recent-security-changes",
+        "access-log"
+      ],
+      "relationship_type": "informs",
+      "confidence": 0.95,
+      "lifecycle": {
+        "state": "validated"
+      },
+      "learned_from": "security-hardening-requires-full-context",
+      "usage_count": 3,
+      "notes": "Security decisions must consider recent changes and access patterns. Always fetch related security context."
+    }
+  ]
+}

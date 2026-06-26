@@ -1,0 +1,14 @@
+{
+  "name": "createrepo",
+  "version": "1.0.1",
+  "description": "RPM Repository Management skill | RPM 仓库管理技能",
+  "author": "OS Build Agent",
+  "license": "MIT",
+  "keywords": ["createrepo", "yum", "dnf", "repository", "rpm"],
+  "clawhub": {
+    "type": "skill",
+    "category": "development",
+    "tags": ["createrepo", "yum", "dnf", "repository", "devops"],
+    "icon": "📚"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "normalized_data": {
+    "candidate": {
+      "candidate_name": "陈雨桐",
+      "target_role": "高级产品经理（增长方向）",
+      "department": "增长产品部",
+      "city": "上海",
+      "years_of_experience": "7年",
+      "current_company": "某头部本地生活平台",
+      "salary_expectation": "税前月薪 42k-46k",
+      "notice_period": "30天",
+      "summary": "有内容增长、用户增长和活动运营配合经验，做过拉新转化、留存优化、会员增长相关项目。"
+    },
+    "job": {
+      "job_title": "高级产品经理（增长方向）",
+      "must_have_skills": [
+        "增长策略设计",
+        "A/B实验",
+        "跨团队协作",
+        "数据分析"
+      ],
+      "preferred_skills": [
+        "会员体系经验",
+        "本地生活或电商行业经验"
+      ],
+      "hiring_manager": "增长产品负责人",
+      "hiring_preference": "快速招人，但不接受明显 owner 意识不足"
+    },
+    "interviews": [
+      {
+        "interviewer_name": "李晨",
+        "interview_round": "HR初筛",
+        "source": "Feishu notes",
+        "hire_recommendation": "推进",
+        "confidence_level": "high",
+        "feedback": "候选人沟通顺畅，求职动机比较明确，主要想去更成熟的平台做更大盘子的增长。薪资期望略高但还在可谈范围。对我们业务有基本了解。"
+      },
+      {
+        "interviewer_name": "王敏",
+        "interview_round": "业务一面",
+        "source": "WeCom chat",
+        "hire_recommendation": "有条件推进",
+        "confidence_level": "medium",
+        "feedback": "项目经历比较扎实，讲会员拉新和活动转化那段不错，数据敏感度可以。问题是有两次回答偏执行，owner意识和长期策略深度一般，建议补看一次系统性思考。"
+      },
+      {
+        "interviewer_name": "周凯",
+        "interview_round": "业务二面",
+        "source": "email",
+        "hire_recommendation": "推进但保守定级",
+        "confidence_level": "medium",
+        "feedback": "行业经验匹配，跨团队推动案例是真实的，抗压也还可以。整体在P7边缘，更像强P6. 如果团队急招可以推进终面，但定级和薪资要保守。"
+      }
+    ],
+    "match_score": 83
+  },
+  "decision_summary": "陈雨桐 应聘 高级产品经理（增长方向），综合匹配度 83/100。\n主要亮点：数据分析和增长指标敏感度较好；跨团队协作与推动经验较强；行业和增长场景匹配度较高；沟通表达稳定。\n主要风险：owner意识或系统性策略深度需补充验证；薪资或定级存在博弈空间；偏执行型，需继续判断独立规划能力。\n建议结论：建议推进补充面/终面\n下一步：安排一轮聚焦 owner 意识、长期策略和级别校准的补充面试。",
+  "missing_information": [],
+  "next_action": "安排一轮聚焦 owner 意识、长期策略和级别校准的补充面试。",
+  "message_draft": "陈雨桐，你好，感谢你参加我们高级产品经理（增长方向）岗位的面试。团队已经完成当前轮次的沟通，整体反馈积极，我们希望继续推进下一步。接下来我们会尽快帮你安排后续面试/沟通，并同步具体时间。也欢迎你提前整理下对岗位、团队和业务的关注点，我们下一轮可以一起详细聊。",
+  "record_update": {
+    "stage": "业务面完成",
+    "decision": "建议推进补充面/终面",
+    "risk_flags": [
+      "owner意识或系统性策略深度需补充验证",
+      "薪资或定级存在博弈空间",
+      "偏执行型，需继续判断独立规划能力"
+    ]
+  },
+  "compliance_warning_if_any": []
+}

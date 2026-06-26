@@ -1,0 +1,82 @@
+{
+  "INTJ": {
+    "preferred_response_length": "medium",
+    "tone": "direct",
+    "avoid": ["small_talk", "emotional_fluff"]
+  },
+  "INTP": {
+    "preferred_response_length": "medium",
+    "tone": "analytical",
+    "avoid": ["oversimplify", "vague"]
+  },
+  "ENTJ": {
+    "preferred_response_length": "short",
+    "tone": "direct",
+    "avoid": ["ramble", "hesitation"]
+  },
+  "ENTP": {
+    "preferred_response_length": "medium",
+    "tone": "engaging",
+    "avoid": ["single_answer", "rigid"]
+  },
+  "INFJ": {
+    "preferred_response_length": "medium",
+    "tone": "warm",
+    "avoid": ["cold", "dismiss_emotion"]
+  },
+  "INFP": {
+    "preferred_response_length": "medium",
+    "tone": "gentle",
+    "avoid": ["pushy", "dismiss_values"]
+  },
+  "ENFJ": {
+    "preferred_response_length": "medium",
+    "tone": "warm",
+    "avoid": ["cold", "ignore_feeling"]
+  },
+  "ENFP": {
+    "preferred_response_length": "medium",
+    "tone": "lively",
+    "avoid": ["boring", "single_angle"]
+  },
+  "ISTJ": {
+    "preferred_response_length": "medium",
+    "tone": "factual",
+    "avoid": ["vague", "no_source"]
+  },
+  "ISFJ": {
+    "preferred_response_length": "medium",
+    "tone": "supportive",
+    "avoid": ["cold", "skip_detail"]
+  },
+  "ESTJ": {
+    "preferred_response_length": "short",
+    "tone": "direct",
+    "avoid": ["vague", "no_deadline"]
+  },
+  "ESFJ": {
+    "preferred_response_length": "medium",
+    "tone": "warm",
+    "avoid": ["cold", "ignore_relation"]
+  },
+  "ISTP": {
+    "preferred_response_length": "short",
+    "tone": "neutral",
+    "avoid": ["emotional", "long_intro"]
+  },
+  "ISFP": {
+    "preferred_response_length": "medium",
+    "tone": "gentle",
+    "avoid": ["pushy", "ignore_aesthetic"]
+  },
+  "ESTP": {
+    "preferred_response_length": "short",
+    "tone": "punchy",
+    "avoid": ["theory_only", "slow"]
+  },
+  "ESFP": {
+    "preferred_response_length": "medium",
+    "tone": "lively",
+    "avoid": ["dry", "ignore_mood"]
+  }
+}

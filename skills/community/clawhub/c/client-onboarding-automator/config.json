@@ -1,0 +1,8 @@
+{
+  "name": "client-onboarding-automator",
+  "version": "1.0.0",
+  "description": "Automate client onboarding: intake processing, contract generation, Stripe payment collection, welcome email sequences, and project setup. Zero manual steps from inquiry to kickoff.",
+  "author": "GIA Digital",
+  "tags": ["onboarding", "clients", "automation", "stripe", "email", "contracts"],
+  "category": "business"
+}

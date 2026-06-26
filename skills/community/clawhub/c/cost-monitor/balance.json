@@ -1,0 +1,15 @@
+{
+  "_note": "余额文件，由 cost.py 自动扣减。每次真实对话后自动更新",
+  "deepseek": {
+    "balance_rmb": 18.0,
+    "note": "DeepSeek 后台余额，2026.06.07 18:47"
+  },
+  "mimo": {
+    "plan": "standard",
+    "total_credits": 11000000000,
+    "consumed_credits": 4251315268,
+    "discount_applied": 0.88,
+    "note": "MIMO 套餐余量 3,933,069,360 / 11,000,000,000"
+  },
+  "_last_processed": ""
+}

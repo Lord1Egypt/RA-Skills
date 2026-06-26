@@ -1,0 +1,7 @@
+{
+  "request": "Generate a CP2K cell optimization draft for crystalline silicon with high accuracy.",
+  "task_type": "cell_optimization",
+  "system_type": "crystal",
+  "structure_file": "silicon.cif",
+  "priority": "high"
+}

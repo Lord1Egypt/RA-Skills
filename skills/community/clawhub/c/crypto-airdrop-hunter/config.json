@@ -1,0 +1,51 @@
+{
+  "airdrop": {
+    "minFunding": 5000000,
+    "vcs": [
+      "a16z",
+      "Paradigm",
+      "Sequoia",
+      "Binance Labs",
+      "Polychain",
+      "Coinbase Ventures",
+      "Jump Crypto",
+      "Distributed Global"
+    ],
+    "chains": [
+      "ethereum",
+      "solana",
+      "polygon",
+      "arbitrum",
+      "optimism"
+    ],
+    "excludeHypes": [],
+    "preferredHypeLevel": [
+      "low",
+      "low-moderate",
+      "moderate"
+    ],
+    "favoriteCrypto": [
+      "hype",
+      "mnt"
+    ]
+  },
+  "market": {
+    "watchCrypto": [
+      "bitcoin",
+      "ethereum"
+    ],
+    "trackAltcoinsWhenBTCDoomBearish": true,
+    "altcoinPicks": [
+      "hype",
+      "mnt",
+      "sol",
+      "arb"
+    ]
+  },
+  "schedule": {
+    "airdropDaily": "0 0 * * *",
+    "airdropWeekly": "0 0 * * 1,4",
+    "marketDaily": "0 0 * * *",
+    "timezone": "UTC"
+  }
+}

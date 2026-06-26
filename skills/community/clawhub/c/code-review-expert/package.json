@@ -1,0 +1,19 @@
+{
+  "name": "code-review-expert",
+  "version": "1.0.0",
+  "description": "Multi-agent code review system using Manager-Worker pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\" && exit 0",
+    "example": "node examples/review-example.js"
+  },
+  "keywords": [
+    "code-review",
+    "multi-agent",
+    "manager-worker",
+    "static-analysis",
+    "security"
+  ],
+  "author": "AI-Agent",
+  "license": "MIT"
+}

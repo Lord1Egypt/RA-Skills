@@ -1,0 +1,3 @@
+httpx>=0.27
+loguru>=0.7
+python-dotenv>=1.0

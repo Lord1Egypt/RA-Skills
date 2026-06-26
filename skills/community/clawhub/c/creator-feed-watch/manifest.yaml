@@ -1,0 +1,176 @@
+name: creator-feed-watch
+version: 0.2.0
+author: lee
+license: MIT-0
+runtime: node
+entry: src/index.js
+min_openclaw_version: "2026.1.0"
+description: Track YouTube creators from pasted links, normalize watch targets, and prepare concise update summaries for new uploads.
+
+categories:
+  - media
+  - youtube
+  - monitoring
+
+config:
+  - key: youtube_api_key
+    type: string
+    required: false
+    description: Optional YouTube Data API key for richer and more reliable creator resolution and upload checks.
+  - key: summary_style
+    type: string
+    required: false
+    default: brief
+    description: Preferred summary mode for prepared update cards.
+  - key: watchlist_path
+    type: string
+    required: false
+    description: Optional path for the persisted watchlist JSON file.
+  - key: delivery_target
+    type: string
+    required: false
+    description: Optional default destination identifier used by the runtime delivery adapter.
+
+input:
+  type: object
+  properties:
+    action:
+      type: string
+      enum:
+        - normalize_target
+        - fetch_latest_uploads
+        - add_follow
+        - list_follows
+        - remove_follow
+        - check_watchlist_updates
+        - notify_watchlist_updates
+        - prepare_update
+        - analyze_video
+        - healthcheck
+      description: Skill operation to run.
+    source:
+      type: string
+      description: Raw YouTube input such as a channel URL, handle, video URL, or channel ID.
+    limit:
+      type: number
+      description: Number of recent uploads to fetch, capped at 10.
+    seed_latest:
+      type: boolean
+      description: When adding a follow, seed the latest video as already seen to avoid an immediate historical alert.
+    mark_seen:
+      type: boolean
+      description: When checking the watchlist, persist the newest video as seen after reporting updates.
+    delivery_target:
+      type: string
+      description: Optional destination override for the notification action.
+    channel_name:
+      type: string
+      description: Display name of the creator channel when preparing an update card.
+    video_title:
+      type: string
+      description: Title of the new upload.
+    video_description:
+      type: string
+      description: Description text for the new upload.
+    video_url:
+      type: string
+      description: Public video URL.
+    published_at:
+      type: string
+      description: ISO timestamp for when the video was published.
+  required:
+    - action
+
+output:
+  type: object
+  properties:
+    ok:
+      type: boolean
+      description: Indicates whether the action completed successfully.
+    action:
+      type: string
+      description: The action that was executed.
+    normalized:
+      type: object
+      description: Structured information about a normalized YouTube target.
+    target:
+      type: object
+      description: Resolved YouTube channel details for the tracked creator.
+    follow:
+      type: object
+      description: A persisted watchlist follow record.
+    follows:
+      type: array
+      description: Persisted watchlist follow records.
+    uploads:
+      type: array
+      description: Recent uploads returned from the channel uploads playlist.
+    latest_upload:
+      type: object
+      description: The newest upload returned by the fetch action.
+    latest_update:
+      type: object
+      description: A prepared update-card payload for the newest upload.
+    checked:
+      type: array
+      description: Per-follow check results returned by watchlist update scans.
+    updates:
+      type: array
+      description: Follow targets with newly detected uploads.
+    notifications:
+      type: array
+      description: Notification payloads prepared for runtime delivery.
+    deliveries:
+      type: array
+      description: Per-notification runtime delivery results.
+    count:
+      type: number
+      description: Number of follow targets affected by the action.
+    update_count:
+      type: number
+      description: Number of follow targets with new uploads.
+    delivered_count:
+      type: number
+      description: Number of notifications delivered successfully.
+    failed_count:
+      type: number
+      description: Number of notifications that failed delivery.
+    adapter:
+      type: string
+      description: Name of the runtime delivery adapter used for notifications.
+    storage_path:
+      type: string
+      description: Path to the persisted watchlist JSON file.
+    update:
+      type: object
+      description: Prepared update-card payload for a new upload.
+    video_id:
+      type: string
+      description: The YouTube video ID of the analyzed video.
+    video_url:
+      type: string
+      description: Public URL of the analyzed video.
+    title:
+      type: string
+      description: Title of the analyzed video.
+    description:
+      type: string
+      description: Description text of the analyzed video.
+    channel_id:
+      type: string
+      description: YouTube channel ID of the video creator.
+    channel_name:
+      type: string
+      description: Display name of the video creator channel.
+    has_transcript:
+      type: boolean
+      description: Whether a transcript was successfully extracted.
+    transcript_language:
+      type: string
+      description: Language code of the extracted transcript.
+    transcript_text:
+      type: string
+      description: Full transcript text extracted from video captions.
+    message:
+      type: string
+      description: Human-readable status or error message.

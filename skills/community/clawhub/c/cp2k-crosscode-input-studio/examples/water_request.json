@@ -1,0 +1,5 @@
+{
+  "request": "Generate a CP2K geometry optimization input for water with balanced default settings.",
+  "task_type": "geometry_optimization",
+  "structure_file": "water.xyz"
+}

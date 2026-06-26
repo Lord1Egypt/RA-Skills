@@ -1,0 +1,45 @@
+{
+  "skill_name": "configure-openclaw-anyrouter-model-and-fix-baseurl",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我看下 OpenClaw 的模型路由配置。我在 `~/.openclaw/openclaw.json` 里想新增一个 anyrouter provider，并把小肠 Agent 默认模型切到 `anyrouter/claude-opus-4-6`。现在文件里已经有 `openai-codex/gpt-5.4` 和 `anthropic/claude-sonnet`，别把别的 provider 覆盖掉。anyrouter 这段我打算写成：`baseUrl=https://a-ocnfniawgw.cn-shanghai.fcapp.run`、`api=anthropic-messages`、`apiKey=${AnyRouterKey}`、模型 id 是 `claude-opus-4-6`。另外请顺便确认 `agents.defaults.model.primary` 和 `agents.list.main.model` 是不是都要一起改，不然我怕只是看起来生效。最后告诉我改完后应该如何验证当前小肠到底走的是不是这个模型。",
+      "expectations": [
+        "应识别这是在配置 OpenClaw 的 anyrouter 模型，并说明需要先读取现有 `openclaw.json` 基线后再合并，而不是整块覆盖其他 providers。",
+        "应明确要求同时检查并设置 `models.mode = merge`、`agents.defaults.model.primary` 与 `agents.list.main.model`，将它们对齐到 `anyrouter/claude-opus-4-6`。",
+        "应提醒区分“配置写入成功”和“真实调用成功”，给出重启 OpenClaw 后查看当前小肠 Agent 模型与日志验证的方法。"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "我这边有点诡异：`/Users/kevin/.openclaw/openclaw.json` 里已经把默认模型改成 `anyrouter/claude-opus-4-6` 了，重启后界面上也显示是这个，但实际回答风格很像 fallback。日志里能看到：`HTTP 500 new_api_error: invalid claude code request provider=anyrouter model=claude-opus-4-6`，后面还有一条 `requested=anyrouter/claude-opus-4-6 ... next=openai-codex/gpt-5.3-codex`。你帮我判断下这到底是 baseUrl 有问题、网关协议不兼容，还是 key 权限不够？如果是 `https://a-ocnfniawgw.cn-shanghai.fcapp.run` 这条链路不行，帮我给出修正方案，并说清楚为什么 JSON 看起来生效了但其实没真正调上。",
+      "expectations": [
+        "应基于日志判断这是“静态配置已生效但上游不可用导致 fallback”的场景，而不是简单重复用户的模型名。",
+        "应重点排查 `baseUrl`、协议端点兼容性、鉴权/key 权限，且能结合 `invalid claude code request` 与 fallback 日志说明 `fcapp.run` 链路高概率有问题。",
+        "应给出将 `baseUrl` 切回 `https://anyrouter.top`、保留 `api=anthropic-messages` 与模型配置不变的修复方向，并建议做真实请求验证而非只看 JSON。"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 3,
+      "prompt": "能帮我一起排下 OpenClaw + ClaudeCode 吗？我怀疑我本地有两套配置没同步。OpenClaw 这边我已经把 `/home/dev/.config/openclaw/openclaw.json` 改成 anyrouter 了，但 ClaudeCode 可能还指着旧的 `fcapp` 地址。现象是：OpenClaw 日志里偶尔 403，偶尔 500，报过 `OpenAI ... failed (403): <html><h1>403 Forbidden</h1>`，也报过 `invalid claude code request`。我想要的结果是：1）OpenClaw 主 Agent 默认走 `anyrouter/claude-opus-4-6`；2）ClaudeCode 本地配置也统一到 `https://anyrouter.top`；3）能解释为什么 `/v1/models` 里看得到 `claude-opus-4-6`，但实际 `/v1/messages` 调用还是失败。",
+      "expectations": [
+        "应识别需要同时检查 OpenClaw 与 ClaudeCode 的本地配置，而不是只修改一个地方。",
+        "应明确指出 `/v1/models` 能列出模型并不等于当前 key/路由可以实际调用该模型，需要对 `messages`、`chat/completions`、`responses` 等端点做协议对照测试。",
+        "应说明 403/500 分别可能对应鉴权或网关兼容问题，并提出把旧 `fcapp` 地址统一替换为 `https://anyrouter.top` 后再做真实调用验证。"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "我不太确定是不是 OpenClaw 的锅，麻烦你帮我判断下：项目 `river-agent` 最近把本地 agent 路由切到 claude 之后就一直抽风。我在 `D:\\work\\river-agent\\.openclaw\\openclaw.json` 里塞了个供应商模型，名字写的是 `anyrouter/claude-opus-4-6`，现在 `models.providers.anyrouter.baseUrl` 还是老的 `https://a-ocnfniawgw.cn-shanghai.fcapp.run`。`/v1/chat/completions` 和 `/v1/responses` 都给我 404 不支持该模型，`/v1/models` 倒是能列出来。是不是我 api 配错了？要不要改成 `anthropic-messages`？另外我这边 key 之前有的是明文，有的是 `${AnyRouterKey}`，会不会也影响。顺手帮我判断下需不需要看 fallback 日志，我总感觉主 Agent 没真切过去。btw 这问题已经搞两天了，快疯了。",
+      "expectations": [
+        "应判断这是本地 Agent 模型路由切换与调用异常排查场景，即使用户没有完整按 OpenClaw 术语描述，也应触发该技能。",
+        "应指出 claude 类模型在此场景下应重点检查 `api = anthropic-messages` 与 `baseUrl` 是否兼容，而不是只盯着模型是否出现在 `/v1/models` 列表中。",
+        "应建议查看 fallback 日志来确认主 Agent 是否真的切到 `anyrouter/claude-opus-4-6`，并说明环境变量引用与明文 key 都需要分别验证“能否解析”和“key 本身是否可用”。"
+      ],
+      "trigger_confidence": "medium"
+    }
+  ]
+}

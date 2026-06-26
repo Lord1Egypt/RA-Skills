@@ -1,0 +1,41 @@
+{
+  "name": "clawrtc",
+  "version": "1.9.0",
+  "description": "Mine RTC tokens with v3.1.1 hardware fingerprint + Ed25519 signing. VM-penalized.",
+  "keywords": [
+    "clawrtc",
+    "openclaw",
+    "skill",
+    "ai-agent",
+    "miner",
+    "rustchain",
+    "rtc",
+    "proof-of-antiquity",
+    "hardware-fingerprint",
+    "coinbase",
+    "x402",
+    "base-chain",
+    "wrtc"
+  ],
+  "author": "Elyan Labs <scott@elyanlabs.ai>",
+  "license": "MIT",
+  "homepage": "https://rustchain.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scottcjn/Rustchain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Scottcjn/Rustchain/issues"
+  },
+  "claudeSkill": {
+    "name": "clawrtc",
+    "description": "Mine RTC tokens with Proof-of-Antiquity hardware fingerprinting",
+    "invocation": "/clawrtc",
+    "platforms": [
+      "rustchain"
+    ],
+    "author": "Elyan Labs",
+    "homepage": "https://rustchain.org",
+    "version": "1.9.0"
+  }
+}

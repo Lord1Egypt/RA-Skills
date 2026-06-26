@@ -1,0 +1,4 @@
+interface:
+  display_name: "Content Generator"
+  short_description: "Generate platform-ready commerce content packs."
+  default_prompt: "Create a platform-specific content pack for this product."

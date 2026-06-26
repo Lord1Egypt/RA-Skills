@@ -1,35 +1,247 @@
 ---
-name: "跨境 Listing 生成器"
-description: "跨境 Listing 生成器，为跨境电商产品自动生成多平台多语言的产品 Listing。覆盖 Amazon/Temu/Shopee/Lazada/速卖通/TikTok Shop 六大平台，支持英语、日语、西班牙语、德语、法语、韩语、葡萄牙语、中文等语言，自动生成 SEO 优化标题、五点描述、产品详情、搜索词及定价..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cross-border-listing"
-sourceUrl: "https://clawhub.ai/skills/cross-border-listing"
+name: cross-border-listing
+description: "跨境 Listing 生成器，为跨境电商产品自动生成多平台多语言的产品 Listing。覆盖 Amazon/Temu/Shopee/Lazada/速卖通/TikTok Shop 六大平台，支持英语、日语、西班牙语、德语、法语、韩语、葡萄牙语、中文等语言，自动生成 SEO 优化标题、五点描述、产品详情、搜索词及定价建议。触发词：生成Listing、写亚马逊Listing、Temu产品描述、Shopee标题优化、跨境产品上架、翻译Listing、速卖通描述、TikTok Shop产品页面、Lazada上架"
+agent_created: true
 ---
 
 # 跨境 Listing 生成器
 
-> 跨境 Listing 生成器，为跨境电商产品自动生成多平台多语言的产品 Listing。覆盖 Amazon/Temu/Shopee/Lazada/速卖通/TikTok Shop 六大平台，支持英语、日语、西班牙语、德语、法语、韩语、葡萄牙语、中文等语言，自动生成 SEO 优化标题、五点描述、产品详情、搜索词及定价...
+为跨境电商产品自动产出多平台、多语言的优化 Listing。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cross-border-listing`
-- **Source URL:** [https://clawhub.ai/skills/cross-border-listing](https://clawhub.ai/skills/cross-border-listing)
+## 触发条件
 
-## Overview
+当用户请求以下任意操作时触发此 skill：
 
+- 生成/撰写/优化 跨境产品 Listing
+- 写亚马逊/Temu/Shopee/Lazada/速卖通/TikTok Shop 的标题/描述/五点
+- 翻译或本地化现有 Listing 到其他语言
+- 优化产品标题的 SEO 关键词
+- 批量生成多平台 Listing
+- 提供 Listing 优化建议
+- 分析竞品 Listing 并提取优化方向
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cross-border-listing
+## 核心能力
+
+1. **六大平台适配** — Amazon / Temu / Shopee / Lazada / AliExpress / TikTok Shop
+2. **八种语言生成** — 中 → 英/日/西/德/法/韩/葡，多语种互译
+3. **SEO 深度优化** — 标题权重分配、长尾词填空、竞品反查策略
+4. **合规自动检测** — 高风险品类自动追加合规提醒
+5. **结构化输出** — 统一格式：标题 + 五点 + 描述 + 搜索词 + 定价建议
+
+## 工作流程
+
+### 第一步：收集信息
+
+向用户确认以下关键信息。**如果用户提供的信息不足 3 项，必须追问；如果只缺定价，可以先生成再提示。**
+
+| 必问 | 可选（缺省处理） |
+|------|-----------------|
+| 产品名称/品类 | 品牌名 → 无品牌则标题不含品牌 |
+| 核心功能/卖点 | 价格/成本 → 无则不输出定价建议 |
+| 目标平台（可多选） | 材质/规格 → 优先从功能推断 |
+| 目标市场/语言 | 使用场景 → 按品类常识推断 |
+
+**信息不足处理规则**：
+- 用户说「写个 Listing」但未指定产品和平台 → 反问：「请问是什么产品？想上哪个平台？」
+- 用户说了产品但未指定平台 → 默认生成 Amazon 美国站，并提示可切换
+- 用户指定了平台但未说市场 → 默认该平台最大的单一市场
+
+### 第二步：读取平台规范 + 合规检查
+
+根据目标平台，读取对应参考文件。**全路径**基于 skill 安装目录：
+
+| 平台 | 参考文件（相对于 skill 目录） |
+|------|------------------------------|
+| Amazon | `references/amazon.md` |
+| Temu | `references/temu.md` |
+| Shopee | `references/shopee.md` |
+| Lazada | `references/lazada.md` |
+| AliExpress | `references/aliexpress.md` |
+| TikTok Shop | `references/tiktokshop.md` |
+
+同时加载：
+- `references/keyword_strategy.md` — SEO 关键词策略 + 竞品分析方法
+- `references/compliance.md` — 高风险品类合规检查（仅当产品属于电子/玩具/化妆品/食品接触/医疗/电池类时加载）
+
+### 第三步：生成 Listing
+
+按以下结构生成，每个平台输出独立一份。
+
+#### 1. 标题
+- 严格遵循平台字符限制
+- 按该平台的标题公式排列关键词
+- 核心关键词放在标题前 1/3（权重最高）
+- 首字母大写（英文），包含品牌名（如适用）
+
+#### 2. 五点描述 / 核心卖点
+- Amazon：5 条 FEATURE + BENEFIT，每条 ≤500 字符
+- Temu：3-5 条简洁卖点，中英双语
+- Shopee：3-5 条 emoji 项目符号式卖点
+- Lazada：3-5 条，HTML 格式支持
+- AliExpress：3-5 条关键词密集式卖点
+- TikTok Shop：3-5 条口语化带 emoji 卖点
+
+#### 3. 产品描述
+- 使用该平台支持的格式（HTML/纯文本/emoji）
+- 包含：痛点引入 → 解决方案 → 特性详述 → 规格参数 → 场景 → 售后
+- 控制在该平台建议的字数范围内
+
+#### 4. 搜索词 / SEO 关键词
+- Amazon：250 **字节**（非字符）后台搜索词，空格分隔。英文约 250 字符等同 250 字节，但日文/中文等多字节语言需注意截断
+- Temu：类目建议 + 标题关键词优化
+- Shopee：标题关键词 + 标签建议
+- Lazada：长描述优化建议
+- AliExpress：3 组关键词字段
+- TikTok Shop：Hashtag 建议（3-5 个）
+
+#### 5. 定价建议（如用户提供成本）
+参考公式（作为粗略估算，非精确报价）：
+
+| 平台 | 建议定价公式 | 说明 |
+|------|------------|------|
+| Amazon | 成本 × 3 ~ 4 | 含 FBA 费、佣金 15%、广告 |
+| Temu | 成本 × 1.2 ~ 1.5 | 全托管供货价 |
+| Shopee/Lazada | 成本 × 2.5 ~ 3.5 | 含跨境物流、佣金 |
+| AliExpress | 成本 × 2 ~ 3 | 含物流、佣金 5-8% |
+| TikTok Shop | 成本 × 3 ~ 5 | 含达人佣金、平台扣点 |
+
+输出时标注货币单位（如：$24.99 USD / ¥3,280 JPY）。
+
+#### 6. 图片建议
+虽然本 skill 不直接生成图片，但输出末尾给出主图和副图建议：
+- 主图：白底，产品占画面 70-85%
+- 建议布局：主图 → 卖点功能图 → 细节特写 → 场景使用图 → 尺寸对比 → 包装内容图
+
+#### 7. 合规提醒（仅高风险品类）
+如果产品属于以下品类，自动追加合规提醒区块：
+- 电子产品（认证要求）
+- 玩具/儿童用品（年龄警告 + 认证）
+- 化妆品/个护（成分声明 + 禁词）
+- 食品接触材料（材质声明）
+- 医疗健康器械（医疗声明禁止）
+- 电池/充电产品（UN38.3）
+
+格式：
 ```
+### ⚠️ 合规提醒
+本产品属于 [品类]，目标市场 [市场] 需要：[认证列表]。
+请确保产品已取得相应认证后再上架。
+```
+
+### 第四步：输出格式
+
+以 Markdown 分块形式清晰呈现，每个平台一个区块：
+
+```markdown
+## [平台名] — [目标市场/语言]
+
+### 📌 标题
+[标题内容]
+
+### 📋 五点描述
+1. [FEATURE] + [BENEFIT]
+2. ...
+
+### 📝 产品描述
+[描述内容，带 HTML 格式（如平台支持）]
+
+### 🔍 搜索词 / 关键词
+[keywords / hashtags]
+
+### 💰 定价建议
+[价格区间] [货币单位]
+
+### 🖼 图片建议
+主图：[要求] | 副图：[布局建议]
+```
+
+### 第五步：主动质量检查
+
+输出后自动运行以下检查，发现问题时在对应项目后标注 `⚠️ 注意：...`：
+
+| 检查项 | 标准 | 触发警告条件 |
+|--------|------|-------------|
+| 标题长度 | 平台限制 | 超限或不足 50% 上限 |
+| 禁止词汇 | 各平台禁词表 | 出现促销词/绝对词/竞品品牌名 |
+| 五点结构 | FEATURE + BENEFIT | 只有 FEATURE 没有 BENEFIT |
+| 关键词重复 | 标题 vs 五点 vs 搜索词 | 同一关键词出现 3 次以上 |
+| 信息完整度 | 材质/规格/场景/售后 | 缺失任意两项 |
+| 语言一致性 | 目标市场拼写习惯 | 美式/英式混用（如 color/colour） |
+| 合规高风险 | 品类合规规则 | 属于高风险品类但未加合规提醒 |
+
+## 多平台批量生成
+
+当用户要求同时生成多个平台的 Listing 时：
+1. 先基于同一个产品信息生成「通用素材库」（标题、卖点、描述、规格）
+2. 再按每个平台的规则调整格式和长度
+3. 一次性输出所有平台结果
+
+## 批量优化模式
+
+当用户要求「优化现有 Listing」或「批量检查我的 Listing」时：
+1. 逐条对照质量检查清单审阅
+2. 按平台规则给出修改建议
+3. 标注每条建议的优先级：🔴 必改（合规风险）→ 🟡 建议改（转化影响）→ 🟢 锦上添花
+
+## SEO 优化原则
+
+生成时遵循以下原则：
+
+1. **标题前半段权重最高** — 核心关键词放前 1/3
+2. **不堆砌** — 标题可读性 > 关键词密度
+3. **长尾词补充** — 标题放核心词，五点/描述放长尾词
+4. **避免重复** — 不同段落使用不同的关键词变体
+5. **本地化习惯** — 使用目标市场的自然说法（如 sneakers vs trainers）
+6. **竞品差异化** — 对比竞品标题结构，找到 1 个未被强调的卖点
+
+## 竞品分析模式
+
+当用户要求「分析竞品 Listing」时：
+1. 从 `references/keyword_strategy.md` 读取竞品分析方法
+2. 拆解竞品标题关键词结构
+3. 提取竞品五点卖点组合
+4. 找出竞品未覆盖的差异化空间
+5. 输出优化建议
+
+## 错误恢复与降级策略
+
+遇到以下情况时，按降级策略处理，**不要直接放弃或返回空白**。
+
+### 降级优先级
+
+| 情况 | 降级策略 |
+|------|----------|
+| 用户未提供成本 | 跳过定价建议模块，标注「请提供成本以获得定价建议」 |
+| 用户未提供品牌名 | 标题从核心关键词开头，五点/描述正常生成 |
+| 目标市场不明确 | 默认该平台最大市场（Amazon→美国站，Shopee→马来西亚，Lazada→印尼） |
+| 多平台批量生成中途中断 | 先完成已开始的平台输出，提示「剩余平台可单独生成」 |
+| 非拉丁语生成质量不确定 | 输出时附加一句「如需本地母语者审校，建议请翻译团队复核」 |
+| 平台规则可能变更 | 输出时标注「规范基于 2026 年 6 月已知规则，建议上架前确认平台最新政策」 |
+
+### 中断恢复口诀
+
+如果生成到一半停了 → 说「继续」。如果继续也不行 → **拆成单平台分开做**。如果单平台也失败 → **简化需求**，先说「只生成标题和五点」。
+
+## 反模式（常见错误，务必避免）
+
+以下是生成 Listing 时的典型踩坑行为，**生成和优化时都要避开**：
+
+| 反模式 | 错误示例 | 正确做法 |
+|--------|----------|----------|
+| 标题堆砌关键词 | `Bluetooth Speaker Waterproof Outdoor Portable Mini Wireless Bass` | 保留可读性：`Portable Bluetooth Speaker, IPX7 Waterproof, Mini Bass` |
+| 五点只有功能没有好处 | `Made of stainless steel` | `Made of stainless steel — rust-proof for years of daily use` |
+| 照搬中文直译 | `Magic Sound Quality`（中式英文） | `Rich, Balanced Audio` |
+| 忽略本地习惯 | 英国站用 `sweater` | 英国站用 `jumper` |
+| 美式英式混用 | `Color: Grey, size: Medium`（color 美 / grey 英） | 统一采用美国站用 `Gray` / 英国站用 `Grey` |
+| 用绝对词 | `Best quality in the market` | `Designed for reliable everyday performance` |
+| 描述像说明书 | 开头就写 `Product Name: xxx, Material: xxx` | 开头写痛点/场景：「Too much clutter? This 50L bin...」 |
+| 搜索词放品牌名 | 搜索词中包含 `Nike Adidas Samsung` | 只在后台搜索词中放竞品替代词，标题/五点绝不出现 |
+
+## 补充参考文件
+
+以下文件按需加载，提供深度支持：
+
+| 文件 | 用途 | 何时加载 |
+|------|------|----------|
+| `references/examples.md` | 5 个品类的真实 Listing 样例 | 生成前参考风格；用户说「给我看个样例」时必读 |
+| `references/troubleshooting.md` | 8 种常见问题的解决路径 | 用户反馈「不对」「不好」「没出来」时加载 |

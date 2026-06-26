@@ -1,0 +1,23 @@
+[Unit]
+Description=OpenClaw Config Guard - Configuration Rollback Guardian
+After=network.target
+
+[Service]
+Type=simple
+# 【必须修改】改为你的实际安装路径
+ExecStart=/home/cxlhyx/.openclaw/workspace/skills/continuous-openclaw-config-guard/scripts/guard.sh -s
+ExecStop=/home/cxlhyx/.openclaw/workspace/skills/continuous-openclaw-config-guard/scripts/guard.sh -k
+
+Restart=always
+RestartSec=5
+
+# 【必须修改】改为你的用户名
+User=cxlhyx
+# 【必须修改】改为你的实际安装路径
+WorkingDirectory=/home/cxlhyx/.openclaw/workspace/skills/continuous-openclaw-config-guard
+
+# 【必须修改】SESSION_FILE 中的 agent 名称要改成你的
+Environment="SESSION_FILE=/home/cxlhyx/.openclaw/agents/huoxiaoxing/sessions/sessions.json"
+
+[Install]
+WantedBy=multi-user.target

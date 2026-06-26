@@ -1,0 +1,12 @@
+{
+  "slug": "clawhub-intro-skill",
+  "name": "ClawHub Intro Skill",
+  "version": "0.1.0",
+  "summary": "Демонстрационный скилл, показывающий структуру для публикации в ClawHub.",
+  "tags": ["demo", "clawhub", "tutorial"],
+  "entry": "SKILL.md",
+  "author": "(your name)",
+  "license": "MIT",
+  "requirements": [],
+  "install_instructions": "clawhub install clawhub-intro-skill"
+}

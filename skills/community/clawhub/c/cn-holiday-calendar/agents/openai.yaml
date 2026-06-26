@@ -1,0 +1,4 @@
+interface:
+  display_name: "CN Holiday Calendar"
+  short_description: "Use gov.cn holiday notices and lunar-python to mark workdays, holidays, make-up shifts, and lunar calendar details"
+  default_prompt: "Use $cn-holiday-calendar to check a date or month. If the year's data is not ready, fetch it from gov.cn holiday notices. For single-date queries, include the specific date, lunar date, weekday, holiday status, holiday name if applicable, and solar term if present. Provide fuller calendar details only when asked."

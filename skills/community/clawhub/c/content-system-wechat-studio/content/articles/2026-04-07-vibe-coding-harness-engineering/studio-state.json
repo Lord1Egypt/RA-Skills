@@ -1,0 +1,253 @@
+{
+  "source": {
+    "originalName": "harness-engineering-vibe-coding-重构-wechat-viral.md",
+    "markdownPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/source.md",
+    "uploadedAt": "2026-04-07 16:34:17",
+    "warnings": [
+      "已导入文章。请先选择风格、配色并确认提示词，再手动生成预览、封面和正文配图。"
+    ]
+  },
+  "layout": {
+    "theme": "winter-slate",
+    "template": "xiumi-winter-ins",
+    "themeFile": "",
+    "referenceUrl": "",
+    "warning": "",
+    "extractionMeta": {},
+    "updatedAt": "2026-04-07 16:42:12"
+  },
+  "tone": {
+    "theme": "winter-slate",
+    "primaryColor": "#5f77f2",
+    "saturation": 100,
+    "opacity": 88,
+    "updatedAt": "2026-04-07 17:25:55"
+  },
+  "typography": {
+    "template": "xiumi-winter-ins",
+    "titleStyle": "standard",
+    "bodySize": 16,
+    "lineHeight": 1.9,
+    "paragraphGap": 16,
+    "sectionStyle": "editorial",
+    "imageRadius": 24,
+    "imageSpacing": 22,
+    "updatedAt": "2026-04-07 17:25:55"
+  },
+  "cover": {
+    "candidatePath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-quiet-poster-20260407-172612.png",
+    "generated": {
+      "prompt": "为公众号文章生成极简留白风格的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 极简留白感，主体单一，画面安静。\n配色围绕 中等、高饱和的蓝色 的品牌蓝展开，延展出更浅的雾感蓝和更深的墨蓝层次；背景保持白底或极浅中性色，不要杂色，不要调色板、色卡、图例，也不要把任何色值字符串画进画面。 横版构图，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、色值、比例标记、图例、代码雨、复杂图表、箭头说明、UI 截图、贴纸。\n画幅：16:9\n\n要求：\n1. 元素极少，留白明显\n2. 颜色控制克制，避免杂乱\n3. 视觉上安静、克制、现代",
+      "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5uKjFK50r9UP6t21Glgq2bCXYVEYzzlGvMgEWodg5Q9vMKwkfxiantwsjtzDJJdQFeIxs3tkiaibyxWfWC5V91R1SPozTOh08g0c/0?wx_fmt=jpeg",
+      "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5uKjFK50r9UP6t21Glgq2bCXYVEYzzlGvMgEWodg5Q9vMKwkfxiantwsjtzDJJdQFeIxs3tkiaibyxWfWC5V91R1SPozTOh08g0c/0?wx_fmt=jpeg",
+      "mediaId": "YZiaWkQEcudqYwi5TLHu4Pq0wOsXDKXhnwfujClpgiq7XakVyHxjvPbXj2w78WkC",
+      "width": 0,
+      "height": 0,
+      "preset": "cover-minimal",
+      "styleId": "quiet-poster",
+      "styleLabel": "留白海报",
+      "customPrompt": "",
+      "promptOverride": "",
+      "style": "生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 极简留白感，主体单一，画面安静。\n配色围绕 中等、高饱和的蓝色 的品牌蓝展开，延展出更浅的雾感蓝和更深的墨蓝层次；背景保持白底或极浅中性色，不要杂色，不要调色板、色卡、图例，也不要把任何色值字符串画进画面。 横版构图，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、色值、比例标记、图例、代码雨、复杂图表、箭头说明、UI 截图、贴纸。",
+      "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-quiet-poster-20260407-172612.png",
+      "createdAt": "2026-04-07 17:26:13"
+    },
+    "history": [
+      {
+        "prompt": "为公众号文章生成极简留白风格的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 极简留白感，主体单一，画面安静。\n配色围绕 中等、高饱和的蓝色 的品牌蓝展开，延展出更浅的雾感蓝和更深的墨蓝层次；背景保持白底或极浅中性色，不要杂色，不要调色板、色卡、图例，也不要把任何色值字符串画进画面。 横版构图，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、色值、比例标记、图例、代码雨、复杂图表、箭头说明、UI 截图、贴纸。\n画幅：16:9\n\n要求：\n1. 元素极少，留白明显\n2. 颜色控制克制，避免杂乱\n3. 视觉上安静、克制、现代",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5uKjFK50r9UP6t21Glgq2bCXYVEYzzlGvMgEWodg5Q9vMKwkfxiantwsjtzDJJdQFeIxs3tkiaibyxWfWC5V91R1SPozTOh08g0c/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5uKjFK50r9UP6t21Glgq2bCXYVEYzzlGvMgEWodg5Q9vMKwkfxiantwsjtzDJJdQFeIxs3tkiaibyxWfWC5V91R1SPozTOh08g0c/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4Pq0wOsXDKXhnwfujClpgiq7XakVyHxjvPbXj2w78WkC",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-minimal",
+        "styleId": "quiet-poster",
+        "styleLabel": "留白海报",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 极简留白感，主体单一，画面安静。\n配色围绕 中等、高饱和的蓝色 的品牌蓝展开，延展出更浅的雾感蓝和更深的墨蓝层次；背景保持白底或极浅中性色，不要杂色，不要调色板、色卡、图例，也不要把任何色值字符串画进画面。 横版构图，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、色值、比例标记、图例、代码雨、复杂图表、箭头说明、UI 截图、贴纸。",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-quiet-poster-20260407-172612.png",
+        "createdAt": "2026-04-07 17:26:13"
+      },
+      {
+        "prompt": "为公众号文章生成带有杂志封面感的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 杂志社论感，现代、克制、安静，像专题配图。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 16:9 横版，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、UI 截图、贴纸。\n画幅：16:9\n\n要求：\n1. 强调整体版式感与高级感\n2. 视觉留白明确，中心元素突出\n3. 适合评论、观点、深度文章",
+        "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4wPiaD7FyTXzLVtWtT1xJtKGrpbrLLT7P0sGOysCOClGPciczT1FMV8DK7Fb1ibofAUPMcmj1Krrnmxrq2IqFic9Ps0HrESTzl90k/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4wPiaD7FyTXzLVtWtT1xJtKGrpbrLLT7P0sGOysCOClGPciczT1FMV8DK7Fb1ibofAUPMcmj1Krrnmxrq2IqFic9Ps0HrESTzl90k/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4KW_2SKXCdJQN104e-k5E21T0c5L7kIoE8ZCUwFQSg-m",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-editorial",
+        "styleId": "magazine",
+        "styleLabel": "杂志感",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 杂志社论感，现代、克制、安静，像专题配图。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 16:9 横版，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、UI 截图、贴纸。",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-magazine-20260407-171440.png",
+        "createdAt": "2026-04-07 17:14:41"
+      },
+      {
+        "prompt": "为公众号文章生成带有杂志封面感的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 编辑拼贴感，层次轻一点，主体清楚。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 16:9 横版，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、UI 截图、贴纸。\n画幅：16:9\n\n要求：\n1. 强调整体版式感与高级感\n2. 视觉留白明确，中心元素突出\n3. 适合评论、观点、深度文章",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5jAQ5c7WcAvI7a4CyJHTWs8QJcykvYDFcIlFdun31e7rPD02QurStHE2A5TqYNNYhDxKdX3mhw9VTB5Hrb8WHNUvwK8LoEeZg/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5jAQ5c7WcAvI7a4CyJHTWs8QJcykvYDFcIlFdun31e7rPD02QurStHE2A5TqYNNYhDxKdX3mhw9VTB5Hrb8WHNUvwK8LoEeZg/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4KzFQJTUIjodq3lDQ3t-8rv3cKI-axwbLtrTo3IjoLtC",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-editorial",
+        "styleId": "offset-collage",
+        "styleLabel": "错位拼贴",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 编辑拼贴感，层次轻一点，主体清楚。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 16:9 横版，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、UI 截图、贴纸。",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-offset-collage-20260407-171550.png",
+        "createdAt": "2026-04-07 17:15:50"
+      },
+      {
+        "prompt": "为公众号文章生成温和、插画感强的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 轻松亲和的图形化配图，元素少，别太花。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 16:9 横版，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、UI 截图、贴纸。\n画幅：16:9\n\n要求：\n1. 画面友好、轻松、可读\n2. 优先使用插画、图形化元素表达\n3. 适合教育、生活、消费、经验分享类内容",
+        "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON6SAFm5GfIicc6cQkc7pricJJqMfFBABjia9k5AzUnicPVuJUARekibyGOTOSxbzqQw6NibXomHwy2yc9zKzTFtzzEkU8yic2FyDl49CY/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON6SAFm5GfIicc6cQkc7pricJJqMfFBABjia9k5AzUnicPVuJUARekibyGOTOSxbzqQw6NibXomHwy2yc9zKzTFtzzEkU8yic2FyDl49CY/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4IvPkebOYmrEU3HIRhCpXE3InFSVCJVXG61VYC8GTJk-",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-illustrated",
+        "styleId": "sticker-note",
+        "styleLabel": "贴纸感",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 轻松亲和的图形化配图，元素少，别太花。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 16:9 横版，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、UI 截图、贴纸。",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-sticker-note-20260407-171606.png",
+        "createdAt": "2026-04-07 17:16:06"
+      },
+      {
+        "prompt": "为公众号文章生成极简留白风格的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 极简留白感，主体单一，画面安静。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 16:9 横版，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、UI 截图、贴纸。\n画幅：16:9\n\n要求：\n1. 元素极少，留白明显\n2. 颜色控制克制，避免杂乱\n3. 视觉上安静、克制、现代",
+        "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4eaDknJNhOlCDCpfzn0VKHZXFSXpvgD5dzicdSiaTt3tkxjuM0BBd0GUp4d10RnY2KCCPoibtHyLBLQBrgZ1pyvbtBorpF44ZGEE/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4eaDknJNhOlCDCpfzn0VKHZXFSXpvgD5dzicdSiaTt3tkxjuM0BBd0GUp4d10RnY2KCCPoibtHyLBLQBrgZ1pyvbtBorpF44ZGEE/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4ON2YmdeYkD_Q4ZUJm_7b2ZEB3txB3MeOH9keUBjOo3c",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-minimal",
+        "styleId": "quiet-poster",
+        "styleLabel": "留白海报",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "生成一张匹配文章主题的公众号封面配图，不要做成标题海报，不要在画面里放文字。\n抽象工程系统主题：结构化模块、控制台、检查点、版本轨道、信号节点，表达从混乱到稳定交付。 极简留白感，主体单一，画面安静。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 16:9 横版，浅背景，留白充足，单一清晰视觉主体。\n不要人物、机器人、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、UI 截图、贴纸。",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-quiet-poster-20260407-171627.png",
+        "createdAt": "2026-04-07 17:16:27"
+      },
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n文章摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n极简社论封面，版面干净，标题优先，视觉理性克制。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5XyFviaojo2R3NwlWcDQdPB33Y7oheS18zyIACLnBOHnU0lCQpZDEBWJN2EddesCCz3hqVBFNGhRCg8Ddkzvbt2lhwLhKsoXM0/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5XyFviaojo2R3NwlWcDQdPB33Y7oheS18zyIACLnBOHnU0lCQpZDEBWJN2EddesCCz3hqVBFNGhRCg8Ddkzvbt2lhwLhKsoXM0/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4BPblmO5e1TcJA__5ZkIkgqcPIa5d_59a33I5OvHhSsx",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "magazine",
+        "styleLabel": "杂志感",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n文章摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n极简社论封面，版面干净，标题优先，视觉理性克制。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-magazine-20260407-163607.png",
+        "createdAt": "2026-04-07 16:36:07"
+      },
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n文章摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n轻层叠纸面关系，构图有编辑感，但不出现贴纸和说明标签。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON5hDpWFXSSZWgBLZNRueRLIPXp1OcP1QvTDXxycOFHmgichOVAS13picf48P6hSiaaH7KEONAfia8RnC3jNlpXk6u0bykicwoIj1UMM/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON5hDpWFXSSZWgBLZNRueRLIPXp1OcP1QvTDXxycOFHmgichOVAS13picf48P6hSiaaH7KEONAfia8RnC3jNlpXk6u0bykicwoIj1UMM/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4KvyIcdL365pGYcJvmUivG3fxtQ-cnEhQnTLErdX2IR1",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "offset-collage",
+        "styleLabel": "错位拼贴",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n文章摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n轻层叠纸面关系，构图有编辑感，但不出现贴纸和说明标签。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-offset-collage-20260407-163634.png",
+        "createdAt": "2026-04-07 16:36:34"
+      },
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n文章摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n轻便签式排版关系，轻松但克制，不出现真实贴纸字样和界面元素。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON5b96zf2GDiaOuxM4ib7cwzibkdMdfiaUORqZ53eqTpp1lmL1jmTVE8ytILxswwOrSwIEm6sSdHp9HwkOW2iavaqyNibGo3iawcFNC2LM/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON5b96zf2GDiaOuxM4ib7cwzibkdMdfiaUORqZ53eqTpp1lmL1jmTVE8ytILxswwOrSwIEm6sSdHp9HwkOW2iavaqyNibGo3iawcFNC2LM/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4BfkUQGopWB_wWfGMjFTC07jaYbl6ecSXrCcs2ofgamO",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "sticker-note",
+        "styleLabel": "贴纸感",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n文章摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n轻便签式排版关系，轻松但克制，不出现真实贴纸字样和界面元素。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-sticker-note-20260407-163701.png",
+        "createdAt": "2026-04-07 16:37:01"
+      },
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n关键词：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付；这两年最容易让人上头的一件事，就是 vibe coding 。\n风格：【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n文章摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n留白面积大，视觉安静现代，标题区域清晰。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON7t3R9icWHbxmrg426ALtMPLUmgDLTyI4bOazADcyzhCIZ78ibp4aI2VGdXicanuNrRVJq0kng0EWAYYYiabwlgZ6q4xt6xujtCwcY/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON7t3R9icWHbxmrg426ALtMPLUmgDLTyI4bOazADcyzhCIZ78ibp4aI2VGdXicanuNrRVJq0kng0EWAYYYiabwlgZ6q4xt6xujtCwcY/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4F4_ODmVEKKtOQ3wA7BvGM2E_LrX1g8bxZ_sdB_9bKYZ",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "quiet-poster",
+        "styleLabel": "留白海报",
+        "customPrompt": "",
+        "promptOverride": "",
+        "style": "【图像任务】\n为这篇公众号文章生成封面候选图。\n\n【内容依据】\n文章标题：商业化一开始，vibe coding 就不够用了，Harness Engineering 才能交付\n文章摘要：这两年最容易让人上头的一件事，就是 vibe coding 。\n文章类型：分析型\n\n【画面目标】\n封面要服务于标题阅读，突出主题判断，适合公众号首屏展示。\n\n【构图要求】\n白底或极浅中性色背景；留白充足；标题安全区明确；中文排版简洁；整体有编辑感和层级感。\n\n【主色要求】\n整体配色围绕用户当前选择的主色展开，主色属于中等、高饱和的蓝色；颜色表现保持适中、扎实，可以在同一色系内自然延展出更浅和更深的层次；背景尽量保持白底或极浅中性色；主色只用于边框、分隔、标题强调和结构性重点，不要大面积铺满；允许同色系的浅深变化，但不要出现具体色值文字；最终画面的颜色气质要明显跟随当前主色，而不是套用固定预设色盘。\n\n【风格方向】\n留白面积大，视觉安静现代，标题区域清晰。\n\n【禁止项】\n不要人物；不要产品样机；不要图表；不要图标；不要箭头；不要徽章；不要标签；不要贴纸；不要纸条；不要界面控件；不要额外装饰文字；不要模板名；不要主题名；不要色值字符串。\n\n【用户补充】\n无",
+        "localPath": "content/articles/2026-04-07-vibe-coding-harness-engineering/studio-assets/cover-quiet-poster-20260407-163731.png",
+        "createdAt": "2026-04-07 16:37:31"
+      }
+    ],
+    "customPrompt": "",
+    "updatedAt": "2026-04-07 17:29:13"
+  },
+  "coverModules": {
+    "current": null,
+    "history": [],
+    "style": "collage-editorial",
+    "updatedAt": ""
+  },
+  "inlineImages": {
+    "items": [],
+    "history": [],
+    "archivedHistory": [],
+    "positions": {},
+    "promptOverrides": {},
+    "customPrompt": "",
+    "slots": [
+      {
+        "slotId": "slot-2",
+        "order": 1,
+        "prompt": "生成一张匹配当前段落主题的正文配图，不要做成海报，不要在画面里放文字。\n工程系统配图：控制面板局部、结构模块、检查点或轨道，表达当前段落的工程约束感。 结构感更强，像文章里的信息配图。\n配色围绕 中等、高饱和的蓝色 主色展开，用 #5f77f2 及同色系浅色 #dce1fc、深色 #5368cf 做层次；背景保持白底或极浅中性色，不要杂色。 主体单一，结构清楚，适合插入正文。\n不要人物、logo、水印、字母、数字、代码雨、复杂图表、箭头说明、产品样机。",
+        "anchorBlockId": "heading:95",
+        "targetLabel": "2026 年被重构的，不是 coding，是生产方式",
+        "nearestHeading": "2026 年被重构的，不是 coding，是生产方式",
+        "selectedLocalPath": "",
+        "currentItem": null,
+        "history": [],
+        "updatedAt": "2026-04-07 16:55:07"
+      }
+    ],
+    "nextSlotIndex": 3,
+    "updatedAt": "2026-04-07 17:16:27"
+  },
+  "sectionModules": {
+    "items": [],
+    "history": [],
+    "customPrompt": "",
+    "updatedAt": ""
+  },
+  "draft": {
+    "mediaId": "",
+    "title": "",
+    "pushedAt": "",
+    "lastError": "",
+    "theme": "",
+    "themeFile": "",
+    "template": ""
+  },
+  "preview": {
+    "initialized": true,
+    "updatedAt": "2026-04-07 16:42:12"
+  }
+}

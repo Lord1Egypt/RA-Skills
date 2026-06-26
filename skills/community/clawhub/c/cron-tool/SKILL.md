@@ -1,35 +1,34 @@
 ---
-name: "Cron Tool"
-description: "Perform cron-tool operations from the command line."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cron-tool"
-sourceUrl: "https://clawhub.ai/skills/cron-tool"
+name: cron-tool
+description: Perform cron-tool operations from the command line.
 ---
 
-# Cron Tool
+# Cron - CLI Utility
 
-> Perform cron-tool operations from the command line.
+Command-line utility for cron operations.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cron-tool`
-- **Source URL:** [https://clawhub.ai/skills/cron-tool](https://clawhub.ai/skills/cron-tool)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cron-tool
+cron-tool --help
+```
+
+## Features
+
+- Standard command-line interface
+- Common flags and arguments
+- Pipe and redirect compatible
+- Shell integration
+
+## Examples
+
+```bash
+# Show help
+cron-tool --help
+
+# Basic usage
+cron-tool [options] [arguments]
+
+# Pipe input
+echo "input" | cron-tool [options]
 ```

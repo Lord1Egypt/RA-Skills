@@ -1,0 +1,22 @@
+{
+  "name": "clawopen",
+  "version": "1.0.0",
+  "description": "OpenClaw 资源导航 - 生态资源一站式入口",
+  "keywords": [
+    "openclaw",
+    "navigation",
+    "resources",
+    "directory",
+    "导航",
+    "资源",
+    "入口"
+  ],
+  "author": "LeoCryptoFlow",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "utilities",
+    "languages": ["zh", "en"],
+    "acceptLicenseTerms": true
+  }
+}

@@ -1,35 +1,54 @@
 ---
-name: "Communityhub"
-description: "Manage and grow communities with strategies for engagement, content planning, user growth, monetization, and crisis handling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/communityhub"
-sourceUrl: "https://clawhub.ai/skills/communityhub"
+version: "2.0.0"
+name: Community Manager
+description: "Community Manager. Use when you need communityhub capabilities. Triggers on: communityhub."
+  社群运营。社群搭建、活跃度提升、内容规划、用户增长、变现策略、危机处理。Community management toolkit. 社群、运营、私域。
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
+# Community Manager
 
-# Communityhub
+社群运营。社群搭建、活跃度提升、内容规划、用户增长、变现策略、危机处理。Community management toolkit. 社群、运营、私域。
 
-> Manage and grow communities with strategies for engagement, content planning, user growth, monetization, and crisis handling.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/communityhub`
-- **Source URL:** [https://clawhub.ai/skills/communityhub](https://clawhub.ai/skills/communityhub)
+- `build` — build
+- `engage` — engage
+- `content` — content
+- `grow` — grow
+- `monetize` — monetize
+- `crisis` — crisis
 
-## Overview
+## Usage
 
+Run any command with your input to get started. Use `help` to see all available commands.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## About
+
+Part of the BytesAgain productivity toolkit. Visit [bytesagain.com](https://bytesagain.com) for more tools.
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/communityhub
+# Show help
+communityhub help
+
+# Run
+communityhub run
 ```
+
+- Run `communityhub help` for commands
+- No API keys needed
+
+
+## Output
+
+Results go to stdout. Save with `communityhub run > output.txt`.
+
+## Configuration
+
+Set `COMMUNITYHUB_DIR` to change data directory. Default: `~/.local/share/communityhub/`

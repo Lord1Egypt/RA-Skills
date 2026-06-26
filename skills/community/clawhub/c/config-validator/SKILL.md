@@ -1,35 +1,21 @@
----
-name: "Config Validator"
-description: "Validates OpenClaw configuration files and environment variables, checks dependencies, reports issues, and optionally fixes basic problems with a --fix flag."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/config-validator"
-sourceUrl: "https://clawhub.ai/skills/config-validator"
----
+# config-validator
 
-# Config Validator
+A utility skill to validate OpenClaw configuration files (`openclaw.json`, `.env`, `package.json`) and ensure critical settings are present and correctly formatted.
 
-> Validates OpenClaw configuration files and environment variables, checks dependencies, reports issues, and optionally fixes basic problems with a --fix flag.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/config-validator`
-- **Source URL:** [https://clawhub.ai/skills/config-validator](https://clawhub.ai/skills/config-validator)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/config-validator
+node skills/config-validator/index.js [--fix]
 ```
+
+## Features
+
+- Checks for required environment variables (`.env`).
+- Validates `openclaw.json` structure.
+- Checks `package.json` dependencies against installed modules.
+- Reports missing or malformed configurations.
+- Optional `--fix` flag attempts basic repairs (e.g., creating missing files from templates).
+
+## Dependencies
+
+- None (built-in Node.js modules).

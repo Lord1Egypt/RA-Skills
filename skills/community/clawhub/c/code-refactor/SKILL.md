@@ -1,35 +1,25 @@
 ---
-name: "Code Refactor"
-description: "Improve code readability, structure, and maintainability by cleaning up duplication, simplifying flow, renaming, or reorganizing without changing behavior."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-refactor"
-sourceUrl: "https://clawhub.ai/skills/code-refactor"
+name: code-refactor
+description: Improve readability, structure, and maintainability of the current local codebase without changing behavior. Use when the user asks to clean up code, reduce duplication, simplify control flow, rename for clarity, or reorganize logic while preserving compatibility. Do not use for feature work disguised as refactoring. Chinese triggers: 重构、优化结构、清理代码、提取重复逻辑、提高可读性、保持行为不变.
 ---
 
-# Code Refactor
+# 代码重构
 
-> Improve code readability, structure, and maintainability by cleaning up duplication, simplifying flow, renaming, or reorganizing without changing behavior.
+只整理结构，不改变原有行为。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-refactor`
-- **Source URL:** [https://clawhub.ai/skills/code-refactor](https://clawhub.ai/skills/code-refactor)
+## 工作流
 
-## Overview
+1. 先确认当前行为，再保证重构后行为保持一致。
+2. 先指出具体问题：重复代码、命名差、函数过长、条件分支纠缠、职责不清。
+3. 除非用户明确允许，否则不要破坏公共接口和调用方预期。
+4. 只有在能明显降低复杂度或重复时才抽取公共逻辑或重组模块。
+5. 重构时不顺手加入新业务逻辑。
+6. 保留原有注释风格，除非注释已经失真。
+7. 重构后验证行为未变。
 
+## 输出
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/code-refactor
-```
+- 重构前的问题
+- 重构思路
+- 如何保证行为不变
+- 已做验证

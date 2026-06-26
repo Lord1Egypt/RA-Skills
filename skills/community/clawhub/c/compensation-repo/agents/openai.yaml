@@ -1,0 +1,4 @@
+interface:
+  display_name: "定薪与申报检查助手 / Compensation Decision Assistant"
+  short_description: "做定薪判断，也先把申报前风险挑出来 / Price offers and catch filing risks"
+  default_prompt: "使用 $hr-compensation-checks 帮我处理薪酬判断或申报前检查。不要先讲概念，先告诉我怎么定、能不能报、依据是什么、风险在哪、下一步先做什么。"

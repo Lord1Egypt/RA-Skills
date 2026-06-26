@@ -1,0 +1,59 @@
+﻿{
+  "name": "<CONFIGURE_DEVICE_SAMPLE_OR_SYSTEM_NAME>",
+  "dimension": "<CONFIGURE_DIMENSION_1D_2D_OR_3D>",
+  "device_width_nm": "<CONFIGURE_WIDTH_NM_IF_RELEVANT>",
+  "device_depth_nm": "<CONFIGURE_DEPTH_NM_IF_RELEVANT>",
+  "illumination": {
+    "direction": "<CONFIGURE_ILLUMINATION_DIRECTION_IF_RELEVANT>",
+    "polarization": "<CONFIGURE_POLARIZATION_IF_RELEVANT>",
+    "intensity_W_per_m2": "<CONFIGURE_INTENSITY_W_PER_M2_IF_RELEVANT>",
+    "wavelengths_nm": "<CONFIGURE_WAVELENGTH_LIST_NM_IF_RELEVANT>"
+  },
+  "layers": [
+    {
+      "name": "<LAYER_1_NAME>",
+      "material": "<LAYER_1_MATERIAL>",
+      "role": "<LAYER_1_ROLE>",
+      "thickness_nm": "<CONFIGURE_LAYER_1_THICKNESS_NM>",
+      "n": "<CONFIGURE_LAYER_1_N_IF_RELEVANT>",
+      "k": "<CONFIGURE_LAYER_1_K_IF_RELEVANT>",
+      "Nd_cm3": "<CONFIGURE_LAYER_1_DONOR_DENSITY_CM3_IF_RELEVANT>",
+      "Na_cm3": "<CONFIGURE_LAYER_1_ACCEPTOR_DENSITY_CM3_IF_RELEVANT>",
+      "mu_n_cm2_per_Vs": "<CONFIGURE_LAYER_1_ELECTRON_MOBILITY_IF_RELEVANT>",
+      "mu_p_cm2_per_Vs": "<CONFIGURE_LAYER_1_HOLE_MOBILITY_IF_RELEVANT>",
+      "tau_n_s": "<CONFIGURE_LAYER_1_ELECTRON_LIFETIME_IF_RELEVANT>",
+      "tau_p_s": "<CONFIGURE_LAYER_1_HOLE_LIFETIME_IF_RELEVANT>",
+      "bandgap_eV": "<CONFIGURE_LAYER_1_BANDGAP_IF_RELEVANT>",
+      "electron_affinity_eV": "<CONFIGURE_LAYER_1_ELECTRON_AFFINITY_IF_RELEVANT>",
+      "source_or_confidence": "<MEASURED_LITERATURE_ASSUMED_OR_UNCONFIGURED>"
+    },
+    {
+      "name": "<LAYER_2_NAME>",
+      "material": "<LAYER_2_MATERIAL>",
+      "role": "<LAYER_2_ROLE>",
+      "thickness_nm": "<CONFIGURE_LAYER_2_THICKNESS_NM>",
+      "n": "<CONFIGURE_LAYER_2_N_IF_RELEVANT>",
+      "k": "<CONFIGURE_LAYER_2_K_IF_RELEVANT>",
+      "Nd_cm3": "<CONFIGURE_LAYER_2_DONOR_DENSITY_CM3_IF_RELEVANT>",
+      "Na_cm3": "<CONFIGURE_LAYER_2_ACCEPTOR_DENSITY_CM3_IF_RELEVANT>",
+      "mu_n_cm2_per_Vs": "<CONFIGURE_LAYER_2_ELECTRON_MOBILITY_IF_RELEVANT>",
+      "mu_p_cm2_per_Vs": "<CONFIGURE_LAYER_2_HOLE_MOBILITY_IF_RELEVANT>",
+      "tau_n_s": "<CONFIGURE_LAYER_2_ELECTRON_LIFETIME_IF_RELEVANT>",
+      "tau_p_s": "<CONFIGURE_LAYER_2_HOLE_LIFETIME_IF_RELEVANT>",
+      "bandgap_eV": "<CONFIGURE_LAYER_2_BANDGAP_IF_RELEVANT>",
+      "electron_affinity_eV": "<CONFIGURE_LAYER_2_ELECTRON_AFFINITY_IF_RELEVANT>",
+      "source_or_confidence": "<MEASURED_LITERATURE_ASSUMED_OR_UNCONFIGURED>"
+    }
+  ],
+  "contacts_or_boundaries": {
+    "top": "<CONFIGURE_TOP_CONTACT_OR_BOUNDARY_IF_RELEVANT>",
+    "bottom": "<CONFIGURE_BOTTOM_CONTACT_OR_BOUNDARY_IF_RELEVANT>",
+    "side": "<CONFIGURE_SIDE_BOUNDARY_IF_RELEVANT>"
+  },
+  "simulation": {
+    "operating_conditions": "<CONFIGURE_OPERATING_CONDITIONS>",
+    "temperature_K": "<CONFIGURE_TEMPERATURE_K>",
+    "sweep_plan": "<CONFIGURE_SWEEP_PLAN>",
+    "validation_note": "Do not run this template as a quantitative model until all CONFIGURE placeholders are replaced with user-project values."
+  }
+}

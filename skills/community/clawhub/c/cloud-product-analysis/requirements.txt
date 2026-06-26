@@ -1,0 +1,8 @@
+# cloud-product-analysis dependencies
+# Install: pip install -r requirements.txt
+
+playwright==1.48.0
+httpx==0.27.2
+beautifulsoup4==4.12.3
+
+# After pip install, run: playwright install chromium

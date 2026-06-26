@@ -1,35 +1,18 @@
 ---
-name: "Cortex Review (Deprecated)"
+name: cortex-review
+version: 1.1.0
 description: "[DEPRECATED] This skill has been merged into cortex-engine. Install clawhub.ai/idapixl/cortex-engine instead."
-category: "other"
-source: "ClawHub"
+author: idapixl
 tags: [deprecated]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cortex-review"
-sourceUrl: "https://clawhub.ai/skills/cortex-review"
 ---
 
-# Cortex Review (Deprecated)
+# Deprecated — Use cortex-engine
 
-> [DEPRECATED] This skill has been merged into cortex-engine. Install clawhub.ai/idapixl/cortex-engine instead.
+This skill has been consolidated into **[cortex-engine](https://clawhub.ai/idapixl/cortex-engine)**.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cortex-review`
-- **Source URL:** [https://clawhub.ai/skills/cortex-review](https://clawhub.ai/skills/cortex-review)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cortex-review
+Install the replacement:
 ```
+clawhub install cortex-engine
+```
+
+The new skill includes everything from cortex-review plus the full query/record workflow, pinned package versions, and source verification links.

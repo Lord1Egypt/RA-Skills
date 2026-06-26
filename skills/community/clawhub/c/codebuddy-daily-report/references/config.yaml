@@ -1,0 +1,27 @@
+# Daily Report Skill - 可选配置
+# 大部分情况下不需要修改此文件。
+# 脚本会自动扫描整个主目录（包括隐藏目录），找到所有 git 仓库。
+
+# Git 作者名（留空则自动从 git config --global user.name 获取）
+git_author: ""
+
+# 额外的搜索路径
+# 脚本默认从 ~ (HOME) 开始扫描，已覆盖绝大多数场景。
+# 只有当仓库在 HOME 之外时才需要添加，例如外置硬盘、挂载盘等。
+extra_search_dirs:
+  # macOS 示例:
+  # - /Volumes/ExternalDisk/projects
+  # Linux 示例:
+  # - /mnt/data/projects
+  # - /opt/company/repos
+  # Windows 示例（非 C 盘的目录）:
+  # - D:/projects
+  # - E:/work/repos
+
+# 额外排除目录（脚本已内置排除 Library, node_modules 等常见无用目录）
+# 如果扫描太慢或有不想统计的目录，可以在这里添加
+exclude_dirs:
+  # - some-huge-dir-to-skip
+
+# 最大搜索深度（从 HOME 算起，默认 5 层足够找到绝大多数仓库）
+max_depth: 5

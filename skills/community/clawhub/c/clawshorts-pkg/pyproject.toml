@@ -1,0 +1,43 @@
+# Fire TV Shorts Limiter - Python Project
+# Built with Tessl spec-driven development
+
+[project]
+name = "clawshorts"
+version = "0.4.0"
+description = "Block YouTube Shorts on Fire TV with daily limits."
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+    "pydantic>=2.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "ty",
+    "pytest",
+    "pytest-cov",
+    "pre-commit",
+]
+lint = ["ruff", "ty"]
+test = ["pytest", "pytest-cov"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D", "COM812", "ISC001", "E501"]
+
+[tool.pytest]
+testpaths = ["tests"]
+addopts = ["--cov=src", "--cov-fail-under=0"]
+pythonpath = ["src"]
+
+[tool.ty]
+terminal = { error-on-warning = true }
+environment = { python-version = "3.11" }
+
+[tool.pre-commit]
+skip = []

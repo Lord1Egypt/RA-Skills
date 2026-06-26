@@ -1,0 +1,17 @@
+{
+  "name": "config-tracker",
+  "version": "1.0.2",
+  "description": "自动追踪并提交 OpenClaw 配置文件和关键 markdown 文件的变更",
+  "main": "./config-tracker.js",
+  "type": "module",
+  "openclaw": {
+    "extensions": ["./config-tracker.js"],
+    "skill": true
+  },
+  "files": [
+    "config-tracker.js",
+    "index.js",
+    "SKILL.md",
+    "openclaw.plugin.json"
+  ]
+}

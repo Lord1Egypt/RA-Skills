@@ -1,35 +1,53 @@
----
-name: "Cn Random Picker"
-description: "随机选择器。从列表中随机抽取，支持权重分配、去重模式、抽奖/抽签场景。纯Python标准库，无需API Key。"
-category: "other"
-source: "ClawHub"
-tags: [tools]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-random-picker"
-sourceUrl: "https://clawhub.ai/skills/cn-random-picker"
----
+slug: cn-random-picker
+name: 随机选择器
+version: "1.0.0"
+author: 千策
 
-# Cn Random Picker
+# 随机选择器
 
-> 随机选择器。从列表中随机抽取，支持权重分配、去重模式、抽奖/抽签场景。纯Python标准库，无需API Key。
+随机选择器。抽奖抽签神器。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-random-picker`
-- **Source URL:** [https://clawhub.ai/skills/cn-random-picker](https://clawhub.ai/skills/cn-random-picker)
+## 功能
 
-## Overview
+- **随机抽取**：从多个选项中随机选一个
+- **多人抽取**：一次抽取多个不重复结果
+- **权重模式**：每个选项可设置不同权重
+- **去重保证**：已抽中的不会重复抽到
+- **公平模式**：使用secrets模块确保密码学安全随机
 
+## 安装要求
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Python 3.6+
+- 无外部依赖
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/cn-random-picker
+# 基本随机选择
+python3 scripts/random_picker.py "张三,李四,王五,赵六"
+
+# 抽取多个
+python3 scripts/random_picker.py "A,B,C,D,E" --count 2
+
+# 带权重
+python3 scripts/random_picker.py "一等奖:1,二等奖:3,三等奖:6"
 ```
+
+## 示例
+
+输入：`张三,李四,王五`
+输出：`🎉 抽中: 李四`
+
+## 分类
+
+生活工具
+
+## 关键词
+
+随机, 抽奖, 抽签, lottery, random, picker
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

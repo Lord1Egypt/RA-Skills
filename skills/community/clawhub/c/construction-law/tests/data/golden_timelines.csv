@@ -1,0 +1,24 @@
+# Golden Timeline Test Data — Hand-Verified SOP Act Deadlines
+# Each row is a manually computed known-answer test case.
+# All dates computed by counting SOP days (excluding SG public holidays, including weekends).
+#
+# Scenario key:
+# 1. CNY cluster (Feb 17-18 PH) — 2 holidays skipped in response window
+# 2. Vesak/HRH cluster (May 27 HRH, May 31 Vesak Sun, Jun 1 in-lieu) — 3 holidays
+# 3. Christmas/NY cross-year (Dec 25 PH 2026, Jan 1 PH 2027) — crosses year boundary
+# 4. National Day cluster (Aug 9 Sun PH, Aug 10 Mon in-lieu) — in-lieu skipped
+# 5. Baseline (few holidays — Mar 21 HRP + Apr 3 Good Friday in range)
+# 6. Claim ON a public holiday (Jan 1 New Year) — start day is PH
+# 7. 14-day response period (Jun 30) — shorter response window
+# 8. Standard 21-day (Jun 30) — includes s.17(2) extension verification
+# 9. Saturday deadline — response lands on Sat May 2 (also skips May 1 Labour Day PH en route)
+claim_date,response_period,expected_response,expected_adj_app,expected_determination,expected_det_extended,expected_payment
+2026-02-15,21,2026-03-10,2026-03-25,2026-04-09,2026-04-16,2026-04-16
+2026-05-25,21,2026-06-18,2026-07-02,2026-07-16,2026-07-23,2026-07-23
+2026-12-20,21,2027-01-12,2027-01-26,2027-02-12,2027-02-19,2027-02-19
+2026-08-05,21,2026-08-28,2026-09-11,2026-09-25,2026-10-02,2026-10-02
+2026-03-01,21,2026-03-23,2026-04-07,2026-04-21,2026-04-28,2026-04-28
+2026-01-01,21,2026-01-22,2026-02-05,2026-02-21,2026-02-28,2026-02-28
+2026-06-30,14,2026-07-14,2026-07-28,2026-08-13,2026-08-20,2026-08-20
+2026-06-30,21,2026-07-21,2026-08-04,2026-08-20,2026-08-27,2026-08-27
+2026-04-10,21,2026-05-02,2026-05-16,2026-06-02,2026-06-09,2026-06-09

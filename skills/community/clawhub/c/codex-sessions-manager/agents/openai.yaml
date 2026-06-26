@@ -1,0 +1,8 @@
+interface:
+  display_name: "Codex Sessions"
+  short_description: "Inspect, verify, delete, trash, restore, purge, and diagnose local Codex sessions."
+  default_prompt: "Use $codex-sessions-manager to inspect, export, verify, delete, trash, restore, purge, clean indexes, or diagnose local Codex sessions."
+
+policy:
+  allow_implicit_invocation: true
+

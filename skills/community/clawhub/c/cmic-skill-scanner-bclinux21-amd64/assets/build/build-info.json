@@ -1,0 +1,8 @@
+{
+  "version": "v0.9.0",
+  "target_os": "bclinux21",
+  "target_arch": "amd64",
+  "binary_name": "skillscan",
+  "built_at_unix": 1779960675,
+  "checksum": "b701a5cccbfb1d350b63f35656f6feb9862fac9e12940607ace95470a9bed27a"
+}

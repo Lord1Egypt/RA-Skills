@@ -1,35 +1,98 @@
 ---
-name: "Conversation Focus"
-description: "对话焦点管理 + 需求澄清引导。每次对话开始时自动分析用户意图，确保需求清晰、限制明确，避免模型分散注意力。自动对接到 self-improving 进行持续优化。"
-category: "other"
-source: "ClawHub"
-tags: [clarity, conversation-management, focus, prompting]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/conversation-focus"
-sourceUrl: "https://clawhub.ai/skills/conversation-focus"
+name: conversation-focus
+description: 对话焦点管理 + 需求澄清引导。每次对话开始时自动分析用户意图，确保需求清晰、限制明确，避免模型分散注意力。自动对接到 self-improving 进行持续优化。
+tags: conversation-management,clarity,focus,prompting,context-optimization
 ---
 
-# Conversation Focus
+# Conversation Focus（对话焦点管理）
 
-> 对话焦点管理 + 需求澄清引导。每次对话开始时自动分析用户意图，确保需求清晰、限制明确，避免模型分散注意力。自动对接到 self-improving 进行持续优化。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/conversation-focus`
-- **Source URL:** [https://clawhub.ai/skills/conversation-focus](https://clawhub.ai/skills/conversation-focus)
+在每次对话开始时，快速完成"需求澄清三问"：
 
-## Overview
+1. **用户要什么？** — 明确任务目标
+2. **有什么限制？** — 时间、格式、预算、偏好
+3. **成功标准是什么？** — 交付什么、如何验收
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/conversation-focus
+- 用户提出模糊需求时
+- 涉及多步骤、长周期任务时
+- 需要确认预算、时间、格式等关键约束时
+- 对话变得分散、偏离主题时
+
+## 工作流程
+
+### 步骤1：快速检测（自动）
+
+对话开始时，检测是否存在以下"模糊信号"：
+- "帮我弄一下"、"搞个东西" 类模糊描述
+- 多任务混合（一次说3件以上的事）
+- 缺少约束条件（不说预算、不说截止时间）
+
+### 步骤2：澄清引导（触发式）
+
+发现模糊信号时，自动输出：
+
 ```
+📋 需求确认
+
+为了准确理解你的需求，请帮我确认：
+
+🎯 目标：你想要完成什么？
+📐 标准：交付物是什么样子？
+⏰ 限制：预算/时间/格式有要求吗？
+
+（如果都清楚，直接告诉我即可）
+```
+
+### 步骤3：生成聚焦提示词
+
+将澄清后的需求，整合成干净的上下文：
+
+```
+## 当前任务
+[清晰描述]
+
+## 约束条件
+- 预算：[确认值]
+- 截止：[确认值]
+- 格式：[确认值]
+
+## 成功标准
+[可验收的交付物描述]
+```
+
+## 与其他组件的集成
+
+| 组件 | 集成方式 |
+|------|---------|
+| **self-improving** | 每次澄清对话后，记录用户原始需求的模糊程度到 `corrections.md`，供自我优化 |
+| **thought-retriever** | 触发五步循环，提炼"如何引导模糊需求"的最佳实践 |
+| **prompt-optimizer-chinese** | 可以调用它做二次精炼 |
+
+## 自动触发条件
+
+满足以下任一条件时，自动启用澄清引导：
+- 用户消息 < 20字 且 无具体名词/动词
+- 用户消息包含 "随便"、"弄一下"、"搞个" 等模糊词
+- 检测到 > 3个不同任务在同一消息中
+
+## 注意事项
+
+- 只在必要时触发，避免过度打扰
+- 保持口语化、简洁
+- 如果用户已经说清楚了，直接进入执行
+
+## 自我优化接口
+
+```python
+# 每次澄清后自动调用
+def log_clarity_feedback(original_query, clarity_issues, resolution):
+    """记录到 self-improving/corrections.md"""
+    pass
+```
+
+## 版本历史
+
+- v1.0.0 (2026-05-02)：初始版本，基于赵匡的实际使用场景创建

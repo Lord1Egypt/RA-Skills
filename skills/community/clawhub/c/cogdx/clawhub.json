@@ -1,0 +1,9 @@
+{
+  "slug": "cogdx",
+  "name": "CogDx - Cognitive Diagnostics",
+  "emoji": "🧠",
+  "requires": {
+    "pip": ["requests"],
+    "env": ["COGDX_WALLET"]
+  }
+}

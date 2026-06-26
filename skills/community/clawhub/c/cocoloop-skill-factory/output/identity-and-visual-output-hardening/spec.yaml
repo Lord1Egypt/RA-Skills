@@ -1,0 +1,212 @@
+spec_version: "0.1"
+
+skill_identity:
+  slug: "identity-visual-hardening"
+  display_name: "Identity Visual"
+  id: "identity-visual-hardening-example"
+  name: "Identity Visual Hardening Example"
+  version: "0.1.0"
+  owner: "tanshow"
+  homepage: "local://cocoloop-skill-factory/output/identity-and-visual-output-hardening"
+  target_platforms:
+    - platform: "codex"
+      support_level: "supported_public"
+      standard_source: "https://developers.openai.com/codex/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin"
+      note: "验证正式 slug 和 display name"
+    - platform: "openclaw"
+      support_level: "supported_public"
+      standard_source: "https://docs.openclaw.ai/tools/clawhub"
+      validation_mode: "public_validator"
+      publish_mode: "clawhub"
+      note: "验证 slug 与 name manifest"
+
+intent:
+  goal: "为包含视觉输出的 Skill 加入正式名称 gate 和设计模板强制规则"
+  target_user: "维护 skill-factory 的作者"
+  use_scenarios:
+    - "生成带视觉输出的 Skill 时强制带上 design.md"
+    - "在 render 前完成 slug 去重"
+
+scope:
+  must_have:
+    - "显式 slug"
+    - "显式 display name"
+    - "双源去重 gate"
+    - "视觉输出强制设计模板"
+  nice_to_have:
+    - "更细的视觉输出类型"
+  excluded:
+    - "不自动决定设计风格"
+
+inputs:
+  - name: "factory_rules"
+    required: true
+    description: "当前工厂协议和生成链规则"
+    constraints:
+      note: "需要覆盖名称身份和视觉输出"
+      type: "workspace_docs"
+      allowed_values: []
+      source: "workspace_scan"
+
+outputs:
+  - name: "validated_skill"
+    format: "skill_directory"
+    description: "通过名称 gate 和视觉输出 gate 的最小 Skill 骨架"
+    minimum_contents:
+      - "references/design.md"
+      - "references/design-md/index.md"
+
+output_profile:
+  has_visual_output: true
+  visual_output_types:
+    - "webpage"
+    - "infographic"
+
+research_gate:
+  skill_identity:
+    status: "ready"
+    cocoloop_checked: true
+    clawhub_checked: true
+    slug_available: true
+    note: "名称已完成双源去重"
+  target_environment:
+    status: "ready"
+    current_environment: "codex authoring workspace on macOS"
+    target_environment: "codex authoring workspace on macOS"
+    current_environment_is_target: true
+    note: "当前环境就是目标环境"
+  implementation_approach:
+    status: "ready"
+    selected_execution_plane: "Skill + CLI"
+    note: "需要 builder、validator 和搜索脚本共同工作"
+
+interaction_contract:
+  research:
+    ask_one_question_per_turn: true
+    max_questions: 10
+    count_confirmation_questions: true
+    detect_current_environment_first: true
+    confirm_target_environment_before_writing: true
+    overflow_strategy: "write_open_gaps_then_continue"
+
+success_criteria:
+  - "正式名称与展示名称进入统一 spec"
+  - "视觉输出会强制带上 design_md"
+  - "render 与 validate 都会拒绝缺失 gate 的 spec"
+
+failure_modes:
+  - mode: "slug_not_checked"
+    description: "正式名称没有完成双源去重"
+    user_impact: "后续发布可能撞名"
+  - mode: "visual_output_missing_design_md"
+    description: "视觉输出没有携带 design_md"
+    user_impact: "最终 Skill 缺少稳定设计入口"
+
+fallback_policy:
+  allowed: true
+  summary: "如果风格来源还没定，先补 custom_brief，再继续 render"
+  fallback_outputs:
+    - "references/design.md"
+
+dependencies:
+  - name: "search-registry"
+    kind: "cli"
+    required: true
+    note: "负责双源 slug 检查"
+  - name: "design-md library"
+    kind: "reference"
+    required: true
+    note: "负责生成默认设计模板"
+
+design_md:
+  enabled: true
+  applies_to:
+    - "webpage"
+    - "infographic"
+  source_mode: "preset"
+  preset_id: "notion"
+  preset_ref: "cocoloop-skill-factory/ref/design-md/notion.md"
+  user_provided_ref: ""
+  custom_style_notes:
+    - "用于验证视觉输出强制带设计模板"
+  official_library_ref: "cocoloop-skill-factory/ref/design-md/index.md"
+  prompt_user_to_use_first: true
+  output_path: "references/design.md"
+
+research_evidence:
+  coverage_status:
+    status: "covered"
+    note: "已覆盖协议、生成链和搜索入口"
+  evidence_refs:
+    - source_type: "workspace"
+      mechanism: "builder"
+      solution_name: "render skill from spec"
+      ref: "cocoloop-skill-factory/factory-skill-builder/scripts/render_skill_from_spec.cjs"
+      note: "负责最终产物生成"
+    - source_type: "workspace"
+      mechanism: "validator"
+      solution_name: "validate platform skill"
+      ref: "cocoloop-skill-factory/factory-skill-builder/scripts/validate_platform_skill.cjs"
+      note: "负责机械 gate 校验"
+  open_gaps: []
+
+primary_domain: "frontend_design"
+peer_domains:
+  - "docs_research"
+
+domain_supplements:
+  engineering_delivery: {}
+  frontend_design:
+    style_constraints:
+      - "视觉输出必须带上 design_md"
+  browser_ui_testing: {}
+  document_artifacts:
+    style_constraints:
+      - "视觉输出类型继续写入 output_profile"
+  docs_research: {}
+  workflow_integration: {}
+  deploy_platform_ops: {}
+  security_risk_review: {}
+
+adapters:
+  codex:
+    status: "draft"
+    entry_points:
+      - "SKILL.md"
+      - "agents/openai.yaml"
+    mapping_notes:
+      - "display_name 直接来自 skill_identity.display_name"
+    known_gaps: []
+  claude_code:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  openclaw:
+    status: "draft"
+    entry_points:
+      - "platform-manifests/openclaw-publish.yaml"
+    mapping_notes:
+      - "slug 直接来自 skill_identity.slug"
+    known_gaps: []
+  copaw:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+  molili:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []
+    source_root: ""
+    active_root: ""
+    activation_strategy: ""
+    verification_steps: []
+  hermes_agent:
+    status: "planned"
+    entry_points: []
+    mapping_notes: []
+    known_gaps: []

@@ -1,0 +1,124 @@
+# 竞品监控周报配置
+
+# 监控的竞品列表
+competitors:
+  - name: "竞品A"
+    keywords:
+      - "产品名称"
+      - "公司名称"
+      - "品牌词"
+    platforms:
+      - weibo
+      - xiaohongshu
+      - bilibili
+      - weixin
+    priority: high
+    
+  - name: "竞品B"
+    keywords:
+      - "品牌词"
+      - "产品线名"
+    platforms:
+      - weixin
+      - douyin
+    priority: medium
+
+  - name: "竞品C"
+    keywords:
+      - "公司名"
+      - "产品名"
+    platforms:
+      - xiaohongshu
+      - weibo
+    priority: low
+
+# 搜索配置
+search:
+  timeRange: 7d  # 监控时间范围
+  maxResults: 50  # 每个竞品最大结果数
+  includeImages: true
+  includeVideos: true
+
+# 分析配置
+analysis:
+  # 重要性判断规则
+  importance:
+    high:
+      - "融资"
+      - "新品发布"
+      - "重大合作"
+      - "人事变动"
+    medium:
+      - "功能更新"
+      - "营销活动"
+      - "用户增长"
+    low:
+      - "日常运营"
+      - "小修复"
+
+  # 情感分析
+  sentiment: true
+  
+  # 关键实体提取
+  extractEntities:
+    - product
+    - feature
+    - price
+    - partner
+    - person
+
+# 输出配置
+output:
+  format: markdown
+  language: zh-CN
+  
+  # 分发渠道
+  channels:
+    # 飞书群
+    - type: feishu
+      webhook: "${FEISHU_WEBHOOK_URL}"
+      mentions:
+        - "ou_xxx"  # 需要提醒的人员
+    
+    # 邮件
+    - type: email
+      recipients:
+        - "team@company.com"
+        - "pm@company.com"
+      subject: "竞品监控周报 | ${dateRange}"
+    
+    # 钉钉
+    - type: dingtalk
+      webhook: "${DINGTALK_WEBHOOK}"
+
+# 定时配置
+schedule:
+  # 自动执行时间
+  cron: "0 9 * * 1"  # 每周一 9:00
+  
+  # 时区
+  timezone: "Asia/Shanghai"
+
+# 历史记录
+history:
+  enabled: true
+  retention: 90  # 保留 90 天
+  storage: "./data/competitor-reports"
+
+# 告警配置
+alerts:
+  # 高优先级事件即时推送
+  instantAlert:
+    enabled: true
+    keywords:
+      - "融资"
+      - "收购"
+      - "新产品"
+    channels:
+      - feishu
+  
+  # 执行失败告警
+  failureAlert:
+    enabled: true
+    channels:
+      - feishu

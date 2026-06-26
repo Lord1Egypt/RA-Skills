@@ -1,0 +1,26 @@
+{
+  "name": "content-workflow-engine",
+  "version": "1.0.1",
+  "description": "Automate end-to-end content workflows from ideation to publication and distribution - Scale your content production 10x",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "content",
+    "workflow",
+    "automation",
+    "ai",
+    "publishing"
+  ],
+  "author": "Jaceal LLC",
+  "license": "Commercial",
+  "dependencies": {},
+  "openclaw": {
+    "skill": true,
+    "runtime": "python3",
+    "requires": {
+      "bins": ["curl", "git", "python3"]
+    }
+  }
+}

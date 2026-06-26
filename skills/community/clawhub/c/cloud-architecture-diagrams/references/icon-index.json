@@ -1,0 +1,1402 @@
+[
+{
+"provider": "aws",
+"name": "Amazon EC2",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-EC2_48.svg",
+"search": "amazon ec2 48 amazonec248"
+},
+{
+"provider": "aws",
+"name": "Amazon Simple Storage Service",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Simple-Storage-Service_48.svg",
+"search": "amazon simple storage service 48 amazonsimplestorageservice48 s3"
+},
+{
+"provider": "aws",
+"name": "AWS Lambda",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Lambda_48.svg",
+"search": "aws lambda 48 awslambda48"
+},
+{
+"provider": "aws",
+"name": "Virtual private cloud VPC",
+"category": "Architecture-Group-Icons_04302026",
+"file": "assets/icons/aws/Virtual-private-cloud-VPC_32.svg",
+"search": "virtual private cloud vpc architecture group icons 04302026 virtualprivatecloudvpcarchitecturegroupicons04302026 vpc"
+},
+{
+"provider": "aws",
+"name": "Amazon RDS",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-RDS_48.svg",
+"search": "amazon rds 48 amazonrds48"
+},
+{
+"provider": "aws",
+"name": "Amazon DynamoDB",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-DynamoDB_48.svg",
+"search": "amazon dynamodb 48 amazondynamodb48"
+},
+{
+"provider": "aws",
+"name": "Amazon Elastic Container Service",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Elastic-Container-Service_48.svg",
+"search": "amazon elastic container service 48 amazonelasticcontainerservice48 ecs"
+},
+{
+"provider": "aws",
+"name": "Amazon Elastic Kubernetes Service",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Elastic-Kubernetes-Service_48.svg",
+"search": "amazon elastic kubernetes service 48 amazonelastickubernetesservice48 eks"
+},
+{
+"provider": "aws",
+"name": "AWS Fargate",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Fargate_48.svg",
+"search": "aws fargate 48 awsfargate48"
+},
+{
+"provider": "aws",
+"name": "AWS Identity and Access Management",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Identity-and-Access-Management_48.svg",
+"search": "aws identity and access management 48 awsidentityandaccessmanagement48 iam"
+},
+{
+"provider": "aws",
+"name": "Amazon CloudFront",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-CloudFront_48.svg",
+"search": "amazon cloudfront 48 amazoncloudfront48"
+},
+{
+"provider": "aws",
+"name": "Amazon Route 53",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Route-53_48.svg",
+"search": "amazon route 53 48 amazonroute5348"
+},
+{
+"provider": "aws",
+"name": "Amazon Simple Notification Service",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Simple-Notification-Service_48.svg",
+"search": "amazon simple notification service 48 amazonsimplenotificationservice48 sns"
+},
+{
+"provider": "aws",
+"name": "Amazon Simple Queue Service",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Simple-Queue-Service_48.svg",
+"search": "amazon simple queue service 48 amazonsimplequeueservice48 sqs"
+},
+{
+"provider": "aws",
+"name": "Amazon API Gateway",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-API-Gateway_48.svg",
+"search": "amazon api gateway 48 amazonapigateway48"
+},
+{
+"provider": "aws",
+"name": "Elastic Load Balancing",
+"category": "48",
+"file": "assets/icons/aws/Arch_Elastic-Load-Balancing_48.svg",
+"search": "elastic load balancing 48 elasticloadbalancing48 elb alb nlb"
+},
+{
+"provider": "aws",
+"name": "Amazon CloudWatch",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-CloudWatch_48.svg",
+"search": "amazon cloudwatch 48 amazoncloudwatch48"
+},
+{
+"provider": "aws",
+"name": "Amazon Aurora",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Aurora_48.svg",
+"search": "amazon aurora 48 amazonaurora48"
+},
+{
+"provider": "aws",
+"name": "AWS Step Functions",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Step-Functions_48.svg",
+"search": "aws step functions 48 awsstepfunctions48"
+},
+{
+"provider": "aws",
+"name": "Amazon Cognito",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Cognito_48.svg",
+"search": "amazon cognito 48 amazoncognito48"
+},
+{
+"provider": "aws",
+"name": "AWS Secrets Manager",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Secrets-Manager_48.svg",
+"search": "aws secrets manager 48 awssecretsmanager48"
+},
+{
+"provider": "aws",
+"name": "AWS Key Management Service",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Key-Management-Service_48.svg",
+"search": "aws key management service 48 awskeymanagementservice48 kms"
+},
+{
+"provider": "aws",
+"name": "AWS CloudFormation",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-CloudFormation_48.svg",
+"search": "aws cloudformation 48 awscloudformation48"
+},
+{
+"provider": "aws",
+"name": "Amazon EventBridge",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-EventBridge_48.svg",
+"search": "amazon eventbridge 48 amazoneventbridge48"
+},
+{
+"provider": "aws",
+"name": "Amazon Kinesis",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Kinesis_48.svg",
+"search": "amazon kinesis 48 amazonkinesis48"
+},
+{
+"provider": "aws",
+"name": "Amazon Redshift",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Redshift_48.svg",
+"search": "amazon redshift 48 amazonredshift48"
+},
+{
+"provider": "aws",
+"name": "Amazon SageMaker",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-SageMaker_48.svg",
+"search": "amazon sagemaker 48 amazonsagemaker48"
+},
+{
+"provider": "aws",
+"name": "Amazon Bedrock",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Bedrock_48.svg",
+"search": "amazon bedrock 48 amazonbedrock48"
+},
+{
+"provider": "aws",
+"name": "AWS Glue",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Glue_48.svg",
+"search": "aws glue 48 awsglue48"
+},
+{
+"provider": "aws",
+"name": "Amazon Athena",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Athena_48.svg",
+"search": "amazon athena 48 amazonathena48"
+},
+{
+"provider": "aws",
+"name": "Amazon Simple Email Service",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Simple-Email-Service_48.svg",
+"search": "amazon simple email service 48 amazonsimpleemailservice48 ses"
+},
+{
+"provider": "aws",
+"name": "AWS Amplify",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Amplify_48.svg",
+"search": "aws amplify 48 awsamplify48"
+},
+{
+"provider": "aws",
+"name": "AWS Elastic Beanstalk",
+"category": "48",
+"file": "assets/icons/aws/Arch_AWS-Elastic-Beanstalk_48.svg",
+"search": "aws elastic beanstalk 48 awselasticbeanstalk48"
+},
+{
+"provider": "aws",
+"name": "Amazon Lightsail",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Lightsail_48.svg",
+"search": "amazon lightsail 48 amazonlightsail48"
+},
+{
+"provider": "aws",
+"name": "Amazon Elastic Block Store",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-Elastic-Block-Store_48.svg",
+"search": "amazon elastic block store 48 amazonelasticblockstore48 ebs"
+},
+{
+"provider": "aws",
+"name": "Amazon ElastiCache",
+"category": "48",
+"file": "assets/icons/aws/Arch_Amazon-ElastiCache_48.svg",
+"search": "amazon elasticache 48 amazonelasticache48"
+},
+{
+"provider": "azure",
+"name": "Virtual Machine",
+"category": "compute",
+"file": "assets/icons/azure/10021-icon-service-Virtual-Machine.svg",
+"search": "virtual machine compute virtualmachinecompute"
+},
+{
+"provider": "azure",
+"name": "App Services",
+"category": "compute",
+"file": "assets/icons/azure/10035-icon-service-App-Services.svg",
+"search": "app services compute appservicescompute"
+},
+{
+"provider": "azure",
+"name": "Function Apps",
+"category": "compute",
+"file": "assets/icons/azure/10029-icon-service-Function-Apps.svg",
+"search": "function apps compute functionappscompute"
+},
+{
+"provider": "azure",
+"name": "Storage Accounts",
+"category": "storage",
+"file": "assets/icons/azure/10086-icon-service-Storage-Accounts.svg",
+"search": "storage accounts storage storageaccountsstorage"
+},
+{
+"provider": "azure",
+"name": "Azure SQL",
+"category": "databases",
+"file": "assets/icons/azure/02390-icon-service-Azure-SQL.svg",
+"search": "azure sql databases azuresqldatabases"
+},
+{
+"provider": "azure",
+"name": "Azure Cosmos DB",
+"category": "iot",
+"file": "assets/icons/azure/10121-icon-service-Azure-Cosmos-DB.svg",
+"search": "azure cosmos db iot azurecosmosdbiot"
+},
+{
+"provider": "azure",
+"name": "Kubernetes Services",
+"category": "compute",
+"file": "assets/icons/azure/10023-icon-service-Kubernetes-Services.svg",
+"search": "kubernetes services compute kubernetesservicescompute"
+},
+{
+"provider": "azure",
+"name": "Container Apps Environments",
+"category": "other",
+"file": "assets/icons/azure/02989-icon-service-Container-Apps-Environments.svg",
+"search": "container apps environments other containerappsenvironmentsother"
+},
+{
+"provider": "azure",
+"name": "Key Vaults",
+"category": "security",
+"file": "assets/icons/azure/10245-icon-service-Key-Vaults.svg",
+"search": "key vaults security keyvaultssecurity"
+},
+{
+"provider": "azure",
+"name": "Application Gateways",
+"category": "networking",
+"file": "assets/icons/azure/10076-icon-service-Application-Gateways.svg",
+"search": "application gateways networking applicationgatewaysnetworking"
+},
+{
+"provider": "azure",
+"name": "Load Balancers",
+"category": "networking",
+"file": "assets/icons/azure/10062-icon-service-Load-Balancers.svg",
+"search": "load balancers networking loadbalancersnetworking"
+},
+{
+"provider": "azure",
+"name": "Azure Service Bus",
+"category": "integration",
+"file": "assets/icons/azure/10836-icon-service-Azure-Service-Bus.svg",
+"search": "azure service bus integration azureservicebusintegration"
+},
+{
+"provider": "azure",
+"name": "Event Hubs",
+"category": "iot",
+"file": "assets/icons/azure/00039-icon-service-Event-Hubs.svg",
+"search": "event hubs iot eventhubsiot"
+},
+{
+"provider": "azure",
+"name": "Monitor",
+"category": "management + governance",
+"file": "assets/icons/azure/00001-icon-service-Monitor.svg",
+"search": "monitor management   governance monitormanagementgovernance"
+},
+{
+"provider": "azure",
+"name": "Azure OpenAI",
+"category": "ai + machine learning",
+"file": "assets/icons/azure/03438-icon-service-Azure-OpenAI.svg",
+"search": "azure openai ai   machine learning azureopenaiaimachinelearning"
+},
+{
+"provider": "azure",
+"name": "Cognitive Search",
+"category": "web",
+"file": "assets/icons/azure/10044-icon-service-Cognitive-Search.svg",
+"search": "cognitive search web cognitivesearchweb"
+},
+{
+"provider": "azure",
+"name": "Virtual WANs",
+"category": "networking",
+"file": "assets/icons/azure/10353-icon-service-Virtual-WANs.svg",
+"search": "virtual wans networking virtualwansnetworking"
+},
+{
+"provider": "azure",
+"name": "Front Door and CDN Profiles",
+"category": "networking",
+"file": "assets/icons/azure/10073-icon-service-Front-Door-and-CDN-Profiles.svg",
+"search": "front door and cdn profiles networking frontdoorandcdnprofilesnetworking"
+},
+{
+"provider": "azure",
+"name": "API Management Services",
+"category": "web",
+"file": "assets/icons/azure/10042-icon-service-API-Management-Services.svg",
+"search": "api management services web apimanagementservicesweb"
+},
+{
+"provider": "azure",
+"name": "Logic Apps",
+"category": "integration",
+"file": "assets/icons/azure/02631-icon-service-Logic-Apps.svg",
+"search": "logic apps integration logicappsintegration"
+},
+{
+"provider": "azure",
+"name": "Firewalls",
+"category": "networking",
+"file": "assets/icons/azure/10084-icon-service-Firewalls.svg",
+"search": "firewalls networking firewallsnetworking"
+},
+{
+"provider": "azure",
+"name": "DNS Zones",
+"category": "networking",
+"file": "assets/icons/azure/10064-icon-service-DNS-Zones.svg",
+"search": "dns zones networking dnszonesnetworking"
+},
+{
+"provider": "azure",
+"name": "Application Insights",
+"category": "management + governance",
+"file": "assets/icons/azure/00012-icon-service-Application-Insights.svg",
+"search": "application insights management   governance applicationinsightsmanagementgovernance"
+},
+{
+"provider": "azure",
+"name": "Azure Synapse Analytics",
+"category": "databases",
+"file": "assets/icons/azure/00606-icon-service-Azure-Synapse-Analytics.svg",
+"search": "azure synapse analytics databases azuresynapseanalyticsdatabases"
+},
+{
+"provider": "azure",
+"name": "Azure Databricks",
+"category": "analytics",
+"file": "assets/icons/azure/10787-icon-service-Azure-Databricks.svg",
+"search": "azure databricks analytics azuredatabricksanalytics"
+},
+{
+"provider": "azure",
+"name": "Active Directory Connect Health",
+"category": "identity",
+"file": "assets/icons/azure/10224-icon-service-Active-Directory-Connect-Health.svg",
+"search": "active directory connect health identity activedirectoryconnecthealthidentity"
+},
+{
+"provider": "azure",
+"name": "Blob Page",
+"category": "general",
+"file": "assets/icons/azure/10781-icon-service-Blob-Page.svg",
+"search": "blob page general blobpagegeneral"
+},
+{
+"provider": "microsoft",
+"name": "Power Apps",
+"category": "power-platform-dynamics",
+"file": "assets/icons/microsoft/official/PowerApps_scalable.svg",
+"search": "power apps powerapps powerapps canvas model driven app"
+},
+{
+"provider": "microsoft",
+"name": "Power Automate",
+"category": "power-platform-dynamics",
+"file": "assets/icons/microsoft/official/PowerAutomate_scalable.svg",
+"search": "power automate powerautomate powerautomate flow"
+},
+{
+"path": "/icons/fabric/power_bi_color.svg",
+"url": "https://msicons.com/icons/fabric/power_bi_color.svg",
+"category": "fabric",
+"name": "power bi color",
+"search": "power bi color fabric powerbicolorfabric",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/fabric/power_bi_color.svg"
+},
+{
+"provider": "microsoft",
+"name": "Power Pages",
+"category": "power-platform-dynamics",
+"file": "assets/icons/microsoft/official/PowerPages_scalable.svg",
+"search": "power pages powerpages powerpages portal"
+},
+{
+"provider": "microsoft",
+"name": "Dataverse",
+"category": "power-platform-dynamics",
+"file": "assets/icons/microsoft/official/Dataverse_scalable.svg",
+"search": "dataverse dataverse dataverse cds common data service"
+},
+{
+"provider": "microsoft",
+"name": "Copilot Studio",
+"category": "power-platform-dynamics",
+"file": "assets/icons/microsoft/official/CopilotStudio_scalable.svg",
+"search": "copilot studio copilotstudio copilot studio power virtual agents pva"
+},
+{
+"provider": "microsoft",
+"name": "AI Builder",
+"category": "power-platform-dynamics",
+"file": "assets/icons/microsoft/official/AIBuilder_scalable.svg",
+"search": "ai builder aibuilder ai builder"
+},
+{
+"path": "/icons/dynamics-365/Sales_scalable.svg",
+"url": "https://msicons.com/icons/dynamics-365/Sales_scalable.svg",
+"category": "dynamics-365",
+"name": "Sales",
+"search": "sales dynamics 365 salesdynamics365",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/dynamics-365/Sales_scalable.svg"
+},
+{
+"path": "/icons/dynamics-365/CustomerServices_scalable.svg",
+"url": "https://msicons.com/icons/dynamics-365/CustomerServices_scalable.svg",
+"category": "dynamics-365",
+"name": "Customer Services",
+"search": "customer services dynamics 365 customerservicesdynamics365",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/dynamics-365/CustomerServices_scalable.svg"
+},
+{
+"path": "/icons/dynamics-365/FieldService_scalable.svg",
+"url": "https://msicons.com/icons/dynamics-365/FieldService_scalable.svg",
+"category": "dynamics-365",
+"name": "Field Service",
+"search": "field service dynamics 365 fieldservicedynamics365",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/dynamics-365/FieldService_scalable.svg"
+},
+{
+"path": "/icons/dynamics-365/Finance_scalable.svg",
+"url": "https://msicons.com/icons/dynamics-365/Finance_scalable.svg",
+"category": "dynamics-365",
+"name": "Finance",
+"search": "finance dynamics 365 financedynamics365",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/dynamics-365/Finance_scalable.svg"
+},
+{
+"path": "/icons/dynamics-365/BusinessCentral_scalable.svg",
+"url": "https://msicons.com/icons/dynamics-365/BusinessCentral_scalable.svg",
+"category": "dynamics-365",
+"name": "Business Central",
+"search": "business central dynamics 365 businesscentraldynamics365",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/dynamics-365/BusinessCentral_scalable.svg"
+},
+{
+"path": "/icons/dynamics-365/SupplyChainManagement_scalable.svg",
+"url": "https://msicons.com/icons/dynamics-365/SupplyChainManagement_scalable.svg",
+"category": "dynamics-365",
+"name": "Supply Chain Management",
+"search": "supply chain management dynamics 365 supplychainmanagementdynamics365",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/dynamics-365/SupplyChainManagement_scalable.svg"
+},
+{
+"path": "/icons/microsoft-teams/grey-purple-Bot.svg",
+"url": "https://msicons.com/icons/microsoft-teams/grey-purple-Bot.svg",
+"category": "microsoft-teams",
+"name": "purple Bot",
+"search": "purple bot microsoft teams purplebotmicrosoftteams",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/microsoft-teams/grey-purple-Bot.svg"
+},
+{
+"path": "/icons/identity/02854-icon-service-Entra-Connect.svg",
+"url": "https://msicons.com/icons/identity/02854-icon-service-Entra-Connect.svg",
+"category": "identity",
+"name": "Entra Connect",
+"search": "entra connect identity entraconnectidentity",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/identity/02854-icon-service-Entra-Connect.svg"
+},
+{
+"path": "/icons/intune/10329-icon-service-Intune.svg",
+"url": "https://msicons.com/icons/intune/10329-icon-service-Intune.svg",
+"category": "intune",
+"name": "Intune",
+"search": "intune intune intuneintune",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/intune/10329-icon-service-Intune.svg"
+},
+{
+"path": "/icons/fabric/purview_color.svg",
+"url": "https://msicons.com/icons/fabric/purview_color.svg",
+"category": "fabric",
+"name": "purview color",
+"search": "purview color fabric purviewcolorfabric",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/fabric/purview_color.svg"
+},
+{
+"path": "/icons/security/10248-icon-service-Azure-Sentinel.svg",
+"url": "https://msicons.com/icons/security/10248-icon-service-Azure-Sentinel.svg",
+"category": "security",
+"name": "Azure Sentinel",
+"search": "azure sentinel security azuresentinelsecurity",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/security/10248-icon-service-Azure-Sentinel.svg"
+},
+{
+"path": "/icons/other/03406-icon-service-Defender-HMI.svg",
+"url": "https://msicons.com/icons/other/03406-icon-service-Defender-HMI.svg",
+"category": "other",
+"name": "Defender HMI",
+"search": "defender hmi other defenderhmiother",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/other/03406-icon-service-Defender-HMI.svg"
+},
+{
+"path": "/icons/sharepoint/Organization_Dark.svg",
+"url": "https://msicons.com/icons/sharepoint/Organization_Dark.svg",
+"category": "sharepoint",
+"name": "Organization",
+"search": "organization sharepoint organizationsharepoint",
+"provider": "microsoft",
+"file": "assets/icons/microsoft/sharepoint/Organization_Dark.svg"
+},
+{
+"provider": "gcp",
+"name": "Agents",
+"category": "SVG",
+"file": "assets/icons/gcp/Agents-512-color.svg",
+"search": "agents svg agentssvg"
+},
+{
+"provider": "gcp",
+"name": "AIHypercomputer",
+"category": "SVG",
+"file": "assets/icons/gcp/AIHypercomputer-512-color.svg",
+"search": "aihypercomputer svg aihypercomputersvg"
+},
+{
+"provider": "gcp",
+"name": "AIMachine Learning",
+"category": "SVG",
+"file": "assets/icons/gcp/AIMachineLearning-512-color.svg",
+"search": "aimachine learning svg aimachinelearningsvg"
+},
+{
+"provider": "gcp",
+"name": "Alloy DB",
+"category": "SVG",
+"file": "assets/icons/gcp/AlloyDB-512-color.svg",
+"search": "alloy db svg alloydbsvg"
+},
+{
+"provider": "gcp",
+"name": "Anthos",
+"category": "SVG",
+"file": "assets/icons/gcp/Anthos-512-color.svg",
+"search": "anthos svg anthossvg"
+},
+{
+"provider": "gcp",
+"name": "Apigee",
+"category": "SVG",
+"file": "assets/icons/gcp/Apigee-512-color-rgb.svg",
+"search": "apigee svg apigeesvg"
+},
+{
+"provider": "gcp",
+"name": "Big Query",
+"category": "SVG",
+"file": "assets/icons/gcp/BigQuery-512-color.svg",
+"search": "big query svg bigquerysvg bq bigquery"
+},
+{
+"provider": "gcp",
+"name": "Business Intelligence",
+"category": "SVG",
+"file": "assets/icons/gcp/BusinessIntelligence-512-color.svg",
+"search": "business intelligence svg businessintelligencesvg"
+},
+{
+"provider": "gcp",
+"name": "Cloud Run",
+"category": "SVG",
+"file": "assets/icons/gcp/CloudRun-512-color-rgb.svg",
+"search": "cloud run svg cloudrunsvg cloudrun"
+},
+{
+"provider": "gcp",
+"name": "Cloud Spanner",
+"category": "SVG",
+"file": "assets/icons/gcp/CloudSpanner-512-color.svg",
+"search": "cloud spanner svg cloudspannersvg"
+},
+{
+"provider": "gcp",
+"name": "Cloud SQL",
+"category": "SVG",
+"file": "assets/icons/gcp/CloudSQL-512-color.svg",
+"search": "cloud sql svg cloudsqlsvg cloudsql"
+},
+{
+"provider": "gcp",
+"name": "Cloud Storage",
+"category": "SVG",
+"file": "assets/icons/gcp/Cloud_Storage-512-color.svg",
+"search": "cloud storage svg cloudstoragesvg gcs"
+},
+{
+"provider": "gcp",
+"name": "Collaboration",
+"category": "SVG",
+"file": "assets/icons/gcp/Collaboration-512-color.svg",
+"search": "collaboration svg collaborationsvg"
+},
+{
+"provider": "gcp",
+"name": "Compute",
+"category": "SVG",
+"file": "assets/icons/gcp/Compute-512-color.svg",
+"search": "compute svg computesvg"
+},
+{
+"provider": "gcp",
+"name": "Compute Engine",
+"category": "SVG",
+"file": "assets/icons/gcp/ComputeEngine-512-color-rgb.svg",
+"search": "compute engine svg computeenginesvg gce"
+},
+{
+"provider": "gcp",
+"name": "Containers",
+"category": "SVG",
+"file": "assets/icons/gcp/Containers-512-color.svg",
+"search": "containers svg containerssvg"
+},
+{
+"provider": "gcp",
+"name": "Data Analytics",
+"category": "SVG",
+"file": "assets/icons/gcp/DataAnalytics-512-color.svg",
+"search": "data analytics svg dataanalyticssvg"
+},
+{
+"provider": "gcp",
+"name": "Databases",
+"category": "SVG",
+"file": "assets/icons/gcp/Databases-512-color.svg",
+"search": "databases svg databasessvg"
+},
+{
+"provider": "gcp",
+"name": "Dev Ops",
+"category": "SVG",
+"file": "assets/icons/gcp/DevOps-512-color.svg",
+"search": "dev ops svg devopssvg"
+},
+{
+"provider": "gcp",
+"name": "Developer Tools",
+"category": "SVG",
+"file": "assets/icons/gcp/Developer_Tools-512-color.svg",
+"search": "developer tools svg developertoolssvg"
+},
+{
+"provider": "gcp",
+"name": "Distributed Cloud",
+"category": "SVG",
+"file": "assets/icons/gcp/DistributedCloud-512-color.svg",
+"search": "distributed cloud svg distributedcloudsvg"
+},
+{
+"provider": "gcp",
+"name": "GKE",
+"category": "SVG",
+"file": "assets/icons/gcp/GKE-512-color.svg",
+"search": "gke svg gkesvg"
+},
+{
+"provider": "gcp",
+"name": "Hybrid Multicloud",
+"category": "SVG",
+"file": "assets/icons/gcp/HybridMulticloud-512-color.svg",
+"search": "hybrid multicloud svg hybridmulticloudsvg"
+},
+{
+"provider": "gcp",
+"name": "Hyperdisk",
+"category": "SVG",
+"file": "assets/icons/gcp/Hyperdisk-512-color.svg",
+"search": "hyperdisk svg hyperdisksvg"
+},
+{
+"provider": "gcp",
+"name": "Integration Services",
+"category": "SVG",
+"file": "assets/icons/gcp/IntegrationServices-512-color.svg",
+"search": "integration services svg integrationservicessvg"
+},
+{
+"provider": "gcp",
+"name": "Looker",
+"category": "SVG",
+"file": "assets/icons/gcp/Looker-512-color.svg",
+"search": "looker svg lookersvg"
+},
+{
+"provider": "gcp",
+"name": "Management Tools",
+"category": "SVG",
+"file": "assets/icons/gcp/ManagementTools-512-color.svg",
+"search": "management tools svg managementtoolssvg"
+},
+{
+"provider": "gcp",
+"name": "Mandiant",
+"category": "SVG",
+"file": "assets/icons/gcp/Mandiant-512-color.svg",
+"search": "mandiant svg mandiantsvg"
+},
+{
+"provider": "gcp",
+"name": "Maps Geospatial",
+"category": "SVG",
+"file": "assets/icons/gcp/MapsGeospatial-512-color.svg",
+"search": "maps geospatial svg mapsgeospatialsvg"
+},
+{
+"provider": "gcp",
+"name": "Marketplace",
+"category": "SVG",
+"file": "assets/icons/gcp/Marketplace-512-color.svg",
+"search": "marketplace svg marketplacesvg"
+},
+{
+"provider": "gcp",
+"name": "Media Services",
+"category": "SVG",
+"file": "assets/icons/gcp/MediaServices-512-color.svg",
+"search": "media services svg mediaservicessvg"
+},
+{
+"provider": "gcp",
+"name": "Migration",
+"category": "SVG",
+"file": "assets/icons/gcp/Migration-512-color.svg",
+"search": "migration svg migrationsvg"
+},
+{
+"provider": "gcp",
+"name": "Mixed Reality",
+"category": "SVG",
+"file": "assets/icons/gcp/MixedReality-512-color.svg",
+"search": "mixed reality svg mixedrealitysvg"
+},
+{
+"provider": "gcp",
+"name": "Networking",
+"category": "SVG",
+"file": "assets/icons/gcp/Networking-512-color-rgb.svg",
+"search": "networking svg networkingsvg"
+},
+{
+"provider": "gcp",
+"name": "Observability",
+"category": "SVG",
+"file": "assets/icons/gcp/Observability-512-color.svg",
+"search": "observability svg observabilitysvg"
+},
+{
+"provider": "gcp",
+"name": "Operations",
+"category": "SVG",
+"file": "assets/icons/gcp/Operations-512-color.svg",
+"search": "operations svg operationssvg"
+},
+{
+"provider": "gcp",
+"name": "Sec Ops",
+"category": "SVG",
+"file": "assets/icons/gcp/SecOps-512-color-rgb.svg",
+"search": "sec ops svg secopssvg"
+},
+{
+"provider": "gcp",
+"name": "Security Command Center",
+"category": "SVG",
+"file": "assets/icons/gcp/SecurityCommandCenter-512-color.svg",
+"search": "security command center svg securitycommandcentersvg"
+},
+{
+"provider": "gcp",
+"name": "Security Identity",
+"category": "SVG",
+"file": "assets/icons/gcp/SecurityIdentity-512-color.svg",
+"search": "security identity svg securityidentitysvg"
+},
+{
+"provider": "gcp",
+"name": "Serverless Computing",
+"category": "SVG",
+"file": "assets/icons/gcp/ServerlessComputing-512-color.svg",
+"search": "serverless computing svg serverlesscomputingsvg"
+},
+{
+"provider": "gcp",
+"name": "Storage",
+"category": "SVG",
+"file": "assets/icons/gcp/Storage-512-color.svg",
+"search": "storage svg storagesvg"
+},
+{
+"provider": "gcp",
+"name": "Threat Intelligence",
+"category": "SVG",
+"file": "assets/icons/gcp/ThreatIntelligence-512-color.svg",
+"search": "threat intelligence svg threatintelligencesvg"
+},
+{
+"provider": "gcp",
+"name": "Vertex AI",
+"category": "SVG",
+"file": "assets/icons/gcp/VertexAI-512-color.svg",
+"search": "vertex ai svg vertexaisvg vertexai"
+},
+{
+"provider": "gcp",
+"name": "Web Mobile",
+"category": "SVG",
+"file": "assets/icons/gcp/WebMobile-512-color.svg",
+"search": "web mobile svg webmobilesvg"
+},
+{
+"provider": "gcp",
+"name": "Web3",
+"category": "SVG",
+"file": "assets/icons/gcp/Web3-512-color.svg",
+"search": "web3 svg web3svg"
+},
+{
+"provider": "fabric",
+"name": "copilot 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/copilot_48_color.svg",
+"search": "copilot 48 color fabric copilot48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "data engineering 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/data_engineering_48_color.svg",
+"search": "data engineering 48 color fabric dataengineering48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "data factory 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/data_factory_48_color.svg",
+"search": "data factory 48 color fabric datafactory48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "data science 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/data_science_48_color.svg",
+"search": "data science 48 color fabric datascience48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "data warehouse 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/data_warehouse_48_color.svg",
+"search": "data warehouse 48 color fabric datawarehouse48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "databases 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/databases_48_color.svg",
+"search": "databases 48 color fabric databases48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "fabric 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/fabric_48_color.svg",
+"search": "fabric 48 color fabric fabric48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "graph intelligence 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/graph_intelligence_48_color.svg",
+"search": "graph intelligence 48 color fabric graphintelligence48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "industry solutions 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/industry_solutions_48_color.svg",
+"search": "industry solutions 48 color fabric industrysolutions48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "one lake 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/one_lake_48_color.svg",
+"search": "one lake 48 color fabric onelake48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "power bi 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/power_bi_48_color.svg",
+"search": "power bi 48 color fabric powerbi48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "purview 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/purview_48_color.svg",
+"search": "purview 48 color fabric purview48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "real time intelligence 48 color",
+"category": "fabric",
+"file": "assets/icons/fabric/real_time_intelligence_48_color.svg",
+"search": "real time intelligence 48 color fabric realtimeintelligence48colorfabric"
+},
+{
+"provider": "fabric",
+"name": "apps 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/apps_48_item.svg",
+"search": "apps 48 item fabric apps48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "cohort 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/cohort_48_item.svg",
+"search": "cohort 48 item fabric cohort48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "copy job 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/copy_job_48_item.svg",
+"search": "copy job 48 item fabric copyjob48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "custom streaming connector 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/custom_streaming_connector_48_item.svg",
+"search": "custom streaming connector 48 item fabric customstreamingconnector48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "dashboard 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/dashboard_48_item.svg",
+"search": "dashboard 48 item fabric dashboard48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "data agent 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/data_agent_48_item.svg",
+"search": "data agent 48 item fabric dataagent48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "dataflow 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/dataflow_48_item.svg",
+"search": "dataflow 48 item fabric dataflow48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "dataflow gen2 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/dataflow_gen2_48_item.svg",
+"search": "dataflow gen2 48 item fabric dataflowgen248itemfabric"
+},
+{
+"provider": "fabric",
+"name": "datamart 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/datamart_48_item.svg",
+"search": "datamart 48 item fabric datamart48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "environment 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/environment_48_item.svg",
+"search": "environment 48 item fabric environment48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "event house 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/event_house_48_item.svg",
+"search": "event house 48 item fabric eventhouse48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "eventstream 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/eventstream_48_item.svg",
+"search": "eventstream 48 item fabric eventstream48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "experiments 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/experiments_48_item.svg",
+"search": "experiments 48 item fabric experiments48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "exploration 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/exploration_48_item.svg",
+"search": "exploration 48 item fabric exploration48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "external dataflow 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/external_dataflow_48_item.svg",
+"search": "external dataflow 48 item fabric externaldataflow48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "external datamart 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/external_datamart_48_item.svg",
+"search": "external datamart 48 item fabric externaldatamart48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "external semantic model 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/external_semantic_model_48_item.svg",
+"search": "external semantic model 48 item fabric externalsemanticmodel48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "function set 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/function_set_48_item.svg",
+"search": "function set 48 item fabric functionset48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "generic placeholder 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/generic_placeholder_48_item.svg",
+"search": "generic placeholder 48 item fabric genericplaceholder48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "graph model instance 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/graph_model_instance_48_item.svg",
+"search": "graph model instance 48 item fabric graphmodelinstance48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "graph model instance queryset 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/graph_model_instance_queryset_48_item.svg",
+"search": "graph model instance queryset 48 item fabric graphmodelinstancequeryset48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "healthcare 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/healthcare_48_item.svg",
+"search": "healthcare 48 item fabric healthcare48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "kql database 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/kql_database_48_item.svg",
+"search": "kql database 48 item fabric kqldatabase48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "kql queryset 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/kql_queryset_48_item.svg",
+"search": "kql queryset 48 item fabric kqlqueryset48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "kql script 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/kql_script_48_item.svg",
+"search": "kql script 48 item fabric kqlscript48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "lakehouse 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/lakehouse_48_item.svg",
+"search": "lakehouse 48 item fabric lakehouse48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "links 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/links_48_item.svg",
+"search": "links 48 item fabric links48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "metric sets 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/metric_sets_48_item.svg",
+"search": "metric sets 48 item fabric metricsets48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "mirrored generic database 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/mirrored_generic_database_48_item.svg",
+"search": "mirrored generic database 48 item fabric mirroredgenericdatabase48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "mobile report 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/mobile_report_48_item.svg",
+"search": "mobile report 48 item fabric mobilereport48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "model 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/model_48_item.svg",
+"search": "model 48 item fabric model48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "no access semantic model 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/no_access_semantic_model_48_item.svg",
+"search": "no access semantic model 48 item fabric noaccesssemanticmodel48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "notebook 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/notebook_48_item.svg",
+"search": "notebook 48 item fabric notebook48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "operations agent 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/operations_agent_48_item.svg",
+"search": "operations agent 48 item fabric operationsagent48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "paginated report 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/paginated_report_48_item.svg",
+"search": "paginated report 48 item fabric paginatedreport48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "pipeline 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/pipeline_48_item.svg",
+"search": "pipeline 48 item fabric pipeline48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "planning 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/planning_48_item.svg",
+"search": "planning 48 item fabric planning48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "rdl report 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/rdl_report_48_item.svg",
+"search": "rdl report 48 item fabric rdlreport48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "real time dashboard 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/real_time_dashboard_48_item.svg",
+"search": "real time dashboard 48 item fabric realtimedashboard48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "report 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/report_48_item.svg",
+"search": "report 48 item fabric report48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "restricted report 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/restricted_report_48_item.svg",
+"search": "restricted report 48 item fabric restrictedreport48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "restricted scorecard 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/restricted_scorecard_48_item.svg",
+"search": "restricted scorecard 48 item fabric restrictedscorecard48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "retail 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/retail_48_item.svg",
+"search": "retail 48 item fabric retail48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "runtime lineage 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/runtime_lineage_48_item.svg",
+"search": "runtime lineage 48 item fabric runtimelineage48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "schema model 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/schema_model_48_item.svg",
+"search": "schema model 48 item fabric schemamodel48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "scorecard 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/scorecard_48_item.svg",
+"search": "scorecard 48 item fabric scorecard48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "semantic model 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/semantic_model_48_item.svg",
+"search": "semantic model 48 item fabric semanticmodel48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "shared semantic model 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/shared_semantic_model_48_item.svg",
+"search": "shared semantic model 48 item fabric sharedsemanticmodel48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "spark job direction 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/spark_job_direction_48_item.svg",
+"search": "spark job direction 48 item fabric sparkjobdirection48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "sql database 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/sql_database_48_item.svg",
+"search": "sql database 48 item fabric sqldatabase48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "streaming dataflow 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/streaming_dataflow_48_item.svg",
+"search": "streaming dataflow 48 item fabric streamingdataflow48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "streaming semantic model 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/streaming_semantic_model_48_item.svg",
+"search": "streaming semantic model 48 item fabric streamingsemanticmodel48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "sustainability 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/sustainability_48_item.svg",
+"search": "sustainability 48 item fabric sustainability48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "user data function 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/user_data_function_48_item.svg",
+"search": "user data function 48 item fabric userdatafunction48itemfabric"
+},
+{
+"provider": "fabric",
+"name": "variable library 48 item",
+"category": "fabric",
+"file": "assets/icons/fabric/variable_library_48_item.svg",
+"search": "variable library 48 item fabric variablelibrary48itemfabric"
+}
+]

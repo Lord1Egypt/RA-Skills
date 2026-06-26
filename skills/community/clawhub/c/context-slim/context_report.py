@@ -1,0 +1,388 @@
+#!/usr/bin/env python3
+"""
+ContextSlim - HTML Report Generator
+Generates visual HTML reports with CSS-based charts (no JavaScript).
+
+Author: Shadow Rose
+License: MIT
+"""
+
+import json
+from typing import List, Dict
+from datetime import datetime
+from context_slim import ContextProfile, TokenEstimate, ContextAnalyzer
+from context_compress import CompressionAnalyzer, CompressionSuggestion
+
+
+class ReportGenerator:
+    """Generate HTML reports for context analysis."""
+    
+    HTML_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContextSlim Analysis Report</title>
+    <style>
+        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }}
+        .header {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }}
+        .header h1 {{ margin-bottom: 10px; }}
+        .header .subtitle {{ opacity: 0.9; }}
+        .card {{
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }}
+        .metric-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }}
+        .metric {{
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }}
+        .metric-value {{
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }}
+        .metric-label {{
+            color: #666;
+            font-size: 0.9em;
+        }}
+        .bar-chart {{
+            margin: 20px 0;
+        }}
+        .bar-item {{
+            margin-bottom: 15px;
+        }}
+        .bar-label {{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }}
+        .bar-bg {{
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+        }}
+        .bar-fill {{
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }}
+        .risk-badge {{
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }}
+        .risk-none {{ background: #d4edda; color: #155724; }}
+        .risk-low {{ background: #d1ecf1; color: #0c5460; }}
+        .risk-medium {{ background: #fff3cd; color: #856404; }}
+        .risk-high {{ background: #f8d7da; color: #721c24; }}
+        .risk-critical {{ background: #721c24; color: white; }}
+        .suggestion {{
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }}
+        .suggestion-header {{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }}
+        .suggestion-category {{
+            color: #667eea;
+            text-transform: uppercase;
+            font-size: 0.8em;
+        }}
+        .suggestion-savings {{
+            color: #28a745;
+            font-size: 0.9em;
+        }}
+        .code-block {{
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }}
+        .footer {{
+            text-align: center;
+            color: #666;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }}
+        h2 {{ color: #667eea; margin-bottom: 20px; }}
+        h3 {{ margin: 20px 0 10px 0; }}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 ContextSlim Analysis Report</h1>
+        <div class="subtitle">Generated: {timestamp}</div>
+    </div>
+    
+    {content}
+    
+    <div class="footer">
+        <p>Generated by ContextSlim | Author: Shadow Rose | MIT License</p>
+    </div>
+</body>
+</html>
+"""
+    
+    @classmethod
+    def generate_profile_report(cls, profile: ContextProfile, 
+                               suggestions: List[CompressionSuggestion] = None) -> str:
+        """
+        Generate HTML report for context profile.
+        
+        Args:
+            profile: Context profile to report on
+            suggestions: Optional compression suggestions
+        
+        Returns:
+            HTML report string
+        """
+        # Build metrics section
+        metrics_html = cls._build_metrics(profile)
+        
+        # Build section breakdown
+        sections_html = cls._build_sections_chart(profile)
+        
+        # Build suggestions section if provided
+        suggestions_html = ''
+        if suggestions:
+            suggestions_html = cls._build_suggestions(suggestions)
+        
+        content = f"""
+        {metrics_html}
+        {sections_html}
+        {suggestions_html}
+        """
+        
+        return cls.HTML_TEMPLATE.format(
+            timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            content=content
+        )
+    
+    @classmethod
+    def _build_metrics(cls, profile: ContextProfile) -> str:
+        """Build metrics card."""
+        risk_class = f"risk-{profile.truncation_risk}"
+        
+        return f"""
+        <div class="card">
+            <h2>📊 Overview</h2>
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="metric-label">Total Tokens</div>
+                    <div class="metric-value">{profile.total_tokens:,}</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Context Limit</div>
+                    <div class="metric-value">{profile.limit:,}</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Utilization</div>
+                    <div class="metric-value">{profile.utilization_percent}%</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Truncation Risk</div>
+                    <div class="metric-value">
+                        <span class="risk-badge {risk_class}">{profile.truncation_risk.upper()}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        """
+    
+    @classmethod
+    def _build_sections_chart(cls, profile: ContextProfile) -> str:
+        """Build sections breakdown chart."""
+        if not profile.sections:
+            return ''
+        
+        # Calculate percentages
+        total = profile.total_tokens
+        
+        bars_html = ''
+        for section in profile.sections:
+            percentage = (section.estimated_tokens / total * 100) if total > 0 else 0
+            
+            bars_html += f"""
+            <div class="bar-item">
+                <div class="bar-label">
+                    <span><strong>{section.source}</strong></span>
+                    <span>{section.estimated_tokens:,} tokens ({percentage:.1f}%)</span>
+                </div>
+                <div class="bar-bg">
+                    <div class="bar-fill" style="width: {percentage}%"></div>
+                </div>
+            </div>
+            """
+        
+        return f"""
+        <div class="card">
+            <h2>📈 Section Breakdown</h2>
+            <div class="bar-chart">
+                {bars_html}
+            </div>
+        </div>
+        """
+    
+    @classmethod
+    def _build_suggestions(cls, suggestions: List[CompressionSuggestion]) -> str:
+        """Build compression suggestions section."""
+        if not suggestions:
+            return ''
+        
+        total_savings = sum(s.tokens_saved for s in suggestions)
+        
+        suggestions_html = ''
+        for idx, s in enumerate(suggestions, 1):
+            suggestions_html += f"""
+            <div class="suggestion">
+                <div class="suggestion-header">
+                    <span class="suggestion-category">{s.category}</span>
+                    <span class="suggestion-savings">💾 ~{s.tokens_saved} tokens</span>
+                </div>
+                <div><strong>{s.description}</strong></div>
+                <div style="margin-top: 10px;">
+                    <div style="color: #666; font-size: 0.85em;">Original:</div>
+                    <div class="code-block">{cls._escape_html(s.original[:150])}</div>
+                </div>
+                <div>
+                    <div style="color: #666; font-size: 0.85em;">Suggested:</div>
+                    <div class="code-block">{cls._escape_html(s.suggested[:150])}</div>
+                </div>
+                <div style="margin-top: 5px; color: #666; font-size: 0.85em;">
+                    Confidence: {s.confidence}
+                </div>
+            </div>
+            """
+        
+        return f"""
+        <div class="card">
+            <h2>💡 Compression Suggestions</h2>
+            <div style="background: #d1ecf1; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <strong>Potential savings: {total_savings} tokens</strong>
+                <div style="font-size: 0.9em; margin-top: 5px;">
+                    Found {len(suggestions)} optimization opportunities
+                </div>
+            </div>
+            {suggestions_html}
+        </div>
+        """
+    
+    @staticmethod
+    def _escape_html(text: str) -> str:
+        """Escape HTML entities."""
+        return (text
+                .replace('&', '&amp;')
+                .replace('<', '&lt;')
+                .replace('>', '&gt;')
+                .replace('"', '&quot;')
+                .replace("'", '&#39;'))
+
+
+def main():
+    """CLI interface for report generator."""
+    import argparse
+    import sys
+    
+    parser = argparse.ArgumentParser(
+        description='ContextSlim HTML Report Generator'
+    )
+    parser.add_argument(
+        'input',
+        help='Input file to analyze'
+    )
+    parser.add_argument(
+        '--output',
+        default='report.html',
+        help='Output HTML file path'
+    )
+    parser.add_argument(
+        '--provider',
+        default='generic',
+        help='AI provider type'
+    )
+    parser.add_argument(
+        '--model',
+        help='Specific model name'
+    )
+    parser.add_argument(
+        '--compress',
+        action='store_true',
+        help='Include compression suggestions'
+    )
+    
+    args = parser.parse_args()
+    
+    # Analyze input
+    try:
+        analyzer = ContextAnalyzer(provider=args.provider, model=args.model)
+        profile = analyzer.analyze_file(args.input)
+        
+        suggestions = None
+        if args.compress:
+            with open(args.input, 'r', encoding='utf-8') as f:
+                text = f.read()
+            
+            compress_analyzer = CompressionAnalyzer(provider=args.provider)
+            suggestions = compress_analyzer.analyze(text)
+        
+        # Generate report
+        html = ReportGenerator.generate_profile_report(profile, suggestions)
+        
+        # Write output
+        with open(args.output, 'w', encoding='utf-8') as f:
+            f.write(html)
+        
+        print(f"✅ Report generated: {args.output}")
+        
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()

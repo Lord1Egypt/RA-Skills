@@ -1,35 +1,53 @@
----
-name: "Crypto Alert"
-description: "Download YouTube videos and transcribe audio using local Whisper. Use when you need to extract text from YouTube videos that don't have subtitles, or when yo..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crypto-alert"
-sourceUrl: "https://clawhub.ai/skills/crypto-alert"
----
+# crypto-alert
 
-# Crypto Alert
+加密貨幣價格監控與提醒技能
 
-> Download YouTube videos and transcribe audio using local Whisper. Use when you need to extract text from YouTube videos that don't have subtitles, or when yo...
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crypto-alert`
-- **Source URL:** [https://clawhub.ai/skills/crypto-alert](https://clawhub.ai/skills/crypto-alert)
+- 取得加密貨幣現價
+- 顯示 24 小時漲跌幅
+- 支援多種主流幣種
+- 暴漲/大跌提醒
 
-## Overview
+## 安裝依賴
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/crypto-alert
+pip3 install requests
 ```
+
+## 使用方式
+
+```bash
+# 查看所有熱門幣種
+python3 crypto.py
+
+# 查詢特定幣種
+python3 crypto.py 比特幣
+python3 crypto.py 以太坊
+python3 crypto.py btc
+```
+
+## 支援幣種
+
+| 指令 | 幣種 |
+|------|------|
+| 比特幣 / btc | Bitcoin (BTC) |
+| 以太坊 / eth | Ethereum (ETH) |
+| sol | Solana (SOL) |
+| bnb | Binance Coin (BNB) |
+| xrp | XRP (XRP) |
+| doge | Dogecoin (DOGE) |
+| ada | Cardano (ADA) |
+| dot | Polkadot (DOT) |
+
+## API 數據源
+
+使用 Binance API 獲取即時價格數據
+
+---
+
+*版本：1.0 | 建立日期：2026-03-16*
+
+## Author
+- Kuanlin (GitHub: kuanlin)
+

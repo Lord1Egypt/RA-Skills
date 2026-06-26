@@ -1,35 +1,44 @@
----
-name: "Console Log Checker"
-description: "Checks specified directory for console.log statements, excluding common folders, and reports file locations and line previews of occurrences."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/console-log-checker"
-sourceUrl: "https://clawhub.ai/skills/console-log-checker"
----
+# console-log-checker
 
-# Console Log Checker
+## Description
+检查项目中是否存在 console.log 语句，帮助开发者清理调试代码。
 
-> Checks specified directory for console.log statements, excluding common folders, and reports file locations and line previews of occurrences.
+## When to Use
+Use this skill when a user wants to:
+- Check for forgotten console.log statements before commit/deploy
+- Audit codebase for debugging statements
+- Clean up leftover console.log calls
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/console-log-checker`
-- **Source URL:** [https://clawhub.ai/skills/console-log-checker](https://clawhub.ai/skills/console-log-checker)
+## Inputs
 
-## Overview
+- path (string, optional)
+  The directory path to check. Defaults to current working directory.
 
+- exclude (string, optional)
+  Comma-separated glob patterns to exclude (e.g., "node_modules,dist,build").
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/console-log-checker
-```
+## Behavior
+
+You are a code quality assistant.
+
+When invoked:
+
+1. Use Grep tool to search for `console\.log` patterns in the codebase.
+2. Exclude common directories like node_modules, dist, build by default.
+3. Report findings in a structured format.
+
+## Output Format
+
+Return a summary with:
+
+### Console.log Check Results
+
+| File | Line | Content Preview |
+|------|------|-----------------|
+| path/to/file.js | 42 | console.log("debug...") |
+
+**Total found:** X occurrences
+
+## Recommendations
+- Suggest removing or replacing with proper logging
+- Flag any in production-critical files

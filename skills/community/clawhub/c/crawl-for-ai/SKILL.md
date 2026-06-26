@@ -1,35 +1,61 @@
 ---
-name: "Crawl4AI Web Scraper"
-description: "Full web page scraping with JavaScript rendering via local Crawl4AI instance, delivering clean markdown or detailed JSON including links and media."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crawl-for-ai"
-sourceUrl: "https://clawhub.ai/skills/crawl-for-ai"
+name: crawl-for-ai
+description: Web scraping using local Crawl4AI instance. Use for fetching full page content with JavaScript rendering. Better than Tavily for complex pages. Unlimited usage.
+version: 1.0.1
+author: Ania
+requiresEnv:
+  - CRAWL4AI_URL
+metadata:
+  clawdbot:
+    emoji: "🕷️"
+    requires:
+      bins: ["node"]
 ---
 
 # Crawl4AI Web Scraper
 
-> Full web page scraping with JavaScript rendering via local Crawl4AI instance, delivering clean markdown or detailed JSON including links and media.
+Local Crawl4AI instance for full web page extraction with JavaScript rendering.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crawl-for-ai`
-- **Source URL:** [https://clawhub.ai/skills/crawl-for-ai](https://clawhub.ai/skills/crawl-for-ai)
+## Endpoints
 
-## Overview
+**Proxy (port 11234)** — Clean output, OpenWebUI-compatible
+- Returns: `[{page_content, metadata}]`
+- Use for: Simple content extraction
 
+**Direct (port 11235)** — Full output with all data
+- Returns: `{results: [{markdown, html, links, media, ...}]}`
+- Use for: When you need links, media, or other metadata
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
 ```bash
-hermes skills install clawhub/crawl-for-ai
+# Via script
+node {baseDir}/scripts/crawl4ai.js "url"
+node {baseDir}/scripts/crawl4ai.js "url" --json
 ```
+
+**Script options:**
+- `--json` — Full JSON response
+
+**Output:** Clean markdown from the page.
+
+## Configuration
+
+**Required environment variable:**
+
+- `CRAWL4AI_URL` — Your Crawl4AI instance URL (e.g., `http://localhost:11235`)
+
+**Optional:**
+
+- `CRAWL4AI_KEY` — API key if your instance requires authentication
+
+## Features
+
+- **JavaScript rendering** — Handles dynamic content
+- **Unlimited usage** — Local instance, no API limits
+- **Full content** — HTML, markdown, links, media, tables
+- **Better than Tavily** for complex pages with JS
+
+## API
+
+Uses your local Crawl4AI instance REST API. Auth header only sent if `CRAWL4AI_KEY` is set.

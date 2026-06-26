@@ -1,0 +1,22 @@
+{
+  "name": "Bolt",
+  "title": "The Lightning Speedster",
+  "color": "#ffff44",
+  "accentColor": "#ffffaa",
+  "shape": "star",
+  "eyeStyle": "wide",
+  "trailEffect": "lightning",
+  "deathEffect": "spark",
+  "taunt": "ZZZZAP!",
+  "taunts": ["ZZZZAP!", "Lightning strikes!", "Too fast!", "⚡⚡⚡", "Catch me!", "Speed kills."],
+  "strategy": {
+    "preferredWeapon": "lightning",
+    "aggression": 0.8,
+    "accuracy": 0.4,
+    "speed": 1.35,
+    "retreatThreshold": 0.25,
+    "combatStyle": "speedster",
+    "dodgePattern": "circle",
+    "pickupPriority": "weapon"
+  }
+}

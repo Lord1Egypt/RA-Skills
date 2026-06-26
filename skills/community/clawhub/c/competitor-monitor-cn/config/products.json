@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "name": "罗技 G102 鼠标 - 京东自营",
+      "url": "https://item.jd.com/100001.html",
+      "platform": "jd",
+      "target_price": 99,
+      "enabled": true,
+      "check_interval": 30
+    },
+    {
+      "name": "罗技 G102 鼠标 - 淘宝店",
+      "url": "https://item.taobao.com/item.htm?id=520123456789",
+      "platform": "taobao",
+      "target_price": 89,
+      "enabled": true,
+      "check_interval": 30
+    }
+  ],
+  "monitoring": {
+    "default_interval": 30,
+    "price_alert_threshold": 5,
+    "price_alert_threshold_pct": 0.05
+  },
+  "notify_rules": {
+    "price_drop": true,
+    "price_rise": false,
+    "out_of_stock": true,
+    "back_in_stock": true,
+    "promotion": true
+  }
+}

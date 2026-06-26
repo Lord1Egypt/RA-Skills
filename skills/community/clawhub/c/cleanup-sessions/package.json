@@ -1,0 +1,17 @@
+{
+  "name": "cleanup-sessions",
+  "version": "1.0.0",
+  "description": "清理 OpenClaw 已中止的子 agent 会话文件及备份文件，释放磁盘空间。支持 48 小时保护机制，自动保护近期会话。",
+  "author": "phenix",
+  "license": "MIT-0",
+  "tags": ["cleanup", "session", "maintenance", "storage", "openclaw"],
+  "keywords": [
+    "session cleanup",
+    "aborted agent",
+    "backup cleanup",
+    "disk space",
+    "openclaw maintenance"
+  ],
+  "summary": "清理已中止的子 agent 会话和备份文件，48 小时保护机制，安全释放磁盘空间",
+  "main": "SKILL.md"
+}

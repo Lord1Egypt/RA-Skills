@@ -1,0 +1,9 @@
+{
+  "bridge_url": "http://localhost:32100",
+  "request_timeout_ms": 15000,
+  "upload_timeout_ms": 60000,
+  "download_timeout_ms": 120000,
+  "network_retry_count": 1,
+  "retry_backoff_ms": 1500,
+  "min_bridge_version": "1.2.0"
+}

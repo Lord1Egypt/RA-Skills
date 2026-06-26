@@ -1,0 +1,19 @@
+{
+  "name": "cn-time-parser",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "智能识别中文时间关键词并转换为具体日期和时间戳",
+  "main": "scripts/parse-time.js",
+  "scripts": {
+    "test": "node scripts/parse-time.js --query '今天'"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "lunisolar": "^2.0.2",
+    "argparse": "^2.0.1",
+    "chinese-workday": "^1.11.0"
+  },
+  "keywords": ["time", "parser", "chinese", "lunar"],
+  "author": "",
+  "license": "MIT"
+}

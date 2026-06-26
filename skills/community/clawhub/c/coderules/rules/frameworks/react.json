@@ -1,0 +1,80 @@
+{
+  "name": "React",
+  "version": "18+",
+  "extends": ["typescript"],
+  "priority": 80,
+
+  "rules": {
+    "components": {
+      "definition": {
+        "type": "function-component",
+        "typing": "React.FC<Props>",
+        "export": "named"
+      },
+      "fileNaming": "PascalCase.tsx",
+      "folderStructure": "components/[ComponentName]/[ComponentName].tsx"
+    },
+
+    "props": {
+      "definition": "interface Props",
+      "requiredMarking": "必须明确标记可选属性",
+      "children": "显式声明 React.ReactNode",
+      "defaultProps": "使用默认参数值，不使用 defaultProps"
+    },
+
+    "hooks": {
+      "rulesOfHooks": true,
+      "customHooksPrefix": "use",
+      "dependencies": "依赖数组必须完整，使用 exhaustive-deps",
+      "stateManagement": {
+        "simple": "useState",
+        "complex": "useReducer",
+        "global": "Zustand / Redux Toolkit"
+      }
+    },
+
+    "performance": {
+      "memoization": {
+        "components": "React.memo",
+        "functions": "useCallback",
+        "values": "useMemo"
+      },
+      "codeSplitting": "React.lazy + Suspense"
+    },
+
+    "styling": {
+      "preferred": "Tailwind CSS / CSS Modules",
+      "scoping": "避免全局样式污染"
+    }
+  },
+
+  "patterns": {
+    "containerPresentational": {
+      "enabled": false,
+      "note": "优先使用 hooks 替代容器组件模式"
+    },
+    "customHooks": {
+      "enabled": true,
+      "location": "src/hooks/"
+    },
+    "utils": {
+      "location": "src/utils/",
+      "naming": "camelCase.ts"
+    }
+  },
+
+  "promptTemplates": [
+    "组件必须定义为函数组件，使用 React.FC<Props> 类型",
+    "Props 必须定义 interface，并明确标记可选属性",
+    "自定义 Hook 必须以 use 开头",
+    "使用 React.memo 优化重渲染，useCallback 缓存函数，useMemo 缓存值",
+    "路由级组件使用 React.lazy 懒加载",
+    "使用 Zustand 或 Redux Toolkit 管理全局状态"
+  ],
+
+  "fileTemplates": {
+    "component": "import React from 'react';\n\ninterface ${ComponentName}Props {\n  // TODO: 定义 props\n}\n\nexport const ${ComponentName}: React.FC<${ComponentName}Props> = (props) => {\n  return (\n    <div>\n      {/* TODO: 实现组件 */}\n    </div>\n  );\n};",
+
+    "hook": "import { useState, useEffect } from 'react';\n\ninterface Use${HookName}Return {\n  // TODO: 定义返回值类型\n}\n\nexport const use${HookName} = (): Use${HookName}Return => {\n  // TODO: 实现 hook 逻辑\n  \n  return {\n    // TODO: 返回数据\n  };\n};"
+  }
+}

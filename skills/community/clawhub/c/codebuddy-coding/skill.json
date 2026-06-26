@@ -1,0 +1,30 @@
+{
+  "name": "codebuddy-coding",
+  "version": "1.0.0",
+  "description": "Universal AI coding skill powered by CodeBuddy CLI",
+  "type": "coding",
+  "capabilities": [
+    "code-generation",
+    "file-operations",
+    "command-execution",
+    "progress-monitoring",
+    "structured-output"
+  ],
+  "author": "OpenClaw Team",
+  "created": "2026-03-31",
+  "main": "skill.js",
+  "dependencies": {
+    "codebuddy-cli": ">=2.68.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "codebuddy",
+    "ai",
+    "coding",
+    "automation",
+    "openclaw"
+  ],
+  "license": "MIT"
+}

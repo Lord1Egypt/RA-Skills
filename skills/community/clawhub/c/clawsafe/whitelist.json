@@ -1,0 +1,17 @@
+{
+  "patterns": [
+    "^test",
+    "^debug",
+    "^dev"
+  ],
+  "keywords": [
+    "test mode",
+    "debug mode",
+    "sandbox"
+  ],
+  "users": [
+    "admin",
+    "system"
+  ],
+  "description": "白名单模式 - 匹配到的输入将被认为是安全的"
+}

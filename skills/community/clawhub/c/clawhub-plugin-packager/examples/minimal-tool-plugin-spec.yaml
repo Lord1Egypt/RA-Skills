@@ -1,0 +1,32 @@
+plugin_job:
+  mode: native-tool-plugin
+  identity:
+    name: weather-brief-plugin
+    display_name: Weather Brief Plugin
+    plugin_id: weather-brief-plugin
+    folder_name: weather-brief-plugin
+  summary:
+    purpose: >-
+      Register one tool that accepts a location string and returns a short structured weather brief.
+    target_runtime_role: Tool plugin.
+  behavior:
+    public_surface:
+      - weather_brief(location)
+    constraints:
+      - Return concise text only.
+      - No persistent writes.
+    side_effects:
+      - Network call to weather provider.
+  configuration:
+    env_vars:
+      - WEATHER_API_KEY
+    config_fields:
+      - name: baseUrl
+        type: string
+        required: false
+        description: Optional override for the weather API base URL.
+  output_preferences:
+    language: typescript
+    module_system: esm
+    include_tests: false
+    include_env_example: true

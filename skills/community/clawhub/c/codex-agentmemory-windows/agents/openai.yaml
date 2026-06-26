@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Agentmemory Windows"
+  short_description: "Configure agentmemory hooks, memory injection, and graph repair for Codex App on Windows."
+  default_prompt: "Use $codex-agentmemory-windows to configure, repair, or diagnose agentmemory hooks, memory injection, and knowledge graph updates in Codex App on Windows."

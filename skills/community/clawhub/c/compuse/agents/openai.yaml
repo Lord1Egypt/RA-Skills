@@ -1,0 +1,4 @@
+interface:
+  display_name: "Computer-Use Skill"
+  short_description: "Use one top-level cross-platform computer-use skill with bundled macOS, Windows, and Linux runtimes"
+  default_prompt: "Use the bundled top-level cross-platform computer-use skill, detect the current host platform, build the matching standalone runtime if needed, let it self-bootstrap, and avoid any dependency on a local Claude installation or hidden app assets."

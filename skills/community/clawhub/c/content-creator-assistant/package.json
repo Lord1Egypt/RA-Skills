@@ -1,0 +1,17 @@
+{
+  "name": "content-creator-assistant",
+  "version": "1.0.0",
+  "description": "AI writing assistant using Reflection + Tree of Thoughts",
+  "main": "index.js",
+  "scripts": {
+    "example": "node examples/writing-example.js"
+  },
+  "keywords": [
+    "writing",
+    "content-creation",
+    "reflection",
+    "tree-of-thoughts"
+  ],
+  "author": "AI-Agent",
+  "license": "MIT"
+}

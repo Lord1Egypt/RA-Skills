@@ -1,35 +1,21 @@
 ---
-name: "CRM"
+name: "CRM管理"
 description: "提供CRM管理的可落地指南与SOP。在开展CRM管理相关工作时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/crm-management"
-sourceUrl: "https://clawhub.ai/skills/crm-management"
 ---
+# CRM管理 (crm-management)
+## 数据模型
+- 用户基本信息、行为事件、订单与售后、渠道来源、生命周期阶段。
 
-# CRM
+## 分层与运营
+- RFM分层、AIPL模型；场景化触达（欢迎、激活、留存、召回、挽回）。
 
-> 提供CRM管理的可落地指南与SOP。在开展CRM管理相关工作时调用。
+## 自动化
+- 触发式消息：下单未支付、评价邀请、流失预警；多渠道（短信/邮件/企微）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/crm-management`
-- **Source URL:** [https://clawhub.ai/skills/crm-management](https://clawhub.ai/skills/crm-management)
+## 指标
+- 活跃率、留存率、复购率、CLV、消息到达率与转化率。
 
-## Overview
+## 合规
+- 明示授权与退订机制；敏感信息加密与权限分级。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/crm-management
-```
+生成日期：2026-03-17

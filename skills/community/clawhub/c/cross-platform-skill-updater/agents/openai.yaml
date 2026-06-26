@@ -1,0 +1,4 @@
+version: 1
+display_name: Skill Updater
+short_description: 检测并更新 git 与锁文件安装的本地 skills
+default_prompt: 检查当前项目和常见全局目录里的 skills 是否有更新，并在安全前提下更新可更新项。

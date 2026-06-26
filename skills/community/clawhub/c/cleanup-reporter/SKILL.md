@@ -1,35 +1,37 @@
 ---
-name: "Cleanup Reporter"
-description: "Scan your machine for large directories, duplicate files, and stale resume files."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cleanup-reporter"
-sourceUrl: "https://clawhub.ai/skills/cleanup-reporter"
+name: cleanup-reporter
+description: Scan your machine for large directories, duplicate files, and stale resume files.
+homepage: https://github.com/MalavyaRaval/cleanup-reporter
+metadata:
+  clawdbot:
+    emoji: "🧹"
+  requires:
+    env: []
+  files: ["scripts/*"]
 ---
 
-# Cleanup Reporter
+# Cleanup Reporter Skill
 
-> Scan your machine for large directories, duplicate files, and stale resume files.
+This skill helps you identify disk space hogs, duplicate files, and stale data on your machine.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cleanup-reporter`
-- **Source URL:** [https://clawhub.ai/skills/cleanup-reporter](https://clawhub.ai/skills/cleanup-reporter)
+## Tools
+- `ncdu`: Visual disk usage analyzer
+- `rdfind`: Duplicate file finder
 
-## Overview
+## Usage
+- Run `cleanup-reporter-scan` to perform a scan and generate a report.
+- It will create a report file in `~/reports/cleanup_report_YYYY-MM-DD.md`.
 
+## External Endpoints
+- None. This skill operates entirely locally.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cleanup-reporter
-```
+## Security & Privacy
+- **What leaves the machine:** Nothing.
+- **What is accessed:** Local directories `/mnt/c/Users/malav` for scanning.
+- **Data persistence:** Only the generated markdown report and `rdfind` temp files are written to disk.
+
+## Model Invocation Note
+This skill is invoked autonomously by OpenClaw when triggered by the user to perform cleanup tasks.
+
+## Trust Statement
+By using this skill, you allow the agent to scan your local file system. Only install if you trust the agent's access to your local files.

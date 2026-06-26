@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cleanMyMacSkill Storage Dashboard</title>
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --card: rgba(255, 255, 255, 0.72);
+    --ink: #1d1d1f;
+    --sub: #86868b;
+    --line: rgba(0, 0, 0, 0.05);
+    --green: #34c759;
+    --yellow: #ff9f0a;
+    --red: #ff3b30;
+    --blue: #0071e3;
+    --green-bg: rgba(52, 199, 89, 0.12);
+    --yellow-bg: rgba(255, 159, 10, 0.12);
+    --red-bg: rgba(255, 59, 48, 0.12);
+    --accent: #0071e3;
+    --accent-bg: rgba(0, 113, 227, 0.12);
+    --radius: 20px;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.01);
+    --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  [data-theme="dark"] {
+    --bg: #000000;
+    --card: rgba(22, 22, 23, 0.75);
+    --ink: #f5f5f7;
+    --sub: #86868b;
+    --line: rgba(255, 255, 255, 0.06);
+    --green: #30d158;
+    --yellow: #ffd60a;
+    --red: #ff453a;
+    --blue: #0a84ff;
+    --green-bg: rgba(48, 209, 88, 0.15);
+    --yellow-bg: rgba(255, 214, 10, 0.15);
+    --red-bg: rgba(255, 69, 58, 0.15);
+    --accent: #0a84ff;
+    --accent-bg: rgba(10, 132, 255, 0.15);
+    --shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Myriad Set Pro", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    padding: 40px 24px 100px;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s, color 0.4s;
+  }
+  
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  
+  header {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--ink);
+  }
+  
+  .meta { color: var(--sub); font-size: 13px; margin-top: 6px; font-weight: 500; }
+
+  /* Controls (Apple Segmented Control Style) */
+  .control-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .segmented-control {
+    display: inline-flex;
+    background: rgba(140, 140, 140, 0.08);
+    padding: 2.5px;
+    border-radius: 9px;
+    border: 1px solid var(--line);
+    user-select: none;
+  }
+  .segmented-control button {
+    border: none;
+    background: transparent;
+    color: var(--sub);
+    padding: 6px 14px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .segmented-control button.active {
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 3px 10px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Glassmorphism card panels */
+  .overview, .summary, .item, table {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: var(--transition);
+  }
+  
+  /* Disk Overview */
+  .overview {
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .overview-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .bar-container { margin: 20px 0 12px; }
+  .bar-label { font-size: 11px; color: var(--sub); margin-bottom: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .bar {
+    height: 14px;
+    border-radius: 7px;
+    background: var(--line);
+    overflow: hidden;
+    display: flex;
+  }
+  .bar i { display: block; height: 100%; transition: var(--transition); }
+  .bar .used { background: linear-gradient(90deg, #0071e3, #3b82f6); }
+  .bar i.seg-green { background: var(--green); }
+  .bar i.seg-yellow { background: var(--yellow); }
+  .bar i.seg-red { background: var(--red); }
+  .bar i.seg-blue { background: var(--accent); }
+  .bar i+i { border-left: 1.5px solid var(--card); }
+  
+  .lead { font-size: 14px; line-height: 1.6; margin-bottom: 16px; color: var(--ink); font-weight: 500; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 480px) { .stats { grid-template-columns: 1fr; gap: 12px; } }
+  
+  .stat {
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(140, 140, 140, 0.03);
+    border: 1px solid rgba(140, 140, 140, 0.04);
+  }
+  .stat .k { font-size: 11px; color: var(--sub); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat .v { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  
+  .sysgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px 24px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .sysgrid div { font-size: 13px; color: var(--ink); }
+  .sysgrid span { color: var(--sub); margin-right: 6px; font-weight: 500; }
+  
+  .pills { margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(140, 140, 140, 0.04);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .pill b { font-variant-numeric: tabular-nums; }
+  
+  .other-disks { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .other-disks .label { font-size: 11px; color: var(--sub); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px; }
+  .odisk { display: flex; align-items: center; gap: 12px; margin: 8px 0; font-size: 13px; }
+  .odisk-name { width: 50px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .obar { flex: 1; height: 8px; border-radius: 5px; background: var(--line); overflow: hidden; }
+  .obar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #4080ff); }
+  .odisk-num { color: var(--sub); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* Interactive Dials */
+  .donut-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    background: rgba(140, 140, 140, 0.02);
+    border: 1px solid rgba(140, 140, 140, 0.04);
+    border-radius: 16px;
+    padding: 20px;
+    justify-content: center;
+  }
+  .donut-svg-wrap { position: relative; width: 130px; height: 130px; }
+  .donut-svg-wrap svg circle {
+    transition: var(--transition);
+  }
+  .donut-svg-wrap:hover svg circle {
+    stroke-width: 14;
+  }
+  .donut-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+  .donut-legend { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 180px; }
+
+  /* Sections */
+  .sec { margin-bottom: 32px; }
+  .sec h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink);
+  }
+  .sec h2 .count { font-size: 12px; color: var(--sub); font-weight: 600; background: rgba(140, 140, 140, 0.06); padding: 2px 10px; border-radius: 20px; }
+  .sec-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .sec-actions .del-btn { padding: 6px 12px; font-size: 12px; }
+  .sec-status { font-size: 12px; }
+
+  /* Top 5 Table */
+  .table-scroll {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+  }
+  table { width: 100%; border-collapse: collapse; border: none; overflow: hidden; box-shadow: none; }
+  th, td { text-align: left; padding: 14px 16px; font-size: 13px; border-bottom: 1px solid var(--line); }
+  th { background: rgba(140, 140, 140, 0.03); color: var(--sub); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  td.type { white-space: nowrap; color: var(--ink); font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+  td.size { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--accent); }
+  td.path { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-size: 12px; color: var(--sub); word-break: break-all; }
+  
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
+  .dot.green { background: var(--green); } 
+  .dot.yellow { background: var(--yellow); } 
+  .dot.red { background: var(--red); } 
+  .dot.blue { background: var(--accent); }
+
+  /* Interactive cards */
+  .item {
+    margin-bottom: 14px;
+    border-left: 4px solid var(--line);
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+  .item.green { border-left-color: var(--green); }
+  .item.yellow { border-left-color: var(--yellow); }
+  .item.red { border-left-color: var(--red); }
+  
+  .item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.01);
+  }
+  
+  .item-head { display: flex; align-items: center; gap: 14px; padding: 18px 20px; cursor: pointer; user-select: none; }
+  .item-head:hover { background: rgba(140, 140, 140, 0.01); }
+  .item-name { font-weight: 700; font-size: 16px; flex: 1; color: var(--ink); }
+  .item-badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+    background: var(--green-bg);
+    padding: 2px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .item-badge:empty { display: none; }
+  .item.cleaned .item-name { text-decoration: line-through; color: var(--sub); font-weight: 500; }
+  .item.cleaned .item-size { color: var(--sub); }
+  .item.cleaned { opacity: 0.7; }
+  .item-size { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--accent); }
+  .chev { color: var(--sub); transition: transform 0.25s; font-size: 12px; }
+  .item.open .chev { transform: rotate(90deg); }
+  .item-body { display: none; padding: 0 20px 20px; font-size: 14px; }
+  .item.open .item-body { display: block; }
+  
+  .item-path {
+    font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--sub);
+    word-break: break-all;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: rgba(140, 140, 140, 0.02);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  
+  .field { margin: 14px 0; }
+  .field .label { font-size: 11px; color: var(--sub); font-weight: 700; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tag {
+    display: inline-block;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin: 2px 4px 2px 0;
+    font-weight: 600;
+  }
+  .risk {
+    background: var(--red-bg);
+    color: var(--red);
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-top: 12px;
+    font-weight: 600;
+  }
+
+  /* Command Block */
+  .cmd {
+    position: relative;
+    background: #1e1e24;
+    color: #e5e6eb;
+    border-radius: 10px;
+    padding: 14px 14px;
+    margin: 8px 0;
+    font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .cmd .copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #2d2d34;
+    color: #c9cdd4;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: var(--transition);
+    font-weight: 600;
+  }
+  .cmd .copy:hover { background: #3c3c44; color: #fff; }
+  .cmd .copy.done { background: var(--green); color: #fff; }
+  .cmd-label { font-size: 11px; color: var(--sub); margin: 12px 0 4px; font-weight: 700; }
+
+  /* Buttons */
+  .del-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .del-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .del-btn.trash { background: var(--accent-bg); color: var(--accent); }
+  .del-btn.trash:hover { background: var(--accent); color: #fff; }
+  .del-btn.danger { background: var(--red-bg); color: var(--red); }
+  .del-btn.danger:hover { background: var(--red); color: #fff; }
+  .del-btn.open { background: rgba(140, 140, 140, 0.06); color: var(--ink); border: 1px solid var(--line); }
+  .del-btn.open:hover { background: var(--line); }
+  .del-btn:disabled { opacity: 0.4; cursor: default; }
+  
+  .del-status { font-size: 13px; font-weight: 600; }
+  .del-status.ok { color: var(--green); }
+  .del-status.err { color: var(--red); }
+  .del-note { font-size: 12px; color: var(--sub); line-height: 1.6; margin-top: 10px; }
+  .del-note b { color: var(--ink); }
+
+  /* Summary details card */
+  .summary { padding: 28px; }
+  .summary h3 { font-size: 15px; margin: 20px 0 8px; color: var(--ink); font-weight: 700; }
+  .summary h3:first-child { margin-top: 0; }
+  .summary ul { padding-left: 20px; }
+  .summary li { margin: 6px 0; font-size: 14px; color: var(--ink); }
+
+  .note { font-size: 12px; color: var(--sub); margin-top: 8px; }
+  .denied {
+    background: var(--yellow-bg);
+    border: 1px solid rgba(245, 158, 11, 0.15);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13px;
+    margin-top: 14px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  
+  footer {
+    text-align: center;
+    color: var(--sub);
+    font-size: 12px;
+    margin-top: 60px;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    line-height: 2;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1 id="page-title">cleanMyMacSkill Storage Dashboard</h1>
+      <div class="meta" id="meta"></div>
+    </div>
+    <div class="control-group">
+      <div class="segmented-control" id="lang-control">
+        <button id="lang-en" onclick="changeLang('en')">EN</button>
+        <button id="lang-zh" onclick="changeLang('zh')">中文</button>
+      </div>
+      <div class="segmented-control" id="theme-control">
+        <button id="theme-light" onclick="changeTheme('light')">☀️ Light</button>
+        <button id="theme-dark" onclick="changeTheme('dark')">🌙 Dark</button>
+      </div>
+    </div>
+  </header>
+  
+  <div id="app"></div>
+  
+  <footer id="footer"></footer>
+</div>
+
+<script>
+const DATA = __REPORT_DATA__;
+const DELETE = __DELETE_CONFIG__; // null=static report; {token,endpoint}=server.py dynamic backend
+
+const esc = str => {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
+const cleanSize = str => {
+  if (!str) return '';
+  return str.replace(/约\s*/g, '').trim();
+};
+
+const parseGB = str => {
+  if (!str) return 0;
+  const cleaned = str.replace(/约/g, '').trim();
+  const match = cleaned.match(/^([\d.]+)\s*([a-zA-Z]+)?$/);
+  if (!match) return 0;
+  const num = parseFloat(match[1]);
+  if (isNaN(num)) return 0;
+  const unit = (match[2] || 'GB').toUpperCase();
+  if (unit === 'TB') return num * 1024;
+  if (unit === 'GB') return num;
+  if (unit === 'MB') return num / 1024;
+  if (unit === 'KB') return num / (1024 * 1024);
+  if (unit === 'B') return num / (1024 * 1024 * 1024);
+  return num;
+};
+
+const cmdBlock = c => {
+  if (!c || !c.cmd) return '';
+  const payload = btoa(unescape(encodeURIComponent(c.cmd)));
+  return `
+    <div class="cmd-label">${esc(c.label || 'Command')}</div>
+    <div class="cmd">
+      <code>${esc(c.cmd)}</code>
+      <button class="copy" data-cmd="${payload}">Copy</button>
+    </div>
+  `;
+};
+
+const LANG_MAP = {
+  en: {
+    title: "cleanMyMacSkill Storage Dashboard",
+    meta: "Generated at {date} · Scan Duration: {time}s",
+    stat_capacity: "Capacity",
+    stat_used: "Used",
+    stat_available: "Available",
+    stat_purgeable: "Purgeable (OS)",
+    bar_label: "System Drive {drive} · Capacity Distribution",
+    other_drives: "Additional Storage Drives",
+    sec_top5: "Top 5 Space Consumers",
+    th_rank: "Rank",
+    th_tier: "Tier",
+    th_size: "Size",
+    th_type: "Type",
+    th_name: "Name",
+    th_path: "Absolute Path",
+    th_desc: "Description",
+    sec_priority: "Recommended Actions",
+    sec_green: "🟢 Safe to Clean (Caches, Temp Files, Leftovers)",
+    sec_yellow: "🟡 Needs Review (Contains user files or app configurations)",
+    sec_red: "🔴 Caution (Application binaries and system reserved components)",
+    sec_denied: "The following directories could not be read due to restricted permissions:",
+    sec_longterm: "Long-Term Recommendations",
+    items_count: "{count} items",
+    btn_trash_all: "Trash All",
+    btn_delete_all: "Delete All",
+    btn_trash: "Move to Trash",
+    btn_delete: "Delete Permanently",
+    btn_open: "Reveal in {fm}",
+    btn_open_app: "Locate in {fm}",
+    procs_to_close: "Processes to close before cleanup",
+    procs_none: "No conflicting processes",
+    terminal_cmds: "Terminal Cleanup Commands (Manual Copy)",
+    one_click_actions: "One-Click Actions ({count} target paths)",
+    reveal_note: "<b>Reveal in {fm}</b>: Navigates to this folder so you can review contents. Direct changes are not executed by the web page. Note that databases (e.g. chat containers) might have app-specific formats. Clearing through official app settings is always recommended. {trash_note} {open_note}",
+    locate_note: "<b>Locate in {fm}</b>: Selects the application bundle. You can drag it to the Trash to uninstall, or run its official uninstall package. This page will not execute deletions on application binaries for system security.",
+    trash_all_note: "<b>Move to Trash</b>: Reversible. Can be restored from system Recycle Bin. Space is reclaimed when trash is emptied. <b>Delete Permanently</b>: Irreversible deletion for instant storage release. These are safe generated caches and will auto-rebuild if needed.",
+    trash_only_note: "<b>Move to Trash (Safe parts only)</b>: Moves only verified disposable cache directories to the Trash bin.",
+    review_options: "Target Review Options",
+    review_action: "Review Action",
+    footer_text: "cleanMyMacSkill · Read-only Storage Audit · Feedback: ",
+    footer_note: "Command snippets are for reference only. Please review and run them in your terminal. Web-triggered actions are protected by token validation.",
+    confirm_batch: "Are you sure you want to {verb} these {count} groups of files?\nThis includes {paths} total paths {size}.",
+    confirm_single: "Confirm you want to {verb} the following {count} targets?\n\n",
+    verb_trash: "move to Trash bin",
+    verb_delete: "permanently DELETE",
+    status_processing: "Processing...",
+    status_done_trash: "✓ Trashed {count} groups",
+    status_done_delete: "✓ Deleted {count} groups",
+    status_done_trash_single: "✓ Moved to Trash (restorable from system)",
+    status_done_delete_single: "✓ Deleted, space released",
+    status_done_open: "✓ Opened in {fm}",
+    status_empty: "No reclaimable items remaining",
+    label_content_profile: "Content Description",
+    label_why_manual: "Why manual review is required",
+    label_disposal: "Recommended Action Path",
+    label_why_keep: "Why manual deleting is discouraged",
+    label_indirect: "Proper Deinstallation Steps",
+    label_auto_reclaim: "System Auto-Reclaimable?",
+    label_wsl_trash_note: "Only safe subfolders can be automatically trashed.",
+    label_open_note: "App-specific databases are in internal binary formats. Use official settings to clear data.",
+    legend_green: "Safe to Clean",
+    legend_yellow: "Needs Review",
+    legend_red: "Caution",
+    legend_blue: "System & Other",
+    legend_free: "Free Space",
+    legend_used: "Used",
+    legend_unit: "GB"
+  },
+  zh: {
+    title: "cleanMyMacSkill 存储深度分析仪表盘",
+    meta: "生成于 {date} · 扫描耗时 {time}秒",
+    stat_capacity: "总容量",
+    stat_used: "已用空间",
+    stat_available: "可用空间",
+    stat_purgeable: "系统可清除空间",
+    bar_label: "系统盘 {drive} · 容量分级占用分布",
+    other_drives: "其他存储磁盘",
+    sec_top5: "占用空间最大的 5 个目录",
+    th_rank: "排名",
+    th_tier: "级别",
+    th_size: "大小",
+    th_type: "类型",
+    th_name: "名称",
+    th_path: "绝对路径",
+    th_desc: "说明",
+    sec_priority: "推荐清理步骤",
+    sec_green: "🟢 建议自动清理（缓存、临时文件、残留件）",
+    sec_yellow: "🟡 建议手动审核（包含用户个人文件或应用数据）",
+    sec_red: "🔴 谨慎清理（应用二进制程序与系统保留组件）",
+    sec_denied: "由于系统权限不足，未能读取以下目录的体积：",
+    sec_longterm: "长期使用与优化建议",
+    items_count: "{count} 项",
+    btn_trash_all: "全部移入废纸篓",
+    btn_delete_all: "全部直接删除",
+    btn_trash: "移入废纸篓",
+    btn_delete: "直接删除",
+    btn_open: "在{fm}中显示",
+    btn_open_app: "在{fm}中定位",
+    procs_to_close: "清理前建议关闭的进程",
+    procs_none: "无冲突进程，可直接清理",
+    terminal_cmds: "终端清理命令（可手动复制）",
+    one_click_actions: "网页端一键操作（共 {count} 个路径）",
+    reveal_note: "<b>在{fm}中显示</b>：只打开对应的文件夹以供您手动审核，本页面不会代为修改。请注意部分应用（如微信、浏览器）的数据为内部数据库格式，推荐优先在应用内置的设置里进行清理。{trash_note} {open_note}",
+    locate_note: "<b>在{fm}中定位</b>：打开应用所在目录并高亮选中该 App。您可以直接右键将其“移到废纸篓”卸载，或运行其自带的卸载包。为系统安全起见，本页面不支持直接删除应用本体二进制程序。",
+    trash_all_note: "<b>移到废纸篓</b>：可逆操作，删错可从系统废纸篓里还原。需要清空废纸篓才能彻底释放空间。<b>直接删除</b>：立即释放空间，不可恢复。绿灯项均为可再生缓存，删除后系统或应用需要时会自动重建。",
+    trash_only_note: "<b>移到废纸篓（仅安全子路径）</b>：仅将核实过可安全清理的子目录移入废纸篓，安全可逆。",
+    review_options: "手动审核操作",
+    review_action: "应用卸载操作",
+    footer_text: "cleanMyMacSkill · 只读存储分析工具 · 技术支持与反馈：",
+    footer_note: "终端清理命令仅作展示参考，请在终端自行确认后运行。网页端一键清理操作由随机 Token 护栏和路径合法性校验保护。",
+    confirm_batch: "确认将这组 {count} 项缓存全部 {verb}？\n共包含 {paths} 个路径，合计大小 {size}。",
+    confirm_single: "确认将以下 {count} 个目标 {verb} 吗？\n\n",
+    verb_trash: "移到废纸篓",
+    verb_delete: "直接删除（不可逆）",
+    status_processing: "处理中...",
+    status_done_trash: "✓ 已将 {count} 项移入废纸篓",
+    status_done_delete: "✓ 已删除 {count} 项",
+    status_done_trash_single: "✓ 已移入废纸篓（可从系统找回）",
+    status_done_delete_single: "✓ 已删除，空间已释放",
+    status_done_open: "✓ 已在{fm}中打开",
+    status_empty: "没有可清理的项了",
+    label_content_profile: "内容画像",
+    label_why_manual: "为什么需要人工判断",
+    label_disposal: "处置路径",
+    label_why_keep: "为什么不建议手删",
+    label_indirect: "卸载 / 释放建议",
+    label_auto_reclaim: "是否可自动回收",
+    label_wsl_trash_note: "只有核实过安全的子文件夹支持自动移入废纸篓。",
+    label_open_note: "应用托管的数据库为程序内部格式，推荐优先去对应 App 内部删除数据。",
+    legend_green: "可自动清理",
+    legend_yellow: "需手动审核",
+    legend_red: "谨慎清理",
+    legend_blue: "系统及其他",
+    legend_free: "可用空间",
+    legend_used: "已用",
+    legend_unit: "GB"
+  }
+};
+
+let currentLang = localStorage.getItem('cleanmymac-lang') || 'en';
+let currentTheme = localStorage.getItem('cleanmymac-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+let FM = 'File Manager';
+if (DATA.system && DATA.system.os) {
+  if (/mac/i.test(DATA.system.os)) FM = 'Finder';
+  else if (/win/i.test(DATA.system.os)) FM = 'File Explorer';
+}
+
+function _t(key, replacements = {}) {
+  let text = LANG_MAP[currentLang][key] || LANG_MAP['en'][key] || '';
+  for (const [k, v] of Object.entries(replacements)) {
+    text = text.replace(new RegExp(`{${k}}`, 'g'), v);
+  }
+  return text;
+}
+
+// Set up UI components & translations
+function initControls() {
+  document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+  document.getElementById('lang-zh').classList.toggle('active', currentLang === 'zh');
+  document.getElementById('theme-light').classList.toggle('active', currentTheme === 'light');
+  document.getElementById('theme-dark').classList.toggle('active', currentTheme === 'dark');
+}
+
+function changeLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('cleanmymac-lang', lang);
+  if (DATA.system && DATA.system.os) {
+    if (/mac/i.test(DATA.system.os)) FM = lang === 'zh' ? '访达' : 'Finder';
+    else if (/win/i.test(DATA.system.os)) FM = lang === 'zh' ? '资源管理器' : 'File Explorer';
+    else FM = lang === 'zh' ? '文件管理器' : 'File Manager';
+  }
+  initControls();
+  renderApp();
+}
+
+function changeTheme(theme) {
+  currentTheme = theme;
+  localStorage.setItem('cleanmymac-theme', theme);
+  document.documentElement.setAttribute('data-theme', theme);
+  initControls();
+}
+
+function renderDonutChart(s, sm) {
+  const total = parseGB(s.disk_total) || 1;
+  const used = parseGB(s.disk_used);
+  const free = parseGB(s.disk_free);
+  const ts = sm && sm.tier_stats;
+  const g = ts ? parseGB(ts.green) : 0;
+  const y = ts ? parseGB(ts.yellow) : 0;
+  const r = ts ? parseGB(ts.red) : 0;
+  const other = Math.max(0, used - g - y - r);
+
+  const R = 40;
+  const C = 2 * Math.PI * R; // ~251.327
+  
+  const segments = [
+    { value: g, color: 'var(--green)', label: _t('legend_green') },
+    { value: y, color: 'var(--yellow)', label: _t('legend_yellow') },
+    { value: r, color: 'var(--red)', label: _t('legend_red') },
+    { value: other, color: 'var(--accent)', label: _t('legend_blue') },
+    { value: free, color: 'var(--line)', label: _t('legend_free') }
+  ].filter(seg => seg.value > 0);
+
+  let currentOffset = 0;
+  let circles = '';
+
+  segments.forEach(seg => {
+    const strokeDash = (seg.value / total) * C;
+    const strokeOffset = C - strokeDash + currentOffset;
+    circles += `<circle cx="60" cy="60" r="${R}" 
+      fill="transparent" 
+      stroke="${seg.color}" 
+      stroke-width="12" 
+      stroke-dasharray="${C}" 
+      stroke-dashoffset="${strokeOffset}" 
+      transform="rotate(-90 60 60)"
+      title="${seg.label}: ${seg.value.toFixed(1)} ${_t('legend_unit')}">
+    </circle>`;
+    currentOffset -= strokeDash;
+  });
+
+  const usedPct = ((used / total) * 100).toFixed(0);
+
+  return `
+    <div class="donut-container">
+      <div class="donut-svg-wrap">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="${R}" fill="transparent" stroke="var(--line)" stroke-width="12"></circle>
+          ${circles}
+        </svg>
+        <div class="donut-text">
+          <span style="font-size:22px; font-weight:700; color:var(--ink);">${usedPct}%</span>
+          <span style="font-size:10px; color:var(--sub); font-weight:700; margin-top:-2px; text-transform:uppercase; letter-spacing:0.5px;">${_t('legend_used')}</span>
+        </div>
+      </div>
+      <div class="donut-legend">
+        ${segments.map(seg => `
+          <div style="display:flex; align-items:center; justify-content:space-between; font-size:13px; padding: 2px 0;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="dot" style="background:${seg.color}; width:8px; height:8px; border-radius:50%; margin:0;"></span>
+              <span style="color:var(--ink); font-weight:600;">${seg.label}</span>
+            </div>
+            <span style="font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums;">${seg.value.toFixed(1)} ${_t('legend_unit')}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderSystem(s, sm){
+  const total = parseGB(s.disk_total) || 1;
+  const used = parseGB(s.disk_used);
+  const ts = sm && sm.tier_stats;
+  const g = ts ? parseGB(ts.green) : 0;
+  const y = ts ? parseGB(ts.yellow) : 0;
+  const r = ts ? parseGB(ts.red) : 0;
+  const other = Math.max(0, used - g - y - r);
+  
+  let bar;
+  if(g > 0 || y > 0 || r > 0){
+    const seg=(v,cls,label)=> v>0?`<i class="${cls}" style="width:${(v/total*100).toFixed(2)}%" title="${label}: ~${v.toFixed(1)} GB"></i>`:'';
+    bar = seg(g,'seg-green',_t('legend_green'))+seg(y,'seg-yellow',_t('legend_yellow'))+seg(r,'seg-red',_t('legend_red'))+seg(other,'seg-blue',_t('legend_blue'));
+  } else {
+    bar = `<i class="used" style="width:${(used/total*100).toFixed(2)}%"></i>`;
+  }
+  
+  const fmtGB = v => v>0?`~ ${v.toFixed(1)} GB`:'-';
+  const otherPill = other>0?`<span class="pill"><span class="dot blue"></span>${_t('legend_blue')} <b>${fmtGB(other)}</b></span>`:'';
+  
+  let pills='';
+  if(sm && sm.tier_stats){
+    pills=`<div class="pills">
+      <span class="pill"><span class="dot green"></span>${_t('legend_green')} <b>${fmtGB(g)}</b></span>
+      <span class="pill"><span class="dot yellow"></span>${_t('legend_yellow')} <b>${fmtGB(y)}</b></span>
+      <span class="pill"><span class="dot red"></span>${_t('legend_red')} <b>${fmtGB(r)}</b></span>
+      ${otherPill}
+    </div>`;
+  }
+  
+  const allDisks = s.disks || [];
+  const others = allDisks.filter(d => d.name !== s.disk_name);
+  const barLabel = _t('bar_label', {drive: esc(s.disk_name||'')});
+    
+  const otherDisksBlock = others.length ? `<div class="other-disks">
+      <div class="label">${_t('other_drives')}</div>
+      ${others.map(d=>{
+        const u=parseGB(d.used), t=parseGB(d.total)||1;
+        const pct=Math.min(100, u/t*100).toFixed(1);
+        return `<div class="odisk"><span class="odisk-name">${esc(d.name)}</span>
+          <div class="obar"><i style="width:${pct}%"></i></div>
+          <span class="odisk-num">${esc(d.used)} / ${esc(d.total)}</span></div>`;
+      }).join('')}</div>` : '';
+      
+  return `<div class="overview">
+    <div class="overview-grid">
+      <div>
+        <div class="stats">
+          <div class="stat"><div class="k">${_t('stat_capacity')}</div><div class="v">${esc(s.disk_total)}</div></div>
+          <div class="stat"><div class="k">${_t('stat_used')}</div><div class="v">${esc(s.disk_used)}</div></div>
+          <div class="stat"><div class="k">${_t('stat_available')}</div><div class="v">${esc(s.disk_free)}</div></div>
+        </div>
+        <div class="bar-container">
+          <div class="bar-label">${barLabel}</div>
+          <div class="bar">${bar}</div>
+        </div>
+        ${pills}
+      </div>
+      <div>
+        ${renderDonutChart(s, sm)}
+      </div>
+    </div>
+    ${otherDisksBlock}
+    <div class="sysgrid">
+      <div><span>OS</span>${esc(s.os)} (${esc(s.build)})</div>
+      <div><span>Architecture</span>${esc(s.arch)}</div>
+      <div><span>File System</span>${esc(s.filesystem)}</div>
+      <div><span>User</span>${esc(s.user)}</div>
+      <div><span>Home Directory</span>${esc(s.home)}</div>
+    </div>
+  </div>`;
+}
+
+function renderTop5(rows){
+  if(!rows||!rows.length) return '';
+  const body = rows.map(r=>`<tr>
+    <td>${esc(r.rank)}</td>
+    <td><span class="dot ${esc(r.tier)}"></span></td>
+    <td class="size">${esc(cleanSize(r.size))}</td>
+    <td class="type">${esc(r.type)}</td>
+    <td><b>${esc(r.name)}</b></td>
+    <td class="path">${esc(r.path)}</td>
+    <td>${esc(r.note)}</td>
+  </tr>`).join('');
+  return `<div class="sec"><h2>${_t('sec_top5')}</h2>
+    <div class="table-scroll"><table><thead><tr>
+      <th>${_t('th_rank')}</th>
+      <th>${_t('th_tier')}</th>
+      <th>${_t('th_size')}</th>
+      <th>${_t('th_type')}</th>
+      <th>${_t('th_name')}</th>
+      <th>${_t('th_path')}</th>
+      <th>${_t('th_desc')}</th>
+    </tr></thead>
+    <tbody>${body}</tbody></table></div></div>`;
+}
+
+function renderGreen(items){
+  if(!items||!items.length) return '';
+  const cards = items.map(it=>{
+    const procs=(it.kill_processes&&it.kill_processes.length)
+      ? `<div class="field"><div class="label">${_t('procs_to_close')}</div>${it.kill_processes.map(p=>`<span class="tag">${esc(p)}</span>`).join('')}</div>`
+      : `<div class="field"><div class="label">${_t('procs_to_close')}</div><span class="note">${_t('procs_none')}</span></div>`;
+    const cmds=(it.commands||[]).map(cmdBlock).join('');
+    return card('green', it.name, it.size_estimate, it.path,
+      procs + `<div class="field"><div class="label">${_t('terminal_cmds')}</div>${cmds}</div>` + delBlock(it));
+  }).join('');
+  return section(_t('sec_green'), items.length, cards, greenBatchActions(items));
+}
+
+function greenBatchActions(items){
+  if(!DELETE) return '';
+  if(!items.some(it => it.trash_paths && it.trash_paths.length)) return '';
+  return `<span class="sec-actions">
+    <button class="del-btn trash" onclick="doBatch(this,'trash')">${_t('btn_trash_all')}</button>
+    <button class="del-btn danger" onclick="doBatch(this,'rm')">${_t('btn_delete_all')}</button>
+    <span class="del-status sec-status"></span>
+  </span>`;
+}
+
+function doBatch(btn, mode){
+  const secActions = btn.closest('.sec-actions');
+  const sec = btn.closest('.sec');
+  const status = secActions.querySelector('.del-status');
+  const wraps = [...sec.querySelectorAll('.item.green .del-actions')]
+    .filter(w => !w.closest('.item').classList.contains('cleaned'));
+  if(!wraps.length){ status.textContent=_t('status_empty'); status.className='del-status sec-status'; return; }
+  const allPaths=[]; let gb=0;
+  wraps.forEach(w=>{
+    JSON.parse(decodeURIComponent(escape(atob(w.dataset.paths)))).forEach(p=>allPaths.push(p));
+    const sz=w.closest('.item').querySelector('.item-size'); if(sz) gb+=parseGB(sz.textContent);
+  });
+  const verb = mode==='rm' ? _t('verb_delete') : _t('verb_trash');
+  const sizeStr = gb>0 ? `, totaling ~ ${gb.toFixed(1)} GB` : '';
+  const confirmMsg = _t('confirm_batch', {
+    count: wraps.length,
+    verb: verb,
+    paths: allPaths.length,
+    size: sizeStr
+  });
+  if(!confirm(confirmMsg)) return;
+  postAction(secActions, allPaths, mode).then(res=>{
+    if(res.ok){
+      status.textContent = mode==='rm' ? _t('status_done_delete', {count: wraps.length}) : _t('status_done_trash', {count: wraps.length});
+      status.className='del-status sec-status ok';
+      wraps.forEach(w=>{
+        const item=w.closest('.item'); item.classList.add('cleaned');
+        const badge=item.querySelector('.item-head .item-badge');
+        if(badge) badge.textContent = mode==='rm' ? (currentLang === 'zh' ? '已删除' : 'Deleted') : (currentLang === 'zh' ? '已入废纸篓' : 'Trashed');
+        const ist=w.querySelector('.del-status');
+        if(ist){ ist.textContent = mode==='rm'? '✓' : '✓'; ist.className='del-status ok'; }
+        w.querySelectorAll('.del-btn.trash,.del-btn.danger').forEach(b=>b.remove());
+      });
+      secActions.querySelectorAll('.del-btn').forEach(b=>b.remove());
+    } else { status.textContent='✗ '+(res.error||'Failed'); status.className='del-status sec-status err'; }
+  });
+}
+
+function delBlock(it){
+  if(!DELETE || !it.trash_paths || !it.trash_paths.length) return '';
+  const payload = btoa(unescape(encodeURIComponent(JSON.stringify(it.trash_paths))));
+  return `<div class="field del-actions" data-paths="${payload}">
+    <div class="label">${_t('one_click_actions', {count: it.trash_paths.length})}</div>
+    <div class="del-row">
+      <button class="del-btn trash" onclick="doDelete(this,'trash')">${_t('btn_trash')}</button>
+      <button class="del-btn danger" onclick="doDelete(this,'rm')">${_t('btn_delete')}</button>
+      <span class="del-status"></span>
+    </div>
+    <div class="del-note">${_t('trash_all_note')}</div>
+  </div>`;
+}
+
+function postAction(wrap, paths, mode){
+  const status = wrap.querySelector('.del-status');
+  const btns = wrap.querySelectorAll('.del-btn');
+  status.textContent = _t('status_processing'); status.className='del-status';
+  btns.forEach(b=>b.disabled=true);
+  return fetch(DELETE.endpoint, {method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({token:DELETE.token, paths, mode})})
+    .then(r=>r.json()).then(res=>{ btns.forEach(b=>b.disabled=false); return res; })
+    .catch(e=>{ btns.forEach(b=>b.disabled=false); return {ok:false, error:'Connection error: '+e}; });
+}
+
+function doDelete(btn, mode){
+  const wrap = btn.closest('.del-actions');
+  const paths = JSON.parse(decodeURIComponent(escape(atob(wrap.dataset.paths))));
+  const verb = mode==='rm' ? _t('verb_delete') : _t('verb_trash');
+  const confirmMsg = _t('confirm_single', { count: paths.length, verb: verb }) + paths.join('\n');
+  if(!confirm(confirmMsg)) return;
+  postAction(wrap, paths, mode).then(res=>{
+    const status = wrap.querySelector('.del-status');
+    if(res.ok){
+      status.textContent = mode==='rm' ? _t('status_done_delete_single') : _t('status_done_trash_single');
+      status.className='del-status ok';
+      wrap.querySelectorAll('.del-btn.trash,.del-btn.danger').forEach(b=>b.remove());
+      const item = wrap.closest('.item');
+      if(item){
+        item.classList.add('cleaned');
+        const badge = item.querySelector('.item-head .item-badge');
+        if(badge) badge.textContent = mode==='rm' ? (currentLang === 'zh' ? '已删除' : 'Deleted') : (currentLang === 'zh' ? '已入废纸篓' : 'Trashed');
+      }
+    } else { status.textContent='✗ '+(res.error||'Failed'); status.className='del-status err'; }
+  });
+}
+
+function doOpen(btn){
+  const wrap = btn.closest('.del-actions');
+  const paths = JSON.parse(decodeURIComponent(escape(atob(wrap.dataset.open))));
+  postAction(wrap, paths, 'open').then(res=>{
+    const status = wrap.querySelector('.del-status');
+    if(res.ok){ status.textContent=_t('status_done_open', {fm: FM}); status.className='del-status ok'; }
+    else { status.textContent='✗ '+(res.error||'Failed'); status.className='del-status err'; }
+  });
+}
+
+const b64 = o => btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+
+function renderYellow(items){
+  if(!items||!items.length) return '';
+  const cards = items.map(it=>card('yellow', it.name, it.size, it.path,
+    `<div class="field"><div class="label">${_t('label_content_profile')}</div>${esc(it.content_profile)}</div>
+     <div class="field"><div class="label">${_t('label_why_manual')}</div>${esc(it.why_manual)}</div>
+     <div class="field"><div class="label">${_t('label_disposal')}</div>${esc(it.disposal)}</div>
+     <div class="risk">⚠️ ${esc(it.risk)}</div>` + yellowActions(it))).join('');
+  return section(_t('sec_yellow'), items.length, cards);
+}
+
+function yellowActions(it){
+  if(!DELETE) return '';
+  const hasTrash = it.trash_paths && it.trash_paths.length;
+  const trashBtn = hasTrash
+    ? `<button class="del-btn trash" onclick="doDelete(this,'trash')">${_t('btn_trash')} (Safe parts)</button>` : '';
+  const trashNote = hasTrash ? _t('trash_only_note') : '';
+  const openNote = it.open_note ? esc(it.open_note) : '';
+  
+  const formattedReveal = _t('reveal_note', {
+    fm: FM,
+    trash_note: trashNote,
+    open_note: openNote
+  });
+  return `<div class="field del-actions" data-paths="${hasTrash?b64(it.trash_paths):''}" data-open="${b64([it.path])}">
+    <div class="label">${_t('review_options')}</div>
+    <div class="del-row">
+      <button class="del-btn open" onclick="doOpen(this)">${_t('btn_open', {fm: FM})}</button>
+      ${trashBtn}
+      <span class="del-status"></span>
+    </div>
+    <div class="del-note">${formattedReveal}</div>
+  </div>`;
+}
+
+function renderRed(items){
+  if(!items||!items.length) return '';
+  const cards = items.map(it=>card('red', it.name, it.size||'', it.path,
+    `<div class="field"><div class="label">${_t('label_why_keep')}</div>${esc(it.why_keep)}</div>
+     <div class="field"><div class="label">${_t('label_indirect')}</div>${esc(it.indirect_release)}</div>
+     ${it.auto_reclaim?`<div class="field"><div class="label">${_t('label_auto_reclaim')}</div>${esc(it.auto_reclaim)}</div>`:''}` + redActions(it))).join('');
+  return section(_t('sec_red'), items.length, cards);
+}
+
+function redActions(it){
+  if(!DELETE || !it.app_paths || !it.app_paths.length) return '';
+  return `<div class="field del-actions" data-open="${b64(it.app_paths)}">
+    <div class="label">${_t('review_action')}</div>
+    <div class="del-row">
+      <button class="del-btn open" onclick="doOpen(this)">${_t('btn_open_app', {fm: FM})}</button>
+      <span class="del-status"></span>
+    </div>
+    <div class="del-note">${_t('locate_note', {fm: FM})}</div>
+  </div>`;
+}
+
+function card(tier,name,size,path,inner){
+  return `<div class="item ${tier}">
+    <div class="item-head" onclick="this.parentNode.classList.toggle('open')">
+      <span class="dot ${tier}"></span>
+      <span class="item-name">${esc(name)}</span>
+      <span class="item-badge"></span>
+      ${size?`<span class="item-size">${esc(cleanSize(size))}</span>`:''}
+      <span class="chev">▶</span>
+    </div>
+    <div class="item-body">
+      <div class="item-path">${esc(path)}</div>
+      ${inner}
+    </div></div>`;
+}
+
+function section(title,count,inner,actions){
+  return `<div class="sec"><h2>${esc(title)} <span class="count">${_t('items_count', {count: count})}</span>${actions||''}</h2>${inner}</div>`;
+}
+
+const sumList=a=>(a&&a.length)?`<ul>${a.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'';
+
+function renderPriority(sm){
+  if(!sm || (!sm.priority && !sm.overview)) return '';
+  const intro = sm.overview?`<p class="lead">${esc(sm.overview)}</p>`:'';
+  const body = sm.priority?(Array.isArray(sm.priority)?sumList(sm.priority):`<p>${esc(sm.priority)}</p>`):'';
+  return `<div class="sec"><h2>${_t('sec_priority')}</h2><div class="summary">${intro}${body}</div></div>`;
+}
+
+function renderLongTerm(sm){
+  if(!sm || !sm.long_term || !sm.long_term.length) return '';
+  return `<div class="sec"><h2>${_t('sec_longterm')}</h2><div class="summary">${sumList(sm.long_term)}</div></div>`;
+}
+
+function renderDenied(){
+  if(!DATA.denied||!DATA.denied.length) return '';
+  return `<div class="denied"><b>${_t('sec_denied')}</b><br>${DATA.denied.map(esc).join('<br>')}</div>`;
+}
+
+// Main render orchestrator
+function renderApp() {
+  // Title & Metadata localization
+  document.getElementById('page-title').textContent = _t('title');
+  document.getElementById('meta').textContent = _t('meta', {
+    date: DATA.generated_at,
+    time: DATA.scan_seconds || '?'
+  });
+  
+  // Footer localization
+  document.getElementById('footer').innerHTML = 
+    `${_t('footer_text')}<a href="mailto:support@tkhubs.com" style="color:var(--accent); text-decoration:none; font-weight:700;">support@tkhubs.com</a>` +
+    `<br>${_t('footer_note')}`;
+
+  const app = document.getElementById('app');
+  app.innerHTML = renderSystem(DATA.system, DATA.summary)
+    + renderTop5(DATA.top5)
+    + renderPriority(DATA.summary)
+    + renderGreen(DATA.green)
+    + renderYellow(DATA.yellow)
+    + renderRed(DATA.red)
+    + renderDenied()
+    + renderLongTerm(DATA.summary);
+}
+
+// Initialization
+changeTheme(currentTheme);
+changeLang(currentLang);
+
+// Copy actions logic (delegated)
+document.addEventListener('click', e=>{
+  const b=e.target.closest('.copy'); if(!b) return;
+  e.stopPropagation();
+  const text=decodeURIComponent(escape(atob(b.dataset.cmd)));
+  navigator.clipboard.writeText(text).then(()=>{
+    const oldText = b.textContent;
+    b.textContent = currentLang === 'zh' ? '已复制' : 'Copied';
+    b.classList.add('done');
+    setTimeout(()=>{b.textContent=oldText;b.classList.remove('done');},1500);
+  });
+});
+</script>
+</body>
+</html>

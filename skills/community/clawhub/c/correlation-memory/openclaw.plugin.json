@@ -1,0 +1,12 @@
+{
+  "id": "correlation-memory",
+  "name": "Correlation Memory Search",
+  "description": "Correlation-aware memory search — automatic decision-context retrieval with keyword matching, confidence filtering, and rule lifecycle management",
+  "version": "2.1.0",
+  "kind": "memory",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

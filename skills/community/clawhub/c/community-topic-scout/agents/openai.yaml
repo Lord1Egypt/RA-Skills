@@ -1,0 +1,4 @@
+interface:
+  display_name: "Community Topic Scout"
+  short_description: "Choose topic, name, promise, and first proof sprint"
+  default_prompt: "Use $community-topic-scout to compare my skills and audience against public benchmark patterns, then suggest community topics, names, a proof promise, and a 7-day validation challenge."

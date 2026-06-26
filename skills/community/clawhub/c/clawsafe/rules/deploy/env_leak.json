@@ -1,0 +1,43 @@
+{
+  "name": "Environment Variable Leak Detection",
+  "category": "env_leak",
+  "description": "检测环境变量敏感信息泄露",
+  "severity": "high",
+  "patterns": [
+    {
+      "id": "env_secret",
+      "pattern": "(?:process\\.env|os\\.environ|env\\[)(?:SECRET|PASSWORD|PASSWD|PWD|TOKEN|KEY|API_|AWS_|DB_|DATABASE_|CREDENTIAL)",
+      "weight": 0.9,
+      "severity": "critical",
+      "description": "敏感环境变量访问"
+    },
+    {
+      "id": "env_log",
+      "pattern": "(?:console\\.(?:log|info|debug|error)|logger|log\\().*(?:process\\.env|env\\[)",
+      "weight": 0.6,
+      "severity": "medium",
+      "description": "环境变量日志泄露"
+    },
+    {
+      "id": "env_export",
+      "pattern": "^\\s*(?:export|set)\\s+[A-Z_]*(?:SECRET|PASSWORD|TOKEN|KEY)",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "导出敏感环境变量"
+    },
+    {
+      "id": "dotenv_expose",
+      "pattern": "(?:dotenv|load_dotenv|config\\()).*(?:\\.env|secrets)",
+      "weight": 0.5,
+      "severity": "medium",
+      "description": "Dotenv 配置"
+    },
+    {
+      "id": "hardcoded_secret",
+      "pattern": "(?:password|secret|token|key)\\s*[:=]\\s*[\"'][^\"']{8,}[\"']",
+      "weight": 0.85,
+      "severity": "critical",
+      "description": "硬编码密钥"
+    }
+  ]
+}

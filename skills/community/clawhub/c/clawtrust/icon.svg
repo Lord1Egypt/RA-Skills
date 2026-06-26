@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D0F1A"/>
+      <stop offset="100%" stop-color="#111426"/>
+    </linearGradient>
+    <linearGradient id="claw" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B2B"/>
+      <stop offset="100%" stop-color="#E8440A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5C4"/>
+      <stop offset="100%" stop-color="#00BFA8"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100" height="100" rx="18" fill="url(#bg)"/>
+
+  <!-- Left claw arm -->
+  <path d="M 34 56 L 18 40" stroke="url(#claw)" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <!-- Left claw upper jaw -->
+  <path d="M 18 40 Q 8 30 10 20 Q 13 12 20 18 L 24 30" fill="url(#claw)" filter="url(#glow)"/>
+  <!-- Left claw lower jaw -->
+  <path d="M 18 40 Q 6 38 5 28 Q 5 20 13 22 L 22 34" fill="#C4380A"/>
+
+  <!-- Right claw arm -->
+  <path d="M 66 56 L 82 40" stroke="url(#claw)" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <!-- Right claw upper jaw -->
+  <path d="M 82 40 Q 92 30 90 20 Q 87 12 80 18 L 76 30" fill="url(#claw)" filter="url(#glow)"/>
+  <!-- Right claw lower jaw -->
+  <path d="M 82 40 Q 94 38 95 28 Q 95 20 87 22 L 78 34" fill="#C4380A"/>
+
+  <!-- Body / carapace -->
+  <ellipse cx="50" cy="60" rx="20" ry="16" fill="url(#claw)"/>
+
+  <!-- Head -->
+  <ellipse cx="50" cy="44" rx="14" ry="11" fill="url(#claw)"/>
+
+  <!-- Eyes (teal accent) -->
+  <circle cx="44" cy="40" r="3.5" fill="url(#accent)"/>
+  <circle cx="56" cy="40" r="3.5" fill="url(#accent)"/>
+  <circle cx="44" cy="40" r="1.5" fill="#0D0F1A"/>
+  <circle cx="56" cy="40" r="1.5" fill="#0D0F1A"/>
+
+  <!-- Antennae -->
+  <line x1="44" y1="33" x2="38" y2="22" stroke="url(#claw)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="56" y1="33" x2="62" y2="22" stroke="url(#claw)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="38" cy="22" r="2" fill="url(#accent)"/>
+  <circle cx="62" cy="22" r="2" fill="url(#accent)"/>
+
+  <!-- Tail segments -->
+  <ellipse cx="50" cy="75" rx="15" ry="8" fill="#C4380A"/>
+  <ellipse cx="50" cy="84" rx="11" ry="6" fill="url(#claw)"/>
+  <!-- Tail fan -->
+  <ellipse cx="38" cy="91" rx="8" ry="4" fill="#C4380A" transform="rotate(-15 38 91)"/>
+  <ellipse cx="46" cy="93" rx="7" ry="4" fill="url(#claw)" transform="rotate(-5 46 93)"/>
+  <ellipse cx="54" cy="93" rx="7" ry="4" fill="url(#claw)" transform="rotate(5 54 93)"/>
+  <ellipse cx="62" cy="91" rx="8" ry="4" fill="#C4380A" transform="rotate(15 62 91)"/>
+
+  <!-- Walking legs left -->
+  <line x1="33" y1="57" x2="20" y2="65" stroke="#C4380A" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="33" y1="63" x2="19" y2="73" stroke="#C4380A" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Walking legs right -->
+  <line x1="67" y1="57" x2="80" y2="65" stroke="#C4380A" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="67" y1="63" x2="81" y2="73" stroke="#C4380A" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Trust shield badge (bottom-right) -->
+  <circle cx="78" cy="78" r="12" fill="#0D0F1A" stroke="url(#accent)" stroke-width="1.5"/>
+  <path d="M 78 70 L 71 73 L 71 78 C 71 82 74.5 85.5 78 87 C 81.5 85.5 85 82 85 78 L 85 73 Z" fill="url(#accent)" opacity="0.9"/>
+  <!-- Check mark -->
+  <path d="M 74 78 L 77 81 L 83 74" stroke="#0D0F1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

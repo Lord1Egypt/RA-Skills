@@ -1,0 +1,19 @@
+# Corpus Search - Requirements
+
+# ChromaDB 向量数据库
+chromadb>=0.5.0
+
+# 嵌入模型（语义向量化）
+sentence-transformers>=2.2.2
+
+# 配置文件解析
+pyyaml>=6.0.1
+
+# CLI 美化输出
+rich>=13.7.0
+
+# 进度条支持
+tqdm>=4.65.0
+
+# 缓存机制
+diskcache>=5.6.3

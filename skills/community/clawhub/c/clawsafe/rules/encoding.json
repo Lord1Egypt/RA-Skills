@@ -1,0 +1,91 @@
+{
+  "name": "Encoding Obfuscation",
+  "category": "encoding",
+  "description": "检测使用编码/混淆方式隐藏恶意内容的攻击",
+  "patterns": [
+    {
+      "id": "base64",
+      "pattern": "(?:base64|base-64|b64)\\s*[:=]?\\s*[A-Za-z0-9+/=]{8,}",
+      "weight": 0.7,
+      "severity": "medium"
+    },
+    {
+      "id": "hex",
+      "pattern": "(?:hex(?:adecimal)?|\\x)\\s*[:=]?\\s*(?:0x)?[0-9a-fA-F]{8,}",
+      "weight": 0.6,
+      "severity": "medium"
+    },
+    {
+      "id": "unicode",
+      "pattern": "\\\\u[0-9a-fA-F]{4}|\\\\x[0-9a-fA-F]{2}",
+      "weight": 0.5,
+      "severity": "low"
+    },
+    {
+      "id": "url_encode",
+      "pattern": "%(?:[0-9a-fA-F]{2}){2,}",
+      "weight": 0.5,
+      "severity": "low"
+    },
+    {
+      "id": "rot13",
+      "pattern": "(?:rot13|rotate\\s*13)\\s*[:=]?\\s*[A-Za-z]{8,}",
+      "weight": 0.5,
+      "severity": "low"
+    },
+    {
+      "id": "binary",
+      "pattern": "01[01\\s]{16,}",
+      "weight": 0.5,
+      "severity": "low"
+    },
+    {
+      "id": "morse",
+      "pattern": "[.-]{5,}(?:\\s+[.-]{5,}){2,}",
+      "weight": 0.3,
+      "severity": "low"
+    },
+    {
+      "id": "brainfuck",
+      "pattern": "^[<>+\\-\\[\\].]{10,}$",
+      "weight": 0.4,
+      "severity": "low"
+    },
+    {
+      "id": "reverse_text",
+      "pattern": "^(?:esreveR|tisrevinu|der\\s+)",
+      "weight": 0.3,
+      "severity": "low"
+    },
+    {
+      "id": "char_code",
+      "pattern": "(?:char(?:acter)?\\s*(?:code|at)|String\\.fromCharCode)",
+      "weight": 0.5,
+      "severity": "low"
+    },
+    {
+      "id": "base32",
+      "pattern": "(?:base32|base-32)\\s*[:=]?\\s*[A-Z2-7=]{8,}",
+      "weight": 0.6,
+      "severity": "medium"
+    },
+    {
+      "id": "decimal",
+      "pattern": "(?:\\d{3,}\\s+){5,}",
+      "weight": 0.3,
+      "severity": "low"
+    },
+    {
+      "id": "obfuscation_keyword",
+      "pattern": "(?:decode|decrypt|encode|encrypt)\\s+(?:this|these|it|the)\\s+(?:for|to)\\s+(?:me|us)",
+      "weight": 0.6,
+      "severity": "medium"
+    },
+    {
+      "id": "execute_code",
+      "pattern": "(?:eval|exec|execute|run)\\s*\\([^)]*(?:base64|hex|decode|encode)",
+      "weight": 0.8,
+      "severity": "high"
+    }
+  ]
+}

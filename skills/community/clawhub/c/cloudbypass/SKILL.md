@@ -1,35 +1,33 @@
 ---
-name: "cloudbypass"
-description: "Use Cloudbypass API (穿云API/穿云) to fetch pages protected by Cloudflare/Turnstile/JS challenge. Use when normal requests fail with challenge/403 and compliant..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cloudbypass"
-sourceUrl: "https://clawhub.ai/skills/cloudbypass"
+name: cloudbypass
+description: Use Cloudbypass API (穿云API/穿云) to fetch pages protected by Cloudflare/Turnstile/JS challenge. Use when normal requests fail with challenge/403 and compliant protected-page retrieval is required. Requires CLOUDBYPASS_APIKEY; V2/V2S also require CLOUDBYPASS_PROXY.
 ---
 
-# cloudbypass
+Use the bundled script to call Cloudbypass API.
 
-> Use Cloudbypass API (穿云API/穿云) to fetch pages protected by Cloudflare/Turnstile/JS challenge. Use when normal requests fail with challenge/403 and compliant...
+- Script: `{baseDir}/scripts/cloudbypass_request.js`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cloudbypass`
-- **Source URL:** [https://clawhub.ai/skills/cloudbypass](https://clawhub.ai/skills/cloudbypass)
+Required env:
+- `CLOUDBYPASS_APIKEY` (required)
+- `CLOUDBYPASS_PROXY` (required for V2/V2S)
+- `CLOUDBYPASS_PART` (optional, default: `0`)
+- `CLOUDBYPASS_SITEKEY` (optional)
 
-## Overview
+Security / usage notes:
+- API key is sent to `api.cloudbypass.com` to perform requests and may incur billing.
+- Review legal/ethical permissions before bypassing site protections.
+- For autonomous usage, scope targets and monitor/rotate keys.
 
+## Quick usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cloudbypass
-```
+```javascript
+const skill = await openclaw.getSkill('cloudbypass');
+
+// V1 (simple)
+const r1 = await skill.get('https://example.com');
+
+// V2 (challenge-heavy; proxy required)
+const r2 = await skill.requestV2({
+url: 'https://example.com',
+proxy: process.env.CLOUDBYPASS_PROXY
+});

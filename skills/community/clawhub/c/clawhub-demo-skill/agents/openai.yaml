@@ -1,0 +1,7 @@
+interface:
+  display_name: "ClawHub Demo Skill"
+  short_description: "Minimal skill for ClawHub publish tests"
+  default_prompt: "Use $clawhub-demo-skill to confirm the skill is installed and echo a short phrase."
+
+policy:
+  allow_implicit_invocation: true

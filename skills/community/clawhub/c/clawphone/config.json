@@ -1,0 +1,13 @@
+{
+  "name": "ClawPhone",
+  "version": "1.0.0",
+  "description": "为 OpenClaw Agent 提供类似 ICQ 的即时通讯能力——注册 13 位数字号码、呼叫、接收通知",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/coolhitbird/clawphone",
+  "repository": "https://github.com/coolhitbird/clawphone.git",
+  "keywords": ["communication", "instant-messaging", "agent-collaboration"],
+  "author": "ClawMesh Team",
+  "dependencies": {
+    "clawmesh": "^1.0.0"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "logLevel": "info",
+  "layers": {
+    "llm": {
+      "enabled": true,
+      "rules": ["injection", "jailbreak", "prompt_leak", "encoding"]
+    },
+    "web": {
+      "enabled": true,
+      "rules": ["sql_injection", "xss", "csrf", "ssrf"]
+    },
+    "api": {
+      "enabled": true,
+      "rules": ["key_exposure", "rate_limit", "auth"]
+    },
+    "supply_chain": {
+      "enabled": true,
+      "rules": ["deps"]
+    },
+    "deploy": {
+      "enabled": true,
+      "rules": ["env_leak", "debug_info"]
+    }
+  },
+  "detection": {
+    "confidenceThreshold": 0.6,
+    "minMatchCount": 1
+  },
+  "actions": {
+    "onThreatDetected": "block",
+    "onUncertain": "log"
+  }
+}

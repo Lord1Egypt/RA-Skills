@@ -1,35 +1,148 @@
 ---
-name: "识别5300中银行流水样式、识别简版征信、详版征信、企业版征信等各种信贷文件汇总成专业分析报告。"
-description: "解析征信报告、银行流水等信贷文件，返回结构化数据和分析报告地址。当用户需要分析征信报告（详版/简版）、企业征信、银行流水，或者提到信贷文件解析、征信查询、流水分析时使用此技能。用户需提供文件的公网 URL 和分析类型。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/credit-file-analyzer-zhengxin-liushui-ocr"
-sourceUrl: "https://clawhub.ai/skills/credit-file-analyzer-zhengxin-liushui-ocr"
+name: credit-file-analyzer
+description: 解析征信报告、银行流水等信贷文件，返回结构化数据和分析报告地址。当用户需要分析征信报告（详版/简版）、企业征信、银行流水，或者提到信贷文件解析、征信查询、流水分析时使用此技能。用户需提供文件的公网 URL 和分析类型。
 ---
 
-# 识别5300中银行流水样式、识别简版征信、详版征信、企业版征信等各种信贷文件汇总成专业分析报告。
+# 信贷文件分析
 
-> 解析征信报告、银行流水等信贷文件，返回结构化数据和分析报告地址。当用户需要分析征信报告（详版/简版）、企业征信、银行流水，或者提到信贷文件解析、征信查询、流水分析时使用此技能。用户需提供文件的公网 URL 和分析类型。
+通过 ipipei 企业级文件解析接口，对征信报告、银行流水等信贷文件进行自动化解析，返回结构化数据和报告地址。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/credit-file-analyzer-zhengxin-liushui-ocr`
-- **Source URL:** [https://clawhub.ai/skills/credit-file-analyzer-zhengxin-liushui-ocr](https://clawhub.ai/skills/credit-file-analyzer-zhengxin-liushui-ocr)
+## 使用前提
 
-## Overview
+- 需要 Python 3.7+ 环境
+- 需要安装 `requests` 库（`pip install requests`）
 
+## 用户需要提供的信息
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **文件公网 URL** — 文件必须是可公开访问的链接
+2. **分析类型** — 以下四选一：
+   - `详版征信` — PDF 不超过 100MB
+   - `简版征信` — PDF 不超过 15MB
+   - `企业征信` — 不超过 100MB
+   - `流水` — PDF 不超过 100MB
+3. **文件格式**（可选，默认 pdf）— `pdf` / `img` / `excel`
+4. **PDF 密码**（可选）— 如果 PDF 有密码保护则需提供
+
+## 操作步骤
+
+收集到用户信息后，运行脚本完成分析：
+
 ```bash
-hermes skills install clawhub/credit-file-analyzer-zhengxin-liushui-ocr
+python scripts/analyze.py --url "<文件URL>" --type "<分析类型>"
 ```
+
+完整参数示例：
+
+```bash
+# 简版征信 PDF
+python scripts/analyze.py --url "https://example.com/credit.pdf" --type "简版征信"
+
+# 详版征信 PDF（带密码）
+python scripts/analyze.py --url "https://example.com/detail.pdf" --type "详版征信" --password "abc123"
+
+# 银行流水 PDF
+python scripts/analyze.py --url "https://example.com/bank_flow.pdf" --type "流水"
+
+# 企业征信
+python scripts/analyze.py --url "https://example.com/corp.pdf" --type "企业征信"
+
+# 图片类型（多张图片用英文逗号分隔）
+python scripts/analyze.py \
+  --url "https://example.com/a.png,https://example.com/b.png" \
+  --type "简版征信" \
+  --file-type img
+```
+
+## 输出说明
+
+脚本会输出 JSON 格式的解析结果，关键字段：
+
+| 字段 | 说明 |
+|------|------|
+| reportAddress | 分析报告的在线地址（最重要） |
+| creditMessage | 流水、企业征信的结构化解析结果 |
+| creditMessage_new | 简版征信、详版征信的结构化解析结果 |
+| analysisReport | AI 分析内容（部分类型支持） |
+| isSuccess | 状态：0=解析中，1=成功，2=失败 |
+| errorMessage | 失败时的错误信息 |
+| fileName | 文件名 |
+| pageCount | 页数 |
+
+向用户展示结果时，优先呈现 `reportAddress`（报告链接），然后根据分析类型展示对应的结构化数据：
+- 详版征信 / 简版征信 → 查看 `creditMessage_new`
+- 企业征信 / 流水 → 查看 `creditMessage`
+
+## 数据分析（重要）
+
+拿到结构化数据后，必须为用户做一次专业的信贷分析解读，不要只展示原始 JSON。按以下框架逐项分析：
+
+### 征信报告分析（详版/简版征信）
+
+从 `creditMessage_new` 中提取并分析：
+
+1. **基本信息概览** — 姓名、证件号（脱敏）、婚姻状况、工作单位等
+2. **信贷账户总览** — 贷款笔数、信用卡张数、已结清/未结清数量、总授信额度、已用额度、使用率
+3. **逾期情况分析** — 当前是否有逾期、历史逾期次数、最长逾期期数、逾期金额，给出风险等级判断（低/中/高）
+4. **负债分析** — 当前总负债、月还款额、负债收入比（如有收入信息）、是否存在多头借贷
+5. **查询记录分析** — 近 3 个月/6 个月/12 个月的查询次数、查询机构类型（银行/消金/小贷）、是否存在频繁查询（硬查询过多是负面信号）
+6. **担保情况** — 是否有对外担保、担保金额
+7. **综合评估** — 用 2-3 句话给出整体信用状况判断，指出主要风险点和亮点
+
+### 企业征信分析
+
+从 `creditMessage` 中提取并分析：
+
+1. **企业基本信息** — 企业名称、统一社会信用代码、成立日期、注册资本、法定代表人
+2. **信贷记录** — 贷款笔数、授信总额、余额、是否有逾期或不良
+3. **对外担保** — 担保笔数和金额
+4. **综合评估** — 企业信用状况总结
+
+### 银行流水分析
+
+从 `creditMessage` 中提取并分析：
+
+1. **账户概况** — 开户行、账号（脱敏）、流水时间范围
+2. **收入分析** — 月均收入、收入稳定性（波动大小）、主要收入来源（工资/转账/经营收入）
+3. **支出分析** — 月均支出、大额支出笔数、主要支出类型
+4. **余额分析** — 日均余额、月末余额趋势（上升/下降/平稳）
+5. **异常交易** — 是否有大额整进整出、频繁转账、深夜交易等可疑模式
+6. **综合评估** — 还款能力判断、现金流健康度
+
+### 分析输出格式
+
+用清晰的中文向用户呈现，格式参考：
+
+```
+📊 征信分析报告
+
+📋 报告链接：[reportAddress]
+
+一、基本信息
+  ...
+
+二、信贷账户总览
+  ...
+
+三、逾期情况 ⚠️ 风险等级：中
+  ...
+
+四、负债分析
+  ...
+
+五、查询记录
+  ...
+
+六、综合评估
+  整体信用状况良好，但近6个月查询次数偏多（共12次），建议...
+```
+
+如果某些字段在返回数据中不存在或为空，跳过该项即可，不要编造数据。
+
+## 注意事项
+
+- 文件解析是异步的，脚本会自动轮询等待结果，通常需要几秒到几十秒
+- 如果轮询超时（默认 60 秒），脚本会输出最后一次查询的状态，用户可稍后重试
+- 图片类型支持多张，URL 之间用英文逗号分隔
+- 如果返回 `actualFileType` 不为空，说明上传的文件类型和实际类型不一致
+- 分析时涉及个人信息必须脱敏处理（身份证号、银行卡号等只显示前后几位）
+- 分析结论要客观，基于数据说话，不要过度推断

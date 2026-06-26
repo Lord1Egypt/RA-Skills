@@ -1,0 +1,22 @@
+[
+  {"schedule": ["0", "2", "*", "*", "*"], "command": "python watchdog.py", "features": [0,0,3,1,0,0,0,0,0,1,0,0,0.5,1,0,0], "label": 1, "quality": 0.73},
+  {"schedule": ["*", "*", "*", "*", "*"], "command": "python script.py", "features": [1,0,0,1,0,0,0,0,0,0,0,0,0.4,1,0,1], "label": 0, "quality": 0.35},
+  {"schedule": ["0", "0", "*", "*", "*"], "command": "cd /app && python heavy.py", "features": [0,0,4,1,1,0,0,0,0,0,0,0,0.7,1,1,0], "label": 0, "quality": 0.25},
+  {"schedule": ["0", "8", "*", "*", "*"], "command": "flock /tmp/lock python script.py", "features": [0,0,4,1,0,0,0,1,0,0,0,0,0.6,0,0,0], "label": 1, "quality": 0.79},
+  {"schedule": ["0", "0", "*", "*", "0"], "command": "python test.py >> /var/log/test.log", "features": [0,0,4,0,0,0,1,0,0,1,1,0,0.5,1,0,0], "label": 1, "quality": 0.82},
+  {"schedule": ["*/15", "*", "*", "*", "*"], "command": "python checker.py", "features": [0,1,1,1,0,0,0,0,0,0,0,0,0.4,0,0,0], "label": 0, "quality": 0.45},
+  {"schedule": ["0", "*/6", "*", "*", "*"], "command": "cd /app && flock /tmp/lock python auto.py", "features": [0,0,4,1,0,0,0,1,0,0,1,0,0.6,0,1,0], "label": 1, "quality": 0.81},
+  {"schedule": ["*", "*", "*", "*", "*"], "command": "flock /tmp/l heavy.py", "features": [1,0,0,1,1,0,0,1,0,0,0,0,0.8,1,0,0], "label": 1, "quality": 0.68},
+  {"schedule": ["0", "0", "*", "*", "*"], "command": "python main.py", "features": [0,0,4,1,0,0,0,0,0,0,0,0,0.5,1,0,0], "label": 0, "quality": 0.42},
+  {"schedule": ["0", "2", "*", "*", "0"], "command": "flock /tmp/a python adversarial.py", "features": [0,0,5,1,0,0,0,1,0,0,0,0,0.7,1,0,0], "label": 1, "quality": 0.79},
+  {"schedule": ["*/5", "*", "*", "*", "*"], "command": "python cron.py >> /var/log/cron.log 2>&1", "features": [0,1,1,1,0,0,1,0,0,1,0,0,0.4,0,0,0], "label": 1, "quality": 0.75},
+  {"schedule": ["0", "0", "*", "*", "*"], "command": "python backup.py 2>&1 | tee /var/log/backup.log", "features": [0,0,4,1,0,0,1,0,0,1,1,0,0.8,1,0,0], "label": 1, "quality": 0.88},
+  {"schedule": ["*/30", "*", "*", "*", "*"], "command": "python health.py", "features": [0,0,2,1,0,0,0,0,0,0,0,0,0.3,0,0,0], "label": 1, "quality": 0.55},
+  {"schedule": ["0", "12", "*", "*", "*"], "command": "flock -n /tmp/lock python task.py >> /var/log/task.log", "features": [0,0,4,1,0,0,0,1,1,1,0,0,0.6,0,0,0], "label": 1, "quality": 0.85},
+  {"schedule": ["*", "*", "*", "*", "*"], "command": "heavy", "features": [1,0,0,1,1,0,0,0,0,0,0,0,0.2,1,1,1], "label": 0, "quality": 0.22},
+  {"schedule": ["0", "3", "*", "*", "*"], "command": "cd /scripts && flock /tmp/morning.lock python morning.py", "features": [0,0,5,1,0,0,0,1,0,0,1,0,0.6,1,1,0], "label": 1, "quality": 0.83},
+  {"schedule": ["0", "0", "*", "*", "*"], "command": "systemctl start service", "features": [0,0,4,0,0,0,0,0,0,0,0,1,0.4,1,0,0], "label": 0, "quality": 0.35},
+  {"schedule": ["0", "4", "*", "*", "*"], "command": "python backup.py >> /var/log/backup.log 2>&1", "features": [0,0,4,1,0,0,1,0,0,1,1,0,0.7,1,0,0], "label": 1, "quality": 0.87},
+  {"schedule": ["*/10", "*", "*", "*", "*"], "command": "flock /tmp/check.lock python check.py", "features": [0,1,1,1,0,0,0,1,0,0,0,0,0.5,0,0,0], "label": 1, "quality": 0.72},
+  {"schedule": ["0", "5", "*", "*", "*"], "command": "python sync.py", "features": [0,0,4,1,0,0,0,0,0,0,0,0,0.4,1,0,0], "label": 1, "quality": 0.60}
+]

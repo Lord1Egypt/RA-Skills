@@ -1,0 +1,19 @@
+# Procedural Memory — Skill Registry
+# Reusable procedures compiled from successful work.
+# New procedures always start as status: draft.
+# Promotion path: draft -> reviewed -> trusted.
+# - reviewed: human-reviewed OR 3 successful executions
+# - trusted: repeatedly validated with no unresolved caveats
+
+procedures: []
+  # Example:
+  # - id: deploy-to-production
+  #   name: "Production Deployment"
+  #   file: deploy-to-production.md
+  #   domain: infrastructure
+  #   status: draft
+  #   successes: 0
+  #   failures: 0
+  #   attempts: 0
+  #   last_used: 2026-03-18
+  #   notes: "Promote to reviewed after human review or 3 successful runs"

@@ -1,0 +1,73 @@
+{
+  "name": "Vue",
+  "version": "3+",
+  "extends": ["typescript"],
+  "priority": 80,
+
+  "rules": {
+    "components": {
+      "definition": "<script setup lang=\"ts\">",
+      "fileNaming": "PascalCase.vue",
+      "folderStructure": "components/[ComponentName]/[ComponentName].vue"
+    },
+
+    "props": {
+      "definition": "defineProps<Props>()",
+      "requiredMarking": "使用 TypeScript 接口定义，必填属性不加 ?",
+      "defaultValues": "使用 withDefaults 函数"
+    },
+
+    "emits": {
+      "definition": "defineEmits<Emits>()",
+      "naming": "kebab-case 事件名"
+    },
+
+    "compositionAPI": {
+      "preferred": true,
+      "message": "优先使用 Composition API + <script setup>"
+    },
+
+    "styling": {
+      "scoped": true,
+      "message": "使用 scoped 或 CSS Modules 避免样式污染",
+      "preferred": "Tailwind CSS / UnoCSS"
+    },
+
+    "naming": {
+      "componentFiles": "PascalCase.vue",
+      "pageFiles": "kebab-case.vue",
+      "props": "camelCase",
+      "emits": "kebab-case"
+    }
+  },
+
+  "patterns": {
+    "composables": {
+      "enabled": true,
+      "location": "src/composables/",
+      "naming": "useXxx.ts",
+      "message": "可复用逻辑提取为 Composables"
+    },
+    "stores": {
+      "preferred": "Pinia",
+      "location": "src/stores/",
+      "message": "使用 Pinia 管理全局状态"
+    }
+  },
+
+  "promptTemplates": [
+    "组件使用 <script setup lang=\"ts\"> 定义",
+    "Props 使用 defineProps<Props>() 定义，必须明确类型",
+    "Emits 使用 defineEmits<Emits>() 定义",
+    "组件文件命名使用 PascalCase.vue",
+    "样式使用 scoped 避免污染",
+    "可复用逻辑提取为 Composables（useXxx.ts）",
+    "使用 Pinia 管理全局状态"
+  ],
+
+  "fileTemplates": {
+    "component": "<script setup lang=\"ts\">\ninterface Props {\n  // TODO: 定义 props\n}\n\nconst props = defineProps<Props>();\n\n// TODO: 组件逻辑\n</script>\n\n<template>\n  <!-- TODO: 模板内容 -->\n</template>\n\n<style scoped>\n/* TODO: 样式 */\n</style>",
+
+    "composable": "import { ref, computed } from 'vue';\n\nexport const use${ComposableName} = () => {\n  // TODO: 实现 composable 逻辑\n  \n  return {\n    // TODO: 返回数据\n  };\n};"
+  }
+}

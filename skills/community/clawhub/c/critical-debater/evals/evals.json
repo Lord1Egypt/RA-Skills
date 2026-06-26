@@ -1,0 +1,90 @@
+{
+  "skill": "critical-debater-suite",
+  "version": "2.0.0",
+  "test_cases": [
+    {
+      "id": "trigger_debate_simple",
+      "input": "debate whether AI will replace most white-collar jobs by 2030",
+      "should_trigger": true,
+      "expected_capability": "debate",
+      "notes": "Simple debate trigger"
+    },
+    {
+      "id": "trigger_debate_chinese",
+      "input": "辩论央行是否应该采用数字货币",
+      "should_trigger": true,
+      "expected_capability": "debate",
+      "notes": "Chinese language debate trigger"
+    },
+    {
+      "id": "trigger_red_team",
+      "input": "red team this business plan for an AI startup",
+      "should_trigger": true,
+      "expected_capability": "debate",
+      "notes": "Red team mode trigger"
+    },
+    {
+      "id": "trigger_perspectives",
+      "input": "analyze from multiple perspectives: should we adopt microservices?",
+      "should_trigger": true,
+      "expected_capability": "debate",
+      "notes": "Multi-perspective analysis trigger"
+    },
+    {
+      "id": "trigger_source_ingest",
+      "input": "search evidence about climate change impacts on agriculture",
+      "should_trigger": true,
+      "expected_capability": "source-ingest",
+      "notes": "Evidence search trigger"
+    },
+    {
+      "id": "trigger_judge",
+      "input": "judge round 2 of the current debate",
+      "should_trigger": true,
+      "expected_capability": "judge-audit",
+      "notes": "Judge audit trigger"
+    },
+    {
+      "id": "trigger_report",
+      "input": "generate the final report for this debate",
+      "should_trigger": true,
+      "expected_capability": "final-synthesis",
+      "notes": "Final synthesis trigger"
+    },
+    {
+      "id": "trigger_start_debate",
+      "input": "start a debate on whether remote work improves productivity",
+      "should_trigger": true,
+      "expected_capability": "debate",
+      "notes": "Explicit start debate trigger"
+    },
+    {
+      "id": "no_trigger_code_review",
+      "input": "review this pull request for security issues",
+      "should_trigger": false,
+      "expected_capability": null,
+      "notes": "Code review is not a debate"
+    },
+    {
+      "id": "no_trigger_simple_question",
+      "input": "what is the capital of France?",
+      "should_trigger": false,
+      "expected_capability": null,
+      "notes": "Simple factual question is not a debate"
+    },
+    {
+      "id": "no_trigger_coding",
+      "input": "write a Python function to sort a list",
+      "should_trigger": false,
+      "expected_capability": null,
+      "notes": "Coding task is not a debate"
+    },
+    {
+      "id": "no_trigger_summary",
+      "input": "summarize this article for me",
+      "should_trigger": false,
+      "expected_capability": null,
+      "notes": "Summarization is not adversarial debate"
+    }
+  ]
+}

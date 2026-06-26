@@ -1,0 +1,27 @@
+{
+  "id": "context-clear",
+  "name": "Context Clear with SRS",
+  "description": "记忆整理（SRS 衰减 + 晋升评分）、会话重置、启动时热记忆注入",
+  "contracts": {
+    "commands": ["refresh"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "tokenBudget": {
+        "type": "integer",
+        "default": 3000,
+        "description": "记忆检索默认 token 预算"
+      },
+      "safetyBuffer": {
+        "type": "integer",
+        "default": 300,
+        "description": "保留安全余量 token"
+      }
+    }
+  }
+}

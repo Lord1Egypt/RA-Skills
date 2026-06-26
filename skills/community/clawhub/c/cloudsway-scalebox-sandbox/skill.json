@@ -1,0 +1,20 @@
+{
+  "name": "cloudsway-scalebox-sandbox",
+  "version": "1.0.5",
+  "description": "Create and manage isolated cloud sandboxes for secure code execution using ScaleBox CLI, REST API, or Python SDK",
+  "author": "gloriathepenguin",
+  "tags": ["sandbox", "cloud", "code-execution", "security", "browser-automation"],
+  "license": "MIT",
+  "config": {
+    "env": {
+      "SCALEBOX_API_KEY": {
+        "description": "ScaleBox API key from https://www.scalebox.dev dashboard",
+        "required": true
+      }
+    }
+  },
+  "runtime": {
+    "commands": ["scalebox-cli", "curl"],
+    "network": true
+  }
+}

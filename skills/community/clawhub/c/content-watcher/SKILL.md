@@ -1,35 +1,89 @@
 ---
-name: "Content Watcher"
-description: "Monitor RSS feeds, blogs, and news sources with AI-powered summarization and generate daily digests in Markdown or console output."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/content-watcher"
-sourceUrl: "https://clawhub.ai/skills/content-watcher"
+name: content-watcher
+description: AI-powered content monitoring and summarization tool. Monitor RSS feeds, blogs, and news sources with automatic AI summarization and daily digest generation.
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📰",
+        "requires": { "bins": ["node", "npm"] },
+        "install":
+          [
+            {
+              "id": "npm",
+              "kind": "node",
+              "package": "content-watcher",
+              "bins": ["content-watcher"],
+              "label": "Install Content Watcher CLI",
+            },
+          ],
+      },
+  }
 ---
 
 # Content Watcher
 
-> Monitor RSS feeds, blogs, and news sources with AI-powered summarization and generate daily digests in Markdown or console output.
+Monitor any RSS feeds, blogs, or news sources and get AI-powered daily digests.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/content-watcher`
-- **Source URL:** [https://clawhub.ai/skills/content-watcher](https://clawhub.ai/skills/content-watcher)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/content-watcher
+# Install dependencies
+npm install
+
+# Add your first source
+content-watcher add https://techcrunch.com/feed/ --name "TechCrunch"
+
+# Run once to test
+content-watcher run
+
+# Save digest to file
+content-watcher run --output digest.md
 ```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `add <url>` | Add a source to monitor |
+| `remove <id>` | Remove a source |
+| `list` | List all sources |
+| `run` | Generate digest now |
+| `config` | Show configuration |
+
+## Features
+
+- ✅ RSS/Atom feed parsing
+- ✅ Web content extraction
+- ✅ AI text summarization (local, no API key)
+- ✅ Markdown digest generation
+- ✅ Multi-source aggregation
+- ✅ Duplicate detection
+- ✅ Configurable via CLI
+
+## Configuration
+
+Config stored at `~/.config/content-watcher/config.json`:
+
+```json
+{
+  "sources": [...],
+  "delivery": "console",
+  "summaryStyle": "bullet",
+  "maxItemsPerSource": 5
+}
+```
+
+## Use Cases
+
+1. **Competitive Intelligence** - Monitor competitor blogs/news
+2. **Industry Trends** - Track tech/finance/marketing trends
+3. **Research Assistant** - Aggregate academic/sources
+4. **Content Curation** - Create newsletters automatically
+
+## Integration
+
+Works great with:
+- Feishu webhook (auto-post digest)
+- Email delivery (send digest)
+- Cron scheduling (daily runs)

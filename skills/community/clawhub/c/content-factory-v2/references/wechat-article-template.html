@@ -1,0 +1,70 @@
+<!--
+  微信公众号文章标准模板 v1.0 (2026-03-31)
+  规范说明：skills/content-factory/references/WECHAT_PUBLISH_RULES.md
+  所有文章必须基于此模板创作，禁止偏离规范。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>我的OpenClaw帮小米汽车做了一个线下销售店面的选址规划</title>
+</head>
+<body>
+
+<h1 style="display:none;">我的OpenClaw帮小米汽车做了一个线下销售店面的选址规划</h1>
+<div style="border-left:3px solid #556b2f;padding:15px 18px;margin:15px;box-shadow:2px 2px 6px rgba(0,0,0,0.08);">
+<p style="margin:0;padding:0;color:#333;line-height:1.8;font-size:15px;">大家用 OpenClaw，通常拿来做什么？</p>
+<p style="margin:6px 0 0;padding:0;color:#333;line-height:1.8;font-size:15px;">写文章，做分析、跑研究。但有多少人真正用它解决过一个真实的商业决策问题？</p>
+<p style="margin:6px 0 0;padding:0;color:#333;line-height:1.8;font-size:15px;"><strong style="color:#556b2f;">今天试了一下：把 OpenClaw 和公开数据网络接起来，它能干的事情，比我们以为的要大得多。</strong></p>
+</div>
+
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">帮一个新能源汽车客户做北京市场选址咨询，客户问：小米在北京到底开了多少家店？</p>
+
+<div style="font-size:16px;color:#333;font-weight:700;padding:0 15px;margin:16px 0 8px;">What：这是一个什么问题</div>
+
+<p style="margin:0;padding:0 15px 8px;color:#333;line-height:1.8;font-size:15px;"><strong style="color:#556b2f;">数据层：</strong>你有多少家店，竞品有多少家，这是真实数据还是过时数据？</p>
+<p style="margin:0;padding:0 15px 8px;color:#333;line-height:1.8;font-size:15px;"><strong style="color:#556b2f;">洞察层：</strong>哪些区域是真正的空白，哪些是伪空白？</p>
+<p style="margin:0;padding:0 15px 8px;color:#333;line-height:1.8;font-size:15px;"><strong style="color:#556b2f;">决策层：</strong>应该优先去哪儿，理由是什么？</p>
+<p style="margin:0;padding:0 15px;color:#333;line-height:1.8;font-size:15px;">大多数选址报告只回答了第一层。<strong style="color:#556b2f;border-bottom:2px dotted #556b2f;padding-bottom:2px;">这一次，OpenClaw 帮我跑完了三个层次。</strong></p>
+
+<div style="font-size:16px;color:#333;font-weight:700;padding:0 15px;margin:20px 0 8px;">How：OpenClaw 是怎么做到的</div>
+
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">关键在于这一次我用的不是单一工具，是一套数据网络。</p>
+
+<div style="font-size:15px;color:#333;font-weight:700;padding:0 15px;margin:14px 0 8px;">第一步：接 AMap LBS API</div>
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">用高德地图 POI 接口，按品牌关键词搜索，直接拉出所有带「小米汽车」「特斯拉」「蔚来」关键词的门店经纬度。全城几十上百家门店，几秒钟全部拉出来。</p>
+<p style="margin:0;padding:0 15px;color:#333;line-height:1.8;font-size:15px;">但这里有一个系统性误差：地图 POI 的分类标签不统一。很多小米门店标签是「小米之家」而不是「小米汽车」——搜「小米汽车」会系统性漏掉大量门店。</p>
+
+<div style="font-size:15px;color:#333;font-weight:700;padding:0 15px;margin:14px 0 8px;">第二步：搜索交叉验证</div>
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">针对这个问题，用 OpenClaw 搜索工具对每个品牌做多来源比对。搜「蔚来 北京 23 家」，直接找到官网页面确认数据；搜小米，发现 AMap 数据和新闻报道的数字对不上——差了整整一倍。</p>
+<div style="border-left:3px solid #556b2f;padding:12px 15px;margin:10px 15px;color:#556b2f;line-height:1.8;font-size:15px;"><strong style="border-bottom:2px dotted #556b2f;padding-bottom:2px;">这就是多来源交叉验证的意义：不是找更准的数据，是发现数据之间的矛盾。</strong></div>
+
+<div style="font-size:15px;color:#333;font-weight:700;padding:0 15px;margin:14px 0 8px;">第三步：数据融合与洞察生成</div>
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">把 AMap 原始数据和搜索验证结果合并，按行政区归类，去重。修正后的结论：<strong style="color:#556b2f;">小米北京不是 17 家，是 42 家。</strong></p>
+<p style="margin:0;padding:0 15px 8px;color:#333;line-height:1.8;font-size:15px;">然后自动识别出三个反直觉的洞察：</p>
+<p style="margin:0;padding:4px 15px 4px 27px;color:#333;line-height:1.8;font-size:15px;">① <strong style="color:#556b2f;">三大行政区空白：</strong>西城区、门头沟区、怀柔区——超过一百万常住人口，整个行业都在这三个区域存在盲区。</p>
+<p style="margin:0;padding:4px 15px 4px 27px;color:#333;line-height:1.8;font-size:15px;">② <strong style="color:#556b2f;">石景山被低估：</strong>只有 1 家小米门店，但比亚迪和特斯拉已经在验证需求——这是被低估的区域，不是空白区。</p>
+<p style="margin:0;padding:4px 15px;color:#333;line-height:1.8;font-size:15px;">③ <strong style="color:#556b2f;">望京-中关村走廊认知差距：</strong>字节、百度、阿里、腾讯聚集，但小米只有 4 家店，蔚来单个区域就有 9 家。</p>
+
+<div style="font-size:15px;color:#333;font-weight:700;padding:0 15px;margin:14px 0 8px;">第四步：输出决策建议</div>
+<p style="margin:0;padding:0 15px;color:#333;line-height:1.8;font-size:15px;">基于三个洞察，给出明确的选址优先级：<strong style="color:#556b2f;">石景山区紧急、西城区紧急、望京-中关村走廊中期。</strong>每一项都有竞品数据作为支撑，不是拍脑袋。</p>
+
+<div style="font-size:16px;color:#333;font-weight:700;padding:0 15px;margin:20px 0 8px;">结论：这件事的核心不是数据，是方法论</div>
+
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">这次选址分析告诉我的，不是 OpenClaw 能查数据——是<strong style="color:#556b2f;">当 OpenClaw 和公开数据网络接起来，它能帮你完成一个完整的商业决策闭环：从数据，到洞察，到决策，到输出。</strong></p>
+<p style="margin:0;padding:0 15px 8px;color:#333;line-height:1.8;font-size:15px;"><strong style="color:#556b2f;">关键区别：单一地图 API 只能输出数据，不能输出洞察。</strong></p>
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">给你一堆经纬度，你能看出石景山被低估吗？能算出望京走廊的竞争密度吗？你还需要手动导入 Excel，手动归类，手动画图，手动写结论。下次要重新跑一遍，没有记忆，没有积累。</p>
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">但 OpenClaw 的优势不在于拉数据，在于<strong style="color:#556b2f;">它能把不同的数据源串起来，让 AI 帮你做判断</strong>——AMap 拉原始数据，搜索做交叉验证，AI 判断矛盾在哪里、哪些区域值得优先、结论应该怎么写。</p>
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">更重要的是，这套流程可以<strong style="color:#556b2f;">一键扩展到任何城市</strong>：北京做完，做上海、做广州、做成都——只需要换一个城市坐标，OpenClaw 自动完成从数据拉取、交叉验证、到洞察生成的全流程，不需要手动重复任何步骤。</p>
+<p style="margin:0;padding:0 15px 10px;color:#333;line-height:1.8;font-size:15px;">更进一步，数据可以导出为<strong style="color:#556b2f;">热力图、选址报告、竞品分布图</strong>——从数据到分析、从选址到方案输出，是一条完整的流水线。下次要做同类分析，OpenClaw 记得之前的上下文，知道你做过什么城市、走过哪些坑，不需要从零开始。</p>
+<div style="border-left:3px solid #556b2f;padding:12px 15px;margin:10px 15px;color:#556b2f;line-height:1.8;font-size:15px;"><strong style="border-bottom:2px dotted #556b2f;padding-bottom:2px;">单一工具只能输出结果，OpenClaw 输出的是判断能力，这就是它最有潜力的用法：不是替代思考，是把你的判断力放大了十倍。</strong></div>
+
+<p style="margin:0;padding:20px 15px;text-align:center;color:#333;line-height:1.8;font-size:15px;"><strong>如果你觉得文章对你有所帮助，请关注就行</strong></p>
+
+<p style="margin:0;padding:0 15px 30px;text-align:center;color:#666;line-height:1.8;font-size:13px;">我们下期再见，好运连连！🚀</p>
+
+<p style="margin:0;padding:0 15px 20px;color:#999;font-size:12px;line-height:1.6;text-align:center;">本文仅为个人研究笔记，基于公开数据与 AI 分析生成，不代表任何品牌官方立场，仅供学习与研究参考。</p>
+
+</body>
+</html>

@@ -1,35 +1,62 @@
 ---
-name: "Cost Opt"
+name: cost-opt
 description: "Cloud cost review: rightsizing, reservations, waste. Use when reducing infra spend."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cost-opt"
-sourceUrl: "https://clawhub.ai/skills/cost-opt"
 ---
 
 # Cost Opt
 
-> Cloud cost review: rightsizing, reservations, waste. Use when reducing infra spend.
+Structured guidance for **cloud cost** work: confirm triggers, propose the stages below, and adapt if the user wants a lighter pass.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cost-opt`
-- **Source URL:** [https://clawhub.ai/skills/cost-opt](https://clawhub.ai/skills/cost-opt)
+## When to Offer This Workflow
 
-## Overview
+**Trigger conditions:**
+- User mentions **cost optimization** or closely related work
+- They want a structured workflow rather than ad-hoc tips
+- They are preparing a review, rollout, or stakeholder communication
 
+**Initial offer:**
+Explain the four stages briefly and ask whether to follow this workflow or work freeform. If they decline, continue in their preferred style.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cost-opt
-```
+## Workflow Stages
+
+### Stage 1: Clarify context & goals
+
+Anchor on **cost allocation and drivers**. Ask what success looks like, constraints, and what must not break. Capture unknowns early.
+
+### Stage 2: Design or plan the approach
+
+Translate goals into a concrete plan around **rightsizing and reservations**. Compare alternatives and explicit trade-offs; avoid implicit assumptions.
+
+### Stage 3: Implement, validate, and harden
+
+Execute with verification loops tied to **architectural savings**. Prefer small steps, measurable checks, and rollback points where risk is high.
+
+### Stage 4: Operate, communicate, and iterate
+
+Close the loop with **governance and guardrails**: monitoring, documentation, stakeholder updates, and lessons learned for the next cycle.
+
+## Checklist Before Completion
+
+- Goals and constraints are explicit for **Cost Optimization Skill**
+- Risks and trade-offs are stated, not hand-waved
+- Verification steps match the change’s impact (tests, canary, peer review)
+- Operational follow-through is covered (monitoring, docs, owners)
+
+## Tips for Effective Guidance
+
+- Be procedural: stage-by-stage, with clear exit criteria
+- Ask for missing context (environment, scale, deadlines) before prescribing
+- Prefer checklists and concrete examples over generic platitudes
+- If the user declines the workflow, switch to freeform help without lecturing
+
+## Handling Deviations
+
+- If the user wants to skip a stage: confirm and continue with what they need.
+- If context is missing: ask targeted questions before strong recommendations.
+- Prefer concrete examples, trade-offs, and verification steps over generic advice.
+
+## Quality Bar
+
+- Each recommendation should be **actionable** (what to do next).
+- Call out **failure modes** relevant to Cost Optimization (security, scale, UX, or ops).
+- Keep tone direct and respectful of the user’s time.

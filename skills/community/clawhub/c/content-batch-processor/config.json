@@ -1,0 +1,34 @@
+{
+  "name": "content-batch-processor",
+  "version": "1.0.0",
+  "description": "批量内容处理工具，支持文本格式化、摘要生成、关键词提取等批量操作",
+  "author": "productivity-tools-dev",
+  "license": "MIT-0",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "triggers": [
+    "批量处理",
+    "batch process",
+    "内容处理",
+    "文本处理",
+    "格式化",
+    "摘要生成",
+    "关键词提取",
+    "批量翻译",
+    "文档整理"
+  ],
+  "capabilities": [
+    "read",
+    "write",
+    "edit",
+    "exec",
+    "pdf",
+    "image"
+  ],
+  "config": {
+    "defaultBatchSize": 10,
+    "maxConcurrency": 5,
+    "outputDir": "./output"
+  }
+}

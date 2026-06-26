@@ -1,0 +1,12 @@
+{
+  "name": "crypto-alert-aggregator",
+  "version": "1.0.0",
+  "description": "Aggregates crypto market data and Twitter signals into real-time alerts",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"require('./index.js').main ? require('./index.js').main() : console.log('ok')\""
+  },
+  "keywords": ["crypto", "alerts", "twitter", "market-data"],
+  "author": "evolver",
+  "license": "MIT"
+}

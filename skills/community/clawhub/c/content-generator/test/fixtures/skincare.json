@@ -1,0 +1,27 @@
+{
+  "name": "HydraGlow Cream",
+  "category": "美妆",
+  "price": "299",
+  "audience": "冬天办公室皮肤容易干的通勤人群",
+  "scenario": "冬季办公室护肤",
+  "goal": "让用户判断是否值得加入候选清单",
+  "tone": "真实、克制、像朋友分享",
+  "benefits": [
+    "质地轻薄",
+    "上脸后不容易搓泥",
+    "办公空调房里保湿感更稳定"
+  ],
+  "evidence": [
+    "连续5个工作日办公室使用反馈",
+    "妆前使用不搓泥的主观记录"
+  ],
+  "limitations": [
+    "不是医学治疗产品",
+    "极干皮仍建议叠加面霜或精华"
+  ],
+  "platforms": [
+    "xiaohongshu",
+    "douyin",
+    "marketplace"
+  ]
+}

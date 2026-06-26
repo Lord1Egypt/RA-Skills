@@ -1,0 +1,15 @@
+{
+  "name": "cross-platform-auto-poster",
+  "version": "1.0.0",
+  "description": "跨平台内容自动化发布工作流，支持AI原创内容生成、视频制作、自动发布到小红书、抖音等平台",
+  "main": "index.js",
+  "keywords": ["automation", "cross-platform", "social-media", "xiaohongshu", "tiktok", "youtube", "publish", "video"],
+  "author": "xiatian5",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "playwright-browser-automation": ">=1.0.0",
+    "xiaohongshu-content-automation": ">=1.0.0",
+    "remotion-video-toolkit": ">=1.0.0"
+  }
+}

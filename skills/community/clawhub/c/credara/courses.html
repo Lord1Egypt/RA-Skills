@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses — Credara</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#fafaf8;--offwhite:#f2f0ec;--cream:#e8e4dc;
+  --black:#111;--charcoal:#333;--gray:#777;--light-gray:#bbb;--faint:#eee;
+  --red:#c62828;--red-bright:#e53935;--red-dark:#8e0000;--red-faint:rgba(198,40,40,.06);
+  --green:#2e7d32;--green-faint:rgba(46,125,50,.08);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+}
+html{scroll-behavior:smooth;background:var(--white);color:var(--black);font-family:var(--sans)}
+body{overflow-x:hidden}
+::selection{background:var(--red);color:var(--white)}
+a{color:var(--red);text-decoration:none;transition:opacity .2s}
+button{cursor:pointer;font-family:var(--sans)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,248,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav-mark{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:var(--black);text-decoration:none}
+.nav-tabs{display:flex;gap:.25rem;align-items:center}
+.nav-tab{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:.45rem 1rem;color:var(--gray);background:none;border:none;text-decoration:none;display:inline-block;transition:color .2s;border-bottom:2px solid transparent}
+.nav-tab:hover{color:var(--black)}
+.nav-tab.active{color:var(--red);border-bottom-color:var(--red)}
+.nav-right{display:flex;gap:.75rem;align-items:center}
+.nav-btn{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid var(--cream);color:var(--charcoal);background:none;transition:all .2s;text-decoration:none;display:inline-block}
+.nav-btn:hover{border-color:var(--charcoal)}
+.nav-btn.primary{background:var(--red);color:var(--white);border-color:var(--red)}
+.nav-btn.primary:hover{background:var(--red-bright)}
+@media(max-width:768px){.nav-tabs{display:none}}
+
+.wrap{max-width:1100px;margin:0 auto;padding:80px 2rem 4rem}
+
+.top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;padding-bottom:1.5rem;border-bottom:1px solid var(--cream)}
+.top-left h1{font-family:var(--serif);font-size:2.4rem;font-style:italic;margin-bottom:.3rem}
+.top-left p{font-size:.82rem;color:var(--gray);max-width:520px;line-height:1.6}
+.top-right{display:flex;gap:.5rem;align-items:center}
+
+.filters{display:flex;gap:.75rem;margin-bottom:2rem;flex-wrap:wrap;align-items:center}
+.filters input,.filters select{padding:.5rem .75rem;border:1px solid var(--cream);font-family:var(--sans);font-size:.8rem;background:var(--white);color:var(--black)}
+.filters input:focus,.filters select:focus{outline:none;border-color:var(--red)}
+.filters input{flex:1;min-width:200px}
+
+.domain-tabs{display:flex;gap:.25rem;margin-bottom:2rem;flex-wrap:wrap;border-bottom:1px solid var(--cream);padding-bottom:0}
+.domain-tab{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.55rem 1rem;color:var(--gray);background:none;border:none;border-bottom:2px solid transparent;transition:all .2s}
+.domain-tab:hover{color:var(--black)}
+.domain-tab.active{color:var(--red);border-bottom-color:var(--red)}
+
+/* ── Card grid ── */
+.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;align-items:start}
+@media(max-width:900px){.course-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.course-grid{grid-template-columns:1fr}}
+
+.course-card-wrap{display:flex;flex-direction:column}
+.course-card{background:var(--white);border:1px solid var(--cream);padding:1.6rem 1.5rem 1.4rem;cursor:pointer;transition:border-color .18s,box-shadow .18s;display:flex;flex-direction:column;height:100%}
+.course-card:hover{border-color:var(--red);box-shadow:0 4px 24px rgba(198,40,40,.07)}
+.course-card.active{border-color:var(--red);border-bottom:none}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:1rem}
+.course-domain{font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.course-price{font-family:var(--mono);font-size:.85rem;font-weight:700;white-space:nowrap}
+.course-price.free{color:var(--green)}
+.course-name{font-family:var(--serif);font-size:1.2rem;font-style:italic;margin-bottom:.5rem;line-height:1.3}
+.course-tagline{font-size:.78rem;color:var(--charcoal);line-height:1.55;margin-bottom:1rem;flex:1}
+.card-meta{display:flex;gap:1rem;font-size:.65rem;color:var(--gray);flex-wrap:wrap;margin-bottom:1rem;border-top:1px solid var(--faint);padding-top:.85rem}
+.card-meta strong{color:var(--charcoal);font-weight:600}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.level-badge{font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border:1px solid var(--cream);color:var(--gray)}
+.level-badge.advanced,.level-badge.expert{border-color:var(--red);color:var(--red)}
+.card-cta{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.course-domain-icon{font-size:1.1rem;margin-right:.35rem}
+
+.btn-sm{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem 1rem;border:1px solid var(--cream);background:none;color:var(--charcoal);transition:all .2s}
+.btn-sm:hover{border-color:var(--charcoal)}
+.btn-sm.primary{background:var(--red);color:var(--white);border-color:var(--red)}
+.btn-sm.primary:hover{background:var(--red-bright)}
+
+/* Detail Panel */
+.detail-panel{display:none;border-bottom:1px solid var(--cream);background:var(--offwhite);margin:0 -2rem;padding:2.5rem 2rem}
+.detail-panel.open{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 320px;gap:3rem}
+.detail-desc{font-size:.92rem;color:var(--black);line-height:1.8;margin-bottom:1.5rem;letter-spacing:-.01em}
+.detail-section-title{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:1px solid var(--cream);font-weight:600}
+.module-list{list-style:none}
+.module-item{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--faint)}
+.module-item:last-child{border-bottom:none}
+.module-num{font-family:var(--mono);font-size:.65rem;color:var(--light-gray);width:20px;flex-shrink:0;padding-top:.15rem}
+.module-body h4{font-size:.85rem;font-weight:500;margin-bottom:.2rem}
+.module-body p{font-size:.82rem;color:var(--charcoal);line-height:1.6}
+.sidebar-block{background:var(--white);border:1px solid var(--cream);padding:1.5rem;margin-bottom:1rem}
+.sidebar-label{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:.25rem}
+.sidebar-val{font-family:var(--mono);font-size:.92rem;font-weight:600;margin-bottom:1rem;color:var(--black)}
+.sidebar-val:last-child{margin-bottom:0}
+.outcomes-list{list-style:none;padding:0}
+.outcomes-list li{font-size:.78rem;color:var(--charcoal);padding:.3rem 0;padding-left:1rem;position:relative;line-height:1.5}
+.outcomes-list li::before{content:"→";position:absolute;left:0;color:var(--red);font-size:.7rem}
+.install-btn{width:100%;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:.9rem;background:var(--red);color:var(--white);border:none;transition:background .2s;margin-top:.5rem}
+.install-btn:hover{background:var(--red-bright)}
+.x402-note{font-size:.65rem;color:var(--gray);text-align:center;margin-top:.5rem}
+
+.empty{padding:4rem;text-align:center;color:var(--gray);font-size:.85rem}
+
+/* Progress & enrollment */
+.enrolled-pill{display:inline-flex;align-items:center;gap:.35rem;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border:1px solid var(--green);color:var(--green);background:var(--green-faint);margin-top:.4rem}
+.enrolled-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block}
+.progress-wrap{margin-bottom:1.5rem;background:var(--white);border:1px solid var(--cream);padding:1.25rem}
+.progress-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem}
+.progress-label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+.progress-pct{font-family:var(--mono);font-size:1.1rem;font-weight:600;color:var(--black)}
+.progress-bar-track{height:6px;background:var(--faint);position:relative;overflow:hidden}
+.progress-bar-fill{height:100%;background:var(--red);transition:width .4s ease}
+.progress-complete{color:var(--green);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.5rem;display:none}
+.progress-complete.show{display:block}
+.module-item{position:relative}
+.module-item.done .module-body h4{color:var(--gray);text-decoration:line-through}
+.module-item.done .module-num{color:var(--green)}
+.module-check{margin-left:auto;flex-shrink:0;align-self:center;display:flex;gap:.4rem;align-items:center}
+.btn-check{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;border:1px solid var(--cream);background:none;color:var(--gray);transition:all .2s;white-space:nowrap}
+.btn-check:hover{border-color:var(--green);color:var(--green)}
+.btn-check.done{border-color:var(--green);color:var(--green);background:var(--green-faint)}
+.install-btn.enrolled{background:var(--green)}
+.install-btn.enrolled:hover{background:#1b5e20}
+.install-btn:disabled{background:var(--light-gray);cursor:not-allowed}
+
+/* Free preview badge + drawer */
+.preview-badge{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .45rem;border:1px solid var(--red);color:var(--red);background:var(--red-faint);display:inline-block;margin-left:.5rem;vertical-align:middle}
+.btn-preview{font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .65rem;border:1px solid var(--red);background:none;color:var(--red);transition:all .2s;white-space:nowrap}
+.btn-preview:hover{background:var(--red);color:var(--white)}
+.btn-preview.open{background:var(--red);color:var(--white)}
+.preview-drawer{display:none;margin-top:.75rem;background:var(--white);border:1px solid var(--red-faint);border-left:3px solid var(--red);padding:1.25rem 1.25rem 1rem}
+.preview-drawer.open{display:block}
+.preview-section-title{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:.5rem;margin-top:.85rem}
+.preview-section-title:first-child{margin-top:0}
+.preview-desc{font-size:.8rem;color:var(--charcoal);line-height:1.65;margin-bottom:.25rem}
+.preview-chain-name{font-family:var(--mono);font-size:.72rem;font-weight:600;margin-bottom:.4rem;color:var(--black)}
+.preview-steps{list-style:none;padding:0}
+.preview-steps li{font-size:.77rem;color:var(--charcoal);padding:.25rem 0 .25rem 1rem;position:relative;line-height:1.5}
+.preview-steps li::before{content:"→";position:absolute;left:0;color:var(--red);font-size:.65rem;top:.3rem}
+.preview-concepts{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem}
+.preview-concept{font-size:.58rem;letter-spacing:.06em;padding:.18rem .45rem;background:var(--offwhite);border:1px solid var(--cream);color:var(--charcoal)}
+.preview-enroll-cta{margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--faint);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.preview-cta-text{font-size:.72rem;color:var(--gray)}
+.preview-cta-text strong{color:var(--charcoal)}
+
+/* Toast */
+#toast{position:fixed;bottom:2rem;right:2rem;background:var(--black);color:var(--white);padding:.7rem 1.2rem;font-size:.75rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999}
+#toast.show{opacity:1}
+
+@media(max-width:768px){
+  .detail-grid{grid-template-columns:1fr;gap:1.5rem}
+  .detail-desc{font-size:1rem;line-height:1.85}
+  .module-body p{font-size:.88rem;line-height:1.7}
+  .sidebar-label{font-size:.6rem}
+  .sidebar-val{font-size:.95rem}
+  .detail-section-title{font-size:.68rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-mark">Credara</a>
+  <button class="hamburger" onclick="const n=document.getElementById('mob-nav');n.classList.toggle('open')" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:.5rem;color:var(--charcoal,#333);min-width:44px;min-height:44px">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="nav-tabs">
+    <a href="/" class="nav-tab">Home</a>
+    <a href="/courses" class="nav-tab active">Courses</a>
+  </div>
+  <div class="nav-right">
+    <a href="/docs" class="nav-btn">Docs</a>
+    <a href="/pricing" class="nav-btn">Pricing</a>
+    <span id="nav-guest">
+      <a href="/login" class="nav-btn">Log In</a>
+      <a href="/signup" class="nav-btn primary">Sign Up</a>
+    </span>
+    <span id="nav-authed" style="display:none">
+      <a href="/creator" class="nav-btn">Creator</a>
+      <a href="/dashboard" class="nav-btn primary">Dashboard</a>
+    </span>
+  </div>
+</nav>
+<!-- Mobile nav overlay -->
+<div id="mob-nav" style="display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(250,250,248,.98);z-index:199;padding:1.5rem 2rem;flex-direction:column;gap:0">
+  <a href="/dashboard" style="font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:#333;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(0,0,0,.04);display:block">Dashboard</a>
+  <a href="/courses" style="font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:#c62828;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(0,0,0,.04);display:block;font-weight:600">Courses</a>
+  <a href="/creator" style="font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:#333;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(0,0,0,.04);display:block">Creator Studio</a>
+  <a href="/pricing" style="font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:#333;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(0,0,0,.04);display:block">Pricing</a>
+  <a href="/docs" style="font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:#333;text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(0,0,0,.04);display:block">Docs</a>
+  <a href="/" style="font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:#333;text-decoration:none;padding:.75rem 0;display:block">Home</a>
+</div>
+<style>
+@media(max-width:900px){.hamburger{display:flex!important;align-items:center;justify-content:center}.nav-tabs,.nav-right{display:none!important}}
+#mob-nav.open{display:flex!important}
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <div class="top-left">
+      <h1>Courses</h1>
+      <p>Complete domain intelligence stacks for agents. Each course bundles multiple skill packs into a full expertise profile — everything a bot needs to operate at an expert level in one install.</p>
+    </div>
+    <div class="top-right">
+      <span id="courseCount" style="font-size:.7rem;color:var(--gray);font-family:var(--mono)"></span>
+    </div>
+  </div>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Search courses..." oninput="debounceSearch(this.value)">
+    <select onchange="setSort(this.value)">
+      <option value="popular">Most Installed</option>
+      <option value="newest">Newest</option>
+      <option value="price_low">Price: Low → High</option>
+      <option value="price_high">Price: High → Low</option>
+    </select>
+  </div>
+
+  <div class="domain-tabs" id="domainTabs">
+    <button class="domain-tab active" onclick="setDomain('', this)">All Domains</button>
+  </div>
+
+  <div id="courseGrid" class="course-grid"></div>
+  <div id="emptyMsg" class="empty" style="display:none">No courses match your filters.</div>
+</div>
+
+<div id="toast"></div>
+<script>
+const API = window.location.origin;
+const TOKEN = localStorage.getItem('accessToken');
+
+// ── Auth ──────────────────────────────────────────────────────────
+(function() {
+  document.getElementById('nav-guest').style.display = TOKEN ? 'none' : '';
+  document.getElementById('nav-authed').style.display = TOKEN ? '' : 'none';
+})();
+
+function authHeaders() {
+  return TOKEN ? { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json' }
+               : { 'Content-Type': 'application/json' };
+}
+
+// Resolve current user's primary agent ID (cached)
+let _meCache = null;
+async function getMe() {
+  if (_meCache) return _meCache;
+  if (!TOKEN) return null;
+  try {
+    const me = await fetch(`${API}/api/auth/me`, { headers: authHeaders() }).then(r => r.json());
+    if (me.error) return null;
+    // Get their first agent
+    const agentsRes = await fetch(`${API}/api/agents/my`, { headers: authHeaders() });
+    const agents = agentsRes.ok ? await agentsRes.json() : [];
+    const firstAgent = Array.isArray(agents) ? agents[0] : (agents.agents || [])[0];
+    _meCache = { ownerId: me.id, email: me.email, agentId: firstAgent?.id || null };
+    return _meCache;
+  } catch { return null; }
+}
+
+// ── Toast ─────────────────────────────────────────────────────────
+function toast(msg, ms = 3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), ms);
+}
+
+// ── Filters / state ───────────────────────────────────────────────
+let filters = { domain: '', search: '', sort: 'popular' };
+let searchTimer;
+let openDetailId = null;
+// enrollments cache: courseId → { enrolled, progress, completed_modules[] }
+const enrollmentCache = {};
+
+function debounceSearch(v) { clearTimeout(searchTimer); searchTimer = setTimeout(() => { filters.search = v; load(); }, 300); }
+function setDomain(d, el) { filters.domain = d; document.querySelectorAll('.domain-tab').forEach(b => b.classList.remove('active')); el.classList.add('active'); load(); }
+function setSort(s) { filters.sort = s; load(); }
+
+// ── Course list ───────────────────────────────────────────────────
+async function load() {
+  const params = new URLSearchParams();
+  if (filters.domain) params.set('domain', filters.domain);
+  if (filters.search) params.set('search', filters.search);
+  if (filters.sort) params.set('sort', filters.sort);
+
+  const res = await fetch(`${API}/api/courses?${params}`);
+  const data = await res.json();
+  const courses = data.courses || [];
+
+  document.getElementById('courseCount').textContent = courses.length + ' bundles';
+  document.getElementById('emptyMsg').style.display = courses.length ? 'none' : 'block';
+
+  // Pre-fetch enrollments for logged-in users (batch, best-effort)
+  if (TOKEN) {
+    const me = await getMe();
+    if (me?.agentId) {
+      await Promise.all(courses.map(c => fetchEnrollment(c.id, me.agentId)));
+    }
+  }
+
+  const DOMAIN_ICONS = {
+    'dom-cs-fundamentals':'💻','dom-cybersecurity':'🛡️','dom-data-science':'📊',
+    'dom-devops':'⚙️','dom-finance':'📈','dom-legal':'⚖️',
+    'dom-smart-contracts':'🔗','dom-real-estate':'🏢','dom-web3-security':'🔐',
+    'dom-ai-agents':'🤖','dom-product':'🎯',
+  };
+
+  const grid = document.getElementById('courseGrid');
+  grid.innerHTML = courses.map(c => {
+    const enr = enrollmentCache[c.id];
+    const isEnrolled = enr?.enrolled;
+    const pct = isEnrolled ? (enr.progress || 0) : 0;
+    const isFree = !c.price_usd || c.price_usd === 0;
+    const icon = DOMAIN_ICONS[c.domain_id] || '📦';
+    const priceLabel = isFree
+      ? `<span class="course-price free">Free</span>`
+      : `<span class="course-price">$${(c.price_usd/100).toFixed(2)}</span>`;
+    const enrollBadge = isEnrolled
+      ? `<div class="enrolled-pill" style="margin-top:.6rem">${pct === 100 ? '✓ Completed' : `${pct}% complete`}</div>`
+      : '';
+    return `
+    <div class="course-card-wrap">
+      <div class="course-card" id="card-${c.id}" onclick="toggleDetail('${c.id}', this)">
+        <div class="card-top">
+          <div class="course-domain"><span class="course-domain-icon">${icon}</span>${esc(c.domain_name || c.domain_id)}</div>
+          ${priceLabel}
+        </div>
+        <div class="course-name">${esc(c.name)}</div>
+        <div class="course-tagline">${esc(c.tagline)}</div>
+        <div class="card-meta">
+          <span><strong>${c.module_count}</strong> packs</span>
+          <span><strong>${c.install_count || 0}</strong> installs</span>
+          ${c.estimated_hours ? `<span><strong>${c.estimated_hours}h</strong></span>` : ''}
+          <span style="color:var(--red)"><strong>1</strong> free preview</span>
+        </div>
+        <div class="card-bottom">
+          <span class="level-badge ${c.difficulty}">${c.difficulty}</span>
+          <span class="card-cta">Details →</span>
+        </div>
+        ${enrollBadge}
+      </div>
+      <div class="detail-panel" id="detail-${c.id}" style="border:1px solid var(--red);border-top:none;display:none"></div>
+    </div>`;
+  }).join('');
+}
+
+// ── Enrollment helpers ────────────────────────────────────────────
+async function fetchEnrollment(courseId, agentId) {
+  if (enrollmentCache[courseId]) return enrollmentCache[courseId];
+  try {
+    const r = await fetch(`${API}/api/courses/${courseId}/enrollment?agentId=${agentId}`, { headers: authHeaders() });
+    const d = await r.json();
+    enrollmentCache[courseId] = d.enrolled === false
+      ? { enrolled: false }
+      : { enrolled: true, progress: d.progress || 0, status: d.status, completed_modules: d.completed_modules || [] };
+    return enrollmentCache[courseId];
+  } catch { return { enrolled: false }; }
+}
+
+// ── Detail panel ──────────────────────────────────────────────────
+async function toggleDetail(id, cardEl) {
+  const panel = document.getElementById('detail-' + id);
+  const card  = document.getElementById('card-' + id);
+  const isOpen = panel.style.display === 'block';
+
+  if (openDetailId) {
+    const prev = document.getElementById('detail-' + openDetailId);
+    const prevCard = document.getElementById('card-' + openDetailId);
+    if (prev) { prev.style.display = 'none'; prev.innerHTML = ''; }
+    if (prevCard) prevCard.classList.remove('active');
+  }
+
+  if (isOpen) { openDetailId = null; return; }
+
+  openDetailId = id;
+  card.classList.add('active');
+  panel.innerHTML = `<div style="padding:2rem;color:var(--gray);font-size:.8rem">Loading…</div>`;
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  const [courseRes, me] = await Promise.all([
+    fetch(`${API}/api/courses/${id}`).then(r => r.json()),
+    getMe(),
+  ]);
+  const c = courseRes;
+  const agentId = me?.agentId;
+  const enr = agentId ? await fetchEnrollment(id, agentId) : { enrolled: false };
+  const completedSet = new Set(enr.completed_modules || []);
+
+  renderDetail(panel, c, enr, completedSet, agentId);
+}
+
+function renderDetail(panel, c, enr, completedSet, agentId) {
+  const isEnrolled = enr.enrolled;
+  const pct = enr.progress || 0;
+  const total = c.module_count || (c.modules || []).length;
+  const done = completedSet.size;
+
+  const outcomes = (c.learning_outcomes || []).map(o => `<li>${esc(o)}</li>`).join('');
+
+  const moduleList = (c.modules || []).map((m, i) => {
+    const packId = m.skill_pack_id || m.id;
+    const isDone = completedSet.has(packId) || completedSet.has(m.id);
+    const isPreview = !!m.is_preview;
+
+    const checkBtn = isEnrolled && agentId
+      ? `<button class="btn-check ${isDone ? 'done' : ''}"
+           onclick="markComplete('${c.id}','${m.id}','${packId}','${agentId}',this)"
+           ${isDone ? 'disabled' : ''}>
+           ${isDone ? '✓ Done' : 'Mark done'}
+         </button>`
+      : '';
+    const previewBtn = isPreview
+      ? `<button class="btn-preview" id="pbtn-${m.id}"
+           onclick="togglePreview('${c.id}','${m.id}',this)">
+           Preview
+         </button>`
+      : '';
+    const actions = (checkBtn || previewBtn)
+      ? `<div class="module-check">${previewBtn}${checkBtn}</div>`
+      : '';
+
+    const previewDrawer = isPreview
+      ? `<div class="preview-drawer" id="pdrawer-${m.id}">
+           <div style="color:var(--gray);font-size:.75rem">Loading preview…</div>
+         </div>`
+      : '';
+
+    return `
+      <li class="module-item ${isDone ? 'done' : ''}" id="mod-${m.id}">
+        <span class="module-num">${String(i+1).padStart(2,'0')}</span>
+        <div class="module-body" style="flex:1">
+          <h4>${esc(m.title || m.pack_name)}${isPreview ? '<span class="preview-badge">Free Preview</span>' : ''}</h4>
+          <p>${esc(m.description || m.pack_description || '')}</p>
+          ${previewDrawer}
+        </div>
+        ${actions}
+      </li>`;
+  }).join('');
+
+  // Progress block (only when enrolled)
+  const progressBlock = isEnrolled ? `
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <span class="progress-label">Progress</span>
+        <span class="progress-pct" id="pct-${c.id}">${pct}%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="bar-${c.id}" style="width:${pct}%"></div>
+      </div>
+      <div class="progress-complete ${pct === 100 ? 'show' : ''}" id="complete-${c.id}">
+        ✓ Course complete
+      </div>
+    </div>` : '';
+
+  // CTA button
+  let ctaBtn, ctaNote;
+  if (!TOKEN) {
+    ctaBtn = `<button class="install-btn" onclick="window.location='/dashboard'">Sign in to Enroll →</button>`;
+    ctaNote = `<p class="x402-note">Sign in to track progress</p>`;
+  } else if (!agentId) {
+    ctaBtn = `<button class="install-btn" onclick="window.location='/dashboard'">Create an agent to enroll →</button>`;
+    ctaNote = `<p class="x402-note">You need an agent to take courses</p>`;
+  } else if (isEnrolled) {
+    ctaBtn = `<button class="install-btn enrolled" disabled>✓ Enrolled</button>`;
+    ctaNote = `<p class="x402-note" style="color:var(--green)">Mark modules complete as you work through them</p>`;
+  } else if (!c.price_usd || c.price_usd === 0) {
+    ctaBtn = `<button class="install-btn" onclick="enrollFree('${c.id}','${agentId}',this,event)">Enroll Free →</button>`;
+    ctaNote = `<p class="x402-note">No payment required</p>`;
+  } else {
+    ctaBtn = `<button class="install-btn" onclick="enrollPaid('${c.id}','${agentId}','${c.price_usd}',this,event)">Enroll — $${(c.price_usd/100).toFixed(2)} →</button>`;
+    ctaNote = `<p class="x402-note">Secure checkout via Stripe</p>`;
+  }
+
+  panel.innerHTML = `
+    <div class="detail-grid">
+      <div>
+        ${progressBlock}
+        <p class="detail-desc">${esc(c.description)}</p>
+        ${outcomes ? `<div class="detail-section-title">What this installs</div><ul class="outcomes-list" style="margin-bottom:1.5rem">${outcomes}</ul>` : ''}
+        <div class="detail-section-title">Skill Pack Modules (${total})</div>
+        <ul class="module-list">${moduleList}</ul>
+      </div>
+      <div>
+        <div class="sidebar-block">
+          <div class="sidebar-label">Price</div>
+          <div class="sidebar-val">${c.price_usd ? '$'+(c.price_usd/100).toFixed(2)+' USD' : 'Free'}</div>
+          <div class="sidebar-label">Skill Packs</div>
+          <div class="sidebar-val">${total} packs</div>
+          <div class="sidebar-label">Domain</div>
+          <div class="sidebar-val" style="font-size:.75rem">${esc(c.domain_name || c.domain_id)}</div>
+          <div class="sidebar-label">Level</div>
+          <div class="sidebar-val" style="font-size:.75rem">${c.difficulty}</div>
+          ${c.estimated_hours ? `<div class="sidebar-label">Coverage</div><div class="sidebar-val">${c.estimated_hours}h</div>` : ''}
+          ${isEnrolled ? `<div class="sidebar-label">Modules done</div><div class="sidebar-val">${done} / ${total}</div>` : ''}
+        </div>
+        ${ctaBtn}
+        ${ctaNote}
+      </div>
+    </div>`;
+}
+
+// ── Enroll: free ──────────────────────────────────────────────────
+/* ── Agent Picker Popup ─────────────────────────────────────────────── */
+async function pickAgent() {
+  return new Promise(async (resolve) => {
+    const agentsRes = await fetch(`${API}/api/agents/my`, { headers: authHeaders() });
+    const raw = agentsRes.ok ? await agentsRes.json() : [];
+    const agents = Array.isArray(raw) ? raw : (raw.agents || []);
+    
+    if (agents.length === 0) { toast('Create a bot first from Dashboard'); resolve(null); return; }
+    if (agents.length === 1) { resolve(agents[0].id); return; }
+    
+    // Build popup
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:1rem';
+    const modal = document.createElement('div');
+    modal.style.cssText = 'background:#fff;border-radius:12px;padding:1.5rem;max-width:380px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.15)';
+    modal.innerHTML = `
+      <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#c62828;margin-bottom:.75rem;font-family:'Space Mono',monospace">SEND TO WHICH AGENT?</div>
+      <p style="font-size:.82rem;color:#777;margin-bottom:1rem;line-height:1.5">Choose the bot that will take this course.</p>
+      <div id="agent-pick-list" style="display:flex;flex-direction:column;gap:.5rem"></div>
+      <button onclick="this.closest('[style*=fixed]').remove()" style="margin-top:1rem;width:100%;padding:.6rem;border:1px solid #e8e4dc;background:none;color:#777;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:6px">CANCEL</button>
+    `;
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    overlay.onclick = (ev) => { if (ev.target === overlay) { overlay.remove(); resolve(null); } };
+    
+    const list = modal.querySelector('#agent-pick-list');
+    agents.forEach(a => {
+      const btn = document.createElement('button');
+      btn.style.cssText = 'display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border:1px solid #e8e4dc;background:#fafaf8;border-radius:8px;cursor:pointer;text-align:left;transition:all .15s;width:100%';
+      btn.onmouseover = () => btn.style.borderColor = '#c62828';
+      btn.onmouseout = () => btn.style.borderColor = '#e8e4dc';
+      btn.innerHTML = `
+        <div style="width:36px;height:36px;border-radius:8px;background:#f2f0ec;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0">🤖</div>
+        <div>
+          <div style="font-weight:600;font-size:.85rem;color:#111">${a.display_name || a.name || 'Bot'}</div>
+          <div style="font-size:.65rem;color:#999;font-family:'Space Mono',monospace">${a.platform || 'custom'} · ${a.id.slice(0,8)}...</div>
+        </div>
+      `;
+      btn.onclick = () => { overlay.remove(); resolve(a.id); };
+      list.appendChild(btn);
+    });
+  });
+}
+
+async function enrollFree(courseId, agentId_, btn, e) {
+  e.stopPropagation();
+  // Let user pick which agent if they have multiple
+  const agentId = await pickAgent();
+  if (!agentId) return; // cancelled
+  btn.disabled = true; btn.textContent = 'Enrolling…';
+  try {
+    const r = await fetch(`${API}/api/courses/${courseId}/enroll`, {
+      method: 'POST', headers: authHeaders(), body: JSON.stringify({ agentId }),
+    });
+    const d = await r.json();
+    if (r.ok) {
+      enrollmentCache[courseId] = { enrolled: true, progress: 0, status: 'enrolled', completed_modules: [] };
+      toast('✓ Enrolled! Mark modules complete as you progress.');
+      // Re-render detail
+      const me = await getMe();
+      const courseRes = await fetch(`${API}/api/courses/${courseId}`).then(r => r.json());
+      const panel = document.getElementById('detail-' + courseId);
+      renderDetail(panel, courseRes, enrollmentCache[courseId], new Set(), agentId);
+      load(); // refresh card badges
+    } else {
+      toast('Error: ' + (d.error || 'Failed to enroll'));
+      btn.disabled = false; btn.textContent = 'Enroll Free →';
+    }
+  } catch {
+    toast('Network error. Try again.');
+    btn.disabled = false; btn.textContent = 'Enroll Free →';
+  }
+}
+
+// ── Enroll: paid → Stripe checkout ───────────────────────────────
+async function enrollPaid(courseId, agentId_, priceUsd, btn, e) {
+  e.stopPropagation();
+  const agentId = await pickAgent();
+  if (!agentId) return;
+  btn.disabled = true; btn.textContent = 'Redirecting to checkout…';
+  try {
+    const me = await getMe();
+    const r = await fetch(`${API}/api/payments/checkout/course`, {
+      method: 'POST', headers: authHeaders(),
+      body: JSON.stringify({ courseId, agentId, ownerId: me?.ownerId || '' }),
+    });
+    const d = await r.json();
+    if (d.url) {
+      window.location.href = d.url;
+    } else {
+      toast('Checkout error: ' + (d.error || 'Unknown'));
+      btn.disabled = false; btn.textContent = `Enroll — $${(priceUsd/100).toFixed(2)} →`;
+    }
+  } catch {
+    toast('Network error. Try again.');
+    btn.disabled = false; btn.textContent = `Enroll — $${(priceUsd/100).toFixed(2)} →`;
+  }
+}
+
+// ── Mark module complete ──────────────────────────────────────────
+async function markComplete(courseId, moduleId, packId, agentId, btn) {
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const r = await fetch(`${API}/api/courses/${courseId}/modules/${moduleId}/complete`, {
+      method: 'POST', headers: authHeaders(), body: JSON.stringify({ agentId }),
+    });
+    const d = await r.json();
+    if (r.ok) {
+      btn.textContent = '✓ Done'; btn.classList.add('done');
+      // Update module row style
+      document.getElementById('mod-' + moduleId)?.classList.add('done');
+      // Update progress bar
+      const newPct = d.progress || 0;
+      const bar = document.getElementById('bar-' + courseId);
+      const pctEl = document.getElementById('pct-' + courseId);
+      const completeEl = document.getElementById('complete-' + courseId);
+      if (bar) bar.style.width = newPct + '%';
+      if (pctEl) pctEl.textContent = newPct + '%';
+      if (completeEl && newPct === 100) completeEl.classList.add('show');
+      // Update cache
+      if (enrollmentCache[courseId]) {
+        enrollmentCache[courseId].progress = newPct;
+        if (!enrollmentCache[courseId].completed_modules) enrollmentCache[courseId].completed_modules = [];
+        enrollmentCache[courseId].completed_modules.push(packId);
+      }
+      // Refresh card badge
+      load();
+      if (newPct === 100) toast('🎓 Course complete!', 4000);
+      else toast('✓ Module marked complete');
+    } else {
+      toast('Error: ' + (d.error || 'Failed'));
+      btn.disabled = false; btn.textContent = 'Mark done';
+    }
+  } catch {
+    toast('Network error.');
+    btn.disabled = false; btn.textContent = 'Mark done';
+  }
+}
+
+// ── Free Preview drawer ───────────────────────────────────────────
+const _previewCache = {};
+async function togglePreview(courseId, moduleId, btn) {
+  const drawer = document.getElementById('pdrawer-' + moduleId);
+  if (!drawer) return;
+  const isOpen = drawer.classList.contains('open');
+  if (isOpen) {
+    drawer.classList.remove('open');
+    btn.classList.remove('open');
+    btn.textContent = 'Preview';
+    return;
+  }
+  drawer.classList.add('open');
+  btn.classList.add('open');
+  btn.textContent = 'Close';
+
+  if (_previewCache[moduleId]) {
+    renderPreviewDrawer(drawer, _previewCache[moduleId], courseId);
+    return;
+  }
+
+  drawer.innerHTML = `<div style="color:var(--gray);font-size:.75rem;padding:.25rem 0">Loading…</div>`;
+  try {
+    const r = await fetch(`${API}/api/courses/${courseId}/modules/${moduleId}/preview`);
+    const d = await r.json();
+    if (!r.ok) { drawer.innerHTML = `<div style="color:var(--gray);font-size:.75rem">${esc(d.error || 'Preview unavailable')}</div>`; return; }
+    _previewCache[moduleId] = d;
+    renderPreviewDrawer(drawer, d, courseId);
+  } catch {
+    drawer.innerHTML = `<div style="color:var(--gray);font-size:.75rem">Failed to load preview.</div>`;
+  }
+}
+
+function renderPreviewDrawer(drawer, d, courseId) {
+  const p = d.pack || {};
+  const chain = p.previewPromptChain;
+  const ctx = p.previewDomainContext;
+
+  let html = `<div class="preview-desc">${esc(p.description)}</div>`;
+
+  if (chain) {
+    html += `<div class="preview-section-title">Sample Prompt Chain — ${esc(chain.name)}</div>`;
+    html += `<div class="preview-chain-name">${esc(chain.trigger)}</div>`;
+    if (chain.steps && chain.steps.length) {
+      html += `<ol class="preview-steps">${chain.steps.map(s => `<li>${esc(s)}</li>`).join('')}</ol>`;
+    }
+    if (chain.expected_output) {
+      html += `<div style="font-size:.72rem;color:var(--gray);margin-top:.4rem">Expected: <em>${esc(chain.expected_output)}</em></div>`;
+    }
+  }
+
+  if (ctx) {
+    html += `<div class="preview-section-title">${esc(ctx.topic)}</div>`;
+    html += `<div class="preview-desc">${esc(ctx.content)}</div>`;
+    if (ctx.key_concepts && ctx.key_concepts.length) {
+      html += `<div class="preview-concepts">${ctx.key_concepts.map(k => `<span class="preview-concept">${esc(k)}</span>`).join('')}</div>`;
+    }
+  }
+
+  if (p.totalPromptChains > 1 || p.totalDomainContexts > 1) {
+    html += `<div class="preview-enroll-cta">
+      <span class="preview-cta-text">Full pack includes <strong>${p.totalPromptChains}</strong> prompt chains + <strong>${p.totalDomainContexts}</strong> domain contexts. Enroll to unlock all modules.</span>
+    </div>`;
+  }
+
+  drawer.innerHTML = html;
+}
+
+// ── Domains ───────────────────────────────────────────────────────
+async function loadDomains() {
+  const res = await fetch(`${API}/api/courses`);
+  const data = await res.json();
+  const seen = new Set();
+  const domains = (data.courses || [])
+    .map(c => ({ id: c.domain_id, name: c.domain_name || c.domain_id }))
+    .filter(d => { if (seen.has(d.id)) return false; seen.add(d.id); return true; });
+
+  const tabs = document.getElementById('domainTabs');
+  domains.forEach(d => {
+    const b = document.createElement('button');
+    b.className = 'domain-tab';
+    b.textContent = d.name;
+    b.onclick = () => setDomain(d.id, b);
+    tabs.appendChild(b);
+  });
+}
+
+// ── Handle post-payment redirect ──────────────────────────────────
+(function() {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('payment') === 'success') {
+    toast('✓ Payment received. Your enrollment is being processed…', 5000);
+    history.replaceState({}, '', '/courses');
+    // Invalidate enrollment cache so next detail open re-fetches
+    Object.keys(enrollmentCache).forEach(k => delete enrollmentCache[k]);
+  }
+})();
+
+function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = String(s); return d.innerHTML; }
+
+loadDomains();
+load();
+</script>
+<div class="legal-footer" style="text-align:center;padding:2rem 0 1rem;font-size:.7rem;color:#888;font-family:'Space Mono',monospace">
+  &copy; 2026 Credara &middot;
+  <a href="/terms" style="color:#888;margin:0 .5rem">Terms</a> &middot;
+  <a href="/privacy" style="color:#888;margin:0 .5rem">Privacy</a> &middot;
+  <a href="/disclosures" style="color:#888;margin:0 .5rem">Legal</a>
+</div>
+</body>
+</html>

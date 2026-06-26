@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目探索"
+  short_description: "分析代码库结构、入口、依赖关系与数据流，不修改现有代码。"
+  default_prompt: "使用 $code-explore 分析当前项目结构、入口文件与主要调用链。"

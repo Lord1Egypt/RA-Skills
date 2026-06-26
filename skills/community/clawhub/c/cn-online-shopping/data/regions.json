@@ -1,0 +1,24 @@
+{
+  "regions": {
+    "mainland_china": {
+      "name": "Mainland China",
+      "platforms": ["taobao", "tmall", "jd", "pdd", "douyin", "xiaohongshu", "suning", "vip"],
+      "notes": "All major platforms are available"
+    },
+    "tier1_cities": {
+      "name": "Tier 1 Cities (Beijing, Shanghai, Guangzhou, Shenzhen)",
+      "platforms": ["jd", "tmall", "taobao", "pdd"],
+      "notes": "JD same-day/next-day delivery coverage is best"
+    },
+    "tier23_cities": {
+      "name": "Tier 2-3 Cities",
+      "platforms": ["taobao", "pdd", "jd", "tmall"],
+      "notes": "Taobao and Pinduoduo have the most comprehensive coverage"
+    },
+    "rural_areas": {
+      "name": "Rural/Remote Areas",
+      "platforms": ["pdd", "taobao", "jd"],
+      "notes": "Pinduoduo has the best coverage in lower-tier markets"
+    }
+  }
+}

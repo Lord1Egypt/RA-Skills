@@ -1,35 +1,97 @@
 ---
-name: "协作造技师"
-description: "将“人类 + Agent”共同打磨出来的流程、决策与方法，提炼成可复用的 Skill。适用于把高质量协作过程从聊天/项目推进中抽取出来，沉淀为可分发的技能包。"
-category: "productivity"
-source: "ClawHub"
-tags: [collaboration, extraction, metacognition, skill, workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/collab-to-skill"
-sourceUrl: "https://clawhub.ai/skills/collab-to-skill"
+name: collab-to-skill
+description: 将“人类 + Agent”共同打磨出来的流程、决策与方法，提炼成可复用的 Skill。适用于把高质量协作过程从聊天/项目推进中抽取出来，沉淀为可分发的技能包。
+version: 1.0.0
+displayName: 协作造技师
+tags: skill, collaboration, extraction, metacognition, workflow
 ---
 
 # 协作造技师
 
-> 将“人类 + Agent”共同打磨出来的流程、决策与方法，提炼成可复用的 Skill。适用于把高质量协作过程从聊天/项目推进中抽取出来，沉淀为可分发的技能包。
+## 用途
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/collab-to-skill`
-- **Source URL:** [https://clawhub.ai/skills/collab-to-skill](https://clawhub.ai/skills/collab-to-skill)
+这只 skill 用来把“共同打磨出来的能力”变成 skill。
 
-## Overview
+它处理的不是单个 Agent 独立完成的能力，
+而是以下这类协作产物：
+- 人类先给方向、判断、反证与修正
+- Agent 负责结构化、收敛、打包与落地
+- 双方来回迭代后，形成一套稳定流程
 
+这类能力如果不提炼，通常会散落在聊天记录里。
+本 skill 的目标，就是把它们提纯成可复用、可发布、可迭代的 skill。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/collab-to-skill
-```
+---
+
+## 什么时候用
+
+当你发现以下情况时，优先触发：
+- 一个有价值的方法不是单边生成的，而是共同磨出来的
+- 聊天过程中出现了多个关键决策点、边界修正、流程补全
+- 你想把“这次是怎么做出来的”沉淀为下一次可直接复用的 skill
+- 想验证：某个能力仅靠 skill 是否足够成立
+
+---
+
+## 核心原则
+
+1. **协作过程本身就是资产**
+2. **关键决策点比表面流程更值钱**
+3. **先抽“为什么成立”，再抽“怎么执行”**
+4. **能拆成独立 skill 就不要都塞进一个母 skill**
+5. **Less is more：单一 skill 只承载一类清晰能力**
+
+---
+
+## 标准流程
+
+### 第 1 步：识别协作成果
+先确认本次成果是不是协作磨出来的，而不是普通对话输出。
+
+### 第 2 步：抽关键决策点
+优先抽：
+- 中途新增了什么关键步骤
+- 为什么要加
+- 如果不加会怎样
+- 这是否具备跨项目复用价值
+
+### 第 3 步：提炼方法论骨架
+把协作过程压缩成：
+- 输入
+- 关键判断
+- 核心步骤
+- 输出
+- 边界
+
+### 第 4 步：判断独立成 skill 还是并入母 skill
+如果它是独立能力，就拆成单独 skill。
+如果只是母流程的一小段，就并入母 skill。
+
+### 第 5 步：打包 skill
+输出：
+- `SKILL.md`
+- 必要的 references/
+- 必要的 templates/
+
+### 第 6 步：记忆沉淀
+把“为什么这么设计”写进短期记忆；稳定后再升格长期记忆。
+
+---
+
+## 输出要求
+
+至少交付：
+1. 这次协作抽出了什么能力
+2. 为什么值得 skill 化
+3. 应拆成独立 skill 还是并入母 skill
+4. skill 的边界与价值
+5. 后续如何验证它是否真的成立
+
+---
+
+## 不要做的事
+
+- 不要把完整聊天记录原样塞进 skill
+- 不要只写步骤，不写决策原因
+- 不要把多个不相干能力硬捏成一个 skill
+- 不要把“还没稳定的方法”过早包装成发布版

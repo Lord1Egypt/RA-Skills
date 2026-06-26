@@ -1,0 +1,27 @@
+{
+  "extraction": {
+    "enabled": true,
+    "auto_on_session_end": true,
+    "heartbeat_reprocess_days": 2,
+    "min_confidence": 0.6,
+    "max_facts_per_session": 10
+  },
+  "filters": {
+    "user_id": "ou_39f0f10fb55c7c782610cad6a97f4842",
+    "ignore_bot_messages": true,
+    "ignore_short_messages": true,
+    "min_message_length": 5
+  },
+  "persistence": {
+    "verify_after_write": true,
+    "backup_before_write": false,
+    "deduplicate_across_sessions": true
+  },
+  "categories": {
+    "person": ["wife", "xiaomeimei", "baozi", "mujun", "zhuoling", "family", "friends", "colleagues"],
+    "location": ["wuhan", "shanghai", "zhengzhou", "beijing", "business trip", "travel", "go to", "return"],
+    "time": ["wednesday", "tuesday", "monday", "this week", "next week", "month", "day", "today", "tomorrow"],
+    "preference": ["like", "don't", "remember", "must", "rule", "photo", "random", "all at once"],
+    "system": ["must", "prohibited", "forbidden", "reply", "@老布"]
+  }
+}

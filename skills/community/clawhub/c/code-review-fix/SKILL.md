@@ -1,35 +1,33 @@
----
-name: "code-review-fix"
-description: "Automatically review code for bugs, security, style, and performance issues, provide fix suggestions, and optionally apply repairs with explanations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-review-fix"
-sourceUrl: "https://clawhub.ai/skills/code-review-fix"
----
+# Code Review & Fix / 智能代码审查与修复
 
-# code-review-fix
+自动审查代码问题、提供修复建议、直接修复代码 —— 解决开发者"代码质量"和"bug修复"的高频痛点。
 
-> Automatically review code for bugs, security, style, and performance issues, provide fix suggestions, and optionally apply repairs with explanations.
+## Usage / 使用方法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-review-fix`
-- **Source URL:** [https://clawhub.ai/skills/code-review-fix](https://clawhub.ai/skills/code-review-fix)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/code-review-fix
+# 审查当前文件
+/code-review
+
+# 审查并自动修复
+/code-review --fix
+
+# 只检查安全问题
+/code-review --security
+
+# 学习模式（附带解释）
+/code-review --explain
 ```
+
+## Features / 功能特性
+
+- ✅ 代码问题检测（bug、安全、性能）
+- ✅ 代码风格检查
+- ✅ 自动修复
+- ✅ 解释教育模式
+- ✅ 多语言支持
+
+## Pricing / 定价
+
+- 前3次免费
+- 单次调用：0.001 USDT
+- 更多套餐见 skillpay.me

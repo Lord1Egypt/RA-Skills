@@ -1,35 +1,110 @@
 ---
-name: "Conference Abstract Adaptor"
-description: "Adapt abstracts to meet specific conference word limits and formats"
-category: "other"
-source: "ClawHub"
+name: conference-abstract-adaptor
+description: Adapt abstracts to meet specific conference word limits and formats
+version: 1.0.0
+category: Research
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/conference-abstract-adaptor"
-sourceUrl: "https://clawhub.ai/skills/conference-abstract-adaptor"
+author: AIPOCH
+license: MIT
+status: Draft
+risk_level: Medium
+skill_type: Tool/Script
+owner: AIPOCH
+reviewer: ''
+last_updated: '2026-02-06'
 ---
 
 # Conference Abstract Adaptor
 
-> Adapt abstracts to meet specific conference word limits and formats
+Conference-specific abstract formatting.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/conference-abstract-adaptor`
-- **Source URL:** [https://clawhub.ai/skills/conference-abstract-adaptor](https://clawhub.ai/skills/conference-abstract-adaptor)
+## Use Cases
+- Multi-conference submissions
+- Word count compliance
+- Format standardization
+- Deadline management
 
-## Overview
+## Parameters
 
+| Parameter | Type | Default | Required | Description |
+|-----------|------|---------|----------|-------------|
+| `--abstract`, `-a` | string | - | Yes | Abstract text file path |
+| `--conference`, `-c` | string | - | Yes | Target conference (ASGCT, ASCO, SfN, AACR, ASM) |
+| `--output`, `-o` | string | - | No | Output file path |
+| `--list-conferences`, `-l` | flag | - | No | List supported conferences |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
 ```bash
-hermes skills install clawhub/conference-abstract-adaptor
+# Adapt abstract for ASCO
+python scripts/main.py --abstract my_abstract.txt --conference ASCO
+
+# Save adapted abstract to file
+python scripts/main.py --abstract my_abstract.txt --conference ASGCT --output adapted.txt
+
+# List all supported conferences
+python scripts/main.py --list-conferences
 ```
+
+## Supported Conferences
+
+| Conference | Word Limit | Format |
+|-----------|------------|--------|
+| **ASGCT** | 250 words | Structured (Background/Methods/Results/Conclusion) |
+| **ASCO** | 260 words | Structured (Background/Methods/Results/Conclusion) |
+| **SfN** | 2000 chars | Single abstract |
+| **AACR** | 300 words | Structured (Background/Methods/Results/Conclusion) |
+| **ASM** | 300 words | Single abstract |
+
+## Returns
+- Reformatted abstract
+- Word count verification
+- Required sections checklist
+- Submission-ready text
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support

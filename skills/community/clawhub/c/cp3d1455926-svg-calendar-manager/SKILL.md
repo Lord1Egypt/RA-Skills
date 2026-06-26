@@ -1,35 +1,124 @@
----
-name: "Calendar Manager"
-description: "Manage your schedule by adding, viewing, modifying, deleting events, and setting smart reminders for meetings, birthdays, and important dates."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cp3d1455926-svg-calendar-manager"
-sourceUrl: "https://clawhub.ai/skills/cp3d1455926-svg-calendar-manager"
----
+# 📅 Calendar Manager - 日历管理助手
 
-# Calendar Manager
+## 触发规则
 
-> Manage your schedule by adding, viewing, modifying, deleting events, and setting smart reminders for meetings, birthdays, and important dates.
+**关键词：**
+- 日历、日程、安排
+- 会议、约会、提醒
+- 今天有什么安排、这周忙吗
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cp3d1455926-svg-calendar-manager`
-- **Source URL:** [https://clawhub.ai/skills/cp3d1455926-svg-calendar-manager](https://clawhub.ai/skills/cp3d1455926-svg-calendar-manager)
+**场景：**
+- 用户想查看日程安排
+- 用户需要添加日程
+- 用户需要会议提醒
 
-## Overview
+## 功能描述
 
+### 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cp3d1455926-svg-calendar-manager
+1. **日程管理**
+   - 添加日程
+   - 修改日程
+   - 删除日程
+
+2. **日程查看**
+   - 今日日程
+   - 本周日程
+   - 本月日程
+
+3. **智能提醒**
+   - 会议前提醒
+   - 重要日期提醒
+   - 生日提醒
+
+4. **日程同步**
+   - 导出日历
+   - 导入日历
+   - 重复日程
+
+## 权限需求
+
+- [x] 文件读写（日程存储）
+- [x] 定时任务（提醒）
+
+## 示例对话
+
 ```
+用户：今天下午 3 点开会
+助手：✅ 日程已添加
+
+📅 会议安排
+📝 主题：开会
+⏰ 时间：今天 15:00
+🔔 提醒：提前 15 分钟
+
+需要设置重复吗？比如每周一次？
+
+用户：今天有什么安排
+助手：📅 **今日日程** (2026-03-16)
+
+⏰ 09:00 晨会
+⏰ 15:00 开会
+⏰ 18:00 晚餐约会
+⏰ 21:00 健身
+
+共 4 个日程
+
+用户：这周忙吗
+助手：📅 **本周日程** (3.16-3.22)
+
+周一 (3/16) 4 个日程
+周二 (3/17) 2 个日程
+周三 (3/18) 3 个日程
+周四 (3/19) 1 个日程
+周五 (3/20) 5 个日程
+周六 (3/21) 0 个日程
+周日 (3/22) 1 个日程
+
+最忙的是周五！
+
+用户：提醒我明天交报告
+助手：✅ 提醒已设置
+
+📝 任务：交报告
+⏰ 时间：明天
+🔔 提醒：提前 1 小时
+🔁 重复：一次性
+
+用户：取消下午的会议
+助手：✅ 日程已取消
+
+📅 已删除：开会
+⏰ 原时间：今天 15:00
+```
+
+## 数据存储
+
+```json
+// ~/.openclaw/workspace/calendar-manager/events.json
+{
+  "events": [
+    {
+      "title": "开会",
+      "start": "2026-03-16T15:00:00",
+      "end": "2026-03-16T16:00:00",
+      "reminder": 15,
+      "repeat": null
+    }
+  ]
+}
+```
+
+## 待办事项
+
+- [ ] 日程 CRUD
+- [ ] 日历视图
+- [ ] 提醒功能
+- [ ] 重复日程
+- [ ] 导出导入
+
+---
+
+**版本：** 1.0.0
+**创建日期：** 2026-03-16
+**作者：** 小鬼 👻

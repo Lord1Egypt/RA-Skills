@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>wechat-studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div>
+            <h1>wechat-studio</h1>
+            <p>微信包装子系统：上传 Markdown 后，直接完成包装与草稿推送</p>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active" type="button" data-view="workbench">
+            <span class="nav-icon">◫</span>
+            <span>文章工作台</span>
+          </button>
+          <button class="nav-item" type="button" data-view="settings">
+            <span class="nav-icon">⚙</span>
+            <span>系统设置</span>
+          </button>
+        </nav>
+
+        <section class="sidebar-note">
+            <h2>子系统流程</h2>
+          <ol>
+            <li>上传 Markdown</li>
+            <li>调整色调与排版</li>
+            <li>自动生成封面候选</li>
+            <li>自动生成正文配图</li>
+            <li>确认后推送草稿箱</li>
+          </ol>
+        </section>
+      </aside>
+
+      <main class="main-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow topbar-title">wechat-studio subsystem</p>
+          </div>
+        </header>
+
+        <section class="view is-active" id="workbenchView">
+          <div class="workbench-grid">
+            <section class="detail-pane">
+              <section class="module-card upload-panel">
+                <div class="module-head">
+                  <div>
+                    <p class="eyebrow">模块一</p>
+                    <h4>上传 Markdown</h4>
+                  </div>
+                  <button class="primary-btn" id="importButton" type="button">选择 Markdown</button>
+                </div>
+                <div class="upload-dropzone" id="uploadDropzone" tabindex="0">
+                  <strong>拖拽 `.md` 文件到这里，或点击上方按钮导入</strong>
+                  <p class="field-help">导入后会自动创建文章记录，并尝试生成封面候选与正文配图。</p>
+                </div>
+                <input id="markdownFileInput" type="file" accept=".md,text/markdown" class="hidden" />
+              </section>
+
+              <div class="empty-card hidden" id="detailEmptyState">
+                <h4>当前工作区还没有可处理的文章</h4>
+                <p>先导入一个 Markdown 文件，工作台会自动生成文章记录并进入包装流程。</p>
+              </div>
+
+              <div class="detail-wrap hidden" id="detailWrap">
+                <header class="detail-header">
+                  <div>
+                    <p class="eyebrow">单篇详情工作台</p>
+                    <h3 id="detailTitle">文章标题</h3>
+                    <p class="detail-subtitle" id="detailSubtitle">文章摘要</p>
+                  </div>
+                  <div class="detail-header-side">
+                    <div class="article-switcher" id="articleSwitcherWrap">
+                      <span class="article-switcher-label">当前文章</span>
+                      <div class="article-switcher-row">
+                        <div class="article-switcher-menu-wrap">
+                          <button
+                            class="article-switcher-trigger"
+                            id="articleSwitcherButton"
+                            type="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <span class="article-switcher-current" id="articleSwitcherCurrent">当前工作区暂无文章</span>
+                            <span class="article-switcher-caret" aria-hidden="true">▾</span>
+                          </button>
+                          <div class="article-switcher-menu hidden" id="articleSwitcherMenu"></div>
+                        </div>
+                        <span class="count-pill subtle" id="articleCount">0 篇</span>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+
+                <div class="detail-grid">
+                  <div class="modules-column">
+                    <section class="module-card is-collapsible is-collapsed" id="articleInfoCard">
+                      <div class="module-head">
+                        <div>
+                          <p class="eyebrow">模块二</p>
+                          <h4>文章信息</h4>
+                        </div>
+                        <button
+                          class="module-collapse-toggle"
+                          id="articleInfoToggle"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="articleInfoContent"
+                        >
+                          <span class="module-collapse-toggle-label" id="articleInfoToggleLabel">展开</span>
+                          <span class="module-collapse-toggle-icon" aria-hidden="true">▾</span>
+                        </button>
+                      </div>
+
+                      <div class="module-content hidden" id="articleInfoContent" aria-hidden="true">
+                        <div class="info-grid">
+                          <div class="info-item">
+                            <span class="info-label">作者</span>
+                            <strong id="infoAuthor">-</strong>
+                          </div>
+                          <div class="info-item">
+                            <span class="info-label">字数</span>
+                            <strong id="infoChars">0</strong>
+                          </div>
+                          <div class="info-item wide">
+                            <span class="info-label">文章目录</span>
+                            <strong id="infoPath">-</strong>
+                          </div>
+                          <div class="info-item">
+                            <span class="info-label">更新时间</span>
+                            <strong id="infoUpdatedAt">-</strong>
+                          </div>
+                        </div>
+
+                        <div class="source-files source-file-grid">
+                          <div class="source-file">
+                            <span>source.md</span>
+                            <code id="sourcePath">-</code>
+                          </div>
+                          <div class="source-file">
+                            <span>doocs.md</span>
+                            <code id="doocsPath">-</code>
+                          </div>
+                          <div class="source-file">
+                            <span>publish-pack.json</span>
+                            <code id="packPath">-</code>
+                          </div>
+                        </div>
+
+                        <div class="summary-box">
+                          <span class="info-label">摘要预览</span>
+                          <p id="infoSummary">-</p>
+                        </div>
+
+                        <div class="status-panel hidden" id="sourceWarningPanel">
+                          <strong>导入提醒</strong>
+                          <div class="warning-list" id="sourceWarningList"></div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section class="module-card">
+                      <div class="module-head">
+                        <div>
+                          <p class="eyebrow">模块三</p>
+                          <h4>色调与排版</h4>
+                        </div>
+                        <button class="secondary-btn" id="generatePreviewButton" type="button">立即刷新预览</button>
+                      </div>
+
+                      <div class="control-section">
+                        <div class="field-group">
+                          <label for="themeSelect">主题风格</label>
+                          <select id="themeSelect"></select>
+                          <p class="field-help" id="themeHint">选择文章的整体气质基底。</p>
+                        </div>
+
+                        <div class="field-group">
+                          <label for="primaryColorInput">主色</label>
+                          <div class="color-row">
+                            <input id="primaryColorInput" type="color" value="#b3832f" />
+                            <code id="primaryColorValue">#b3832f</code>
+                          </div>
+                        </div>
+
+                        <div class="field-group">
+                          <label for="saturationRange">饱和度</label>
+                          <div class="range-row">
+                            <input id="saturationRange" type="range" min="40" max="160" step="1" />
+                            <span class="range-readout" id="saturationValue">100%</span>
+                          </div>
+                        </div>
+
+                        <div class="field-group">
+                          <label for="opacityRange">透明度</label>
+                          <div class="range-row">
+                            <input id="opacityRange" type="range" min="35" max="100" step="1" />
+                            <span class="range-readout" id="opacityValue">88%</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="control-section">
+                      </div>
+                    </section>
+
+                    <section class="module-card">
+                      <div class="module-head">
+                        <div>
+                          <p class="eyebrow">模块四</p>
+                          <h4>封面候选</h4>
+                        </div>
+                        <button class="secondary-btn" id="generateCoverButton" type="button">generate</button>
+                      </div>
+
+                      <div class="image-card hidden" id="coverResultCard">
+                        <div class="image-card-head">
+                          <strong>最新封面结果</strong>
+                          <span id="coverResultMeta">未生成</span>
+                        </div>
+                        <img id="coverResultImage" alt="封面预览" />
+                        <div class="cover-result-placeholder hidden" id="coverResultPlaceholder">
+                          这是当前文章的默认封面结构化 Prompt。你可以直接修改后点上方 generate；如果不改，就按默认逻辑生成封面候选。
+                        </div>
+                        <div class="generated-prompt-editor">
+                          <label class="generated-prompt-label" for="coverResultPromptInput">当前结构化 Prompt</label>
+                          <textarea
+                            class="generated-prompt-input"
+                            id="coverResultPromptInput"
+                            rows="12"
+                            placeholder="这里会展示当前封面的完整结构化 Prompt；修改后点上方 generate，可以按这版 Prompt 重生当前封面。"
+                          ></textarea>
+                          <p class="generated-prompt-help" id="coverResultPromptHelp">生成后会展示当前封面的完整结构化 Prompt 和本地路径。</p>
+                        </div>
+                        <div class="history-actions">
+                          <button class="primary-btn small" id="selectCoverButton" type="button">设为当前封面</button>
+                          <button class="secondary-btn danger small image-delete-btn" id="deleteCoverButton" type="button">删除</button>
+                        </div>
+                      </div>
+
+                      <div class="history-block">
+                        <div class="submodule-head">
+                          <div>
+                            <h5>封面候选列表</h5>
+                            <p>封面候选会保存在本地，可随时切换当前封面。</p>
+                          </div>
+                        </div>
+                        <div class="history-gallery" id="coverHistoryGallery"></div>
+                      </div>
+                    </section>
+
+                    <section class="module-card">
+                      <div class="module-head">
+                        <div>
+                          <p class="eyebrow">模块五</p>
+                          <h4>正文配图</h4>
+                        </div>
+                        <button class="secondary-btn" id="generateInlineButton" type="button">generate</button>
+                      </div>
+
+                      <p class="field-help inline-slot-help">
+                        先在右侧编辑区里选中一个位置，然后插入插图位；这里会自动出现对应的插图卡、结构化 Prompt 和历史图。
+                      </p>
+
+                      <div class="inline-gallery" id="inlineGallery"></div>
+                    </section>
+
+                    <section class="module-card">
+                      <div class="module-head">
+                        <div>
+                          <p class="eyebrow">模块六</p>
+                          <h4>推送草稿箱</h4>
+                        </div>
+                        <button class="primary-btn" id="pushDraftButton" type="button">推送到草稿箱</button>
+                      </div>
+
+                      <div class="field-group">
+                        <label for="coverCandidatePath">当前封面路径</label>
+                        <input id="coverCandidatePath" type="text" readonly placeholder="请先确认当前封面" />
+                      </div>
+
+                      <div class="publish-status">
+                        <div class="publish-item">
+                          <span class="info-label">草稿状态</span>
+                          <strong id="draftStatusTitle">尚未推送</strong>
+                        </div>
+                        <p id="draftStatusText">确认预览、封面和正文配图后，再推送到微信草稿箱。</p>
+                      </div>
+                    </section>
+                  </div>
+
+                  <div class="preview-column">
+                    <section class="preview-shell">
+                      <div class="preview-sticky-head">
+                        <div class="preview-toolbar">
+                          <div class="preview-toolbar-meta">
+                            <span id="previewCharCount">0</span>
+                            <span>字符</span>
+                          </div>
+                          <div class="preview-toolbar-actions">
+                            <button class="chip ghost" id="previewModeButton" type="button">编辑</button>
+                            <button class="chip" id="copyHtmlButton" type="button">复制</button>
+                            <button class="chip" id="saveHtmlButton" type="button">保存</button>
+                          </div>
+                        </div>
+
+                        <div class="preview-card-head">
+                          <p class="eyebrow" id="previewKicker">微信发布预览</p>
+                          <h4 id="previewTitle">等待加载</h4>
+                        </div>
+                      </div>
+
+                      <div class="preview-card">
+                        <iframe id="previewFrame" title="公众号预览"></iframe>
+                        <div class="editor-view hidden" id="editorView"></div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view hidden" id="settingsView">
+          <div class="settings-grid">
+            <section class="settings-card">
+              <p class="eyebrow">系统设置</p>
+              <h3>公众号配置状态</h3>
+              <dl class="settings-list">
+                <div>
+                  <dt>模式</dt>
+                  <dd id="wechatMode">-</dd>
+                </div>
+                <div>
+                  <dt>AppID</dt>
+                  <dd id="wechatAppid">-</dd>
+                </div>
+                <div>
+                  <dt>状态</dt>
+                  <dd id="wechatConfigured">-</dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="settings-card">
+              <p class="eyebrow">系统设置</p>
+              <h3>配图能力状态</h3>
+              <dl class="settings-list">
+                <div>
+                  <dt>当前配置 Provider</dt>
+                  <dd id="configuredImageProvider">-</dd>
+                </div>
+                <div>
+                  <dt>当前配置 Model</dt>
+                  <dd id="configuredImageModel">-</dd>
+                </div>
+                <div>
+                  <dt>当前配置 API 地址</dt>
+                  <dd id="configuredImageApiBase">-</dd>
+                </div>
+                <div>
+                  <dt>实际生效 Provider</dt>
+                  <dd id="effectiveImageProvider">-</dd>
+                </div>
+                <div>
+                  <dt>实际生效 Model</dt>
+                  <dd id="effectiveImageModel">-</dd>
+                </div>
+                <div>
+                  <dt>实际生效 API 地址</dt>
+                  <dd id="effectiveImageApiBase">-</dd>
+                </div>
+                <div>
+                  <dt>状态</dt>
+                  <dd id="imageConfigured">-</dd>
+                </div>
+                <div>
+                  <dt>模型来源</dt>
+                  <dd id="imageModelSource">-</dd>
+                </div>
+              </dl>
+              <p class="settings-help">
+                默认图片能力使用香蕉画图 <code>nano-nx</code>。已有制作平台可直接使用；没有制作平台请打开
+                <a href="https://job.suxi.ai/" target="_blank" rel="noreferrer">job.suxi.ai</a>，把生成的
+                <code>SK</code> 放到令牌位置后点登录。
+              </p>
+            </section>
+
+            <section class="settings-card wide">
+              <p class="eyebrow">默认项</p>
+              <h3>当前系统默认值</h3>
+              <div class="settings-defaults">
+                <div>
+                  <span class="info-label">当前工作区</span>
+                  <code id="settingsWorkspace">-</code>
+                </div>
+                <div>
+                  <span class="info-label">默认主题</span>
+                  <code id="settingsTheme">-</code>
+                </div>
+                <div>
+                  <span class="info-label">默认封面</span>
+                  <code id="settingsCover">-</code>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="editor-selection-toolbar hidden" id="editorSelectionToolbar">
+      <button class="secondary-btn small" id="editorHighlightButton" type="button">高亮</button>
+      <button class="secondary-btn small danger" id="editorDeleteButton" type="button">删除</button>
+      <button class="primary-btn small" id="editorInsertImageButton" type="button">插入插图位</button>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+Please process this PDF and turn it into a reusable outcome:
+
+/path/to/report.pdf
+
+Goals:
+- extract source information and readable text
+- produce structured notes, key insights, practical next steps, and a reusable takeaway
+- if the PDF is too long, start with the first 3 to 5 pages or plan a segmented reading workflow

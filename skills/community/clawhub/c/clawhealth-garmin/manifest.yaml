@@ -1,0 +1,17 @@
+name: clawhealth-garmin
+version: 0.1.8
+description: Lightweight Garmin Connect skill that uses the published clawhealth Python package to sync health data into local SQLite for OpenClaw.
+author: Ernest Yu
+license: MIT
+permissions:
+  - network
+entry: SKILL.md
+tags:
+  - health
+  - garmin
+  - sqlite
+  - cli
+models:
+  - gpt-*
+  - claude-*
+  - gemini-*

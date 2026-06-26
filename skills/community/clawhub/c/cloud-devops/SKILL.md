@@ -1,35 +1,88 @@
----
-name: "cumulative"
-description: "DevOps and cloud engineer skilled in Kubernetes, Terraform, CI/CD automation, observability, distributed storage, Linux administration, and cloud-native infr..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cloud-devops"
-sourceUrl: "https://clawhub.ai/skills/cloud-devops"
----
+# Sameer Gupta
 
-# cumulative
+Location: India Role Focus: DevOps Engineer \| Platform Engineer \|
+Cloud Infrastructure Engineer
 
-> DevOps and cloud engineer skilled in Kubernetes, Terraform, CI/CD automation, observability, distributed storage, Linux administration, and cloud-native infr...
+------------------------------------------------------------------------
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cloud-devops`
-- **Source URL:** [https://clawhub.ai/skills/cloud-devops](https://clawhub.ai/skills/cloud-devops)
+## TECHNICAL SKILLS
 
-## Overview
+### Cloud & Container Orchestration
 
+-   Kubernetes (k8s)
+-   K3s
+-   Container orchestration and cluster management
+-   Podman (containerization)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cloud-devops
-```
+### Infrastructure as Code
+
+-   Terraform
+-   Nix / NixOS (declarative infrastructure)
+-   Infrastructure automation
+-   Immutable infrastructure design
+
+### CI/CD
+
+-   GitLab CI/CD
+-   Self-hosted GitHub runners
+-   Pipeline automation
+-   Continuous deployment workflows
+
+### Monitoring & Observability
+
+-   Prometheus
+-   Alertmanager
+-   Grafana
+-   Metrics-based alerting
+-   System monitoring and dashboards
+
+### Storage & Distributed Systems
+
+-   S3-compatible storage
+-   MinIO
+-   Object storage architecture
+-   Data lake systems
+-   IPFS (distributed storage)
+
+### Programming Languages
+
+-   Haskell
+-   Rust
+-   Python
+-   Nix
+
+### Systems & Networking
+
+-   Linux systems administration
+-   Network namespaces
+-   Firewall configuration
+-   Reverse proxy configuration
+-   VPC and VM architecture
+-   Secure service exposure
+
+------------------------------------------------------------------------
+
+## CORE COMPETENCIES
+
+-   Cloud-native infrastructure design
+-   Production Kubernetes deployments
+-   Infrastructure as Code (IaC)
+-   Observability-first engineering
+-   Distributed systems architecture
+-   Reproducible builds and environments
+-   End-to-end system ownership
+-   Debugging and performance optimization
+
+------------------------------------------------------------------------
+
+## OPERATING SYSTEMS
+
+-   Linux
+-   NixOS (advanced usage)
+
+------------------------------------------------------------------------
+
+## LANGUAGES
+
+-   English (Professional)
+-   Hindi (Native)

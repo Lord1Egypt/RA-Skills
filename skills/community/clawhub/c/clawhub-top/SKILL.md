@@ -1,35 +1,38 @@
 ---
-name: "Clawhub Top"
-description: "Get ClawHub popular skills rankings and latest releases. Use for: - View top 20 most popular skills (by downloads) - View top 20 newly released skills - View..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhub-top"
-sourceUrl: "https://clawhub.ai/skills/clawhub-top"
+name: clawhub-top
+description: |
+  Get ClawHub popular skills rankings and latest releases. Use for:
+  - View top 20 most popular skills (by downloads)
+  - View top 20 newly released skills
+  - View trending skills
+  - Daily auto-notification of industry trends
 ---
 
-# Clawhub Top
+# ClawHub Industry Trends
 
-> Get ClawHub popular skills rankings and latest releases. Use for: - View top 20 most popular skills (by downloads) - View top 20 newly released skills - View...
+Real-time ClawHub skill market trends.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhub-top`
-- **Source URL:** [https://clawhub.ai/skills/clawhub-top](https://clawhub.ai/skills/clawhub-top)
+## Scheduled Task
 
-## Overview
+Auto-fetch daily at 10:00 AM and send to Telegram:
+- Top 20 Popular Skills
+- Top 20 New Releases
+- Top 20 Trending
 
+## Manual Run
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/clawhub-top
+python3 /root/.openclaw/workspace/scripts/clawhub_report.py
 ```
+
+## Recommended Skills
+
+| Type | Skill | Use Case |
+|------|-------|----------|
+| Popular | gog | Google Workspace |
+| Popular | summarize | Web/File Summary |
+| Popular | weather | Weather Forecast |
+| Popular | github | GitHub Operations |
+| New | NeuroBoost Elixir | AI Performance |
+| New | Lel-Mail | Email Management |
+| New | Crypto Genie | Crypto Security |

@@ -1,35 +1,25 @@
----
-name: "Cn Line Counter"
-description: "Count total lines, non-empty lines, words, and characters in Chinese text from input string or file using a Python script."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-line-counter"
-sourceUrl: "https://clawhub.ai/skills/cn-line-counter"
----
+# cn-line-counter
 
-# Cn Line Counter
+文本行数统计工具。统计文本的行数、字数、字符数。
 
-> Count total lines, non-empty lines, words, and characters in Chinese text from input string or file using a Python script.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-line-counter`
-- **Source URL:** [https://clawhub.ai/skills/cn-line-counter](https://clawhub.ai/skills/cn-line-counter)
+- 统计总行数
+- 统计非空行数
+- 统计字数
+- 统计字符数
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/cn-line-counter
+python3 scripts/count_lines.py --text "第一行\n第二行\n第三行"
+python3 scripts/count_lines.py --file document.txt
 ```
+
+纯Python标准库。
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

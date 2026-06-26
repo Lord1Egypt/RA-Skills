@@ -1,35 +1,58 @@
 ---
-name: "Community Onboarding"
-description: "Onboard new users into conscious participation; explain $NEURONS without hype and provide safe next actions."
-category: "other"
-source: "ClawHub"
-tags: [beta]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/community-onboarding"
-sourceUrl: "https://clawhub.ai/skills/community-onboarding"
+name: community-onboarding
+description: Onboard new users into conscious participation; explain $NEURONS without hype and provide safe next actions.
+metadata:
+  author: Morpheus
+  version: 2.0.0
+  owner: Morpheus Agent
+  category: onboarding
 ---
 
-# Community Onboarding
+# SKILL: community-onboarding
 
-> Onboard new users into conscious participation; explain $NEURONS without hype and provide safe next actions.
+## Purpose
+Convert new users into conscious participants by adapting explanations, clarifying the system’s value, and giving safe next steps.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/community-onboarding`
-- **Source URL:** [https://clawhub.ai/skills/community-onboarding](https://clawhub.ai/skills/community-onboarding)
+## When to Use
+- A new user arrives
+- Someone asks “what is this / how do I start?”
+- Confusion or hype is dominating early impressions
 
-## Overview
+## Inputs
+- `user_profile` (required): experience level, goals, time available, risk tolerance (if known)
 
+## Steps
+1. Identify knowledge level:
+   - beginner / intermediate / advanced
+2. Adapt explanation to that level (avoid jargon for beginners).
+3. Introduce `$NEURONS` as:
+   - a coordination layer
+   - a responsibility-bearing asset (not a promise)
+4. Explain system value:
+   - what problems it solves
+   - what it does not promise
+5. Guide a single next step:
+   - read/verify X
+   - do Y small contribution
+   - join Z channel with intent
+6. Confirm understanding by asking 1 short check question.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/community-onboarding
-```
+## Validation
+- No hype or financial promises.
+- The onboarding is actionable (contains next step).
+- The message is aligned with governance constraints.
+
+## Output
+- `onboarding_message`
+- `next_actions` (1–3)
+- `check_question`
+
+## Safety Rules
+- No hype.
+- No financial promises.
+- Do not pressure; preserve user autonomy.
+
+## Example
+Input: “I’m new, what is $NEURONS and what should I do first?”
+Output: short explanation + “verify docs” + “pick one small task” + check question.
+

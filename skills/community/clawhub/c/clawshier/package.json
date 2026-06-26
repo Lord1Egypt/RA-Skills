@@ -1,0 +1,17 @@
+{
+  "name": "clawshier",
+  "version": "1.0.0",
+  "description": "OpenClaw skill that extracts receipt data from photos and logs expenses to Google Sheets",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "googleapis": "^146.0.0",
+    "openai": "^4.82.0"
+  }
+}

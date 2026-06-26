@@ -1,0 +1,18 @@
+ClawHub Plugin Packager v1.1 — Review Checklist
+
+[ ] Mode selected explicitly or conservatively inferred.
+[ ] Plugin class is coherent with the requested runtime role.
+[ ] package.json exists.
+[ ] openclaw.plugin.json exists.
+[ ] configSchema exists, even if minimal.
+[ ] Runtime entrypoint exists and matches plugin type.
+[ ] Compatibility/build metadata is present.
+[ ] README explains behavior, config, and setup.
+[ ] Secrets are not embedded.
+[ ] Placeholder env vars are documented when needed.
+[ ] Output package contains only plugin-release files.
+[ ] Critique file is separate from plugin zip.
+[ ] Assumptions are documented.
+[ ] Repairs are documented.
+[ ] Simplifications are documented.
+[ ] Publishability assessment is stated.

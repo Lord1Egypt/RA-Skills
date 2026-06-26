@@ -1,0 +1,21 @@
+{
+  "formula": {
+    "deltas": [0.05, 0.03, 0.015],
+    "labels": ["基礎成本", "滿萬優惠", "五萬優惠"]
+  },
+  "source": {
+    "name": "Bank of Taiwan",
+    "url": "https://rate.bot.com.tw/xrt"
+  },
+  "channels": [],
+  "schedule": {
+    "enabled": false,
+    "days_of_week": [1, 2, 3, 4, 5],
+    "start_time": "09:00",
+    "end_time": "17:00",
+    "interval_hours": 1,
+    "schedule_times": [],
+    "description": "週一至週五 09:00-17:00 每小時",
+    "cron": "0 9-17 * * 1-5"
+  }
+}

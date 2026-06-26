@@ -1,0 +1,74 @@
+{
+  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+
+  "note_title":      "CPAP Log",
+  "callout_title":   "Auto-generated",
+  "callout_body":    "This note was automatically created from PrismaAPP API data (Löwenstein Medical).",
+
+  "summary_heading": "Summary",
+  "col_metric":      "Metric",
+  "col_value":       "Value",
+  "col_rating":      "Rating",
+
+  "row_sleep":       "Sleep duration",
+  "row_deepsleep":   "Deep sleep",
+  "row_ahi":         "AHI",
+  "row_leakage":     "Leakage",
+  "row_snoring":     "Snoring",
+  "row_mask":        "Mask fit",
+  "row_therapy":     "Therapy mode",
+
+  "overall_prefix":  "Overall rating",
+
+  "sleep_heading":   "Sleep",
+  "sleep_duration":  "Duration",
+  "sleep_deepsleep": "Deep sleep",
+  "sleep_goal":      "Goal",
+  "goal_reached":    "✅ reached",
+  "goal_not_reached":"❌ not reached",
+
+  "therapy_heading": "CPAP Therapy",
+  "therapy_rating":  "Rating",
+  "therapy_mode":    "Therapy mode",
+  "pressure_label":  "Pressure",
+
+  "snoring_heading": "Snoring & Mask",
+  "snoring_of_time": "of sleep time",
+  "mask_label":      "Mask fit",
+  "mask_perfect":    "🟢 Perfect",
+  "mask_ok":         "🟡 Okay",
+  "mask_bad":        "🔴 Poor",
+
+  "ahi_0":           "≤ 5 — normal",
+  "ahi_1":           "5–15 — mildly elevated",
+  "ahi_2":           "15–30 — moderately elevated",
+  "ahi_3":           "> 30 — severely elevated",
+  "ahi_4":           "—",
+
+  "q_0":             "🟢 Good",
+  "q_1":             "🟡 Okay",
+  "q_2":             "🔴 Poor",
+  "q_3":             "🟠 Borderline",
+  "q_4":             "—",
+
+  "overall_great":   "🟢 Excellent",
+  "overall_good":    "🟢 Good",
+  "overall_ok":      "🟡 Okay",
+  "overall_border":  "🟠 Borderline",
+  "overall_bad":     "🔴 Poor",
+  "overall_none":    "— No data",
+
+  "tag_great":       "excellent",
+  "tag_good":        "good",
+  "tag_ok":          "okay",
+  "tag_border":      "borderline",
+  "tag_bad":         "poor",
+  "tag_none":        "no-data",
+
+  "no_data_msg":     "No data available for this date (device not used or not yet synced).",
+
+  "fm_weekday_key":  "weekday",
+  "fm_source":       "PrismaAPP / Löwenstein prisma SOFT max",
+  "tag_health":      "health",
+  "tag_auto":        "auto-generated"
+}

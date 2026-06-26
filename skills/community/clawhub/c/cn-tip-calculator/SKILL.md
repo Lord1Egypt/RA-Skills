@@ -1,35 +1,39 @@
 ---
-name: "Cn Tip Calculator"
+slug: cn-tip-calculator
+name: Tip Calculator
+version: "1.0.0"
 description: "Calculate tips and split bills. Support custom tip percentages, bill splitting, and currency formatting. Pure Python standard library, no API key required."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-tip-calculator"
-sourceUrl: "https://clawhub.ai/skills/cn-tip-calculator"
+keywords: tip, calculator, bill, split, restaurant, gratuity
+license: MIT-0
+tags:
+  - tools
 ---
 
-# Cn Tip Calculator
+# Tip Calculator
 
-> Calculate tips and split bills. Support custom tip percentages, bill splitting, and currency formatting. Pure Python standard library, no API key required.
+Calculate tips and split bills at restaurants.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-tip-calculator`
-- **Source URL:** [https://clawhub.ai/skills/cn-tip-calculator](https://clawhub.ai/skills/cn-tip-calculator)
+## Features
 
-## Overview
+- Calculate tip amount from bill total and percentage
+- Split bills among multiple people
+- Common tip percentages (15%, 18%, 20%, 25%)
+- Custom tip percentage support
+- Pure Python, no external dependencies
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-tip-calculator
 ```
+python3 scripts/tip_calculator.py --bill 85.50 --tip 18
+python3 scripts/tip_calculator.py --bill 120.00 --tip 20 --split 4
+```
+
+## Output
+
+Returns tip amount, total, and per-person amount when splitting.
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

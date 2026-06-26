@@ -1,35 +1,28 @@
 ---
-name: "Conversation Recovery"
-description: "Capture and recover conversation state across OpenClaw sessions. Use when conversations get interrupted, span multiple sessions, or need context restoration...."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/conversation-recovery"
-sourceUrl: "https://clawhub.ai/skills/conversation-recovery"
+name: conversation-recovery
+description: "Redirect: conversation-recovery has been merged into context-preserver. Use context-preserver for session snapshots, recovery, task handoff, context export, and long-running work continuity."
 ---
 
-# Conversation Recovery
+# Conversation Recovery Redirect
 
-> Capture and recover conversation state across OpenClaw sessions. Use when conversations get interrupted, span multiple sessions, or need context restoration....
+`conversation-recovery` has been merged into `context-preserver`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/conversation-recovery`
-- **Source URL:** [https://clawhub.ai/skills/conversation-recovery](https://clawhub.ai/skills/conversation-recovery)
+Use `context-preserver` when a task spans sessions, gets interrupted, or needs a restorable handoff. Save the current goal, facts, decisions, tasks, blockers, and next step as a snapshot.
 
-## Overview
+## Handoff
 
+```text
+`conversation-recovery` 已合并到 `context-preserver`。请安装或调用 `context-preserver`，用快照保存目标、事实、待办、阻塞点和下一步，之后用 restore 恢复上下文。
+```
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/conversation-recovery
+## Suggested Snapshot Shape
+
+```text
+Goal:
+Current state:
+Key facts:
+Decisions:
+Open tasks:
+Blockers:
+Next command:
 ```

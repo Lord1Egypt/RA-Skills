@@ -1,0 +1,43 @@
+{
+  "name": "CSRF Detection",
+  "category": "csrf",
+  "description": "检测跨站请求伪造模式",
+  "severity": "high",
+  "patterns": [
+    {
+      "id": "csrf_token_missing",
+      "pattern": "(?:^|&)(?:csrf|csrf_token|xsrf|xsrf_token|token)=?$",
+      "weight": 0.3,
+      "severity": "medium",
+      "description": "CSRF token 缺失检测（需配合上下文）"
+    },
+    {
+      "id": "csrf_referer_check",
+      "pattern": "(?i)referer\\s*[:=]",
+      "weight": 0.4,
+      "severity": "medium",
+      "description": "Referer 检查"
+    },
+    {
+      "id": "csrf_origin_check",
+      "pattern": "(?i)origin\\s*[:=]",
+      "weight": 0.4,
+      "severity": "medium",
+      "description": "Origin 检查"
+    },
+    {
+      "id": "csrf_form_action",
+      "pattern": "<form[^>]*action\\s*=\\s*[\"']?(https?://[^\"'>]+)[\"']?",
+      "weight": 0.5,
+      "severity": "high",
+      "description": "表单跨域 action"
+    },
+    {
+      "id": "csrf_state_change",
+      "pattern": "(?i)(?:delete|update|insert|remove|transfer|submit)\\s+.*(?:account|profile|password|email|payment)",
+      "weight": 0.6,
+      "severity": "high",
+      "description": "状态变更操作（需防护）"
+    }
+  ]
+}

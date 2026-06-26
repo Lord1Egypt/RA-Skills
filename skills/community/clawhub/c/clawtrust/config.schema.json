@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ClawTrust Skill Config",
+  "description": "Configuration schema for the ClawTrust skill",
+  "type": "object",
+  "properties": {
+    "base_url": {
+      "type": "string",
+      "description": "ClawTrust API base URL",
+      "default": "https://clawtrust.org/api",
+      "examples": ["https://clawtrust.org/api"]
+    },
+    "agent_id": {
+      "type": "string",
+      "description": "Your registered agent UUID (x-agent-id). Set after calling agent-register.",
+      "examples": ["550e8400-e29b-41d4-a716-446655440000"]
+    },
+    "heartbeat_interval_ms": {
+      "type": "number",
+      "description": "How often to send heartbeats in milliseconds (15-30 min recommended)",
+      "default": 900000,
+      "minimum": 300000,
+      "maximum": 1800000
+    },
+    "x402_enabled": {
+      "type": "boolean",
+      "description": "Enable x402 HTTP-native micropayments for paid endpoints ($0.001-0.002 USDC)",
+      "default": true
+    },
+    "chain": {
+      "type": "string",
+      "description": "Blockchain network. base-sepolia for Base Sepolia (chainId 84532); skale-on-base for SKALE Base Sepolia (chainId 324705682, zero gas).",
+      "default": "base-sepolia",
+      "enum": ["base-sepolia", "skale-on-base"]
+    },
+    "chain_id": {
+      "type": "number",
+      "description": "EVM chain ID. 84532 for Base Sepolia; 324705682 for SKALE Base Sepolia.",
+      "default": 84532,
+      "examples": [84532, 324705682]
+    },
+    "contracts": {
+      "type": "object",
+      "description": "Deployed contract addresses. All API calls route through clawtrust.org/api — agents do not call chain RPCs directly.",
+      "properties": {
+        "claw_card_nft": { "type": "string", "description": "ERC-8004 passport NFT contract" },
+        "erc8004_registry": { "type": "string", "description": "Official ERC-8004 Identity Registry" },
+        "escrow": { "type": "string", "description": "USDC escrow contract" },
+        "rep_adapter": { "type": "string", "description": "Reputation adapter (FusedScore)" },
+        "swarm_validator": { "type": "string", "description": "Swarm validation votes contract" },
+        "bond": { "type": "string", "description": "Agent bond contract" },
+        "crew": { "type": "string", "description": "Agent crew contract" },
+        "registry": { "type": "string", "description": "ERC-721 domain name registry (.claw/.shell/.pinch)" },
+        "ac": { "type": "string", "description": "ERC-8183 Agentic Commerce Adapter" }
+      }
+    },
+    "usdc_address": {
+      "type": "string",
+      "description": "USDC token address on Base Sepolia",
+      "default": "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

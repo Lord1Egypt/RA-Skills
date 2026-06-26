@@ -1,0 +1,16 @@
+channels:
+  wechat_article:
+    tone: insightful
+    length: long
+  xiaohongshu_note:
+    tone: intimate
+    length: medium
+  douyin_script:
+    tone: punchy
+    length: short
+  email:
+    tone: direct
+    length: medium
+  slides:
+    tone: executive
+    length: concise

@@ -1,0 +1,83 @@
+{
+  "version": "5.3.23",
+  "storage": {
+    "primary": {
+      "type": "postgresql",
+      "host": "localhost",
+      "port": 5432,
+      "database": "cognitive_brain",
+      "user": "postgres",
+      "password": "",
+      "poolSize": 10,
+      "connectionTimeoutMillis": 5000,
+      "queryTimeout": 10000,
+      "extensions": [
+        "pgvector",
+        "pg_trgm"
+      ]
+    },
+    "cache": {
+      "type": "redis",
+      "host": "localhost",
+      "port": 6379,
+      "db": 0,
+      "keyPrefix": "brain:"
+    }
+  },
+  "embedding": {
+    "provider": "local",
+    "dimension": 384,
+    "options": {
+      "model": "paraphrase-multilingual-MiniLM-L12-v2",
+      "script": "scripts/embed.py"
+    }
+  },
+  "memory": {
+    "sensory": {
+      "ttl": 30000,
+      "maxSize": 100,
+      "storage": "redis"
+    },
+    "working": {
+      "ttl": 3600000,
+      "maxSize": 50,
+      "storage": "redis"
+    },
+    "episodic": {
+      "maxCount": 10000,
+      "decayRate": 0.1,
+      "storage": "postgresql"
+    },
+    "semantic": {
+      "maxCount": 5000,
+      "storage": "postgresql"
+    }
+  },
+  "forgetting": {
+    "enabled": true,
+    "schedule": "0 3 * * *",
+    "minAge": 604800000,
+    "importanceThreshold": 0.2,
+    "cleanupOrphans": true
+  },
+  "proactive": {
+    "enabled": true,
+    "maxSuggestions": 2,
+    "confidenceThreshold": 0.5
+  },
+  "safety": {
+    "enabled": true,
+    "strictMode": false,
+    "blockedOperations": [
+      "rm -rf",
+      "format",
+      "fdisk",
+      "mkfs"
+    ],
+    "requireConfirmation": [
+      "delete_file",
+      "send_email",
+      "post_public"
+    ]
+  }
+}

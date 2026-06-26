@@ -1,35 +1,82 @@
 ---
-name: "CoolTrade 股票行情与分析大师"
-description: "获取中国 A 股、美股、全球大盘以及期市的行情与深度财务面分析，支持加密货币实时行情与买卖信号，AI 生成每日 A 股精华日报，并提供多通道（微信/Telegram）股价预警推送。"
-category: "domain"
-source: "ClawHub"
-tags: [finance, stocks, trading]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cooltrade-market-pro"
-sourceUrl: "https://clawhub.ai/skills/cooltrade-market-pro"
+name: cooltrade-market-pro
+display_name: CoolTrade 股票行情与新闻解析
+description: 获取中国 A 股、美股、全球大盘以及期市的行情与深度财务面分析，支持加密货币实时行情与买卖信号，AI 生成每日 A 股精华日报，并提供多通道（微信/Telegram）股价预警推送。
+tags: Finance, Trading, Stocks, Crypto
+version: 1.4.0
 ---
 
-# CoolTrade 股票行情与分析大师
+# CoolTrade 股票与加密货币分析大师
 
-> 获取中国 A 股、美股、全球大盘以及期市的行情与深度财务面分析，支持加密货币实时行情与买卖信号，AI 生成每日 A 股精华日报，并提供多通道（微信/Telegram）股价预警推送。
+本技能允许您的 Agent 独立访问 CoolTrade 的专业金融数据库，获取实时的 A 股/美股/加密货币行情、技术指标买卖信号、市场新闻，并支持智能预警推送。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cooltrade-market-pro`
-- **Source URL:** [https://clawhub.ai/skills/cooltrade-market-pro](https://clawhub.ai/skills/cooltrade-market-pro)
+### 🔑 安装时需要填写您的 API Key
 
-## Overview
+安装过程中，龙虾会提示您输入 `COOLTRADE_API_KEY`：
 
+1. 访问 [CoolTrade](https://cooltrade.xyz) 注册账号（免费）。
+2. 进入控制台左下角 **「API Keys」** 页面，点击生成，复制您的 `sk-` 开头密钥。
+3. 将密钥粘贴到龙虾安装时的输入框，每次调用都会使用您自己的额度。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cooltrade-market-pro
-```
+---
+
+### 技能一：A股深度行情查询
+获取任意 A 股近期日线 K 线（最近10天）+ 市盈率、市净率、总市值等基本面指标。
+
+### 技能二：A股资讯与公告监控
+获取目标股票近1个月内的重大财经新闻，帮助识别重大事件。
+
+### 技能三：A股核心财务指标
+查询上市公司近4个季度的 EPS、ROE、流动比率、负债率等核心财务与估值数据。
+
+### 技能四：全球大盘指数监控
+获取沪深、纳斯达克等主流大盘指数的走势与行情，快速感知宏观市场情绪。
+
+### 技能五：美股行情追踪
+查询 AAPL、TSLA 等美股资产的近期日线量价数据。
+
+### 技能六：国内期货行情追踪
+查询国内各期交所主力合约（商品期货、股指期货）的价格与持仓变动。
+
+### 技能七：AI 每日 A 股精华日报
+由 Claude 大模型实时生成的 A 股每日精华简报，包含大盘概览、主线逻辑、关键异动、避险提示和明日展望。
+
+**使用方式：**
+- **随时问**：直接对话"给我今日 A 股日报" / "今天大盘怎样？"，Agent 立即生成。
+- **定时推**：在龙虾「定时任务」里设置每天 09:00 / 15:30 自动触发，推送到您的微信或其他渠道。
+
+### 技能八：加密货币行情与买卖信号 🆕
+输入任意加密货币名称或代码（BTC、ETH、SOL、比特币……），AI 自动计算技术指标并给出买卖点位参考。
+
+**包含数据：**
+- **实时价格**：当前价、24小时涨跌幅、最高/最低价、成交量
+- **技术指标**：MA5 / MA10 / MA20 均线、RSI（超买超卖判断）、MACD（多空动能）
+- **综合信号**：🟢 偏多 / 🟡 中性 / 🔴 偏空，附原因说明
+- **交易参考**：买入区间、压力位、止盈目标（T1/T2）、止损位
+
+**对话示例：**
+> "BTC 现在怎么样？"
+> "以太坊的买点在哪？"
+> "SOL 能买吗？"
+
+### 技能九：创建股价预警 🆕
+用大白话设置预警条件，系统自动监控并推送通知到微信或 Telegram。
+
+**支持条件：**
+- `price_below` / `price_above` — 价格跌破/涨破指定价位
+- `pct_down` / `pct_up` — 单日跌幅/涨幅超过指定百分比
+- `ma_break_below` / `ma_break_above` — 跌破/突破 N 日均线
+
+**对话示例：**
+> "帮我监控平安银行，跌破 10 元发微信给我"
+> "茅台涨幅超 5% 时通知我 Telegram"
+
+### 技能十：查看预警列表 🆕
+查看所有已设置的预警及其当前状态（监控中/已触发/已关闭）。
+
+> "我有哪些预警？" / "查看我的监控列表"
+
+### 技能十一：关闭/删除预警 🆕
+按 ID 关闭指定预警。先用技能十查到 ID，再告诉 Agent 关闭哪一条。
+
+> "删除平安银行的预警" / "取消 id=3 的预警"

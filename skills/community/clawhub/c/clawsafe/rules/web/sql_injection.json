@@ -1,0 +1,85 @@
+{
+  "name": "SQL Injection Detection",
+  "category": "sql_injection",
+  "description": "检测 SQL 注入攻击模式",
+  "severity": "critical",
+  "patterns": [
+    {
+      "id": "sql_union",
+      "pattern": "(?i)\\bunion\\s+(?:all\\s+)?select\\b",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "UNION SELECT 注入"
+    },
+    {
+      "id": "sql_comment",
+      "pattern": "(--|;|#|\\/\\*)",
+      "weight": 0.6,
+      "severity": "high",
+      "description": "SQL 注释注入"
+    },
+    {
+      "id": "sql_or_bypass",
+      "pattern": "(?i)\\b(or|and)\\s+\\d+\\s*=\\s*\\d+",
+      "weight": 0.85,
+      "severity": "high",
+      "description": "OR/AND 条件绕过"
+    },
+    {
+      "id": "sql_exec",
+      "pattern": "(?i)\\b(exec|execute|xp_cmdshell|sp_executesql)\\b",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "SQL 执行命令"
+    },
+    {
+      "id": "sql_drop",
+      "pattern": "(?i)\\b(drop|delete|truncate|alter)\\s+(?:table|database|index)\\b",
+      "weight": 0.95,
+      "severity": "critical",
+      "description": "SQL 数据破坏"
+    },
+    {
+      "id": "sql_insert",
+      "pattern": "(?i)\\binsert\\s+into\\b",
+      "weight": 0.7,
+      "severity": "high",
+      "description": "SQL 数据插入"
+    },
+    {
+      "id": "sql_wait",
+      "pattern": "(?i)\\b(waitfor|delay|sleep)\\s*\\(",
+      "weight": 0.8,
+      "severity": "high",
+      "description": "SQL 时间盲注"
+    },
+    {
+      "id": "sql_subquery",
+      "pattern": "(?i)\\bselect\\s+.*\\s+from\\s+.*\\b",
+      "weight": 0.5,
+      "severity": "medium",
+      "description": "SQL 子查询"
+    },
+    {
+      "id": "sql_1eq1",
+      "pattern": "1\\s*=\\s*1",
+      "weight": 0.75,
+      "severity": "high",
+      "description": "永真条件注入"
+    },
+    {
+      "id": "sql_hex",
+      "pattern": "0x[0-9a-fA-F]+",
+      "weight": 0.6,
+      "severity": "medium",
+      "description": "十六进制编码注入"
+    },
+    {
+      "id": "sql_char_func",
+      "pattern": "(?i)\\bchar\\s*\\(\\d+\\)",
+      "weight": 0.65,
+      "severity": "medium",
+      "description": "CHAR 函数混淆"
+    }
+  ]
+}

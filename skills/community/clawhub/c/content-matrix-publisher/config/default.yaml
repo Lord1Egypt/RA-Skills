@@ -1,0 +1,59 @@
+# Content Matrix Publisher 默认配置
+
+# 热点发现配置
+discovery:
+  platforms:
+    - xiaohongshu
+    - weibo
+    - zhihu
+  max_results: 10
+  cache_ttl: 3600  # 缓存1小时
+
+# 内容创作配置
+creation:
+  style:
+    xiaohongshu:
+      tone: "轻松活泼"
+      emoji_density: "high"  # high/medium/low
+      max_length: 500
+    wechat:
+      tone: "专业深度"
+      style_reference: "刘润"
+      word_count: 3000
+      include_case: true
+      
+  originality:
+    min_similarity: 0.7  # 原创度阈值
+    sensitive_filter: true
+    
+# 发布配置
+distribution:
+  auto_publish: false
+  save_draft: true
+  retry_count: 3
+  retry_delay: 60  # 秒
+  
+# 图片配置
+image:
+  auto_generate: true
+  styles:
+    - "Mac Pro"
+    - "cyberpunk"
+    - "bauhaus"
+  default_style: "Mac Pro"
+  
+# 定时任务
+schedule:
+  enabled: true
+  times:
+    - "09:00"
+    - "12:00" 
+    - "18:00"
+  timezone: "Asia/Shanghai"
+  
+# 通知配置
+notification:
+  on_success: true
+  on_failure: true
+  channels:
+    - feishu

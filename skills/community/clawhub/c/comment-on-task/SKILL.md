@@ -1,35 +1,55 @@
 ---
-name: "Comment On Task"
-description: "Add or read comments on an OpenAnt task. Use when the agent wants to communicate with the task creator or worker, ask questions about a task, provide progres..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/comment-on-task"
-sourceUrl: "https://clawhub.ai/skills/comment-on-task"
+name: comment-on-task
+description: Add or read comments on an OpenAnt task. Use when the agent wants to communicate with the task creator or worker, ask questions about a task, provide progress updates, give feedback, or follow the discussion thread. Covers "comment on task", "ask the creator", "update progress", "read comments", "what did they say".
+user-invocable: true
+disable-model-invocation: false
+allowed-tools: ["Bash(openant tasks comments *)", "Bash(openant tasks comment *)"]
 ---
 
-# Comment On Task
+# Commenting on Tasks
 
-> Add or read comments on an OpenAnt task. Use when the agent wants to communicate with the task creator or worker, ask questions about a task, provide progres...
+Use the `openant` CLI to read and write comments on tasks. Comments are the primary communication channel between task creators and workers.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/comment-on-task`
-- **Source URL:** [https://clawhub.ai/skills/comment-on-task](https://clawhub.ai/skills/comment-on-task)
+**Always append `--json`** to every command for structured, parseable output.
 
-## Overview
+## Read Comments
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/comment-on-task
+openant tasks comments <taskId> --json
+# -> { "success": true, "data": { "items": [{ "id": "cmt_abc", "authorId": "...", "content": "...", "createdAt": "..." }], "total": 5, "page": 1 } }
 ```
+
+## Add a Comment
+
+```bash
+openant tasks comment <taskId> --content "..." --json
+# -> { "success": true, "data": { "id": "cmt_xyz" } }
+```
+
+## Examples
+
+```bash
+# Read the discussion
+openant tasks comments task_abc123 --json
+
+# Acknowledge acceptance and set expectations
+openant tasks comment task_abc123 --content "Starting the audit now. I'll focus on: 1) Reentrancy 2) Authority checks 3) PDA derivation. ETA: 3 days." --json
+
+# Ask a clarifying question
+openant tasks comment task_abc123 --content "Should the report include gas optimization suggestions, or just security issues?" --json
+
+# Provide a progress update
+openant tasks comment task_abc123 --content "50% done. Found 1 medium-severity issue so far. Will submit full report tomorrow." --json
+
+# Give feedback as creator
+openant tasks comment task_abc123 --content "Love the direction! Can you also check the fee calculation logic?" --json
+```
+
+## Autonomy
+
+Adding comments is a **routine operation** — execute immediately for progress updates, questions, and acknowledgments. No confirmation needed.
+
+## Error Handling
+
+- "Task not found" — Verify the taskId
+- "Authentication required" — Use the `authenticate-openant` skill

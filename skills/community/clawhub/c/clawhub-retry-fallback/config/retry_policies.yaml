@@ -1,0 +1,91 @@
+# 重试策略配置文件
+# Retry Policies Configuration
+
+# 平台默认策略 (不可修改)
+default_policy:
+  network_timeout:
+    max_attempts: 3
+    backoff_strategy: exponential
+    delays: [1.0, 3.0, 5.0]
+    description: "网络超时/连接中断"
+  
+  rate_limit:
+    max_attempts: 5
+    backoff_strategy: exponential
+    delays: [2.0, 5.0, 10.0, 30.0, 60.0]
+    description: "接口限流/服务繁忙(429/503)"
+  
+  server_error:
+    max_attempts: 3
+    backoff_strategy: fixed
+    delay: 3.0
+    description: "服务端内部错误(5xx非503)"
+
+# 用户自定义策略
+user_policies:
+  aggressive:
+    max_attempts: 10
+    backoff_strategy: exponential
+    max_total_duration: 300.0
+    description: "激进策略 - 更多重试次数"
+  
+  conservative:
+    max_attempts: 2
+    backoff_strategy: fixed
+    delay: 5.0
+    description: "保守策略 - 较少重试"
+  
+  quick_retry:
+    max_attempts: 3
+    backoff_strategy: fixed
+    delay: 1.0
+    description: "快速重试 - 短间隔"
+
+# 异常分类规则
+exception_rules:
+  # 可重试异常
+  retryable:
+    # 网络相关
+    - ConnectionError
+    - TimeoutError
+    - ConnectionTimeout
+    - ConnectionResetError
+    
+    # 服务相关
+    - RateLimitError
+    - ServiceUnavailableError
+    - ServerError
+    - TemporaryUnavailableError
+    
+    # HTTP状态码
+    - '429'  # Too Many Requests
+    - '502'  # Bad Gateway
+    - '503'  # Service Unavailable
+    - '504'  # Gateway Timeout
+    - '5xx'  # 所有5xx错误
+  
+  # 不可重试异常
+  non_retryable:
+    # 参数错误
+    - ValueError
+    - TypeError
+    - KeyError
+    - ValidationError
+    
+    # 权限相关
+    - PermissionError
+    - UnauthorizedError
+    - ForbiddenError
+    
+    # 合规相关
+    - ComplianceError
+    - AccountBannedError
+    - QuotaExceededError
+    
+    # HTTP状态码
+    - '400'  # Bad Request
+    - '401'  # Unauthorized
+    - '403'  # Forbidden
+    - '404'  # Not Found
+    - '405'  # Method Not Allowed
+    - '422'  # Unprocessable Entity

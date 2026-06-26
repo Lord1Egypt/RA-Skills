@@ -1,0 +1,48 @@
+{
+  "name": "core-capabilities",
+  "version": "1.0.0",
+  "description": "工作助手核心能力集成 - 包含 Obsidian/Git 同步、记忆数据库、自然语言查询、监控页面等完整能力套件",
+  "author": "AI Assistant",
+  "created_at": "2026-04-12T11:08:00+08:00",
+  "updated_at": "2026-04-12T11:08:00+08:00",
+  "tags": [
+    "obsidian",
+    "git",
+    "memory",
+    "database",
+    "monitoring",
+    "capabilities"
+  ],
+  "triggers": [
+    "核心能力",
+    "能力清单",
+    "系统能力",
+    "obsidian",
+    "git 同步",
+    "记忆查询",
+    "监控状态"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "metadata.json"
+  ],
+  "dependencies": [
+    "obsidian-cli",
+    "obsidian-tasks",
+    "memory_query_agent",
+    "monitor_server"
+  ],
+  "status": "active",
+  "database": {
+    "type": "sqlite",
+    "path": "memory.db",
+    "records": 22,
+    "sync_interval": "*/30 * * * *"
+  },
+  "monitoring": {
+    "port": 8003,
+    "url": "http://localhost:8003/cron_status_clickable.html",
+    "api": "http://localhost:8003/api/status"
+  }
+}

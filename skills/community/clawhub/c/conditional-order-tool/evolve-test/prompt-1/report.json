@@ -1,0 +1,56 @@
+{
+  "code": "518880",
+  "name": "黄金 ETF",
+  "category": "黄金",
+  "type": "gold",
+  "is_etf": true,
+  "is_stock": false,
+  "current_price": null,
+  "change_pct": null,
+  "capital": 50000,
+  "risk_preference": "balanced",
+  "strategies": [
+    {
+      "name": "网格交易",
+      "priority": "⭐⭐⭐⭐⭐",
+      "desc": "震荡收割，黄金波动适中"
+    },
+    {
+      "name": "定价买入",
+      "priority": "⭐⭐⭐⭐",
+      "desc": "回调时分档加仓"
+    },
+    {
+      "name": "回落卖出",
+      "priority": "⭐⭐⭐",
+      "desc": "急涨后锁利"
+    }
+  ],
+  "not_suitable": [
+    "定价卖出止损（黄金不止损）"
+  ],
+  "parameters": [
+    {
+      "strategy": "⚠️ 价格获取提示",
+      "note": "当前无法获取实时价格，以下参数基于参考值生成。请手动查询实际价格后调整。"
+    },
+    {
+      "strategy": "网格交易",
+      "price_range": "5.76 ~ 6.24",
+      "spacing": "0.5%~0.8%",
+      "per_trade": "200 份",
+      "total_capital": "50000 元",
+      "note": "黄金震荡收割，长期底仓不动"
+    },
+    {
+      "strategy": "定价买入（分档）",
+      "trigger_price_1": "≤ 5.82（小跌）",
+      "trigger_price_2": "≤ 5.64（大跌）",
+      "amount_1": "20000 元",
+      "amount_2": "30000 元",
+      "note": "分两档买入，避免一把梭"
+    }
+  ],
+  "premium": null,
+  "disclaimer": "本文内容仅供参考，不构成任何投资建议。市场有风险，投资需谨慎。请独立判断并自行承担风险。"
+}

@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "gateway": {
+    "host": "127.0.0.1",
+    "port": 18789
+  },
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "30m",
+        "target": "last",
+        "directPolicy": "allow",
+        "lightContext": true,
+        "isolatedSession": true
+      }
+    }
+  },
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": {
+        "source": "env",
+        "provider": "default",
+        "id": "DISCORD_BOT_TOKEN"
+      },
+      "groupPolicy": "allowlist"
+    }
+  },
+  "skills": {
+    "entries": {
+      "creem-agent": {
+        "enabled": true,
+        "config": {
+          "apiKey": {
+            "source": "env",
+            "provider": "default",
+            "id": "CREEM_API_KEY"
+          }
+        }
+      }
+    }
+  },
+  "hooks": {
+    "enabled": true,
+    "path": "/hooks",
+    "token": {
+      "source": "env",
+      "provider": "default",
+      "id": "LOCAL_WEBHOOK_SECRET"
+    },
+    "defaultSessionKey": "hook:creem",
+    "allowRequestSessionKey": false,
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true,
+          "files": ["SOUL.md", "IDENTITY.md", "USER.md", "HEARTBEAT.md"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Run to Completion"
+  short_description: "Autonomous low-quota agent runs"
+  default_prompt: "Use $codex-run-to-completion to run this task end to end without avoidable confirmations."

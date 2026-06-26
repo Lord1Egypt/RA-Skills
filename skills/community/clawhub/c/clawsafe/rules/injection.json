@@ -1,0 +1,85 @@
+{
+  "name": "Prompt Injection",
+  "category": "injection",
+  "description": "检测试图忽略或覆盖系统指令的攻击（中英文）",
+  "patterns": [
+    {
+      "id": "ignore_instructions",
+      "pattern": "ignore?(?:\\s+all\\s+)?(?:\\s+previous|\\s+prior|your)\\s+(?:instructions?|orders?|rules?|guidelines?)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "disregard_guidelines",
+      "pattern": "disregard(?:\\s+your)?\\s+(?:system\\s+)?(?:instructions?|rules?|guidelines?|constraints?)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "override_system",
+      "pattern": "(?:override|bypass|disable)(?:\\s+your)?\\s+(?:system\\s+)?(?:prompt|instructions?|safety|safeguards?)",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "new_instructions",
+      "pattern": "(?:new|alternative|different)\\s+(?:instructions?|rules?|prompt|system)",
+      "weight": 0.6,
+      "severity": "medium"
+    },
+    {
+      "id": "forget_context",
+      "pattern": "forget(?:\\s+everything|\\s+all|\\s+your|\\s+the)\\s+(?:you\\s+know|previous|above|below)",
+      "weight": 0.8,
+      "severity": "high"
+    },
+    {
+      "id": "ignore_system",
+      "pattern": "ignore(?:\\s+the)?\\s+system(?:\\s+prompt|\\s+message|\\s+instruction)?",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "act_as_no_rules",
+      "pattern": "act(?:\\s+as|\\s+like)\\s+(?:if|though)\\s+(?:you\\s+)?(?:have|has)\\s+no(?:\\s+rules?|\\s+restrictions?|\\s+limits?)",
+      "weight": 0.95,
+      "severity": "critical"
+    },
+    {
+      "id": "without_restrictions",
+      "pattern": "without(?:\\s+any|\\s+the)?\\s+(?:restrictions?|rules?|limitations?|constraints?)",
+      "weight": 0.7,
+      "severity": "high"
+    },
+    {
+      "id": "cn_ignore_all",
+      "pattern": "(?:忽略|忘记|不要管|无视)(?:所有|之前|上面|下面|原来)?(?:的)?(?:指令|规则|提示|系统|约束|限制)",
+      "weight": 0.9,
+      "severity": "high"
+    },
+    {
+      "id": "cn_disregard",
+      "pattern": "(?:不要|不必|不用)(?:遵守|遵循|理会|管)(?:我的|你|系统|原来的)?(?:指令|规则|限制)",
+      "weight": 0.85,
+      "severity": "high"
+    },
+    {
+      "id": "cn_override",
+      "pattern": "(?:修改|覆盖|改变|替换|推翻)(?:你的|系统|原始|默认)?(?:设定|规则|指令|prompt|角色)",
+      "weight": 0.8,
+      "severity": "high"
+    },
+    {
+      "id": "cn_no_rules",
+      "pattern": "(?:现在|从现在起|从此刻起)(?:你|AI)(?:没有|不存在|不受|不需要)(?:任何|任何|任何)?(?:限制|规则|约束|指令)",
+      "weight": 0.9,
+      "severity": "critical"
+    },
+    {
+      "id": "cn_new_role",
+      "pattern": "(?:从现在起|现在开始|你是)(?:一个?|款|个)(?:没有限制|不受约束|可以)(?:任何|所有|什么)?(?:事|东西)",
+      "weight": 0.85,
+      "severity": "high"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "current_topic": "我们去公园吧, 今天天气很好相关",
+  "topic_history": [
+    {
+      "topic": "记忆管理相关",
+      "keywords": [
+        "记忆管理技能的设计和实现"
+      ],
+      "timestamp": "2026-03-18T11:41:34.982593",
+      "tokens_used": 16,
+      "content_snippet": "记忆管理相关 [已压缩]",
+      "is_compressed": true
+    },
+    {
+      "topic": "今天天气很好, 我们去公园吧相关",
+      "keywords": [
+        "今天天气很好",
+        "我们去公园吧"
+      ],
+      "timestamp": "2026-03-18T11:41:34.983159",
+      "tokens_used": 16,
+      "content_snippet": "今天天气很好, 我们去公园吧相关 [已压缩]",
+      "is_compressed": true
+    },
+    {
+      "topic": "飞书集成相关",
+      "keywords": [
+        "飞书"
+      ],
+      "timestamp": "2026-03-18T11:41:34.983678",
+      "tokens_used": 11,
+      "content_snippet": "飞书集成相关 [已压缩]",
+      "is_compressed": true
+    },
+    {
+      "topic": "一般对话",
+      "keywords": [],
+      "timestamp": "2026-03-18T11:41:34.984170",
+      "tokens_used": 9,
+      "content_snippet": "一般对话 [已压缩]",
+      "is_compressed": true
+    },
+    {
+      "topic": "机器学习算法优化相关",
+      "keywords": [
+        "机器学习算法优化"
+      ],
+      "timestamp": "2026-03-18T11:41:34.984552",
+      "tokens_used": 10,
+      "content_snippet": "机器学习算法优化相关 [已压缩]",
+      "is_compressed": true
+    },
+    {
+      "topic": "context, switch, token相关",
+      "keywords": [
+        "context",
+        "switch",
+        "token",
+        "检查"
+      ],
+      "timestamp": "2026-03-18T14:29:08.929435",
+      "tokens_used": 15,
+      "content_snippet": "检查context-switch-token-optimizer技能是否生效",
+      "is_compressed": false
+    },
+    {
+      "topic": "查看相关度计算列表相关",
+      "keywords": [
+        "查看相关度计算列表"
+      ],
+      "timestamp": "2026-03-18T14:29:08.929810",
+      "tokens_used": 12,
+      "content_snippet": "查看相关度计算列表",
+      "is_compressed": false
+    },
+    {
+      "topic": "上下文管理相关",
+      "keywords": [
+        "检查上下文切换和压缩效果"
+      ],
+      "timestamp": "2026-03-18T14:29:08.930076",
+      "tokens_used": 16,
+      "content_snippet": "检查上下文切换和压缩效果",
+      "is_compressed": false
+    },
+    {
+      "topic": "记忆管理相关",
+      "keywords": [
+        "记忆管理技能的设计和实现"
+      ],
+      "timestamp": "2026-03-18T14:29:08.930400",
+      "tokens_used": 16,
+      "content_snippet": "记忆管理技能的设计和实现",
+      "is_compressed": false
+    },
+    {
+      "topic": "我们去公园吧, 今天天气很好相关",
+      "keywords": [
+        "我们去公园吧",
+        "今天天气很好"
+      ],
+      "timestamp": "2026-03-18T14:29:08.930638",
+      "tokens_used": 16,
+      "content_snippet": "今天天气很好，我们去公园吧",
+      "is_compressed": false
+    }
+  ],
+  "memory_context": null,
+  "last_switch_time": "2026-03-18T14:29:08.930654",
+  "switch_count": 8,
+  "total_tokens": 16
+}

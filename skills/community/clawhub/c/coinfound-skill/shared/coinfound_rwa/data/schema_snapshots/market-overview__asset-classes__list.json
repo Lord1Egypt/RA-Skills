@@ -1,0 +1,55 @@
+{
+  "captured_at": "2026-03-20T00:00:00+00:00",
+  "endpoint_key": "market-overview.asset-classes.list",
+  "inferred_schema": {
+    "items": {
+      "properties": {
+        "marketCap": {
+          "type": "number"
+        },
+        "marketCapChange7d": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rwaCount": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "marketCap",
+        "marketCapChange7d",
+        "name",
+        "rwaCount"
+      ],
+      "type": "object"
+    },
+    "type": "array"
+  },
+  "notes": [
+    "Market overview list endpoints share a compact name/rwaCount/marketCap shape."
+  ],
+  "sample_request": {
+    "method": "GET",
+    "path": "/v1/c/rwa/market-overview/asset-classes/list",
+    "path_params": {},
+    "query": {},
+    "url": "https://api.coinfound.org/api/kakyoin/v1/c/rwa/market-overview/asset-classes/list"
+  },
+  "sample_response_excerpt": {
+    "code": 0,
+    "data_length": 10,
+    "data_preview": [
+      {
+        "marketCap": 372681446986.58,
+        "marketCapChange7d": -0.0378,
+        "name": "Repurchase Agreements",
+        "rwaCount": 8460
+      }
+    ],
+    "message": "success"
+  },
+  "shape_family": "envelope_list",
+  "snapshot_path": "shared/coinfound_rwa/data/schema_snapshots/market-overview__asset-classes__list.json"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "cpa-china-2026",
+  "version": "1.0.0",
+  "description": "中国注册会计师2026年考试全科专家 — 会计/审计/财务成本管理/公司战略与风险管理/经济法/税法",
+  "author": "Wang Dongjie",
+  "license": "MIT",
+  "tags": ["cpa", "china", "accounting", "audit", "finance", "tax", "law", "strategy", "risk-management", "注册会计师"],
+  "skills": [
+    {
+      "name": "cpa-china-2026",
+      "description": "中国注册会计师2026年考试全科专家，涵盖会计/审计/财务成本管理/公司战略与风险管理/经济法/税法六科全部知识体系"
+    }
+  ]
+}

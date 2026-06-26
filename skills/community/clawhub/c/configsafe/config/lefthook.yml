@@ -1,0 +1,21 @@
+# ConfigSafe — lefthook configuration
+# Installed by: configsafe hooks install
+# Documentation: https://configsafe.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    configsafe-config-scan:
+      run: |
+        CONFIGSAFE_SKILL_DIR="${CONFIGSAFE_SKILL_DIR:-$HOME/.openclaw/skills/configsafe}"
+        if [[ -f "$CONFIGSAFE_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$CONFIGSAFE_SKILL_DIR/scripts/patterns.sh"
+          source "$CONFIGSAFE_SKILL_DIR/scripts/analyzer.sh"
+          hook_config_scan
+        else
+          echo "[ConfigSafe] Skill not found at $CONFIGSAFE_SKILL_DIR — skipping scan"
+        fi
+      fail_text: |
+        Misconfigurations detected in staged config files!
+        Run 'configsafe scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

@@ -1,0 +1,52 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/scripts/session-start.js",
+        "windows": "node .github/hooks/scripts/session-start.js",
+        "timeout": 15
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/scripts/pre-tool-use.js",
+        "windows": "node .github/hooks/scripts/pre-tool-use.js",
+        "timeout": 15
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/scripts/post-tool-use.js",
+        "windows": "node .github/hooks/scripts/post-tool-use.js",
+        "timeout": 15
+      }
+    ],
+    "SubagentStart": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/scripts/subagent-start.js",
+        "windows": "node .github/hooks/scripts/subagent-start.js",
+        "timeout": 10
+      }
+    ],
+    "SubagentStop": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/scripts/subagent-stop.js",
+        "windows": "node .github/hooks/scripts/subagent-stop.js",
+        "timeout": 120
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/scripts/agent-stop.js",
+        "windows": "node .github/hooks/scripts/agent-stop.js",
+        "timeout": 10
+      }
+    ]
+  }
+}

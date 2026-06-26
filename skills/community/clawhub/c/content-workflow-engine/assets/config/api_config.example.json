@@ -1,0 +1,132 @@
+{
+  "api_config": {
+    "version": "1.0",
+    "last_updated": "2025-03-14",
+    "environment": "development",
+    
+    "ai_services": {
+      "openai": {
+        "api_key": "YOUR_OPENAI_API_KEY",
+        "model": "gpt-4",
+        "max_tokens": 2000,
+        "temperature": 0.7
+      },
+      "anthropic": {
+        "api_key": "YOUR_ANTHROPIC_API_KEY",
+        "model": "claude-3-opus",
+        "max_tokens": 4000
+      },
+      "cohere": {
+        "api_key": "YOUR_COHERE_API_KEY",
+        "model": "command"
+      }
+    },
+    
+    "publishing_platforms": {
+      "wordpress": {
+        "url": "https://yourblog.com/wp-json",
+        "username": "your_username",
+        "application_password": "your_app_password",
+        "default_status": "draft",
+        "default_author": 1
+      },
+      "medium": {
+        "api_key": "YOUR_MEDIUM_API_KEY",
+        "user_id": "YOUR_MEDIUM_USER_ID",
+        "default_publication": "your-publication"
+      },
+      "substack": {
+        "email": "your@email.com",
+        "publication": "your-publication"
+      }
+    },
+    
+    "social_media": {
+      "twitter": {
+        "api_key": "YOUR_TWITTER_API_KEY",
+        "api_secret": "YOUR_TWITTER_API_SECRET",
+        "access_token": "YOUR_ACCESS_TOKEN",
+        "access_secret": "YOUR_ACCESS_SECRET"
+      },
+      "linkedin": {
+        "client_id": "YOUR_LINKEDIN_CLIENT_ID",
+        "client_secret": "YOUR_LINKEDIN_CLIENT_SECRET",
+        "access_token": "YOUR_ACCESS_TOKEN"
+      },
+      "facebook": {
+        "page_id": "YOUR_PAGE_ID",
+        "access_token": "YOUR_ACCESS_TOKEN",
+        "app_id": "YOUR_APP_ID",
+        "app_secret": "YOUR_APP_SECRET"
+      }
+    },
+    
+    "email_services": {
+      "mailchimp": {
+        "api_key": "YOUR_MAILCHIMP_API_KEY",
+        "server_prefix": "usX",
+        "audience_id": "YOUR_AUDIENCE_ID"
+      },
+      "convertkit": {
+        "api_key": "YOUR_CONVERTKIT_API_KEY",
+        "api_secret": "YOUR_CONVERTKIT_SECRET"
+      },
+      "sendgrid": {
+        "api_key": "YOUR_SENDGRID_API_KEY",
+        "from_email": "your@email.com"
+      }
+    },
+    
+    "analytics": {
+      "google_analytics": {
+        "property_id": "G-XXXXXXXXXX",
+        "measurement_id": "G-XXXXXXXXXX"
+      },
+      "plausible": {
+        "domain": "yourdomain.com",
+        "api_key": "YOUR_PLAUSIBLE_API_KEY"
+      }
+    },
+    
+    "storage": {
+      "s3": {
+        "access_key": "YOUR_ACCESS_KEY",
+        "secret_key": "YOUR_SECRET_KEY",
+        "bucket": "your-bucket",
+        "region": "us-east-1"
+      },
+      "cloudinary": {
+        "cloud_name": "your-cloud-name",
+        "api_key": "YOUR_API_KEY",
+        "api_secret": "YOUR_API_SECRET"
+      }
+    },
+    
+    "workflow_settings": {
+      "default_workflow": "blog_pipeline",
+      "content_storage": "./content/",
+      "log_level": "INFO",
+      "max_retries": 3,
+      "timeout_seconds": 30,
+      "batch_size": 10
+    },
+    
+    "monitoring": {
+      "alert_email": "alerts@yourdomain.com",
+      "slack_webhook": "YOUR_SLACK_WEBHOOK_URL",
+      "health_check_url": "https://yourdomain.com/health"
+    },
+    
+    "security": {
+      "encryption_key": "YOUR_ENCRYPTION_KEY",
+      "allowed_ips": ["192.168.1.0/24"],
+      "rate_limit_per_minute": 60
+    }
+  },
+  
+  "instructions": {
+    "setup": "1. Copy this file to 'api_config.json'\n2. Replace all placeholder values with your actual API keys\n3. Set environment variables if preferred\n4. Test connections with: python3 scripts/test_connections.py",
+    "security": "Never commit this file to version control\nUse environment variables in production\nRotate keys regularly\nMonitor API usage",
+    "backup": "Keep backup of this configuration\nStore encrypted version in secure location\nUpdate when APIs change"
+  }
+}

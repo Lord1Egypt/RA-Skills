@@ -1,0 +1,40 @@
+{
+  "name": "consultoria-ia",
+  "version": "1.0.0",
+  "displayName": "Consultoría IA para PYMES",
+  "description": "Sistema completo de consultoría en inteligencia artificial para PYMES",
+  "main": "SKILL.md",
+  "keywords": [
+    "consultoria",
+    "ia",
+    "inteligencia-artificial",
+    "pymes",
+    "mckinsey",
+    "diagnostico",
+    "desarrollo",
+    "roi"
+  ],
+  "author": "Marcelo Bustos <mgbustos70@gmail.com>",
+  "license": "CC-BY-NC-4.0",
+  "homepage": "https://clawhub.ai/skills/consultoria-ia",
+  "bugs": {
+    "url": "https://github.com/mgbustos/consultoria-ia-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgbustos/consultoria-ia-skill"
+  },
+  "clawhub": {
+    "category": "business",
+    "tags": ["consulting", "ai", "enterprise", "spanish"],
+    "minOpenClawVersion": "2026.4.0",
+    "compatibility": {
+      "agents": ["main", "consultor", "analista"],
+      "channels": ["discord", "slack", "web"]
+    }
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=2026.4.0"
+  }
+}

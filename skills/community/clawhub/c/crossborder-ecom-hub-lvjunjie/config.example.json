@@ -1,0 +1,62 @@
+{
+  "platforms": {
+    "tiktok": {
+      "apiKey": "your_tiktok_api_key",
+      "apiSecret": "your_tiktok_api_secret",
+      "shopId": "your_shop_id",
+      "connected": false
+    },
+    "amazon": {
+      "accessKey": "your_amazon_access_key",
+      "secretKey": "your_amazon_secret_key",
+      "region": "us-east-1",
+      "sellerId": "your_seller_id",
+      "connected": false
+    },
+    "shopee": {
+      "partnerId": "your_shopee_partner_id",
+      "apiKey": "your_shopee_api_key",
+      "shopId": "your_shop_id",
+      "connected": false
+    },
+    "lazada": {
+      "apiKey": "your_lazada_api_key",
+      "apiSecret": "your_lazada_api_secret",
+      "connected": false
+    }
+  },
+  "feishu": {
+    "enabled": true,
+    "appId": "your_feishu_app_id",
+    "appSecret": "your_feishu_app_secret",
+    "bitableToken": "your_bitable_token"
+  },
+  "pricing": {
+    "defaultMargin": 30,
+    "strategy": "competitive",
+    "autoApply": false,
+    "updateInterval": 3600
+  },
+  "inventory": {
+    "lowStockThreshold": 10,
+    "syncInterval": 300,
+    "autoSync": true,
+    "masterPlatform": "tiktok"
+  },
+  "notifications": {
+    "email": {
+      "enabled": false,
+      "recipient": "your@email.com"
+    },
+    "feishu": {
+      "enabled": true,
+      "webhook": "your_webhook_url"
+    }
+  },
+  "reports": {
+    "autoGenerate": true,
+    "schedule": "0 9 * * 1",
+    "formats": ["json", "csv"],
+    "outputPath": "./reports"
+  }
+}

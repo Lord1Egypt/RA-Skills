@@ -1,0 +1,49 @@
+{
+  "name": "copyright",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for understanding and managing copyright. Covers automatic protection, registration strategy, fair use evaluation, infringement response, DMCA takedowns, and licensing for creators and content users.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "copyright", "intellectual property", "DMCA", "fair use", "infringement",
+    "creative rights", "licensing", "registration", "takedown", "creator rights",
+    "copyright law", "content protection", "Creative Commons"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "protection_guidance": "Explains what copyright protects and how to strengthen that protection through registration",
+    "fair_use_analysis": "Evaluates fair use arguments for specific use cases honestly",
+    "infringement_response": "Guides creators through cease and desist, DMCA, and litigation options",
+    "dmca_process": "Walks through takedown notices and counter-notices completely",
+    "licensing_guidance": "Helps creators structure licenses and users obtain proper permissions",
+    "infringement_monitoring": "Builds systems for detecting unauthorized use of creative work"
+  },
+  "triggers": [
+    "copyright", "intellectual property", "DMCA", "fair use", "infringement",
+    "copyright registration", "takedown notice", "creative commons",
+    "licensing", "copyright protection", "stolen content", "copyright claim",
+    "work for hire", "copyright owner", "public domain", "copyright infringement"
+  ],
+  "heartbeat": {
+    "on_creation": "Document and evaluate registration for each new significant work",
+    "monthly": "Monitor for unauthorized use of published work",
+    "quarterly": "Review active licenses and compliance",
+    "annual": "Full copyright portfolio audit and registration gap review"
+  },
+  "audience": [
+    "Photographers, writers, musicians, and visual artists protecting their work",
+    "Content creators dealing with platform copyright claims",
+    "Businesses using third-party content who need to understand their permissions",
+    "Anyone who has discovered their work being used without permission",
+    "Creators wanting to license their work professionally"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

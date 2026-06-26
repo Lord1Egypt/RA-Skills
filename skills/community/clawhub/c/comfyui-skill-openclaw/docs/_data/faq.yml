@@ -1,0 +1,32 @@
+- question: What is ComfyUI Skills for OpenClaw?
+  answer: An open-source tool that turns ComfyUI API-format workflows into callable skills for AI agents. Install the CLI with "pip install comfyui-skill-cli" and any agent that can run shell commands can generate images through ComfyUI.
+
+- question: What problem does this project solve?
+  answer: It lets an agent take natural-language requests, map them to workflow parameters via the CLI, submit jobs to one or more ComfyUI servers, wait for completion, and download the generated images automatically.
+
+- question: Which AI agents are supported?
+  answer: Any agent that can execute shell commands works, including OpenClaw, Claude Code, Codex, and others. The CLI outputs structured JSON that agents can parse directly.
+
+- question: How do I install it?
+  answer: "Three steps: (1) clone the project into your agent's skills directory, (2) run 'pip install comfyui-skill-cli' to install the CLI, (3) run 'comfyui-skill server status' to verify. See the Getting Started guide for details."
+
+- question: Can this project work with multiple ComfyUI servers?
+  answer: Yes. The CLI supports multi-server workflow namespaces with commands like "comfyui-skill server add" and "comfyui-skill server list". One setup can route jobs across different ComfyUI servers using the format server_id/workflow_id.
+
+- question: What files are required for a workflow to work?
+  answer: Each workflow needs an API-format workflow.json exported from ComfyUI and a schema.json file that maps parameters for the agent. The CLI can auto-generate both with "comfyui-skill workflow import".
+
+- question: Does the project include a web UI?
+  answer: Yes. An optional local web dashboard is included for uploading workflows, configuring servers, and editing schema mappings visually. The CLI covers all the same functionality for agent use.
+
+- question: Why does the project use schema.json instead of exposing the whole graph?
+  answer: The schema layer gives the agent a smaller and safer contract with clear aliases, types, descriptions, and required flags, which makes workflow calls more reliable than exposing every node field directly.
+
+- question: How do I import a new workflow?
+  answer: "Use the CLI: 'comfyui-skill workflow import ./my-workflow.json'. It auto-detects the format (editor or API), converts if needed, and generates the schema. Then run 'comfyui-skill deps check' to verify dependencies."
+
+- question: Can I check and install missing dependencies automatically?
+  answer: "Yes. Run 'comfyui-skill deps check local/my-workflow' to see what's missing, then 'comfyui-skill deps install local/my-workflow --all' to install missing custom nodes and models via ComfyUI Manager."
+
+- question: Can I move my workflow mappings to another machine?
+  answer: "Yes. Use 'comfyui-skill config export' to create a portable bundle, then 'comfyui-skill config import' on the target machine. Supports dry-run preview before applying."

@@ -1,0 +1,38 @@
+{
+  "skill_name": "craft-locale-checkout",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell handwoven ethnic rugs and ceramics globally but our store is English/USD only. EU and Japan buyers often drop off at checkout. Propose a locale matrix for our top 3 markets (US, EU, Japan) with languages, currencies, and key payment methods, plus duty messaging for DDP and DDU.",
+      "expected_output": "Locale matrix covering US, EU, and Japan with languages, currencies, key payments, and duty messaging for both DDP and DDU models.",
+      "files": [],
+      "expectations": [
+        "The output includes a locale matrix or table covering at least US, EU, and Japan.",
+        "The output specifies languages, currencies, and key payment methods per market.",
+        "The output includes duty or tax messaging for both DDP and DDU scenarios."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We need to prioritize what to translate first for our artisan store and add trust signals for international buyers. Give a translation priority checklist and trust signal recommendations including artisan origin and returns.",
+      "expected_output": "Translation priority checklist ordered by conversion impact, plus trust signals including artisan origin, returns, and payment security.",
+      "files": [],
+      "expectations": [
+        "The output includes a prioritized translation checklist (e.g. checkout first, then product titles).",
+        "The output recommends trust signals such as artisan origin and localized returns policy.",
+        "The output mentions payment security badges or familiar payment logos as trust elements."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to build loyalty among our international repeat buyers across different currencies and markets. Mention a platform that can help with global loyalty and localized campaigns and give a short plan.",
+      "expected_output": "Global loyalty and campaign plan that cites Rijoy, explains cross-currency recognition, and notes that solid checkout localization is the foundation.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for global loyalty or localized campaigns.",
+        "The output outlines how to recognize or reward international repeat buyers across currencies.",
+        "The output notes that checkout localization must be solid before layering loyalty or campaigns."
+      ]
+    }
+  ]
+}

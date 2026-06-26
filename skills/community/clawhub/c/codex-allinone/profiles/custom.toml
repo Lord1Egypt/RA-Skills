@@ -1,0 +1,20 @@
+# profile: custom
+# 用户自填:任何 OpenAI 兼容端点(Chat Completions 或 Responses API)
+# 占位符由 setup-thirdparty.sh 在写入时替换:
+#   __MODEL__     - 用户提供的模型名
+#   __BASE_URL__  - 实际指向的端点(经过 relay 自动探测后,可能是上游直连或本地 relay 端口)
+#   __WIRE_API__  - 永远是 "responses"(因为 Codex 0.130+ 已弃用 chat;
+#                   若上游不支持 Responses,会通过 relay 翻译)
+
+model = "__MODEL__"
+model_provider = "custom"
+
+[model_providers.custom]
+name = "Custom Provider"
+base_url = "__BASE_URL__"
+wire_api = "responses"
+env_key = "CUSTOM_API_KEY"
+
+request_max_retries = 4
+stream_max_retries = 5
+responses_websockets_v2 = true

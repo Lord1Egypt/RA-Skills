@@ -1,0 +1,221 @@
+{
+  "source": {
+    "originalName": "AI科普.md",
+    "markdownPath": "content/articles/2026-03-29-ai/source.md",
+    "uploadedAt": "2026-03-29 17:44:29",
+    "warnings": []
+  },
+  "layout": {
+    "theme": "winter-slate",
+    "template": "xiumi-winter-ins",
+    "themeFile": "",
+    "referenceUrl": "",
+    "warning": "",
+    "extractionMeta": {},
+    "updatedAt": "2026-04-05 19:56:44"
+  },
+  "tone": {
+    "theme": "winter-slate",
+    "primaryColor": "#2d7b45",
+    "saturation": 100,
+    "opacity": 88,
+    "updatedAt": "2026-04-05 19:56:44"
+  },
+  "typography": {
+    "template": "xiumi-winter-ins",
+    "titleStyle": "standard",
+    "bodySize": 16,
+    "lineHeight": 1.9,
+    "paragraphGap": 16,
+    "sectionStyle": "editorial",
+    "imageRadius": 24,
+    "imageSpacing": 22,
+    "updatedAt": "2026-04-05 19:56:44"
+  },
+  "cover": {
+    "candidatePath": "content/articles/2026-03-29-ai/studio-assets/cover-sticker-note-20260329-174617.png",
+    "generated": {
+      "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：AI科普\n摘要：如果你把传统编程和 AI 放在一起对比，会发现它们有着本质的区别。\n关键词：AI科普；如果你把传统编程和 AI 放在一起对比，会发现它们有着本质的区别。\n风格：sticker note cover, memo paper labels, taped elements, playful editorial composition, clean color blocks, no person, no product mockup; theme style elegant-gold, primary color #b3832f, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article archetype analysis; sticker note cover, memo paper labels, taped elements, playful editorial composition, clean color blocks, no person, no product mockup\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+      "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4VEMmE3OFa0ewJSLnIMwKZdSu1QIuePEER18oXhyibzzP6xoZKpxPLIZcrN89G0ewoQvG6ZrOFzY9gVWGRHiaebpZ7icvtbBtazg/0?wx_fmt=jpeg",
+      "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4VEMmE3OFa0ewJSLnIMwKZdSu1QIuePEER18oXhyibzzP6xoZKpxPLIZcrN89G0ewoQvG6ZrOFzY9gVWGRHiaebpZ7icvtbBtazg/0?wx_fmt=jpeg",
+      "mediaId": "YZiaWkQEcudqYwi5TLHu4PbUBukl6Zt635_dAPmVVDACzOeaiAyWnPOKoVQkm6YS",
+      "width": 0,
+      "height": 0,
+      "preset": "cover-data-visual",
+      "styleId": "sticker-note",
+      "styleLabel": "贴纸感",
+      "customPrompt": "",
+      "style": "sticker note cover, memo paper labels, taped elements, playful editorial composition, clean color blocks, no person, no product mockup; theme style elegant-gold, primary color #b3832f, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article archetype analysis; sticker note cover, memo paper labels, taped elements, playful editorial composition, clean color blocks, no person, no product mockup",
+      "localPath": "content/articles/2026-03-29-ai/studio-assets/cover-sticker-note-20260329-174617.png",
+      "createdAt": "2026-03-29 17:46:18"
+    },
+    "history": [
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：AI科普\n摘要：如果你把传统编程和 AI 放在一起对比，会发现它们有着本质的区别。\n关键词：AI科普；如果你把传统编程和 AI 放在一起对比，会发现它们有着本质的区别。\n风格：offset collage cover, layered paper frames, editorial overlap, angled blocks, tactile paper texture, no person, no product mockup; theme style elegant-gold, primary color #b3832f, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article archetype analysis; offset collage cover, layered paper frames, editorial overlap, angled blocks, tactile paper texture, no person, no product mockup\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4zom5pPTzCZVvU5eAdyC4E7o1HNicwBSrKaZ70Y0zia8Pr1xZibibGTCjPkIXibCAcgso4ZPNBAr3LP9sW1g5zUzBibCcWPiavDhriaBY/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4zom5pPTzCZVvU5eAdyC4E7o1HNicwBSrKaZ70Y0zia8Pr1xZibibGTCjPkIXibCAcgso4ZPNBAr3LP9sW1g5zUzBibCcWPiavDhriaBY/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4MLm2vrCeRVqcaVi9fUGkt4GdXx0gUBOj3tBrnAg_Er5",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "offset-collage",
+        "styleLabel": "错位拼贴",
+        "customPrompt": "",
+        "style": "offset collage cover, layered paper frames, editorial overlap, angled blocks, tactile paper texture, no person, no product mockup; theme style elegant-gold, primary color #b3832f, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article archetype analysis; offset collage cover, layered paper frames, editorial overlap, angled blocks, tactile paper texture, no person, no product mockup",
+        "localPath": "content/articles/2026-03-29-ai/studio-assets/cover-offset-collage-20260329-174547.png",
+        "createdAt": "2026-03-29 17:45:47"
+      },
+      {
+        "prompt": "为公众号文章生成带有数据分析氛围的封面图提示词。\n标题：AI科普\n摘要：如果你把传统编程和 AI 放在一起对比，会发现它们有着本质的区别。\n关键词：AI科普；如果你把传统编程和 AI 放在一起对比，会发现它们有着本质的区别。\n风格：sticker note cover, memo paper labels, taped elements, playful editorial composition, clean color blocks, no person, no product mockup; theme style elegant-gold, primary color #b3832f, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article archetype analysis; sticker note cover, memo paper labels, taped elements, playful editorial composition, clean color blocks, no person, no product mockup\n画幅：16:9\n\n要求：\n1. 体现图表、指标、趋势或结构化信息的气质\n2. 视觉上专业、简洁、可信\n3. 不要塞满真实文字内容，只保留标题安全区",
+        "previewUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4VEMmE3OFa0ewJSLnIMwKZdSu1QIuePEER18oXhyibzzP6xoZKpxPLIZcrN89G0ewoQvG6ZrOFzY9gVWGRHiaebpZ7icvtbBtazg/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/mmbiz_jpg/TTkqFUkSON4VEMmE3OFa0ewJSLnIMwKZdSu1QIuePEER18oXhyibzzP6xoZKpxPLIZcrN89G0ewoQvG6ZrOFzY9gVWGRHiaebpZ7icvtbBtazg/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4PbUBukl6Zt635_dAPmVVDACzOeaiAyWnPOKoVQkm6YS",
+        "width": 0,
+        "height": 0,
+        "preset": "cover-data-visual",
+        "styleId": "sticker-note",
+        "styleLabel": "贴纸感",
+        "customPrompt": "",
+        "style": "sticker note cover, memo paper labels, taped elements, playful editorial composition, clean color blocks, no person, no product mockup; theme style elegant-gold, primary color #b3832f, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article archetype analysis; sticker note cover, memo paper labels, taped elements, playful editorial composition, clean color blocks, no person, no product mockup",
+        "localPath": "content/articles/2026-03-29-ai/studio-assets/cover-sticker-note-20260329-174617.png",
+        "createdAt": "2026-03-29 17:46:18"
+      }
+    ],
+    "customPrompt": "",
+    "updatedAt": "2026-03-29 17:52:49"
+  },
+  "coverModules": {
+    "current": null,
+    "history": [],
+    "style": "collage-editorial",
+    "updatedAt": ""
+  },
+  "inlineImages": {
+    "items": [
+      {
+        "slot": 1,
+        "label": "2. 撕掉标签：那些高频黑话到底在说什么？",
+        "targetId": "h2:14",
+        "targetKind": "h2",
+        "targetLineIndex": 14,
+        "targetLabel": "2. 撕掉标签：那些高频黑话到底在说什么？",
+        "preset": "infographic-bento",
+        "customPrompt": "绿色调",
+        "style": "theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调",
+        "prompt": "为文章生成 Bento Grid 风格的信息图提示词。\n标题：AI科普\n摘要：2. 撕掉标签：那些高频黑话到底在说什么？\n核心要点：2. 撕掉标签：那些高频黑话到底在说什么？\n风格：theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调\n画幅：3:4\n\n要求：\n1. 采用多个模块卡片组织信息\n2. 模块之间层级清晰、留白明确\n3. 适合总览、综述、多主题总结",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5PBYgZrUXmNEYaLLv2SPneicgQ27tmI4hLCuQIebVyy5N4qHjmCK6TC2X9AA7nibUzQdryibHeHwArpjIsjPQVCgiacbL6p4fzfbg/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5PBYgZrUXmNEYaLLv2SPneicgQ27tmI4hLCuQIebVyy5N4qHjmCK6TC2X9AA7nibUzQdryibHeHwArpjIsjPQVCgiacbL6p4fzfbg/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4PomItIyGjQSCQpDPhjsM8o7BidHJEPkaXZauWKFkgGJ",
+        "width": 0,
+        "height": 0,
+        "localPath": "content/articles/2026-03-29-ai/studio-assets/inline-2-20260329-175156.png",
+        "createdAt": "2026-03-29 17:51:57",
+        "batchId": "20260329-175100",
+        "slotId": "slot-2"
+      }
+    ],
+    "history": [
+      {
+        "slot": 1,
+        "label": "2. 撕掉标签：那些高频黑话到底在说什么？",
+        "targetId": "h2:14",
+        "targetKind": "h2",
+        "targetLineIndex": 14,
+        "targetLabel": "2. 撕掉标签：那些高频黑话到底在说什么？",
+        "preset": "infographic-bento",
+        "customPrompt": "绿色调",
+        "style": "theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调",
+        "prompt": "为文章生成 Bento Grid 风格的信息图提示词。\n标题：AI科普\n摘要：2. 撕掉标签：那些高频黑话到底在说什么？\n核心要点：2. 撕掉标签：那些高频黑话到底在说什么？\n风格：theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调\n画幅：3:4\n\n要求：\n1. 采用多个模块卡片组织信息\n2. 模块之间层级清晰、留白明确\n3. 适合总览、综述、多主题总结",
+        "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5PBYgZrUXmNEYaLLv2SPneicgQ27tmI4hLCuQIebVyy5N4qHjmCK6TC2X9AA7nibUzQdryibHeHwArpjIsjPQVCgiacbL6p4fzfbg/0?wx_fmt=jpeg",
+        "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5PBYgZrUXmNEYaLLv2SPneicgQ27tmI4hLCuQIebVyy5N4qHjmCK6TC2X9AA7nibUzQdryibHeHwArpjIsjPQVCgiacbL6p4fzfbg/0?wx_fmt=jpeg",
+        "mediaId": "YZiaWkQEcudqYwi5TLHu4PomItIyGjQSCQpDPhjsM8o7BidHJEPkaXZauWKFkgGJ",
+        "width": 0,
+        "height": 0,
+        "localPath": "content/articles/2026-03-29-ai/studio-assets/inline-2-20260329-175156.png",
+        "createdAt": "2026-03-29 17:51:57",
+        "batchId": "20260329-175100",
+        "slotId": "slot-2"
+      }
+    ],
+    "positions": {
+      "1": "h2:1",
+      "2": "h2:14"
+    },
+    "promptOverrides": {},
+    "customPrompt": "绿色调",
+    "slots": [
+      {
+        "slotId": "slot-2",
+        "order": 1,
+        "prompt": "theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调",
+        "anchorBlockId": "heading:13",
+        "targetLabel": "2. 撕掉标签：那些高频黑话到底在说什么？",
+        "selectedLocalPath": "content/articles/2026-03-29-ai/studio-assets/inline-2-20260329-175156.png",
+        "currentItem": {
+          "slot": 2,
+          "label": "2. 撕掉标签：那些高频黑话到底在说什么？",
+          "targetId": "h2:14",
+          "targetKind": "h2",
+          "targetLineIndex": 14,
+          "targetLabel": "2. 撕掉标签：那些高频黑话到底在说什么？",
+          "preset": "infographic-bento",
+          "customPrompt": "绿色调",
+          "style": "theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调",
+          "prompt": "为文章生成 Bento Grid 风格的信息图提示词。\n标题：AI科普\n摘要：2. 撕掉标签：那些高频黑话到底在说什么？\n核心要点：2. 撕掉标签：那些高频黑话到底在说什么？\n风格：theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调\n画幅：3:4\n\n要求：\n1. 采用多个模块卡片组织信息\n2. 模块之间层级清晰、留白明确\n3. 适合总览、综述、多主题总结",
+          "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5PBYgZrUXmNEYaLLv2SPneicgQ27tmI4hLCuQIebVyy5N4qHjmCK6TC2X9AA7nibUzQdryibHeHwArpjIsjPQVCgiacbL6p4fzfbg/0?wx_fmt=jpeg",
+          "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5PBYgZrUXmNEYaLLv2SPneicgQ27tmI4hLCuQIebVyy5N4qHjmCK6TC2X9AA7nibUzQdryibHeHwArpjIsjPQVCgiacbL6p4fzfbg/0?wx_fmt=jpeg",
+          "mediaId": "YZiaWkQEcudqYwi5TLHu4PomItIyGjQSCQpDPhjsM8o7BidHJEPkaXZauWKFkgGJ",
+          "width": 0,
+          "height": 0,
+          "localPath": "content/articles/2026-03-29-ai/studio-assets/inline-2-20260329-175156.png",
+          "createdAt": "2026-03-29 17:51:57",
+          "batchId": "20260329-175100"
+        },
+        "history": [
+          {
+            "slot": 2,
+            "label": "2. 撕掉标签：那些高频黑话到底在说什么？",
+            "targetId": "h2:14",
+            "targetKind": "h2",
+            "targetLineIndex": 14,
+            "targetLabel": "2. 撕掉标签：那些高频黑话到底在说什么？",
+            "preset": "infographic-bento",
+            "customPrompt": "绿色调",
+            "style": "theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调",
+            "prompt": "为文章生成 Bento Grid 风格的信息图提示词。\n标题：AI科普\n摘要：2. 撕掉标签：那些高频黑话到底在说什么？\n核心要点：2. 撕掉标签：那些高频黑话到底在说什么？\n风格：theme style winter-slate, primary color #2d7b45, saturation 100 percent, opacity 88 percent, title style standard, section heading style editorial; article companion image; section focus: 2. 撕掉标签：那些高频黑话到底在说什么？; user direction: 绿色调\n画幅：3:4\n\n要求：\n1. 采用多个模块卡片组织信息\n2. 模块之间层级清晰、留白明确\n3. 适合总览、综述、多主题总结",
+            "previewUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5PBYgZrUXmNEYaLLv2SPneicgQ27tmI4hLCuQIebVyy5N4qHjmCK6TC2X9AA7nibUzQdryibHeHwArpjIsjPQVCgiacbL6p4fzfbg/0?wx_fmt=jpeg",
+            "draftUrl": "http://mmbiz.qpic.cn/sz_mmbiz_jpg/TTkqFUkSON5PBYgZrUXmNEYaLLv2SPneicgQ27tmI4hLCuQIebVyy5N4qHjmCK6TC2X9AA7nibUzQdryibHeHwArpjIsjPQVCgiacbL6p4fzfbg/0?wx_fmt=jpeg",
+            "mediaId": "YZiaWkQEcudqYwi5TLHu4PomItIyGjQSCQpDPhjsM8o7BidHJEPkaXZauWKFkgGJ",
+            "width": 0,
+            "height": 0,
+            "localPath": "content/articles/2026-03-29-ai/studio-assets/inline-2-20260329-175156.png",
+            "createdAt": "2026-03-29 17:51:57",
+            "batchId": "20260329-175100"
+          }
+        ],
+        "updatedAt": "2026-04-05 19:56:44"
+      }
+    ],
+    "nextSlotIndex": 3,
+    "updatedAt": "2026-04-06 00:16:29"
+  },
+  "sectionModules": {
+    "items": [],
+    "history": [],
+    "customPrompt": "",
+    "updatedAt": ""
+  },
+  "draft": {
+    "mediaId": "",
+    "title": "",
+    "pushedAt": "",
+    "lastError": "",
+    "theme": "",
+    "themeFile": "",
+    "template": ""
+  },
+  "preview": {
+    "initialized": true,
+    "updatedAt": "2026-04-05 19:56:44"
+  }
+}

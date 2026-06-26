@@ -1,0 +1,41 @@
+# Competitive-Ops Profile Configuration
+# Copy this file to config/profile.yml and fill in your details.
+# This is the single source of truth for your competitive analysis.
+
+company:
+  name: "" # TODO: Your company name
+  website: "" # TODO: Your company website
+  product: "" # TODO: Your product name
+  target_market: "" # TODO: SMB, Mid-Market, Enterprise
+  industry: "ai" # TODO: ai, saas, fintech
+
+analysis:
+  # Competitor archetypes
+  archetypes:
+    - Direct Competitor
+    - Indirect Competitor
+  # How often to scan for changes
+  scan_frequency: daily
+
+outputs:
+  formats:
+    - markdown
+    - html
+    - pdf
+  design_system: enterprise
+
+# Competitor tracking
+competitors:
+  # Add your competitors here
+  - name: "" # TODO: Competitor name
+    tier: "" # TODO: Direct, Indirect
+    website: "" # TODO: Competitor website
+
+# Pricing configuration
+pricing:
+  alerts:
+    any_change: true
+    threshold: 0.0
+  value_baseline:
+    subscription: 10
+    api: 1

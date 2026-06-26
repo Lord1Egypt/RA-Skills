@@ -1,0 +1,7 @@
+interface:
+  display_name: "Cloudflare Mail Reader"
+  short_description: "Read mailbox messages through the Cloudflare temp-mail admin API."
+  default_prompt: "Use $cloudflare-mail-reader to fetch and normalize mailbox messages through the admin API."
+
+policy:
+  allow_implicit_invocation: true

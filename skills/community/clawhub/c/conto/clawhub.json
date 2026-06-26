@@ -1,0 +1,33 @@
+{
+  "name": "conto",
+  "version": "1.6.1",
+  "description": "Enforce fine-grained spending policies on AI agent payments. 20+ rule types: spend limits, category restrictions, counterparty blocklists, time windows, velocity controls, approval workflows, and more.",
+  "author": "Conto Finance",
+  "license": "MIT",
+  "homepage": "https://conto.finance",
+  "repository": "https://github.com/kwattana/conto",
+  "documentation": "https://docs.conto.finance/sdk/openclaw",
+  "keywords": [
+    "payments",
+    "spending-policy",
+    "spend-limits",
+    "wallet-controls",
+    "compliance",
+    "approval-workflow",
+    "x402",
+    "mpp",
+    "tempo",
+    "base",
+    "solana",
+    "usdc",
+    "privy",
+    "sponge"
+  ],
+  "categories": ["finance", "security", "blockchain"],
+  "requires": {
+    "env": ["CONTO_SDK_KEY"],
+    "bins": ["curl", "jq"]
+  },
+  "files": ["SKILL.md", "conto-check.sh", "README.md", "clawhub.json"],
+  "entry": "SKILL.md"
+}

@@ -1,0 +1,464 @@
+﻿[CmdletBinding()]
+param(
+    [Parameter(ValueFromRemainingArguments = $true)]
+    [string[]]$Args
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
+try {
+    $utf8 = New-Object System.Text.UTF8Encoding($false)
+    [Console]::InputEncoding = $utf8
+    [Console]::OutputEncoding = $utf8
+    $OutputEncoding = $utf8
+} catch {
+    # Best effort only; continue even if host blocks encoding changes.
+}
+
+$taskName = "ClawUsageAuto"
+$monitorScript = Join-Path $PSScriptRoot "openclaw-usage-monitor.ps1"
+$workerScript = Join-Path $PSScriptRoot "clawusage-auto-worker.ps1"
+$defaultStateDir = Join-Path $env:USERPROFILE ".clawusage\.openclaw-state"
+$stateDirInput = if (-not [string]::IsNullOrWhiteSpace($env:CLAWUSAGE_STATE_DIR)) { $env:CLAWUSAGE_STATE_DIR } else { $defaultStateDir }
+$stateDir = [System.IO.Path]::GetFullPath($stateDirInput)
+$configPath = Join-Path $stateDir "clawusage-config.json"
+$workerStatePath = Join-Path $stateDir "clawusage-auto-state.json"
+$cachePath = Join-Path $stateDir "clawusage-last-snapshot.json"
+$sessionsPath = "$env:USERPROFILE\.openclaw\agents\main\sessions\sessions.json"
+
+if (-not (Test-Path -LiteralPath $stateDir)) {
+    New-Item -ItemType Directory -Path $stateDir -Force | Out-Null
+}
+if ($null -eq $Args) {
+    $Args = @()
+}
+
+function Show-Help {
+    Write-Host "clawusage (KISS mode)"
+    Write-Host ""
+    Write-Host "Usage:"
+    Write-Host "  clawusage                     (same as usage)"
+    Write-Host "  clawusage usage               (provider quota only)"
+    Write-Host "  clawusage now                 (alias of usage)"
+    Write-Host "  clawusage status              (alias of usage)"
+    Write-Host "  clawusage lang [english|chinese]"
+    Write-Host "  clawusage auto on [minutes] [--interval N]   (default interval: 5)"
+    Write-Host "  clawusage auto set <minutes>"
+    Write-Host "  clawusage auto off"
+    Write-Host "  clawusage auto status"
+    Write-Host "  clawusage doctor"
+    Write-Host "  clawusage -help | --help | -h"
+}
+
+function Show-FirstRunLanguageHint {
+    Write-Host ""
+    Write-Host "Language setup:"
+    Write-Host "  EN: use 'clawusage lang english' or 'clawusage lang chinese'."
+    Write-Host "  ZH-CN: use 'clawusage lang chinese' to switch to Chinese output."
+}
+
+function Normalize-Language {
+    param([string]$Language)
+    if ([string]::IsNullOrWhiteSpace($Language)) { return "english" }
+    $v = $Language.Trim().ToLowerInvariant()
+    switch ($v) {
+        "en" { return "english" }
+        "english" { return "english" }
+        "zh" { return "chinese" }
+        "cn" { return "chinese" }
+        "chinese" { return "chinese" }
+        default { throw "Unsupported language: $Language. Use english or chinese." }
+    }
+}
+
+function Write-LanguageLine {
+    param([Parameter(Mandatory = $true)][string]$Language)
+    if ($Language -eq "chinese") {
+        Write-Host ("语言模式: {0}" -f $Language)
+    } else {
+        Write-Host ("language: {0}" -f $Language)
+    }
+}
+
+function Ensure-ConfigProperty {
+    param(
+        [Parameter(Mandatory = $true)]$Config,
+        [Parameter(Mandatory = $true)][string]$Name,
+        [Parameter(Mandatory = $true)]$DefaultValue
+    )
+    if (-not ($Config.PSObject.Properties.Name -contains $Name)) {
+        $Config | Add-Member -NotePropertyName $Name -NotePropertyValue $DefaultValue
+    }
+}
+
+function Get-Config {
+    $config = $null
+    $needsPersist = $false
+    if (Test-Path -LiteralPath $configPath) {
+        try { $config = (Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json) } catch {}
+    }
+    if ($null -eq $config) {
+        $config = [pscustomobject]@{
+            idleMinutes = 10
+            intervalMinutes = 5
+            includeLocalTokens = $true
+            provider = "openai-codex"
+            language = "english"
+            configVersion = 2
+            onboardingShown = $false
+            taskName = $taskName
+        }
+    }
+
+    Ensure-ConfigProperty -Config $config -Name "idleMinutes" -DefaultValue 10
+    Ensure-ConfigProperty -Config $config -Name "intervalMinutes" -DefaultValue 5
+    Ensure-ConfigProperty -Config $config -Name "includeLocalTokens" -DefaultValue $true
+    Ensure-ConfigProperty -Config $config -Name "provider" -DefaultValue "openai-codex"
+    Ensure-ConfigProperty -Config $config -Name "language" -DefaultValue "english"
+    Ensure-ConfigProperty -Config $config -Name "configVersion" -DefaultValue 1
+    Ensure-ConfigProperty -Config $config -Name "onboardingShown" -DefaultValue $false
+    Ensure-ConfigProperty -Config $config -Name "taskName" -DefaultValue $taskName
+
+    # One-time migration: old versions defaulted to 1m checks, which is too noisy.
+    if ([int]$config.configVersion -lt 2) {
+        if ([int]$config.intervalMinutes -eq 1) {
+            $config.intervalMinutes = 5
+        }
+        $config.configVersion = 2
+        $needsPersist = $true
+    }
+
+    $config.language = Normalize-Language -Language ([string]$config.language)
+    if ($needsPersist) {
+        $config | ConvertTo-Json | Set-Content -LiteralPath $configPath -Encoding UTF8
+    }
+    return $config
+}
+
+function Save-Config {
+    param([Parameter(Mandatory = $true)]$Config)
+    $Config | ConvertTo-Json | Set-Content -LiteralPath $configPath -Encoding UTF8
+}
+
+function Quote-Arg {
+    param([string]$Value)
+    return '"' + ($Value -replace '"', '\"') + '"'
+}
+
+function Install-AutoTask {
+    param([Parameter(Mandatory = $true)]$Config)
+
+    if (-not (Get-Command Register-ScheduledTask -ErrorAction SilentlyContinue)) {
+        throw "Register-ScheduledTask cmdlet not found on this system."
+    }
+
+    $argParts = @(
+        "-WindowStyle Hidden",
+        "-NoProfile",
+        "-ExecutionPolicy Bypass",
+        ("-File {0}" -f (Quote-Arg -Value $workerScript)),
+        ("-IdleMinutes {0}" -f [int]$Config.idleMinutes),
+        ("-Provider {0}" -f (Quote-Arg -Value ([string]($Config.provider)))),
+        ("-Language {0}" -f (Quote-Arg -Value ([string]($Config.language)))),
+        ("-SessionsFile {0}" -f (Quote-Arg -Value $sessionsPath)),
+        ("-StateFile {0}" -f (Quote-Arg -Value $workerStatePath))
+    )
+    if ([bool]$Config.includeLocalTokens) {
+        $argParts += "-IncludeLocalTokens"
+    }
+    $taskArgs = $argParts -join " "
+
+    $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument $taskArgs
+    $trigger = New-ScheduledTaskTrigger -Once -At ((Get-Date).AddMinutes(1)) -RepetitionInterval (New-TimeSpan -Minutes ([int]$Config.intervalMinutes)) -RepetitionDuration (New-TimeSpan -Days 3650)
+    $settings = New-ScheduledTaskSettingsSet -Hidden -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew
+    $principal = New-ScheduledTaskPrincipal -UserId "$env:USERNAME" -LogonType Interactive -RunLevel Limited
+
+    Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Description "clawusage idle reminder (send to latest OpenClaw chat)." -Force | Out-Null
+}
+
+function Remove-AutoTask {
+    $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+    if ($null -eq $task) { return }
+    Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
+}
+
+function Show-Status {
+    $config = Get-Config
+    $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+    $taskInfo = Get-ScheduledTaskInfo -TaskName $taskName -ErrorAction SilentlyContinue
+    Write-Host ("task: {0}" -f $taskName)
+    Write-Host ("enabled: {0}" -f ($(if ($null -ne $task) { "on" } else { "off" })))
+    Write-Host ("language: {0}" -f [string]$config.language)
+    Write-Host ("idleMinutes: {0}" -f [int]$config.idleMinutes)
+    Write-Host ("intervalMinutes: {0}" -f [int]$config.intervalMinutes)
+    if ($null -ne $task) {
+        Write-Host ("state: {0}" -f [string]$task.State)
+    }
+    if ($null -ne $taskInfo) {
+        Write-Host ("lastRun: {0}" -f $taskInfo.LastRunTime)
+        Write-Host ("nextRun: {0}" -f $taskInfo.NextRunTime)
+        Write-Host ("lastResult: {0}" -f $taskInfo.LastTaskResult)
+    }
+}
+
+function Show-Doctor {
+    $config = Get-Config
+    $runtimeSkillPath = "$env:USERPROFILE\.openclaw\workspace\skills\clawusage\SKILL.md"
+    $launcher = Get-Command clawusage.cmd -ErrorAction SilentlyContinue
+    $autoTask = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+    $legacyTask = Get-ScheduledTask -TaskName "OpenClawIdleUsagePopup" -ErrorAction SilentlyContinue
+    $repairScript = Join-Path $PSScriptRoot "repair-runtime.ps1"
+
+    Write-Host "clawusage doctor"
+    Write-Host ("script: {0}" -f $PSCommandPath)
+    Write-Host ("stateDir: {0}" -f $stateDir)
+
+    if ($null -ne $launcher) {
+        Write-Host ("launcher: ok ({0})" -f $launcher.Source)
+    } else {
+        Write-Host "launcher: missing from PATH"
+    }
+
+    if (Test-Path -LiteralPath $runtimeSkillPath) {
+        $skillRaw = Get-Content -LiteralPath $runtimeSkillPath -Raw
+        $usesCmd = $skillRaw -match "& clawusage\.cmd"
+        $defaultHelp = $skillRaw -match "default to .*help"
+        Write-Host ("runtimeSkill: ok ({0})" -f $runtimeSkillPath)
+        Write-Host ("runtimeSkill uses clawusage.cmd: {0}" -f $(if ($usesCmd) { "yes" } else { "no" }))
+        Write-Host ("runtimeSkill default /clawusage => help: {0}" -f $(if ($defaultHelp) { "yes" } else { "no" }))
+    } else {
+        Write-Host ("runtimeSkill: missing ({0})" -f $runtimeSkillPath)
+    }
+
+    Write-Host ("task {0}: {1}" -f $taskName, $(if ($null -ne $autoTask) { "present" } else { "absent" }))
+    Write-Host ("legacy task OpenClawIdleUsagePopup: {0}" -f $(if ($null -ne $legacyTask) { "present" } else { "absent" }))
+    Write-Host ("sessions file: {0}" -f $(if (Test-Path -LiteralPath $sessionsPath) { "ok" } else { "missing" }))
+
+    if (Test-Path -LiteralPath $cachePath) {
+        $cacheItem = Get-Item -LiteralPath $cachePath
+        $ageSec = [int]((Get-Date) - $cacheItem.LastWriteTime).TotalSeconds
+        if ($ageSec -lt 0) { $ageSec = 0 }
+        Write-Host ("cache: {0}s old ({1})" -f $ageSec, $cachePath)
+    } else {
+        Write-Host ("cache: missing ({0})" -f $cachePath)
+    }
+
+    Write-Host ("config: language={0}, idle={1}m, interval={2}m" -f [string]$config.language, [int]$config.idleMinutes, [int]$config.intervalMinutes)
+    Write-Host ("repair: powershell -NoProfile -ExecutionPolicy Bypass -File `"{0}`"" -f $repairScript)
+}
+
+function Parse-Interval {
+    param([string[]]$Tokens, [int]$Default = 5)
+    $interval = $Default
+    for ($i = 0; $i -lt $Tokens.Count; $i++) {
+        if ($Tokens[$i] -eq "--interval" -and ($i + 1) -lt $Tokens.Count) {
+            [void][int]::TryParse($Tokens[$i + 1], [ref]$interval)
+        }
+    }
+    if ($interval -lt 1) { $interval = 1 }
+    if ($interval -gt 30) { $interval = 30 }
+    return $interval
+}
+
+function Parse-MinutesToken {
+    param(
+        [string]$Token,
+        [int]$Default = 0
+    )
+    if ([string]::IsNullOrWhiteSpace($Token)) { return $Default }
+    $t = $Token.Trim().ToLowerInvariant()
+    if ($t -match "^(\d+)\s*(m|min|mins|minute|minutes)?$") {
+        $n = [int]$matches[1]
+        if ($n -ge 1) { return $n }
+    }
+    return $Default
+}
+
+function Invoke-ClawUsageMonitor {
+    param(
+        [switch]$Json,
+        [switch]$Live,
+        [switch]$UsageOnly,
+        [Parameter(Mandatory = $true)][string]$Language
+    )
+
+    $invokeParams = @{
+        Language = $Language
+    }
+    if (-not $UsageOnly) {
+        $invokeParams.IncludeLocalTokens = $true
+    }
+    if ($Json) {
+        $invokeParams.Json = $true
+    }
+    if ($Live) {
+        # Backward-compatible hidden switch: force live.
+    } else {
+        # Simple default: use cache only when it is fresh; otherwise fetch fresh automatically.
+        $invokeParams.UseCache = $true
+        $invokeParams.CacheMaxAgeSec = 120
+    }
+
+    & $monitorScript @invokeParams
+}
+
+if (-not (Test-Path -LiteralPath $monitorScript)) {
+    throw "Missing script: $monitorScript"
+}
+if (-not (Test-Path -LiteralPath $workerScript)) {
+    throw "Missing script: $workerScript"
+}
+
+$cmd = if ($Args.Count -gt 0) { $Args[0].ToLowerInvariant() } else { "usage" }
+$config = Get-Config
+
+switch ($cmd) {
+    "help" {
+        Show-Help
+        if (-not [bool]$config.onboardingShown) {
+            Show-FirstRunLanguageHint
+            $config.onboardingShown = $true
+            Save-Config -Config $config
+        }
+        exit 0
+    }
+    "-help" {
+        Show-Help
+        if (-not [bool]$config.onboardingShown) {
+            Show-FirstRunLanguageHint
+            $config.onboardingShown = $true
+            Save-Config -Config $config
+        }
+        exit 0
+    }
+    "--help" {
+        Show-Help
+        if (-not [bool]$config.onboardingShown) {
+            Show-FirstRunLanguageHint
+            $config.onboardingShown = $true
+            Save-Config -Config $config
+        }
+        exit 0
+    }
+    "-h" {
+        Show-Help
+        if (-not [bool]$config.onboardingShown) {
+            Show-FirstRunLanguageHint
+            $config.onboardingShown = $true
+            Save-Config -Config $config
+        }
+        exit 0
+    }
+    "now" {
+        $json = ($Args -contains "--json")
+        Invoke-ClawUsageMonitor -Json:$json -UsageOnly -Language $config.language
+        exit 0
+    }
+    "usage" {
+        $json = ($Args -contains "--json")
+        Invoke-ClawUsageMonitor -Json:$json -UsageOnly -Language $config.language
+        exit 0
+    }
+    "status" {
+        Invoke-ClawUsageMonitor -UsageOnly -Language $config.language
+        exit 0
+    }
+    "doctor" {
+        Show-Doctor
+        exit 0
+    }
+    "lang" {
+        if ($Args.Count -lt 2) {
+            Write-LanguageLine -Language ([string]$config.language)
+            exit 0
+        }
+
+        $language = Normalize-Language -Language $Args[1]
+        $config.language = $language
+        $config.onboardingShown = $true
+        Save-Config -Config $config
+
+        $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+        if ($null -ne $task) {
+            Install-AutoTask -Config $config
+        }
+
+        Write-LanguageLine -Language $language
+        exit 0
+    }
+    "auto" {
+        if ($Args.Count -lt 2) {
+            Show-Help
+            if (-not [bool]$config.onboardingShown) {
+                Show-FirstRunLanguageHint
+                $config.onboardingShown = $true
+                Save-Config -Config $config
+            }
+            exit 1
+        }
+        $sub = $Args[1].ToLowerInvariant()
+        switch ($sub) {
+            "on" {
+                if ($Args.Count -ge 3) {
+                    $tmp = Parse-MinutesToken -Token $Args[2] -Default 0
+                    if ($tmp -ge 1) {
+                        $config.idleMinutes = $tmp
+                    }
+                }
+                $config.intervalMinutes = Parse-Interval -Tokens $Args -Default ([int]$config.intervalMinutes)
+                Save-Config -Config $config
+                Install-AutoTask -Config $config
+                Write-Host ("auto: on (idle={0}m, interval={1}m)" -f [int]$config.idleMinutes, [int]$config.intervalMinutes)
+                exit 0
+            }
+            "set" {
+                if ($Args.Count -lt 3) {
+                    throw "Usage: clawusage auto set <minutes>"
+                }
+                $minutes = Parse-MinutesToken -Token $Args[2] -Default 0
+                if ($minutes -lt 1) {
+                    throw "Idle minutes must be an integer >= 1."
+                }
+                $config.idleMinutes = $minutes
+                Save-Config -Config $config
+                $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+                if ($null -ne $task) {
+                    Install-AutoTask -Config $config
+                    Write-Host ("auto: threshold updated to {0}m (task reloaded)" -f $minutes)
+                } else {
+                    Write-Host ("auto: threshold saved ({0}m). run clawusage auto on to enable." -f $minutes)
+                }
+                exit 0
+            }
+            "off" {
+                Remove-AutoTask
+                Write-Host "auto: off"
+                exit 0
+            }
+            "status" {
+                Show-Status
+                exit 0
+            }
+            default {
+                Show-Help
+                if (-not [bool]$config.onboardingShown) {
+                    Show-FirstRunLanguageHint
+                    $config.onboardingShown = $true
+                    Save-Config -Config $config
+                }
+                exit 1
+            }
+        }
+    }
+    default {
+        Show-Help
+        if (-not [bool]$config.onboardingShown) {
+            Show-FirstRunLanguageHint
+            $config.onboardingShown = $true
+            Save-Config -Config $config
+        }
+        exit 1
+    }
+}
+

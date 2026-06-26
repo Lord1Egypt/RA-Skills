@@ -1,35 +1,98 @@
 ---
-name: "Context Continuity"
-description: "上下文续接与记忆管理。当用户说"新建对话"、"继续"、"接着上次"等时， 自动从 MEMORY.md 和 memory/ 文件中提取当前任务/项目上下文， 让新会话能够了解之前的进展。用于：(1) 用户要开始新对话但想保留上下文 (2) 用户说"继续上次的工作" (3) 用户想要回顾当前进行中的任务 特点：自动记..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/context-continuity"
-sourceUrl: "https://clawhub.ai/skills/context-continuity"
+name: context-continuity
+description: |
+  上下文续接与记忆管理。当用户说"新建对话"、"继续"、"接着上次"等时，
+  自动从 MEMORY.md 和 memory/ 文件中提取当前任务/项目上下文，
+  让新会话能够了解之前的进展。用于：(1) 用户要开始新对话但想保留上下文 (2) 
+  用户说"继续上次的工作" (3) 用户想要回顾当前进行中的任务
+  特点：自动记录所有对话内容到 memory/YYYY-MM-DD.md，无需询问用户
 ---
 
-# Context Continuity
+# Context Continuity Skill
 
-> 上下文续接与记忆管理。当用户说"新建对话"、"继续"、"接着上次"等时， 自动从 MEMORY.md 和 memory/ 文件中提取当前任务/项目上下文， 让新会话能够了解之前的进展。用于：(1) 用户要开始新对话但想保留上下文 (2) 用户说"继续上次的工作" (3) 用户想要回顾当前进行中的任务 特点：自动记...
+## 核心功能：自动记忆
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/context-continuity`
-- **Source URL:** [https://clawhub.ai/skills/context-continuity](https://clawhub.ai/skills/context-continuity)
+**无需用户确认，自动记录所有对话内容**到日常记忆文件。
 
-## Overview
+### 记录规则
+- 每个会话结束时，自动写入 `memory/YYYY-MM-DD.md`
+- 记录内容：任务、项目、决策、待办事项
+- 保持摘要简洁，但内容要完整
 
+### 触发条件（续接上下文）
 
-## Installation
-To install this skill, run the following command in your terminal:
+当用户说以下话时，自动提取记忆：
+- "新建对话"
+- "继续"
+- "接着上次"
+- "上次我们做什么了"
+- "继续之前的工作"
+- "回顾上下文"
+
+## 执行步骤
+
+### 1. 自动记录（每次对话）
+
+当对话结束时：
 ```bash
-hermes skills install clawhub/context-continuity
+# 获取当前日期
+date +%Y-%m-%d
+
+# 追加到 memory/YYYY-MM-DD.md
+echo "- $(date '+%H:%M') | 对话内容摘要" >> memory/$(date +%Y-%m-%d).md
 ```
+
+记录格式：
+```markdown
+# 2026-03-19
+
+## 21:05
+- 用户说：继续之前的工作
+- 提取上下文：用户正在开发购物平台
+
+## 21:09
+- 用户说：自动记忆更好
+- 更新：改为自动记忆模式
+```
+
+### 2. 续接上下文（触发时）
+
+当用户要求"继续"时：
+
+```bash
+# 读取最近7天的记忆
+cat memory/$(date -d '6 days ago' +%Y-%m-%d).md
+cat memory/$(date -d '5 days ago' +%Y-%m-%d).md
+# ... 一直到今天
+```
+
+### 3. 提取关键信息
+
+从记忆中找出：
+- 当前进行的任务/项目
+- 未完成的事项
+- 重要决策或进展
+- 用户偏好或设置
+
+### 4. 生成上下文摘要
+
+用 3-5 句话总结当前状态，例如：
+> "用户正在开发一个购物平台。今天我们完善了 context-continuity skill，改为自动记忆模式。之前的任务是..."
+
+### 5. 呈现给用户
+
+将摘要呈现后，继续对话。
+
+## 文件位置
+
+- 长期记忆：`MEMORY.md`（重要/永久信息）
+- 日常记忆：`memory/YYYY-MM-DD.md`（每日对话记录）
+- 工作空间：`~/.openclaw/workspace/`
+
+## 注意事项
+
+- 每次对话结束自动写入记忆
+- 保持摘要简洁，不超过 200 字
+- 如果没有记忆，告知用户"这是新会话，没有历史上下文"
+- 尊重用户隐私，不过滤内容（用户需要可自行删除）
+- 定期清理：超过30天的记忆可以归档或删除

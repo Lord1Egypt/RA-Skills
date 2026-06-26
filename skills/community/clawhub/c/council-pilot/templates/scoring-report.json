@@ -1,0 +1,40 @@
+{
+  "domain": "",
+  "artifact_path": "",
+  "iteration": 0,
+  "council_id": "",
+  "axes": [
+    {
+      "axis": "breadth",
+      "score": 0,
+      "evidence": [],
+      "gaps": [],
+      "expert_votes": {}
+    },
+    {
+      "axis": "depth",
+      "score": 0,
+      "evidence": [],
+      "gaps": [],
+      "expert_votes": {}
+    },
+    {
+      "axis": "thickness",
+      "score": 0,
+      "evidence": [],
+      "gaps": [],
+      "expert_votes": {}
+    },
+    {
+      "axis": "effectiveness",
+      "score": 0,
+      "evidence": [],
+      "gaps": [],
+      "expert_votes": {}
+    }
+  ],
+  "total": 0,
+  "verdict": "needs_work",
+  "generated_at": "",
+  "recommendations": []
+}

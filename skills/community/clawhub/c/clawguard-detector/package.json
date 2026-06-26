@@ -1,0 +1,14 @@
+{
+  "name": "clawguard-detect",
+  "version": "3.0.0",
+  "description": "ClawGuard v3 - Real-time Threat Detection with Guardian Integration",
+  "main": "src/detector.js",
+  "scripts": {
+    "detect": "node cli.js",
+    "monitor": "node cli.js --monitor"
+  },
+  "keywords": ["clawguard", "security", "detection", "openclaw"],
+  "author": "ClawGuard Team",
+  "license": "MIT",
+  "dependencies": {}
+}

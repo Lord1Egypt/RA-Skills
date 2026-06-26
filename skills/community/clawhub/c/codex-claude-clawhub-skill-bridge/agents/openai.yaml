@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Claude ClawHub Skill Bridge"
+  short_description: "Create one portable skill core with safe runtime adapters"
+  default_prompt: "Use $codex-claude-clawhub-skill-bridge to convert this skill idea into a runtime-neutral SKILL.md core plus safe Codex, Claude Code, and ClawHub/OpenClaw adapter notes without installing anything globally."

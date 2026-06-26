@@ -1,0 +1,12 @@
+name: context-memory-recovery
+description: File-based continuity and recovery protocol for OpenClaw, Hermes, and similar agents.
+version: "0.2.0"
+author: Jeremy Martinus / Maestro
+type: skill
+tags:
+  - memory
+  - continuity
+  - recovery
+  - checkpoint
+  - handoff
+license: MIT-0

@@ -1,0 +1,125 @@
+defaults:
+  max_articles_per_source: 30
+  request_timeout_seconds: 20
+  user_agent: "FeedMob Coin News Collector/0.1"
+
+sources:
+  - id: coindesk
+    name: CoinDesk
+    enabled: true
+    type: rss
+    category: general
+    weight: 1.0
+    url: https://www.coindesk.com/arc/outboundfeeds/rss/
+
+  - id: cointelegraph
+    name: Cointelegraph
+    enabled: true
+    type: rss
+    category: general
+    weight: 0.95
+    url: https://cointelegraph.com/rss
+
+  - id: decrypt
+    name: Decrypt
+    enabled: true
+    type: rss
+    category: general
+    weight: 0.95
+    url: https://decrypt.co/feed
+
+  - id: blockworks
+    name: Blockworks
+    enabled: true
+    type: rss
+    category: markets
+    weight: 0.9
+    url: https://blockworks.co/feed
+
+  - id: theblock
+    name: The Block
+    enabled: true
+    type: rss
+    category: markets
+    weight: 0.9
+    url: https://www.theblock.co/rss.xml
+
+  - id: cryptoslate
+    name: CryptoSlate
+    enabled: false  # 403 Forbidden - temporarily disabled
+    type: rss
+    category: general
+    weight: 0.85
+    url: https://cryptoslate.com/feed/
+
+  - id: crypto-news
+    name: crypto.news
+    enabled: true
+    type: rss
+    category: general
+    weight: 0.82
+    url: https://crypto.news/feed/
+
+  - id: bitcoincom
+    name: Bitcoin.com News
+    enabled: true
+    type: rss
+    category: bitcoin
+    weight: 0.78
+    url: https://news.bitcoin.com/feed/
+
+  - id: cryptopotato
+    name: CryptoPotato
+    enabled: true
+    type: rss
+    category: analysis
+    weight: 0.74
+    url: https://cryptopotato.com/feed/
+
+  - id: thedefiant
+    name: The Defiant
+    enabled: true
+    type: rss
+    category: defi
+    weight: 0.8
+    url: https://thedefiant.io/feed
+
+  - id: unchained
+    name: Unchained
+    enabled: true
+    type: rss
+    category: analysis
+    weight: 0.76
+    url: https://unchainedcrypto.com/feed/
+
+  - id: utoday
+    name: U.Today
+    enabled: true
+    type: rss
+    category: general
+    weight: 0.68
+    url: https://u.today/rss
+
+  - id: coingape
+    name: CoinGape
+    enabled: true
+    type: rss
+    category: general
+    weight: 0.65
+    url: https://coingape.com/feed/
+
+  - id: bankless
+    name: Bankless
+    enabled: true
+    type: rss
+    category: defi
+    weight: 0.78
+    url: https://www.bankless.com/feed
+
+  - id: ambcrypto
+    name: AMBCrypto
+    enabled: true
+    type: rss
+    category: general
+    weight: 0.66
+    url: https://ambcrypto.com/feed/

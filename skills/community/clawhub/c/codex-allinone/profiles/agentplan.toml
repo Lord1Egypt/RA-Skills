@@ -1,0 +1,21 @@
+# profile: agentplan
+# 火山方舟 AgentPlan + codex-relay 协议中转
+# 上游模型走 ark-code-latest 智能路由(Kimi K2 / Doubao / DeepSeek / GLM 一键切换)
+
+model = "ark-code-latest"
+model_provider = "agentplan"
+model_reasoning_effort = "medium"
+
+# Codex 0.130 已废弃 chat,统一用 responses;由 codex-relay 翻译成 chat 打到上游
+[model_providers.agentplan]
+name = "AgentPlan via relay"
+base_url = "http://127.0.0.1:4446/v1"
+wire_api = "responses"
+env_key = "ARK_API_KEY"
+
+# --- 重试与稳定性开关(必须三个都设,否则模型会重复回复 N 次)---
+request_max_retries = 4
+stream_max_retries = 5
+responses_websockets_v2 = true
+
+# 不要写 temperature / top_p,后端 ark-code-latest 写死了采样参数,加了会 400

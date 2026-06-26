@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% set active = "search" %}
+{% block title %}Search — Communication DNA{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-6">Search</h2>
+
+<form method="get" class="flex gap-3 mb-6">
+    <input type="text" name="q" value="{{ q }}" placeholder="Search transcripts..."
+           class="flex-1 bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500">
+    <select name="speaker" class="bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white">
+        <option value="">All Speakers</option>
+        {% for sp in speakers %}
+        <option value="{{ sp.id }}" {% if speaker_filter == sp.id %}selected{% endif %}>{{ sp.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium">Search</button>
+</form>
+
+{% if q %}
+<p class="text-gray-400 mb-4">{{ results|length }} result{{ 's' if results|length != 1 }} for "{{ q }}"</p>
+{% if results %}
+<div class="space-y-3">
+    {% for r in results %}
+    <div class="card">
+        <div class="flex items-start justify-between">
+            <div>
+                <a href="/transcription/{{ r.transcription_id }}" class="text-blue-400 hover:underline font-medium">{{ r.title or 'Untitled' }}</a>
+                <span class="text-gray-500 text-sm ml-2">{{ r.date or '' }}</span>
+            </div>
+            {% if r.speaker_name %}
+            <a href="/speaker/{{ r.speaker_id }}" class="text-sm text-gray-400 hover:text-gray-200">{{ r.speaker_name }}</a>
+            {% endif %}
+        </div>
+        <p class="text-gray-300 text-sm mt-1">{{ r.text[:300] }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-gray-500">No results found.</p>
+{% endif %}
+{% endif %}
+{% endblock %}

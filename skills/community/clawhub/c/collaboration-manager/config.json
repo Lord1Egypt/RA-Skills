@@ -1,0 +1,141 @@
+{
+  "chatId": "oc_c1184c07fa8fe0a6eced5e069f8b73b5",
+  "members": [
+    "ou_c917d9b06ff30b98c4f45c79219164d5"
+  ],
+  "agents": [
+    {
+      "id": "main",
+      "name": "Juna",
+      "openId": "ou_c917d9b06ff30b98c4f45c79219164d5",
+      "keywords": [
+        "你好",
+        "大家好",
+        "帮忙",
+        "帮助",
+        "hello",
+        "hi",
+        "help",
+        "聊天",
+        "对话",
+        "建议",
+        "想法",
+        "方案",
+        "设计",
+        "讨论"
+      ],
+      "alwaysRespond": false
+    },
+    {
+      "id": "code-master",
+      "name": "Code Master",
+      "openId": "ou_c917d9b06ff30b98c4f45c79219164d5",
+      "keywords": [
+        "代码",
+        "开发",
+        "编程",
+        "bug",
+        "调试",
+        "程序",
+        "函数",
+        "类",
+        "接口",
+        "api",
+        "react",
+        "vue",
+        "node",
+        "javascript",
+        "typescript",
+        "python",
+        "前端",
+        "后端",
+        "database",
+        "数据库",
+        "sql",
+        "算法",
+        "重构",
+        "性能优化"
+      ],
+      "alwaysRespond": false
+    },
+    {
+      "id": "ceva",
+      "name": "CEVA",
+      "openId": "ou_c917d9b06ff30b98c4f45c79219164d5",
+      "keywords": [
+        "股票",
+        "投资",
+        "市场",
+        "行情",
+        "价格",
+        "涨停",
+        "跌停",
+        "收益率",
+        "风险",
+        "基金",
+        "债券",
+        "美股",
+        "港股",
+        "a股",
+        "财经",
+        "财务报表",
+        "分析报告",
+        "估值"
+      ],
+      "alwaysRespond": false
+    },
+    {
+      "id": "system-engineer",
+      "name": "System Engineer",
+      "openId": "ou_c917d9b06ff30b98c4f45c79219164d5",
+      "keywords": [
+        "系统",
+        "架构",
+        "设计",
+        "服务器",
+        "部署",
+        "docker",
+        "k8s",
+        "微服务",
+        "分布式",
+        "负载均衡",
+        "缓存",
+        "消息队列",
+        "mq",
+        "kafka",
+        "redis",
+        "数据库",
+        "mysql",
+        "postgresql",
+        "网络",
+        "安全",
+        "监控",
+        "日志"
+      ],
+      "alwaysRespond": false
+    },
+    {
+      "id": "102-housekeeper",
+      "name": "102 Housekeeper",
+      "openId": "ou_c917d9b06ff30b98c4f45c79219164d5",
+      "keywords": [
+        "任务",
+        "日程",
+        "提醒",
+        "计划",
+        "待办",
+        "todo",
+        "清单",
+        "时间",
+        "日历",
+        "会议",
+        "管理",
+        "整理",
+        "记录",
+        "跟踪",
+        "进度"
+      ],
+      "alwaysRespond": false
+    }
+  ]
+}

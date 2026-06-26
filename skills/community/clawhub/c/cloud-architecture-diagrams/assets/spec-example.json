@@ -1,0 +1,38 @@
+{
+  "title": "MARS Support Architecture",
+  "canvas": {"width": 1600, "height": 880},
+  "zones": [
+    {"id": "pp", "label": "Power Platform", "x": 110, "y": 70, "width": 250, "height": 740},
+    {"id": "az", "label": "Azure", "x": 400, "y": 70, "width": 880, "height": 740},
+    {"id": "ds", "label": "Data Source", "x": 1320, "y": 70, "width": 240, "height": 740}
+  ],
+  "nodes": [
+    {"id": "user", "title": "Users", "icon": "User", "x": 30, "y": 400, "width": 64, "height": 64, "card": false},
+    {"id": "mars", "title": "MARS Portal", "icon": "Power Apps", "x": 180, "y": 400, "width": 64, "height": 64, "card": false},
+    {"id": "entra", "title": "Entra ID", "desc": "User Authentication", "icon": "Entra ID", "x": 430, "y": 150, "width": 230, "height": 84},
+    {"id": "app", "title": "App Service", "desc": "Hosts APIs", "icon": "App Service", "x": 430, "y": 360, "width": 230, "height": 84},
+    {"id": "insights", "title": "Application Insights", "desc": "Track conversations", "icon": "Application Insights", "x": 720, "y": 150, "width": 230, "height": 84},
+    {"id": "classifier", "title": "Classifier Agent", "desc": "Routes query to agents", "icon": "AI Studio", "x": 1000, "y": 150, "width": 240, "height": 84},
+    {"id": "safety", "title": "Content Safety", "desc": "Detects harmful content", "icon": "Content Safety", "x": 1000, "y": 260, "width": 240, "height": 84},
+    {"id": "openai", "title": "Azure OpenAI", "desc": "GPT-4o", "icon": "Azure OpenAI", "x": 720, "y": 360, "width": 230, "height": 84},
+    {"id": "mcp", "title": "MCP Server", "desc": "Function App", "icon": "Power Automate", "x": 720, "y": 520, "width": 230, "height": 84},
+    {"id": "search", "title": "Azure AI Search", "desc": "Schema & indexes", "icon": "Cognitive Search", "x": 720, "y": 660, "width": 230, "height": 84},
+    {"id": "tickets", "title": "Support Tickets", "desc": "Dataverse Table", "icon": "Dataverse", "x": 1350, "y": 200, "width": 190, "height": 80},
+    {"id": "catmap", "title": "Category Mapping", "desc": "Dataverse Table", "icon": "Dataverse", "x": 1350, "y": 320, "width": 190, "height": 80},
+    {"id": "kb", "title": "Knowledge Articles", "desc": "Dataverse Table", "icon": "Dataverse", "x": 1350, "y": 440, "width": 190, "height": 80}
+  ],
+  "edges": [
+    {"from": "user", "to": "mars", "label": "Token Exchange", "dir": "both"},
+    {"from": "mars", "to": "entra", "label": "Token Acquisition", "dir": "to"},
+    {"from": "mars", "to": "app", "label": "Stream Chat", "dir": "both"},
+    {"from": "app", "to": "classifier", "label": "", "dir": "to"},
+    {"from": "insights", "to": "classifier", "label": "", "dir": "both"},
+    {"from": "classifier", "to": "safety", "label": "", "dir": "both"},
+    {"from": "classifier", "to": "openai", "label": "", "dir": "both"},
+    {"from": "classifier", "to": "mcp", "label": "Retrieve & classify", "dir": "both", "color": "#1565c0"},
+    {"from": "mcp", "to": "search", "label": "", "dir": "both"},
+    {"from": "mcp", "to": "tickets", "label": "Writeback ops", "dir": "both", "color": "#1565c0"},
+    {"from": "search", "to": "catmap", "label": "Index", "dir": "to"},
+    {"from": "search", "to": "kb", "label": "", "dir": "to"}
+  ]
+}

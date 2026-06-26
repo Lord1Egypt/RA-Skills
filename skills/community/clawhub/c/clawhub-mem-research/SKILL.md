@@ -1,35 +1,46 @@
 ---
-name: "clawhub-mem-research"
-description: "专门用于从 ClawHub.ai 抓取、筛选并调研与“记忆（Memory/Mem）”相关的最新 OpenClaw Skill。该 Skill 能够自动识别指定日期的更新，判断 Skill 与记忆功能的相关性，并生成结构化的技术调研报告。适用场景：(1) 追踪 ClawHub 上的记忆技术趋势，(2) 自动化生成特..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhub-mem-research"
-sourceUrl: "https://clawhub.ai/skills/clawhub-mem-research"
+name: clawhub-mem-research
+description: 专门用于从 ClawHub.ai 抓取、筛选并调研与“记忆（Memory/Mem）”相关的最新 OpenClaw Skill。该 Skill 能够自动识别指定日期的更新，判断 Skill 与记忆功能的相关性，并生成结构化的技术调研报告。适用场景：(1) 追踪 ClawHub 上的记忆技术趋势，(2) 自动化生成特定日期的记忆技术日报，(3) 深度调研特定的内存管理插件。
 ---
 
-# clawhub-mem-research
+# ClawHub 记忆技术调研工具 (ClawHub Mem Research)
 
-> 专门用于从 ClawHub.ai 抓取、筛选并调研与“记忆（Memory/Mem）”相关的最新 OpenClaw Skill。该 Skill 能够自动识别指定日期的更新，判断 Skill 与记忆功能的相关性，并生成结构化的技术调研报告。适用场景：(1) 追踪 ClawHub 上的记忆技术趋势，(2) 自动化生成特...
+本 Skill 用于自动化调研 ClawHub 上与记忆相关的最新技术。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhub-mem-research`
-- **Source URL:** [https://clawhub.ai/skills/clawhub-mem-research](https://clawhub.ai/skills/clawhub-mem-research)
+## 工作流程
 
-## Overview
+1. **访问与搜索**：
+   使用浏览器访问 `https://clawhub.ai/skills?sort=updated&dir=desc&nonSuspicious=true&q=memory`。
 
+2. **筛选准则**：
+   - **数量限制**：仅读取前 3 条结果。
+   - **相关性判断**：通过标题和摘要判断该 Skill 是否真正属于“记忆增强/管理”范畴（如：存储事实、遗忘曲线、向量检索、内存压缩等）。如果只是名字包含 mem 但功能无关（如 Member 管理），则跳过。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawhub-mem-research
-```
+3. **深度调研**：
+   对于符合条件的每一个 Skill，点击进入详情页，重点阅读 `SKILL.md` 或 `README.md`，提取核心功能和技术实现细节。
+
+4. **报告生成**：
+   按照以下固定格式为每个技术生成摘要，并汇总成 Markdown 文件。
+
+## 报告格式
+
+每个技术项应包含以下详细结构，内容应根据 Skill 的实际技术特性灵活组织：
+
+### [序号]. [技术名称]
+**—— [一句话副标题/定位描述]**
+
+- **核心功能**：
+  深入描述该技术的核心作用、解决的痛点以及应用场景（如：模拟 REM 睡眠、遗忘曲线管理等）。
+
+- **技术要点**：
+  - 根据 Skill 的实际实现，提取其最关键的技术特征。
+  - **采用分点/小标题形式**（如：动态强度衰减算法、本地向量化检索等）。
+  - 详细解释实现逻辑、算法公式、触发机制、存储方式或控制指令。
+  - **不要生搬硬套固定模板**，应以最能体现该技术价值的方式展示其技术细节。
+
+- **SKILL链接**：[技术名称 (版本号)](链接)
+
+## 输出要求
+
+- **语言**：必须使用中文编写报告。
+- **存储**：调研完成后，将生成的报告保存到 `report_v1/YYYY-MM-DD` 目录下，文件命名格式为 `clawhub-mem-research.md`（YYYY-MM-DD 为调研的目标更新日期）。

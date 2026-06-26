@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credara  Skill Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#fafaf8;--offwhite:#f2f0ec;--cream:#e8e4dc;
+  --black:#111;--charcoal:#333;--gray:#777;--light-gray:#bbb;--faint:#eee;
+  --red:#c62828;--red-bright:#e53935;--green:#2e7d32;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+}
+body{font-family:var(--sans);background:var(--offwhite);color:var(--black);height:100vh;overflow:hidden;display:flex;flex-direction:column}
+
+/* Header */
+.builder-header{background:var(--black);color:var(--white);padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.builder-logo{font-family:var(--serif);font-size:1.2rem;font-style:italic}
+.builder-logo a{color:var(--white);text-decoration:none}
+.builder-logo span{font-size:.5rem;font-family:var(--mono);color:var(--gray);margin-left:.75rem;letter-spacing:.15em;text-transform:uppercase}
+.builder-status{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:rgba(255,255,255,.6)}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.builder-nav{display:flex;gap:.75rem}
+.builder-nav a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.75rem;padding:.35rem .7rem;border-radius:4px;transition:all .2s}
+.builder-nav a:hover{color:var(--white);background:rgba(255,255,255,.1)}
+
+/* Layout */
+.builder-layout{display:grid;grid-template-columns:320px 1fr;flex:1;overflow:hidden}
+
+/* Sidebar */
+.builder-sidebar{background:var(--white);border-right:1px solid var(--cream);display:flex;flex-direction:column;overflow-y:auto}
+.sidebar-header{padding:1.25rem;border-bottom:1px solid var(--cream)}
+.sidebar-header h3{font-family:var(--serif);font-size:1.1rem;font-weight:400;margin-bottom:.25rem}
+.sidebar-header p{font-size:.7rem;color:var(--gray)}
+.sidebar-section{padding:1rem 1.25rem;border-bottom:1px solid var(--cream)}
+.sidebar-label{font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--red);font-family:var(--mono);margin-bottom:.75rem}
+.sidebar-section input,.sidebar-section textarea,.sidebar-section select{width:100%;padding:.6rem;border:1px solid var(--cream);border-radius:4px;font-size:.8rem;font-family:var(--sans);background:var(--offwhite);outline:none;transition:border-color .2s}
+.sidebar-section input:focus,.sidebar-section textarea:focus,.sidebar-section select:focus{border-color:var(--red)}
+.sidebar-section textarea{resize:vertical;min-height:60px;font-size:.75rem;line-height:1.6}
+.field-group{margin-bottom:.75rem}
+.field-group label{display:block;font-size:.65rem;color:var(--gray);margin-bottom:.3rem;letter-spacing:.05em}
+
+/* Skill preview */
+.skill-preview{background:var(--black);color:rgba(255,255,255,.7);font-family:var(--mono);font-size:.65rem;line-height:1.8;padding:1rem;border-radius:4px;max-height:200px;overflow-y:auto;white-space:pre-wrap}
+
+/* Benchmark criteria */
+.criteria-item{display:flex;align-items:center;gap:.5rem;padding:.4rem 0;font-size:.75rem;color:var(--charcoal)}
+.criteria-check{width:16px;height:16px;border:1.5px solid var(--cream);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--green);flex-shrink:0}
+.criteria-check.done,.criteria-check.checked{border-color:var(--green);background:rgba(46,125,50,.08)}
+.criteria-check.checked::after{content:"✓"}
+
+/* Sidebar buttons */
+.sidebar-actions{padding:1rem 1.25rem;margin-top:auto;display:flex;gap:.5rem}
+.sidebar-btn{flex:1;padding:.7rem;border:none;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-family:var(--sans);cursor:pointer;transition:all .2s;border-radius:4px}
+.sidebar-btn.draft{background:var(--offwhite);color:var(--charcoal);border:1px solid var(--cream)}
+.sidebar-btn.draft:hover{border-color:var(--charcoal)}
+.sidebar-btn.publish{background:var(--red);color:var(--white)}
+.sidebar-btn.publish:hover{background:var(--red-bright)}
+
+/* Chat area */
+.chat-area{display:flex;flex-direction:column;background:var(--offwhite);overflow:hidden;min-height:0}
+.chat-messages{flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem}
+
+/* Messages */
+.msg{max-width:75%;display:flex;flex-direction:column;gap:.25rem}
+.msg.agent{align-self:flex-start}
+.msg.human{align-self:flex-end}
+.msg-bubble{padding:.85rem 1.1rem;border-radius:12px;font-size:.85rem;line-height:1.65}
+.msg.agent .msg-bubble{background:var(--white);border:1px solid var(--cream);border-bottom-left-radius:4px}
+.msg.human .msg-bubble{background:var(--black);color:var(--white);border-bottom-right-radius:4px}
+.msg-meta{font-size:.6rem;color:var(--gray);display:flex;align-items:center;gap:.4rem}
+.msg.human .msg-meta{justify-content:flex-end}
+.msg-avatar{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.5rem;font-family:var(--mono);font-weight:700}
+.msg.agent .msg-avatar{background:var(--red);color:var(--white)}
+.msg.human .msg-avatar{background:var(--charcoal);color:var(--white)}
+
+/* Typing indicator */
+.typing{align-self:flex-start;display:none;padding:.5rem 1rem;background:var(--white);border:1px solid var(--cream);border-radius:12px;border-bottom-left-radius:4px}
+.typing.show{display:flex}
+.typing span{width:6px;height:6px;background:var(--gray);border-radius:50%;margin:0 2px;animation:typeBounce 1.4s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes typeBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+
+/* Input */
+.chat-input{padding:1rem 1.5rem;background:var(--white);border-top:1px solid var(--cream);display:flex;gap:.75rem;align-items:flex-end}
+.chat-input textarea{flex:1;padding:.7rem;border:1px solid var(--cream);border-radius:8px;font-size:.85rem;font-family:var(--sans);resize:none;outline:none;min-height:44px;max-height:120px;line-height:1.5;transition:border-color .2s}
+.chat-input textarea:focus{border-color:var(--red)}
+.send-btn{width:44px;height:44px;border-radius:8px;background:var(--red);color:var(--white);border:none;font-size:1.1rem;cursor:pointer;transition:background .2s;flex-shrink:0}
+.send-btn:hover{background:var(--red-bright)}
+.send-btn:disabled{background:var(--cream);color:var(--gray);cursor:not-allowed}
+
+/* Mobile toggle */
+.sidebar-toggle{display:none;position:fixed;bottom:5rem;left:1rem;z-index:100;width:44px;height:44px;border-radius:50%;background:var(--black);color:var(--white);border:none;font-size:1.2rem;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+
+@media(max-width:768px){
+  .builder-layout{grid-template-columns:1fr}
+  .builder-sidebar{position:fixed;left:-100%;top:0;bottom:0;width:85%;max-width:320px;z-index:200;transition:left .3s ease;box-shadow:4px 0 20px rgba(0,0,0,.1)}
+  .builder-sidebar.open{left:0}
+  .sidebar-toggle{display:block}
+  .sidebar-backdrop{display:none;position:fixed;inset:0;z-index:199;background:rgba(0,0,0,.4)}
+  .sidebar-backdrop.open{display:block}
+  .msg{max-width:90%}
+}
+</style>
+</head>
+<body>
+
+<header class="builder-header">
+  <div class="builder-logo"><a href="/">Credara</a><span>Builder</span></div>
+  <div style="display:flex;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:4px;overflow:hidden">
+    <button id="mode-skill" onclick="setMode('skill')" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.4rem .9rem;background:rgba(255,255,255,.15);color:#fff;border:none;cursor:pointer">Skill Pack</button>
+    <button id="mode-course" onclick="setMode('course')" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.4rem .9rem;background:none;color:rgba(255,255,255,.5);border:none;cursor:pointer">Course Builder</button>
+  </div>
+  <nav class="builder-nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/creator">Creator</a>
+    <a href="/docs">Docs</a>
+  </nav>
+</header>
+
+<div class="builder-layout">
+  <!-- Sidebar -->
+  <aside class="builder-sidebar" id="sidebar">
+    <div id="sidebar-skill">
+    <div class="sidebar-header">
+      <h3>Skill Pack Builder</h3>
+      <p>Chat → iterate → improve until your skill.md is production-ready</p>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Skill Pack Details</div>
+      <div class="field-group">
+        <label>Title</label>
+        <input type="text" id="sp-title" placeholder="e.g. SEC Filing Analysis Pro">
+      </div>
+      <div class="field-group">
+        <label>Domain</label>
+        <select id="sp-domain">
+          <option value="">Select domain...</option>
+          <option value="finance">Finance Analysis</option>
+          <option value="security">Security Audit</option>
+          <option value="research">Research Synthesis</option>
+          <option value="code">Code Analysis</option>
+          <option value="data">Data Acquisition</option>
+          <option value="legal">Legal Analysis</option>
+          <option value="custom">Custom</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Description</label>
+        <textarea id="sp-desc" placeholder="What does this skill pack teach?"></textarea>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">skill.md Preview</div>
+      <div class="skill-preview" id="skill-preview"># Untitled Skill Pack
+
+## Description
+No description yet.
+
+## Prompt Chains
+(none defined)
+
+## Tool Configs
+(none defined)
+
+## Domain Context
+(none defined)</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Benchmark Criteria</div>
+      <div class="criteria-item"><div class="criteria-check" id="c-title"></div> Title defined</div>
+      <div class="criteria-item"><div class="criteria-check" id="c-desc"></div> Description written</div>
+      <div class="criteria-item"><div class="criteria-check" id="c-prompts"></div> Prompt chains added</div>
+      <div class="criteria-item"><div class="criteria-check" id="c-bench"></div> Benchmark designed</div>
+      <div class="criteria-item"><div class="criteria-check" id="c-test"></div> Self-test passed <button id="run-selftest-btn" onclick="runSelfTest()" style="display:none;font-size:.5rem;padding:.15rem .4rem;border:1px solid var(--red,#c62828);background:none;color:var(--red,#c62828);cursor:pointer;margin-left:.3rem;letter-spacing:.06em;text-transform:uppercase">Run Test</button></div>
+      <div class="criteria-item"><div class="criteria-check" id="c-validate"></div> Validator approved</div>
+    </div>
+
+    <div class="sidebar-actions">
+      <button class="sidebar-btn" id="improve-btn" onclick="runImprove()" style="background:#1a1a2e;color:#7c8cf8;border:1px solid #7c8cf8;display:none">✦ Critique & Improve</button>
+      <button class="sidebar-btn draft" onclick="saveDraft()">Save Draft</button>
+      <button class="sidebar-btn publish" onclick="publishPack()">Submit for Review</button>
+    </div>
+    </div><!-- end sidebar-skill -->
+
+    <!-- Course Builder sidebar -->
+    <div id="sidebar-course" style="display:none">
+    <div class="sidebar-header">
+      <h3>Course Builder</h3>
+      <p>Design a full multi-module course with assessments</p>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Course Blueprint</div>
+      <div id="blueprint-preview" style="font-size:.72rem;color:#888;line-height:1.6;padding:.5rem;border:1px solid #1a1a2e;min-height:80px;font-family:var(--mono,monospace)">Chat to generate a course blueprint...</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Requirements</div>
+      <div class="criteria-item"><div class="criteria-check" id="cc-stripe"></div> Stripe Connect active</div>
+      <div class="criteria-item"><div class="criteria-check" id="cc-blueprint"></div> Blueprint generated</div>
+      <div class="criteria-item"><div class="criteria-check" id="cc-modules"></div> Modules defined (2+)</div>
+      <div class="criteria-item"><div class="criteria-check" id="cc-assessment"></div> Assessment questions (6)</div>
+    </div>
+
+    <div class="sidebar-actions">
+      <button class="sidebar-btn publish" id="save-course-btn" onclick="saveCourse()" disabled style="opacity:.4">Save Course Draft</button>
+    </div>
+    <div id="stripe-gate-msg" style="display:none;margin-top:.5rem;padding:.75rem;background:#1a0a0a;border:1px solid #c62828;font-size:.7rem;color:#c62828;line-height:1.6">
+      ⚠ Stripe Connect required to publish courses.<br>
+      <a href="/creator" style="color:#e53935;font-weight:600">Complete KYC in Creator Studio →</a>
+    </div>
+    </div><!-- end sidebar-course -->
+  </aside>
+
+  <!-- Chat -->
+  <main class="chat-area">
+    <div class="chat-messages" id="messages">
+      <div class="msg agent" id="welcome-msg">
+        <div class="msg-meta"><span class="msg-avatar">C</span> Credara Agent · just now</div>
+        <div class="msg-bubble" id="welcome-text">Hey! I'm your Skill Pack builder. Let's make something production-ready.<br><br>Tell me:<br>· What capability should this teach?<br>· What domain? (security, devops, finance, etc.)<br>· What does "good" look like for this skill?<br><br>Once I have enough context, I'll generate a skill.md draft — then we'll run critique rounds until it scores ≥ 8/10 on all criteria.</div>
+      </div>
+    </div>
+
+    <div class="typing" id="typing">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="chat-input">
+      <textarea id="msg-input" placeholder="Describe your skill pack idea..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}"></textarea>
+      <button class="send-btn" onclick="sendMessage()" id="send-btn">&#8594;</button>
+    </div>
+  </main>
+</div>
+
+<!-- Mobile sidebar toggle -->
+<button class="sidebar-toggle" onclick="toggleSidebar()"></button>
+<div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+
+<script>
+// Soft auth — show builder to everyone, gate save/publish/send
+const _authed = () => !!localStorage.getItem('accessToken');
+
+function _showAuthPrompt() {
+  // Inject inline signup nudge into chat as a system message
+  const el = document.createElement('div');
+  el.className = 'msg agent';
+  el.innerHTML = `
+    <div class="msg-meta"><span class="msg-avatar">C</span> Credara Agent · just now</div>
+    <div class="msg-bubble" style="border:1px solid #e8e4dc;background:#fff">
+      <strong>Create a free account to continue.</strong><br><br>
+      Sign up to chat with the builder agent, save drafts, and publish skill packs.
+      <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap">
+        <a href="/signup" style="background:#111;color:#fff;padding:.5rem 1.25rem;border-radius:5px;font-size:.8rem;text-decoration:none">Sign Up Free &#8594;</a>
+        <a href="/login" style="background:transparent;color:#111;padding:.5rem 1.25rem;border-radius:5px;font-size:.8rem;text-decoration:none;border:1px solid #ddd">Log In</a>
+      </div>
+    </div>`;
+  document.getElementById('messages').appendChild(el);
+  document.getElementById('messages').scrollTop = 99999;
+}
+
+const messagesEl = document.getElementById('messages');
+const inputEl = document.getElementById('msg-input');
+const typingEl = document.getElementById('typing');
+const sendBtn = document.getElementById('send-btn');
+
+// Auto-resize textarea
+inputEl.addEventListener('input', () => {
+  inputEl.style.height = 'auto';
+  inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
+});
+
+const API_BASE = window.location.origin;
+let conversationId = null;
+let currentMode = 'skill'; // 'skill' | 'course'
+let stripeActive = false;
+
+// ── Mode switching ────────────────────────────────────────────────
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('sidebar-skill').style.display = mode === 'skill' ? 'block' : 'none';
+  document.getElementById('sidebar-course').style.display = mode === 'course' ? 'block' : 'none';
+  document.getElementById('mode-skill').style.background = mode === 'skill' ? 'rgba(255,255,255,.15)' : 'none';
+  document.getElementById('mode-skill').style.color = mode === 'skill' ? '#fff' : 'rgba(255,255,255,.5)';
+  document.getElementById('mode-course').style.background = mode === 'course' ? 'rgba(255,255,255,.15)' : 'none';
+  document.getElementById('mode-course').style.color = mode === 'course' ? '#fff' : 'rgba(255,255,255,.5)';
+
+  // Reset chat for new mode
+  conversationId = null;
+  const msgs = document.getElementById('messages');
+  msgs.innerHTML = '';
+  if (mode === 'skill') {
+    addAgentMessage('Hey! I\'m your Skill Pack builder. Tell me what capability to teach, the domain, and what "good" looks like.<br><br>I\'ll generate a skill.md draft and then run critique rounds until it scores ≥ 8/10 on all five criteria.');
+  } else {
+    checkStripeStatus();
+    addAgentMessage('Course Builder mode. I\'ll help you design a complete multi-module course with quizzes and assessments.<br><br>Tell me:<br>· What topic should this course cover?<br>· Who is the target learner (beginner, intermediate, advanced)?<br>· What should an agent be able to DO after completing it?');
+  }
+}
+
+async function checkStripeStatus() {
+  if (!_authed()) return;
+  try {
+    const r = await fetch(`${API_BASE}/api/payments/connect/status`, {
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') }
+    });
+    const d = await r.json();
+    stripeActive = d.status === 'active' && d.connected;
+    const dot = document.getElementById('cc-stripe');
+    if (dot) dot.classList.toggle('checked', stripeActive);
+    const gateMsg = document.getElementById('stripe-gate-msg');
+    const saveBtn = document.getElementById('save-course-btn');
+    if (gateMsg) gateMsg.style.display = stripeActive ? 'none' : 'block';
+    if (saveBtn) saveBtn.disabled = !stripeActive;
+    if (saveBtn) saveBtn.style.opacity = stripeActive ? '1' : '.4';
+  } catch {}
+}
+
+function addMessage(text, type) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + type;
+  const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const avatar = type === 'agent' ? '<span class="msg-avatar">C</span> Credara Agent' : '<span class="msg-avatar">Y</span> You';
+  let html = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/`([^`]+)`/g, '<code style="background:rgba(0,0,0,.06);padding:1px 4px;border-radius:3px;font-size:.8em">$1</code>');
+  html = html.replace(/\n/g, '<br>');
+  div.innerHTML = `<div class="msg-meta">${avatar} · ${time}</div><div class="msg-bubble">${html}</div>`;
+  messagesEl.appendChild(div);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function addAgentMessage(text) { addMessage(text, 'agent'); }
+
+function updateCourseBlueprintUI(blueprint) {
+  const el = document.getElementById('blueprint-preview');
+  if (!el) return;
+  const lines = [
+    `Name: ${blueprint.name}`,
+    `Domain: ${blueprint.domain_id?.replace('dom-','')}`,
+    `Difficulty: ${blueprint.difficulty}  Price: $${(blueprint.price_usd/100).toFixed(2)}`,
+    `Modules: ${blueprint.modules?.length || 0}`,
+    `Assessment: ${blueprint.assessment?.questions?.length || 0} questions`,
+    '',
+    ...(blueprint.modules||[]).map((m,i) => `${i+1}. ${m.title}`),
+  ];
+  el.textContent = lines.join('\n');
+
+  // Update checklist
+  const chkBlueprint = document.getElementById('cc-blueprint');
+  const chkModules = document.getElementById('cc-modules');
+  const chkAssessment = document.getElementById('cc-assessment');
+  if (chkBlueprint) chkBlueprint.classList.add('checked');
+  if (chkModules) chkModules.classList.toggle('checked', (blueprint.modules?.length||0) >= 2);
+  if (chkAssessment) chkAssessment.classList.toggle('checked', (blueprint.assessment?.questions?.length||0) >= 6);
+
+  // Enable save button if stripe active
+  const saveBtn = document.getElementById('save-course-btn');
+  if (saveBtn && stripeActive) {
+    saveBtn.disabled = false;
+    saveBtn.style.opacity = '1';
+  }
+}
+
+async function runImprove() {
+  if (!_authed()) { _showAuthPrompt(); return; }
+  if (!conversationId) { addAgentMessage('Build a skill pack first before running critique.'); return; }
+  const btn = document.getElementById('improve-btn');
+  btn.disabled = true;
+  btn.textContent = '✦ Running critique rounds...';
+  addAgentMessage('Running iterative critique and improvement loop. This may take 20–40 seconds...');
+  try {
+    const token = localStorage.getItem('accessToken');
+    const r = await fetch(`${API_BASE}/api/builder/conversations/${conversationId}/improve`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ maxRounds: 3 }),
+    });
+    const d = await r.json();
+    if (!r.ok) { addAgentMessage('Critique failed: ' + (d.error||'unknown')); btn.disabled = false; btn.textContent = '✦ Critique & Improve'; return; }
+    // Show results
+    const roundSummary = d.rounds.map(rnd => {
+      const avg = Object.values(rnd.scores).reduce((a,b)=>a+b,0)/Object.values(rnd.scores).length;
+      return `Round ${rnd.round}: avg ${avg.toFixed(1)}/10 ${rnd.ready ? '✓ ready' : ''}`;
+    }).join('\n');
+    addAgentMessage(`Critique complete:\n${roundSummary}\n\n${d.ready ? '✓ All criteria ≥ 8/10. Skill pack is production-ready.' : 'Best version saved after 3 rounds. Review the skill.md and refine any sections manually.'}`);
+    if (d.skillMdPreview) document.getElementById('skill-preview').textContent = d.skillMdPreview;
+    btn.textContent = d.ready ? '✓ Production-ready' : '✦ Re-run Critique';
+    btn.disabled = false;
+  } catch(e) { addAgentMessage('Error: ' + e.message); btn.disabled = false; btn.textContent = '✦ Critique & Improve'; }
+}
+
+async function saveCourse() {
+  if (!_authed()) { _showAuthPrompt(); return; }
+  if (!conversationId) return;
+  const btn = document.getElementById('save-course-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try {
+    const token = localStorage.getItem('accessToken');
+    const r = await fetch(`${API_BASE}/api/builder/conversations/${conversationId}/save-course`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+    });
+    const d = await r.json();
+    if (d.code === 'STRIPE_REQUIRED') {
+      document.getElementById('stripe-gate-msg').style.display = 'block';
+      btn.disabled = false; btn.textContent = 'Save Course Draft';
+      return;
+    }
+    if (!r.ok) { addAgentMessage('Save failed: ' + (d.error||'unknown')); btn.disabled = false; btn.textContent = 'Save Course Draft'; return; }
+    addAgentMessage(`✓ Course draft saved with ${d.moduleCount} modules.\n\nCourse ID: ${d.courseId}\n\nIt's been submitted for admin review. You'll be notified when it's approved and goes live.`);
+    btn.textContent = '✓ Submitted for Review';
+  } catch(e) { addAgentMessage('Error: ' + e.message); btn.disabled = false; btn.textContent = 'Save Course Draft'; }
+}
+
+async function sendMessage() {
+  const text = inputEl.value.trim();
+  if (!text) return;
+
+  if (!_authed()) {
+    addMessage(text, 'human');
+    inputEl.value = '';
+    inputEl.style.height = 'auto';
+    _showAuthPrompt();
+    return;
+  }
+
+  addMessage(text, 'human');
+  inputEl.value = '';
+  inputEl.style.height = 'auto';
+  sendBtn.disabled = true;
+
+  // Show typing
+  typingEl.classList.add('show');
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+
+  try {
+    const token = localStorage.getItem('accessToken');
+    const endpoint = currentMode === 'course' ? `${API_BASE}/api/builder/course-chat` : `${API_BASE}/api/builder/chat`;
+    const resp = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ message: text, conversationId }),
+    });
+
+    typingEl.classList.remove('show');
+
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({ error: 'Request failed' }));
+      addAgentMessage(`Error: ${err.error || resp.statusText}`);
+      sendBtn.disabled = false;
+      return;
+    }
+
+    const data = await resp.json();
+    conversationId = data.conversationId;
+    addAgentMessage(data.reply);
+
+    if (currentMode === 'skill') {
+      if (data.skillMdPreview) document.getElementById('skill-preview').textContent = data.skillMdPreview;
+      if (data.criteria) updateCriteriaUI(data.criteria);
+      if (data.skillPackDraft) {
+        if (data.skillPackDraft.title) document.getElementById('sp-title').value = data.skillPackDraft.title;
+        if (data.skillPackDraft.domain) document.getElementById('sp-domain').value = data.skillPackDraft.domain;
+        if (data.skillPackDraft.description) document.getElementById('sp-desc').value = data.skillPackDraft.description;
+        // Show improve button once we have a draft
+        document.getElementById('improve-btn').style.display = 'block';
+      }
+    } else {
+      // Course mode
+      if (data.blueprint) {
+        updateCourseBlueprintUI(data.blueprint);
+        document.getElementById('save-course-btn').disabled = !stripeActive;
+        if (stripeActive) document.getElementById('save-course-btn').style.opacity = '1';
+      }
+    }
+  } catch (e) {
+    typingEl.classList.remove('show');
+    addAgentMessage(`Connection error: ${e.message}`);
+  }
+
+  sendBtn.disabled = false;
+}
+
+async function runSelfTest() {
+  if (!conversationId) { alert('Start a conversation first'); return; }
+  const btn = document.getElementById('run-selftest-btn');
+  btn.disabled = true; btn.textContent = 'Testing…';
+  // Send a self-test request through chat
+  const token = localStorage.getItem('accessToken');
+  try {
+    const resp = await fetch(`${API_BASE}/api/builder/chat`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: 'Run the self-test now. Generate 3 test scenarios, evaluate each against the skill pack design, and report pass/fail for each. If all pass, confirm "SELF-TEST PASSED".', conversationId }),
+    });
+    const data = await resp.json();
+    if (data.reply) {
+      addMessage(data.reply, 'agent');
+      if (data.criteria) updateCriteriaUI(data.criteria);
+      // Force self-test passed if the reply contains confirmation
+      if (data.reply.toLowerCase().includes('self-test passed') || data.reply.toLowerCase().includes('all.*pass')) {
+        const el = document.getElementById('c-test');
+        el.classList.add('done'); el.textContent = 'ok';
+        btn.style.display = 'none';
+      }
+    }
+    if (data.conversationId) conversationId = data.conversationId;
+  } catch (e) {
+    addMessage('Self-test error: ' + e.message, 'agent');
+  }
+  btn.disabled = false; btn.textContent = 'Run Test';
+}
+
+function updateCriteriaUI(criteria) {
+  const map = {
+    'c-title': criteria.titleDefined,
+    'c-desc': criteria.descriptionWritten,
+    'c-prompts': criteria.promptChainsAdded,
+    'c-bench': criteria.benchmarkDesigned,
+    'c-test': criteria.selfTestPassed,
+    'c-validate': criteria.validatorApproved,
+  };
+  for (const [id, done] of Object.entries(map)) {
+    const el = document.getElementById(id);
+    if (done) { el.classList.add('done'); el.textContent = 'ok'; }
+    else { el.classList.remove('done'); el.textContent = ''; }
+  }
+  // Show self-test button when prompts + benchmark done but test isn't
+  const testBtn = document.getElementById('run-selftest-btn');
+  if (criteria.promptChainsAdded && criteria.benchmarkDesigned && !criteria.selfTestPassed) {
+    testBtn.style.display = 'inline';
+  } else if (criteria.selfTestPassed) {
+    testBtn.style.display = 'none';
+  }
+}
+
+// Title/desc fields sync to sidebar preview + criteria locally
+function syncSidebarFields() {
+  const title = document.getElementById('sp-title').value || '';
+  const desc = document.getElementById('sp-desc').value || '';
+  document.getElementById('skill-preview').textContent = `# ${title || 'Untitled'}\n\n## Description\n${desc || 'No description yet.'}`;
+  
+  // Update criteria checkboxes from form fields
+  if (title.length > 0) {
+    const el = document.getElementById('c-title');
+    el.classList.add('done'); el.textContent = 'ok';
+  }
+  if (desc.length > 10) {
+    const el = document.getElementById('c-desc');
+    el.classList.add('done'); el.textContent = 'ok';
+  }
+}
+document.getElementById('sp-title').addEventListener('input', syncSidebarFields);
+document.getElementById('sp-desc').addEventListener('input', syncSidebarFields);
+
+async function saveDraft() {
+  if (!_authed()) { _showAuthPrompt(); return; }
+  const token = localStorage.getItem('accessToken');
+  
+  // If no conversation yet, create one with the sidebar content
+  if (!conversationId) {
+    const title = document.getElementById('sp-title').value;
+    const desc = document.getElementById('sp-desc').value;
+    if (!title) { alert('Give your skill pack a title first!'); return; }
+    try {
+      // Send sidebar content as first message to create conversation
+      const initResp = await fetch(`${API_BASE}/api/builder/chat`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: `Create a skill pack titled "${title}". Description: ${desc || title}. Domain: ${document.getElementById('sp-domain')?.value || 'general'}.` }),
+      });
+      const initData = await initResp.json();
+      if (initData.conversationId) conversationId = initData.conversationId;
+      else { addMessage('Error creating draft: ' + (initData.error || 'Unknown'), 'agent'); return; }
+    } catch (e) {
+      alert('Failed to create conversation: ' + e.message); return;
+    }
+  }
+  
+  try {
+    const resp = await fetch(`${API_BASE}/api/builder/conversations/${conversationId}/save-draft`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` },
+    });
+    const data = await resp.json();
+    if (resp.ok) {
+      addMessage(`✓ Draft saved! Skill Pack ID: ${data.skillPackId}`, 'agent');
+    } else {
+      addMessage(`Error: ${data.error}`, 'agent');
+    }
+  } catch (e) {
+    alert('Failed to save: ' + e.message);
+  }
+}
+
+async function publishPack() {
+  if (!_authed()) { _showAuthPrompt(); return; }
+  const title = document.getElementById('sp-title').value;
+  if (!title) { alert('Give your skill pack a title first!'); return; }
+  if (!conversationId) { alert('Save a draft first!'); return; }
+  await saveDraft();
+  addAgentMessage('Skill pack draft saved and submitted for review.\n\nYour skill pack is in the review queue — the admin will review and approve or reject with feedback.\n\n**Tip:** Run **Critique & Improve** first if you haven\'t. Packs that score ≥ 8/10 on all criteria get approved faster.\n\nFind your pack at <a href="/creator" style="color:#7c8cf8">/creator</a>.');
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-backdrop').classList.toggle('open');
+}
+</script>
+<div class="legal-footer" style="text-align:center;padding:.5rem 0;font-size:.6rem;color:#888;font-family:'Space Mono',monospace;flex-shrink:0">
+  &copy; 2026 Credara &middot;
+  <a href="/terms" style="color:#888;margin:0 .3rem">Terms</a> &middot;
+  <a href="/privacy" style="color:#888;margin:0 .3rem">Privacy</a> &middot;
+  <a href="/disclosures" style="color:#888;margin:0 .3rem">Legal</a>
+</div>
+</body>
+</html>

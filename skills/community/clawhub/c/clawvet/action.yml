@@ -1,0 +1,30 @@
+name: "ClawVet Skill Scanner"
+description: "Scan OpenClaw skills for security threats"
+branding:
+  icon: "shield"
+  color: "red"
+
+inputs:
+  path:
+    description: "Path to skill folder or SKILL.md file"
+    required: true
+  fail-on:
+    description: "Minimum severity to fail on (critical, high, medium, low)"
+    required: false
+    default: "high"
+  format:
+    description: "Output format (terminal, json, sarif)"
+    required: false
+    default: "terminal"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "22"
+
+    - name: Run ClawVet scan
+      shell: bash
+      run: npx clawvet@latest scan ${{ inputs.path }} --fail-on ${{ inputs.fail-on }} --format ${{ inputs.format }}

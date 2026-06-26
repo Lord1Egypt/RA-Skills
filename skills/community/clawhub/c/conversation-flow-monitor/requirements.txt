@@ -1,0 +1,13 @@
+# Conversation Flow Monitor - Python Requirements
+# This skill uses only standard library modules
+# No external dependencies required
+
+# Standard library modules used:
+# - os
+# - sys  
+# - time
+# - json
+# - logging
+# - asyncio
+# - typing
+# - pathlib

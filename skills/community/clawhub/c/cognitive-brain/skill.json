@@ -1,0 +1,12 @@
+{
+  "name": "cognitive-brain",
+  "version": "7.0.1",
+  "description": "跨会话记忆与认知系统 - 让 AI 拥有像人类一样的记忆能力",
+  "author": "openclaw",
+  "license": "MIT",
+  "keywords": ["memory", "cognition", "ai", "openclaw", "skill"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/cognitive-brain"
+  }
+}

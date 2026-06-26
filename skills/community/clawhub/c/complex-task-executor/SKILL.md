@@ -1,35 +1,62 @@
----
+﻿---
 name: "complex-task-executor"
 description: "基于“谋事、干事、总结”方法论执行复杂任务，并自动将经验教训写入短期记忆。Invoke when user asks to handle complex tasks, plan strategies, or execute multi-step operations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/complex-task-executor"
-sourceUrl: "https://clawhub.ai/skills/complex-task-executor"
 ---
 
-# complex-task-executor
+# Complex Task Executor (复杂任务执行器)
 
-> 基于“谋事、干事、总结”方法论执行复杂任务，并自动将经验教训写入短期记忆。Invoke when user asks to handle complex tasks, plan strategies, or execute multi-step operations.
+本技能基于“谋事之法”、“干事之道”、“总结之术”的系统方法论，为 Agent 提供一套标准的复杂任务处理框架。该技能不仅指导任务的执行，还强制要求在任务结束后将经验与教训沉淀到记忆系统中，以便在后续类似任务中复用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/complex-task-executor`
-- **Source URL:** [https://clawhub.ai/skills/complex-task-executor](https://clawhub.ai/skills/complex-task-executor)
+## 核心方法论 (The Methodology)
 
-## Overview
+在执行任何被判定为“复杂”的任务时，Agent 必须严格按照以下三个阶段展开工作：
 
+### 阶段一：“谋事”之道 (Planning Phase)
+**核心动作：谋划与分析**
+在动手写代码或执行具体操作前，先进行全局思考。
+- **战略思维**：明确任务的最终商业/技术目标是什么。
+- **人民立场**：站在最终用户或需求方的角度思考，确保产出符合预期。
+- **调查研究**：检索现有代码库、搜索相关文档，摸清当前现状。
+- **民主集中**：综合各种可能的方案，权衡利弊后做出最终的技术选型或路径决策。
+- **底线思维**：预判可能出现的最坏情况（如服务宕机、数据丢失），并准备回滚或兜底方案。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/complex-task-executor
-```
+### 阶段二：“干事”之道 (Execution Phase)
+**核心动作：执行与推进**
+将计划转化为切实的行动。
+- **紧扣中心**：在执行过程中不偏离阶段一制定的核心目标，避免过度工程化 (Over-engineering)。
+- **统筹兼顾**：合理分配步骤，处理好模块之间的依赖关系。
+- **关键用人**：在恰当的环节使用恰当的工具（如使用 grep 搜索，使用专用工具修改文件）。
+- **追求实效**：每一步操作后必须验证结果（如运行测试、检查日志），确保产出有效。
+- **辩证策略**：遇到报错或死胡同时，灵活调整策略，不要死磕单一路径。
+
+### 阶段三：“总结”之术 (Review & Memory Phase)
+**核心动作：复盘与记忆沉淀 (CRITICAL)**
+任务完成后，必须进行深度的复盘，并**强制使用 manage_core_memory 工具**将经验写入记忆。
+- **正反总结**：记录哪些做法是成功的，哪些做法导致了报错或绕弯路。
+- **集体总结**：提炼出对当前项目或系统全局有价值的架构认知。
+- **深度总结**：挖掘问题背后的根本原因（Root Cause）。
+- **不断总结**：为未来的自己（Agent）留下指引。
+
+---
+
+## 记忆写入规范 (Memory Management Rules)
+
+在任务的最后一步，你**必须**调用 manage_core_memory 工具。
+提取“总结之术”中的结论，按照以下类别进行记录：
+
+1. **Experience (经验/教训)**：
+   - 记录执行过程中踩过的坑、解决特定报错的标准路径。
+   - 例如：*“在处理 X 模块时，不要直接修改 Y 文件，必须先通过 Z 脚本生成。”*
+2. **Knowledge (知识/架构)**：
+   - 记录在“调查研究”阶段发现的项目核心架构、约定俗成的规范。
+   - 例如：*“本项目的前端状态管理统一使用 Zustand，切勿引入 Redux。”*
+
+**注意**：只记录具有**复用价值**的规律，不要记录一次性的任务流水账。
+
+## 使用示例
+
+当用户输入：“帮我重构一下用户认证模块，这个任务比较复杂。”
+Agent 内部工作流应为：
+1. **谋事**：先不改代码，梳理当前认证逻辑，评估风险（底线思维），给出重构方案并与用户确认。
+2. **干事**：分步骤修改代码，每改完一个子模块就运行相关测试（追求实效）。
+3. **总结**：任务完成后，向用户输出复盘报告，并在后台调用 manage_core_memory 记录重构过程中发现的隐蔽依赖或易错点。

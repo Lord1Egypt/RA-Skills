@@ -1,0 +1,307 @@
+{
+  "version": 1,
+  "updatedAt": "2026-03-03T21:43:49.098Z",
+  "pois": [
+    {
+      "id": "8837ec72-90ec-40b7-b804-36539fc09703",
+      "name": "suno_com.Male",
+      "urlPattern": "https://suno.com/create",
+      "coords": {
+        "page": {
+          "x": 518,
+          "y": 364
+        },
+        "rect": {
+          "h": 16,
+          "w": 26,
+          "x": 507,
+          "y": 356
+        },
+        "screen": {
+          "x": 518,
+          "y": 451
+        },
+        "viewport": {
+          "x": 518,
+          "y": 364
+        }
+      },
+      "selectors": {
+        "ariaLabel": "",
+        "css": "div.css-1o3f9sc.ek5ozle0 > div.css-i9gxme.ek5ozle1 > div.css-m2x62k.e1yneqdr2 > div.css-1b650h0.e1yneqdr3 > div.css-slfj3p.e1yneqdr5 > button.relative.inline-block > span.relative.flex",
+        "id": "",
+        "role": "",
+        "text": "Male",
+        "xpath": "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[2]/div[4]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/button[1]/span[1]"
+      },
+      "meta": {
+        "savedAt": "2026-03-02T00:34:50.621Z",
+        "tag": "span",
+        "viewport": {
+          "h": 991,
+          "w": 1920
+        },
+        "zoom": 1
+      },
+      "updatedAt": "2026-03-03T21:43:49.098Z"
+    },
+    {
+      "id": "8fe15c01-9387-4711-aae9-892f12763f8c",
+      "name": "suno_com.Female",
+      "urlPattern": "https://suno.com/create",
+      "coords": {
+        "page": {
+          "x": 570,
+          "y": 359
+        },
+        "rect": {
+          "h": 16,
+          "w": 38,
+          "x": 552,
+          "y": 356
+        },
+        "screen": {
+          "x": 570,
+          "y": 446
+        },
+        "viewport": {
+          "x": 570,
+          "y": 359
+        }
+      },
+      "selectors": {
+        "ariaLabel": "",
+        "css": "div.css-1o3f9sc.ek5ozle0 > div.css-i9gxme.ek5ozle1 > div.css-m2x62k.e1yneqdr2 > div.css-1b650h0.e1yneqdr3 > div.css-slfj3p.e1yneqdr5 > button.relative.inline-block > span.relative.flex",
+        "id": "",
+        "role": "",
+        "text": "Female",
+        "xpath": "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[2]/div[4]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/button[2]/span[1]"
+      },
+      "meta": {
+        "savedAt": "2026-03-02T00:35:00.969Z",
+        "tag": "span",
+        "viewport": {
+          "h": 991,
+          "w": 1920
+        },
+        "zoom": 1
+      },
+      "updatedAt": "2026-03-03T21:43:49.098Z"
+    },
+    {
+      "id": "0a2953b7-167d-4d3b-bce9-7cd79c158319",
+      "name": "suno_com.Lyrics Prompt",
+      "urlPattern": "https://suno.com/create",
+      "coords": {
+        "page": {
+          "x": 388,
+          "y": 474
+        },
+        "rect": {
+          "h": 64,
+          "w": 347,
+          "x": 244,
+          "y": 450
+        },
+        "screen": {
+          "x": 388,
+          "y": 561
+        },
+        "viewport": {
+          "x": 388,
+          "y": 474
+        }
+      },
+      "selectors": {
+        "ariaLabel": "Auto lyrics prompt",
+        "css": "div.css-1jke4yk.en6icqh0 > div.css-1mr8tz.en6icqh1 > div.css-1o3f9sc.ek5ozle0 > div.css-i9gxme.ek5ozle1 > div.css-m2x62k.e1yneqdr2 > div.css-1b650h0.e1yneqdr3 > textarea.min-h-16.w-full",
+        "id": "",
+        "role": "",
+        "text": "",
+        "xpath": "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[2]/div[4]/div[1]/div[2]/div[1]/div[1]/div[3]/textarea[1]"
+      },
+      "meta": {
+        "savedAt": "2026-03-02T00:35:16.745Z",
+        "tag": "textarea",
+        "viewport": {
+          "h": 991,
+          "w": 1920
+        },
+        "zoom": 1
+      },
+      "updatedAt": "2026-03-03T21:43:49.098Z"
+    },
+    {
+      "id": "5b7e43cb-a562-4846-b80d-146d7445c084",
+      "name": "suno_com.Create Button",
+      "urlPattern": "https://suno.com/create",
+      "coords": {
+        "page": {
+          "x": 467,
+          "y": 869
+        },
+        "rect": {
+          "h": 24,
+          "w": 330,
+          "x": 292,
+          "y": 855
+        },
+        "screen": {
+          "x": 467,
+          "y": 956
+        },
+        "viewport": {
+          "x": 467,
+          "y": 869
+        }
+      },
+      "selectors": {
+        "ariaLabel": "",
+        "css": "div.css-l3eggp.ez5nhzg2 > div.css-1rx6t1m.e13gjoqi0 > div.css-1yua9o9.e13gjoqi1 > div.css-1ofqeah.e1idzm5o11 > div.flex.items-center > button.relative.inline-block > span.relative.flex",
+        "id": "",
+        "role": "",
+        "text": "Create",
+        "xpath": "/html[1]/body[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[3]/button[2]/span[1]"
+      },
+      "meta": {
+        "savedAt": "2026-03-02T00:35:41.389Z",
+        "tag": "span",
+        "viewport": {
+          "h": 991,
+          "w": 1920
+        },
+        "zoom": 1
+      },
+      "updatedAt": "2026-03-03T21:43:49.098Z"
+    },
+    {
+      "id": "fb9e533d-1ee5-44db-b0e6-0296a00fef5d",
+      "name": "jaytonNAME",
+      "urlPattern": "https://jayton-ai-music-vault.vercel.app/login",
+      "coords": {
+        "page": {
+          "x": 1057,
+          "y": 480
+        },
+        "rect": {
+          "h": 38,
+          "w": 72,
+          "x": 1024,
+          "y": 460
+        },
+        "screen": {
+          "x": 1057,
+          "y": 567
+        },
+        "viewport": {
+          "x": 1057,
+          "y": 480
+        }
+      },
+      "selectors": {
+        "ariaLabel": "",
+        "css": "body.__variable_ce197d.bg-night > main.relative.flex > div.relative.w-full > div.grid.items-center > div.rounded-3xl.border > div.mt-5.flex > button.rounded-full.px-4",
+        "id": "",
+        "role": "",
+        "text": "Jayton",
+        "xpath": "/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/button[1]"
+      },
+      "meta": {
+        "savedAt": "2026-03-03T21:41:56.092Z",
+        "tag": "button",
+        "viewport": {
+          "h": 991,
+          "w": 1920
+        },
+        "zoom": 1
+      },
+      "updatedAt": "2026-03-03T21:43:49.098Z"
+    },
+    {
+      "id": "7bb62af7-c5c4-4a09-b799-5a35d20432b1",
+      "name": "PASSWORD_BOX",
+      "urlPattern": "https://jayton-ai-music-vault.vercel.app/login",
+      "coords": {
+        "page": {
+          "x": 1071,
+          "y": 543
+        },
+        "rect": {
+          "h": 50,
+          "w": 382,
+          "x": 1024,
+          "y": 522
+        },
+        "screen": {
+          "x": 1071,
+          "y": 630
+        },
+        "viewport": {
+          "x": 1071,
+          "y": 543
+        }
+      },
+      "selectors": {
+        "ariaLabel": "",
+        "css": "body.__variable_ce197d.bg-night > main.relative.flex > div.relative.w-full > div.grid.items-center > div.rounded-3xl.border > form.mt-5.space-y-4 > input.w-full.rounded-2xl",
+        "id": "",
+        "role": "",
+        "text": "",
+        "xpath": "/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/form[1]/input[1]"
+      },
+      "meta": {
+        "savedAt": "2026-03-03T21:42:11.392Z",
+        "tag": "input",
+        "viewport": {
+          "h": 991,
+          "w": 1920
+        },
+        "zoom": 1
+      },
+      "updatedAt": "2026-03-03T21:43:49.098Z"
+    },
+    {
+      "id": "92adfcfc-4c25-4c14-ad92-dc1eadd4e5c3",
+      "name": "ENTER BUTTON",
+      "urlPattern": "https://jayton-ai-music-vault.vercel.app/login",
+      "coords": {
+        "page": {
+          "x": 1214,
+          "y": 607
+        },
+        "rect": {
+          "h": 48,
+          "w": 382,
+          "x": 1024,
+          "y": 584
+        },
+        "screen": {
+          "x": 1214,
+          "y": 694
+        },
+        "viewport": {
+          "x": 1214,
+          "y": 607
+        }
+      },
+      "selectors": {
+        "ariaLabel": "",
+        "css": "body.__variable_ce197d.bg-night > main.relative.flex > div.relative.w-full > div.grid.items-center > div.rounded-3xl.border > form.mt-5.space-y-4 > button.w-full.rounded-2xl",
+        "id": "",
+        "role": "",
+        "text": "Enter",
+        "xpath": "/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/form[1]/button[1]"
+      },
+      "meta": {
+        "savedAt": "2026-03-03T21:42:21.236Z",
+        "tag": "button",
+        "viewport": {
+          "h": 991,
+          "w": 1920
+        },
+        "zoom": 1
+      },
+      "updatedAt": "2026-03-03T21:43:49.098Z"
+    }
+  ]
+}

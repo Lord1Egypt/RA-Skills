@@ -1,0 +1,19 @@
+﻿{
+  "extraction_type": "<CONFIGURE_EXTRACTION_TYPE>",
+  "model_path": "<CONFIGURE_MODEL_OR_DATA_PATH>",
+  "wavelengths_nm": "<CONFIGURE_WAVELENGTH_LIST_NM_IF_RELEVANT>",
+  "optical_power_W": "<CONFIGURE_OPTICAL_POWER_W_IF_RELEVANT>",
+  "device_area_m2": "<CONFIGURE_DEVICE_AREA_M2_IF_RELEVANT>",
+  "dark_current_density_A_per_m2": "<CONFIGURE_DARK_CURRENT_DENSITY_IF_RELEVANT>",
+  "measurement_conditions": "<CONFIGURE_MEASUREMENT_CONDITIONS>",
+  "output_dir": "output/metrics_configured_project",
+  "plots": {
+    "eqe": "<CONFIGURE_TRUE_FALSE_IF_RELEVANT>",
+    "responsivity": "<CONFIGURE_TRUE_FALSE_IF_RELEVANT>",
+    "detectivity": "<CONFIGURE_TRUE_FALSE_IF_RELEVANT>",
+    "iv_curve": "<CONFIGURE_TRUE_FALSE_IF_RELEVANT>",
+    "band_diagram": "<CONFIGURE_TRUE_FALSE_IF_RELEVANT>",
+    "carrier_density": "<CONFIGURE_TRUE_FALSE_IF_RELEVANT>",
+    "temperature_profile": "<CONFIGURE_TRUE_FALSE_IF_RELEVANT>"
+  }
+}

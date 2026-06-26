@@ -1,0 +1,218 @@
+================================================================================
+CPBL Skill 完整測試 Log
+測試時間: 2026-03-20 19:36 (GMT+8)
+測試環境: WSL2, Python 3.10+, uv
+================================================================================
+
+測試 1: cpbl_standings.py --help
+--------------------------------------------------------------------------------
+usage: cpbl_standings.py [-h] [--year YEAR]
+                         [--type {all,versus,pitching,batting,fielding}]
+                         [--output {json,text}] [--dynamic]
+
+CPBL 中華職棒戰績查詢
+
+options:
+  -h, --help            show this help message and exit
+  --year YEAR, -y YEAR  查詢年份（預設為今年）
+  --type {all,versus,pitching,batting,fielding}, -t {all,versus,pitching,batting,fielding}
+                        戰績類型（預設為 all）
+  --output {json,text}, -o {json,text}
+                        輸出格式（預設為 json）
+  --dynamic, -d         使用動態模式（需要瀏覽器）
+
+範例:
+    # 查詢本季所有戰績
+    cpbl_standings.py
+    
+    # 查詢 2025 年戰績
+    cpbl_standings.py --year 2025
+    
+    # 只查詢對戰戰績（JSON 格式）
+    cpbl_standings.py --type versus --output json
+    
+    # 使用動態模式（需要瀏覽器）
+    cpbl_standings.py --dynamic
+        
+
+測試 2: cpbl_standings.py --year 2024
+--------------------------------------------------------------------------------
+正在取得 2024 年戰績...
+{
+  "versus": [],
+  "pitching": [],
+  "batting": [],
+  "fielding": [],
+  "year": 2024,
+  "fetched_at": "2026-03-20T19:37:42.323173"
+}
+
+測試 3: cpbl_schedule.py --help
+--------------------------------------------------------------------------------
+usage: cpbl_schedule.py [-h] [--date DATE] [--week] [--output {json,text}]
+                        [--dynamic]
+
+CPBL 中華職棒賽程查詢
+
+options:
+  -h, --help            show this help message and exit
+  --date DATE, -d DATE  查詢日期 (YYYY-MM-DD)，預設為今天
+  --week, -w            查詢整週賽程
+  --output {json,text}, -o {json,text}
+                        輸出格式（預設為 json）
+  --dynamic             使用動態模式（需要瀏覽器）
+
+範例:
+    # 查詢今天賽程
+    cpbl_schedule.py
+    
+    # 查詢指定日期
+    cpbl_schedule.py --date 2026-03-20
+    
+    # 查詢整週
+    cpbl_schedule.py --week --date 2026-03-20
+    
+    # JSON 格式輸出
+    cpbl_schedule.py --output json
+        
+
+測試 4: cpbl_schedule.py --date 2024-03-20
+--------------------------------------------------------------------------------
+正在取得 2024-03-20 的賽程...
+{
+  "date": "2024-03-20",
+  "games": [],
+  "fetched_at": "2026-03-20T19:37:43.033598"
+}
+
+測試 5: cpbl_games.py --help
+--------------------------------------------------------------------------------
+usage: cpbl_games.py [-h] [--date DATE] [--team TEAM] [--output {json,text}]
+
+CPBL 中華職棒比賽結果查詢
+
+options:
+  -h, --help            show this help message and exit
+  --date DATE, -d DATE  查詢日期 (YYYY-MM-DD)，預設為今天
+  --team TEAM, -t TEAM  球隊名稱過濾
+  --output {json,text}, -o {json,text}
+                        輸出格式（預設為 json）
+
+範例:
+    # 查詢今天比賽結果
+    cpbl_games.py
+    
+    # 查詢指定日期
+    cpbl_games.py --date 2026-03-20
+    
+    # 查詢指定球隊
+    cpbl_games.py --team 中信兄弟
+        
+
+測試 6: cpbl_games.py --date 2024-03-20
+--------------------------------------------------------------------------------
+{
+  "date": "2024-03-20",
+  "team_filter": null,
+  "games": [],
+  "note": "此功能尚未完全實作，請參考 SKILL.md 中的說明",
+  "fetched_at": "2026-03-20T19:37:43.396434"
+}
+
+測試 7: cpbl_stats.py --help
+--------------------------------------------------------------------------------
+usage: cpbl_stats.py [-h] [--type {all,batting,pitching,fielding}]
+                     [--player PLAYER] [--year YEAR] [--output {json,text}]
+
+CPBL 中華職棒球員數據查詢
+
+options:
+  -h, --help            show this help message and exit
+  --type {all,batting,pitching,fielding}, -t {all,batting,pitching,fielding}
+                        數據類型（預設為 all）
+  --player PLAYER, -p PLAYER
+                        球員姓名
+  --year YEAR, -y YEAR  查詢年份（預設為今年）
+  --output {json,text}, -o {json,text}
+                        輸出格式（預設為 json）
+
+範例:
+    # 查詢打擊排行榜
+    cpbl_stats.py --type batting
+    
+    # 查詢投手排行榜
+    cpbl_stats.py --type pitching
+    
+    # 查詢指定球員
+    cpbl_stats.py --player 王柏融
+    
+    # 查詢 2024 年數據
+    cpbl_stats.py --year 2024
+        
+
+測試 8: cpbl_stats.py --type batting
+--------------------------------------------------------------------------------
+{
+  "year": 2026,
+  "type": "batting",
+  "player_filter": null,
+  "stats": [],
+  "note": "此功能尚未完全實作，請參考 SKILL.md 中的說明",
+  "fetched_at": "2026-03-20T19:37:43.744342"
+}
+
+測試 9: cpbl_news.py --help
+--------------------------------------------------------------------------------
+usage: cpbl_news.py [-h] [--limit LIMIT] [--team TEAM] [--output {json,text}]
+
+CPBL 中華職棒新聞查詢
+
+options:
+  -h, --help            show this help message and exit
+  --limit LIMIT, -l LIMIT
+                        新聞數量（預設為 10）
+  --team TEAM, -t TEAM  球隊名稱過濾
+  --output {json,text}, -o {json,text}
+                        輸出格式（預設為 json）
+
+範例:
+    # 查詢最新 10 則新聞
+    cpbl_news.py
+    
+    # 查詢 20 則新聞
+    cpbl_news.py --limit 20
+    
+    # 查詢指定球隊相關新聞
+    cpbl_news.py --team 中信兄弟
+        
+
+測試 10: cpbl_news.py --limit 5
+--------------------------------------------------------------------------------
+{
+  "limit": 5,
+  "team_filter": null,
+  "news": [],
+  "sources": [
+    {
+      "name": "CPBL 官網",
+      "url": "https://www.cpbl.com.tw/news",
+      "enabled": true
+    },
+    {
+      "name": "Yahoo 運動",
+      "url": "https://tw.sports.yahoo.com/cpbl/",
+      "enabled": true
+    },
+    {
+      "name": "ETtoday 運動雲",
+      "url": "https://sports.ettoday.net/news-list.htm",
+      "enabled": false
+    }
+  ],
+  "note": "此功能尚未完全實作，請參考 SKILL.md 中的說明",
+  "fetched_at": "2026-03-20T19:37:44.090344"
+}
+
+================================================================================
+測試完成
+================================================================================

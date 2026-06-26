@@ -1,0 +1,4 @@
+interface:
+  display_name: "Content Alchemy"
+  short_description: "Turn articles, web pages, and PDFs into reusable outcomes"
+  default_prompt: "Transform this article, web page, or PDF into structured notes, key insights, practical actions, and a reusable takeaway instead of a plain summary."

@@ -1,0 +1,16 @@
+{
+  "name": "openclawbridge",
+  "version": "1.0.0",
+  "description": "OpenClawGameBridge 是 OpenClaw 和游戏客户端之间的 WebSocket 桥接服务。",
+  "main": "OpenClawGameBridge.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ws": "^8.20.0"
+  }
+}

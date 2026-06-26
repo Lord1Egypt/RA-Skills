@@ -1,0 +1,17 @@
+{
+  "name": "Context Bridge",
+  "tagline": "Unified continuity system for OpenClaw - registries, discovery, and model handoff",
+  "description": "Context Bridge ensures context persists across sessions, models, and time. It prevents 'starting from zero' on every /new or model switch. Provides four core components: Registries (track skills, crons, agents), Discovery (skill capabilities), Handoff Memory (what previous models did), and SOPs (rules to prevent duplication).",
+  "category": "productivity",
+  "tags": ["continuity", "memory", "registries", "context", "multi-model"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/loudmouthedmedia/context-bridge/issues",
+  "homepage": "https://github.com/loudmouthedmedia/context-bridge",
+  "binaries": {
+    "required": ["jq"],
+    "optional": ["openclaw"],
+    "notes": "setup.sh requires jq for JSON manipulation. openclaw CLI is optional but enables auto-discovery of crons and agents."
+  }
+}

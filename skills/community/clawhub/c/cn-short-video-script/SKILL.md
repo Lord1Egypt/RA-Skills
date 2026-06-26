@@ -1,35 +1,84 @@
 ---
-name: "Cn Short Video Script"
-description: "短视频脚本生成助手。根据主题自动生成抖音/小红书/视频号脚本，包含黄金3秒开场、内容框架、引导互动等爆款元素。支持产品种草、知识分享、情感共鸣等多种类型。"
-category: "creative"
-source: "ClawHub"
-tags: [chinese, content, douyin, script, video, xiaohongshu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-short-video-script"
-sourceUrl: "https://clawhub.ai/skills/cn-short-video-script"
+slug: cn-short-video-script
+name: 短视频脚本生成
+version: "1.0.0"
+author: 千策
 ---
 
-# Cn Short Video Script
+# 短视频脚本生成助手
 
-> 短视频脚本生成助手。根据主题自动生成抖音/小红书/视频号脚本，包含黄金3秒开场、内容框架、引导互动等爆款元素。支持产品种草、知识分享、情感共鸣等多种类型。
+## 功能
+- 根据主题/产品自动生成短视频脚本
+- 支持多平台规范（抖音/小红书/视频号）
+- 爆款元素集成（黄金3秒、互动引导、情绪曲线）
+- 分镜脚本输出（画面+台词+BGM+时长）
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-short-video-script`
-- **Source URL:** [https://clawhub.ai/skills/cn-short-video-script](https://clawhub.ai/skills/cn-short-video-script)
+## 使用方法
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-short-video-script
+### 基础用法
 ```
+生成短视频脚本：产品是"智能水杯"，目标平台是抖音，类型是种草
+```
+
+### 参数说明
+- 主题/产品：视频的核心内容
+- 平台：抖音（快节奏）| 小红书（沉浸式）| 视频号（专业感）
+- 类型：种草 | 知识分享 | 情感故事 | 教程讲解 | 剧情 | 口播
+
+## 输出格式
+
+```
+【短视频脚本】主题：XXX
+【平台】抖音
+【类型】种草
+【时长】30-60秒
+
+=== 分镜脚本 ===
+
+【镜头1】0-3秒（黄金开场）
+画面：XXX
+台词：XXX
+音效：XXX
+
+【镜头2】3-15秒（痛点呈现）
+画面：XXX
+台词：XXX
+音效：XXX
+
+...
+
+【镜头N】结尾（互动引导）
+画面：XXX
+台词：XXX
+音效：XXX
+
+=== 爆款元素检查 ===
+✅ 黄金3秒钩子
+✅ 痛点呈现
+✅ 解决方案
+✅ 互动引导
+✅ 情绪曲线完整
+
+=== 拍摄建议 ===
+- 景别：XXX
+- 灯光：XXX
+- 道具：XXX
+- 配乐风格：XXX
+```
+
+## 示例
+
+输入：产品"筋膜枪"，平台抖音，类型种草
+
+输出脚本将包含：
+1. 痛点开场（脖子酸痛、肩膀僵硬）
+2. 产品亮相（镜头特写）
+3. 功能展示（使用场景）
+4. 效果对比（使用前后）
+5. 互动引导（评论区见）
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

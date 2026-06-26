@@ -1,35 +1,32 @@
 ---
-name: "竞品情报监控系统"
-description: "输入竞品名称/链接，自动生成竞品分析报告（定价策略/营销动作/SWOT/应对策略）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/competitor-intelligence-monitor"
-sourceUrl: "https://clawhub.ai/skills/competitor-intelligence-monitor"
+name: competitor-intelligence-monitor
+description: 输入竞品名称/链接，自动生成竞品分析报告（定价策略/营销动作/SWOT/应对策略）
+metadata: { "version": "1.0.0", "author": "上海冰月网络科技有限公司", "license": "Commercial", "price": { "cny": 79, "usd": 29.99, "type": "monthly" } }
 ---
 
 # 竞品情报监控系统
 
-> 输入竞品名称/链接，自动生成竞品分析报告（定价策略/营销动作/SWOT/应对策略）
+输入竞品链接/品牌，自动生成竞品分析报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/competitor-intelligence-monitor`
-- **Source URL:** [https://clawhub.ai/skills/competitor-intelligence-monitor](https://clawhub.ai/skills/competitor-intelligence-monitor)
+## 触发条件
 
-## Overview
+当用户需要：
+- 分析竞品定价策略
+- 了解竞品营销动作
+- 生成 SWOT 分析报告
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/competitor-intelligence-monitor
-```
+1. 接收竞品信息（名称/链接/品牌）
+2. 采集公开数据（定价、评价、营销内容）
+3. 分析定价策略（6 种策略模型）
+4. 用户评价情感分析
+5. 生成 SWOT 矩阵
+6. 输出应对策略建议
+7. 生成完整竞品分析报告
+
+## 注意事项
+
+- 仅使用公开合法渠道获取数据
+- 报告仅供内部参考
+- 建议结合实地调研交叉验证

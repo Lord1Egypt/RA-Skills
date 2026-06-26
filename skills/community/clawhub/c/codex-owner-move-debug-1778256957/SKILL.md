@@ -1,35 +1,16 @@
 ---
-name: "Codex Owner Move Debug"
-description: "Validates and documents the owner migration process by publishing, moving, inspecting, and deleting a skill during PR review."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/codex-owner-move-debug-1778256957"
-sourceUrl: "https://clawhub.ai/skills/codex-owner-move-debug-1778256957"
+name: Codex Owner Move Debug
+summary: Temporary skill that documents a realistic owner migration validation workflow.
 ---
 
 # Codex Owner Move Debug
 
-> Validates and documents the owner migration process by publishing, moving, inspecting, and deleting a skill during PR review.
+This temporary skill validates the owner migration flow during PR review. It is a realistic documentation body so the normal quality gate can run. The skill is created, moved between publishers, inspected, and deleted.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/codex-owner-move-debug-1778256957`
-- **Source URL:** [https://clawhub.ai/skills/codex-owner-move-debug-1778256957](https://clawhub.ai/skills/codex-owner-move-debug-1778256957)
+## Procedure
 
-## Overview
+Publish under the personal owner, then publish a second version under the OpenClaw owner with the migration flag. The expected result is a preserved skill record with updated owner metadata and version history.
 
+## Cleanup
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/codex-owner-move-debug-1778256957
-```
+The skill is deleted after validation. It should not be installed or referenced by users.

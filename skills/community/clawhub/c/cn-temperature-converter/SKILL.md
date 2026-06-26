@@ -1,35 +1,32 @@
 ---
-name: "Cn Temperature Converter"
+slug: cn-temperature-converter
+name: Temperature Converter
+version: "1.0.0"
 description: "Convert between Celsius, Fahrenheit, Kelvin. Pure Python standard library, no API key required."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-temperature-converter"
-sourceUrl: "https://clawhub.ai/skills/cn-temperature-converter"
+keywords: temperature, converter, celsius, fahrenheit, kelvin
+license: MIT-0
+tags:
+  - tools
 ---
 
-# Cn Temperature Converter
+# Temperature Converter
 
-> Convert between Celsius, Fahrenheit, Kelvin. Pure Python standard library, no API key required.
+Convert temperatures between Celsius, Fahrenheit, and Kelvin.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-temperature-converter`
-- **Source URL:** [https://clawhub.ai/skills/cn-temperature-converter](https://clawhub.ai/skills/cn-temperature-converter)
+## Features
 
-## Overview
+- C → F, F → C, C → K, K → C, F → K, K → F
+- Pure Python, no external dependencies
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-temperature-converter
 ```
+python3 scripts/temp_converter.py --value 100 --from C --to F
+python3 scripts/temp_converter.py --value 212 --from F --to C
+```
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

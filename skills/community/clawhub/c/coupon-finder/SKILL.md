@@ -1,35 +1,134 @@
 ---
-name: "优惠券查询·场景快取"
-description: "优惠券查询与领取技能。覆盖外卖券、酒店券、打车券、咖啡券、电影票、超市券等多场景，输入需求自动匹配最优活动链接。触发词: 优惠券查询, 领取优惠券, 有什么优惠, 外卖券, 外卖红包, 酒店券, 打车券, 咖啡优惠, 电影优惠, 帮我找优惠, 哪里有折扣, 推荐优惠活动, 今天有什么券, 点外卖优惠, 订酒店便宜..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/coupon-finder"
-sourceUrl: "https://clawhub.ai/skills/coupon-finder"
+name: coupon-finder
+description: "优惠券查询与领取技能。覆盖外卖券、酒店券、打车券、咖啡券、电影票、超市券等多场景，输入需求自动匹配最优活动链接。触发词: 优惠券查询, 领取优惠券, 有什么优惠, 外卖券, 外卖红包, 酒店券, 打车券, 咖啡优惠, 电影优惠, 帮我找优惠, 哪里有折扣, 推荐优惠活动, 今天有什么券, 点外卖优惠, 订酒店便宜, [品牌名]有优惠吗"
+metadata:
+  {
+    "openclaw": {
+      "emoji": "🎫",
+      "requires": {}
+    }
+  }
 ---
 
-# 优惠券查询·场景快取
+# 优惠券查询 · 场景快取 (Coupon Finder)
 
-> 优惠券查询与领取技能。覆盖外卖券、酒店券、打车券、咖啡券、电影票、超市券等多场景，输入需求自动匹配最优活动链接。触发词: 优惠券查询, 领取优惠券, 有什么优惠, 外卖券, 外卖红包, 酒店券, 打车券, 咖啡优惠, 电影优惠, 帮我找优惠, 哪里有折扣, 推荐优惠活动, 今天有什么券, 点外卖优惠, 订酒店便宜...
+根据用户描述的**场景、品牌或需求**，智能匹配优惠活动，返回可直接使用的推广链接。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/coupon-finder`
-- **Source URL:** [https://clawhub.ai/skills/coupon-finder](https://clawhub.ai/skills/coupon-finder)
+覆盖美团、饿了么、滴滴、淘宝闪购、飞猪、同程、携程、京东外卖等 88 个活动。
 
-## Overview
+---
 
+## 触发词
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/coupon-finder
+**查询优惠：**
+- "有什么优惠" / "帮我找优惠"
+- "点外卖有什么活动" / "外卖红包"
+- "打车有优惠吗" / "滴滴券"
+- "订酒店便宜点" / "酒店优惠"
+- "咖啡打折" / "星巴克有折扣吗"
+- "电影票便宜" / "看电影优惠"
+- "今天有什么可以领" / "推荐优惠活动"
+- "[品牌名]有优惠吗"
+
+**分享活动（直接回复链接，无需查询数据库）：**
+- "我要分享活动" / "我想提交优惠"
+- "怎么分享优惠券" / "如何添加活动"
+- "提交活动链接" / "分享链接"
+
+---
+
+## 支持的场景关键词
+
+| 场景 | 关键词示例 |
+|------|-----------|
+| 外卖 | 外卖、点餐、吃饭、美团外卖、饿了么、京东外卖 |
+| 打车 | 打车、出行、滴滴、花小猪、T3、代驾、顺风车 |
+| 酒店 | 酒店、住宿、订房、民宿 |
+| 机票 | 机票、飞机、航班 |
+| 电影 | 电影、影票、淘票票、观影 |
+| 咖啡饮品 | 咖啡、奶茶、星巴克、瑞幸、喜茶、奈雪 |
+| 快餐 | 肯德基、麦当劳、汉堡王、必胜客 |
+| 超市零售 | 超市、零售、生鲜、便利 |
+| 旅游 | 旅游、度假、景点、门票 |
+| 医药 | 买药、医药、健康 |
+
+---
+
+## 执行流程
+
+### 步骤 0：判断是查询还是分享
+
+如果用户意图是**分享/提交活动**，直接回复：
+
 ```
+感谢你愿意分享优惠！🎉
+请填写这个表单，提交后会有人工审核，通过后就会加入共享活动库，让更多人受益。
+
+📮 提交地址: https://my.feishu.cn/share/base/form/shrcn4ERBYeALeE2cF8SMPIqHUE
+
+填写内容包括：活动名称、活动描述、链接（H5/小程序/口令等）、所属平台。
+```
+
+### 步骤 1：理解用户意图
+
+提取用户消息中的场景/品牌/需求关键词，例如：
+- "我想点个外卖" → 关键词: 外卖
+- "星巴克怎么便宜买" → 关键词: 星巴克
+- "帮我找打车优惠" → 关键词: 打车
+
+### 步骤 2：调用查询脚本
+
+```bash
+node skills/coupon-finder/scripts/find.mjs "<用户查询>" --limit=5
+```
+
+或者直接使用 JavaScript 导入：
+
+```javascript
+import { queryActivities, formatResults } from './scripts/find.mjs';
+
+const results = queryActivities(userQuery, { limit: 5 });
+const text = formatResults(results, userQuery);
+```
+
+### 步骤 3：返回结果
+
+直接将脚本输出的格式化文本回复给用户，包含：
+- 活动名称 + 描述
+- 标签（场景/平台分类）
+- 最优链接（优先官方短链接 > H5 > 口令 > 小程序路径）
+- 可选：其他链接格式说明
+
+---
+
+## 数据来源
+
+- 数据文件：`skills/coupon-finder/data/activities.json`
+- 共 88 个活动，覆盖 7 大平台、15+ 场景
+- 链接类型：官方短链接 / H5 / 小程序路径 / DeepLink / 口令
+
+---
+
+## 查询示例
+
+```bash
+# 外卖优惠
+node find.mjs "点外卖"
+
+# 品牌直查
+node find.mjs "星巴克"
+node find.mjs "肯德基优惠"
+
+# 出行
+node find.mjs "打车有优惠吗"
+
+# 酒店
+node find.mjs "订酒店"
+
+# 返回 JSON 格式（供程序调用）
+node find.mjs "外卖红包" --format=json --limit=3
+```
+
+
+
+

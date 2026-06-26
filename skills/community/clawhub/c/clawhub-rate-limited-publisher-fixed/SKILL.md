@@ -1,35 +1,64 @@
 ---
-name: "Clawhub Rate Limited Publisher Fixed"
-description: "Queue and publish local skills to ClawHub with a strict 5-per-hour cap using the local clawhub CLI and host scheduler."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawhub-rate-limited-publisher-fixed"
-sourceUrl: "https://clawhub.ai/skills/clawhub-rate-limited-publisher-fixed"
+name: clawhub-rate-limited-publisher
+description: Queue and publish local skills to ClawHub with a strict 5-per-hour cap using the local clawhub CLI and host scheduler.
+user-invocable: true
+disable-model-invocation: false
+metadata: {"openclaw":{"emoji":"🦀","os":["darwin","linux"],"requires":{"bins":["python3","clawhub"]},"homepage":"https://github.com/openclaw/clawhub"}}
 ---
 
-# Clawhub Rate Limited Publisher Fixed
+# ClawHub Rate Limited Publisher
 
-> Queue and publish local skills to ClawHub with a strict 5-per-hour cap using the local clawhub CLI and host scheduler.
+Use this skill when the user wants to publish one or more local skills to ClawHub without exceeding the platform's publish cap.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawhub-rate-limited-publisher-fixed`
-- **Source URL:** [https://clawhub.ai/skills/clawhub-rate-limited-publisher-fixed](https://clawhub.ai/skills/clawhub-rate-limited-publisher-fixed)
+## What this skill does
 
-## Overview
+This skill does **not** magically grant shell permissions. It provides a safe local queue + scheduler workflow around the user's own `clawhub` CLI.
 
+Follow this procedure:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawhub-rate-limited-publisher-fixed
-```
+1. Verify the skill folder exists and contains `SKILL.md`.
+2. Build or update a queue JSON file.
+3. Ask the host to run the helper script from `{baseDir}/scripts/clawhub_rate_limited_uploader.py`.
+4. Prefer a host scheduler such as cron or systemd timer so uploads happen automatically every 12 minutes.
+5. Never exceed **5 publish attempts in any rolling 3600-second window**.
+6. Log stdout/stderr for each attempt and mark queue items as `published` or `failed`.
+
+## Required runtime conditions
+
+- `clawhub` must already be installed and authenticated on the host.
+- The host must allow command execution. In OpenClaw this usually means enabling runtime tools such as `bash`/`exec`, or running the Python script directly outside chat.
+- New sessions may be required after changing skill/config state because eligible skills are snapshotted per session.
+
+## Recommended invocation patterns
+
+### One-off manual run
+
+Run:
+
+`python3 "{baseDir}/scripts/clawhub_rate_limited_uploader.py" --queue "/absolute/path/to/queue.json" --execute`
+
+### Dry run
+
+Run:
+
+`python3 "{baseDir}/scripts/clawhub_rate_limited_uploader.py" --queue "/absolute/path/to/queue.json" --dry-run`
+
+### Cron schedule
+
+Run every 12 minutes using the example in `{baseDir}/resources/cron.example`.
+
+## Queue file shape
+
+See `{baseDir}/examples/queue.sample.json`.
+
+Each item may contain:
+
+- `path`: absolute path to one skill directory
+- `command`: optional command template, default `clawhub publish "{path}"`
+
+## Safety rules
+
+- Use absolute paths.
+- Do not use `curl|bash`, base64 piping, or hidden remote installers.
+- Keep `command` limited to the local `clawhub publish "{path}"` pattern unless the user explicitly audits and accepts a custom command.
+- Count failures toward the hourly cap to avoid hammering ClawHub when auth or validation is broken.

@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% set active = "compare" %}
+{% block title %}Compare — Communication DNA{% endblock %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-6">Compare Speakers</h2>
+
+<form method="get" class="flex gap-4 mb-8 items-end">
+    <div class="flex-1">
+        <label class="text-sm text-gray-400 block mb-1">Speaker 1</label>
+        <select name="s1" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white">
+            <option value="">Select...</option>
+            {% for sp in speakers %}
+            <option value="{{ sp.id }}" {% if s1 == sp.id %}selected{% endif %}>{{ sp.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="flex-1">
+        <label class="text-sm text-gray-400 block mb-1">Speaker 2</label>
+        <select name="s2" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 text-white">
+            <option value="">Select...</option>
+            {% for sp in speakers %}
+            <option value="{{ sp.id }}" {% if s2 == sp.id %}selected{% endif %}>{{ sp.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium">Compare</button>
+</form>
+
+{% if comparison %}
+{% if 'error' in comparison %}
+<p class="text-red-400">{{ comparison.error }}</p>
+{% else %}
+<!-- Similarity -->
+<div class="text-center mb-8">
+    <div class="text-5xl font-bold text-blue-400">{{ comparison.similarity }}%</div>
+    <div class="text-gray-400">Similarity Score</div>
+</div>
+
+<!-- Side by side -->
+<div class="card mb-6">
+    <table class="w-full text-sm">
+        <thead class="border-b border-gray-700">
+            <tr>
+                <th class="text-left py-3 px-2 text-gray-400">Metric</th>
+                <th class="text-right py-3 px-2">{{ comparison.speaker1.name }}</th>
+                <th class="text-right py-3 px-2">{{ comparison.speaker2.name }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in comparison.metrics %}
+            <tr class="border-b border-gray-800">
+                <td class="py-2 px-2 text-gray-400">{{ m.name }}</td>
+                <td class="py-2 px-2 text-right {% if m.winner == 1 %}text-green-400 font-bold{% endif %}">
+                    {% if m.fmt == ',d' %}{{ "{:,}".format(m.v1|int) }}{% else %}{{ "%.2f"|format(m.v1) }}{% endif %}
+                </td>
+                <td class="py-2 px-2 text-right {% if m.winner == 2 %}text-green-400 font-bold{% endif %}">
+                    {% if m.fmt == ',d' %}{{ "{:,}".format(m.v2|int) }}{% else %}{{ "%.2f"|format(m.v2) }}{% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Visual bars -->
+<div class="grid md:grid-cols-2 gap-4 mb-6">
+    {% for m in comparison.metrics %}
+    <div class="card">
+        <div class="text-sm text-gray-400 mb-2">{{ m.name }}</div>
+        {% set max_val = [m.v1, m.v2, 0.001]|max %}
+        <div class="space-y-1">
+            <div class="flex items-center gap-2">
+                <span class="text-xs w-16 text-right text-gray-500">{{ comparison.speaker1.name[:8] }}</span>
+                <div class="flex-1 bg-gray-700 rounded-full h-3">
+                    <div class="metric-bar bg-blue-500 {% if m.winner == 1 %}bg-green-500{% endif %}" style="width:{{ (m.v1 / max_val * 100)|int }}%"></div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-xs w-16 text-right text-gray-500">{{ comparison.speaker2.name[:8] }}</span>
+                <div class="flex-1 bg-gray-700 rounded-full h-3">
+                    <div class="metric-bar bg-purple-500 {% if m.winner == 2 %}bg-green-500{% endif %}" style="width:{{ (m.v2 / max_val * 100)|int }}%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Key Differences -->
+{% if comparison.key_differences %}
+<div class="card">
+    <h3 class="font-semibold mb-2">Key Differences</h3>
+    <ul class="space-y-1 text-sm text-gray-300">
+        {% for d in comparison.key_differences %}
+        <li>• {{ d }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% endif %}
+{% endif %}
+{% endblock %}

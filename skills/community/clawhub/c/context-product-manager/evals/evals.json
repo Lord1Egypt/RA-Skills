@@ -1,0 +1,33 @@
+{
+  "skill_name": "context-product-manager",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想做一个给加拿大家庭用的 household finance app，先不要做全平台，帮我先切一个 MVP，然后分别给我中文设计概要和给 Codex 的英文 handoff。Repo 在 software-dev-squad/household-finance-app。",
+      "expected_output": "Should inspect the repo, cut scope to a smallest valuable finance loop, produce Chinese plan sections plus English canonical/Codex handoff, and explicitly separate scope from non-goals.",
+      "files": [
+        "software-dev-squad/household-finance-app"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Read my existing repo first and help me add a lightweight analyst board to the investment stack. I need a PM-style plan I can review in Chinese, then separate Codex and Antigravity handoffs in English. If the scope is too big, cut phase 1 aggressively.",
+      "expected_output": "Should read repo materials, identify current system shape, propose a phased analyst board MVP, and render both agent handoffs from one canonical context.",
+      "files": [
+        "investment-stack"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want a platform with chat, billing, analytics, AI copilots, and a mobile app. Turn this into something buildable, and give me OpenClaw work packets too.",
+      "expected_output": "Should challenge the oversized request, ask a highest-leverage clarifying question before pretending certainty if the ICP/core value is still missing, define a smallest valuable closed loop, preserve a clear non-goal list, and only create work packets if decomposition is actually justified.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Please fix the login redirect bug in my repo and just patch the code. Don't give me a PM doc unless you really need one.",
+      "expected_output": "Should avoid over-activating full PM packaging; either decline to use the full skill or produce a minimal framing layer only if product/context ambiguity truly blocks implementation.",
+      "files": []
+    }
+  ]
+}

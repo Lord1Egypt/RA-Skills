@@ -1,0 +1,76 @@
+# ClawHub 发布配置
+
+slug: cognitive-flexibility
+name: Cognitive Flexibility Skill
+description: |
+  让 AI 像人类一样灵活运用知识的 Skill。
+  封装人类四种认知模式（OOA/OODA/OOCA/OOHA），支持自动模式切换和元认知监控。
+
+version: 2.1.0
+author: 道师 (optimizer)
+license: MIT
+
+tags:
+  - cognition
+  - reasoning
+  - flexibility
+  - ooda
+  - metacognition
+  - ai-agent
+
+category: agent-skills
+
+requirements:
+  python: ">=3.8"
+  openclaw: ">=2026.3.28"
+
+entry-point: scripts/__init__.py
+
+files:
+  - scripts/
+  - references/
+  - tests/
+  - SKILL.md
+  - README.md
+  - MONITORING-GUIDE.md
+  - RELEASE-NOTES.md
+
+exclude:
+  - logs/
+  - "*.pyc"
+  - __pycache__/
+  - .git/
+  - .env*
+
+scripts:
+  test: python tests/test_cognitive_skills.py
+  monitor: python monitor-usage.py
+
+homepage: https://github.com/openclaw/skills/cognitive-flexibility
+repository: https://github.com/openclaw/skills/cognitive-flexibility
+documentation: https://github.com/openclaw/skills/cognitive-flexibility/blob/main/README.md
+
+changelog: |
+  ## v2.1.0 (2026-04-05)
+  - 新增使用监控功能
+  - 集成到 Cognitive Controller
+  - 新增监控指南文档
+
+  ## v2.0.0 (2026-04-05)
+  - 实现 OOCA 创造模式
+  - 实现 OOHA 发现模式
+  - 4 种认知模式全部完成
+
+  ## v1.0.0 (2026-04-05)
+  - 初始版本
+  - 实现 OODA/OOA 模式
+  - 实现元认知监控
+
+keywords:
+  - cognitive flexibility
+  - OODA loop
+  - pattern matching
+  - self assessment
+  - mode switching
+  - metacognition
+  - AI reasoning

@@ -1,0 +1,16 @@
+{
+  "name": "clawguard-guardian",
+  "version": "3.0.0",
+  "description": "ClawGuard v3 - Runtime Guardian with Behavior Monitoring and Interception",
+  "main": "src/guardian.js",
+  "scripts": {
+    "start": "node cli.js",
+    "monitor": "node cli.js --monitor",
+    "replay": "node cli.js --replay",
+    "freeze": "node cli.js --freeze"
+  },
+  "keywords": ["clawguard", "guardian", "monitoring", "runtime", "openclaw"],
+  "author": "ClawGuard Team",
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -1,0 +1,40 @@
+{
+  "name": "confluence-publish",
+  "version": "1.0.2",
+  "description": "Publish, create, and update Confluence wiki pages from Claude using HTML content and Confluence REST API",
+  "author": "",
+  "license": "MIT",
+  "keywords": [
+    "confluence",
+    "atlassian",
+    "wiki",
+    "page",
+    "publish",
+    "update",
+    "create",
+    "upsert",
+    "documentation",
+    "knowledge-base"
+  ],
+  "entrypoint": "src/main.py",
+  "runtime": "python3.9",
+  "capabilities": {
+    "input": ["text", "html"],
+    "output": ["json", "text"]
+  },
+  "required_env_vars": ["EMAIL", "DOMAIN", "API_TOKEN"],
+  "primary_credential": "API_TOKEN",
+  "required_credentials": ["EMAIL", "DOMAIN", "API_TOKEN"],
+  "permissions": {
+    "filesystem": {
+      "read": ["workspace"]
+    },
+    "network": {
+      "allow": ["https://*.atlassian.net"]
+    }
+  },
+  "actions": [
+    "publish_page",
+    "test_connection"
+  ]
+}

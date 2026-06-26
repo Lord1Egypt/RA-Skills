@@ -1,0 +1,7 @@
+interface:
+  display_name: "Cross Listing AI"
+  short_description: "Turn item photos into priced, marketplace-ready listings"
+  default_prompt: "Use $cross-listing-ai to turn my item photos into a price suggestion and marketplace-ready listings."
+
+policy:
+  allow_implicit_invocation: true

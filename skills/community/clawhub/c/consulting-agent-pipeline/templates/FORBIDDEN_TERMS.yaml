@@ -1,0 +1,52 @@
+# FORBIDDEN_TERMS.yaml — 项目禁用词清单
+# enforcement: all-rounds = 每轮审核交接都必须扫描
+# 首钢吉泰安教训：内部代号泄漏到v4才发现，final-only 模式不可接受
+
+schema_version: "1.0"
+enforcement: all-rounds  # all-rounds | final-only
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+
+terms:
+  # 内部代号（绝对禁止出现在任何交付物中）
+  internal_codes:
+    - G1
+    - G2
+    - G3
+    - G4
+    - T2
+    - T3
+    - T4
+    - E-6
+    - E-4
+    - FMP
+    - v4     # 版本代号不应出现在交付物正文
+    - v5
+    - v2
+
+  # 内部参考来源名称（仅允许出现在交接文档，不允许出现在交付物正文）
+  reference_names:
+    - 联合利华
+    - 原始听记
+    - 任务书
+    - 主线稿
+    - 精简稿
+    - 协作包
+    - 导航与协作
+
+  # 高风险表达（需人工确认或满足特定条件才能使用）
+  risk_expressions:
+    - pattern: "\\d+万元.*奖励"
+      note: "政策金额须标注'正式申报前待核'，且不得作为已适用收益写进主叙事"
+    - pattern: "深交所|上交所|北交所"
+      note: "不预设企业上市路径，交易所内容仅作公开披露规则参考"
+    - pattern: "IPO"
+      note: "不在概念规划阶段使用"
+    - pattern: "Wind"
+      note: "非公开数据源，不得作为交付物引用"
+    - pattern: "立即可行|马上|立刻"
+      note: "不得作为确定性结论，应改为'技术路径清晰，待XX确认'"
+    - pattern: "唯一|绝对|必然"
+      note: "高风险绝对化表述，降为条件性表述"
+    - pattern: "通常可低于\\d+年"
+      note: "ROI表述降为'较短周期内'，避免具体年数承诺"

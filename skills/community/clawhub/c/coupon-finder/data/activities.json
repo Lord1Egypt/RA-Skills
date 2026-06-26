@@ -1,0 +1,1487 @@
+{
+  "meta": {
+    "source": "tuikemima.com",
+    "collectedAt": "2026-03-13T10:36:22.241Z",
+    "totalCount": 88,
+    "linkTypes": [
+      "官方短链接",
+      "H5",
+      "小程序路径",
+      "DeepLink",
+      "口令"
+    ],
+    "usage": "Query by tags array for filtering. Each activity has links{} object with available link types."
+  },
+  "activities": [
+    {
+      "id": 1,
+      "page": 1,
+      "name": "美团外卖4",
+      "description": "美团外卖外卖节 帮你吃更好",
+      "tags": [
+        "美团",
+        "外卖"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/HoYhjolz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=mcB9ObxznZMn",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DiHllObxz8Rxl&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dnel5ObxzKuT6&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:7:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥4jODkzMTBmNzA¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:26:12.102Z"
+    },
+    {
+      "id": 2,
+      "page": 1,
+      "name": "美团外卖1",
+      "description": "外卖通用优惠券",
+      "tags": [
+        "美团",
+        "外卖",
+        "优惠券"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/mmGzPGfz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=O2ljObxzLFmR",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DETxuObxzWIS4&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dvj15ObxzdnwU&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:wm1tkmm88446tkmm88446tkmm1001:7:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥4qOWYwMTI5MTA¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:26:21.198Z"
+    },
+    {
+      "id": 3,
+      "page": 1,
+      "name": "美团外卖3",
+      "description": "限时抢商家优惠券，可与商家满减、折扣同时使用",
+      "tags": [
+        "美团",
+        "外卖",
+        "优惠券",
+        "折扣优惠",
+        "满减"
+      ],
+      "links": {
+        "H5": "https://offsiteact.meituan.com/act/cps/promotion?p=bcbbb3bf73584d31a709338f189d88c2",
+        "小程序路径": "/waimai/pages/web-view/web-view?type=REDIRECT&webviewUrl=https%3A%2F%2Foffsiteact.meituan.com%2Fact%2Fcps%2Fpromotion%3Fp%3Dbcbbb3bf73584d31a709338f189d88c2&utm_content=224ac1afd8674632ae7b85226f192d82__56fa34c7c97c46c8acc60c2b8d7ff7bb",
+        "DeepLink": "imeituan://www.meituan.com/web?url=https%3A%2F%2Foffsiteact.meituan.com%2Fact%2Fcps%2Fpromotion%3Fp%3Dbcbbb3bf73584d31a709338f189d88c2&utm_content=224ac1afd8674632ae7b85226f192d82__56fa34c7c97c46c8acc60c2b8d7ff7bb"
+      },
+      "collectedAt": "2026-03-13T10:26:28.745Z"
+    },
+    {
+      "id": 4,
+      "page": 1,
+      "name": "美团试吃官",
+      "description": "下单试吃得返现，最低1元吃外卖",
+      "tags": [
+        "美团",
+        "外卖",
+        "试吃",
+        "赏金返现"
+      ],
+      "links": {
+        "小程序路径": "pages/index/index?wxp=1084905346068963328&utm_content=224ac1afd8674632ae7b85226f192d82__56fa34c7c97c46c8acc60c2b8d7ff7bb"
+      },
+      "collectedAt": "2026-03-13T10:26:34.835Z"
+    },
+    {
+      "id": 5,
+      "page": 1,
+      "name": "【冬季特惠】19.9元购1200元神券包",
+      "description": "19.9购年卡每月20张5元券",
+      "tags": [
+        "优惠券",
+        "神券包",
+        "年卡/月卡",
+        "免费领取",
+        "节日/大促",
+        "特价/预售"
+      ],
+      "links": {
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3D3QthObxzfdOW&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3D451iObxz9vcZ&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:529:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥56Y2FlNjMwY2M¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:26:42.432Z"
+    },
+    {
+      "id": 6,
+      "page": 1,
+      "name": "【美团买药】买药享好价",
+      "description": "秋冬换季用药 守护全家健康 领50元专属券包",
+      "tags": [
+        "美团",
+        "医药",
+        "优惠券",
+        "神券包",
+        "免费领取"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/JUqYnsHz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=xz5gObxzmA0V",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3D76R6ObxzXCs3&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DrpRvObxzlQCk&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:681:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥5dZTdlZWE3MTQ¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:26:51.433Z"
+    },
+    {
+      "id": 7,
+      "page": 1,
+      "name": "淘宝闪购新客专享",
+      "description": "淘宝闪购新客可抢18元大红包！",
+      "tags": [
+        "淘宝闪购",
+        "红包",
+        "新客专享",
+        "外卖"
+      ],
+      "links": {
+        "DeepLink": "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Ftb.ele.me%2Fapp%2Falsc-user-growth%2Fsgyx%2Fhome%3Ftms_force%3Dtrue%26forceThemis%3Dtrue%26_wx_statusbar_hidden%3Dtrue%26wx_navbar_hidden%3Dtrue%26disableNav%3DYES%26status_bar_transparent%3Dtrue%26isTab%3Dfalse%26from%3Dminiapp.taobao%26channelInfo%3D%257B%2522channel%2522%253A%2522miniapp%2522%252C%2522subChannel%2522%253A%2522miniapp.taobao%2522%252C%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26page_name%3Dsgyx%26tfPos%3Dh5%26afc_tms_weex%3Dtrue%26afc_weex_min_appver%3D10.49.5%26bc_fl_src%3Dele_sgyx%26forbidRefineType%3DgoOut%26alsc_exsrc%3DES0007076172%26scene%3Da8bd633db5f94e77b99f6f1c6b4f5de4%26o2i_1st_clk%3D__CLICK_ID__",
+        "口令": "09 HU7405  1:/₤ZiuNUD3TMAo欢闪购大额满减红包"
+      },
+      "collectedAt": "2026-03-13T10:26:58.277Z"
+    },
+    {
+      "id": 8,
+      "page": 1,
+      "name": "滴滴出行",
+      "description": "滴滴出行最高100元券包",
+      "tags": [
+        "出行",
+        "优惠券",
+        "打车",
+        "神券包",
+        "免费领取"
+      ],
+      "links": {
+        "H5": "https://vv.didi.cn/a8ZdG0j?source_id=88446DIDI88446tkmmchild1001&ref_from=dunion",
+        "小程序路径": "/webx/entry/block-prevention?scene=Q0YEAYE&source_id=88446DIDI88446tkmmchild1001&ref_from=dunion"
+      },
+      "collectedAt": "2026-03-13T10:27:05.115Z"
+    },
+    {
+      "id": 9,
+      "page": 1,
+      "name": "淘宝闪购叠加红包",
+      "description": "商家叠加红包淘宝闪购版",
+      "tags": [
+        "淘宝闪购",
+        "红包",
+        "叠加红包",
+        "外卖"
+      ],
+      "links": {
+        "DeepLink": "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Ftb.ele.me%2Fwow%2Fz%2Funiapp%2F1100497%2Fad-miniapp%2Fet-union%2Fhome%3Fwh_weex%3Dtrue%26weex_mode%3Ddom%26channelInfo%3D%257B%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26alsc_exsrc%3DES0007485972%26o2i_1st_clk%3D__CLICK_ID__%26tfPos%3Dh5%26scene%3D5b6e501c38a448aead215b5072534324",
+        "口令": "47 HU7405  1:/₤h8CYUD3uzmE三最高22元，可叠加"
+      },
+      "collectedAt": "2026-03-13T10:27:11.988Z"
+    },
+    {
+      "id": 10,
+      "page": 1,
+      "name": "淘宝闪购学生专属福利",
+      "description": "学生免费领超级吃货卡，抽无门槛支付红包",
+      "tags": [
+        "淘宝闪购",
+        "红包",
+        "学生",
+        "免费领取",
+        "外卖"
+      ],
+      "links": {
+        "DeepLink": "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Ftb.ele.me%2Fwow%2Fz%2Funiapp%2F1100497%2Fad-miniapp%2Fet-union%2Fhome%3Fwh_weex%3Dtrue%26weex_mode%3Ddom%26channelInfo%3D%257B%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26alsc_exsrc%3DES0008401044%26tfPos%3Dh5%26o2i_1st_clk%3D__CLICK_ID__%26page_name%3Dunion-brand%26scene%3D6a2539c3eb3e474a8b2258bf9c923aa5",
+        "口令": "77 HU7405  1:/《OqMcUDe7NLP✔四学生抽无门槛支付红包"
+      },
+      "collectedAt": "2026-03-13T10:27:18.797Z"
+    },
+    {
+      "id": 11,
+      "page": 2,
+      "name": "淘宝闪购学生专场",
+      "description": "学生专享天天好价",
+      "tags": [
+        "淘宝闪购",
+        "学生",
+        "外卖"
+      ],
+      "links": {
+        "DeepLink": "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Ftb.ele.me%2Fapp%2Falsc-user-growth%2Fsgyx%2Fhome%3Ftms_force%3Dtrue%26forceThemis%3Dtrue%26_wx_statusbar_hidden%3Dtrue%26wx_navbar_hidden%3Dtrue%26disableNav%3DYES%26status_bar_transparent%3Dtrue%26isTab%3Dfalse%26from%3Dminiapp.taobao%26channelInfo%3D%257B%2522channel%2522%253A%2522miniapp%2522%252C%2522subChannel%2522%253A%2522miniapp.taobao%2522%252C%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26page_name%3Dsgyx%26tfPos%3Dh5%26afc_tms_weex%3Dtrue%26afc_weex_min_appver%3D10.49.5%26bc_fl_src%3Dele_sgyx%26forbidRefineType%3DgoOut%26alsc_exsrc%3DES0008071916%26scene%3D63740e75d31547a0ac708f04784050ba%26o2i_1st_clk%3D__CLICK_ID__",
+        "口令": "37 HU7405  666:/lo5fUDei11n《四学生专享天天好价"
+      },
+      "collectedAt": "2026-03-13T10:27:27.178Z"
+    },
+    {
+      "id": 12,
+      "page": 2,
+      "name": "【美团机票】春运专场",
+      "description": "春节返乡最高可领100元福利",
+      "tags": [
+        "美团",
+        "机票",
+        "免费领取",
+        "节日/大促"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/sQkkN78z",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=wmhjObxz_6wq",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3D0T9hObxz8vye&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:769:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥6bYmIzZDlhZWM¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:27:35.462Z"
+    },
+    {
+      "id": 13,
+      "page": 2,
+      "name": "肯德基",
+      "description": "全场6折起",
+      "tags": [
+        "肯德基",
+        "快餐",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://m.qianzhu8.com/kfc/?platformId=10320&subPlatformId=88446KFC88446tkmmchild1001&backIndex=true&backIndexType=0"
+      },
+      "collectedAt": "2026-03-13T10:27:41.550Z"
+    },
+    {
+      "id": 14,
+      "page": 2,
+      "name": "【美食团购】通用红包天天领",
+      "description": "【美食团购】通用红包天天领",
+      "tags": [
+        "红包"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/8yi8ckPz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=bJRvObxz8zIO",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DvxJsObxzMRJS&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DZdltObxzqkb6&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:309:1703670172285820963"
+      },
+      "collectedAt": "2026-03-13T10:27:49.831Z"
+    },
+    {
+      "id": 15,
+      "page": 2,
+      "name": "淘宝闪购",
+      "description": "领最高15元大额红包",
+      "tags": [
+        "淘宝闪购",
+        "红包",
+        "外卖"
+      ],
+      "links": {
+        "DeepLink": "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Fh5.ele.me%2Fminisite%2Fpages%2Findex-xsd%2Findex%3FisTab%3Dfalse%26disableNav%3DYES%26forceThemis%3Dtrue%26tfPos%3Dh5%26forbidRefineType%3DgoOut%26from%3Dminiapp.taobao%26channelInfo%3D%257B%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26alsc_exsrc%3DES0006299852%26mdFrom%3D%26scene%3Df7a5ea265adb48858360c999b1d69732%26o2i_1st_clk%3D__CLICK_ID__",
+        "口令": "79 HU7405  2:/₤njiTUD35JSQ₴四领最高15元红包"
+      },
+      "collectedAt": "2026-03-13T10:27:56.680Z"
+    },
+    {
+      "id": 16,
+      "page": 2,
+      "name": "【美团机票】百元特价票",
+      "description": "抢88元无门槛机票券",
+      "tags": [
+        "美团",
+        "机票",
+        "特价/预售"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/HuWymSnz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=_xluObxzhbvv",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3D-xluObxz-NF1&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:703:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥6yNzU0YjZlZmI¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:28:04.944Z"
+    },
+    {
+      "id": 17,
+      "page": 2,
+      "name": "淘宝闪购夜宵专场",
+      "description": "必得淘宝闪购夜宵大红包，每晚8点抢免单红包",
+      "tags": [
+        "淘宝闪购",
+        "红包",
+        "霸王餐",
+        "外卖"
+      ],
+      "links": {
+        "DeepLink": "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Ftb.ele.me%2Fwow%2Fz%2Funiapp%2F1100497%2Fad-miniapp%2Fet-union%2Fhome%3Fwh_weex%3Dtrue%26weex_mode%3Ddom%26channelInfo%3D%257B%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26alsc_exsrc%3DES0007485972%26o2i_1st_clk%3D__CLICK_ID__%26scene%3D935e4d2468214a209ae1123be0dfd55d",
+        "口令": "87 HU7405  1:/t688UDeRFOw欢每晚8点抢免单红包"
+      },
+      "collectedAt": "2026-03-13T10:28:11.745Z"
+    },
+    {
+      "id": 18,
+      "page": 2,
+      "name": "淘宝闪购爆火好店",
+      "description": "大额红包，爆火好店",
+      "tags": [
+        "淘宝闪购",
+        "红包",
+        "外卖"
+      ],
+      "links": {
+        "小程序路径": "pages/sharePid/web/index?o2i_sharefrom=wxminiapp&scene=u.ele.me%2Fwlcjlyau",
+        "DeepLink": "eleme://web?action=ali.open.nav&module=h5&packageName=me.ele&url=https%3A%2F%2Ftb.ele.me%2Fapp%2Falsc-user-growth%2Fsgyx-vic%2Fhome%3FnavType%3D3%26scene%3D0faac529e50b4a498c8889442bf9f5ed%26o2i_1st_clk%3D__CLICK_ID__&fastmode=1&bc_fl_src=locallife_wtzt_0-0-ADGROUPID-__REQID__-2",
+        "口令": "27 HU7405  2:/WIkOUDe8T8s✔十大额红包，爆火好店"
+      },
+      "collectedAt": "2026-03-13T10:28:19.284Z"
+    },
+    {
+      "id": 19,
+      "page": 2,
+      "name": "淘票票观影资格券&电影代金券",
+      "description": "0.1买8元代金券/15元电影观影资格券包，全国4000家影城可用",
+      "tags": [
+        "优惠券",
+        "淘票票",
+        "电影",
+        "神券包"
+      ],
+      "links": {
+        "H5": "https://pages.taopiaopiao.com/tpp_landing?to=wxapp&url=pages%2Findex%2Findex%3Furl%3Dhttps%253A%252F%252Ft.taopiaopiao.com%252Fyep%252Fpage%252Fm%252Fq0ru6trs96%253Fspm%253Ddianying.wechat.liuliangzhu.1.bdkjmq88446__88446__1001%2526sqm%253Ddianying.wechat.liuliangzhu.1.bdkjmq88446__88446__1001%26sqm%3Ddianying.wechat.liuliangzhu.1.bdkjmq88446__88446__1001%26spm%3Ddianying.wechat.liuliangzhu.1.bdkjmq88446__88446__1001",
+        "小程序路径": "pages/index/index?url=https%3A%2F%2Ft.taopiaopiao.com%2Fyep%2Fpage%2Fm%2Fq0ru6trs96%3Fspm%3Ddianying.wechat.liuliangzhu.1.bdkjmq88446__88446__1001%26sqm%3Ddianying.wechat.liuliangzhu.1.bdkjmq88446__88446__1001&sqm=dianying.wechat.liuliangzhu.1.bdkjmq88446__88446__1001&spm=dianying.wechat.liuliangzhu.1.bdkjmq88446__88446__1001"
+      },
+      "collectedAt": "2026-03-13T10:28:26.091Z"
+    },
+    {
+      "id": 20,
+      "page": 2,
+      "name": "滴滴出行网约车&顺风车",
+      "description": "网约车&顺风车新老客券包",
+      "tags": [
+        "出行",
+        "优惠券",
+        "打车",
+        "神券包"
+      ],
+      "links": {
+        "H5": "https://vv.didi.cn/nYEBwdk?source_id=88446DIDI88446tkmmchild1001&ref_from=dunion",
+        "小程序路径": "/webx/entry/block-prevention?scene=QrMPl9Z&source_id=88446DIDI88446tkmmchild1001&ref_from=dunion"
+      },
+      "collectedAt": "2026-03-13T10:28:32.925Z"
+    },
+    {
+      "id": 21,
+      "page": 3,
+      "name": "饿了么微信专享红包",
+      "description": "饿了么微信专享红包",
+      "tags": [
+        "饿了么",
+        "红包",
+        "微信专享",
+        "外卖"
+      ],
+      "links": {
+        "H5": "https://h5.ele.me/adminiappsub/pages/h5/index?configKey=BDLM_ELE_H5_DG_TC&scene=5b67791ec63348d2b11508d05349f9cb",
+        "小程序路径": "pages/sharePid/web/index?o2i_sharefrom=wxminiapp&scene=u.ele.me%2FIevduD2v"
+      },
+      "collectedAt": "2026-03-13T10:28:41.253Z"
+    },
+    {
+      "id": 22,
+      "page": 3,
+      "name": "淘票票电影票",
+      "description": "淘票票电影票",
+      "tags": [
+        "淘票票",
+        "电影"
+      ],
+      "links": {
+        "小程序路径": "subPackages/gift-pack/index?giftType=cpsgiftpack&sqm=dianying.wechat.liuliangzhu.1.bdkj88446__88446__1001&spm=dianying.wechat.liuliangzhu.1.bdkj88446__88446__1001"
+      },
+      "collectedAt": "2026-03-13T10:28:47.334Z"
+    },
+    {
+      "id": 23,
+      "page": 3,
+      "name": "滴滴出行全国新客",
+      "description": "打车券天天领，最高100元",
+      "tags": [
+        "出行",
+        "新客专享",
+        "打车",
+        "免费领取"
+      ],
+      "links": {
+        "H5": "https://vv.didi.cn/d0GQaga?source_id=88446DIDI88446tkmmchild1001&ref_from=dunion",
+        "小程序路径": "/webx/entry/block-prevention?scene=ZnaxWva&source_id=88446DIDI88446tkmmchild1001&ref_from=dunion"
+      },
+      "collectedAt": "2026-03-13T10:28:54.141Z"
+    },
+    {
+      "id": 24,
+      "page": 3,
+      "name": "饿了么天天领红包",
+      "description": "最高抢66元大额红包",
+      "tags": [
+        "饿了么",
+        "红包",
+        "外卖"
+      ],
+      "links": {
+        "H5": "https://h5.ele.me/adminiappsub/pages/h5/index?configKey=BDLM_ELE_H5_DG_TC&scene=265284401f4b438b994cf314913cf617",
+        "小程序路径": "commercialize/pages/taoke-guide/index?scene=265284401f4b438b994cf314913cf617",
+        "口令": "29 HU7405  2:/《CZgEUDe8r4i₤十最高抢66元大红包"
+      },
+      "collectedAt": "2026-03-13T10:29:01.685Z"
+    },
+    {
+      "id": 25,
+      "page": 3,
+      "name": "饿了么评价有礼单单返(淘宝版)",
+      "description": "下单评价即可返现",
+      "tags": [
+        "饿了么",
+        "淘宝闪购",
+        "赏金返现",
+        "外卖"
+      ],
+      "links": {
+        "H5": "https://m.duanqu.com/?_ariver_appid=8251537&page=plugin-private%3A%2F%2F2021003183669766%2Fpages%2Fcomment-poliely-guide%2Findex%3Fscene%3D3318a85d32314741b94b7be724cdd251",
+        "口令": "￥QeCVUDeQ7DA￥/ HU7405"
+      },
+      "collectedAt": "2026-03-13T10:29:08.505Z"
+    },
+    {
+      "id": 26,
+      "page": 3,
+      "name": "淘宝闪购爆品好价会场",
+      "description": "超值爆品，加倍补贴！",
+      "tags": [
+        "淘宝闪购",
+        "翻倍/加倍",
+        "外卖"
+      ],
+      "links": {
+        "DeepLink": "tbopen://m.taobao.com/tbopen/index.html?&action=ali.open.nav&module=h5&h5Url=https%3A%2F%2Ftb.ele.me%2Fwow%2Fz%2Funiapp%2F1100497%2Fad-miniapp%2Fet-union%2Fhome%3Fwh_weex%3Dtrue%26weex_mode%3Ddom%26channelInfo%3D%257B%2522subSubChannel%2522%253A%2522miniapp.taobao.et%2522%257D%26alsc_exsrc%3DES0008124452%26o2i_1st_clk%3D__CLICK_ID__%26scene%3Daa96a33321bd49388fd9c5abe69aa22d",
+        "口令": "27 HU7405  666:/£UzfyUDeji7q欢爆品9.9元起，全场免运费"
+      },
+      "collectedAt": "2026-03-13T10:29:15.306Z"
+    },
+    {
+      "id": 27,
+      "page": 3,
+      "name": "消费日专享",
+      "description": "103城消费日活动",
+      "tags": [],
+      "links": {
+        "小程序路径": "ad-bdlm-sub/pages/wh-coupon-guide/index?scene=5ffd42e47bcc4aeeb0e09afaf0d8c4a3",
+        "口令": "￥MoQIUDejUo2￥/ HU7405"
+      },
+      "collectedAt": "2026-03-13T10:29:22.054Z"
+    },
+    {
+      "id": 28,
+      "page": 3,
+      "name": "电影票",
+      "description": "看电影超省钱，全国通用",
+      "tags": [
+        "电影"
+      ],
+      "links": {
+        "H5": "https://m.qianzhu8.com/cinema/main/movie?platformId=10320&subPlatformId=88446MOV88446tkmmchild1001&backIndex=true&backIndexType=0"
+      },
+      "collectedAt": "2026-03-13T10:29:28.100Z"
+    },
+    {
+      "id": 29,
+      "page": 3,
+      "name": "T3打车",
+      "description": "百元优惠券包",
+      "tags": [
+        "出行",
+        "优惠券",
+        "T3打车",
+        "打车",
+        "神券包"
+      ],
+      "links": {
+        "H5": "https://s.t3go.cn/4EfCLHM1d?sourceId=88446__88446__1001"
+      },
+      "collectedAt": "2026-03-13T10:29:34.871Z"
+    },
+    {
+      "id": 30,
+      "page": 3,
+      "name": "同程酒店（新）",
+      "description": "同程酒店百元券包，特惠五折起",
+      "tags": [
+        "酒店",
+        "优惠券",
+        "同程",
+        "折扣优惠",
+        "神券包",
+        "特价/预售"
+      ],
+      "links": {
+        "小程序路径": "page/home/webview/webview?src=https%3A%2F%2Fmp.elong.com%2Ftenthousandaura%2F%3Factivitycode%3D73086812-aaae-48ba-b14a-f087a6b61a92%26isSocket%3DHotel%26outToken%3D0d87b8e391ecbd01%26if%3D5012016%26of%3D5027403%26outUserid%3D10105_88446__88446__1001&isRefresh=refresh"
+      },
+      "collectedAt": "2026-03-13T10:29:40.967Z"
+    },
+    {
+      "id": 31,
+      "page": 4,
+      "name": "花小猪",
+      "description": "花小猪百元券包",
+      "tags": [
+        "优惠券",
+        "花小猪",
+        "神券包"
+      ],
+      "links": {
+        "H5": "https://x.huaxz.cn/Y7OoQQR?source_id=88446DIDI88446tkmmchild1001&ref_from=dunion",
+        "小程序路径": "/pages/chitu/index?scene=KZjwRLL&source_id=88446DIDI88446tkmmchild1001&ref_from=dunion"
+      },
+      "collectedAt": "2026-03-13T10:29:49.350Z"
+    },
+    {
+      "id": 32,
+      "page": 4,
+      "name": "美团酒店列表页",
+      "description": "美团酒店列表页膨胀神券",
+      "tags": [
+        "美团",
+        "酒店",
+        "优惠券",
+        "神券包"
+      ],
+      "links": {},
+      "collectedAt": "2026-03-13T10:29:56.177Z"
+    },
+    {
+      "id": 33,
+      "page": 4,
+      "name": "花小猪新客",
+      "description": "花小猪新客CPA",
+      "tags": [
+        "新客专享",
+        "花小猪",
+        "打车"
+      ],
+      "links": {
+        "H5": "https://x.huaxz.cn/OGddDAa?source_id=88446DIDI88446tkmmchild1001&ref_from=dunion",
+        "小程序路径": "/pages/chitu/index?scene=Y2RRBp8&source_id=88446DIDI88446tkmmchild1001&ref_from=dunion"
+      },
+      "collectedAt": "2026-03-13T10:30:03.048Z"
+    },
+    {
+      "id": 34,
+      "page": 4,
+      "name": "【美团民宿】民宿大促销",
+      "description": "200元券包（20/30/50/100各一张，无门槛立减）",
+      "tags": [
+        "美团",
+        "酒店",
+        "优惠券",
+        "民宿",
+        "神券包",
+        "免费领取"
+      ],
+      "links": {
+        "小程序路径": "/zhenguo-promotion/mt-promotion/index?phx_wake_up_type=wmms&phx_wake_up_source=waitou_4JPD8I29DF7H4&union_code=mxms_2&hotelchannel=GiDaBdEbIgA&p=kyJuObxzobFY&t=1&c=2"
+      },
+      "collectedAt": "2026-03-13T10:30:09.155Z"
+    },
+    {
+      "id": 35,
+      "page": 4,
+      "name": "美团酒店首页",
+      "description": "首页领券，响应快",
+      "tags": [
+        "美团",
+        "酒店"
+      ],
+      "links": {},
+      "collectedAt": "2026-03-13T10:30:16.003Z"
+    },
+    {
+      "id": 36,
+      "page": 4,
+      "name": "淘宝闪购零售会场",
+      "description": "超市好价 即刻送达",
+      "tags": [
+        "淘宝闪购",
+        "零售超市",
+        "外卖"
+      ],
+      "links": {
+        "口令": "98 HU7405  666:/《IXtoUDeP20U三超市好价 即刻送达"
+      },
+      "collectedAt": "2026-03-13T10:30:22.035Z"
+    },
+    {
+      "id": 37,
+      "page": 4,
+      "name": "必胜客",
+      "description": "必胜客到店7折起",
+      "tags": [
+        "到店",
+        "必胜客",
+        "快餐",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://kzurl12.cn/t37M0Q"
+      },
+      "collectedAt": "2026-03-13T10:30:28.097Z"
+    },
+    {
+      "id": 38,
+      "page": 4,
+      "name": "滴滴代驾",
+      "description": "滴滴代驾券包",
+      "tags": [
+        "出行",
+        "优惠券",
+        "打车",
+        "神券包"
+      ],
+      "links": {
+        "H5": "https://v.didi.cn/gjJvLAX?source_id=88446DIDI88446tkmmchild1001&ref_from=dunion",
+        "小程序路径": "/pages/index/index?scene=Dq5BvaL&source_id=88446DIDI88446tkmmchild1001&ref_from=dunion"
+      },
+      "collectedAt": "2026-03-13T10:30:34.860Z"
+    },
+    {
+      "id": 39,
+      "page": 4,
+      "name": "美团官方霸王餐（无",
+      "description": "美团官方霸王餐，下单返现金",
+      "tags": [
+        "美团",
+        "霸王餐",
+        "赏金返现"
+      ],
+      "links": {
+        "H5": "https://offsiteact.meituan.com/act/cps/promotion?p=1084906378168401920",
+        "小程序路径": "/waimai/pages/web-view/web-view?type=REDIRECT&webviewUrl=https%3A%2F%2Foffsiteact.meituan.com%2Fact%2Fcps%2Fpromotion%3Fp%3D1084906378168401920&utm_content=224ac1afd8674632ae7b85226f192d82__56fa34c7c97c46c8acc60c2b8d7ff7bb"
+      },
+      "collectedAt": "2026-03-13T10:30:41.605Z"
+    },
+    {
+      "id": 40,
+      "page": 4,
+      "name": "飞猪酒店小程序专享红包",
+      "description": "小程序专享优惠，叠加使用更优惠！",
+      "tags": [
+        "酒店",
+        "红包",
+        "飞猪",
+        "叠加红包"
+      ],
+      "links": {
+        "H5": "https://a.feizhu.com/13rJF3",
+        "小程序路径": "pages/utils/outer-channel/index?sht_track_info=s9d4w6ts79&ttid=12wechat000034436&needLogin=true"
+      },
+      "collectedAt": "2026-03-13T10:30:48.334Z"
+    },
+    {
+      "id": 41,
+      "page": 5,
+      "name": "美团外卖大牌饮品商品券会场",
+      "description": "爆品低价大牌饮品 福利超多多！",
+      "tags": [
+        "美团",
+        "外卖",
+        "咖啡饮品"
+      ],
+      "links": {
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=YFpvObxzGLsW",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DxNBvObxzTn05&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "口令": "1 %复制信息#% 打开团App http:/¥anYzc4ZWNiOGM¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:30:57.350Z"
+    },
+    {
+      "id": 42,
+      "page": 5,
+      "name": "同程顺风车",
+      "description": "同程顺风车",
+      "tags": [
+        "同程",
+        "打车"
+      ],
+      "links": {
+        "官方短链接": "https://s.ly.com/nL0L9G5nU",
+        "H5": "https://wx.17u.cn/carfe/app/slCoupons?mark=d1242792",
+        "小程序路径": "/page/newusecar/webview/webview?src=https%3A%2F%2Fwx.17u.cn%2Fcarfe%2Fwechat%2FslCoupons%3Fmark%3Dd1242792"
+      },
+      "collectedAt": "2026-03-13T10:31:04.924Z"
+    },
+    {
+      "id": 43,
+      "page": 5,
+      "name": "饿了么零售会场（新）",
+      "description": "饿了么零售券包",
+      "tags": [
+        "饿了么",
+        "优惠券",
+        "零售超市",
+        "神券包",
+        "外卖"
+      ],
+      "links": {
+        "小程序路径": "commercialize/pages/bdlm-ls-guide/index?scene=0cecaa9f5ccf413b939e92c2ef2a0c5f"
+      },
+      "collectedAt": "2026-03-13T10:31:10.992Z"
+    },
+    {
+      "id": 44,
+      "page": 5,
+      "name": "比价寄快递",
+      "description": "比价寄快递",
+      "tags": [
+        "快递寄件"
+      ],
+      "links": {
+        "H5": "https://kzurl10.cn/t37MGY"
+      },
+      "collectedAt": "2026-03-13T10:31:17.044Z"
+    },
+    {
+      "id": 45,
+      "page": 5,
+      "name": "星巴克",
+      "description": "全场79折起",
+      "tags": [
+        "星巴克",
+        "咖啡饮品",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://kzurl08.cn/t37MH9"
+      },
+      "collectedAt": "2026-03-13T10:31:23.114Z"
+    },
+    {
+      "id": 46,
+      "page": 5,
+      "name": "奈雪的茶",
+      "description": "门店自提79折起",
+      "tags": [
+        "奈雪的茶",
+        "咖啡饮品",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://kzurl15.cn/t37MHE"
+      },
+      "collectedAt": "2026-03-13T10:31:29.144Z"
+    },
+    {
+      "id": 47,
+      "page": 5,
+      "name": "同程打车",
+      "description": "同程打车券包",
+      "tags": [
+        "出行",
+        "优惠券",
+        "同程",
+        "打车",
+        "神券包"
+      ],
+      "links": {
+        "H5": "https://wx.17u.cn/carfe/app/slCoupons?mark=d1242792",
+        "小程序路径": "/page/newusecar/webview/webview?src=https%3A%2F%2Fwx.17u.cn%2Fcarfe%2Fwechat%2FslCoupons%3Fmark%3Dd1242792"
+      },
+      "collectedAt": "2026-03-13T10:31:35.917Z"
+    },
+    {
+      "id": 48,
+      "page": 5,
+      "name": "饿了么叠加红包（淘宝版）",
+      "description": "淘宝闪购商家叠加红包",
+      "tags": [
+        "饿了么",
+        "淘宝闪购",
+        "红包",
+        "叠加红包",
+        "外卖"
+      ],
+      "links": {
+        "H5": "https://m.duanqu.com/?_ariver_appid=8251537&page=plugin-private%3A%2F%2F2021004134685665%2Fpages%2Fcompose-reduce-guide%2Findex%3Ffrom%3Dminiapp.taobao%26channelInfo%3D%7B%22subSubChannel%22%3A%22miniapp.taobao.et%22%7D%26alsc_exsrc%3DES0006299852%26scene%3D6e6243ba2052492cbf675ec5d392507f",
+        "口令": "59 HU7405  1:/₤FIdlUDelnW9《四邀请好友，共享福利"
+      },
+      "collectedAt": "2026-03-13T10:31:42.703Z"
+    },
+    {
+      "id": 49,
+      "page": 5,
+      "name": "【美团闪购】超市专场",
+      "description": "大额券包直接领！最低1分钱送到家！",
+      "tags": [
+        "美团",
+        "淘宝闪购",
+        "优惠券",
+        "零售超市",
+        "神券包",
+        "免费领取",
+        "外卖"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/d2DbU3oz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=3QVgObxzg3ea",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3Dlc9gObxzpYmG&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DqhdsObxznvrj&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:273:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥btNGFlOWZjNDQ¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:31:51.697Z"
+    },
+    {
+      "id": 50,
+      "page": 5,
+      "name": "瑞幸咖啡",
+      "description": "咖啡自由5折购",
+      "tags": [
+        "瑞幸咖啡",
+        "咖啡饮品",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://kzurl03.cn/t37Msz"
+      },
+      "collectedAt": "2026-03-13T10:31:57.770Z"
+    },
+    {
+      "id": 51,
+      "page": 6,
+      "name": "【美团闪购】水果专场",
+      "description": "领大额神券抽免单，1分钱平安果（24-25）",
+      "tags": [
+        "美团",
+        "淘宝闪购",
+        "优惠券",
+        "水果鲜花",
+        "霸王餐",
+        "神券包",
+        "免费领取",
+        "外卖"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/pezCAtkz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=ifxgObxzsdv7",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3D39pgObxzzaxG&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DDERtObxzBi3T&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:638:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥c6ZGQyN2Q5YTQ¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:32:08.221Z"
+    },
+    {
+      "id": 52,
+      "page": 6,
+      "name": "同程酒店预售房&通兑券",
+      "description": "万店通兑券69元起，大牌特惠预售房暑期&周末不加价，过期退随时退，超长有效期",
+      "tags": [
+        "酒店",
+        "同程",
+        "节日/大促",
+        "特价/预售"
+      ],
+      "links": {
+        "小程序路径": "page/home/webview/webview?src=https%3A%2F%2Fmp.elong.com%2Ftenthousandaura%2F%3Factivitycode%3Dfdfa9b92-2b82-44b6-ab08-51a008e830c3%26isSocket%3DHotelActivityId_12177%26outUserid%3D10105_88446__88446__1001&isRefresh=refresh"
+      },
+      "collectedAt": "2026-03-13T10:32:14.233Z"
+    },
+    {
+      "id": 53,
+      "page": 6,
+      "name": "同程酒店百元住酒店（新）",
+      "description": "新老客酒店红包，最高立减100",
+      "tags": [
+        "酒店",
+        "红包",
+        "同程"
+      ],
+      "links": {
+        "小程序路径": "page/home/webview/webview?src=https%3A%2F%2Fmp.elong.com%2Ftenthousandaura%2F%3Factivitycode%3D1df57150-3743-4db0-b2f0-5858e17825bc%26isSocket%3DHotel%26outToken%3D0d87b8e391ecbd01%26if%3D5012016%26of%3D5027403%26outUserid%3D10105_88446__88446__1001&isRefresh=refresh"
+      },
+      "collectedAt": "2026-03-13T10:32:20.259Z"
+    },
+    {
+      "id": 54,
+      "page": 6,
+      "name": "美团酒店",
+      "description": "美团酒店通用券包",
+      "tags": [
+        "美团",
+        "酒店",
+        "优惠券",
+        "神券包"
+      ],
+      "links": {},
+      "collectedAt": "2026-03-13T10:32:28.481Z"
+    },
+    {
+      "id": 55,
+      "page": 6,
+      "name": "【美团闪购】鲜花专场",
+      "description": "抢30元免单券，领专属红包最高减32",
+      "tags": [
+        "美团",
+        "淘宝闪购",
+        "红包",
+        "水果鲜花",
+        "霸王餐",
+        "免费领取",
+        "外卖"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/TLpEHrKz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=sDx6Obxz2t_l",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DuVdtObxzmtA0&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DngVgObxzUyWu&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:272:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥csMjY2MTFkM2I¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:32:37.471Z"
+    },
+    {
+      "id": 56,
+      "page": 6,
+      "name": "同程民宿大额券",
+      "description": "领取150元同程旅行民宿专享红包",
+      "tags": [
+        "酒店",
+        "红包",
+        "同程",
+        "民宿",
+        "旅游度假",
+        "神券包",
+        "免费领取"
+      ],
+      "links": {
+        "小程序路径": "page/home/webview/webview?src=https%3A%2F%2Fmp.elong.com%2Ftenthousandaura%2F%3Factivitycode%3D439d0dae-912f-4307-890a-d1ae57dde792%26isSocket%3DHotelActivityId_11182%26outUserid%3D10105_88446__88446__1001&isRefresh=refresh"
+      },
+      "collectedAt": "2026-03-13T10:32:43.518Z"
+    },
+    {
+      "id": 57,
+      "page": 6,
+      "name": "同程民宿特价房",
+      "description": "民宿专享红包直接领！天天特惠住民宿，百元起住舒适民宿！",
+      "tags": [
+        "酒店",
+        "红包",
+        "同程",
+        "民宿",
+        "特价/预售"
+      ],
+      "links": {
+        "小程序路径": "page/home/webview/webview?src=https%3A%2F%2Fmp.elong.com%2Ftenthousandaura%2F%3Factivitycode%3Da2d1e832-4078-4ec2-b855-ebc9fb439c67%26isSocket%3DHotel%26outToken%3D0d87b8e391ecbd01%26if%3D5012016%26of%3D5027403%26outUserid%3D10105_88446__88446__1001&isRefresh=refresh"
+      },
+      "collectedAt": "2026-03-13T10:32:49.548Z"
+    },
+    {
+      "id": 58,
+      "page": 6,
+      "name": "飞猪酒店",
+      "description": "免费领券，酒店6折起，限时超值券包",
+      "tags": [
+        "酒店",
+        "优惠券",
+        "飞猪",
+        "折扣优惠",
+        "神券包",
+        "免费领取"
+      ],
+      "links": {
+        "H5": "https://a.feizhu.com/3J07OL",
+        "小程序路径": "pages/main/webview?url=https%3A%2F%2Foutfliggys.m.taobao.com%2Fxj%2Fpage%2Fpcraft%2Fpcraft%2Fcommon%2Fjiudianquanyi_copy21%3FtitleBarHidden%3D2%26ttid%3D12wechat000008258%26sht_track_info%3Db8khybvtew%26needLogin%3Dtrue"
+      },
+      "collectedAt": "2026-03-13T10:32:56.385Z"
+    },
+    {
+      "id": 59,
+      "page": 6,
+      "name": "飞猪闪购酒店",
+      "description": "酒店闪购，全网低价5折起，百元房券免费抽",
+      "tags": [
+        "酒店",
+        "淘宝闪购",
+        "飞猪",
+        "折扣优惠",
+        "免费领取",
+        "外卖"
+      ],
+      "links": {
+        "H5": "https://a.feizhu.com/2zJypz",
+        "小程序路径": "pages/main/webview?url=https%3A%2F%2Fmarket.m.taobao.com%2Fapp%2Ftrip%2Frx-ft-hotel%2Fpages%2Fhome%3Ffpt%3Dhftid(2)%26disableNav%3DYES%26titleBarHidden%3D2%26status_bar_transparent%3Dtrue%26spmcnt%3D181.30461718%26ttid%3D12wechat000034437%26sht_track_info%3Druzvt17l58%26needLogin%3Dtrue"
+      },
+      "collectedAt": "2026-03-13T10:33:03.144Z"
+    },
+    {
+      "id": 60,
+      "page": 6,
+      "name": "飞猪酒店百元好房",
+      "description": "百元住好房，领200元酒店惊喜红包",
+      "tags": [
+        "酒店",
+        "红包",
+        "飞猪",
+        "免费领取"
+      ],
+      "links": {
+        "小程序路径": "pages/main/webview?url=https%3A%2F%2Foutfliggys.m.taobao.com%2Fxj%2Fpage%2Fpcraft%2Fpcraft%2Fcommon%2Fbaiyuanhaofang-qudao%3FtitleBarHidden%3D2%26disableNav%3DYES%26webViewBackgroundColor%3Df8d9bb%26price%3D0~100%26ttid%3D12wechat000008258%26sht_track_info%3Dpzymawa3tf%26needLogin%3Dtrue"
+      },
+      "collectedAt": "2026-03-13T10:33:09.214Z"
+    },
+    {
+      "id": 61,
+      "page": 7,
+      "name": "美团酒店新版个性化页面",
+      "description": "对特定人群特征定向分流至酒店首页、列表页、特色供给页、大促活动页面进行承接。",
+      "tags": [
+        "美团",
+        "酒店"
+      ],
+      "links": {},
+      "collectedAt": "2026-03-13T10:33:17.545Z"
+    },
+    {
+      "id": 62,
+      "page": 7,
+      "name": "【休娱丽人】玩乐变美一折起",
+      "description": "畅玩一折起，更有146元神券可抢！",
+      "tags": [
+        "优惠券",
+        "丽人美容",
+        "娱乐玩乐",
+        "折扣优惠",
+        "神券包"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/rBMYEdhz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=vNdvObxzC45q",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DFvBxObxz31RU&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DdZB8ObxzGMzF&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:601:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥duZGYzOGY4MTY¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:33:26.523Z"
+    },
+    {
+      "id": 63,
+      "page": 7,
+      "name": "【休娱玩乐】天天领红包",
+      "description": "高佣爆品，大牌团购1折起",
+      "tags": [
+        "红包",
+        "娱乐玩乐",
+        "折扣优惠"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/Wcwnw9fz",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=m7diObxzhsrg",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DJ-JsObxz6Ahx&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1"
+      },
+      "collectedAt": "2026-03-13T10:33:34.058Z"
+    },
+    {
+      "id": 64,
+      "page": 7,
+      "name": "携程国内预售酒店",
+      "description": "携程特卖，特价专区",
+      "tags": [
+        "酒店",
+        "携程",
+        "特价/预售"
+      ],
+      "links": {
+        "小程序路径": "pages/market/web/index?allianceid=5054015&sid=95692647&ouid=88446__88446__1001&from=https%3A%2F%2Fm.ctrip.com%2Fwebapp%2Fcw%2Fgs%2Fonsale%2FboomHome.html%3Fdestid%3D2027104%26destname%3D%25E5%258D%258E%25E4%25B8%259C%25E5%259C%25B0%25E5%258C%25BA%26productid%3D968277107247904480%26type%3D2%26sct%3Dapp_homesale"
+      },
+      "collectedAt": "2026-03-13T10:33:40.141Z"
+    },
+    {
+      "id": 65,
+      "page": 7,
+      "name": "【休娱丽人】健康变美",
+      "description": "全场低至1折起",
+      "tags": [
+        "医药",
+        "丽人美容",
+        "娱乐玩乐",
+        "折扣优惠"
+      ],
+      "links": {
+        "官方短链接": "http://dpurl.cn/bx3Olk8z",
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=gAFrObxzdwnj",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3D8NhiObxzoS_7&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DNbVtObxzmuEm&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:574:1703670172285820963",
+        "口令": "1 %复制信息#% 打开团App http:/¥ebMDAxZDA5MGQ¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:33:49.122Z"
+    },
+    {
+      "id": 66,
+      "page": 7,
+      "name": "飞猪酒店民宿",
+      "description": "底价抢先订，领券下单低至3折起",
+      "tags": [
+        "酒店",
+        "飞猪",
+        "民宿",
+        "折扣优惠"
+      ],
+      "links": {
+        "小程序路径": "pages/utils/webview/index?url=https%3A%2F%2Foutfliggys.m.taobao.com%2Fwow%2Fpone%2Fpcraft%2Fcommon%2Ffupr%3Fwh_pid%3Dcommon%252F7gsyu%26titleBarHidden%3D2%26disableNav%3DYES%26enableLoadingView%3Dtrue%26webViewBackgroundColor%3Df05922%26ttid%3D12wechat000008258%26fpid%3D132001%26fpsid%3D88446__88446__1001%26fp_scene%3Dsht_minsu_wx%26needLogin%3Dtrue"
+      },
+      "collectedAt": "2026-03-13T10:33:55.155Z"
+    },
+    {
+      "id": 67,
+      "page": 7,
+      "name": "携程酒店",
+      "description": "最高85折，4项权益免费送！",
+      "tags": [
+        "酒店",
+        "携程",
+        "折扣优惠",
+        "免费领取"
+      ],
+      "links": {
+        "小程序路径": "pages/hotel/inquire/index?ouid=88446__88446__1001&allianceid=5054015&sid=95692647"
+      },
+      "collectedAt": "2026-03-13T10:34:01.219Z"
+    },
+    {
+      "id": 68,
+      "page": 7,
+      "name": "携程首页",
+      "description": "旅游好货，超低折扣",
+      "tags": [
+        "携程",
+        "旅游度假",
+        "折扣优惠"
+      ],
+      "links": {
+        "小程序路径": "pages/home/homepage?ouid=88446__88446__1001&allianceid=5054015&sid=95692647"
+      },
+      "collectedAt": "2026-03-13T10:34:07.253Z"
+    },
+    {
+      "id": 69,
+      "page": 7,
+      "name": "【美团门票】景点游玩门票",
+      "description": "长隆8折环球减25",
+      "tags": [
+        "美团",
+        "旅游度假",
+        "景点门票",
+        "娱乐玩乐",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=nIFiObxzRgKe",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3D4MxiObxzTjO9&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1",
+        "DeepLink": "imeituan://www.meituan.com/takeout/browser?inner_url=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DkzZrObxzB1GI&lch=cps:mtlm:10:ec04e85203224b54a039bb4277b0220e:88446tkmm88446tkmm1001:584:1703670172285820963"
+      },
+      "collectedAt": "2026-03-13T10:34:14.777Z"
+    },
+    {
+      "id": 70,
+      "page": 7,
+      "name": "飞猪机票",
+      "description": "飞猪机票出票安心，出行安心，服务安心",
+      "tags": [
+        "出行",
+        "飞猪",
+        "打车",
+        "机票"
+      ],
+      "links": {
+        "小程序路径": "pages/home/index?currentTab=flight&ttid=12wechat000008258&fpid=132001&fpsid=88446__88446__1001&fp_scene=multi-industry-wx"
+      },
+      "collectedAt": "2026-03-13T10:34:20.831Z"
+    },
+    {
+      "id": 71,
+      "page": 8,
+      "name": "飞猪度假",
+      "description": "飞猪线路、飞猪酒景套餐、飞猪门票",
+      "tags": [
+        "飞猪",
+        "旅游度假",
+        "景点门票"
+      ],
+      "links": {
+        "小程序路径": "pages/utils/webview/index?url=https%3A%2F%2Foutfliggys.m.taobao.com%2Fwow%2Fpone%2Fpcraft%2Fcommon%2Ffupr%3Fwh_pid%3Dcommon%252Fwchd%26fpid%3D132001%26fpsid%3D88446__88446__1001"
+      },
+      "collectedAt": "2026-03-13T10:34:28.445Z"
+    },
+    {
+      "id": 72,
+      "page": 8,
+      "name": "飞猪租车",
+      "description": "飞猪租车",
+      "tags": [
+        "飞猪",
+        "旅游度假"
+      ],
+      "links": {
+        "小程序路径": "pages/home/index?currentTab=rentCar&ttid=12wechat000008258&fpid=132001&fpsid=88446__88446__1001&fp_scene=multi-industry-wx"
+      },
+      "collectedAt": "2026-03-13T10:34:34.475Z"
+    },
+    {
+      "id": 73,
+      "page": 8,
+      "name": "飞猪度假",
+      "description": "暑期爆款至高减700元",
+      "tags": [
+        "飞猪",
+        "旅游度假",
+        "免费领取",
+        "节日/大促"
+      ],
+      "links": {
+        "H5": "https://a.feizhu.com/2MltC3",
+        "小程序路径": "pages/main/webview?url=https%3A%2F%2Foutfliggys.m.taobao.com%2Fxj%2Fpage%2Fpcraft%2Fpcraft%2Fcommon%2Fsddjaisja%3FtitleBarHidden%3D2%26disableNav%3DYES%26webViewBackgroundColor%3D770011%26ttid%3D12wechat000008258%26sht_track_info%3Da1bk2w7v52%26currentTab%3Dticket%26needLogin%3Dtrue"
+      },
+      "collectedAt": "2026-03-13T10:34:41.264Z"
+    },
+    {
+      "id": 74,
+      "page": 8,
+      "name": "零售商超",
+      "description": "页面下单得返利，下单可叠加使用红包优惠券",
+      "tags": [
+        "优惠券",
+        "红包",
+        "零售超市",
+        "叠加红包",
+        "赏金返现"
+      ],
+      "links": {
+        "H5": "https://offsiteact.meituan.com/act/cps/promotion?p=6faf78583e5d439d9978dae00cb75e2f",
+        "小程序路径": "/waimai/pages/web-view/web-view?type=REDIRECT&webviewUrl=https%3A%2F%2Foffsiteact.meituan.com%2Fact%2Fcps%2Fpromotion%3Fp%3D6faf78583e5d439d9978dae00cb75e2f&utm_content=224ac1afd8674632ae7b85226f192d82__56fa34c7c97c46c8acc60c2b8d7ff7bb",
+        "DeepLink": "imeituan://www.meituan.com/web?url=https%3A%2F%2Foffsiteact.meituan.com%2Fact%2Fcps%2Fpromotion%3Fp%3D6faf78583e5d439d9978dae00cb75e2f&utm_content=224ac1afd8674632ae7b85226f192d82__56fa34c7c97c46c8acc60c2b8d7ff7bb"
+      },
+      "collectedAt": "2026-03-13T10:34:48.772Z"
+    },
+    {
+      "id": 75,
+      "page": 8,
+      "name": "饿了么品牌馆",
+      "description": "抢5-10元品牌叠加红包",
+      "tags": [
+        "饿了么",
+        "红包",
+        "免费领取",
+        "叠加红包",
+        "外卖"
+      ],
+      "links": {
+        "小程序路径": "ad-bdlm-sub/pages/brands-activity/index?scene=ad3918f8dcf143d0adb0a2570f41c890"
+      },
+      "collectedAt": "2026-03-13T10:34:54.801Z"
+    },
+    {
+      "id": 76,
+      "page": 8,
+      "name": "淘宝闪购（支付宝版）",
+      "description": "淘宝闪购支付宝端",
+      "tags": [
+        "淘宝闪购",
+        "支付宝",
+        "外卖"
+      ],
+      "links": {
+        "H5": "https://render.alipay.com/p/s/i/?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FappId%3D2021005151656223%26page%3D%252Fpages%252Findex%252Findex%26query%3DchannelInfo%253D%25257B%252522channel%252522%25253A%252522mini_app%252522%25252C%252522subChannel%252522%25253A%252522miniapp.alipay%252522%25252C%252522subSubChannel%252522%25253A%252522miniapp.alipay.et%252522%25257D%2526alsc_exsrc%253DES0007265508%2526scene%253D6df16ce3a17145e990efd9fe93b1ceda",
+        "DeepLink": "alipays://platformapi/startapp?appId=2021005151656223&page=%2Fpages%2Findex%2Findex&query=channelInfo%3D%257B%2522channel%2522%253A%2522mini_app%2522%252C%2522subChannel%2522%253A%2522miniapp.alipay%2522%252C%2522subSubChannel%2522%253A%2522miniapp.alipay.et%2522%257D%26alsc_exsrc%3DES0007265508%26scene%3D6df16ce3a17145e990efd9fe93b1ceda"
+      },
+      "collectedAt": "2026-03-13T10:35:01.581Z"
+    },
+    {
+      "id": 77,
+      "page": 8,
+      "name": "京东外卖惊喜红包",
+      "description": "直接领30元惊喜红包",
+      "tags": [
+        "外卖",
+        "京东",
+        "红包",
+        "免费领取"
+      ],
+      "links": {
+        "H5": "https://u.jd.com/NDZ5M60",
+        "口令": "！IFGOv5lFik1cnAKL！ CA8680"
+      },
+      "collectedAt": "2026-03-13T10:35:08.362Z"
+    },
+    {
+      "id": 78,
+      "page": 8,
+      "name": "瑞幸咖啡专场",
+      "description": "瑞幸咖啡9.9两杯",
+      "tags": [
+        "瑞幸咖啡",
+        "咖啡饮品"
+      ],
+      "links": {
+        "H5": "https://u.jd.com/N6Zk4fc",
+        "口令": "！DDx9TCUmsQfY0tVi！ MF3390"
+      },
+      "collectedAt": "2026-03-13T10:35:15.174Z"
+    },
+    {
+      "id": 79,
+      "page": 8,
+      "name": "爆品低价会场",
+      "description": "京东外卖-爆品低价会场",
+      "tags": [
+        "外卖",
+        "京东"
+      ],
+      "links": {
+        "H5": "https://u.jd.com/NgZFbkh",
+        "口令": "！O3zi2A7s4S6Uf9e0！ CA1393"
+      },
+      "collectedAt": "2026-03-13T10:35:21.971Z"
+    },
+    {
+      "id": 80,
+      "page": 8,
+      "name": "超值会场频道页",
+      "description": "领券最高减23元！抽最高20元餐补，领5-4、4-3可叠加券",
+      "tags": [
+        "免费领取",
+        "叠加红包"
+      ],
+      "links": {
+        "H5": "https://u.jd.com/NaZkx5G",
+        "口令": "！PFRWvBM4NfGa2TaD！ CA1565"
+      },
+      "collectedAt": "2026-03-13T10:35:28.768Z"
+    },
+    {
+      "id": 81,
+      "page": 9,
+      "name": "【美团拼好饭】爆品一口价会场",
+      "description": "大牌好价，天天6.9",
+      "tags": [
+        "美团",
+        "拼好饭"
+      ],
+      "links": {
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=v0FiObxzczv6",
+        "小程序路径": "/waimai-bargain-sub1/pages/transfer/guide/index?path=%2FindependentPackages%2FmarketingVenue%2Fhost%2Findex%3FvenueId%3DBRAND_AWARENESS_V3&pageType=h5&channel_id=302008&p=wW16ObxzKtUw&t=1&c=2",
+        "口令": "1 %复制信息#% 打开团App http:/¥gnZDc1NDgxMTQ¥一起领"
+      },
+      "collectedAt": "2026-03-13T10:35:37.859Z"
+    },
+    {
+      "id": 82,
+      "page": 9,
+      "name": "饿了么赏金",
+      "description": "饿了么随机翻倍红包",
+      "tags": [
+        "饿了么",
+        "红包",
+        "翻倍/加倍",
+        "赏金返现",
+        "外卖"
+      ],
+      "links": {
+        "H5": "https://KfwX65mlD38.ug.ele.me/wow/alsc/mod/dd84fb45b245f3292e170527?inviterId=1301ec8&channel=3&actId=1&scene=17e6a10187bb41cfa0b1cd47e2ca3a85",
+        "口令": "0fu置此段666:/＄UDeq9VB＄~.淘宝闪购App【打开淘宝闪购APP扫红包】"
+      },
+      "collectedAt": "2026-03-13T10:35:44.707Z"
+    },
+    {
+      "id": 83,
+      "page": 9,
+      "name": "美团外卖私域加企微",
+      "description": "24小时内领券率≥80%且当日取关率≤25%",
+      "tags": [
+        "美团",
+        "外卖",
+        "私域企微",
+        "企微"
+      ],
+      "links": {
+        "H5": "https://click.meituan.com/t?t=1&c=2&p=yGliObxzlsmY",
+        "小程序路径": "/index/pages/h5/h5?weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DUc5gObxzXonH&f_token=0&f_userId=0&f_openId=0&f_openIdCipher=0&f_pos=1&f_ci=1&app_version=1"
+      },
+      "collectedAt": "2026-03-13T10:35:51.476Z"
+    },
+    {
+      "id": 84,
+      "page": 9,
+      "name": "饿了么叠加红包（微信版）",
+      "description": "饿了么叠加红包（微信版）",
+      "tags": [
+        "饿了么",
+        "红包",
+        "叠加红包",
+        "微信专享",
+        "外卖"
+      ],
+      "links": {
+        "小程序路径": "commercialize/pages/compose-reduce-guide/index?scene=e17734ccb83745f6a2f664c38632e5a0"
+      },
+      "collectedAt": "2026-03-13T10:35:57.537Z"
+    },
+    {
+      "id": 85,
+      "page": 9,
+      "name": "麦当劳",
+      "description": "五折起，自助点餐更优惠",
+      "tags": [
+        "麦当劳",
+        "快餐",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://kzurl08.cn/t37Mo0"
+      },
+      "collectedAt": "2026-03-13T10:36:03.623Z"
+    },
+    {
+      "id": 86,
+      "page": 9,
+      "name": "汉堡王",
+      "description": "来堡堡家，美味妙不可言",
+      "tags": [
+        "汉堡王",
+        "快餐"
+      ],
+      "links": {
+        "H5": "https://kzurl18.cn/t37MoO"
+      },
+      "collectedAt": "2026-03-13T10:36:09.705Z"
+    },
+    {
+      "id": 87,
+      "page": 9,
+      "name": "百果园",
+      "description": "水果外卖9折起",
+      "tags": [
+        "外卖",
+        "百果园",
+        "水果鲜花",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://kzurl05.cn/t37Ma3"
+      },
+      "collectedAt": "2026-03-13T10:36:15.788Z"
+    },
+    {
+      "id": 88,
+      "page": 9,
+      "name": "喜茶自提",
+      "description": "喜茶天天省，全场9.5折。",
+      "tags": [
+        "喜茶",
+        "咖啡饮品",
+        "折扣优惠"
+      ],
+      "links": {
+        "H5": "https://kzurl15.cn/t37MaO"
+      },
+      "collectedAt": "2026-03-13T10:36:21.833Z"
+    }
+  ]
+}

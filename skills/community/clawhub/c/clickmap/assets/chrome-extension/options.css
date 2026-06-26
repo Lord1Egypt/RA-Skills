@@ -1,0 +1,18 @@
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#0f1220;color:#e8ecff}
+.app{max-width:860px;margin:22px auto;padding:0 14px 24px}
+.hero{display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.logo{width:88px;height:88px;border-radius:18px;object-fit:cover;box-shadow:0 6px 24px #0008}
+h1{margin:0;font-size:32px} p{margin:4px 0 0;color:#9fb1ff}
+.card{background:#171b2f;border:1px solid #293056;border-radius:14px;padding:14px;margin-bottom:12px}
+h2{margin:0 0 10px;font-size:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#a9b6f6}
+input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #33407a;background:#0f1430;color:#f5f7ff}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+button{padding:10px 12px;border-radius:10px;border:1px solid #3c4f9d;background:#1c2550;color:#f4f7ff;cursor:pointer}
+button.primary{background:#4f6bff;border-color:#6e86ff}
+button:hover{filter:brightness(1.08)}
+#list{max-height:280px;overflow:auto;padding-left:18px}
+#list li{margin:4px 0}
+#status{margin-top:6px;color:#9bd8ff;font-size:13px}
+.hint{font-size:12px;color:#9cb0ff}

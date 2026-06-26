@@ -1,35 +1,114 @@
----
-name: "quick-proposal"
-description: "Automatically generates detailed project proposals with templates,需求分析, cost/time estimates, and risk assessments to improve deal efficiency."
-category: "other"
-source: "ClawHub"
-tags: [chinese]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/clawmart-quick-proposal"
-sourceUrl: "https://clawhub.ai/skills/clawmart-quick-proposal"
----
+--------------------------2ldVTq1KlML28kuWFv049w
+Content-Disposition: form-data; name="file"; filename="SKILL.md"
+Content-Type: application/octet-stream
 
-# quick-proposal
+# Quick Proposal Skill
 
-> Automatically generates detailed project proposals with templates,需求分析, cost/time estimates, and risk assessments to improve deal efficiency.
+快速生成项目提案，提升成交效率。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/clawmart-quick-proposal`
-- **Source URL:** [https://clawhub.ai/skills/clawmart-quick-proposal](https://clawhub.ai/skills/clawmart-quick-proposal)
+## 功能
 
-## Overview
+- 自动生成项目提案
+- 多种提案模板
+- 智能需求分析
+- 时间/成本估算
+- 风险评估
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/clawmart-quick-proposal
 ```
+为网站开发项目生成提案
+```
+
+```
+根据这个需求文档生成提案
+```
+
+## 输出格式
+
+```
+📄 项目提案
+
+## 项目概述
+- 项目名称：企业官网开发
+- 提案日期：2026-03-11
+- 提案有效期：30 天
+
+## 背景与目标
+- 背景：客户需要全新的企业官网
+- 目标：提升品牌形象，获取更多客户线索
+
+## 解决方案
+
+### 技术方案
+- 前端：React + Next.js
+- 后端：Node.js + Express
+- 数据库：MySQL
+- 部署：阿里云
+
+### 功能模块
+1. 首页 - 品牌展示
+2. 产品中心 - 产品列表/详情
+3. 关于我们 - 公司介绍
+4. 联系我们 - 表单/地图
+5. 后台管理 - 内容管理
+
+## 项目排期
+
+| 阶段 | 工作内容 | 时长 |
+|------|----------|------|
+| 需求确认 | 需求细化/原型 | 3 天 |
+| UI 设计 | 视觉设计 | 5 天 |
+| 开发 | 前后端开发 | 10 天 |
+| 测试 | 功能/性能测试 | 3 天 |
+| 部署 | 上线部署 | 1 天 |
+| **总计** | | **22 天** |
+
+## 费用预算
+
+| 项目 | 费用 |
+|------|------|
+| UI 设计 | ¥3,000 |
+| 前端开发 | ¥8,000 |
+| 后端开发 | ¥6,000 |
+| 测试部署 | ¥2,000 |
+| **总计** | **¥19,000** |
+
+## 付款方式
+- 首付 50%：¥9,500
+- 完工 50%：¥9,500
+
+## 团队介绍
+- 项目经理：1 人
+- UI 设计师：1 人
+- 前端开发：1 人
+- 后端开发：1 人
+
+## 风险评估
+- 需求变更风险：建议需求确认后冻结
+- 第三方接口风险：提前申请
+- 服务器风险：建议使用云服务
+
+## 优势
+- ✅ 3 年行业经验
+- ✅ 50+ 成功案例
+- ✅ 30 天免费维护
+- ✅ 源码交付
+
+## 下一步
+1. 确认需求
+2. 签订合同
+3. 支付首付
+4. 开始开发
+
+---
+联系人：[你的名字]
+微信：[你的微信]
+邮箱：[你的邮箱]
+```
+
+---
+
+创建时间：2026-03-11
+作者：ClawMart
+--------------------------2ldVTq1KlML28kuWFv049w--

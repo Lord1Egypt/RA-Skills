@@ -1,0 +1,37 @@
+{
+  "name": "cognitive-skill-factory",
+  "displayName": "认知 Skill 工厂",
+  "version": "2.0.0",
+  "description": "17 个认知 Skill，用顶级思维做决策（10 个中国企业家 +7 个国际大师）",
+  "author": "谢总认知工厂",
+  "license": "MIT",
+  "skills": [
+    "zhang-yiming-perspective",
+    "huang-zheng-perspective",
+    "ma-huateng-perspective",
+    "ren-zhengfei-perspective",
+    "sequoia-investment-framework",
+    "lei-jun-perspective",
+    "wang-xing-perspective",
+    "zhang-lei-perspective",
+    "hillhouse-investment-framework",
+    "bytedance-organization-framework",
+    "steve-jobs-perspective-v2",
+    "elon-musk-perspective-v2",
+    "munger-perspective-v2",
+    "naval-perspective-v2",
+    "feynman-perspective-v2",
+    "taleb-perspective-v2",
+    "zhangxuefeng-perspective-v2"
+  ],
+  "features": [
+    "决策辅助",
+    "战略分析",
+    "投资尽调",
+    "组织管理",
+    "产品规划"
+  ],
+  "tags": ["认知", "决策", "思维框架", "AI", "Skill", "中国企业家", "国际大师"],
+  "repository": "https://github.com/xiejianjun/cognitive-skill-factory",
+  "homepage": "https://clawhub.ai/plugins/cognitive-skill-factory"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "GCP Data & ML Platform",
+  "provider": "gcp",
+  "canvas": {"width": 1440, "height": 700},
+  "zones": [
+    {"id": "gcp", "label": "Google Cloud", "x": 320, "y": 70, "width": 1000, "height": 580}
+  ],
+  "nodes": [
+    {"id": "user", "title": "Users", "icon": "Users", "provider": "microsoft", "x": 40, "y": 320, "width": 60, "height": 60, "card": false},
+    {"id": "run", "title": "Cloud Run", "desc": "API service", "icon": "Cloud Run", "x": 360, "y": 160, "width": 250, "height": 84},
+    {"id": "gke", "title": "GKE", "desc": "Microservices", "icon": "GKE", "x": 360, "y": 400, "width": 250, "height": 84},
+    {"id": "bq", "title": "BigQuery", "desc": "Data warehouse", "icon": "BigQuery", "x": 700, "y": 160, "width": 250, "height": 84},
+    {"id": "gcs", "title": "Cloud Storage", "desc": "Data lake", "icon": "GCS", "x": 700, "y": 400, "width": 250, "height": 84},
+    {"id": "vertex", "title": "Vertex AI", "desc": "Model training", "icon": "Vertex AI", "x": 1040, "y": 160, "width": 240, "height": 84},
+    {"id": "looker", "title": "Looker", "desc": "BI dashboards", "icon": "Looker", "x": 1040, "y": 400, "width": 240, "height": 84}
+  ],
+  "edges": [
+    {"from": "user", "to": "run", "label": "HTTPS", "dir": "both"},
+    {"from": "run", "to": "gke", "label": "", "dir": "both"},
+    {"from": "run", "to": "bq", "label": "Query", "dir": "both", "color": "#1565c0"},
+    {"from": "gke", "to": "gcs", "label": "Read/Write", "dir": "both"},
+    {"from": "gcs", "to": "bq", "label": "Load", "dir": "to"},
+    {"from": "bq", "to": "vertex", "label": "Train", "dir": "to", "color": "#1565c0"},
+    {"from": "bq", "to": "looker", "label": "Visualize", "dir": "to"}
+  ]
+}

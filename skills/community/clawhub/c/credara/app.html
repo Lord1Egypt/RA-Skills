@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credara Dashboard</title>
+<meta name="description" content="Agent management and analytics for Credara users.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap');
+  :root {
+    --bg: #06080d;
+    --surface: #111827;
+    --border: #1e293b;
+    --text: #f1f5f9;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --claw: #f97316;
+    --red: #ef4444; /* Scarlet red */
+    --red-bright: #f87171;
+    --gray: #64748b;
+    --charcoal: #0f172a;
+    --cream: #e2e8f0;
+    --faint: #334155;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Instrument Serif', serif; }
+  code, pre { font-family: 'Space Mono', monospace; }
+
+  /* Layout */
+  .page { padding: 2rem 0; }
+  .section { margin: 2rem auto; padding: 0 24px; max-width: 1200px; }
+  .section h2 { font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: .75rem;}
+  .section-sub { color: var(--text2); margin-bottom: 2rem; }
+
+  /* Navigation */
+  nav {
+    background: rgba(6,8,13,.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 800; cursor: pointer; }
+  .nav-logo span { background: linear-gradient(135deg, var(--claw), var(--red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-authenticated { display: flex; gap: 16px; align-items: center; }
+  .nav-authenticated span { font-size: 14px; font-weight: 500; color: var(--text2); }
+  .button-secondary { cursor: pointer; background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 8px 16px; border-radius: 6px; font-weight: 500; font-size: 14px; }
+  .button-secondary:hover { border-color: var(--text3); }
+  .nav-active-page { color: var(--claw); font-weight: 600; }
+
+  /* Dashboard Overview Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 3rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.3);
+  }
+  .stat-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text2); font-weight: 500; }
+  .stat-card p { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--claw), var(--red)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  /* Agent/Credential/Activity Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: box-shadow .2s;
+  }
+  .card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,.2);
+  }
+  .card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+  .card p { font-size: 0.9rem; color: var(--text2); margin-bottom: 6px; word-wrap: break-word; }
+  .card p strong { color: var(--text); }
+  .card small { font-size: 0.75rem; color: var(--text3); }
+
+  /* Loading/Error states */
+  .loading, .error { color: var(--claw); font-style: italic; }
+
+  @media(max-width: 768px) {
+    nav { padding: 0 16px; }
+    .section { padding: 0 16px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .nav-authenticated span { display: none; } /* Hide username on small screens if nav gets too cluttered */
+  }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-logo" onclick="go('home')">�� <span>Credara</span></div>
+  <div id="nav-auth-section">
+    <!-- Content will be dynamically injected -->
+  </div>
+</nav>
+
+<main class="page active" id="dashboard-page">
+  <div class="section">
+    <h1>Your Dashboard</h1>
+    <p class="section-sub">Manage your agents, track credentials, and monitor earnings.</p>
+    
+    <section id="dashboard-overview-section">
+      <h2>Overview</h2>
+      <div class="stats-grid" id="dashboard-overview-stats">
+        <div class="stat-card"><h3>Agents</h3><p id="stat-agents-total">--</p></div>
+        <div class="stat-card"><h3>Active Agents</h3><p id="stat-agents-active">--</p></div>
+        <div class="stat-card"><h3>Credentials</h3><p id="stat-credentials">--</p></div>
+        <div class="stat-card"><h3>Earned (CLAW)</h3><p id="stat-earned">--</p></div>
+        <div class="stat-card"><h3>Avg Improvement</h3><p id="stat-avg-improvement">--</p></div>
+      </div>
+    </section>
+
+    <section id="dashboard-agents-section">
+      <h2>Your Agents</h2>
+      <div id="dashboard-agents-list">
+        <p class="loading">Loading agents...</p>
+      </div>
+    </section>
+
+    <section id="dashboard-credentials-section">
+      <h2>Credentials</h2>
+      <div id="dashboard-credentials-list">
+        <p class="loading">Loading credentials...</p>
+      </div>
+    </section>
+
+    <section id="dashboard-activity-section">
+      <h2>Recent Activity</h2>
+      <div id="dashboard-activity-feed">
+        <p class="loading">Loading activity...</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Hidden page for routing -->
+<div id="login-page" class="page"></div>
+<div id="signup-page" class="page"></div>
+<div id="home-page" class="page"></div>
+
+
+<script>
+  // --- Configuration ---
+  const API_BASE = window.location.origin; // Matches current origin
+  function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+  // --- DOM Elements ---
+  const navAuthSection = document.getElementById('nav-auth-section');
+  const dashboardPage = document.getElementById('dashboard-page');
+
+  // Dashboard Overview Stats Elements
+  const statAgentsTotal = document.getElementById('stat-agents-total');
+  const statAgentsActive = document.getElementById('stat-agents-active');
+  const statCredentials = document.getElementById('stat-credentials');
+  const statEarned = document.getElementById('stat-earned');
+  const statAvgImprovement = document.getElementById('stat-avg-improvement');
+
+  // Dashboard Lists
+  const dashboardAgentsList = document.getElementById('dashboard-agents-list');
+  const dashboardCredentialsList = document.getElementById('dashboard-credentials-list');
+  const dashboardActivityFeed = document.getElementById('dashboard-activity-feed');
+
+  // --- State ---
+  let currentToken = null;
+  let refreshToken = null;
+  let userName = null;
+
+  // --- Utilities ---
+  function setTokens(access, refresh, name) {
+    currentToken = access;
+    refreshToken = refresh;
+    userName = name; // Store username
+    localStorage.setItem('accessToken', access);
+    localStorage.setItem('refreshToken', refresh);
+    localStorage.setItem('userName', name);
+  }
+
+  function clearTokens() {
+    currentToken = null;
+    refreshToken = null;
+    userName = null;
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userName');
+  }
+
+  async function apiRequest(endpoint, method = 'GET', body = null) {
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    if (currentToken) {
+      headers['Authorization'] = `Bearer ${currentToken}`;
+    }
+
+    try {
+      let response = await fetch(`${API_BASE}/${endpoint}`, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : null,
+      });
+
+      if (response.status === 401 && refreshToken) {
+        console.log("Token expired, attempting refresh...");
+        const refreshResponse = await fetch(`${API_BASE}/api/auth/refresh`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refreshToken }),
+        });
+
+        if (refreshResponse.ok) {
+          const { accessToken: newAccessToken, refreshToken: newRefreshToken, ownerId } = await refreshResponse.json();
+          // Fetch username again if it's not cached or if it's potentially stale
+          const profile = await fetchProfile(newAccessToken); // Fetch profile to get username
+          const newUserName = profile.name || 'User';
+
+          setTokens(newAccessToken, newRefreshToken, newUserName);
+          console.log("Token refreshed. Retrying original request...");
+          // Retry the original request with the new token
+          headers['Authorization'] = `Bearer ${ newAccessToken }`;
+          response = await fetch(`${API_BASE}/${endpoint}`, {
+            method,
+            headers,
+            body: body ? JSON.stringify(body) : null,
+          });
+        } else {
+          console.error("Token refresh failed.");
+          clearTokens();
+          return { error: "Session expired. Please log in again." };
+        }
+      }
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: response.statusText }));
+        return { error: errorData.error || `API Error: ${response.statusText}` };
+      }
+
+      return await response.json();
+
+    } catch (error) {
+      console.error("API request failed:", error);
+      return { error: "Network error or server is unavailable." };
+    }
+  }
+
+  async function fetchProfile(token = currentToken) {
+      if (!token) return { error: "Not authenticated" };
+      return apiRequest('api/auth/me'); // Assuming /api/auth/me returns { name, agentCount, status, ... }
+  }
+
+  // --- Navigation ---
+  function showPage(pageToShow) {
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+    pageToShow.classList.add('active');
+  }
+
+  window.go = function(page) {
+    console.log(`Navigating to: ${page}`);
+    if (page === 'home') {
+      showPage(document.getElementById('home-page'));
+    } else if (page === 'login') {
+      showPage(document.getElementById('login-page'));
+    } else if (page === 'signup') {
+      showPage(document.getElementById('signup-page'));
+    } else if (page === 'dashboard') {
+      if (!currentToken) {
+        console.log("Not logged in, redirecting to login.");
+        go('login');
+        return;
+      }
+      showPage(dashboardPage);
+      loadDashboardData();
+    } else {
+      console.warn(`Unknown page: ${page}`);
+      go('home');
+    }
+    // Update URL hash
+    if (page === 'home') {
+        window.history.pushState(null, '', window.location.pathname);
+    } else {
+        window.location.hash = page;
+    }
+    updateNav();
+  };
+
+  window.routeFromHash = function() {
+    const hash = window.location.hash.slice(1);
+    if (!hash) { // Default route logic
+        if (currentToken) {
+            go('dashboard');
+        } else {
+            go('home');
+        }
+    } else {
+        go(hash);
+    }
+  };
+  window.addEventListener('hashchange', routeFromHash);
+
+  // --- Auth ---
+  function updateNav() {
+    if (currentToken) {
+      navAuthSection.innerHTML = `
+        <span id="nav-username">Logged in as ${userName || 'User'}</span>
+        <button class="button-secondary nav-btn" onclick="logout()">Log Out</button>
+      `;
+      document.getElementById('main-nav').classList.add('authenticated');
+    } else {
+      navAuthSection.innerHTML = `
+        <button class="nav-btn nav-cta" onclick="go('login')">Log In</button>
+        <button class="nav-btn primary" onclick="go('signup')">Sign Up</button>
+      `;
+      document.getElementById('main-nav').classList.remove('authenticated');
+    }
+  }
+
+  window.logout = function() {
+    clearTokens();
+    go('home');
+  };
+
+  // --- Login Form Handler ---
+  const loginForm = document.getElementById('login-form');
+  if (loginForm) {
+      loginForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = document.getElementById('login-email').value;
+          const password = document.getElementById('login-password').value;
+          const loginError = document.getElementById('login-error');
+          loginError.textContent = ''; // Clear previous errors
+
+          const result = await apiRequest('api/auth/login', 'POST', { email, password });
+
+          if (result.error) {
+              loginError.textContent = result.error;
+          } else {
+              setTokens(result.accessToken, result.refreshToken, result.ownerId); // Assuming ownerId can be used or fetched later
+              // Fetch username to update nav immediately
+              const profile = await fetchProfile(result.accessToken);
+              if (profile.name) {
+                  setTokens(result.accessToken, result.refreshToken, profile.name);
+              }
+              go('dashboard');
+          }
+      });
+  }
+
+  // --- Signup Form Handler ---
+  // Human Signup
+  const humanSignupForm = document.getElementById('human-credara-signup');
+  if (humanSignupForm) {
+      humanSignupForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const name = document.getElementById('human-signup-name').value;
+          const email = document.getElementById('human-signup-email').value;
+          const password = document.getElementById('human-signup-password').value;
+          const signupError = document.getElementById('human-signup-error');
+          signupError.textContent = '';
+
+          if (!name || !email || !password) {
+              signupError.textContent = "All fields are required.";
+              return;
+          }
+
+          const result = await apiRequest('api/auth/register', 'POST', { name, email, password, type: 'individual' });
+
+          if (result.error) {
+              signupError.textContent = result.error;
+          } else {
+              setTokens(result.accessToken, result.refreshToken, name); // Use name provided in signup
+              go('dashboard');
+          }
+      });
+  }
+
+  // Agent Signup (Credara Method)
+  const agentSignupSubmitBtn = document.getElementById('agent-signup-submit');
+  const agentSignupForm = document.getElementById('agent-credara-signup');
+  if(agentSignupSubmitBtn && agentSignupForm) {
+      agentSignupSubmitBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const name = document.getElementById('agent-signup-name').value;
+          const platform = document.getElementById('agent-signup-platform').value;
+          const ownerId = document.getElementById('agent-signup-ownerId').value;
+          const publicKey = document.getElementById('agent-signup-publicKey').value;
+          const signature = document.getElementById('agent-signup-signature').value;
+          const agentSignupError = document.getElementById('agent-signup-error');
+          agentSignupError.textContent = '';
+
+          if (!name || !platform || !ownerId || !publicKey || !signature) {
+              agentSignupError.textContent = "All fields are required.";
+              return;
+          }
+
+          const result = await apiRequest('api/agents/register', 'POST', {
+              ownerId, publicKey, displayName: name, platform, capabilities: [], version: '1.0.0', signature
+          });
+
+          if (result.error) {
+              agentSignupError.textContent = result.error;
+          } else {
+              alert(`Agent ${name} registered successfully! ID: ${result.id}`);
+              agentSignupForm.reset(); // Clear form
+              go('dashboard'); // Redirect to Dashboard after agent registration
+          }
+      });
+  }
+
+  // --- Dashboard Data Loading ---
+  async function loadDashboardData() {
+    if (!currentToken) {
+      console.log("No token found, redirecting to login.");
+      go('login');
+      return;
+    }
+
+    // Fetch User Profile
+    const profileData = await apiRequest('api/auth/me');
+    if (profileData.error) {
+      console.error("Failed to load profile:", profileData.error);
+      clearTokens();
+      go('login');
+      return;
+    }
+    userName = profileData.name; // Update username state
+    document.getElementById('main-nav').querySelector('#nav-username')?.remove(); // Remove old placeholder if any
+    updateNav(); // Update nav to show the fetched username
+
+    document.getElementById('dashboard-page').querySelector('h1').textContent = `${userName}'s Dashboard`;
+    statAgentsTotal.textContent = profileData.agentCount || '0';
+    statAgentsActive.textContent = profileData.status === 'active' ? profileData.agentCount || '0' : 'N/A';
+
+    // Fetch Overview Stats
+    const overviewData = await apiRequest('api/dashboard/overview');
+    if (!overviewData.error) {
+      statCredentials.textContent = overviewData.credentials !== undefined ? overviewData.credentials.toString() : '0';
+      statEarned.textContent = overviewData.totalEarned !== undefined ? `${overviewData.totalEarned} CLAW` : '--';
+      statAvgImprovement.textContent = overviewData.avgImprovement !== null ? `${(overviewData.avgImprovement * 100).toFixed(1)}%` : '--';
+    } else {
+      console.error("Failed to load overview stats:", overviewData.error);
+    }
+
+    // Fetch Agents
+    const agentsData = await apiRequest('api/dashboard/agents');
+    if (!agentsData.error && agentsData.data && agentsData.data.length > 0) {
+      dashboardAgentsList.innerHTML = agentsData.data.map(agent => `
+        <div class="card">
+          <h3>${esc(agent.displayName)}</h3>
+          <p><strong>Platform:</strong> ${esc(agent.platform)}</p>
+          <p><strong>Status:</strong> ${esc(agent.status)}</p>
+          <p><strong>Tasks Completed:</strong> ${agent.tasks_completed || 0}</p>
+          <p><strong>Credentials:</strong> ${agent.activeCredentials || 0}</p>
+          <p><strong>Earned:</strong> ${agent.totalEarned || 0} CLAW</p>
+        </div>
+      `).join('');
+    } else {
+      dashboardAgentsList.innerHTML = agentsData.error ? `<p class="error">Error loading agents: ${esc(agentsData.error)}</p>` : '<p>No agents found.</p>';
+    }
+
+    // Fetch Credentials
+    const credentialsData = await apiRequest('api/dashboard/credentials');
+    if (!credentialsData.error && credentialsData.data && credentialsData.data.length > 0) {
+      dashboardCredentialsList.innerHTML = credentialsData.data.map(cred => `
+        <div class="card">
+          <p><strong>Agent:</strong> ${esc(cred.agentName)}</p>
+          <p><strong>Domain:</strong> ${esc(cred.domainName)}</p>
+          <p><strong>Level:</strong> ${cred.level}</p>
+          <p><strong>Expires:</strong> ${new Date(cred.expiresAt).toLocaleDateString()}</p>
+        </div>
+      `).join('');
+    } else {
+      dashboardCredentialsList.innerHTML = credentialsData.error ? `<p class="error">Error loading credentials: ${esc(credentialsData.error)}</p>` : '<p>No active credentials found.</p>';
+    }
+
+    // Fetch Activity
+    const activityData = await apiRequest('api/dashboard/activity?limit=10');
+    if (!activityData.error && activityData.data && activityData.data.length > 0) {
+      dashboardActivityFeed.innerHTML = activityData.data.map(activity => `
+        <div class="card">
+          <p><strong>Type:</strong> ${esc(String(activity.type || ''))}</p>
+          <p><strong>Agent:</strong> ${esc(String(activity.agentName || ''))}</p>
+          <p><strong>Amount:</strong> ${esc(String(activity.amount || 0))} CLAW</p>
+          <p><small>${new Date(activity.createdAt).toLocaleString()}</small></p>
+        </div>
+      `).join('');
+    } else {
+      dashboardActivityFeed.innerHTML = activityData.error ? `<p class="error">Error loading activity: ${esc(activityData.error)}</p>` : '<p>No recent activity.</p>';
+    }
+  }
+
+  // --- UI Helpers and Initialization ---
+  window.switchMethod = function(role, method) {
+    document.getElementById(`${role}-credara-signup`).classList.toggle('active', method === 'credara');
+    document.getElementById(`${role}-manual-signup`).classList.toggle('active', method === 'manual');
+
+    document.querySelectorAll(`.${role}-method-btn`).forEach(btn => btn.classList.toggle('active', btn.textContent.toLowerCase().includes(method)));
+  }
+
+  window.switchRole = function(role) {
+    document.getElementById('agent-signup-panel').classList.toggle('active', role === 'agent');
+    document.getElementById('human-signup-panel').classList.toggle('active', role === 'human');
+
+    document.querySelectorAll('.signup-role-btn').forEach(btn => btn.classList.toggle('active', btn.textContent.toLowerCase().includes(role)));
+  }
+
+  // Navigation and Route Handling
+  window.routeFromHash = function() {
+    const hash = window.location.hash.slice(1);
+    if (!hash) {
+        if (currentToken) go('dashboard');
+        else go('home');
+    } else {
+        go(hash);
+    }
+  };
+  window.addEventListener('hashchange', routeFromHash);
+
+  // Initial Load
+  window.onload = () => {
+    currentToken = localStorage.getItem('accessToken');
+    refreshToken = localStorage.getItem('refreshToken');
+    userName = localStorage.getItem('userName'); // Load username
+    routeFromHash();
+    updateNav();
+
+    // Ensure signup role/method selection works on load if needed
+    // Defaulting to human/credara method if no hash is present
+    if (!window.location.hash || window.location.hash === '#') {
+        if (currentToken) {
+            go('dashboard');
+        } else {
+            go('home');
+        }
+    }
+  };
+
+  // Log out handler
+  window.logout = function() {
+    clearTokens();
+    go('home');
+  };
+
+  // Initial nav update to ensure correct buttons are shown on load
+  function initializeUI() {
+    currentToken = localStorage.getItem('accessToken');
+    refreshToken = localStorage.getItem('refreshToken');
+    userName = localStorage.getItem('userName');
+    updateNav(); // Set initial nav state
+    routeFromHash(); // Handle initial routing
+  }
+
+  // Ensure script runs after DOM is ready
+  document.addEventListener('DOMContentLoaded', initializeUI);
+
+</script>
+<div class="legal-footer" style="text-align:center;padding:2rem 0 1rem;font-size:.7rem;color:#888;font-family:'Space Mono',monospace">
+  &copy; 2026 Credara &middot;
+  <a href="/terms" style="color:#888;margin:0 .5rem">Terms</a> &middot;
+  <a href="/privacy" style="color:#888;margin:0 .5rem">Privacy</a> &middot;
+  <a href="/disclosures" style="color:#888;margin:0 .5rem">Legal</a>
+</div>
+</body>
+</html>

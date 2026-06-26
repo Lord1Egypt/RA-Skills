@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agentsaas Complex Task</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./agentsaas_styles.css" />
+</head>
+
+<body>
+    <div class="screen-complex">
+        <div id="prompt" class="prompt-area"></div>
+        <div id="header" class="subagents-header">
+            <div class="spinner"></div>
+            <span>Executing Autonomous Plan</span>
+        </div>
+        <div id="tasks" class="tasks-list">
+            <div class="task-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>Searching financial databases for FY-2025 reports...</span></div>
+            <div class="task-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>Updating valuation model with real-time stock price...</span></div>
+            <div class="task-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>Synthesizing competitive analysis from 12 separate sources...</span></div>
+        </div>
+        <div id="result" class="result-area">
+            <div class="result-title">Nvidia Valuation Report</div>
+            <div class="result-content">Based on current data, Nvidia's forward P/E ratio remains attractive compared to peer AI chipmakers. Revenue growth in the Data Center segment is projected to exceed 40% YoY. Key risks include geopolitical tensions and supply chain constraints...</div>
+        </div>
+    </div>
+
+    <script>
+        const promptText = 'Analyze Nvidia valuation and recent earnings reports to generate a comprehensive investment summary.';
+        const promptEl = document.getElementById('prompt');
+        const headerEl = document.getElementById('header');
+
+        window.onTimelineUpdate = (t) => {
+            const typeIndex = Math.max(0, Math.min(promptText.length, Math.floor((t - 0.3) / 0.03) + 1));
+            promptEl.textContent = promptText.slice(0, typeIndex);
+
+            if (t >= 8.10) {
+                headerEl.innerHTML = '<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>Plan Completed</span>';
+                headerEl.style.background = 'rgba(16, 185, 129, 0.2)';
+            } else {
+                headerEl.innerHTML = '<div class="spinner"></div><span>Executing Autonomous Plan</span>';
+                headerEl.style.background = 'rgba(59, 130, 246, 0.1)';
+            }
+        };
+    </script>
+</body>
+
+</html>

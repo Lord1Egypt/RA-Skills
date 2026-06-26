@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coupang Shopping Relay"
+  short_description: "Search Coupang and manage carts via Chrome relay"
+  default_prompt: "Use $coupang-shopping-relay to search Coupang, review cart contents, and safely verify cart changes before checkout."

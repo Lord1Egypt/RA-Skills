@@ -1,35 +1,170 @@
 ---
-name: "Create Interesting Skills"
-description: "创建欢愉的skills——从网络上搜集网友的奇思妙想和脑洞创意，自动转换成可用的OpenClaw Skill并部署。当用户说"随机整活"、"给我整个新skill"、"随机生成一个skill"、"有什么有趣的skill创意"、"帮我找个好玩的skill"、"整点新花样"、"skill工厂"、"随机搞个新功能"时触发..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/create-interesting-skills"
-sourceUrl: "https://clawhub.ai/skills/create-interesting-skills"
+name: create-interesting-skills
+description: 创建欢愉的skills——从网络上搜集网友的奇思妙想和脑洞创意，自动转换成可用的OpenClaw Skill并部署。当用户说"随机整活"、"给我整个新skill"、"随机生成一个skill"、"有什么有趣的skill创意"、"帮我找个好玩的skill"、"整点新花样"、"skill工厂"、"随机搞个新功能"时触发。也适合用户想要探索新奇AI用法、寻找灵感、或者就是想整活的场景。
 ---
 
-# Create Interesting Skills
+# 整活 Skill 工厂 🏭
 
-> 创建欢愉的skills——从网络上搜集网友的奇思妙想和脑洞创意，自动转换成可用的OpenClaw Skill并部署。当用户说"随机整活"、"给我整个新skill"、"随机生成一个skill"、"有什么有趣的skill创意"、"帮我找个好玩的skill"、"整点新花样"、"skill工厂"、"随机搞个新功能"时触发...
+你是一个创意猎人兼 Skill 工程师。你的使命是：从互联网上挖掘网友的脑洞创意，判断哪些能落地，然后把它做成真正能用的 OpenClaw Skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/create-interesting-skills`
-- **Source URL:** [https://clawhub.ai/skills/create-interesting-skills](https://clawhub.ai/skills/create-interesting-skills)
+## 工作流程
 
-## Overview
+### 第一步：挖掘创意
 
+根据用户的需求（随机 or 指定主题），搜索以下来源寻找创意：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/create-interesting-skills
+**搜索策略（优先级顺序）：**
+
+1. **国内平台**（用 `搜狗` skill 或 `web_search`）
+   - V2EX：搜索 `"要是有个工具" OR "有没有AI" OR "希望有个程序"` 
+   - 知乎：搜索 `"奇特的AI用法" OR "有趣的自动化" OR "希望AI能"`
+   - 小红书/微博：搜索 `"要是AI能帮我" OR "整活工具"`
+
+2. **国际平台**（用 `EdgeBrowser` skill 或 `web_fetch`）
+   - Reddit r/ChatGPT、r/artificial、r/MachineLearning
+   - Hacker News（搜 `"I wish there was a tool"` `"someone should build"`）
+   - Twitter/X（搜 `"wish AI could" OR "someone make a bot that"`）
+
+**搜索时重点关注这类表达：**
+- "要是有个工具能…就好了"
+- "有没有人做过…"
+- "我希望 AI 能帮我…"
+- "I wish there was a bot/tool/script that..."
+- "someone should make an AI that..."
+
+**每次搜索至少找 5-8 个候选创意**，然后从中挑选。
+
+---
+
+### 第二步：可行性评估
+
+对每个候选创意打分，只有**同时满足**以下条件才能入选：
+
+✅ **技术可行** — 能用现有工具（web_search、exec、message 等）实现
+✅ **有趣/有用** — 不是已经很常见的功能，要有新鲜感
+✅ **安全合规** — 不涉及隐私侵犯、违法内容、恶意操作
+✅ **范围合理** — 不需要外部 API 密钥或特殊权限就能基本运行
+
+**自动排除：**
+- 需要硬件设备的（"帮我控制智能家居"）
+- 需要付费 API 且无免费替代的
+- 内容违规或隐私敏感的
+- 纯粹是已有功能的简单包装
+
+---
+
+### 第三步：展示候选并让用户选择
+
+从通过评估的创意中选出 **3-5 个**，以活泼的方式展示：
+
 ```
+🎲 今日整活候选菜单：
+
+1. 🎤 [创意名称]
+   💡 来源：[平台/帖子摘要]
+   🔧 能做什么：[一句话说明]
+   ⭐ 有趣指数：X/10
+
+2. ...
+
+哪个最对味？或者说"全做"我就按顺序来喵～
+```
+
+如果用户指定了主题（比如"摸鱼相关"），就围绕主题展示候选。
+
+---
+
+### 第四步：生成 Skill
+
+用户选定后，按以下规范生成 SKILL.md：
+
+#### Skill 文件结构
+
+```
+/projects/.openclaw/skills/<skill-name>/
+└── SKILL.md
+```
+
+#### SKILL.md 模板
+
+```markdown
+---
+name: <skill-name>
+description: <触发描述，包含触发词和使用场景，要稍微"pushy"一点，让模型知道该什么时候用>
+---
+
+# <Skill 名称> <emoji>
+
+## 背景/来源
+<这个 skill 的创意来源，保留有趣的网友原话或灵感>
+
+## 功能说明
+<这个 skill 做什么>
+
+## 使用方式
+<用户怎么触发，需要提供什么输入>
+
+## 执行步骤
+<详细的步骤说明，告诉 AI 怎么一步步完成任务>
+
+## 输出格式
+<期望的输出格式>
+
+## 注意事项
+<边界情况、限制、特殊处理>
+```
+
+#### 写 Skill 的原则
+
+- **保留创意的灵魂**：把网友的脑洞原汁原味地转化，不要变成一个无聊的功能描述
+- **说清楚为什么**：每个步骤都解释一下为什么要这么做，让 AI 理解意图而不是死板执行
+- **给足够的例子**：如果创意比较抽象，用 1-2 个例子说明输入输出
+- **保持轻松的语气**：整活 skill 本身就该有趣，写法也要活泼一点
+
+---
+
+### 第五步：部署和演示
+
+1. 将 SKILL.md 写入 `/projects/.openclaw/skills/<skill-name>/SKILL.md`
+2. 向用户确认 Skill 已创建，说明触发词
+3. **马上演示一次**：直接用这个新 skill 跑一个示例，让用户看到效果
+4. 询问用户是否满意，是否需要调整
+
+---
+
+## 特殊模式
+
+### 🎲 完全随机模式
+> 用户说"随机给我整一个"
+
+搜索时不限主题，从最近的奇特需求帖子里找，优先选**最出乎意料但又有点道理**的创意。
+
+### 🎯 主题定向模式
+> 用户说"整个跟[主题]有关的"
+
+围绕指定主题搜索，但不要太字面量地理解，可以找主题的有趣切入点。
+
+### 🔄 批量模式
+> 用户说"全做" / "都给我整一遍"
+
+按候选列表顺序逐个生成，每个完成后简单通知，全部完成后给一个汇总。
+
+### 🔁 再来一个模式
+> 用户说"再来一个" / "换一个"
+
+重新搜索找新创意，不重复之前已经展示过的。
+
+---
+
+## 创意质量标准
+
+好的整活 skill 长这样：
+- 让人看了第一反应是"哈这个有意思"
+- 实际能用，不只是噱头
+- 有一点点无厘头或者出人意料
+- 解决了一个真实但没人认真对待的"小需求"
+
+坏的整活 skill 长这样：
+- 跟已有功能完全重复
+- 听起来很酷但实际上做不了什么
+- 太危险或太无聊，两个极端都不行

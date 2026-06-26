@@ -1,35 +1,42 @@
 ---
-name: "Colorpick"
+name: ColorPick
 description: "Color picker and converter. Use when you need colorpick."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/colorpick"
-sourceUrl: "https://clawhub.ai/skills/colorpick"
+version: "2.0.0"
+author: "BytesAgain"
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
+tags: ["color","hex","rgb","hsl","palette","design","css"]
+categories: ["Developer Tools", "Utility"]
 ---
+# ColorPick
 
-# Colorpick
+Color picker and converter. Convert between hex, RGB, HSL color formats, generate color palettes, find complementary colors, and preview colors in terminal.
 
-> Color picker and converter. Use when you need colorpick.
+## Quick Start
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/colorpick`
-- **Source URL:** [https://clawhub.ai/skills/colorpick](https://clawhub.ai/skills/colorpick)
+Run `colorpick help` for available commands and usage examples.
 
-## Overview
+## Features
 
+- Fast and lightweight — pure bash with embedded Python
+- No external dependencies required
+ in `~/.colorpick/`
+- Works on Linux and macOS
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+
 ```bash
-hermes skills install clawhub/colorpick
+colorpick help
 ```
+
+---
+💬 Feedback: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+- Run `colorpick help` for all commands
+
+- Run `colorpick help` for all commands
+
+## Configuration
+
+Set `COLORPICK_DIR` to change data directory. Default: `~/.local/share/colorpick/`

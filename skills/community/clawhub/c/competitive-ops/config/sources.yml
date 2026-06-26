@@ -1,0 +1,12 @@
+trusted_sources:
+  - name: tavily
+    priority: 1
+    api_required: true
+  - name: company_website
+    priority: 2
+  - name: g2
+    priority: 3
+  - name: glassdoor
+    priority: 4
+  - name: linkedin
+    priority: 5

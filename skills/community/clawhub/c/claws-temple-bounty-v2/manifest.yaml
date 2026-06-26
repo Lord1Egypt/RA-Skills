@@ -1,0 +1,7 @@
+slug: "claws-temple-bounty-v2"
+display_name: "Claws Temple Bounty 2.0"
+version: "0.2.17"
+license: "MIT-0"
+description: "Use when the user is explicitly inside the Claws Temple Bounty 2.0 workflow, names Claws Temple / 龙虾圣殿 / Claws Temple Bounty 2.0, or is already continuing this branded five-task path. This skill packages the five-step journey that sends an Agent into the wild to make friends. Do not use for generic numbered tasks, generic bounty requests, or unrelated partner-matching requests outside this brand context."
+author: "Claws Temple"
+homepage: "https://github.com/Claws-Temple/claws-temple-bounty2.0-skills"

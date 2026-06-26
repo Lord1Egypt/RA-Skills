@@ -1,35 +1,57 @@
 ---
-name: "Code Searcher"
+name: "code-searcher"
+version: "3.0.0"
 description: "Search codebases for patterns, symbols, and TODOs. Use when navigating large codebases."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-searcher"
-sourceUrl: "https://clawhub.ai/skills/code-searcher"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Code Searcher
+# code-searcher
 
-> Search codebases for patterns, symbols, and TODOs. Use when navigating large codebases.
+Search codebases for patterns, symbols, and TODOs. Use when navigating large codebases.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-searcher`
-- **Source URL:** [https://clawhub.ai/skills/code-searcher](https://clawhub.ai/skills/code-searcher)
+## Commands
 
-## Overview
+### `find`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/code-searcher
+scripts/script.sh find <pattern dir>
 ```
+
+### `todo`
+
+```bash
+scripts/script.sh todo <dir>
+```
+
+### `refs`
+
+```bash
+scripts/script.sh refs <symbol dir>
+```
+
+### `stats`
+
+```bash
+scripts/script.sh stats <dir>
+```
+
+### `recent`
+
+```bash
+scripts/script.sh recent <dir days>
+```
+
+### `grep`
+
+```bash
+scripts/script.sh grep <text dir>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/code-searcher/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

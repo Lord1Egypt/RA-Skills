@@ -1,35 +1,33 @@
 ---
-name: "Cn Smart Email"
+slug: cn-smart-email
+name: 智能邮件助手
 description: "cn-smart-email。纯Python标准库，无需API Key。"
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-smart-email"
-sourceUrl: "https://clawhub.ai/skills/cn-smart-email"
+keywords: smart, email
+version: "1.0.0"
+author: 千策
 ---
 
-# Cn Smart Email
 
-> cn-smart-email。纯Python标准库，无需API Key。
+# 邮件分类与回复助手
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-smart-email`
-- **Source URL:** [https://clawhub.ai/skills/cn-smart-email](https://clawhub.ai/skills/cn-smart-email)
+分类邮件并提供回复模板。
 
-## Overview
+## 功能
+- 邮件分类（工作/个人/通知/广告）
+- 回复模板生成
+- 中文邮件场景支持
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 用法
 ```bash
-hermes skills install clawhub/cn-smart-email
+python3 scripts/smart_email.py --classify "邮件内容"
+python3 scripts/smart_email.py --reply "邮件内容" --tone formal
 ```
+
+## 依赖
+- Python 3.7+（标准库，无外部依赖）
+
+---
+
+**出品：** AISoBrand｜爱索品牌 — AI搜索优化工具  
+**官网：** https://aisobrand.com  
+**免费检测你的品牌在AI搜索中有没有存在感 →** [30秒出结果](https://aisobrand.com/free-diagnosis.html)

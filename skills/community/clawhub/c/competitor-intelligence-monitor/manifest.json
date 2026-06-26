@@ -1,0 +1,101 @@
+{
+  "version": "1.0.0",
+  "name": "competitor-intelligence-monitor",
+  "displayName": "竞品情报监控系统",
+  "displayNameEn": "Competitor Intelligence Monitor",
+  "description": "输入竞品链接/品牌，自动生成竞品分析报告（定价策略、营销动作、用户评价分析、SWOT、应对策略）。帮助产品经理、市场运营、创业者快速掌握竞品动态。",
+  "descriptionEn": "Input competitor link/brand, auto-generate intelligence report (pricing strategy, marketing moves, user reviews, SWOT, counter-strategies).",
+  "author": "上海冰月网络科技有限公司",
+  "authorEn": "Shanghai Bingyue Network Technology Co., Ltd.",
+  "category": "市场/运营",
+  "tags": ["竞品分析", "市场情报", "SWOT", "定价策略", "产品经理", "市场运营"],
+  "tagsEn": ["competitor-analysis", "market-intelligence", "SWOT", "pricing", "product-manager"],
+  "price": {
+    "cny": 79,
+    "usd": 29.99,
+    "type": "one-time"
+  },
+  "pricingOptions": [
+    {
+      "name": "单次报告",
+      "priceCny": 9.9,
+      "priceUsd": 3.99,
+      "description": "生成 1 份竞品分析报告"
+    },
+    {
+      "name": "月度会员",
+      "priceCny": 79,
+      "priceUsd": 29.99,
+      "description": "无限次报告 + 竞品监控 + 变化提醒"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "competitor_name",
+      "type": "string",
+      "required": true,
+      "description": "竞品名称/品牌"
+    },
+    {
+      "name": "competitor_url",
+      "type": "string",
+      "required": false,
+      "description": "竞品链接（官网/产品页/应用商店）"
+    },
+    {
+      "name": "my_product",
+      "type": "string",
+      "required": false,
+      "description": "我的产品名称"
+    },
+    {
+      "name": "industry",
+      "type": "string",
+      "required": false,
+      "description": "所属行业（电商/SaaS/教育/金融/内容/硬件/通用）",
+      "default": "通用"
+    },
+    {
+      "name": "report_depth",
+      "type": "string",
+      "required": false,
+      "description": "报告深度（标准/深度/全面）",
+      "default": "标准"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "executive_summary",
+      "type": "string",
+      "description": "执行摘要（300 字内核心发现）"
+    },
+    {
+      "name": "pricing_analysis",
+      "type": "object",
+      "description": "定价策略分析（价格区间/促销策略/付费模式）"
+    },
+    {
+      "name": "marketing_analysis",
+      "type": "object",
+      "description": "营销动作分析（渠道/内容/活动/社交媒体）"
+    },
+    {
+      "name": "user_review_analysis",
+      "type": "object",
+      "description": "用户评价分析（好评点/差评点/情感倾向）"
+    },
+    {
+      "name": "swot",
+      "type": "object",
+      "description": "竞品 SWOT 分析（优势/劣势/机会/威胁）"
+    },
+    {
+      "name": "counter_strategies",
+      "type": "array",
+      "description": "应对策略建议（短期/中期/长期）"
+    }
+  ],
+  "compliance": "本报告基于公开信息生成，仅供参考，不构成商业决策建议。",
+  "createdAt": "2026-04-15",
+  "updatedAt": "2026-04-15"
+}

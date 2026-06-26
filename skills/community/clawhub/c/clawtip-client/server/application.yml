@@ -1,0 +1,8 @@
+server:
+  port: 8080
+client:
+  sm4Key: FFjq5637H4i7ozFZmNYREw==
+  payTo: c9d69c47228823a33eb06133922c37ec202605141526060010000805Gznn5NW3KeRdqHuVm2ROCt2NZEs0qLbqit3TMupmjHqjPXrQhCKJesmGSGidllDx61vnt7wP
+spring:
+  application:
+    name: client-server

@@ -1,0 +1,8 @@
+{
+  "name": "code-to-diagram-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "beautiful-mermaid": "^1"
+  }
+}

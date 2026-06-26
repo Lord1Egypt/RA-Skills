@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agentsaas Intro - Toggle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./agentsaas_styles.css" />
+</head>
+
+<body class="camera-down">
+    <div class="search-section">
+        <div id="search-title" class="search-title">How can I help you today?</div>
+        <div id="toggle-container" class="toggle-container">
+            <div id="toggle-pill" class="toggle-pill"></div>
+            <div class="toggle-option active-text" id="opt-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                Ask
+            </div>
+            <div class="toggle-option" id="opt-computer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                Computer
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const root = document.documentElement;
+        const pill = document.getElementById('toggle-pill');
+        const optSearch = document.getElementById('opt-search');
+        const optComputer = document.getElementById('opt-computer');
+        let mediaStartTime = null;
+        let hasAnchoredStart = false;
+        let prevGlobalTime = 0;
+
+        window.onTimelineUpdate = (t, globalTime) => {
+            const safeClipTime = Number.isFinite(t) ? t : 0;
+            const safeGlobalTime = Number.isFinite(globalTime) ? globalTime : safeClipTime;
+
+            // Ignore iframe boot-time t=0; anchor on first real synced time.
+            if (!hasAnchoredStart) {
+                if (safeGlobalTime <= 0.001) {
+                    root.style.setProperty('--t', '0.000000');
+                    optSearch.classList.add('active-text');
+                    optComputer.classList.remove('active-text');
+                    pill.classList.remove('active');
+                    return;
+                }
+                mediaStartTime = safeGlobalTime;
+                hasAnchoredStart = true;
+            } else if (safeGlobalTime < prevGlobalTime - 0.2) {
+                // Re-anchor on seek backward/replay.
+                mediaStartTime = safeGlobalTime;
+            }
+
+            const localTime = Math.max(0, safeGlobalTime - mediaStartTime);
+            prevGlobalTime = safeGlobalTime;
+
+            // Override timeline variable for this page's CSS animation timings.
+            root.style.setProperty('--t', localTime.toFixed(6));
+
+            // Keep text color switch deterministic and seek-safe.
+            if (localTime >= 0.98) {
+                optSearch.classList.remove('active-text');
+                optComputer.classList.add('active-text');
+                pill.classList.add('active');
+            } else {
+                optSearch.classList.add('active-text');
+                optComputer.classList.remove('active-text');
+                pill.classList.remove('active');
+            }
+        };
+    </script>
+</body>
+
+</html>

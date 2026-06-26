@@ -1,35 +1,19 @@
----
-name: "Compliance Review"
-description: "Automatically reviews compliance of client claim authorization letters using customized templates and pushes results to Feishu every 30 minutes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/compliance-review"
-sourceUrl: "https://clawhub.ai/skills/compliance-review"
----
+﻿# compliance-review - 授权通知书合规审核
 
-# Compliance Review
+## 描述
+自动审核客户理赔授权通知书的合规性，支持多保险公司模板配置，审核结果推送至飞书
 
-> Automatically reviews compliance of client claim authorization letters using customized templates and pushes results to Feishu every 30 minutes.
+## 版本
+1.0.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/compliance-review`
-- **Source URL:** [https://clawhub.ai/skills/compliance-review](https://clawhub.ai/skills/compliance-review)
+## 功能
+- 每 30 分钟自动检查待审核任务
+- 支持多保司定制化通知书模板
+- 谨慎审核策略：仅检测手写签名 + 授权通知书
+- 首次运行自动通过，无需人工干预
+- 审核结果实时推送至飞书
+- 不收集/存储客户个人信息
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/compliance-review
-```
+## 审核要素
+- ✅ 手写签名检测
+- ✅ 授权通知书存在验证

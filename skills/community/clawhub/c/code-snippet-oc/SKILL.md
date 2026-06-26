@@ -1,35 +1,31 @@
 ---
-name: "代码片段管理器"
-description: "代码片段收藏和管理工具"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/code-snippet-oc"
-sourceUrl: "https://clawhub.ai/skills/code-snippet-oc"
+name: code-snippet
+version: 1.0.0
+description: 代码片段收藏和管理工具
+author: OpenClaw
+tags: [代码, 片段, 收藏, 开发]
 ---
 
-# 代码片段管理器
+# code-snippet - 代码片段技能
 
-> 代码片段收藏和管理工具
+代码片段收藏和管理工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/code-snippet-oc`
-- **Source URL:** [https://clawhub.ai/skills/code-snippet-oc](https://clawhub.ai/skills/code-snippet-oc)
+## 功能列表
+1. **片段收藏** - 保存常用代码片段，带标签分类
+2. **快速搜索** - 通过关键词、标签快速查找
+3. **代码高亮** - 支持多种编程语言高亮显示
+4. **一键复制** - 快速复制所需代码片段
 
-## Overview
+## 触发关键词
+- 保存代码、收藏代码
+- 搜索代码、查找代码
+- 代码片段、代码模板
 
+## 数据存储
+- snippets.json - 代码片段库
+- tags.json - 标签管理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/code-snippet-oc
-```
+## 使用示例
+- "保存这段Python代码"
+- "搜索关于排序的代码"
+- "查找React组件模板"

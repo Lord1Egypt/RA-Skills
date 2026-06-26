@@ -1,0 +1,19 @@
+{
+  "lastChecks": {
+    "btcPrice": null,
+    "btcDom": null,
+    "macroNews": null,
+    "altcoins": null,
+    "airdrops": null
+  },
+  "lastAlerts": {
+    "priceAlert": null,
+    "newsAlert": null,
+    "altcoinAlert": null
+  },
+  "trackedLevels": {
+    "btcSupport": 84000,
+    "btcResistance": 88000,
+    "btcDomLevel": 54
+  }
+}

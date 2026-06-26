@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "checkInterval": "heartbeat",
+  "thresholds": {
+    "warning": 60,
+    "danger": 70,
+    "critical": 85
+  },
+  "alertMethod": "message",
+  "alertStyle": "emoji",
+  "preventDuplicates": true,
+  "trackHistory": true,
+  "historyPath": "memory/context-guardian-state.json",
+  "suggestions": {
+    "autoSuggest": true,
+    "suggestCompression": true,
+    "suggestRestart": true
+  }
+}

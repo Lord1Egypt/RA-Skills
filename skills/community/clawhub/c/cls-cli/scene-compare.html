@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>场景对比</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f8f9fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 960px; width: 100%; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+  }
+  .header p {
+    font-size: 15px;
+    color: #888;
+  }
+
+  .compare {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+  }
+  .card {
+    flex: 1;
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    opacity: 0;
+    transform: translateY(20px);
+    display: flex;
+    flex-direction: column;
+  }
+  .card-past { animation: fadeUp 0.5s ease 0.2s forwards; }
+  .card-now  { animation: fadeUp 0.5s ease 0.4s forwards; }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+  .card-past .card-tag { background: #fef2f2; color: #b45050; }
+  .card-now  .card-tag { background: #ecfdf5; color: #3d9a5f; }
+
+  .card h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  /* ========== 左侧流程图（低饱和度） ========== */
+  .flow { flex: 1; }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  .flow-step:nth-child(1) { animation: slideIn 0.35s ease 0.7s forwards; }
+  .flow-step:nth-child(2) { animation: slideIn 0.35s ease 0.95s forwards; }
+  .flow-step:nth-child(3) { animation: slideIn 0.35s ease 1.2s forwards; }
+  .flow-step:nth-child(4) { animation: slideIn 0.35s ease 1.45s forwards; }
+  .flow-step:nth-child(5) { animation: slideIn 0.35s ease 1.7s forwards; }
+  .flow-step:nth-child(6) { animation: slideIn 0.35s ease 1.95s forwards; }
+
+  .flow-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  .flow-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fef2f2;
+    border: 1.5px solid #e8a0a0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #b45050;
+    flex-shrink: 0;
+  }
+  .flow-connector {
+    width: 1.5px;
+    height: 16px;
+    background: #e0bfbf;
+  }
+  .flow-content {
+    padding: 2px 0 14px 0;
+  }
+  .flow-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1px;
+  }
+  .flow-desc {
+    font-size: 11.5px;
+    color: #888;
+  }
+  .flow-step:last-child .flow-connector { display: none; }
+  .flow-step:last-child .flow-content { padding-bottom: 0; }
+
+
+
+  /* ========== 耗时（内嵌在卡片底部，放大） ========== */
+  .time-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+    opacity: 0;
+  }
+  .time-icon {
+    font-size: 16px;
+  }
+  .time-num {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .time-unit {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .card-past .time-row {
+    color: #c0392b;
+    animation: fadeUp 0.4s ease 2.7s forwards;
+  }
+  .card-past .time-num { color: #c0392b; }
+  .card-now .time-row {
+    color: #1e8a4a;
+    animation: fadeUp 0.4s ease 3.4s forwards;
+  }
+  .card-now .time-num { color: #1e8a4a; }
+
+  /* ========== 右侧对话 ========== */
+  .chat {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+  .bubble {
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .bubble-user {
+    background: #f0f4ff;
+    color: #334;
+    border-bottom-left-radius: 4px;
+    animation: fadeUp 0.4s ease 2.4s forwards;
+  }
+  .bubble-ai {
+    background: #f0f9f2;
+    color: #2d6e3e;
+    border-bottom-right-radius: 4px;
+    animation: fadeUp 0.4s ease 2.8s forwards;
+  }
+  .bubble-sender {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    opacity: 0.5;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 14px;
+    background: #3d9a5f;
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 0.8s step-end infinite;
+  }
+  .bubble-ai .typing-cursor { display: none; }
+  .bubble-ai.typing .typing-cursor { display: inline-block; }
+
+  .tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.4s ease 3.2s forwards;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    background: #eef1fb;
+    color: #5b6899;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* VS */
+  .vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    opacity: 0;
+    animation: fadeUp 0.4s ease 0.3s forwards;
+  }
+  .vs-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 2px;
+  }
+
+  /* 底部 */
+  .footer {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 14px;
+    color: #999;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 3.8s forwards;
+  }
+  .footer strong { color: #4a6cf7; }
+
+  /* ========== 动画 ========== */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>一个场景，看懂变化</h1>
+    <p>凌晨两点，线上告警响了</p>
+  </div>
+
+  <div class="compare">
+    <!-- 过去：流程图 -->
+    <div class="card card-past">
+      <div class="card-tag">Before</div>
+      <h2>控制台时代</h2>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot">1</div><div class="flow-connector"></div></div>
+          <div class="flow-content flow-fade">
+            <div class="flow-title">打开电脑，登录控制台</div>
+            <div class="flow-desc">睡眼惺忪找到浏览器…</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot">2</div><div class="flow-connector"></div></div>
+          <div class="flow-content flow-fade">
+            <div class="flow-title">进入 CLS，找到日志主题</div>
+            <div class="flow-desc">从产品列表里翻找…</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot">3</div><div class="flow-connector"></div></div>
+          <div class="flow-content flow-fade">
+            <div class="flow-title">输入检索语句，调整时间</div>
+            <div class="flow-desc">回忆检索语法…</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot">4</div><div class="flow-connector"></div></div>
+          <div class="flow-content flow-fade">
+            <div class="flow-title">点击搜索，看到报错</div>
+            <div class="flow-desc">终于找到错误日志</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot">5</div><div class="flow-connector"></div></div>
+          <div class="flow-content flow-fade">
+            <div class="flow-title">查上下文，看关联服务</div>
+            <div class="flow-desc">反复切换页面对比…</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot">6</div></div>
+          <div class="flow-content flow-fade">
+            <div class="flow-title">综合分析，定位根因</div>
+            <div class="flow-desc">人脑串联因果关系…</div>
+          </div>
+        </div>
+      </div>
+      <div class="time-row">
+        <span class="time-icon">⏱</span>
+        <span class="time-num">10~15</span>
+        <span class="time-unit">分钟</span>
+      </div>
+    </div>
+
+    <div class="vs"><div class="vs-text">VS</div></div>
+
+    <!-- 现在：对话 -->
+    <div class="card card-now">
+      <div class="card-tag">After</div>
+      <h2>Agent 时代</h2>
+      <div class="chat">
+        <div class="bubble bubble-user">
+          <div class="bubble-sender">你对 AI 说</div>
+          线上 nginx 最近 5 分钟有没有 5xx？帮我查一下原因。
+        </div>
+        <div class="bubble bubble-ai" id="aiBubble">
+          <div class="bubble-sender">AI 给你分析结论</div>
+          <span id="aiText"></span><span class="typing-cursor"></span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">日志检索</span>
+        <span class="tag">上下文关联</span>
+        <span class="tag">根因分析</span>
+        <span class="tag">用户无感知</span>
+      </div>
+      <div class="time-row">
+        <span class="time-icon">⚡</span>
+        <span class="time-num">10</span>
+        <span class="time-unit">秒</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    全程没有打开任何页面，没有写任何命令<br>
+    <strong>说句话，AI 就帮你搞定了</strong>
+  </div>
+</div>
+
+<script>
+  const text = '最近 5 分钟有 23 条 502 错误，全部来自上游服务 payment-svc 超时。payment-svc 在 01:57 出现了一次 Full GC（耗时 8.7s），建议扩容或调整 JVM 参数。';
+  const el = document.getElementById('aiText');
+  const bubble = document.getElementById('aiBubble');
+  let i = 0;
+
+  setTimeout(() => {
+    bubble.classList.add('typing');
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        el.textContent += text[i];
+        i++;
+      } else {
+        clearInterval(timer);
+        bubble.classList.remove('typing');
+      }
+    }, 25);
+  }, 2900);
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+{
+  "name": "crossborder-ecom-hub",
+  "version": "1.0.1",
+  "description": "跨境电商多平台管理技能 - 统一 TikTok、Amazon、Shopee、Lazada 商品、订单、库存、定价管理",
+  "author": "OpenClaw Skills",
+  "license": "Commercial",
+  "pricing": {
+    "model": "subscription",
+    "tiers": [
+      {
+        "name": "Starter",
+        "price": 299,
+        "currency": "USD",
+        "period": "month",
+        "features": [
+          "2 个平台集成",
+          "100 个商品同步",
+          "基础订单管理",
+          "飞书多维表格同步"
+        ]
+      },
+      {
+        "name": "Professional",
+        "price": 599,
+        "currency": "USD",
+        "period": "month",
+        "features": [
+          "4 个平台集成",
+          "1000 个商品同步",
+          "智能定价系统",
+          "实时库存同步",
+          "数据分析报表"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "price": 999,
+        "currency": "USD",
+        "period": "month",
+        "features": [
+          "无限平台集成",
+          "无限商品同步",
+          "AI 智能定价",
+          "实时库存同步",
+          "高级数据分析",
+          "优先技术支持",
+          "自定义 API 集成"
+        ]
+      }
+    ]
+  },
+  "revenue": {
+    "target": 30000,
+    "currency": "USD",
+    "period": "month",
+    "users": 100,
+    "avgPrice": 599
+  },
+  "category": "ecommerce",
+  "tags": [
+    "跨境电商",
+    "TikTok",
+    "Amazon",
+    "Shopee",
+    "Lazada",
+    "商品管理",
+    "订单管理",
+    "库存同步",
+    "智能定价",
+    "飞书集成"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "env": [
+      "TIKTOK_API_KEY",
+      "AMAZON_API_KEY",
+      "SHOPEE_API_KEY",
+      "LAZADA_API_KEY",
+      "FEISHU_APP_ID",
+      "FEISHU_APP_SECRET"
+    ]
+  },
+  "features": [
+    "多平台商品同步",
+    "统一订单管理",
+    "智能定价系统",
+    "实时库存同步",
+    "数据分析报表",
+    "飞书多维表格集成"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/crossborder-ecom-hub"
+  },
+  "homepage": "https://clawhub.com/skills/crossborder-ecom-hub",
+  "bugs": "https://github.com/openclaw/crossborder-ecom-hub/issues"
+}

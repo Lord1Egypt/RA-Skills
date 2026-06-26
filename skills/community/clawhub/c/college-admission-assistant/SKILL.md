@@ -1,35 +1,122 @@
 ---
-name: "升学规划助手"
-description: "中国高考升学规划助手。提供新高考选科指导、志愿填报建议、院校专业查询、录取分数线参考、高考政策解读。适用于高中生、家长和教师进行升学规划。支持家用（纯知识库）和商用（API扩展）双模式。触发器：用户提出高考/选科/志愿/录取/分数线相关问题时使用。"
-category: "research"
-source: "ClawHub"
-tags: [admission, college, education, gaokao]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/college-admission-assistant"
-sourceUrl: "https://clawhub.ai/skills/college-admission-assistant"
+name: college-admission-assistant
+description: 中国高考升学规划助手。提供新高考选科指导、志愿填报建议、院校专业查询、录取分数线参考、高考政策解读。适用于高中生、家长和教师进行升学规划。支持家用（纯知识库）和商用（API扩展）双模式。触发器：用户提出高考/选科/志愿/录取/分数线相关问题时使用。
 ---
 
 # 升学规划助手
 
-> 中国高考升学规划助手。提供新高考选科指导、志愿填报建议、院校专业查询、录取分数线参考、高考政策解读。适用于高中生、家长和教师进行升学规划。支持家用（纯知识库）和商用（API扩展）双模式。触发器：用户提出高考/选科/志愿/录取/分数线相关问题时使用。
+## 概述
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/college-admission-assistant`
-- **Source URL:** [https://clawhub.ai/skills/college-admission-assistant](https://clawhub.ai/skills/college-admission-assistant)
+本Skill提供中国高考升学规划全链路支持，涵盖选科指导、志愿填报、院校查询、分数分析和政策解读。
 
-## Overview
+**两种使用模式：**
+- **家用模式**（默认）：使用内置知识库回答，零配置，离线可用
+- **商用模式**：配置API端点后，对接实时招生数据和院校信息
 
+## 快速开始
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/college-admission-assistant
+用户典型的提问方式：
+
+> "我是江苏物理类考生，估分580，能报什么学校？"
+> "新高考选科，物化生和物化地哪个组合好？"
+> "浙江考生655分，全省排名多少能上浙大？"
+> "介绍一下山东的高考政策"
+
+### 核心处理流程
+
+1. **识别省份和考生类型** → 确认用户所在省份、选科/文理科
+2. **定位问题类型**：选科指导 / 志愿填报 / 院校查询 / 分数分析 / 政策解读
+3. **查询内置知识库** → 返回对应数据或指南
+4. **如有商用API配置** → 可获取实时分数线/排名数据
+5. **回退机制**：API调用失败时自动使用知识库回答
+
+## 核心功能
+
+### 1. 选科指导（新高考）
+
+参考 `references/xinkao-guide.md` 中的选科组合分析。
+
+**核心建议规则：**
+- "物理+化学"组合覆盖绝大多数理工农医专业（>95%覆盖率）
+- 没有明确专业方向的学生，推荐"物理+化学+X"组合保专业覆盖率
+- 偏文科推荐"历史+政治+地理"或"历史+政治+生物"
+
+### 2. 志愿填报
+
+参考各省份精细数据文件（位于 `references/provinces/`）。
+
+**7个精细省份：**
+- 江苏、浙江、山东、北京、上海、河南、河北、湖北
+- 含往年录取分数范围、选科要求、院校层次
+
+**其余省份：** 列出基本信息，标注"该省份详细数据更新中"
+
+### 3. 院校查询
+
+参考 `references/universities.md` 中的院校信息。
+
+- **C9院校**：顶级联盟详情
+- **985/211/双一流**：层次划分和特点
+- **各省代表性院校**：按省分类
+- **学科评估**：A+/A/A-学科分布
+
+### 4. 分数分析
+
+提供以下分析能力：
+- 分数段对应的院校层次建议
+- 位次与等效分的换算方法
+- 大小年分析框架
+- 冲稳保志愿梯度建议（推荐比例：30%冲刺 + 50%稳妥 + 20%保底）
+
+### 5. 政策解读
+
+参考 `references/policies.md` 中的政策知识库。
+
+**覆盖政策范围：**
+- 新高考改革政策
+- 强基计划
+- 综合评价招生
+- 专项计划（国家/地方/高校专项）
+- 艺术类/体育类招考
+
+## 家用/商用模式配置
+
+### 家用模式（默认）
+
+无需任何配置，直接使用内置知识库。
+
+### 商用模式（API扩展）
+
+用户可通过配置环境变量启用实时数据：
+
+```yaml
+COLLEGE_ADMISSION_API_URL: "https://your-api-endpoint"
+COLLEGE_ADMISSION_API_KEY: "your-api-key"
 ```
+
+商用模式下支持：
+- 实时录取分数线查询
+- 最新招生计划数据
+- 学校排名动态更新
+- 个性化志愿推荐算法
+
+## 资源文件说明
+
+### references/
+- `xinkao-guide.md` — 新高考选科指导完整指南
+- `universities.md` — 院校信息数据库
+- `policies.md` — 高考政策知识库
+- `provinces/` — 各省份精细数据目录
+  - `jiangsu.md`, `zhejiang.md`, `shandong.md` ...（精细省份）
+
+### scripts/
+- `score-analyzer.py` — 分数分析和志愿梯度计算工具
+- `subject-analyzer.py` — 选科组合覆盖率计算工具
+
+## 安全注意事项
+
+1. **数据来源标注**：所有分数线和排名数据必须标注来源和年份
+2. **不确定信息声明**：在返回非精细省份数据时，必须附加"该省份数据更新中"提示
+3. **不编造数据**：没有准确数据时返回"暂无准确数据"，不提供估算值
+4. **敏感信息过滤**：不输出任何个人隐私信息、非公开招生数据
+5. **免责声明**：升学规划建议仅供参考，最终以各省教育考试院官方信息为准

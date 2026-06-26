@@ -1,0 +1,187 @@
+{
+  "tasks": [
+    {
+      "id": "douyin_001",
+      "name": "竞品抖音视频-爆款监控",
+      "platform": "douyin",
+      "url": "https://www.douyin.com/video/1234567890",
+      "schedule": "0 */2 * * *",
+      "metrics": ["likes", "comments", "shares", "views"],
+      "selectors": {
+        "likes": "[data-e2e=\"like-count\"]",
+        "comments": "[data-e2e=\"comment-count\"]",
+        "shares": "[data-e2e=\"share-count\"]",
+        "views": "[data-e2e=\"play-count\"]"
+      },
+      "alert_threshold": {
+        "likes": {
+          "increase_percent": 50,
+          "min_value": 5000,
+          "window": 3
+        },
+        "comments": {
+          "increase_percent": 30,
+          "min_value": 500,
+          "window": 3
+        },
+        "shares": {
+          "increase_percent": 40,
+          "min_value": 1000,
+          "window": 3
+        }
+      },
+      "burst_detection": {
+        "enabled": true,
+        "min_metrics": 2,
+        "threshold": {
+          "likes": 10000,
+          "comments": 1000,
+          "shares": 5000
+        }
+      },
+      "screenshot_on_alert": true,
+      "notification": {
+        "dingtalk": {
+          "webhook": "https://oapi.dingtalk.com/robot/send?access_token=your_token_here",
+          "secret": "your_secret_here"
+        },
+        "email": {
+          "smtp_server": "smtp.qq.com",
+          "smtp_port": 587,
+          "username": "your_email@qq.com",
+          "password": "your_auth_code",
+          "to": ["recipient@example.com"]
+        }
+      }
+    },
+    {
+      "id": "xhs_001",
+      "name": "小红书笔记-热度监控",
+      "platform": "xiaohongshu",
+      "url": "https://www.xiaohongshu.com/explore/abcdefghij",
+      "schedule": "0 */4 * * *",
+      "metrics": ["likes", "collections", "comments"],
+      "selectors": {
+        "likes": ".like-wrapper .count",
+        "collections": ".collect-wrapper .count",
+        "comments": ".comment-wrapper .count"
+      },
+      "alert_threshold": {
+        "likes": {
+          "increase_percent": 100,
+          "min_value": 1000,
+          "window": 3
+        },
+        "collections": {
+          "increase_percent": 80,
+          "min_value": 500,
+          "window": 3
+        }
+      },
+      "burst_detection": {
+        "enabled": true,
+        "min_metrics": 2,
+        "threshold": {
+          "likes": 5000,
+          "collections": 2000
+        }
+      },
+      "screenshot_on_alert": true,
+      "notification": {
+        "feishu": {
+          "webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/your_webhook_here"
+        }
+      }
+    },
+    {
+      "id": "weibo_001",
+      "name": "微博热搜-话题监控",
+      "platform": "weibo",
+      "url": "https://weibo.com/1234567890/AbCdEfGhIj",
+      "schedule": "0 */1 * * *",
+      "metrics": ["likes", "comments", "reposts", "views"],
+      "alert_threshold": {
+        "likes": {
+          "increase_percent": 30,
+          "min_value": 10000,
+          "window": 2
+        },
+        "reposts": {
+          "increase_percent": 50,
+          "min_value": 5000,
+          "window": 2
+        }
+      },
+      "screenshot_on_alert": false,
+      "notification": {
+        "wecom": {
+          "webhook": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=your_key_here"
+        }
+      }
+    },
+    {
+      "id": "bilibili_001",
+      "name": "B站视频-播放量监控",
+      "platform": "bilibili",
+      "url": "https://www.bilibili.com/video/BV1xx411c7mD",
+      "schedule": "0 */6 * * *",
+      "metrics": ["likes", "coins", "collections", "views", "comments"],
+      "alert_threshold": {
+        "views": {
+          "increase_percent": 100,
+          "min_value": 50000,
+          "window": 3
+        },
+        "likes": {
+          "increase_percent": 50,
+          "min_value": 5000,
+          "window": 3
+        }
+      },
+      "screenshot_on_alert": true,
+      "notification": {
+        "email": {
+          "smtp_server": "smtp.qq.com",
+          "smtp_port": 587,
+          "username": "your_email@qq.com",
+          "password": "your_auth_code",
+          "to": ["recipient@example.com"]
+        }
+      }
+    },
+    {
+      "id": "taobao_001",
+      "name": "淘宝商品-销量监控",
+      "platform": "taobao",
+      "url": "https://item.taobao.com/item.htm?id=1234567890",
+      "schedule": "0 9,18 * * *",
+      "metrics": ["sell_count", "rate_count", "price"],
+      "selectors": {
+        "sell_count": ".sell-count",
+        "rate_count": ".rate-count",
+        "price": ".tb-rmb-num"
+      },
+      "alert_threshold": {
+        "sell_count": {
+          "increase_percent": 30,
+          "min_value": 100,
+          "window": 2
+        }
+      },
+      "screenshot_on_alert": true,
+      "notification": {
+        "dingtalk": {
+          "webhook": "https://oapi.dingtalk.com/robot/send?access_token=your_token_here"
+        }
+      }
+    }
+  ],
+  "global": {
+    "data_dir": "../assets/data",
+    "screenshot_dir": "../assets/screenshots",
+    "data_retention_days": 30,
+    "screenshot_retention_days": 7,
+    "default_schedule": "0 */6 * * *",
+    "log_level": "INFO"
+  }
+}

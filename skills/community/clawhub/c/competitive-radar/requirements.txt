@@ -1,0 +1,10 @@
+# competitor-radar Python dependencies
+# Install with: pip install -r requirements.txt
+
+# Required
+feedparser>=6.0.0        # RSS/Atom feed parsing
+html2text>=2024.2.26     # HTML to readable text conversion
+playwright>=1.43.0       # Headless browser for JS-heavy pages (pricing pages)
+
+# Optional — install for better performance
+# requests>=2.31.0       # Used as curl fallback in some scripts

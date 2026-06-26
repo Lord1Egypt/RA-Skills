@@ -1,0 +1,12 @@
+{
+  "name": "cnblogs-publisher",
+  "version": "1.0.0",
+  "description": "Manage CNBlogs articles via MetaWeblog API",
+  "main": "scripts/save_draft.py",
+  "scripts": {
+    "test": "echo 'Run tests manually'"
+  },
+  "keywords": ["cnblogs", "blog", "metaweblog"],
+  "author": "suversal",
+  "license": "MIT"
+}

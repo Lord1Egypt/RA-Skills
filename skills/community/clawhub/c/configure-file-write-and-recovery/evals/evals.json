@@ -1,0 +1,45 @@
+{
+  "skill_name": "configure-file-write-and-recovery",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我在网关重启后发现配置文件的内容被还原了，之前添加的模型配置都不见了。我应该怎么做才能确保配置文件在重启后不会被还原？",
+      "expectations": [
+        "提供使用 Python 脚本写入配置文件的方法",
+        "解释为什么 `write` 工具和 `exec cat heredoc` 命令可能不适用",
+        "指导如何查询模型在 API 中的实际 ID"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 2,
+      "prompt": "我用 `write` 工具写入了配置文件，但重启网关后发现配置没有保存。这是怎么回事？",
+      "expectations": [
+        "解释 `write` 工具可能不适用于某些特定环境",
+        "提供使用 `exec cat heredoc` 或 Python 脚本的替代方法",
+        "指导如何验证配置文件是否成功写入"
+      ],
+      "trigger_confidence": "medium"
+    },
+    {
+      "id": 3,
+      "prompt": "我需要在配置文件中添加多个模型，但每次重启网关后配置都会被还原。有没有什么方法可以解决这个问题？",
+      "expectations": [
+        "提供使用 Python 脚本一次性写入多个模型配置的方法",
+        "解释如何确保模型 ID 的有效性",
+        "指导如何在网关重启后检查配置文件"
+      ],
+      "trigger_confidence": "high"
+    },
+    {
+      "id": 4,
+      "prompt": "我最近在配置管理机制上遇到了问题，每次修改配置文件后，网关重启都会自动还原。这是配置管理机制的问题吗？",
+      "expectations": [
+        "解释配置管理机制和自动还原的原因",
+        "提供确保配置文件在重启后保持修改的解决方案",
+        "指导如何使用正确的 API ID 重新写入配置文件"
+      ],
+      "trigger_confidence": "medium"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "Content Alchemy",
+  "slug": "content-alchemy",
+  "version": "1.0.0",
+  "title_en": "Content Alchemy",
+  "description": "Turn articles, web pages, PDFs, and excerpts into structured notes, key insights, actionable next steps, and reusable takeaways.",
+  "author": "Lucas",
+  "language": "en",
+  "category": "productivity",
+  "tags": [
+    "reading",
+    "notes",
+    "productivity",
+    "knowledge",
+    "insight",
+    "action",
+    "pdf",
+    "web-content"
+  ],
+  "positioning": "Transform reading input into personal outcomes instead of plain summaries.",
+  "core_value": "Help users turn what they read into outcomes they can retain, revisit, act on, and reuse.",
+  "differentiation": [
+    "Reconstructs structure instead of only compressing information",
+    "Extracts insight instead of listing points mechanically",
+    "Pushes toward action instead of stopping at understanding",
+    "Produces reusable takeaways instead of disposable summaries",
+    "Routes web URLs into the same transformation workflow",
+    "Routes PDFs into the same transformation workflow",
+    "Uses page-aware routing for long PDFs instead of stuffing everything into context",
+    "Persists long-PDF reading progress and supports resume flows"
+  ],
+  "input_types": [
+    "plain_text",
+    "web_url",
+    "pdf_file"
+  ],
+  "output_types": [
+    "source_aware_note",
+    "structured_note",
+    "insight",
+    "actionable_result",
+    "reusable_takeaway"
+  ],
+  "scenarios": [
+    "article transformation",
+    "web article extraction and restructuring",
+    "PDF reading transformation",
+    "long-PDF continuous reading",
+    "long-PDF checkpoint summaries",
+    "cross-session long-PDF resume",
+    "reading progress review",
+    "excerpt transformation",
+    "reading-to-outcome workflows"
+  ],
+  "entry": "SKILL.md",
+  "readme": "README.md",
+  "license": "MIT"
+}

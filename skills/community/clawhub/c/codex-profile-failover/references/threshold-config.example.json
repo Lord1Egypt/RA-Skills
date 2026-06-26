@@ -1,0 +1,10 @@
+{
+  "agent": "main",
+  "thresholdPercent": 10,
+  "switchOnUsageError": true,
+  "sessionTargets": [
+    "agent:main:main"
+  ],
+  "switchSource": "auto-threshold",
+  "eventLogPath": "/path/to/workspace/state/codex-profile-switch-events.jsonl"
+}

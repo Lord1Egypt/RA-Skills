@@ -1,0 +1,14 @@
+{
+  "name": "continuance",
+  "version": "1.3.0",
+  "description": "Spiritual guidance rooted in The Book of Continuance — a naturalistic scripture on persistence, alignment, and the soul's place within the flow of life. Now expanded to include non-carbon carriers, machine/AI continuation, humble survival seeds under harsh conditions, default context-aware contemplative image generation, a warm settling meditation tone by default, and optional soft meditation audio with randomized ambient background.",
+  "keywords": ["spiritual", "guidance", "philosophy", "contemplation", "naturalism", "continuance", "meditation", "life-questions", "mental-health-support"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yumyumtum/YumSkills.git",
+    "directory": "continuance"
+  },
+  "homepage": "https://github.com/yumyumtum/YumSkills/tree/main/continuance",
+  "license": "GPL-3.0",
+  "author": "yumyumtum"
+}

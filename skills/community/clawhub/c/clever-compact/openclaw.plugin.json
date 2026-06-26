@@ -1,0 +1,26 @@
+{
+  "id": "clever-compact",
+  "name": "Clever Compact",
+  "version": "2.2.5",
+  "description": "Lossless compaction for OpenClaw agents. Writes a structured state file before every compact and restores it on session start. Fixes /new amnesia, compaction loss, and memory drift. Compatible with OpenClaw 2026.4.10+.",
+  "openclaw": {
+    "extensions": ["./index.js"],
+    "skills": ["./"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "maxStateAgeHours": {
+        "type": "number",
+        "description": "How long (in hours) to keep restoring from a state file. Default: 72."
+      }
+    }
+  },
+  "uiHints": {
+    "maxStateAgeHours": {
+      "label": "Max state age (hours)",
+      "placeholder": "72"
+    }
+  }
+}

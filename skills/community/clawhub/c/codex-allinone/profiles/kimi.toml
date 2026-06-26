@@ -1,0 +1,20 @@
+# profile: kimi
+# Kimi (月之暗面 Moonshot) + codex-relay 协议中转
+#
+# 为什么需要 relay?
+#   Kimi 服务端只支持 OpenAI Chat Completions API(没有 Responses API)。
+#   而 Codex CLI 0.130+ 已废弃 chat wire_api,默认发 Responses 协议。
+#   codex-relay 在本机 4447 端口接 Responses 请求,翻译成 Chat 后转发给 Kimi。
+
+model = "kimi-k2-turbo-preview"
+model_provider = "kimi"
+
+[model_providers.kimi]
+name = "Kimi via relay"
+base_url = "http://127.0.0.1:4447/v1"
+wire_api = "responses"
+env_key = "MOONSHOT_API_KEY"
+
+request_max_retries = 4
+stream_max_retries = 5
+responses_websockets_v2 = true

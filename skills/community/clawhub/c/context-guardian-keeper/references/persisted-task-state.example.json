@@ -1,0 +1,54 @@
+{
+  "task_id": "task-guardian-001",
+  "session_id": "session-abc123",
+  "goal": "Implement durable context continuity for a long-running agent task.",
+  "status": "running",
+  "current_phase": "integration",
+  "plan": [
+    {
+      "id": "step-1",
+      "title": "Inspect existing agent loop",
+      "status": "done",
+      "notes": "Planner and tool runner located."
+    },
+    {
+      "id": "step-2",
+      "title": "Wire context guardian hooks",
+      "status": "in_progress",
+      "notes": "Checkpoint and summary hooks being added."
+    }
+  ],
+  "completed_steps": ["inspect existing agent loop"],
+  "open_issues": ["Need to confirm the final checkpoint path root."],
+  "decisions": [
+    {
+      "timestamp": "2026-04-07T10:00:00Z",
+      "decision": "Use file-based durable state",
+      "reason": "Agent restarts must survive context resets."
+    }
+  ],
+  "constraints": ["Never continue blindly after context loss."],
+  "important_facts": ["Planner already exists.", "Tool runner emits discrete tool results."],
+  "artifacts": [
+    {
+      "path": ".context_guardian/task_state.json",
+      "kind": "file",
+      "description": "Canonical durable task state"
+    }
+  ],
+  "last_action": {
+    "timestamp": "2026-04-07T10:05:00Z",
+    "type": "tool",
+    "summary": "Wrote checkpoint and summary files.",
+    "outcome": "success"
+  },
+  "next_action": "Load the latest checkpoint and resume from step-2.",
+  "recovery_instructions": [
+    "Read task_state.json",
+    "Read latest summary",
+    "Verify files before editing",
+    "Resume from next_action only if constraints still hold"
+  ],
+  "state_confidence": 0.88,
+  "updated_at": "2026-04-07T10:05:00Z"
+}

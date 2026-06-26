@@ -1,0 +1,80 @@
+{
+  "_source": "https://platform.xiaomimimo.com/docs/zh-CN/price/",
+  "_updated": "2026-06-07",
+  "_note": "定价数据来自官网，换套餐/换模型后需同步更新此文件",
+  "plans": {
+    "mimo": {
+      "lite": {
+        "monthly_rmb": 39,
+        "credits": 4100000000,
+        "discount_first": 0.88,
+        "discount_annual": 0.88
+      },
+      "standard": {
+        "monthly_rmb": 99,
+        "credits": 11000000000,
+        "discount_first": 0.88,
+        "discount_annual": 0.88
+      },
+      "pro": {
+        "monthly_rmb": 329,
+        "credits": 38000000000,
+        "discount_first": 0.88,
+        "discount_annual": 0.88
+      },
+      "max": {
+        "monthly_rmb": 659,
+        "credits": 82000000000,
+        "discount_first": 0.88,
+        "discount_annual": 0.88
+      },
+      "nighttime_coefficient": 0.8,
+      "nighttime_hours": "00:00-08:00 Beijing Time"
+    }
+  },
+  "credits_per_token": {
+    "mimo-v2.5": {
+      "input": 100,
+      "cache": 2,
+      "output": 200
+    },
+    "mimo-v2.5-pro": {
+      "input": 300,
+      "cache": 2.5,
+      "output": 600
+    }
+  },
+  "rmb_per_million_tokens": {
+    "mimo-v2.5": {
+      "input": 1.0,
+      "cache": 0.02,
+      "output": 2.0
+    },
+    "mimo-v2.5-pro": {
+      "input": 3.0,
+      "cache": 0.025,
+      "output": 6.0
+    },
+    "deepseek-v4-flash": {
+      "input": 1.0,
+      "cache": 0.02,
+      "output": 2.0
+    },
+    "deepseek-v4-pro": {
+      "input": 3.0,
+      "cache": 0.025,
+      "output": 6.0
+    },
+    "kimi-k2.6": {
+      "input": 6.5,
+      "cache": 1.1,
+      "output": 27.0
+    }
+  },
+  "active_plan": {
+    "provider": "mimo",
+    "tier": "standard",
+    "discount_applied": 0.88,
+    "note": "首购88折，2026.06生效"
+  }
+}

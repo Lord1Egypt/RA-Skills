@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "sync_schedule": "23:00",
+  "dream_schedule": "02:00",
+  "timezone": "Asia/Shanghai",
+  "notification": {
+    "enabled": true,
+    "channel": "openclaw-weixin",
+    "to": "your_wechat_id@im.wechat",
+    "queue_file": ".notification_queue.json"
+  },
+  "mempalace": {
+    "db_path": null,
+    "collection_name": "mempalace_drawers",
+    "entries_limit": 1000
+  },
+  "analysis": {
+    "model": "minimax",
+    "model_name": "MiniMax-M2.7",
+    "api_url": "https://api.minimax.chat/v1",
+    "api_key": "your_minimax_api_key_here",
+    "timeout_seconds": 120,
+    "temperature": 0.3
+  },
+  "doc_update": {
+    "min_similarity": 0.7,
+    "max_noise_ratio": 0.5,
+    "auto_merge_duplicates": true
+  },
+  "learning_files": {
+    "errors": ".learnings/ERRORS.md",
+    "learnings": ".learnings/LEARNINGS.md",
+    "features": ".learnings/FEATURES.md"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Costco Inventory Monitor"
+  short_description: "Monitor Costco product stock by ZIP code with repeatable checks."
+  default_prompt: "Track Costco product availability for one or more ZIP codes and produce a monitoring plan or runnable check commands."

@@ -1,0 +1,45 @@
+{
+  "captured_at": "2026-03-20T00:00:00+00:00",
+  "endpoint_key": "commodity.market-cap.pie",
+  "inferred_schema": {
+    "items": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "type": "object"
+    },
+    "type": "array"
+  },
+  "notes": [
+    "Pie endpoints normalize cleanly to name/value pairs."
+  ],
+  "sample_request": {
+    "method": "GET",
+    "path": "/v1/c/rwa/commodity/market-cap/pie",
+    "path_params": {},
+    "query": {},
+    "url": "https://api.coinfound.org/api/kakyoin/v1/c/rwa/commodity/market-cap/pie"
+  },
+  "sample_response_excerpt": {
+    "code": 0,
+    "data_length": 11,
+    "data_preview": [
+      {
+        "name": "Arbitrum",
+        "value": 97540982.3448
+      }
+    ],
+    "message": "success"
+  },
+  "shape_family": "pie_name_value",
+  "snapshot_path": "shared/coinfound_rwa/data/schema_snapshots/commodity__market-cap__pie.json"
+}

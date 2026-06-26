@@ -1,0 +1,5 @@
+mss>=10.1.0
+Pillow>=11.3.0
+pyautogui>=0.9.54
+psutil>=7.0.0
+pywin32>=310

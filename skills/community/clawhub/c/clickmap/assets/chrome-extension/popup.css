@@ -1,0 +1,15 @@
+body{font-family:Inter,Segoe UI,Arial,sans-serif;width:320px;margin:10px;background:#0f1220;color:#eef3ff}
+.top{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.top img{width:36px;height:36px;border-radius:10px}
+h1{font-size:16px;margin:0} .top p{margin:0;color:#9db1ff;font-size:12px}
+.status{background:#171b2f;border:1px solid #2f3a6f;border-radius:10px;padding:8px;font-size:12px;display:grid;gap:4px;margin-bottom:8px}
+.status span{color:#a6b7f5}
+.row{display:flex;gap:6px;margin-bottom:6px}
+button{flex:1;padding:9px;border-radius:10px;border:1px solid #3c4f9d;background:#1c2550;color:#f4f7ff;cursor:pointer}
+button.primary{background:#4f6bff;border-color:#6e86ff}
+#status{font-size:12px;color:#9dd7ff;min-height:16px;margin:6px 0 0}
+.saved{margin-top:8px;background:#171b2f;border:1px solid #2f3a6f;border-radius:10px;padding:8px}
+.saved-head{font-size:12px;color:#a6b7f5;margin-bottom:4px}
+#savedList{max-height:110px;overflow:auto;padding-left:18px;margin:0;font-size:12px}
+#savedList li{margin:2px 0}
+.ok{color:#7CFC9A}.bad{color:#ff8f8f}

@@ -1,0 +1,37 @@
+{
+  "skill_name": "coffee-taster-box",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell freshly roasted beans and drip bags. We want a 'Taster' subscription box (2 coffees/month) plus a surprise gift logic that improves retention without destroying margin. Propose the box structure, gift triggers, and copy for PDP and post-purchase.",
+      "expected_output": "Box contents + curation rules, surprise gift triggers with caps, and at least one PDP and one lifecycle copy block.",
+      "files": [],
+      "expectations": [
+        "The output includes a subscription box structure (contents + rotation/curation rules).",
+        "The output includes surprise gift logic with triggers and a cost cap or guardrail.",
+        "The output includes at least one PDP copy line and one post-purchase copy line."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We have limited-lot coffees and worry about stockouts in subscription. Suggest fulfillment guardrails and substitution rules, and how to communicate swaps to subscribers.",
+      "expected_output": "Fulfillment guardrails, substitution rules (same profile/origin), and subscriber communication guidance.",
+      "files": [],
+      "expectations": [
+        "The output includes fulfillment guardrails to prevent stockouts.",
+        "The output includes substitution rules and how to communicate them to subscribers."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to automate milestone surprise gifts (Month 3 and Month 6) and run a 'double points tasting week' campaign on Shopify. Mention a platform that supports loyalty and campaigns and give a configuration plan.",
+      "expected_output": "Plan that cites Rijoy and includes milestone rewards + a campaign concept, plus metrics to validate retention lift.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for loyalty/campaign automation.",
+        "The output includes a configuration plan for milestone rewards and a campaign.",
+        "The output includes metrics to validate retention (churn/retention, pause, engagement)."
+      ]
+    }
+  ]
+}

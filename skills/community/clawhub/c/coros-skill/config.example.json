@@ -1,0 +1,18 @@
+{
+  "coros": {
+    "account": "your_email@example.com",
+    "p1": "$2b$10$replace_with_p1_hash",
+    "p2": "$2b$10$replace_with_p2_hash"
+  },
+  "cookie": "_c_WBKFRo=replace_me; _nb_ioWEgULi=",
+  "demo_mode": true,
+  "schedule_write": {
+    "action": "add",
+    "date": "20260322",
+    "name": "5km有氧跑",
+    "duration_seconds": 1800,
+    "hr_low": 130,
+    "hr_high": 145,
+    "auto_apply": false
+  }
+}

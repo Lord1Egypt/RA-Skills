@@ -1,0 +1,42 @@
+plugin_job:
+  mode: native-tool-plugin  # native-tool-plugin | native-provider-plugin | native-channel-plugin | plugin-audit-only | repair-existing-plugin
+  identity:
+    name: example-plugin
+    display_name: Example Plugin
+    plugin_id: example-plugin
+    folder_name: example-plugin
+  summary:
+    purpose: >-
+      One-paragraph description of what the plugin should do.
+    target_runtime_role: >-
+      Tool, provider, channel, or other explicit runtime role.
+  behavior:
+    public_surface:
+      - Describe the primary exposed behavior.
+    constraints:
+      - Safety, scope, or runtime constraints.
+    side_effects:
+      - File writes, network access, external APIs, or none.
+  configuration:
+    env_vars:
+      - EXAMPLE_API_KEY
+    config_fields:
+      - name: exampleSetting
+        type: string
+        required: false
+        description: Example config field.
+  inputs_available:
+    existing_files:
+      - package.json fragment
+      - manifest draft
+      - README notes
+    notes:
+      - Any rough notes or pasted requirements.
+  output_preferences:
+    language: typescript
+    module_system: esm
+    include_tests: false
+    include_env_example: true
+  delivery:
+    produce_plugin_zip: true
+    produce_separate_critique_file: true

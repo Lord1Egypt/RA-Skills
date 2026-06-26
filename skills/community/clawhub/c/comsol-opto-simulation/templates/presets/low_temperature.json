@@ -1,0 +1,13 @@
+﻿{
+  "simulation_type": "optoelectronic",
+  "name": "low_temperature_template",
+  "description": "Template for a user-configured low-temperature simulation. Configure temperature-dependent models from measured data or cited literature before running.",
+  "requires_configuration": true,
+  "base_template": "optoelectronic_template",
+  "temperature_K": "<CONFIGURE_LOW_TEMPERATURE_K>",
+  "temperature_dependent_parameters": "<CONFIGURE_MOBILITY_LIFETIME_BANDGAP_OR_RATE_MODELS>",
+  "device_stack": "<CONFIGURE_OR_COPY_DEVICE_STACK_FROM_YOUR_PROJECT_CONFIG>",
+  "optical_generation": "<CONFIGURE_OPTICAL_GENERATION>",
+  "bias_range": "<CONFIGURE_BIAS_RANGE>",
+  "output_dir": "output/opto_low_temperature_configured_project"
+}

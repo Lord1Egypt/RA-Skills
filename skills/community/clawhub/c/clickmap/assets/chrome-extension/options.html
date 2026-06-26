@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ClickMap Config</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <img src="assets/logo.jpg" alt="ClickMap logo" class="logo" />
+      <div>
+        <h1>ClickMap</h1>
+        <p>Mark once. Reuse forever.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Bridge</h2>
+      <div class="grid">
+        <label>Bridge URL<input id="bridge" placeholder="http://127.0.0.1:18795" /></label>
+        <label>Token (optional)<input id="token" placeholder="optional token" /></label>
+      </div>
+      <div class="row">
+        <button id="saveBridge" class="primary">Save Bridge</button>
+        <button id="sync">Sync POIs</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Capture</h2>
+      <div class="row">
+        <button id="start" class="primary">Start Marking</button>
+        <button id="stop">Stop</button>
+        <button id="clear">Clear All</button>
+      </div>
+      <p class="hint">Click Start Marking, then click any element on your active tab and name it.</p>
+    </section>
+
+    <section class="card">
+      <h2>POIs</h2>
+      <div class="row">
+        <button id="export">Export JSON</button>
+        <button id="importBtn">Import JSON</button>
+      </div>
+      <input id="file" type="file" accept="application/json" hidden />
+      <ul id="list"></ul>
+    </section>
+
+    <p id="status">Ready.</p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

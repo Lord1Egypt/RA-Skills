@@ -1,35 +1,42 @@
 ---
-name: "Commit Helper"
+version: "2.0.0"
+name: commit-helper
 description: "Cz Cli — Commitizen — conventional commit helper. Automated tool for cz-cli tasks. Use when you need Cz Cli capabilities. Triggers on: commit helper."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/commit-helper"
-sourceUrl: "https://clawhub.ai/skills/commit-helper"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
 
-# Commit Helper
+# Cz Cli
 
-> Cz Cli — Commitizen — conventional commit helper. Automated tool for cz-cli tasks. Use when you need Cz Cli capabilities. Triggers on: commit helper.
+Commitizen — conventional commit helper
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/commit-helper`
-- **Source URL:** [https://clawhub.ai/skills/commit-helper](https://clawhub.ai/skills/commit-helper)
+## Why This Skill?
 
-## Overview
+- No installation required — works with standard system tools
+- Real functionality — runs actual commands, produces real output
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+Run `scripts/cz_cli.sh <command>` to use.
+
+- `commit` — [type] Generate commit message
+- `types` — Show commit types
+- `changelog` — Generate changelog from commits
+- `validate` — <msg> Validate commit message format
+- `lint` — Lint recent commits
+- `breaking` — List breaking changes
+- `scope` — <msg> Add scope to commit
+- `info` — Version info
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/commit-helper
+cz_cli.sh help
 ```
+
+---
+> **Disclaimer**: This skill is an independent, original implementation. It is not affiliated with, endorsed by, or derived from the referenced open-source project. No code was copied. The reference is for context only.
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com

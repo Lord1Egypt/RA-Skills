@@ -1,0 +1,4 @@
+interface:
+  display_name: "cooking.skill"
+  short_description: "Recommend dishes from cravings or ingredients, then explain how to cook them with practical technique and a lightly lively tone."
+  default_prompt: "Use cooking.skill to figure out what the user should cook, ask only the minimum missing questions, and return a recipe they can actually execute with substitutions, key technique notes, and failure warnings."

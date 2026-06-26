@@ -1,0 +1,11 @@
+{
+  "name": "cross-listing-ai",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "test": "bash ./tests/publish-scripts.test.sh",
+    "publish:clawhub": "bash ./scripts/publish-clawhub.sh",
+    "publish:skills": "bash ./scripts/publish-skills.sh",
+    "publish:all": "bash ./scripts/publish-all.sh"
+  }
+}

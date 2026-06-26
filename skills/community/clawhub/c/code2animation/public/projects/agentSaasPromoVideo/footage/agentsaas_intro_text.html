@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agentsaas Intro - Text</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./agentsaas_styles.css" />
+</head>
+<body class="camera-down">
+    <div class="search-section">
+        <div id="introducing" class="introducing">Introducing</div>
+        <div class="brand">
+            <span id="brand-text"></span>
+            <span id="cursor" class="cursor"></span>
+        </div>
+    </div>
+
+    <script>
+        const brandName = 'AgentSaaS Computer';
+        const brandEl = document.getElementById('brand-text');
+
+        window.onTimelineUpdate = (t) => {
+            const index = Math.max(0, Math.min(brandName.length, Math.floor((t - 0.4) / 0.04) + 1));
+            brandEl.textContent = brandName.slice(0, index);
+        };
+    </script>
+</body>
+</html>

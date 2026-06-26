@@ -1,0 +1,175 @@
+spec_version: "0.1"
+
+skill_identity:
+  slug: "preset-system-hardening"
+  display_name: "Preset Hardening"
+  id: "cocoloop.preset-system-hardening"
+  name: "Preset System Hardening"
+  version: "0.2.0"
+  owner: "tanshow"
+  homepage: "local://cocoloop-skill-factory/output/preset-system-hardening"
+  target_platforms:
+    - platform: "codex"
+      support_level: "supported_public"
+      standard_source: "https://developers.openai.com/codex/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin"
+      note: "主流程验证平台"
+    - platform: "claude_code"
+      support_level: "supported_public"
+      standard_source: "https://code.claude.com/docs/en/skills"
+      validation_mode: "public_validator"
+      publish_mode: "plugin_skill"
+      note: "要求保持兼容"
+
+intent:
+  goal: "把任务域研究结果接入 skill-factory 主流程和协议层"
+  target_user: "维护或扩展 skill-factory 的作者"
+  use_scenarios:
+    - "为新需求先判定任务域"
+    - "按域选择默认执行面"
+    - "按域生成稳定构建产物"
+
+scope:
+  must_have:
+    - "固定任务域 taxonomy"
+    - "固定字段责任矩阵"
+    - "新增第一层高频任务域预设包"
+    - "固定 output 目录契约"
+  nice_to_have:
+    - "为更多任务域补第二层预设"
+  excluded:
+    - "不进入脚本实现"
+
+inputs:
+  - name: "task_domain_research"
+    required: true
+    description: "上一轮任务域研究结果"
+    constraints:
+      note: "需要能支撑第一层优先域判断"
+      type: "document"
+      allowed_values: []
+      source: "workspace_scan"
+
+outputs:
+  - name: "preset_docs"
+    format: "markdown"
+    description: "第一层高频任务域预设目录"
+    minimum_contents:
+      - "包含高频任务、执行面、风险和默认输出"
+  - name: "governance_rules"
+    format: "markdown"
+    description: "任务域门禁和 output 契约"
+    minimum_contents:
+      - "包含字段责任矩阵和目录契约"
+
+output_profile:
+  has_visual_output: false
+  visual_output_types: []
+
+research_gate:
+  skill_identity:
+    status: "ready"
+    cocoloop_checked: true
+    clawhub_checked: true
+    slug_available: true
+    note: "示例名称已完成双源去重"
+  target_environment:
+    status: "ready"
+    current_environment: "codex / claude code authoring workspace on macOS"
+    target_environment: "codex / claude code authoring workspace on macOS"
+    current_environment_is_target: true
+    note: "当前任务在本地 authoring 环境内完成流程治理"
+  implementation_approach:
+    status: "ready"
+    selected_execution_plane: "Skill-only"
+    note: "这一轮先固化文档、预设和协议治理，不引入额外执行面"
+
+interaction_contract:
+  research:
+    ask_one_question_per_turn: true
+    max_questions: 10
+    count_confirmation_questions: true
+    overflow_strategy: "write_open_gaps_then_continue"
+
+success_criteria:
+  - "任务域识别成为 research 阶段硬门槛"
+  - "spec 字段责任矩阵已经写明"
+  - "第一层优先域已经形成正式预设"
+
+failure_modes:
+  - mode: "routing_not_applied"
+    description: "任务域研究存在，但主流程仍走纯通用收集"
+    user_impact: "同类需求反复从零判断"
+
+fallback_policy:
+  allowed: true
+  summary: "找不到合适预设时，允许退回通用流程，但要记录缺口"
+  fallback_outputs:
+    - "保留带 open_gaps 的构建产物"
+
+dependencies:
+  - name: "task-domain presets"
+    kind: "reference"
+    required: true
+    note: "用于调研、设计和构建准备阶段"
+
+research_evidence:
+  coverage_status:
+    status: "covered"
+    note: "已覆盖主流程、协议层和预设资产三条更新线"
+  evidence_refs:
+    - source_type: "workspace_doc"
+      mechanism: "task_domain_landscape"
+      solution_name: "skill-domain-landscape"
+      ref: "codex-prd/skill-domain-landscape.md"
+      note: "提供任务域 taxonomy 和执行面研究"
+    - source_type: "workspace_doc"
+      mechanism: "factory_flow_analysis"
+      solution_name: "current-factory-docs"
+      ref: "cocoloop-skill-factory/SKILL.md"
+      note: "提供现状流程基线"
+  open_gaps:
+    - gap_type: "second_layer_presets"
+      impact_level: "low"
+      note: "第二层补充域的预设还没有进入首批目录"
+
+primary_domain: "docs_research"
+peer_domains:
+  - "engineering_delivery"
+  - "frontend_design"
+
+domain_supplements:
+  engineering_delivery:
+    common_artifacts:
+      - "构建计划"
+  frontend_design:
+    style_constraints:
+      - "只讨论流程，不进入视觉实现"
+  browser_ui_testing: {}
+  document_artifacts: {}
+  docs_research:
+    expected_findings:
+      - "形成任务域 taxonomy"
+      - "形成字段责任矩阵"
+  workflow_integration: {}
+  deploy_platform_ops: {}
+  security_risk_review: {}
+
+adapters:
+  codex:
+    status: "draft"
+    entry_points:
+      - "SKILL.md"
+      - "presets/index.md"
+    mapping_notes:
+      - "任务域预设作为本地 references 读取"
+    known_gaps: []
+  claude_code:
+    status: "planned"
+    entry_points:
+      - "SKILL.md"
+    mapping_notes:
+      - "保持结构兼容，具体入口仍待后续补齐"
+    known_gaps:
+      - "尚未补第二层预设的适配规则"

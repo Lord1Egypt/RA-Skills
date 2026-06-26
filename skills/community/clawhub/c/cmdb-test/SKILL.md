@@ -1,35 +1,92 @@
 ---
-name: "Cmdb Test"
-description: "自动化 IMyFone CMDB 版本发布到测试环境 - 一键发布应用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cmdb-test"
-sourceUrl: "https://clawhub.ai/skills/cmdb-test"
+name: cmdb-test
+version: 1.0.0
+description: 自动化 IMyFone CMDB 版本发布到测试环境 - 一键发布应用
+keywords:
+  - cmdb
+  - release
+  - test
+  - deployment
+  - automation
+  - imyfone
 ---
 
-# Cmdb Test
+# CMDB 测试环境发布 Skill
 
-> 自动化 IMyFone CMDB 版本发布到测试环境 - 一键发布应用
+在 IMyFone CMDB 平台上自动完成指定应用到**测试环境**的版本发布流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cmdb-test`
-- **Source URL:** [https://clawhub.ai/skills/cmdb-test](https://clawhub.ai/skills/cmdb-test)
+## 功能
 
-## Overview
+- 自动打开 CMDB 版本发布页面
+- 自动登录（如未登录）
+- 查找并点击目标应用的「发布」按钮
+- 自动选择 release2 分支
+- 自动选择测试环境（香港-通用-测试）
+- 填写版本描述并提交发布申请
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cmdb-test
-```
+用户说「发布 icart-api 到测试」或「对 xxx 应用进行测试发布」时触发。
+
+## 输入参数
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| appName | string | 是 | 应用名称，如 `icart-api` |
+| description | string | 否 | 版本描述，默认为空 |
+
+## 关键信息
+
+- **CMDB 地址**: https://cmdb.imyfone.club/#/cicd/release
+- **固定分支**: release2
+- **固定环境**: 香港-通用-测试（测试环境）
+
+> ⚠️ 注意：首次使用需要在 CMDB 平台登录一次，之后会自动保存登录状态。
+
+## 执行步骤
+
+### 第一步：打开页面并检查登录状态
+
+1. 使用 browser 工具打开 `https://cmdb.imyfone.club/#/cicd/release`
+2. 截图/snapshot 检查是否出现登录表单
+3. 如果出现登录表单，请使用你的 CMDB 账号登录
+4. 如果已登录，直接进入发布页面
+
+### 第二步：查找并点击发布按钮
+
+1. 在应用列表中找到目标应用行（应用名称列匹配 `appName`）
+2. 点击该行的「发布」按钮
+
+### 第三步：填写发布表单
+
+1. 等待发布对话框出现
+2. 确认「应用名称」字段（通常预填充）
+3. 自动选择「分支或标签」为 `release2`
+4. 自动选择「环境」为 `香港-通用-测试`
+5. 如果传入了 `description`，填写版本描述字段
+
+### 第四步：提交发布
+
+1. 点击「确认」按钮
+2. 等待提交成功提示（通常显示「版本发布申请已经提交」）
+3. 汇报结果
+
+## 注意事项
+
+- 此 Skill 仅用于测试环境发布
+- 分支和环境已固定，无需手动选择
+- 确认前仔细核对应用名称是否正确
+- 发布成功后提示用户可在「版本发布记录」中查看进度
+
+## 错误处理
+
+- 页面加载超时：等待 5 秒后重试
+- 应用未找到：提示用户检查应用名称是否正确
+- 提交失败：截图错误信息并告知用户
+
+## 支持的应用
+
+- icart-api
+- icart-ma
+- icart-task
+- 其他 CMDB 应用

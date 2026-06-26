@@ -1,0 +1,22 @@
+# profile: codingplan
+# 火山方舟 Coding Plan + codex-relay 协议中转
+# 上游 base_url: https://ark.cn-beijing.volces.com/api/coding/v3 (OpenAI 协议)
+# 模型 ark-code-latest 支持控制台切换 (Doubao-Seed-Code / GLM-4.7 / Kimi-K2.5 等)
+
+model = "ark-code-latest"
+model_provider = "codingplan"
+model_reasoning_effort = "medium"
+
+# Coding Plan 上游目前只支持 Chat,不支持 Responses;由 codex-relay 翻译
+[model_providers.codingplan]
+name = "Coding Plan via relay"
+base_url = "http://127.0.0.1:4450/v1"
+wire_api = "responses"
+env_key = "ARK_API_KEY"
+
+# --- 重试与稳定性开关 ---
+request_max_retries = 4
+stream_max_retries = 5
+responses_websockets_v2 = true
+
+# 不要写 temperature / top_p,后端 ark-code-latest 写死了采样参数,加了会 400

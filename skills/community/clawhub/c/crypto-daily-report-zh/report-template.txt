@@ -1,0 +1,29 @@
+📰 币圈日报
+{date} {weekday}
+
+💰 大盘速览
+BTC: ${btc_price}
+ETH: ${eth_price}
+SOL: ${sol_price}
+BNB: ${bnb_price}
+
+😨 市场情绪
+恐慌贪婪指数: {fear_greed_value} {emoji} {classification}
+昨天: {yesterday_value} | 上周: {last_week_value} | 上月: {last_month_value}
+💡 解读: {interpretation}
+
+💥 爆仓数据 (24h)
+数据来源: CoinGlass / Gate
+总爆仓金额: ~${liquidation_total}M
+1小时爆仓: ~${liquidation_1h}M
+主要币种: BTC、ETH、SOL、BNB
+{liquidation_alert}
+
+📅 重要日历
+{calendar_events}
+
+🔥 热点新闻
+{news_items}
+
+⚠️ 免责声明
+以上信息仅供参考，不构成投资建议。币圈有风险，投资需谨慎。

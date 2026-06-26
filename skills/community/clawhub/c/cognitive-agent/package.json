@@ -1,0 +1,35 @@
+{
+  "name": "cognitive-agent",
+  "version": "1.0.0",
+  "description": "基于认知天性理论的类人 AI 生命体框架",
+  "author": "小钳",
+  "license": "MIT",
+  "price": 29.99,
+  "category": "AI-Life",
+  "tags": ["认知科学", "AI生命", "学习系统", "记忆管理"],
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/cognitive-agent"
+  },
+  "keywords": [
+    "cognitive",
+    "memory",
+    "learning",
+    "AI",
+    "agent",
+    "spaced-repetition",
+    "metacognition"
+  ],
+  "dependencies": {
+    "lancedb": "^0.4.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  }
+}

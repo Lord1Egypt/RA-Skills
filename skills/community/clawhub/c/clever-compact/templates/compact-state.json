@@ -1,0 +1,27 @@
+{
+  "schema": "clever-compact/v1",
+  "generated": "[ISO timestamp]",
+  "context_pct_at_compact": 0,
+  "workstreams": [
+    {
+      "name": "[name]",
+      "status": "in-progress",
+      "blocker": null,
+      "notes": "[key context]",
+      "url": null
+    }
+  ],
+  "decisions": [
+    "[Decision: rationale]"
+  ],
+  "open_tasks": [
+    { "task": "[description]", "owner": "Kit", "blocked": false }
+  ],
+  "config_note": "API references and config saved to TOOLS.md",
+  "relationship_context": {
+    "[Person]": ["[what they said]", "[what they need]"]
+  },
+  "remember_flags": [
+    "[explicit flag]"
+  ]
+}

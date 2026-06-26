@@ -1,35 +1,108 @@
 ---
-name: "内容优化助手"
-description: "内容优化助手 - 优化文章/SEO/社媒内容，提升可读性、搜索排名和传播效果。支持改写、润色、扩写、缩写。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/cn-content-optimizer"
-sourceUrl: "https://clawhub.ai/skills/cn-content-optimizer"
+name: content-optimizer
+description: 内容优化助手 - 优化文章/SEO/社媒内容，提升可读性、搜索排名和传播效果。支持改写、润色、扩写、缩写。
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins: []
+    emoji: "✏️"
+    homepage: https://clawhub.ai/skills/content-optimizer
 ---
 
-# 内容优化助手
+# 内容优化助手 ✏️
 
-> 内容优化助手 - 优化文章/SEO/社媒内容，提升可读性、搜索排名和传播效果。支持改写、润色、扩写、缩写。
+全方位优化中文内容，提升文章质量、SEO排名和社交媒体传播效果。支持多种优化模式，适配不同场景。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/cn-content-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/cn-content-optimizer](https://clawhub.ai/skills/cn-content-optimizer)
+## 什么时候使用
 
-## Overview
+- 需要优化文章的可读性和表达时
+- 需要针对搜索引擎优化（SEO）内容时
+- 需要将内容适配不同社交媒体平台时
+- 需要将长文缩写为摘要，或将要点扩写为完整文章时
+- 需要统一多篇内容的风格和语调时
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/cn-content-optimizer
+1. **智能改写**：保持原意前提下优化表达，提升流畅度和可读性
+2. **SEO优化**：关键词布局、标题优化、Meta描述生成、内链建议
+3. **多平台适配**：将内容适配为公众号、知乎、小红书、微博等平台风格
+4. **长度控制**：支持扩写（要点→文章）和缩写（长文→摘要）
+5. **风格迁移**：在正式/通俗/幽默/专业等风格间转换
+6. **多语言翻译优化**：中英互译后的本地化润色
+
+## 使用说明
+
+### 快速开始
+
+用户提供需要优化的内容，说明优化目标（如"改成知乎风格"、"提升SEO"），助手会分析后输出优化版本，并附上修改说明。
+
+### 详细工作流
+
+按以下流程执行优化：
+
+1. **需求分析**
+   - 确认用户提供的原始内容
+   - 明确优化目标（可读性、SEO、平台适配、长度调整、风格转换）
+   - 确认目标受众和使用场景
+
+2. **内容分析**
+   - 评估当前内容质量：流畅度、逻辑性、关键词密度
+   - 识别可优化点：冗余表达、被动语态、模糊表述
+   - 检查格式问题：段落长度、标题层级、列表使用
+
+3. **执行优化**
+
+   **可读性优化：**
+   - 拆分过长句子（超过40字考虑拆分）
+   - 替换模糊词汇为具体表达
+   - 增加过渡句，提升段落间衔接
+   - 使用主动语态替代被动语态
+
+   **SEO优化：**
+   - 标题包含主关键词，控制在15-25字
+   - 首段自然包含关键词
+   - 合理使用H2/H3标题层级
+   - Meta描述：150字以内，包含关键词和吸引点击的钩子
+   - 图片alt文本优化
+
+   **平台适配：**
+   - 公众号：标题吸引点击，开篇设悬念，段落短小
+   - 知乎：开头有态度，结构清晰，数据支撑
+   - 小红书：标题党+emoji，口语化，短段落
+   - 微博：140字内抓住核心，引导互动
+
+4. **输出优化结果**
+   - 展示优化后的完整内容
+   - 附上修改说明（改了哪些地方、为什么改）
+   - 可选：提供多个版本的优化方案
+
+## 输出示例
+
+**输入：**
 ```
+这篇文章写了关于AI Agent的发展，比较全面的介绍了各种框架，但是写的太长了。
+```
+
+**输出——公众号风格适配版：**
+```
+🤖 AI Agent 框架全面对比，选错后悔一年！
+
+这两年 AI Agent 火得一塌糊涂。
+从 AutoGPT 到 LangChain，从 OpenAI Agent 到 开源框架，
+到底哪个最适合你？
+
+今天一文说清楚。
+```
+
+附修改说明：
+- 原标题改为悬念式标题
+- 开篇增加代入感
+- 长段落拆分为短句
+- 增加emoji提升视觉层次
+
+## 注意事项
+
+- SEO优化需要提供目标关键词，否则使用内容中自然出现的高频词
+- 平台适配建议保留原始内容的核心理念和关键数据不变
+- 对于敏感内容（如法律、医疗），优化时需保持专业性和准确性

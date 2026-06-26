@@ -1,0 +1,10 @@
+{
+  "name": "clawbrain",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Peer verdict network for ClawHub skills — powered by Upstash Redis on Vercel",
+  "type": "module",
+  "dependencies": {
+    "@upstash/redis": "^1.34.3"
+  }
+}

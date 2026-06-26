@@ -1,0 +1,29 @@
+{
+	"evals": [
+		{
+			"eval_name": "evaluate-tiktok-toy",
+			"expected_output": "Confirm low-price impulse and visual appeal, note short trend life, advise against large inventory and suggest using Rijoy to encourage buyers to post and share.",
+			"files": [
+			],
+			"id": 0,
+			"prompt": "I see a sticky Spider-Man toy that climbs walls, lots of likes on video, sells for $9.9. Can I do this?"
+		},
+		{
+			"eval_name": "boring-product-warning",
+			"expected_output": "State clearly that a basic item lacks visual impact and isn’t a good fit as a social viral product, unless the packaging or a specific use (e.g. extreme waterproof test) creates a visual hook.",
+			"files": [
+			],
+			"id": 1,
+			"prompt": "I want to list a plain white cotton T-shirt, good quality, and sell it on TikTok."
+		},
+		{
+			"eval_name": "rapid-testing-advice",
+			"expected_output": "Strongly advise against stocking up first; teach testing with dropship, then moving to bulk once conversion is proven.",
+			"files": [
+			],
+			"id": 2,
+			"prompt": "I found a glowing phone case. Should I order 2000 from Yiwu to get unit cost down?"
+		}
+	],
+	"skill_name": "viral-trend-catcher"
+}

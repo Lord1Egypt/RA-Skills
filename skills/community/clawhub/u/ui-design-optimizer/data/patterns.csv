@@ -1,0 +1,9 @@
+slug,name,sections,conversion_strategy,best_for
+hero-centric,Hero-Centric,"Hero,Features,Testimonials,Pricing,CTA,Footer","Emotion-driven with trust elements,CTA above fold repeated after testimonials","SaaS,products,services"
+story-driven,Story-Driven,"Hook,Problem,Agitation,Solution,Proof,CTA","Narrative journey,build empathy before selling","coaching,consulting,nonprofits"
+product-led,Product-Led,"Hero,Product Demo,Features,Social Proof,Pricing","Show product first,let features sell themselves","developer tools,apps,SaaS"
+comparison,Comparison,"Hero,Problem,Comparison Table,Benefits,Testimonials,CTA","Direct comparison with competitors,highlight advantages","B2B,enterprise,competitive markets"
+pricing-first,Pricing-First,"Hero,Pricing,Features by Tier,Testimonials,FAQ,CTA","Transparent pricing upfront,attract qualified leads","subscription services,SaaS"
+case-study,Case-Study,"Hero,Challenge,Solution,Results,Process,Testimonials,CTA","Proof through detailed results and methodology","agencies,consultants,B2B services"
+video-first,Video-First,"Hero with Video,Problem,Solution,Demo,Social Proof,CTA","Engaging video content explains complex products","courses,software,complex products"
+minimal-cta,Minimal CTA,"Hero,Single Value Prop,Single CTA,Minimal Footer","One clear action,no distractions,single goal","email capture,event registration,launch"

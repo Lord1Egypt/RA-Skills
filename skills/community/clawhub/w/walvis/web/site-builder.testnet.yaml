@@ -1,0 +1,8 @@
+# site-builder config for testnet
+package: 0xf99aee9f21493e1590e7e5a9aea6f343a1f381031a04a732724871fc294be799
+general:
+  wallet_env: testnet
+  walrus_context: testnet
+  rpc_url: https://fullnode.testnet.sui.io:443
+  walrus_binary: /tmp/walrus-cli/walrus
+  walrus_config: /Users/kuuga/.config/walrus/client_config.yaml

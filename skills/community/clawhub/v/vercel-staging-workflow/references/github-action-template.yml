@@ -1,0 +1,96 @@
+# .github/workflows/staging-alias.yml
+# Automatically updates a Vercel staging alias after each push to main.
+# 
+# Required secrets:
+#   VERCEL_TOKEN      - Vercel API token (permanent, NOT CLI-rotated!)
+#   VERCEL_PROJECT_ID - Project ID from .vercel/project.json
+#   VERCEL_TEAM_ID    - Team/org ID (optional, for team accounts)
+#
+# How it works:
+#   1. Push to main triggers Vercel's Git integration (deploys automatically)
+#   2. This action waits for that deployment to reach READY state
+#   3. Sets a stable staging alias (e.g., myproject-staging.vercel.app)
+#
+# The staging URL never changes — it always points to the latest main deploy.
+
+name: Update Staging Alias
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-staging-alias:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for deployment and update alias
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
+          COMMIT_SHA: ${{ github.sha }}
+          # CHANGE THIS: your desired staging alias
+          STAGING_ALIAS: "YOURPROJECT-staging.vercel.app"
+        run: |
+          echo "Waiting for deployment of commit $COMMIT_SHA..."
+          TEAM_PARAM=""
+          if [ -n "$VERCEL_TEAM_ID" ]; then
+            TEAM_PARAM="&teamId=$VERCEL_TEAM_ID"
+          fi
+
+          DEPLOYMENT_ID=""
+          DEPLOYMENT_URL=""
+          for i in $(seq 1 18); do
+            sleep 10
+            echo "Check $i/18..."
+            RESPONSE=$(curl -s \
+              -H "Authorization: Bearer $VERCEL_TOKEN" \
+              "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID&limit=10${TEAM_PARAM}")
+
+            DEPLOYMENT_ID=$(echo "$RESPONSE" \
+              | jq -r --arg sha "$COMMIT_SHA" \
+                '[(.deployments // [])[] | select(.state=="READY" and (.meta.githubCommitSha // "" | startswith($sha[0:7])))] | first | .uid // ""')
+
+            DEPLOYMENT_URL=$(echo "$RESPONSE" \
+              | jq -r --arg sha "$COMMIT_SHA" \
+                '[(.deployments // [])[] | select(.state=="READY" and (.meta.githubCommitSha // "" | startswith($sha[0:7])))] | first | .url // ""')
+
+            if [ -n "$DEPLOYMENT_ID" ] && [ "$DEPLOYMENT_ID" != "null" ]; then
+              echo "Found READY deployment: $DEPLOYMENT_URL (ID: $DEPLOYMENT_ID)"
+              break
+            fi
+          done
+
+          # Fallback to latest READY deployment
+          if [ -z "$DEPLOYMENT_ID" ] || [ "$DEPLOYMENT_ID" = "null" ]; then
+            echo "Falling back to latest READY deployment..."
+            RESPONSE=$(curl -s \
+              -H "Authorization: Bearer $VERCEL_TOKEN" \
+              "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID&limit=5${TEAM_PARAM}")
+            DEPLOYMENT_ID=$(echo "$RESPONSE" \
+              | jq -r '[(.deployments // [])[] | select(.state=="READY")] | first | .uid // ""')
+            DEPLOYMENT_URL=$(echo "$RESPONSE" \
+              | jq -r '[(.deployments // [])[] | select(.state=="READY")] | first | .url // ""')
+          fi
+
+          if [ -z "$DEPLOYMENT_ID" ] || [ "$DEPLOYMENT_ID" = "null" ]; then
+            echo "No READY deployment found, skipping"
+            exit 0
+          fi
+
+          echo "Setting alias: $STAGING_ALIAS -> $DEPLOYMENT_URL"
+
+          ALIAS_URL="https://api.vercel.com/v2/deployments/${DEPLOYMENT_ID}/aliases"
+          if [ -n "$VERCEL_TEAM_ID" ]; then
+            ALIAS_URL="${ALIAS_URL}?teamId=${VERCEL_TEAM_ID}"
+          fi
+
+          curl -s -X POST \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"alias\":\"$STAGING_ALIAS\"}" \
+            "$ALIAS_URL"
+
+          echo ""
+          echo "✅ https://$STAGING_ALIAS -> $DEPLOYMENT_URL"

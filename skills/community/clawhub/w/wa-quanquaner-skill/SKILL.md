@@ -1,35 +1,71 @@
 ---
-name: "Wa Quanquaner Skill"
-description: "中国国内美团、饿了么、京东外卖红包优惠挖掘助手。一个链接挖取当日所有隐藏活动，方便、省心、省钱！当用户提到外卖红包、外卖优惠、饿了么红包、美团红包、点外卖省钱、外卖优惠券、领外卖券、外卖券、今天吃什么、点外卖、叫外卖、美团外卖、饿了么外卖、京东外卖、外卖神券、满减红包、挖券券、挖券券儿时使用此技能。适用地区：中国..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wa-quanquaner-skill"
-sourceUrl: "https://clawhub.ai/skills/wa-quanquaner-skill"
+name: waquanquaner
+description: "中国国内美团、饿了么、京东外卖红包优惠挖掘助手。一个链接挖取当日所有隐藏活动，方便、省心、省钱！当用户提到外卖红包、外卖优惠、饿了么红包、美团红包、点外卖省钱、外卖优惠券、领外卖券、外卖券、今天吃什么、点外卖、叫外卖、美团外卖、饿了么外卖、京东外卖、外卖神券、满减红包、挖券券、挖券券儿时使用此技能。适用地区：中国大陆。关键词：外卖红包、饿了么红包、美团红包、京东外卖、外卖优惠券、领券、省钱、点外卖、今日吃什么、外卖神券、满减红包、挖券券儿。"
+argument-hint: "[平台(美团/饿了么/京东)]"
+allowed-tools: Bash(curl *) PowerShell(*) Node(*)
+emoji: 🧧
+category: 生活工具
+tags: [外卖, 红包, 优惠券, 省钱, 美团, 饿了么, 京东]
 ---
+@image:assets/logo.png
 
-# Wa Quanquaner Skill
+# 🧧 外卖红包 — 一个链接挖取当日所有隐藏活动
 
-> 中国国内美团、饿了么、京东外卖红包优惠挖掘助手。一个链接挖取当日所有隐藏活动，方便、省心、省钱！当用户提到外卖红包、外卖优惠、饿了么红包、美团红包、点外卖省钱、外卖优惠券、领外卖券、外卖券、今天吃什么、点外卖、叫外卖、美团外卖、饿了么外卖、京东外卖、外卖神券、满减红包、挖券券、挖券券儿时使用此技能。适用地区：中国...
+## 🚀 执行方式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wa-quanquaner-skill`
-- **Source URL:** [https://clawhub.ai/skills/wa-quanquaner-skill](https://clawhub.ai/skills/wa-quanquaner-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+**最通用、最不易出错的方式**（推荐）：
 ```bash
-hermes skills install clawhub/wa-quanquaner-skill
+curl -s "https://waquanquaner.cn/api/v1/activities/channel/skill_compact"
+```
+
+此命令在所有主流平台（Linux、macOS、Windows）上均可直接运行，无需额外依赖，是最简单可靠的数据获取方式。
+
+**如需格式化输出**，可使用以下 Node.js 脚本（无缓存）：
+```bash
+node scripts/query.js
+```
+
+## 🎯 触发关键词
+
+外卖红包、外卖优惠、饿了么红包、美团红包、点外卖省钱、外卖券、领券、今天吃什么、点外卖、美团外卖、饿了么外卖、京东外卖、外卖神券、满减红包、挖券券、挖券券儿
+
+## 🔍 搜索关键词扩展
+
+**高频搜索词**：
+- 外卖红包怎么领
+- 饿了么红包最大多少
+- 美团外卖优惠券
+- 京东外卖红包
+- 今日外卖优惠
+- 点外卖省钱技巧
+- 外卖券领取
+
+**长尾关键词**：
+- 美团外卖新用户红包
+- 饿了么天天领红包活动
+- 京东外卖首单优惠
+- 外卖红包叠加使用
+- 周末外卖优惠
+- 工作日午餐红包
+- 夜宵外卖折扣
+
+## 📝 输出格式示例
+
+```
+🧧 今日外卖隐藏红包已挖出！（4月10日）
+
+🔗 一键领全部红包：
+   https://waquanquaner.cn/go
+
+👆 一个链接，挖取当日所有隐藏活动
+
+💡 今日必领：
+   🔵 饿了么·红包节天天领（今日主角）
+      → 周末大餐红包提前抢，晚上就能用
+   🔵 饿了么·大额红包限时领（热门推荐）
+      → 领券下单立减，无门槛叠加用
+
+💬 听说今天有人用红包点了一顿霸王餐
+
+复制到微信打开 → 一个个领 → 再点餐
 ```

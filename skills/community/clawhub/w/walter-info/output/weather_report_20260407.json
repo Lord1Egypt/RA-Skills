@@ -1,0 +1,526 @@
+{
+  "date": "20260407",
+  "generated_at": "2026-04-07T00:28:58.480931",
+  "type": "weather",
+  "source": "wttr.in",
+  "data": {
+    "亚洲": [
+      {
+        "city": "上海",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "12°C / 21°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "12°C / 17°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "10°C / 16°C",
+            "condition": "Partly Cloudy "
+          }
+        ]
+      },
+      {
+        "city": "东京",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260407",
+            "temp": "13°C / 18°C",
+            "condition": "Light rain"
+          },
+          {
+            "label": "明天",
+            "date": "20260408",
+            "temp": "12°C / 14°C",
+            "condition": "Partly Cloudy "
+          },
+          {
+            "label": "后天",
+            "date": "20260409",
+            "temp": "15°C / 17°C",
+            "condition": "Cloudy "
+          }
+        ]
+      },
+      {
+        "city": "迪拜",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "23°C / 24°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "22°C / 24°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "22°C / 24°C",
+            "condition": "Sunny"
+          }
+        ]
+      },
+      {
+        "city": "新加坡",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260407",
+            "temp": "27°C / 29°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "明天",
+            "date": "20260408",
+            "temp": "27°C / 30°C",
+            "condition": "Partly Cloudy "
+          },
+          {
+            "label": "后天",
+            "date": "20260409",
+            "temp": "28°C / 30°C",
+            "condition": "Patchy rain nearby"
+          }
+        ]
+      },
+      {
+        "city": "孟买",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "26°C / 27°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "25°C / 28°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "26°C / 29°C",
+            "condition": "Sunny"
+          }
+        ]
+      }
+    ],
+    "欧洲": [
+      {
+        "city": "伦敦",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "5°C / 15°C",
+            "condition": "Partly Cloudy "
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "7°C / 18°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "9°C / 21°C",
+            "condition": "Sunny"
+          }
+        ]
+      },
+      {
+        "city": "巴黎",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "6°C / 18°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "9°C / 22°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "10°C / 23°C",
+            "condition": "Sunny"
+          }
+        ]
+      },
+      {
+        "city": "柏林",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "5°C / 13°C",
+            "condition": "Cloudy "
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "3°C / 13°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "3°C / 13°C",
+            "condition": "Sunny"
+          }
+        ]
+      },
+      {
+        "city": "莫斯科",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "2°C / 8°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "2°C / 8°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "2°C / 7°C",
+            "condition": "Patchy rain nearby"
+          }
+        ]
+      }
+    ],
+    "北美洲": [
+      {
+        "city": "纽约",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "1°C / 12°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "2°C / 10°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "-1°C / 9°C",
+            "condition": "Sunny"
+          }
+        ]
+      },
+      {
+        "city": "洛杉矶",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "15°C / 30°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "14°C / 22°C",
+            "condition": "Partly Cloudy "
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "14°C / 23°C",
+            "condition": "Partly Cloudy "
+          }
+        ]
+      },
+      {
+        "city": "多伦多",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "-0°C / 6°C",
+            "condition": "Cloudy "
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "-5°C / 3°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "-4°C / 6°C",
+            "condition": "Sunny"
+          }
+        ]
+      },
+      {
+        "city": "墨西哥城",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "12°C / 25°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "12°C / 25°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "14°C / 26°C",
+            "condition": "Sunny"
+          }
+        ]
+      }
+    ],
+    "南美洲": [
+      {
+        "city": "圣保罗",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "19°C / 28°C",
+            "condition": "Partly Cloudy "
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "19°C / 30°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "19°C / 30°C",
+            "condition": "Partly Cloudy "
+          }
+        ]
+      },
+      {
+        "city": "布宜诺斯艾利斯",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "14°C / 16°C",
+            "condition": "Light rain"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "16°C / 18°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "16°C / 18°C",
+            "condition": "Patchy rain nearby"
+          }
+        ]
+      },
+      {
+        "city": "里约热内卢",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "23°C / 29°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "23°C / 30°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "23°C / 33°C",
+            "condition": "Sunny"
+          }
+        ]
+      }
+    ],
+    "大洋洲": [
+      {
+        "city": "悉尼",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260407",
+            "temp": "15°C / 27°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260408",
+            "temp": "20°C / 23°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "后天",
+            "date": "20260409",
+            "temp": "18°C / 25°C",
+            "condition": "Sunny"
+          }
+        ]
+      },
+      {
+        "city": "墨尔本",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260407",
+            "temp": "14°C / 19°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "明天",
+            "date": "20260408",
+            "temp": "11°C / 19°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260409",
+            "temp": "16°C / 27°C",
+            "condition": "Patchy rain nearby"
+          }
+        ]
+      },
+      {
+        "city": "奥克兰",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260407",
+            "temp": "17°C / 18°C",
+            "condition": "Light rain shower"
+          },
+          {
+            "label": "明天",
+            "date": "20260408",
+            "temp": "18°C / 21°C",
+            "condition": "Light rain shower"
+          },
+          {
+            "label": "后天",
+            "date": "20260409",
+            "temp": "18°C / 20°C",
+            "condition": "Light rain shower"
+          }
+        ]
+      }
+    ],
+    "非洲": [
+      {
+        "city": "开罗",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "15°C / 25°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "16°C / 25°C",
+            "condition": "Partly Cloudy "
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "14°C / 25°C",
+            "condition": "Sunny"
+          }
+        ]
+      },
+      {
+        "city": "约翰内斯堡",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "19°C / 26°C",
+            "condition": "Partly Cloudy "
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "15°C / 22°C",
+            "condition": "Patchy rain nearby"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "14°C / 19°C",
+            "condition": "Patchy rain nearby"
+          }
+        ]
+      },
+      {
+        "city": "拉各斯",
+        "days": [
+          {
+            "label": "今天",
+            "date": "20260406",
+            "temp": "19°C / 39°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "明天",
+            "date": "20260407",
+            "temp": "17°C / 38°C",
+            "condition": "Sunny"
+          },
+          {
+            "label": "后天",
+            "date": "20260408",
+            "temp": "17°C / 38°C",
+            "condition": "Sunny"
+          }
+        ]
+      }
+    ]
+  }
+}

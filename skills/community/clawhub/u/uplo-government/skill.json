@@ -1,0 +1,49 @@
+{
+  "name": "uplo-government",
+  "display_name": "UPLO Government — Policy & Regulatory Intelligence",
+  "description": "AI-powered government knowledge management. Search policy documents, regulatory filings, public records, and inter-agency coordination data with structured extraction.",
+  "version": "1.0.0",
+  "author": "UPLO",
+  "tags": [
+    "government",
+    "policy",
+    "regulatory",
+    "knowledge-management"
+  ],
+  "config": {
+    "agentdocs_url": {
+      "type": "string",
+      "required": true,
+      "description": "Your UPLO instance URL (e.g., https://app.uplo.ai)"
+    },
+    "api_key": {
+      "type": "string",
+      "required": true,
+      "secret": true,
+      "description": "Your UPLO MCP token"
+    }
+  },
+  "mcp": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@agentdocs1/mcp-server",
+      "--http"
+    ],
+    "env": {
+      "AGENTDOCS_URL": "${config.agentdocs_url}",
+      "API_KEY": "${config.api_key}",
+      "DEFAULT_PACKS": "government"
+    },
+    "transport": "http",
+    "url": "${config.agentdocs_url}/mcp"
+  },
+  "capabilities": [
+    "search_knowledge",
+    "search_with_context",
+    "get_policy",
+    "export_org_context",
+    "get_directives"
+  ],
+  "identity_patch": "identity-patch.md"
+}

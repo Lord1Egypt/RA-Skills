@@ -1,0 +1,170 @@
+# Version Drift — config.yaml
+# Copy this file to config.yaml and customize for your infrastructure.
+# Delete the sections you don't need. Env vars: use ${VAR_NAME} anywhere.
+
+# ══════════════════════════════════════════════════════════════════════
+# EXAMPLE 1: Homelab / Self-Hosted Stack
+# ══════════════════════════════════════════════════════════════════════
+hosts:
+  # Check versions on a remote server via SSH
+  - name: "my-server"
+    type: "ssh"
+    host: "my-server.local"
+    user: "root"
+    # ssh_key: "~/.ssh/id_rsa"          # optional
+    # strict_host_key: "accept-new"     # default: trust-on-first-use (accept-new|yes|no)
+    checks:
+      - name: "docker"
+        installed: "docker --version | grep -oP 'version \\K[^,]+'"
+        latest:
+          source: "github"
+          repo: "moby/moby"
+
+      - name: "nginx"
+        installed: "nginx -v 2>&1 | grep -oP '[\\d.]+'"
+        latest:
+          source: "github"
+          repo: "nginx/nginx"
+
+      - name: "postgres"
+        installed: "psql --version | grep -oP '[\\d.]+'"
+        latest:
+          source: "github"
+          repo: "postgres/postgres"
+
+  # Check a service with an API (e.g. Home Assistant, Grafana, Gitea)
+  - name: "home-assistant"
+    type: "http"
+    url: "http://homeassistant.local:8123/api/config"
+    # verify_ssl: false                  # uncomment for self-signed certs
+    headers:
+      Authorization: "Bearer ${HA_TOKEN}"
+    checks:
+      - name: "ha-core"
+        installed:
+          json_path: "version"
+        latest:
+          source: "github"
+          repo: "home-assistant/core"
+
+  # Check versions on the machine running this script
+  - name: "this-machine"
+    type: "local"
+    checks:
+      - name: "python"
+        installed: "python3 --version | awk '{print $2}'"
+        latest:
+          source: "github"
+          repo: "python/cpython"
+
+      - name: "node"
+        installed: "node -v | tr -d v"
+        latest:
+          source: "github"
+          repo: "nodejs/node"
+
+# ══════════════════════════════════════════════════════════════════════
+# EXAMPLE 2: Production / DevOps Stack
+# (uncomment and adapt if this is more your setup)
+# ══════════════════════════════════════════════════════════════════════
+#  - name: "web-1"
+#    type: "ssh"
+#    host: "web-1.internal"
+#    user: "deploy"
+#    ssh_key: "~/.ssh/deploy_key"
+#    checks:
+#      - name: "node"
+#        installed: "node -v | tr -d v"
+#        latest:
+#          source: "github"
+#          repo: "nodejs/node"
+#      - name: "pm2"
+#        installed: "pm2 --version"
+#        latest:
+#          source: "npm"
+#          package: "pm2"
+#      - name: "redis"
+#        installed: "redis-server --version | grep -oP '[\\d.]+'"
+#        latest:
+#          source: "github"
+#          repo: "redis/redis"
+#
+#  - name: "api-gateway"
+#    type: "http"
+#    url: "https://api.example.com/health"
+#    headers:
+#      X-API-Key: "${API_KEY}"
+#    checks:
+#      - name: "api-version"
+#        installed:
+#          json_path: "version"
+#        latest:
+#          source: "http"
+#          url: "https://api.example.com/releases/latest"
+#          json_path: "tag_name"
+
+# ══════════════════════════════════════════════════════════════════════
+# EXAMPLE 3: Docker-Heavy Setup
+# (uncomment if you run everything in containers)
+# ══════════════════════════════════════════════════════════════════════
+#  - name: "docker-host"
+#    type: "ssh"
+#    host: "docker-host.local"
+#    user: "root"
+#    checks:
+#      - name: "traefik"
+#        installed: "docker inspect traefik --format '{{.Config.Image}}' | grep -oP ':[\\d.]+' | tr -d ':'"
+#        latest:
+#          source: "github"
+#          repo: "traefik/traefik"
+#      - name: "grafana"
+#        installed: "docker inspect grafana --format '{{.Config.Image}}' | grep -oP ':[\\d.]+' | tr -d ':'"
+#        latest:
+#          source: "github"
+#          repo: "grafana/grafana"
+#      - name: "postgres"
+#        installed: "docker exec postgres psql --version | grep -oP '[\\d.]+'"
+#        latest:
+#          source: "docker"              # highest stable Docker Hub semver tag
+#          repo: "library/postgres"
+#          tag_regex: "^17\\."           # optional: stay on the current major
+#
+#      - name: "traefik-image-digest"
+#        installed: "docker inspect traefik --format '{{range .RepoDigests}}{{println .}}{{end}}' | head -1 | sed 's/.*@//'"
+#        latest:
+#          source: "oci"                 # Docker/OCI registry digest check
+#          image: "traefik"
+#          tag: "v3.4"
+#          return: "digest"
+#
+#      - name: "forgejo"
+#        installed: "forgejo --version | grep -oP '[0-9]+(\\.[0-9]+)+' | head -1"
+#        latest:
+#          source: "gitea"               # also works for Forgejo-compatible APIs
+#          base_url: "https://codeberg.org"
+#          repo: "forgejo/forgejo"
+
+# ══════════════════════════════════════════════════════════════════════
+# EXAMPLE 4: Python/Data Science Stack
+# ══════════════════════════════════════════════════════════════════════
+#  - name: "ml-server"
+#    type: "ssh"
+#    host: "gpu-box.internal"
+#    user: "ubuntu"
+#    checks:
+#      - name: "pytorch"
+#        installed: "pip show torch | grep Version | awk '{print $2}'"
+#        latest:
+#          source: "pypi"
+#          package: "torch"
+#      - name: "cuda"
+#        installed: "nvcc --version | grep -oP 'release [\\d.]+' | grep -oP '[\\d.]+'"
+#        latest:
+#          source: "http"
+#          url: "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb"
+#          json_path: ""  # manual check — CUDA doesn't have a clean API
+
+# Output settings (all optional)
+output:
+  format: "table"           # table | json | markdown
+  state_file: "state.json"  # tracks drift history between runs

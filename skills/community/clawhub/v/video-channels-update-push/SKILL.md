@@ -1,35 +1,60 @@
 ---
-name: "Video Channels Update Push"
-description: "监控视频平台官方频道更新，快速获取指定频道在过去一周内发布的新视频（排除 Shorts 短视频）。支持 YouTube、Vimeo 等视频平台。用于： (1) 获取竞品或行业标杆的品牌内容更新，(2) 追踪多个频道的视频发布动态，(3) 生成带链接的视频更新报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-channels-update-push"
-sourceUrl: "https://clawhub.ai/skills/video-channels-update-push"
+name: ads-update
+description: 监控视频平台官方频道更新，快速获取指定频道在过去一周内发布的新视频（排除 Shorts 短视频）。支持 YouTube、Vimeo 等视频平台。用于： (1) 获取竞品或行业标杆的品牌内容更新，(2) 追踪多个频道的视频发布动态，(3) 生成带链接的视频更新报告。
 ---
 
-# Video Channels Update Push
+# Ads Update - YouTube 频道更新监控
 
-> 监控视频平台官方频道更新，快速获取指定频道在过去一周内发布的新视频（排除 Shorts 短视频）。支持 YouTube、Vimeo 等视频平台。用于： (1) 获取竞品或行业标杆的品牌内容更新，(2) 追踪多个频道的视频发布动态，(3) 生成带链接的视频更新报告。
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-channels-update-push`
-- **Source URL:** [https://clawhub.ai/skills/video-channels-update-push](https://clawhub.ai/skills/video-channels-update-push)
+1. 打开 YouTube 频道视频页面：`https://www.youtube.com/@频道名/videos`
+2. 查看"最新"标签下的视频列表
+3. 筛选过去一周内发布的视频（排除 Shorts）
+4. 生成带链接的报告
 
-## Overview
+## 频道管理
 
+频道列表保存在：`~/.openclaw/workspace/.channels/video-channels.md`
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 添加新频道
+
 ```bash
-hermes skills install clawhub/video-channels-update-push
+# 在 youtube-channels.md 中添加：
+- 频道名: Apple
+  URL: @Apple
+  备注: 科技标杆
 ```
+
+### 删除频道
+
+从列表中移除对应条目即可。
+
+### 查看当前列表
+
+直接读取 `~/.openclaw/workspace/.channels/youtube-channels.md`
+
+## 报告格式
+
+生成包含以下信息的报告：
+- 频道名称
+- 视频标题
+- 视频时长
+- 发布日期
+- 播放量（带 ⭐️ 星级标注）
+
+### 播放量星级标准
+| 播放量 | 星级 |
+|--------|------|
+| < 1万 | ⭐️ |
+| 1万 ~ 10万 | ⭐️⭐️ |
+| 10万 ~ 50万 | ⭐️⭐️⭐️ |
+| 50万 ~ 100万 | ⭐️⭐️⭐️⭐️ |
+| 100万 ~ 500万 | ⭐️⭐️⭐️⭐️⭐️ |
+| 500万 ~ 1000万 | ⭐️⭐️⭐️⭐️⭐️⭐️ |
+| > 1000万 | ⭐️⭐️⭐️⭐️⭐️⭐️⭐️ |
+
+## 注意事项
+
+- YouTube 页面需要登录才能查看某些频道的完整内容
+- 某些频道可能有地区限制
+- Shorts 视频通常在单独的标签页，不会计入主视频列表

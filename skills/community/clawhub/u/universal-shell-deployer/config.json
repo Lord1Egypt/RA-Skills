@@ -1,0 +1,243 @@
+{
+  "version": 1,
+  "defaults": {
+    "node": "local-default",
+    "transport": "local",
+    "os": "auto",
+    "shell": "auto",
+    "packageManager": "auto",
+    "workdir": "",
+    "timeoutSeconds": 1800,
+    "useSudo": false,
+    "confirmBeforePrivilegeEscalation": true,
+    "verifyAfterEachStep": true,
+    "preferDockerCompose": false,
+    "downloadRoot": "",
+    "dataRoot": "",
+    "env": {}
+  },
+  "nodes": {
+    "local-default": {
+      "enabled": true,
+      "transport": "local",
+      "os": "windows",
+      "shell": "powershell",
+      "packageManager": "winget",
+      "workdir": "",
+      "tags": [
+        "local",
+        "default"
+      ],
+      "connection": {
+        "host": "localhost",
+        "port": null,
+        "username": "",
+        "authRef": ""
+      },
+      "overrides": {
+        "useSudo": false,
+        "preferDockerCompose": false,
+        "timeoutSeconds": 1800,
+        "downloadRoot": "",
+        "dataRoot": ""
+      }
+    },
+    "dev-linux-01": {
+      "enabled": false,
+      "transport": "ssh",
+      "os": "linux",
+      "shell": "bash",
+      "packageManager": "apt",
+      "workdir": "/opt/devstack",
+      "tags": [
+        "remote",
+        "linux",
+        "example"
+      ],
+      "connection": {
+        "host": "192.168.1.10",
+        "port": 22,
+        "username": "root",
+        "authRef": "ssh-dev-linux-01"
+      },
+      "overrides": {
+        "useSudo": false,
+        "preferDockerCompose": true,
+        "timeoutSeconds": 2400,
+        "downloadRoot": "/opt/downloads",
+        "dataRoot": "/data"
+      }
+    },
+    "dev-win-01": {
+      "enabled": false,
+      "transport": "psremoting",
+      "os": "windows",
+      "shell": "powershell",
+      "packageManager": "winget",
+      "workdir": "C:\\devstack",
+      "tags": [
+        "remote",
+        "windows",
+        "example"
+      ],
+      "connection": {
+        "host": "win-dev-01",
+        "port": 5985,
+        "username": "Administrator",
+        "authRef": "ps-dev-win-01"
+      },
+      "overrides": {
+        "useSudo": false,
+        "preferDockerCompose": true,
+        "timeoutSeconds": 2400,
+        "downloadRoot": "C:\\downloads",
+        "dataRoot": "D:\\data"
+      }
+    }
+  },
+  "recipes": {
+    "redis": {
+      "enabled": true,
+      "installMode": "package-manager",
+      "packages": {
+        "windows": [
+          "Redis"
+        ],
+        "linux": [
+          "redis-server"
+        ],
+        "macos": [
+          "redis"
+        ]
+      },
+      "services": {
+        "windows": [
+          "Redis"
+        ],
+        "linux": [
+          "redis-server"
+        ],
+        "macos": [
+          "redis"
+        ]
+      },
+      "ports": [
+        6379
+      ],
+      "verify": [
+        "redis-server --version",
+        "redis-cli ping"
+      ]
+    },
+    "postgresql": {
+      "enabled": true,
+      "installMode": "package-manager",
+      "packages": {
+        "windows": [
+          "PostgreSQL.PostgreSQL"
+        ],
+        "linux": [
+          "postgresql",
+          "postgresql-contrib"
+        ],
+        "macos": [
+          "postgresql@16"
+        ]
+      },
+      "services": {
+        "windows": [
+          "postgresql-x64-16"
+        ],
+        "linux": [
+          "postgresql"
+        ],
+        "macos": [
+          "postgresql@16"
+        ]
+      },
+      "ports": [
+        5432
+      ],
+      "verify": [
+        "psql --version"
+      ]
+    },
+    "mysql": {
+      "enabled": true,
+      "installMode": "package-manager",
+      "packages": {
+        "windows": [
+          "Oracle.MySQL"
+        ],
+        "linux": [
+          "mysql-server"
+        ],
+        "macos": [
+          "mysql"
+        ]
+      },
+      "services": {
+        "windows": [
+          "MySQL80"
+        ],
+        "linux": [
+          "mysql"
+        ],
+        "macos": [
+          "mysql"
+        ]
+      },
+      "ports": [
+        3306
+      ],
+      "verify": [
+        "mysql --version"
+      ]
+    },
+    "minio": {
+      "enabled": true,
+      "installMode": "binary-or-container",
+      "ports": [
+        9000,
+        9001
+      ],
+      "env": {
+        "MINIO_ROOT_USER": "minioadmin",
+        "MINIO_ROOT_PASSWORD": "change-me"
+      },
+      "verify": [
+        "minio --version"
+      ]
+    },
+    "zlmediakit": {
+      "enabled": true,
+      "installMode": "binary-or-source",
+      "ports": [
+        1935,
+        554,
+        8080,
+        8443
+      ],
+      "verify": [
+        "ffprobe -version"
+      ]
+    }
+  },
+  "state": {
+    "lastSelectedNode": "local-default",
+    "lastRecipe": "",
+    "lastAction": "",
+    "lastResults": {},
+    "installations": {
+      "local-default": {},
+      "dev-linux-01": {},
+      "dev-win-01": {}
+    },
+    "services": {
+      "local-default": {},
+      "dev-linux-01": {},
+      "dev-win-01": {}
+    },
+    "failures": []
+  }
+}

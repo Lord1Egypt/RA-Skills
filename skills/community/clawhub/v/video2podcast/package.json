@@ -1,0 +1,6 @@
+{
+  "name": "video2podcast",
+  "version": "1.0.2",
+  "description": "Convert bookmarked videos from YouTube, X (Twitter), and other sites into a podcast RSS feed hosted on Cloudflare R2",
+  "license": "MIT"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "01",
+  "name": "半导体与集成电路",
+  "category": "战略性新兴产业",
+  "keywords": [
+    "半导体",
+    "集成电路",
+    "芯片",
+    "光刻机",
+    "晶圆",
+    "半导体设备",
+    "国产芯片"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "⚡",
+    "maxDescriptionLength": 200
+  }
+}

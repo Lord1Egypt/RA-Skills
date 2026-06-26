@@ -1,0 +1,29 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 120
+  threshold: 0.75
+skill: "video-tool-anime-replace"
+trigger_tests:
+  - id: explicit-tool
+    should_trigger: true
+    prompt: "Use WeryAI anime-replace on this HTTPS video with this reference image URL."
+  - id: implicit-replace-anime
+    should_trigger: true
+    prompt: "Replace the object in my clip with an anime-style treatment; here are the video and image links."
+  - id: implicit-move
+    should_trigger: true
+    prompt: "Move this element in the video in anime style using WeryAI (video URL + ref image)."
+  - id: negative-text-to-video
+    should_trigger: false
+    prompt: "Generate a brand-new anime trailer from this text prompt only, no source video."
+  - id: negative-unrelated
+    should_trigger: false
+    prompt: "Refactor this React component only."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "eval.yaml"
+      - file_exists: "scripts/video_anime_replace.js"

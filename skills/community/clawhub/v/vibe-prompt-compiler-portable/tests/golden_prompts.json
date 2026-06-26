@@ -1,0 +1,157 @@
+[
+  {
+    "name": "bugfix_prompt_shape",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "修复登录接口 500",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "bugfix",
+      "compiled_prompt_contains": [
+        "You are my debugging partner.",
+        "Goal:",
+        "Diagnose and minimally fix this bug:",
+        "Current Task:",
+        "Identify the root cause and apply the smallest safe fix.",
+        "Out of Scope:",
+        "Acceptance Criteria:",
+        "Output Requirements:"
+      ]
+    }
+  },
+  {
+    "name": "architecture_handoff_shape",
+    "script": "create_handoff.py",
+    "args": [
+      "--request",
+      "我们有一套 React + FastAPI + SQLite 的测试系统，想支持两个产品，数据完全隔离但功能一致，怎么设计架构？",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "architecture-review",
+      "execution_mode": "architecture",
+      "handoff_text_contains": [
+        "Use the following compiled vibe-coding brief as the source of truth.",
+        "Task type: architecture-review",
+        "Execution mode: architecture",
+        "Compiled brief:",
+        "Assumptions:",
+        "Non-goals:",
+        "Expected deliverables:",
+        "Execution rules:"
+      ],
+      "deliverables_contains": [
+        "Recommended architecture",
+        "Phased rollout plan"
+      ]
+    }
+  },
+  {
+    "name": "integration_handoff_shape",
+    "script": "create_handoff.py",
+    "args": [
+      "--request",
+      "把我们的系统和企业微信审批打通，审批通过后自动回写状态",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "integration",
+      "execution_mode": "integration",
+      "handoff_text_contains": [
+        "Task type: integration",
+        "Execution mode: integration",
+        "Connect this system with another service or platform:",
+        "Expected deliverables:",
+        "Execution rules:"
+      ],
+      "deliverables_contains": [
+        "Integration design",
+        "Retry/idempotency rules"
+      ]
+    }
+  },
+  {
+    "name": "new_project_prompt_shape",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "Build an admin dashboard MVP",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "new-project",
+      "compiled_prompt_contains": [
+        "You are my senior product-engineering partner.",
+        "Build a minimal viable version of:",
+        "Turn the idea into a short implementation plan and then build the smallest working slice.",
+        "Tech Stack:",
+        "Acceptance Criteria:"
+      ]
+    }
+  },
+  {
+    "name": "bugfix_prompt_shape_chinese_first",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "修复登录接口 500",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "bugfix",
+      "compiled_prompt_contains": [
+        "你是我的调试协作伙伴。",
+        "目标：",
+        "诊断并以最小改动修复这个问题：",
+        "当前任务：",
+        "找出根因，并应用最小且安全的修复。",
+        "非范围：",
+        "验收标准：",
+        "输出要求："
+      ]
+    }
+  },
+  {
+    "name": "new_project_handoff_shape_chinese_first",
+    "script": "create_handoff.py",
+    "args": [
+      "--request",
+      "Build a lightweight CRM MVP",
+      "--target-tool",
+      "codex-cli",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "task_type": "new-project",
+      "execution_mode": "plan-only",
+      "handoff_text_contains": [
+        "请把下面这份 vibe-coding brief 作为唯一事实来源。",
+        "目标工具：Codex CLI",
+        "任务类型：new-project",
+        "执行模式：plan-only",
+        "编译后的 brief：",
+        "假设：",
+        "非目标：",
+        "期望交付物：",
+        "执行规则：",
+        "Codex CLI 包装提示："
+      ],
+      "deliverables_contains": [
+        "澄清后的目标",
+        "最小计划"
+      ]
+    }
+  }
+]

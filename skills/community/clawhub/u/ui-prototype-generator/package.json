@@ -1,0 +1,15 @@
+{
+  "name": "ui-prototype-generator",
+  "version": "1.0.0",
+  "description": "从参考图片或描述生成交互式原型。默认输出 HTML 格式，仅在用户明确要求时使用 Figma。",
+  "author": "",
+  "license": "MIT",
+  "keywords": [
+    "ui",
+    "prototype",
+    "html",
+    "figma",
+    "design",
+    "frontend"
+  ]
+}

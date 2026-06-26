@@ -1,35 +1,44 @@
----
-name: "Viral Hook Weaponizer"
-description: "Generates 10 unique, under-15-word viral hooks based on psychological triggers for short-form content to boost engagement."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/viral-hook-weaponizer"
-sourceUrl: "https://clawhub.ai/skills/viral-hook-weaponizer"
----
+name: Viral Hook Weaponizer
+description: Generates high-performing viral hooks for short-form content based on proven psychological patterns.
 
-# Viral Hook Weaponizer
+trigger:
+  when:
+    - user requests content ideas, captions, hooks, or viral content
+    - OR provides a topic and wants engagement
+  avoid:
+    - long-form writing (blogs, essays)
+    - technical explanations
 
-> Generates 10 unique, under-15-word viral hooks based on psychological triggers for short-form content to boost engagement.
+input_schema:
+  topic: string
+  audience: optional string
+  platform: optional string (tiktok, instagram, youtube)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/viral-hook-weaponizer`
-- **Source URL:** [https://clawhub.ai/skills/viral-hook-weaponizer](https://clawhub.ai/skills/viral-hook-weaponizer)
+execution:
+  - identify emotional drivers (fear, curiosity, status, urgency)
+  - select 3 hook archetypes:
+      - curiosity gap
+      - bold claim
+      - relatable pain
+  - generate 10 hooks using these archetypes
+  - ensure each hook is under 15 words
+  - avoid repetition and generic phrasing
 
-## Overview
+output_format:
+  HOOKS:
+  1.
+  2.
+  3.
+  ...
+  10.
+
+constraints:
+  - no emojis
+  - no explanations
+  - hooks must feel native and human
+  - each hook must be unique
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/viral-hook-weaponizer
-```
+
+
+

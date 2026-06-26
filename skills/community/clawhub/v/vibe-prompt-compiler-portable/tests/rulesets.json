@@ -1,0 +1,151 @@
+[
+  {
+    "name": "compile_minimal_diff_ruleset",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "Fix the login API 500 error",
+      "--ruleset",
+      "minimal-diff",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "ruleset": "minimal-diff",
+      "must_rules_contains": [
+        "Change only files directly related to the task."
+      ],
+      "must_not_rules_contains": [
+        "Do not perform unrelated refactors."
+      ],
+      "validation_rules_contains": [
+        "Provide the smallest viable verification steps."
+      ],
+      "scope_guardrails_contains": [
+        "Prefer a small patch over broad changes."
+      ]
+    }
+  },
+  {
+    "name": "handoff_test_first_ruleset_chinese",
+    "script": "create_handoff.py",
+    "args": [
+      "--request",
+      "修复登录接口 500",
+      "--ruleset",
+      "test-first",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "ruleset": "test-first",
+      "must_rules_contains": [
+        "先明确验证方式，再动手修改。"
+      ],
+      "validation_rules_contains": [
+        "列出自动测试或手工验证步骤。"
+      ],
+      "handoff_text_contains": [
+        "开发规则：",
+        "必须：",
+        "先明确验证方式，再动手修改。",
+        "验证要求：",
+        "列出自动测试或手工验证步骤。",
+        "范围护栏："
+      ]
+    }
+  },
+  {
+    "name": "handoff_repo_safe_ruleset",
+    "script": "create_handoff.py",
+    "args": [
+      "--request",
+      "Build an admin dashboard MVP",
+      "--ruleset",
+      "repo-safe",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "ruleset": "repo-safe",
+      "must_rules_contains": [
+        "Follow existing repository conventions and directory boundaries."
+      ],
+      "must_not_rules_contains": [
+        "Do not add dependencies unless necessary and justified."
+      ],
+      "handoff_text_contains": [
+        "Development rules:",
+        "Must:",
+        "Must not:",
+        "Validation required:",
+        "Scope guardrails:"
+      ]
+    }
+  },
+  {
+    "name": "compile_repo_rules_merge",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "Fix the login API 500 error",
+      "--ruleset",
+      "minimal-diff",
+      "--repo-rules-file",
+      "/Users/tenghuiliu/.openclaw/workspace/skills/vibe-prompt-compiler-portable/tests/repo_rules_sample.json",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "ruleset": "minimal-diff",
+      "must_rules_contains": [
+        "Change only files directly related to the task.",
+        "Respect AGENTS.md instructions for touched files."
+      ],
+      "must_not_rules_contains": [
+        "Do not edit generated files directly."
+      ],
+      "validation_rules_contains": [
+        "Run the narrowest relevant test command first."
+      ],
+      "scope_guardrails_contains": [
+        "Keep changes inside the feature directory when possible."
+      ]
+    }
+  },
+  {
+    "name": "compile_auto_repo_rules",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "Fix the login API 500 error",
+      "--ruleset",
+      "repo-safe",
+      "--repo-root",
+      "/Users/tenghuiliu/.openclaw/workspace/skills/vibe-prompt-compiler-portable/tests/test_repo/rules",
+      "--auto-repo-rules",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "ruleset": "repo-safe",
+      "must_rules_contains": [
+        "Follow existing repository conventions and directory boundaries.",
+        "Respect AGENTS.md instructions for touched files.",
+        "Prefer existing repository lint/format scripts when validating changes."
+      ],
+      "must_not_rules_contains": [
+        "Do not modify unrelated files.",
+        "Do not add dependencies unless necessary and justified."
+      ],
+      "validation_rules_contains": [
+        "Prefer existing repository test scripts before inventing custom validation commands."
+      ],
+      "scope_guardrails_contains": [
+        "Prefer the smallest change that solves the root problem."
+      ]
+    }
+  }
+]

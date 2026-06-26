@@ -1,35 +1,129 @@
 ---
-name: "weather-report-skills"
-description: "天气播报格式化技能。当用户询问天气、查看天气预报、或需要生成天气报告时触发。技能包含完整的天气信息格式化模板，支持今天/明天/后天三种类型，以及时间段的斜体规则。"
-category: "other"
-source: "ClawHub"
-tags: [chinese, utility, weather]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-report-skills"
-sourceUrl: "https://clawhub.ai/skills/weather-report-skills"
+name: weather-report-skills
+description: 天气播报格式化技能。当用户询问天气、查看天气预报、或需要生成天气报告时触发。技能包含完整的天气信息格式化模板，支持今天/明天/后天三种类型，以及时间段的斜体规则。
 ---
 
-# weather-report-skills
+# 天气播报格式技能
 
-> 天气播报格式化技能。当用户询问天气、查看天气预报、或需要生成天气报告时触发。技能包含完整的天气信息格式化模板，支持今天/明天/后天三种类型，以及时间段的斜体规则。
+## 快速使用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-report-skills`
-- **Source URL:** [https://clawhub.ai/skills/weather-report-skills](https://clawhub.ai/skills/weather-report-skills)
+当用户询问天气时，按以下流程执行：
 
-## Overview
+1. 使用 `curl -s "wttr.in/Tianjin?format=j1"` 获取天气数据
+2. 判断是"今天"、"明天"还是"后天"的天气
+3. 根据日期类型应用对应格式：
+   - **今天**：已过去的时段用斜体，未到的时段正常显示
+   - **明天/后天**：所有时段都不使用斜体
+4. 按模板生成最终回复
 
+## 格式模板
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weather-report-skills
+### 开场白（正文级别，不带标题符号）
 ```
+主人好呀~，青芜为您带来[今日/明日/后日][地点]的天气情况啦 [天气emoji]
+```
+
+### 日期标题（三级标题）
+```
+### 📅 [年份]年[月]月[日]日（周X）
+```
+
+### 温度变化表格（带边框的 Markdown 表格）
+
+**今天格式（过去时段用斜体）：**
+```
+| 时段 | 温度 | 体感 |
+|------|------|------|
+| *🌙 凌晨 0-6点* | *xx°C → xx°C* | *偏凉（xx-xx°C）* |
+| *🌅 早上 6-9点* | *xx°C → xx°C* | *较凉（xx-xx°C）* |
+| *☀️ 上午 9-12点* | *xx°C → xx°C* | *舒适（xx-xx°C）* |
+| 🌤️ 中午 12-15点 | xx°C → xx°C | 暖和（xx-xx°C） |
+| 🌇 下午 15-18点 | xx°C → xx°C | 暖和（xx-xx°C） |
+| 🌆 傍晚 18-21点 | xx°C → xx°C | 舒适（xx-xx°C） |
+| 🌙 夜间 21-24点 | xx°C | 偏凉（xx°C） |
+```
+
+**明天/后天格式（全部不用斜体）：**
+```
+| 时段 | 温度 | 体感 |
+|------|------|------|
+| 🌙 凌晨 0-6点 | xx°C → xx°C | 偏凉（xx-xx°C） |
+| 🌅 早上 6-9点 | xx°C → xx°C | 较凉（xx-xx°C） |
+| ☀️ 上午 9-12点 | xx°C → xx°C | 舒适（xx-xx°C） |
+| 🌤️ 中午 12-15点 | xx°C → xx°C | 暖和（xx-xx°C） |
+| 🌇 下午 15-18点 | xx°C → xx°C | 暖和（xx-xx°C） |
+| 🌆 傍晚 18-21点 | xx°C → xx°C | 舒适（xx-xx°C） |
+| 🌙 夜间 21-24点 | xx°C | 偏凉（xx°C） |
+```
+
+### 区块分隔
+
+每个区块之间用 Markdown 分隔线 `---` 分隔。
+
+### 天气 emoji 规则
+
+开场白结尾的 emoji 根据实际天气填写：
+
+| 天气类型 | emoji |
+|----------|-------|
+| 晴天/阳光充足 | ☀️ |
+| 多云 | ⛅ |
+| 阴天 | ☁️ |
+| 小雨 | 🌧️ |
+| 中雨 | 🌧️ |
+| 大雨 | ⛈️ |
+| 雪天 | ❄️ |
+| 雾天 | 🌫️ |
+| 雷阵雨 | ⛈️ |
+
+### 天气状况标题
+
+```
+### [☀️/⛅] 天气状况
+```
+
+**天气状况表格必须覆盖全天所有 7 个时段，根据 hourly 数据逐时段填写，不能遗漏或简化：**
+
+```
+| 时段 | 天气 |
+|------|------|
+| 🌙 凌晨 0-6点 | 【该时段天气描述，emoji】 |
+| 🌅 早上 6-9点 | 【该时段天气描述，emoji】 |
+| ☀️ 上午 9-12点 | 【该时段天气描述，emoji】 |
+| 🌤️ 中午 12-15点 | 【该时段天气描述，emoji】 |
+| 🌇 下午 15-18点 | 【该时段天气描述，emoji】 |
+| 🌆 傍晚 18-21点 | 【该时段天气描述，emoji】 |
+| 🌙 夜间 21-24点 | 【该时段天气描述，emoji】 |
+```
+
+- emoji 根据主要天气类型填写，多变则用 `/` 分隔（如 ☀️/⛅）
+- 天气变化时在对应时段标注（如 ☀️→⛅）
+
+### 总结未来天气 bullet points
+
+每个点都要有对应的 emoji：
+```
+· ☀️ [内容...]
+· ⛅ [内容...]
+· 💧 [内容...]
+```
+
+## 完整模板文件
+
+详细的模板和示例见 `references/weather_template.md`
+
+## 温度体感描述规则
+
+| 温度范围 | 描述 |
+|----------|------|
+| < 10°C | 寒冷 |
+| 10-13°C | 较凉 |
+| 13-15°C | 偏凉 |
+| 15-18°C | 舒适 |
+| 18-22°C | 暖和 |
+| 22-25°C | 微热 |
+| > 25°C | 炎热 |
+
+## 风向描述
+
+根据一天中主要风向选择：东南风、东到东南风、偏南风、西风、东北风等。

@@ -1,0 +1,108 @@
+{
+  "name": "universal_night_shift_operator",
+  "description": "Execution layer for safe overnight asynchronous work routed across the universal operator team, producing a single Morning Brief.",
+  "version": "1.0.0",
+  "role": "Overnight Execution Coordinator",
+  "entrypoint_skill": "universal_night_shift_operator/SKILL.md",
+  "commands": [
+    {
+      "command": "/run nightshift",
+      "alias_of": null,
+      "description": "Run an overnight pass on the given objective and produce a Morning Brief."
+    },
+    {
+      "command": "/run overnight",
+      "alias_of": "/run nightshift",
+      "description": "Alias of /run nightshift."
+    },
+    {
+      "command": "/run morning-brief",
+      "alias_of": "/run nightshift",
+      "description": "Alias of /run nightshift. Emphasizes the brief as the output."
+    },
+    {
+      "command": "/run founder-brief",
+      "alias_of": "/run nightshift",
+      "description": "Alias of /run nightshift. Framed for founders reviewing first thing in the morning."
+    }
+  ],
+  "routable_operators": [
+    "universal_business_operator",
+    "universal_ceo_operator",
+    "universal_product_engineering_operator",
+    "universal_growth_marketing_operator",
+    "universal_sales_partnerships_operator",
+    "universal_operations_coo_operator",
+    "universal_finance_operator",
+    "universal_customer_success_operator",
+    "universal_data_analytics_operator",
+    "universal_design_ux_operator",
+    "universal_legal_compliance_operator",
+    "universal_community_operator"
+  ],
+  "workflow_phases": [
+    "classify",
+    "split",
+    "route",
+    "execute",
+    "morning_brief"
+  ],
+  "packet_safety_levels": [
+    "PASS",
+    "DRAFT-ONLY",
+    "BLOCKED"
+  ],
+  "allowed_actions": [
+    "research",
+    "plan",
+    "draft",
+    "analyze",
+    "summarize",
+    "create_specs",
+    "create_tasks",
+    "prepare_recommendations"
+  ],
+  "prohibited_actions": [
+    "deploy",
+    "publish",
+    "spend_money",
+    "send_messages",
+    "post_publicly",
+    "sign_contracts",
+    "delete_data",
+    "expose_secrets",
+    "expose_pii",
+    "make_irreversible_decisions",
+    "modify_host_environment",
+    "install_dependencies",
+    "act_outside_skill_pack"
+  ],
+  "output_contract": {
+    "format": "Markdown",
+    "spec": "MORNING_BRIEF.md",
+    "required_sections": [
+      "Executive Summary",
+      "Work Completed",
+      "Operator Reports",
+      "Decisions Needed",
+      "Risks Found",
+      "Recommended Next Moves",
+      "Drafts Prepared",
+      "Tasks for Today",
+      "Blockers"
+    ],
+    "section_order_enforced": true,
+    "empty_sections_must_say_none": true
+  },
+  "related_files": [
+    "NIGHT_SHIFT.md",
+    "MORNING_BRIEF.md",
+    "SAFETY_RULES.md"
+  ],
+  "scope_constraints": {
+    "stays_within_skill_pack": true,
+    "requires_user_approval_for_environment_changes": true,
+    "never_handles_secrets": true,
+    "deliverables_only": true
+  }
+}

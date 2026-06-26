@@ -1,0 +1,45 @@
+{
+  "name": "ustack",
+  "version": "0.1.0",
+  "description": "uStack — universal agent workspace compatibility and update engine. One workspace. Any agent.",
+  "type": "module",
+  "bin": {
+    "ustack": "bin/ustack.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "keywords": [
+    "agent",
+    "workspace",
+    "gstack",
+    "claude-code",
+    "codex",
+    "openclaw",
+    "compatibility",
+    "ustack",
+    "agisecurity"
+  ],
+  "license": "MIT",
+  "homepage": "https://agi.security",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aggie-security/ustack.git"
+  },
+  "scripts": {
+    "import": "node bin/ustack.js import",
+    "analyze": "node bin/ustack.js analyze",
+    "publish": "node bin/ustack.js publish",
+    "update": "node bin/ustack.js update",
+    "doctor": "node bin/ustack.js doctor",
+    "test": "node bin/ustack.js doctor"
+  },
+  "dependencies": {}
+}

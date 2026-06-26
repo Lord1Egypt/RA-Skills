@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "vibe-ui/ui-anti-patterns/v2",
+  "source": "Vibe Gate 2.0 deterministic anti-patterns for Vibe UI execution checks",
+  "patterns": [
+    {
+      "id": "default-llm-indigo",
+      "category": "Color",
+      "label": "Default LLM indigo accent",
+      "bad": "Uses #6366f1, #4f46e5, #818cf8, or #7c3aed as an unearned accent instead of the selected DESIGN.md palette.",
+      "fix": "Replace the accent with a named color token from DESIGN.md, or document why the selected style explicitly supports it.",
+      "evidence": "Matched a hardcoded default AI accent color."
+    },
+    {
+      "id": "generic-ai-gradient",
+      "category": "Color",
+      "label": "Generic AI gradient",
+      "bad": "Adds an arbitrary gradient, glow, neon, or glass effect that is not present in the selected design system.",
+      "fix": "Use the selected DESIGN.md surface, border, and action color rules; keep gradients only when the source design documents them.",
+      "evidence": "Matched gradient or effect utility classes."
+    },
+    {
+      "id": "hardcoded-color",
+      "category": "Color",
+      "label": "Hardcoded color drift",
+      "bad": "Introduces raw hex colors that do not appear in DESIGN.md.",
+      "fix": "Replace raw values with DESIGN.md color tokens and reuse the same token for repeated roles.",
+      "evidence": "Matched hex values outside the extracted DESIGN.md token set."
+    },
+    {
+      "id": "too-many-accents",
+      "category": "Color",
+      "label": "Too many accent colors",
+      "bad": "Uses several unrelated accent colors, making the page feel like a palette collage.",
+      "fix": "Keep one primary action/accent color and reserve secondary colors for semantic states or documented DESIGN.md roles.",
+      "evidence": "Detected more raw colors than the active DESIGN.md appears to justify."
+    },
+    {
+      "id": "low-contrast-text",
+      "category": "Color",
+      "label": "Low contrast text",
+      "bad": "Uses very light text on light surfaces or muted text that likely fails readability.",
+      "fix": "Increase contrast using documented foreground/body tokens and verify rendered contrast manually.",
+      "evidence": "Matched low-contrast color combinations or opacity-heavy text styles."
+    },
+    {
+      "id": "theme-drift",
+      "category": "Color",
+      "label": "Theme drift",
+      "bad": "Mixes dark and light sections as a decorative theme flip without design-system reason.",
+      "fix": "Use one dominant theme and reserve inversion for footer, code, product preview, or an explicit DESIGN.md pattern.",
+      "evidence": "Matched repeated full-section dark/light inversions."
+    },
+    {
+      "id": "emoji-icon",
+      "category": "Brand safety",
+      "label": "Emoji as UI icon",
+      "bad": "Uses emoji as iconography, decoration, or product ornament without design-system permission.",
+      "fix": "Use the project icon system, a real product asset, or plain text; keep emoji only if DESIGN.md explicitly allows it.",
+      "evidence": "Matched Unicode emoji or symbol characters in UI code."
+    },
+    {
+      "id": "fake-logo-wall",
+      "category": "Brand safety",
+      "label": "Fake proof or logo wall",
+      "bad": "Uses customer/integration names as proof without evidence or ships neutral proof slots as if they were real logos.",
+      "fix": "Use verified customer/integration evidence, neutral evidence categories, or an explicit placeholder note outside production UI.",
+      "evidence": "Matched common brand/logo-wall names or proof-slot language."
+    },
+    {
+      "id": "copied-brand-claim",
+      "category": "Brand safety",
+      "label": "Copied or official-sounding brand claim",
+      "bad": "Implies official affiliation, endorsement, or brand-system ownership for an inspiration source.",
+      "fix": "Use brand-safe inspiration language and avoid official claims, logos, trademarks, and copied screenshots.",
+      "evidence": "Matched official/endorsed/partner language around inspiration references."
+    },
+    {
+      "id": "visible-design-scaffold",
+      "category": "Brand safety",
+      "label": "Visible design scaffold",
+      "bad": "Renders internal design-read, dials, TODO, or implementation scaffold text in the production page.",
+      "fix": "Keep design reads in .vibe-ui JSON, DESIGN.generated.md, comments, or reports rather than visible DOM.",
+      "evidence": "Matched visible scaffold phrases such as Design read, dials, variance, or pre-flight."
+    },
+    {
+      "id": "invented-metric",
+      "category": "Copy/content",
+      "label": "Invented metric or claim",
+      "bad": "Uses 10x, 99.9%, 100k+, millions, or similar proof claims without evidence.",
+      "fix": "Cite a real source, use a verified metric, or rewrite as neutral product copy.",
+      "evidence": "Matched unsupported numeric proof language."
+    },
+    {
+      "id": "filler-copy",
+      "category": "Copy/content",
+      "label": "Filler copy",
+      "bad": "Ships placeholder text such as Lorem ipsum, your product, Acme, coming soon, or generic marketing filler.",
+      "fix": "Write product-specific copy tied to the actual audience, workflow, and page goal.",
+      "evidence": "Matched placeholder or generic copy markers."
+    },
+    {
+      "id": "marketing-buzzwords",
+      "category": "Copy/content",
+      "label": "Marketing buzzword stack",
+      "bad": "Stacks generic words like seamless, unlock, transform, revolutionize, supercharge, beautiful, or next-generation without product evidence.",
+      "fix": "Replace buzzwords with concrete product nouns, user actions, and evidence tied to the brief.",
+      "evidence": "Matched repeated generic marketing terms."
+    },
+    {
+      "id": "generic-cta",
+      "category": "Copy/content",
+      "label": "Generic CTA",
+      "bad": "Uses vague CTAs such as Get started, Learn more, Start free, or Book a demo without page-specific intent.",
+      "fix": "Use a CTA that names the product action or evaluation moment, such as Review a release or Compare plans.",
+      "evidence": "Matched generic CTA labels."
+    },
+    {
+      "id": "weak-proof-strategy",
+      "category": "Copy/content",
+      "label": "Weak proof strategy",
+      "bad": "Relies on vague trust language without verified proof, evidence categories, screenshots, integrations, or user workflow proof.",
+      "fix": "Choose a proof strategy before implementation: verified metrics, real integrations, customer logos, product evidence, or neutral evidence categories.",
+      "evidence": "Matched trust/proof language without nearby evidence signals."
+    },
+    {
+      "id": "role-copy-too-generic",
+      "category": "Copy/content",
+      "label": "Generic role copy",
+      "bad": "Names audiences without translating their real decision anxiety or workflow question.",
+      "fix": "For each role, state the decision they need to make, the risk they fear, or the evidence they require.",
+      "evidence": "Matched role names with generic can/track/manage/see copy."
+    },
+    {
+      "id": "uppercase-without-letter-spacing",
+      "category": "Typography",
+      "label": "Uppercase without tracking",
+      "bad": "Uses uppercase text without explicit letter spacing or tracking.",
+      "fix": "Add the selected style's tracking rule, or switch to sentence case.",
+      "evidence": "Matched uppercase styling without letter-spacing or tracking."
+    },
+    {
+      "id": "oversized-h1",
+      "category": "Typography",
+      "label": "Oversized H1",
+      "bad": "Uses hero type so large that the first viewport becomes typographic spectacle instead of product communication.",
+      "fix": "Match display type to the selected DESIGN.md scale and verify the hero fits mobile and desktop without crowding.",
+      "evidence": "Matched very large H1 font sizes or viewport-scaling type."
+    },
+    {
+      "id": "crushed-tracking",
+      "category": "Typography",
+      "label": "Crushed tracking",
+      "bad": "Applies extreme negative letter spacing that can make UI text brittle or illegible.",
+      "fix": "Use the selected DESIGN.md tracking scale and reserve tight tracking for documented display styles.",
+      "evidence": "Matched strongly negative letter-spacing."
+    },
+    {
+      "id": "long-line-length",
+      "category": "Typography",
+      "label": "Long reading line",
+      "bad": "Allows paragraphs or article text to span too wide for comfortable reading.",
+      "fix": "Constrain body copy with max-width and layout rhythm from DESIGN.md.",
+      "evidence": "Matched wide text containers without max-width constraints."
+    },
+    {
+      "id": "tiny-text",
+      "category": "Typography",
+      "label": "Tiny text",
+      "bad": "Uses text below 12px for meaningful labels, captions, or controls.",
+      "fix": "Raise meaningful UI text to at least the selected caption/body-small token and verify mobile readability.",
+      "evidence": "Matched font sizes below 12px."
+    },
+    {
+      "id": "missing-section-id",
+      "category": "Layout",
+      "label": "Missing section identifiers",
+      "bad": "Top-level sections are not labeled, making design review and iteration ambiguous.",
+      "fix": "Add stable data-od-id values to top-level generated sections.",
+      "evidence": "Matched section elements without data-od-id attributes."
+    },
+    {
+      "id": "identical-card-grids",
+      "category": "Layout",
+      "label": "Identical card grids",
+      "bad": "Repeats equal card grids across multiple sections, creating a templated AI SaaS rhythm.",
+      "fix": "Keep card grids where they aid comparison, but vary section jobs with walkthroughs, tables, product previews, role maps, or evidence strips.",
+      "evidence": "Matched repeated repeat(N, 1fr) grid patterns or many same-shaped cards."
+    },
+    {
+      "id": "nested-cards",
+      "category": "Layout",
+      "label": "Nested cards",
+      "bad": "Places cards inside decorative cards, reducing clarity and creating heavy UI nesting.",
+      "fix": "Use a section layout plus individual cards, or a framed tool surface, but avoid card-inside-card decoration.",
+      "evidence": "Matched nested card class/selector patterns."
+    },
+    {
+      "id": "repeated-section-kicker",
+      "category": "Layout",
+      "label": "Repeated section kicker",
+      "bad": "Every section starts with the same eyebrow/kicker pattern, creating mechanical AI rhythm.",
+      "fix": "Use kickers only where they clarify hierarchy; vary with direct headings, tabs, filters, or product state labels.",
+      "evidence": "Matched repeated eyebrow/kicker classes or uppercase section labels."
+    },
+    {
+      "id": "hero-eyebrow-chip",
+      "category": "Layout",
+      "label": "Hero eyebrow chip",
+      "bad": "Adds a rounded hero chip as decorative novelty without product information.",
+      "fix": "Use a plain kicker, status label, product proof, or remove the chip unless DESIGN.md explicitly uses it.",
+      "evidence": "Matched hero pill/chip/badge patterns."
+    },
+    {
+      "id": "numbered-section-markers",
+      "category": "Layout",
+      "label": "Numbered section markers",
+      "bad": "Uses 01/02/03 markers as decoration instead of meaningful sequence or navigation.",
+      "fix": "Use numbers only for actual ordered workflows, steps, or indexed content.",
+      "evidence": "Matched decorative numeric section labels."
+    },
+    {
+      "id": "icon-tile-stack",
+      "category": "Components",
+      "label": "Icon tile above heading",
+      "bad": "Repeats an icon tile above every heading/card, a common AI-generated feature-card tell.",
+      "fix": "Use icons only when they encode a real product concept, or replace with product states, diagrams, or text hierarchy.",
+      "evidence": "Matched repeated icon/tile/card heading stacks."
+    },
+    {
+      "id": "heavy-shadow",
+      "category": "Components",
+      "label": "Unsupported heavy shadow",
+      "bad": "Adds heavy elevation that most selected DESIGN.md systems do not call for.",
+      "fix": "Use the documented shadow token or reduce to a subtle border/shadow treatment.",
+      "evidence": "Matched heavy shadow utility classes or large box-shadow values."
+    },
+    {
+      "id": "radius-drift",
+      "category": "Components",
+      "label": "Radius drift",
+      "bad": "Uses arbitrary large radii that conflict with the selected component system.",
+      "fix": "Use the DESIGN.md radius scale consistently across cards, buttons, panels, and inputs.",
+      "evidence": "Matched arbitrary rounded utilities or large border-radius values."
+    },
+    {
+      "id": "fake-screenshot-divs",
+      "category": "Components",
+      "label": "Fake screenshot divs",
+      "bad": "Builds product proof from generic skeleton bars and fake dashboard divs instead of meaningful product state.",
+      "fix": "Use a real screenshot, product-owned mock, or concrete UI state with readable labels and domain data.",
+      "evidence": "Matched repeated skeleton bars or fake-app/dashboard placeholder structures."
+    },
+    {
+      "id": "unlabeled-button",
+      "category": "Accessibility",
+      "label": "Unlabeled button",
+      "bad": "Renders a button without accessible text or an aria-label.",
+      "fix": "Add visible text or a precise aria-label that names the action.",
+      "evidence": "Matched button elements without a detectable text label or aria-label."
+    },
+    {
+      "id": "small-touch-target",
+      "category": "Accessibility",
+      "label": "Small touch target",
+      "bad": "Uses interactive controls that may be too small for touch input.",
+      "fix": "Give buttons, tabs, and inputs stable dimensions with at least the selected design's practical touch target.",
+      "evidence": "Matched very small button/input heights or tight padding."
+    },
+    {
+      "id": "clipped-overflow",
+      "category": "Accessibility",
+      "label": "Clipped overflow",
+      "bad": "Uses hidden overflow on content containers where text or controls may be clipped.",
+      "fix": "Reserve overflow hidden for media/framed surfaces and verify text wrapping at mobile and desktop widths.",
+      "evidence": "Matched overflow-hidden or overflow: hidden on likely content containers."
+    },
+    {
+      "id": "weak-component-structure",
+      "category": "Layout",
+      "label": "Weak component structure",
+      "bad": "The target does not look like reusable page or component code.",
+      "fix": "Use semantic sections, repeated components, and explicit hierarchy before styling details.",
+      "evidence": "Static scan found too few component/page structure signals."
+    }
+  ]
+}

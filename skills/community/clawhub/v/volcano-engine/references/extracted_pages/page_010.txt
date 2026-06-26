@@ -1,0 +1,17 @@
+通过 Gradle 安装
+在 build.gradle  文件中进行如下配置，在 dependencies  中添加依赖。
+升级 Java SDK
+说明
+获取 SDK 版本信息，替换'LATEST' 为指定/最新版本号。SDK版本号可查询： https://github.com/
+volcengine/volcengine-java-sdk/releases
+同安装 Java SDK，指定需升级的版本号即可。
+第三方SDK
+火山方舟模型调用 API 与 OpenAI API 协议兼容，可使用兼容 OpenAI API 协议的多语言社区 SDK 调用火山
+方舟大模型或应用。可很方便地迁移模型服务至方舟平台以及 Doubao 大模型。具体使用方法请参考 兼容
+OpenAI SDK 。
+相关文档
+SDK 常见使用示例 ：包含SDK的常见用法。<version >LATEST </version >
+</dependency >
+...XML
+implementation 'com.volcengine:volcengine-java-sdk-ark-runtime:LATEST'PlainAPI参考 1. 准备工作
+版权所有©北京火山引擎科技有限公司 5/485

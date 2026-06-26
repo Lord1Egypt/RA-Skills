@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "video-reader"
+version = "4.1.0"
+description = "Video Reader for OpenClaw — Efficient video understanding with minimal token usage | OpenClaw 视频阅读器 — 高效节省 token 的视频理解"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+keywords = [
+    # English - Core functionality
+    "video", "video-qa", "video-understanding", "video-analysis", "long-video",
+    "question-answering", "qa", "vqa", "visual-qa",
+    # English - Key advantages
+    "token-efficient", "low-cost", "cost-effective", "efficient", "lightweight",
+    "token-saving", "memory-efficient", "hierarchical-memory",
+    # English - Technology
+    "multimodal", "vision-language", "vlm", "llm", "ai-agent",
+    "openclaw", "agent", "sub-agent", "tool-calling",
+    # English - Use cases
+    "youtube", "video-summarization", "video-captioning", "audio-transcription",
+    "frame-extraction", "whisper", "ffmpeg",
+    # Chinese - Core
+    "视频问答", "视频理解", "长视频", "多模态",
+    # Chinese - Advantages
+    "省token", "低成本", "高效", "节省开销",
+    # Chinese - Technology
+    "大模型", "智能体", "AI助手", "工具调用",
+    # Chinese - Use cases
+    "视频分析", "视频摘要", "音频转录", "字幕生成"
+]
+authors = [{name = "Qianke Meng", email = "mengqianke1@gmail.com"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Multimedia :: Video",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Natural Language :: English",
+    "Natural Language :: Chinese (Simplified)",
+]
+dependencies = [
+    "opencv-python>=4.8",
+    "numpy>=1.24",
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+    "faster-whisper>=1.0",
+]
+
+[project.optional-dependencies]
+download = ["yt-dlp>=2023.0"]
+all = ["yt-dlp>=2023.0"]
+
+[project.urls]
+Homepage = "https://github.com/qiankemeng/VideoARM-skill"
+Repository = "https://github.com/qiankemeng/VideoARM-skill"
+"Bug Tracker" = "https://github.com/qiankemeng/VideoARM-skill/issues"
+"Research Paper" = "https://arxiv.org/abs/2512.12360"
+"Project Website" = "https://milvlg.github.io/videoarm/"
+
+[project.scripts]
+videoarm-info = "videoarm_cli.videoarm_info:main"
+videoarm-extract-frames = "videoarm_cli.videoarm_extract_frames:main"
+videoarm-audio = "videoarm_cli.videoarm_audio:main"
+videoarm-download = "videoarm_cli.videoarm_download:main"
+videoarm-doctor = "videoarm_cli.videoarm_doctor:main"
+videoarm-clean = "videoarm_cli.videoarm_clean:main"
+
+[tool.setuptools.packages.find]
+include = ["videoarm_lib*", "videoarm_cli*", "videoarm_local_whisper*"]

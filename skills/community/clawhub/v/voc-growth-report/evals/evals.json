@@ -1,0 +1,23 @@
+{
+  "skill_name": "voc-growth-report",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我已经用社媒助手抓了一批小红书评论，下载成 csv 了。帮我给 Trae 一条完整指令：读取 csv、做 VOC 分析、生成老板能看的 HTML 报告，并最终给我可打开的链接，不要只给源码。",
+      "expected_output": "A consolidated ACP-style instruction that covers CSV ingestion, VOC/growth analysis, HTML report generation, file save, local preview, and final delivery link/path.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我想把评论库沉淀到飞书，先给我一个极简但正式的字段结构，重点要有情绪、意图、商机和跟进状态。",
+      "expected_output": "A concise but practical Feishu/Bitable schema centered on comment operations and follow-up.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "请把小红书评论分析升级成科特勒增长视角，不只是情绪分析，要能看出人群、需求、价值主张和转化机会。",
+      "expected_output": "A Kotler-flavored VOC/growth analysis structure or prompt that covers segmentation, needs, value proposition, and conversion opportunity.",
+      "files": []
+    }
+  ]
+}

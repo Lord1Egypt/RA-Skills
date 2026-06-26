@@ -1,35 +1,18 @@
----
-name: "Video Extractor Pro"
-description: "Extract key frames or clips from videos for content analysis, review, or素材 collection with single, batch, or scene-based options."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-extractor-pro"
-sourceUrl: "https://clawhub.ai/skills/video-extractor-pro"
----
+# video-frames - 视频关键帧提取工具
 
-# Video Extractor Pro
+从视频中提取关键帧或短片段，适合内容分析、视频审核、素材收集等场景。
 
-> Extract key frames or clips from videos for content analysis, review, or素材 collection with single, batch, or scene-based options.
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-extractor-pro`
-- **Source URL:** [https://clawhub.ai/skills/video-extractor-pro](https://clawhub.ai/skills/video-extractor-pro)
+- **提取帧**: 从视频中提取指定时间的单帧或连续多帧
+- **提取片段**: 截取视频的某个时间段
+- **批量提取**: 按间隔或场景自动提取多帧
+- **格式转换**: 支持输出为图片或GIF
 
-## Overview
+## 触发词
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-extractor-pro
-```
+- 提取视频帧
+- 视频截图
+- 提取视频片段
+- 视频关键帧
+- 截取视频

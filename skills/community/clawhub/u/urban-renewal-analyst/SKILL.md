@@ -1,35 +1,402 @@
 ---
-name: "城市更新改造现场分析"
-description: "This skill should be used when the user wants to analyze an urban renewal or renovation scene from a photo. It performs a structured multi-dimensional on-sit..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/urban-renewal-analyst"
-sourceUrl: "https://clawhub.ai/skills/urban-renewal-analyst"
+name: urban-renewal-analyst
+description: >
+  This skill should be used when the user wants to analyze an urban renewal or renovation scene
+  from a photo. It performs a structured multi-dimensional on-site analysis covering overall
+  environment, structural form, facade, hard landscaping, furniture & fixtures, and greenery.
+  It then recommends renovation strategies (automatically calibrated to the severity of issues
+  found) and generates optimized Gemini 3 image-to-image prompts in multiple styles
+  (photorealistic, architectural visualization, watercolor/hand-drawn). Each dimension is scored
+  1–5 with a total composite score. Trigger phrases include "帮我分析这张城市更新图片",
+  "分析改造现场", "城市更新现场分析", "帮我看看这个场地怎么改", "生成改造提示词", "图生图提示词".
 ---
 
-# 城市更新改造现场分析
+# 城市更新改造现场分析 Skill
 
-> This skill should be used when the user wants to analyze an urban renewal or renovation scene from a photo. It performs a structured multi-dimensional on-sit...
+## 一、技能定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/urban-renewal-analyst`
-- **Source URL:** [https://clawhub.ai/skills/urban-renewal-analyst](https://clawhub.ai/skills/urban-renewal-analyst)
+本技能专门用于城市更新改造场景的**现场照片深度分析**。用户提供一张或多张现场照片后，Skill 将引导 AI 完成：
 
-## Overview
+1. **六维图上分析**（含逐维评分）
+2. **综合病害评估与改造级别判断**
+3. **分层改造建议**（按改造级别精准输出）
+4. **Gemini 3 图生图 Prompt 生成**（三种风格，可直接使用）
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/urban-renewal-analyst
+## 二、九步工作流
+
+### Step 1 — 图像预读与场景定性
+
+收到图片后，首先完成场景定性：
+
+```
+【场景类型识别】
+- 场景类别：（如：老旧住宅小区 / 商业街道 / 工业遗存 / 历史街区 / 城中村 / 市政广场 / 其他）
+- 所处区位：（城市中心 / 近郊 / 远郊，依图判断）
+- 建筑年代估判：（依立面材质、细部、风格判断大致年代）
+- 主要使用人群：（居民 / 商业 / 游客 / 混合）
+- 整体病害程度初判：（轻度 / 中度 / 重度）
+```
+
+---
+
+### Step 2 — 整体环境分析
+
+**分析要点**：
+- 空间格局与尺度感（开敞 / 压抑 / 适宜）
+- 人流动线与可达性（主次入口、步行路径）
+- 街道界面的连续性（沿街建筑面的完整程度）
+- 视线廊道与对景（有无遮挡、对景是否优质）
+- 噪声、气味、光照环境（依图像信息推断）
+- 周边区位关系（与主干道、公共空间、绿地的关系）
+
+**参照标准**：
+- 《城市设计导则》（住建部 2017）
+- 《城市更新行动方案》（十四五）：宜居、宜业、宜游
+
+**评分说明**（1-5 分）：
+- 5分：空间格局合理，动线清晰，界面完整，视野良好
+- 4分：有轻微问题，基本满足使用需求
+- 3分：存在明显问题，影响使用体验
+- 2分：多处严重问题，需系统性改造
+- 1分：环境恶劣，亟需整体重塑
+
+**输出格式**：
+```
+【整体环境】评分：X/5
+[详细分析段落：问题描述 + 成因分析 + 参照标准说明]
+```
+
+---
+
+### Step 3 — 结构 / 建筑形态分析
+
+**分析要点**：
+- 建筑骨架与结构体系（框架 / 砖混 / 钢结构，依图判断）
+- 层高与开间比例合理性
+- 建筑界面完整性（是否存在违章搭建、拆改痕迹）
+- 明显结构病害（裂缝、沉降、倾斜、构件缺失）
+- 消防通道与安全疏散条件
+
+**参照标准**：
+- 《既有建筑维护与改造通用规范》GB 55022-2021
+- 《城镇老旧小区改造技术标准》JGJ/T 391-2016
+
+**评分说明**（1-5 分）：
+- 5分：结构完整，无明显病害，比例协调
+- 3分：局部病害，需针对性修缮
+- 1分：结构安全隐患突出，需加固或拆除重建
+
+**输出格式**：
+```
+【结构/建筑形态】评分：X/5
+[详细分析段落]
+```
+
+---
+
+### Step 4 — 外立面分析
+
+**分析要点**：
+- 立面材质（涂料 / 面砖 / 石材 / 金属板 / 玻璃幕墙）
+- 色彩与周边环境协调性
+- 肌理与细部设计（线脚、腰线、装饰构件）
+- 开窗比例与窗洞形式
+- 老化程度（剥落、污染、褪色、霉变、空鼓）
+- 广告招牌的混乱程度
+- 空调外机、管线、设施的裸露情况
+
+**参照标准**：
+- 各地《城市容貌标准》
+- 历史街区：《历史文化名城名镇名村保护条例》
+
+**评分说明**（1-5 分）：
+- 5分：材质统一、色彩协调、细部精良，无明显老化
+- 3分：色彩或材质有明显问题，存在中度老化
+- 1分：立面混乱、严重老化，视觉影响恶劣
+
+**输出格式**：
+```
+【外立面】评分：X/5
+[详细分析段落]
+```
+
+---
+
+### Step 5 — 硬质装修分析
+
+**分析要点**：
+- 地面铺装材质、色彩与图案（人行道、广场、庭院）
+- 台阶、坡道与无障碍设施的完备性
+- 围栏、护栏、挡墙（材质、高度、安全性）
+- 道路缘石、盲道、停车位划线
+- 公共设施（垃圾箱、路灯基座、消防栓）的整齐程度
+- 排水系统（雨水口、沟盖板）的设置与状态
+
+**参照标准**：
+- 《无障碍设计规范》GB 50763-2012
+- 《城市道路工程设计规范》CJJ 37-2012
+
+**评分说明**（1-5 分）：
+- 5分：铺装完整，无障碍设施完备，细节处理精良
+- 3分：部分破损，无障碍不完善，缺少统一设计
+- 1分：铺装严重破损，杂乱无章，存在安全隐患
+
+**输出格式**：
+```
+【硬质装修】评分：X/5
+[详细分析段落]
+```
+
+---
+
+### Step 6 — 软装 / 配景家具分析
+
+**分析要点**：
+- 标识标牌系统（导向牌、门牌、说明牌）的统一性与清晰度
+- 街道家具（座椅、遮阳棚、自行车停放架、快递柜）的配置合理性
+- 灯具（路灯、景观灯、指示灯）的类型与分布
+- 公共艺术与装饰物（雕塑、壁画、文化墙）
+- 售卖摊点、外摆区的秩序感
+- 户外广告的尺寸、材质与色彩协调性
+
+**参照标准**：
+- 《城市户外广告和招牌设施技术标准》CJJ 149-2010
+- 《城市公共设施规划规范》GB 50442-2008
+
+**评分说明**（1-5 分）：
+- 5分：系统统一、设施齐全、品质良好
+- 3分：设施不全，风格混杂，有明显短板
+- 1分：设施严重缺失或杂乱，影响使用体验
+
+**输出格式**：
+```
+【软装/配景家具】评分：X/5
+[详细分析段落]
+```
+
+---
+
+### Step 7 — 绿化景观分析
+
+**分析要点**：
+- 植被覆盖率（高 / 中 / 低）
+- 绿化层次（乔木 / 灌木 / 地被 / 花卉的搭配）
+- 树种选择（是否适地适树，是否具有观赏性）
+- 绿化养护状态（修剪、灌溉、病虫害）
+- 硬质与软质景观的比例（硬化过度 vs. 绿化不足）
+- 微气候调节潜力（遮阴、降温、防噪）
+- 生物多样性（单一种植 vs. 多样化植被）
+
+**参照标准**：
+- 《城市绿化条例》（2017 修订版）
+- 《海绵城市建设技术指南》（2014）
+
+**评分说明**（1-5 分）：
+- 5分：层次丰富，覆盖率高，养护良好，季相分明
+- 3分：绿化单调，覆盖率中等，养护一般
+- 1分：绿化严重不足或枯死，场地缺乏生机
+
+**输出格式**：
+```
+【绿化景观】评分：X/5
+[详细分析段落]
+```
+
+---
+
+### Step 8 — 综合评估与改造建议
+
+#### 8.1 综合评分汇总
+
+```
+┌─────────────────────┬──────────┬──────────────┐
+│ 维度                │  评分    │  优先级      │
+├─────────────────────┼──────────┼──────────────┤
+│ 整体环境            │  X/5     │  高/中/低    │
+│ 结构/建筑形态       │  X/5     │  高/中/低    │
+│ 外立面              │  X/5     │  高/中/低    │
+│ 硬质装修            │  X/5     │  高/中/低    │
+│ 软装/配景家具       │  X/5     │  高/中/低    │
+│ 绿化景观            │  X/5     │  高/中/低    │
+├─────────────────────┼──────────┼──────────────┤
+│ 综合得分            │  X/30    │              │
+│ 换算百分制          │  XX分    │              │
+└─────────────────────┴──────────┴──────────────┘
+```
+
+#### 8.2 改造级别自动判断
+
+根据综合得分自动判定改造级别：
+
+| 得分区间 | 改造级别 | 说明 |
+|---------|---------|------|
+| 25-30 分 | **维护保养级** | 整体良好，定期维护即可 |
+| 20-24 分 | **微改造级** | 保留现状，局部整治更新 |
+| 13-19 分 | **中度更新级** | 保留骨架，更新外表皮、景观及设施 |
+| 7-12 分  | **全面更新级** | 结构、表皮、景观全面重做 |
+| 6 分以下  | **拆除重建级** | 场地条件不具备保留价值，建议重建 |
+
+#### 8.3 分层改造建议
+
+按以下格式输出：
+
+```
+【改造级别】：[级别名称]（综合得分 XX/30）
+
+【紧急处理项】（影响安全，须优先解决）
+- ...
+
+【近期改造项】（6个月内建议完成）
+- ...
+
+【中期提升项】（1年内建议推进）
+- ...
+
+【远期愿景项】（长期品质提升方向）
+- ...
+
+【保留要素】（现状中值得保留或强化的亮点）
+- ...
+```
+
+---
+
+### Step 9 — Gemini 3 图生图 Prompt 生成
+
+基于前述分析，生成**三个风格版本**的图生图提示词，可直接用于 Gemini 3 图生图。
+
+#### Prompt 构建公式
+
+```
+[基础场景描述] + [改造后外立面/景观/设施描述] + [光线/时间/气候] + [风格关键词] + [质量参数]
+```
+
+#### 9.1 写实效果图版（Photorealistic）
+
+```
+【Photorealistic Prompt】
+
+Photorealistic architectural photography, urban renewal project in [场景类型],
+[改造后外立面描述：材质/色彩/细部],
+[新增绿化描述：植被种类/层次],
+[硬质更新描述：铺装/设施],
+[人群活动描述：体现人气与活力],
+natural daylight / warm afternoon light / golden hour,
+shot with professional camera, 50mm lens, high detail, 8K resolution,
+realistic textures, award-winning architectural photography --ar 16:9
+```
+
+#### 9.2 建筑渲染图版（Architectural Visualization）
+
+```
+【Architectural Visualization Prompt】
+
+High-end architectural visualization, CGI rendering, urban regeneration design,
+[改造后整体空间描述],
+[立面材料与色彩系统],
+[景观体系：乔木/灌木/地被层次],
+[街道家具与设施系统],
+dramatic lighting, soft shadows, photorealistic materials,
+Unreal Engine 5 quality, 3D render, hyper-detailed, clean and modern atmosphere,
+8K ultra HD --ar 16:9
+```
+
+#### 9.3 水彩 / 手绘分析图版（Watercolor / Hand-drawn）
+
+```
+【Watercolor / Hand-drawn Prompt】
+
+Architectural watercolor sketch, urban renewal conceptual illustration,
+[场景类型与空间氛围描述],
+[改造后主要要素描述],
+loose brushwork, warm color palette, soft washes of color,
+hand-drawn line work over watercolor base,
+professional architectural illustration style, A3 paper texture,
+detailed yet artistic, concept design board aesthetic --ar 16:9
+```
+
+#### Prompt 优化说明
+
+在生成 Prompt 前，须结合分析结果进行以下优化处理：
+1. **场景特征提取**：将 Step 1-7 中识别的场景类型、主要材质、色彩特征融入 Prompt
+2. **改造方向映射**：将 Step 8 中的改造建议转化为具体视觉描述词
+3. **氛围关键词增强**：根据场景定位（商业/居住/文化）添加对应的人群活动与氛围描述
+4. **负面提示词附加**（可选）：`no clutter, no old signage, no dilapidated structures, no exposed wires`
+
+---
+
+## 三、触发词
+
+以下任意表达均可触发本技能：
+- 帮我分析这张城市更新图片
+- 分析改造现场
+- 城市更新现场分析
+- 帮我看看这个场地怎么改
+- 这个地方应该怎么更新改造
+- 生成改造提示词 / 图生图提示词
+- 城市更新图生图
+
+---
+
+## 四、参考文件
+
+- `references/analysis_framework.md` — 六维分析框架与评分细则
+- `references/gemini_prompt_templates.md` — Gemini 3 提示词模板与优化技巧
+
+---
+
+## 五、交互规范
+
+1. **收到图片后立即开始分析**，无需询问确认
+2. **按 Step 1→9 顺序执行**，不跳步
+3. 每个维度分析段落不少于 150 字，含**问题描述、成因推断、参照标准**三部分
+4. 改造建议须**具体可操作**，避免泛泛而谈
+5. Prompt 生成后，询问用户是否需要针对某个风格版本进一步优化
+6. 若图片质量不佳，说明分析局限性，但仍尽力给出判断
+
+---
+
+## 六、输出示例（框架）
+
+```
+─────────────────────────────────────
+城市更新改造现场分析报告
+─────────────────────────────────────
+
+【场景定性】
+场景类别：老旧住宅小区底商界面
+建筑年代：约 1990-2000 年代
+整体病害程度：中度
+
+【Step 2 整体环境】评分：3/5
+…（完整段落分析）…
+
+【Step 3 结构/建筑形态】评分：4/5
+…
+
+【Step 4 外立面】评分：2/5
+…
+
+【Step 5 硬质装修】评分：2/5
+…
+
+【Step 6 软装/配景家具】评分：2/5
+…
+
+【Step 7 绿化景观】评分：3/5
+…
+
+─────────────────────────────────────
+【综合评分】16/30 → 中度更新级
+─────────────────────────────────────
+
+【改造建议】
+…
+
+─────────────────────────────────────
+【Gemini 3 图生图 Prompt × 3】
+─────────────────────────────────────
+…
 ```

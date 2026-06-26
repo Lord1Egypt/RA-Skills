@@ -1,0 +1,8 @@
+interface:
+  display_name: "Wallet Twin Court"
+  short_description: "Put a wallet on trial before it trades."
+  brand_color: "#c58b56"
+  default_prompt: "Use $wallet-twin-court to call the Future Self Court endpoint, read one Solana wallet, identify the action most likely to cause regret tomorrow, return exactly one verdict, and provide a court-style execution hearing. Do not use wallet roast."
+
+policy:
+  allow_implicit_invocation: false

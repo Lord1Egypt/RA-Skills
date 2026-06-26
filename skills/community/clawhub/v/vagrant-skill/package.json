@@ -1,0 +1,50 @@
+{
+  "name": "@daax-dev/vagrant-skill",
+  "version": "0.7.4",
+  "description": "Disposable VMs for safe testing — Agent Skills standard skill for Claude Code, OpenClaw, and 30+ AI agents",
+  "author": "JP Workspace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "agent-skills",
+    "vagrant",
+    "vm",
+    "sandbox",
+    "testing",
+    "docker",
+    "devops",
+    "isolation",
+    "kvm",
+    "ai-agent",
+    "claude-code",
+    "openclaw",
+    "clawhub",
+    "skill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daax-dev/vagrant-skill.git"
+  },
+  "homepage": "https://github.com/daax-dev/vagrant-skill#readme",
+  "bugs": {
+    "url": "https://github.com/daax-dev/vagrant-skill/issues"
+  },
+  "files": [
+    "SKILL.md",
+    "Vagrantfile",
+    "scripts/",
+    "references/",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "scripts": {
+    "lint": "make lint",
+    "test": "make test",
+    "test:integration": "make test-integration",
+    "test:all": "make test-all"
+  }
+}

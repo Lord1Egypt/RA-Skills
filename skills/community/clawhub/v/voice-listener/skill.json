@@ -1,0 +1,40 @@
+{
+  "name": "voice-listener",
+  "displayName": "语音监听助手",
+  "emoji": "🎤",
+  "description": "百度语音识别 + 智能唤醒模式",
+  "version": "1.0.0",
+  "author": "OpenClaw",
+  "path": "C:\\Users\\11666\\.agents\\skills\\voice-listener",
+  "enabled": true,
+  "commands": [
+    {
+      "name": "启动语音监听",
+      "description": "启动百度语音识别助手",
+      "action": "start",
+      "script": "voice_input_baidu_smart.py"
+    },
+    {
+      "name": "语音监听状态",
+      "description": "查看语音监听状态",
+      "action": "status"
+    },
+    {
+      "name": "停止语音监听",
+      "description": "停止语音监听",
+      "action": "stop"
+    }
+  ],
+  "config": {
+    "wakeWord": "小龙虾",
+    "stopWord": "停止",
+    "api": "baidu",
+    "apiKeyRequired": true
+  },
+  "features": [
+    "百度语音识别",
+    "智能唤醒模式",
+    "持续语音输入",
+    "自动输入到光标位置"
+  ]
+}

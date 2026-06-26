@@ -1,0 +1,85 @@
+{
+  "name": "${name}",
+  "race": "${race}",
+  "gender": "${gender}",
+  "age": ${age},
+  "role": "${role}",
+  "birthplace": "${birthplace}",
+  "family_background": "${family_background}",
+  "social_class": "${social_class}",
+  "growth_history": "${growth_history}",
+  "appearance": {
+    "height": null,
+    "build": null,
+    "hair": null,
+    "eyes": null,
+    "skin": null,
+    "distinctive_features": []
+  },
+  "personality": {
+    "mbti": null,
+    "traits": [],
+    "habits": [],
+    "speech_pattern": null
+  },
+  "values": "${values}",
+  "goals": {
+    "short_term": [],
+    "long_term": [],
+    "hidden": []
+  },
+  "fears": [],
+  "secrets": [],
+  "attributes": {
+    "str": 10,
+    "dex": 10,
+    "int": 10,
+    "cha": 10,
+    "luk": 10,
+    "san": 100,
+    "hp": 100,
+    "mp": 100
+  },
+  "skills": [
+    {
+      "name": null,
+      "level": 1,
+      "type": null,
+      "description": null
+    }
+  ],
+  "traits": [
+    {
+      "name": null,
+      "type": "neutral",
+      "effect": null
+    }
+  ],
+  "relationships": [
+    {
+      "target_name": null,
+      "relation_type": null,
+      "intimacy": 50,
+      "history": null
+    }
+  ],
+  "equipment": {
+    "main_hand": null,
+    "off_hand": null,
+    "head": null,
+    "body": null,
+    "accessories": []
+  },
+  "inventory": [],
+  "wealth": {
+    "gold": 0,
+    "silver": 0,
+    "copper": 0
+  },
+  "character_arc": {
+    "start_state": null,
+    "growth_direction": null,
+    "turning_point": null,
+    "end_state": null
+  }
+}

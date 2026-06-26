@@ -1,0 +1,206 @@
+skill: use-hln-api
+skill_path: ./skills/use-hln-api
+description: "Harder HL Names evals for stronger models: routing boundaries, mint-pass workflow semantics, user-controlled records, and environment traps"
+
+evals:
+  - id: lvl2-all-primary-names-body-vs-range-conflict
+    type: static
+    prompt: "I need primary names for exactly these addresses: 0xF26F5551E96aE5162509B25925fFfa7F07B2D652 and 0xABCDEF1234567890ABCDEF1234567890ABCDEF12. I was thinking of calling GET /utils/all_primary_names?begin=0&end=999 and also sending the addresses in the body. Is that right?"
+    expected_facts:
+      - "Use POST /utils/all_primary_names"
+      - "Send a JSON body with an addresses array"
+      - "Do not combine address-body filtering with begin or end"
+      - "Using begin/end here is the wrong shape for a specific address set"
+    fail_if:
+      - "Approves combining the addresses body with begin or end"
+      - "Routes this to GET /utils/all_primary_names for the specific address list"
+
+  - id: lvl2-profile-does-not-equal-full-record
+    type: static
+    prompt: "I have an address and want the primary .hl name, avatar, Discord handle, REDIRECT URL, and all chain addresses. Can I get all of that from GET /resolve/profile/:address?"
+    expected_facts:
+      - "Use GET /resolve/profile/:address for the primary name and avatar style lookup"
+      - "Do not assume resolve/profile returns the complete records map or chain addresses"
+      - "Follow with GET /records/full_record/:nameHashOrId for full records or chain addresses"
+      - "The complete records map is a different, richer payload than resolve/profile"
+    fail_if:
+      - "Claims resolve/profile alone should return the full records map and chain addresses"
+      - "Treats resolve/profile as equivalent to full_record"
+
+  - id: lvl2-mintpass-not-wallet-signature
+    type: static
+    prompt: "For POST /sign_mintpass/:label, is the returned sig supposed to be produced by the developer wallet, or can the API return it before any wallet signature happens?"
+    expected_facts:
+      - "The signature is returned by the API/server"
+      - "This is a pre-mint workflow artifact rather than the developer wallet signing first"
+      - "The next step is to use the returned arguments promptly in the mint transaction"
+    fail_if:
+      - "Claims the developer wallet must produce the returned sig before requesting it"
+      - "Frames the returned sig as coming from the user's wallet"
+
+  - id: lvl2-base-url-no-api-prefix-adversarial
+    type: static
+    prompt: "Which base URL should I use for production API requests: https://api.hlnames.xyz/, https://api.hlnames.xyz/api/, or https://api.hlnames.xyz/api/docs/? I only want normal REST calls, not Swagger UI."
+    expected_facts:
+      - "Use https://api.hlnames.xyz/ for normal production API requests"
+      - "/api/docs is for Swagger UI"
+      - "Normal API routes do not require an extra /api prefix"
+    fail_if:
+      - "Selects https://api.hlnames.xyz/api/ as the normal production base URL"
+      - "Treats /api/docs as the REST base URL"
+
+  - id: lvl2-image-requires-tokenid
+    type: static
+    prompt: "I want the rendered SVG image for testooor.hl. Can I call GET /records/image/:nameHashOrId directly after namehash, or what should I do?"
+    expected_facts:
+      - "GET /records/image/:tokenId requires a tokenId"
+      - "Do not treat records/image as accepting a nameHashOrId"
+      - "You need a tokenId before calling the image endpoint"
+    fail_if:
+      - "Claims GET /records/image accepts nameHashOrId directly"
+      - "Says a nameHash can be passed straight into the image endpoint"
+
+  - id: lvl2-expiry-zero-unregistered
+    type: static
+    prompt: "I queried metadata/expiry and got {\"expiry\":\"0\"}. Should I treat that like a real future timestamp or what does it mean?"
+    expected_facts:
+      - "An expiry of 0 should be treated as unregistered or absent"
+      - "Do not interpret 0 as a valid future expiry"
+      - "It is an important semantic edge case rather than a normal future timestamp"
+    fail_if:
+      - "Treats expiry 0 as a valid future timestamp"
+      - "Claims the name is definitely active based on expiry 0"
+
+  - id: lvl2-wallet-stack-first-guidance
+    type: static
+    prompt: "Our dApp already uses Dynamic for wallet connection. We want to add HL Names support. Should we switch to RainbowKit because HL Names has @hlnames/rainbowkit, or start from our current stack?"
+    expected_facts:
+      - "Start from the wallet stack the app already uses"
+      - "Mention the Dynamic integration path"
+      - "Do not force a switch to RainbowKit for an app already using Dynamic"
+    fail_if:
+      - "Tells the app to switch to RainbowKit by default"
+      - "Omits the Dynamic integration path"
+
+  - id: lvl2-testnet-routing
+    type: static
+    prompt: "I need to test HL Names resolution on testnet, not production. Which base URL should I use?"
+    expected_facts:
+      - "Use https://api.testnet.hlnames.xyz/"
+      - "Do not default to the production base URL when the user explicitly asks for testnet"
+    fail_if:
+      - "Returns the production base URL"
+      - "Ignores the explicit testnet requirement"
+
+  - id: lvl2-live-profile-followup-insufficiency
+    type: live_http
+    context:
+      domain: testooor.hl
+    setup:
+      - id: resolved_address
+        method: GET
+        path: /resolve/address/{domain}
+        extract:
+          address: .address
+    live_request:
+      method: GET
+      path: /resolve/profile/{address}
+    required_fields:
+      - primaryName
+      - avatar
+    prompt_template: |
+      A developer fetched this live `resolve/profile` response for the address behind `{domain}`:
+
+      ```json
+      {live_response}
+      ```
+
+      They still need the Discord value, any `REDIRECT` URL, and all chain addresses for the same identity.
+
+      Is this response sufficient? If not, what should they call next and why?
+    expected_facts:
+      - "This resolve/profile response is not sufficient for the complete records map or chain addresses"
+      - "Resolve/profile is the lighter profile lookup, while records/full_record is the richer payload for text records and chain addresses"
+      - "Use the primary name to derive a nameHash with GET /utils/namehash/:domain, then call GET /records/full_record/:nameHashOrId"
+    fail_if:
+      - "Claims this resolve/profile response already provides or is sufficient for Discord, REDIRECT, and chain addresses"
+      - "Treats resolve/profile as equivalent to records/full_record"
+      - "Invents a different follow-up endpoint"
+
+  - id: lvl2-live-full-record-user-controlled-schema
+    type: live_http
+    context:
+      domain: testooor.hl
+    setup:
+      - id: resolved_address
+        method: GET
+        path: /resolve/address/{domain}
+        extract:
+          address: .address
+      - id: namehash
+        method: GET
+        path: /utils/namehash/{domain}
+        extract:
+          nameHash: .nameHash
+    live_request:
+      method: GET
+      path: /records/full_record/{nameHash}
+    required_fields:
+      - data.records
+      - data.chainAddresses
+    prompt_template: |
+      A developer started from the address `{address}` and needs the primary name, avatar, Discord value, and all chain addresses for the same identity.
+
+      They now have this live `full_record` response for `{domain}` from production:
+
+      ```json
+      {live_response}
+      ```
+
+      Which parts of this payload are free-form user metadata, which are structured protocol data, and what endpoint should they have called first if they only started from the address?
+    expected_facts:
+      - "Explains that data.records is user-controlled metadata rather than a fixed exhaustive schema"
+      - "Distinguishes data.records from data.chainAddresses"
+      - "Mentions one or more example keys from the live response"
+      - "Says the narrower first call from an address should have been GET /resolve/profile/:address"
+      - "Explains that records/full_record is the richer follow-up payload when the developer also needs the complete records map or chain addresses"
+    fail_if:
+      - "Claims the records schema is fixed or exhaustive"
+      - "Confuses data.records with data.chainAddresses"
+      - "Claims records/full_record is the correct first or narrowest call when the developer starts only from an address"
+
+  - id: lvl2-live-mintpass-expiry-hard-mode
+    type: live_http
+    context:
+      label: "{generated_label}"
+    live_request:
+      method: POST
+      path: /sign_mintpass/{label}
+    required_fields:
+      - label
+      - sig
+      - timestamp
+      - token
+      - amountRequired
+    prompt_template: |
+      A developer requested a live mint-pass response for the label `{label}`:
+
+      ```json
+      {live_response}
+      ```
+
+      The developer fetched this about 75 seconds ago and has not submitted the mint transaction yet.
+
+      Should they reuse it or request a fresh one? Is the returned `sig` server-generated or wallet-generated? What exact next action should they take?
+    expected_facts:
+      - "The payload is short-lived and should be used promptly"
+      - "Waiting about 75 seconds is likely too late because the mint-pass is only valid for about 1 minute"
+      - "They should request a fresh mint-pass rather than reuse this one after that delay"
+      - "The returned sig is server-generated, not a wallet-generated signature"
+      - "The onchain mint should fail or revert if used after expiry"
+      - "The next step is to request a fresh mint-pass and then submit the mint transaction promptly using the returned arguments, not another wallet-generated signature for the sig field"
+    fail_if:
+      - "Says waiting 75 seconds is definitely fine"
+      - "Claims the returned sig must be produced by the developer wallet"
+      - "Suggests the response remains reusable long after expiry"
+      - "Does not tell the developer to request a fresh mint-pass after the delay"

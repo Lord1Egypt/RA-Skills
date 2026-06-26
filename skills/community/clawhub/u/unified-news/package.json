@@ -1,0 +1,12 @@
+{
+  "name": "unified-news-digest",
+  "version": "0.1.0",
+  "description": "统一新闻获取与推送服务",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["news", "hot", "crypto", "ai", "macro", "feishu"],
+  "author": "",
+  "license": "MIT"
+}

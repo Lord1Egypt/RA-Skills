@@ -1,35 +1,312 @@
----
-name: "Verified Research"
-description: "执行多源核实的深入研究，拆解复杂问题，优先采集高可信度来源，核实信息时效性并生成结构化报告，支持三天缓存。"
-category: "research"
-source: "ClawHub"
-tags: [methodology, multi-source, research, verification]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/verified-research"
-sourceUrl: "https://clawhub.ai/skills/verified-research"
+# Deep Research Skill
+
+> Multi-source research methodology — executes when user asks "研究/调查/搜索" or similar research tasks. Supports 3-day research cache + auto-archive to MEMORY.md.
+
 ---
 
-# Verified Research
+## Research Cache System（研究缓存系统）
 
-> 执行多源核实的深入研究，拆解复杂问题，优先采集高可信度来源，核实信息时效性并生成结构化报告，支持三天缓存。
+### 工作原理
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/verified-research`
-- **Source URL:** [https://clawhub.ai/skills/verified-research](https://clawhub.ai/skills/verified-research)
+每次研究启动时，在 `/tmp/deep-research-cache/{slugified_topic}/{unix_timestamp}/` 下创建独立工作目录：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/verified-research
 ```
+/tmp/deep-research-cache/
+  {topic-slug}/
+    {timestamp}/
+      claims/          ← 每条证据卡（claim_NNN.md）
+      rounds/          ← 每轮研究日志（round_NNN.md）
+      manifest.json    ← 所有证据的索引 + 可信度统计
+      report_final.md  ← 最终报告
+      .cleanup_scheduled ← 3天清理倒计时标记
+```
+
+### 3天清理逻辑
+
+1. `finalize.sh` 生成报告后，写入 `.cleanup_scheduled` 标记（记录"报告生成时间"）
+2. `cleanup.sh` 每运行一次，检查所有研究目录：
+   - **有活动**（用户在3天内继续研究，新增加了 claim/round）→ 删除 `.cleanup_scheduled`，取消清理计划
+   - **无活动**且距报告生成已 > 3天 → 将摘要写入 `MEMORY.md`，删除整个目录
+3. `MEMORY.md` 写入内容：主题 + 日期 + 核心结论（1-3句）+ T1/T2/T3/T4 来源统计 + 完整报告所在路径（待删除前还有效）
+
+### 如何继续研究
+
+用户只需说"**继续研究{原话题}**"，AI agent 会：
+1. 找到 `/tmp/deep-research-cache/` 下该 topic 的**最新目录**
+2. 从 manifest.json 读取已有证据
+3. 在最新目录继续追加 claim + round
+4. 更新 manifest + 重新生成报告
+
+> **注意**：完整报告在清理前仅存在于 `/tmp/deep-research-cache/`，不复制到 workspace。如需保留报告，请告知用户或主动复制到 workspace。
+
+---
+
+## 触发条件
+
+用户说以下类型的话时触发：
+- "帮我研究一下..."
+- "你去查一查..."
+- "搜索..." + 涉及多个来源的问题
+- "帮我调查..."
+- "核实..."
+- "确认一下..."
+- "继续研究..."
+
+**注意**：简单的事实查询（"今天天气如何"）不需要触发此技能。
+
+---
+
+## 核心原则
+
+1. **不搜到哪算哪** — 研究开始前先制定搜索计划
+2. **多源交叉验证** — 每个关键结论至少 3 个独立来源
+3. **来源分级可信度** — 优先使用高可信度来源
+4. **反复核实** — 同一事实用不同关键词核实至少 2 次
+5. **明确存疑** — 无法核实的内容必须标注，不得臆造
+
+---
+
+## 来源可信度分级（4级）
+
+| 等级 | 类型 | 权重 | 说明 |
+|------|------|------|------|
+| **T1** | 官方文档/学术论文/一手数据/官方API | 最高 | 原始出处，未经转述 |
+| **T2** | 权威媒体报道/行业白皮书/官方公告 | 高 | 经核实的主流权威来源 |
+| **T3** | 技术博客/社区讨论/垂直论坛/GitHub Issues | 中 | 需要额外核实，可作为线索 |
+| **T4** | 社交媒体/论坛/无法溯源的引用 | 低 | 极度存疑，仅作辅助线索 |
+
+**优先级规则**：T1 > T2 > T3 > T4。优先使用 T1/T2；T3/T4 必须与 T1/T2 交叉验证。
+
+---
+
+## 研究流程（8步）
+
+### Step 0：问题类型识别
+
+拿到问题后，先判断属于哪类：
+
+| 类型 | 特征 | 示例 |
+|------|------|------|
+| **事实型** | 有明确答案，可直接查证 | "XX工具的最新版本号" |
+| **比较型** | 需要多维度对比 | "A工具 vs B工具，哪个更好" |
+| **探索型** | 开放性，需要归纳 | "XX行业的市场趋势是什么" |
+| **操作型** | 需要步骤指引 | "如何在XX上配置XX" |
+
+### Step 0.5：时效性评估（AI/科技类必做）
+
+- AI/科技/开源项目话题：**先核实信息时效性**
+- 搜索时优先看最新发布的内容（近6个月内）
+- 明确标注每条信息的发布时间
+- **如果来源时间不明，该来源可信度降级**
+
+### Step 1：问题拆解 & 边界定义
+
+将问题拆解为若干子问题，明确：
+- 研究的范围（什么要查，什么不查）
+- 预期的输出形式
+- 需要查几个维度
+
+### Step 2：来源分级 & 权威锁定
+
+- 针对每个子问题，列出预期可用的来源类型
+- 优先查找 T1/T2 来源
+- 每个关键事实至少找到 2 个不同级别的来源
+
+### Step 3：事实提取 & 证据卡
+
+每个关键结论提取为"证据卡"：
+```
+[证据卡]
+- 结论：...
+- 来源：[来源名称]（[等级]，[时间]）
+- 原文摘要：...
+- 可信度：✅确认 / ⚠️存疑 / ❌矛盾
+```
+
+**使用缓存系统时，每张证据卡通过 `claim-card.sh` 写入缓存目录。**
+
+### Step 4：构建对比框架
+
+比较型问题必须建立对比矩阵：
+```
+[对比维度]
+| 维度 | 来源A | 来源B | 来源C | 结论 |
+|------|-------|-------|-------|------|
+```
+
+### Step 5：参考对齐 & 冲突处理
+
+- 同一事实多个来源结论一致 → ✅ 确认
+- 多个来源结论矛盾 → ⚠️ 标注冲突，明确说明各方说法
+- 仅单一来源 → ⚠️ 标注"单来源，待验证"
+
+### Step 6：事实→结论推导链
+
+明确推导过程：
+```
+结论X ← 依据事实A（来源）+ 依据事实B（来源）
+         推导逻辑：[为什么A+B得出X]
+```
+
+### Step 6.5：独立核实（BLOCKING 步骤）
+
+**在输出结论前，必须完成此步骤：**
+- 用**不同关键词**重新搜索关键结论，验证一致性
+- 每个关键结论至少核实 **2 次**（不同来源或不同角度）
+- 如果核实结果与原结论矛盾 → 返回 Step 5 重新评估
+- 完成后才可进入 Step 7
+
+### Step 7：使用场景验证（合理性检查）
+
+- 结论是否符合常识？
+- 是否存在明显的反例？
+- 对用户的实际场景是否适用？
+
+### Step 8：输出格式化
+
+按以下格式交付（详见下方输出模板）。报告由 `finalize.sh` 生成。
+
+---
+
+## 输出模板
+
+```markdown
+# 研究报告：[问题标题]
+
+## 研究概要
+- 问题类型：
+- 研究时间：
+- 来源数量：X 个（ T1:X / T2:X / T3:X / T4:X ）
+- 核心结论（1-3句话）：
+
+## 关键结论
+
+### 结论1：[标题]
+- 置信度：🟢 高 / 🟡 中 / 🔴 低
+- 证据：
+  - [来源A]（T1，2024年）— ...
+  - [来源B]（T2，2023年）— ...
+  - [来源C]（T3，2024年）— ...
+- 多源核实：[✅ 一致 / ⚠️ 存疑 / ❌ 矛盾]
+- 对用户场景的意义：...
+
+### 结论2：（同上格式）
+
+## 存疑项 & 待验证
+- ❓ [未核实清楚的点] — 来源：[来源]，风险：[...]
+- ❓ [需要用户确认的内容]
+
+## 研究局限性
+- [本次研究的局限]
+- [未覆盖的范围]
+
+## 主要参考来源
+1. [来源名] — [URL/平台] — [T1/T2/T3/T4]
+2. ...
+
+---
+*本报告基于多源交叉核实，如有疑问请标注具体结论反馈核实。*
+```
+
+---
+
+## 核实次数最低要求
+
+| 结论来源等级 | 最少核实次数 |
+|-------------|------------|
+| T1 单一来源 | 2 次不同关键词/角度核实 |
+| T2 单一来源 | 2 次不同来源核实 |
+| T1 + T2 多源一致 | 1 次额外核实 |
+| T3/T4 结论 | **必须**升级到 T1/T2 来源，否则标注"低可信度" |
+
+---
+
+## 脚本使用指南
+
+### 启动研究
+
+```bash
+cd /root/.openclaw/workspace/skills/deep-research/scripts
+TOPIC="你的研究主题" SESSION_ID="可选ID" bash research.sh
+```
+
+### 记录证据卡
+
+```bash
+CLAIM_ID="claim_001" \
+TOPIC="研究主题" \
+CONTENT="具体结论内容..." \
+SOURCE="https://..." \
+SOURCE_TIER="T2" \
+VERIFICATION_STATUS="pending" \
+ROUND="1" \
+CACHE_DIR="/tmp/deep-research-cache/xxx/xxx" \
+bash claim-card.sh
+```
+
+### 更新索引
+
+```bash
+CACHE_DIR="/tmp/deep-research-cache/xxx/xxx" \
+TOPIC="研究主题" \
+SESSION_ID="xxx" \
+bash manifest.sh
+```
+
+### 生成报告
+
+```bash
+CACHE_DIR="/tmp/deep-research-cache/xxx/xxx" \
+TOPIC="研究主题" \
+SESSION_ID="xxx" \
+bash finalize.sh
+```
+
+### 清理检查（可定时运行）
+
+```bash
+bash cleanup.sh
+```
+
+---
+
+## 触发此技能时的用户沟通规则
+
+**研究开始时**（简短告知）：
+> "收到，我来研究一下。计划：[拆解成X个维度，查找X个来源]，完成后给你完整报告。"
+
+**研究过程中**（如果发现方向偏差）：
+> "我发现原问题的方向可能需要调整——[说明原因]，建议改成[新方向]，可以吗？"
+
+**完成时**：按上方模板输出完整报告，并告知：
+> "报告已生成，缓存保留3天，如继续研究请在3天内继续对话。"
+
+---
+
+## 质量门控
+
+以下情况必须**不上报结论**，先继续研究：
+- 关键结论不足 3 个来源
+- 存在未解决的来源冲突
+- 时效性无法确认（AI/科技类）
+
+以下情况**必须标注"存疑"**：
+- 单一来源
+- 来源为 T3/T4
+- 发布时间超过 1 年（科技类话题）
+- 不同来源结论存在分歧
+
+---
+
+## Self-Improving 集成
+
+每次研究完成后，在 `.learnings/research-log.md` 追加一条：
+```
+[日期] | 问题：[主题] | 来源数：X | 质量：🟢/🟡/🔴 | 教训：[如果有]
+```
+
+如果研究过程中发现方法论问题 → 更新本 SKILL.md。
+
+---
+
+*本技能参考 wshuyi/deep-research 方法论 + 学术来源可信度分级体系构建。*

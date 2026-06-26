@@ -1,0 +1,10 @@
+{
+  "name": "HTTPS to webserver",
+  "type": "destination",
+  "description": "Forward WAN TCP 443 to internal webserver",
+  "enabled": true,
+  "protocol": "tcp",
+  "dst_port": "443",
+  "translated_address": "10.0.10.50",
+  "translated_port": "8443"
+}

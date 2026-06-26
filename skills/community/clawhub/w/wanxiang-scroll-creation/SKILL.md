@@ -1,35 +1,44 @@
 ---
-name: "Wanxiang Scroll Creation"
-description: "万象绘卷创作引擎分卷 - 包含内容生成引擎、网文创作全流程、质量控制"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wanxiang-scroll-creation"
-sourceUrl: "https://clawhub.ai/skills/wanxiang-scroll-creation"
+name: wanxiang-scroll-creation
+description: 万象绘卷创作引擎分卷 - 包含内容生成引擎、网文创作全流程、质量控制
+version: 1.0.0
 ---
 
-# Wanxiang Scroll Creation
+# 万象绘卷 - 创作引擎分卷
 
-> 万象绘卷创作引擎分卷 - 包含内容生成引擎、网文创作全流程、质量控制
+> 内容生成 + 网文创作 + 质量控制 | v1.0.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wanxiang-scroll-creation`
-- **Source URL:** [https://clawhub.ai/skills/wanxiang-scroll-creation](https://clawhub.ai/skills/wanxiang-scroll-creation)
+## 包含内容
 
-## Overview
+### 第五章 - 内容生成引擎
+- 顶点引擎系统
+- 直接讲述技巧
+- 内容生成协议
 
+### 第六章 - 网文创作全流程
+- 黄金三章生成
+- 细纲设计
+- 平台适配指南
+- 知乎体创作
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wanxiang-scroll-creation
+### 第七章 - 质量控制与去AI痕迹
+- 质量标准体系
+- 编辑技巧
+- AI痕迹去除
+
+## 使用方式
+
+配合主技能包 `wanxiang-scroll` 使用：
 ```
+clawhub install wanxiang-scroll
+clawhub install wanxiang-scroll-creation
+```
+
+## 核心功能
+
+- 网文黄金三章自动生成
+- 多平台适配（知乎/起点/晋江）
+- AI文本净化与去痕迹
+
+---
+*万象绘卷分卷系列 - 创作引擎*

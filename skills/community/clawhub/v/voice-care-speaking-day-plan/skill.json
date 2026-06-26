@@ -1,0 +1,23 @@
+{
+  "name": "voice-care-speaking-day-plan",
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "language": "en",
+  "hasExecutableCode": false,
+  "triggerKeywords": [
+    "voiceCareDayPlan",
+    "speakingDayPlan",
+    "voiceRestDay",
+    "vocalCarePlan",
+    "speakingCareCard",
+    "voiceHealthDay",
+    "voiceCarePlanCard"
+  ],
+  "execution": "noExec",
+  "promptOnly": true,
+  "requires_api": false,
+  "no_network": true,
+  "no_credentials": true,
+  "no_code_execution": true,
+  "contentType": "document-only"
+}

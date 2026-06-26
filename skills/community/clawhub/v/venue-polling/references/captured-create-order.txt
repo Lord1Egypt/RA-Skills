@@ -1,0 +1,12 @@
+POST /gym/miniprogram/areaOrder/createOrder HTTP/1.1
+Host: shop.chuanshatiyuchang.cn
+Connection: keep-alive
+Content-Length: 311
+token-user: 0cd5cb6b21fc410dbd81bc3e6a066614
+X-Ca-Timestamp: 1776415153
+X-Ca-Nonce: ttl63xm4
+content-type: application/json
+X-Ca-Signature: gLtYxxgfOqVnqaOZ35ROGBDG2T0j952Ifz3FdeCaxmzFNHpGXUHXL7EerAtTybcS+px8CU5Dkw4O25DkIq7w7+HMCipSqwo2jtKHfSmVKC297QU81Brh+DhbDxIDdtk0yQAUETEFLw+wsrYOpeZ4UbfuAO6CCcXfPykdP7z3/3rzhyamxsKAPHkoU/gv7m2FkWT1CKy9kpEII2kqlaudYUFA649M3GF3SZbC5yh9rnI0lxAGbg/siKuHXT2XHjdYhM6mfbOy/0K3NZo14+8ha5GIz258QeM7u0PwnHxtLhgIoLZ/6BcigyHZys6c4MrlQ/THLSzXVnZeHFq1Z2gH0A==
+x-gym-client-id: 1
+
+{"venueSportId":1,"areaItems":[{"areaDate":"2026-04-20","areaId":47,"areaName":"七号场(2F)","endTime":"21:00","packageId":null,"price":"45","showStatus":"AVAILABLE","sportId":1,"sportName":"羽毛球","startTime":"20:00","status":"NORMAL","uniqNo":"47_20260420_20:00_21:00","checked":true,"row":6,"col":11}]}

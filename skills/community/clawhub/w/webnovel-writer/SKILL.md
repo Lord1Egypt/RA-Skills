@@ -1,35 +1,366 @@
 ---
-name: "Novel Writer"
-description: "长篇网络小说创作引擎，支持写作、续写、审稿、一致性检查、矛盾检测、角色状态管理。适用于番茄小说等平台的都市/奇幻/悬疑/催泪等类型长篇连载（50万字以上）。当用户提到写小说、续写章节、检查章节矛盾、审查小说质量、角色设定管理、时间线梳理、大纲规划、弹幕角色管理时触发。覆盖从大纲设计到逐章写作到质量审校的完整流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/webnovel-writer"
-sourceUrl: "https://clawhub.ai/skills/webnovel-writer"
+name: novel-writer
+description: '长篇网络小说创作引擎，支持写作、续写、审稿、一致性检查、矛盾检测、角色状态管理。适用于番茄小说等平台的都市/奇幻/悬疑/催泪等类型长篇连载（50万字以上）。当用户提到写小说、续写章节、检查章节矛盾、审查小说质量、角色设定管理、时间线梳理、大纲规划、弹幕角色管理时触发。覆盖从大纲设计到逐章写作到质量审校的完整流程。'
 ---
 
-# Novel Writer
+# Novel Writer — 长篇网络小说创作引擎
 
-> 长篇网络小说创作引擎，支持写作、续写、审稿、一致性检查、矛盾检测、角色状态管理。适用于番茄小说等平台的都市/奇幻/悬疑/催泪等类型长篇连载（50万字以上）。当用户提到写小说、续写章节、检查章节矛盾、审查小说质量、角色设定管理、时间线梳理、大纲规划、弹幕角色管理时触发。覆盖从大纲设计到逐章写作到质量审校的完整流程。
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/webnovel-writer`
-- **Source URL:** [https://clawhub.ai/skills/webnovel-writer](https://clawhub.ai/skills/webnovel-writer)
+1. **一致性高于一切** — 长篇小说最大的敌人是前后矛盾
+2. **节奏为王** — 番茄小说风格：短句、口语化、快节奏、每500字一个钩子
+3. **大纲是权威** — 正文向大纲看齐，有价值的正文设定反向补进大纲
+4. **追踪表是记忆** — 结构化追踪，不靠印象
+5. **角色状态是动态的** — 用状态机管理，不能靠记忆
 
-## Overview
+## 项目结构
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/webnovel-writer
 ```
+小说项目/
+├── 大纲.md              # 总纲+分卷（唯一权威设定源）
+├── 设定集.md            # 角色、世界观、硬性规则
+├── 设定词典.md          # 专有名词、术语
+├── 追踪表.md            # 进度+角色状态+时间线+事件
+├── character_states.json # 角色状态机
+├── 检查清单.md          # 每章必查项
+├── 写作卡/              # 每章边界卡
+└── 正文/                # 第001章_标题.md ~ 第NNN章
+```
+
+## 多小说隔离
+
+每本小说独立目录。操作前必须确认当前小说、路径、设定来源。**禁止混用数据。**
+
+## 工作流程
+
+### 一、写新章节
+
+```
+构建上下文包 → 写正文 → 自检 → 更新追踪表+状态机 → 发送
+```
+
+**上下文包（不可跳过）：**
+1. 写作卡（核心内容/结束点/禁区）
+2. 角色状态快照（character_states.json）
+3. 近5章摘要（追踪表）
+4. 上一章最后500字
+5. 设定词典
+6. 相关角色设定（涉及新角色时）
+
+**写中：** 按写作卡写、查词典、每500字检查钩子、2000-3000字、不泄露角色不知的信息
+
+**写后6步：** 自检 → `cli.py check` → 修正 → 更新追踪表 → 更新状态机 → 发送
+
+### 二、审稿
+
+三对照：**正文 + 追踪表 + 大纲**
+
+- **A类**：设定一致性（人名、称呼、年龄、外貌、能力）
+- **B类**：时间线一致性（日期、天数、事件先后）
+- **C类**：逻辑一致性（知道/不知道、物品、因果）
+- **D类**：风格质量（去AI味、对话自然度、节奏、钩子）
+- **E类**：大纲合规（剧情走向）
+
+### 三、深度审读（人工编辑级）
+
+**审读≠检测脚本。** 脚本是浅层扫描（正则/统计），深度审读是逐字理解。
+当用户要求「检查」「审稿」「精读」「看看有没有问题」时，**必须执行深度审读流程**，不能只跑脚本。
+
+#### 审读模式
+
+**全量审读**：适用于新稿、大修后、或用户明确要求「认真检查」
+**定向审读**：适用于修改某章后的局部检查
+
+#### 全量审读流程（不可跳过步骤）
+
+```
+第一步：构建审读上下文
+    ↓
+第二步：分批逐章精读（每批3-5章，写精读笔记）
+    ↓
+第三步：跨章关联分析
+    ↓
+第四步：输出精读报告
+    ↓
+第五步：生成修改清单
+```
+
+**第一步：构建审读上下文**（读正文前必须加载）
+- 大纲.md（当前卷的剧情走向）
+- 设定词典.md（专有名词/称呼规范）
+- character_states.json（角色当前状态）
+- 追踪表.md（近10章事件摘要）
+- foreshadowing.json（未回收伏笔）
+
+**第二步：分批逐章精读**（核心，不可偷懒）
+- 每次读 **3-5章**（约1万字），确保能深度理解
+- 每批读完写 **精读笔记**，存到 `审读笔记_第X-Y章.md`：
+  ```markdown
+  ## 第N章：标题
+  - **剧情概述**：用自己的话概括（30-50字），证明理解了
+  - **出场角色**：谁出现了、什么状态
+  - **情感走向**：本章情绪从哪到哪
+  - **发现的问题**：
+    - [逻辑] 描述问题 + 严重程度
+    - [情感] 描述问题
+    - [角色] 行为/语言不符合人设的地方
+    - [节奏] 拖沓/赶进度的地方
+    - [细节] 矛盾/不合理之处
+  - **值得肯定的点**：写得好的地方也要记录
+  ```
+- **逐字读，不要跳读。** 读完要能说出每个角色这章经历了什么
+- 带着6个问题读每一段：
+  1. 这段在推进什么？（剧情/情感/伏笔）
+  2. 角色的反应合理吗？（符合人设+当前处境）
+  3. 读者到这里会有什么感受？（无聊/紧张/感动/困惑）
+  4. 跟前后文衔接上了吗？（信息/情绪/时间线）
+  5. 有没有多余的段落可以删？
+  6. 有没有AI味？（套话/空泛描写/不自然的比喻）
+
+**第三步：跨章关联分析**（全部批精读完后）
+- 检查 **角色弧线**：从第1章到最后一章，主角的成长是否连续
+- 检查 **情感曲线**：整体节奏是否有起伏，有没有连续多章平淡
+- 检查 **伏笔回收**：埋的线有没有断掉
+- 检查 **时间线**：事件先后顺序是否合理
+- 检查 **信息一致性**：角色A知道的事，到后面没有被忘记
+
+**第四步：输出精读报告**
+- 存到 `精读报告_<小说名>.md`
+- 格式：
+  ```markdown
+  # 精读报告：小说名
+  ## 总评
+  - 整体质量评分（1-10）
+  - 最大优点
+  - 最需要改进的
+  ## 分章问题清单
+  - 按严重程度排序
+  - 每个问题：章节 + 类型 + 描述 + 建议修改方案
+  ## 跨章问题
+  - 角色弧线断裂
+  - 情感曲线异常
+  - 伏笔遗忘
+  ## 修改优先级
+  - P0：必须修（硬伤/逻辑错误）
+  - P1：建议修（影响阅读体验）
+  - P2：可以改（锦上添花）
+  ```
+
+**第五步：生成修改清单**
+- 存到 `修改清单_精读后.md`
+- 每条：章节 + 问题 + 具体修改建议
+- 标注哪些修改互相依赖（改了A章可能影响B章）
+
+#### 定向审读流程（修改后复查）
+
+1. 读取修改的章节全文
+2. 读取前后各1章的最后500字（检查衔接）
+3. 加载角色状态和设定词典
+4. 逐字读修改后的章节
+5. 只检查：衔接是否自然 + 是否引入新矛盾 + 修改是否完整
+6. 输出简短复查结果（通过/不通过+原因）
+
+#### 深度审读 vs 脚本检测
+
+| | 深度审读 | 脚本检测 |
+|---|---------|----------|
+| 速度 | 慢（万字/10分钟） | 快（全文/秒） |
+| 深度 | 理解剧情、情感、逻辑 | 字面匹配、统计 |
+| 能发现 | 行为不合理、情感断裂、节奏拖沓 | 人名错误、数值矛盾、重复 |
+| 适用 | 用户要求认真检查时 | 快速扫描时 |
+
+**两者配合使用：脚本先扫浅层问题 → 修完后再深度审读。**
+
+### 四、检测脚本（12个）
+
+统一入口：`cli.py <命令> [参数]`，所有命令支持 `--help`
+
+#### 一致性检查（核心）
+```bash
+cli.py check <正文目录> --tracking <追踪表> --dict <设定词典>
+# 检测：角色称呼不一致、设定冲突、时间线错误、数值矛盾、AI高频词、
+#       跨章重复、视角混乱、角色消失(>5章未出场)、对话质量
+# 选项：--character-states <文件>  --auto-fix  --auto-fix-apply  --output <路径>
+```
+
+#### 大纲偏差
+```bash
+cli.py drift --outline <大纲> --chapters <正文>
+# 选项：--chapter-list <文件>  --known-characters <名...>  --fix-suggest  --json
+```
+
+#### 节奏检测
+```bash
+cli.py rhythm <正文目录>
+# 检测：紧张度、钩子密度、情感基调、节奏异常
+# 选项：--compare <修改前目录>  --suggest  --emotion-track  --json
+```
+
+#### 对话标签质量
+```bash
+cli.py dialogue --novel-dir <正文>
+# 选项：--threshold <数/千字>  --suggest  --format text|json
+```
+
+#### 张力预测
+```bash
+cli.py tension <正文目录> [--count 7]
+# 选项：--outline <大纲>  --character-states <文件>  --json
+```
+
+#### 伏笔扫描
+```bash
+cli.py foreshadow --novel-dir <正文>
+# 检测：忽略线索型、后知后觉型、异常感觉型、异常细节、未回收预警
+# 选项：--foreshadowing <json>  --suggest  --max-gap <章数>  --json
+```
+
+#### 章末钩子
+```bash
+cli.py hook --novel-dir <正文>
+# 选项：--threshold <评分>  --suggest
+```
+
+#### 章节标题
+```bash
+cli.py title --novel-dir <正文>
+# 选项：--min-len <字>  --max-len <字>  --suggest
+```
+
+#### 开头吸引力
+```bash
+cli.py opening --novel-dir <正文>
+# 选项：--top-n <N>  --suggest
+```
+
+#### 段落长度
+```bash
+cli.py paragraph --novel-dir <正文>
+# 选项：--max-paragraph <字>  --suggest
+```
+
+#### 重复检测
+```bash
+cli.py repeat <正文目录>
+```
+
+#### 一键全检
+```bash
+cli.py all <正文目录>
+```
+
+### 基建命令
+
+#### 配置管理
+```bash
+cli.py config register <名称> <路径>  # 注册小说
+cli.py config list                   # 列出已注册小说
+cli.py config set <名称>              # 切换当前小说
+cli.py config show                   # 显示配置
+```
+
+#### 版本管理
+```bash
+cli.py changelog [show]              # 查看版本历史
+cli.py changelog add <版本> <描述>    # 添加版本记录
+```
+
+#### 数据备份
+```bash
+cli.py backup <小说目录> [输出目录]   # 备份结构化数据（JSON/MD，不含正文）
+```
+
+### 高级工具
+
+#### 差异检测
+```bash
+cli.py diff <旧目录> <新目录> [--output <报告路径>]
+# 对比修改前后，只显示差异和新增问题（AI味、重复、标签单调）
+# 生成 Markdown 报告，支持 --output 指定路径
+```
+
+#### HTML 可视化报告
+```bash
+cli.py report <正文目录> [--output <路径>] [--title <标题>]
+# 一键生成 6 维度检测的 HTML 可视化报告
+# 暗色主题，交互式折叠，自动打开
+```
+
+#### 性能基准测试
+```bash
+cli.py bench <正文目录>
+# 测量每个脚本的执行时间 + 并行加速比
+```
+
+#### 语义重复检测
+```bash
+cli.py semantic <正文目录> [--threshold 0.7]
+# jieba 分词语义重复 + 命名实体识别（需 pip install jieba）
+```
+
+#### 并行全检
+```bash
+cli.py parallel <正文目录> [--workers 4] [--no-cache]
+# 并行跑所有脚本 + SQLite 缓存 + 增量检测
+```
+
+### 五、大纲设计
+
+详见 `references/outline_design.md`。多卷衔接见 `references/volume_transition.md`。
+
+## 角色状态机
+
+详见 `references/character_state_machine.md`。每章写完更新所有出场角色 snapshot。
+
+弧线追踪见 `references/character_arc.md`。
+
+## 写作约束
+
+- 番茄风格（短句、口语、少形容词、节奏快、对话多）
+- 2000-3000字/章，章末强钩子
+- 去AI味（禁"不禁""缓缓""淡淡""微微"等，详见 `references/writing_tips.md`）
+- 弹幕管理见 `references/danmaku_management.md`
+
+## 伏笔管理
+
+埋设登记 → 5步检查回收 → 20/50/100章过期预警。详见 `references/foreshadowing.md`。
+
+## 参考文档索引
+
+| 文档 | 主题 |
+|------|------|
+| checklist.md | 每章必查清单（A-E五类） |
+| hook_design.md | 钩子设计技巧与模板 |
+| writing_tips.md | 新手避坑 TOP 20 |
+| dialogue_quality.md | 对话去AI味指南 |
+| foreshadowing.md | 伏笔管理完整流程 |
+| character_state_machine.md | 角色状态机规范 |
+| character_arc.md | 角色弧线四阶段模型 |
+| outline_design.md | 大纲设计方法论 |
+| continuity.md | 续写衔接机制 |
+| emotion_arc_guide.md | 情感弧线设计 |
+| reader_experience.md | 读者体验管理 |
+| scene_transition.md | 场景转换技巧 |
+| volume_transition.md | 多卷衔接实操 |
+| writing_rhythm_guide.md | 5种节奏模板 + 10章周期 |
+| style_consistency.md | 文风一致性检测 |
+| smart_context.md | 智能上下文路由 |
+| context_loader.md | 上下文加载器 |
+| danmaku_management.md | 弹幕角色管理 |
+| usage_examples.md | 完整使用示例 |
+| deep_reading_guide.md | 深度审读指南（逐字精读流程） |
+| iteration_report.md | 迭代报告 |
+
+## 测试
+
+```bash
+cd novel-writer && python3 -m pytest tests/ -v  # 284 passed
+```
+
+## 关键教训
+
+1. 章节必须顺序写
+2. 更新追踪表时逐章核对
+3. 大纲是活的，可调整但要双向同步
+4. 角色状态机比文本快照可靠
+5. 近5章摘要比只读上一章更有效

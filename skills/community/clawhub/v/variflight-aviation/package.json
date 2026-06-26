@@ -1,0 +1,56 @@
+{
+    "name": "variflight-aviation-skill",
+    "version": "1.0.4",
+    "description": "航班信息查询 OpenClaw Skill（飞常准官方 MCP）- 实时航班动态、航线搜索、舒适度评估、机场天气、中转规划、实时定位",
+    "main": "src/index.js",
+    "bin": {
+        "variflight": "./bin/variflight"
+    },
+    "scripts": {
+        "test": "node test-api.js",
+        "lint": "eslint src/",
+        "start": "node src/cli.js"
+    },
+    "keywords": [
+        "openclaw",
+        "skill",
+        "variflight",
+        "flight",
+        "aviation",
+        "mcp",
+        "travel",
+        "transport"
+    ],
+    "author": "lixiao",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/your-username/variflight-aviation-skill.git"
+    },
+    "bugs": {
+        "url": "https://github.com/your-username/variflight-aviation-skill/issues"
+    },
+    "homepage": "https://github.com/your-username/variflight-aviation-skill#readme",
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.0.4"
+    },
+    "devDependencies": {
+        "eslint": "^8.57.0"
+    },
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=9.0.0"
+    },
+    "openclaw": {
+        "skill": true,
+        "entry": "SKILL.md",
+        "commands": {
+            "search": "src/commands/search.js",
+            "info": "src/commands/info.js",
+            "comfort": "src/commands/comfort.js",
+            "weather": "src/commands/weather.js",
+            "transfer": "src/commands/transfer.js",
+            "track": "src/commands/track.js"
+        }
+    }
+}

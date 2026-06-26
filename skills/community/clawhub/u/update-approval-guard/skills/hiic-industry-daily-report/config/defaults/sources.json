@@ -1,0 +1,17 @@
+{
+  "_description": "HIIC日报自定义数据源配置（可选）",
+  "_version": "1.0.0",
+  "_note": "用户可在此文件中添加自定义RSS源、Twitter账号等，这些数据源将被整合到日报中",
+  "sources": [
+    {
+      "id": "example-custom-rss",
+      "type": "rss",
+      "name": "示例自定义RSS源",
+      "url": "https://example.com/feed.xml",
+      "enabled": false,
+      "priority": false,
+      "topics": ["llm"],
+      "note": "这是一个示例，请替换为你自己的RSS源"
+    }
+  ]
+}

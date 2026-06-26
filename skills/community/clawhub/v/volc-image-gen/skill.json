@@ -1,0 +1,80 @@
+{
+  "name": "volc-image-gen",
+  "version": "1.0.0",
+  "description": "火山引擎图像生成技能 - 支持文生图、图生图、批量生成和变体生成",
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "keywords": [
+    "volcengine",
+    "image-generation",
+    "ai-art",
+    "文生图",
+    "图生图",
+    "火山引擎"
+  ],
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node tests/image-gen.test.js"
+  },
+  "dependencies": [
+    "axios",
+    "p-limit",
+    "node-cache"
+  ],
+  "env": {
+    "VOLC_API_KEY": {
+      "required": true,
+      "description": "火山引擎 API Key"
+    },
+    "VOLC_API_BASE": {
+      "required": false,
+      "default": "https://ark.cn-beijing.volces.com/api/v3",
+      "description": "API 基础 URL"
+    },
+    "VOLC_IMAGE_MODEL": {
+      "required": false,
+      "default": "doubao-image-x",
+      "description": "图像模型名称"
+    }
+  },
+  "commands": [
+    {
+      "name": "generate",
+      "aliases": ["文生图", "生成图片", "img", "image"],
+      "description": "根据文本描述生成图片"
+    },
+    {
+      "name": "edit",
+      "aliases": ["图生图", "编辑图片", "img2img"],
+      "description": "基于现有图片进行编辑和重绘"
+    },
+    {
+      "name": "batch",
+      "aliases": ["批量生成", "batch_generate"],
+      "description": "批量生成多张图片"
+    },
+    {
+      "name": "variations",
+      "aliases": ["生成变体", "变体"],
+      "description": "生成图片的多个变体"
+    },
+    {
+      "name": "help",
+      "aliases": ["帮助", "usage"],
+      "description": "显示帮助信息"
+    }
+  ],
+  "features": [
+    "7 种预定义风格（写实/动漫/油画/水彩/素描/赛博朋克/奇幻）",
+    "支持 7 种图片尺寸",
+    "1 小时智能缓存机制",
+    "指数退避重试策略",
+    "并发控制（批量生成）",
+    "自动下载图片到本地",
+    "完整的错误处理"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills/tree/main/volc-image-gen"
+  }
+}

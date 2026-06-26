@@ -1,0 +1,2 @@
+dashscope>=1.25.8
+requests

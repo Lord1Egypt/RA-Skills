@@ -1,35 +1,34 @@
----
-name: "Smart File Organizer"
-description: "Scans and categorizes files in a directory, detects duplicates, and reorganizes them into a clear folder structure with safety features and rollback options."
-category: "productivity"
-source: "ClawHub"
-tags: [automation, cleanup, duplicates, files, organization]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ub2-smart-file-organizer"
-sourceUrl: "https://clawhub.ai/skills/ub2-smart-file-organizer"
----
-
 # Smart File Organizer
 
-> Scans and categorizes files in a directory, detects duplicates, and reorganizes them into a clear folder structure with safety features and rollback options.
+A skill that enables Claw to scan a directory, categorize files by type and content, and reorganize them into a clean, logical folder structure.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ub2-smart-file-organizer`
-- **Source URL:** [https://clawhub.ai/skills/ub2-smart-file-organizer](https://clawhub.ai/skills/ub2-smart-file-organizer)
+## What This Skill Does
 
-## Overview
+This skill provides an intelligent file organization workflow:
 
+1. **Directory Scanning** — Recursively scan a target directory and catalog all files with their sizes, types, and modification dates
+2. **File Classification** — Categorize files by extension and content type (documents, images, code, data, archives, media, etc.)
+3. **Duplicate Detection** — Identify duplicate files by comparing checksums
+4. **Organization Plan** — Propose a new folder structure based on file categories
+5. **Safe Reorganization** — Move files into the new structure with a full log of all changes, enabling rollback if needed
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ub2-smart-file-organizer
-```
+## How to Use
+
+Point Claw at a directory and describe your organization goals:
+
+- "Organize my Downloads folder by file type"
+- "Scan this project directory and find all duplicate files"
+- "Sort these files into folders by year based on their modification date"
+- "Clean up this directory — group documents, images, and code separately"
+
+## Safety Features
+
+- **Dry Run Mode** — Preview the proposed changes before any files are moved (enabled by default)
+- **Change Log** — Every file move is logged to `reorganization_log.txt` for full traceability
+- **No Deletions** — The skill never deletes files; duplicates are moved to a `_duplicates` folder for manual review
+
+## Output
+
+- A summary report showing the file inventory and proposed/executed organization
+- A `reorganization_log.txt` file documenting every action taken
+- The reorganized directory structure

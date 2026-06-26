@@ -1,0 +1,6 @@
+# UDS 诊断测试技能 — Python 依赖
+# 安装: pip install -r requirements.txt
+# 注意: 不要执行 `pip install can`，正确的包名是 `python-can`
+
+python-can>=4.0.0
+openpyxl>=3.0.0

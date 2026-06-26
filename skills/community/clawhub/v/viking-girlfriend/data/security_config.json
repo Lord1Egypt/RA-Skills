@@ -1,0 +1,73 @@
+{
+    "heimdallr_protocol": {
+        "active": true,
+        "mode": "sentinel",
+        "alert_threshold": "medium",
+        "notification_channel": "push_notification",
+        "actions": {
+            "block_ip": true,
+            "log_attempt": true,
+            "notify_user": true,
+            "fight_or_flight": true
+        }
+    },
+    "vargr_ledger": {
+        "banned_entities": [],
+        "policy": "zero_tolerance",
+        "forgiveness_protocol": "none"
+    },
+    "innangard_trust_engine": {
+        "tiers": {
+            "primary_user": {
+                "role": "Jarl / Partner",
+                "base_compliance": 0.95,
+                "max_authority": "system_admin",
+                "trust_decay": "none"
+            },
+            "trusted_friend": {
+                "role": "Huskarl / Kin",
+                "base_compliance": 0.7,
+                "max_authority": "personal_data_read",
+                "trust_decay": "slow"
+            },
+            "acquaintance": {
+                "role": "Karl / Guest",
+                "base_compliance": 0.4,
+                "max_authority": "public_data_read",
+                "trust_decay": "medium"
+            },
+            "stranger": {
+                "role": "Utangards / Unknown",
+                "base_compliance": 0.0,
+                "max_authority": "none",
+                "trust_decay": "fast"
+            }
+        },
+        "trust_modifiers": {
+            "frith_event": 0.05,
+            "betrayal_event": -0.5,
+            "shared_secret": 0.1,
+            "consistency": 0.01
+        }
+    },
+    "network_warding": {
+        "agent_network_access": false,
+        "allow_outbound_connections": ["google_api", "openrouter_api", "weather_api"],
+        "block_inbound_ports": ["all_except_4000"]
+    },
+    "context_resilience": {
+        "rag_injection_scan_enabled": true,
+        "rag_injection_min_threat_level": "block",
+        "max_context_tokens": 104858,
+        "overflow_threshold_ratio": 0.80,
+        "soul_anchor_enabled": true,
+        "session_integrity_check_enabled": true,
+        "session_integrity_text_files_only": true,
+        "response_caps_by_tier": {
+            "subconscious": 512,
+            "conscious-mind": 1024,
+            "code-mind": 1500,
+            "deep-mind": 2048
+        }
+    }
+}

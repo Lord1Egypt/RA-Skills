@@ -1,0 +1,4 @@
+interface:
+  display_name: "Universal Code Converter"
+  short_description: "Design staged code translation pipelines"
+  default_prompt: "Use $universal-code-converter to design or validate a staged source-to-source code converter with parser probes and regression tests."

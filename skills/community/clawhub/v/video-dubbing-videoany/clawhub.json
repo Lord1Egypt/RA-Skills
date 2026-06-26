@@ -1,0 +1,12 @@
+{
+  "name": "Video Dubbing by VideoAny",
+  "tagline": "Dub video or audio into another language with AI.",
+  "description": "Generate dubbed outputs via VideoAny at https://videoany.io/video-dubbing. Upload video/audio or provide a direct media URL, choose ISO 639-1 target language code, and export localized dubbed output for multilingual workflows.",
+  "category": "utility",
+  "tags": ["video-dubbing", "ai-dubbing", "video-translation", "localization", "videoany", "iso-639-1", "multilingual"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://videoany.io/video-dubbing",
+  "homepage": "https://videoany.io/video-dubbing"
+}

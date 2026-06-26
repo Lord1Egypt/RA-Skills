@@ -1,0 +1,25 @@
+获取Access Key。如需创建/查看Access Key，请参见 API访问密钥管理
+ 。
+方法：使用示例/说明（简单，推荐）
+参见 SDK 接入指南
+ 。
+方法：自行实现签名（实现成本高，不推荐）
+使用 Access Key 构造签名。具体方法请参见 签名方法
+ 。
+签名用到的方舟相关字段信息：
+Service： ark
+Region： cn-beijing
+使用cURL发起请求，请求示例如下：1. 
+• 
+• 
+2. 
+curl -X POST \
+  'https://ark.cn-beijing.volcengineapi.com/?Action=ListEndpoints&Version=2024-01-01' \
+  -H 'Authorization: HMAC-SHA256 Credential=AKL**/20240710/cn-beijing/ark/request, 
+SignedHeaders=host;x-content-sha256;x-date, Signature=a7a****' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: ark.cn-beijing.volcengineapi.com' \
+  -H 'X-Content-Sha256: 44***' \
+  -H 'X-Date: 20240710T042925Z' \
+  -d '{}'ShellAPI参考 1. 准备工作
+版权所有©北京火山引擎科技有限公司 8/485

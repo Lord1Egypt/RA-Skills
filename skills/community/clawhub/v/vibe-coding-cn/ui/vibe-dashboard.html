@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Coding - 实时执行监控</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+    }
+    .header h1 { font-size: 2em; margin-bottom: 10px; }
+    .header p { opacity: 0.9; }
+    
+    /* 状态栏 */
+    .status-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-bottom: 2px solid #e9ecef;
+    }
+    .status-item {
+      text-align: center;
+      padding: 15px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .status-label { font-size: 0.9em; color: #6c757d; margin-bottom: 5px; }
+    .status-value { font-size: 1.5em; font-weight: bold; color: #667eea; }
+    
+    /* 主内容 */
+    .main-content {
+      display: grid;
+      grid-template-columns: 350px 1fr 350px;
+      gap: 20px;
+      padding: 30px;
+    }
+    
+    /* Agent 状态 */
+    .agent-section {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .agent-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border-left: 4px solid #dee2e6;
+      transition: all 0.3s ease;
+    }
+    .agent-card.active {
+      border-left-color: #667eea;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      animation: pulse 2s infinite;
+    }
+    .agent-card.completed {
+      border-left-color: #28a745;
+      opacity: 0.8;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
+      50% { box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5); }
+    }
+    .agent-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .agent-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      margin-right: 10px;
+    }
+    .agent-name { font-weight: bold; font-size: 1.1em; }
+    .agent-model { font-size: 0.8em; color: #6c757d; }
+    .agent-status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    .agent-status.waiting { background: #e9ecef; color: #6c757d; }
+    .agent-status.running { background: #667eea; color: white; }
+    .agent-status.completed { background: #28a745; color: white; }
+    
+    /* 执行日志 */
+    .log-section {
+      background: #0f0f1a;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .log-header {
+      background: #1a1a2e;
+      padding: 15px 20px;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .log-title { color: #00d9ff; font-weight: bold; }
+    .log-content {
+      padding: 20px;
+      height: 600px;
+      overflow-y: auto;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9em;
+      line-height: 1.8;
+    }
+    .log-line {
+      margin-bottom: 8px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      border-left: 3px solid transparent;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .log-line.phase { border-left-color: #ff6b6b; background: rgba(255, 107, 107, 0.05); font-weight: bold; }
+    .log-line.agent { border-left-color: #4ecdc4; background: rgba(78, 205, 196, 0.05); }
+    .log-line.output { border-left-color: #95e1d3; background: rgba(149, 225, 211, 0.05); }
+    .log-line.vote { border-left-color: #f38181; background: rgba(243, 129, 129, 0.05); }
+    .log-line.complete { border-left-color: #00ff88; background: rgba(0, 255, 136, 0.05); font-weight: bold; }
+    .log-line.error { border-left-color: #ff0000; background: rgba(255, 0, 0, 0.1); color: #ff6b6b; }
+    .timestamp { color: #666; margin-right: 10px; }
+    
+    /* 进度条 */
+    .progress-section {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .phase-item {
+      margin-bottom: 20px;
+    }
+    .phase-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .phase-name { font-weight: bold; }
+    .phase-status { font-size: 0.9em; color: #6c757d; }
+    .progress-bar {
+      height: 8px;
+      background: #e9ecef;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+    .progress-fill.completed { background: #28a745; }
+    .progress-fill.active { animation: shimmer 2s infinite; }
+    @keyframes shimmer {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+    
+    /* 文件树 */
+    .file-section {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+    .file-tree {
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9em;
+    }
+    .file-item {
+      padding: 8px 12px;
+      margin: 4px 0;
+      background: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      border-left: 3px solid transparent;
+    }
+    .file-item.new {
+      border-left-color: #667eea;
+      animation: highlight 2s ease;
+    }
+    @keyframes highlight {
+      0%, 100% { background: white; }
+      50% { background: rgba(102, 126, 234, 0.1); }
+    }
+    .file-icon { margin-right: 8px; font-size: 1.2em; }
+    .file-size { margin-left: auto; color: #6c757d; font-size: 0.8em; }
+    
+    /* 质量评分 */
+    .quality-section {
+      margin-top: 20px;
+    }
+    .quality-score {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .score-bar {
+      flex: 1;
+      height: 8px;
+      background: #e9ecef;
+      border-radius: 4px;
+      margin: 0 15px;
+      overflow: hidden;
+    }
+    .score-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 4px;
+    }
+    .score-value { font-weight: bold; color: #667eea; }
+    
+    /* 输入区域 */
+    .input-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 30px;
+    }
+    
+    /* 控制按钮 */
+    .controls {
+      padding: 20px 30px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      background: #f8f9fa;
+      border-top: 2px solid #e9ecef;
+    }
+    .btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .btn-secondary { background: #6c757d; color: white; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 头部 -->
+    <div class="header">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h1>🎨 Vibe Coding v3.0</h1>
+          <p>AI 团队协作，自动生成完整项目 - 实时执行监控</p>
+        </div>
+        <div id="connectionStatus" style="padding: 10px 20px; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.9em;">
+          <span style="margin-right: 5px;">📡</span>
+          <span id="connectionStatusText">连接中...</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-label">当前阶段</div>
+        <div class="status-value" id="currentPhase">准备中</div>
+      </div>
+      <div class="status-item">
+        <div class="status-label">已用时间</div>
+        <div class="status-value" id="elapsedTime">00:00</div>
+      </div>
+      <div class="status-item">
+        <div class="status-label">完成进度</div>
+        <div class="status-value" id="progress">0%</div>
+      </div>
+      <div class="status-item">
+        <div class="status-label">平均质量</div>
+        <div class="status-value" id="avgQuality">-</div>
+      </div>
+    </div>
+    
+    <!-- 主内容 -->
+    <div class="main-content">
+      <!-- 左侧：Agent 状态 -->
+      <div class="agent-section">
+        <h3 style="margin-bottom: 15px;">🤖 Agent 团队</h3>
+        
+        <div class="agent-card" id="agent-analyst">
+          <div class="agent-header">
+            <div class="agent-icon">📊</div>
+            <div>
+              <div class="agent-name">Analyst</div>
+              <div class="agent-model">qwen3.5-plus</div>
+            </div>
+          </div>
+          <span class="agent-status waiting">等待中</span>
+        </div>
+        
+        <div class="agent-card" id="agent-architect">
+          <div class="agent-header">
+            <div class="agent-icon">🏗️</div>
+            <div>
+              <div class="agent-name">Architect</div>
+              <div class="agent-model">qwen3.5-plus</div>
+            </div>
+          </div>
+          <span class="agent-status waiting">等待中</span>
+        </div>
+        
+        <div class="agent-card" id="agent-developer">
+          <div class="agent-header">
+            <div class="agent-icon">💻</div>
+            <div>
+              <div class="agent-name">Developer</div>
+              <div class="agent-model">qwen3-coder-next</div>
+            </div>
+          </div>
+          <span class="agent-status waiting">等待中</span>
+        </div>
+        
+        <div class="agent-card" id="agent-tester">
+          <div class="agent-header">
+            <div class="agent-icon">🧪</div>
+            <div>
+              <div class="agent-name">Tester</div>
+              <div class="agent-model">glm-4</div>
+            </div>
+          </div>
+          <span class="agent-status waiting">等待中</span>
+        </div>
+      </div>
+      
+      <!-- 中间：执行日志 -->
+      <div class="log-section">
+        <div class="log-header">
+          <div class="log-title">📜 执行日志</div>
+          <div style="font-size: 0.9em; color: #888;">实时更新</div>
+        </div>
+        <div class="log-content" id="logContent">
+          <div class="log-line">
+            <span class="timestamp">--:--:--</span>
+            准备就绪，等待开始...
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右侧：进度 + 文件 -->
+      <div>
+        <!-- 进度条 -->
+        <div class="progress-section">
+          <h3 style="margin-bottom: 15px;">📊 执行进度</h3>
+          
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-name">Phase 1: 需求分析</span>
+              <span class="phase-status" id="phase1-status">等待中</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="phase1-progress"></div>
+            </div>
+          </div>
+          
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-name">Phase 2: 架构设计</span>
+              <span class="phase-status" id="phase2-status">等待中</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="phase2-progress"></div>
+            </div>
+          </div>
+          
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-name">Phase 3: 代码实现</span>
+              <span class="phase-status" id="phase3-status">等待中</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="phase3-progress"></div>
+            </div>
+          </div>
+          
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-name">Phase 4: 测试编写</span>
+              <span class="phase-status" id="phase4-status">等待中</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="phase4-progress"></div>
+            </div>
+          </div>
+          
+          <div class="phase-item">
+            <div class="phase-header">
+              <span class="phase-name">Phase 5: 整合验收</span>
+              <span class="phase-status" id="phase5-status">等待中</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="phase5-progress"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 文件树 -->
+        <div class="file-section">
+          <h3 style="margin-bottom: 15px;">📁 生成文件</h3>
+          <div class="file-tree" id="fileTree">
+            <div style="color: #888; font-size: 0.9em;">等待文件生成...</div>
+          </div>
+        </div>
+        
+        <!-- 质量评分 -->
+        <div class="quality-section">
+          <h3 style="margin-bottom: 15px;">⭐ 质量评分</h3>
+          <div id="qualityScores">
+            <div style="color: #888; font-size: 0.9em;">等待评分...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 输入区域 -->
+    <div class="input-section" style="padding: 20px 30px; background: white; border-top: 2px solid #e9ecef;">
+      <label style="display: block; font-weight: bold; margin-bottom: 10px; color: #333;">
+        📝 输入你的需求：
+      </label>
+      <div style="display: flex; gap: 15px;">
+        <input 
+          type="text" 
+          id="requirementInput" 
+          placeholder="例如：做一个个税计算器" 
+          style="flex: 1; padding: 15px; border: 2px solid #e9ecef; border-radius: 25px; font-size: 1em;"
+          onkeypress="if (event.key === 'Enter') executeRequirement()"
+        />
+        <button 
+          class="btn btn-primary" 
+          onclick="executeRequirement()" 
+          id="btnExecute"
+          style="padding: 15px 40px; white-space: nowrap;"
+        >
+          🚀 执行 Vibe Coding
+        </button>
+      </div>
+      <div style="margin-top: 10px; color: #888; font-size: 0.9em;">
+        💡 提示：按回车键也可以执行
+      </div>
+    </div>
+    
+    <!-- 控制按钮 -->
+    <div class="controls">
+      <button class="btn btn-secondary" id="btnPause" onclick="pauseExecution()" disabled>⏸️ 暂停</button>
+      <button class="btn btn-secondary" id="btnResume" onclick="resumeExecution()" disabled>▶️ 继续</button>
+      <button class="btn btn-secondary" id="btnCancel" onclick="cancelExecution()" disabled>⏹️ 取消</button>
+      <button class="btn btn-secondary" onclick="resetDashboard()">🔄 重置</button>
+    </div>
+  </div>
+
+  <script>
+    // WebSocket 连接
+    let ws = null;
+    let wsConnected = false;
+    
+    // 执行状态
+    let startTime = null;
+    let timerInterval = null;
+    let isPaused = false;
+    let isRunning = false;
+    let currentPhaseIndex = 0;
+    let qualityScores = [];
+    let generatedFiles = [];
+    
+    // 连接 WebSocket
+    function connectWebSocket() {
+      const wsUrl = 'ws://localhost:8765';
+      console.log('[WebSocket] 尝试连接:', wsUrl);
+      
+      updateConnectionStatus('connecting', '连接中...');
+      
+      ws = new WebSocket(wsUrl);
+      
+      ws.onopen = () => {
+        console.log('[WebSocket] 已连接');
+        wsConnected = true;
+        updateConnectionStatus('connected', '✅ 实时模式');
+        addLog('🔗 已连接到执行器', 'complete');
+      };
+      
+      ws.onclose = () => {
+        console.log('[WebSocket] 已断开');
+        wsConnected = false;
+        updateConnectionStatus('disconnected', '❌ 演示模式');
+        addLog('🔌 执行器已断开', 'error');
+      };
+      
+      ws.onerror = (error) => {
+        console.error('[WebSocket] 错误:', error);
+        updateConnectionStatus('disconnected', '❌ 演示模式');
+        addLog('❌ WebSocket 连接错误', 'error');
+      };
+      
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          handleWebSocketMessage(data);
+        } catch (error) {
+          console.error('[WebSocket] 解析错误:', error);
+        }
+      };
+    }
+    
+    function updateConnectionStatus(status, text) {
+      const statusEl = document.getElementById('connectionStatus');
+      const textEl = document.getElementById('connectionStatusText');
+      
+      if (!statusEl || !textEl) return;
+      
+      textEl.textContent = text;
+      
+      // 根据状态设置颜色
+      const colors = {
+        'connecting': 'rgba(255,255,255,0.2)',
+        'connected': 'rgba(40,167,69,0.3)',
+        'disconnected': 'rgba(220,53,69,0.3)'
+      };
+      
+      statusEl.style.background = colors[status] || colors.connecting;
+    }
+    
+    // 处理 WebSocket 消息
+    function handleWebSocketMessage(data) {
+      console.log('[WebSocket] 收到消息:', data);
+      
+      switch (data.type) {
+        case 'connected':
+          addLog(data.message, 'info');
+          break;
+          
+        case 'log':
+          addLog(data.message, data.logType);
+          break;
+          
+        case 'agent_status':
+          setAgentStatus(data.agent, data.status);
+          break;
+          
+        case 'phase_progress':
+          setPhaseProgress(data.phaseId, data.percent, data.status);
+          break;
+          
+        case 'file_added':
+          addFile(data.file.name, data.file.size);
+          break;
+          
+        case 'quality_score':
+          addQualityScore(data.role, data.score);
+          break;
+          
+        case 'execution_start':
+          handleExecutionStart(data);
+          break;
+          
+        case 'execution_complete':
+          handleExecutionComplete(data);
+          break;
+      }
+    }
+    
+    // 执行需求
+    async function executeRequirement() {
+      const requirement = document.getElementById('requirementInput').value.trim();
+      
+      if (!requirement) {
+        alert('请输入需求！');
+        return;
+      }
+      
+      console.log('[执行] 需求:', requirement);
+      
+      // 检查 WebSocket 连接
+      if (!wsConnected) {
+        // 无 WebSocket 连接，使用演示模式
+        console.log('[执行] 无 WebSocket 连接，使用演示模式');
+        resetDashboard();
+        addLog(`📝 用户需求：${requirement}`, 'info');
+        addLog(`⚠️  未连接到执行器，使用演示模式（不会生成真实文件）`, 'warning');
+        addLog(`💡  提示：启动服务器后重新执行可生成真实文件`, 'info');
+        addLog(`💡  运行：cd skills/vibe-coding-cn && node server.js`, 'info');
+        startExecutionDemo();
+        return;
+      }
+      
+      // 有 WebSocket 连接，调用 API
+      console.log('[执行] 调用 API（实时模式）');
+      resetDashboard();
+      addLog(`📝 用户需求：${requirement}`, 'info');
+      addLog(`✅ 实时模式：将生成真实文件`, 'complete');
+      
+      try {
+        const response = await fetch('http://localhost:3000/api/execute', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ requirement })
+        });
+        
+        const result = await response.json();
+        
+        if (result.status === 'started') {
+          addLog(`🚀 执行已启动`, 'complete');
+          addLog(`📡 WebSocket: ${result.wsUrl}`, 'info');
+          isRunning = true;
+          updateButtons();
+        } else {
+          throw new Error(result.error || '未知错误');
+        }
+      } catch (error) {
+        addLog(`❌ 执行失败：${error.message}`, 'error');
+        alert(`执行失败：${error.message}\n\n将使用演示模式...`);
+        startExecutionDemo();
+      }
+    }
+    
+    function handleExecutionStart(data) {
+      console.log('[执行开始]', data);
+      resetDashboard();
+      addLog(`📝 用户需求：${data.requirement}`, 'info');
+      addLog(`📁 项目目录：${data.projectName}`, 'info');
+    }
+    
+    function handleExecutionComplete(data) {
+      console.log('[执行完成]', data);
+      isRunning = false;
+      document.getElementById('progress').textContent = '100%';
+      document.getElementById('currentPhase').textContent = '✅ 完成';
+      addLog(`🎉 Vibe Coding 完成！总耗时：${data.stats.duration}秒`, 'complete');
+      addLog(`📊 平均质量评分：${data.stats.avgQualityScore}/100`, 'complete');
+      updateButtons();
+    }
+
+    const phases = [
+      { id: 1, name: '需求分析', agent: 'analyst', duration: 60000 },
+      { id: 2, name: '架构设计', agent: 'architect', duration: 90000 },
+      { id: 3, name: '代码实现', agent: 'developer', duration: 90000 },
+      { id: 4, name: '测试编写', agent: 'tester', duration: 45000 },
+      { id: 5, name: '整合验收', agent: 'orchestrator', duration: 15000 }
+    ];
+
+    function getTimestamp() {
+      return new Date().toTimeString().split(' ')[0];
+    }
+
+    function updateTimer() {
+      if (!startTime) return;
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const minutes = Math.floor(elapsed / 60);
+      const seconds = elapsed % 60;
+      document.getElementById('elapsedTime').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function addLog(message, type = 'info') {
+      const logContent = document.getElementById('logContent');
+      const line = document.createElement('div');
+      line.className = `log-line ${type}`;
+      line.innerHTML = `<span class="timestamp">${getTimestamp()}</span>${message}`;
+      logContent.appendChild(line);
+      logContent.scrollTop = logContent.scrollHeight;
+    }
+
+    function setAgentStatus(agent, status) {
+      const card = document.getElementById(`agent-${agent}`);
+      if (!card) return;
+      
+      const statusEl = card.querySelector('.agent-status');
+      statusEl.textContent = {
+        'waiting': '等待中',
+        'running': '执行中...',
+        'completed': '已完成'
+      }[status];
+      
+      statusEl.className = `agent-status ${status}`;
+      card.className = `agent-card ${status}`;
+    }
+
+    function setPhaseProgress(phaseId, percent, status = 'waiting') {
+      const progress = document.getElementById(`phase${phaseId}-progress`);
+      const statusEl = document.getElementById(`phase${phaseId}-status`);
+      
+      if (progress) {
+        progress.style.width = `${percent}%`;
+        progress.className = `progress-fill ${status}`;
+      }
+      
+      if (statusEl) {
+        statusEl.textContent = {
+          'waiting': '等待中',
+          'active': '执行中...',
+          'completed': '已完成'
+        }[status];
+      }
+    }
+
+    function addFile(name, size) {
+      generatedFiles.push({ name, size });
+      renderFileTree();
+    }
+
+    function renderFileTree() {
+      const container = document.getElementById('fileTree');
+      if (generatedFiles.length === 0) {
+        container.innerHTML = '<div style="color: #888;">等待文件生成...</div>';
+        return;
+      }
+      
+      container.innerHTML = generatedFiles.map((file, i) => `
+        <div class="file-item new">
+          <span class="file-icon">${getFileIcon(file.name)}</span>
+          <span>${file.name}</span>
+          <span class="file-size">${file.size}</span>
+        </div>
+      `).join('');
+    }
+
+    function getFileIcon(name) {
+      if (name.endsWith('.html')) return '🌐';
+      if (name.endsWith('.js')) return '📜';
+      if (name.endsWith('.css')) return '🎨';
+      if (name.endsWith('.md')) return '📄';
+      if (name.endsWith('.json')) return '⚙️';
+      return '📁';
+    }
+
+    function addQualityScore(role, score) {
+      qualityScores.push({ role, score });
+      renderQualityScores();
+      updateAvgQuality();
+    }
+
+    function renderQualityScores() {
+      const container = document.getElementById('qualityScores');
+      if (qualityScores.length === 0) return;
+      
+      container.innerHTML = qualityScores.map(q => `
+        <div class="quality-score">
+          <span>${getAgentName(q.role)}</span>
+          <div class="score-bar">
+            <div class="score-fill" style="width: ${q.score}%"></div>
+          </div>
+          <span class="score-value">${q.score}/100</span>
+        </div>
+      `).join('');
+    }
+
+    function getAgentName(role) {
+      const names = {
+        'analyst': '📊 Analyst',
+        'architect': '🏗️ Architect',
+        'developer': '💻 Developer',
+        'tester': '🧪 Tester'
+      };
+      return names[role] || role;
+    }
+
+    function updateAvgQuality() {
+      if (qualityScores.length === 0) return;
+      const avg = Math.round(qualityScores.reduce((sum, q) => sum + q.score, 0) / qualityScores.length);
+      document.getElementById('avgQuality').textContent = `${avg}/100`;
+    }
+
+    function updateButtons() {
+      const btnExecute = document.getElementById('btnExecute');
+      const btnPause = document.getElementById('btnPause');
+      const btnResume = document.getElementById('btnResume');
+      const btnCancel = document.getElementById('btnCancel');
+      const requirementInput = document.getElementById('requirementInput');
+      
+      if (btnExecute) btnExecute.disabled = isRunning;
+      if (requirementInput) requirementInput.disabled = isRunning;
+      if (btnPause) btnPause.disabled = !isRunning || isPaused;
+      if (btnResume) btnResume.disabled = !isPaused;
+      if (btnCancel) btnCancel.disabled = !isRunning;
+    }
+
+    async function startExecution() {
+      if (isRunning) return;
+      
+      // 检查 WebSocket 连接
+      if (!wsConnected) {
+        addLog('⚠️  未连接到执行器，使用演示模式', 'warning');
+        // 启动演示模式
+        startDemoMode();
+        return;
+      }
+      
+      // WebSocket 模式：等待真实数据
+      isRunning = true;
+      isPaused = false;
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      updateButtons();
+      
+      addLog('🎨 Vibe Coding v3.0 启动（实时模式）', 'phase');
+      
+      for (let i = 0; i < phases.length; i++) {
+        currentPhaseIndex = i;
+        const phase = phases[i];
+        
+        // 检查暂停
+        while (isPaused) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          if (!isRunning) break;
+        }
+        
+        if (!isRunning) break;
+        
+        // 更新阶段状态
+        document.getElementById('currentPhase').textContent = `Phase ${i + 1}/5: ${phase.name}`;
+        document.getElementById('progress').textContent = `${Math.round((i / phases.length) * 100)}%`;
+        
+        addLog(`📊 Phase ${i + 1}/5: ${phase.name}`, 'phase');
+        setPhaseProgress(phase.id, 0, 'active');
+        setAgentStatus(phase.agent, 'running');
+        
+        // 模拟执行
+        const steps = 10;
+        for (let j = 0; j <= steps; j++) {
+          await new Promise(resolve => setTimeout(resolve, phase.duration / steps));
+          setPhaseProgress(phase.id, (j / steps * 100), 'active');
+          
+          // 模拟日志
+          if (j === 3) addLog(`🤖 启动 ${phase.agent} Agent`, 'agent');
+          if (j === 7) addLog(`  → 生成中...`, 'info');
+        }
+        
+        // 完成阶段
+        setPhaseProgress(phase.id, 100, 'completed');
+        setAgentStatus(phase.agent, 'completed');
+        
+        // 模拟质量评分
+        const score = Math.floor(Math.random() * 15) + 80; // 80-95
+        addQualityScore(phase.agent, score);
+        
+        // 模拟文件生成
+        if (phase.id === 1) {
+          addFile('docs/requirements.md', '2.3 KB');
+          addLog('📄 生成文件：docs/requirements.md (2.3 KB)', 'output');
+        } else if (phase.id === 2) {
+          addFile('docs/architecture.md', '5.7 KB');
+          addLog('📄 生成文件：docs/architecture.md (5.7 KB)', 'output');
+        } else if (phase.id === 3) {
+          addFile('index.html', '5.5 KB');
+          addFile('app.js', '11.5 KB');
+          addFile('customer-profile.js', '7.4 KB');
+          addLog('📄 生成文件：index.html (5.5 KB)', 'output');
+          addLog('📄 生成文件：app.js (11.5 KB)', 'output');
+        } else if (phase.id === 4) {
+          addFile('tests/test-cases.md', '6.6 KB');
+          addLog('📄 生成文件：tests/test-cases.md (6.6 KB)', 'output');
+        }
+        
+        addLog(`✅ ${phase.name} 完成（质量评分：${score}/100）`, 'complete');
+      }
+      
+      // 完成
+      clearInterval(timerInterval);
+      isRunning = false;
+      document.getElementById('progress').textContent = '100%';
+      document.getElementById('currentPhase').textContent = '✅ 完成';
+      addLog('🎉 Vibe Coding 完成！', 'complete');
+      updateButtons();
+    }
+
+    function pauseExecution() {
+      isPaused = true;
+      addLog('⏸️ 执行已暂停', 'info');
+      updateButtons();
+    }
+
+    function resumeExecution() {
+      isPaused = false;
+      addLog('▶️ 执行已继续', 'info');
+      updateButtons();
+    }
+
+    function cancelExecution() {
+      isRunning = false;
+      isPaused = false;
+      clearInterval(timerInterval);
+      addLog('⏹️ 执行已取消', 'error');
+      updateButtons();
+    }
+
+    function resetDashboard() {
+      isRunning = false;
+      isPaused = false;
+      startTime = null;
+      qualityScores = [];
+      generatedFiles = [];
+      currentPhaseIndex = 0;
+      
+      clearInterval(timerInterval);
+      
+      document.getElementById('elapsedTime').textContent = '00:00';
+      document.getElementById('progress').textContent = '0%';
+      document.getElementById('currentPhase').textContent = '准备中';
+      document.getElementById('avgQuality').textContent = '-';
+      document.getElementById('logContent').innerHTML = '<div class="log-line"><span class="timestamp">--:--:--</span>准备就绪，等待开始...</div>';
+      
+      phases.forEach(p => {
+        setPhaseProgress(p.id, 0, 'waiting');
+        setAgentStatus(p.agent, 'waiting');
+      });
+      
+      renderFileTree();
+      renderQualityScores();
+      updateButtons();
+    }
+
+    // 演示模式（无 WebSocket 连接时）
+    function startDemoMode() {
+      console.log('[演示模式] 启动');
+      // 使用原有的演示逻辑
+      startExecutionDemo();
+    }
+    
+    // 重命名原有的 startExecution 为 startExecutionDemo
+    async function startExecutionDemo() {
+      if (isRunning) return;
+      
+      isRunning = true;
+      isPaused = false;
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 1000);
+      updateButtons();
+      
+      addLog('🎨 Vibe Coding v2.0 启动（演示模式）', 'phase');
+      
+      for (let i = 0; i < phases.length; i++) {
+        currentPhaseIndex = i;
+        const phase = phases[i];
+        
+        // 检查暂停
+        while (isPaused) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          if (!isRunning) break;
+        }
+        
+        if (!isRunning) break;
+        
+        // 更新阶段状态
+        document.getElementById('currentPhase').textContent = `Phase ${i + 1}/5: ${phase.name}`;
+        document.getElementById('progress').textContent = `${Math.round((i / phases.length) * 100)}%`;
+        
+        addLog(`📊 Phase ${i + 1}/5: ${phase.name}`, 'phase');
+        setPhaseProgress(phase.id, 0, 'active');
+        setAgentStatus(phase.agent, 'running');
+        
+        // 模拟执行
+        const steps = 10;
+        for (let j = 0; j <= steps; j++) {
+          await new Promise(resolve => setTimeout(resolve, phase.duration / steps));
+          setPhaseProgress(phase.id, (j / steps * 100), 'active');
+          
+          // 模拟日志
+          if (j === 3) addLog(`🤖 启动 ${phase.agent} Agent`, 'agent');
+          if (j === 7) addLog(`  → 生成中...`, 'info');
+        }
+        
+        // 完成阶段
+        setPhaseProgress(phase.id, 100, 'completed');
+        setAgentStatus(phase.agent, 'completed');
+        
+        // 模拟质量评分
+        const score = Math.floor(Math.random() * 15) + 80; // 80-95
+        addQualityScore(phase.agent, score);
+        
+        // 模拟文件生成
+        if (phase.id === 1) {
+          addFile('docs/requirements.md', '2.3 KB');
+          addLog('📄 生成文件：docs/requirements.md (2.3 KB)', 'output');
+        } else if (phase.id === 2) {
+          addFile('docs/architecture.md', '5.7 KB');
+          addLog('📄 生成文件：docs/architecture.md (5.7 KB)', 'output');
+        } else if (phase.id === 3) {
+          addFile('index.html', '5.5 KB');
+          addFile('app.js', '11.5 KB');
+          addFile('customer-profile.js', '7.4 KB');
+          addLog('📄 生成文件：index.html (5.5 KB)', 'output');
+          addLog('📄 生成文件：app.js (11.5 KB)', 'output');
+        } else if (phase.id === 4) {
+          addFile('tests/test-cases.md', '6.6 KB');
+          addLog('📄 生成文件：tests/test-cases.md (6.6 KB)', 'output');
+        }
+        
+        addLog(`✅ ${phase.name} 完成（质量评分：${score}/100）`, 'complete');
+      }
+      
+      // 完成
+      clearInterval(timerInterval);
+      isRunning = false;
+      document.getElementById('progress').textContent = '100%';
+      document.getElementById('currentPhase').textContent = '✅ 完成';
+      addLog('🎉 Vibe Coding 完成！', 'complete');
+      updateButtons();
+    }
+    
+    // 初始化
+    connectWebSocket();
+    resetDashboard();
+  </script>
+</body>
+</html>

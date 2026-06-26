@@ -1,0 +1,14 @@
+{
+  "name": "volcengine-rtc-device-control",
+  "version": "1.0.1",
+  "description": "火山引擎RTC音视频设备控制技能（严格权限版）",
+  "author": "@huang-zhibin",
+  "license": "MIT-0",
+  // 仅声明必要权限，无通配符
+  "permissions": ["rtc:device:control:volcengine"],
+  "security": {
+    "riskLevel": "low",
+    // 仅限定官方合法域名
+    "networkEndpoints": ["https://rtc.volcengine.com"]
+  }
+}

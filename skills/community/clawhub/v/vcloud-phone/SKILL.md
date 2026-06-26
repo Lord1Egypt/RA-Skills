@@ -1,35 +1,123 @@
 ---
-name: "云手机运管平台操作"
-description: "火山引擎云手机运管平台操作技能。支持快速打开运管平台、搜索实例、打开实例详情、下载文件等操作。使用场景：(1) 用户说"打开云手机运管平台"；(2) "搜索实例 123456"；(3) "下载实例日志"。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vcloud-phone"
-sourceUrl: "https://clawhub.ai/skills/vcloud-phone"
+name: vcloud-phone-admin
+description: 火山引擎云手机运管平台操作技能。支持快速打开运管平台、搜索实例、打开实例详情、下载文件等操作。使用场景：(1) 用户说"打开云手机运管平台"；(2) "搜索实例 123456"；(3) "下载实例日志"。
+user-invocable: true
+allowed-tools: Browser, Read
 ---
 
-# 云手机运管平台操作
+# 火山引擎云手机运管平台操作技能
 
-> 火山引擎云手机运管平台操作技能。支持快速打开运管平台、搜索实例、打开实例详情、下载文件等操作。使用场景：(1) 用户说"打开云手机运管平台"；(2) "搜索实例 123456"；(3) "下载实例日志"。
+快速操作火山引擎云手机运管平台，包括：打开平台、搜索实例、查看详情、下载文件等。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vcloud-phone`
-- **Source URL:** [https://clawhub.ai/skills/vcloud-phone](https://clawhub.ai/skills/vcloud-phone)
+## 适用场景
 
-## Overview
+- 打开云手机运管平台
+- 按实例 ID 搜索实例
+- 打开实例详情页
+- 下载实例文件（如 logcat 日志等）
 
+## 操作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vcloud-phone
-```
+### 1. 打开运管平台
+
+**触发词：**
+- "打开云手机运管平台"
+- "进入 vcloud 运管平台"
+- "访问 vcloud-admin"
+
+**操作：**
+1. 打开浏览器，访问：https://vcloud-admin.bytedance.net/vephone/overview
+2. 等待页面加载完成
+
+### 2. 搜索实例
+
+**触发词：**
+- "搜索实例 123456"
+- "查找实例 ID 7613046887440210715"
+- "搜索实例 ID [实例ID]"
+
+**操作：**
+1. 确保在实例管理页面
+2. 点击"实例ID"下拉框，选择"实例ID"
+3. 在输入框中输入实例 ID
+4. 按回车键或点击搜索按钮
+5. 等待搜索结果加载
+
+### 3. 打开实例详情
+
+**触发词：**
+- "打开实例详情"
+- "查看实例 123456 的详情"
+
+**操作：**
+1. 在搜索结果中找到目标实例
+2. 点击"实例详情"链接
+3. 等待实例详情页加载完成
+
+### 4. 下载文件
+
+**触发词：**
+- "下载实例日志"
+- "下载 /data/misc/logd/logcat"
+- "下载文件 [文件路径]"
+
+**操作：**
+1. 在实例详情页，点击"下载文件"按钮
+2. 在下载对话框中，输入文件路径（如 /data/misc/logd/logcat）
+3. 点击"确定"按钮
+4. 提醒用户：文件正在下载，请在浏览器下载管理器中查看
+5. 提醒用户：下载完成后，请将文件复制到工作空间（/Users/bytedance/.openclaw/workspace/）
+
+## 注意事项
+
+⚠️ **重要提示：**
+
+1. **线上环境警告**
+   - 页面会显示"当前为【线上环境】，请谨慎操作"
+   - 操作前请确认操作对象
+
+2. **下载弹窗限制**
+   - 浏览器下载通知弹窗属于操作系统级别 UI
+   - 无法自动化点击"下载文件"按钮
+   - 需要用户手动操作
+
+3. **文件读取限制**
+   - 浏览器默认下载到 ~/Downloads/
+   - 无法直接访问该目录
+   - 需要用户手动复制到工作空间
+
+4. **工作空间路径**
+   - 工作空间：/Users/bytedance/.openclaw/workspace/
+   - 文件复制到该目录后，我才能读取
+
+## 常用文件路径
+
+- 日志文件：/data/misc/logd/logcat
+- 其他文件：根据实际需求输入完整路径
+
+## 示例对话
+
+### 示例 1：打开运管平台
+
+> 用户：打开云手机运管平台
+> 
+> 我：好的，正在打开运管平台...
+> （打开浏览器，访问 https://vcloud-admin.bytedance.net/vephone/overview）
+> 我：运管平台已打开！
+
+### 示例 2：搜索实例
+
+> 用户：搜索实例 7613046887440210715
+> 
+> 我：好的，正在搜索实例...
+> （在实例管理页面，输入实例 ID 并搜索
+> 我：搜索完成！找到实例了。
+
+### 示例 3：下载日志
+
+> 用户：下载 logcat 日志
+> 
+> 我：好的，正在下载文件...
+> （点击"下载文件"按钮，输入 /data/misc/logd/logcat
+> 我：文件正在下载，请在浏览器下载管理器中查看。
+> 我：下载完成后，请将文件复制到 /Users/bytedance/.openclaw/workspace/，然后告诉我文件名，我来读取。

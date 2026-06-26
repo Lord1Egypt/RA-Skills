@@ -1,0 +1,44 @@
+{
+  "name": "资金异动代币消息列表",
+  "endpoint": "POST /ai/getFundsCoinMessageList",
+  "description": "获取对指定代币在中心化交易所上，现货或合约交易的主力资金异动的监控消息记录",
+  "credits_cost": 3,
+  "needToken": true,
+  "use_case": "适用于资金异动监控列表下的代币，在AI实时追踪过程中的消息查询，适用于查看历史资金异动信号记录，包括但不限于短线/趋势行情异动、Alpha、FOMO、止盈、止损等",
+  "notes": "信号类型需展示名称，出现多个alpha，fomo等消息时，统计各自出现的次数，同时出现时特别提醒；自然语言查询异动代币后，或查询异动信号，调用此接口；与资金异动代币列表接口配合使用，资金异动代币里的代币信号查询才调用此接口",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" },
+    "tradeType": { "type": "integer", "req": true, "desc": "交易类型（1:现货, 2:合约）" }
+  },
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间" },
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "名称" },
+    "tradeType": { "type": "integer", "actualType": "integer", "desc": "交易类型（1:现货; 2:合约; 3:交割合约）" },
+    "price": { "type": "number", "actualType": "string", "desc": "币价" },
+    "percentChange24h": { "type": "number", "actualType": "number", "desc": "24小时涨跌幅" },
+    "fundsMovementType": { "type": "integer", "actualType": "integer", "desc": "资金流动类型" }
+  },
+  "field_meta": {
+    "fundsMovementType": { "meaning": "资金异动类型", "advice": "标识资金异动类型，如短线行情异动、趋势行情异动、Alpha等，同一时间多个类型时，可特别提醒，信号类型的对应关系不展示" }
+  },
+  "example": {
+    "req": { "vsTokenId": 22974, "tradeType": 1 },
+    "res": {
+      "code": 200,
+      "data": [
+        {
+          "updateTime": 1773395700000,
+          "vsTokenId": "22974",
+          "symbol": "TAO",
+          "name": "Bittensor",
+          "tradeType": 1,
+          "price": "241.4",
+          "percentChange24h": 15.36,
+          "fundsMovementType": 6
+        }
+      ]
+    }
+  }
+}

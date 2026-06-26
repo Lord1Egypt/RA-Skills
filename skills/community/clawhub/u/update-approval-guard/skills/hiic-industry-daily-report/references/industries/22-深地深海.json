@@ -1,0 +1,34 @@
+{
+  "id": "22",
+  "name": "深地深海",
+  "category": "未来产业",
+  "keywords": [
+    "深地深海",
+    "深海探测",
+    "深海采矿",
+    "海底资源",
+    "深海装备"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🌊",
+    "maxDescriptionLength": 200
+  }
+}

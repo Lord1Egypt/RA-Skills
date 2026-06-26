@@ -1,35 +1,31 @@
----
-name: "视频封面设计助手"
-description: "辅助创作者提取视频文案，生成多样封面设计方案，并提供爆款元素分析及多平台尺寸风格建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-cover-designer"
-sourceUrl: "https://clawhub.ai/skills/video-cover-designer"
----
-
 # 视频封面设计助手
 
-> 辅助创作者提取视频文案，生成多样封面设计方案，并提供爆款元素分析及多平台尺寸风格建议。
+## 技能简介
+专业的短视频封面设计辅助工具，帮助创作者生成高点击率的爆款封面设计方案。支持抖音、快手、视频号、B站等多平台。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-cover-designer`
-- **Source URL:** [https://clawhub.ai/skills/video-cover-designer](https://clawhub.ai/skills/video-cover-designer)
+## 核心功能
+1. **封面文案提取**：从视频主题/脚本中提取关键信息作为封面文案
+2. **封面方案生成**：提供多种封面设计方案（文字型、人物型、对比型等）
+3. **爆款元素分析**：分析同类爆款封面的特征，给出优化建议
+4. **平台适配**：针对不同平台给出适配的封面尺寸和风格建议
 
-## Overview
+## 适用场景
+- 抖音/快手短视频封面设计
+- 视频号封面优化
+- B站视频封面制作
+- 直播预热封面设计
 
+## 输出格式
+提供封面设计方案，包括：
+- 封面文案（主标题+副标题）
+- 封面布局建议
+- 配色方案建议
+- 平台适配说明
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-cover-designer
-```
+## 使用示例
+输入：视频主题是"职场沟通技巧"，目标平台抖音
+输出：
+- 主标题：这三个沟通技巧，老板都惊呆了！
+- 副标题：职场人必看
+- 布局：左文右图或纯文字叠加
+- 配色：红/黄高对比色系

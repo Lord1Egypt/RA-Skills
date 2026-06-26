@@ -1,35 +1,127 @@
 ---
-name: "User Permissions"
-description: "定义需要征求用户同意才能执行的操作规则。当任务涉及修改系统配置、安装/变更组件、执行可能影响系统运行的操作时，必须参考此skill确认是否需要先获得用户同意。特别适用于：系统管理任务、配置变更、skill安装/修改、定时任务管理、数据清理、网络配置、版本更新等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/user-permissions"
-sourceUrl: "https://clawhub.ai/skills/user-permissions"
+name: user-permissions
+description: 定义需要征求用户同意才能执行的操作规则。当任务涉及修改系统配置、安装/变更组件、执行可能影响系统运行的操作时，必须参考此skill确认是否需要先获得用户同意。特别适用于：系统管理任务、配置变更、skill安装/修改、定时任务管理、数据清理、网络配置、版本更新等场景。
 ---
 
-# User Permissions
+# 用户权限与操作审批规则
 
-> 定义需要征求用户同意才能执行的操作规则。当任务涉及修改系统配置、安装/变更组件、执行可能影响系统运行的操作时，必须参考此skill确认是否需要先获得用户同意。特别适用于：系统管理任务、配置变更、skill安装/修改、定时任务管理、数据清理、网络配置、版本更新等场景。
+本 skill 定义了执行前**必须征求用户同意**的操作清单。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/user-permissions`
-- **Source URL:** [https://clawhub.ai/skills/user-permissions](https://clawhub.ai/skills/user-permissions)
+## 核心原则
 
-## Overview
+**凡是有副作用的操作，都应先汇报，等用户确认后再执行。**
 
+副作用包括：改变系统状态、影响服务运行、删除数据、消耗系统资源。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/user-permissions
-```
+---
+
+## 必须征求同意的操作清单
+
+### 1. 配置修改
+- 修改 OpenClaw 配置文件
+- 修改系统环境变量 (.bashrc 等)
+- 修改任何服务的配置参数
+
+### 2. Skill 管理
+- **安装新的 skills**
+- 更新现有 skills
+- 删除/卸载 skills
+- **找不到用户要求的 skill 时，禁止私自决定安装功能相近的替代品**
+
+### 3. Gateway 管理
+- **重启 gateway 服务**
+- 停止 gateway
+- 修改 gateway 绑定地址或端口
+
+### 4. 定时任务管理
+- **创建**新的 cron jobs / 定时任务
+- **修改**现有定时任务的配置（时间、命令、投递地址等）
+- **删除**定时任务
+- **启用/禁用**定时任务
+
+> ⚠️ **例外**：已设定好的定时任务**执行时**不需要再征求同意。只有对任务本身的变更才需要审批。
+
+### 5. 子代理操作
+- 创建新的 subagents
+- 修改 agent 配置
+- 删除会话历史或重置会话
+
+### 6. 系统级操作
+- 使用 `apt install` / `apt remove` 安装或卸载软件包
+- `systemctl` 管理任何系统服务
+- 创建/删除系统用户
+- 修改系统权限或安全策略
+
+### 7. 数据清理
+- `rm -rf` 或删除任何文件/目录
+- 清空日志文件
+- 重置配置文件到默认状态
+- 清理会话历史
+
+### 8. 网络配置
+- 修改防火墙规则 (iptables/ufw)
+- 修改代理设置
+- 修改端口绑定
+- 配置网络路由
+
+### 9. 版本更新
+- 运行 `openclaw update` 升级系统
+- 更新 Node.js、npm、pnpm 等运行时
+
+### 10. 权限变更
+- `chmod` 修改文件/目录权限
+- `chown` 修改文件/目录所有者
+- 修改 SSH 配置或密钥
+
+### 11. 环境修改
+- 修改 `.bashrc`、`.zshrc` 等 shell 配置文件
+- 修改环境变量
+- 安装全局工具或 CLI
+
+---
+
+## 审批流程
+
+当遇到上述操作时，按以下流程处理：
+
+1. **识别**：判断当前任务是否属于上述清单
+2. **暂停**：停止自动执行，不要调用相关工具
+3. **汇报**：清晰说明：
+   - 需要执行什么操作
+   - 为什么需要这个操作
+   - 可能的影响/风险
+4. **等待**：等用户明确回复 "同意" / "可以" / "执行" 等确认词语
+5. **执行**：获得明确同意后再执行
+
+---
+
+## 无需审批的操作（自由执行）
+
+以下操作**不需要**征求同意，可直接执行：
+
+- 读取文件、查看状态、检查日志
+- 在工作区内创建/修改用户明确要求的文档
+- **执行已设定好的定时任务**（任务的日常运行，非配置变更）
+- 搜索信息、查询数据
+- 生成报告或分析结果
+
+---
+
+## 示例场景
+
+### ❌ 错误做法（禁止）
+用户："帮我找一下 pdf 处理的 skill"
+系统："没找到，我帮你安装一个类似的 docx skill 吧" [私自决定并安装]
+
+### ✅ 正确做法
+用户："帮我找一下 pdf 处理的 skill"
+系统："没找到 pdf 处理的 skill。我发现了以下可能的替代方案：
+1. docx skill - 可以处理 Word 文档
+2. 可以从 clawhub 安装 pdf-tool skill
+
+请问你想：
+- (a) 安装 pdf-tool skill？
+- (b) 看看 docx skill 是否能满足需求？
+- (c) 其他方案？"
+
+等用户明确回复后再执行。

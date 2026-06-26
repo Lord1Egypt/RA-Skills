@@ -1,35 +1,157 @@
 ---
-name: "短视频创作全能工具"
-description: "短视频创作全能工具。参照首个视频统一角色画风生成后续视频。 触发：写剧本、写歌词、创作视频、制作短视频、动画脚本、写歌。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/unified-video-lyrics"
-sourceUrl: "https://clawhub.ai/skills/unified-video-lyrics"
+name: unified-video-lyrics
+description: |
+  短视频创作全能工具。参照首个视频统一角色画风生成后续视频。
+  触发：写剧本、写歌词、创作视频、制作短视频、动画脚本、写歌。
 ---
 
-# 短视频创作全能工具
+# 🎬 短视频创作全能指南
 
-> 短视频创作全能工具。参照首个视频统一角色画风生成后续视频。 触发：写剧本、写歌词、创作视频、制作短视频、动画脚本、写歌。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/unified-video-lyrics`
-- **Source URL:** [https://clawhub.ai/skills/unified-video-lyrics](https://clawhub.ai/skills/unified-video-lyrics)
+| 功能 | 说明 |
+|---|---|
+| 🎬 剧本创作 | 6镜头分镜脚本 |
+| 🎵 歌词创作 | Rap/流行/民谣，支持结构标签 |
+| 📹 视频生成 | 首个视频作为参考，统一后续视频风格 |
+| 🎵 配音乐 | ACE Music 免费生成完整歌曲 |
+| 📱 多平台 | 抖音/快手/B站/YouTube/TikTok |
+| 🔧 视频合并 | FFmpeg 剪辑/合并 |
+| 🎨 风格指南 | 二次元萌系/赛璐璐风格 |
 
-## Overview
+---
 
+## 核心工作流
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/unified-video-lyrics
 ```
+1. 上传/提供首个参考视频
+2. 分析角色外观、画风、色调
+3. 创作剧本+歌词
+4. 生成6个统一风格镜头
+5. 合并成完整视频
+6. 生成背景音乐
+```
+
+---
+
+## 首创功能：统一角色画风
+
+### 工作流程
+
+```
+[首个参考视频] → [分析角色+画风] → [生成后续6个视频]
+                      ↓
+              保持一致：
+              - 主角外观
+              - 画风（2D日漫/3D/写实）
+              - 色调（明亮/灰暗/暖色/冷色）
+              - 光照风格
+```
+
+### 首个视频分析要点
+
+收到参考视频后，使用 videos_understand 分析：
+
+1. **主角外观** - 品种/眼睛/毛发/服装
+2. **画风** - 2D动漫/3D/写实
+3. **色调** - 明亮/灰暗/饱和度
+4. **光照** - 室内/自然光/柔光
+
+---
+
+## 二次元萌系风格（赛璐璐）
+
+### 风格特点
+
+| 特点 | 描述 |
+|------|------|
+| 画风 | 日漫萌系 (Kawaii Anime) |
+| 渲染 | 赛璐璐 (Cell Shading) - 清晰阴影边缘 |
+| 线条 | 清晰均匀黑色勾线 |
+| 色调 | 低饱和度灰白+蓝色 |
+| 氛围 | 治愈、无辜、略带忧伤 |
+
+### 角色设计
+
+- 巨大圆眼睛
+- 圆润脸庞
+- 简化身体比例
+- 拟人化（直立行走、穿戴服饰）
+
+### 表情特点
+
+- 巨大黑色瞳孔
+- 略微下垂眉毛
+- 倒V形嘴角
+- 无辜委屈眼神
+
+### 视频提示词模板
+
+```
+[角色描述], anime style, 2D Japanese animation,
+cell shading, clean lineart,
+[色调描述], [光照描述], cinematic
+```
+
+---
+
+## 剧本格式
+
+```markdown
+# 《标题》
+类型：治愈/搞笑/情感/职场
+时长：XX秒
+
+## 镜头 1 [X秒] - 参考视频
+【画面】描述
+
+## 镜头 2-6 [各X秒] - 统一风格
+【画面】描述
+【转场】→
+```
+
+---
+
+## 歌词格式
+
+```markdown
+# 《标题》
+情绪：[欢快/治愈/Rap/灰暗]
+
+【主歌】
+歌词...
+
+【副歌】
+高潮句！
+```
+
+---
+
+## 音乐生成
+
+### ACE Music（免费）
+- 无积分限制
+- 支持人声+歌词
+
+---
+
+## 视频合并
+
+```bash
+# 合并视频
+ffmpeg -i input1.mp4 -i input2.mp4 -filter_complex "[0:v][1:v]concat=n=2:v=1:a=0" output.mp4
+
+# 添加音频
+ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac output.mp4
+```
+
+---
+
+## 详细参考
+
+- references/characters.md - 角色模板
+- references/lyrics.md - 歌词技巧
+- references/music.md - 配乐指南
+- references/platforms.md - 多平台
+- references/character-consistency.md - 角色一致性
+- references/anime-style.md - 二次元萌系风格指南

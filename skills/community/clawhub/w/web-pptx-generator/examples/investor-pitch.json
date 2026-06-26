@@ -1,0 +1,125 @@
+{
+  "title": "Investor Pitch",
+  "subtitle": "AI-native workflow platform",
+  "scene": "investor-pitch",
+  "density": "medium",
+  "mobile": true,
+  "slides": [
+    {
+      "layout": "cover",
+      "eyebrow": "Series A",
+      "title": "Building the AI Operating Layer",
+      "subtitle": "From fragmented agents to one production system"
+    },
+    {
+      "layout": "agenda",
+      "title": "Today",
+      "points": [
+        "Problem",
+        "Product",
+        "Traction",
+        "Roadmap"
+      ]
+    },
+    {
+      "layout": "insight",
+      "title": "Teams lose time across disconnected AI workflows",
+      "points": [
+        "Prompts, files, and approvals live in separate tools",
+        "Operations lack visibility and governance",
+        "Scaling agent workflows reliably is still too expensive"
+      ],
+      "stat": "63%",
+      "statLabel": "time lost to coordination"
+    },
+    {
+      "layout": "two-column",
+      "title": "A production system for real AI work",
+      "leftTitle": "Platform layer",
+      "leftPoints": [
+        "Reusable workflow blocks",
+        "Centralized memory and data connections",
+        "Governed execution across teams"
+      ],
+      "rightTitle": "User value",
+      "rightPoints": [
+        "Ship agent workflows faster",
+        "Improve reliability and visibility",
+        "Cut duplicated prompt engineering effort"
+      ]
+    },
+    {
+      "layout": "metrics",
+      "title": "Traction",
+      "metrics": [
+        {
+          "value": "$1.2M",
+          "label": "ARR pipeline"
+        },
+        {
+          "value": "41",
+          "label": "design partners"
+        },
+        {
+          "value": "78%",
+          "label": "weekly active usage"
+        }
+      ]
+    },
+    {
+      "layout": "comparison",
+      "title": "Why we win",
+      "leftTitle": "Legacy workflow stack",
+      "leftPoints": [
+        "Point tools with fragmented ownership",
+        "Low visibility across AI operations",
+        "Hard to standardize reusable workflows"
+      ],
+      "rightTitle": "Our platform",
+      "rightPoints": [
+        "Unified workflow operating layer",
+        "Central governance and observability",
+        "Reusable blocks teams can scale with"
+      ]
+    },
+    {
+      "layout": "chart-focus",
+      "title": "Usage deepens after onboarding",
+      "chartBars": [
+        {
+          "label": "Week 1",
+          "value": 38
+        },
+        {
+          "label": "Week 4",
+          "value": 64
+        },
+        {
+          "label": "Week 8",
+          "value": 86
+        }
+      ],
+      "conclusion": "Teams expand from single-agent experiments to cross-functional workflows within two months."
+    },
+    {
+      "layout": "timeline",
+      "title": "Roadmap",
+      "steps": [
+        "Workflow OS",
+        "Enterprise controls",
+        "Marketplace",
+        "Global expansion"
+      ]
+    },
+    {
+      "layout": "quote",
+      "title": "“This is the first product that made our internal AI operations actually manageable.”",
+      "subtitle": "Design Partner · Head of Automation"
+    },
+    {
+      "layout": "closing",
+      "title": "Raising to scale the AI operations category",
+      "subtitle": "Seeking strategic investors for product, GTM, and ecosystem growth"
+    }
+  ]
+}

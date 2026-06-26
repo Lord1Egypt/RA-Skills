@@ -1,0 +1,16 @@
+## Productivity
+用 AI 生成模板，再手动调整细节 | Use AI to generate templates, then fine-tune
+让 AI 帮你做代码审查 | Let AI review your code
+用 AI 快速学习新概念: "像我5岁一样解释" | Quick learning: "Explain like I'm 5"
+让 AI 生成测试数据和 mock 数据 | Ask AI to generate test data and mocks
+用 AI 写正则表达式比自己写快10倍 | AI writes regex 10x faster than you
+让 AI 把会议记录整理成行动项 | Ask AI to extract action items from meeting notes
+用 AI 翻译技术文档，再人工校对 | AI-translate tech docs, then human-review
+让 AI 帮你写 commit message | Let AI write your commit messages
+用 AI 将复杂概念做成思维导图文本版 | Use AI to create text-based mind maps
+发邮件前让 AI 帮你检查语法和语气 | Ask AI to proofread emails for tone and grammar
+让 AI 帮你做竞品分析框架 | Ask AI to build a competitive analysis framework
+用 AI 批量处理格式转换任务 | Use AI for batch format conversion tasks
+让 AI 帮你写 SQL 查询语句 | Let AI write SQL queries for you
+用 AI 做日报/周报的初稿 | Use AI to draft daily/weekly reports
+让 AI 帮你排查错误日志 | Ask AI to analyze error logs

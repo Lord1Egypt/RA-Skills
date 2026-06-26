@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d0d1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="barCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#0077aa"/>
+    </linearGradient>
+    <linearGradient id="barPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#6b21a8"/>
+    </linearGradient>
+    <linearGradient id="barGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#ffffff">Performance Comparison — Unified Memory Architect</text>
+  <!-- Y-axis labels -->
+  <text x="90" y="70" text-anchor="end" font-family="Arial" font-size="11" fill="#ffffff60">10x</text>
+  <text x="90" y="145" text-anchor="end" font-family="Arial" font-size="11" fill="#ffffff60">7.5x</text>
+  <text x="90" y="220" text-anchor="end" font-family="Arial" font-size="11" fill="#ffffff60">5x</text>
+  <text x="90" y="295" text-anchor="end" font-family="Arial" font-size="11" fill="#ffffff60">2.5x</text>
+  <text x="90" y="370" text-anchor="end" font-family="Arial" font-size="11" fill="#ffffff60">1x</text>
+  <!-- Grid lines -->
+  <g stroke="#ffffff10" stroke-width="1">
+    <line x1="100" y1="65" x2="760" y2="65"/>
+    <line x1="100" y1="140" x2="760" y2="140"/>
+    <line x1="100" y1="215" x2="760" y2="215"/>
+    <line x1="100" y1="290" x2="760" y2="290"/>
+    <line x1="100" y1="365" x2="760" y2="365"/>
+  </g>
+  <!-- X-axis line -->
+  <line x1="100" y1="365" x2="760" y2="365" stroke="#ffffff30"/>
+  <!-- Bars — Tag Query -->
+  <g font-family="Arial" font-size="11" fill="#ffffff80">
+    <!-- Tag Query: baseline=365(1x), unified=95(7x) -->
+    <rect x="130" y="365" width="60" height="300" rx="4" fill="#ffffff15"/>
+    <text x="160" y="390" text-anchor="middle">Baseline</text>
+    <rect x="130" y="95" width="60" height="270" rx="4" fill="url(#barCyan)"/>
+    <text x="160" y="85" text-anchor="middle" fill="#00d4ff" font-size="13" font-weight="bold">7x</text>
+    <!-- Date Query: baseline=365(1x), unified=143(5x) -->
+    <rect x="270" y="365" width="60" height="300" rx="4" fill="#ffffff15"/>
+    <text x="300" y="390" text-anchor="middle">Baseline</text>
+    <rect x="270" y="215" width="60" height="150" rx="4" fill="url(#barPurple)"/>
+    <text x="300" y="205" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">5x</text>
+    <!-- Full-text: baseline=365(1x), unified=185(3.5x) -->
+    <rect x="410" y="365" width="60" height="300" rx="4" fill="#ffffff15"/>
+    <text x="440" y="390" text-anchor="middle">Baseline</text>
+    <rect x="410" y="260" width="60" height="105" rx="4" fill="url(#barGreen)"/>
+    <text x="440" y="250" text-anchor="middle" fill="#10b981" font-size="13" font-weight="bold">3.5x</text>
+    <!-- Hybrid: baseline=365(1x), unified=128(5.8x) -->
+    <rect x="550" y="365" width="60" height="300" rx="4" fill="#ffffff15"/>
+    <text x="580" y="390" text-anchor="middle">Baseline</text>
+    <rect x="550" y="191" width="60" height="174" rx="4" fill="url(#barCyan)"/>
+    <text x="580" y="181" text-anchor="middle" fill="#00d4ff" font-size="13" font-weight="bold">5.8x</text>
+    <!-- Storage -->
+    <rect x="670" y="215" width="60" height="150" rx="4" fill="url(#barPurple)"/>
+    <text x="700" y="205" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">60%</text>
+    <text x="700" y="390" text-anchor="middle" fill="#ffffff80" font-size="11">Storage↓</text>
+  </g>
+  <!-- X-axis labels -->
+  <text x="160" y="395" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#00d4ff">Tag Query</text>
+  <text x="300" y="395" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#a855f7">Date Query</text>
+  <text x="440" y="395" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#10b981">Full-text</text>
+  <text x="580" y="395" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#00d4ff">Hybrid</text>
+  <text x="700" y="395" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#a855f7">Storage</text>
+  <!-- Legend -->
+  <rect x="130" y="340" width="12" height="12" rx="2" fill="url(#barCyan)"/>
+  <text x="148" y="350" font-family="Arial" font-size="11" fill="#ffffff80">Unified Memory Architect</text>
+  <rect x="310" y="340" width="12" height="12" rx="2" fill="#ffffff15"/>
+  <text x="328" y="350" font-family="Arial" font-size="11" fill="#ffffff80">Baseline (linear scan)</text>
+  <!-- Note -->
+  <text x="400" y="388" text-anchor="middle" font-family="Arial" font-size="10" fill="#ffffff40">Higher bars = better performance · Storage bar = space saved vs baseline</text>
+</svg>

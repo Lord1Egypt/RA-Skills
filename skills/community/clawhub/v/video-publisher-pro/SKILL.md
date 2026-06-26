@@ -1,35 +1,106 @@
 ---
-name: "短视频发布策略生成器"
-description: "根据IP背景和视频文案，为短视频生成一套完整的发布策略，包括发布时间、话题标签、封面文案和发布标题，并能将文案合成为封面图。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-publisher-pro"
-sourceUrl: "https://clawhub.ai/skills/video-publisher-pro"
+name: video-publisher-pro
+description: 根据IP背景和视频文案，为短视频生成一套完整的发布策略，包括发布时间、话题标签、封面文案和发布标题，并能将文案合成为封面图。
 ---
 
-# 短视频发布策略生成器
+# Video Publisher Pro Skill
 
-> 根据IP背景和视频文案，为短视频生成一套完整的发布策略，包括发布时间、话题标签、封面文案和发布标题，并能将文案合成为封面图。
+这是一个包含两个步骤的组合技能，旨在为短视频提供从策略到视觉呈现的完整发布方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-publisher-pro`
-- **Source URL:** [https://clawhub.ai/skills/video-publisher-pro](https://clawhub.ai/skills/video-publisher-pro)
+---
+## 流程
 
-## Overview
+1.  **第一步：策略生成 (逻辑技能)**
+    *   通过分析IP背景、周计划、视频文案和定位，生成专业的发布策略，包括发布时间、话题标签、**封面文案**和发布标题。
+2.  **第二步：封面生成 (脚本技能)**
+    *   将第一步产出的封面文案，通过AI图像生成模型，添加到用户指定的背景图片上，生成最终的视频封面。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-publisher-pro
+## 第一步：策略生成
+
+### 核心功能
+
+通过深度分析用户提供的多维度信息，自动化地生成一套包含四大核心模块的发布建议。
+
+### **使用方法 (重要)**
+
+这是一个纯粹的**逻辑技能**，其核心是通过一个精心设计的Prompt来调用AI自身的语言模型能力。
+
+**AI不应尝试执行任何外部脚本来完成此步骤。**
+
+正确的流程是：
+
+1.  读取 `prompt_template.txt` 文件的内容。
+2.  将用户提供的四类信息填充到模板中。
+3.  将填充完毕的完整Prompt作为输入，调用语言模型，生成最终的策略报告。
+
+### 所需信息
+
+1.  **客户背景信息**: IP定位、核心价值观、目标用户画像等。
+2.  **本周计划或战略目标**: 视频在整体策略中的位置和作用。
+3.  **视频文案**: 完整的视频文案内容。
+4.  **视频定位**: 视频的发布序列和核心目的（如：人设定位、干货教学等）。
+
+---
+## 第二步：封面生成
+
+### 核心功能
+使用 `generate_cover_image.py` 脚本，将文字标题智能地添加到背景图上。**该技能现在内置一个自动判断机制，以确保输出结果的稳定性和可预测性。**
+
+### **核心工作流 (必须严格遵守)**
+
+#### **1. 前置分析与模式选择 (AI视觉判断)**
+在执行任何生成操作前，必须先对用户提供的背景图进行AI视觉分析，判断其属于以下哪种模式：
+
+*   **版式复刻模式 (Replication Mode)**:
+    *   **触发条件**: 图片上已存在清晰的、可作为参考的文字版式。
+    *   **核心目标**: **只修改文字内容，不改变版式和风格。**
+
+*   **智能融合模式 (Fusion Mode)**:
+    *   **触发条件**: 图片上无明显文字，是一张干净的背景图。
+    *   **核心目标**: **在不破坏画面的前提下，创作出与图片风格和谐的文字设计。**
+
+#### **2. 根据模式调用相应指令**
+
+##### **版式复刻模式 (Replication Mode)**
+当判断为“版式复刻”时，**必须**读取 `replication_prompt.txt` 文件的内容作为指令。
+
+*   **指令核心**:
+    1.  `识别并锁定` 原图中所有文字区块。
+    2.  `分析` 每个区块的精确位置、字体、颜色和风格。
+    3.  `移除` 旧文字。
+    4.  将新文案按顺序`填充`回各自原来的位置和样式中。
+    5.  输出图片。
+
+*   **最终效果**: 实现对原始版式的精确“像素级”复刻，确保高效和稳定。
+
+##### **智能融合模式 (Fusion Mode)**
+当判断为“智能融合”时，**必须**读取 `fusion_prompt.txt` 文件的内容作为指令。
+
+*   **指令核心**:
+    1.  `分析` 图片的构图、视觉焦点和色彩氛围。
+    2.  `设计` 与图片风格协调的文字样式（字体、颜色）。
+    3.  在`最佳位置`（不遮挡主体）放置文案。
+    4.  输出图片。
+
+*   **最终效果**: 生成兼具设计感和信息清晰度的优质封面。
+
+### **PowerShell 执行模板**
+
+```powershell
+# 1. 判断模式 (AI逻辑判断)
+# $mode = "Replication" or "Fusion"
+
+# 2. 根据模式选择Prompt文件路径
+$prompt_file_path = if ($mode -eq "Replication") { "C:\\...\\replication_prompt.txt" } else { "C:\\...\\fusion_prompt.txt" }
+
+# 3. 读取并填充Prompt
+$prompt_template = Get-Content -Path $prompt_file_path -Raw
+$final_prompt = $prompt_template -replace '\{text_to_add\}', $text_to_add
+
+# 4. 执行Python脚本
+& "F:\\python 3.10\\python.exe" "C:\\...\\generate_cover_image.py" --image $image_path --text $text_to_add --output $output_path --prompt $final_prompt
 ```
+
+**此升级旨在将该技能从一个简单的工具，转变为一个可靠、智能的自动化解决方案，杜绝“创意抽卡”，确保交付结果的确定性。**

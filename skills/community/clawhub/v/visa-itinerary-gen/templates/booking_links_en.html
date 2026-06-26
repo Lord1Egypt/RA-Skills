@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Links · Italy & France (EN)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --paper: #faf9f7;
+  --accent: #c45a3c;
+  --accent-light: #f0e0d8;
+  --muted: #6b6560;
+  --border: #e0ddd8;
+  --price: #b71c1c;
+  --blue: #1565c0;
+  --green: #2d8a4e;
+  --green-light: #e8f5e9;
+  --blue-light: #e3f2fd;
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+  --display: 'Playfair Display', Georgia, serif;
+  --mono: 'SF Mono', 'Fira Code', Consolas, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #eeedea;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 880px;
+  margin: 40px auto;
+  background: var(--paper);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.07);
+}
+
+.header {
+  padding: 52px 52px 36px;
+  border-bottom: 2.5px solid var(--accent);
+}
+
+.header-meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.header h1 {
+  font-family: var(--display);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.header .h1-cn {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.header-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+section {
+  padding: 36px 52px 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-family: var(--serif);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+h2 .cn {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+.section-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+th {
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: 9px 14px;
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+tr:hover td { background: #f6f5f2; }
+
+.name-en { font-weight: 700; }
+.name-cn { font-size: 13px; color: var(--muted); }
+.reason { font-size: 12px; color: var(--accent); font-style: italic; margin-top: 2px; }
+
+.col-price {
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--price);
+  white-space: nowrap;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+.col-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.link-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.link-cell a {
+  color: var(--blue);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.link-cell a:hover { text-decoration: underline; }
+
+.copy-btn {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+}
+
+.copy-btn:hover { background: var(--blue-light); border-color: var(--blue); }
+.copy-btn:active { transform: scale(0.92); }
+.copy-btn svg { width: 13px; height: 13px; stroke: var(--muted); stroke-width: 2; }
+.copy-btn:hover svg { stroke: var(--blue); }
+.copy-btn.copied { background: var(--green-light); border-color: var(--green); }
+.copy-btn.copied svg { stroke: var(--green); }
+
+.na { color: var(--muted); font-style: italic; font-size: 13px; font-weight: 400; }
+
+.footer {
+  padding: 24px 52px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .header, section, .footer { padding-left: 20px; padding-right: 20px; }
+  .header h1 { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="header">
+  <div class="header-meta">VISA ITINERARY GEN &middot; BOOKING LINKS</div>
+  <h1>Italy & France</h1>
+  
+  <div class="header-sub">fly.ai real-time search &middot; March 31, 2026 &middot; All links point to Fliggy</div>
+</div>
+
+<!-- Flights 航班 -->
+<section>
+  <div class="section-label">FLIGHTS</div>
+  <h2>Flights</h2>
+  <div class="section-desc">Economy class per person incl. tax. Prices may vary at time of booking.</div>
+  <table>
+    <thead><tr><th>Route</th><th>Flight</th><th>Price/pax</th><th>Fliggy Link</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="name-en">Hangzhou → Milan</div>
+                    <div class="col-sub">Apr 27</div>
+        </td>
+        <td>
+          <div class="name-en">Qatar Airways QR891+QR127</div>
+                  </td>
+        <td class="col-price">¥3,290</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/08rXE4')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/08rXE4" target="_blank">https://a.feizhu.com/08rXE4</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-en">Rome → Nice</div>
+                    <div class="col-sub">May 2</div>
+        </td>
+        <td>
+          <div class="name-en">ITA Airways EC1686</div>
+                  </td>
+        <td class="col-price">¥225</td>
+        <td><span class="na">Link not available</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-en">Paris → Hangzhou</div>
+                    <div class="col-sub">May 4</div>
+        </td>
+        <td>
+          <div class="name-en">Etihad EY032+EY870 → Hong Kong Airlines HX112</div>
+                  </td>
+        <td class="col-price">¥3,577</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1TWb2F')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1TWb2F" target="_blank">https://a.feizhu.com/1TWb2F</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Hotels 酒店 -->
+<section>
+  <div class="section-label">HOTELS</div>
+  <h2>Hotels</h2>
+  <div class="section-desc">Book hotels with free cancellation — full refund if visa is rejected.</div>
+  <table>
+    <thead><tr><th>City</th><th>Hotel</th><th>Price/night</th><th>Fliggy Link</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="name-en">Milan</div>
+                    <div class="col-sub">Apr 27-29, 2 nights</div>
+        </td>
+        <td>
+          <div class="name-en">UNAHOTELS Scandinavia Milano</div>
+          <div class="reason">Upscale · Near Porta Garibaldi · Renovated 2013</div>
+                    
+        </td>
+        <td class="col-price">¥825</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/3OwpqL')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/3OwpqL" target="_blank">https://a.feizhu.com/3OwpqL</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-en">Venice</div>
+                    <div class="col-sub">Apr 29-30, 1 night</div>
+        </td>
+        <td>
+          <div class="name-en">Hotel alla Vita Dorata</div>
+          <div class="reason">Upscale · Near St. Mark's Square</div>
+                    
+        </td>
+        <td class="col-price">¥1,145</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0HQwRo')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0HQwRo" target="_blank">https://a.feizhu.com/0HQwRo</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-en">Florence</div>
+                    <div class="col-sub">Apr 30-May 1, 1 night</div>
+        </td>
+        <td>
+          <div class="name-en">Villa Neroli</div>
+          <div class="reason">Villa-style accommodation</div>
+                    
+        </td>
+        <td class="col-price">¥1,237</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0YauhQ')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0YauhQ" target="_blank">https://a.feizhu.com/0YauhQ</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-en">Rome</div>
+                    <div class="col-sub">May 1-2, 1 night</div>
+        </td>
+        <td>
+          <div class="name-en">Locanda da Vinci</div>
+          <div class="reason">Comfort · Near Vatican Museums</div>
+                    
+        </td>
+        <td class="col-price">¥738</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1I6zBw')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1I6zBw" target="_blank">https://a.feizhu.com/1I6zBw</a></div></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-en">Nice</div>
+                    <div class="col-sub">May 2-3, 1 night</div>
+        </td>
+        <td>
+          <span class="na">To be confirmed</span>
+        </td>
+        <td>—</td>
+        <td><span class="na">Please search on Fliggy</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="name-en">Paris</div>
+                    <div class="col-sub">May 3-4, 1 night</div>
+        </td>
+        <td>
+          <div class="name-en">B&B Hotel Champigny</div>
+          <div class="reason">Budget · Near Paris city center</div>
+                    
+        </td>
+        <td class="col-price">¥746</td>
+        <td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1iNGoU')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1iNGoU" target="_blank">https://a.feizhu.com/1iNGoU</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Attractions 景点 -->
+<section>
+  <div class="section-label">ATTRACTIONS</div>
+  <h2>Attractions</h2>
+  <div class="section-desc">Tickets available on Fliggy. Some attractions are free to visit.</div>
+  <table>
+    <thead><tr><th>City</th><th>Attraction</th><th>Fliggy Link</th></tr></thead>
+    <tbody>
+      <tr><td><div class="name-en">Milan</div></td><td><div class="name-en">Duomo di Milano</div><div class="reason">Landmark · Milan's iconic cathedral</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/08k6yf')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/08k6yf" target="_blank">https://a.feizhu.com/08k6yf</a></div></td></tr>
+
+      <tr><td><div class="name-en">Milan</div></td><td><div class="name-en">The Last Supper</div><div class="reason">Museum · Da Vinci masterpiece · Book ahead</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1IlyBx')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1IlyBx" target="_blank">https://a.feizhu.com/1IlyBx</a></div></td></tr>
+
+      <tr><td><div class="name-en">Milan</div></td><td><div class="name-en">Galleria Vittorio Emanuele II</div><div class="reason">Landmark · Free to visit</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/2X7N5t')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/2X7N5t" target="_blank">https://a.feizhu.com/2X7N5t</a></div></td></tr>
+
+      <tr><td><div class="name-en">Venice</div></td><td><div class="name-en">St. Mark's Basilica</div><div class="reason">Landmark · Venice's iconic basilica</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1Ru3ow')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1Ru3ow" target="_blank">https://a.feizhu.com/1Ru3ow</a></div></td></tr>
+
+      <tr><td><div class="name-en">Venice</div></td><td><div class="name-en">Doge's Palace</div><div class="reason">Historic site · Next to St. Mark's Square</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/4gE9zW')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/4gE9zW" target="_blank">https://a.feizhu.com/4gE9zW</a></div></td></tr>
+
+      <tr><td><div class="name-en">Venice</div></td><td><div class="name-en">Gondola Ride</div><div class="reason">Water experience · Venice must-do</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0yb2rn')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0yb2rn" target="_blank">https://a.feizhu.com/0yb2rn</a></div></td></tr>
+
+      <tr><td><div class="name-en">Florence</div></td><td><div class="name-en">Cathedral of Santa Maria del Fiore</div><div class="reason">Landmark · Climb the dome</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/102qFq')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/102qFq" target="_blank">https://a.feizhu.com/102qFq</a></div></td></tr>
+
+      <tr><td><div class="name-en">Florence</div></td><td><div class="name-en">Uffizi Gallery</div><div class="reason">Gallery · Renaissance art · Book ahead</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/48UFDp')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/48UFDp" target="_blank">https://a.feizhu.com/48UFDp</a></div></td></tr>
+
+      <tr><td><div class="name-en">Florence</div></td><td><div class="name-en">Giotto's Bell Tower</div><div class="reason">Landmark · Next to Duomo</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/16uuwx')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/16uuwx" target="_blank">https://a.feizhu.com/16uuwx</a></div></td></tr>
+
+      <tr><td><div class="name-en">Rome</div></td><td><div class="name-en">Colosseum</div><div class="reason">Historic site · Rome must-see · Book ahead</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0UJBIJ')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0UJBIJ" target="_blank">https://a.feizhu.com/0UJBIJ</a></div></td></tr>
+
+      <tr><td><div class="name-en">Rome</div></td><td><div class="name-en">Pantheon</div><div class="reason">Historic site · Ancient Roman architecture</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0n4XX1')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0n4XX1" target="_blank">https://a.feizhu.com/0n4XX1</a></div></td></tr>
+
+      <tr><td><div class="name-en">Rome</div></td><td><div class="name-en">Vatican Museums</div><div class="reason">Museum · Sistine Chapel · Long queues</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0AO6d5')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0AO6d5" target="_blank">https://a.feizhu.com/0AO6d5</a></div></td></tr>
+
+      <tr><td><div class="name-en">Nice</div></td><td><div class="name-en">Promenade des Anglais</div><div class="reason">Free · Côte d'Azur landmark</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/0qXo5z')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/0qXo5z" target="_blank">https://a.feizhu.com/0qXo5z</a></div></td></tr>
+
+      <tr><td><div class="name-en">Paris</div></td><td><div class="name-en">Louvre Museum</div><div class="reason">Museum · One of world's top three</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1q1EjB')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1q1EjB" target="_blank">https://a.feizhu.com/1q1EjB</a></div></td></tr>
+
+      <tr><td><div class="name-en">Paris</div></td><td><div class="name-en">Eiffel Tower</div><div class="reason">Landmark · Paris must-see</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1BekgP')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1BekgP" target="_blank">https://a.feizhu.com/1BekgP</a></div></td></tr>
+
+      <tr><td><div class="name-en">Paris</div></td><td><div class="name-en">Musee d'Orsay</div><div class="reason">Museum · Impressionist art</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/1HFqXK')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/1HFqXK" target="_blank">https://a.feizhu.com/1HFqXK</a></div></td></tr>
+
+      <tr><td><div class="name-en">Paris</div></td><td><div class="name-en">Seine River Cruise</div><div class="reason">Water experience · Views of Eiffel Tower & Notre-Dame</div></td><td><div class="link-cell"><button class="copy-btn" onclick="copyLink(this,'https://a.feizhu.com/07T71O')"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><a href="https://a.feizhu.com/07T71O" target="_blank">https://a.feizhu.com/07T71O</a></div></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="footer">Based on fly.ai real-time results &middot; All booking links point to Fliggy</div>
+
+</div>
+<script>
+function copyLink(btn,url){navigator.clipboard.writeText(url).then(()=>{btn.classList.add('copied');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';},1500)})}
+</script>
+</body>
+</html>

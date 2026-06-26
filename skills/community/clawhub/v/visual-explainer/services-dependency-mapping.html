@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Dependency Mapping — Reference Template</title>
+<!--
+  Reference template for the visual-explainer skill: service dependency mapping.
+  Terracotta/salmon palette — distinctly different from teal (mermaid)
+  and rose (data-table) templates so agents absorb variety.
+  Key patterns demonstrated:
+  - Terracotta/salmon palette (NOT indigo/violet)
+  - KPI summary cards above the visualizations (metrics hook)
+  - Mermaid network graph showing dependencies
+  - Architecture flowchart showing request routing
+  - Real <table> for detailed mapping data
+  - Collapsible sections for technical details
+  - Depth tiers: elevated KPIs, main content, recessed details
+  - Staggered fade-in animations via --i variable
+  - Both light and dark themes via prefers-color-scheme
+  - Zoom controls with scroll-to-zoom on diagrams
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ THEME ============ */
+  :root {
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+    --bg: #fcfbf9;
+    --surface: #ffffff;
+    --surface2: #f7f5f3;
+    --surface-elevated: #fffaef;
+    --surface-recessed: #f0ede9;
+    --border: rgba(0, 0, 0, 0.06);
+    --border-bright: rgba(0, 0, 0, 0.12);
+    --text: #2c2420;
+    --text-dim: #6b5e54;
+    --accent: #c2410c;
+    --accent-dim: rgba(194, 65, 12, 0.06);
+    --green: #15803d;
+    --green-dim: rgba(21, 128, 61, 0.08);
+    --red: #dc2626;
+    --red-dim: rgba(220, 38, 38, 0.06);
+    --orange: #d97706;
+    --orange-dim: rgba(217, 119, 6, 0.08);
+    --purple: #9333ea;
+    --purple-dim: rgba(147, 51, 234, 0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1a;
+      --surface: #232222;
+      --surface2: #2d2b29;
+      --surface-elevated: #363432;
+      --surface-recessed: #252321;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-bright: rgba(255, 255, 255, 0.12);
+      --text: #f5f5f4;
+      --text-dim: #a8a29e;
+      --accent: #fb923c;
+      --accent-dim: rgba(251, 146, 60, 0.12);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.1);
+      --red: #f87171;
+      --red-dim: rgba(248, 113, 113, 0.1);
+      --orange: #fbbf24;
+      --orange-dim: rgba(251, 191, 36, 0.1);
+      --purple: #d8b4fe;
+      --purple-dim: rgba(216, 180, 254, 0.15);
+    }
+  }
+
+  /* ============ RESET + BASE ============ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(circle at 40% 0%, var(--accent-dim) 0%, transparent 50%),
+                      radial-gradient(circle at 60% 100%, var(--purple-dim) 0%, transparent 40%);
+    color: var(--text);
+    font-family: var(--font-body);
+    padding: 48px;
+    min-height: 100vh;
+  }
+
+  /* ============ ANIMATION ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate {
+    animation: fadeUp 0.45s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.05s);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+      transition-duration: 0.01ms !important;
+      animation: none !important;
+    }
+    .mermaid-wrap .mermaid { transition: none; }
+  }
+
+  /* ============ LAYOUT ============ */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* ============ HEADER ============ */
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    margin-bottom: 32px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    max-width: 650px;
+  }
+
+  .description strong {
+    color: var(--text);
+  }
+
+  /* ============ KPI ROW ============ */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .kpi-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .kpi-card__value {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .kpi-card__value--green { color: var(--green); }
+  .kpi-card__value--orange { color: var(--orange); }
+  .kpi-card__value--purple { color: var(--purple); }
+
+  .kpi-card__label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  /* ============ DIAGRAM ROWS ============ */
+  .diagram-section {
+    margin-bottom: 28px;
+  }
+
+  .diagram-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .diagram-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ============ MERMAID CONTAINER ============ */
+  .mermaid-wrap {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    overflow: auto;
+  }
+
+  .mermaid-wrap .mermaid {
+    display: flex;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+  }
+
+  .zoom-controls {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 2px;
+    z-index: 10;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px;
+  }
+
+  .zoom-controls button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .zoom-controls button:hover {
+    background: var(--border);
+    color: var(--text);
+  }
+
+  .mermaid-wrap {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .mermaid-wrap::-webkit-scrollbar { width: 6px; height: 6px; }
+  .mermaid-wrap::-webkit-scrollbar-track { background: transparent; }
+  .mermaid-wrap::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+  .mermaid-wrap::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+  .mermaid-wrap.is-zoomed { cursor: grab; }
+  .mermaid-wrap.is-panning { cursor: grabbing; user-select: none; }
+
+  /* ============ MERMAID SVG OVERRIDES ============ */
+  .mermaid .nodeLabel {
+    font-family: var(--font-body) !important;
+    font-size: 16px !important;
+  }
+
+  .mermaid .edgeLabel {
+    font-family: var(--font-mono) !important;
+    font-size: 12px !important;
+  }
+
+  .mermaid .node rect,
+  .mermaid .node circle,
+  .mermaid .node polygon {
+    stroke-width: 1.5px !important;
+  }
+
+  .mermaid .edge-pattern-solid {
+    stroke-width: 1.5px !important;
+  }
+
+  /* ============ DATA TABLE ============ */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* Header */
+  .data-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .data-table th {
+    background: var(--surface2);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border-bright);
+    white-space: nowrap;
+  }
+
+  /* Cells */
+  .data-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .data-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Wide text column */
+  .data-table .wide {
+    min-width: 200px;
+    max-width: 420px;
+  }
+
+  /* Alternating rows */
+  .data-table tbody tr:nth-child(even) {
+    background: var(--surface-recessed);
+  }
+
+  /* Row hover + animation stagger */
+  .data-table tbody tr {
+    transition: background 0.15s ease;
+    animation: fadeUp 0.35s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.04s);
+  }
+
+  .data-table tbody tr:hover {
+    background: var(--surface-elevated);
+  }
+
+  /* Code in cells */
+  .data-table code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  /* Secondary text */
+  .data-table small {
+    display: block;
+    color: var(--text-dim);
+    font-size: 11px;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* ============ STATUS BADGES ============ */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+  }
+
+  .status--green { background: var(--green-dim); color: var(--green); }
+  .status--orange { background: var(--orange-dim); color: var(--orange); }
+  .status--red { background: var(--red-dim); color: var(--red); }
+
+  /* Status dot */
+  .status::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ============ COLLAPSIBLE SECTION ============ */
+  details.collapsible {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  details.collapsible summary {
+    padding: 16px 20px;
+    background: var(--surface);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    transition: background 0.15s ease;
+  }
+
+  details.collapsible summary:hover {
+    background: var(--surface-elevated, var(--surface));
+  }
+
+  details.collapsible summary::-webkit-details-marker { display: none; }
+
+  details.collapsible summary::before {
+    content: '▸';
+    font-size: 11px;
+    color: var(--text-dim);
+    transition: transform 0.15s ease;
+  }
+
+  details.collapsible[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  details.collapsible .collapsible__body {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+
+  details.collapsible .collapsible__body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  details.collapsible .collapsible__body code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 768px) {
+    body { padding: 20px; }
+    h1 { font-size: 28px; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .data-table th, .data-table td { padding: 10px 14px; }
+    .mermaid-wrap { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1 class="animate" style="--i:0">Service Dependency Mapping</h1>
+  <p class="subtitle animate" style="--i:1">production architecture — backend dependencies &amp; impact analysis</p>
+
+  <p class="description animate" style="--i:2">
+    <strong>The graph</strong> below visualizes how internal services communicate with each other.
+    <strong>The table</strong> shows detailed dependency pairs with risk ratings.
+    Changes to critical services (highlighted in orange) may impact multiple downstream components.
+    Use <code>stoq</code> for external event dispatch; <code>analytics</code> for tracking.
+  </p>
+
+  <!-- KPI Summary -->
+  <div class="kpi-row animate" style="--i:3">
+    <div class="kpi-card">
+      <div class="kpi-card__value">12</div>
+      <div class="kpi-card__label">Internal Services</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-card__value kpi-card__value--orange">3</div>
+      <div class="kpi-card__label">Critical</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-card__value kpi-card__value--green">8</div>
+      <div class="kpi-card__label">High Coverage</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-card__value kpi-card__value--purple">4.2ms</div>
+      <div class="kpi-card__label">Avg Latency</div>
+    </div>
+  </div>
+
+  <!-- Mermaid Network Graph -->
+  <div class="diagram-section animate" style="--i:4">
+    <div class="diagram-label">Dependency Network</div>
+    <div class="mermaid-wrap">
+      <div class="zoom-controls">
+        <button onclick="zoomDiagram(this, 1.2)" title="Zoom in">+</button>
+        <button onclick="zoomDiagram(this, 0.8)" title="Zoom out">&minus;</button>
+        <button onclick="resetZoom(this)" title="Reset zoom">&#8634;</button>
+      </div>
+      <pre class="mermaid">
+        graph LR
+          UI[frontend<br/>SPA] --> API[gateway<br/>API Gateway]
+          API --> AUTH[Authorization<br/>Service]
+          API --> USER[user<br/>Profile]
+          API --> CART[cart<br/>Service]
+          API --> ORDERS[orders<br/>Service]
+          API --> PAYPAL[paypal<br/>Integration]
+
+          AUTH <--> TOKEN[token<br/>Manager]
+          USER --> PROFILE[profile<br/>Service]
+          USER --> USER_API[user<br/>API]
+
+          CART --> PAYPAL
+          ORDERS --> CART
+          ORDERS --> PAYPAL
+
+          PAYPAL --> EXTERNAL[(PayPal<br/>external API)]
+
+          analytics[analytics<br/>Service] -.-> API
+          stoq[stoq<br/>integration] -.-> API
+          EXTERNAL -.-> stoq
+      </pre>
+    </div>
+  </div>
+
+  <!-- Architecture Flow -->
+  <div class="diagram-section animate" style="--i:5">
+    <div class="diagram-label">Request Flow</div>
+    <div class="mermaid-wrap">
+      <pre class="mermaid">
+        graph LR
+          UI[Frontend<br/>Client] -->|HTTPS| API[API Gateway<br/>Load Balancer]
+          API -->|Route| AUTH[Authorization<br/>Middleware]
+          AUTH -->|Verify JWT| USER[user<br/>Service]
+          AUTH -->|Verify JWT| CART[cart<br/>Service]
+          AUTH -->|Verify JWT| ORDERS[orders<br/>Service]
+
+          USER --> PROFILE[profile<br/>Service]
+          CART --> PAYPAL[paypal<br/>Integration]
+
+          analytics[analytics<br/>Service] -->|track events| API
+
+          style AUTH fill:#fb923c,stroke:#c2410c
+          style USER fill:#16a34a,stroke:#15803d
+          style CART fill:#d97706,stroke:#b45309
+          style ORDERS fill:#a855f7,stroke:#7c3aed
+      </pre>
+    </div>
+  </div>
+
+  <!-- Data Table -->
+  <div class="diagram-section animate" style="--i:6">
+    <div class="diagram-label">Detailed Mapping</div>
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="wide">Upstream Service</th>
+              <th class="wide">Downstream Service</th>
+              <th>Operation</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="--i:6">
+              <td class="wide"><code>API Gateway</code></td>
+              <td class="wide"><code>Authorization Service</code></td>
+              <td>Middleware: Verify JWT</td>
+              <td><span class="status status--green">Healthy</span></td>
+            </tr>
+            <tr style="--i:7">
+              <td class="wide"><code>API Gateway</code></td>
+              <td class="wide"><code>user Service</code></td>
+              <td>GET /user/profile</td>
+              <td><span class="status status--green">Healthy</span></td>
+            </tr>
+            <tr style="--i:8">
+              <td class="wide"><code>API Gateway</code></td>
+              <td class="wide"><code>cart Service</code></td>
+              <td>POST /cart/add</td>
+              <td><span class="status status--green">Healthy</span></td>
+            </tr>
+            <tr style="--i:9">
+              <td class="wide"><code>API Gateway</code></td>
+              <td class="wide"><code>orders Service</code></td>
+              <td>POST /orders/create</td>
+              <td><span class="status status--green">Healthy</span></td>
+            </tr>
+            <tr style="--i:10">
+              <td class="wide"><code>user Service</code></td>
+              <td class="wide"><code>profile Service</code></td>
+              <td>GET /profile/:id</td>
+              <td><span class="status status--green">Healthy</span></td>
+            </tr>
+            <tr style="--i:11">
+              <td class="wide"><code>cart Service</code></td>
+              <td class="wide"><code>paypal Integration</code></td>
+              <td>POST /checkout</td>
+              <td><span class="status status--orange">Critical Path</span></td>
+            </tr>
+            <tr style="--i:12">
+              <td class="wide"><code>orders Service</code></td>
+              <td class="wide"><code>cart Service</code></td>
+              <td>POST /orders/confirm</td>
+              <td><span class="status status--orange">Critical Path</span></td>
+            </tr>
+            <tr style="--i:13">
+              <td class="wide"><code>orders Service</code></td>
+              <td class="wide"><code>paypal Integration</code></td>
+              <td>POST /refund</td>
+              <td><span class="status status--orange">Critical Path</span></td>
+            </tr>
+            <tr style="--i:14">
+              <td class="wide"><code>API Gateway</code></td>
+              <td class="wide"><code>analytics Service</code></td>
+              <td>POST /events.track</td>
+              <td><span class="status status--green">Asynchronous</span></td>
+            </tr>
+            <tr style="--i:15">
+              <td class="wide"><code>API Gateway</code></td>
+              <td class="wide"><code>stoq Integration</code></td>
+              <td>openInlineForm / Event</td>
+              <td><span class="status status--red">Stoq Event</span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>25 dependency pairs</td>
+              <td></td>
+              <td>8 critical path · 12 healthy · 5 async</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collapsible: API Versioning -->
+  <details class="collapsible animate" style="--i:16">
+    <summary>API Versioning Strategy</summary>
+    <div class="collapsible__body">
+      All internal APIs use <strong>URL path versioning</strong> with forward compatibility:
+      <br><br>
+      Services must support both current and previous major versions for at least 6 months.
+      Critical dependencies (Authorization, Orders, PayPal) maintain a separate version channel.
+      See <code>api/versions.md</code> for v1.2, v2.0, v3.0 support matrix.
+    </div>
+  </details>
+
+  <!-- Collapsible: Monitoring -->
+  <details class="collapsible animate" style="--i:17">
+    <summary>Monitoring & Alerting</summary>
+    <div class="collapsible__body">
+      Each service emits metrics via <code>prometheus</code>:
+      <code>http_server_requests_seconds_count</code> (request volume),<br>
+      <code>http_server_requests_seconds_max</code> (latency),<br>
+      <code>service_health_status</code> (operational state).
+      <code>stoq:restock-modal:submitted</code> event is tracked in <code>events</code> table.
+    </div>
+  </details>
+
+</div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    look: 'classic',
+    themeVariables: {
+      primaryColor: isDark ? '#252321' : '#fff7ed',
+      primaryBorderColor: isDark ? '#fb923c' : '#c2410c',
+      primaryTextColor: isDark ? '#f5f5f4' : '#2c2420',
+      secondaryColor: isDark ? '#2d2b29' : '#f7f5f3',
+      secondaryBorderColor: isDark ? '#fb923c' : '#c2410c',
+      secondaryTextColor: isDark ? '#f5f5f4' : '#6b5e54',
+      tertiaryColor: isDark ? '#363432' : '#fffaef',
+      tertiaryBorderColor: isDark ? '#fb923c' : '#c2410c',
+      tertiaryTextColor: isDark ? '#f5f5f4' : '#6b5e54',
+      lineColor: isDark ? '#a8a29e' : '#5c4d44',
+      fontSize: '15px',
+      fontFamily: "'DM Sans', system-ui, sans-serif",
+      edgeLabelBackground: isDark ? '#363432' : '#ffffff',
+      clusterBkg: isDark ? '#232222' : '#ffffff',
+      clusterBorder: isDark ? '#fb923c' : '#c2410c',
+    }
+  });
+</script>
+<script>
+  function updateZoomState(wrap) {
+    var target = wrap.querySelector('.mermaid');
+    var zoom = parseFloat(target.dataset.zoom || '1');
+    wrap.classList.toggle('is-zoomed', zoom > 1);
+  }
+
+  function zoomDiagram(btn, factor) {
+    var wrap = btn.closest('.mermaid-wrap');
+    var target = wrap.querySelector('.mermaid');
+    var current = parseFloat(target.dataset.zoom || '1');
+    var next = Math.min(Math.max(current * factor, 0.5), 4);
+    target.dataset.zoom = next;
+    target.style.transform = 'scale(' + next + ')';
+    updateZoomState(wrap);
+  }
+
+  function resetZoom(btn) {
+    var wrap = btn.closest('.mermaid-wrap');
+    var target = wrap.querySelector('.mermaid');
+    target.dataset.zoom = '1';
+    target.style.transform = 'scale(1)';
+    updateZoomState(wrap);
+  }
+
+  document.querySelectorAll('.mermaid-wrap').forEach(function(wrap) {
+    // Scroll-to-zoom (Ctrl/Cmd + wheel)
+    wrap.addEventListener('wheel', function(e) {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      var target = wrap.querySelector('.mermaid');
+      var current = parseFloat(target.dataset.zoom || '1');
+      var factor = e.deltaY < 0 ? 1.1 : 0.9;
+      var next = Math.min(Math.max(current * factor, 0.5), 4);
+      target.dataset.zoom = next;
+      target.style.transform = 'scale(' + next + ')';
+      updateZoomState(wrap);
+    }, { passive: false });
+
+    // Drag-to-pan
+    var startX, startY, scrollL, scrollT;
+    wrap.addEventListener('mousedown', function(e) {
+      if (e.target.closest('.zoom-controls')) return;
+      var target = wrap.querySelector('.mermaid');
+      if (parseFloat(target.dataset.zoom || '1') <= 1) return;
+      wrap.classList.add('is-panning');
+      startX = e.clientX;
+      startY = e.clientY;
+      scrollL = wrap.scrollLeft;
+      scrollT = wrap.scrollTop;
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!wrap.classList.contains('is-panning')) return;
+      wrap.scrollLeft = scrollL - (e.clientX - startX);
+      wrap.scrollTop = scrollT - (e.clientY - startY);
+    });
+    window.addEventListener('mouseup', function() {
+      wrap.classList.remove('is-panning');
+    });
+  });
+</script>
+
+</body>
+</html>

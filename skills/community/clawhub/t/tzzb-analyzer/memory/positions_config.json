@@ -1,0 +1,14 @@
+{
+  "report": {
+    "show_sector_detail": true,
+    "show_risk_alerts": true,
+    "show_suggestions": true,
+    "price_source": "tzzb+yahoo",
+    "sort_by": "profit_pct"
+  },
+  "watchlist": {
+    "auto_sync": false,
+    "save_cache": true,
+    "cache_max_age_hours": 24
+  }
+}

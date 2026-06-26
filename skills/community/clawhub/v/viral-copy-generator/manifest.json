@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "buildDate": "2024-01-15",
+  "checksum": {
+    "index.html": "main-app",
+    "skill.json": "config",
+    "README.md": "documentation",
+    "LICENSE": "mit-license",
+    "USAGE.md": "usage-guide",
+    "prompt.md": "ai-prompt"
+  },
+  "dependencies": {
+    "external": [
+      {
+        "name": "Edge TTS",
+        "url": "https://tts.wangwangit.com/v1/audio/speech",
+        "purpose": "Text-to-Speech synthesis",
+        "pricing": "free",
+        "rateLimit": "unknown"
+      },
+      {
+        "name": "MyMemory Translate",
+        "url": "https://api.mymemory.translated.net/get",
+        "purpose": "Translation service",
+        "pricing": "free",
+        "rateLimit": "5000 chars/day"
+      }
+    ],
+    "internal": []
+  },
+  "security": {
+    "xssProtection": true,
+    "cspEnabled": true,
+    "noExternalScripts": true,
+    "noTracking": true,
+    "localStorageOnly": true
+  },
+  "tested": {
+    "browsers": ["Chrome 120", "Firefox 121", "Edge 120"],
+    "platforms": ["Windows 11", "macOS 14"]
+  }
+}

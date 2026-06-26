@@ -1,0 +1,36 @@
+{
+  "name": "universal_company_operator_system",
+  "description": "Project-agnostic executive operator skill pack for any company or project.",
+  "version": "1.1.0",
+  "skills": [
+    "universal_business_operator",
+    "universal_ceo_operator",
+    "universal_product_engineering_operator",
+    "universal_growth_marketing_operator",
+    "universal_sales_partnerships_operator",
+    "universal_operations_coo_operator",
+    "universal_finance_operator",
+    "universal_customer_success_operator",
+    "universal_data_analytics_operator",
+    "universal_design_ux_operator",
+    "universal_legal_compliance_operator",
+    "universal_community_operator",
+    "universal_night_shift_operator"
+  ],
+  "execution_layers": {
+    "night_shift": {
+      "operator": "universal_night_shift_operator",
+      "manifest": "night_shift_manifest.json",
+      "commands": [
+        "/run nightshift",
+        "/run overnight",
+        "/run morning-brief",
+        "/run founder-brief"
+      ],
+      "output_spec": "MORNING_BRIEF.md",
+      "safety_spec": "SAFETY_RULES.md",
+      "workflow_spec": "NIGHT_SHIFT.md"
+    }
+  },
+  "recommended_entrypoint": "universal_business_operator"
+}

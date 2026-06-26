@@ -1,0 +1,8 @@
+{
+  "name": "video-project",
+  "version": "1.0.0",
+  "dependencies": {
+    "remotion": "^4.0.0",
+    "@remotion/cli": "^4.0.0"
+  }
+}

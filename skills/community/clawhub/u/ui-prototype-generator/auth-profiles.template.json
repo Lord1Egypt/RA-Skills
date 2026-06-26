@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "figma": {
+      "provider": "figma",
+      "access_token": "YOUR_FIGMA_TOKEN_HERE",
+      "token_type": "Bearer",
+      "created_at": "2024-01-15T10:30:00Z",
+      "note": "Get your token from https://www.figma.com/settings"
+    }
+  },
+  "_comment": "Replace YOUR_FIGMA_TOKEN_HERE with your actual Figma Personal Access Token"
+}

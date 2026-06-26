@@ -1,35 +1,26 @@
 ---
-name: "weather-query-ych"
-description: "查询指定城市和日期的天气预报，提供天气状况及温度范围，支持中文城市名和日期解析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-query-ych"
-sourceUrl: "https://clawhub.ai/skills/weather-query-ych"
+name: weather-query
+description: 查询指定城市的天气预报
+version: 1.0.0
+author: @yuancaihua 
 ---
 
-# weather-query-ych
+# 技能名称：天气查询
+## 触发场景
+当用户询问天气时，调用本技能。
 
-> 查询指定城市和日期的天气预报，提供天气状况及温度范围，支持中文城市名和日期解析。
+## 输入示例
+- "今天北京天气如何？"
+- "明天上海会下雨吗？"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-query-ych`
-- **Source URL:** [https://clawhub.ai/skills/weather-query-ych](https://clawhub.ai/skills/weather-query-ych)
+## 执行逻辑
+1. 解析用户问题中的城市和日期。
+2. 调用天气API获取数据。
+3. 返回格式化结果（如："院彩华测试:北京今天晴，20-25℃"）。
 
-## Overview
+## 输出格式
+- 文本：`院彩华测试: {城市} {日期} {天气状况}, {温度范围}`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weather-query-ych
-```
+## 异常处理
+- 若城市未识别，回复："请提供有效城市名"。
+- 若API调用失败，回复："天气服务暂时不可用"。

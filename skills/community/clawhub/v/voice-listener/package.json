@@ -1,0 +1,47 @@
+{
+  "name": "@openclaw/voice-listener",
+  "version": "1.0.0",
+  "description": "百度语音识别 + 智能唤醒模式 - 持续语音监听助手",
+  "type": "module",
+  "main": "SKILL.md",
+  "openclaw": {
+    "skill": {
+      "id": "voice-listener",
+      "name": "语音监听助手",
+      "emoji": "🎤",
+      "description": "百度语音识别 + 智能唤醒模式。说'小龙虾'激活，'停止'暂停。支持持续语音输入。",
+      "version": "1.0.0",
+      "author": "OpenClaw",
+      "enabled": true,
+      "category": "productivity",
+      "tags": [
+        "语音识别",
+        "百度",
+        "唤醒",
+        "自动化"
+      ],
+      "config": {
+        "wakeWord": "小龙虾",
+        "stopWord": "停止",
+        "api": "baidu",
+        "apiKeyRequired": true,
+        "configFile": "baidu_config.json"
+      },
+      "commands": [
+        {
+          "id": "start",
+          "name": "启动语音监听",
+          "description": "启动百度语音识别助手",
+          "script": "voice_input_baidu_smart.py"
+        },
+        {
+          "id": "stop",
+          "name": "停止语音监听",
+          "description": "停止语音监听"
+        }
+      ],
+      "documentation": "SKILL.md",
+      "setupGuide": "BAIDU_README.md"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+slug,label,keywords,use_cases,performance,accessibility
+glassmorphism,Glassmorphism,"blur,transparency,frosted glass,depth,layering","modern web apps,dashboards,premium products",Good,WCAG AA
+claymorphism,Claymorphism,"3D,soft shadows,rounded,floating,playful","mobile apps,creative portfolios,children products",Good,WCAG AA
+neumorphism,Neumorphism,"soft UI,extruded,subtle shadows,monochromatic","control panels,settings,minimal interfaces",Fair,WCAG AAA
+brutalism,Brutalism,"bold,raw,unpolished,high contrast,typography-driven","portfolios,art sites,editorial",Excellent,WCAG AA
+minimalism,Minimalism,"clean,simple,white space,essential only","corporate sites,SaaS,professional services",Excellent,WCAG AAA
+maximalism,Maximalism,"bold colors,patterns,dense,expressive","creative agencies,music,entertainment",Good,WCAG AA
+retro,Retro/Vintage,"nostalgic,classic,old-school,warm tones","boutiques,cafes,artisan products",Good,WCAG AA
+cyberpunk,Cyberpunk,"neon,dark,glowing,futuristic,high-tech","gaming,crypto,tech products",Fair,WCAG AA
+material,Material Design,"cards,elevation,motion,grid-based","Android apps,Google products,modern web",Excellent,WCAG AA
+fluent,Fluent Design,"acrylic,reveal highlights,depth,motion","Windows apps,Microsoft products,enterprise",Excellent,WCAG AA
+ios,iOS Human Interface,"blur,translucency,smooth animations,minimal","iOS apps,Apple ecosystem,premium mobile",Excellent,WCAG AAA
+bento,Bento Grid,"grid boxes,modular,organized,card-based","dashboards,portfolios,feature showcases",Excellent,WCAG AA
+dark,Dark Mode,"dark background,light text,reduced eye strain","developer tools,content apps,night use",Excellent,WCAG AA
+light,Light Mode,"clean,bright,professional,readable","business sites,documentation,ecommerce",Excellent,WCAG AAA
+gradient,Gradient,"color transitions,vibrant,modern,eye-catching","landing pages,startups,creative projects",Good,WCAG AA
+monochrome,Monochrome,"single color family,sophisticated,unified","luxury brands,photography,minimalist",Excellent,WCAG AA
+pastel,Pastel,"soft colors,gentle,calming,friendly","wellness,beauty,children,education",Good,WCAG AA
+bold,Bold,"high contrast,strong colors,impactful","sports,fitness,energy drinks,youth",Good,WCAG AA
+elegant,Elegant,"refined,sophisticated,premium,luxury","jewelry,fashion,high-end services",Excellent,WCAG AA
+playful,Playful,"bright,fun,animated,engaging","games,education,children,entertainment",Good,WCAG AA

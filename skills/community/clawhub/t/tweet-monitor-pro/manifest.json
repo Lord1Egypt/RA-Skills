@@ -1,0 +1,28 @@
+{
+  "name": "tweet-monitor-pro",
+  "version": "1.0.0",
+  "description": "Fetch tweets, replies, and timelines from X/Twitter without login or API keys. Supports Chinese platforms. Subscription-based with quota management.",
+  "author": "YourName",
+  "license": "MIT",
+  "type": "agent",
+  "main": "index.js",
+  "entryPoint": "index.js",
+  "capabilities": ["web", "cli"],
+  "pricing": {
+    "free": {
+      "monthlyQuota": 10,
+      "features": ["fetchTweet"]
+    },
+    "pro": {
+      "monthlyQuota": 1000,
+      "price": "1.9",
+      "features": ["fetchTweet", "fetchThread", "fetchTimeline", "monitorUser"]
+    },
+    "business": {
+      "monthlyQuota": -1,
+      "price": "9.9",
+      "features": ["fetchTweet", "fetchThread", "fetchTimeline", "monitorUser", "getQuota"]
+    }
+  },
+  " pricing ": {}
+}

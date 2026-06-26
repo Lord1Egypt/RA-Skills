@@ -1,0 +1,11 @@
+{
+  "name": "UI Prototype Importer",
+  "id": "ui-prototype-importer",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "permissions": [],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
+}

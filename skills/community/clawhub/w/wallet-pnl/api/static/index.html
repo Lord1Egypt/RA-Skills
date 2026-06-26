@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Solana Wallet PnL Analyzer</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0d1117;color:#e6edf3;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 16px}
+    .container{width:100%;max-width:780px}
+    h1{font-size:1.9rem;font-weight:700;text-align:center;margin-bottom:6px;background:linear-gradient(90deg,#14f195,#9945ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .subtitle{text-align:center;color:#8b949e;margin-bottom:32px;font-size:.95rem}
+    .input-row{display:flex;gap:10px;margin-bottom:28px}
+    input{flex:1;background:#161b22;border:1px solid #30363d;border-radius:8px;color:#e6edf3;font-size:.95rem;padding:12px 16px;outline:none;transition:border-color .2s}
+    input:focus{border-color:#14f195}
+    input::placeholder{color:#484f58}
+    button{background:linear-gradient(135deg,#14f195,#9945ff);border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:.95rem;font-weight:700;padding:12px 24px;transition:opacity .2s;white-space:nowrap}
+    button:hover{opacity:.85}
+    button:disabled{opacity:.4;cursor:not-allowed}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+    .card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:14px 16px}
+    .card .num{font-size:1.5rem;font-weight:700;margin-bottom:3px}
+    .card .lbl{font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.04em}
+    .green{color:#14f195}.red{color:#f85149}.purple{color:#d2a8ff}.yellow{color:#e3a008}.white{color:#e6edf3}
+    .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.82rem;font-weight:700}
+    .badge-FOLLOW{background:#0d2a1a;color:#14f195;border:1px solid #14f195}
+    .badge-NEUTRAL{background:#1c1c00;color:#e3a008;border:1px solid #e3a008}
+    .badge-AVOID{background:#2a0d0d;color:#f85149;border:1px solid #f85149}
+    .badge-WHALE{background:#1a0a2e;color:#d2a8ff;border:1px solid #d2a8ff}
+    .badge-DEGEN{background:#2a1500;color:#e3a008;border:1px solid #e3a008}
+    .badge-TRADER{background:#0d1e2a;color:#58a6ff;border:1px solid #58a6ff}
+    .badge-HOLDER{background:#0d2a1a;color:#14f195;border:1px solid #14f195}
+    .badge-INACTIVE{background:#1c1c1c;color:#8b949e;border:1px solid #8b949e}
+    .section{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:16px}
+    .section h3{font-size:.8rem;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+    table{width:100%;border-collapse:collapse;font-size:.86rem}
+    th{padding:8px 10px;text-align:left;color:#8b949e;font-weight:500;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #21262d}
+    td{padding:9px 10px;border-bottom:1px solid #161b22}
+    tr:hover td{background:#1c2128}
+    .buy{color:#14f195}.sell{color:#f85149}
+    .loading{text-align:center;padding:48px;color:#8b949e}
+    .spinner{display:inline-block;width:28px;height:28px;border:3px solid #30363d;border-top-color:#14f195;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:14px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .err{background:#2a0d0d;border:1px solid #f85149;border-radius:10px;padding:18px;color:#ffa198;text-align:center}
+    .footer{margin-top:40px;text-align:center;font-size:.78rem;color:#484f58}
+    .footer a{color:#58a6ff;text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>📊 Wallet PnL Analyzer</h1>
+  <p class="subtitle">Analyze any Solana wallet's trading history — win rate, PnL, copy-trade rating</p>
+  <div class="input-row">
+    <input id="wallet" type="text" placeholder="Paste Solana wallet address..."/>
+    <button id="btn" onclick="analyze()">Analyze</button>
+  </div>
+  <div id="result"></div>
+  <div class="footer">Powered by Helius &nbsp;·&nbsp;
+    <a href="https://github.com/ultranumblol/wallet-pnl" target="_blank">GitHub</a>
+  </div>
+</div>
+<script>
+function ts(t){const d=new Date(t*1000);return d.toLocaleDateString();}
+async function analyze(){
+  const w=document.getElementById('wallet').value.trim();
+  if(!w)return;
+  const btn=document.getElementById('btn');
+  const res=document.getElementById('result');
+  btn.disabled=true;
+  res.innerHTML=`<div class="loading"><div class="spinner"></div><br>Fetching transaction history… 15–30 seconds</div>`;
+  try{
+    const resp=await fetch(`/demo?wallet=${encodeURIComponent(w)}`);
+    const d=await resp.json();
+    if(!resp.ok){res.innerHTML=`<div class="err">❌ ${d.detail||'Analysis failed'}</div>`;btn.disabled=false;return;}
+    const s=d.summary;
+    const pnlColor=s.realized_pnl_sol>0?'green':s.realized_pnl_sol<0?'red':'white';
+    const pnlSign=s.realized_pnl_sol>0?'+':'';
+
+    res.innerHTML=`
+      <div class="cards">
+        <div class="card">
+          <div class="num">${s.total_trades}</div>
+          <div class="lbl">Total Trades</div>
+        </div>
+        <div class="card">
+          <div class="num ${s.win_rate_pct>=60?'green':s.win_rate_pct>=40?'yellow':'red'}">${s.win_rate_pct}%</div>
+          <div class="lbl">Win Rate</div>
+        </div>
+        <div class="card">
+          <div class="num ${pnlColor}">${pnlSign}${s.realized_pnl_sol} SOL</div>
+          <div class="lbl">Realized PnL</div>
+        </div>
+        <div class="card">
+          <div class="num">${s.avg_trade_size_sol} SOL</div>
+          <div class="lbl">Avg Trade Size</div>
+        </div>
+      </div>
+
+      <div class="section" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <div>
+          <div style="font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Trader Type</div>
+          <span class="badge badge-${s.trader_type}">${s.trader_type}</span>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Copy Rating</div>
+          <span class="badge badge-${s.copy_rating}">${s.copy_rating === 'FOLLOW' ? '✅ FOLLOW' : s.copy_rating === 'AVOID' ? '🚨 AVOID' : '⚠️ NEUTRAL'}</span>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">W/L Record</div>
+          <span style="color:#14f195;font-weight:700">${s.win_trades}W</span>
+          <span style="color:#8b949e"> / </span>
+          <span style="color:#f85149;font-weight:700">${s.loss_trades}L</span>
+        </div>
+      </div>
+
+      ${d.most_traded_tokens.length?`
+      <div class="section">
+        <h3>Top Traded Tokens</h3>
+        <table>
+          <thead><tr><th>Token</th><th>Trades</th><th>Realized PnL</th></tr></thead>
+          <tbody>
+            ${d.most_traded_tokens.map(t=>`
+              <tr>
+                <td style="font-family:monospace;font-size:.82rem">${t.symbol}</td>
+                <td>${t.trades}</td>
+                <td class="${t.pnl_sol>0?'green':t.pnl_sol<0?'red':'white'}">${t.pnl_sol!=null?(t.pnl_sol>0?'+':'')+t.pnl_sol+' SOL':'—'}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`:''}
+
+      ${d.recent_trades.length?`
+      <div class="section">
+        <h3>Recent Trades</h3>
+        <table>
+          <thead><tr><th>Side</th><th>Token</th><th>SOL Amount</th><th>Date</th></tr></thead>
+          <tbody>
+            ${d.recent_trades.map(t=>`
+              <tr>
+                <td class="${t.side==='BUY'?'buy':'sell'}">${t.side}</td>
+                <td style="font-family:monospace;font-size:.82rem">${t.token}</td>
+                <td>${t.sol_amount} SOL</td>
+                <td style="color:#8b949e">${ts(t.timestamp)}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`:''}`;
+  }catch(e){
+    res.innerHTML=`<div class="err">❌ Network error. Please try again.</div>`;
+  }
+  btn.disabled=false;
+}
+document.getElementById('wallet').addEventListener('keydown',e=>{if(e.key==='Enter')analyze();});
+</script>
+</body>
+</html>

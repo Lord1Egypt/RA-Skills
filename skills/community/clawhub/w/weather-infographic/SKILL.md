@@ -1,35 +1,23 @@
 ---
-name: "Weather TV style"
-description: "Generate a TV-style weather infographic with a location-specific seasonal background. Use when the user asks for a visual weather forecast or a weather infographic for a specific address."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-infographic"
-sourceUrl: "https://clawhub.ai/skills/weather-infographic"
+name: infographic-weather
+description: Generate a TV-style weather infographic with a location-specific seasonal background. Use when the user asks for a visual weather forecast or a weather infographic for a specific address.
+metadata: {"clawdbot":{"emoji":"📺","requires":{"env":["GEMINI_API_KEY"]},"install":[{"id":"pip-google-ai","kind":"exec","command":"pip install -U google-generativeai requests --break-system-packages","label":"Install dependencies"}]}}
 ---
 
-# Weather TV style
+# Infographic Weather
 
-> Generate a TV-style weather infographic with a location-specific seasonal background. Use when the user asks for a visual weather forecast or a weather infographic for a specific address.
+Generate a professional TV-style weather broadcast frame using Gemini 3 Pro Image (Nano Banana).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-infographic`
-- **Source URL:** [https://clawhub.ai/skills/weather-infographic](https://clawhub.ai/skills/weather-infographic)
+## Features
+- **Seasonal Backgrounds**: Generates a photorealistic backdrop based on the address and current local season (hemisphere-aware).
+- **Real-time Data**: Pulls live weather and 7-day forecast from Open-Meteo.
+- **Broadcast UI**: Stitches data and background into a professional TV broadcast layout.
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/weather-infographic
+python3 {baseDir}/scripts/generate_infographic.py --address "10 Downing St, London" --lat 51.5033 --lon -0.1276 --output "out/london-weather.png"
 ```
+
+## Environment
+- `GEMINI_API_KEY`: Required for image generation.

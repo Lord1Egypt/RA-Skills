@@ -1,0 +1,7 @@
+{
+  "name": "ugc-fashion-activewear-product-video-generator",
+  "private": true,
+  "dependencies": {
+    "imastudio-cli": "^0.1.8"
+  }
+}

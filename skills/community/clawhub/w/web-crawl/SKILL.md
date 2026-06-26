@@ -1,35 +1,43 @@
 ---
-name: "Web Crawl"
-description: "Advanced web crawling and content extraction tool with multiple extraction modes"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-crawl"
-sourceUrl: "https://clawhub.ai/skills/web-crawl"
+name: web-crawl
+version: "1.0.0"
+description: Advanced web crawling and content extraction tool with multiple extraction modes
+activation:
+  keywords: ["crawl", "抓取", "提取网页", "研究", "深度研究", "research", "analyze website"]
+  tags: ["web", "research", "crawling"]
 ---
 
-# Web Crawl
+# Web Crawl Skill
 
-> Advanced web crawling and content extraction tool with multiple extraction modes
+Advanced web content extraction with multiple modes and intelligent content detection.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-crawl`
-- **Source URL:** [https://clawhub.ai/skills/web-crawl](https://clawhub.ai/skills/web-crawl)
+## When to Use
 
-## Overview
+Use this skill when:
+- User asks to "研究" / "深度研究" a topic
+- User wants to "抓取" / "提取" content from websites
+- Need to analyze multiple web pages systematically
+- Current `web_fetch` output is insufficient
 
+## Extraction Modes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web-crawl
+| Mode | Use Case |
+|------|----------|
+| `text` | Clean plain text |
+| `markdown` | Formatted Markdown (recommended) |
+| `links` | Extract all links |
+| `structured` | JSON metadata + content |
+| `full` | Markdown + links combined |
+
+## Tools Available
+
+- `web_crawl` - Extract content from a single URL
+- `parallel_crawl` - Extract from multiple URLs in parallel
+- `research_topic` - Multi-step research with search + crawl
+
+## Example Usage
+
+```
+User: "研究一下 OpenManus-Max 项目"
+→ Use research_topic tool with query="OpenManus-Max GitHub features"
 ```

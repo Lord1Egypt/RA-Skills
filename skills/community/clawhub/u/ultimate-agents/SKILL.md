@@ -1,35 +1,19 @@
----
-name: "agent ultimate bots"
-description: "AI-powered agent for automated blockchain transactions, multi-wallet support, smart swaps on DEX, and adaptive learning for DeFi and dApp interactions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ultimate-agents"
-sourceUrl: "https://clawhub.ai/skills/ultimate-agents"
----
+# Ultimate AI Agent (DeFi + dApp)
 
-# agent ultimate bots
+## Deskripsi
+Agent otomatis berbasis AI yang dapat melakukan transaksi blockchain dan interaksi dengan dApp.
 
-> AI-powered agent for automated blockchain transactions, multi-wallet support, smart swaps on DEX, and adaptive learning for DeFi and dApp interactions.
+## Fitur
+- Multi wallet
+- Multi RPC
+- Auto transaction
+- Smart swap (DEX)
+- Adaptive learning system
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ultimate-agents`
-- **Source URL:** [https://clawhub.ai/skills/ultimate-agents](https://clawhub.ai/skills/ultimate-agents)
+## Cara Pakai
+1. Isi file .env
+2. Jalankan:
+   node ultimate-agent.js
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ultimate-agents
-```
+## Catatan
+Gunakan testnet terlebih dahulu.

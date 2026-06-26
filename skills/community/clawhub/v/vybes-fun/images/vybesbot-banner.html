@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; overflow: hidden; }
+  .banner {
+    width: 1500px;
+    height: 500px;
+    background: radial-gradient(ellipse at 35% 50%, #1e1040 0%, #140a2e 40%, #0c0620 70%, #08041a 100%);
+    position: relative;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  /* Subtle grid - fades to green on right */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(120, 62, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120, 62, 255, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Green-tinted grid overlay on right half */
+  .grid-green {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 600px;
+    height: 100%;
+    background-image:
+      linear-gradient(rgba(0, 217, 165, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 217, 165, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%);
+    pointer-events: none;
+  }
+
+  /* Purple glow behind icon */
+  .glow-purple {
+    position: absolute;
+    left: 280px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(120, 62, 255, 0.25) 0%, rgba(90, 40, 200, 0.08) 50%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Green ambient glow - right side - STRONGER */
+  .glow-green {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 650px;
+    height: 550px;
+    background: radial-gradient(ellipse at 65% 50%, rgba(0, 217, 165, 0.35) 0%, rgba(0, 217, 165, 0.15) 35%, rgba(0, 217, 165, 0.04) 60%, transparent 80%);
+    pointer-events: none;
+  }
+
+  /* Second green glow - top right corner */
+  .glow-green-2 {
+    position: absolute;
+    right: -40px;
+    top: -80px;
+    width: 400px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(0, 217, 165, 0.2) 0%, rgba(0, 217, 165, 0.05) 50%, transparent 75%);
+    pointer-events: none;
+  }
+
+  /* Third green glow - bottom right */
+  .glow-green-3 {
+    position: absolute;
+    right: -40px;
+    bottom: -80px;
+    width: 400px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(0, 217, 165, 0.15) 0%, rgba(0, 217, 165, 0.04) 50%, transparent 75%);
+    pointer-events: none;
+  }
+
+  /* Green diagonal ray 1 - main wide */
+  .green-ray-1 {
+    position: absolute;
+    right: -100px;
+    top: -80px;
+    width: 500px;
+    height: 660px;
+    background: linear-gradient(160deg, transparent 0%, rgba(0, 217, 165, 0.08) 25%, rgba(0, 217, 165, 0.2) 50%, rgba(0, 217, 165, 0.08) 75%, transparent 100%);
+    transform: skewX(-12deg);
+    pointer-events: none;
+  }
+
+  /* Green diagonal ray 2 */
+  .green-ray-2 {
+    position: absolute;
+    right: 100px;
+    top: -50px;
+    width: 180px;
+    height: 600px;
+    background: linear-gradient(160deg, transparent 0%, rgba(0, 217, 165, 0.05) 30%, rgba(0, 217, 165, 0.14) 50%, rgba(0, 217, 165, 0.05) 70%, transparent 100%);
+    transform: skewX(-12deg);
+    pointer-events: none;
+  }
+
+  /* Green diagonal ray 3 */
+  .green-ray-3 {
+    position: absolute;
+    right: 280px;
+    top: -30px;
+    width: 80px;
+    height: 560px;
+    background: linear-gradient(160deg, transparent 0%, rgba(0, 217, 165, 0.04) 35%, rgba(0, 217, 165, 0.1) 50%, rgba(0, 217, 165, 0.04) 65%, transparent 100%);
+    transform: skewX(-12deg);
+    pointer-events: none;
+  }
+
+  /* Green diagonal ray 4 - far left feather */
+  .green-ray-4 {
+    position: absolute;
+    right: 400px;
+    top: -10px;
+    width: 40px;
+    height: 520px;
+    background: linear-gradient(160deg, transparent 0%, rgba(0, 217, 165, 0.02) 40%, rgba(0, 217, 165, 0.06) 50%, rgba(0, 217, 165, 0.02) 60%, transparent 100%);
+    transform: skewX(-12deg);
+    pointer-events: none;
+  }
+
+  /* Horizontal scan line - bot aesthetic */
+  .scan-line {
+    position: absolute;
+    right: 0;
+    width: 700px;
+    height: 1px;
+    pointer-events: none;
+  }
+  .scan-line-1 {
+    top: 150px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 217, 165, 0.15) 30%, rgba(0, 217, 165, 0.4) 70%, rgba(0, 217, 165, 0.6) 100%);
+  }
+  .scan-line-2 {
+    top: 350px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 217, 165, 0.1) 40%, rgba(0, 217, 165, 0.3) 80%, rgba(0, 217, 165, 0.5) 100%);
+  }
+
+  /* Vertical green accent line - main */
+  .green-accent {
+    position: absolute;
+    right: 55px;
+    top: 50px;
+    bottom: 50px;
+    width: 2px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 217, 165, 0.6) 25%, rgba(0, 217, 165, 0.9) 50%, rgba(0, 217, 165, 0.6) 75%, transparent 100%);
+    box-shadow: 0 0 8px rgba(0, 217, 165, 0.3);
+    pointer-events: none;
+  }
+
+  /* Second vertical accent - thinner, further in */
+  .green-accent-2 {
+    position: absolute;
+    right: 35px;
+    top: 80px;
+    bottom: 80px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 217, 165, 0.3) 30%, rgba(0, 217, 165, 0.5) 50%, rgba(0, 217, 165, 0.3) 70%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* Small green hash marks */
+  .green-hash {
+    position: absolute;
+    right: 42px;
+    width: 22px;
+    height: 1px;
+    background: rgba(0, 217, 165, 0.4);
+    pointer-events: none;
+  }
+
+  /* Green corner brackets - top right */
+  .corner-bracket-tr {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    width: 30px;
+    height: 30px;
+    border-top: 2px solid rgba(0, 217, 165, 0.5);
+    border-right: 2px solid rgba(0, 217, 165, 0.5);
+    pointer-events: none;
+  }
+
+  /* Green corner brackets - bottom right */
+  .corner-bracket-br {
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    width: 30px;
+    height: 30px;
+    border-bottom: 2px solid rgba(0, 217, 165, 0.5);
+    border-right: 2px solid rgba(0, 217, 165, 0.5);
+    pointer-events: none;
+  }
+
+  /* Small green circle - like a status indicator */
+  .status-dot {
+    position: absolute;
+    right: 28px;
+    top: 250px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00D9A5;
+    box-shadow: 0 0 12px rgba(0, 217, 165, 0.8), 0 0 24px rgba(0, 217, 165, 0.4);
+    pointer-events: none;
+  }
+
+  /* Icon container */
+  .icon-wrap {
+    position: absolute;
+    left: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    height: 260px;
+    filter: drop-shadow(0 0 40px rgba(120, 62, 255, 0.4)) drop-shadow(0 0 80px rgba(120, 62, 255, 0.2));
+  }
+
+  .icon-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    -webkit-mask-image: radial-gradient(ellipse 55% 55% at 50% 48%, black 50%, transparent 72%);
+    mask-image: radial-gradient(ellipse 55% 55% at 50% 48%, black 50%, transparent 72%);
+  }
+
+  /* Text area */
+  .text-area {
+    position: absolute;
+    left: 420px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bot-name-svg { display: block; }
+  .tagline-svg { display: block; margin-top: 12px; }
+
+  /* Accent line - now blends purple to green */
+  .accent-line {
+    position: absolute;
+    left: 420px;
+    bottom: 130px;
+    width: 700px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(120, 62, 255, 0) 0%, rgba(120, 62, 255, 0.5) 20%, rgba(0, 217, 165, 0.5) 70%, rgba(0, 217, 165, 0.8) 100%);
+  }
+
+  /* Bottom URL */
+  .url {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Floating dots */
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .dot-1 { left: 100px; top: 80px; width: 4px; height: 4px; background: #00C6FF; opacity: 0.3; box-shadow: 0 0 8px #00C6FF; }
+  .dot-2 { left: 300px; top: 420px; width: 3px; height: 3px; background: #783EFF; opacity: 0.4; box-shadow: 0 0 8px #783EFF; }
+  .dot-3 { right: 300px; top: 70px; width: 5px; height: 5px; background: #00D9A5; opacity: 0.45; box-shadow: 0 0 12px #00D9A5; }
+  .dot-4 { right: 100px; bottom: 90px; width: 5px; height: 5px; background: #00D9A5; opacity: 0.6; box-shadow: 0 0 14px rgba(0, 217, 165, 0.8); }
+  .dot-5 { left: 700px; top: 50px; width: 2px; height: 2px; background: #fff; opacity: 0.15; }
+  .dot-6 { right: 75px; top: 140px; width: 4px; height: 4px; background: #00D9A5; opacity: 0.5; box-shadow: 0 0 10px #00D9A5; }
+  .dot-7 { left: 80px; bottom: 180px; width: 3px; height: 3px; background: #00C6FF; opacity: 0.2; box-shadow: 0 0 6px #00C6FF; }
+  .dot-8 { right: 180px; top: 230px; width: 4px; height: 4px; background: #00D9A5; opacity: 0.4; box-shadow: 0 0 10px #00D9A5; }
+  .dot-9 { right: 140px; top: 120px; width: 3px; height: 3px; background: #00D9A5; opacity: 0.35; box-shadow: 0 0 8px #00D9A5; }
+  .dot-10 { right: 230px; bottom: 120px; width: 4px; height: 4px; background: #00D9A5; opacity: 0.45; box-shadow: 0 0 10px #00D9A5; }
+  .dot-11 { right: 350px; top: 180px; width: 3px; height: 3px; background: #00D9A5; opacity: 0.25; box-shadow: 0 0 6px #00D9A5; }
+  .dot-12 { right: 160px; bottom: 180px; width: 3px; height: 3px; background: #00D9A5; opacity: 0.35; box-shadow: 0 0 8px #00D9A5; }
+  .dot-13 { right: 420px; bottom: 90px; width: 2px; height: 2px; background: #00D9A5; opacity: 0.2; box-shadow: 0 0 4px #00D9A5; }
+  .dot-14 { right: 280px; top: 400px; width: 3px; height: 3px; background: #00D9A5; opacity: 0.3; box-shadow: 0 0 6px #00D9A5; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="grid"></div>
+  <div class="grid-green"></div>
+  <div class="glow-purple"></div>
+  <div class="glow-green"></div>
+  <div class="glow-green-2"></div>
+  <div class="glow-green-3"></div>
+
+  <!-- Green rays -->
+  <div class="green-ray-1"></div>
+  <div class="green-ray-2"></div>
+  <div class="green-ray-3"></div>
+  <div class="green-ray-4"></div>
+
+  <!-- Scan lines -->
+  <div class="scan-line scan-line-1"></div>
+  <div class="scan-line scan-line-2"></div>
+
+  <!-- Green vertical accents -->
+  <div class="green-accent"></div>
+  <div class="green-accent-2"></div>
+  <div class="green-hash" style="top: 110px;"></div>
+  <div class="green-hash" style="top: 170px;"></div>
+  <div class="green-hash" style="top: 250px;"></div>
+  <div class="green-hash" style="top: 330px;"></div>
+  <div class="green-hash" style="top: 390px;"></div>
+
+  <!-- Corner brackets -->
+  <div class="corner-bracket-tr"></div>
+  <div class="corner-bracket-br"></div>
+  <div class="status-dot"></div>
+
+  <!-- Dots -->
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
+  <div class="dot dot-4"></div>
+  <div class="dot dot-5"></div>
+  <div class="dot dot-6"></div>
+  <div class="dot dot-7"></div>
+  <div class="dot dot-8"></div>
+  <div class="dot dot-9"></div>
+  <div class="dot dot-10"></div>
+  <div class="dot dot-11"></div>
+  <div class="dot dot-12"></div>
+  <div class="dot dot-13"></div>
+  <div class="dot dot-14"></div>
+
+  <!-- Vybes icon -->
+  <div class="icon-wrap">
+    <img src="vybes-fun-logo.png" alt="Vybes" />
+  </div>
+
+  <div class="text-area">
+    <svg class="bot-name-svg" width="520" height="96" viewBox="0 0 520 96" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="vybesGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-5 80) rotate(-16) scale(520 96)">
+          <stop stop-color="#783EFF"/>
+          <stop offset="1" stop-color="white"/>
+        </radialGradient>
+      </defs>
+      <text x="0" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="96" font-weight="900" letter-spacing="-3" fill="url(#vybesGrad)">VybesBot</text>
+    </svg>
+    <svg class="tagline-svg" width="620" height="30" viewBox="0 0 620 30" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="tagGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop stop-color="#00C6FF"/>
+          <stop offset="1" stop-color="#783EFF"/>
+        </linearGradient>
+      </defs>
+      <text x="0" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="500" letter-spacing="5" fill="url(#tagGrad)">TWEET TO CREATE. PREDICT. TRADE.</text>
+    </svg>
+  </div>
+
+  <div class="accent-line"></div>
+
+  <div class="url">vybes.fun</div>
+</div>
+</body>
+</html>

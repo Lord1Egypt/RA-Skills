@@ -1,0 +1,31 @@
+{
+  "apiKey": "sk-xxxx",
+  "baseUrl": "https://dashscope.aliyuncs.com",
+  "defaultGoal": "balanced",
+  "goals": {
+    "cheap": {
+      "tier": "draft",
+      "preset": "draft"
+    },
+    "balanced": {
+      "tier": "standard"
+    },
+    "quality": {
+      "tier": "final",
+      "preset": "final"
+    }
+  },
+  "defaultTier": "standard",
+  "tiers": {
+    "draft": {
+      "model": "wanx2.0-t2i-turbo"
+    },
+    "standard": {
+      "model": "wan2.2-t2i-flash"
+    },
+    "final": {
+      "model": "wan2.6-t2i"
+    }
+  },
+  "outputDir": "./outputs"
+}

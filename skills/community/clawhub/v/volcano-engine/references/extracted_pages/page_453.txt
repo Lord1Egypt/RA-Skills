@@ -1,0 +1,48 @@
+"RequestId" :"202509231425196F1F971FFFC20F544E6A" ,
+"Action" :"GetInferenceUsage" ,
+"Version" :"2024-01-01" ,
+"Service" :"ark" ,
+"Region" :"cn-beijing"
+},
+"Result" :{
+"Fields" :[
+{
+"Name" :"AccountID" ,
+"Type" :"BIGINT"
+},
+{
+"Name" :"ModelEndpoint" ,
+"Type" :"STRING"
+},
+{
+"Name" :"Day" ,
+"Type" :"DATE"
+},
+{
+"Name" :"Hour" ,
+"Type" :"STRING"
+},
+{
+"Name" :"InputTokens" ,
+"Type" :"BIGINT"
+},
+{
+"Name" :"OutputTokens" ,
+"Type" :"BIGINT"
+},
+{
+"Name" :"ImageCount" ,
+"Type" :"BIGINT"
+},
+{
+"Name" :"TotalTokens" ,
+"Type" :"BIGINT"
+},
+{
+"Name" :"ReqCnt" ,
+"Type" :"BIGINT"
+}
+],
+"Data" :[
+[API参考 12. 管控面 API
+版权所有©北京火山引擎科技有限公司 448/485

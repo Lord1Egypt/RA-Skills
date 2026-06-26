@@ -1,0 +1,25 @@
+{
+  "name": "volc-image-gen",
+  "version": "1.0.0",
+  "description": "火山引擎图像生成技能 - 支持文生图、图生图、批量生成",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node tests/image-gen.test.js"
+  },
+  "keywords": [
+    "volcengine",
+    "image-generation",
+    "ai-art",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "p-limit": "^3.1.0",
+    "node-cache": "^5.1.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "weather-alert-skill",
+  "version": "0.2.1",
+  "description": "Skill package for publishing a weather alert integration.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "bash test/run-tests.sh",
+    "lint": "bash scripts/lint.sh",
+    "publish:dry-run": "bash scripts/publish.sh --dry-run"
+  },
+  "keywords": [
+    "skill",
+    "release",
+    "weather"
+  ],
+  "license": "MIT"
+}

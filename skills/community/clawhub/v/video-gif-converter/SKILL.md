@@ -1,35 +1,51 @@
 ---
-name: "Video GIF Converter"
-description: "Convert short video moments into GIF-friendly snippets for demos, support, product walkthroughs, and social sharing. Use when a team needs lightweight motion..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-gif-converter"
-sourceUrl: "https://clawhub.ai/skills/video-gif-converter"
+name: video-gif-converter
+description: Convert short video moments into GIF-friendly snippets for demos, support, product walkthroughs, and social sharing. Use when a team needs lightweight motion previews instead of full video files.
 ---
 
 # Video GIF Converter
 
-> Convert short video moments into GIF-friendly snippets for demos, support, product walkthroughs, and social sharing. Use when a team needs lightweight motion...
+Turn useful video moments into lightweight GIF snippets.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-gif-converter`
-- **Source URL:** [https://clawhub.ai/skills/video-gif-converter](https://clawhub.ai/skills/video-gif-converter)
+## Problem it solves
+Sometimes a full video is overkill. Teams need motion they can drop into docs, chats, tickets, storefront explanations, or social posts without asking people to play a full file. This skill creates GIF-friendly outputs from the right parts of a video.
 
-## Overview
+## Use when
+- A short motion snippet explains something better than text or a screenshot
+- A support, product, or ops team needs lightweight shareable motion
+- A creator wants a quick looping preview from a longer clip
+- A team needs GIF-ready moments for presentations or tutorials
 
+## Do not use when
+- The clip is too long or too detailed for GIF format
+- Audio matters to the message
+- A normal MP4 preview would work better than a GIF
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-gif-converter
-```
+## Inputs
+- Source video file
+- Desired segment or rough moment to capture
+- Intended use case: support, social, demo, tutorial, promo, etc.
+- Optional size or duration constraints
+
+## Workflow
+1. Identify the shortest useful motion loop or segment.
+2. Trim the clip to a concise, GIF-suitable moment.
+3. Balance size, smoothness, and visual clarity.
+4. Export a lightweight looping-friendly result.
+5. Warn if MP4 would be a better format than GIF.
+
+## Output
+Return:
+1. Suggested GIF moment
+2. Duration recommendation
+3. Size / clarity tradeoff
+4. Whether GIF is the right format
+
+## Quality bar
+- Keep GIFs short and purposeful
+- Avoid bloated, muddy exports
+- Prefer clear, repetitive, demonstrative motion
+- Say when GIF is the wrong tool
+
+## Resource
+See `references/output-template.md`.

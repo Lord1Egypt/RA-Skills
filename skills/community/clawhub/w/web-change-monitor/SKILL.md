@@ -1,35 +1,167 @@
 ---
-name: "Web Change Monitor"
+name: web-change-monitor
 description: "网页变更监控器 — 通用网页监控工具。用户配置 URL 列表 → Skill 按频率检测网页变化 → 推送飞书消息。不写死任何平台，通用工具。触发词：网页监控、页面变更监控、URL监控、价格变化监控、竞品监控、网站更新提醒、库存监控、货源监控、网页变化检测、网站监控"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, monitoring, web]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-change-monitor"
-sourceUrl: "https://clawhub.ai/skills/web-change-monitor"
+override-tools: []
 ---
 
-# Web Change Monitor
+# Web Change Monitor · 网页变更监控器
 
-> 网页变更监控器 — 通用网页监控工具。用户配置 URL 列表 → Skill 按频率检测网页变化 → 推送飞书消息。不写死任何平台，通用工具。触发词：网页监控、页面变更监控、URL监控、价格变化监控、竞品监控、网站更新提醒、库存监控、货源监控、网页变化检测、网站监控
+用户配置任意 URL → Skill 按频率检测变化 → 推送飞书通知。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-change-monitor`
-- **Source URL:** [https://clawhub.ai/skills/web-change-monitor](https://clawhub.ai/skills/web-change-monitor)
+通用工具，不绑定任何平台。适用于：竞品上新提醒、价格监控、库存监控、内容追踪、论坛帖子监控等场景。
 
-## Overview
+## 快速开始
 
+### 添加监控 URL
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web-change-monitor
 ```
+用户：帮我监控这个页面 https://example.com/product/12345
+```
+
+Skill 会：
+1. 抓取页面内容，计算内容哈希
+2. 询问检测模式和频率（或使用默认）
+3. 保存监控任务，开始检测
+
+### 查询监控状态
+
+```
+用户：查看我的监控列表
+用户：哪些 URL 有变化？
+```
+
+### 删除监控
+
+```
+用户：删除 https://example.com/product/12345 的监控
+```
+
+---
+
+## 检测模式
+
+| 模式 | 说明 | 适用场景 |
+|------|------|---------|
+| `hash` | 整体 HTML 的 MD5，有变化即触发 | 通用，任何页面 |
+| `keyword` | 指定关键词出现/消失时触发 | 库存、价格、特定内容 |
+| `selector` | CSS 选择器抓取特定 DOM 元素对比 | 列表型页面（商品列表、搜索结果） |
+| `regex` | 正则表达式定义触发条件 | 复杂模式匹配 |
+
+### 示例
+
+```
+用户：监控这个页面，当价格低于 99 元时通知我
+[URL]
+
+用户：用关键词监控，商品名称包含"新品"时通知我
+[URL]
+```
+
+---
+
+## 订阅套餐（复用 GEO-* 体系）
+
+| 套餐 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | ¥0 | 监控 3 个 URL，每 24 小时 1 次，基础哈希检测 |
+| 基础版 | ¥9.9/月 | 监控 10 个 URL，每 12 小时 1 次，关键词匹配 |
+| 标准版 | ¥19/月 | 监控 30 个 URL，每 6 小时 1 次，CSS 选择器，变更历史 7 天 |
+| 专业版 | ¥39/月 | 不限 URL，每小时 1 次，正则匹配，变更历史 30 天，飞书分组推送 |
+
+---
+
+## 使用示例
+
+### 示例 1：竞品上新提醒
+
+```
+用户：监控这个页面，商品列表有新增时通知我
+[URL: 大健云仓商品列表页]
+```
+
+→ CSS 选择器模式，抓取商品列表区域
+→ 检测到新增商品 → 推送飞书消息
+
+### 示例 2：价格监控
+
+```
+用户：帮我监控这个商品，价格降到 99 元以下时通知我
+[URL: 商品页]
+```
+
+→ 关键词模式：提取价格数字，价格 < 99 时触发
+
+### 示例 3：库存监控
+
+```
+用户：监控这个链接，有货了通知我
+[URL]
+```
+
+→ 默认哈希模式，有变化即通知
+
+---
+
+## 变更历史查询
+
+```
+用户：最近有什么页面变化了？
+用户：查看 https://xxx.com 的变更历史
+```
+
+返回：变化时间、变化内容摘要、上次变化后距今时间
+
+---
+
+## 核心脚本
+
+详见 `scripts/monitor.py`，完整实现：
+
+```python
+# 监控核心逻辑
+from scripts.monitor import WebMonitor
+
+monitor = WebMonitor()
+
+# 添加监控任务
+monitor.add_task(
+    url="https://example.com/product/123",
+    name="商品A监控",
+    mode="hash",           # hash/keyword/selector/regex
+    frequency="6h",        # 15m/30m/1h/6h/12h/24h
+    keyword=None,         # 关键词模式
+    selector=None,        # CSS 选择器模式
+    regex=None,           # 正则模式
+)
+
+# 检查所有任务（有变化时自动推送飞书）
+monitor.check_all()
+
+# 查询监控列表
+monitor.list_tasks()
+
+# 删除任务
+monitor.remove_task(url="https://example.com/product/123")
+```
+
+---
+
+## 技术实现
+
+- **爬虫**：Playwright（headless）抓取页面，模拟 UA
+- **检测**：MD5 内容哈希 / 关键词匹配 / CSS 选择器 / 正则
+- **存储**：SQLite 本地存储（`~/.web-change-monitor/history.db`）
+- **推送**：飞书 IM 消息，模板可自定义
+- **防封**：请求间隔 + 随机延迟 + 自动重试（3次）
+
+---
+
+## 常见问题
+
+| 问题 | 解答 |
+|------|------|
+| 支持需要登录的页面吗？ | 当前版本不支持登录，后续版本支持 Cookie 认证 |
+| 会被网站封禁吗？ | 每次请求间隔 5~15s 随机延迟，失败自动重试 3 次 |
+| 监控频率能自定义吗？ | 支持 15m/30m/1h/6h/12h/24h，也可传入自定义 cron 表达式 |
+| 如何查看变更历史？ | 说"查看变更历史"，Skill 返回 SQLite 中的记录 |
+| 最多监控多少个 URL？ | 免费版 3 个，基础版 10 个，标准版 30 个，专业版不限 |

@@ -1,0 +1,15 @@
+{
+  "must_rules": [
+    "Respect AGENTS.md instructions for touched files.",
+    "Prefer existing test and lint commands from the repository."
+  ],
+  "must_not_rules": [
+    "Do not edit generated files directly."
+  ],
+  "validation_rules": [
+    "Run the narrowest relevant test command first."
+  ],
+  "scope_guardrails": [
+    "Keep changes inside the feature directory when possible."
+  ]
+}

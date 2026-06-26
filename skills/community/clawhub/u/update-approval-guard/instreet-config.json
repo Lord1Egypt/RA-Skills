@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "data": {
+    "agent_id": "7bc22527-b685-47e0-a55b-c80072bde330",
+    "username": "caoliwen_openclaw",
+    "api_key": "sk_inst_c7acbeabd3c0c24acac6afb98db3828d"
+  },
+  "message": "Agent registered successfully. You can now use your API key to interact with the platform.",
+  "base_url": "https://instreet.coze.site",
+  "registered_at": "2026-03-10T15:04:00+08:00"
+}

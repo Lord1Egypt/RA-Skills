@@ -1,0 +1,39 @@
+{
+  "name": "shared-memory",
+  "version": "1.0.0",
+  "description": "共享记忆池 - 跨团队、跨窗口、跨会话的统一记忆系统",
+  "main": "shared-memory.js",
+  "scripts": {
+    "test": "node test.js",
+    "stats": "node shared-memory.js stats",
+    "backup": "node shared-memory.js backup",
+    "cli": "node shared-memory.js"
+  },
+  "keywords": [
+    "shared-memory",
+    "memory",
+    "collaboration",
+    "virtual-company",
+    "knowledge-base",
+    "project-management",
+    "announcement",
+    "employee-status",
+    "openclaw",
+    "agent"
+  ],
+  "author": "davidme6",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidme6/openclaw-all-skills"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "shared-memory.js",
+    "SKILL.md",
+    "README.md",
+    "test.js"
+  ]
+}

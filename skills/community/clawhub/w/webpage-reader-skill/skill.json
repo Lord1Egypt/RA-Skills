@@ -1,0 +1,57 @@
+{
+  "name": "webpage_reader",
+  "version": "1.0.0",
+  "description": "Downloads webpage content using Google Chrome headless browser and returns the content with a summary",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "main": "webpage_reader.py",
+  "entry_point": "main",
+  "args": [
+    {
+      "name": "url",
+      "type": "string",
+      "required": true,
+      "description": "The URL of the webpage to download"
+    }
+  ],
+  "returns": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the operation was successful"
+      },
+      "message": {
+        "type": "string",
+        "description": "Status message"
+      },
+      "content": {
+        "type": "string",
+        "description": "The downloaded webpage content"
+      },
+      "summary": {
+        "type": "string",
+        "description": "Summary of the webpage content"
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.8"
+  },
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "keywords": [
+    "webpage",
+    "download",
+    "chrome",
+    "headless",
+    "scraping"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/webpage-reader-skill"
+  }
+}

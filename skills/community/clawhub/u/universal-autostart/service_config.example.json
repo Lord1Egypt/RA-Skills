@@ -1,0 +1,24 @@
+{
+    "service_name": "MyAppAutoStart",
+    "display_name": "我的应用自启动服务",
+    "description": "我的应用的开机自启动服务",
+    
+    "program": {
+        "type": "python",
+        "path": "C:\\Python\\Python313\\python.exe",
+        "arguments": "main.py --host 127.0.0.1 --port 8088",
+        "working_dir": "C:\\Users\\Administrator\\myapp"
+    },
+    
+    "log": {
+        "enabled": true,
+        "dir": "C:\\Users\\Administrator\\.myservice\\logs",
+        "level": "INFO"
+    },
+    
+    "restart": {
+        "auto_restart": true,
+        "max_restarts": 5,
+        "restart_delay": 30
+    }
+}

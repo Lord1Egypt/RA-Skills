@@ -1,0 +1,9 @@
+{
+  "name": "voko-subagent",
+  "version": "1.0.0",
+  "description": "VOKO 子 Agent 处理 Skill - 在 Gateway 内运行，创建真正的子 Agent 处理访客消息",
+  "author": "voko",
+  "license": "MIT",
+  "keywords": ["voko", "subagent", "im"],
+  "main": "index.js"
+}

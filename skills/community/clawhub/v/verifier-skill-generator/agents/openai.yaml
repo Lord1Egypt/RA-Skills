@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verifier Skill Generator"
+  short_description: "Generate project-specific verifier skills"
+  default_prompt: "Inspect this project and generate verifier skills for the relevant web, CLI, or API surfaces."

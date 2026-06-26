@@ -1,0 +1,5 @@
+file 'chunks/chunk_01.mp3'
+file 'chunks/chunk_02.mp3'
+file 'chunks/chunk_03.mp3'
+file 'chunks/chunk_04.mp3'
+file 'chunks/chunk_05.mp3'

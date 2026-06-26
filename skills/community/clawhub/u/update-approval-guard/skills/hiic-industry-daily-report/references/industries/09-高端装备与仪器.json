@@ -1,0 +1,35 @@
+{
+  "id": "09",
+  "name": "高端装备与仪器",
+  "category": "先进制造业",
+  "keywords": [
+    "高端装备",
+    "数控机床",
+    "工业母机",
+    "精密制造",
+    "测量仪器",
+    "检测设备"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "⚙️",
+    "maxDescriptionLength": 200
+  }
+}

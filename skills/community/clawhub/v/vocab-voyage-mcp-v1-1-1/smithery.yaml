@@ -1,0 +1,119 @@
+name: vocab-voyage
+display_name: Vocab Voyage
+description: Vocabulary tools for SAT, ISEE, SSAT, PSAT, GRE, GMAT, LSAT prep — 20 MCP tools + 17 interactive widgets (flashcards, quiz, study plan, progress, 11 mini-games, session debrief). 13 test-prep courses. Hosted, no install required.
+version: 1.1.1
+homepage: https://vocab.voyage
+documentation: https://vocab.voyage/mcp
+repository: https://github.com/jaideepdhanoa/vocab-voyage-mcp
+license: MIT
+publisher:
+  name: Vocab Voyage
+  url: https://vocab.voyage
+categories:
+  - education
+  - productivity
+  - reference
+keywords:
+  - sat
+  - isee
+  - ssat
+  - gre
+  - gmat
+  - lsat
+  - psat
+  - vocabulary
+  - tutor
+  - k12
+remote:
+  url: https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server?ref=smithery
+  transport: streamable-http
+auth:
+  required: false
+  schemes:
+    - type: anonymous
+      description: Rate-limited at 60 req/min per IP. Default for unauthenticated clients.
+    - type: bearer
+      description: Optional personal token (vv_mcp_…) generated at https://vocab.voyage/mcp. Unlocks personalized tools and 600 req/hour rate limit.
+      token_url: https://vocab.voyage/mcp
+      documentation_url: https://vocab.voyage/developers/auth
+      scopes:
+        - name: mcp.read
+          description: Read MCP metadata and public tool results.
+        - name: mcp.tools
+          description: Invoke public MCP tools (definition, quiz, courses, study plan).
+        - name: profile.read
+          description: Read connected user's display name, account type, and preferred course.
+        - name: progress.read
+          description: Read mastery, streaks, and recent sessions for the connected user.
+tools:
+  - name: get_word_of_the_day
+    description: Returns today's vocabulary Word of the Day, optionally scoped to a test family.
+  - name: get_definition
+    description: Look up the definition, part of speech, example sentence, and synonyms/antonyms for a word.
+    ui:
+      resourceUri: ui://vocab-voyage/definition
+      description: Definition card with examples and synonyms.
+  - name: generate_quiz
+    description: Generate a multiple-choice vocabulary quiz for a test family (1–10 questions).
+    ui:
+      resourceUri: ui://vocab-voyage/quiz
+      description: Interactive vocabulary quiz card.
+  - name: get_course_word_list
+    description: Get a sample of vocabulary words from a specific Vocab Voyage course.
+  - name: list_courses
+    description: Lists all 13 Vocab Voyage courses with their slugs and descriptions.
+  - name: explain_word_in_context
+    description: Explain what a word means inside a specific sentence.
+  - name: study_plan_preview
+    description: Returns a sample 7-day study plan (5 words/day) for a given test family.
+    ui:
+      resourceUri: ui://vocab-voyage/study-plan
+      description: Seven-day study plan preview.
+  - name: get_flashcards
+    description: Returns a tap-to-flip flashcard deck. Per-card answers persist via record_word_result.
+    ui:
+      resourceUri: ui://vocab-voyage/flashcards
+      description: Flashcard deck with mastery callbacks.
+  - name: get_my_progress
+    description: "Auth-only personal dashboard: streak, XP, mastery split, next-up words, recent misses."
+    ui:
+      resourceUri: ui://vocab-voyage/progress
+      description: Personal progress dashboard.
+  - name: play_game
+    description: Launches one of 11 vocabulary mini-games (word_match, spelling_bee, speed_round, synonym_showdown, word_scramble, fill_in_blank, context_clues, word_guess, picture_match, crossword, word_search). Per-answer events flow to record_word_result; round XP via award_game_xp.
+  - name: get_sparkle_guidance
+    description: "Lifecycle-aware coaching: returns a phase-appropriate greeting (16 phases) and a recommended next tool/action. Renders the session-debrief widget when relevant."
+    ui:
+      resourceUri: ui://vocab-voyage/session-debrief
+      description: Sparkle's session debrief and next-action card.
+  - name: set_persona
+    description: Switch agent bias between student, parent, tutor, or explorer.
+  - name: get_recommended_next_action
+    description: Returns a one-line recommendation for what the user should do next.
+  - name: list_starter_prompts
+    description: Lists the 6 MCP prompts (vocab_kickoff, test_prep_quiz, session_debrief, …) for hosts that don't surface prompts/list.
+  - name: record_word_result
+    description: "Auth: log a per-card answer (correct or incorrect)."
+  - name: record_session_complete
+    description: "Auth: log session totals and award XP."
+  - name: award_game_xp
+    description: "Auth: grant bonus XP from a completed mini-game round."
+  - name: mark_word_known
+    description: "Auth: add a word to the user's queue or mastered list."
+  - name: mark_word_difficult
+    description: "Auth: flag a word as needing more review."
+  - name: update_adaptive_level
+    description: "Auth: adjust the user's adaptive difficulty floor/ceiling."
+rate_limits:
+  anonymous: 60 requests per minute per IP
+  authenticated: 600 requests per hour per user
+discovery:
+  agent_card: https://vocab.voyage/.well-known/agent-card.json
+  server_card: https://vocab.voyage/.well-known/mcp/server-card.json
+  mcp_apps: https://vocab.voyage/.well-known/mcp/apps.json
+  api_catalog: https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/api-catalog
+  nlweb_ask: https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/nlweb-ask
+  auth_docs: https://vocab.voyage/developers/auth
+  oauth_protected_resource: https://vocab.voyage/.well-known/oauth-protected-resource
+  openapi: https://vocab.voyage/openapi.json
+  schemamap: https://vocab.voyage/schemamap.xml

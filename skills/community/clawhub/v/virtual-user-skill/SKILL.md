@@ -1,35 +1,127 @@
 ---
-name: "Virtual User Skill"
-description: "基于 54,000+ 条真实用研场景库的虚拟用户生成与访谈技能。通过本地向量检索匹配相关场景，生成多样化虚拟用户类型，支持深度对话访谈和产品方案测评。当用户提到虚拟用户、场景库用户、生成用户画像、用户访谈模拟、场景库检索、基于场景的用户测评时触发。注意：本技能与 virtual-user-interview（AP..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/virtual-user-skill"
-sourceUrl: "https://clawhub.ai/skills/virtual-user-skill"
+name: virtual_user_skill
+description: "基于 54,000+ 条真实用研场景库的虚拟用户生成与访谈技能。通过本地向量检索匹配相关场景，生成多样化虚拟用户类型，支持深度对话访谈和产品方案测评。当用户提到虚拟用户、场景库用户、生成用户画像、用户访谈模拟、场景库检索、基于场景的用户测评时触发。注意：本技能与 virtual-user-interview（API 版）不同，本技能基于本地场景库向量检索，不依赖外部 API。"
 ---
 
-# Virtual User Skill
+# 虚拟用户场景库技能
 
-> 基于 54,000+ 条真实用研场景库的虚拟用户生成与访谈技能。通过本地向量检索匹配相关场景，生成多样化虚拟用户类型，支持深度对话访谈和产品方案测评。当用户提到虚拟用户、场景库用户、生成用户画像、用户访谈模拟、场景库检索、基于场景的用户测评时触发。注意：本技能与 virtual-user-interview（AP...
+基于 54,000+ 条真实用研场景数据，通过向量检索匹配相关场景，由 LLM 生成多样化虚拟用户并进行深度访谈。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/virtual-user-skill`
-- **Source URL:** [https://clawhub.ai/skills/virtual-user-skill](https://clawhub.ai/skills/virtual-user-skill)
+## 数据资产
 
-## Overview
+- 场景库：54,631 条真实用研场景（Fernet 加密存储）
+- 向量索引：768 维 text2vec-base-chinese 预计算向量
+- 密钥位置：~/.virtual_user/.key
+- 13 个核心字段：序号、用户姓名和背景信息、内容范围、是否出境游、用户具体场景、任务、期待效果、当前方案、爽点、痛点、改进方向、底层需求、情绪标签
 
+## 目录结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/virtual-user-skill
 ```
+virtual_user_skill/
+├── SKILL.md                    # 本文件（QoderWork 技能指令）
+├── search_scenarios.py         # QoderWork 专用检索脚本（核心入口）
+├── config.yaml                 # 技能配置
+├── requirements.txt            # Python 依赖
+├── venv/                       # Python 虚拟环境（含所有依赖）
+├── data/
+│   ├── scenario_library.json.enc   # 加密场景库（125MB）
+│   └── scenario_embeddings.npy     # 预计算向量（160MB）
+├── src/
+│   ├── encrypt.py              # 加密解密模块
+│   ├── vector_search.py        # 向量检索引擎
+│   ├── user_generator.py       # 用户生成（模板版，仅供参考）
+│   ├── conversation.py         # 对话管理（模板版，仅供参考）
+│   └── main.py                 # 原始主入口（模板版）
+└── scripts/
+    └── compute_embeddings_fast.py  # 向量重算脚本（维护用）
+```
+
+## 标准流程
+
+### 阶段 1：场景检索
+
+收到用户问题后，运行向量检索获取相关场景：
+
+```bash
+cd /Users/xuwenxiang/.copaw/active_skills/virtual_user_skill && /Users/xuwenxiang/.copaw/active_skills/virtual_user_skill/venv/bin/python3 search_scenarios.py "用户的问题" 20
+```
+
+- stdout 输出 JSON，包含 `scenarios` 数组（去重后的匹配场景）
+- stderr 为日志，可忽略
+- 默认返回 20 条，可调整第二个参数
+- 首次运行需加载模型，设置 timeout 120000ms
+
+### 阶段 2：生成虚拟用户类型
+
+从检索到的场景中，生成 **8-10 个多样化虚拟用户类型**。
+
+**生成规则**：
+1. 每个用户类型必须基于不同的场景数据，不可重复
+2. 从「用户姓名和背景信息」字段提取：人群类型、年龄、消费力、婚姻状况、旅行特征
+3. 结合「用户具体场景」「痛点」「底层需求」「情绪标签」构建立体画像
+4. 确保类型间有明显差异（不同人群、不同场景、不同痛点）
+5. 给每个用户类型起一个生动的昵称（如"品质焦虑型爸爸"）
+
+**输出格式**：
+
+```
+基于场景库检索，为你生成了以下虚拟用户类型：
+
+1. [昵称] - [一句话场景]
+   背景：[年龄/职业/消费力/旅行特征]
+   核心痛点：[痛点摘要]
+   底层需求：[需求摘要]
+   情绪：[情绪标签]
+
+2. ...
+
+请选择你想对话的用户类型（如：选择 1,3,5 或 全选）
+```
+
+### 阶段 3：用户选择
+
+解析选择指令："选择 1,3,5"、"全选"、"1 和 3"、直接说数字等。
+
+### 阶段 4：虚拟用户对话
+
+**核心要求**：扮演选中的虚拟用户，以第一人称对话。
+
+**扮演规则**：
+1. 完全基于该用户的场景数据（场景、痛点、爽点、需求、当前方案等）
+2. 保持该用户的情绪基调（参考情绪标签）
+3. 回答要具体、真实，引用场景中的细节
+4. 语气符合人群特征（学生党 vs 资深中产表达方式不同）
+5. 场景之外的问题基于画像合理推演，不编造脱离人设的内容
+6. 每轮标注当前情绪状态
+
+**多用户模式**：选了多个用户时，依次让每个用户回答同一问题，形成对比视角。
+
+### 阶段 5：生成报告（可选）
+
+用户说"生成报告"或对话结束时：
+
+```markdown
+# 虚拟用户访谈报告
+
+## 研究主题
+[原始问题]
+
+## 参与用户类型
+[用户类型及画像摘要]
+
+## 关键发现
+[核心洞察，按主题聚合]
+
+## 用户情绪分析
+[各用户情绪变化和态度倾向]
+
+## 改进建议
+[基于反馈汇总的改进方向]
+```
+
+## 重要注意事项
+
+1. **与 virtual-user-interview 的区别**：本技能是本地场景库版（离线向量检索），不是 AIStudio API 版。用户明确要调 AIStudio Agent 时应使用 virtual-user-interview。
+2. **数据安全**：场景库加密存储且已脱敏，不要直接展示原始 JSON，应整理后展示。
+3. **搜索质量**：问题过于宽泛时建议用户缩小范围或换角度提问。
+4. **对话深度**：不要简单复读场景数据，要基于数据进行合理推演，模拟真实用户思维。

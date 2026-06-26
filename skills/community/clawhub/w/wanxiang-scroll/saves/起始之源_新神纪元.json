@@ -1,0 +1,37 @@
+{
+  "game_id": "genesis_001",
+  "title": "起始之源·新神纪元",
+  "created_at": "2026-04-30T20:28:00+08:00",
+  "world_type": "未知",
+  "setting": "神圣的神明之地·起始之源",
+  "theme": "旧神陨落，新神诞生",
+  "players": [
+    {
+      "id": "player_001",
+      "name": "蛋蛋呀",
+      "qq_id": "3053329650",
+      "role": "新神",
+      "description": "世界未知的神明，记忆模糊，需在空白世界种下文明之种"
+    }
+  ],
+  "world_state": {
+    "era": "创世纪·第一日",
+    "entropy_level": "无限递增",
+    "stability": "极低",
+    "known_regions": [],
+    "unknown_regions": ["整个世界"],
+    "divine_power": 100,
+    "civilization_seeds": 0,
+    "followers": 0
+  },
+  "narrative_config": {
+    "style": "史诗神话风",
+    "tone": "庄严中带神秘",
+    "director_mode": "active",
+    "entropy_mechanic": true,
+    "multiplayer_mode": true
+  },
+  "chapters": [],
+  "current_chapter": 0,
+  "save_slot": "genesis_001_20260430"
+}

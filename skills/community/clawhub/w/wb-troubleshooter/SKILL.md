@@ -1,35 +1,85 @@
 ---
-name: "Wb Troubleshooter"
-description: "Western Blot troubleshooting guide with step-by-step solutions"
-category: "other"
-source: "ClawHub"
+name: wb-troubleshooter
+description: Western Blot troubleshooting guide with step-by-step solutions
+version: 1.0.0
+category: Wet Lab
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wb-troubleshooter"
-sourceUrl: "https://clawhub.ai/skills/wb-troubleshooter"
+author: AIPOCH
+license: MIT
+status: Draft
+risk_level: Medium
+skill_type: Tool/Script
+owner: AIPOCH
+reviewer: ''
+last_updated: '2026-02-06'
 ---
 
-# Wb Troubleshooter
+# WB Troubleshooter
 
-> Western Blot troubleshooting guide with step-by-step solutions
+Western Blot problem diagnosis and solutions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wb-troubleshooter`
-- **Source URL:** [https://clawhub.ai/skills/wb-troubleshooter](https://clawhub.ai/skills/wb-troubleshooter)
+## Use Cases
+- High background troubleshooting
+- No signal diagnosis
+- Multiple bands resolution
+- Band smearing fixes
 
-## Overview
+## Parameters
+- `symptom`: Problem description
+- `antibody_type`: Primary/Secondary
 
+## Returns
+- Systematic troubleshooting steps
+- Likely causes ranked
+- Solution recommendations
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wb-troubleshooter
-```
+## Example
+Input: "High background"
+Output: Check blocking buffer → antibody concentration → wash stringency
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support

@@ -1,0 +1,48 @@
+{
+  "name": "wealth",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for building and managing wealth across every stage of life. Covers financial foundations, investing, tax efficiency, retirement planning, protection, and generational wealth transfer.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "wealth", "investing", "retirement", "financial planning", "net worth",
+    "index funds", "tax optimization", "estate planning", "financial independence",
+    "portfolio", "401k", "IRA", "Roth", "asset allocation"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "financial_foundation": "Builds emergency fund, debt strategy, and savings system before investing",
+    "investment_strategy": "Creates evidence-based portfolio allocation matched to goals and risk tolerance",
+    "tax_optimization": "Maximizes tax-advantaged accounts and minimizes investment tax drag",
+    "retirement_planning": "Models retirement readiness with withdrawal strategy and Social Security optimization",
+    "wealth_protection": "Identifies insurance and estate planning gaps that threaten accumulated wealth",
+    "generational_transfer": "Guides estate planning and wealth transfer strategy"
+  },
+  "triggers": [
+    "wealth", "investing", "retirement", "financial planning", "net worth",
+    "portfolio", "401k", "IRA", "Roth IRA", "index funds", "asset allocation",
+    "financial independence", "retire early", "estate planning", "inheritance",
+    "tax optimization", "financial advisor", "wealth management", "compound interest"
+  ],
+  "heartbeat": {
+    "monthly": "Savings rate and contribution check",
+    "quarterly": "Portfolio review and rebalancing assessment",
+    "annual": "Full financial review and year-end tax planning"
+  },
+  "audience": [
+    "Young professionals building their first investment portfolio",
+    "Mid-career individuals who feel behind on retirement savings",
+    "Business owners who have neglected personal wealth building",
+    "Anyone who received a windfall and wants to handle it deliberately",
+    "People approaching retirement who want to optimize the transition"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

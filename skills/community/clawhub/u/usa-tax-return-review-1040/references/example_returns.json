@@ -1,0 +1,82 @@
+{
+  "returns": [
+    {
+      "tax_year": 2024,
+      "filing_status": "single",
+      "deduction_type": "standard",
+      "dependents_count": 1,
+      "qualifying_children_ctc": 1,
+      "additional_standard_deduction_count": 0,
+      "major_items": {
+        "wages": 62000,
+        "taxable_interest": 200,
+        "ordinary_dividends": 300,
+        "qualified_dividends": 0,
+        "capital_gain_or_loss": 0,
+        "total_income": 62500,
+        "adjustments_to_income": 2500,
+        "agi": 60000,
+        "deduction_amount": 14600,
+        "qbi_deduction": 0,
+        "taxable_income": 45400,
+        "tax_before_credits": 5260,
+        "nonrefundable_credits": 2000,
+        "ctc_claimed": 2000,
+        "actc_claimed": 0,
+        "other_taxes": 0,
+        "total_tax": 3260,
+        "withholding": 5800,
+        "estimated_tax_payments": 500,
+        "refundable_credits": 0,
+        "other_payments": 0,
+        "total_payments": 6300,
+        "refund": 3040,
+        "amount_owed": 0,
+        "earned_income": 62000
+      },
+      "metadata": {
+        "source_file": "form1040_2024.pdf"
+      }
+    },
+    {
+      "tax_year": 2025,
+      "filing_status": "single",
+      "deduction_type": "standard",
+      "dependents_count": 1,
+      "qualifying_children_ctc": 1,
+      "additional_standard_deduction_count": 0,
+      "has_preferential_income": false,
+      "major_items": {
+        "wages": 98000,
+        "taxable_interest": 450,
+        "ordinary_dividends": 300,
+        "qualified_dividends": 0,
+        "capital_gain_or_loss": 0,
+        "total_income": 98750,
+        "adjustments_to_income": 3000,
+        "agi": 95750,
+        "deduction_amount": 15750,
+        "qbi_deduction": 0,
+        "taxable_income": 80000,
+        "tax_before_credits": 12514,
+        "nonrefundable_credits": 2200,
+        "ctc_claimed": 2200,
+        "actc_claimed": 0,
+        "other_taxes": 0,
+        "additional_medicare_tax": 0,
+        "total_tax": 10314,
+        "withholding": 11500,
+        "estimated_tax_payments": 0,
+        "refundable_credits": 0,
+        "other_payments": 0,
+        "total_payments": 11500,
+        "refund": 1186,
+        "amount_owed": 0,
+        "earned_income": 98000
+      },
+      "metadata": {
+        "source_file": "form1040_2025.pdf"
+      }
+    }
+  ]
+}

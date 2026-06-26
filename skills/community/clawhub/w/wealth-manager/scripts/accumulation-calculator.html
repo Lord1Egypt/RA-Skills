@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>财富积累引擎 — 裂变获客 × 微利高频</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #0a0e17; color: #e0e0e0; padding: 20px; min-height: 100vh; }
+  h1 { text-align: center; color: #3498db; margin-bottom: 4px; font-size: 22px; }
+  .subtitle { text-align: center; color: #667788; margin-bottom: 18px; font-size: 13px; }
+
+  /* 关键数据面板 */
+  .key-fact { background: linear-gradient(135deg, #0f1a2e 0%, #141a26 100%); border: 1px solid #1a3a5e; border-radius: 12px; padding: 16px 24px; margin-bottom: 18px; text-align: center; }
+  .key-fact .big-num { font-size: 36px; color: #3498db; font-weight: bold; letter-spacing: 2px; }
+  .key-fact .label-text { font-size: 13px; color: #5588aa; margin-top: 4px; }
+  .key-fact .sub-text { font-size: 12px; color: #667788; margin-top: 6px; }
+
+  /* 参数区域 */
+  .params-section { margin-bottom: 16px; }
+  .section-title { font-size: 14px; color: #3498db; font-weight: bold; margin-bottom: 8px; padding-left: 4px; border-left: 3px solid #3498db; }
+  .controls { display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap; background: #141a26; padding: 16px; border-radius: 12px; border: 1px solid #1e2a3a; }
+  .control-group { display: flex; align-items: center; gap: 6px; }
+  label { font-size: 13px; color: #8899aa; white-space: nowrap; }
+  input[type="range"] { width: 100px; accent-color: #3498db; cursor: pointer; }
+  .val { color: #3498db; font-weight: bold; font-size: 14px; min-width: 55px; display: inline-block; text-align: right; }
+  input[type="number"] { width: 80px; padding: 3px 6px; background: #0f172a; color: #3498db; border: 1px solid #334155; border-radius: 4px; font-size: 13px; font-weight: bold; text-align: right; outline: none; }
+  input[type="number"]:focus { border-color: #3b82f6; }
+  input[type="number"]::-webkit-inner-spin-button { opacity: 1; }
+
+  /* 公式展示 */
+  .formula-box { background: #111822; border: 1px solid #2a3a4a; border-radius: 10px; padding: 14px 20px; margin-bottom: 16px; }
+  .formula-box .formula-title { font-size: 12px; color: #667788; margin-bottom: 8px; text-align: center; }
+  .formula-box .step { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-family: 'Courier New', monospace; font-size: 13px; flex-wrap: wrap; justify-content: center; }
+  .formula-box .step .step-label { color: #556677; font-size: 11px; min-width: 80px; text-align: right; }
+  .formula-box .step .step-expr { color: #88aacc; }
+  .formula-box .step .step-result { color: #00d4aa; font-weight: bold; }
+  .formula-box .step .step-result.highlight { color: #3498db; font-size: 15px; }
+
+  /* 统计卡片 */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .stat-card { background: #141a26; padding: 14px 10px; border-radius: 10px; border-left: 3px solid #3498db; text-align: center; }
+  .stat-card .label { font-size: 11px; color: #667788; margin-bottom: 4px; }
+  .stat-card .value { font-size: 18px; color: #00d4aa; font-weight: bold; line-height: 1.2; }
+  .stat-card.warn { border-left-color: #e74c3c; }
+  .stat-card.warn .value { color: #e74c3c; }
+  .stat-card.info { border-left-color: #3498db; }
+  .stat-card.info .value { color: #3498db; }
+  .stat-card.gold { border-left-color: #f0b90b; }
+  .stat-card.gold .value { color: #f0b90b; }
+
+  /* 完整公式 */
+  .full-formula { background: linear-gradient(135deg, #111822 0%, #0f1a2e 100%); border: 1px solid #1a3a5e; border-radius: 12px; padding: 18px 24px; margin-bottom: 16px; text-align: center; }
+  .full-formula .ff-title { font-size: 12px; color: #5588aa; margin-bottom: 10px; }
+  .full-formula .ff-expr { font-family: 'Courier New', monospace; font-size: 14px; color: #88aacc; line-height: 2; word-break: break-all; }
+  .full-formula .ff-expr .num { color: #3498db; font-weight: bold; }
+  .full-formula .ff-expr .op { color: #f0b90b; }
+  .full-formula .ff-expr .result { color: #00d4aa; font-weight: bold; font-size: 16px; }
+
+  /* 目标面板 */
+  .target-panel { background: linear-gradient(135deg, #1a1510 0%, #141a26 100%); border: 1px solid #3d2a00; border-radius: 12px; padding: 16px 24px; margin-bottom: 16px; text-align: center; }
+  .target-panel .big-num { font-size: 30px; color: #f0b90b; font-weight: bold; }
+  .target-panel .label-text { font-size: 13px; color: #aa8855; margin-top: 4px; }
+
+  .note { margin-top: 14px; font-size: 12px; color: #556677; text-align: center; line-height: 1.9; max-width: 800px; margin-left: auto; margin-right: auto; }
+  .note strong { color: #8899aa; }
+
+  /* 模型说明表格 */
+  .model-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+  .model-table th { background: #1a2332; color: #3498db; padding: 9px 8px; border-bottom: 2px solid #3498db; font-size: 12px; text-align: left; }
+  .model-table td { padding: 7px 8px; border-bottom: 1px solid #1e2a3a; }
+  .model-table td:first-child { color: #8899aa; }
+  .model-table td:last-child { color: #e0e0e0; font-family: 'Courier New', monospace; }
+  .model-table tr:hover td { background: #1a2332; }
+</style>
+</head>
+<body>
+
+<h1>🚀 财富积累引擎</h1>
+<p class="subtitle">裂变获客 × 微利高频 — 从0到1000万$的数学模型</p>
+
+<div class="key-fact" id="keyFact">
+  <div class="big-num" id="monthlyIncome">—</div>
+  <div class="label-text" id="keyLabel">—</div>
+  <div class="sub-text" id="keySub">—</div>
+</div>
+
+<!-- 裂变获客参数 -->
+<div class="params-section">
+  <div class="section-title">📦 裂变获客参数</div>
+  <div class="controls">
+    <div class="control-group">
+      <label>种子网红:</label>
+      <input type="range" id="seedInfluencers" min="1" max="100000" value="100" step="1">
+      <input type="number" id="seedInfluencersNum" min="1" max="100000" value="100" step="1">
+    </div>
+    <div class="control-group">
+      <label>每人推广粉丝:</label>
+      <input type="range" id="fansPer" min="0" max="10000000" value="10000" step="1">
+      <input type="number" id="fansPerNum" min="0" max="10000000" value="10000" step="1">
+    </div>
+    <div class="control-group">
+      <label>新网红/万人:</label>
+      <input type="range" id="newInfluencers" min="0" max="9999" value="9" step="1">
+      <input type="number" id="newInfluencersNum" min="0" max="9999" value="9" step="1">
+    </div>
+    <div class="control-group">
+      <label>每粉丝推熟人:</label>
+      <input type="range" id="acquaintances" min="0" max="1000" value="10" step="1">
+      <input type="number" id="acquaintancesNum" min="0" max="1000" value="10" step="1">
+    </div>
+  </div>
+</div>
+
+<!-- 变现参数 -->
+<div class="params-section">
+  <div class="section-title">💰 变现参数</div>
+  <div class="controls">
+    <div class="control-group">
+      <label>日均交易(CNY):</label>
+      <input type="range" id="dailyTx" min="0.1" max="100000" value="10" step="0.1">
+      <input type="number" id="dailyTxNum" min="0.1" max="100000" value="10" step="0.1">
+    </div>
+    <div class="control-group">
+      <label>抽佣率(%):</label>
+      <input type="range" id="commission" min="0.01" max="100" value="1" step="0.01">
+      <input type="number" id="commissionNum" min="0.01" max="100" value="1" step="0.01">
+    </div>
+    <div class="control-group">
+      <label>推广佣金(%):</label>
+      <input type="range" id="referralFee" min="0" max="100" value="30" step="1">
+      <input type="number" id="referralFeeNum" min="0" max="100" value="30" step="1">
+    </div>
+    <div class="control-group">
+      <label>汇率(CNY→$):</label>
+      <input type="range" id="exchangeRate" min="0.01" max="1000" value="7" step="0.01">
+      <input type="number" id="exchangeRateNum" min="0.01" max="1000" value="7" step="0.01">
+    </div>
+    <div class="control-group">
+      <label>综合税率(%):</label>
+      <input type="range" id="taxRate" min="0" max="100" value="44" step="1">
+      <input type="number" id="taxRateNum" min="0" max="100" value="44" step="1">
+    </div>
+  </div>
+</div>
+
+<!-- 积累目标 -->
+<div class="params-section">
+  <div class="section-title">🎯 积累目标</div>
+  <div class="controls">
+    <div class="control-group">
+      <label>目标金额($):</label>
+      <input type="range" id="targetAmount" min="1000" max="10000000000" value="16800000" step="1000">
+      <input type="number" id="targetAmountNum" min="1000" max="10000000000" value="16800000" step="1000">
+    </div>
+  </div>
+</div>
+
+<!-- 统计卡片 -->
+<div class="stats">
+  <div class="stat-card info">
+    <div class="label">👥 总用户数</div>
+    <div class="value" id="totalUsers">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">💵 每人每日净收入</div>
+    <div class="value" id="perUserDaily">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">📊 日收入</div>
+    <div class="value" id="dailyIncome">—</div>
+  </div>
+  <div class="stat-card gold">
+    <div class="label">📅 月收入</div>
+    <div class="value" id="monthIncome">—</div>
+  </div>
+  <div class="stat-card warn">
+    <div class="label">⏱️ 达标所需时间</div>
+    <div class="value" id="timeToTarget">—</div>
+  </div>
+</div>
+
+<!-- 分步计算 -->
+<div class="formula-box">
+  <div class="formula-title">📐 分步计算过程</div>
+  <div id="steps"></div>
+</div>
+
+<!-- 完整公式 -->
+<div class="full-formula">
+  <div class="ff-title">🔢 完整公式</div>
+  <div class="ff-expr" id="fullFormula"></div>
+</div>
+
+<!-- 目标面板 -->
+<div class="target-panel">
+  <div class="big-num" id="targetResult">—</div>
+  <div class="label-text" id="targetLabel">—</div>
+</div>
+
+<!-- 模型说明 -->
+<table class="model-table">
+  <tr><th>变量</th><th>含义</th><th>当前值</th><th>说明</th></tr>
+  <tr><td>种子网红数</td><td>初始推广节点</td><td id="tblSeed">100</td><td>起步阶段的KOL/KOC数量</td></tr>
+  <tr><td>每人推广粉丝数</td><td>单个网红触达能力</td><td id="tblFans">10,000</td><td>粉丝量级</td></tr>
+  <tr><td>新网红/万人</td><td>粉丝中可成为推广者的比例</td><td id="tblNewInf">9人/万人</td><td>加原网红=10个</td></tr>
+  <tr><td>每粉丝推熟人</td><td>用户裂变倍数</td><td id="tblAcq">10人</td><td>合规红线≤3层</td></tr>
+  <tr><td>日均交易额</td><td>每用户每日消费金额</td><td id="tblTx">10元</td><td>低客单高频</td></tr>
+  <tr><td>抽佣率</td><td>平台从交易中抽取的比例</td><td id="tblComm">1%</td><td>微利模式</td></tr>
+  <tr><td>推广佣金</td><td>分给推荐人的佣金</td><td id="tblRef">30%</td><td id="tblRefNote">平台留存=1-30%=70%</td></tr>
+  <tr><td>汇率</td><td>CNY→USD</td><td id="tblEx">7</td><td>实时调整</td></tr>
+  <tr><td>综合税率</td><td>税费占总收入比例</td><td id="tblTax">44%</td><td id="tblTaxNote">税后=1-44%=56%</td></tr>
+</table>
+
+<div class="note">
+  💡 <strong>核心逻辑：</strong>微利高频 × 大基数 = 巨大总利润。所有变量是乘法关系，放大任意一个都等比缩短积累时间。<br>
+  📐 总用户 = 种子网红 × 推广粉丝数 × (1+新网红数) × 熟人数<br>
+  💰 每人每日净收入 = 日均交易 × 抽佣率 × (1-推广佣金) ÷ 汇率 × (1-税率)<br>
+  📅 月收入 = 总用户 × 每人每日净收入 × 30（×30为最后一步）<br>
+  ⚠️ 此为数学模型，实际效果取决于执行力和市场环境。
+</div>
+
+<script>
+function fmt(n, decimals) {
+  if (decimals === undefined) decimals = 2;
+  return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+}
+
+function fmtBig(n) {
+  if (n >= 100000000) return (n / 100000000).toFixed(2) + '亿';
+  if (n >= 10000) return (n / 10000).toFixed(1) + '万';
+  return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+}
+
+function fmtDollar(n) {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+  if (n >= 1000) return '$' + (n / 1000).toFixed(1) + 'K';
+  return '$' + n.toFixed(2);
+}
+
+function fmtDollarFull(n) {
+  return '$' + fmt(n, 0);
+}
+
+function fmtDays(d) {
+  if (d < 1) return Math.round(d * 24) + '小时';
+  if (d < 30) return d.toFixed(1) + '天';
+  if (d < 365) return (d / 30).toFixed(1) + '个月';
+  return (d / 365).toFixed(1) + '年';
+}
+
+function calc() {
+  // 读取参数
+  const seedInf = parseFloat(document.getElementById('seedInfluencers').value);
+  const fansPer = parseFloat(document.getElementById('fansPer').value);
+  const newInf = parseFloat(document.getElementById('newInfluencers').value);
+  const acq = parseFloat(document.getElementById('acquaintances').value);
+  const dailyTx = parseFloat(document.getElementById('dailyTx').value);
+  const comm = parseFloat(document.getElementById('commission').value);
+  const refFee = parseFloat(document.getElementById('referralFee').value);
+  const exRate = parseFloat(document.getElementById('exchangeRate').value);
+  const tax = parseFloat(document.getElementById('taxRate').value);
+  const target = parseFloat(document.getElementById('targetAmount').value); // 直接是美元
+
+  // 同步滑块值到输入框
+  document.getElementById('seedInfluencersNum').value = seedInf;
+  document.getElementById('fansPerNum').value = fansPer;
+  document.getElementById('newInfluencersNum').value = newInf;
+  document.getElementById('acquaintancesNum').value = acq;
+  document.getElementById('dailyTxNum').value = dailyTx;
+  document.getElementById('commissionNum').value = comm;
+  document.getElementById('referralFeeNum').value = refFee;
+  document.getElementById('exchangeRateNum').value = exRate;
+  document.getElementById('taxRateNum').value = tax;
+  document.getElementById('targetAmountNum').value = parseFloat(document.getElementById('targetAmount').value);
+
+  // 更新模型说明表格
+  document.getElementById('tblSeed').textContent = seedInf;
+  document.getElementById('tblFans').textContent = fansPer.toLocaleString();
+  document.getElementById('tblNewInf').textContent = newInf + '人/万人';
+  document.getElementById('tblAcq').textContent = acq + '人';
+  document.getElementById('tblTx').textContent = dailyTx + '元';
+  document.getElementById('tblComm').textContent = comm + '%';
+  document.getElementById('tblRef').textContent = refFee + '%';
+  document.getElementById('tblRefNote').textContent = '平台留存=1-' + refFee + '%=' + (100 - refFee) + '%';
+  document.getElementById('tblEx').textContent = exRate;
+  document.getElementById('tblTax').textContent = tax + '%';
+  document.getElementById('tblTaxNote').textContent = '税后=1-' + tax + '%=' + (100 - tax) + '%';
+
+  // === 第一步：计算总用户数 ===
+  const influencerMultiplier = 1 + newInf; // 原网红1个 + 新发现newInf个
+  const totalUsers = seedInf * fansPer * influencerMultiplier * acq;
+
+  // === 第二步：计算每人每日净收入 ===
+  const platformRetention = 1 - refFee / 100;    // 70% = 1 - 30%
+  const afterTax = 1 - tax / 100;                // 56% = 1 - 44%
+  const perUserDaily = dailyTx * (comm / 100) * platformRetention / exRate * afterTax;
+
+  // === 第三步：计算月收入 ===
+  const dailyIncome = totalUsers * perUserDaily;
+  const monthlyIncome = dailyIncome * 30; // ×30 最后一步
+
+  // === 达标时间 ===
+  const daysToTarget = target / dailyIncome;
+
+  // 更新顶部面板
+  document.getElementById('monthlyIncome').textContent = fmtDollarFull(monthlyIncome) + '/月';
+  document.getElementById('keyLabel').textContent =
+    '总用户 ' + fmtBig(totalUsers) + ' × 每人每日 $' + perUserDaily.toFixed(4) + ' × 30天';
+  document.getElementById('keySub').textContent =
+    '达到 $' + target.toLocaleString('en-US') + ' 目标需 ' + fmtDays(daysToTarget);
+
+  // 统计卡片
+  document.getElementById('totalUsers').textContent = fmtBig(totalUsers);
+  document.getElementById('perUserDaily').textContent = '$' + perUserDaily.toFixed(4);
+  document.getElementById('dailyIncome').textContent = fmtDollarFull(dailyIncome);
+  document.getElementById('monthIncome').textContent = fmtDollarFull(monthlyIncome);
+  document.getElementById('timeToTarget').textContent = fmtDays(daysToTarget);
+
+  // 分步计算
+  const stepsDiv = document.getElementById('steps');
+  stepsDiv.innerHTML = '';
+
+  function addStep(label, expr, result, isHighlight) {
+    const div = document.createElement('div');
+    div.className = 'step';
+    div.innerHTML =
+      '<span class="step-label">' + label + '</span>' +
+      '<span class="step-expr">' + expr + '</span>' +
+      '<span class="step-result' + (isHighlight ? ' highlight' : '') + '">= ' + result + '</span>';
+    stepsDiv.appendChild(div);
+  }
+
+  addStep('总用户',
+    fmt(seedInf, 0) + ' × ' + fmt(fansPer, 0) + ' × ' + influencerMultiplier + ' × ' + fmt(acq, 0),
+    fmtBig(totalUsers));
+
+  addStep('抽佣',
+    fmt(dailyTx, 0) + '元 × ' + comm + '%',
+    fmt(dailyTx * comm / 100, 4) + '元');
+
+  addStep('平台留存',
+    fmt(dailyTx * comm / 100, 4) + '元 × (1-' + refFee + '%)',
+    fmt(dailyTx * comm / 100 * platformRetention, 4) + '元');
+
+  addStep('折算美元',
+    fmt(dailyTx * comm / 100 * platformRetention, 4) + '元 ÷ ' + exRate,
+    '$' + fmt(dailyTx * comm / 100 * platformRetention / exRate, 6));
+
+  addStep('每人每日净收入',
+    '$' + fmt(dailyTx * comm / 100 * platformRetention / exRate, 6) + ' × (1-' + tax + '%)',
+    '$' + perUserDaily.toFixed(4));
+
+  addStep('日收入',
+    fmtBig(totalUsers) + ' × $' + perUserDaily.toFixed(4),
+    fmtDollarFull(dailyIncome));
+
+  addStep('月收入 (×30)',
+    fmtDollarFull(dailyIncome) + ' × 30',
+    fmtDollarFull(monthlyIncome), true);
+
+  // 完整公式
+  document.getElementById('fullFormula').innerHTML =
+    '<span class="num">' + fmt(seedInf, 0) + '</span>' +
+    ' <span class="op">×</span> ' +
+    '<span class="num">' + fmt(fansPer, 0) + '</span>' +
+    ' <span class="op">×</span> ' +
+    '<span class="num">' + influencerMultiplier + '</span>' +
+    ' <span class="op">×</span> ' +
+    '<span class="num">' + fmt(acq, 0) + '</span>' +
+    ' <span class="op">×</span> ' +
+    '<span class="num">' + fmt(dailyTx, 0) + '元</span>' +
+    ' <span class="op">×</span> ' +
+    '<span class="num">' + comm + '%</span>' +
+    ' <span class="op">×</span> ' +
+    '<span class="num">(1-' + refFee + '%)</span>' +
+    ' <span class="op">÷</span> ' +
+    '<span class="num">' + exRate + '</span>' +
+    ' <span class="op">×</span> ' +
+    '<span class="num">(1-' + tax + '%)</span>' +
+    ' <span class="op">×</span> ' +
+    '<span class="num">30</span>' +
+    ' <span class="op">=</span> ' +
+    '<span class="result">' + fmtDollarFull(monthlyIncome) + '/月</span>';
+
+  // 目标面板
+  document.getElementById('targetResult').textContent = fmtDays(daysToTarget);
+  document.getElementById('targetLabel').textContent =
+    '目标 $' + target.toLocaleString('en-US') + ' | 月收入 ' + fmtDollarFull(monthlyIncome) +
+    ' | 约 ' + Math.ceil(daysToTarget / 30) + ' 个月完成积累';
+}
+
+// 绑定所有滑块和输入框，双向同步
+const sliderIds = ['seedInfluencers', 'fansPer', 'newInfluencers', 'acquaintances',
+                   'dailyTx', 'commission', 'referralFee', 'exchangeRate', 'taxRate', 'targetAmount'];
+sliderIds.forEach(id => {
+  const slider = document.getElementById(id);
+  const numInput = document.getElementById(id + 'Num');
+  // 滑块→输入框
+  slider.addEventListener('input', calc);
+  // 输入框→滑块
+  numInput.addEventListener('input', function() {
+    const min = parseFloat(slider.min);
+    const max = parseFloat(slider.max);
+    let v = parseFloat(this.value);
+    if (!isNaN(v)) {
+      v = Math.max(min, Math.min(max, v));
+      slider.value = v;
+      calc();
+    }
+  });
+});
+
+calc();
+</script>
+</body>
+</html>

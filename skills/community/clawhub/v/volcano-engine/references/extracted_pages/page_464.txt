@@ -1,0 +1,77 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+{{Parameter}} is
+invalid.值的正确性后重
+试。
+400 BadRequestMissingParamet
+er.{{Parameter}}The required
+parameter
+{{Parameter}} is
+missing.缺少必要的请求
+参数。请确认请
+求参数后重试。
+400 BadRequestDuplicate.Tags.K
+eyThe specified
+object of tags
+contains
+duplicate keys.对象的标签存在
+重复Key。
+400 BadRequestInvalidArgument
+ErrorMissingRole：
+Invalid message:
+{{Message}}请求中的
+messages 列表
+里，有消息体缺
+少 role 字段
+400 BadRequestInvalidArgument
+Error.UnknownR
+oleUnknow the role
+of message:
+{{Role}}消息体中的 role
+值不被支持，如
+user_ 。
+400 BadRequestInvalidArgument
+Error.UnknownR
+oleThe Inference
+role not found:
+{{Role}}指定的
+inference_role
+未在配置中定
+义。
+400 BadRequestInvalidArgument
+Error.InvalidIma
+geDetailInvalid image
+detail:
+{{Parameter}}image_url 中的
+detail 参数值无
+效，只接受
+"auto", "high",
+"low"
+400 BadRequestInvalidArgument
+Error.InvalidPixel
+LimitCustomized
+min_pixels 100 is
+greater than
+max_pixels 50用户自定义的图
+片像素限制
+（min_pixels,
+max_pixels）无
+效（例如
+min_pixels >
+max_pixels，或
+超出了服务配置
+的范围）
+400 BadRequestInvalidImageUR
+L.EmptyURLEmpty base64
+image url传入的图片 URL
+为空
+400 BadRequestInvalidImageUR
+L.InvalidFormatInvalid base64
+image url无法解析或处理
+图片，可能是
+Base64 格式不
+正确、图片数据API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 459/485

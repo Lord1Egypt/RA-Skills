@@ -1,0 +1,225 @@
+{
+  "function_declarations": [
+    {
+      "name": "memory_init",
+      "description": "Initialize ultra-memory session. Call at conversation start to create three-layer memory structure and inject historical context.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "project": {
+            "type": "STRING",
+            "description": "Project name (default: 'default')"
+          },
+          "resume": {
+            "type": "BOOLEAN",
+            "description": "Try to resume the most recent session for this project"
+          }
+        }
+      }
+    },
+    {
+      "name": "memory_status",
+      "description": "Query current session status: operation count, last milestone, context pressure level (low/medium/high/critical). Use to decide when to compress.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "session_id": {
+            "type": "STRING",
+            "description": "Session ID returned by memory_init"
+          }
+        },
+        "required": [
+          "session_id"
+        ]
+      }
+    },
+    {
+      "name": "memory_log",
+      "description": "Record an operation to the current session log (Layer 1). Call after every significant action: file write, bash command, tool call, decision, error, or milestone.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "session_id": {
+            "type": "STRING",
+            "description": "Current session ID"
+          },
+          "op_type": {
+            "type": "STRING",
+            "description": "Operation type: one of tool_call, file_write, file_read, bash_exec, reasoning, user_instruction, decision, error, milestone"
+          },
+          "summary": {
+            "type": "STRING",
+            "description": "Operation summary (under 50 words)"
+          },
+          "detail": {
+            "type": "OBJECT",
+            "description": "Detail fields (optional). Special sub-fields: profile_update {key:value} triggers profile conflict detection; knowledge_entry {title,content} triggers knowledge conflict detection; path for file ops; cmd for bash ops"
+          },
+          "tags": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            },
+            "description": "Tag list (optional, auto-generated if omitted)"
+          }
+        },
+        "required": [
+          "session_id",
+          "op_type",
+          "summary"
+        ]
+      }
+    },
+    {
+      "name": "memory_recall",
+      "description": "Retrieve relevant records from all memory layers (ops log, summary, semantic, entity index). Use when you need to recall past work, decisions, or errors.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "session_id": {
+            "type": "STRING",
+            "description": "Current session ID"
+          },
+          "query": {
+            "type": "STRING",
+            "description": "Search keywords (Chinese or English)"
+          },
+          "top_k": {
+            "type": "NUMBER",
+            "description": "Number of results to return (default: 5)"
+          }
+        },
+        "required": [
+          "session_id",
+          "query"
+        ]
+      }
+    },
+    {
+      "name": "memory_summarize",
+      "description": "Trigger summary compression of the current session (compresses ops log into summary.md). Call when context pressure is high or critical, or every ~50 operations.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "session_id": {
+            "type": "STRING",
+            "description": "Current session ID"
+          },
+          "force": {
+            "type": "BOOLEAN",
+            "description": "Force compression even if operation count is low"
+          }
+        },
+        "required": [
+          "session_id"
+        ]
+      }
+    },
+    {
+      "name": "memory_restore",
+      "description": "Restore the last session context for a project. Use at conversation start to continue a previous task across days.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "project": {
+            "type": "STRING",
+            "description": "Project name (default: 'default')"
+          },
+          "verbose": {
+            "type": "BOOLEAN",
+            "description": "Show detailed operation records"
+          }
+        }
+      }
+    },
+    {
+      "name": "memory_profile",
+      "description": "Read or update user profile (tech stack, preferences, project list). Persist user-level preferences across all sessions.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "action": {
+            "type": "STRING",
+            "description": "Operation type: read or update"
+          },
+          "updates": {
+            "type": "OBJECT",
+            "description": "Fields to update (required when action=update)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    },
+    {
+      "name": "memory_entities",
+      "description": "Query structured entity index (functions, files, dependencies, decisions, errors). Use for precise questions like 'which functions were used', 'which packages were installed', 'what decisions were made'.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "entity_type": {
+            "type": "STRING",
+            "description": "Entity type filter: function, file, dependency, decision, error, class, or all (no filter)"
+          },
+          "query": {
+            "type": "STRING",
+            "description": "Search keyword (optional, empty returns all of that type)"
+          },
+          "top_k": {
+            "type": "NUMBER",
+            "description": "Number of results to return (default: 10)"
+          }
+        }
+      }
+    },
+    {
+      "name": "memory_extract_entities",
+      "description": "Re-extract all structured entities from a session's ops log. Use to repair or initialize the entity index.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "session_id": {
+            "type": "STRING",
+            "description": "Session ID"
+          }
+        },
+        "required": [
+          "session_id"
+        ]
+      }
+    },
+    {
+      "name": "memory_knowledge_add",
+      "description": "Append important information to the knowledge base for future retrieval. Use when: solving a tricky bug, making a key tech decision, discovering a tool usage tip, or completing a reusable code pattern.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "title": {
+            "type": "STRING",
+            "description": "Knowledge title (max 100 chars)"
+          },
+          "content": {
+            "type": "STRING",
+            "description": "Knowledge content (max 200 chars)"
+          },
+          "project": {
+            "type": "STRING",
+            "description": "Associated project name (default: 'default')"
+          },
+          "tags": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            },
+            "description": "Tag list (optional)"
+          }
+        },
+        "required": [
+          "title",
+          "content"
+        ]
+      }
+    }
+  ]
+}

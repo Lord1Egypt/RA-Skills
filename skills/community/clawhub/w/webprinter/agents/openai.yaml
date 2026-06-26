@@ -1,0 +1,7 @@
+interface:
+  display_name: "WebPrinter Cloud Print"
+  short_description: "Upload files and use the official WebPrinter API for roaming print, direct print, printer lookup, and separate task setting updates including paper size."
+  default_prompt: "Use $webprinter to upload a document, check available printers, create a WebPrinter print task, or update duplex, color, copies, and paper through separate task-setting actions. Convert paper names like A4 into width and height before updating paper."
+
+policy:
+  allow_implicit_invocation: true

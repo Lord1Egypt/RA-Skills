@@ -1,0 +1,16 @@
+{
+  "_comment_input_dir": "GUI 程序中选定的「输入文件夹」绝对路径。必须与 GUI 实际选定的完全一致。",
+  "input_dir": "C:/Users/YourName/Pictures/watermark_in",
+
+  "_comment_output_dir": "GUI 程序中选定的「输出文件夹」绝对路径。",
+  "output_dir": "C:/Users/YourName/Pictures/watermark_out",
+
+  "_comment_undetected_dir": "未识别水印的图片会进这个目录。GUI 默认使用 output_dir + '_未识别'，通常无需修改。",
+  "undetected_dir": "C:/Users/YourName/Pictures/watermark_out_未识别",
+
+  "_comment_timeout": "等待单张图处理完成的默认超时（秒）。批量处理大量图片时建议传更大的值给 process 命令。",
+  "default_timeout_sec": 300,
+
+  "_comment_poll": "轮询输出目录的间隔（秒）。设小一点响应更快，但会增加磁盘读取次数。",
+  "poll_interval_sec": 1.0
+}

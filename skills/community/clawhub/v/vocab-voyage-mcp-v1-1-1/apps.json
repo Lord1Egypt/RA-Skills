@@ -1,0 +1,208 @@
+{
+  "resources": [
+    {
+      "uri": "ui://vocab-voyage/word-of-the-day",
+      "name": "Word of the Day",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Hero card with today's vocab word, definition, audio button, and add-to-queue CTA. Powered by get_word_of_the_day.",
+      "preferredSize": {
+        "width": 560,
+        "height": 360
+      },
+      "category": "learn",
+      "primaryTool": "get_word_of_the_day"
+    },
+    {
+      "uri": "ui://vocab-voyage/flashcards",
+      "name": "Flashcards",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Tap-to-flip flashcard deck. 'I knew this / I didn't' buttons persist mastery via the same tables as the web app. Powered by get_flashcards.",
+      "preferredSize": {
+        "width": 560,
+        "height": 460
+      },
+      "category": "learn",
+      "primaryTool": "get_flashcards"
+    },
+    {
+      "uri": "ui://vocab-voyage/quiz",
+      "name": "Quiz",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Interactive multiple-choice quiz. Per-answer events flow to record_word_result; session totals to record_session_complete. Powered by generate_quiz.",
+      "preferredSize": {
+        "width": 560,
+        "height": 520
+      },
+      "category": "learn",
+      "primaryTool": "generate_quiz"
+    },
+    {
+      "uri": "ui://vocab-voyage/study-plan",
+      "name": "Study Plan",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Seven-day expandable plan grid. 'Start Day N' launches a flashcard session seeded with that day's words. Powered by study_plan_preview.",
+      "preferredSize": {
+        "width": 600,
+        "height": 600
+      },
+      "category": "learn",
+      "primaryTool": "study_plan_preview"
+    },
+    {
+      "uri": "ui://vocab-voyage/progress",
+      "name": "My Progress",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Auth-only personal dashboard: streak, XP, mastery split, next-up words, and recent misses. Powered by get_my_progress.",
+      "preferredSize": {
+        "width": 600,
+        "height": 640
+      },
+      "category": "progress",
+      "primaryTool": "get_my_progress"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/word_match",
+      "name": "Game \u00b7 Word Match",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Tap a word, then tap its definition. Per-pair answers persist via record_word_result; round end awards XP. Powered by play_game (slug=word_match).",
+      "preferredSize": {
+        "width": 620,
+        "height": 640
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/spelling_bee",
+      "name": "Game \u00b7 Spelling Bee",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Type the word from its definition (with audio). Per-word results persist; round XP awards via award_game_xp. Powered by play_game (slug=spelling_bee).",
+      "preferredSize": {
+        "width": 560,
+        "height": 580
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/speed_round",
+      "name": "Game \u00b7 Speed Round",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "60-second timed sprint with streak bonuses. Powered by play_game (slug=speed_round).",
+      "preferredSize": {
+        "width": 560,
+        "height": 600
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/synonym_showdown",
+      "name": "Game \u00b7 Synonym Showdown",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Pick the closest synonym for each word. Powered by play_game (slug=synonym_showdown).",
+      "preferredSize": {
+        "width": 560,
+        "height": 580
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/word_scramble",
+      "name": "Game \u00b7 Word Scramble",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Unscramble the letters to spell each vocab word. Powered by play_game (slug=word_scramble).",
+      "preferredSize": {
+        "width": 560,
+        "height": 580
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/fill_in_blank",
+      "name": "Game \u00b7 Fill in the Blank",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Pick the word that completes each sentence. Powered by play_game (slug=fill_in_blank).",
+      "preferredSize": {
+        "width": 560,
+        "height": 600
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/context_clues",
+      "name": "Game \u00b7 Context Clues",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Infer each word's meaning from a surrounding sentence. Powered by play_game (slug=context_clues).",
+      "preferredSize": {
+        "width": 600,
+        "height": 620
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/word_guess",
+      "name": "Game \u00b7 Word Guess",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Hangman-style letter guessing for vocab words. Powered by play_game (slug=word_guess).",
+      "preferredSize": {
+        "width": 560,
+        "height": 600
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/picture_match",
+      "name": "Game \u00b7 Picture Match",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Match each word to its emoji-cued image. Powered by play_game (slug=picture_match).",
+      "preferredSize": {
+        "width": 600,
+        "height": 620
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/crossword",
+      "name": "Game \u00b7 Crossword",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Mini vocabulary crossword. Powered by play_game (slug=crossword).",
+      "preferredSize": {
+        "width": 640,
+        "height": 720
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/game/word_search",
+      "name": "Game \u00b7 Word Search",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Find hidden vocab words in a letter grid. Powered by play_game (slug=word_search).",
+      "preferredSize": {
+        "width": 640,
+        "height": 720
+      },
+      "category": "play",
+      "primaryTool": "play_game"
+    },
+    {
+      "uri": "ui://vocab-voyage/session-debrief",
+      "name": "Session Debrief",
+      "mimeType": "text/html;profile=mcp-app",
+      "description": "Post-session summary with weak words, next-up queue, and Sparkle's recommended next action. Powered by get_sparkle_guidance / get_my_progress.",
+      "preferredSize": {
+        "width": 600,
+        "height": 640
+      },
+      "category": "coach",
+      "primaryTool": "get_sparkle_guidance"
+    }
+  ]
+}

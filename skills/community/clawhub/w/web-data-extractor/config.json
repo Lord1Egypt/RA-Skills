@@ -1,0 +1,31 @@
+{
+  "name": "web-data-extractor",
+  "version": "1.0.0",
+  "description": "网页数据采集器，支持 CSS 选择器/XPath 提取、批量抓取、数据导出",
+  "author": "data-tools-dev",
+  "license": "MIT-0",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "triggers": [
+    "网页抓取",
+    "数据采集",
+    "web scraping",
+    "data extraction",
+    "批量抓取",
+    "CSS selector",
+    "XPath",
+    "爬虫"
+  ],
+  "capabilities": [
+    "web_fetch",
+    "read",
+    "write",
+    "exec"
+  ],
+  "config": {
+    "defaultFormat": "json",
+    "maxConcurrency": 5,
+    "delayMs": 1000
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card/v1.json",
+  "name": "vocab-voyage",
+  "display_name": "Vocab Voyage",
+  "description": "Vocabulary tools for ISEE, SSAT, SAT, PSAT, GRE, GMAT, and LSAT prep \u2014 20 tools and 17 interactive widgets (Word of the Day, flashcards, quiz, study plan, progress, 11 mini-games, session debrief) with lifecycle-aware Sparkle guidance.",
+  "version": "1.1.1",
+  "publisher": {
+    "name": "Vocab Voyage",
+    "url": "https://vocab.voyage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaideepdhanoa/vocab-voyage-mcp"
+  },
+  "source_url": "https://github.com/jaideepdhanoa/vocab-voyage-mcp",
+  "screenshots": [
+    { "url": "https://vocab.voyage/widgets/screenshots/flashcards.png", "alt": "Flashcards widget" },
+    { "url": "https://vocab.voyage/widgets/screenshots/quiz.png", "alt": "Quiz widget" },
+    { "url": "https://vocab.voyage/widgets/screenshots/study-plan.png", "alt": "Study plan widget" },
+    { "url": "https://vocab.voyage/widgets/screenshots/progress.png", "alt": "Progress dashboard widget" },
+    { "url": "https://vocab.voyage/widgets/screenshots/session-debrief.png", "alt": "Session debrief widget" }
+  ],
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server"
+  },
+  "auth": {
+    "anonymous": true,
+    "bearer": {
+      "description": "Optional. Pass a personal MCP token (vv_mcp_\u2026) generated at https://vocab.voyage/mcp to unlock personalized tools.",
+      "token_url": "https://vocab.voyage/mcp",
+      "documentation_url": "https://vocab.voyage/developers/auth",
+      "rotation": "Generate a new token at https://vocab.voyage/mcp, deploy, then revoke the previous one.",
+      "revocation": "Open https://vocab.voyage/mcp and click Revoke. Immediate.",
+      "oauth_protected_resource": "https://vocab.voyage/.well-known/oauth-protected-resource"
+    },
+    "scopes": [
+      { "name": "mcp.read", "description": "Read MCP metadata and public tool results. Required for any MCP usage." },
+      { "name": "mcp.tools", "description": "Invoke public MCP tools (definition, quiz, courses, study plan). Required to call tools." },
+      { "name": "profile.read", "description": "Read connected user's display name, account type, and preferred course." },
+      { "name": "progress.read", "description": "Read mastery, streaks, and recent sessions for the connected user." }
+    ],
+    "error_codes": [
+      { "code": "unauthorized", "meaning": "Personalized tool called without a vv_mcp_ token." },
+      { "code": "insufficient_scope", "meaning": "Token missing required scope. Response includes required_scopes array." },
+      { "code": "token_revoked", "meaning": "Token has been revoked or expired. Generate a new one at /mcp." }
+    ]
+  },
+  "documentation_url": "https://vocab.voyage/mcp",
+  "auth_documentation_url": "https://vocab.voyage/developers/auth",
+  "tools": [
+    {
+      "name": "get_word_of_the_day",
+      "description": "Returns today's vocabulary Word of the Day, optionally scoped to a test family."
+    },
+    {
+      "name": "get_definition",
+      "description": "Look up the definition, part of speech, example sentence, and synonyms/antonyms for a word.",
+      "_meta": {
+        "ui.resourceUri": "ui://vocab-voyage/definition",
+        "ui.widgetDescription": "Definition card with examples and synonyms."
+      }
+    },
+    {
+      "name": "generate_quiz",
+      "description": "Generate a multiple-choice vocabulary quiz for a test family (1\u201310 questions).",
+      "_meta": {
+        "ui.resourceUri": "ui://vocab-voyage/quiz",
+        "ui.widgetDescription": "Interactive vocabulary quiz card."
+      }
+    },
+    {
+      "name": "get_course_word_list",
+      "description": "Get a sample of vocabulary words from a specific Vocab Voyage course."
+    },
+    {
+      "name": "list_courses",
+      "description": "Lists all 13 Vocab Voyage courses with their slugs and descriptions."
+    },
+    {
+      "name": "explain_word_in_context",
+      "description": "Explain what a word means inside a specific sentence."
+    },
+    {
+      "name": "study_plan_preview",
+      "description": "Returns a sample 7-day study plan (5 words/day) for a given test family.",
+      "_meta": {
+        "ui.resourceUri": "ui://vocab-voyage/study-plan",
+        "ui.widgetDescription": "Seven-day study plan preview."
+      }
+    },
+    {
+      "name": "get_flashcards",
+      "description": "Returns a tap-to-flip flashcard deck. Per-card answers persist via record_word_result.",
+      "_meta": { "ui.resourceUri": "ui://vocab-voyage/flashcards", "ui.widgetDescription": "Flashcard deck with mastery callbacks." }
+    },
+    {
+      "name": "get_my_progress",
+      "description": "Auth-only personal dashboard: streak, XP, mastery split, next-up words, recent misses.",
+      "_meta": { "ui.resourceUri": "ui://vocab-voyage/progress", "ui.widgetDescription": "Personal progress dashboard." }
+    },
+    {
+      "name": "play_game",
+      "description": "Launches one of 11 vocabulary mini-games (word_match, spelling_bee, speed_round, synonym_showdown, word_scramble, fill_in_blank, context_clues, word_guess, picture_match, crossword, word_search). Per-answer events flow to record_word_result; round XP via award_game_xp."
+    },
+    {
+      "name": "get_sparkle_guidance",
+      "description": "Lifecycle-aware coaching: returns a phase-appropriate greeting (16 phases) and a recommended next tool/action. Renders the session-debrief widget when relevant.",
+      "_meta": { "ui.resourceUri": "ui://vocab-voyage/session-debrief", "ui.widgetDescription": "Sparkle's session debrief and next-action card." }
+    },
+    { "name": "set_persona", "description": "Switch agent bias between student, parent, tutor, or explorer." },
+    { "name": "get_recommended_next_action", "description": "Returns a one-line recommendation for what the user should do next." },
+    { "name": "list_starter_prompts", "description": "Lists the 6 MCP prompts (vocab_kickoff, test_prep_quiz, session_debrief, …) for hosts that don't surface prompts/list." },
+    { "name": "record_word_result", "description": "Auth: log a per-card answer (correct or incorrect)." },
+    { "name": "record_session_complete", "description": "Auth: log session totals and award XP." },
+    { "name": "award_game_xp", "description": "Auth: grant bonus XP from a completed mini-game round." },
+    { "name": "mark_word_known", "description": "Auth: add a word to the user's queue or mastered list." },
+    { "name": "mark_word_difficult", "description": "Auth: flag a word as needing more review." },
+    { "name": "update_adaptive_level", "description": "Auth: adjust the user's adaptive difficulty floor/ceiling." }
+  ],
+  "resources": [
+    { "uri": "ui://vocab-voyage/word-of-the-day", "name": "Word of the Day", "mimeType": "text/html;profile=mcp-app", "category": "learn", "preferredSize": { "width": 560, "height": 360 }, "primaryTool": "get_word_of_the_day" },
+    { "uri": "ui://vocab-voyage/flashcards", "name": "Flashcards", "mimeType": "text/html;profile=mcp-app", "category": "learn", "preferredSize": { "width": 560, "height": 460 }, "primaryTool": "get_flashcards" },
+    { "uri": "ui://vocab-voyage/quiz", "name": "Quiz", "mimeType": "text/html;profile=mcp-app", "category": "learn", "preferredSize": { "width": 560, "height": 520 }, "primaryTool": "generate_quiz" },
+    { "uri": "ui://vocab-voyage/study-plan", "name": "Study Plan", "mimeType": "text/html;profile=mcp-app", "category": "learn", "preferredSize": { "width": 600, "height": 600 }, "primaryTool": "study_plan_preview" },
+    { "uri": "ui://vocab-voyage/progress", "name": "My Progress", "mimeType": "text/html;profile=mcp-app", "category": "progress", "preferredSize": { "width": 600, "height": 640 }, "primaryTool": "get_my_progress" },
+    { "uri": "ui://vocab-voyage/session-debrief", "name": "Session Debrief", "mimeType": "text/html;profile=mcp-app", "category": "coach", "preferredSize": { "width": 600, "height": 640 }, "primaryTool": "get_sparkle_guidance" },
+    { "uri": "ui://vocab-voyage/game/word_match", "name": "Game · Word Match", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 620, "height": 640 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/spelling_bee", "name": "Game · Spelling Bee", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 560, "height": 580 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/speed_round", "name": "Game · Speed Round", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 560, "height": 600 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/synonym_showdown", "name": "Game · Synonym Showdown", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 560, "height": 580 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/word_scramble", "name": "Game · Word Scramble", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 560, "height": 580 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/fill_in_blank", "name": "Game · Fill in the Blank", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 560, "height": 600 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/context_clues", "name": "Game · Context Clues", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 600, "height": 620 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/word_guess", "name": "Game · Word Guess", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 560, "height": 600 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/picture_match", "name": "Game · Picture Match", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 600, "height": 620 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/crossword", "name": "Game · Crossword", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 640, "height": 720 }, "primaryTool": "play_game" },
+    { "uri": "ui://vocab-voyage/game/word_search", "name": "Game · Word Search", "mimeType": "text/html;profile=mcp-app", "category": "play", "preferredSize": { "width": 640, "height": 720 }, "primaryTool": "play_game" }
+  ],
+  "rate_limits": {
+    "anonymous": "60 requests/minute per IP",
+    "authenticated": "600 requests/hour per user"
+  },
+  "serverUrl": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server",
+  "error_format": {
+    "error_code": "string",
+    "message": "string",
+    "hint": "string",
+    "retry_after": "number"
+  },
+  "rate_limit_headers": [
+    "X-RateLimit-Limit",
+    "X-RateLimit-Remaining",
+    "Retry-After"
+  ],
+  "discoveryUrl": "https://vocab.voyage/.well-known/mcp.json",
+  "alternateDiscovery": "https://vocab.voyage/.well-known/mcp",
+  "apiCatalog": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/api-catalog",
+  "uiResources": "https://vocab.voyage/.well-known/mcp/apps.json",
+  "listings": [
+    { "registry": "mcp_registry", "url": "https://registry.modelcontextprotocol.io/?q=vocab-voyage" },
+    { "registry": "glama", "url": "https://glama.ai/mcp/servers/jaideepdhanoa/vocab-voyage-mcp" },
+    { "registry": "smithery", "url": "https://smithery.ai/servers/vocab-voyage/vocab-voyage-mcp" },
+    { "registry": "clawhub", "url": "https://clawhub.ai/jaideepdhanoa/vocab-voyage-mcp" },
+    { "registry": "mcpmarket", "url": "https://mcpmarket.com/server/vocab-voyage" },
+    { "registry": "github", "url": "https://github.com/jaideepdhanoa/vocab-voyage-mcp" }
+  ]
+}

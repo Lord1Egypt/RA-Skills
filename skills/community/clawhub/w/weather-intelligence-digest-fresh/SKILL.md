@@ -1,35 +1,31 @@
 ---
-name: "Weather Intelligence Digest Fresh"
-description: "Generate daily Weather Intelligence Digest using NOAA/NWS data with customizable locations and alert monitoring."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-intelligence-digest-fresh"
-sourceUrl: "https://clawhub.ai/skills/weather-intelligence-digest-fresh"
+name: weather-intelligence-digest
+description: Generate daily Weather Intelligence Digest using NOAA/NWS data with customizable locations and alert monitoring.
+homepage: https://api.weather.gov
+metadata: { "openclaw": { "emoji": "🌦️", "requires": { "bins": ["python3", "pip"] } } }
 ---
 
-# Weather Intelligence Digest Fresh
+# Weather Intelligence Digest
 
-> Generate daily Weather Intelligence Digest using NOAA/NWS data with customizable locations and alert monitoring.
+Generate a daily Weather Intelligence Digest using NOAA / NWS data.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-intelligence-digest-fresh`
-- **Source URL:** [https://clawhub.ai/skills/weather-intelligence-digest-fresh](https://clawhub.ai/skills/weather-intelligence-digest-fresh)
+## Setup
 
-## Overview
+1. **Dependencies:** `python3`, `pip`.
+2. Optional but recommended: `python3 -m venv .venv && source .venv/bin/activate`.
+3. `pip install -r requirements.txt`.
+4. Copy `config.example.json` to `config.json` and customize the `locations` list with `name`, `lat`, `lon` pairs.
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/weather-intelligence-digest-fresh
+python3 weather_digest.py --config config.json --output digest.md
 ```
+
+Output is Markdown; convert to PDF/email as needed.
+
+## Configuration Notes
+
+- Data source: `api.weather.gov` (no API key required; feel free to customize the User-Agent string in the script).
+- Each location fetches forecast + alerts; add/remove fields as needed.
+- Extend the template by editing `build_digest` in `weather_digest.py`.

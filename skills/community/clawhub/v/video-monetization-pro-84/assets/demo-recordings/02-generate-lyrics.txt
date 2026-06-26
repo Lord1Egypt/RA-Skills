@@ -1,0 +1,9 @@
+🎵 创作歌词：油价狂飙
+./scripts/generate-lyrics.sh: line 22: [风格]，烟嗓女声，[情绪]，[节奏]，[乐器]: command not found
+./scripts/generate-lyrics.sh: line 23: 示例：Rock: command not found
+✅ 歌词草稿完成
+📄 文件：/Users/huang/.openclaw/workspace/knowledge/video/daily-mv-tasks/2026-04-02-lyrics-油价狂飙.md
+
+下一步：
+1. 编辑 /Users/huang/.openclaw/workspace/knowledge/video/daily-mv-tasks/2026-04-02-lyrics-油价狂飙.md 填写歌词
+2. 运行：./legal-check.sh /Users/huang/.openclaw/workspace/knowledge/video/daily-mv-tasks/2026-04-02-lyrics-油价狂飙.md

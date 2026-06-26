@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧠 Unified Memory Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #242836;
+      --border: #2e3348;
+      --accent: #6c8eff;
+      --accent2: #a78bfa;
+      --text: #e2e4ea;
+      --text-dim: #8b8fa3;
+      --green: #4ade80;
+      --yellow: #fbbf24;
+      --red: #f87171;
+      --purple: #c084fc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+    header .logo { font-size: 1.5rem; }
+    header h1 { font-size: 1.1rem; font-weight: 600; flex: 1; }
+    .header-badge {
+      font-size: 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* Top stats bar */
+    .top-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .top-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    .top-bar-item strong { color: var(--text); font-size: 1rem; }
+    .top-bar-item canvas { display: block; }
+
+    /* Scope selector */
+    .scope-selector {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+    .scope-selector select {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    /* Search bar */
+    .search-bar {
+      max-width: 720px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+      display: flex;
+      gap: 8px;
+    }
+    .search-bar input {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-bar input:focus { border-color: var(--accent); }
+    .search-bar input::placeholder { color: var(--text-dim); }
+    .search-bar button {
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .search-bar button:hover { opacity: 0.85; }
+
+    /* Main layout */
+    .container {
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+    }
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      .top-bar { gap: 12px; }
+      .scope-selector { margin-left: 0; width: 100%; }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .card-header .card-icon { margin-right: 8px; }
+    .card-body { padding: 14px 18px; }
+
+    /* Create form */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+    }
+    .panel h3 { font-size: 0.9rem; margin-bottom: 10px; }
+    .panel textarea {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+      resize: vertical;
+      min-height: 70px;
+      font-family: inherit;
+      margin-bottom: 8px;
+    }
+    .panel textarea:focus { outline: none; border-color: var(--accent); }
+    .panel textarea::placeholder { color: var(--text-dim); }
+    .panel select {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 0.83rem;
+      cursor: pointer;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .panel button {
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .panel button:hover { opacity: 0.85; }
+    .panel button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Memory list */
+    .memory-list { display: flex; flex-direction: column; gap: 10px; }
+    .memory-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      transition: border-color 0.2s, transform 0.1s;
+    }
+    .memory-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .memory-card .memory-text {
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .memory-card .memory-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .badge-cat { background: var(--accent2); color: #fff; opacity: 0.85; }
+    .badge-imp-high { background: var(--green); color: #000; }
+    .badge-imp-med { background: var(--yellow); color: #000; }
+    .badge-imp-low { background: var(--text-dim); color: #fff; }
+    .badge-team { background: var(--purple); color: #fff; }
+    .badge-global { background: var(--accent); color: #fff; }
+
+    /* Memory card actions */
+    .memory-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .btn-action {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-action:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-action.delete:hover { border-color: var(--red); color: var(--red); }
+
+    /* Inline edit */
+    .inline-edit-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 60px;
+      margin-bottom: 6px;
+    }
+    .inline-edit-input:focus { outline: none; }
+    .inline-edit-actions { display: flex; gap: 6px; }
+    .btn-save {
+      background: var(--green);
+      color: #000;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .btn-cancel {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 4px 12px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+    .empty-state .emoji { font-size: 2rem; margin-bottom: 8px; }
+
+    /* Right sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+    /* Stats */
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-box .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    .stat-box .stat-label { font-size: 0.72rem; color: var(--text-dim); margin-top: 2px; }
+
+    /* Category breakdown */
+    .cat-list { display: flex; flex-direction: column; gap: 6px; }
+    .cat-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cat-item:last-child { border-bottom: none; }
+    .cat-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--accent);
+      margin-left: 8px;
+      min-width: 4px;
+      max-width: 80px;
+      flex: 1;
+    }
+
+    /* Tag cloud */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 3px 10px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* Insights */
+    .insight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.83rem;
+    }
+    .insight-item:last-child { border-bottom: none; }
+    .insight-icon { font-size: 1rem; flex-shrink: 0; }
+    .insight-text { color: var(--text-dim); }
+    .insight-text strong { color: var(--text); }
+
+    /* Search results */
+    .search-results-header {
+      padding: 10px 18px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .result-score {
+      font-size: 0.72rem;
+      background: var(--surface);
+      padding: 1px 6px;
+      border-radius: 8px;
+      color: var(--accent);
+    }
+
+    /* Health status */
+    .health-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.83rem;
+    }
+    .health-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .health-dot.ok { background: var(--green); }
+    .health-dot.warn { background: var(--yellow); }
+    .health-dot.err { background: var(--red); }
+
+    /* Buttons */
+    .btn-sm {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-sm:hover { background: var(--border); }
+
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      padding: 0 18px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .tab {
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      color: var(--text-dim);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab.active { color: var(--accent); border-color: var(--accent); }
+    .tab:hover { color: var(--text); }
+
+    /* Memory detail modal */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 90%; max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 24px;
+    }
+    .modal h3 { margin-bottom: 12px; font-size: 1rem; }
+    .modal p { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 16px; white-space: pre-wrap; }
+    .modal-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .btn-danger { background: var(--red); color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.83rem; cursor: pointer; }
+    .btn-close { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 6px 14px; border-radius: 6px; font-size: 0.83rem; cursor: pointer; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo">🧠</span>
+  <h1>Unified Memory</h1>
+  <span class="header-badge" id="versionBadge">v1.1.0</span>
+</header>
+
+<!-- Top stats bar -->
+<div class="top-bar">
+  <div class="top-bar-item">记忆总数: <strong id="total-memories">-</strong></div>
+  <div class="top-bar-item">平均质量: <strong id="avg-quality">-</strong></div>
+  <div class="top-bar-item">
+    <span>分布:</span>
+    <canvas id="tier-chart" width="120" height="120"></canvas>
+  </div>
+  <div class="scope-selector">
+    <label style="font-size:0.8rem;color:var(--text-dim)">范围:</label>
+    <select id="scope-selector">
+      <option value="USER">个人</option>
+      <option value="TEAM">团队</option>
+      <option value="AGENT">Agent</option>
+      <option value="GLOBAL">全局</option>
+    </select>
+  </div>
+</div>
+
+<!-- Search -->
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="搜索记忆... (输入关键词按 Enter)" />
+  <button id="searchBtn">搜索</button>
+  <button id="clearSearchBtn" class="btn-sm">清除</button>
+</div>
+
+<!-- Main -->
+<div class="container">
+
+  <!-- Left: Memory list + Create form -->
+  <div>
+    <!-- Create form -->
+    <div id="create-form" class="panel">
+      <h3>📝 创建记忆</h3>
+      <textarea id="new-text" placeholder="记忆内容..."></textarea>
+      <div>
+        <select id="new-category">
+          <option value="fact">fact</option>
+          <option value="decision">decision</option>
+          <option value="preference">preference</option>
+          <option value="reflection">reflection</option>
+          <option value="other">other</option>
+        </select>
+        <select id="new-scope">
+          <option value="USER">USER</option>
+          <option value="TEAM">TEAM</option>
+          <option value="AGENT">AGENT</option>
+          <option value="GLOBAL">GLOBAL</option>
+        </select>
+        <button id="createBtn" onclick="createMemory()">创建</button>
+      </div>
+      <div id="create-msg" style="font-size:0.78rem;margin-top:6px;color:var(--green);display:none"></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="recent">最近</div>
+      <div class="tab" data-tab="all">全部</div>
+      <div class="tab" data-tab="search-results">搜索结果</div>
+    </div>
+    <div id="memoryList" class="card" style="margin-top:0;border-radius:0 0 12px 12px;border-top:none">
+      <div class="card-body"><div class="empty-state"><div class="emoji">⏳</div>加载中...</div></div>
+    </div>
+  </div>
+
+  <!-- Right: Stats + Insights -->
+  <div class="sidebar">
+
+    <!-- Health -->
+    <div class="card">
+      <div class="card-header"><span><span class="card-icon">💚</span>系统状态</span></div>
+      <div class="card-body">
+        <div class="health-row"><span><span class="health-dot ok" id="healthOllama"></span>Ollama</span><span id="healthOllamaStatus" style="font-size:0.78rem;color:var(--text-dim)">checking…</span></div>
+        <div class="health-row"><span><span class="health-dot ok" id="healthServer"></span>Server</span><span id="healthServerStatus" style="font-size:0.78rem;color:var(--text-dim)">ok</span></div>
+        <div class="health-row"><span><span class="health-dot ok" id="healthMemory"></span>Memories</span><span id="healthMemoryStatus" style="font-size:0.78rem;color:var(--text-dim)">—</span></div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="card">
+      <div class="card-header"><span><span class="card-icon">📊</span>记忆统计</span></div>
+      <div class="card-body">
+        <div class="stat-grid">
+          <div class="stat-box"><div class="stat-value" id="statTotal">—</div><div class="stat-label">总计</div></div>
+          <div class="stat-box"><div class="stat-value" id="statTeams">—</div><div class="stat-label">团队数</div></div>
+        </div>
+        <div style="margin-top:12px">
+          <div style="font-size:0.78rem;color:var(--text-dim);margin-bottom:6px">分类</div>
+          <div class="cat-list" id="catList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Tags -->
+    <div class="card">
+      <div class="card-header"><span><span class="card-icon">🏷️</span>热门标签</span></div>
+      <div class="card-body"><div class="tag-cloud" id="tagCloud"></div></div>
+    </div>
+
+    <!-- Insights -->
+    <div class="card">
+      <div class="card-header"><span><span class="card-icon">💡</span>洞察</span></div>
+      <div class="card-body" id="insightsPanel">
+        <div class="empty-state" style="padding:20px 0"><div class="emoji">💡</div>加载中...</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Memory detail modal (hidden by default) -->
+<div id="memoryModal" class="modal-overlay" style="display:none">
+  <div class="modal">
+    <h3 id="modalTitle">Memory Detail</h3>
+    <p id="modalText"></p>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-actions">
+      <button class="btn-danger" id="modalDelete">删除</button>
+      <button class="btn-close" id="modalClose">关闭</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+// ============================================================
+// Simple auth
+// ============================================================
+(function authCheck() {
+  if (!sessionStorage.getItem('mem0_auth')) {
+    const pwd = prompt('Password:');
+    if (pwd !== 'mem0') { alert('Wrong password'); throw new Error('auth'); }
+    sessionStorage.setItem('mem0_auth', '1');
+  }
+})();
+
+// ============================================================
+// API helper
+// ============================================================
+const API = '/api';
+
+async function api(method, path, body) {
+  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(API + path, opts);
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: res.statusText }));
+    throw new Error(err.error || `HTTP ${res.status}`);
+  }
+  return res.json();
+}
+
+// ============================================================
+// State
+// ============================================================
+let allMemories = [];
+let searchResults = [];
+let currentTab = 'recent';
+let selectedMemoryId = null;
+let currentScope = 'USER';
+
+const memoryListEl = document.getElementById('memoryList');
+const searchInput = document.getElementById('searchInput');
+const insightsPanel = document.getElementById('insightsPanel');
+const modal = document.getElementById('memoryModal');
+
+// ============================================================
+// Helpers
+// ============================================================
+function importanceClass(imp) {
+  if (imp >= 0.7) return 'badge-imp-high';
+  if (imp >= 0.4) return 'badge-imp-med';
+  return 'badge-imp-low';
+}
+
+function categoryLabel(cat) {
+  const map = {
+    preference: '偏好', fact: '事实', decision: '决策',
+    entity: '实体', reflection: '反思', other: '其他', general: '常规',
+  };
+  return map[cat] || cat || '常规';
+}
+
+function timeAgo(ts) {
+  if (!ts) return '—';
+  const diff = Date.now() - new Date(ts).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return '刚刚';
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  if (days < 30) return `${days}d ago`;
+  return new Date(ts).toLocaleDateString('zh-CN');
+}
+
+function scopeBadge(scope) {
+  if (scope === 'TEAM') return '<span class="badge badge-team">TEAM</span>';
+  if (scope === 'GLOBAL') return '<span class="badge badge-global">GLOBAL</span>';
+  return '';
+}
+
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function showEmpty(container, emoji, msg) {
+  container.innerHTML = `<div class="card-body"><div class="empty-state"><div class="emoji">${emoji}</div>${msg}</div></div>`;
+}
+
+function showLoading(container) {
+  container.innerHTML = `<div class="card-body"><div class="empty-state"><div class="spinner"></div></div></div>`;
+}
+
+// ============================================================
+// Tier pie chart (Canvas)
+// ============================================================
+function drawTierChart(tierDist) {
+  const canvas = document.getElementById('tier-chart');
+  const ctx = canvas.getContext('2d');
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+  const r = 50;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const tiers = tierDist || {};
+  const total = Object.values(tiers).reduce((s, v) => s + v, 0) || 1;
+
+  const slices = [
+    { key: 'working', label: 'Working', color: '#6c8eff' },
+    { key: 'longterm', label: 'Longterm', color: '#a78bfa' },
+    { key: 'archive', label: 'Archive', color: '#4ade80' },
+  ];
+
+  let startAngle = -Math.PI / 2;
+  slices.forEach(s => {
+    const val = tiers[s.key] || 0;
+    const sliceAngle = (val / total) * 2 * Math.PI;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, startAngle, startAngle + sliceAngle);
+    ctx.closePath();
+    ctx.fillStyle = s.color;
+    ctx.fill();
+    startAngle += sliceAngle;
+  });
+
+  // Center label
+  ctx.fillStyle = '#e2e4ea';
+  ctx.font = 'bold 14px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(total, cx, cy);
+}
+
+// ============================================================
+// Memory card render
+// ============================================================
+function renderMemoryCard(m) {
+  const imp = m.importance != null ? m.importance : 0.5;
+  return `
+    <div class="memory-card" id="mem-card-${escHtml(m.id)}">
+      <div class="memory-text">${escHtml(m.text || '')}</div>
+      <div class="memory-meta">
+        <span class="badge badge-cat">${categoryLabel(m.category)}</span>
+        <span class="badge ${importanceClass(imp)}">★ ${Math.round(imp * 100)}%</span>
+        ${scopeBadge(m.scope)}
+        ${(m.tags || []).slice(0, 3).map(t => `<span class="tag-chip">${escHtml(t)}</span>`).join('')}
+        <span style="margin-left:auto">${timeAgo(m.created_at)}</span>
+      </div>
+      <div class="memory-actions">
+        <button class="btn-action" onclick="startEdit('${escHtml(m.id)}')">[ 编辑 ]</button>
+        <button class="btn-action delete" onclick="deleteMemory('${escHtml(m.id)}')">[ 删除 ]</button>
+      </div>
+    </div>`;
+}
+
+function renderList(memories = null) {
+  const list = memories || (currentTab === 'search-results' ? searchResults : allMemories);
+
+  if (currentTab === 'search-results' && searchResults.length === 0) {
+    showEmpty(memoryListEl, '🔍', '输入关键词搜索记忆…');
+    return;
+  }
+  if (list.length === 0) {
+    const emoji = currentTab === 'search-results' ? '🔍' : '🧠';
+    const msg = currentTab === 'search-results' ? '没有找到匹配的记录' : '还没有任何记忆，创建一条吧！';
+    showEmpty(memoryListEl, emoji, msg);
+    return;
+  }
+
+  const sorted = [...list].sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+  const html = sorted.map(m => renderMemoryCard(m)).join('');
+  memoryListEl.innerHTML = `<div class="card-body"><div class="memory-list">${html}</div></div>`;
+}
+
+// ============================================================
+// Load & render
+// ============================================================
+async function loadAll() {
+  showLoading(memoryListEl);
+  try {
+    const [memData, statsData] = await Promise.all([
+      api('GET', '/memories?limit=100'),
+      api('GET', '/stats').catch(() => ({ count: 0, avg_quality: 0, tier_distribution: {} })),
+    ]);
+    allMemories = memData.memories || [];
+    renderList();
+    updateStats(allMemories, statsData);
+    updateTopBar(statsData);
+    drawTierChart(statsData.tier_distribution || {});
+    await loadInsights();
+    await loadHealth();
+  } catch (err) {
+    showEmpty(memoryListEl, '⚠️', `加载失败: ${err.message}<br><small>确保服务运行在端口 3848</small>`);
+    document.getElementById('total-memories').textContent = '—';
+    document.getElementById('avg-quality').textContent = '—';
+  }
+}
+
+async function loadInsights() {
+  try {
+    const data = await api('GET', '/insights').catch(() => ({ insights: [] }));
+    renderInsights(data);
+  } catch {
+    insightsPanel.innerHTML = '<div class="empty-state" style="padding:20px 0"><div class="emoji">⚠️</div>无法加载洞察</div>';
+  }
+}
+
+async function loadHealth() {
+  try {
+    const data = await api('GET', '/health').catch(() => ({}));
+    const el = document.getElementById('healthOllama');
+    const statusEl = document.getElementById('healthOllamaStatus');
+    if (data.ollama === 'connected') {
+      el.className = 'health-dot ok';
+      statusEl.textContent = 'connected';
+    } else {
+      el.className = 'health-dot warn';
+      statusEl.textContent = 'disconnected';
+    }
+    document.getElementById('healthMemoryStatus').textContent = `${data.memoryCount || allMemories.length} memories`;
+    document.getElementById('versionBadge').textContent = `v${data.version || '1.1.0'}`;
+  } catch {
+    const el = document.getElementById('healthServer');
+    el.className = 'health-dot err';
+    document.getElementById('healthServerStatus').textContent = 'error';
+  }
+}
+
+function updateTopBar(stats) {
+  document.getElementById('total-memories').textContent = stats.count ?? allMemories.length;
+  const q = stats.avg_quality;
+  document.getElementById('avg-quality').textContent = q != null ? (Math.round(q * 100)) + '%' : '—';
+}
+
+function updateStats(memories, stats) {
+  document.getElementById('statTotal').textContent = memories.length;
+
+  const catCount = {};
+  const tagCount = {};
+  for (const m of memories) {
+    catCount[m.category] = (catCount[m.category] || 0) + 1;
+    for (const t of m.tags || []) {
+      tagCount[t] = (tagCount[t] || 0) + 1;
+    }
+  }
+
+  const catListEl = document.getElementById('catList');
+  const maxCat = Math.max(...Object.values(catCount), 1);
+  catListEl.innerHTML = Object.entries(catCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 6)
+    .map(([cat, cnt]) => `
+      <div class="cat-item">
+        <span>${categoryLabel(cat)}</span>
+        <span>${cnt}</span>
+        <div class="cat-bar" style="width:${Math.round((cnt / maxCat) * 100)}%"></div>
+      </div>`).join('') || '<div class="cat-item"><span style="color:var(--text-dim)">暂无数据</span></div>';
+
+
+  const tagCloudEl = document.getElementById('tagCloud');
+  const topTags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 20);
+  tagCloudEl.innerHTML = topTags.map(([tag, cnt]) =>
+    `<span class="tag-chip">${escHtml(tag)} <small>(${cnt})</small></span>`).join('') || '<span class="tag-chip" style="color:var(--text-dim)">暂无标签</span>';
+
+  const teams = new Set(memories.filter(m => m.scope === 'TEAM' || m.team_id).map(m => m.team_id));
+  document.getElementById('statTeams').textContent = teams.size || '0';
+}
+
+function renderInsights(data) {
+  if (!data || !data.insights || data.insights.length === 0) {
+    insightsPanel.innerHTML = '<div class="empty-state" style="padding:20px 0"><div class="emoji">✨</div>暂无洞察</div>';
+    return;
+  }
+  const icons = { pattern: '🔁', suggestion: '💡', trend: '📈', alert: '⚠️' };
+  insightsPanel.innerHTML = (data.insights || []).slice(0, 8).map(ins => `
+    <div class="insight-item">
+      <span class="insight-icon">${icons[ins.type] || '💡'}</span>
+      <div class="insight-text">${escHtml(ins.message || JSON.stringify(ins))}</div>
+    </div>`).join('');
+}
+
+// ============================================================
+// Create memory
+// ============================================================
+window.createMemory = async function() {
+  const text = document.getElementById('new-text').value.trim();
+  const category = document.getElementById('new-category').value;
+  const scope = document.getElementById('new-scope').value;
+  const btn = document.getElementById('createBtn');
+  const msg = document.getElementById('create-msg');
+
+  if (!text) {
+    msg.style.color = 'var(--red)';
+    msg.textContent = '请输入记忆内容';
+    msg.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '创建中...';
+  try {
+    const data = await api('POST', '/memories', { text, category, scope });
+    document.getElementById('new-text').value = '';
+    msg.style.color = 'var(--green)';
+    msg.textContent = '✅ 记忆创建成功 (ID: ' + (data.id || 'ok') + ')';
+    msg.style.display = 'block';
+    setTimeout(() => { msg.style.display = 'none'; }, 3000);
+    await loadAll();
+  } catch (err) {
+    msg.style.color = 'var(--red)';
+    msg.textContent = '❌ 创建失败: ' + err.message;
+    msg.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '创建';
+  }
+};
+
+// ============================================================
+// Delete memory
+// ============================================================
+window.deleteMemory = async function(id) {
+  if (!confirm('确定删除这条记忆？此操作不可撤销。')) return;
+  try {
+    await api('DELETE', '/memories/' + encodeURIComponent(id));
+    await loadAll();
+  } catch (err) {
+    alert('删除失败: ' + err.message);
+  }
+};
+
+// ============================================================
+// Inline edit
+// ============================================================
+window.startEdit = function(id) {
+  const card = document.getElementById('mem-card-' + id);
+  if (!card) return;
+  const mem = allMemories.find(m => m.id === id);
+  if (!mem) return;
+
+  card.innerHTML = `
+    <textarea class="inline-edit-input" id="edit-input-${id}">${escHtml(mem.text || '')}</textarea>
+    <div class="inline-edit-actions">
+      <button class="btn-save" onclick="saveEdit('${id}')">💾 保存</button>
+      <button class="btn-cancel" onclick="cancelEdit('${id}')">取消</button>
+    </div>`;
+};
+
+window.cancelEdit = function(id) {
+  renderList();
+};
+
+window.saveEdit = async function(id) {
+  const input = document.getElementById('edit-input-' + id);
+  if (!input) return;
+  const newText = input.value.trim();
+  if (!newText) return;
+  try {
+    await api('PATCH', '/memories/' + encodeURIComponent(id), { text: newText });
+    await loadAll();
+  } catch (err) {
+    alert('保存失败: ' + err.message);
+  }
+};
+
+// ============================================================
+// Search
+// ============================================================
+async function doSearch() {
+  const query = searchInput.value.trim();
+  if (!query) return;
+
+  showLoading(memoryListEl);
+  switchTab('search-results');
+
+  try {
+    const data = await api('GET', '/search?q=' + encodeURIComponent(query) + '&topK=20').catch(() => ({ results: [] }));
+    searchResults = data.results || [];
+    renderList();
+  } catch (err) {
+    searchResults = [];
+    const cardBody = memoryListEl.querySelector('.card-body') || memoryListEl;
+    showEmpty(memoryListEl, '⚠️', `搜索失败: ${err.message}`);
+  }
+}
+
+// ============================================================
+// Tabs
+// ============================================================
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === tab);
+  });
+  if (tab === 'search-results') {
+    renderList();
+  } else if (tab === 'all') {
+    renderList(allMemories);
+  } else {
+    renderList();
+  }
+}
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => switchTab(t.dataset.tab));
+});
+
+// ============================================================
+// Memory modal
+// ============================================================
+window.openMemory = function(id) {
+  const m = allMemories.find(m => m.id === id) || searchResults.find(m => m.id === id);
+  if (!m) return;
+  selectedMemoryId = id;
+  document.getElementById('modalTitle').textContent = `Memory · ${m.id}`;
+  document.getElementById('modalText').textContent = m.text || '';
+  const imp = m.importance != null ? m.importance : 0.5;
+  document.getElementById('modalMeta').innerHTML = `
+    <span class="badge badge-cat">${categoryLabel(m.category)}</span>
+    <span class="badge ${importanceClass(imp)}">★ ${Math.round(imp * 100)}%</span>
+    ${(m.tags || []).map(t => `<span class="tag-chip">${escHtml(t)}</span>`).join('')}
+    ${scopeBadge(m.scope)}
+    <span style="font-size:0.78rem;color:var(--text-dim)">${new Date(m.created_at).toLocaleString('zh-CN')}</span>
+  `;
+  modal.style.display = 'flex';
+};
+
+document.getElementById('modalClose').addEventListener('click', () => {
+  modal.style.display = 'none';
+  selectedMemoryId = null;
+});
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) modal.style.display = 'none';
+});
+
+document.getElementById('modalDelete').addEventListener('click', async () => {
+  if (!selectedMemoryId) return;
+  if (!confirm('确定删除这条记忆？此操作不可撤销。')) return;
+  try {
+    await api('DELETE', '/memories/' + encodeURIComponent(selectedMemoryId));
+    modal.style.display = 'none';
+    await loadAll();
+  } catch (err) {
+    alert('删除失败: ' + err.message);
+  }
+});
+
+// ============================================================
+// Event listeners
+// ============================================================
+document.getElementById('searchBtn').addEventListener('click', doSearch);
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') doSearch();
+});
+document.getElementById('clearSearchBtn').addEventListener('click', () => {
+  searchInput.value = '';
+  searchResults = [];
+  switchTab('recent');
+});
+
+// Scope selector filter
+document.getElementById('scope-selector').addEventListener('change', (e) => {
+  currentScope = e.target.value;
+  const filtered = currentScope === 'USER'
+    ? allMemories.filter(m => !m.scope || m.scope === 'USER' || m.scope === 'PERSONAL')
+    : allMemories.filter(m => m.scope === currentScope);
+  renderList(currentScope === 'all' ? allMemories : filtered.length < allMemories.length ? filtered : allMemories);
+});
+
+// ============================================================
+// Init
+// ============================================================
+loadAll();
+</script>
+</body>
+</html>

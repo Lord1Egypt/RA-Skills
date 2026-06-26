@@ -1,35 +1,13 @@
 ---
-name: "VibeVideoIO AI Script to Video"
-description: "This skill has been migrated to https://clawhub.ai/vibevideo/vibevideo-core. Use the new skill page instead of the old vibevideo-io entry."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vibevideo-io"
-sourceUrl: "https://clawhub.ai/skills/vibevideo-io"
+name: vibevideo-io
+description: This skill has been migrated to https://clawhub.ai/vibevideo/vibevideo-core. Use the new skill page instead of the old vibevideo-io entry.
 ---
 
-# VibeVideoIO AI Script to Video
+# Moved
 
-> This skill has been migrated to https://clawhub.ai/vibevideo/vibevideo-core. Use the new skill page instead of the old vibevideo-io entry.
+This skill has been migrated.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vibevideo-io`
-- **Source URL:** [https://clawhub.ai/skills/vibevideo-io](https://clawhub.ai/skills/vibevideo-io)
+- Old page: https://clawhub.ai/brainchen/vibevideo-io
+- New page: https://clawhub.ai/vibevideo/vibevideo-core
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vibevideo-io
-```
+Please use the new `vibevideo-core` page.

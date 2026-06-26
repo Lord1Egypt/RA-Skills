@@ -1,0 +1,26 @@
+echo '{
+  "name": "wavespeed-nanobanana2",
+  "version": "1.0.0",
+  "description": "Wavespeed 图像生成",
+  "main": "index.js",
+  "runtime": "nodejs",
+  "permissions": ["network"],
+  "parameters": [
+    {
+      "name": "prompt",
+      "type": "string",
+      "required": true,
+      "description": "图片描述"
+    },
+    {
+      "name": "resolution",
+      "type": "string",
+      "required": false,
+      "default": "1k",
+      "description": "分辨率"
+    }
+  ],
+  "environment": [
+    "WAVESPEED_API_KEY"
+  ]
+}' > ~/.openclaw/skills/wavespeed-nanobanana2/skill.json

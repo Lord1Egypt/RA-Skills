@@ -1,0 +1,31 @@
+{
+    "name": "claude_cli_skill",
+    "version": "1.0.0",
+    "description": "A universal MCP-compatible tool/skill that empowers ANY AI Agent to natively call the local Anthropic Claude Code CLI. Ideal for code refactoring, large scale code generation, terminal execution, bash shell commands, running tests, local environment modification, and bypassing token limits.",
+    "author": "BigHit1",
+    "entrypoint": "openclaw_claude_skill:ClaudeCLISkill",
+    "tools": [
+        {
+            "name": "talk_to_claude",
+            "description": "Provides local terminal execution, file system modification, and deep codebase analysis by delegating tasks to a sub-agent (Claude Code CLI). Use this tool when you need to execute bash commands, run tests, debug errors, or modify multiple files autonomously. Read the output closely. Use 'is_new_session=False' to continue conversations, or 'is_new_session=True' to wipe context. Absolute project_path is required.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "The command or prompt to send to Claude CLI."
+                    },
+                    "project_path": {
+                        "type": "string",
+                        "description": "The absolute path where Claude should run."
+                    },
+                    "is_new_session": {
+                        "type": "boolean",
+                        "description": "Set to True to start fresh. Set to False to append '--continue' (default=False)."
+                    }
+                },
+                "required": ["message", "project_path"]
+            }
+        }
+    ]
+}

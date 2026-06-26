@@ -1,35 +1,35 @@
 ---
-name: "Vadivelu Memes"
-description: "Generates random Vadivelu memes featuring the Tamil comedian Vadivelu (Kaipulla style). Use when: users request Vadivelu memes, Tamil comedy memes, random me..."
-category: "other"
-source: "ClawHub"
-tags: [indian, kaipulla, memes, tamil, vadivelu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vadivelu-memes"
-sourceUrl: "https://clawhub.ai/skills/vadivelu-memes"
+name: vadivelu-kaipulla
+description: >-
+  Generates random Vadivelu memes featuring the Tamil comedian Vadivelu (Kaipulla style).
+  Use when: users request Vadivelu memes, Tamil comedy memes, random meme generation, Indian celebrity memes, or "kaipulla" references.
+metadata:
+  clawdbot:
+    emoji: "😂"
+    category: memes
+version: 0.1.0
+license: MIT
 ---
 
-# Vadivelu Memes
+# Vadivelu Kaipulla Skill
 
-> Generates random Vadivelu memes featuring the Tamil comedian Vadivelu (Kaipulla style). Use when: users request Vadivelu memes, Tamil comedy memes, random me...
+Generates random Vadivelu memes on demand.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vadivelu-memes`
-- **Source URL:** [https://clawhub.ai/skills/vadivelu-memes](https://clawhub.ai/skills/vadivelu-memes)
+## Usage
 
-## Overview
+Invoke this skill whenever a user asks for Vadivelu memes, Tamil comedy, or "kaipulla" content.
 
+**Example triggers:**
+- "Show me a Vadivelu meme"
+- "Random Vadivelu Kaipulla meme"
+- "Generate funny Vadivelu image"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vadivelu-memes
-```
+## Workflow
+
+1. Select a random Vadivelu meme template or image from bundled assets/references.
+2. If no local assets, fetch from a safe public meme API (e.g., imgflip or dedicated Tamil meme source).
+3. Output the meme image URL or embed, plus a funny Vadivelu quote.
+4. Keep responses fun, short, and authentic to Vadivelu's style.
+
+## Output Format
+

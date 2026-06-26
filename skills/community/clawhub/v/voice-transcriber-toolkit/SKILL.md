@@ -1,35 +1,52 @@
 ---
-name: "Voice Transcriber Toolkit"
-description: "Voice-to-Text Transcription Toolkit - 语音识别转文字，支持Whisper/Vosk引擎，批量处理，字幕导出 | Speech recognition & transcription with Whisper/Vosk engines, batch processing, su..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/voice-transcriber-toolkit"
-sourceUrl: "https://clawhub.ai/skills/voice-transcriber-toolkit"
+name: voice-transcriber-toolkit
+description: Voice-to-Text Transcription Toolkit - 语音识别转文字，支持Whisper/Vosk引擎，批量处理，字幕导出 | Speech recognition & transcription with Whisper/Vosk engines, batch processing, subtitle export
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3", "ffmpeg"]
+    install:
+      - id: python-deps
+        kind: python
+        requirements: "requirements.txt"
+      - id: ffmpeg
+        kind: apt
+        packages: ["ffmpeg"]
 ---
 
 # Voice Transcriber Toolkit
 
-> Voice-to-Text Transcription Toolkit - 语音识别转文字，支持Whisper/Vosk引擎，批量处理，字幕导出 | Speech recognition & transcription with Whisper/Vosk engines, batch processing, su...
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/voice-transcriber-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/voice-transcriber-toolkit](https://clawhub.ai/skills/voice-transcriber-toolkit)
+- **Transcribe** — 单文件/批量音频转文字 (Whisper/Vosk)
+- **Convert** — 音频格式转换 (ffmpeg)
+- **Export** — 导出 SRT/VTT 字幕
+- **Info** — 音频文件元信息提取
 
-## Overview
+## 使用
 
+```python
+from scripts.voice_transcriber import VoiceTranscriber, AudioConverter
 
-## Installation
-To install this skill, run the following command in your terminal:
+transcriber = VoiceTranscriber(engine="whisper", model_size="base")
+
+# 单文件转录
+result = transcriber.transcribe("meeting.mp3", language="zh")
+print(result["text"])
+
+# 批量转录
+results = transcriber.transcribe_batch(["file1.mp3", "file2.wav"])
+
+# 导出字幕
+srt = transcriber.export_subtitles(result, "srt")
+
+# 音频转换
+converter = AudioConverter()
+converter.convert_to_wav("input.m4a", "output.wav")
+```
+
+## CLI
+
 ```bash
-hermes skills install clawhub/voice-transcriber-toolkit
+python3 scripts/voice_transcriber.py
 ```

@@ -1,0 +1,155 @@
+{
+  "name": "vkey-bid-standardizer 统一规范",
+  "version": "1.0.0",
+  "page": {
+    "top": 3.7,
+    "bottom": 3.5,
+    "left": 2.8,
+    "right": 2.6,
+    "unit": "cm"
+  },
+  "body": {
+    "font_west": "Times New Roman",
+    "font_east": "仿宋",
+    "size": 14,
+    "line_spacing": 20,
+    "line_spacing_unit": "exact",
+    "space_before": 0,
+    "space_after": 0,
+    "first_line_chars": 2,
+    "alignment": "left"
+  },
+  "headings": [
+    {
+      "level": 1,
+      "font_east": "黑体",
+      "font_west": "Times New Roman",
+      "size": 16,
+      "space_before": 16,
+      "space_after": 0,
+      "line_spacing": 1.5,
+      "line_spacing_unit": "multiple",
+      "alignment": "left"
+    },
+    {
+      "level": 2,
+      "font_east": "黑体",
+      "font_west": "Times New Roman",
+      "size": 15,
+      "space_before": 14,
+      "space_after": 0,
+      "line_spacing": 1.5,
+      "line_spacing_unit": "multiple",
+      "alignment": "left"
+    },
+    {
+      "level": 3,
+      "font_east": "黑体",
+      "font_west": "Times New Roman",
+      "size": 14,
+      "space_before": 12,
+      "space_after": 0,
+      "line_spacing": 1.5,
+      "line_spacing_unit": "multiple",
+      "alignment": "left"
+    },
+    {
+      "level": 4,
+      "font_east": "黑体",
+      "font_west": "Times New Roman",
+      "size": 12,
+      "space_before": 10,
+      "space_after": 0,
+      "line_spacing": 1.5,
+      "line_spacing_unit": "multiple",
+      "alignment": "left"
+    },
+    {
+      "level": 5,
+      "font_east": "黑体",
+      "font_west": "Times New Roman",
+      "size": 10.5,
+      "space_before": 8,
+      "space_after": 0,
+      "line_spacing": 1.5,
+      "line_spacing_unit": "multiple",
+      "alignment": "left"
+    }
+  ],
+  "tables": {
+    "header": {
+      "font_east": "黑体",
+      "font_west": "Times New Roman",
+      "size": 10.5,
+      "fill": "D9D9D9",
+      "alignment": "center"
+    },
+    "body": {
+      "font_east": "仿宋",
+      "font_west": "FangSong",
+      "size": 10.5,
+      "alignment": "left"
+    },
+    "column_width": "auto",
+    "border_outer": "1.5pt",
+    "border_inner": "0.5pt",
+    "border_color": "#000000"
+  },
+  "footer": {
+    "enabled": true,
+    "text": "{page}",
+    "format": "numeric",
+    "font_east": "仿宋",
+    "font_west": "FangSong",
+    "size": 10.5,
+    "alignment": "center",
+    "position": "page_bottom",
+    "start_at": 1,
+    "first_page_diff": false
+  },
+  "numbering": {
+    "level_1": "numeric.1",
+    "level_2": "numeric.1.1",
+    "level_3": "numeric.1.1.1",
+    "level_4": "numeric.1.1.1.1",
+    "level_5": "numeric.1.1.1.1.1"
+  },
+  "patterns": {
+    "h1": [
+      {"name": "chinese_punct",   "pattern": "^([一二三四五六七八九十百千]+)[、．.]\\s*(.*)$", "cn_to_int": true},
+      {"name": "chapter_cn",      "pattern": "^第([一二三四五六七八九十百]+)章\\s*(.*)$",     "cn_to_int": true},
+      {"name": "chapter_arabic",  "pattern": "^第(\\d+)章\\s*(.*)$"},
+      {"name": "appendix_cn",     "pattern": "^附录\\s*([A-Za-z0-9一二三四五六七八九十]+)\\s*(.*)$"},
+      {"name": "appendix_alpha",  "pattern": "^Appendix\\s+([A-Z])\\s*(.*)$"},
+      {"name": "single_arabic",   "pattern": "^(\\d+)[.、．]\\s*(.*)$"},
+      {"name": "circle_num",      "pattern": "^([①②③④⑤⑥⑦⑧⑨⑩])\\s*(.*)$"}
+    ],
+    "h2": [
+      {"name": "cn_paren_both",   "pattern": "^[（(]([一二三四五六七八九十\\d]+)[）)]\\s*(.*)$", "mixed_cn_int": true},
+      {"name": "section_cn",      "pattern": "^第([一二三四五六七八九十百]+)节\\s*(.*)$",     "cn_to_int": true},
+      {"name": "dot_arabic",      "pattern": "^(\\d+)\\.(\\d+)\\.?\\s*(.*)$"},
+      {"name": "wps_label",       "pattern": "^(\\d+)\\.\\s*标题\\s*\\d+\\s*(.*)$"}
+    ],
+    "h3": [
+      {"name": "arabic_paren",    "pattern": "^[（(](\\d+)[）)]\\s*(.*)$"},
+      {"name": "article_cn",      "pattern": "^第([一二三四五六七八九十百]+)条\\s*(.*)$",     "cn_to_int": true},
+      {"name": "wps_label",       "pattern": "^(\\d+)\\.(\\d+)\\.\\s*标题\\s*\\d+\\s*(.*)$"},
+      {"name": "dot_triple",      "pattern": "^(\\d+)\\.(\\d+)\\.(\\d+)\\.?\\s*(.*)$"},
+      {"name": "single_arabic",   "pattern": "^(\\d+)[.、．]\\s*(.*)$"}
+    ],
+    "h4": [
+      {"name": "arabic_paren",    "pattern": "^[（(](\\d+)[）)]\\s*(.*)$"},
+      {"name": "dot_quad",        "pattern": "^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)\\.?\\s*(.*)$"},
+      {"name": "single_arabic",   "pattern": "^(\\d+)[.、．]\\s*(.*)$"}
+    ],
+    "h5": [
+      {"name": "arabic_paren",    "pattern": "^[（(](\\d+)[）)]\\s*(.*)$"},
+      {"name": "dot_quint",       "pattern": "^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)\\.?\\s*(.*)$"},
+      {"name": "single_arabic",   "pattern": "^(\\d+)[.、．]\\s*(.*)$"}
+    ]
+  },
+  "color": {
+    "title": "#000000",
+    "body": "#000000"
+  }
+}

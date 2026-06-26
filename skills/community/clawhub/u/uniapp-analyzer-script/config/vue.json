@@ -1,0 +1,137 @@
+{
+  "name": "vue-config",
+  "description": "Vue project specific exclusion configuration (Vue 2/3)",
+  "version": "1.0.0",
+  "extends": "base.json",
+  
+  "project_detection": {
+    "manifest_file": "package.json",
+    "key_indicators": [
+      "vue.config.js",
+      "vite.config.js",
+      "vite.config.ts",
+      "nuxt.config.js",
+      "nuxt.config.ts",
+      "src/main.js",
+      "src/main.ts",
+      "src/App.vue"
+    ],
+    "content_patterns": [
+      "\"vue\"",
+      "\"@vue/",
+      "createApp",
+      "Vue.extend",
+      "defineComponent"
+    ]
+  },
+  
+  "exclude": {
+    "directories": [
+      "public",
+      "static",
+      "assets",
+      "src/assets",
+      "src/styles",
+      ".nuxt",
+      ".output",
+      ".nitro",
+      ".cache",
+      "storybook-static",
+      "cypress",
+      "playwright",
+      "e2e",
+      "tests",
+      "__tests__",
+      "test",
+      "spec",
+      "mocks",
+      "fixtures",
+      "examples",
+      "demo",
+      "docs",
+      "documentation"
+    ],
+    "files": [
+      "vue.config.js",
+      "vite.config.js",
+      "vite.config.ts",
+      "nuxt.config.js",
+      "nuxt.config.ts",
+      "vitest.config.js",
+      "vitest.config.ts",
+      "jest.config.js",
+      "cypress.config.js",
+      "playwright.config.js",
+      "tailwind.config.js",
+      "postcss.config.js",
+      "babel.config.js",
+      "rollup.config.js",
+      "webpack.config.js",
+      "tsconfig.json",
+      "jsconfig.json",
+      "components.d.ts",
+      "auto-imports.d.ts",
+      "package.json"
+    ],
+    "patterns": [
+      "**/*.test.js",
+      "**/*.test.ts",
+      "**/*.test.vue",
+      "**/*.spec.js",
+      "**/*.spec.ts",
+      "**/*.spec.vue",
+      "**/*.stories.js",
+      "**/*.stories.ts",
+      "**/*.stories.vue",
+      "**/__tests__/**",
+      "**/__mocks__/**",
+      "**/__snapshots__/**",
+      "**/tests/**",
+      "**/test/**",
+      "**/e2e/**",
+      "**/cypress/**",
+      "**/playwright/**",
+      "**/fixtures/**",
+      "**/mocks/**",
+      "**/demo/**",
+      "**/examples/**"
+    ]
+  },
+  
+  "file_filters": {
+    "include_extensions": [
+      ".vue",
+      ".js",
+      ".ts",
+      ".jsx",
+      ".tsx",
+      ".json",
+      ".scss",
+      ".sass",
+      ".less",
+      ".css",
+      ".md"
+    ]
+  },
+  
+  "analysis_options": {
+    "include_pages": true,
+    "include_components": true,
+    "include_composables": true,
+    "include_stores": true,
+    "include_router": true,
+    "include_utils": true,
+    "include_plugins": true
+  },
+  
+  "code_patterns": {
+    "page_pattern": "^src/views/|^src/pages/|^pages/",
+    "component_pattern": "^src/components/|^components/",
+    "composable_pattern": "^src/composables/|^composables/|^src/hooks/|^hooks/",
+    "store_pattern": "^src/store/|^store/|^src/stores/|^stores/|^src/pinia/|^pinia/",
+    "router_pattern": "^src/router/|^router/",
+    "util_pattern": "^src/utils/|^utils/|^src/lib/|^lib/|^src/common/|^common/",
+    "api_pattern": "^src/api/|^api/|^src/service/|^service/|^src/services/|^services/",
+    "plugin_pattern": "^src/plugins/|^plugins/"
+  }
+}

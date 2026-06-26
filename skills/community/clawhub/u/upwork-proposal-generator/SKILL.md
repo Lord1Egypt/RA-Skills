@@ -1,35 +1,26 @@
----
-name: "Upwork Proposal Generator"
-description: "Automatically analyze Upwork job posts and create personalized, professional proposals including intro, past cases, pricing, and deadlines."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/upwork-proposal-generator"
-sourceUrl: "https://clawhub.ai/skills/upwork-proposal-generator"
----
-
 # Upwork Proposal Generator
 
-> Automatically analyze Upwork job posts and create personalized, professional proposals including intro, past cases, pricing, and deadlines.
+自動幫你分析Upwork job post同埋生成專業proposal
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/upwork-proposal-generator`
-- **Source URL:** [https://clawhub.ai/skills/upwork-proposal-generator](https://clawhub.ai/skills/upwork-proposal-generator)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 安裝
 ```bash
-hermes skills install clawhub/upwork-proposal-generator
+npx clawhub@latest install upwork-proposal-generator
 ```
+
+## 使用
+當用戶send job post link或者文字既時候：
+1. 分析job既需求、技能、預算、deadline
+2. 生成100%原創proposal (最多300字)
+3. 包含：自我介紹 + 過去案例 + 點解你最啱 + 報價 + 交期
+
+## 範例
+```
+User: https://www.upwork.com/jobs/123456
+
+AI 分析同生成proposal...
+```
+
+## 輸出格式
+- 專業但親切
+- 唔好用模板語言
+- 针对具体job黎寫

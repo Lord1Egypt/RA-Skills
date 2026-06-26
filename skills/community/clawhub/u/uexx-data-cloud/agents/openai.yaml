@@ -1,0 +1,8 @@
+interface:
+  display_name: "UEXX Data Cloud"
+  short_description: "Query cached cryptocurrency market data with automatic Free Key access."
+  brand_color: "#0F766E"
+  default_prompt: "Use $uexx-data-cloud to answer: 今日恐慌指数多少？"
+
+policy:
+  allow_implicit_invocation: true

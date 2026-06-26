@@ -1,35 +1,10 @@
----
-name: "Unique Demo Skill"
-description: "Demonstrates dynamic JSON data processing and Node.js console output to showcase ClawHub skill capabilities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/unique-demo-skill"
-sourceUrl: "https://clawhub.ai/skills/unique-demo-skill"
----
+# SKILL.md
 
-# Unique Demo Skill
-
-> Demonstrates dynamic JSON data processing and Node.js console output to showcase ClawHub skill capabilities.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/unique-demo-skill`
-- **Source URL:** [https://clawhub.ai/skills/unique-demo-skill](https://clawhub.ai/skills/unique-demo-skill)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/unique-demo-skill
-```
+name: unique-demo-skill
+description: This skill showcases an improved demo for ClawHub. It contains dynamic examples, showcases data processing, and is no longer treated as a placeholder. 
+features:
+  - Processes sample JSON data
+  - Provides basic Node.js console output
+  - Aims to meet ClawHub skill requirements
+usage: |
+  Add this skill to a project and observe output handling simple lists. Only demonstration. Run as designed standalone logic flow.

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用户链路原型图</title>
+<style>
+  :root {
+    --bg: #f0f1f3;
+    --card-bg: #ffffff;
+    --card-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --card-radius: 14px;
+    --accent-red: #d4453a;
+    --accent-green: #2d9d5e;
+    --accent-gold: #d4953a;
+    --text-primary: #222;
+    --text-secondary: #666;
+    --text-hint: #aaa;
+    --divider: rgba(0,0,0,0.04);
+    --phone-w: 220px;
+    --phone-h: 420px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "SF Pro Display", sans-serif;
+    background: var(--bg); padding: 40px 20px;
+    color: var(--text-primary);
+  }
+
+  .flow-title {
+    text-align: center; font-size: 20px; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .flow-subtitle {
+    text-align: center; font-size: 13px; color: var(--text-hint);
+    margin-bottom: 40px;
+  }
+
+  /* 场景分组 */
+  .scene-group { margin-bottom: 56px; }
+  .scene-label {
+    display: inline-block; background: var(--accent-red); color: #fff;
+    font-size: 14px; font-weight: 600; padding: 5px 20px;
+    border-radius: 6px; margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(212,69,58,0.2);
+  }
+
+  /* 屏幕流横排 */
+  .screen-flow {
+    display: flex; align-items: flex-start; gap: 0;
+    overflow-x: auto; padding-bottom: 16px;
+  }
+
+  /* 单步骤 */
+  .step {
+    display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+  }
+  .step-label {
+    font-size: 12px; font-weight: 600; color: var(--text-primary);
+    margin-bottom: 10px; text-align: center; max-width: var(--phone-w);
+    line-height: 1.5;
+  }
+  .step-note {
+    font-size: 11px; color: var(--text-hint); margin-top: 8px;
+    text-align: center; max-width: var(--phone-w);
+  }
+
+  /* 箭头 */
+  .arrow {
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; padding: 0 4px; margin-top: 34px;
+  }
+  .arrow svg { width: 36px; height: 20px; }
+  .arrow-label {
+    font-size: 10px; color: var(--accent-red); text-align: center;
+    margin-top: 2px; white-space: nowrap; font-weight: 500;
+  }
+
+  /* ===== 手机壳 ===== */
+  .phone {
+    width: var(--phone-w); height: var(--phone-h);
+    border: 1.5px solid #d8d8d8; border-radius: 28px;
+    background: #f7f8fa; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04);
+    display: flex; flex-direction: column;
+  }
+
+  /* 状态栏 */
+  .phone-statusbar {
+    height: 26px; background: #fff;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 14px; font-size: 10px; color: #333; font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* 导航栏 */
+  .phone-navbar {
+    height: 34px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600;
+  }
+  .phone-navbar.red { background: var(--accent-red); color: #fff; }
+  .phone-navbar.white { background: #fff; color: var(--text-primary); box-shadow: 0 1px 0 var(--divider); }
+  .phone-navbar.dark { background: #1a1a2e; color: #fff; }
+
+  /* 内容区 — 单栏纵向滚动 */
+  .phone-body {
+    flex: 1; padding: 10px; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+
+  /* ===== UI 组件 ===== */
+
+  /* 卡片 — 材质感 */
+  .ui-card {
+    background: var(--card-bg); border-radius: var(--card-radius);
+    padding: 12px 14px; font-size: 12px; color: var(--text-secondary);
+    box-shadow: var(--card-shadow);
+  }
+
+  /* 横幅 */
+  .ui-banner {
+    width: 100%; border-radius: 10px; padding: 10px 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  /* 列表项 */
+  .ui-list-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 0;
+    font-size: 12px; color: var(--text-primary);
+  }
+  .ui-list-item + .ui-list-item { border-top: 1px solid rgba(0,0,0,0.04); }
+
+  /* 图标占位 */
+  .ui-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0; background: #f3f4f6;
+  }
+
+  /* 价格 */
+  .ui-price { color: var(--accent-red); font-weight: 700; font-size: 14px; }
+  .ui-price-old { color: var(--text-hint); font-size: 11px; text-decoration: line-through; }
+
+  /* 按钮 — 触感暗示 */
+  .ui-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 8px 18px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; cursor: default;
+    min-height: 36px;
+  }
+  .ui-btn.red {
+    background: linear-gradient(180deg, #e04d43, #c73a31);
+    color: #fff; box-shadow: 0 2px 6px rgba(212,69,58,0.25);
+  }
+  .ui-btn.gold {
+    background: linear-gradient(180deg, #dda04a, #c48a35);
+    color: #fff; box-shadow: 0 2px 6px rgba(212,149,58,0.25);
+  }
+  .ui-btn.outline {
+    background: #fff; color: var(--accent-red);
+    border: 1px solid var(--accent-red);
+  }
+  .ui-btn.ghost {
+    background: rgba(212,69,58,0.08); color: var(--accent-red);
+  }
+
+  /* 弹窗 — 浮层深度 */
+  .ui-popup {
+    background: var(--card-bg); border-radius: 16px; padding: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12); text-align: center;
+  }
+  .ui-popup-title { font-size: 14px; font-weight: 700; color: var(--accent-red); margin-bottom: 4px; }
+  .ui-popup-value { font-size: 26px; font-weight: 700; color: var(--accent-red); margin: 6px 0; }
+  .ui-popup-desc { font-size: 11px; color: var(--text-hint); }
+
+  /* 标签 */
+  .ui-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 10px; font-weight: 600;
+  }
+  .ui-tag.red { background: rgba(212,69,58,0.08); color: var(--accent-red); }
+  .ui-tag.gold { background: rgba(212,149,58,0.08); color: var(--accent-gold); }
+
+  /* 过桥页组件 */
+  .bridge-logo {
+    width: 56px; height: 56px; margin: 16px auto 8px;
+    background: linear-gradient(135deg, #e04d43, #d4453a);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 9px; font-weight: 700;
+    box-shadow: 0 4px 16px rgba(212,69,58,0.3);
+  }
+  .bridge-text { text-align: center; font-size: 13px; color: var(--accent-red); font-weight: 600; }
+  .bridge-sub { text-align: center; font-size: 11px; color: var(--text-hint); margin-top: 2px; }
+
+  /* 高亮提示框 */
+  .highlight-box {
+    background: rgba(212,69,58,0.04); border: 1px solid rgba(212,69,58,0.12);
+    border-radius: 10px; padding: 10px; text-align: center;
+  }
+
+  /* 工具色 */
+  .bg-red { background: linear-gradient(135deg, #e04d43, #c73a31); }
+  .bg-gold { background: linear-gradient(135deg, #dda04a, #c48a35); }
+  .bg-gradient { background: linear-gradient(135deg, #d4453a, #e87040); }
+  .text-red { color: var(--accent-red); }
+  .text-green { color: var(--accent-green); }
+</style>
+</head>
+<body>
+
+<!--
+  ============================================================
+  使用说明（设计规范已内置）：
+  - 移动端竖屏：单栏布局、拇指热区、44px最小可点击
+  - 单屏承载：标题16-18px、正文13-14px、辅助11-12px
+  - 材质深度：卡片阴影+圆角、按钮渐变、弹窗浮层
+  - 色彩：低饱和主色 + 高对比强调色
+  ============================================================
+-->
+
+<!-- 标题 -->
+<div class="flow-title">【示例】券膨胀获客链路原型</div>
+<div class="flow-subtitle">活动频道 × 业务APP</div>
+
+<!-- 场景 -->
+<div class="scene-group">
+  <div class="scene-label">券膨胀链路</div>
+  <div class="screen-flow">
+
+    <!-- 步骤1 -->
+    <div class="step">
+      <div class="step-label">前端入口<br/>活动频道</div>
+      <div class="phone">
+        <div class="phone-statusbar"><span>18:49</span><span>5G ▂▅▇</span></div>
+        <div class="phone-navbar red">活动频道</div>
+        <div class="phone-body">
+          <div class="ui-banner bg-gradient" style="height:36px; font-size:11px;">🔥 限时活动 · 爆款直降</div>
+          <div class="ui-card">
+            <div class="ui-list-item">
+              <div class="ui-icon">📦</div>
+              <div style="flex:1">
+                <div style="font-size:12px; font-weight:500;">宝格丽 淡香氛 5ml</div>
+                <div style="margin-top:3px;"><span class="ui-price">¥48.8</span> <span class="ui-price-old">¥100</span></div>
+              </div>
+            </div>
+            <div class="ui-list-item">
+              <div class="ui-icon">🧴</div>
+              <div style="flex:1">
+                <div style="font-size:12px; font-weight:500;">除菌洗衣液 2kg×2</div>
+                <div style="margin-top:3px;"><span class="ui-price">¥13.79</span> <span class="ui-price-old">¥15.6</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ui-popup">
+            <div class="ui-popup-title">🎉 惊喜好券</div>
+            <div class="ui-popup-value">¥6.0</div>
+            <div class="ui-popup-desc">满7.0可用 · 限部分品类</div>
+            <div style="display:flex; gap:8px; margin-top:10px; justify-content:center;">
+              <div class="ui-btn outline" style="font-size:12px;">立即使用</div>
+              <div class="ui-btn red" style="font-size:12px;">膨胀到15元</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-note">领券弹窗提示膨胀</div>
+    </div>
+
+    <div class="arrow"><div><svg viewBox="0 0 36 20"><path d="M2 10 L28 10 M22 4 L28 10 L22 16" fill="none" stroke="#d4453a" stroke-width="2" stroke-linecap="round"/></svg><div class="arrow-label">点击膨胀</div></div></div>
+
+    <!-- 步骤2 -->
+    <div class="step">
+      <div class="step-label">权益膨胀<br/>券面值增长</div>
+      <div class="phone">
+        <div class="phone-statusbar"><span>18:49</span><span>5G ▂▅▇</span></div>
+        <div class="phone-navbar red">活动频道</div>
+        <div class="phone-body" style="justify-content:center; align-items:center;">
+          <div class="ui-card" style="width:100%; text-align:center; padding:20px 14px;">
+            <div style="font-size:11px; color:#aaa;">原券面值</div>
+            <div style="font-size:22px; color:#ccc; font-weight:700; margin:6px 0;">¥6.0</div>
+            <div style="font-size:18px; margin:8px 0; color:#d4453a;">↓</div>
+            <div style="font-size:11px; color:#d4453a; font-weight:500;">膨胀后</div>
+            <div style="font-size:28px; color:#d4453a; font-weight:700; margin:4px 0;">¥15.0</div>
+            <div style="font-size:11px; color:#aaa;">满30.0可用 · 限时</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-note">动效展示膨胀过程</div>
+    </div>
+
+    <div class="arrow"><div><svg viewBox="0 0 36 20"><path d="M2 10 L28 10 M22 4 L28 10 L22 16" fill="none" stroke="#d4453a" stroke-width="2" stroke-linecap="round"/></svg><div class="arrow-label">下载/唤起</div></div></div>
+
+    <!-- 步骤3 -->
+    <div class="step">
+      <div class="step-label">过桥页<br/>下载/唤起业务APP</div>
+      <div class="phone">
+        <div class="phone-statusbar"><span>18:49</span><span>5G ▂▅▇</span></div>
+        <div class="phone-navbar white">业务中心</div>
+        <div class="phone-body" style="align-items:center; justify-content:center;">
+          <div class="bridge-logo">业务<br/>APP</div>
+          <div class="bridge-text">简单 · 快捷 · 安全</div>
+          <div class="bridge-sub">业务APP为您提供服务</div>
+          <div class="ui-btn red" style="margin-top:20px;">立即领取膨胀券</div>
+        </div>
+      </div>
+      <div class="step-note">安卓自下载 / iOS唤起</div>
+    </div>
+
+    <div class="arrow"><div><svg viewBox="0 0 36 20"><path d="M2 10 L28 10 M22 4 L28 10 L22 16" fill="none" stroke="#d4453a" stroke-width="2" stroke-linecap="round"/></svg><div class="arrow-label">打开APP</div></div></div>
+
+    <!-- 步骤4 -->
+    <div class="step">
+      <div class="step-label">业务APP<br/>权益到账</div>
+      <div class="phone">
+        <div class="phone-statusbar"><span>18:49</span><span>5G ▂▅▇</span></div>
+        <div class="phone-navbar red">业务APP</div>
+        <div class="phone-body">
+          <div class="ui-popup">
+            <div style="font-size:12px; color:#d4953a; font-weight:600;">🎉 膨胀成功</div>
+            <div style="font-size:11px; color:#aaa; margin:4px 0;">奖励已到账！</div>
+            <div class="ui-popup-value">¥15.0</div>
+            <div class="ui-popup-desc">满30.0可用</div>
+          </div>
+          <div class="ui-btn red" style="width:100%; margin-top:12px;">去业务APP完成转化</div>
+          <div class="highlight-box" style="margin-top:8px;">
+            <div style="font-size:11px; color:var(--text-secondary);">💡 更多专属优惠等你领</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-note">引导使用券下单</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

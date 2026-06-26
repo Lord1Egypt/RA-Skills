@@ -1,0 +1,175 @@
+# Usage Patterns
+
+## Progressive Flow (Default)
+
+1. Discover operations:
+
+```bash
+uxc <host> -h
+```
+
+2. Inspect operation input/output shape:
+
+```bash
+uxc <host> <operation> -h
+```
+
+3. Execute with minimal valid payload:
+
+```bash
+uxc <host> <operation> field=value
+```
+
+4. Parse success/failure envelope:
+
+```bash
+uxc <host> <operation> field=value | jq '.ok, .kind, .data'
+```
+
+## Wrapper Pattern (Link-First)
+
+For provider-specific wrapper skills, use a fixed local link command as the default interface:
+
+```bash
+command -v <provider>-mcp-cli
+# If missing:
+uxc link <provider>-mcp-cli <host>
+<provider>-mcp-cli -h
+<provider>-mcp-cli <operation> -h
+<provider>-mcp-cli <operation> field=value
+```
+
+For OpenAPI services whose runtime URL and schema URL differ, persist the schema on the link itself:
+
+```bash
+uxc link <provider>-openapi-cli <host> --schema-url <schema_url>
+<provider>-openapi-cli -h
+```
+
+For stdio hosts that expect credentials in child-process env vars, persist credential selection and env injection on the link:
+
+```bash
+uxc auth credential set <credential_id> --secret-env <ENV_NAME>
+uxc link <provider>-mcp-cli <stdio_command> --credential <credential_id> --inject-env <ENV_NAME>={{secret}}
+<provider>-mcp-cli -h
+```
+
+For MCP HTTP or other HTTP endpoints that require API keys in the URL query string, configure the credential with `--query-param` and keep the endpoint itself clean:
+
+```bash
+uxc auth credential set flipside --auth-type api_key --query-param "apiKey={{secret}}" --secret-env FLIPSIDE_API_KEY
+uxc auth binding add --id flipside-mcp --host mcp.flipsidecrypto.xyz --path-prefix /mcp --scheme https --credential flipside --priority 100
+uxc https://mcp.flipsidecrypto.xyz/mcp -h
+```
+
+For multi-part auth, keep one credential and store extra values as named `fields`:
+
+```bash
+uxc auth credential set exchange \
+  --auth-type api_key \
+  --field api_key=env:EXCHANGE_API_KEY \
+  --field secret_key=env:EXCHANGE_SECRET_KEY
+```
+
+For signed HTTP APIs, attach the signer to the binding instead of hardcoding signing into the endpoint URL:
+
+```bash
+uxc auth binding add \
+  --id exchange-signed \
+  --host api.example.com \
+  --path-prefix /v1 \
+  --scheme https \
+  --credential exchange \
+  --signer-json '{"kind":"hmac_query_v1","algorithm":"hmac_sha256","signing_field":"secret_key","key_field":"api_key","key_placement":"header","key_name":"X-API-KEY","signature_param":"signature","signature_encoding":"hex","timestamp_param":"timestamp","timestamp_unit":"milliseconds","canonicalization":{"mode":"preserve_order"}}' \
+  --priority 100
+```
+
+Examples:
+
+```bash
+notion-mcp-cli -h
+# Equivalent:
+uxc mcp.notion.com/mcp -h
+```
+
+```bash
+context7-mcp-cli query-docs libraryId=/reactjs/react.dev query=useState
+# Equivalent:
+uxc mcp.context7.com/mcp query-docs libraryId=/reactjs/react.dev query=useState
+```
+
+```bash
+discord-openapi-cli get:/gateway
+# Equivalent if the link was created with --schema-url:
+uxc https://discord.com/api/v10 --schema-url <discord_openapi_spec> get:/gateway
+```
+
+### Conflict Handling For Wrapper Skills
+
+- Fixed link command names are decided by skill authors at development time.
+- Do not dynamically rename link commands at runtime.
+- If a conflicting command name exists and cannot be safely reused, stop and ask a maintainer to update the skill's fixed command name.
+
+## Input Modes
+
+### Bare JSON positional payload
+
+```bash
+uxc <host> <operation> '{"field":"value"}'
+```
+
+### Key-value arguments
+
+```bash
+uxc <host> <operation> field=value
+```
+
+Do not pass raw JSON via `--args`; use bare JSON positional payload instead.
+
+## Host-Level Help
+
+```bash
+uxc <host> -h
+```
+
+Use this when you need quick discovery context before choosing an operation.
+
+## Auth-Protected Flow
+
+1. Confirm mapping:
+
+```bash
+uxc auth binding match <endpoint>
+```
+
+For signer-backed HTTP auth, also inspect the credential and binding shape before the first live call:
+
+```bash
+uxc auth credential info <credential_id>
+uxc auth binding list
+```
+
+2. Run intended read call directly (use as runtime validation).
+
+3. If auth fails, recover in order:
+
+```bash
+uxc auth oauth info <credential_id>
+uxc auth oauth refresh <credential_id>
+uxc auth oauth start <credential_id> --endpoint <endpoint> --redirect-uri <callback_uri>
+uxc auth oauth complete <credential_id> --session-id <session_id> --authorization-response '<callback_url_or_code>'
+```
+
+Use `uxc auth oauth login <credential_id> --endpoint <endpoint> --flow authorization_code` only when one interactive process can wait for the callback input.
+
+4. If multiple bindings match, verify explicit credential:
+
+```bash
+uxc --auth <credential_id> <endpoint> <operation> '{...}'
+```
+
+## Automation Safety Rules
+
+- Keep JSON as default output for machine parsing.
+- Treat stderr logs as diagnostic only; parse stdout JSON envelope.
+- Start with smallest valid payload before expanding optional fields.

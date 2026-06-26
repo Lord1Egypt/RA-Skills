@@ -1,0 +1,94 @@
+{
+  "novel_name": "${novel_name}",
+  "genre": "${genre}",
+  "sub_genres": [],
+  "target_words": ${target_words},
+  "style": "${style}",
+  "platform": "${platform}",
+  "one_line_summary": "${one_line_summary}",
+  "core_selling_points": [],
+  "synopsis": "${synopsis}",
+  "world_setting": {
+    "world_type": null,
+    "time_period": null,
+    "magic_system": null,
+    "social_structure": null
+  },
+  "main_characters": [
+    {
+      "name": null,
+      "role": "protagonist",
+      "description": null
+    }
+  ],
+  "protagonist": {
+    "name": null,
+    "background": null,
+    "personality": null,
+    "golden_finger": null,
+    "goal": null,
+    "conflict": null
+  },
+  "golden_finger": {
+    "type": null,
+    "description": null,
+    "limitations": [],
+    "growth_potential": null
+  },
+  "growth_path": {
+    "stages": [],
+    "milestones": []
+  },
+  "structure": {
+    "opening": {
+      "chapters": "1-3",
+      "goal": "吸引读者",
+      "elements": []
+    },
+    "development": {
+      "chapters": "4-30",
+      "goal": "展开剧情",
+      "arcs": []
+    },
+    "climax": {
+      "chapters": "31-50",
+      "goal": "高潮迭起",
+      "events": []
+    },
+    "ending": {
+      "chapters": "51+",
+      "goal": "圆满收尾",
+      "resolution": null
+    }
+  },
+  "plot_arcs": [
+    {
+      "name": null,
+      "start_chapter": null,
+      "end_chapter": null,
+      "summary": null,
+      "key_events": []
+    }
+  ],
+  "foreshadowing": [
+    {
+      "content": null,
+      "planted_chapter": null,
+      "resolved_chapter": null
+    }
+  ],
+  "pacing": {
+    "cool_frequency": 3,
+    "climax_frequency": 10,
+    "turning_points": []
+  },
+  "platform_adaptation": {
+    "title_style": null,
+    "chapter_length": 2000,
+    "cliffhanger_frequency": null
+  },
+  "update_plan": {
+    "daily_words": 4000,
+    "estimated_completion": null
+  }
+}

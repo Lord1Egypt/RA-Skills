@@ -1,0 +1,1 @@
+{"name":"vantage-hl","version":"1.0.0","description":"Vantage — Autonomous trading agent for Hyperliquid perpetual futures. Signal-to-execution in one loop.","main":"src/index.js","scripts":{"start":"node src/index.js"},"dependencies":{"@msgpack/msgpack":"^3.1.3","axios":"^1.6.0","dotenv":"^16.0.0","ethers":"^6.16.0"}}

@@ -1,0 +1,49 @@
+{
+  "name": "uplo-food-safety",
+  "display_name": "UPLO Food Safety — HACCP & Traceability Intelligence",
+  "description": "AI-powered food safety knowledge management. Search HACCP plans, FDA compliance records, traceability documentation, and quality control data with structured extraction.",
+  "version": "1.0.0",
+  "author": "UPLO",
+  "tags": [
+    "food-safety",
+    "HACCP",
+    "FDA-compliance",
+    "knowledge-management"
+  ],
+  "config": {
+    "agentdocs_url": {
+      "type": "string",
+      "required": true,
+      "description": "Your UPLO instance URL (e.g., https://app.uplo.ai)"
+    },
+    "api_key": {
+      "type": "string",
+      "required": true,
+      "secret": true,
+      "description": "Your UPLO MCP token"
+    }
+  },
+  "mcp": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@agentdocs1/mcp-server",
+      "--http"
+    ],
+    "env": {
+      "AGENTDOCS_URL": "${config.agentdocs_url}",
+      "API_KEY": "${config.api_key}",
+      "DEFAULT_PACKS": "food_safety"
+    },
+    "transport": "http",
+    "url": "${config.agentdocs_url}/mcp"
+  },
+  "capabilities": [
+    "search_knowledge",
+    "search_with_context",
+    "get_policy",
+    "export_org_context",
+    "get_directives"
+  ],
+  "identity_patch": "identity-patch.md"
+}

@@ -1,0 +1,9 @@
+{
+  "tickerFrom": "eth",
+  "networkFrom": "eth",
+  "tickerTo": "btc",
+  "networkTo": "btc",
+  "amount": "0.1",
+  "addressTo": "bc1q...",
+  "fixed": false
+}

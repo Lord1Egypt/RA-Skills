@@ -1,0 +1,9 @@
+<svg width="101" height="20" viewBox="0 0 101 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="textGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-0.5 16) rotate(-16) scale(70 17)">
+      <stop stop-color="#783EFF"/>
+      <stop offset="1" stop-color="white"/>
+    </radialGradient>
+  </defs>
+  <text x="0" y="16" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="700" fill="url(#textGradient)">Vybes.fun</text>
+</svg>

@@ -1,0 +1,91 @@
+{
+  "name": "大额交易",
+  "endpoint": "POST /chain/trade/large",
+  "description": "获取指定代币在BTC系列，EVM系列，波场系列20+主流公链上的大额交易数据",
+  "credits_cost": 2,
+  "needToken": true,
+  "use_case": "适用于对代币在链上的大额交易或异常交易流动监控追踪及分析，适用于鲸鱼地址和交易所之间的大额转账监控，适用于追踪大户动向和市场异动预警",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" },
+    "page": { "type": "integer", "req": false, "desc": "当前页，默认1" },
+    "pageSize": { "type": "integer", "req": false, "desc": "当前页数据数量，默认10，最大100" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币 ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "blockNumber": { "type": "long", "actualType": "long", "desc": "区块高度" },
+    "transIndex": { "type": "integer", "actualType": "integer", "desc": "交易在区块列表中的下标" },
+    "coinKey": { "type": "string", "actualType": "string", "desc": "币标识" },
+    "transHash": { "type": "string", "actualType": "string", "desc": "交易 hash" },
+    "fromAddress": { "type": "string", "actualType": "string", "desc": "发出方地址" },
+    "fromExchangeName": { "type": "string", "actualType": "string", "desc": "发出方标签" },
+    "toAddress": { "type": "string", "actualType": "string", "desc": "接收方地址" },
+    "toExchangeName": { "type": "string", "actualType": "string", "desc": "接收方标签" },
+    "amount": { "type": "number", "actualType": "string", "desc": "交易金额" },
+    "blockTime": { "type": "long", "actualType": "long", "desc": "区块时间（毫秒时间戳）" },
+    "coinInfo": {
+      "type": "object",
+      "actualType": "object",
+      "desc": "代币信息",
+      "item": {
+        "coinKey": { "type": "string", "actualType": "string", "desc": "币标识" },
+        "coinName": { "type": "string", "actualType": "string", "desc": "币名" },
+        "symbol": { "type": "string", "actualType": "string", "desc": "币标识" },
+        "protocol": { "type": "string", "actualType": "string", "desc": "协议" },
+        "contractAddress": { "type": "string", "actualType": "string", "desc": "合约地址" },
+        "chainName": { "type": "string", "actualType": "string", "desc": "链名" },
+        "icon": { "type": "string", "actualType": "string", "desc": "图标 URL" },
+        "price": { "type": "number", "actualType": "string", "desc": "价格" }
+      }
+    },
+    "addressInfo": {
+      "type": "object",
+      "actualType": "object",
+      "desc": "地址信息",
+      "item": {
+        "address": { "type": "string", "actualType": "string", "desc": "地址" },
+        "label": { "type": "object", "actualType": "object", "desc": "标签" },
+        "balance": { "type": "number", "actualType": "string", "desc": "余额" },
+        "profit": { "type": "number", "actualType": "string", "desc": "收益" }
+      }
+    },
+    "exchangeInfo": {
+      "type": "object",
+      "actualType": "object",
+      "desc": "交易所信息",
+      "item": {
+        "address": { "type": "string", "actualType": "string", "desc": "地址" },
+        "name": { "type": "string", "actualType": "string", "desc": "名称" },
+        "icon": { "type": "string", "actualType": "string", "desc": "图标" },
+        "label": { "type": "object", "actualType": "object", "desc": "标签" },
+        "addresses": { "type": "array", "actualType": "array", "desc": "地址列表" },
+        "amount": { "type": "number", "actualType": "string", "desc": "金额" },
+        "exchangeCount": { "type": "integer", "actualType": "integer", "desc": "交易所计数" }
+      }
+    }
+  },
+  "example": {
+    "req": { "vsTokenId": 1, "page": 1, "pageSize": 10 },
+    "res": {
+      "code": 200,
+      "data": [
+        {
+          "vsTokenId": "1",
+          "symbol": "BTC",
+          "name": "Bitcoin",
+          "blockNumber": 928673,
+          "transIndex": 2779,
+          "coinKey": "BTC_BTC",
+          "transHash": "3886677340fa8a77bb97e72f5b8bc2992cfb272fef8de9e7b7bf0da919612b36",
+          "fromAddress": "",
+          "fromExchangeName": "",
+          "toAddress": "",
+          "toExchangeName": "Gate.io",
+          "amount": "237.26",
+          "blockTime": 1766216779000
+        }
+      ]
+    }
+  }
+}

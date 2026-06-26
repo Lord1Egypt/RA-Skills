@@ -1,0 +1,298 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_init",
+      "description": "Initialize ultra-memory session. Call at conversation start to create three-layer memory structure and inject historical context.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string",
+            "description": "Project name (default: 'default')"
+          },
+          "resume": {
+            "type": "boolean",
+            "description": "Try to resume the most recent session for this project"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_status",
+      "description": "Query current session status: operation count, last milestone, context pressure level (low/medium/high/critical). Use to decide when to compress.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Session ID returned by memory_init"
+          }
+        },
+        "required": [
+          "session_id"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_log",
+      "description": "Record an operation to the current session log (Layer 1). Call after every significant action: file write, bash command, tool call, decision, error, or milestone.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Current session ID"
+          },
+          "op_type": {
+            "type": "string",
+            "enum": [
+              "tool_call",
+              "file_write",
+              "file_read",
+              "bash_exec",
+              "reasoning",
+              "user_instruction",
+              "decision",
+              "error",
+              "milestone"
+            ],
+            "description": "Operation type"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Operation summary (under 50 words)"
+          },
+          "detail": {
+            "type": "object",
+            "description": "详细信息（可选）。特殊子字段：profile_update {key:value} 触发画像冲突检测；knowledge_entry {title,content} 触发知识库冲突检测；path 文件路径；cmd 命令",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "相关文件路径（file_write/read 时填）"
+              },
+              "cmd": {
+                "type": "string",
+                "description": "执行的命令（bash_exec 时填）"
+              },
+              "profile_update": {
+                "type": "object",
+                "description": "用户偏好更新 {key: value}，自动检测矛盾"
+              },
+              "knowledge_entry": {
+                "type": "object",
+                "description": "知识库条目 {title, content}，自动检测矛盾"
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tag list (optional, auto-generated if omitted)"
+          }
+        },
+        "required": [
+          "session_id",
+          "op_type",
+          "summary"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_recall",
+      "description": "Retrieve relevant records from all memory layers (ops log, summary, semantic, entity index). Use when you need to recall past work, decisions, or errors.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Current session ID"
+          },
+          "query": {
+            "type": "string",
+            "description": "Search keywords (Chinese or English)"
+          },
+          "top_k": {
+            "type": "number",
+            "description": "Number of results to return (default: 5)"
+          }
+        },
+        "required": [
+          "session_id",
+          "query"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_summarize",
+      "description": "Trigger summary compression of the current session (compresses ops log into summary.md). Call when context pressure is high or critical, or every ~50 operations.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Current session ID"
+          },
+          "force": {
+            "type": "boolean",
+            "description": "Force compression even if operation count is low"
+          }
+        },
+        "required": [
+          "session_id"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_restore",
+      "description": "Restore the last session context for a project. Use at conversation start to continue a previous task across days.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string",
+            "description": "Project name (default: 'default')"
+          },
+          "verbose": {
+            "type": "boolean",
+            "description": "Show detailed operation records"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_profile",
+      "description": "Read or update user profile (tech stack, preferences, project list). Persist user-level preferences across all sessions.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "read",
+              "update"
+            ],
+            "description": "Operation type"
+          },
+          "updates": {
+            "type": "object",
+            "description": "Fields to update (required when action=update)"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_entities",
+      "description": "Query structured entity index (functions, files, dependencies, decisions, errors). Use for precise questions like 'which functions were used', 'which packages were installed', 'what decisions were made'.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "enum": [
+              "function",
+              "file",
+              "dependency",
+              "decision",
+              "error",
+              "class",
+              "all"
+            ],
+            "description": "Entity type filter (all = no filter)"
+          },
+          "query": {
+            "type": "string",
+            "description": "Search keyword (optional, empty returns all of that type)"
+          },
+          "top_k": {
+            "type": "number",
+            "description": "Number of results to return (default: 10)"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_extract_entities",
+      "description": "Re-extract all structured entities from a session's ops.jsonl. Use to repair or initialize the entity index.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Session ID"
+          }
+        },
+        "required": [
+          "session_id"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "memory_knowledge_add",
+      "description": "Append important information to the knowledge base (knowledge_base.jsonl) for future retrieval. Use when: solving a tricky bug (record problem + solution), making a key tech decision (record what was chosen and why), discovering a tool usage tip, or completing a reusable code pattern.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Knowledge title (max 100 chars)"
+          },
+          "content": {
+            "type": "string",
+            "description": "Knowledge content (max 200 chars)"
+          },
+          "project": {
+            "type": "string",
+            "description": "Associated project name (default: 'default')"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tag list (optional)"
+          }
+        },
+        "required": [
+          "title",
+          "content"
+        ]
+      }
+    }
+  }
+]

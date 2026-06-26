@@ -1,35 +1,142 @@
 ---
-name: "Vocab Deep Dive - 单词深度解析"
-description: "深度解析英语单词的全方位学习信息。当用户提供单词并需要完整的学习资料时使用。包括释义、用法、搭配、例句、同反义词、词根词缀、易错点、雅思考点等。适用于词汇学习、备考复习、写作口语提升场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vocab-deep-dive"
-sourceUrl: "https://clawhub.ai/skills/vocab-deep-dive"
+name: vocab-deep-dive
+description: 深度解析英语单词的全方位学习信息。当用户提供单词并需要完整的学习资料时使用。包括释义、用法、搭配、例句、同反义词、词根词缀、易错点、雅思考点等。适用于词汇学习、备考复习、写作口语提升场景。
 ---
 
 # Vocab Deep Dive - 单词深度解析
 
-> 深度解析英语单词的全方位学习信息。当用户提供单词并需要完整的学习资料时使用。包括释义、用法、搭配、例句、同反义词、词根词缀、易错点、雅思考点等。适用于词汇学习、备考复习、写作口语提升场景。
+为单词提供全方位学习信息，帮助用户真正掌握而不是浅尝辄止。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vocab-deep-dive`
-- **Source URL:** [https://clawhub.ai/skills/vocab-deep-dive](https://clawhub.ai/skills/vocab-deep-dive)
+## 核心原则
 
-## Overview
+1. **完整但不冗余** - 覆盖所有关键维度，但每个维度保持精炼
+2. **场景化** - 例句优先使用雅思相关场景（学术、生活、工作）
+3. **可操作** - 不只是列信息，要指出怎么用、怎么记、怎么避坑
 
+## 输出结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vocab-deep-dive
+对于用户提供的单词，按以下结构输出：
+
+### 1. 基础信息
+- 音标（英音/美音）
+- 词性与核心释义（中英对照）
+- 词频等级（如果是雅思高频词需标注）
+
+### 2. 核心用法
+- 最常见的 2-3 个用法场景
+- 典型搭配（动词搭配、形容词搭配、介词搭配等）
+- 固定短语或习语
+
+### 3. 例句（3-5 个）
+- 优先雅思写作/口语场景
+- 覆盖不同词性或用法
+- 标注场景类型（学术/日常/正式）
+
+### 4. 词汇拓展
+- 同义词（按正式程度或使用场景区分）
+- 反义词
+- 词根词缀分析（如适用）
+- 派生词（名词/动词/形容词/副词形式）
+
+### 5. 易错点与提示
+- 常见误用
+- 与相似词的区别
+- 搭配禁忌
+- 语域注意事项（正式/非正式）
+
+### 6. 雅思考点
+- 在雅思中的常见考查方式
+- 适用的题型或话题
+- 替换建议（避免重复使用）
+
+## 实现方式
+
+**核心原则：优先使用 LLM 自身知识，确保安全可控**
+
+推荐实现流程：
+
+1. **主要方式：LLM 知识库**
+   - 利用 LLM 自身的语言知识生成完整内容
+   - 包括音标、释义、用法、例句、同义词等
+   - 重点补充雅思相关的场景化内容
+   - 确保例句自然地道、符合考试场景
+
+2. **可选补充：Free Dictionary API**（仅在需要验证时使用）
+   - 完全免费，无需 API key
+   - 可用于验证音标或补充释义
+   - 使用方式：`web_fetch https://api.dictionaryapi.dev/api/v2/entries/en/{word}`
+   - **注意**：仅在用户明确要求或 LLM 不确定时才调用
+
+实现流程：
+1. 直接使用 LLM 知识生成完整的单词解析
+2. 结合雅思备考场景补充考点、替换词、高分搭配
+3. 按照标准格式输出
+4. 如果用户质疑准确性，可选择性调用 API 验证
+
+## 输出格式示例
+
+```markdown
+# 📖 [单词] 深度解析
+
+## 基础信息
+**音标**: /ˈeksəmpl/ (UK), /ɪɡˈzæmpl/ (US)  
+**词性**: n. / v.  
+**核心释义**: 例子；榜样 / 举例说明  
+**词频**: ⭐⭐⭐ 雅思高频词
+
+## 核心用法
+1. **作为名词** - 表示"例子"
+   - for example / for instance
+   - give/provide an example
+   - a good/bad example of sth
+
+2. **作为动词** - 表示"举例说明"（较少用）
+   - be exampled by...
+
+## 例句
+1. **学术写作**: "For example, renewable energy sources such as solar and wind power have become increasingly cost-effective."
+2. **口语表达**: "Can you give me an example of a time when you had to work under pressure?"
+3. **正式场合**: "This case serves as a prime example of successful urban planning."
+
+## 词汇拓展
+**同义词**:
+- instance (更正式)
+- illustration (强调说明性)
+- case (强调具体情况)
+
+**反义词**:
+- exception (例外)
+
+**词根词缀**:
+- ex- (out) + -ample (取样) → 取出来的样本
+
+**派生词**:
+- exemplify (v. 例证)
+- exemplary (adj. 典范的)
+
+## 易错点
+⚠️ "for example" 后面要用逗号，不要写成 "for example like..."  
+⚠️ 口语中可以说 "like" 代替，但写作中避免过度使用  
+⚠️ 不要与 "sample" 混淆（sample 是样品/样本）
+
+## 雅思考点
+- **写作 Task 2**: 举例论证时的必备表达
+- **口语 Part 2**: 描述具体事例时常用
+- **替换词**: instance, case, illustration
+- **高分搭配**: a typical/classic/prime example of...
 ```
+
+## 使用流程
+
+1. 用户提供单词
+2. 使用 web_fetch 或 API 获取词典信息
+3. 按照上述结构整理输出
+4. 如果是雅思高频词，额外强调考试相关用法
+5. 如果用户有特定需求（如只要例句、只要同义词），可以调整输出重点
+
+## 注意事项
+
+- 如果单词有多个完全不同的含义，优先解析最常用的 1-2 个
+- 例句必须自然地道，避免生硬翻译腔
+- 雅思考点部分要基于真实考试场景，不要编造
+- 如果是生僻词或专业术语，需要说明使用场景的局限性

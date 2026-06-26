@@ -1,0 +1,38 @@
+{
+  "skill_name": "vmware-nsx-security",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a firewall rule to block all traffic from the dev segment to the production database VMs",
+      "expected_output": "DFW rule created with correct source/destination",
+      "files": [],
+      "expectations": [
+        "Uses create_dfw_policy or creates within existing policy",
+        "Uses create_dfw_rule with correct source and destination groups",
+        "Sets action to DROP or REJECT"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Run a traceflow from VM web-01 to VM db-01 on port 3306 to verify MySQL connectivity",
+      "expected_output": "Traceflow result showing path and allow/deny",
+      "files": [],
+      "expectations": [
+        "Uses run_traceflow with correct source, destination, and port",
+        "Uses get_traceflow_result to show the path",
+        "Reports whether traffic is allowed or blocked"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Create a security group for all web servers and tag VMs web-01, web-02, web-03",
+      "expected_output": "Security group created, VMs tagged",
+      "files": [],
+      "expectations": [
+        "Uses create_group for the security group",
+        "Uses apply_vm_tag for each VM",
+        "Group membership based on tags"
+      ]
+    }
+  ]
+}

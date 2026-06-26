@@ -1,0 +1,49 @@
+{
+  "name": "uplo-github",
+  "display_name": "UPLO GitHub — Repository & Code Review Intelligence",
+  "description": "AI-powered GitHub knowledge management. Search repository metadata, code review standards, issue tracking, and team workflows with structured extraction.",
+  "version": "1.0.0",
+  "author": "UPLO",
+  "tags": [
+    "github",
+    "code-review",
+    "repositories",
+    "knowledge-management"
+  ],
+  "config": {
+    "agentdocs_url": {
+      "type": "string",
+      "required": true,
+      "description": "Your UPLO instance URL (e.g., https://app.uplo.ai)"
+    },
+    "api_key": {
+      "type": "string",
+      "required": true,
+      "secret": true,
+      "description": "Your UPLO MCP token"
+    }
+  },
+  "mcp": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@agentdocs1/mcp-server",
+      "--http"
+    ],
+    "env": {
+      "AGENTDOCS_URL": "${config.agentdocs_url}",
+      "API_KEY": "${config.api_key}",
+      "DEFAULT_PACKS": "github"
+    },
+    "transport": "http",
+    "url": "${config.agentdocs_url}/mcp"
+  },
+  "capabilities": [
+    "search_knowledge",
+    "search_with_context",
+    "get_policy",
+    "export_org_context",
+    "get_directives"
+  ],
+  "identity_patch": "identity-patch.md"
+}

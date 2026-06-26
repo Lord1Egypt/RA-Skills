@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Intent Studio"
+  short_description: "Guide staged AI video ideation and Ark generation"
+  default_prompt: "Use $video-intent-studio to turn a rough idea into ranked video options, tuned parameters, and a final Ark video generation prompt."

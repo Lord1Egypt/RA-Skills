@@ -1,0 +1,33 @@
+{
+  "name": "vibe-coding-cn",
+  "version": "4.1.0",
+  "description": "AI 团队协作，自动生成完整项目。5 Agent + SPEC.md + Agent 投票审批 + 需求追溯",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test-p0-e2e.js",
+    "test:all": "node test-*.js"
+  },
+  "keywords": [
+    "vibe-coding",
+    "openclaw",
+    "skill",
+    "ai",
+    "code-generation",
+    "multi-agent"
+  ],
+  "author": "Vibe Coding Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "optionalDependencies": {
+    "ws": "^8.20.0"  // 仅用于可视化监控（可选）
+  },
+  "files": [
+    "index.js",
+    "executors/",
+    "SKILL.md",
+    "README.md"
+  ]
+}

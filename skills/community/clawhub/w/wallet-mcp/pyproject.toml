@@ -1,0 +1,40 @@
+[project]
+name = "wallet-mcp"
+version = "1.5.0"
+description = "Multi Wallet Generator + Manager — MCP Server for AI Agents"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+keywords = ["mcp", "wallet", "solana", "evm", "crypto", "ai-agent"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+  "mcp[cli]>=1.12.0",
+  "web3>=6.0.0",
+  "eth-account>=0.10.0",
+  "solana>=0.34.0",
+  "solders>=0.21.0",
+  "base58>=2.1.1",
+  "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+wallet-mcp = "wallet_mcp.server:main"
+
+[project.urls]
+Homepage   = "https://github.com/genoshide/wallet-mcp"
+Repository = "https://github.com/genoshide/wallet-mcp"
+
+[build-system]
+requires      = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wallet_mcp"]
+
+[tool.hatch.metadata]
+allow-direct-references = true

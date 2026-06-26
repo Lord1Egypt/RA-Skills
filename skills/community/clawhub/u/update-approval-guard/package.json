@@ -1,0 +1,20 @@
+{
+  "name": "update-approval-guard",
+  "version": "1.0.0",
+  "description": "Daily update checker for OpenClaw and installed skills. Checks on schedule, stores a pending plan, and only applies updates after explicit user approval.",
+  "main": "SKILL.md",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "update",
+    "approval",
+    "cron",
+    "automation"
+  ],
+  "author": "曹力文 <your-email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/update-approval-guard.git"
+  }
+}

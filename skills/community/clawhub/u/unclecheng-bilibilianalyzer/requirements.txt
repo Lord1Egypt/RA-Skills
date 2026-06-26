@@ -1,0 +1,12 @@
+# B站视频分析 Skill 依赖
+# 无需登录版 - 使用B站公开API
+
+# 核心依赖
+requests>=2.28.0
+jieba>=0.42.1
+snownlp>=0.15.2
+
+# 可选依赖 (用于词云等扩展功能)
+# pandas>=2.0.0
+# matplotlib>=3.7.0
+# wordcloud>=1.9.0

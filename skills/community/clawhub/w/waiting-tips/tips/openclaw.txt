@@ -1,0 +1,16 @@
+## OpenClaw Tips
+OpenClaw 支持多轮对话，保持上下文连贯 | OpenClaw supports multi-turn context
+发送图片让 OpenClaw 识别和分析 | Send images for OpenClaw to analyze
+长文本可以分段发送，最后说"开始处理" | Split long text, then say "start processing"
+用 /help 查看所有可用命令 | Use /help to see all available commands
+用 /clear 清除对话历史重新开始 | Use /clear to reset conversation history
+OpenClaw 可以翻译、写作、编程、分析数据 | OpenClaw can translate, write, code, analyze data
+发送文件让 OpenClaw 解读内容 | Send files for OpenClaw to interpret
+私聊和群聊中都可以 @OpenClaw | @OpenClaw works in both DM and group chats
+设置语言偏好获取更好的回复体验 | Set language preference for better responses
+OpenClaw 记住本轮对话，充分利用多轮交互 | OpenClaw remembers current session — use multi-turn
+用 /model 切换不同的 AI 模型 | Use /model to switch AI models
+复杂问题分步提问，效果优于一次性提问 | Complex questions: ask step by step
+发送语音消息，OpenClaw 也能理解 | Send voice messages — OpenClaw understands them too
+用 /settings 自定义你的交互偏好 | Use /settings to customize your preferences
+连续对话超过 20 轮建议 /clear 重新开始 | After 20+ turns, consider /clear for fresh start

@@ -1,0 +1,16 @@
+{
+  "id": "walvis-fastpath",
+  "name": "walvis-fastpath",
+  "displayName": "WALVIS Fast Path",
+  "description": "Deterministic /walvis subcommands that bypass LLM inference.",
+  "version": "0.1.0",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

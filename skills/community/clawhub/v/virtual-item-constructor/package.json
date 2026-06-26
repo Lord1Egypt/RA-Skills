@@ -1,0 +1,1 @@
+{"name":"leisang-zl--virtual-item-constructor","version":"0.1.0","description":"智能构造合规测试商品，支持按类目、业务身份、商品属性、商品标等条件查找或克隆商品，并自动改价和清理标签。 当用户需要构造测试商品、查找测试商品、克隆商品到测试账号、修改测试商品价格，或用户提出\"帮我找一个测试商品\"\"构造一个XX类目的商品\"时使用。","publishConfig":{"registry":"https://contextlab.alibaba-inc.com/skill"}}

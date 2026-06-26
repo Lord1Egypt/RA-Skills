@@ -1,0 +1,34 @@
+# OpenClaw 技能模板
+# 通用配置，会被具体的技能包覆盖
+
+name: @openclaw/skill-template
+version: 1.0.0
+description: OpenClaw 技能模板
+
+# ClawHub 配置
+clawhub:
+  # 技能元数据
+  id: voice-listener
+  name: 语音监听助手
+  emoji: 🎤
+  description: 百度语音识别 + 智能唤醒模式。说'小龙虾'激活，'停止'暂停。支持持续语音输入。
+  version: 1.0.0
+  author: OpenClaw
+  category: productivity
+  tags:
+    - 语音识别
+    - 百度
+    - 唤醒
+    - 自动化
+
+  # 技能配置
+  config:
+    wakeWord: 小龙虾
+    stopWord: 停止
+    api: baidu
+    apiKeyRequired: true
+
+  # 文档
+  documentation: SKILL.md
+  readme: README.md
+  license: MIT

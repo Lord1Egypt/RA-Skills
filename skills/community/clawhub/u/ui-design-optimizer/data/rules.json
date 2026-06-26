@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "rules": [
+    {
+      "id": "saas-001",
+      "industry": "Tech & SaaS",
+      "product_types": ["SaaS", "Micro SaaS", "B2B Enterprise", "Developer Tools", "AI/Chatbot"],
+      "recommended_pattern": "product-led",
+      "style_priority": ["minimalism", "material", "bento"],
+      "color_mood": "professional,trustworthy,modern",
+      "typography_mood": "clean,readable,geometric",
+      "key_effects": ["smooth transitions", "subtle hover states", "loading skeletons"],
+      "anti_patterns": ["bright neon colors", "playful animations", "emoji icons", "cluttered layouts"],
+      "accessibility": "WCAG AA minimum"
+    },
+    {
+      "id": "fintech-001",
+      "industry": "Finance",
+      "product_types": ["Fintech", "Banking", "Crypto", "Insurance", "Trading Dashboard"],
+      "recommended_pattern": "comparison",
+      "style_priority": ["minimalism", "dark", "material"],
+      "color_mood": "trustworthy,secure,professional",
+      "typography_mood": "serious,readable,authoritative",
+      "key_effects": ["data visualization", "real-time updates", "subtle animations"],
+      "anti_patterns": ["AI purple/pink gradients", "playful fonts", "excessive animations", "gamification"],
+      "accessibility": "WCAG AA minimum"
+    },
+    {
+      "id": "healthcare-001",
+      "industry": "Healthcare",
+      "product_types": ["Medical Clinic", "Pharmacy", "Dental", "Veterinary", "Mental Health"],
+      "recommended_pattern": "hero-centric",
+      "style_priority": ["minimalism", "light", "clean"],
+      "color_mood": "calming,trustworthy,clean",
+      "typography_mood": "readable,professional,warm",
+      "key_effects": ["gentle transitions", "clear CTAs", "trust badges"],
+      "anti_patterns": ["dark themes", "aggressive colors", "complex animations", "urgent language"],
+      "accessibility": "WCAG AAA preferred"
+    },
+    {
+      "id": "ecommerce-001",
+      "industry": "E-commerce",
+      "product_types": ["General", "Luxury", "Marketplace", "Subscription Box"],
+      "recommended_pattern": "product-led",
+      "style_priority": ["minimalism", "elegant", "light"],
+      "color_mood": "product-focused,clean,trustworthy",
+      "typography_mood": "readable,versatile,modern",
+      "key_effects": ["product zoom", "smooth cart animations", "quick view"],
+      "anti_patterns": ["distracting backgrounds", "auto-play videos", "pop-up overload"],
+      "accessibility": "WCAG AA minimum"
+    },
+    {
+      "id": "beauty-001",
+      "industry": "Beauty/Spa",
+      "product_types": ["Beauty Salon", "Spa", "Wellness", "Cosmetics", "Skincare"],
+      "recommended_pattern": "story-driven",
+      "style_priority": ["elegant", "pastel", "minimalism"],
+      "color_mood": "calming,luxurious,soft",
+      "typography_mood": "elegant,sophisticated,flowing",
+      "key_effects": ["soft shadows", "gentle fades", "parallax scrolling"],
+      "anti_patterns": ["harsh colors", "bold industrial fonts", "jarring animations", "dark themes"],
+      "accessibility": "WCAG AA minimum"
+    },
+    {
+      "id": "gaming-001",
+      "industry": "Gaming",
+      "product_types": ["Games", "Gaming Platform", "Esports", "Streaming"],
+      "recommended_pattern": "video-first",
+      "style_priority": ["dark", "cyberpunk", "gradient"],
+      "color_mood": "energetic,exciting,immersive",
+      "typography_mood": "bold,futuristic,impactful",
+      "key_effects": ["glow effects", "particle animations", "video backgrounds"],
+      "anti_patterns": ["plain white backgrounds", "corporate fonts", "minimal styling"],
+      "accessibility": "WCAG AA minimum"
+    },
+    {
+      "id": "education-001",
+      "industry": "Education",
+      "product_types": ["Online Courses", "E-learning", "Tutoring", "Educational Apps"],
+      "recommended_pattern": "hero-centric",
+      "style_priority": ["playful", "light", "colorful"],
+      "color_mood": "engaging,friendly,optimistic",
+      "typography_mood": "readable,friendly,approachable",
+      "key_effects": ["progress indicators", "achievement animations", "interactive elements"],
+      "anti_patterns": ["intimidating layouts", "dense text", "lack of visual hierarchy"],
+      "accessibility": "WCAG AAA preferred"
+    },
+    {
+      "id": "restaurant-001",
+      "industry": "Restaurant",
+      "product_types": ["Restaurant", "Cafe", "Food Delivery", "Catering"],
+      "recommended_pattern": "hero-centric",
+      "style_priority": ["warm", "elegant", "retro"],
+      "color_mood": "appetizing,warm,inviting",
+      "typography_mood": "readable,welcoming,character",
+      "key_effects": ["food photography focus", "menu animations", "reservation CTAs"],
+      "anti_patterns": ["cold colors", "hard-to-read fonts", "missing food images"],
+      "accessibility": "WCAG AA minimum"
+    },
+    {
+      "id": "luxury-001",
+      "industry": "Luxury",
+      "product_types": ["Luxury Goods", "Jewelry", "High-end Fashion", "Premium Services"],
+      "recommended_pattern": "story-driven",
+      "style_priority": ["elegant", "minimalism", "luxury"],
+      "color_mood": "sophisticated,exclusive,premium",
+      "typography_mood": "elegant,refined,timeless",
+      "key_effects": ["smooth parallax", "subtle reveals", "high-quality imagery"],
+      "anti_patterns": ["bright colors", "discount messaging", "cluttered layouts", "cheap effects"],
+      "accessibility": "WCAG AA minimum"
+    },
+    {
+      "id": "creative-001",
+      "industry": "Creative",
+      "product_types": ["Portfolio", "Agency", "Photography", "Design Studio"],
+      "recommended_pattern": "minimal-cta",
+      "style_priority": ["minimalism", "bold", "brutalism"],
+      "color_mood": "expressive,unique,memorable",
+      "typography_mood": "distinctive,artistic,bold",
+      "key_effects": ["creative transitions", "unique layouts", "interactive elements"],
+      "anti_patterns": ["generic templates", "stock photos", "boring layouts"],
+      "accessibility": "WCAG AA minimum"
+    }
+  ]
+}

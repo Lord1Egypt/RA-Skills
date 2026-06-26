@@ -1,0 +1,12 @@
+{
+  "wechat_video": {
+    "features": [
+      "口语化",
+      "前3秒重要",
+      "内容真实",
+      "避免广告感"
+    ],
+    "recommended_duration": "60秒左右",
+    "cover_text_rule": "8-16字，结论前置，避免过度夸张"
+  }
+}

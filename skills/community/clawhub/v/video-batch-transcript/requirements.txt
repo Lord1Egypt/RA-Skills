@@ -1,0 +1,20 @@
+# Video Batch Transcript - Python 依赖
+
+# 核心依赖
+yt-dlp>=2024.0.0          # 视频/音频下载（支持 1000+ 网站）
+faster-whisper>=1.0.0     # GPU 加速语音识别
+pandas>=2.0.0             # 数据处理
+python-dateutil>=2.8.0    # 日期解析
+
+# 可选依赖
+python-docx>=1.0.0        # Word 文档导出
+
+# GPU 加速（如需 CUDA 支持）
+# torch>=2.0.0            # PyTorch（faster-whisper 依赖）
+# 安装 CUDA 版本:
+# pip install torch --index-url https://download.pytorch.org/whl/cu118
+
+# 开发依赖（可选）
+# pytest>=7.0.0           # 测试
+# black>=23.0.0           # 代码格式化
+# flake8>=6.0.0           # 代码检查

@@ -1,0 +1,47 @@
+name: virtualsms-sms-verification
+version: 1.0.0
+display_name: VirtualSMS — Real SIM SMS Verification
+description: |
+  Real SIM-card phone numbers for SMS verification across 2000+ services
+  and 145+ countries, exposed to Claude via the VirtualSMS MCP server.
+author:
+  name: VirtualSMS
+  url: https://virtualsms.io
+license: MIT
+homepage: https://virtualsms.io/mcp
+repository: https://github.com/virtualsms-io/claude-skill-sms-verification
+keywords:
+  - sms
+  - sms-verification
+  - otp
+  - phone-number
+  - real-sim
+  - mcp
+  - mcp-server
+  - claude
+  - claude-skill
+  - ai-agent
+  - account-verification
+  - two-factor-authentication
+mcp_server:
+  package: virtualsms-mcp
+  command: npx
+  args:
+    - virtualsms-mcp
+  env:
+    VIRTUALSMS_API_KEY: ${VIRTUALSMS_API_KEY}
+  install:
+    npm: virtualsms-mcp
+    homepage: https://www.npmjs.com/package/virtualsms-mcp
+triggers:
+  - SMS verification
+  - OTP code
+  - phone number
+  - virtual number
+  - real SIM card
+  - account verification
+  - two-factor authentication
+  - WhatsApp verify
+  - Telegram verify
+  - virtualsms
+documentation: ./SKILL.md

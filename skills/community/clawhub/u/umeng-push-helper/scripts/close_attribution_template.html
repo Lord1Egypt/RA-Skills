@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关闭归因分析报告 - {{appkey}}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        
+        .header h1 {
+            color: #2d3748;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header .info {
+            color: #718096;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 5px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        
+        .block {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .block-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .data-table tr:hover {
+            background: #f7fafc;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            color: #718096;
+        }
+        
+        /* 颜色主题 */
+        .theme-blue { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .theme-green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .theme-purple { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .theme-orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 关闭归因分析报告</h1>
+            <div class="info">
+                <div>应用 Key: <strong>{{appkey}}</strong></div>
+                <div>时间范围：<strong>{{date_type}}</strong></div>
+                <div>生成时间：{{generated_time}}</div>
+            </div>
+        </div>
+        
+        <!-- 模块 1: 用户偏好分析 -->
+        <div class="section">
+            <div class="section-title">👤 用户偏好分析</div>
+            <div class="block">
+                <div class="block-title">关闭原因分布</div>
+                <div class="chart-container">
+                    <canvas id="userPrefChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 模块 2: 推送频次分析 -->
+        <div class="section">
+            <div class="section-title">📱 推送频次分析</div>
+            <div class="block">
+                <div class="block-title">频次与关闭关系</div>
+                <div class="chart-container">
+                    <canvas id="freqChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 模块 3: 通知内容分析 -->
+        <div class="section">
+            <div class="section-title">📝 通知内容分析</div>
+            <div class="block">
+                <div class="block-title">不同通知类型的关闭情况</div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>通知类型</th>
+                            <th>关闭数</th>
+                            <th>占比</th>
+                        </tr>
+                    </thead>
+                    <tbody id="messageTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- 模块 4: 设备维度分析 -->
+        <div class="section">
+            <div class="section-title">📲 设备维度分析</div>
+            <div class="block">
+                <div class="block-title">设备类型关闭分布</div>
+                <div class="chart-container">
+                    <canvas id="deviceChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            数据来源：友盟推送 API | 报告由友盟推送助手生成
+        </div>
+    </div>
+    
+    <script>
+        // 全局配置
+        Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto';
+        Chart.defaults.color = '#4a5568';
+        
+        // 颜色配置
+        const colors = {
+            blue: 'rgba(79, 172, 254, 0.8)',
+            green: 'rgba(67, 233, 123, 0.8)',
+            purple: 'rgba(102, 126, 234, 0.8)',
+            orange: 'rgba(250, 112, 154, 0.8)',
+            yellow: 'rgba(254, 225, 64, 0.8)',
+            cyan: 'rgba(56, 249, 215, 0.8)'
+        };
+        
+        // 准备数据
+        const userPrefData = {{user_pref_data}};
+        const freqData = {{freq_data}};
+        const messageData = {{message_data}};
+        const deviceData = {{device_data}};
+        
+        // 提取标签和数据
+        function extractLabelsAndData(data) {
+            return {
+                labels: data.map(item => item.name),
+                values: data.map(item => item.value),
+                percentages: data.map(item => item.percentage)
+            };
+        }
+        
+        // 1. 用户偏好分析图表
+        if (userPrefData && userPrefData.length > 0) {
+            const userData = extractLabelsAndData(userPrefData);
+            const userPrefCtx = document.getElementById('userPrefChart').getContext('2d');
+            new Chart(userPrefCtx, {
+                type: 'bar',
+                data: {
+                    labels: userData.labels,
+                    datasets: [{
+                        label: '关闭设备数',
+                        data: userData.values,
+                        backgroundColor: [
+                            colors.blue,
+                            colors.green,
+                            colors.purple,
+                            colors.orange,
+                            colors.yellow,
+                            colors.cyan
+                        ],
+                        borderWidth: 0,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `关闭数：${ctx.raw.toLocaleString()}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => value.toLocaleString()
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 2. 推送频次分析图表
+        if (freqData && freqData.length > 0) {
+            const freqChartData = extractLabelsAndData(freqData);
+            const freqCtx = document.getElementById('freqChart').getContext('2d');
+            new Chart(freqCtx, {
+                type: 'line',
+                data: {
+                    labels: freqChartData.labels,
+                    datasets: [{
+                        label: '关闭设备数',
+                        data: freqChartData.values,
+                        borderColor: colors.purple,
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: colors.purple,
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => `关闭数：${ctx.raw.toLocaleString()}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => value.toLocaleString()
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 3. 通知内容分析表格
+        if (messageData && messageData.length > 0) {
+            const tbody = document.getElementById('messageTableBody');
+            messageData.forEach((item, index) => {
+                const row = `<tr>
+                    <td>${index + 1}</td>
+                    <td><strong>${item.name}</strong></td>
+                    <td>${item.value ? item.value.toLocaleString() : '0'}</td>
+                    <td>${(item.percentage * 100).toFixed(2)}%</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+        
+        // 4. 设备维度分析图表
+        if (deviceData && deviceData.length > 0) {
+            const deviceChartData = extractLabelsAndData(deviceData);
+            const deviceCtx = document.getElementById('deviceChart').getContext('2d');
+            new Chart(deviceCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: deviceChartData.labels,
+                    datasets: [{
+                        data: deviceChartData.values,
+                        backgroundColor: [
+                            colors.blue,
+                            colors.green,
+                            colors.purple,
+                            colors.orange,
+                            colors.yellow,
+                            colors.cyan
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => {
+                                    const value = ctx.raw;
+                                    const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(2);
+                                    return `${value.toLocaleString()} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

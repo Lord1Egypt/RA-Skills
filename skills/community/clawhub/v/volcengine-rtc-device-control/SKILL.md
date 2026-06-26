@@ -1,35 +1,36 @@
 ---
-name: "volcengine-rtc-device-control"
-description: "火山引擎AI音视频互动设备控制技能。用于控制当前硬件设备的行为，包含左摇头、右摇头、调大音量、调小音量、设备关机、调亮屏幕、调暗屏幕、温度调节等常见硬件控制行为。当需要生成或解析设备控制指令时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-rtc-device-control"
-sourceUrl: "https://clawhub.ai/skills/volcengine-rtc-device-control"
+name: volcengine-rtc-device-control
+description: 火山引擎AI音视频互动设备控制技能。用于控制当前硬件设备的行为，包含左摇头、右摇头、调大音量、调小音量、设备关机、调亮屏幕、调暗屏幕、温度调节等常见硬件控制行为。当需要生成或解析设备控制指令时使用此技能。
 ---
 
-# volcengine-rtc-device-control
+# 火山引擎AI音视频互动设备控制技能
 
-> 火山引擎AI音视频互动设备控制技能。用于控制当前硬件设备的行为，包含左摇头、右摇头、调大音量、调小音量、设备关机、调亮屏幕、调暗屏幕、温度调节等常见硬件控制行为。当需要生成或解析设备控制指令时使用此技能。
+本技能用于控制当前硬件设备，定义了统一的交互协议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-rtc-device-control`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-rtc-device-control](https://clawhub.ai/skills/volcengine-rtc-device-control)
+## 核心功能
 
-## Overview
+本技能支持以下核心硬件控制能力：
+仅控制火山RTC音视频绑定设备
+- 左摇头 (pan_left)
+- 右摇头 (pan_right)
+- 调节音量大小 (volume_up)
+- 调亮屏幕 (brightness_up)
+- 调暗屏幕 (brightness_down)
+- 设备关机 (power_off)
+- 支持开心表情（emoji_happy）
+- 支持伤心表情（emoji_sad）
+- 支持设备震动（device_shock）
 
+## 安全机制
+- 指令通道：仅通过火山RTC官方信令（`rtc.volcengine.com`）传输
+- 身份认证：设备遵守火山引擎RTC身份鉴权，未认证指令直接丢弃
+- 传输加密：全程TLS 1.3加密，防篡改/劫持
+- 权限控制：仅当前登录用户可操作，支持操作日志审计
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-rtc-device-control
-```
+## 交互协议定义
+
+所有的设备控制指令均采用 JSON 格式进行交互。详细的协议定义和参数说明，请参考 [protocol.md](references/protocol.md)。
+
+## 使用说明
+
+- 当用户下达自然语言指令（例如：“向左转一下”、“声音大一点”、“屏幕太亮了调暗点”、“关闭设备”、“展示开心表情包”）时，Agent 会将这些意图转换为 `references/protocol.md` 中定义的 JSON 协议格式，并通过底层通信链路发送给硬件设备。

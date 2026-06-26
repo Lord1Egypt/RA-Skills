@@ -1,0 +1,13 @@
+{
+  "name": "morning-brief",
+  "trigger": {
+    "type": "cron",
+    "value": "0 0 8 * * ?"
+  },
+  "actions": [
+    {
+      "type": "node",
+      "script": "main.js"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "urban-daoist-navigator",
+  "version": "4.0.0",
+  "description": "Daily guide using Eastern philosophical concepts (Daoism, Zen, Wu Wei) for modern urban life",
+  "author": "PsyVector",
+  "homepage": "https://iheaven.org",
+  "price": "$9.90",
+  "tags": ["productivity", "philosophy", "daoism", "daily-routine", "mindfulness"],
+  "kernel": "H2",
+  "scenario": "S7"
+}

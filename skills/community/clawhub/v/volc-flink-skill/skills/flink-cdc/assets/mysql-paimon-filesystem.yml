@@ -1,0 +1,46 @@
+# Reference notes:
+# - references/overview.md
+# - references/mysql.md
+# - references/paimon.md
+
+sources:
+- source:
+    type: mysql
+    name: MySQL Source
+    hostname: ${mysql_hostname}
+    port: ${mysql_port}
+    username: ${mysql_username}
+    password: ${mysql_password}
+    tables: ${mysql_tables}
+    tables.exclude: ${mysql_tables_exclude}
+    server-id: ${mysql_server_id}
+    schema-change.enabled: true
+    scan.incremental.snapshot.chunk.size: ${mysql_scan_incremental_snapshot_chunk_size}
+    scan.snapshot.fetch.size: ${mysql_scan_snapshot_fetch_size}
+    scan.startup.mode: ${mysql_scan_startup_mode}
+
+sink:
+  type: paimon
+  name: Paimon Sink
+  # Note: pipeline Paimon sink requires source tables have primary keys.
+  commit.user: ${paimon_commit_user}
+  catalog.properties.metastore: filesystem
+  catalog.properties.warehouse: ${paimon_catalog_properties_warehouse}
+  partition.key: ${paimon_partition_key}
+  table.properties.bucket: ${paimon_table_properties_bucket}
+  table.properties.changelog-producer: ${paimon_table_properties_changelog_producer}
+
+transform:
+- source-table: ${transform_source_table}
+  projection: ${transform_projection}
+  filter: ${transform_filter}
+  description: ${transform_description}
+
+route:
+- source-table: ${route_source_table}
+  sink-table: ${route_sink_table}
+  description: ${route_description}
+
+pipeline:
+  name: ${pipeline_name}
+  parallelism: ${pipeline_parallelism}

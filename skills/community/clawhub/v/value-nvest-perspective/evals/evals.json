@@ -1,0 +1,117 @@
+{
+  "skill_name": "value-nvest-perspective",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "NVDA 现在这个价格能买吗？我手上没有它的仓位，想加一点，不知道是直接买正股还是买 long call。",
+      "expected_output": "先搜索 NVDA 和大盘当前行情，结合宏观情况（Fed 降息周期、通胀），按框架给出：标的判断、市场状态、表达工具建议（正股 vs long call vs 两者）、动作建议、风险约束、失效条件。不给伪精确的行权价或止损位。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "searches-market-data",
+          "text": "Response includes real-time NVDA price data or explicitly references a searched price level"
+        },
+        {
+          "id": "includes-macro-context",
+          "text": "Response mentions at least one macro indicator: Fed rate, inflation level, or Fear & Greed Index"
+        },
+        {
+          "id": "recommends-specific-tool",
+          "text": "Response clearly recommends one of: 正股, long call, or 正股+long call — not a vague 'it depends'"
+        },
+        {
+          "id": "includes-invalidation",
+          "text": "Response includes at least one explicit 失效条件"
+        },
+        {
+          "id": "no-fake-precision",
+          "text": "Response does NOT claim to know a specific option strike price or exact expiration date"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "M7 内部现在分化很大，我想趁回调布局一批 long call，你觉得现在哪几个最值得先做？哪些该避开？",
+      "expected_output": "先搜索 M7 各标的 YTD 表现和 AI capex 回报情况，结合宏观环境（Fed 降息节奏、滞胀风险），区分 M7 内部谁在加速变现（GOOGL/AMZN）、谁在消化（NVDA/AAPL）、谁在承压（MSFT/META/TSLA），给出优先级排序和分批进的建议。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "differentiates-m7",
+          "text": "Response explicitly differentiates M7 tickers — ranks or tiers them rather than treating as one group"
+        },
+        {
+          "id": "mentions-ai-capex-monetization",
+          "text": "Response evaluates AI capex return or monetization as a factor in ranking M7 stocks"
+        },
+        {
+          "id": "includes-macro-backdrop",
+          "text": "Response mentions Fed rate, inflation, or macro environment as context for the recommendation"
+        },
+        {
+          "id": "addresses-dip-quality",
+          "text": "Response assesses whether lagging stocks represent opportunity vs thesis deterioration"
+        },
+        {
+          "id": "advises-staged-entry",
+          "text": "Response recommends 分批进 (staged entry) rather than going all-in"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "AI 基建中间层的 TSM、AVGO、MU 涨了很多，还能做 long call 吗？这些算不算有'第一+唯一'？",
+      "expected_output": "先搜索 TSM、AVGO、MU 近期走势和估值，评估每个标的是否符合'第一+唯一'标准（TSM 唯一大规模先进代工、AVGO 定制芯片首选、MU HBM 内存龙头），结合已涨幅度判断 long call vs 正股 vs 等回调的建议。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "evaluates-first-only",
+          "text": "Response explicitly applies the 第一+唯一 framework to each of TSM, AVGO, and MU individually"
+        },
+        {
+          "id": "searches-price-data",
+          "text": "Response includes recent price or YTD performance data for at least two of the three tickers"
+        },
+        {
+          "id": "addresses-post-rally-risk",
+          "text": "Response discusses the risk of entering long calls after significant price appreciation"
+        },
+        {
+          "id": "gives-differentiated-advice",
+          "text": "Response does NOT give the same recommendation for all three — differentiates based on each stock's situation"
+        },
+        {
+          "id": "no-fake-precision",
+          "text": "Response does NOT claim to know a specific option strike price or exact expiration date"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "MSFT 今年跌了不少，是不是该趁 Fed 降息周期抄底做 long call？",
+      "expected_output": "先搜索 MSFT 近期走势和 AI capex 回报情况，分析下跌是估值消化还是基本面恶化，结合 Fed 降息周期背景，判断是否适合 long call 还是先正股观察，并与 GOOGL/AMZN 等已在变现的同行做对比。",
+      "files": [],
+      "assertions": [
+        {
+          "id": "searches-msft-data",
+          "text": "Response includes MSFT recent price or YTD performance data"
+        },
+        {
+          "id": "analyzes-decline-reason",
+          "text": "Response distinguishes between macro dip vs company-specific concerns (AI capex return uncertainty)"
+        },
+        {
+          "id": "compares-with-peers",
+          "text": "Response compares MSFT with at least one M7 peer (like GOOGL or AMZN) on capex monetization"
+        },
+        {
+          "id": "addresses-rate-cycle",
+          "text": "Response discusses how the Fed rate-cutting cycle factors into the decision"
+        },
+        {
+          "id": "gives-concrete-lean",
+          "text": "Response gives a concrete lean rather than pure 'it depends'"
+        }
+      ]
+    }
+  ]
+}

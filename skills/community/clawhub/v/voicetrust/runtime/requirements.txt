@@ -1,0 +1,14 @@
+# Runtime dependencies for the currently promoted local mainline
+# Kept in parallel with pyproject.toml during the transition period.
+
+torch>=2.0.0
+torchaudio>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+librosa>=0.10.0
+soundfile>=0.12.0
+speechbrain==1.0.3
+pyyaml>=6.0
+tqdm>=4.65.0
+pytest>=7.4.0
+black>=23.0.0

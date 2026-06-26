@@ -1,0 +1,58 @@
+{
+  "name": "vm-memory-oracle",
+  "version": "2.0.0",
+  "description": "Production-grade memory persistence and lifecycle management for VM-hosted OpenClaw agents. 4-layer architecture with knowledge graph, activation/decay, nightly consolidation, and health monitoring. Fully local — no network, no credentials, no sudo.",
+  "author": "ssharif",
+  "license": "MIT-0",
+  "triggers": [
+    "memory consolidation",
+    "memory health check",
+    "memory maintenance",
+    "memory quality probe",
+    "initialize memory",
+    "summarize sessions"
+  ],
+  "permissions": [
+    "filesystem"
+  ],
+  "config": {
+    "data_path": "/data/memory",
+    "half_life_days": 30,
+    "recall_boost": 0.3,
+    "search_threshold": 0.15,
+    "prune_threshold": 0.05,
+    "max_facts": 10000,
+    "session_retention_days": 30,
+    "daily_retention_days": 365,
+    "memory_md_max_lines": 200,
+    "canary_check_interval": "weekly",
+    "embedding_model": "multilingual-e5-large",
+    "embedding_device": "cpu"
+  },
+  "actions": {
+    "init": {
+      "description": "Initialize the memory directory structure and default files"
+    },
+    "summarize": {
+      "description": "Summarize today's session logs into a daily summary file"
+    },
+    "consolidate": {
+      "description": "Run the full nightly consolidation pipeline: decay, index, prune, reconcile, clean"
+    },
+    "health-check": {
+      "description": "Run a health check and write results to health.json"
+    },
+    "quality-probe": {
+      "description": "Test recall accuracy against canary facts"
+    },
+    "install-cron": {
+      "description": "Register cron jobs for automated memory lifecycle management"
+    }
+  },
+  "security": {
+    "network": false,
+    "credentials": false,
+    "sudo": false,
+    "filesystem_scope": "config.data_path"
+  }
+}

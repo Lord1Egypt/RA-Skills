@@ -1,0 +1,16 @@
+{
+  "default_mode": "text-only",
+  "whisper_model": "small",
+  "whisper_device": "auto",
+  "whisper_compute_type": "auto",
+  "whisper_language": "auto",
+  "frame_interval": 30,
+  "max_frames": 15,
+  "cache_dir": "~/.cache/video-insight",
+  "disk_space_threshold_gb": 5,
+  "yt_dlp_retries": 3,
+  "yt_dlp_fragment_retries": 3,
+  "yt_dlp_timeout": 300,
+  "ffmpeg_timeout": 120,
+  "transcript_min_length": 50
+}

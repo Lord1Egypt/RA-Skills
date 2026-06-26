@@ -1,0 +1,4 @@
+interface:
+  display_name: "Use HLN API"
+  short_description: "Resolve HL Names, fetch profiles and records, and guide HyperEVM integrations"
+  default_prompt: "Use $use-hln-api to resolve HL Names, reverse-resolve addresses, fetch profiles or data records, prepare mint-pass requests, or help wire HL Names into a HyperEVM dApp."

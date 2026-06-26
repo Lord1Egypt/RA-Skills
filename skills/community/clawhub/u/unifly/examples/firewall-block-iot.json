@@ -1,0 +1,22 @@
+{
+  "name": "Block IoT to Internal",
+  "action": "block",
+  "source_zone_id": "REPLACE_WITH_IOT_ZONE_UUID",
+  "destination_zone_id": "REPLACE_WITH_INTERNAL_ZONE_UUID",
+  "enabled": true,
+  "logging_enabled": true,
+  "allow_return_traffic": false,
+  "description": "Contain IoT devices to their own zone",
+  "ip_version": "IPV4_ONLY",
+  "connection_states": ["NEW", "ESTABLISHED"],
+  "source_filter": {
+    "type": "network",
+    "network_ids": ["REPLACE_WITH_IOT_NETWORK_UUID"],
+    "match_opposite": false
+  },
+  "destination_filter": {
+    "type": "ip_address",
+    "addresses": ["10.0.0.0/8", "192.168.0.0/16"],
+    "match_opposite": false
+  }
+}

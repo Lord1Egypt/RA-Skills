@@ -1,0 +1,98 @@
+{
+  "name": "unified-memory",
+  "version": "5.2.4",
+  "type": "module",
+  "description": "🧠 Unified Memory v5.2.4 - 高级记忆管理系统，支持混合搜索（BM25 + 向量 + RRF）、原子事务、WAL协议、证据链和插件系统",
+  "description_zh": "统一记忆系统 v5.2.4 - 高级记忆管理系统，支持混合搜索（BM25 + 向量 + RRF）、原子事务、WAL协议、证据链和插件系统",
+  "displayName": "Unified Memory",
+  "displayNameZh": "统一记忆系统",
+  "homepage": "https://github.com/mouxangithub/unified-memory",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mouxangithub/unified-memory.git"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test test/unit/*.test.js test/integration/*.test.js",
+    "test:unit": "node --test test/unit/*.test.js",
+    "test:integration": "node --test test/integration/*.test.js",
+    "test:coverage": "c8 node --test test/unit/*.test.js test/integration/*.test.js",
+    "bench": "node test/benchmark/write-performance.js",
+    "query": "node memory/.dreams/scripts/query.cjs",
+    "stats": "node memory/.dreams/scripts/query.cjs stats",
+    "enhance": "node memory/.dreams/scripts/enhance-tags.cjs",
+    "sync": "node plugins/sync/sync_cron.js",
+    "sync:dry-run": "node plugins/sync/sync_cron.js --dry-run",
+    "sync:manual": "node plugins/sync/sync_bridge.js",
+    "query:unified": "node plugins/api/unified_query_api.js",
+    "dedup": "node plugins/dedup/cross_system_dedup.js",
+    "monitor": "node plugins/monitor/health_check.js",
+    "monitor:dashboard": "node plugins/monitor/health_check.js --dashboard",
+    "crontab": "node plugins/sync/sync_cron.js --crontab",
+    "dev": "./scripts/dev.sh",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:atomic": "./scripts/deploy/deploy-atomic-fixes.sh",
+    "verify": "./scripts/verify/verify-repairs.sh",
+    "docs": "./scripts/docs/update-docs.sh",
+    "install": "./install.sh"
+  },
+  "keywords": [
+    "memory",
+    "ai-memory",
+    "long-term-memory",
+    "dream-memory",
+    "hybrid-search",
+    "bm25",
+    "vector-search",
+    "lancedb",
+    "scene-induction",
+    "pipeline",
+    "chinese-nlp",
+    "dreams-system",
+    "memory-optimization",
+    "atomic-transactions",
+    "data-persistence",
+    "vector-search",
+    "plugin-system",
+    "memory-sync",
+    "deduplication",
+    "health-monitoring"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@node-rs/jieba": "^2.0.1",
+    "zod": "^3.22.0",
+    "better-sqlite3": "^11.0.0",
+    "@lancedb/lancedb": "^0.12.0",
+    "chromadb": "^1.8.0",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "express": "^4.18.2",
+    "sqlite-vec": "^0.1.0"
+  },
+  "peerDependencies": {
+    "mcporter": "^0.9.0",
+    "node-llama-cpp": "^3.18.1"
+  },
+  "peerDependenciesMeta": {
+    "mcporter": {
+      "optional": true
+    },
+    "node-llama-cpp": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "skills": [
+      "src/index.js"
+    ],
+    "hooks": {
+      "before_prompt_build": "before_prompt_build",
+      "agent_end": "agent_end"
+    }
+  }
+}

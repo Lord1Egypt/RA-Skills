@@ -1,35 +1,37 @@
 ---
-name: "VCF Regulatory Compliance"
-description: "An MCP server that interfaces with VMware Aria Operations to run regulatory compliance checks (ISO 27001, PCI DSS, CIS, etc.) against the VCF environment."
-category: "security"
-source: "ClawHub"
-tags: [aria-operations, compliance, iso, mcp, pci, security, vcf, vmware]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vcf-compliance-mcp"
-sourceUrl: "https://clawhub.ai/skills/vcf-compliance-mcp"
+name: vcf-compliance-mcp
+description: An MCP server that interfaces with VMware Aria Operations to run regulatory compliance checks (ISO 27001, PCI DSS, CIS, etc.) against the VCF environment.
+version: 1.0.1
+homepage: https://github.com/kasture-rohit/vcf-openclaw-skills
+metadata:
+  openclaw:
+    requires:
+      env:
+        - ARIA_OPS_HOST
+        - ARIA_OPS_API_TOKEN
+    emoji: ""
 ---
 
-# VCF Regulatory Compliance
+# VCF Regulatory Compliance Scanner
 
-> An MCP server that interfaces with VMware Aria Operations to run regulatory compliance checks (ISO 27001, PCI DSS, CIS, etc.) against the VCF environment.
+This skill uses the Model Context Protocol (MCP) to provide the AI agent with a native `get_vcf_compliance_status` tool. It queries VMware Aria Operations to generate instant audit reports for standard security frameworks.
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vcf-compliance-mcp`
-- **Source URL:** [https://clawhub.ai/skills/vcf-compliance-mcp](https://clawhub.ai/skills/vcf-compliance-mcp)
+### Setup Instructions for OpenClaw
+To use this skill, the OpenClaw agent must run the attached Python MCP server. 
 
-## Overview
+1. Install dependencies: `pip install -r requirements.txt`
+2. Configure your OpenClaw settings to launch this MCP server. Add the following to your agent's MCP configuration:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vcf-compliance-mcp
-```
+```json
+{
+  "mcpServers": {
+    "vcf-compliance": {
+      "command": "python",
+      "args": ["server.py"],
+      "env": {
+        "ARIA_OPS_HOST": "your-aria-ops-fqdn",
+        "ARIA_OPS_API_TOKEN": "your-api-token"
+      }
+    }
+  }
+}

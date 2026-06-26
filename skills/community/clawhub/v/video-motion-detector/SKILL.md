@@ -1,35 +1,118 @@
 ---
-name: "Na He"
-description: "视频动作检测与分析。用于检测视频中的特定动作序列，如武术动作、舞蹈动作、人体姿态变化等。当用户要求检测视频中的动作、分析动作是否完成、验证特定动作序列时触发此技能。支持输入视频URL或本地视频文件，检测完成后通过飞书通知结果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-motion-detector"
-sourceUrl: "https://clawhub.ai/skills/video-motion-detector"
+name: video-motion-detector
+description: 视频动作检测与分析。用于检测视频中的特定动作序列，如武术动作、舞蹈动作、人体姿态变化等。当用户要求检测视频中的动作、分析动作是否完成、验证特定动作序列时触发此技能。支持输入视频URL或本地视频文件，检测完成后通过飞书通知结果。
 ---
 
-# Na He
+# Video Motion Detector
 
-> 视频动作检测与分析。用于检测视频中的特定动作序列，如武术动作、舞蹈动作、人体姿态变化等。当用户要求检测视频中的动作、分析动作是否完成、验证特定动作序列时触发此技能。支持输入视频URL或本地视频文件，检测完成后通过飞书通知结果。
+检测视频中的特定动作序列，并通知结果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-motion-detector`
-- **Source URL:** [https://clawhub.ai/skills/video-motion-detector](https://clawhub.ai/skills/video-motion-detector)
+## 使用流程
 
-## Overview
+### 1. 获取视频
 
+根据视频平台选择下载方式：
 
-## Installation
-To install this skill, run the following command in your terminal:
+**B站视频**:
 ```bash
-hermes skills install clawhub/video-motion-detector
+you-get -o ./video https://www.bilibili.com/video/BVxxx
+# 或
+yt-dlp https://www.bilibili.com/video/BVxxx -o ./video
+```
+
+**抖音视频**:
+```bash
+you-get -o ./video https://www.douyin.com/video/xxx
+```
+
+**其他平台**:
+```bash
+yt-dlp "视频URL" -o ./video
+```
+
+### 2. 抽帧（重要！）
+
+**抽帧频率标准**：
+| 视频类型 | 推荐帧率 | 说明 |
+|---------|---------|------|
+| 武术/舞蹈/快速动作 | **10fps** | 每0.1秒一帧，防止漏掉快速动作 |
+| 普通动作 | 5fps | 日常动作检测 |
+| 慢动作 | 2-3fps | 太极拳等慢速动作 |
+
+```bash
+# 标准抽帧命令（武术动作推荐）
+ffmpeg -i ./video/input.mp4 -vf fps=10 ./frames/frame_%04d.jpg
+```
+
+**⚠️ 关键提醒**：
+- 动作可能发生在视频**任意时段**
+- 不要只分析前几帧就下结论
+
+### 3. 分析动作
+
+**帧数分析标准**：
+1. 先整体浏览：每50帧取样一张（如第1, 50, 100, 150, 200...）
+2. 定位关键区域：发现动作后，在该区域**密集分析**（每10帧分析一次）
+
+**分析步骤**：
+1. 使用 `read` 工具读取截图
+2. 用视觉模型分析图片中的动作
+3. 记录动作发生的时间点（帧号 ÷ fps = 秒数）
+4. **必须分析足够多的帧**，覆盖整个视频时段
+
+### 4. 动作序列判断
+
+根据用户指定的触发条件判断：
+
+- **顺序检测**: 动作A → 动作B → 动作C（必须按顺序出现）
+- **同时检测**: 动作A + 动作B（必须同时出现）
+- **数量检测**: 动作A 出现N次（如翻跟头5次）
+
+### 5. 通知结果
+
+使用 `message` 工具发送结果到飞书：
+
+```json
+{
+  "action": "send",
+  "message": "检测结果：\n✓ 检测到'转棍动作'\n✓ 检测到'转身动作'\n⚠️ 动作序列：部分满足\n📹 视频：披荆斩棘棍花练起来",
+  "target": "飞书用户ID"
+}
+```
+
+## 触发条件示例
+
+用户可能指定：
+- "检测先蹲马步然后翻跟头"
+- "检测高踢腿然后转身"
+- "检测转动手里的棍子，然后转身"
+- "检测翻5个跟头"
+
+## 注意事项
+
+1. **抽帧频率**: 武术/快速动作建议 **fps=10**，普通动作 fps=5
+2. **分析帧数**: 必须分析 **足够多的帧**，覆盖整个视频时段
+3. **光线**: 光线好坏严重影响识别效果
+4. **遮挡**: 物体遮挡会影响动作检测准确率
+5. **视频限制**: 部分平台（小红书、好看视频）需要登录或APP才能下载
+
+## 输出格式
+
+检测完成后，输出结构化结果：
+
+```
+检测结果摘要：
+├── 视频信息
+│   ├── 来源：B站
+│   ├── 标题：xxx
+│   └── 时长：xx秒
+├── 检测条件
+│   ├── 动作1：转棍
+│   ├── 动作2：转身
+│   └── 顺序要求：是
+├── 检测结果
+│   ├── 转棍动作：✓ 检测到（xx秒）
+│   ├── 转身动作：✓ 检测到（xx秒）
+│   └── 动作序列：✓ 满足
+└── 结论：通过/未通过
 ```

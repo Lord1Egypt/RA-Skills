@@ -1,0 +1,599 @@
+#!/usr/bin/env python3
+"""
+WebDAV 备份脚本
+将 OpenClaw 工作目录备份到 WebDAV 服务器
+"""
+
+import os
+import sys
+import argparse
+import tarfile
+import datetime
+import json
+import re
+from pathlib import Path
+import urllib.request
+import urllib.error
+import urllib.parse
+import xml.etree.ElementTree as ET
+import fnmatch
+import io
+import shutil
+
+OPENCLAW_ROOT = os.path.expanduser('~/.openclaw')
+DEFAULT_EXCLUDE_PATTERNS = [
+    '.DS_Store',
+    '__pycache__',
+    '*.pyc',
+    '*.pyo',
+    '.git',
+    '.git/*',
+    '.ace-tool',
+    '.ace-tool/*',
+    '.clawhub',
+    '.clawhub/*',
+    'node_modules',
+    'node_modules/*',
+    '.cache',
+    '.cache/*',
+    'tmp',
+    'tmp/*',
+    'temp',
+    'temp/*',
+    'output',
+    'output/*',
+    'outputs',
+    'outputs/*',
+    'outputs.pre-migration-*',
+]
+
+DEFAULT_BACKUP_ITEMS = [
+    {
+        'path': os.path.join(OPENCLAW_ROOT, 'workspace'),
+        'arcname': 'openclaw/workspace',
+        'required': True,
+        'label': 'workspace',
+    },
+    {
+        'path': os.path.join(OPENCLAW_ROOT, 'openclaw.json'),
+        'arcname': 'openclaw/openclaw.json',
+        'required': False,
+        'label': '主配置 openclaw.json',
+    },
+    {
+        'path': os.path.join(OPENCLAW_ROOT, 'cron'),
+        'arcname': 'openclaw/cron',
+        'required': False,
+        'label': 'cron 配置',
+    },
+    {
+        'path': os.path.join(OPENCLAW_ROOT, 'workspace', 'config'),
+        'arcname': 'openclaw/workspace/config',
+        'required': False,
+        'label': 'workspace/config',
+    },
+]
+
+
+def load_openclaw_config():
+    """从 openclaw.json 加载 webdav-backup 配置"""
+    config_paths = [
+        os.path.expanduser('~/.openclaw/openclaw.json'),
+        os.path.expanduser('~/.config/openclaw/openclaw.json'),
+    ]
+    
+    for config_path in config_paths:
+        if os.path.exists(config_path):
+            try:
+                with open(config_path, 'r') as f:
+                    config = json.load(f)
+                
+                # 查找 webdav-backup 技能配置
+                skills = config.get('skills', {}).get('entries', {})
+                skill_config = skills.get('webdav-backup', {})
+                
+                if skill_config and skill_config.get('enabled', False):
+                    return skill_config.get('env', {})
+            except Exception:
+                pass
+    
+    return {}
+
+
+# 加载 openclaw.json 配置
+openclaw_env = load_openclaw_config()
+
+# 配置 - 优先级: 环境变量 > openclaw.json > 默认值
+DEFAULT_WORKSPACE = os.path.expanduser('~/.openclaw/workspace')
+DEFAULT_OUTPUT_ROOT = os.path.expanduser('~/openclaw/output')
+DEFAULT_LOCAL_BACKUP_DIR = DEFAULT_OUTPUT_ROOT
+WORKSPACE = os.environ.get('OPENCLAW_WORKSPACE', DEFAULT_WORKSPACE)
+WEBDAV_URL = os.environ.get('WEBDAV_URL', openclaw_env.get('WEBDAV_URL', ''))
+WEBDAV_USER = os.environ.get('WEBDAV_USERNAME', openclaw_env.get('WEBDAV_USERNAME', ''))
+WEBDAV_PASS = os.environ.get('WEBDAV_PASSWORD', 
+              openclaw_env.get('WEBDAV_PASSWORD', ''))
+LOCAL_BACKUP_DIR = os.environ.get('OPENCLAW_LOCAL_BACKUP_DIR', openclaw_env.get('OPENCLAW_LOCAL_BACKUP_DIR', DEFAULT_LOCAL_BACKUP_DIR))
+RETENTION_DAYS = 60
+MIN_KEEP_COUNT = 20
+BACKUP_FILENAME_RE = re.compile(r'^(?P<prefix>.+)-(?P<timestamp>\d{8}-\d{6})\.tar\.gz$')
+
+
+def should_exclude(rel_path, exclude_patterns=None):
+    patterns = exclude_patterns or DEFAULT_EXCLUDE_PATTERNS
+    normalized = rel_path.replace('\\', '/')
+    if normalized.startswith('./'):
+        normalized = normalized[2:]
+    if not normalized:
+        return False
+    parts = [p for p in normalized.split('/') if p]
+    for pattern in patterns:
+        if fnmatch.fnmatch(normalized, pattern):
+            return True
+        if any(fnmatch.fnmatch(part, pattern) for part in parts):
+            return True
+        if any(fnmatch.fnmatch('/'.join(parts[:i + 1]), pattern) for i in range(len(parts))):
+            return True
+    return False
+
+
+def add_path_to_tar(tar, source_path, arcname, exclude_patterns=None):
+    source = Path(source_path).expanduser()
+    if not source.exists():
+        return False
+
+    if source.is_file():
+        tar.add(source, arcname=arcname)
+        return True
+
+    added_any = False
+    for root, dirs, files in os.walk(source):
+        root_path = Path(root)
+        rel_root = root_path.relative_to(source)
+
+        kept_dirs = []
+        for d in dirs:
+            rel_dir = str((rel_root / d).as_posix())
+            if should_exclude(rel_dir, exclude_patterns):
+                continue
+            kept_dirs.append(d)
+        dirs[:] = kept_dirs
+
+        tar_dir_arc = arcname if str(rel_root) == '.' else f"{arcname}/{rel_root.as_posix()}"
+        dir_info = tarfile.TarInfo(tar_dir_arc)
+        dir_info.type = tarfile.DIRTYPE
+        dir_info.mtime = root_path.stat().st_mtime
+        tar.addfile(dir_info)
+        added_any = True
+
+        for file_name in files:
+            rel_file = str((rel_root / file_name).as_posix())
+            if should_exclude(rel_file, exclude_patterns):
+                continue
+            file_path = root_path / file_name
+            file_arc = f"{arcname}/{rel_file}"
+            tar.add(file_path, arcname=file_arc, recursive=False)
+            added_any = True
+
+    return added_any
+
+
+def resolve_latest_backup(local_dir, prefix='openclaw-backup'):
+    local_path = Path(local_dir).expanduser()
+    files = sorted(local_path.glob(f'{prefix}-*.tar.gz'), reverse=True)
+    return files[0] if files else None
+
+
+def restore_backup(backup_input, restore_dir, force=False, prefix='openclaw-backup'):
+    if backup_input == 'latest':
+        backup_path = resolve_latest_backup(LOCAL_BACKUP_DIR, prefix=prefix)
+        if not backup_path:
+            raise FileNotFoundError(f'在 {LOCAL_BACKUP_DIR} 下找不到最新备份')
+    else:
+        backup_path = Path(backup_input).expanduser()
+        if not backup_path.exists():
+            raise FileNotFoundError(f'备份文件不存在: {backup_path}')
+
+    restore_path = Path(restore_dir).expanduser()
+    restore_path.mkdir(parents=True, exist_ok=True)
+
+    print(f'♻️  正在恢复备份: {backup_path}')
+    print(f'📁 恢复目标目录: {restore_path}')
+
+    restored = 0
+    skipped = 0
+    with tarfile.open(backup_path, 'r:gz') as tar:
+        for member in tar.getmembers():
+            target = restore_path / member.name
+            if target.exists() and not force:
+                skipped += 1
+                continue
+            tar.extract(member, path=restore_path, filter='data')
+            restored += 1
+
+    print(f'✅ 恢复完成: restored={restored}, skipped={skipped}')
+    return backup_path, restore_path
+
+def check_webdav_config():
+    """检查 WebDAV 配置"""
+    if not WEBDAV_URL or not WEBDAV_USER or not WEBDAV_PASS:
+        print("❌ WebDAV 配置缺失")
+        print("")
+        print("配置方式一：编辑 ~/.openclaw/openclaw.json")
+        print('  {')
+        print('    "skills": {')
+        print('      "entries": {')
+        print('        "webdav-backup": {')
+        print('          "enabled": true,')
+        print('          "env": {')
+        print('            "WEBDAV_URL": "https://dav.jianguoyun.com/dav/",')
+        print('            "WEBDAV_USERNAME": "your-email",')
+        print('            "WEBDAV_PASSWORD": "your-password",')
+        print('            "OPENCLAW_LOCAL_BACKUP_DIR": "~/openclaw/backups"')
+        print('          }')
+        print('        }')
+        print('      }')
+        print('    }')
+        print('  }')
+        print("")
+        print("配置方式二：设置环境变量")
+        print("  export WEBDAV_URL='https://dav.jianguoyun.com/dav/'")
+        print("  export WEBDAV_USERNAME='your-email'")
+        print("  export WEBDAV_PASSWORD='your-password'")
+        return False
+
+    print(f"📡 WebDAV URL: {WEBDAV_URL}")
+    print(f"👤 用户名: {WEBDAV_USER}")
+    return True
+
+
+def ensure_local_backup_dir(local_dir):
+    """确保本地备份目录存在"""
+    local_path = Path(local_dir).expanduser()
+    local_path.mkdir(parents=True, exist_ok=True)
+    return local_path
+
+def create_backup(source_dir=None, backup_name=None, output_dir='/tmp', include_defaults=True):
+    """创建备份压缩包"""
+    timestamp = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
+    if backup_name:
+        backup_file = f"{backup_name}-{timestamp}.tar.gz"
+    else:
+        backup_file = f"openclaw-backup-{timestamp}.tar.gz"
+
+    output_path = Path(output_dir).expanduser()
+    output_path.mkdir(parents=True, exist_ok=True)
+    backup_path = output_path / backup_file
+
+    print(f"📦 正在创建备份: {backup_file}")
+
+    with tarfile.open(backup_path, 'w:gz') as tar:
+        if include_defaults and not source_dir:
+            print('🧩 使用默认备份清单：workspace + 基础配置')
+            manifest = []
+            for item in DEFAULT_BACKUP_ITEMS:
+                item_path = Path(item['path']).expanduser()
+                if item_path.exists():
+                    added = add_path_to_tar(tar, item_path, item['arcname'], DEFAULT_EXCLUDE_PATTERNS)
+                    if added:
+                        manifest.append({
+                            'label': item['label'],
+                            'path': str(item_path),
+                            'arcname': item['arcname'],
+                        })
+                        print(f"✅ 已添加: {item['label']} -> {item['arcname']}")
+                    else:
+                        print(f"ℹ️  跳过空目录或全被排除: {item_path}")
+                elif item.get('required'):
+                    print(f"⚠️  缺失必备路径: {item_path}")
+                else:
+                    print(f"ℹ️  跳过不存在项: {item_path}")
+
+            manifest_excludes = json.dumps(DEFAULT_EXCLUDE_PATTERNS, ensure_ascii=False)
+
+            manifest_bytes = json.dumps({
+                'created_at': datetime.datetime.now().isoformat(),
+                'items': manifest,
+                'exclude_patterns': DEFAULT_EXCLUDE_PATTERNS,
+            }, ensure_ascii=False, indent=2).encode('utf-8')
+            info = tarfile.TarInfo(name='openclaw/backup-manifest.json')
+            info.size = len(manifest_bytes)
+            info.mtime = datetime.datetime.now().timestamp()
+            tar.addfile(info, io.BytesIO(manifest_bytes))
+            print('✅ 已添加: openclaw/backup-manifest.json')
+        else:
+            source = Path(source_dir).expanduser()
+            if source.exists():
+                added = add_path_to_tar(tar, source, source.name, DEFAULT_EXCLUDE_PATTERNS)
+                if added:
+                    print(f"✅ 已添加: {source}")
+                else:
+                    print(f"ℹ️  已跳过：{source}（空目录或全被排除）")
+            else:
+                print(f"⚠️  目录不存在: {source}")
+
+    size = backup_path.stat().st_size
+    print(f"📊 备份大小: {size / 1024 / 1024:.2f} MB")
+
+    return backup_path
+
+def create_webdav_opener():
+    """创建带认证的 WebDAV opener"""
+    parsed = urllib.parse.urlparse(WEBDAV_URL)
+    base_url = f"{parsed.scheme}://{parsed.netloc}"
+    password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
+    password_mgr.add_password(None, base_url, WEBDAV_USER, WEBDAV_PASS)
+    password_mgr.add_password(None, WEBDAV_URL, WEBDAV_USER, WEBDAV_PASS)
+    handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
+    return urllib.request.build_opener(handler)
+
+def ensure_webdav_directory():
+    """确保 WebDAV 目录存在，不存在则创建"""
+    # 解析 URL，获取基础 URL 和路径
+    parsed = urllib.parse.urlparse(WEBDAV_URL)
+    base_url = f"{parsed.scheme}://{parsed.netloc}"
+    
+    # 获取 WEBDAV_URL 中的路径部分（去掉开头的 /dav/）
+    webdav_path = parsed.path.strip('/')
+    if webdav_path.startswith('dav/'):
+        webdav_path = webdav_path[4:]  # 去掉 'dav/'
+    
+    # 如果没有子目录，直接返回
+    if not webdav_path:
+        return
+    
+    opener = create_webdav_opener()
+    
+    # 逐级创建目录
+    parts = webdav_path.split('/')
+    current_path = "/dav"
+    for part in parts:
+        if not part:
+            continue
+        current_path += "/" + part
+        dir_url = base_url + current_path
+        
+        try:
+            req = urllib.request.Request(dir_url, method='MKCOL')
+            opener.open(req)
+        except urllib.error.HTTPError as e:
+            # 405 = 目录已存在，忽略
+            if e.code not in [405, 201]:
+                pass
+
+def parse_backup_filename(filename):
+    """从备份文件名解析前缀和时间戳"""
+    match = BACKUP_FILENAME_RE.match(filename)
+    if not match:
+        return None
+    try:
+        timestamp = datetime.datetime.strptime(match.group('timestamp'), '%Y%m%d-%H%M%S')
+    except ValueError:
+        return None
+    return {
+        'prefix': match.group('prefix'),
+        'timestamp': timestamp,
+        'name': filename,
+    }
+
+def list_remote_backups(opener, prefix):
+    """列出指定前缀的远端备份（按时间倒序）"""
+    remote_url = WEBDAV_URL.rstrip('/') + '/'
+    data = b'<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"><prop><resourcetype/></prop></propfind>'
+    req = urllib.request.Request(remote_url, data=data, method='PROPFIND')
+    req.add_header('Depth', '1')
+    req.add_header('Content-Type', 'application/xml; charset=utf-8')
+
+    with opener.open(req) as response:
+        body = response.read()
+
+    root = ET.fromstring(body)
+    backups = []
+
+    for response_node in root.iter():
+        if not response_node.tag.endswith('response'):
+            continue
+
+        href = None
+        for child in response_node:
+            if child.tag.endswith('href'):
+                href = child.text or ''
+                break
+        if not href:
+            continue
+
+        path = urllib.parse.unquote(urllib.parse.urlparse(href).path or href)
+        filename = Path(path.rstrip('/')).name
+        if not filename:
+            continue
+
+        parsed = parse_backup_filename(filename)
+        if not parsed or parsed['prefix'] != prefix:
+            continue
+        backups.append(parsed)
+
+    backups.sort(key=lambda item: item['timestamp'], reverse=True)
+    return backups
+
+def delete_remote_backup(opener, filename):
+    """删除远端备份文件"""
+    remote_url = WEBDAV_URL.rstrip('/') + '/' + urllib.parse.quote(filename)
+    req = urllib.request.Request(remote_url, method='DELETE')
+    with opener.open(req):
+        return
+
+def cleanup_old_backups(current_backup_name):
+    """清理旧备份：保留3个月内或者最近20个备份"""
+    current = parse_backup_filename(current_backup_name)
+    if not current:
+        print(f"⚠️  跳过清理：文件名不符合备份格式 {current_backup_name}")
+        return
+
+    print("🧹 正在清理旧备份...")
+    opener = create_webdav_opener()
+    try:
+        backups = list_remote_backups(opener, current['prefix'])
+    except urllib.error.HTTPError as e:
+        print(f"⚠️  清理跳过：WebDAV 不支持 PROPFIND 或请求失败 ({e.code})")
+        return
+    except Exception as e:
+        print(f"⚠️  清理跳过：无法列出远端备份 ({e})")
+        return
+
+    if len(backups) <= MIN_KEEP_COUNT:
+        print(f"ℹ️  无需清理：当前共 {len(backups)} 个备份（<= {MIN_KEEP_COUNT}）")
+        return
+
+    cutoff = datetime.datetime.now() - datetime.timedelta(days=RETENTION_DAYS)
+    keep_by_count = {item['name'] for item in backups[:MIN_KEEP_COUNT]}
+    to_delete = [
+        item for item in backups
+        if item['timestamp'] < cutoff and item['name'] not in keep_by_count
+    ]
+
+    if not to_delete:
+        print("ℹ️  无需清理：没有符合删除条件的旧备份")
+        return
+
+    deleted = 0
+    failed = 0
+    for item in to_delete:
+        try:
+            delete_remote_backup(opener, item['name'])
+            deleted += 1
+            print(f"🗑️  已删除: {item['name']}")
+        except Exception as e:
+            failed += 1
+            print(f"⚠️  删除失败: {item['name']} ({e})")
+
+    print(f"✅ 清理完成: 删除 {deleted} 个，失败 {failed} 个，保留 {len(backups) - deleted} 个")
+
+def upload_to_webdav(local_file, remote_name):
+    """上传到 WebDAV 服务器"""
+    print(f"☁️  正在上传到 WebDAV...")
+    
+    remote_url = WEBDAV_URL.rstrip('/') + '/' + remote_name
+    
+    # 先确保目录存在
+    ensure_webdav_directory()
+    
+    opener = create_webdav_opener()
+    
+    try:
+        with open(local_file, 'rb') as f:
+            data = f.read()
+        
+        req = urllib.request.Request(remote_url, data=data, method='PUT')
+        req.add_header('Content-Type', 'application/octet-stream')
+        
+        with opener.open(req) as response:
+            if response.status in [200, 201, 204]:
+                print(f"✅ 上传成功: {remote_name}")
+                return True
+            else:
+                print(f"❌ 上传失败: HTTP {response.status}")
+                return False
+                
+    except urllib.error.HTTPError as e:
+        print(f"❌ HTTP 错误: {e.code} - {e.reason}")
+        if e.code == 409:
+            print("💡 提示: 409 错误通常表示目录不存在或文件已存在")
+            print("   坚果云需要在网页端手动创建文件夹")
+            print("   请访问 https://www.jianguoyun.com/ 创建文件夹: openclaw-tencent-backup")
+        elif e.code == 404:
+            print("💡 提示: 404 错误通常表示 WebDAV 路径不存在")
+            print("   请检查坚果云网页端是否有对应文件夹")
+            print("   路径示例: https://dav.jianguoyun.com/dav/openclaw-backup/")
+        elif e.code == 401:
+            print("💡 提示: 401 错误表示认证失败")
+            print("   请检查用户名和密码是否正确")
+            print("   注意: 坚果云需要使用'应用密码'而非登录密码")
+        return False
+    except Exception as e:
+        print(f"❌ 上传失败: {e}")
+        return False
+
+def list_backups(local_dir=None, remote=False, prefix='openclaw-backup'):
+    """列出本地或 WebDAV 上的备份文件"""
+    if local_dir:
+        local_path = Path(local_dir).expanduser()
+        print(f"📋 本地备份列表: {local_path}")
+        if not local_path.exists():
+            print("（目录不存在）")
+            return
+        files = sorted(local_path.glob(f'{prefix}-*.tar.gz'), reverse=True)
+        if not files:
+            print("（暂无备份）")
+            return
+        for file in files:
+            size_mb = file.stat().st_size / 1024 / 1024
+            print(f"- {file.name} ({size_mb:.2f} MB)")
+
+    if remote:
+        print("📋 WebDAV 备份列表")
+        print("注意: 此功能需要 WebDAV 服务器支持 PROPFIND 方法")
+        print(f"WebDAV URL: {WEBDAV_URL}")
+
+def main():
+    parser = argparse.ArgumentParser(description='WebDAV / 本地 备份工具')
+    parser.add_argument('--source', '-s', help='要备份的源目录；不传时使用默认备份清单（workspace + 基础配置）')
+    parser.add_argument('--name', '-n', default='openclaw-backup', help='备份文件名前缀')
+    parser.add_argument('--list', '-l', action='store_true', help='列出本地备份')
+    parser.add_argument('--list-remote', action='store_true', help='列出 WebDAV 备份')
+    parser.add_argument('--restore', '-r', help='恢复指定备份文件，或传 latest 恢复本地最新备份')
+    parser.add_argument('--restore-dir', default='.', help='恢复目标目录，默认当前目录')
+    parser.add_argument('--force', action='store_true', help='恢复时允许覆盖已存在文件')
+    parser.add_argument('--local-dir', default=LOCAL_BACKUP_DIR, help='本地备份目录，默认 ~/openclaw/output')
+    parser.add_argument('--local-only', action='store_true', help='只做本地备份，不上传 WebDAV')
+    parser.add_argument('--remote-only', action='store_true', help='只保留远端备份；先在临时目录打包再上传')
+
+    args = parser.parse_args()
+
+    if args.local_only and args.remote_only:
+        print('❌ --local-only 与 --remote-only 不能同时使用')
+        sys.exit(1)
+
+    if args.list:
+        list_backups(local_dir=args.local_dir, prefix=args.name)
+        return
+
+    if args.list_remote:
+        list_backups(remote=True)
+        return
+
+    if args.restore:
+        try:
+            restore_backup(args.restore, args.restore_dir, force=args.force, prefix=args.name)
+        except Exception as e:
+            print(f'❌ 恢复失败: {e}')
+            sys.exit(1)
+        return
+
+    local_target_dir = '/tmp' if args.remote_only else args.local_dir
+    if not args.remote_only:
+        resolved_local_dir = ensure_local_backup_dir(args.local_dir)
+        print(f"📁 本地备份目录: {resolved_local_dir}")
+
+    backup_file = create_backup(args.source, args.name, output_dir=local_target_dir, include_defaults=not bool(args.source))
+
+    if args.local_only:
+        print(f"✅ 本地备份完成: {backup_file}")
+        return
+
+    if not check_webdav_config():
+        print(f"⚠️  WebDAV 未配置，本地备份已保留在: {backup_file}")
+        sys.exit(1)
+
+    remote_name = backup_file.name
+    if upload_to_webdav(backup_file, remote_name):
+        cleanup_old_backups(remote_name)
+        if args.remote_only:
+            backup_file.unlink()
+        print(f"✅ 备份完成: {remote_name}")
+        if not args.remote_only:
+            print(f"📁 本地副本保留在: {backup_file}")
+    else:
+        print(f"⚠️  上传失败，本地备份保留在: {backup_file}")
+        sys.exit(1)
+
+if __name__ == '__main__':
+    main()

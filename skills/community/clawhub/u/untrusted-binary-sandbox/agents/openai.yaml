@@ -1,0 +1,4 @@
+interface:
+  display_name: "Untrusted Binary Sandbox"
+  short_description: "Safely observe untrusted binaries"
+  default_prompt: "Use $untrusted-binary-sandbox to plan a staged sandbox observation of this wallet or trading bot release."

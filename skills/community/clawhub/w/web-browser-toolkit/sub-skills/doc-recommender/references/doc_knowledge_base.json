@@ -1,0 +1,340 @@
+{
+  "_description": "공식 문서 지식 베이스. doc_recommender.py에서 키워드 매칭에 사용.",
+  "_version": "1.0",
+  "domains": {
+    "aviation": {
+      "description": "항공 분야 공식 문서",
+      "issuers": {
+        "ICAO": {"name": "International Civil Aviation Organization", "url": "https://www.icao.int"},
+        "FAA": {"name": "Federal Aviation Administration", "url": "https://www.faa.gov"},
+        "EASA": {"name": "European Union Aviation Safety Agency", "url": "https://www.easa.europa.eu"},
+        "ANAC": {"name": "Agência Nacional de Aviação Civil (Brazil)", "url": "https://www.gov.br/anac"},
+        "MOLIT": {"name": "국토교통부", "url": "https://www.molit.go.kr"},
+        "ASTM": {"name": "ASTM International", "url": "https://www.astm.org"},
+        "SAE": {"name": "SAE International", "url": "https://www.sae.org"},
+        "RTCA": {"name": "RTCA Inc.", "url": "https://www.rtca.org"}
+      },
+      "documents": [
+        {
+          "id": "ICAO-Annex-1",
+          "title": "Annex 1 — Personnel Licensing",
+          "type": "international_standard",
+          "issuer": "ICAO",
+          "keywords": ["pilot", "license", "licensing", "personnel", "training", "ATPL", "CPL", "PPL", "조종사", "면허"],
+          "url": "https://store.icao.int/en/annex-1-personnel-licensing",
+          "status": "active",
+          "latest_update": "2022",
+          "description": "항공 종사자(조종사, 항공기관사, 관제사 등) 자격 및 면허에 관한 국제 표준"
+        },
+        {
+          "id": "ICAO-Annex-2",
+          "title": "Annex 2 — Rules of the Air",
+          "type": "international_standard",
+          "issuer": "ICAO",
+          "keywords": ["rules", "air", "flight rules", "IFR", "VFR", "airspace", "비행규칙", "공역"],
+          "url": "https://store.icao.int/en/annex-2-rules-of-the-air",
+          "status": "active",
+          "latest_update": "2005",
+          "description": "항공기 비행 규칙에 관한 국제 표준"
+        },
+        {
+          "id": "ICAO-Annex-6",
+          "title": "Annex 6 — Operation of Aircraft",
+          "type": "international_standard",
+          "issuer": "ICAO",
+          "keywords": ["operations", "aircraft", "운항", "commercial", "transport", "general aviation", "helicopter", "AAM", "UAM"],
+          "url": "https://store.icao.int/en/annex-6-operation-of-aircraft",
+          "status": "active",
+          "latest_update": "2022",
+          "description": "항공기 운항에 관한 국제 표준. 현재 AAM/eVTOL 운항에 대한 갭이 식별됨"
+        },
+        {
+          "id": "ICAO-Annex-8",
+          "title": "Annex 8 — Airworthiness of Aircraft",
+          "type": "international_standard",
+          "issuer": "ICAO",
+          "keywords": ["airworthiness", "certification", "type certificate", "감항성", "인증", "형식증명", "eVTOL", "AAM"],
+          "url": "https://store.icao.int/en/annex-8-airworthiness-of-aircraft",
+          "status": "active",
+          "latest_update": "2018",
+          "description": "항공기 감항성 인증에 관한 국제 표준. eVTOL의 전기 추진 시스템 관련 갭 분석 진행 중"
+        },
+        {
+          "id": "ICAO-Annex-11",
+          "title": "Annex 11 — Air Traffic Services",
+          "type": "international_standard",
+          "issuer": "ICAO",
+          "keywords": ["ATC", "air traffic", "관제", "ATM", "UTM", "airspace", "separation"],
+          "url": "https://store.icao.int/en/annex-11-air-traffic-services",
+          "status": "active",
+          "latest_update": "2018",
+          "description": "항공교통관제 서비스에 관한 국제 표준. UTM/UAM 공역 통합 관련"
+        },
+        {
+          "id": "ICAO-Annex-14",
+          "title": "Annex 14 — Aerodromes (Volume I & II)",
+          "type": "international_standard",
+          "issuer": "ICAO",
+          "keywords": ["aerodrome", "airport", "vertiport", "heliport", "비행장", "버티포트", "공항"],
+          "url": "https://store.icao.int/en/annex-14-aerodromes",
+          "status": "active",
+          "latest_update": "2022",
+          "description": "비행장 설계 및 운영 표준. 버티포트(vertiport) 기준 개발 관련"
+        },
+        {
+          "id": "ICAO-Annex-16-Vol1",
+          "title": "Annex 16 — Environmental Protection, Volume I (Aircraft Noise)",
+          "type": "international_standard",
+          "issuer": "ICAO",
+          "keywords": ["noise", "소음", "environmental", "환경", "eVTOL", "VTOL"],
+          "url": "https://store.icao.int/en/annex-16-environmental-protection",
+          "status": "active",
+          "latest_update": "2017",
+          "description": "항공기 소음 기준. eVTOL 소음 규정이 아직 포함되지 않아 갭 존재"
+        },
+        {
+          "id": "ICAO-Annex-19",
+          "title": "Annex 19 — Safety Management",
+          "type": "international_standard",
+          "issuer": "ICAO",
+          "keywords": ["safety", "SMS", "안전관리", "안전", "risk", "management"],
+          "url": "https://store.icao.int/en/annex-19-safety-management",
+          "status": "active",
+          "latest_update": "2016",
+          "description": "안전관리시스템(SMS)에 관한 국제 표준"
+        },
+        {
+          "id": "ICAO-Doc-9859",
+          "title": "Doc 9859 — Safety Management Manual (SMM)",
+          "type": "guidance",
+          "issuer": "ICAO",
+          "keywords": ["safety", "SMS", "안전관리", "manual", "risk assessment"],
+          "url": "https://www.icao.int/safety/SafetyManagement/Pages/default.aspx",
+          "status": "active",
+          "latest_update": "2018",
+          "description": "안전관리 매뉴얼. Annex 19의 실무 적용 가이드"
+        },
+        {
+          "id": "ICAO-Circular-328",
+          "title": "Circular 328 — Unmanned Aircraft Systems (UAS)",
+          "type": "guidance",
+          "issuer": "ICAO",
+          "keywords": ["UAS", "UAV", "drone", "무인항공기", "드론", "unmanned"],
+          "url": "https://www.icao.int/safety/UA/Pages/default.aspx",
+          "status": "active",
+          "latest_update": "2011",
+          "description": "무인항공기 시스템에 관한 ICAO 회람"
+        },
+        {
+          "id": "FAA-14CFR-Part21",
+          "title": "14 CFR Part 21 — Certification Procedures for Products and Articles",
+          "type": "regulation",
+          "issuer": "FAA",
+          "keywords": ["certification", "type certificate", "production", "STC", "PMA", "인증", "형식증명"],
+          "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-21",
+          "status": "active",
+          "latest_update": "2024",
+          "description": "항공기, 엔진, 프로펠러의 형식증명 및 생산승인 절차"
+        },
+        {
+          "id": "FAA-14CFR-Part23",
+          "title": "14 CFR Part 23 — Airworthiness Standards: Normal Category Airplanes",
+          "type": "regulation",
+          "issuer": "FAA",
+          "keywords": ["airworthiness", "normal category", "Part 23", "eVTOL", "certification", "FDAL", "감항성"],
+          "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-23",
+          "status": "active",
+          "latest_update": "2024",
+          "description": "일반 항공기 감항성 기준. Amendment 64 이후 성능기반으로 전환. eVTOL 인증의 주요 기반"
+        },
+        {
+          "id": "FAA-14CFR-Part33",
+          "title": "14 CFR Part 33 — Airworthiness Standards: Aircraft Engines",
+          "type": "regulation",
+          "issuer": "FAA",
+          "keywords": ["engine", "엔진", "airworthiness", "propulsion", "electric", "전기추진"],
+          "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-33",
+          "status": "active",
+          "latest_update": "2024",
+          "description": "항공기 엔진 감항성 기준. 전기 추진 시스템에 대한 확장 적용"
+        },
+        {
+          "id": "FAA-14CFR-Part35",
+          "title": "14 CFR Part 35 — Airworthiness Standards: Propellers",
+          "type": "regulation",
+          "issuer": "FAA",
+          "keywords": ["propeller", "프로펠러", "rotor", "로터", "airworthiness"],
+          "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-35",
+          "status": "active",
+          "latest_update": "2024",
+          "description": "프로펠러 감항성 기준. eVTOL 로터 시스템에 적용"
+        },
+        {
+          "id": "FAA-14CFR-Part36",
+          "title": "14 CFR Part 36 — Noise Standards: Aircraft Type and Airworthiness Certification",
+          "type": "regulation",
+          "issuer": "FAA",
+          "keywords": ["noise", "소음", "Subpart H", "Subpart K", "helicopter", "tiltrotor", "eVTOL", "VTOL"],
+          "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-36",
+          "status": "active",
+          "latest_update": "2022",
+          "description": "항공기 소음 기준. Subpart H(헬기), Subpart K(틸트로터)를 eVTOL에 임시 적용 중"
+        },
+        {
+          "id": "FAA-14CFR-Part107",
+          "title": "14 CFR Part 107 — Small Unmanned Aircraft Systems",
+          "type": "regulation",
+          "issuer": "FAA",
+          "keywords": ["UAS", "drone", "드론", "sUAS", "무인", "Part 107", "remote pilot"],
+          "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107",
+          "status": "active",
+          "latest_update": "2024",
+          "description": "소형 무인항공기 시스템 운영 규정"
+        },
+        {
+          "id": "FAA-PS-AIR-21.17-01",
+          "title": "PS-AIR-21.17-01 — Safety Continuum for Powered-Lift (DRAFT)",
+          "type": "policy",
+          "issuer": "FAA",
+          "keywords": ["powered-lift", "eVTOL", "VTOL", "safety continuum", "FDAL", "certification"],
+          "url": "https://www.federalregister.gov/documents/2024/08/09/2024-17719/draft-policy-statement-regarding-safety-continuum-for-powered-lift",
+          "status": "draft",
+          "latest_update": "2024",
+          "description": "Powered-lift(eVTOL 포함) 항공기의 안전 연속체 정책 성명. FDAL 기준 정의"
+        },
+        {
+          "id": "FAA-AC-20-193",
+          "title": "AC 20-193 — Guide for Certification of Electric Propulsion Systems",
+          "type": "guidance",
+          "issuer": "FAA",
+          "keywords": ["electric", "propulsion", "전기추진", "certification", "battery", "배터리"],
+          "url": "https://www.faa.gov/regulations_policies/advisory_circulars",
+          "status": "active",
+          "latest_update": "2024",
+          "description": "전기 추진 시스템 인증 가이드"
+        },
+        {
+          "id": "EASA-CS-23",
+          "title": "CS-23 — Certification Specifications for Normal-Category Aeroplanes",
+          "type": "regulation",
+          "issuer": "EASA",
+          "keywords": ["CS-23", "normal category", "certification", "airworthiness", "eVTOL"],
+          "url": "https://www.easa.europa.eu/en/document-library/certification-specifications/cs-23-normal-category-aeroplanes",
+          "status": "active",
+          "latest_update": "2023",
+          "description": "유럽 일반 항공기 인증사양. FAA Part 23과 상호 대응"
+        },
+        {
+          "id": "EASA-SC-VTOL-02",
+          "title": "SC-VTOL-02 — Special Condition for Small-Category VTOL-Capable Aircraft",
+          "type": "regulation",
+          "issuer": "EASA",
+          "keywords": ["SC-VTOL", "eVTOL", "VTOL", "certification", "enhanced", "basic", "special condition"],
+          "url": "https://www.easa.europa.eu/en/document-library/product-certification-consultations/special-condition-vtol",
+          "status": "active",
+          "latest_update": "2024",
+          "description": "소형 VTOL 항공기(eVTOL) 전용 특별조건. Enhanced/Basic 카테고리 구분"
+        },
+        {
+          "id": "EASA-CS-29",
+          "title": "CS-29 — Certification Specifications for Large Rotorcraft",
+          "type": "regulation",
+          "issuer": "EASA",
+          "keywords": ["CS-29", "rotorcraft", "helicopter", "헬기", "회전익"],
+          "url": "https://www.easa.europa.eu/en/document-library/certification-specifications/cs-29-large-rotorcraft",
+          "status": "active",
+          "latest_update": "2023",
+          "description": "대형 회전익항공기 인증사양. Enhanced 카테고리 eVTOL의 안전 목표 기준"
+        },
+        {
+          "id": "ASTM-F3230-21a",
+          "title": "ASTM F3230-21a — Standard Practice for Safety Assessment of Systems and Equipment in Small Aircraft",
+          "type": "technical_standard",
+          "issuer": "ASTM",
+          "keywords": ["ASTM", "F3230", "safety assessment", "FDAL", "failure probability", "eVTOL"],
+          "url": "https://www.astm.org/f3230-21a.html",
+          "status": "active",
+          "latest_update": "2021",
+          "description": "소형 항공기 시스템 안전 평가 표준. eVTOL FDAL 기준의 기반"
+        },
+        {
+          "id": "ASTM-F3548",
+          "title": "ASTM F3548 — Standard Specification for UAS Traffic Management (UTM)",
+          "type": "technical_standard",
+          "issuer": "ASTM",
+          "keywords": ["UTM", "UAS", "traffic management", "drone", "무인", "교통관리"],
+          "url": "https://www.astm.org/f3548-21.html",
+          "status": "active",
+          "latest_update": "2021",
+          "description": "UAS 교통관리(UTM) 표준사양"
+        },
+        {
+          "id": "SAE-ARP4754A",
+          "title": "SAE ARP4754A — Guidelines for Development of Civil Aircraft and Systems",
+          "type": "technical_standard",
+          "issuer": "SAE",
+          "keywords": ["development assurance", "ARP4754", "DAL", "FDAL", "systems", "개발보증"],
+          "url": "https://www.sae.org/standards/content/arp4754a/",
+          "status": "active",
+          "latest_update": "2010",
+          "description": "민간 항공기 및 시스템 개발 가이드라인. 개발보증수준(DAL) 정의"
+        },
+        {
+          "id": "SAE-ARP4761A",
+          "title": "SAE ARP4761A — Guidelines and Methods for Safety Assessment",
+          "type": "technical_standard",
+          "issuer": "SAE",
+          "keywords": ["safety assessment", "ARP4761", "FHA", "FTA", "FMEA", "안전평가"],
+          "url": "https://www.sae.org/standards/content/arp4761a/",
+          "status": "active",
+          "latest_update": "2023",
+          "description": "안전성 평가 가이드라인 및 방법론. FHA, FTA, FMEA 등"
+        },
+        {
+          "id": "RTCA-DO-178C",
+          "title": "RTCA DO-178C — Software Considerations in Airborne Systems",
+          "type": "technical_standard",
+          "issuer": "RTCA",
+          "keywords": ["software", "DO-178", "소프트웨어", "certification", "DAL", "airborne"],
+          "url": "https://www.rtca.org/products/do-178c/",
+          "status": "active",
+          "latest_update": "2011",
+          "description": "항공기 탑재 소프트웨어 인증 표준"
+        },
+        {
+          "id": "RTCA-DO-254",
+          "title": "RTCA DO-254 — Design Assurance Guidance for Airborne Electronic Hardware",
+          "type": "technical_standard",
+          "issuer": "RTCA",
+          "keywords": ["hardware", "DO-254", "하드웨어", "electronic", "FPGA", "ASIC"],
+          "url": "https://www.rtca.org/products/do-254/",
+          "status": "active",
+          "latest_update": "2000",
+          "description": "항공기 탑재 전자 하드웨어 설계보증 가이드"
+        },
+        {
+          "id": "NAAN-Roadmap",
+          "title": "NAA Network — Roadmap for Advanced Air Mobility Aircraft Type Certification (Edition 1.0)",
+          "type": "guidance",
+          "issuer": "FAA",
+          "keywords": ["AAM", "certification", "roadmap", "type certificate", "eVTOL", "powered-lift"],
+          "url": "https://www.faa.gov/air-taxis/NAA-Network-Roadmap-Advanced-AirMobility-Aircraft-Type-Certification-Edition-April2025.pdf",
+          "status": "active",
+          "latest_update": "2025",
+          "description": "AAM 항공기 형식증명 로드맵. 국가항공당국 네트워크(NAAN) 발행"
+        },
+        {
+          "id": "Chicago-Convention",
+          "title": "Convention on International Civil Aviation (Chicago Convention, 1944)",
+          "type": "international_treaty",
+          "issuer": "ICAO",
+          "keywords": ["Chicago", "convention", "시카고", "협약", "sovereignty", "주권", "international"],
+          "url": "https://www.icao.int/publications/pages/doc7300.aspx",
+          "status": "active",
+          "latest_update": "2006",
+          "description": "국제민간항공에 관한 시카고 협약. ICAO 및 국제 항공법의 기반"
+        }
+      ]
+    }
+  }
+}

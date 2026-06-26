@@ -1,0 +1,41 @@
+{
+  "name": "@wuyonghui0810/vkey-bid-standardizer",
+  "version": "0.1.0",
+  "description": "银行投标响应文档标准化工具（v1.0）。7 条流水线：all/fix/renumber/auto-number/review/convert-md/validate-patterns",
+  "main": "standardize.py",
+  "bin": {
+    "vkey-bid-standardizer": "standardize.py"
+  },
+  "scripts": {
+    "test": "pytest tests/",
+    "standardize": "python standardize.py"
+  },
+  "keywords": [
+    "word",
+    "docx",
+    "openclaw",
+    "bid",
+    "banking",
+    "GB/T 9704",
+    "document-standards"
+  ],
+  "author": "wuyonghui0810",
+  "license": "MIT",
+  "openclaw": {
+    "compat": {
+      "pluginApi": "1"
+    },
+    "build": {
+      "openclawVersion": ">=0.1.0"
+    }
+  },
+  "dependencies": {
+    "python-docx": ">=1.0.0"
+  },
+  "devDependencies": {
+    "pytest": ">=7.0.0"
+  },
+  "engines": {
+    "python": ">=3.7"
+  }
+}

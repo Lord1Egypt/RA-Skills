@@ -1,0 +1,104 @@
+{
+  "name": "风险代币列表",
+  "endpoint": "POST /ai/getRiskCoinList",
+  "description": "获取AI通过多维度数据，追踪到当前行情下具有下跌风险趋势的代币列表",
+  "credits_cost": 3,
+  "needToken": false,
+  "use_case": "适用于当前行情下存在下跌行情风险的代币查询，适用于风险预警和持仓规避参考",
+  "update_frequency": "每 5 分钟更新一次",
+  "params": {},
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "币种符号" },
+    "price": { "type": "number", "actualType": "string", "desc": "当前价格" },
+    "maxPrice": { "type": "number", "actualType": "string", "desc": "最高价格" },
+    "minPrice": { "type": "number", "actualType": "string", "desc": "最低价格" },
+    "percentChange1h": { "type": "number", "actualType": "string", "desc": "1小时价格变化百分比" },
+    "percentChange24h": { "type": "number", "actualType": "string", "desc": "24小时价格变化百分比" },
+    "percentChange7d": { "type": "number", "actualType": "string", "desc": "7天价格变化百分比" },
+    "percentChange30d": { "type": "number", "actualType": "string", "desc": "30天价格变化百分比" },
+    "percentChange60d": { "type": "number", "actualType": "string", "desc": "60天价格变化百分比" },
+    "percentChange90d": { "type": "number", "actualType": "string", "desc": "90天价格变化百分比" },
+    "cost": { "type": "number", "actualType": "string", "desc": "成本价格" },
+    "costChange": { "type": "number", "actualType": "string", "desc": "成本变化" },
+    "deviation": { "type": "number", "actualType": "string", "desc": "偏离度" },
+    "marketCap": { "type": "number", "actualType": "string", "desc": "市值" },
+    "marketCapRanking": { "type": "integer", "actualType": "integer", "desc": "市值排名" },
+    "circulatingSupply": { "type": "number", "actualType": "string", "desc": "流通供应量" },
+    "circulationRate": { "type": "number", "actualType": "string", "desc": "流通率" },
+    "active": { "type": "integer", "actualType": "string", "desc": "活跃地址" },
+    "newly": { "type": "integer", "actualType": "string", "desc": "新增地址" },
+    "tradeType": { "type": "integer", "actualType": "integer", "desc": "交易类型（1:现货 2:合约 3:交割合约）" },
+    "chanceCoinTradeDataV1Vos": {
+      "type": "array",
+      "desc": "交易时间数据列表",
+      "item": {
+        "timeRange": { "type": "string", "actualType": "string", "desc": "时间范围标识（如m15, H4）" },
+        "timeParticleEnum": { "type": "integer", "actualType": "integer", "desc": "时间粒度枚举值" },
+        "tradeInflow": { "type": "number", "actualType": "string", "desc": "交易净流入金额(USD)" },
+        "tradeAmount": { "type": "number", "actualType": "string", "desc": "交易总金额(USD)" }
+      }
+    },
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间" },
+    "pushPrice": { "type": "number", "actualType": "string", "desc": "推送价格" },
+    "pushMaxPrice": { "type": "number", "actualType": "string", "desc": "推送最高价" },
+    "gains": { "type": "number", "actualType": "number", "desc": "回撤" },
+    "pushMinPrice": { "type": "number", "actualType": "string", "desc": "推送最低价" },
+    "declines": { "type": "number", "actualType": "number", "desc": "跌幅" },
+    "score": { "type": "number", "actualType": "number", "desc": "当前评分" },
+    "bullishRatio": { "type": "number", "actualType": "number", "desc": "看涨比例" },
+    "bearishRatio": { "type": "number", "actualType": "number", "desc": "看跌比例" }
+  },
+  "field_meta": {
+    "cost": { "meaning": "主力成本价格", "range": "根据大额交易加权计算的主力持仓成本", "advice": "当前价格高于成本价时主力可能获利了结" },
+    "deviation": { "meaning": "价格偏离度", "range": "(当前价格 - 主力成本) / 主力成本 * 100%", "advice": "正值过大时需警惕回调风险" },
+    "score": { "meaning": "AI风险评分", "range": "0-100，基于资金流、技术指标等综合计算", "advice": "评分<=45或>=80:待观察代币；45<评分<75:观察代币；75<评分<80：下跌风险代币" },
+    "pushPrice": { "meaning": "风险推送价格", "range": "系统首次推送该风险代币时的价格", "advice": "用于计算推送后的涨跌幅" },
+    "declines": { "meaning": "推送后跌幅", "range": "(pushPrice - pushMinPrice) / pushPrice * 100%", "advice": "验证风险预警的准确性" },
+    "tradeInflow": { "meaning": "交易净流入", "range": "正值为资金流入，负值为资金流出", "advice": "持续负值表示主力在出货" }
+  },
+  "enums": {
+    "tradeType": { "1": "现货", "2": "合约（永续）", "3": "交割合约" },
+    "timeParticleEnum": { "5": "5分钟", "15": "15分钟", "30": "30分钟", "101": "1小时", "104": "4小时", "106": "6小时", "124": "24小时", "201": "1天", "202": "2天", "207": "7天", "230": "30天" }
+  },
+  "example": {
+    "req": {},
+    "res": {
+      "code": 200,
+      "data": [
+        {
+          "vsTokenId": "38178",
+          "symbol": "TRUTH",
+          "price": "0.0094",
+          "maxPrice": "0.0502",
+          "minPrice": "0.0084",
+          "percentChange1h": "-0.42",
+          "percentChange24h": "-0.22",
+          "percentChange7d": "-0.64",
+          "percentChange30d": "-33.89",
+          "percentChange60d": "-36.71",
+          "percentChange90d": "-52.50",
+          "cost": "",
+          "costChange": "",
+          "deviation": "",
+          "marketCap": "19433307.40",
+          "marketCapRanking": 427,
+          "circulatingSupply": "2085305300",
+          "circulationRate": "20.85",
+          "active": "",
+          "newly": "",
+          "tradeType": 2,
+          "updateTime": 1771287000000,
+          "pushPrice": "0.0157",
+          "pushMaxPrice": "0.0163",
+          "gains": 0.0,
+          "pushMinPrice": "0.0088",
+          "declines": 43.77,
+          "score": 36.5,
+          "bullishRatio": "",
+          "bearishRatio": ""
+        }
+      ]
+    }
+  }
+}

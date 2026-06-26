@@ -1,0 +1,16 @@
+## Prompt Engineering
+System Prompt 定义 AI 人格和规则 | System prompt defines AI personality and rules
+温度越低越确定，越高越有创意 | Lower temperature = deterministic, higher = creative
+Prompt 开头比结尾权重更大 | Beginning of prompt carries more weight than the end
+用 Markdown 格式化 prompt，AI 解析更好 | Format prompts with Markdown for better parsing
+Chain of Thought: 让 AI 一步步思考 | Chain of Thought: make AI think step by step
+"请以 JSON 格式回答" 是最实用的约束 | "Answer in JSON format" is the most practical constraint
+负面指令不如正面指令: 说"做什么"而非"不做什么" | Positive instructions > negative: say what TO do
+用分隔符标记输入区域: --- 或 ``` | Use delimiters to mark input sections: --- or ```
+ReAct 模式: 思考-行动-观察循环 | ReAct pattern: Think-Act-Observe loop
+Prompt 越具体，AI 越少猜测 | More specific prompts = less AI guessing
+给 AI 一个"退出条件"防止无限循环 | Give AI an exit condition to prevent loops
+用英文写 prompt 通常效果更好 | English prompts often perform better
+先写一个糟糕的 prompt，再迭代优化 | Start with a bad prompt, then iterate
+Meta-prompting: 让 AI 帮你写更好的 prompt | Meta-prompting: ask AI to improve your prompt
+设定输出长度: "用3句话总结" | Set output length: "Summarize in 3 sentences"

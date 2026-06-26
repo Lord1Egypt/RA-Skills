@@ -1,35 +1,400 @@
----
-name: "Video Ai Process"
-description: "Automatically transcribe, analyze, segment, upload, auto-compose, and generate custom-cut AI video editions with client scoring and final version selection."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-ai-process"
-sourceUrl: "https://clawhub.ai/skills/video-ai-process"
+# video-ai-process - Video AI Process / AI视频处理
+
+全自动AI视频处理系统：转写 → 分析 → 切片 → 飞书 → 自动拼接/客户打分 → 最终视频
+
 ---
 
-# Video Ai Process
+## 整体流程
 
-> Automatically transcribe, analyze, segment, upload, auto-compose, and generate custom-cut AI video editions with client scoring and final version selection.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-ai-process`
-- **Source URL:** [https://clawhub.ai/skills/video-ai-process](https://clawhub.ai/skills/video-ai-process)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-ai-process
 ```
+客户输入视频
+    ↓
+┌─────────────────────────────────────────────────────────┐
+│  Step 1-4：AI处理                                        │
+│  Whisper转写 → MiniMax分析 → FFmpeg切片                    │
+└─────────────────────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────────────────────┐
+│  Step 5：写入飞书                                         │
+│  每段片段内容写入视频片段库Bitable                         │
+└─────────────────────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────────────────────┐
+│  Step 6：自动拼接（系统自动执行，无需等待）                  │
+│  粗剪片段拼接 → 粗剪版_final.mp4                         │
+│  精剪片段拼接 → 精剪版_final.mp4                         │
+│  自动写入飞书                                             │
+└─────────────────────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────────────────────┐
+│  客户在飞书查看片段内容                                   │
+│  在「用户自定义重用性排序」字段打分                        │
+│  1=最重要，2=次重要，3=第三...                           │
+└─────────────────────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────────────────────┐
+│  Step 7：自定义拼接（客户打完分通知我们，或心跳自动检查）     │
+│  按打分排序拼接 → 自定义粗剪版 + 自定义精剪版             │
+│  写入飞书                                               │
+└─────────────────────────────────────────────────────────┘
+    ↓
+┌─────────────────────────────────────────────────────────┐
+│  客户选择最终版本                                        │
+│  满意 → 结束                                            │
+│  不满意 → 重新打分 → Step 7重新拼接                       │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Step 1 - Whisper转写
+
+**目的**：将视频音频转为带时间戳的文本
+
+**命令**：
+```python
+from faster_whisper import WhisperModel
+
+model = WhisperModel("small", device="cpu")
+segments, info = model.transcribe(audio_path, language="zh")
+segments_list = list(segments)
+```
+
+**输出**：
+- `video_转写.txt`：带时间戳文本
+  ```
+  [0.000-2.000] 大家好
+  [2.000-6.600] 今天我们继续聊AI和OpenCloud
+  ```
+- `video.srt`：SRT字幕文件
+
+---
+
+## Step 2 - MiniMax粗剪分析
+
+**目的**：AI分析内容，生成粗剪分段方案
+
+**Prompt**：
+```
+分析以下视频转写，进行粗剪分段。
+
+要求：
+- 把明显没用的内容去掉（如：技术故障、停顿过长、重复啰嗦）
+- 保留核心内容，分成2-5分钟的大段
+- 每个片段要内容完整，不能断在半句
+- 时长不固定，根据内容自然分段
+
+输出格式：
+片段编号 | 时间段 | 时长(秒) | 标签 | 摘要
+```
+
+---
+
+## Step 3 - MiniMax精剪分析
+
+**目的**：从原内容独立选择最精华片段
+
+**Prompt**：
+```
+基于粗剪分段，做精剪分析。只保留最精华的内容。
+
+要求：
+- 只保留真正精华的内容
+- 每段30-90秒
+- 内容必须完整
+- 去掉重复啰嗦的部分
+- 精剪和粗剪是独立的选段，不是子集
+
+输出格式：
+片段编号 | 时间段 | 时长(秒) | 标签 | 摘要
+```
+
+---
+
+## Step 4 - FFmpeg切片
+
+**切片命名规则**：
+```
+粗剪片段：粗-{序号}{内容标签}.mp4
+        例：粗-2引入.mp4、粗-3配置要求.mp4
+
+精剪片段：精-{序号}{内容标签}.mp4
+        例：精-2配置核心.mp4、精-3案例分析.mp4
+```
+
+**FFmpeg命令**：
+```bash
+# 切片
+ffmpeg -i 原视频.mp4 -ss {开始秒} -t {时长} \
+  -c:v libx264 -preset fast -crf 23 \
+  -c:a aac -b:a 128k 输出.mp4 -y
+
+# 拼接
+ffmpeg -f concat -safe 0 -i filelist.txt -c copy concat.mp4 -y
+
+# 烧录字幕
+ffmpeg -i concat.mp4 -vf "subtitles=字幕.srt:force_style='FontSize=18,PrimaryColour=&HFFFFFF,OutlineColour=&H333333,Outline=2,Alignment=2,MarginV=50'" \
+  -c:v libx264 -preset fast -crf 23 -c:a aac -b:a 128k 输出_带字幕.mp4 -y
+```
+
+---
+
+## Step 5 - 写入飞书（每段内容）
+
+**目的**：将每段片段信息写入视频片段库Bitable
+
+**Bitable配置**：
+```yaml
+app_token: YOUR_APP_TOKEN
+table_id: YOUR_TABLE_ID
+```
+
+或设置环境变量：
+```bash
+export FEISHU_VIDEO_APP_TOKEN="YOUR_APP_TOKEN"
+export FEISHU_VIDEO_TABLE_ID="YOUR_TABLE_ID"
+```
+
+**每条记录字段**：
+```json
+{
+  "视频片段库": "视频一：XXX教程",
+  "分析类型": ["粗分析-粗剪"],
+  "片段编号": "粗-2",
+  "时间段": "0:45-1:30",
+  "时长": 45,
+  "标签": ["开场"],
+  "摘要": "引入主题：讲解OpenCloud配置是小白最需要搞懂的东西",
+  "文件路径": "D:\\OpenClaw\\downloads\\视频切片\\2026-04-14-粗剪\\粗-2引入.mp4",
+  "来源视频": "原视频文件名.mp4",
+  "用户自定义重用性排序": null,
+  "入库时间": 1744512000000
+}
+```
+
+---
+
+## Step 6 - 自动拼接（系统自动执行）
+
+**目的**：自动生成粗剪版和精剪版视频
+
+**执行时机**：Step 5完成后立即自动执行，无需等待客户
+
+**拼接逻辑**：
+1. 读取粗剪片段，按编号顺序拼接 → `粗剪版_final.mp4`
+2. 读取精剪片段，按编号顺序拼接 → `精剪版_final.mp4`
+3. 生成字幕并烧录
+4. 写入飞书：
+
+```json
+{
+  "视频片段库": "视频一：XXX教程",
+  "分析类型": ["粗分析-粗剪", "最终版"],
+  "片段编号": "粗-最终版",
+  "时间段": "连续拼接",
+  "时长": 195,
+  "标签": ["最终版"],
+  "摘要": "自动拼接粗剪片段：粗-2 + 粗-3 + 粗-4 + 粗-5 + 粗-7",
+  "文件路径": "D:\\OpenClaw\\downloads\\视频切片\\2026-04-14-粗剪\\粗剪版_final.mp4",
+  "来源视频": "原视频文件名.mp4",
+  "用户自定义重用性排序": null,
+  "入库时间": 1744512000000
+}
+```
+
+**输出文件夹**：
+```
+D:\OpenClaw\downloads\视频切片\
+├── {日期}-粗剪\
+│   ├── 粗-2引入.mp4
+│   ├── 粗-3配置要求.mp4
+│   └── 粗剪版_final.mp4        ← 自动生成
+│
+└── {日期}-精剪\
+    ├── 精-2配置核心.mp4
+    └── 精剪版_final.mp4        ← 自动生成
+```
+
+---
+
+## 客户操作
+
+**查看片段**：打开飞书视频片段库，查看每段内容摘要
+
+**打分**：在「用户自定义重用性排序」字段填写数字
+- 1 = 最重要
+- 2 = 次重要
+- 3 = 第三重要...
+
+**可选择版本**：
+- 粗剪版（系统自动拼接）
+- 精剪版（系统自动拼接）
+- 自定义版（按打分重新拼接）
+
+---
+
+## Step 7 - 自定义拼接（客户打完分后执行）
+
+**触发方式**：
+| 方式 | 说明 |
+|------|------|
+| 方式一 | 客户主动发消息："按打分生成" |
+| 方式二 | 心跳任务自动检查 |
+
+**心跳任务配置**：
+```yaml
+检查频率：每1小时
+检查内容：飞书「用户自定义重用性排序」字段是否有新值
+```
+
+**执行流程**：
+1. 读取飞书表格，筛选有打分的记录
+2. 按打分数字升序排列
+3. 生成拼接方案
+4. 显示方案给客户确认
+5. 确认后执行拼接
+6. 生成字幕
+7. 写入飞书
+
+**自定义拼接结果写入飞书**：
+```json
+{
+  "视频片段库": "视频一：XXX教程",
+  "分析类型": ["自定义拼接"],
+  "片段编号": "自定义-001",
+  "时间段": "按打分排序",
+  "时长": 120,
+  "标签": ["自定义"],
+  "摘要": "按客户打分排序：粗-3(1分) + 精-2(2分) + 粗-5(3分)",
+  "文件路径": "D:\\OpenClaw\\downloads\\视频切片\\{日期}-自定义\\自定义粗剪版_final.mp4",
+  "来源视频": "原视频文件名.mp4",
+  "用户自定义重用性排序": null,
+  "入库时间": 1744512000000
+}
+```
+
+---
+
+## 最终输出
+
+```
+D:\OpenClaw\downloads\视频切片\
+├── {日期}-粗剪\
+│   ├── 粗-2引入.mp4
+│   ├── 粗-3配置要求.mp4
+│   └── 粗剪版_final.mp4        ← Step 6自动生成
+│
+├── {日期}-精剪\
+│   ├── 精-2配置核心.mp4
+│   └── 精剪版_final.mp4        ← Step 6自动生成
+│
+└── {日期}-自定义\
+    ├── 自定义粗剪版_final.mp4   ← Step 7按打分生成
+    └── 自定义精剪版_final.mp4   ← Step 7按打分生成
+```
+
+**飞书表格记录**：
+- 粗剪片段（每段一条记录）
+- 精剪片段（每段一条记录）
+- 粗剪版_final（Step 6自动写入）
+- 精剪版_final（Step 6自动写入）
+- 自定义粗剪版（Step 7按打分写入）
+- 自定义精剪版（Step 7按打分写入）
+
+---
+
+## 客户选择流程
+
+```
+Step 6 自动生成后：
+    ↓
+客户查看飞书，选择版本
+    ↓
+┌─────────────────┬─────────────────┐
+│  满意粗剪版？    │  满意精剪版？    │
+│  ↓是            │  ↓是            │
+│  使用粗剪版      │  使用精剪版      │
+│  结束           │  结束           │
+└─────────────────┴─────────────────┘
+    ↓ 否
+客户在飞书打分
+    ↓
+Step 7 按打分生成自定义版
+    ↓
+客户选择最终版本
+```
+
+---
+
+## 时间记录
+
+| Step | 操作 | 耗时 |
+|------|------|------|
+| Step 1 | Whisper转写 | ~15秒 |
+| Step 2 | MiniMax粗剪分析 | ~10秒 |
+| Step 3 | MiniMax精剪分析 | ~10秒 |
+| Step 4 | FFmpeg切片 | ~60秒 |
+| Step 5 | 写入飞书 | ~30秒 |
+| Step 6 | 自动拼接2个版本 | ~60秒 |
+| Step 7 | 自定义拼接 | ~90秒 |
+
+**总计**：~4.5分钟（不含等待打分时间）
+
+---
+
+## 前置要求
+
+- Python 3.8+
+- FFmpeg（包含ffprobe）
+- faster-whisper（WhisperModel）
+- MiniMax API（mmx CLI）
+- 飞书Bitable配置
+
+```bash
+export HF_ENDPOINT=https://hf-mirror.com
+```
+
+---
+
+## 飞书表格字段
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| 视频片段库 | 文本 | 视频唯一标识 |
+| 分析类型 | 多选 | 粗分析-粗剪/细分析-精剪/自定义拼接/最终版 |
+| 片段编号 | 文本 | 唯一编号 |
+| 时间段 | 文本 | 时间范围 |
+| 时长 | 数字 | 秒 |
+| 标签 | 多选 | 开场/核心观点/演示/总结/自定义/最终版 |
+| 摘要 | 文本 | 内容描述 |
+| 文件路径 | 文本 | 本地文件路径 |
+| 来源视频 | 文本 | 原视频文件名 |
+| 用户自定义重用性排序 | 数字 | 客户打分字段 |
+| 入库时间 | 日期 | 自动记录 |
+
+---
+
+## 文件路径
+
+```
+~/.openclaw/workspace/skills/video-ai-process/
+├── SKILL.md
+├── step1_transcribe.py
+├── step2_analyze_cu.py
+├── step3_analyze_jing.py
+├── step4_segment.py
+├── step5_write_feishu.py
+├── step6_auto_compose.py
+├── step7_custom_compose.py
+└── video_pipeline.py
+```
+
+---
+
+## 注意事项
+
+1. **删除操作必须确认**：切片前检查文件是否存在
+2. **飞书录入**：确认Bitable app_token和table_id
+3. **自动拼接**：Step 6在Step 5完成后立即执行，无需等待客户
+4. **客户打分**：必须等客户在飞书填写后才能执行Step 7
+5. **版本选择**：客户可选择任一版本，或重新打分生成新版本

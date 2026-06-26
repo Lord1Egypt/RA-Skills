@@ -1,0 +1,12 @@
+# PROMPT FOR PRECISE TEXT REPLACEMENT
+Your task is to meticulously edit the text on the provided image, preserving the original's distinct top-and-bottom layout.
+
+1.  **Analyze Layout:** Identify the top text block and the bottom text block in the original image. Note their exact positions, fonts, colors, and styles.
+2.  **Remove Old Text:** Carefully erase all the original text from the image.
+3.  **Add New Text:**
+    *   Place the following **Main Title** exactly where the original top text was:
+        `{main_title}`
+    *   Place the following **Subtitle** exactly where the original bottom text was:
+        `{sub_title}`
+4.  **Match Style:** Ensure the new text perfectly matches the font, style, color, and outline of the text it replaced.
+5.  **Final Output:** Produce the final, high-definition, watermark-free image.

@@ -1,0 +1,360 @@
+{
+  "meta": {
+    "skill": "AI 代码安全审查",
+    "version": "1.0.0",
+    "last_updated": "2026-06-06",
+    "description": "代码安全审查数据底座，覆盖 OWASP Top 10、CWE Top 25、多语言安全规则、注入攻击模式与不安全函数库"
+  },
+
+  "owasp_top_10_2021": [
+    {
+      "rank": "A01",
+      "id": "A01:2021",
+      "name": "Broken Access Control",
+      "cwe_mapping": ["CWE-22", "CWE-23", "CWE-35", "CWE-59", "CWE-200", "CWE-201", "CWE-219", "CWE-264", "CWE-275", "CWE-276", "CWE-284", "CWE-285", "CWE-352", "CWE-359", "CWE-377", "CWE-402", "CWE-425", "CWE-441", "CWE-497", "CWE-538", "CWE-540", "CWE-548", "CWE-552", "CWE-566", "CWE-601", "CWE-639", "CWE-647", "CWE-668", "CWE-706", "CWE-862", "CWE-863", "CWE-913", "CWE-922", "CWE-1275"],
+      "description": "访问控制策略缺失或失效导致未授权操作",
+      "detection_rules": [
+        {"pattern": "缺少身份验证中间件", "regex": "app\\.(get|post|put|delete)\\([^)]+\\)(?!.*auth)", "languages": ["javascript", "python", "java"]},
+        {"pattern": "直接对象引用", "regex": "(req\\.params|request\\.getParameter|params\\[)", "languages": ["javascript", "python", "java"]},
+        {"pattern": "CORS 配置过于宽松", "regex": "Access-Control-Allow-Origin:\\s*\\*", "languages": ["all"]},
+        {"pattern": "无 CSRF Token", "regex": "<form(?!.*csrf|.*_token)", "languages": ["html", "javascript"]}
+      ]
+    },
+    {
+      "rank": "A02",
+      "id": "A02:2021",
+      "name": "Cryptographic Failures",
+      "cwe_mapping": ["CWE-259", "CWE-261", "CWE-296", "CWE-310", "CWE-319", "CWE-321", "CWE-322", "CWE-323", "CWE-324", "CWE-325", "CWE-326", "CWE-327", "CWE-328", "CWE-329", "CWE-330", "CWE-331", "CWE-335", "CWE-336", "CWE-337", "CWE-338", "CWE-347", "CWE-523", "CWE-720", "CWE-757", "CWE-759", "CWE-760", "CWE-780", "CWE-818", "CWE-916"],
+      "description": "敏感数据未加密、弱加密算法、硬编码密钥等加密缺陷",
+      "detection_rules": [
+        {"pattern": "使用 MD5/SHA1 哈希密码", "regex": "(md5|sha1)\\s*\\(", "languages": ["python", "javascript", "java", "php"]},
+        {"pattern": "硬编码密钥/密码", "regex": "(password|secret|api_key|private_key|token)\\s*=\\s*['\"]", "languages": ["all"]},
+        {"pattern": "HTTP 明文传输敏感信息", "regex": "http://(?!localhost|127\\.0\\.0\\.1)", "languages": ["all"]},
+        {"pattern": "不安全随机数生成", "regex": "Math\\.random\\(\\)|rand\\(\\)(?!.*crypto)", "languages": ["javascript", "python", "php"]},
+        {"pattern": "DES/RC4 弱加密算法", "regex": "(DES|RC4|ECB)\\s*mode", "languages": ["python", "java", "javascript"]}
+      ]
+    },
+    {
+      "rank": "A03",
+      "id": "A03:2021",
+      "name": "Injection",
+      "cwe_mapping": ["CWE-20", "CWE-74", "CWE-75", "CWE-77", "CWE-78", "CWE-79", "CWE-80", "CWE-83", "CWE-87", "CWE-88", "CWE-89", "CWE-90", "CWE-91", "CWE-93", "CWE-94", "CWE-95", "CWE-96", "CWE-97", "CWE-98", "CWE-99", "CWE-100", "CWE-113", "CWE-116", "CWE-138", "CWE-184", "CWE-470", "CWE-471", "CWE-564", "CWE-610", "CWE-643", "CWE-644", "CWE-652", "CWE-917"],
+      "description": "未过滤的用户输入被注入到解释器中执行",
+      "detection_rules": [
+        {"pattern": "SQL 字符串拼接", "regex": "(\"SELECT|'SELECT|`SELECT).*\\+.*", "languages": ["python", "javascript", "java", "php"]},
+        {"pattern": "shell 命令拼接", "regex": "(os\\.system|exec|subprocess\\.call|Runtime\\.exec).*\\(.*\\+.*\\)", "languages": ["python", "javascript", "java", "php"]},
+        {"pattern": "eval 执行用户输入", "regex": "eval\\s*\\(\\s*(req\\.|request\\.|\\$_(GET|POST|REQUEST)|input\\s*\\()", "languages": ["javascript", "python", "php"]}
+      ]
+    },
+    {
+      "rank": "A04",
+      "id": "A04:2021",
+      "name": "Insecure Design",
+      "cwe_mapping": ["CWE-209", "CWE-256", "CWE-272", "CWE-306", "CWE-312", "CWE-327", "CWE-328", "CWE-329", "CWE-425", "CWE-434", "CWE-451", "CWE-602", "CWE-642", "CWE-646", "CWE-653", "CWE-656", "CWE-657", "CWE-799", "CWE-807", "CWE-840", "CWE-841", "CWE-1004", "CWE-1022", "CWE-1039", "CWE-1080"],
+      "description": "架构设计阶段的安全缺陷",
+      "detection_rules": [
+        {"pattern": "缺少速率限制", "regex": "(?!.*rate.limit|.*throttle|.*brute.force)", "languages": ["all"]},
+        {"pattern": "无文件上传类型校验", "regex": "(multer|formidable|\\$_FILES)(?!.*fileFilter|.*allowedTypes)", "languages": ["javascript", "php"]},
+        {"pattern": "错误信息暴露敏感信息", "regex": "(console\\.log|print|echo|System\\.out).*\\((err|error|exception)\\)", "languages": ["all"]}
+      ]
+    },
+    {
+      "rank": "A05",
+      "id": "A05:2021",
+      "name": "Security Misconfiguration",
+      "cwe_mapping": ["CWE-2", "CWE-11", "CWE-13", "CWE-15", "CWE-16", "CWE-260", "CWE-315", "CWE-520", "CWE-526", "CWE-537", "CWE-541", "CWE-547", "CWE-611", "CWE-614", "CWE-756", "CWE-776", "CWE-942", "CWE-1004", "CWE-1032", "CWE-1174"],
+      "description": "默认配置不当、错误详情泄露、未及时打补丁",
+      "detection_rules": [
+        {"pattern": "DEBUG 模式开启", "regex": "(DEBUG|debug)\\s*=\\s*(True|true|1)", "languages": ["python", "javascript", "php", "java"]},
+        {"pattern": "目录列表开启", "regex": "Options\\s+Indexes|autoindex\\s+on", "languages": ["apache", "nginx"]},
+        {"pattern": "默认密码/凭证", "regex": "(admin|root|sa|guest)\\s*(:|=>|=)\\s*['\"](admin|password|123456|root)['\"]", "languages": ["all"]},
+        {"pattern": "CORS 允许所有来源", "regex": "'*'|\\*", "languages": ["javascript", "python"]},
+        {"pattern": "XML 外部实体 (XXE) 未禁用", "regex": "xml\\.(parse|etree|dom)(?!.*resolve_entities=False)", "languages": ["python"]}
+      ]
+    },
+    {
+      "rank": "A06",
+      "id": "A06:2021",
+      "name": "Vulnerable and Outdated Components",
+      "cwe_mapping": ["CWE-937", "CWE-1035", "CWE-1104"],
+      "description": "使用了已知漏洞的第三方库或框架版本",
+      "detection_rules": [
+        {"pattern": "过期依赖检测", "regex": "requirements\\.txt|package\\.json|pom\\.xml|Gemfile", "languages": ["all"]},
+        {"pattern": "已知漏洞版本范围", "regex": "lodash@<4\\.17\\.21|jquery@<3\\.5\\.0|django@<3\\.2\\.14|flask@<2\\.0\\.2", "languages": ["javascript", "python"]}
+      ]
+    },
+    {
+      "rank": "A07",
+      "id": "A07:2021",
+      "name": "Identification and Authentication Failures",
+      "cwe_mapping": ["CWE-287", "CWE-288", "CWE-290", "CWE-294", "CWE-295", "CWE-297", "CWE-300", "CWE-302", "CWE-304", "CWE-306", "CWE-307", "CWE-308", "CWE-309", "CWE-384", "CWE-521", "CWE-613", "CWE-620", "CWE-640", "CWE-798", "CWE-804", "CWE-840", "CWE-841", "CWE-1390"],
+      "description": "身份认证与会话管理缺陷",
+      "detection_rules": [
+        {"pattern": "弱密码策略", "regex": "(password|passwd).{0,30}(min_length|minlength)\\s*[<:]=?\\s*[0-7]", "languages": ["all"]},
+        {"pattern": "会话固定", "regex": "(?!.*regenerate|.*session_regenerate_id|.*rotate).*session", "languages": ["javascript", "php", "python", "java"]},
+        {"pattern": "JWT 无签名验证", "regex": "jwt\\.decode\\((?!.*verify|.*algorithms)", "languages": ["python", "javascript"]},
+        {"pattern": "cookie 缺少 Secure/HttpOnly", "regex": "(Set-Cookie|res\\.cookie|cookies\\.set)(?!.*secure|httpOnly|httponly)", "languages": ["javascript", "python", "php", "java"]}
+      ]
+    },
+    {
+      "rank": "A08",
+      "id": "A08:2021",
+      "name": "Software and Data Integrity Failures",
+      "cwe_mapping": ["CWE-345", "CWE-353", "CWE-426", "CWE-494", "CWE-502", "CWE-565", "CWE-784", "CWE-829", "CWE-830", "CWE-915", "CWE-1295"],
+      "description": "软件更新、关键数据和 CI/CD 流水线未验证完整性",
+      "detection_rules": [
+        {"pattern": "反序列化不可信数据", "regex": "(pickle\\.loads|unserialize|ObjectInputStream|json\\.parse.*eval)", "languages": ["python", "php", "java", "javascript"]},
+        {"pattern": "未校验的依赖下载", "regex": "(wget|curl|pip install|npm install)(?!.*--hash|.*integrity)", "languages": ["shell", "dockerfile"]}
+      ]
+    },
+    {
+      "rank": "A09",
+      "id": "A09:2021",
+      "name": "Security Logging and Monitoring Failures",
+      "cwe_mapping": ["CWE-117", "CWE-223", "CWE-532", "CWE-778"],
+      "description": "日志记录和监控不足，无法检测和响应安全事件",
+      "detection_rules": [
+        {"pattern": "敏感信息写入日志", "regex": "(log|logger|console)\\.(info|debug|log|warn)\\(.*(password|token|secret|credit_card)", "languages": ["all"]},
+        {"pattern": "异常被静默吞掉", "regex": "except\\s*(Exception|:).*\\n.*pass", "languages": ["python"]},
+        {"pattern": "无登录失败日志", "regex": "(?!.*log.*fail|.*audit.*login)", "languages": ["all"]}
+      ]
+    },
+    {
+      "rank": "A10",
+      "id": "A10:2021",
+      "name": "Server-Side Request Forgery (SSRF)",
+      "cwe_mapping": ["CWE-918"],
+      "description": "服务端在未校验用户输入的情况下发起请求，导致内网探测或绕过防火墙",
+      "detection_rules": [
+        {"pattern": "用户输入作为 URL 请求目标", "regex": "(requests\\.get|urllib|fetch|axios|http\\.get)\\(.*(req\\.|request\\.|input|params|\\$_(GET|POST))", "languages": ["python", "javascript", "java", "php"]},
+        {"pattern": "curl 命令拼接用户输入", "regex": "(curl|wget)\\s+.*\\$", "languages": ["php", "shell", "python"]}
+      ]
+    }
+  ],
+
+  "cwe_top_25": [
+    {"cwe_id": "CWE-787", "rank": 1, "name": "Out-of-bounds Write", "severity": "严重"},
+    {"cwe_id": "CWE-79", "rank": 2, "name": "Cross-site Scripting (XSS)", "severity": "高"},
+    {"cwe_id": "CWE-89", "rank": 3, "name": "SQL Injection", "severity": "严重"},
+    {"cwe_id": "CWE-416", "rank": 4, "name": "Use After Free", "severity": "严重"},
+    {"cwe_id": "CWE-78", "rank": 5, "name": "OS Command Injection", "severity": "严重"},
+    {"cwe_id": "CWE-20", "rank": 6, "name": "Improper Input Validation", "severity": "高"},
+    {"cwe_id": "CWE-125", "rank": 7, "name": "Out-of-bounds Read", "severity": "高"},
+    {"cwe_id": "CWE-22", "rank": 8, "name": "Path Traversal", "severity": "高"},
+    {"cwe_id": "CWE-352", "rank": 9, "name": "Cross-Site Request Forgery (CSRF)", "severity": "高"},
+    {"cwe_id": "CWE-434", "rank": 10, "name": "Unrestricted File Upload", "severity": "高"},
+    {"cwe_id": "CWE-476", "rank": 11, "name": "NULL Pointer Dereference", "severity": "中"},
+    {"cwe_id": "CWE-502", "rank": 12, "name": "Deserialization of Untrusted Data", "severity": "高"},
+    {"cwe_id": "CWE-190", "rank": 13, "name": "Integer Overflow or Wraparound", "severity": "高"},
+    {"cwe_id": "CWE-287", "rank": 14, "name": "Improper Authentication", "severity": "高"},
+    {"cwe_id": "CWE-798", "rank": 15, "name": "Use of Hard-coded Credentials", "severity": "高"},
+    {"cwe_id": "CWE-862", "rank": 16, "name": "Missing Authorization", "severity": "高"},
+    {"cwe_id": "CWE-77", "rank": 17, "name": "Command Injection", "severity": "严重"},
+    {"cwe_id": "CWE-306", "rank": 18, "name": "Missing Authentication for Critical Function", "severity": "严重"},
+    {"cwe_id": "CWE-119", "rank": 19, "name": "Improper Restriction of Operations within Bounds", "severity": "高"},
+    {"cwe_id": "CWE-276", "rank": 20, "name": "Incorrect Default Permissions", "severity": "中"},
+    {"cwe_id": "CWE-918", "rank": 21, "name": "Server-Side Request Forgery (SSRF)", "severity": "高"},
+    {"cwe_id": "CWE-362", "rank": 22, "name": "Race Condition", "severity": "中"},
+    {"cwe_id": "CWE-400", "rank": 23, "name": "Uncontrolled Resource Consumption", "severity": "中"},
+    {"cwe_id": "CWE-611", "rank": 24, "name": "Improper Restriction of XML External Entity Reference", "severity": "高"},
+    {"cwe_id": "CWE-94", "rank": 25, "name": "Code Injection", "severity": "严重"}
+  ],
+
+  "injection_patterns": {
+    "sql_injection": {
+      "description": "SQL 注入攻击模式检测规则",
+      "severity": "严重",
+      "cwe_id": "CWE-89",
+      "patterns": [
+        {"id": "SQLI-001", "name": "字符串拼接构建 SQL", "regex_patterns": ["(\"|')\\s*(SELECT|INSERT|UPDATE|DELETE|DROP).*\\)\\s*\\+", "\"SELECT.*\"\\s*\\+\\s*(req\\.|request\\.|params|input)", "`SELECT.*`\\s*\\+\\s*\\$"], "example": "query = \"SELECT * FROM users WHERE id = \" + user_id"},
+        {"id": "SQLI-002", "name": "格式化字符串构建 SQL", "regex_patterns": ["(f\"|f'|format|%)[^\"]*(SELECT|INSERT|UPDATE|DELETE).*\\{", "sprintf\\(.*SELECT"], "example": "query = f\"SELECT * FROM users WHERE name = '{username}'\""},
+        {"id": "SQLI-003", "name": "动态表名/列名拼接", "regex_patterns": ["(table_name|column_name|order_by|sort_by|group_by).*\\+.*(req\\.|request\\.|params)"], "example": "query = \"SELECT * FROM \" + table_name + \" WHERE...\""},
+        {"id": "SQLI-004", "name": "ORM 原生 SQL 注入", "regex_patterns": ["(raw|execute|cursor\\.execute)\\(.*\\+|(raw|execute|cursor\\.execute)\\(.*f[\"']"], "example": "User.objects.raw(f\"SELECT * FROM users WHERE name = '{name}'\")"}
+      ],
+      "remediation": "使用参数化查询（Parameterized Query）或 ORM 的安全 API。永远不要将用户输入拼接到 SQL 语句中。推荐方案：Python 使用 ? 占位符，Java 使用 PreparedStatement，Node.js 使用 ? 或 $1 占位符。",
+      "safe_examples": {
+        "python": "cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))",
+        "java": "PreparedStatement stmt = conn.prepareStatement('SELECT * FROM users WHERE id = ?'); stmt.setInt(1, userId);",
+        "javascript": "db.query('SELECT * FROM users WHERE id = $1', [userId])",
+        "php": "$stmt = $pdo->prepare('SELECT * FROM users WHERE id = :id'); $stmt->execute(['id' => $userId]);"
+      }
+    },
+    "xss": {
+      "description": "跨站脚本攻击 (XSS) 检测规则",
+      "severity": "高",
+      "cwe_id": "CWE-79",
+      "patterns": [
+        {"id": "XSS-001", "name": "未转义的 HTML 输出", "regex_patterns": ["innerHTML\\s*=", "document\\.write\\(", "\\.html\\(.*(req\\.|request\\.|params|\\$_GET|\\$_POST)", "dangerouslySetInnerHTML"], "example": "element.innerHTML = user_input"},
+        {"id": "XSS-002", "name": "未过滤的模板变量", "regex_patterns": ["\\{\\{\\{.*\\}\\}\\}", "v-html=", "ng-bind-html", "safe\\s*\\|"], "example": "{{{ user_content }}}"},
+        {"id": "XSS-003", "name": "URL 跳转未校验", "regex_patterns": ["(redirect|location\\.href|window\\.open)\\(.*(req\\.|request\\.|params)"], "example": "window.location.href = getParameter('redirect_url')"},
+        {"id": "XSS-004", "name": "eval 执行 HTML 内容", "regex_patterns": ["eval\\(.*(innerHTML|value|textContent)"], "example": "eval(element.getAttribute('data-action'))"}
+      ],
+      "remediation": "对所有用户输入进行上下文感知的输出编码：HTML 内容使用 HTML 实体编码，JavaScript 上下文使用 \\xHH 编码，URL 参数使用 URL 编码。推荐使用成熟的库如 DOMPurify (JS)、Bleach (Python)、OWASP Java Encoder。"
+    },
+    "csrf": {
+      "description": "跨站请求伪造 (CSRF) 检测规则",
+      "severity": "高",
+      "cwe_id": "CWE-352",
+      "patterns": [
+        {"id": "CSRF-001", "name": "状态变更接口无 CSRF Token", "regex_patterns": ["(POST|PUT|DELETE|PATCH).*(?!csrf|token|_method)", "method=\"(post|put|delete)\"(?!.*csrf)"], "example": "<form method=\"POST\" action=\"/delete\"> 无 CSRF Token"},
+        {"id": "CSRF-002", "name": "SameSite Cookie 未设置", "regex_patterns": ["(Set-Cookie|res\\.cookie|cookies\\.set)(?!.*SameSite)", "session_cookie(?!.*samesite)"], "example": "Set-Cookie: session=abc123 缺少 SameSite 属性"},
+        {"id": "CSRF-003", "name": "CORS 预检请求配置宽松", "regex_patterns": ["Access-Control-Allow-Origin:\\s*\\*.*Access-Control-Allow-Credentials:\\s*true"], "example": "同时设置 Allow-Origin * 和 Allow-Credentials true"}
+      ],
+      "remediation": "所有状态变更操作必须包含 CSRF Token（Synchronizer Token Pattern）；设置 Cookie SameSite=Lax 或 Strict；使用自定义请求头（如 X-Requested-With）进行双重校验。"
+    },
+    "ssrf": {
+      "description": "服务端请求伪造 (SSRF) 检测规则",
+      "severity": "高",
+      "cwe_id": "CWE-918",
+      "patterns": [
+        {"id": "SSRF-001", "name": "用户可控 URL 服务端请求", "regex_patterns": ["(requests\\.(get|post|put)|urllib\\.request\\.urlopen|fetch|axios|http\\.Client)\\s*\\(.*(req\\.|request\\.|params|input)"], "example": "requests.get(request.args['url'])"},
+        {"id": "SSRF-002", "name": "cURL 封装无 URL 校验", "regex_patterns": ["(exec|system|subprocess|shell_exec)\\(['\"](curl|wget).*\\$"], "example": "exec('curl ' + $_GET['url'])"},
+        {"id": "SSRF-003", "name": "文件包含远程 URL", "regex_patterns": ["(include|require|import).*\\$_(GET|POST|REQUEST)"], "example": "include($_GET['page'] . '.php')"},
+        {"id": "SSRF-004", "name": "PDF 生成器 SSRF", "regex_patterns": ["(wkhtmltopdf|pdfkit|weasyprint|puppeteer).*\\(.*(req\\.|request\\.|params|input)"], "example": "pdfkit.from_url(request.args['url'])"}
+      ],
+      "remediation": "实现 URL 白名单校验，禁止访问内网 IP 段（127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16）；禁用危险协议（file://、gopher://、dict://）；使用 DNS 重绑定防护。"
+    },
+    "path_traversal": {
+      "description": "路径遍历 / 目录穿越检测规则",
+      "severity": "高",
+      "cwe_id": "CWE-22",
+      "patterns": [
+        {"id": "PT-001", "name": "文件路径直接拼接用户输入", "regex_patterns": ["(open|read|file_get_contents|fs\\.readFile)\\(.*\\+.*(req\\.|request\\.|params)", "(open|read|file_get_contents|fs\\.readFile)\\(.*(req\\.|request\\.|params).*\\+"], "example": "open('/var/www/' + filename, 'r')"},
+        {"id": "PT-002", "name": "路径中未过滤 ../", "regex_patterns": ["file_path.*=.*(req\\.|request\\.|params|\\$_(GET|POST))", "os\\.path\\.join.*(req\\.|request\\.|params)"], "example": "file_path = os.path.join(base_dir, request.args['file'])"},
+        {"id": "PT-003", "name": "ZIP 解压路径遍历 (Zip Slip)", "regex_patterns": ["zipfile\\.extract|tarfile\\.extract(?!.*member|.*sanitize)"], "example": "zip_ref.extractall(destination)"}
+      ],
+      "remediation": "1) 规范化路径后校验是否在允许的根目录内 (os.path.realpath + startswith)；2) 使用白名单限制可访问的文件名；3) 过滤 ../ 和 ..\\ 等目录穿越序列；4) Zip Slip 需逐个检查压缩包成员的规范路径。"
+    }
+  },
+
+  "language_rules": {
+    "python": {
+      "language": "Python",
+      "version_support": "3.6+",
+      "rules": [
+        {"id": "PY-001", "name": "使用 subprocess shell=True", "severity": "高", "cwe": "CWE-78", "rule": "subprocess.call() 等函数设置 shell=True 时可能引发命令注入", "bad": "subprocess.call(cmd, shell=True)", "good": "subprocess.call(['ls', '-l'])"},
+        {"id": "PY-002", "name": "pickle 加载不可信数据", "severity": "高", "cwe": "CWE-502", "rule": "pickle.loads() 反序列化不可信数据可导致远程代码执行", "bad": "pickle.loads(user_data)", "good": "json.loads(user_data)"},
+        {"id": "PY-003", "name": "YAML load 不安全", "severity": "中", "cwe": "CWE-502", "rule": "yaml.load() 可执行任意 Python 代码，应使用 yaml.safe_load()", "bad": "yaml.load(data)", "good": "yaml.safe_load(data)"},
+        {"id": "PY-004", "name": "硬编码密钥", "severity": "高", "cwe": "CWE-798", "rule": "API 密钥/密码/Token 不应硬编码在代码中", "bad": "API_KEY = 'sk-abc123...'", "good": "API_KEY = os.environ.get('API_KEY')"},
+        {"id": "PY-005", "name": "eval/exec 使用", "severity": "严重", "cwe": "CWE-95", "rule": "eval() 和 exec() 可执行任意代码，禁止处理用户输入", "bad": "eval(user_expression)", "good": "ast.literal_eval(user_expression)"},
+        {"id": "PY-006", "name": "assert 语句用于生产验证", "severity": "低", "cwe": "CWE-617", "rule": "assert 在 -O 优化模式下会被跳过，不应用于输入验证", "bad": "assert user_id > 0", "good": "if user_id <= 0: raise ValueError()"},
+        {"id": "PY-007", "name": "XML 解析未禁用实体", "severity": "高", "cwe": "CWE-611", "rule": "XML 解析器需禁用外部实体解析防止 XXE 攻击", "bad": "etree.parse(xml_file)", "good": "parser = etree.XMLParser(resolve_entities=False); etree.parse(xml_file, parser)"},
+        {"id": "PY-008", "name": "Django DEBUG=True", "severity": "中", "cwe": "CWE-215", "rule": "生产环境开启 DEBUG 模式会泄露源码和配置", "bad": "DEBUG = True", "good": "DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'"},
+        {"id": "PY-009", "name": "Flask 密钥硬编码", "severity": "高", "cwe": "CWE-798", "rule": "Flask SECRET_KEY 不得硬编码", "bad": "app.secret_key = 'my-secret-key'", "good": "app.secret_key = os.urandom(24)"},
+        {"id": "PY-010", "name": "hashlib 弱哈希", "severity": "中", "cwe": "CWE-327", "rule": "密码哈希应使用 bcrypt/scrypt/argon2，而非 MD5/SHA1", "bad": "hashlib.md5(password).hexdigest()", "good": "bcrypt.hashpw(password, bcrypt.gensalt())"},
+        {"id": "PY-011", "name": "open 路径穿越", "severity": "高", "cwe": "CWE-22", "rule": "文件打开时未对用户输入路径进行规范化和范围校验", "bad": "open(user_path)", "good": "safe = os.path.realpath(os.path.join(base, user_path)); assert safe.startswith(base)"},
+        {"id": "PY-012", "name": "requests verify=False", "severity": "中", "cwe": "CWE-295", "rule": "禁用 SSL 证书验证可能导致中间人攻击", "bad": "requests.get(url, verify=False)", "good": "requests.get(url, verify=True)"},
+        {"id": "PY-013", "name": "Mako/Jinja2 模板注入", "severity": "严重", "cwe": "CWE-94", "rule": "用户输入不应直接传入模板渲染上下文", "bad": "template.render(user_input=request.args)", "good": "template.render(user_input=sanitize(request.args))"},
+        {"id": "PY-014", "name": "临时文件不安全创建", "severity": "中", "cwe": "CWE-377", "rule": "应使用 tempfile 模块安全创建临时文件", "bad": "f = open('/tmp/' + name, 'w')", "good": "f = tempfile.NamedTemporaryFile(delete=False)"},
+        {"id": "PY-015", "name": "SQLAlchemy 文本查询注入", "severity": "严重", "cwe": "CWE-89", "rule": "text() 构造的 SQL 不应拼接用户输入", "bad": "session.execute(text(f'SELECT * FROM users WHERE id={uid}'))", "good": "session.execute(text('SELECT * FROM users WHERE id=:uid'), {'uid': uid})"}
+      ]
+    },
+    "javascript": {
+      "language": "JavaScript / TypeScript",
+      "version_support": "ES6+, Node.js 12+",
+      "rules": [
+        {"id": "JS-001", "name": "eval 执行", "severity": "严重", "cwe": "CWE-95", "rule": "eval() 执行任意代码，极其危险", "bad": "eval(userInput)", "good": "JSON.parse(userInput)"},
+        {"id": "JS-002", "name": "innerHTML XSS", "severity": "高", "cwe": "CWE-79", "rule": "innerHTML 直接设置用户输入会触发 XSS", "bad": "el.innerHTML = userInput", "good": "el.textContent = userInput"},
+        {"id": "JS-003", "name": "child_process exec 命令注入", "severity": "严重", "cwe": "CWE-78", "rule": "exec() 将字符串传给 shell，易受命令注入", "bad": "exec('ls ' + userInput)", "good": "execFile('ls', [userInput])"},
+        {"id": "JS-004", "name": "Regex DDoS (ReDoS)", "severity": "中", "cwe": "CWE-1333", "rule": "嵌套量词的正则可能导致指数级回溯", "bad": "/(a+)+b/.test(userInput)", "good": "使用 RE2 或限制输入长度"},
+        {"id": "JS-005", "name": "noSQL 注入 (MongoDB)", "severity": "高", "cwe": "CWE-943", "rule": "用户输入的查询操作符（$gt, $ne）可绕过认证", "bad": "db.collection.findOne({user: req.body.user})", "good": "对输入进行类型校验，过滤 $ 和 . 字符"},
+        {"id": "JS-006", "name": "JWT 算法为 none", "severity": "严重", "cwe": "CWE-347", "rule": "JWT 验证时必须指定算法，防止 none 算法绕过", "bad": "jwt.verify(token, secret)", "good": "jwt.verify(token, secret, {algorithms: ['HS256']})"},
+        {"id": "JS-007", "name": "原型污染", "severity": "高", "cwe": "CWE-1321", "rule": "对象合并/克隆操作未防护可能导致原型污染", "bad": "_.merge({}, userInput)", "good": "使用 Object.create(null) 或安全的深拷贝库"},
+        {"id": "JS-008", "name": "dangerouslySetInnerHTML", "severity": "高", "cwe": "CWE-79", "rule": "React 中 dangerouslySetInnerHTML 未经消毒会导致 XSS", "bad": "<div dangerouslySetInnerHTML={{__html: userInput}} />", "good": "使用 DOMPurify.sanitize(userInput)"},
+        {"id": "JS-009", "name": "require 动态路径", "severity": "中", "cwe": "CWE-22", "rule": "require 的路径不应由用户输入决定", "bad": "require(userModule)", "good": "使用白名单映射模块名到文件"},
+        {"id": "JS-010", "name": "Express body-parser 未限制大小", "severity": "中", "cwe": "CWE-770", "rule": "不限制请求体大小可能导致拒绝服务", "bad": "app.use(express.json())", "good": "app.use(express.json({limit: '1mb'}))"},
+        {"id": "JS-011", "name": "Math.random() 不安全", "severity": "中", "cwe": "CWE-330", "rule": "Math.random() 非密码学安全，不可用于 Token 生成", "bad": "Math.random().toString(36)", "good": "crypto.randomBytes(32).toString('hex')"},
+        {"id": "JS-012", "name": "npm install 无 integrity", "severity": "中", "cwe": "CWE-494", "rule": "缺少完整性校验可能导致供应链攻击", "bad": "package-lock.json 缺少 integrity 字段"}
+      ]
+    },
+    "java": {
+      "language": "Java",
+      "version_support": "8+",
+      "rules": [
+        {"id": "JV-001", "name": "Statement 拼接 SQL", "severity": "严重", "cwe": "CWE-89", "rule": "java.sql.Statement 拼接用户输入到 SQL", "bad": "stmt.executeQuery('SELECT * FROM users WHERE id=' + userId)", "good": "PreparedStatement pstmt = conn.prepareStatement('SELECT * FROM users WHERE id=?'); pstmt.setInt(1, userId);"},
+        {"id": "JV-002", "name": "Runtime.exec 命令注入", "severity": "严重", "cwe": "CWE-78", "rule": "Runtime.exec(String) 使用 shell 解析可能导致命令注入", "bad": "Runtime.getRuntime().exec('cmd /c ' + userInput)", "good": "new ProcessBuilder('cmd', '/c', userInput)"},
+        {"id": "JV-003", "name": "ObjectInputStream 反序列化", "severity": "高", "cwe": "CWE-502", "rule": "反序列化不可信数据可导致 RCE", "bad": "new ObjectInputStream(inputStream).readObject()", "good": "使用白名单类过滤器或改用 JSON/Protobuf"},
+        {"id": "JV-004", "name": "XML 解析 DTD 未禁用", "severity": "高", "cwe": "CWE-611", "rule": "SAX/DOM 解析器未禁用 DTD 可导致 XXE", "bad": "SAXParserFactory.newInstance().newSAXParser()", "good": "factory.setFeature('http://apache.org/xml/features/disallow-doctype-decl', true)"},
+        {"id": "JV-005", "name": "硬编码密码", "severity": "高", "cwe": "CWE-798", "rule": "密码或密钥硬编码在 Java 代码中", "bad": "String password = 'admin123';", "good": "String password = System.getenv('DB_PASSWORD');"},
+        {"id": "JV-006", "name": "日志中打印敏感信息", "severity": "中", "cwe": "CWE-532", "rule": "logger 打印密码/Token 等敏感数据", "bad": "log.info('User login: ' + username + ' with password: ' + password)", "good": "log.info('User login: ' + username)"},
+        {"id": "JV-007", "name": "弱加密算法", "severity": "中", "cwe": "CWE-327", "rule": "使用 DES / RC4 / MD5 等弱加密算法", "bad": "Cipher.getInstance('DES')", "good": "Cipher.getInstance('AES/GCM/NoPadding')"},
+        {"id": "JV-008", "name": "Servlet 输出未编码", "severity": "高", "cwe": "CWE-79", "rule": "HttpServletResponse.getWriter().print() 直接输出用户输入", "bad": "response.getWriter().print(request.getParameter('name'))", "good": "使用 ESAPI.encoder().encodeForHTML() 或 JSTL <c:out>"},
+        {"id": "JV-009", "name": "URLConnection 无超时", "severity": "中", "cwe": "CWE-400", "rule": "未设置连接/读取超时可能导致资源耗尽", "bad": "new URL(url).openConnection()", "good": "conn.setConnectTimeout(5000); conn.setReadTimeout(10000);"},
+        {"id": "JV-010", "name": "Spring Security CSRF 禁用", "severity": "高", "cwe": "CWE-352", "rule": "显式禁用 CSRF 保护", "bad": "http.csrf().disable()", "good": "仅当 API 使用无状态 JWT 时可考虑禁用"}
+      ]
+    }
+  },
+
+  "unsafe_functions": {
+    "python": [
+      {"function": "eval()", "risk": "严重", "cwe": "CWE-95", "reason": "执行任意 Python 表达式", "alternative": "ast.literal_eval() 或 json.loads()"},
+      {"function": "exec()", "risk": "严重", "cwe": "CWE-95", "reason": "执行任意 Python 语句块", "alternative": "使用受限沙箱或避免动态执行"},
+      {"function": "compile()", "risk": "严重", "cwe": "CWE-95", "reason": "编译并执行任意代码", "alternative": "避免动态编译用户输入"},
+      {"function": "pickle.load() / pickle.loads()", "risk": "高", "cwe": "CWE-502", "reason": "反序列化时可执行任意代码", "alternative": "json.loads() 或 msgpack"},
+      {"function": "yaml.load()", "risk": "高", "cwe": "CWE-502", "reason": "PyYAML 的 load() 可构造 Python 对象", "alternative": "yaml.safe_load()"},
+      {"function": "subprocess.call(shell=True)", "risk": "高", "cwe": "CWE-78", "reason": "shell=True 触发命令注入", "alternative": "subprocess.call([...], shell=False)"},
+      {"function": "os.system()", "risk": "高", "cwe": "CWE-78", "reason": "直接调用系统 shell", "alternative": "subprocess.run()"},
+      {"function": "os.popen()", "risk": "高", "cwe": "CWE-78", "reason": "打开管道到 shell", "alternative": "subprocess.Popen()"},
+      {"function": "input() (Python 2)", "risk": "高", "cwe": "CWE-95", "reason": "Python 2 中 input() = eval(raw_input())", "alternative": "raw_input() (Python 2) 或 input() (Python 3)"},
+      {"function": "hashlib.md5() (密码)", "risk": "中", "cwe": "CWE-327", "reason": "MD5 已被破解，不可用于密码存储", "alternative": "bcrypt / scrypt / argon2"},
+      {"function": "hashlib.sha1() (密码)", "risk": "中", "cwe": "CWE-327", "reason": "SHA1 存在碰撞攻击", "alternative": "SHA-256 或 bcrypt"},
+      {"function": "random.random() (安全)", "risk": "中", "cwe": "CWE-330", "reason": "伪随机数生成器，不可用于安全场景", "alternative": "secrets.token_hex() 或 os.urandom()"},
+      {"function": "xml.etree.ElementTree.parse() (默认)", "risk": "高", "cwe": "CWE-611", "reason": "默认解析 XML 外部实体", "alternative": "defusedxml 或 resolve_entities=False"},
+      {"function": "shelve.open()", "risk": "高", "cwe": "CWE-502", "reason": "内部使用 pickle", "alternative": "JSON 文件或 SQLite"},
+      {"function": "tarfile.extractall()", "risk": "中", "cwe": "CWE-22", "reason": "可能触发 Zip Slip", "alternative": "逐个检查成员路径后再解压"}
+    ],
+    "javascript": [
+      {"function": "eval()", "risk": "严重", "cwe": "CWE-95", "reason": "执行任意 JavaScript 代码", "alternative": "JSON.parse() 或 Function() 慎用"},
+      {"function": "new Function()", "risk": "严重", "cwe": "CWE-95", "reason": "从字符串创建函数相当于 eval", "alternative": "避免动态创建函数"},
+      {"function": "setTimeout/setInterval (字符串)", "risk": "严重", "cwe": "CWE-95", "reason": "传入字符串参数相当于 eval", "alternative": "传入函数引用"},
+      {"function": "child_process.exec()", "risk": "严重", "cwe": "CWE-78", "reason": "通过 Shell 执行命令", "alternative": "child_process.execFile() 或 spawn()"},
+      {"function": "element.innerHTML", "risk": "高", "cwe": "CWE-79", "reason": "直接设置 HTML 内容", "alternative": "textContent 或 DOMPurify"},
+      {"function": "document.write()", "risk": "高", "cwe": "CWE-79", "reason": "直接写入 HTML", "alternative": "DOM API"},
+      {"function": "dangerouslySetInnerHTML", "risk": "高", "cwe": "CWE-79", "reason": "React 中直接设置 HTML", "alternative": "DOMPurify 消毒后再使用"},
+      {"function": "Math.random()", "risk": "中", "cwe": "CWE-330", "reason": "非密码学安全", "alternative": "crypto.randomBytes() 或 crypto.getRandomValues()"},
+      {"function": "JSON.parse() (无 try-catch)", "risk": "中", "cwe": "CWE-20", "reason": "解析失败会抛异常", "alternative": "try-catch 包裹"},
+      {"function": "require(variable)", "risk": "中", "cwe": "CWE-22", "reason": "动态路径引入模块", "alternative": "静态 require 或白名单映射"},
+      {"function": "fs.readFile(path+userInput)", "risk": "高", "cwe": "CWE-22", "reason": "路径拼接导致目录穿越", "alternative": "path.resolve 后校验"},
+      {"function": "_.merge() / _.defaultsDeep()", "risk": "高", "cwe": "CWE-1321", "reason": "Lodash 原型污染", "alternative": "Object.assign 或安全深拷贝"}
+    ],
+    "java": [
+      {"function": "Runtime.exec(String)", "risk": "严重", "cwe": "CWE-78", "reason": "通过 Shell 执行命令", "alternative": "Runtime.exec(String[]) 或 ProcessBuilder"},
+      {"function": "Statement.executeQuery()", "risk": "严重", "cwe": "CWE-89", "reason": "拼接 SQL 字符串", "alternative": "PreparedStatement"},
+      {"function": "ObjectInputStream.readObject()", "risk": "高", "cwe": "CWE-502", "reason": "反序列化不可信数据", "alternative": "JSON/Protobuf 或白名单过滤"},
+      {"function": "SAXParser (默认)", "risk": "高", "cwe": "CWE-611", "reason": "未禁用 DTD 的 XML 解析", "alternative": "setFeature(DISALLOW_DOCTYPE_DECL, true)"},
+      {"function": "MessageDigest MD5/SHA-1", "risk": "中", "cwe": "CWE-327", "reason": "弱哈希算法", "alternative": "SHA-256 或 BCrypt"},
+      {"function": "Cipher DES/RC4", "risk": "中", "cwe": "CWE-327", "reason": "弱加密算法", "alternative": "AES-GCM"},
+      {"function": "new Random() (安全)", "risk": "中", "cwe": "CWE-330", "reason": "伪随机数", "alternative": "SecureRandom"},
+      {"function": "FileInputStream (路径拼接)", "risk": "高", "cwe": "CWE-22", "reason": "路径穿越", "alternative": "Paths.get().normalize() + startsWith 校验"},
+      {"function": "HttpServletResponse.getWriter().print()", "risk": "高", "cwe": "CWE-79", "reason": "直接输出未编码的用户输入", "alternative": "ESAPI.encoder().encodeForHTML()"},
+      {"function": "Logger.info(password)", "risk": "中", "cwe": "CWE-532", "reason": "敏感信息写入日志", "alternative": "日志脱敏或过滤"}
+    ]
+  },
+
+  "compliance_checks": [
+    {
+      "standard": "SOC 2 Type II",
+      "requirements": [
+        {"id": "SOC2-001", "category": "访问控制", "rule": "所有 API 端点必须有身份验证和授权检查"},
+        {"id": "SOC2-002", "category": "数据加密", "rule": "传输中的数据必须使用 TLS 1.2+ 加密"},
+        {"id": "SOC2-003", "category": "审计日志", "rule": "所有数据访问和修改操作必须记录审计日志"}
+      ]
+    },
+    {
+      "standard": "PCI-DSS 4.0",
+      "requirements": [
+        {"id": "PCI-001", "category": "持卡人数据", "rule": "禁止存储完整磁条数据、CVV 和 PIN"},
+        {"id": "PCI-002", "category": "加密", "rule": "存储的卡号必须使用强加密算法保护"},
+        {"id": "PCI-003", "category": "访问控制", "rule": "持卡人数据访问必须遵循最小权限原则"}
+      ]
+    },
+    {
+      "standard": "ISO 27001:2022",
+      "requirements": [
+        {"id": "ISO-001", "category": "密码策略", "rule": "必须使用符合 NIST SP 800-63 的密码策略"},
+        {"id": "ISO-002", "category": "输入验证", "rule": "所有外部输入必须经过服务端验证和过滤"},
+        {"id": "ISO-003", "category": "安全日志", "rule": "安全事件日志必须包含时间戳、用户、操作类型和来源 IP"}
+      ]
+    }
+  ]
+}

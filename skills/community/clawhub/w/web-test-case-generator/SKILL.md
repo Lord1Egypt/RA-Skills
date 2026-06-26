@@ -1,35 +1,190 @@
 ---
-name: "Web 测试用例生成器"
-description: "根据提供的网站页面自动生成测试用例。支持 UI 测试、功能测试、流程测试、异常测试、权限测试和兼容性测试。输出格式支持 Markdown 表格和 CSV。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-test-case-generator"
-sourceUrl: "https://clawhub.ai/skills/web-test-case-generator"
+name: web-test-case-generator
+description: 根据提供的网站页面自动生成测试用例。支持 UI 测试、功能测试、流程测试、异常测试、权限测试和兼容性测试。输出格式支持 Markdown 表格和 CSV。
 ---
 
-# Web 测试用例生成器
+# Web 测试用例生成技能
 
-> 根据提供的网站页面自动生成测试用例。支持 UI 测试、功能测试、流程测试、异常测试、权限测试和兼容性测试。输出格式支持 Markdown 表格和 CSV。
+使用此技能根据网站页面自动生成结构化的测试用例。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-test-case-generator`
-- **Source URL:** [https://clawhub.ai/skills/web-test-case-generator](https://clawhub.ai/skills/web-test-case-generator)
+## 触发条件
 
-## Overview
+当用户要求：
+- "为这个页面生成测试用例"
+- "根据这个网站写测试用例"
+- "帮我设计 XXX 功能的测试用例"
+- 提供 URL 并要求测试相关功能
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 打开页面并获取快照
+
 ```bash
-hermes skills install clawhub/web-test-case-generator
+browser open <url>
+browser snapshot --refs aria
 ```
+
+等待页面加载完成，获取所有可交互元素的引用。
+
+### 2. 分析页面结构
+
+识别以下元素：
+- **表单字段**：textbox, combobox, checkbox, radio, button
+- **导航元素**：link, menu, menuitem
+- **内容区域**：table, list, heading, paragraph
+- **操作按钮**：创建、编辑、删除、提交等
+
+### 3. 按模块生成测试用例
+
+#### 界面测试 (UI)
+- 页面标题和面包屑
+- 表单布局
+- 必填项标识
+- 输入框占位符
+- 按钮显示
+
+#### 功能测试 - 输入字段
+对每个输入字段生成：
+- 正常输入
+- 必填校验（留空）
+- 长度限制
+- 格式校验
+- 特殊字符处理
+
+#### 功能测试 - 下拉选择
+对每个下拉框生成：
+- 展开列表
+- 选择选项
+- 必填校验
+- 联动效果
+
+#### 流程测试
+- 完整提交流程
+- 取消操作
+- 刷新页面
+- 连续提交
+- 多条目操作
+
+#### 异常测试
+- 网络中断
+- 会话过期
+- 数据冲突
+- 并发操作
+
+#### 权限测试
+- 有权限操作
+- 无权限拦截
+- 只读限制
+- 跨项目/数据访问
+
+#### 兼容性测试
+- 主流浏览器（Chrome/Firefox/Safari）
+- 不同分辨率
+
+### 4. 输出格式
+
+#### Markdown 表格格式
+
+```markdown
+| 功能模块 1 | 功能模块 2 | 用例级别 | 测试点 | 前提条件 | 测试步骤 | 预期结果 |
+|-----------|-----------|---------|--------|---------|---------|---------|
+| KAE | 应用管理 | P0 | KAE-应用中心 - 应用名称正常输入 - 可以输入 test-app-001 | 已登录 SRE 平台 | 输入 test-app-001 | 输入成功，无报错 |
+```
+
+#### CSV 格式
+
+```csv
+功能模块 1,功能模块 2，用例级别，测试点，前提条件，测试步骤，预期结果
+KAE，应用管理，P0,"KAE-应用中心 - 应用名称正常输入 - 可以输入 test-app-001","已登录 SRE 平台","输入 test-app-001","输入成功，无报错"
+```
+
+### 5. 用例级别标准
+
+| 级别 | 说明 | 占比参考 |
+|-----|------|---------|
+| P0 | 核心功能测试用例 (冒烟测试) | 20-25% |
+| P1 | 高优先级测试用例 (基本功能 + 重要错误/边界) | 35-40% |
+| P2 | 中优先级测试用例 (异常/UI/容错) | 30-35% |
+| P3 | 低优先级测试用例 (兼容性) | 5-10% |
+
+### 6. 测试点命名规范
+
+格式：`{产品}-{模块}-{功能点}-{测试场景}-{预期结果}`
+
+示例：
+- `KAE-应用中心 - 应用名称正常输入 - 可以输入 test-app-001`
+- `KAE-应用中心 - 应用名称不输入 - 红字提示不能为空`
+- `KAE-应用中心 - 端口号超范围 - 红字提示 1-65535`
+
+## 完整示例
+
+### 用户输入
+```
+打开 https://sre.wps.cn/kae/app-center，项目选择 kae-测试，把创建应用功能设计一份测试用例
+```
+
+### 执行步骤
+
+1. 打开页面并登录
+2. 切换到指定项目
+3. 点击"创建应用"按钮
+4. 获取表单快照
+5. 分析所有字段
+6. 生成测试用例表格
+
+### 输出
+
+生成 70+ 条测试用例，包含：
+- 界面测试：6 条
+- 基本信息：20 条
+- 部署实例：26 条
+- 流程测试：5 条
+- 异常测试：7 条
+- 权限测试：4 条
+- 兼容性测试：5 条
+
+## 文件输出
+
+生成两种格式文件：
+
+1. **Markdown 文件**：`<功能名>-test-cases.md`
+2. **CSV 文件**：`<功能名>-test-cases.csv`
+
+CSV 格式注意：
+- 所有列分隔符使用英文逗号 `,`
+- 包含逗号的字段用双引号包裹
+- 双引号内的引号用 `""` 转义
+
+## 常用命令组合
+
+```bash
+# 打开页面
+browser open <url>
+
+# 获取快照
+browser snapshot --refs aria
+
+# 点击元素
+browser click @e1
+
+# 填写表单
+browser fill @e2 "value"
+
+# 提交后获取新页面快照
+browser snapshot --refs aria
+```
+
+## 注意事项
+
+1. **登录处理**：如页面需要登录，提示用户先登录
+2. **项目切换**：如有多项目，先切换到目标项目
+3. **弹窗处理**：注意模态框和下拉菜单的快照获取
+4. **动态内容**：使用 wait 命令等待异步加载
+5. **中文逗号**：CSV 输出时确保分隔符为英文逗号
+
+## 扩展能力
+
+- 支持导出到金山文档/飞书文档
+- 支持生成 Excel 格式
+- 支持按优先级筛选用例
+- 支持添加自定义测试场景

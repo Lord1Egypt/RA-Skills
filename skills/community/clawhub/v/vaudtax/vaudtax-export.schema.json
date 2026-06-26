@@ -1,0 +1,345 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vaudtax-export.schema.json",
+  "title": "VaudTax Export",
+  "description": "JSON export of a .vaudtax tax declaration (Canton Vaud, Switzerland), produced by export_json.py",
+  "type": "object",
+  "required": ["fiscal_year", "reference", "identification", "taxpayer", "tax_subject_info"],
+  "properties": {
+    "fiscal_year": {
+      "type": "string",
+      "description": "Tax year, e.g. \"2025\""
+    },
+    "reference": {
+      "type": "string",
+      "description": "Gesdem submission reference"
+    },
+    "identification": {
+      "type": "object",
+      "description": "Taxpayer contact and address information",
+      "required": ["street", "house_number", "zip", "locality", "commune"],
+      "properties": {
+        "email":        { "type": ["string", "null"] },
+        "phone":        { "type": ["string", "null"] },
+        "iban":         { "type": ["string", "null"], "description": "Bank account IBAN for refunds" },
+        "street":       { "type": "string" },
+        "house_number": { "type": "string" },
+        "zip":          { "type": "string" },
+        "locality":     { "type": "string" },
+        "commune":      { "type": "string", "description": "Official municipality name (nomOfficiel)" }
+      }
+    },
+    "taxpayer": {
+      "type": "object",
+      "description": "Primary taxpayer personal data (contribuable 1)",
+      "required": ["first_name", "last_name", "birthdate", "marital_status", "working_situation"],
+      "properties": {
+        "first_name":        { "type": "string" },
+        "last_name":         { "type": "string" },
+        "birthdate":         { "type": "string", "format": "date", "description": "ISO 8601 date (YYYY-MM-DD)" },
+        "navs13":            { "type": ["string", "null"], "description": "AVS/NAVS13 number formatted as 756.XXXX.XXXX.XX" },
+        "profession":        { "type": ["string", "null"] },
+        "working_location":  { "type": ["string", "null"] },
+        "working_situation": {
+          "type": "array",
+          "description": "Active working situations (checkboxes, one or more)",
+          "items": { "type": "string", "enum": ["SALARIE", "INDEPENDANT", "INACTIF", "ETUDIANT", "RETRAITE"] }
+        },
+        "marital_status": {
+          "type": "string",
+          "enum": ["MARIE", "CELIBATAIRE", "SEPARE", "VEUF", "DIVORCE"],
+          "description": "Marital status code"
+        }
+      }
+    },
+    "income": {
+      "type": "array",
+      "description": "Employed activity income entries (activiteSalarieeRevenus)",
+      "items": {
+        "type": "object",
+        "required": ["employer", "type", "taxpayer", "activity_rate_pct", "date_start", "date_end", "net_salary_chf"],
+        "properties": {
+          "employer":                           { "type": "string" },
+          "type":                               { "type": "string", "enum": ["PRINCIPAL", "ACCESSOIRE", "ALLOC_NON_EMPLOYEUR", "ADMIN"], "description": "Employment type code" },
+          "activity_rate_pct":                  { "type": "string", "description": "Activity rate in percent (e.g. \"100\")" },
+          "date_start":                         { "type": "string", "format": "date", "description": "ISO 8601 date (YYYY-MM-DD)" },
+          "date_end":                           { "type": "string", "format": "date", "description": "ISO 8601 date (YYYY-MM-DD)" },
+          "net_salary_chf":                     { "type": "string", "description": "Net salary (line 11 of salary certificate), in CHF" },
+          "pension_contribution_chf":           { "type": ["string", "null"], "description": "LPP/2nd pillar ordinary contribution (line 10.1), in CHF" },
+          "other_contractual_contribution_chf": { "type": ["string", "null"], "description": "Other contractual deductions (e.g. PC famille), in CHF" },
+          "taxpayer":                           { "type": "string", "enum": ["CTB1", "CTB2"] }
+        }
+      }
+    },
+    "transport_costs": {
+      "type": "array",
+      "description": "Commuting transport cost entries (fraisTransport)",
+      "items": {
+        "type": "object",
+        "required": ["mean", "from", "to", "days", "is_flat_rate", "taxpayer"],
+        "properties": {
+          "mean":          { "type": "string", "enum": ["TRANSPORT_PUBLIC", "VELO_MOTO_LEGER", "VOITURE", "MOTO"], "description": "Transport mode" },
+          "from":          { "type": "string", "description": "Home location" },
+          "to":            { "type": "string", "description": "Work location" },
+          "date_start":    { "type": "string", "format": "date", "description": "ISO 8601 date (YYYY-MM-DD)" },
+          "date_end":      { "type": "string", "format": "date", "description": "ISO 8601 date (YYYY-MM-DD)" },
+          "days":          { "type": "string", "description": "Number of working days per year, between 1 and 240" },
+          "km":            { "type": ["string", "null"], "description": "One-way distance in km, between 2 and 9999 (null only for VELO_MOTO_LEGER)" },
+          "is_flat_rate":  { "type": "boolean", "description": "true if flat-rate deduction" },
+          "justification": { "type": ["string", "null"], "description": "Mandatory justification text for VOITURE and MOTO" },
+          "taxpayer":      { "type": "string", "enum": ["CTB1", "CTB2"] }
+        }
+      }
+    },
+    "meal_costs": {
+      "type": "array",
+      "description": "Meal cost entries (fraisRepas)",
+      "items": {
+        "type": "object",
+        "required": ["type", "days", "taxpayer"],
+        "properties": {
+          "type":       { "type": "string", "enum": ["HORS_DOMICILE_NORMAL", "HORS_DOMICILE_CONTRIBUTION", "TRAVAIL_EQUIPE_NUIT", "SOIR_HORS_DOMICILE_EXT"], "description": "Meal cost type code" },
+          "days":       { "type": "string", "description": "Number of working days per year, between 1 and 240" },
+          "date_start": { "type": ["string", "null"], "format": "date", "description": "ISO 8601 date — mandatory for SOIR_HORS_DOMICILE_EXT" },
+          "date_end":   { "type": ["string", "null"], "format": "date", "description": "ISO 8601 date — mandatory for SOIR_HORS_DOMICILE_EXT" },
+          "from":       { "type": ["string", "null"], "description": "Home location — mandatory for SOIR_HORS_DOMICILE_EXT" },
+          "to":         { "type": ["string", "null"], "description": "Work location — mandatory for SOIR_HORS_DOMICILE_EXT" },
+          "taxpayer":   { "type": "string", "enum": ["CTB1", "CTB2"] }
+        }
+      }
+    },
+    "insurance_premiums": {
+      "type": "object",
+      "description": "Insurance premiums and 3rd pillar contributions (primesEtCotisationsAssurance)",
+      "required": ["gross_premiums_chf", "subsidies_chf"],
+      "properties": {
+        "gross_premiums_chf":  { "type": "string", "description": "Total gross insurance premiums, in CHF" },
+        "subsidies_chf":       { "type": "string", "description": "Health insurance subsidies received, in CHF" },
+        "third_pillar_a_chf":  { "type": ["string", "null"], "description": "Pillar 3a contributions (CTB1), in CHF" }
+      }
+    },
+    "rent_deduction": {
+      "type": "object",
+      "description": "Housing/rent social deduction (deductionSocialeLogement)",
+      "properties": {
+        "annual_rent_chf": { "type": ["string", "null"], "description": "Annual net rent paid (excluding charges), in CHF" }
+      }
+    },
+    "management_fees_securities": {
+      "type": "object",
+      "description": "Securities management fee deduction (fraisAdministrationTitres, CODE 490)",
+      "properties": {
+        "is_initialized": { "type": ["boolean", "null"], "description": "true if the section is declared" },
+        "is_private":     { "type": ["boolean", "null"] }
+      }
+    },
+    "medical_costs": {
+      "type": "array",
+      "description": "Medical and dental expense entries (fraisMedicauxDentaires)",
+      "items": {
+        "type": "object",
+        "required": ["insurer", "gross_amount_chf", "net_amount_chf", "taxpayer"],
+        "properties": {
+          "insurer":          { "type": "string", "description": "Issuing insurer or institution" },
+          "type":             { "type": ["string", "null"] },
+          "gross_amount_chf": { "type": "string", "description": "Total gross medical costs, in CHF" },
+          "net_amount_chf":   { "type": "string", "description": "Net deductible amount, in CHF" },
+          "date_payment":     { "type": ["string", "null"] },
+          "taxpayer":         { "type": "string", "enum": ["CTB1", "CTB2"], "description": "Taxpayer the expense concerns" }
+        }
+      }
+    },
+    "taxpayer2": {
+      "type": "object",
+      "description": "Second taxpayer personal data (contribuable 2, spouse/partner). Present only for joint filers.",
+      "required": ["first_name", "last_name", "birthdate", "working_situation"],
+      "properties": {
+        "first_name":        { "type": "string" },
+        "last_name":         { "type": "string" },
+        "birthdate":         { "type": "string", "format": "date", "description": "ISO 8601 date (YYYY-MM-DD)" },
+        "navs13":            { "type": ["string", "null"], "description": "AVS/NAVS13 number formatted as 756.XXXX.XXXX.XX" },
+        "profession":        { "type": ["string", "null"] },
+        "working_location":  { "type": ["string", "null"] },
+        "working_situation": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["SALARIE", "INDEPENDANT", "INACTIF", "ETUDIANT", "RETRAITE"] }
+        }
+      }
+    },
+    "pension_income": {
+      "type": "array",
+      "description": "Pension and rente income entries (complementRentePension)",
+      "items": {
+        "type": "object",
+        "required": ["taxpayer"],
+        "properties": {
+          "type":       { "type": ["string", "null"], "description": "Pension type (e.g. AVS, LPP, rente viagère)" },
+          "amount_chf": { "type": ["string", "null"], "description": "Annual pension amount, in CHF" },
+          "taxpayer":   { "type": "string", "enum": ["CTB1", "CTB2"] }
+        }
+      }
+    },
+    "self_employment_income": {
+      "type": "array",
+      "description": "Self-employment / independent activity income entries (activitesIndependantes)",
+      "items": {
+        "type": "object",
+        "required": ["taxpayer"],
+        "properties": {
+          "activity":        { "type": ["string", "null"], "description": "Activity or business name" },
+          "net_revenue_chf": { "type": ["string", "null"], "description": "Net self-employment revenue (résultat net), in CHF" },
+          "taxpayer":        { "type": "string", "enum": ["CTB1", "CTB2"] }
+        }
+      }
+    },
+    "debt_interest": {
+      "type": "object",
+      "description": "Debt interest deductions (interetsDettes, code 520). Fully deductible for both ICC and IFD.",
+      "properties": {
+        "ctb1_amount_chf": { "type": ["string", "null"], "description": "Debt interest for CTB1, in CHF" },
+        "ctb2_amount_chf": { "type": ["string", "null"], "description": "Debt interest for CTB2, in CHF" }
+      }
+    },
+    "education_costs": {
+      "type": "array",
+      "description": "Education and training cost entries (fraisFormation)",
+      "items": {
+        "type": "object",
+        "required": ["taxpayer"],
+        "properties": {
+          "amount_chf": { "type": ["string", "null"], "description": "Education/training cost amount, in CHF" },
+          "taxpayer":   { "type": "string", "enum": ["CTB1", "CTB2"] }
+        }
+      }
+    },
+    "real_estate": {
+      "type": "array",
+      "description": "Real estate / immovable property entries (immeubles)",
+      "items": {
+        "type": "object",
+        "required": ["taxpayer"],
+        "properties": {
+          "designation":       { "type": ["string", "null"], "description": "Property description or address" },
+          "address":           { "type": ["string", "null"], "description": "Property address or locality" },
+          "fiscal_value_chf":  { "type": ["string", "null"], "description": "Official fiscal value (valeur fiscale), in CHF" },
+          "rental_income_chf": { "type": ["string", "null"], "description": "Gross rental income, in CHF (null for owner-occupied)" },
+          "taxpayer":          { "type": "string", "enum": ["CTB1", "CTB2"] }
+        }
+      }
+    },
+    "vehicles": {
+      "type": "array",
+      "description": "Vehicle assets (autoMoto)",
+      "items": {
+        "type": "object",
+        "required": ["taxpayer"],
+        "properties": {
+          "designation": { "type": ["string", "null"], "description": "Vehicle description (make/model)" },
+          "value_chf":   { "type": ["string", "null"], "description": "Market value, in CHF" },
+          "taxpayer":    { "type": "string", "enum": ["CTB1", "CTB2"] }
+        }
+      }
+    },
+    "other_professional_expenses": {
+      "type": "object",
+      "description": "Other professional expenses / misc salary activity deductions (autresFraisEtFraisActiviteSalarialeAccessoire)",
+      "properties": {
+        "ctb1_type":         { "type": ["string", "null"], "enum": ["FORFAIT", "FORFAIT_AND_EFFECTIF", "EFFECTIF", null], "description": "Deduction type for CTB1" },
+        "ctb1_forfait_chf":  { "type": ["string", "null"], "description": "Flat-rate deduction amount for CTB1, in CHF" },
+        "ctb1_effectif_chf": { "type": ["string", "null"], "description": "Actual deduction amount for CTB1, in CHF (set when type is EFFECTIF or FORFAIT_AND_EFFECTIF)" },
+        "ctb2_type":         { "type": ["string", "null"], "enum": ["FORFAIT", "FORFAIT_AND_EFFECTIF", "EFFECTIF", null] },
+        "ctb2_forfait_chf":  { "type": ["string", "null"] },
+        "ctb2_effectif_chf": { "type": ["string", "null"], "description": "Actual deduction amount for CTB2, in CHF" }
+      }
+    },
+    "tax_subject_info": {
+      "type": "object",
+      "description": "Tax subject and refund account info (infosComplementairesIes)",
+      "required": ["assujetti_ifd", "assujetti_icc"],
+      "properties": {
+        "assujetti_ifd":       { "type": "boolean", "description": "true if subject to federal direct tax (IFD)" },
+        "assujetti_icc":       { "type": "boolean", "description": "true if subject to cantonal/communal tax (ICC)" },
+        "refund_account_iban": { "type": ["string", "null"], "description": "IBAN for tax refunds" }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "description": "All asset entries: bank accounts, portfolios, cash, movable objects",
+      "items": {
+        "oneOf": [
+          {
+            "description": "Bank account (etatTitres)",
+            "type": "object",
+            "required": ["type", "institution", "iban", "country", "taxpayer"],
+            "properties": {
+              "type":         { "type": "string", "const": "compte" },
+              "institution":  { "type": "string" },
+              "iban":         { "type": "string" },
+              "country":      { "type": "string", "description": "ISO 2-letter country code" },
+              "currency":     { "type": ["string", "null"] },
+              "balance_chf":  { "type": ["string", "null"], "description": "Account balance in CHF (null if closed)" },
+              "yield_type":   { "type": "string", "enum": ["NON", "OUI_SOUMIS_IA", "OUI_NON_SOUMIS_IA"], "description": "Yield type: no interest / interest subject to anticipatory tax / interest not subject to anticipatory tax" },
+              "yield_amount":        { "type": ["string", "null"], "description": "Investment income subject to anticipatory tax (rendementSoumisIA), set when yield_type is OUI_SOUMIS_IA" },
+              "yield_amount_non_ia": { "type": ["string", "null"], "description": "Investment income not subject to anticipatory tax (rendementNonSoumisIA), set when yield_type is OUI_NON_SOUMIS_IA" },
+              "date_opened":  { "type": ["string", "null"] },
+              "date_closed":  { "type": ["string", "null"] },
+              "taxpayer":     { "type": "string", "enum": ["CTB1", "CTB2"] }
+            }
+          },
+          {
+            "description": "Investment portfolio / fiscal bank statement (relevesFiscauxBancaires)",
+            "type": "object",
+            "required": ["type", "institution", "country", "taxpayer"],
+            "properties": {
+              "type":                 { "type": "string", "const": "portefeuille" },
+              "institution":          { "type": "string" },
+              "account_number":       { "type": ["string", "null"] },
+              "country":              { "type": "string" },
+              "valeur_fiscale_chf":   { "type": ["string", "null"], "description": "Final fiscal value subject to IES, in CHF" },
+              "revenus_bruts_chf":    { "type": ["string", "null"], "description": "Gross income subject to IES, in CHF" },
+              "montant_ies_chf":      { "type": ["string", "null"], "description": "IES amount, in CHF" },
+              "taxpayer":             { "type": "string", "enum": ["CTB1", "CTB2"] }
+            }
+          },
+          {
+            "description": "Cash / liquid assets (numerairesList)",
+            "type": "object",
+            "required": ["type", "taxpayer"],
+            "properties": {
+              "type":                  { "type": "string", "const": "numeraire" },
+              "valeur_imposable_chf":  { "type": ["string", "null"], "description": "Taxable value, in CHF" },
+              "taxpayer":              { "type": "string", "enum": ["CTB1", "CTB2"] }
+            }
+          },
+          {
+            "description": "Movable object / crypto (objetsMobiliers items)",
+            "type": "object",
+            "required": ["type", "taxpayer"],
+            "properties": {
+              "type":        { "type": "string", "const": "objet_mobilier" },
+              "designation": { "type": ["string", "null"] },
+              "valeur_chf":  { "type": ["string", "null"], "description": "Market value, in CHF" },
+              "taxpayer":    { "type": "string", "enum": ["CTB1", "CTB2"] }
+            }
+          }
+        ]
+      }
+    },
+    "attachments": {
+      "type": "array",
+      "description": "Attached supporting documents embedded in the .vaudtax ZIP",
+      "items": {
+        "type": "object",
+        "required": ["zip_key", "filename", "size_bytes", "mime"],
+        "properties": {
+          "zip_key":    { "type": "string", "description": "ZIP entry name used to extract the file (e.g. \"doc17700000000000\")" },
+          "filename":   { "type": "string", "description": "Original filename as uploaded by the user" },
+          "size_bytes": { "type": "string", "description": "File size in bytes (stored as string)" },
+          "mime":       { "type": "string", "enum": ["application/pdf", "image/jpeg", "image/png"], "description": "MIME type" },
+          "label":      { "type": ["string", "null"], "description": "Human-readable description (e.g. \"Activités salariées : Certificat de salaire\")" },
+          "taxpayer":   { "type": "string", "enum": ["CTB1", "CTB2"], "description": "Which taxpayer this document belongs to. Always CTB1 for single filers. For joint filings, inferred from section order: first occurrence of each piecesJustificatives section id = CTB1, second = CTB2." }
+        }
+      }
+    }
+  }
+}

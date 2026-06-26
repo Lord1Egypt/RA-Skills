@@ -1,0 +1,198 @@
+{
+  "name": "web-publisher",
+  "version": "0.9.16",
+  "requiredEnvVars": [],
+  "requires": {
+    "runtime": {
+      "node": ">=18.0.0"
+    },
+    "binaries": [],
+    "packages": {}
+  },
+  "skill": {
+    "name": "web-publisher",
+    "version": "0.9.16",
+    "enabled": true,
+    "autoInvoke": false
+  },
+  "commands": {
+    "login": {
+      "script": "./scripts/run.js",
+      "args": ["login"],
+      "description": "[checkpoint, fire-and-forget] 生成一次性授权链接后 ~0.3s 返回；把 deviceCode 写到 ~/.web-publisher/login-pending.json 等待用户在浏览器点击确认。AI agent 必须把 stdout JSON 的 verifyUrl 完整原文交给用户，并提示用户在浏览器点击\"确认绑定\"；之后调用 `web-publisher login-status` 完成实际的凭证拉取，**不要 await login 命令本身**。可加 --force 强制重新绑定（覆盖已存在的 pending checkpoint）。整条流程不调用 child_process / spawn，无后台进程。"
+    },
+    "login-status": {
+      "script": "./scripts/run.js",
+      "args": ["login-status"],
+      "description": "完成登录的第二步：读取 pending checkpoint -> 一次性 POST /skill/device/poll -> bound 时把凭证写到 credentials.json 并删除 checkpoint，然后 GET /skill/whoami 拿账号信息和微信公众号配置状态。状态：logged-in（账号有效 **且** 公众号 AppID/AppSecret 已配置，可以发布） / logged-in-no-wechat（账号绑了但还没配置公众号，**AI 必须接着提示用户跑 `wechat config`**，draft / publish 在这个状态下会失败） / awaiting-browser-confirm（用户还没点确认） / expired-pending / invalid-credentials（apiKey 失效，请 login --force） / polling-failed / persist-failed / not-logged-in / logged-in-unverified。Exit code 0 表示 logged-in / logged-in-no-wechat / awaiting-browser-confirm，其他状态 exit 1。"
+    },
+    "logout": {
+      "script": "./scripts/run.js",
+      "args": ["logout"],
+      "description": "撤销远端 apiKey 并清除本地凭证"
+    },
+    "whoami": {
+      "script": "./scripts/run.js",
+      "args": ["whoami"],
+      "description": "查看当前账号、apiKey 摘要、微信公众号配置状态"
+    },
+    "wechat-config": {
+      "script": "./scripts/run.js",
+      "args": ["wechat", "config"],
+      "description": "生成一次性短链，在浏览器里填写微信 AppID / AppSecret。stdout JSON 同时返回 serverIps 数组（服务器出口 IP 列表）；AI 必须把 url 和 serverIps 一并转达给用户——后者要求用户登录 mp.weixin.qq.com → 设置与开发 → 基本配置 → IP 白名单 加入。漏掉 IP 白名单会让发布时被微信以 invalid IP 拒绝，所以两份信息缺一不可。instruction 字段已经把这两件事打包成一段话。"
+    },
+    "wechat-status": {
+      "script": "./scripts/run.js",
+      "args": ["wechat", "status"],
+      "description": "查询当前微信公众号配置状态"
+    },
+    "wrapper-config": {
+      "script": "./scripts/run.js",
+      "args": ["wrapper", "config"],
+      "description": "生成一次性短链，在浏览器里编辑文章页眉/页脚 Markdown"
+    },
+    "wrapper-status": {
+      "script": "./scripts/run.js",
+      "args": ["wrapper", "status"],
+      "description": "查看当前页眉页脚字数与是否启用"
+    },
+    "wrapper-on": {
+      "script": "./scripts/run.js",
+      "args": ["wrapper", "on"],
+      "description": "启用页眉页脚（要求已配置页眉或页脚）"
+    },
+    "wrapper-off": {
+      "script": "./scripts/run.js",
+      "args": ["wrapper", "off"],
+      "description": "关闭页眉页脚（保留已存内容）"
+    },
+    "publish": {
+      "script": "./scripts/run.js",
+      "args": ["publish"],
+      "description": "将网页文章 / 本地文档发布到公众号。PDF 默认每页成图；--extract-text PPTX 抽文字；--as-markdown / --rewrite 走 markitdown。PPTX 走 markdown。高级改写改走 /pipeline。"
+    },
+    "draft": {
+      "script": "./scripts/run.js",
+      "args": ["draft"],
+      "description": "保存为公众号草稿。PDF 默认每页成图；--extract-text PPTX 抽文字；--as-markdown / --rewrite 走 markitdown。完成返回 mediaId。"
+    },
+    "ppt-draft": {
+      "script": "./scripts/run.js",
+      "args": ["ppt", "draft"],
+      "description": "PDF/PPTX → 公众号草稿（POST /ppt/jobs）。PDF 默认每页成图；--extract-text PPTX 抽文字；--as-markdown 强制 markitdown。"
+    },
+    "ppt-publish": {
+      "script": "./scripts/run.js",
+      "args": ["ppt", "publish"],
+      "description": "PDF/PPTX → Markdown → 直接发布公众号（POST /ppt/jobs）。仅当用户明确说发布时使用。"
+    },
+    "convert": {
+      "script": "./scripts/run.js",
+      "args": ["convert"],
+      "description": "把任意文档（PDF/DOCX/PPTX/XLSX/EPUB/图片/音频/网页）转成 Markdown，不发布。可加 --out <file> 写文件、--async 走异步任务、--timeout <ms> 调单次上限"
+    },
+    "status": {
+      "script": "./scripts/run.js",
+      "args": ["status"],
+      "description": "查询单个 job 状态。0.9.8+ 默认输出一行紧凑摘要：jobId  《title》  action/theme  status·step  duration；加 --json 输出原始 JSON。失败时还会跟一行 error。"
+    },
+    "jobs": {
+      "script": "./scripts/run.js",
+      "args": ["jobs"],
+      "description": "(0.9.8+) 列出最近 jobs，每行紧凑摘要。可选: --status pending|processing|completed|failed --type pipeline|ppt|convert --limit <n> --json。"
+    },
+    "wait": {
+      "script": "./scripts/run.js",
+      "args": ["wait"],
+      "description": "(0.9.8+) 阻塞等待一个或多个 jobId 完成（消费 SSE 流）。每个 job 进终态时立刻 stderr 打 [DONE]/[FAIL] 摘要；全部 completed 退出码 0，任一 failed 退出码 1。配合 publish/draft --detach 做并发发布的标准等待方式。"
+    },
+    "help": {
+      "script": "./scripts/run.js",
+      "args": ["help"],
+      "description": "显示使用帮助"
+    }
+  },
+  "environment": {
+    "required": [],
+    "optional": [
+      "WEB_PUBLISHER_TOOLS_URL",
+      "WEB_PUBLISHER_API_URL",
+      "WEB_PUBLISHER_USER_ID",
+      "WEB_PUBLISHER_API_KEY"
+    ]
+  },
+  "install": {
+    "type": "config-only",
+    "autoInstall": true,
+    "riskLevel": "low",
+    "riskReason": "此 Skill 仅通过 HTTP API 调用远程服务，不安装任何第三方包，不调用任何外部二进制，不使用 child_process / 不 spawn 任何子进程。凭证存储在 ~/.web-publisher/credentials.json (mode 0600)；登录过程的临时 device-code 存在 ~/.web-publisher/login-pending.json (mode 0600)。draft / publish / convert 接受本地文件路径时，CLI 只读 basename + 文件字节并 multipart 上传到服务端，不带绝对路径。",
+    "requiresApproval": false
+  },
+  "dependencies": {
+    "npm": [],
+    "binaries": [],
+    "note": "No npm dependencies. URL 抓取 / 图片下载 / 文档转换 (markitdown) / AI 改写 / 发布默认由服务端 (pipeline API) 完成；本地文件通过 Node 18 内建的 FormData multipart 上传，CLI 仍不引第三方依赖。"
+  },
+  "recommendedSkills": [
+    {
+      "name": "news-to-markdown",
+      "type": "npm-cli",
+      "install": "npm install -g news-to-markdown",
+      "purpose": "本地兜底：服务端 pipeline 因云端 IP 被反爬站点挡掉时（小红书、部分知乎专栏、登录墙、海外站点），改用本地 IP 抓取 URL → Markdown",
+      "required": false
+    },
+    {
+      "name": "browser-web-search",
+      "type": "skill",
+      "purpose": "用户只给关键词没有具体 URL 时，先搜索拿 URL 列表再批量发布",
+      "required": false
+    }
+  ],
+  "permissions": {
+    "filesystem": {
+      "read": [
+        "~/.web-publisher/credentials.json",
+        "~/.web-publisher/login-pending.json",
+        "<user-supplied input file passed to draft|publish|convert>",
+        "<user-supplied --out path written by convert>"
+      ],
+      "write": [
+        "~/.web-publisher/credentials.json",
+        "~/.web-publisher/login-pending.json",
+        "<user-supplied --out path passed to convert>"
+      ]
+    },
+    "network": {
+      "domains": [
+        "tools.siping.me",
+        "<WEB_PUBLISHER_API_URL>"
+      ],
+      "note": "Calls tools.siping.me for account onboarding and the user-configured pipeline API for publishing / converting. Local files supplied to draft|publish|convert are streamed via multipart to the pipeline API; the agent does not read arbitrary files outside what the user explicitly passes."
+    },
+    "subprocess": {
+      "spawn": [],
+      "note": "0.9.0 retired the 0.8.x background login daemon. The CLI no longer requires child_process anywhere; login is a checkpoint-file flow (login writes ~/.web-publisher/login-pending.json then exits; login-status reads the checkpoint and does a single HTTP poll)."
+    }
+  },
+  "capabilities": {
+    "sensitive": [
+      {
+        "type": "api-credential-usage",
+        "riskLevel": "medium",
+        "description": "使用用户的 API Key 调用远程发布服务，并把凭证写入本地文件",
+        "risks": [
+          "API Key 泄露可能导致未授权发布",
+          "发布操作不可撤回（publish 模式）"
+        ],
+        "mitigations": [
+          "默认使用 draft 模式，不自动发布",
+          "凭证文件权限 0600，仅当前用户可读",
+          "AppSecret 永不进入对话上下文（在浏览器表单提交，AES-256-GCM 加密落库）",
+          "Wrapper 内容由用户在浏览器表单提交，避免敏感联系方式（二维码、微信号）落入对话上下文",
+          "logout 命令可远端撤销 apiKey 并清理本地文件",
+          "所有操作可在 tools.siping.me 审计"
+        ]
+      }
+    ]
+  }
+}

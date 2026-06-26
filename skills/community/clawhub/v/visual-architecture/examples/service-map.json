@@ -1,0 +1,87 @@
+{
+  "title": "Service Map",
+  "show_grid": false,
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client App",
+      "subtitle": "Browser or mobile UI",
+      "kind": "service",
+      "x": 120,
+      "y": 160
+    },
+    {
+      "id": "api",
+      "label": "API",
+      "subtitle": "Request handler",
+      "kind": "service",
+      "x": 360,
+      "y": 160
+    },
+    {
+      "id": "worker",
+      "label": "Worker",
+      "subtitle": "Async jobs",
+      "kind": "agent",
+      "x": 600,
+      "y": 160
+    },
+    {
+      "id": "database",
+      "label": "Database",
+      "subtitle": "Application state",
+      "kind": "memory",
+      "x": 360,
+      "y": 320
+    },
+    {
+      "id": "llm",
+      "label": "LLM Gateway",
+      "subtitle": "Model calls",
+      "kind": "llm",
+      "x": 600,
+      "y": 320
+    }
+  ],
+  "edges": [
+    {
+      "from": "client",
+      "to": "api",
+      "kind": "primary-data",
+      "label": "request",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "api",
+      "to": "worker",
+      "kind": "control",
+      "label": "enqueue",
+      "label_offset": [0, -28]
+    },
+    {
+      "from": "api",
+      "to": "database",
+      "kind": "memory-write",
+      "label": "read/write"
+    },
+    {
+      "from": "worker",
+      "to": "llm",
+      "kind": "primary-data",
+      "label": "inference"
+    },
+    {
+      "from": "worker",
+      "to": "database",
+      "kind": "memory-write",
+      "label": "job result",
+      "source_side": "left",
+      "target_side": "right",
+      "via": [
+        { "x": 480, "y": 240 },
+        { "x": 480, "y": 320 }
+      ],
+      "label_segment": 1
+    }
+  ]
+}

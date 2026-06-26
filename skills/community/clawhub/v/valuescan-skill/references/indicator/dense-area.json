@@ -1,0 +1,32 @@
+{
+  "name": "压力支撑位",
+  "endpoint": "POST /indicator/getDenseAreaList",
+  "description": "获取AI通过多数据维度，动态生成代币的智能压力位与支撑位的价格数据",
+  "credits_cost": 1,
+  "needToken": true,
+  "use_case": "适用于对代币关键价格位置获取，适用于辅助判断压力和支撑位，适用于支撑交易决策判断",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" },
+    "date": { "type": "long", "req": false, "desc": "查询时间点（毫秒时间戳）" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "price": { "type": "number", "actualType": "string", "desc": "关键位价格" },
+    "denseArea": { "type": "int", "actualType": "int", "desc": "压力支撑位标识，1-压力位，2-支撑位" }
+  },
+  "example": {
+    "req": { "vsTokenId": 1, "date": 1773417600000 },
+    "res": {
+      "code": 200,
+      "message": "success",
+      "data": [
+        { "vsTokenId": "1", "symbol": "BTC", "name": "Bitcoin", "price": "69733.39", "denseArea": 1 },
+        { "vsTokenId": "1", "symbol": "BTC", "name": "Bitcoin", "price": "70066.835", "denseArea": 1 },
+        { "vsTokenId": "1", "symbol": "BTC", "name": "Bitcoin", "price": "69988.96", "denseArea": 2 }
+      ],
+      "requestId": "xxx-xxx-xxx"
+    }
+  }
+}

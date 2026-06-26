@@ -1,0 +1,9 @@
+# PROMPT FOR IMAGE GENERATION
+Please remove any old text from the input image.
+Then, add the new text provided below, ensuring the style (font, color, outline, placement) matches the original text from the template image as closely as possible.
+The goal is to make it look like an official, seamless modification.
+
+New Text:
+{text_to_add}
+
+Finally, output the fully processed, high-definition image without any watermarks.

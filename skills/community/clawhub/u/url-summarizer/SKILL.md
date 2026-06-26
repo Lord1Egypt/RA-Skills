@@ -1,35 +1,32 @@
 ---
-name: "URL Summarizer"
-description: "Summarize any web page by URL into a concise structured brief. Use when the user asks to summarize, digest, or extract key points from a URL or web page. Als..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/url-summarizer"
-sourceUrl: "https://clawhub.ai/skills/url-summarizer"
+name: url-summarizer
+description: Summarize any web page by URL into a concise structured brief. Use when the user asks to summarize, digest, or extract key points from a URL or web page. Also use for batch URL summarization and comparison tasks.
 ---
 
 # URL Summarizer
 
-> Summarize any web page by URL into a concise structured brief. Use when the user asks to summarize, digest, or extract key points from a URL or web page. Als...
+Summarize web pages into structured briefs using a deterministic extraction + summarization pipeline.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/url-summarizer`
-- **Source URL:** [https://clawhub.ai/skills/url-summarizer](https://clawhub.ai/skills/url-summarizer)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/url-summarizer
+python3 scripts/summarize_url.py <url>
 ```
+
+## Workflow
+
+1. Receive URL(s) from user
+2. Run `scripts/summarize_url.py <url>` to extract and format content
+3. Return the structured summary
+
+## Output Format
+
+Each summary includes:
+- **Title**: Page title
+- **Source**: Original URL
+- **Key Points**: 3-5 bullet points
+- **Summary**: 2-3 sentence overview
+
+## Batch Usage
+
+For multiple URLs, run the script once per URL and aggregate results into a comparison table when requested.

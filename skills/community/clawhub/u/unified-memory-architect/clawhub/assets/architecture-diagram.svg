@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d0d1a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#0099cc"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1024" height="576" fill="url(#bg)"/>
+  <!-- Title -->
+  <text x="512" y="35" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#ffffff">Unified Memory Architect — System Architecture</text>
+  <!-- Layer 1: Raw Data -->
+  <rect x="40" y="55" width="944" height="70" rx="8" fill="#ffffff08" stroke="#ffffff20" stroke-width="1"/>
+  <text x="60" y="78" font-family="Arial" font-size="13" font-weight="bold" fill="#00d4ff">LAYER 1: RAW DATA</text>
+  <g font-family="Arial" font-size="11" fill="#ffffff80">
+    <rect x="60" y="88" width="120" height="28" rx="4" fill="#ffffff10"/>
+    <text x="120" y="106" text-anchor="middle">📄 raw/*.jsonl</text>
+    <rect x="195" y="88" width="120" height="28" rx="4" fill="#ffffff10"/>
+    <text x="255" y="106" text-anchor="middle">📄 processed/*.json</text>
+    <rect x="330" y="88" width="120" height="28" rx="4" fill="#ffffff10"/>
+    <text x="390" y="106" text-anchor="middle">📦 archive/*.gz</text>
+    <rect x="465" y="88" width="120" height="28" rx="4" fill="#ffffff10"/>
+    <text x="525" y="106" text-anchor="middle">📥 import/batch.json</text>
+  </g>
+  <!-- Arrow 1 -->
+  <path d="M512 125 L512 145" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+  <defs><marker id="arrowCyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#00d4ff"/></marker></defs>
+  <!-- Layer 2: Processing -->
+  <rect x="40" y="145" width="944" height="90" rx="8" fill="#ffffff08" stroke="#ffffff20" stroke-width="1"/>
+  <text x="60" y="168" font-family="Arial" font-size="13" font-weight="bold" fill="#a855f7">LAYER 2: PROCESSING ENGINE</text>
+  <g font-family="Arial" font-size="11" fill="#ffffff80">
+    <rect x="60" y="178" width="160" height="48" rx="6" fill="#a855f715" stroke="#a855f730"/>
+    <text x="140" y="196" text-anchor="middle">⚙️ Parser</text>
+    <text x="140" y="212" text-anchor="middle" font-size="10">JSON → Memory Object</text>
+    <rect x="235" y="178" width="160" height="48" rx="6" fill="#a855f715" stroke="#a855f730"/>
+    <text x="315" y="196" text-anchor="middle">🏷️ Tagger</text>
+    <text x="315" y="212" text-anchor="middle" font-size="10">Extract: tag/entity/sentiment</text>
+    <rect x="410" y="178" width="160" height="48" rx="6" fill="#a855f715" stroke="#a855f730"/>
+    <text x="490" y="196" text-anchor="middle">🔢 Indexer</text>
+    <text x="490" y="212" text-anchor="middle" font-size="10">Build 6-type indexes</text>
+    <rect x="585" y="178" width="160" height="48" rx="6" fill="#a855f715" stroke="#a855f730"/>
+    <text x="665" y="196" text-anchor="middle">🗜️ Compressor</text>
+    <text x="665" y="212" text-anchor="middle" font-size="10">JSONL + archival</text>
+    <rect x="760" y="178" width="160" height="48" rx="6" fill="#a855f715" stroke="#a855f730"/>
+    <text x="840" y="196" text-anchor="middle">🔍 Search Engine</text>
+    <text x="840" y="212" text-anchor="middle" font-size="10">Hybrid BM25+Vector+RRF</text>
+  </g>
+  <!-- Arrow 2 -->
+  <path d="M512 235 L512 255" stroke="#a855f7" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <defs><marker id="arrowPurple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#a855f7"/></marker></defs>
+  <!-- Layer 3: Index Types -->
+  <rect x="40" y="255" width="944" height="100" rx="8" fill="#ffffff08" stroke="#ffffff20" stroke-width="1"/>
+  <text x="60" y="278" font-family="Arial" font-size="13" font-weight="bold" fill="#10b981">LAYER 3: MULTI-INDEX STORAGE</text>
+  <g font-family="Arial" font-size="11" fill="#ffffff">
+    <rect x="60" y="288" width="120" height="58" rx="6" fill="#10b98115" stroke="#10b98140">
+      <text x="120" y="312" text-anchor="middle" font-weight="bold">byType</text>
+      <text x="120" y="328" text-anchor="middle" font-size="10" fill="#ffffff80">reflection</text>
+      <text x="120" y="340" text-anchor="middle" font-size="10" fill="#ffffff80">exploration</text>
+    </rect>
+    <rect x="195" y="288" width="120" height="58" rx="6" fill="#10b98115" stroke="#10b98140">
+      <text x="255" y="312" text-anchor="middle" font-weight="bold">byDate</text>
+      <text x="255" y="328" text-anchor="middle" font-size="10" fill="#ffffff80">2026-04-06</text>
+      <text x="255" y="340" text-anchor="middle" font-size="10" fill="#ffffff80">→ 2026-04-13</text>
+    </rect>
+    <rect x="330" y="288" width="120" height="58" rx="6" fill="#10b98115" stroke="#10b98140">
+      <text x="390" y="312" text-anchor="middle" font-weight="bold">byTag</text>
+      <text x="390" y="328" text-anchor="middle" font-size="10" fill="#ffffff80">49 unique tags</text>
+      <text x="390" y="340" text-anchor="middle" font-size="10" fill="#ffffff80">water, journey...</text>
+    </rect>
+    <rect x="465" y="288" width="120" height="58" rx="6" fill="#10b98115" stroke="#10b98140">
+      <text x="525" y="312" text-anchor="middle" font-weight="bold">bySentiment</text>
+      <text x="525" y="328" text-anchor="middle" font-size="10" fill="#ffffff80">positive</text>
+      <text x="525" y="340" text-anchor="middle" font-size="10" fill="#ffffff80">neutral/negative</text>
+    </rect>
+    <rect x="600" y="288" width="120" height="58" rx="6" fill="#10b98115" stroke="#10b98140">
+      <text x="660" y="312" text-anchor="middle" font-weight="bold">byEntity</text>
+      <text x="660" y="328" text-anchor="middle" font-size="10" fill="#ffffff80">181 entities</text>
+      <text x="660" y="340" text-anchor="middle" font-size="10" fill="#ffffff80">water, mirror...</text>
+    </rect>
+    <rect x="735" y="288" width="120" height="58" rx="6" fill="#10b98115" stroke="#10b98140">
+      <text x="795" y="312" text-anchor="middle" font-weight="bold">byLanguage</text>
+      <text x="795" y="328" text-anchor="middle" font-size="10" fill="#ffffff80">zh (Chinese)</text>
+      <text x="795" y="340" text-anchor="middle" font-size="10" fill="#ffffff80">en (English)</text>
+    </rect>
+  </g>
+  <!-- Arrow 3 -->
+  <path d="M512 355 L512 375" stroke="#10b981" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <defs><marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#10b981"/></marker></defs>
+  <!-- Layer 4: Hybrid Search -->
+  <rect x="40" y="375" width="944" height="80" rx="8" fill="#ffffff08" stroke="#ffffff20" stroke-width="1"/>
+  <text x="60" y="398" font-family="Arial" font-size="13" font-weight="bold" fill="#00d4ff">LAYER 4: HYBRID SEARCH (BM25 + Vector + RRF)</text>
+  <g font-family="Arial" font-size="11">
+    <rect x="60" y="408" width="240" height="38" rx="6" fill="#00d4ff15" stroke="#00d4ff40">
+      <text x="180" y="425" text-anchor="middle" font-weight="bold" fill="#00d4ff">BM25</text>
+      <text x="180" y="439" text-anchor="middle" font-size="10" fill="#ffffff80">Text keyword matching · weight: 0.4</text>
+    </rect>
+    <rect x="315" y="408" width="240" height="38" rx="6" fill="#a855f715" stroke="#a855f740">
+      <text x="435" y="425" text-anchor="middle" font-weight="bold" fill="#a855f7">Vector Search</text>
+      <text x="435" y="439" text-anchor="middle" font-size="10" fill="#ffffff80">Semantic similarity · weight: 0.4</text>
+    </rect>
+    <rect x="570" y="408" width="240" height="38" rx="6" fill="#10b98115" stroke="#10b98140">
+      <text x="690" y="425" text-anchor="middle" font-weight="bold" fill="#10b981">RRF Fusion</text>
+      <text x="690" y="439" text-anchor="middle" font-size="10" fill="#ffffff80">Reciprocal Rank Fusion · k=60</text>
+    </rect>
+    <!-- Plus signs between boxes -->
+    <text x="298" y="430" font-size="20" fill="#ffffff40" text-anchor="middle">+</text>
+    <text x="553" y="430" font-size="20" fill="#ffffff40" text-anchor="middle">+</text>
+    <text x="808" y="430" font-size="20" fill="#ffffff40" text-anchor="middle">→</text>
+  </g>
+  <!-- Arrow 4 -->
+  <path d="M512 455 L512 475" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowCyan2)"/>
+  <defs><marker id="arrowCyan2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#00d4ff"/></marker></defs>
+  <!-- Layer 5: Output -->
+  <rect x="40" y="475" width="944" height="80" rx="8" fill="#00d4ff08" stroke="#00d4ff30" stroke-width="1"/>
+  <text x="60" y="498" font-family="Arial" font-size="13" font-weight="bold" fill="#ffffff">LAYER 5: API / CLI OUTPUT</text>
+  <g font-family="Arial" font-size="11">
+    <rect x="60" y="508" width="180" height="38" rx="6" fill="#00d4ff15" stroke="#00d4ff40">
+      <text x="150" y="521" text-anchor="middle" font-weight="bold" fill="#00d4ff">$ node query.cjs tag X 10</text>
+      <text x="150" y="535" text-anchor="middle" font-size="10" fill="#ffffff80">CLI Interface</text>
+    </rect>
+    <rect x="255" y="508" width="180" height="38" rx="6" fill="#a855f715" stroke="#a855f740">
+      <text x="345" y="521" text-anchor="middle" font-weight="bold" fill="#a855f7">queryByTag(tag, n)</text>
+      <text x="345" y="535" text-anchor="middle" font-size="10" fill="#ffffff80">JS/Node API</text>
+    </rect>
+    <rect x="450" y="508" width="180" height="38" rx="6" fill="#10b98115" stroke="#10b98140">
+      <text x="540" y="521" text-anchor="middle" font-weight="bold" fill="#10b981">GET /api/search?q=X</text>
+      <text x="540" y="535" text-anchor="middle" font-size="10" fill="#ffffff80">REST API (optional)</text>
+    </rect>
+    <rect x="645" y="508" width="180" height="38" rx="6" fill="#f59e0b15" stroke="#f59e0b40">
+      <text x="735" y="521" text-anchor="middle" font-weight="bold" fill="#f59e0b">1760 memories</text>
+      <text x="735" y="535" text-anchor="middle" font-size="10" fill="#ffffff80">49 tags · 181 entities</text>
+    </rect>
+  </g>
+  <!-- Stats badge top right -->
+  <rect x="820" y="55" width="164" height="60" rx="8" fill="#00d4ff10" stroke="#00d4ff30"/>
+  <text x="902" y="75" text-anchor="middle" font-family="Arial" font-size="10" fill="#00d4ff80">PERFORMANCE</text>
+  <text x="902" y="93" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#ffffff">5-10x faster</text>
+  <text x="902" y="109" text-anchor="middle" font-family="Arial" font-size="10" fill="#10b981">60% storage saved</text>
+</svg>

@@ -1,0 +1,26 @@
+{
+  "skill_name": "vertical-niche-community-selection",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "vinyl-niche-demand-and-selection",
+      "prompt": "We want to do vinyl turntable accessories and need to know where the community is and what they want before choosing subcategories. We’d like to tie this to Rijoy for repeat and referral.",
+      "expected_output": "Give community channels and demand points (jargon/pain/entry vs advanced), 2–3 concrete selection directions and why insiders would approve; explain how to use Rijoy for membership/referral to validate selection.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "eval_name": "outdoor-hardcore-gear-selection",
+      "prompt": "We do serious camping gear and want to carry products that hardcore users respect, not casual park users. How do we judge if a product fits our community?",
+      "expected_output": "Explain community-oriented selection (expertise, scarcity, identity, repeat), give a selection checklist or key points; can cite niche_selection_logic; can mention using Rijoy to retain core users and validate selection.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "eval_name": "community-demand-mining-how-to",
+      "prompt": "How do we actually mine community demand? We do vintage camera accessories and don’t know where to hear real user needs.",
+      "expected_output": "Explain community map (channels/platforms), what to listen for (jargon, pain, upgrade path, repeat motive); can cite community_demand_framework; suggest using Rijoy repeat and referral data to see if demand is hit.",
+      "files": []
+    }
+  ]
+}

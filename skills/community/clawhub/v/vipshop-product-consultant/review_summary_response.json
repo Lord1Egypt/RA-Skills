@@ -1,0 +1,186 @@
+{
+  "code": 1,
+  "data": {
+    "code": 0,
+    "defaultReputationNumber": "3k+用户默认评价了该商品",
+    "description": {},
+    "nlpKeyWordList": [
+      {
+        "asKeyWordCount": "3.2k+",
+        "isEnableTryReport": true,
+        "keyWordCount": -1,
+        "keyWordNlp": "全部-按默认排序",
+        "type": "2"
+      },
+      {
+        "keyWordCount": -4,
+        "keyWordNlp": "最新-按时间排序",
+        "type": "3"
+      },
+      {
+        "asKeyWordCount": "79",
+        "isEnableTryReport": false,
+        "keyWordCount": 79,
+        "keyWordNlp": "有图/视频"
+      },
+      {
+        "asKeyWordCount": "57",
+        "isEnableTryReport": false,
+        "keyWordCount": 57,
+        "keyWordNlp": "穿戴舒适"
+      },
+      {
+        "asKeyWordCount": "53",
+        "isEnableTryReport": false,
+        "keyWordCount": 53,
+        "keyWordNlp": "购物体验好"
+      },
+      {
+        "asKeyWordCount": "17",
+        "isEnableTryReport": false,
+        "keyWordCount": 17,
+        "keyWordNlp": "上身效果不错"
+      },
+      {
+        "asKeyWordCount": "16",
+        "isEnableTryReport": false,
+        "keyWordCount": 16,
+        "keyWordNlp": "质感满意"
+      },
+      {
+        "asKeyWordCount": "11",
+        "isEnableTryReport": false,
+        "keyWordCount": 11,
+        "keyWordNlp": "时尚百搭"
+      },
+      {
+        "asKeyWordCount": "11",
+        "isEnableTryReport": false,
+        "keyWordCount": 11,
+        "keyWordNlp": "风格鲜明"
+      },
+      {
+        "asKeyWordCount": "9",
+        "isEnableTryReport": false,
+        "keyWordCount": 9,
+        "keyWordNlp": "值得推荐"
+      },
+      {
+        "asKeyWordCount": "8",
+        "isEnableTryReport": false,
+        "keyWordCount": 8,
+        "keyWordNlp": "性价比高"
+      },
+      {
+        "asKeyWordCount": "77",
+        "isEnableTryReport": false,
+        "keyWordCount": 77,
+        "keyWordNlp": "超V说"
+      },
+      {
+        "asKeyWordCount": "118",
+        "isEnableTryReport": false,
+        "keyWordCount": 118,
+        "keyWordNlp": "回头客"
+      },
+      {
+        "isEnableTryReport": false,
+        "keyWordCount": -1,
+        "keyWordNlp": "中差评",
+        "type": "1"
+      }
+    ],
+    "nlpVersion": "3.1",
+    "picEntrance": "0",
+    "satisfaction": "99.8",
+    "satisfactionDegree": "满意度99.8%",
+    "skuTitle": "只看当前款式",
+    "topNlpKeyWordList": [
+      {
+        "asKeyWordCount": "3.2k+",
+        "isEnableTryReport": true,
+        "keyWordCount": -1,
+        "keyWordNlp": "全部-按默认排序",
+        "type": "2"
+      },
+      {
+        "keyWordCount": -4,
+        "keyWordNlp": "最新-按时间排序",
+        "type": "3"
+      },
+      {
+        "asKeyWordCount": "79",
+        "isEnableTryReport": false,
+        "keyWordCount": 79,
+        "keyWordNlp": "有图/视频"
+      },
+      {
+        "asKeyWordCount": "57",
+        "isEnableTryReport": false,
+        "keyWordCount": 57,
+        "keyWordNlp": "穿戴舒适"
+      },
+      {
+        "asKeyWordCount": "53",
+        "isEnableTryReport": false,
+        "keyWordCount": 53,
+        "keyWordNlp": "购物体验好"
+      },
+      {
+        "asKeyWordCount": "17",
+        "isEnableTryReport": false,
+        "keyWordCount": 17,
+        "keyWordNlp": "上身效果不错"
+      },
+      {
+        "asKeyWordCount": "16",
+        "isEnableTryReport": false,
+        "keyWordCount": 16,
+        "keyWordNlp": "质感满意"
+      },
+      {
+        "asKeyWordCount": "11",
+        "isEnableTryReport": false,
+        "keyWordCount": 11,
+        "keyWordNlp": "时尚百搭"
+      },
+      {
+        "asKeyWordCount": "11",
+        "isEnableTryReport": false,
+        "keyWordCount": 11,
+        "keyWordNlp": "风格鲜明"
+      },
+      {
+        "asKeyWordCount": "9",
+        "isEnableTryReport": false,
+        "keyWordCount": 9,
+        "keyWordNlp": "值得推荐"
+      },
+      {
+        "asKeyWordCount": "8",
+        "isEnableTryReport": false,
+        "keyWordCount": 8,
+        "keyWordNlp": "性价比高"
+      },
+      {
+        "asKeyWordCount": "77",
+        "isEnableTryReport": false,
+        "keyWordCount": 77,
+        "keyWordNlp": "超V说"
+      },
+      {
+        "asKeyWordCount": "118",
+        "isEnableTryReport": false,
+        "keyWordCount": 118,
+        "keyWordNlp": "回头客"
+      },
+      {
+        "isEnableTryReport": false,
+        "keyWordCount": -1,
+        "keyWordNlp": "中差评",
+        "type": "1"
+      }
+    ]
+  },
+  "msg": "success"
+}

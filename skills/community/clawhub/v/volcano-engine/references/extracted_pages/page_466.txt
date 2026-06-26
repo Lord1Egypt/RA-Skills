@@ -1,0 +1,72 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+invalid. Request
+ID:查看 API 调用文
+档来排查问题。
+401 ForbiddenInvalidAccountSt
+atusThere is an issue
+with your
+account status. If
+you need
+assistance,
+please contact
+the platform
+administrators.当前使用的账号
+异常。
+403 ForbiddenOperationDenie
+d.InvalidStateThe specified
+context is in
+invalid state:
+InProgress.Requ
+est ID:请求所关联的
+Context ID处于
+非空闲状态，不
+可调用。
+403 ForbiddenOperationDenie
+d.ConflictedValid
+ationSetOperation is
+denied because
+it is not
+supported to
+configure
+ValidationSet
+and
+ValidationPercen
+tage at the same
+time.无法同时上传验
+证集和设置训练
+集取样为验证集
+百分比，不支持
+该操作。
+403 ForbiddenOperationDenie
+d.PermissionDen
+iedOperation is
+denied because
+you are not
+permitted to
+access the
+specified
+configuration of
+the
+FoundationMod
+el.您没有权限访问
+基础模型的配
+置，不支持该操
+作。
+403 ForbiddenOperationDenie
+d.UnsupportedC
+ustomizationTyp
+eOperation is
+denied because
+the specified
+CustomizationTy
+pe is not
+supported by
+the
+CustomModel.模型不支持该训
+练方法，不支持
+该操作。API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 461/485

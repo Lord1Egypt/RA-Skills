@@ -1,0 +1,23 @@
+[Unit]
+Description=VAIBot Guard policy service (user)
+After=network-online.target openclaw-gateway.service
+Wants=openclaw-gateway.service
+PartOf=openclaw-gateway.service
+
+[Service]
+Type=simple
+# Adjust to the location where this repo/skill lives.
+WorkingDirectory=%h/clawd/vaibot-monorepo/packages/openclaw-skills/vaibot-guard
+
+EnvironmentFile=%h/.config/vaibot-guard/vaibot-guard.env
+
+ExecStart=/usr/bin/env node scripts/vaibot-guard-service.mjs
+Restart=on-failure
+RestartSec=2
+
+# Hardening (user-scope, safe defaults)
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target

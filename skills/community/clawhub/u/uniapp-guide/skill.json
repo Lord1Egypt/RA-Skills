@@ -1,0 +1,9 @@
+{
+  "name": "uniapp-guide",
+  "version": "1.0.0",
+  "title": "Uni-app 跨平台开发指南",
+  "description": "全面的 uni-app 跨平台应用开发指南，从环境配置到项目发布的完整教程",
+  "author": "MiniMax Agent",
+  "tags": ["uni-app", "跨平台", "Vue", "小程序", "移动开发", "前端开发"],
+  "homepage": "https://uniapp.dcloud.net.cn/"
+}

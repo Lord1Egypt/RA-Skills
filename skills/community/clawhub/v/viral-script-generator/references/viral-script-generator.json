@@ -1,0 +1,661 @@
+{
+  "name": "viral-script-generator",
+  "version": "1.0.0",
+  "description": "Viral Script Generator - AI-powered short-form video script engine optimized for TikTok, Reels, Shorts, and Douyin",
+  "price": 0.5,
+  "platforms": {
+    "tiktok": {
+      "max_duration_seconds": 60,
+      "aspect_ratio": "9:16",
+      "hook_window_seconds": 1.5,
+      "max_characters": 2200,
+      "best_practices": [
+        "Text overlays on all clips",
+        "Face visible in first frame",
+        "Trending sound mandatory",
+        "Caption: 3-5 words max",
+        "Auto-captions: always on"
+      ]
+    },
+    "douyin": {
+      "max_duration_seconds": 45,
+      "aspect_ratio": "9:16",
+      "hook_window_seconds": 2.0,
+      "max_characters": 2000,
+      "best_practices": [
+        "Douyin Shop link in bio",
+        "Use Douyin-native stickers",
+        "Government-compliant content",
+        "Avoid political topics",
+        "Evening post timing (8-10pm)"
+      ]
+    },
+    "reels": {
+      "max_duration_seconds": 30,
+      "aspect_ratio": "9:16",
+      "hook_window_seconds": 1.0,
+      "max_characters": 2200,
+      "best_practices": [
+        "Cross-post from TikTok OK",
+        "But remove TikTok watermark",
+        "Use original audio for reach",
+        "Carousel slides = high save",
+        "Collaboration posts = high reach"
+      ]
+    },
+    "shorts": {
+      "max_duration_seconds": 30,
+      "aspect_ratio": "9:16",
+      "hook_window_seconds": 2.0,
+      "max_characters": 5000,
+      "best_practices": [
+        "Longer descriptions allowed",
+        "Hashtags: 3 max",
+        "Thumbnail matters (desktop discover)",
+        "Series content = high retention",
+        "End screen: subscribe CTA"
+      ]
+    },
+    "bilibili": {
+      "max_duration_seconds": 300,
+      "aspect_ratio": "16:9",
+      "hook_window_seconds": 5.0,
+      "max_characters": 20000,
+      "best_practices": [
+        "Danmaku-ready punchlines",
+        "Deep research valued",
+        "Long-form tutorials high retention",
+        "Community interaction in comments",
+        "Bullet comments = engagement gold"
+      ]
+    }
+  },
+  "hook_formulas": {
+    "curiosity_gap": [
+      {
+        "template": "99% of people don't know [surprising fact]",
+        "best_for": [
+          "Education",
+          "Finance",
+          "Health"
+        ]
+      },
+      {
+        "template": "I tested [product] for [time] and here's what happened",
+        "best_for": [
+          "Product review",
+          "Lifestyle",
+          "Fitness"
+        ]
+      },
+      {
+        "template": "The secret [industry] doesn't want you to know",
+        "best_for": [
+          "Finance",
+          "Career",
+          "Business"
+        ]
+      },
+      {
+        "template": "This [tool/hack] will change how you [activity] forever",
+        "best_for": [
+          "Tech",
+          "Productivity",
+          "DIY"
+        ]
+      },
+      {
+        "template": "I tried the viral [trend] so you don't have to",
+        "best_for": [
+          "Review",
+          "Commentary",
+          "Entertainment"
+        ]
+      }
+    ],
+    "controversy_bait": [
+      {
+        "template": "Unpopular opinion: [controversial take]",
+        "best_for": [
+          "Opinion",
+          "Lifestyle",
+          "Industry"
+        ]
+      },
+      {
+        "template": "Stop [common advice]. Do this instead.",
+        "best_for": [
+          "Finance",
+          "Fitness",
+          "Career"
+        ]
+      },
+      {
+        "template": "I said what everyone was thinking about [topic]",
+        "best_for": [
+          "Commentary",
+          "Industry",
+          "Culture"
+        ]
+      },
+      {
+        "template": "The real reason [popular thing] is actually bad for you",
+        "best_for": [
+          "Health",
+          "Finance",
+          "Tech"
+        ]
+      },
+      {
+        "template": "Hot take: [bold statement]. Here's why.",
+        "best_for": [
+          "Opinion",
+          "Culture",
+          "Tech"
+        ]
+      }
+    ],
+    "emotional_hook": [
+      {
+        "template": "This moment changed my life forever",
+        "best_for": [
+          "Story",
+          "Inspiration",
+          "Personal"
+        ]
+      },
+      {
+        "template": "I was [age] when I learned this hard lesson",
+        "best_for": [
+          "Story",
+          "Career",
+          "Life advice"
+        ]
+      },
+      {
+        "template": "After [years] of [struggle], I finally [achievement]",
+        "best_for": [
+          "Fitness",
+          "Career",
+          "Business"
+        ]
+      },
+      {
+        "template": "The text that broke my heart (shares screenshot)",
+        "best_for": [
+          "Relationship",
+          "Story",
+          "Emotional"
+        ]
+      },
+      {
+        "template": "My [family member] told me this and I'll never forget it",
+        "best_for": [
+          "Inspiration",
+          "Story",
+          "Wisdom"
+        ]
+      }
+    ],
+    "value_promise": [
+      {
+        "template": "[Number] skills that will pay you forever",
+        "best_for": [
+          "Career",
+          "Education",
+          "Finance"
+        ]
+      },
+      {
+        "template": "Learn [skill] in [short time] (step-by-step)",
+        "best_for": [
+          "Tutorial",
+          "Education",
+          "DIY"
+        ]
+      },
+      {
+        "template": "[Number] things I wish I knew before [milestone]",
+        "best_for": [
+          "Career",
+          "College",
+          "Life advice"
+        ]
+      },
+      {
+        "template": "The ultimate guide to [topic] in 60 seconds",
+        "best_for": [
+          "Education",
+          "Tutorial",
+          "Quick tips"
+        ]
+      },
+      {
+        "template": "Save [amount] on [product] with this one trick",
+        "best_for": [
+          "Finance",
+          "Shopping",
+          "Deals"
+        ]
+      }
+    ],
+    "trend_jacking": [
+      {
+        "template": "I tried the viral [trend] and here's the truth",
+        "best_for": [
+          "Review",
+          "Entertainment",
+          "Lifestyle"
+        ]
+      },
+      {
+        "template": "[Industry expert] reacts to [viral moment]",
+        "best_for": [
+          "Commentary",
+          "Industry",
+          "Education"
+        ]
+      },
+      {
+        "template": "POV: you're [role] watching [viral video]",
+        "best_for": [
+          "Comedy",
+          "Industry",
+          "Relatable"
+        ]
+      },
+      {
+        "template": "The [trend] trend explained by a [expert]",
+        "best_for": [
+          "Education",
+          "Commentary",
+          "Analysis"
+        ]
+      },
+      {
+        "template": "Breaking down [news event] in 60 seconds",
+        "best_for": [
+          "News",
+          "Finance",
+          "Commentary"
+        ]
+      }
+    ]
+  },
+  "categories": {
+    "tech_review": {
+      "best_style": "Energetic fast-paced",
+      "b_roll_suggestions": [
+        "Product close-ups",
+        "Side-by-side comparison",
+        "Feature demos"
+      ],
+      "recommended_music": "Electronic/Synthwave",
+      "typical_cpm": "$8-15"
+    },
+    "beauty_fashion": {
+      "best_style": "Polished aesthetic",
+      "b_roll_suggestions": [
+        "Texture close-ups",
+        "Before/after shots",
+        "Outfit transitions"
+      ],
+      "recommended_music": "Pop/R&B",
+      "typical_cpm": "$5-12"
+    },
+    "food_cooking": {
+      "best_style": "Satisfying ASMR",
+      "b_roll_suggestions": [
+        "Ingredient prep",
+        "Final reveal",
+        "Taste reaction"
+      ],
+      "recommended_music": "Jazz/Acoustic",
+      "typical_cpm": "$6-14"
+    },
+    "fitness": {
+      "best_style": "Motivational hype",
+      "b_roll_suggestions": [
+        "Exercise demos",
+        "Transformation photos",
+        "Training montage"
+      ],
+      "recommended_music": "Hip-hop/EDM",
+      "typical_cpm": "$7-15"
+    },
+    "finance_business": {
+      "best_style": "Professional authoritative",
+      "b_roll_suggestions": [
+        "Chart animations",
+        "Data visualization",
+        "News headlines"
+      ],
+      "recommended_music": "Cinematic/Ambient",
+      "typical_cpm": "$12-25"
+    },
+    "education": {
+      "best_style": "Clear guided",
+      "b_roll_suggestions": [
+        "Diagram overlays",
+        "Text animation",
+        "Analogy visuals"
+      ],
+      "recommended_music": "Ambient/Classical",
+      "typical_cpm": "$8-18"
+    },
+    "comedy_entertainment": {
+      "best_style": "Chaotic high-energy",
+      "b_roll_suggestions": [
+        "Reaction shots",
+        "Zoom",
+        "Sound effects"
+      ],
+      "recommended_music": "Meme sounds",
+      "typical_cpm": "$3-8"
+    }
+  },
+  "script_template": {
+    "hook": {
+      "time": "0-3s",
+      "word_count": 30,
+      "goal": "Stop the scroll",
+      "content": "Problem/Controversial/Counterintuitive/Emotional punch"
+    },
+    "setup": {
+      "time": "3-8s",
+      "word_count": 80,
+      "goal": "Establish context",
+      "content": "Background/Why you should keep watching"
+    },
+    "value": {
+      "time": "8-45s",
+      "word_count": 400,
+      "goal": "Deliver core value",
+      "content": "Tutorial/Analysis/Story/Comparison"
+    },
+    "climax": {
+      "time": "45-55s",
+      "word_count": 100,
+      "goal": "Emotional peak",
+      "content": "Reveal/Twist/Golden quote"
+    },
+    "cta": {
+      "time": "55-60s",
+      "word_count": 60,
+      "goal": "Drive action",
+      "content": "Follow/Save/Comment/Share"
+    }
+  },
+  "storytelling_frameworks": {
+    "hero_journey": {
+      "stages": [
+        "Ordinary World",
+        "Call to Adventure",
+        "Refusal",
+        "Mentor",
+        "Crossing Threshold",
+        "Tests & Allies",
+        "Approach",
+        "Ordeal",
+        "Reward",
+        "Return",
+        "Resurrection",
+        "Elixir"
+      ],
+      "video_length": "Best for 3-10 min content",
+      "platform": "YouTube, long-form TikTok",
+      "example_use": "Founder story, weight loss journey, skill mastery"
+    },
+    "problem_solution": {
+      "stages": [
+        "Hook: State painful problem",
+        "Agitate: Why existing solutions fail",
+        "Solution: Introduce your fix",
+        "Proof: Demonstrate results",
+        "CTA: Offer next step"
+      ],
+      "video_length": "Best for 15-60s",
+      "platform": "TikTok, Reels, Shorts",
+      "example_use": "Product demos, life hacks, software tutorials"
+    },
+    "three_act_structure": {
+      "stages": [
+        "Setup (25%)",
+        "Confrontation (50%)",
+        "Resolution (25%)"
+      ],
+      "video_length": "Best for 30s-2min",
+      "platform": "All short-form",
+      "example_use": "Before/after, fail/success, transformation content"
+    },
+    "list_based": {
+      "stages": [
+        "Hook number",
+        "Count down/up",
+        "Each item: quick visual + text",
+        "CTA"
+      ],
+      "video_length": "Best for 15-60s",
+      "platform": "All platforms",
+      "example_use": "Top 5, best of, mistakes to avoid"
+    },
+    "reaction_pipeline": {
+      "stages": [
+        "Show trending/viral clip",
+        "Genuine reaction (face visible)",
+        "Expert/insider analysis",
+        "Surprising insight",
+        "CTA"
+      ],
+      "video_length": "Best for 30-90s",
+      "platform": "TikTok, YouTube",
+      "example_use": "Industry expert reacts, professional commentary"
+    }
+  },
+  "engagement_triggers": {
+    "comment_bait": [
+      "Ask a direct question in the first 3 seconds",
+      "Make a deliberate small mistake",
+      "Use a controversial ranking",
+      "Ask viewers to share their version",
+      "Create a Part 1 cliffhanger"
+    ],
+    "share_triggers": [
+      "Information that makes the sharer look smart",
+      "Relatable content representing identity",
+      "Controversial takes that spark debate",
+      "Exclusive or early access information",
+      "Humor that others need to see"
+    ],
+    "save_triggers": [
+      "Actionable checklists and templates",
+      "Step-by-step tutorials",
+      "Resource lists and tool recommendations",
+      "Before/after formulas",
+      "Reference material and cheat sheets"
+    ],
+    "follow_triggers": [
+      "Series content (Part 1 of 5)",
+      "Consistent niche focus",
+      "Personality-driven content",
+      "Exclusive value proposition",
+      "Future content teaser at end"
+    ]
+  },
+  "audio_strategy": {
+    "music_psychology": {
+      "major_key": "Upbeat, energetic, positive - best for tutorials, product reviews, life hacks",
+      "minor_key": "Emotional, dramatic, suspenseful - best for storytelling, before/after transformations",
+      "tempo_fast_120bpm_plus": "Urgency, excitement - best for hooks, montages, countdowns",
+      "tempo_medium_80_120bpm": "Focused, educational - best for explainers, tutorials, analysis",
+      "tempo_slow_sub_80bpm": "Cinematic, emotional - best for reveals, endings, inspirational moments"
+    },
+    "sound_design": {
+      "whoosh_transitions": "Cover jump cuts, scene changes - use short 0.3-0.5s risers",
+      "text_pop_sfx": "Sync with on-screen text - adds polish to list content",
+      "button_click": "Mimics UI interaction - great for tech/digital content",
+      "camera_shutter": "Emphasizes reveals and product moments",
+      "record_scratch": "Comedy beat, expectation reversal"
+    },
+    "copyright_safe_sources": [
+      "Epidemic Sound ($15/mo)",
+      "Artlist ($16.6/mo)",
+      "Soundstripe ($15/mo)",
+      "Uppbeat (free tier)",
+      "YouTube Audio Library (free)",
+      "TikTok Sounds Library (free)"
+    ]
+  },
+  "analytics_benchmarks": {
+    "tiktok_by_followers": {
+      "under_1k": {
+        "avg_views": 200,
+        "like_rate": "8%",
+        "comment_rate": "1.5%",
+        "share_rate": "2%",
+        "completion_rate": "35%"
+      },
+      "1k_10k": {
+        "avg_views": 1500,
+        "like_rate": "6%",
+        "comment_rate": "1.2%",
+        "share_rate": "1.5%",
+        "completion_rate": "30%"
+      },
+      "10k_100k": {
+        "avg_views": 8000,
+        "like_rate": "4.5%",
+        "comment_rate": "0.8%",
+        "share_rate": "1%",
+        "completion_rate": "28%"
+      },
+      "100k_plus": {
+        "avg_views": 50000,
+        "like_rate": "3.5%",
+        "comment_rate": "0.6%",
+        "share_rate": "0.8%",
+        "completion_rate": "25%"
+      }
+    },
+    "viral_thresholds": {
+      "tiktok": "100K+ views within 24h AND >10% engagement rate",
+      "reels": "50K+ views within 24h AND >8% engagement rate",
+      "shorts": "20K+ views within 24h AND >6% engagement rate"
+    },
+    "posting_times_optimal": {
+      "tiktok": {
+        "best_days": [
+          "Tuesday",
+          "Thursday",
+          "Friday"
+        ],
+        "best_hours": [
+          "7-9am",
+          "12-2pm",
+          "7-10pm"
+        ],
+        "worst_days": [
+          "Sunday morning"
+        ]
+      },
+      "reels": {
+        "best_days": [
+          "Monday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "best_hours": [
+          "6-8am",
+          "11am-1pm",
+          "8-10pm"
+        ],
+        "worst_days": [
+          "Saturday"
+        ]
+      },
+      "youtube_shorts": {
+        "best_days": [
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "best_hours": [
+          "12-4pm"
+        ],
+        "worst_days": [
+          "Monday morning"
+        ]
+      }
+    }
+  },
+  "script_examples": {
+    "tech_review_60s": {
+      "hook": "This AI earbud let me order French food, negotiate prices, AND make a French friend in Paris - without speaking a word",
+      "setup": "Omi AI earbud, $149. I wore it for a week. Here's my honest review.",
+      "value": "First, real-time translation under 0.5s delay - they don't even notice. Second, 47 languages offline. Third, 12h battery + 36h case. Cons? Too subtle - nobody knows you're using AI.",
+      "climax": "Worth it? If you travel or have international meetings, this is 2026's best AI hardware.",
+      "cta": "Follow for the AI glasses review next. Comment which AI hardware you want tested."
+    },
+    "finance_edu_60s": {
+      "hook": "98% of people don't know their savings account is silently losing money",
+      "setup": "2026 FD rates: 2.75%. Real inflation: 5.2%. Every 1M saved loses 24.5K per year.",
+      "value": "Three alternatives. One: Treasury reverse repo, 4% annual, T+0 settlement. Two: Dividend low-vol ETF, 9.7% 3-year CAGR. Three: USD money market fund, 5.2%, hedges FX risk.",
+      "climax": "Fixed deposits aren't the safest option anymore.",
+      "cta": "Comment your savings goal - I'll DM you the full portfolio allocation spreadsheet."
+    },
+    "comedy_reaction_60s": {
+      "hook": "I showed my grandma the viral fitness video. Her reaction is LEGENDARY.",
+      "setup": "First, the original: 'Get abs in 5 minutes a day'",
+      "value": "Grandma's face: curious, confused, dying of laughter. She said: 'I worked on a commune farm for 30 years, no abs. He got them in 5 minutes? How tight are those pants?'",
+      "climax": "Then she added: 'Want real abs? Go work construction. At least they pay you.'",
+      "cta": "Your family's best hot takes in the comments. I'll have Grandma rate them all."
+    }
+  },
+  "content_calendar_templates": {
+    "weekly_mix": {
+      "monday": "Educational/How-to",
+      "tuesday": "Behind-the-scenes/Personal",
+      "wednesday": "Trend-jacking/News",
+      "thursday": "Product review/Comparison",
+      "friday": "Entertainment/Meme",
+      "saturday": "User-generated content reaction",
+      "sunday": "Weekly recap/Newsletter promo"
+    },
+    "launch_week": {
+      "day_minus_7": "Teaser (mystery)",
+      "day_minus_5": "Problem agitation",
+      "day_minus_3": "Behind-the-scenes",
+      "day_minus_1": "Countdown",
+      "day_0": "LAUNCH: demo",
+      "day_plus_1": "Customer reactions",
+      "day_plus_3": "FAQ video",
+      "day_plus_7": "1-week results"
+    }
+  },
+  "music_library": {
+    "viral_sounds_2026": [
+      "Sad violin (emotional storytelling)",
+      "Upbeat synth pop (tutorials)",
+      "Deep house instrumental (aesthetic B-roll)",
+      "Lo-fi hip hop (study/chill content)",
+      "Cinematic trailer (reveals/transformations)"
+    ],
+    "sound_effect_library": [
+      "record scratch",
+      "rimshot",
+      "dramatic reveal",
+      "fail horn",
+      "vine boom",
+      "bruh",
+      "emotional damage",
+      "wow/anime",
+      "success chime",
+      "transition whoosh",
+      "keyboard typing",
+      "camera shutter",
+      "notification ping",
+      "applause",
+      "drum roll"
+    ]
+  }
+}

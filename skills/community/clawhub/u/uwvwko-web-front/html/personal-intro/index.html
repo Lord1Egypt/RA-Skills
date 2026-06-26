@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人介绍 | Personal Portfolio</title>
+    <style>
+        /* CSS变量 - 主题配色管理 */
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --bg-light: #f7fafc;
+            --text-dark: #2d3748;
+            --text-medium: #4a5568;
+            --text-light: #718096;
+            --text-muted: #a0aec0;
+            
+            /* 间距系统 - 8px倍数 */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+            
+            /* 字体大小比例 1.25 */
+            --text-xs: 12px;
+            --text-sm: 14px;
+            --text-base: 16px;
+            --text-lg: 20px;
+            --text-xl: 25px;
+            --text-2xl: 31px;
+            --text-3xl: 39px;
+            --text-4xl: 49px;
+            
+            /* 圆角规范 */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 50%;
+            
+            /* 动画时长 */
+            --duration-fast: 200ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+            
+            /* 缓动函数 */
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacangFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: var(--text-base);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-md);
+        }
+
+        /* 个人卡片 - 应用组件规范 */
+        .profile-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            margin: var(--space-xl) auto;
+            max-width: 800px;
+            text-align: center;
+            animation: fadeInUp var(--duration-slow) var(--ease-smooth);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 头像 - 应用圆角和动画规范 */
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: var(--radius-full);
+            margin: 0 auto var(--space-lg);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: transform var(--duration-fast) var(--ease-smooth);
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+
+        /* 名字 - 应用字体排版规范 */
+        .name {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: var(--space-xs);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .title {
+            font-size: var(--text-lg);
+            color: var(--text-light);
+            margin-bottom: var(--space-lg);
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        /* 简介 - 应用行高规范 */
+        .bio {
+            font-size: var(--text-base);
+            color: var(--text-medium);
+            margin-bottom: var(--space-xl);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 技能标签 - 应用间距系统 */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: var(--space-xs) 20px;
+            border-radius: 20px;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            transition: transform var(--duration-fast) var(--ease-smooth), 
+                        box-shadow var(--duration-fast) var(--ease-smooth);
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* 社交链接 - 应用组件规范 */
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            border: 2px solid #e2e8f0;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-color: transparent;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.25);
+        }
+
+        /* 联系按钮 - 应用按钮规范 */
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: var(--text-base);
+            font-weight: 600;
+            transition: all var(--duration-normal) var(--ease-smooth);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.25);
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.35);
+        }
+
+        .contact-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* 信息卡片网格 - 应用栅格系统 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            text-align: center;
+            transition: transform var(--duration-normal) var(--ease-smooth),
+                        box-shadow var(--duration-normal) var(--ease-smooth);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-xs);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            font-size: var(--text-sm);
+            line-height: 1.5;
+        }
+
+        /* 背景装饰 */
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -150px;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        /* 响应式设计 - 应用断点规范 */
+        @media (max-width: 1024px) {
+            .container {
+                padding: var(--space-sm);
+            }
+            
+            .profile-card {
+                padding: var(--space-lg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: var(--space-md);
+                margin: var(--space-sm);
+            }
+
+            .name {
+                font-size: var(--text-3xl);
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-sm);
+            }
+
+            .avatar {
+                width: 150px;
+                height: 150px;
+                font-size: 60px;
+            }
+
+            .skills {
+                gap: 8px;
+            }
+
+            .social-links {
+                gap: var(--space-sm);
+            }
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: var(--space-xl);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: var(--text-sm);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- 个人卡片 -->
+        <div class="profile-card">
+            <!-- 头像 -->
+            <div class="avatar">👤</div>
+
+            <!-- 名字 -->
+            <h1 class="name">张三</h1>
+            <p class="title">全栈开发工程师 | 创意设计师</p>
+
+            <!-- 简介 -->
+            <p class="bio">
+                热爱技术，专注于Web开发与用户体验设计。
+                拥有5年全栈开发经验，擅长React、Vue、Node.js等技术栈。
+                致力于创造优雅、高效的数字产品，让技术为生活带来便利。
+            </p>
+
+            <!-- 技能标签 -->
+            <div class="skills">
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Vue.js</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">UI/UX设计</span>
+                <span class="skill-tag">数据库设计</span>
+            </div>
+
+            <!-- 社交链接 -->
+            <div class="social-links">
+                <a href="#" class="social-link" title="GitHub">
+                    <span>💻</span>
+                </a>
+                <a href="#" class="social-link" title="LinkedIn">
+                    <span>💼</span>
+                </a>
+                <a href="#" class="social-link" title="Twitter">
+                    <span>🐦</span>
+                </a>
+                <a href="#" class="social-link" title="邮箱">
+                    <span>📧</span>
+                </a>
+                <a href="#" class="social-link" title="博客">
+                    <span>📝</span>
+                </a>
+            </div>
+
+            <!-- 联系按钮 -->
+            <a href="mailto:example@email.com" class="contact-btn">
+                联系我 →
+            </a>
+        </div>
+
+        <!-- 信息卡片 -->
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>5+</h3>
+                <p>年开发经验</p>
+            </div>
+            <div class="info-card">
+                <h3>50+</h3>
+                <p>完成项目</p>
+            </div>
+            <div class="info-card">
+                <h3>100%</h3>
+                <p>客户满意度</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 张三 | 用心创造价值</p>
+    </footer>
+
+    <script>
+        // 页面加载动画 - 优化性能
+        window.addEventListener('load', () => {
+            const card = document.querySelector('.profile-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // 技能标签随机颜色 - 优化配色
+        const skillTags = document.querySelectorAll('.skill-tag');
+        const gradients = [
+            'linear-gradient(135deg, #667eea, #764ba2)',
+            'linear-gradient(135deg, #f093fb, #f5576c)',
+            'linear-gradient(135deg, #4facfe, #00f2fe)',
+            'linear-gradient(135deg, #43e97b, #38f9d7)',
+            'linear-gradient(135deg, #fa709a, #fee140)',
+        ];
+
+        skillTags.forEach((tag, index) => {
+            tag.style.background = gradients[index % gradients.length];
+        });
+
+        // 数字递增动画 - 使用requestAnimationFrame优化性能
+        const numbers = document.querySelectorAll('.info-card h3');
+        
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const text = target.textContent;
+                    const num = parseInt(text);
+                    
+                    if (!isNaN(num)) {
+                        const duration = 2000;
+                        const startTime = performance.now();
+                        
+                        function update(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            // 使用缓动函数
+                            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                            const current = Math.floor(easeOutQuart * num);
+                            
+                            const suffix = text.includes('+') ? '+' : text.includes('%') ? '%' : '';
+                            target.textContent = current + suffix;
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                target.textContent = text;
+                            }
+                        }
+                        
+                        requestAnimationFrame(update);
+                    }
+                    
+                    observer.unobserve(target);
+                }
+            });
+        }, observerOptions);
+
+        numbers.forEach(num => observer.observe(num));
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

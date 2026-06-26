@@ -1,0 +1,18 @@
+[
+  {
+    "deb_id": 163092,
+    "driver_id": 147248,
+    "package": "konicaminolta-printerdriver-bizhub-develop",
+    "model": "bizhub 7719",
+    "arch": "all",
+    "version": "6.0.0.0"
+  },
+  {
+    "deb_id": 98041,
+    "driver_id": 84884,
+    "package": "printer-driver-bisheng-generic-universal-pcl",
+    "model": "【统信有墨驱动】bizhub 7719",
+    "arch": "all",
+    "version": "2.0.1"
+  }
+]

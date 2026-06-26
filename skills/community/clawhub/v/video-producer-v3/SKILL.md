@@ -1,35 +1,142 @@
 ---
-name: "短视频一键生成器"
-description: "短视频一键生成器 v3.0。输入主题+要点，AI自动完成分镜、生图、配音、字幕、渲染，输出1080×1920竖屏MP4。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, content, short-video, tts, video]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-producer-v3"
-sourceUrl: "https://clawhub.ai/skills/video-producer-v3"
+name: video-producer-v3
+description: 短视频一键生成器 v3.0。输入主题+要点，AI自动完成分镜、生图、配音、字幕、渲染，输出1080×1920竖屏MP4。
+version: 3.0.0
+tags: [video, production, AI-video, short-video, tts, automation, content-creation]
+author: AI Skill 商业生产
+price: ¥29.9
 ---
 
-# 短视频一键生成器
+# 🎬 短视频一键生成器 v3.0 (付费版)
 
-> 短视频一键生成器 v3.0。输入主题+要点，AI自动完成分镜、生图、配音、字幕、渲染，输出1080×1920竖屏MP4。
+## 一句话卖点
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-producer-v3`
-- **Source URL:** [https://clawhub.ai/skills/video-producer-v3](https://clawhub.ai/skills/video-producer-v3)
+> **AI自动出片，输入主题→5分钟→可直接发布的短视频**
 
-## Overview
+## 核心能力
 
+1. **AI分镜规划** — 智能生成热门短视频结构（开场→核心观点→结尾引导）
+2. **AI生图配画** — 根据内容语义自动匹配视觉素材（MiniMax文生图）
+3. **AI配音** — 高清自然语音合成，支持多场景独立配音
+4. **自动字幕** — SRT硬字幕嵌入，中文字幕自动适配
+5. **FFmpeg渲染** — 1080×1920竖屏，短视频平台直接上传
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方式
+
+### 命令行
+
 ```bash
-hermes skills install clawhub/video-producer-v3
+# 1. 设置API Key
+export MINIMAX_API_KEY="你的key"
+
+# 2. 运行
+python3 /path/to/video_producer.py \
+  --topic "AI会取代程序员吗？" \
+  --points '[
+    {"text":"AI不是取代程序员，而是成为他们的超级工具", "emoji":"🤖", "title":"认清本质"},
+    {"text":"掌握AI工具的程序员薪资涨了30%", "emoji":"📈", "title":"数据说话"},
+    {"text":"10年后不会AI = 今天不会用电脑", "emoji":"🎯", "title":"残酷现实"}
+  ]' \
+  --style tech \
+  --output ./my_video
 ```
+
+### OpenClaw Skill 模式
+
+```yaml
+skills:
+  - name: video-producer-v3
+    path: ./video-producer-v3
+```
+
+## 视觉风格
+
+| 风格 | 适用场景 | 色调 |
+|------|---------|------|
+| `tech` | 科技、AI、数码 | 蓝紫色调 |
+| `warm` | 教育、情感、生活 | 暖色调 |
+| `business` | 营销、干货、职场 | 商务白蓝 |
+
+## 输出文件结构
+
+```
+output/
+├── storyboard.json       # 分镜规划
+├── materials/
+│   ├── scene_0.png       # 开场图片
+│   ├── scene_1.png       # 场景1图片
+│   └── ...
+├── audio/
+│   ├── scene_0.mp3       # 开场配音
+│   ├── scene_1.mp3       # 场景1配音
+│   └── ...
+├── output.mp4            # 无字幕版
+└── final_subtitled.mp4   # 最终带字幕版
+```
+
+## 环境要求
+
+- **Python 3.8+**
+- **FFmpeg** (系统安装)
+- **依赖:** `pip install requests pillow`
+- **API Key:** MiniMax (免费注册送额度)
+
+## 定价
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版(Lite) | ¥0 | 基础分镜+占位图，无水印 |
+| **标准版** | **¥29.9** | **全功能：AI生图+TTS+字幕** |
+| 专业版(Pro) | ¥69.9 | 多风格+自定义Logo+批量生成 |
+
+---
+
+## 上架物料
+
+### 卖点文案 (朋友圈/短视频)
+
+> **一条短视频，从2小时变成5分钟。**
+>
+> ❌ 不会剪？不会配？不会写脚本？
+> ✅ 输入主题 → AI全自动完成
+>
+> 🎬 分镜规划自动出
+> 🖼️ AI配图不用找
+> 🎙️ AI配音不卡壳
+> 📝 字幕自动加
+>
+> **输出：可直接发抖音/小红书/视频号**
+>
+> 👇 一杯奶茶钱，解放你的创作时间
+> 💰 ¥29.9 (永久使用，后续免费更新)
+
+### 适用场景
+
+- 知识科普短视频
+- 产品种草/带货
+- 个人IP口播
+- 行业干货分享
+- 热点解读
+
+### 关键词标签
+
+`短视频生成` `AI视频` `自媒体工具` `一键出片` `视频制作` `抖音工具` `小红书工具` `智能配音` `视频字幕` `内容创作`
+
+### 用户话术 (客服/私信)
+
+> **Q:** 对这个视频工具感兴趣
+> **A:** 输入主题和要点，AI自动生成完整短视频，5分钟出片。¥29.9永久使用，支持抖音/小红书格式。
+>
+> **Q:** 生成的质量怎么样？
+> **A:** 1080×1920竖屏高清，AI配音自然，自动配图和字幕。可以先用免费版体验效果。
+
+---
+
+## 更新记录
+
+### v3.0.0 (2026-04-25)
+- 首次发布，标准付费版
+- 自包含架构，无外部依赖
+- 内置AI分镜规划
+- MiniMax TTS + 文生图
+- FFmpeg渲染 + SRT硬字幕

@@ -1,35 +1,45 @@
----
-name: "volcengine-video"
-description: "通过自然语言调用火山引擎API生成AI视频或查询视频生成任务状态和结果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-video"
-sourceUrl: "https://clawhub.ai/skills/volcengine-video"
----
+# 火山引擎视频生成技能 (VolcEngine Video Generation)
 
-# volcengine-video
+## 描述
+这个技能允许你通过自然语言调用火山引擎的AI视频生成API，创建基于文本提示的视频内容。
 
-> 通过自然语言调用火山引擎API生成AI视频或查询视频生成任务状态和结果。
+## 触发条件
+当用户提到以下关键词时触发：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-video`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-video](https://clawhub.ai/skills/volcengine-video)
+- “生成一个视频"
+- "生成视频"
+- "AI视频"
+- "视频生成"
+- "查询视频任务"
+- "视频任务状态"
 
-## Overview
+## 功能
+1. **生成视频**: 根据文本提示生成AI视频
+2. **查询任务状态**: 轮训已提交视频生成任务的进度和结果
 
+## 使用方法
+### 生成视频
+- "用火山引擎生成一个[描述]的视频"
+- "创建一个关于[主题]的AI视频，[帧数]帧"
+- "生成千军万马的视频，241帧"
+- “生成[描述]的视频
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-video
+### 查询任务状态
+- "查询任务ID [task_id] 的状态"
+- "检查视频任务 [task_id] 是否完成"
+- "获取任务 [task_id] 的结果"
+- “是否报错"
+
+## 配置
+API密钥存储在 `config.json` 文件中，格式如下：
+```json
+{
+  "access_key": "your_access_key",
+  "secret_key": "your_secret_key"
+}
 ```
+
+## 技术细节
+- 使用火山引擎V4签名认证
+- 支持CVSync2AsyncSubmitTask和CVSync2AsyncGetResult接口
+- 自动处理JSON请求和响应

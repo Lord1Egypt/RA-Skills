@@ -1,0 +1,259 @@
+{
+  "_description": "HIIC产业配置 - 深圳20+8产业集群",
+  "_version": "1.0.0",
+  "_updated": "2026-03-11",
+  "industries": [
+    {
+      "id": "semiconductor",
+      "name": "半导体与集成电路",
+      "keywords": ["半导体", "集成电路", "芯片", "IC设计", "晶圆", "封测"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "战略性新兴产业"
+    },
+    {
+      "id": "artificial-intelligence",
+      "name": "人工智能",
+      "keywords": ["人工智能", "AI", "机器学习", "深度学习", "神经网络", "大模型"],
+      "topics": ["llm", "ai-agent"],
+      "enabled": true,
+      "priority": true,
+      "category": "战略性新兴产业"
+    },
+    {
+      "id": "network-communication",
+      "name": "网络与通信",
+      "keywords": ["5G", "6G", "通信", "网络", "基站", "光通信"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "战略性新兴产业"
+    },
+    {
+      "id": "ultra-hd-display",
+      "name": "超高清视频显示",
+      "keywords": ["超高清", "4K", "8K", "显示", "面板", "OLED", "Mini-LED"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "战略性新兴产业"
+    },
+    {
+      "id": "smart-terminal",
+      "name": "智能终端",
+      "keywords": ["智能终端", "智能手机", "可穿戴设备", "AR眼镜", "VR设备"],
+      "topics": ["ai-agent", "frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "战略性新兴产业"
+    },
+    {
+      "id": "smart-sensor",
+      "name": "智能传感器",
+      "keywords": ["传感器", "MEMS", "物联网", "IoT", "感知"],
+      "topics": ["ai-agent", "frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "战略性新兴产业"
+    },
+    {
+      "id": "software-service",
+      "name": "软件与信息服务",
+      "keywords": ["软件", "SaaS", "云计算", "大数据", "企业服务"],
+      "topics": ["ai-agent"],
+      "enabled": true,
+      "priority": false,
+      "category": "战略性新兴产业"
+    },
+    {
+      "id": "digital-creative",
+      "name": "数字创意",
+      "keywords": ["数字创意", "游戏", "动漫", "数字内容", "元宇宙"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "战略性新兴产业"
+    },
+    {
+      "id": "high-end-equipment",
+      "name": "高端装备与仪器",
+      "keywords": ["高端装备", "数控机床", "工业母机", "精密仪器"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "先进制造业"
+    },
+    {
+      "id": "low-altitude-economy",
+      "name": "低空经济与空天",
+      "keywords": ["低空经济", "无人机", "eVTOL", "通用航空", "空天"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "先进制造业"
+    },
+    {
+      "id": "robot",
+      "name": "机器人",
+      "keywords": ["机器人", "工业机器人", "服务机器人", "协作机器人"],
+      "topics": ["ai-agent"],
+      "enabled": true,
+      "priority": true,
+      "category": "先进制造业"
+    },
+    {
+      "id": "smart-robot",
+      "name": "智能机器人",
+      "keywords": ["智能机器人", "人形机器人", "具身智能", "机器人视觉"],
+      "topics": ["ai-agent"],
+      "enabled": true,
+      "priority": true,
+      "category": "先进制造业"
+    },
+    {
+      "id": "modern-fashion",
+      "name": "现代时尚",
+      "keywords": ["时尚", "服装", "设计", "品牌"],
+      "topics": [],
+      "enabled": false,
+      "priority": false,
+      "category": "先进制造业"
+    },
+    {
+      "id": "safety-environmental",
+      "name": "安全节能环保",
+      "keywords": ["环保", "节能", "碳中和", "绿色", "可持续发展"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "先进制造业"
+    },
+    {
+      "id": "new-energy",
+      "name": "新能源",
+      "keywords": ["新能源", "电池", "储能", "光伏", "风电", "氢能"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "先进制造业"
+    },
+    {
+      "id": "smart-vehicle",
+      "name": "智能网联汽车",
+      "keywords": ["智能汽车", "自动驾驶", "新能源车", "车联网", "ADAS"],
+      "topics": ["ai-agent", "frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "先进制造业"
+    },
+    {
+      "id": "quantum-information",
+      "name": "量子信息",
+      "keywords": ["量子计算", "量子通信", "量子测量", "量子"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "未来产业"
+    },
+    {
+      "id": "optical-information",
+      "name": "光载信息",
+      "keywords": ["光通信", "光计算", "光芯片", "光子"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "未来产业"
+    },
+    {
+      "id": "high-performance-material",
+      "name": "高性能材料",
+      "keywords": ["高性能材料", "新材料", "先进材料", "复合材料"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "未来产业"
+    },
+    {
+      "id": "frontier-material",
+      "name": "前沿新材料",
+      "keywords": ["石墨烯", "超导", "纳米材料", "前沿材料"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "未来产业"
+    },
+    {
+      "id": "marine-industry",
+      "name": "海洋产业",
+      "keywords": ["海洋", "海洋工程", "深海"],
+      "topics": [],
+      "enabled": false,
+      "priority": false,
+      "category": "未来产业"
+    },
+    {
+      "id": "deep-earth-sea",
+      "name": "深地深海",
+      "keywords": ["深地", "深海", "勘探"],
+      "topics": [],
+      "enabled": false,
+      "priority": false,
+      "category": "未来产业"
+    },
+    {
+      "id": "biomedicine",
+      "name": "生物医药",
+      "keywords": ["生物医药", "创新药", "疫苗", "抗体", "生物制药"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "未来产业"
+    },
+    {
+      "id": "high-end-medical-device",
+      "name": "高端医疗器械",
+      "keywords": ["医疗器械", "医学影像", "IVD", "手术机器人"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "未来产业"
+    },
+    {
+      "id": "great-health",
+      "name": "大健康",
+      "keywords": ["大健康", "健康管理", "医疗健康"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "未来产业"
+    },
+    {
+      "id": "biomanufacturing",
+      "name": "生物制造",
+      "keywords": ["生物制造", "合成生物学", "生物工程"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": false,
+      "category": "未来产业"
+    },
+    {
+      "id": "brain-science",
+      "name": "脑科学与脑机工程",
+      "keywords": ["脑科学", "脑机接口", "BCI", "神经科学"],
+      "topics": ["frontier-tech", "ai-agent"],
+      "enabled": true,
+      "priority": true,
+      "category": "未来产业"
+    },
+    {
+      "id": "cell-gene",
+      "name": "细胞与基因",
+      "keywords": ["细胞治疗", "基因编辑", "CRISPR", "基因治疗"],
+      "topics": ["frontier-tech"],
+      "enabled": true,
+      "priority": true,
+      "category": "未来产业"
+    }
+  ]
+}

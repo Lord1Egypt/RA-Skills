@@ -1,0 +1,54 @@
+free_for_api_internal_error：因服务端内部错误导致失败请求产生的免费用量
+free_for_not_found_billing_info：因未查询到计费信息产生的免费用量，多见于 proxy 场景
+free_for_model_unit：模型单元免费用量
+free_for_coding_plan：Coding plan 免费用量
+free_for_free_quota：超过安心体验边界的免费用量
+free_for_limit_boundary：超过安心体验边界的免费用量
+normal：正常后付费按量计费用量
+free_for_viptier：tpm 保障包免费用量
+free_for_api_error：因 API 请求返回400错误产生的免费用量
+free_for_generate_data_internal_error：生成计费数据时出错产生的免费用量
+token_zero：请求 Token 数量为0的用量
+ModelName：模型名称
+ModelVersion：模型版本
+ModelEndpoint：接入点ID
+BatchJobID：批量任务ID
+EndpointName：接入点名称
+BatchType: 批量推理类型
+Values string[] 可选
+精准匹配值，取值：需与 Key 指定的维度匹配（如 Key=BillingStatus 时，可取值 free_for_coding_plan 或
+normal 等）。
+ValueLike string 可选
+模糊匹配值，取值：Key 对应维度的模糊匹配字符（如 Key=ModelName 时，可取值 “doubao”）。
+注意
+Values 和 ValueLike 不能同时传递，否则返回错误码。
+QueryInterval string  %%require%% 示例值：Day/Hour
+查询周期
+StartTime string  %%require%% 示例值：2025-01-01
+开始时间，yyyy-mm--dd
+EndTime string  %%require%% 示例值：2025-01-02
+结束时间，yyyy-mm-dd
+ShowWindowDetail boolean 可选 示例值：\-
+是否展示窗口
+返回参数
+下方仅列出本接口特有的返回参数。更多信息请参见 返回结构
+ 。
+Data string[] 示例值：\-
+数据◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+• 
+• 
+• 
+• 
+• 
+• API参考 12. 管控面 API
+版权所有©北京火山引擎科技有限公司 446/485

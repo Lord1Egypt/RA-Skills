@@ -1,0 +1,20 @@
+{
+  "name": "twitter-query",
+  "version": "1.0.0",
+  "description": "Query X/Twitter by account or keyword via twitterapi.io. JSON output. You must supply your own TWITTER_API_KEY. No LLM bundled.",
+  "longDescription": "Read-only OpenClaw skill for X (Twitter):\n\n- **By account**: `GET /twitter/user/last_tweets` with cursor pagination.\n- **By keyword**: `GET /twitter/tweet/advanced_search` with `queryType` Latest or Top.\n\n**Requirements**: Set environment variable `TWITTER_API_KEY` (from [twitterapi.io](https://docs.twitterapi.io/introduction)). Optional `TWITTER_API_BASE` defaults to `https://api.twitterapi.io`.\n\n**Privacy**: Your API key is sent only to twitterapi.io in the `X-API-Key` header. Queries and usernames are sent as request parameters. No analytics or telemetry in this repo.\n\n**No LLM**: Summarize in your agent if needed. Python stdlib only.\n\nDocs: [Advanced search syntax](https://github.com/igorbrigadir/twitter-advanced-search).",
+  "author": "Alex Wang",
+  "license": "MIT",
+  "repository": "https://github.com/alexander10011/twitter-query",
+  "homepage": "https://github.com/alexander10011/twitter-query",
+  "keywords": [
+    "twitter",
+    "x",
+    "tweets",
+    "search",
+    "timeline",
+    "social",
+    "twitterapi",
+    "openclaw"
+  ]
+}

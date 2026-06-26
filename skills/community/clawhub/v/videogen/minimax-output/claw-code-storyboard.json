@@ -1,0 +1,111 @@
+{
+  "mode": "B",
+  "topic": "instructkr/claw-code: GitHub史上最快破5万星项目，凌晨4点诞生，harness engineering科普",
+  "panels": [
+    {
+      "panel_number": 1,
+      "scene_type": "剧情场景",
+      "shot_type": "特写",
+      "camera_move": "固定镜头",
+      "description": "一个普通人在instructkr/claw-code场景中的困境表情，昏暗灯光，情绪强烈",
+      "video_prompt": "close-up shot, shallow depth of field, static camera, 一个普通人在instructkr/claw-code场景中的困境表情，昏暗灯光，情绪强烈, subtle character movement, natural breathing, gentle ambient motion, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "（音乐铺垫）",
+      "duration": 3,
+      "transition": "淡入淡出"
+    },
+    {
+      "panel_number": 2,
+      "scene_type": "剧情场景",
+      "shot_type": "中景",
+      "camera_move": "跟随",
+      "description": "角色在关键场景中做出选择/行动，情绪饱满，叙事感强",
+      "video_prompt": "medium shot, follow shot, smooth motion, 角色在关键场景中做出选择/行动，情绪饱满，叙事感强, subtle character movement, natural breathing, gentle ambient motion, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "【旁白引入】",
+      "duration": 5,
+      "transition": "滑入"
+    },
+    {
+      "panel_number": 3,
+      "scene_type": "知识讲解",
+      "shot_type": "中景",
+      "camera_move": "固定镜头",
+      "description": "问题拆解页：instructkr/claw-code的核心矛盾，简洁图表+关键词",
+      "video_prompt": "medium shot, static camera, 问题拆解页：instructkr/claw-code的核心矛盾，简洁图表+关键词, subtle motion, elegant transition, clean movement, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "【问题拆解】",
+      "duration": 15,
+      "transition": "溶解"
+    },
+    {
+      "panel_number": 4,
+      "scene_type": "剧情场景",
+      "shot_type": "中景",
+      "camera_move": "推进（推镜头）",
+      "description": "角色在场景中实践/展示核心要点1，自然光，真实感强",
+      "video_prompt": "medium shot, slow push-in, cinematic, 角色在场景中实践/展示核心要点1，自然光，真实感强, subtle character movement, natural breathing, gentle ambient motion, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "【剧情】",
+      "duration": 5,
+      "transition": "硬切"
+    },
+    {
+      "panel_number": 5,
+      "scene_type": "知识讲解",
+      "shot_type": "全景",
+      "camera_move": "固定镜头",
+      "description": "关键要点：核心要点1，图表/数据支持，视觉清晰",
+      "video_prompt": "wide shot, full body visible, static camera, 关键要点：核心要点1，图表/数据支持，视觉清晰, subtle motion, elegant transition, clean movement, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "【干货】核心要点1",
+      "duration": 7,
+      "transition": "溶解"
+    },
+    {
+      "panel_number": 6,
+      "scene_type": "剧情场景",
+      "shot_type": "中景",
+      "camera_move": "推进（推镜头）",
+      "description": "角色在场景中实践/展示核心要点2，自然光，真实感强",
+      "video_prompt": "medium shot, slow push-in, cinematic, 角色在场景中实践/展示核心要点2，自然光，真实感强, subtle character movement, natural breathing, gentle ambient motion, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "【剧情】",
+      "duration": 5,
+      "transition": "硬切"
+    },
+    {
+      "panel_number": 7,
+      "scene_type": "知识讲解",
+      "shot_type": "全景",
+      "camera_move": "固定镜头",
+      "description": "关键要点：核心要点2，图表/数据支持，视觉清晰",
+      "video_prompt": "wide shot, full body visible, static camera, 关键要点：核心要点2，图表/数据支持，视觉清晰, subtle motion, elegant transition, clean movement, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "【干货】核心要点2",
+      "duration": 7,
+      "transition": "溶解"
+    },
+    {
+      "panel_number": 8,
+      "scene_type": "剧情场景",
+      "shot_type": "特写",
+      "camera_move": "固定镜头",
+      "description": "角色蜕变/成功后的表情/状态，金句大字，光影感强",
+      "video_prompt": "close-up shot, shallow depth of field, static camera, 角色蜕变/成功后的表情/状态，金句大字，光影感强, subtle character movement, natural breathing, gentle ambient motion, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "【升华金句】",
+      "duration": 5,
+      "transition": "淡入淡出"
+    },
+    {
+      "panel_number": 9,
+      "scene_type": "过渡页",
+      "shot_type": "远景/建立景",
+      "camera_move": "固定镜头",
+      "description": "关注引导页，简洁有力",
+      "video_prompt": "establishing shot, wide angle, static camera, 关注引导页，简洁有力, subtle motion, elegant transition, clean movement, modern cinematic, clean aesthetic, engaging visual, 9:16 vertical video",
+      "narration": "关注我，继续分享更多...",
+      "duration": 3,
+      "transition": "淡入淡出"
+    }
+  ],
+  "summary": {
+    "total_panels": 9,
+    "total_duration": 55,
+    "mode": "B",
+    "mode_description": "剧情+科普型"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "productId": "6921549266035167770",
+  "spuId": "1689771832436740096",
+  "brandId": "1710617498",
+  "brandName": null,
+  "brandStoreSn": "10005105",
+  "productName": null,
+  "title": "Gap男女装2025春秋款LOGO抓绒宽松连帽套头卫衣休闲上衣786940",
+  "price": "141",
+  "marketPrice": "349",
+  "discount": "4折",
+  "priceLabel": "特卖价",
+  "image": null,
+  "category": null,
+  "raw_data": {
+    "productId": "6921549266035167770",
+    "brandId": "1710617498",
+    "brandStoreSn": "10005105",
+    "categoryId": "390570",
+    "spuId": "1689771832436740096",
+    "skuId": "1689771832436744194",
+    "status": "0",
+    "title": "Gap男女装2025春秋款LOGO抓绒宽松连帽套头卫衣休闲上衣786940",
+    "brandShowName": "盖璞",
+    "smallImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/124588/2025/0822/27/d04e57b5-4a81-42c6-9765-39fc47214d93_420_531.jpg",
+    "squareImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/124588/2025/0822/28/e04b1aa0-f923-4b90-a08e-9420f35b4efc.jpg",
+    "logo": "http://a.vpimg3.com/upload/brandcool/0/5e01b6248a5c413a946fc38f69cdf729/10005105/primary.png",
+    "icon": "http://b.appsimg.com/upload/momin/2026/02/12/190/1770863918665.png",
+    "price": {
+      "priceType": "quick",
+      "priceLabelType": "text",
+      "priceLabel": "特卖价",
+      "salePrice": "141",
+      "salePriceSuff": "",
+      "saleDiscount": "4折",
+      "marketPrice": "349",
+      "sellTipsType": "quota",
+      "sellTips": "限量抢，抢完恢复¥149",
+      "shortSellTipsType": "quota",
+      "shortSellTips": "限量抢",
+      "mixPriceLabel": "4折",
+      "emphasizeDiscount": "1"
+    },
+    "attrs": [
+      {
+        "name": "主款式",
+        "value": "连帽卫衣"
+      },
+      {
+        "name": "厚薄",
+        "value": "常规"
+      },
+      {
+        "name": "适用人群",
+        "value": "青年"
+      },
+      {
+        "name": "版型",
+        "value": "宽松"
+      }
+    ],
+    "flags": 16432,
+    "shortTitle": ""
+  }
+}

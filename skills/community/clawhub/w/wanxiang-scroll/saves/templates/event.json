@@ -1,0 +1,54 @@
+{
+  "event_name": "${event_name}",
+  "event_type": "${event_type}",
+  "event_category": "${event_category}",
+  "weight": ${weight},
+  "trigger": {
+    "min_turn": null,
+    "max_turn": null,
+    "min_age": null,
+    "max_age": null,
+    "prerequisite_events": [],
+    "attribute_requirements": {},
+    "state_requirements": {},
+    "location_requirements": []
+  },
+  "description": "${description}",
+  "choices": [
+    {
+      "id": "A",
+      "text": null,
+      "requirements": {},
+      "weight": 100
+    }
+  ],
+  "outcomes": {
+    "A": {
+      "description": null,
+      "attribute_changes": {},
+      "skill_changes": [],
+      "trait_changes": [],
+      "relationship_changes": [],
+      "item_changes": [],
+      "wealth_changes": {},
+      "unlock_events": [],
+      "story_text": null
+    }
+  },
+  "consequences": {
+    "immediate": [],
+    "delayed": [],
+    "permanent": []
+  },
+  "chain_info": {
+    "is_chain": false,
+    "chain_id": null,
+    "chain_order": null,
+    "next_event": null
+  },
+  "metadata": {
+    "rarity": "普通",
+    "importance": "一般",
+    "tags": []
+  }
+}

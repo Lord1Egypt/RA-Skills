@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  wallet-mcp:
+    build: .
+    image: genoshide/wallet-mcp:latest
+    container_name: wallet-mcp
+    restart: unless-stopped
+
+    ports:
+      - "8080:8000"
+
+    volumes:
+      - wallet_data:/data
+
+    environment:
+      - SOLANA_RPC_URL=${SOLANA_RPC_URL:-https://api.mainnet-beta.solana.com}
+      - EVM_RPC_URL=${EVM_RPC_URL:-https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161}
+      - WALLET_DATA_DIR=/data
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+
+volumes:
+  wallet_data:

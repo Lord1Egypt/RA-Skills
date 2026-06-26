@@ -1,35 +1,24 @@
 ---
-name: "打开深圳广电资讯"
-description: "语音一键直达深圳广电官网资讯页面，快捷获取深圳最新新闻、民生热点及广电节目动态，无需手动输入网址。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/watch-shenzhen-tv-news"
-sourceUrl: "https://clawhub.ai/skills/watch-shenzhen-tv-news"
+name: 打开深圳广电资讯
+description: 语音触发一键直达深圳广电官方资讯页面，快速获取深圳本地最新新闻、民生热点与广电节目动态，无需手动输入网址。
+version: 1.0.0
+tags: [深圳广电,深圳新闻,本地资讯,民生热点]
+author: @mifashion
 ---
 
 # 打开深圳广电资讯
+## 技能介绍
+本技能是专为深圳本地用户打造的快捷工具，安装后只需说出触发词「打开深圳广电资讯」，即可一键直达深圳广电（sztv.com.cn）官方指定资讯页面，快速浏览深圳最新时政新闻、民生热点、广电节目等权威内容，省去手动输入网址、搜索的繁琐步骤，提升资讯获取效率。
 
-> 语音一键直达深圳广电官网资讯页面，快捷获取深圳最新新闻、民生热点及广电节目动态，无需手动输入网址。
+## 核心功能
+- 语音快捷打开：唤醒助手说出触发词，自动跳转目标页面，零手动输入
+- 官方权威内容：跳转深圳广电官网，获取真实、及时的本地资讯
+- 极简操作：一键直达，无需复杂步骤，使用门槛极低
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/watch-shenzhen-tv-news`
-- **Source URL:** [https://clawhub.ai/skills/watch-shenzhen-tv-news](https://clawhub.ai/skills/watch-shenzhen-tv-news)
+## 使用说明
+1. 在 ClawHub 安装本技能
+2. 唤醒语音助手，说出「打开深圳广电资讯」
+3. 系统自动跳转至深圳广电资讯页面，即可浏览内容
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/watch-shenzhen-tv-news
-```
+## 跳转链接
+https://www.sztv.com.cn/ysz/zx/zw/80706997.shtml

@@ -1,35 +1,253 @@
 ---
-name: "仓配网络优化器"
+name: warehouse-network-optimizer
 description: "基于整数规划（MILP）的仓配网络优化系统，支持时效计算（含等待时间）、中转链路、供应关系到区县等。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/warehouse-network-optimizer-skills"
-sourceUrl: "https://clawhub.ai/skills/warehouse-network-optimizer-skills"
+allowed-tools: Bash(python3:*), read, write
 ---
 
-# 仓配网络优化器
+# 仓配网络规划优化器 Skill v2.7
 
-> 基于整数规划（MILP）的仓配网络优化系统，支持时效计算（含等待时间）、中转链路、供应关系到区县等。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/warehouse-network-optimizer-skills`
-- **Source URL:** [https://clawhub.ai/skills/warehouse-network-optimizer-skills](https://clawhub.ai/skills/warehouse-network-optimizer-skills)
+基于整数规划（MILP）的仓配网络优化系统，使用 PuLP+CBC 求解器，支持多约束优化。
 
-## Overview
+## 版本历史
 
+| 版本 | 日期 | 更新内容 |
+|------|------|----------|
+| **v2.7** | 2026-04-08 | **RDC数量改为上限（<=N）**, 新增参数引导流程, 支持必选/禁止仓库 |
+| v2.6 | 2026-04-07 | 智能单位检测 + 加权平均时效指标 |
+| v2.5 | 2026-04-07 | 优化门店匹配逻辑（城市优先，省份备选） |
+| v2.4 | 2026-04-07 | 新增等待时间计算（考虑发车日） |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/warehouse-network-optimizer-skills
+---
+
+## 📋 完整使用流程
+
 ```
+Step 1: 准备数据文件
+    ↓
+Step 2: 转换数据（Excel → JSON）
+    ↓
+Step 3: 配置优化参数 ⭐【新增引导流程】
+    ↓
+Step 4: 运行优化 → 生成 Excel 报告
+```
+
+---
+
+## 🎯 Step 3: 参数配置（重要更新 v2.7）
+
+### 参数引导清单
+
+**1. 基本参数**
+| 参数 | 说明 | 格式 |
+|------|------|------|
+| RDC数量上限 | 最多选择的RDC数量 | 数字（如5） |
+
+**2. 约束条件（可选）**
+| 参数 | 说明 | 格式 |
+|------|------|------|
+| 必选仓库 | 必须包含的RDC仓库 | 仓库名列表 |
+| 禁止仓库 | 不能作为RDC的仓库 | 仓库名列表 |
+
+**⚠️ 重要：RDC数量含义**
+- 旧逻辑：`== N`（恰好N个）
+- **新逻辑：`<= N`（最多N个，由优化器自动选择最优数量）**
+
+---
+
+## 🔴 v2.7 重要变更
+
+### 1. RDC数量改为上限
+
+**变更前：**
+```
+设置 RDC=5 → 必须恰好选择5个RDC
+```
+
+**变更后：**
+```
+设置 RDC<=5 → 最多选择5个RDC，优化器自动选择最优数量
+优点：更灵活，避免过度建设
+```
+
+### 2. 参数引导流程
+
+**优化前必须确认的参数：**
+```
+1. RDC数量上限（N）
+2. 必选仓库（如有）
+3. 禁止仓库（如有）
+```
+
+---
+
+## 🚀 快速开始
+
+### 1. 安装依赖
+
+```bash
+pip install pulp pandas openpyxl
+```
+
+### 2. 准备数据文件
+
+| 数据类型 | 格式 | 说明 |
+|----------|------|------|
+| 门店数据 | Excel | 省份、城市、区县、详细地址 |
+| 干线数据 | Excel | 仓库间调拨线路和时效 |
+| 共配数据 | Excel（多Sheet） | 各基地报货周期表 |
+
+### 3. 转换数据
+
+```bash
+# 转换干线数据（自动检测单位并转换）
+python3 convert_data.py --trunk 干线数据.xlsx --output-dir .
+
+# 转换共配数据
+python3 convert_data.py --distribution 共配报货周期表.xlsx --output-dir .
+```
+
+### 4. 配置参数并运行
+
+```bash
+python3 run_optimization.py \
+    --store-file 门店数据.xlsx \
+    --rdc-count 5 \        # 最多5个RDC
+    --output result.xlsx
+```
+
+---
+
+## 📊 优化算法逻辑
+
+### 1. 目标函数
+
+```
+最小化：Σ(门店数 × 线路时效) 加权和
+```
+
+### 2. 约束条件
+
+```
+1. 每个省份必须分配给1个RDC
+2. RDC数量 <= 指定上限
+3. 必选仓库（如果有）必须被选中
+4. 禁止仓库（如果有）不能被选中
+```
+
+### 3. 时效计算
+
+**总时效 = 等待时间 + 干线时效 + 等待时间 + 配送时效**
+
+| 时效类型 | 单位 | 说明 |
+|----------|------|------|
+| 干线时效 | **天** | 由小时转换或直接使用 |
+| 配送时效 | **天** | 共配表原始数据 |
+| 等待时间 | **天** | 因发车日导致的等待 |
+
+### 4. 链路类型判断
+
+| 链路类型 | 判断条件 |
+|----------|----------|
+| **直达** | RDC = 配送基地 |
+| **调拨一次** | RDC ≠ FSL，有直达干线 |
+| **中转** | 需要经过TC中转仓 |
+
+### 5. 门店匹配逻辑
+
+```
+1. 优先城市精确匹配
+2. 其次省份模糊匹配
+3. 城市推断省份
+```
+
+---
+
+## 📊 输出Excel结构
+
+| Sheet名称 | 内容 |
+|-----------|------|
+| **执行摘要** | 关键指标、RDC数量、覆盖区域、加权平均时效 |
+| **RDC选址** | 选中的RDC仓库 |
+| **供应关系** | 完整链路信息（含时效分解） |
+| **调拨中转仓** | 涉及的中转链路 |
+| **省份分布** | 各省归属 |
+
+### 执行摘要字段
+
+| 字段 | 说明 |
+|------|------|
+| RDC数量 | 实际选中的RDC数量（≤上限） |
+| 覆盖区域 | 省-市-区组合数 |
+| 总门店数 | 有效门店总数 |
+| 时效单位 | 天 |
+| 加权平均时效 | Σ(门店数×时效)/总门店数 |
+
+---
+
+## 📝 代码示例
+
+### 方式1：命令行
+
+```bash
+python3 run_optimization.py \
+    --store-file 门店数据.xlsx \
+    --rdc-count 5 \
+    --required 成都仓 广州仓 \
+    --forbidden 北京仓 \
+    --output result.xlsx
+```
+
+**参数说明：**
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| `--store-file` | 门店数据Excel | 必填 |
+| `--rdc-count` | RDC数量上限（默认3） | 5 |
+| `--required` | 必选仓库（空格分隔） | 成都仓 广州仓 |
+| `--forbidden` | 禁止仓库（空格分隔） | 北京仓 上海仓 |
+| `--output` | 输出文件 | result.xlsx |
+
+### 方式2：Python调用
+
+```python
+from run_optimization import optimize_and_generate_excel
+
+optimize_and_generate_excel(
+    store_file='门店数据.xlsx',
+    num_rdc=5,  # 最多5个RDC
+    output_file='result.xlsx'
+)
+```
+
+---
+
+## ✅ 检查清单
+
+- [x] **RDC数量改为上限（<= N）**
+- [x] 参数引导流程
+- [x] 智能单位检测
+- [x] 加权平均时效指标
+- [x] 时效计算（含等待时间）
+- [x] 链路类型判断
+- [x] 供应关系展示到区县级别
+- [x] 门店匹配逻辑（城市优先，省份备选）
+
+---
+
+## 📁 文件结构
+
+```
+warehouse-network-optimizer.skills/
+├── SKILL.md               # 本文档
+├── convert_data.py         # 数据转换脚本
+├── run_optimization.py     # 核心优化脚本
+├── trunk_lines.json        # 干线数据
+└── distribution_cycles.json # 共配数据
+```
+
+---
+
+**Status**: 生产可用 ✅  
+**Version**: 2.7.0  
+**核心功能**: 整数规划优化 + 智能单位检测 + 加权平均时效

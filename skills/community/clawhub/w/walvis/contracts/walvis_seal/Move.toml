@@ -1,0 +1,8 @@
+[package]
+name = "walvis_seal"
+edition = "2024.beta"
+
+[dependencies]
+
+[addresses]
+walvis_seal = "0x0"

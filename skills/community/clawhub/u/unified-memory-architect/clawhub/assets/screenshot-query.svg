@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520">
+  <defs>
+    <linearGradient id="terminalBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0d0d1a"/>
+    </linearGradient>
+  </defs>
+  <!-- Window chrome -->
+  <rect width="900" height="520" rx="12" fill="#111122"/>
+  <!-- Title bar -->
+  <rect width="900" height="36" rx="12" fill="#1e1e2e"/>
+  <rect y="24" width="900" height="12" fill="#1e1e2e"/>
+  <!-- Window buttons -->
+  <circle cx="20" cy="18" r="6" fill="#ff5f56"/>
+  <circle cx="40" cy="18" r="6" fill="#ffbd2e"/>
+  <circle cx="60" cy="18" r="6" fill="#27ca3f"/>
+  <!-- Title -->
+  <text x="450" y="22" text-anchor="middle" font-family="Monaco, Consolas, monospace" font-size="12" fill="#ffffff80">Terminal — unified-memory-architect</text>
+  <!-- Terminal body -->
+  <rect x="0" y="36" width="900" height="484" fill="url(#terminalBg)"/>
+  <!-- Content -->
+  <g font-family="Monaco, Consolas, monospace" font-size="12" fill="#e0e0e0">
+    <!-- Command prompt 1 -->
+    <text x="10" y="68" fill="#10b981">$</text>
+    <text x="24" y="68" fill="#00d4ff">node memory/.dreams/scripts/query.cjs stats</text>
+    <!-- Output 1 -->
+    <text x="10" y="94" fill="#ffffff">╔══════════════════════════════════════════════════════╗</text>
+    <text x="10" y="110" fill="#ffffff">║     Unified Memory Architect — System Stats         ║</text>
+    <text x="10" y="126" fill="#ffffff">╚══════════════════════════════════════════════════════╝</text>
+    <text x="10" y="146" fill="#00d4ff">📊 Total Memories :</text>
+    <text x="220" y="146" fill="#ffffff">1,760</text>
+    <text x="10" y="166" fill="#a855f7">🏷️  Unique Tags    :</text>
+    <text x="220" y="166" fill="#ffffff">49</text>
+    <text x="10" y="186" fill="#10b981">🔢 Unique Entities:</text>
+    <text x="220" y="186" fill="#ffffff">181</text>
+    <text x="10" y="206" fill="#f59e0b">⚡ Search Speedup :</text>
+    <text x="220" y="206" fill="#ffffff">5-10x</text>
+    <text x="10" y="226" fill="#27ca3f">💾 Storage Saved  :</text>
+    <text x="220" y="226" fill="#ffffff">60%</text>
+    <!-- Command prompt 2 -->
+    <text x="10" y="258" fill="#10b981">$</text>
+    <text x="24" y="258" fill="#00d4ff">node memory/.dreams/scripts/query.cjs tag reflection 5</text>
+    <!-- Output 2 -->
+    <text x="10" y="278" fill="#ffffff80">─── Tag Query: reflection (limit=5) ───</text>
+    <text x="10" y="298" fill="#ffffff">[#1] score=0.95 | 2026-04-13 | reflection, water, journey</text>
+    <text x="20" y="314" fill="#ffffff60">"Reflection on a dream about crossing a vast ocean,</text>
+    <text x="20" y="330" fill="#ffffff60">water shimmering with golden light beneath..."</text>
+    <text x="10" y="348" fill="#ffffff">[#2] score=0.88 | 2026-04-12 | reflection, mirror, self</text>
+    <text x="20" y="364" fill="#ffffff60">"Standing before an infinite mirror that showed not</text>
+    <text x="20" y="380" fill="#ffffff60">my reflection, but alternative versions of myself..."</text>
+    <text x="10" y="398" fill="#ffffff">[#3] score=0.82 | 2026-04-11 | reflection, journey</text>
+    <text x="10" y="416" fill="#ffffff">[#4] score=0.79 | 2026-04-10 | reflection, exploration</text>
+    <text x="10" y="434" fill="#ffffff">[#5] score=0.75 | 2026-04-09 | reflection, water</text>
+    <!-- Command prompt 3 -->
+    <text x="10" y="462" fill="#10b981">$</text>
+    <text x="24" y="462" fill="#00d4ff">node memory/.dreams/scripts/query.cjs search "water mirror" 3</text>
+    <!-- Cursor -->
+    <rect x="280" y="450" width="8" height="16" fill="#00d4ff" opacity="0.8"/>
+  </g>
+</svg>

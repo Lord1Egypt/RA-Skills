@@ -1,0 +1,71 @@
+{
+  "name": "持币地址",
+  "endpoint": "POST /chain/trade/token/holdPage",
+  "description": "获取指定代币在链上的持仓地址列表及地址的基础信息数据，同时支持指定地址的基础信息查询",
+  "credits_cost": 2,
+  "needToken": true,
+  "needCoinKey": true,
+  "use_case": "适用于鲸鱼、项目方、交易所等在链上的相关信息追踪与分析，适用于识别大户持仓行为和地址归属分析，适用于链上持仓分布和筹码集中度研究",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" },
+    "page": { "type": "integer", "req": true, "desc": "当前页，默认1" },
+    "pageSize": { "type": "integer", "req": true, "desc": "当前页数据数量，默认10，最多查询10000条数据" },
+    "coinKey": { "type": "string", "req": true, "desc": "代币的coinkey信息（链+合约地址信息），通过代币详情获取" },
+    "address": { "type": "string", "req": false, "desc": "地址" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "coinKey": { "type": "string", "actualType": "string", "desc": "代币键" },
+    "address": { "type": "string", "actualType": "string", "desc": "地址" },
+    "label": {
+      "type": "object",
+      "actualType": "object",
+      "desc": "地址标签",
+      "item": {
+        "labelName": { "type": "string", "actualType": "string", "desc": "标签名" },
+        "iconUrl": { "type": "string", "actualType": "string", "desc": "图标 URL" },
+        "isContract": { "type": "boolean", "actualType": "boolean", "desc": "是否是合约地址" },
+        "exchangeSymbol": { "type": "string", "actualType": "string", "desc": "交易所名称" },
+        "labelType": { "type": "string", "actualType": "string", "desc": "类型" },
+        "reliability": { "type": "integer", "actualType": "integer", "desc": "可信度" }
+      }
+    },
+    "balance": { "type": "number", "actualType": "string", "desc": "余额" },
+    "price": { "type": "number", "actualType": "string", "desc": "价格" },
+    "profit": { "type": "number", "actualType": "string", "desc": "盈利" },
+    "cost": { "type": "number", "actualType": "string", "desc": "持仓成本" },
+    "preCost": { "type": "number", "actualType": "string", "desc": "前一次持仓成本" },
+    "chainName": { "type": "string", "actualType": "string", "desc": "链名" }
+  },
+  "example": {
+    "req": { "vsTokenId": 1, "page": 1, "pageSize": 10, "coinKey": "BTC_BTC" },
+    "res": {
+      "code": 200,
+      "data": [
+        {
+          "vsTokenId": "1",
+          "symbol": "BTC",
+          "name": "Bitcoin",
+          "coinKey": "BTC_BTC",
+          "address": "34xp4vRoCGJym3xR7yCVPFHoCNxv4Twseo",
+          "label": {
+            "labelName": "Binance Cold Wallet",
+            "iconUrl": "/icon/label/Binance.png",
+            "isContract": false,
+            "exchangeSymbol": "",
+            "labelType": "Exchange",
+            "reliability": ""
+          },
+          "balance": "248597.58",
+          "price": "70624.86",
+          "profit": "7913271920.43",
+          "cost": "38828.44",
+          "preCost": "38828.44",
+          "chainName": "BTC"
+        }
+      ]
+    }
+  }
+}

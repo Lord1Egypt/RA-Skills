@@ -1,0 +1,33 @@
+{
+  "name": "vnpy",
+  "version": "1.2.0",
+  "description": "vn.py 开源量化交易框架 - 支持CTA、价差、期权策略，20+券商接口，覆盖国内外市场。",
+  "author": "BossQuant",
+  "tags": [
+    "量化交易",
+    "CTA",
+    "期货",
+    "期权",
+    "vnpy",
+    "开源",
+    "实盘",
+    "套利"
+  ],
+  "repository": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "vnpy>=3.0.0",
+      "vnpy-ctp>=6.0.0"
+    ]
+  },
+  "openclaw": {
+    "requires": {
+      "bins": [
+        "python3"
+      ],
+      "env": []
+    }
+  }
+}

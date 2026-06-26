@@ -1,0 +1,52 @@
+[
+  {
+    "name": "大盘分析订阅",
+    "endpoint": "GET /stream/market/subscribe",
+    "description": "SSE 长连接，实时接收大盘综合分析推送。连接成功后推送 connected 事件，定期推送 heartbeat 事件，有分析时推送 market 事件。",
+    "needToken": true,
+    "auth": {
+      "method": "query_params",
+      "params": {
+        "apiKey": "API Key",
+        "timestamp": "当前毫秒时间戳（字符串）",
+        "nonce": "随机 UUID",
+        "sign": "HMAC-SHA256(key=secretKey, message=timestamp+nonce)，16 进制字符串"
+      }
+    },
+    "events": {
+      "connected": "连接成功确认，data='subscribed'",
+      "heartbeat": "心跳保活，data='ping'，忽略即可",
+      "market": "大盘分析内容，data 为分析文本字符串"
+    }
+  },
+  {
+    "name": "代币信号订阅",
+    "endpoint": "GET /stream/signal/subscribe",
+    "description": "SSE 长连接，实时接收代币信号推送。tokens 不传则订阅所有代币信号（全量订阅）。",
+    "needToken": true,
+    "auth": {
+      "method": "query_params",
+      "params": {
+        "apiKey": "API Key",
+        "timestamp": "当前毫秒时间戳（字符串）",
+        "nonce": "随机 UUID",
+        "sign": "HMAC-SHA256(key=secretKey, message=timestamp+nonce)，16 进制字符串"
+      }
+    },
+    "params": {
+      "tokens": "（可选）逗号分隔的 vsTokenId 列表，不传则全量订阅"
+    },
+    "events": {
+      "connected": "连接成功确认，data='subscribed'",
+      "heartbeat": "心跳保活，data='ping'，忽略即可",
+      "signal": "代币信号，data 为 JSON 字符串，结构见 signal_schema"
+    },
+    "signal_schema": {
+      "tokenId": "long — vsTokenId",
+      "type": "string — CHANCE | RISK | FUNDS",
+      "content": "string — 信号详情 JSON，含 symbol、name 等字段",
+      "ts": "long — 信号时间戳（毫秒）",
+      "uniqueKey": "string — 信号唯一标识"
+    }
+  }
+]

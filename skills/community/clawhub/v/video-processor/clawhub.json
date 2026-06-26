@@ -1,0 +1,78 @@
+{
+  "name": "video-processor",
+  "displayName": "短视频自动处理器",
+  "version": "2.1.0",
+  "description": "自动处理短视频，实现语音识别、字幕生成、标题提炼、视频合成。支持繁简转换、样式自定义、后处理修正。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "tags": ["video", "subtitle", "whisper", "ffmpeg", "speech-to-text"],
+  "repository": "https://github.com/openclaw/openclaw/tree/main/skills/video-processor",
+  
+  "entry": "SKILL.md",
+  "main": "scripts/video_processor.py",
+  
+  "requirements": {
+    "python": ">=3.8",
+    "packages": [
+      "faster-whisper",
+      "opencc-python-reimplemented"
+    ],
+    "system": [
+      "ffmpeg"
+    ]
+  },
+  
+  "features": [
+    "语音识别转文字（支持 5 种 Whisper 模型）",
+    "自动生成 SRT 字幕（时间戳精确同步）",
+    "智能提炼视频标题",
+    "字幕烧录到视频",
+    "繁体自动转简体",
+    "支持修改文字稿后重新生成",
+    "自定义字幕样式配置"
+  ],
+  
+  "usage": {
+    "basic": "python scripts/video_processor.py -i \"video.mp4\" -m \"medium\"",
+    "postProcess": "python scripts/subtitle_processor.py -t \"transcript_fixed.txt\" -v \"video.mp4\" -o \"./output\"",
+    "withStyle": "python scripts/subtitle_processor.py -t \"transcript.txt\" -v \"video.mp4\" -s \"subtitle_style.json\""
+  },
+  
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "clawhub.json",
+    "scripts/video_processor.py",
+    "scripts/subtitle_processor.py",
+    "subtitle_style_template.json"
+  ],
+  
+  "documentation": [
+    "README.md",
+    "字幕后处理完整指南.md",
+    "后处理使用指南.md",
+    "模型对比测试.md",
+    "优化指南.md"
+  ],
+  
+  "screenshots": [],
+  
+  "changelog": {
+    "2.1.0": [
+      "新增繁体自动转简体功能",
+      "新增字幕后处理器（支持修改文字稿重新生成）",
+      "新增字幕样式可配置（18 个参数）",
+      "优化时间戳同步精度",
+      "修复字幕烧录路径问题"
+    ],
+    "2.0.0": [
+      "支持真实语音识别（faster-whisper）",
+      "支持 5 种模型（tiny/base/small/medium/large）",
+      "字幕时间戳与人声精确同步"
+    ],
+    "1.0.0": [
+      "初始版本"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "custom-02",
+  "name": "石油",
+  "category": "能源化工",
+  "keywords": [
+    "石油 价格",
+    "原油 市场",
+    "石油化工 项目",
+    "炼油厂 产能",
+    "石油勘探 发现",
+    "石油进口 数据",
+    "中石油 中石化",
+    "海上石油 开发",
+    "石油储备 政策",
+    "石油管道 建设",
+    "石油贸易 签约",
+    "页岩油 技术",
+    "石油化工 新材料",
+    "石油炼化 升级"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "百科",
+    "股票代码"
+  ],
+  "searchSettings": {
+    "maxResults": 25,
+    "days": 1,
+    "language": "zh-CN",
+    "freshness": "day",
+    "topic": "general",
+    "minResults": 5,
+    "sources": {
+      "include": [
+        "energy.cn",
+        "oilnews.com.cn",
+        "chinaoilonline.com",
+        "cnooc.com.cn",
+        "cnpc.com.cn",
+        "sinopec.com",
+        "ndrc.gov.cn",
+        "nea.gov.cn",
+        "people.com.cn",
+        "xinhuanet.com",
+        "chinanews.com.cn",
+        "ce.cn",
+        "caixin.com",
+        "yicai.com"
+      ]
+    }
+  },
+  "contentSettings": {
+    "extractContent": true,
+    "summaryMinLength": 60,
+    "summaryMaxLength": 200,
+    "fallbackToDescription": true
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🛢️",
+    "maxDescriptionLength": 200,
+    "includeImages": false,
+    "minResults": 5
+  }
+}

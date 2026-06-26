@@ -1,0 +1,7 @@
+{
+  "name": "vibe-card",
+  "version": "4.0.0",
+  "description": "Agent-native social card generation, management, and sharing with smart contact book",
+  "author": "Adong & CyberShrimp",
+  "license": "MIT-0"
+}

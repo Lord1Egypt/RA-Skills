@@ -1,0 +1,18 @@
+{
+  "name": "wcs-helper-feishu-skill",
+  "version": "1.0.0",
+  "description": "飞书配置助手 — 私聊发送命令控制 OpenClaw 飞书插件，纯文本响应，无需按钮或卡片",
+  "author": {
+    "name": "guanqi"
+  },
+  "license": "MIT",
+  "keywords": [
+    "feishu",
+    "lark",
+    "config",
+    "openclaw"
+  ],
+  "minOpenClawVersion": "2026.2.0",
+  "runtime": "python",
+  "entry": "feishu_handler.py"
+}

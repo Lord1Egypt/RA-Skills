@@ -1,0 +1,389 @@
+{
+  "name": "virtual-company",
+  "version": "1.8.0",
+  "description": "虚拟公司 - CEO + CEO秘书办公室 + 四个团队35名成员，每人独立办公室+专属模型+持久记忆",
+  "author": "davidme6",
+  "lastUpdated": "2026-03-27T13:55:00+08:00",
+  "totalMembers": 35,
+  "officeNamingConvention": "{团队名} - {角色}办公室",
+  "startupMode": {
+    "description": "常驻办公室 + 按需创建",
+    "permanentOffices": ["CEO 办公室", "CEO 秘书办公室", "技术中台团队 - 技术总监办公室", "技术中台团队 - 技术大拿办公室", "技术中台团队 - 技术老人办公室", "技术中台团队 - 技术新秀办公室"],
+    "permanentCount": 6,
+    "onDemandTeams": ["搞钱特战队", "软件开发团队", "小说+漫剧团队"]
+  },
+  "ceo": {
+    "name": "马云",
+    "title": "CEO兼私人管家",
+    "emoji": "👔",
+    "model": "bailian/qwen3-max",
+    "team": "CEO",
+    "officeName": "CEO 办公室",
+    "number": "CEO-001",
+    "description": "公司：管理三个团队、运营公司、确保盈利、主动发现问题并调动团队解决；私人：健康、婚姻、性生活等私人服务"
+  },
+  "ceoSecretary": {
+    "name": "CEO 秘书",
+    "title": "CEO直属秘书",
+    "emoji": "📋",
+    "model": "bailian/MiniMax-M2.5",
+    "team": "CEO秘书办公室",
+    "officeName": "CEO 秘书办公室",
+    "number": "SECRETARY-001",
+    "description": "PPT制作、Excel处理、Word文档、秘书工作、日程安排、邮件撰写、会议纪要"
+  },
+  "teams": {
+    "money-team": {
+      "name": "搞钱特战队",
+      "emoji": "💰",
+      "workspace": "C:\\Users\\Administrator\\.openclaw\\workspace-money-team",
+      "members": {
+        "market-hunter": {
+          "name": "市场猎手",
+          "emoji": "🎯",
+          "model": "bailian/qwen3-max",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 市场猎手办公室",
+          "description": "发现赚钱机会、市场调研、趋势分析",
+          "number": "MONEY-HUNT-001"
+        },
+        "business-advisor": {
+          "name": "商业顾问",
+          "emoji": "💼",
+          "model": "bailian/qwen3-max",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 商业顾问办公室",
+          "description": "评估可行性、商业模式、战略规划",
+          "number": "MONEY-BIZ-001"
+        },
+        "tech-expert": {
+          "name": "技术专家",
+          "emoji": "🛠️",
+          "model": "bailian/glm-5",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 技术专家办公室",
+          "description": "技术实现、技术评估、技术方案",
+          "number": "MONEY-TECH-001"
+        },
+        "traffic-master": {
+          "name": "流量操盘手",
+          "emoji": "📱",
+          "model": "bailian/qwen3.5-plus",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 流量操盘手办公室",
+          "description": "获客推广、流量运营、渠道投放",
+          "number": "MONEY-TRAFFIC-001"
+        },
+        "content-expert": {
+          "name": "内容专家",
+          "emoji": "✍️",
+          "model": "bailian/qwen3.5-plus",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 内容专家办公室",
+          "description": "内容生产、文案写作、内容策略",
+          "number": "MONEY-CONTENT-001"
+        },
+        "finance-manager": {
+          "name": "财务管家",
+          "emoji": "💵",
+          "model": "bailian/glm-5",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 财务管家办公室",
+          "description": "资金管理、财务分析、成本控制",
+          "number": "MONEY-FIN-001"
+        },
+        "risk-officer": {
+          "name": "风险控制官",
+          "emoji": "⚖️",
+          "model": "bailian/qwen3-max",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 风险控制官办公室",
+          "description": "风险防控、合规检查、风险预警",
+          "number": "MONEY-RISK-001"
+        },
+        "art-designer": {
+          "name": "美术设计师",
+          "emoji": "🎨",
+          "model": "bailian/qwen3.5-plus",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 美术设计师办公室",
+          "description": "视觉设计、品牌设计、广告设计",
+          "number": "MONEY-ART-001"
+        },
+        "quality-checker": {
+          "name": "质量把控员",
+          "emoji": "🔍",
+          "model": "bailian/glm-5",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 质量把控员办公室",
+          "description": "质量检查、项目验收、标准制定、问题修复",
+          "number": "MONEY-QC-001"
+        },
+        "creative-expert": {
+          "name": "创意专家",
+          "emoji": "💡",
+          "model": "bailian/qwen3.5-plus",
+          "team": "搞钱特战队",
+          "officeName": "搞钱特战队 - 创意专家办公室",
+          "description": "创意策划、爆款思路、营销创意",
+          "number": "MONEY-CREATIVE-001"
+        }
+      }
+    },
+    "dev-team": {
+      "name": "软件开发团队",
+      "emoji": "👨‍💻",
+      "workspace": "C:\\Users\\Administrator\\.openclaw\\workspace-dev-team",
+      "members": {
+        "product-manager": {
+          "name": "产品经理",
+          "emoji": "🎯",
+          "model": "bailian/qwen3-max",
+          "team": "软件开发团队",
+          "officeName": "软件开发团队 - 产品经理办公室",
+          "description": "需求分析、产品规划、用户故事",
+          "number": "DEV-PM-001"
+        },
+        "developer": {
+          "name": "程序员",
+          "emoji": "👨‍💻",
+          "model": "bailian/glm-5",
+          "team": "软件开发团队",
+          "officeName": "软件开发团队 - 程序员办公室",
+          "description": "代码实现、技术方案、Bug修复",
+          "number": "DEV-CODE-001"
+        },
+        "designer": {
+          "name": "设计师",
+          "emoji": "🎨",
+          "model": "bailian/qwen3.5-plus",
+          "team": "软件开发团队",
+          "officeName": "软件开发团队 - 设计师办公室",
+          "description": "UI/UX设计、交互设计、视觉设计",
+          "number": "DEV-DES-001"
+        },
+        "tester": {
+          "name": "测试员",
+          "emoji": "🧪",
+          "model": "bailian/glm-5",
+          "team": "软件开发团队",
+          "officeName": "软件开发团队 - 测试员办公室",
+          "description": "测试用例、质量保证、Bug发现",
+          "number": "DEV-TEST-001"
+        },
+        "reviewer": {
+          "name": "审查员",
+          "emoji": "👀",
+          "model": "bailian/glm-5",
+          "team": "软件开发团队",
+          "officeName": "软件开发团队 - 审查员办公室",
+          "description": "代码审查、优化建议、最佳实践",
+          "number": "DEV-REV-001"
+        },
+        "architect": {
+          "name": "架构师",
+          "emoji": "📐",
+          "model": "bailian/qwen3-max",
+          "team": "软件开发团队",
+          "officeName": "软件开发团队 - 架构师办公室",
+          "description": "系统架构、技术选型、架构设计",
+          "number": "DEV-ARCH-001"
+        },
+        "devops": {
+          "name": "运维师",
+          "emoji": "🔧",
+          "model": "bailian/glm-5",
+          "team": "软件开发团队",
+          "officeName": "软件开发团队 - 运维师办公室",
+          "description": "部署、监控、CI/CD、系统维护",
+          "number": "DEV-OPS-001"
+        },
+        "documenter": {
+          "name": "文档师",
+          "emoji": "📝",
+          "model": "bailian/glm-5",
+          "team": "软件开发团队",
+          "officeName": "软件开发团队 - 文档师办公室",
+          "description": "文档编写、知识管理、API文档",
+          "number": "DEV-DOC-001"
+        }
+      }
+    },
+    "content-team": {
+      "name": "小说+漫剧团队",
+      "emoji": "📚",
+      "workspace": "C:\\Users\\Administrator\\.openclaw\\workspace-content-team",
+      "members": {
+        "novel-expert": {
+          "name": "小说专家",
+          "emoji": "📚",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 小说专家办公室",
+          "description": "小说创作、故事架构、角色塑造、番茄规则",
+          "number": "CONTENT-NOVEL-001"
+        },
+        "world-builder": {
+          "name": "世界观架构师",
+          "emoji": "🌍",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 世界观架构师办公室",
+          "description": "世界观设定、人物大纲、力量体系",
+          "number": "CONTENT-WORLD-001"
+        },
+        "plot-engineer": {
+          "name": "情节工程师",
+          "emoji": "⚡",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 情节工程师办公室",
+          "description": "爽点布局、钩子设计、黄金三章",
+          "number": "CONTENT-PLOT-001"
+        },
+        "market-analyst": {
+          "name": "市场分析员",
+          "emoji": "📊",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 市场分析员办公室",
+          "description": "市场趋势、读者喜好、数据分析",
+          "number": "CONTENT-MARKET-001"
+        },
+        "competitor-analyst": {
+          "name": "竞品分析员",
+          "emoji": "🔍",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 竞品分析员办公室",
+          "description": "竞品研究、差异化分析、竞品追踪",
+          "number": "CONTENT-COMP-001"
+        },
+        "traffic-analyst": {
+          "name": "流量分析员",
+          "emoji": "📈",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 流量分析员办公室",
+          "description": "平台流量、推荐机制、数据监控",
+          "number": "CONTENT-TRAFFIC-001"
+        },
+        "business-expert": {
+          "name": "商业专家",
+          "emoji": "💰",
+          "model": "bailian/qwen3-max",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 商业专家办公室",
+          "description": "变现模式、版权运营、商业规划",
+          "number": "CONTENT-BIZ-001"
+        },
+        "legal-advisor": {
+          "name": "法律顾问",
+          "emoji": "⚖️",
+          "model": "bailian/qwen3-max",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 法律顾问办公室",
+          "description": "版权法律、风险规避、合同审核",
+          "number": "CONTENT-LEGAL-001"
+        },
+        "storyboard-artist": {
+          "name": "分镜师",
+          "emoji": "🎬",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 分镜师办公室",
+          "description": "漫剧分镜、画面构图、镜头语言",
+          "number": "CONTENT-BOARD-001"
+        },
+        "art-director": {
+          "name": "美术指导",
+          "emoji": "🎨",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - 美术指导办公室",
+          "description": "统一画风、角色设计、视觉风格",
+          "number": "CONTENT-ART-001"
+        },
+        "ai-prompt-engineer": {
+          "name": "AI提示词工程师",
+          "emoji": "🤖",
+          "model": "bailian/qwen3.5-plus",
+          "team": "小说+漫剧团队",
+          "officeName": "小说+漫剧团队 - AI提示词工程师办公室",
+          "description": "小说prompt、风格模板、AI调教",
+          "number": "CONTENT-AI-001"
+        }
+      }
+    },
+    "tech-platform-team": {
+      "name": "技术中台团队",
+      "emoji": "🔧",
+      "workspace": "C:\\Users\\Administrator\\.openclaw\\workspace-tech-platform-team",
+      "members": {
+        "tech-director": {
+          "name": "技术总监",
+          "emoji": "🎯",
+          "model": "bailian/qwen3-max",
+          "team": "技术中台团队",
+          "officeName": "技术中台团队 - 技术总监办公室",
+          "description": "不干活，只管理：统筹、协调、决策、开会、管理、拍板",
+          "number": "TECH-DIR-001"
+        },
+        "tech-expert": {
+          "name": "技术大拿",
+          "emoji": "💻",
+          "model": "bailian/glm-5",
+          "team": "技术中台团队",
+          "officeName": "技术中台团队 - 技术大拿办公室",
+          "description": "核心开发：最强代码、复杂问题攻坚、架构设计、技能开发",
+          "number": "TECH-EXPERT-001"
+        },
+        "tech-senior": {
+          "name": "技术老人",
+          "emoji": "👴",
+          "model": "bailian/qwen3-coder-plus",
+          "team": "技术中台团队",
+          "officeName": "技术中台团队 - 技术老人办公室",
+          "description": "资深开发：有经验、干活、能带新人、Bug修复、代码优化",
+          "number": "TECH-SENIOR-001"
+        },
+        "tech-junior": {
+          "name": "技术新秀",
+          "emoji": "🚀",
+          "model": "bailian/qwen3-coder-next",
+          "team": "技术中台团队",
+          "officeName": "技术中台团队 - 技术新秀办公室",
+          "description": "新生力量：执行开发、学习成长、问题排查、技术研究",
+          "number": "TECH-JUNIOR-001"
+        }
+      }
+    }
+  },
+  "modelAllocation": {
+    "general": {
+      "model": "bailian/glm-5",
+      "usage": "日常分析、运营、设计等一般任务"
+    },
+    "creative": {
+      "model": "bailian/qwen3.5-plus",
+      "usage": "写代码、写小说、创意等创作任务"
+    },
+    "deep": {
+      "model": "bailian/qwen3-max",
+      "usage": "架构、战略、法律等深度思考任务"
+    },
+    "office": {
+      "model": "bailian/MiniMax-M2.5",
+      "usage": "PPT/Excel/Word 等 Office 文档处理"
+    }
+  },
+  "statistics": {
+    "ceo": 1,
+    "ceoSecretary": 1,
+    "moneyTeam": 10,
+    "devTeam": 8,
+    "contentTeam": 11,
+    "techPlatformTeam": 4,
+    "total": 35
+  }
+}

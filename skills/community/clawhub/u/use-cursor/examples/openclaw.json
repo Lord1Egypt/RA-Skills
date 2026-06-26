@@ -1,0 +1,20 @@
+{
+  "skills": {
+    "use-cursor": {
+      "enabled": true,
+      "config": {
+        "defaultSessionPrefix": "cursor-",
+        "autoCheckInterval": 30000,
+        "timeoutMinutes": 60
+      }
+    }
+  },
+  "agents": {
+    "registered": {
+      "cursor": {
+        "command": "use-cursor",
+        "description": "Cursor CLI via tmux (background tasks)"
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "VeridicusScan MCP Analyst"
+  short_description: "Scan URLs, files, prompts, and runtime-defense flows with VeridicusScan MCP"
+  default_prompt: "Use $veridicusscan-mcp-analyst to scan a public URL, local file, or prompt with VeridicusScan MCP, summarize risk and coverage, and use runtime-defense methods when the task involves memory, selective disclosure, or tool approvals."
+
+policy:
+  allow_implicit_invocation: true

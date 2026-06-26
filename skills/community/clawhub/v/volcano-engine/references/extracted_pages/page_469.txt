@@ -1,0 +1,81 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+model %s.
+Please activate
+the model
+service in the
+Ark Console.山方舟控制台开
+通管理页开通对
+应模型服务。
+404 NotFoundNotFound.
+{{Parameter}}The specified
+{{ResourceType}}
+{{ResourceConte
+nt}} is not found.指定资源找不
+到。请确认参数
+后重试。
+404 NotFoundInvalidEndpoint
+OrModel.ModelI
+DAccessDisabledAccessing the
+model via Model
+ID is not allowed
+for your account.
+Please use a
+custom endpoint
+ID instead.
+Request id:未能找到指定的
+模型ID。你的账
+号不允许使用模
+型ID来调用模
+型，请确认你账
+号权限或者使用
+有权限的推理接
+入点 ID 来调用
+模型服务。
+404 NotFoundUnsupportedMo
+delThe
+{{model_name}}
+model does not
+support the
+coding plan
+feature. Please
+refer to the
+documentation
+at {{doc_url}} to
+select a
+compatible
+model.当前模型不支持
+Coding Plan。
+429TooManyReques
+tsRateLimitExceed
+ed.EndpointRPM
+ExceededThe Requests
+Per Minute
+(RPM) limit of
+the associated
+endpoint for
+your account has
+been exceeded.
+Request ID:请求所关联的推
+理接入点已超过
+RPM (Requests
+Per Minute) 限
+制, 请稍后重
+试。
+429TooManyReques
+tsRateLimitExceed
+ed.EndpointTPM
+ExceededThe Tokens Per
+Minute (TPM)
+limit of the
+associated
+endpoint for
+your account has请求所关联的推
+理接入点已超过
+TPM (Tokens Per
+Minute) 限制, 请
+稍后重试。API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 464/485

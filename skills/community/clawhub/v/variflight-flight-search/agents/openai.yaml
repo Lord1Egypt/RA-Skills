@@ -1,0 +1,4 @@
+interface:
+  display_name: "航班搜索"
+  short_description: "按 IATA 三字码和日期查询单程航班列表"
+  default_prompt: "使用 $flight-search 查询 BJS 到 SHA 在 2026-04-21 的航班列表。"

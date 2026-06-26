@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+"""
+web-retrieval fetch — intelligent scrapling wrapper with auto-escalation.
+
+Usage:
+  fetch <url> [output_file] [options]
+
+Options:
+  --mode get|fetch|stealthy   Force a specific fetcher (default: auto-escalate)
+  --selector "css.selector"   Extract only matching elements
+  --wait 2000                 Extra wait in ms after page load (stealthy/fetch only)
+  --wait-selector ".content"  Wait for this CSS selector before extracting
+  --solve-cloudflare          Enable Cloudflare challenge solving (stealthy only)
+  --text                      Output plain text (default: markdown)
+  --html                      Output raw HTML
+  --no-resources              Drop images/fonts/media for speed (fetch/stealthy)
+  --timeout 30000             Timeout in ms
+
+Output: markdown to stdout (or output_file if given). Errors to stderr.
+Exit 0 on success, 1 on failure.
+"""
+
+import sys
+import os
+import argparse
+import subprocess
+import tempfile
+from pathlib import Path
+
+SCRAPLING = os.path.expanduser("~/.local/bin/scrapling")
+
+
+def parse_args():
+    p = argparse.ArgumentParser(add_help=False)
+    p.add_argument("url")
+    p.add_argument("output_file", nargs="?", default=None)
+    p.add_argument("--mode", choices=["get", "fetch", "stealthy"], default=None)
+    p.add_argument("--selector", "-s", default=None)
+    p.add_argument("--wait", type=int, default=0)
+    p.add_argument("--wait-selector", default=None)
+    p.add_argument("--solve-cloudflare", action="store_true")
+    p.add_argument("--text", action="store_true")
+    p.add_argument("--html", action="store_true")
+    p.add_argument("--no-resources", action="store_true")
+    p.add_argument("--timeout", type=int, default=30000)
+    p.add_argument("--network-idle", action="store_true")
+    p.add_argument("--proxy", default=None)
+    return p.parse_args()
+
+
+def ext(args):
+    if args.html:
+        return ".html"
+    if args.text:
+        return ".txt"
+    return ".md"
+
+
+def build_cmd(mode, url, outfile, args):
+    cmd = [SCRAPLING, "extract", mode, url, outfile]
+
+    if mode == "get":
+        if args.selector:
+            cmd += ["-s", args.selector]
+        if args.proxy:
+            cmd += ["--proxy", args.proxy]
+
+    elif mode in ("fetch", "stealthy"):
+        if args.selector:
+            cmd += ["-s", args.selector]
+        if args.wait:
+            cmd += ["--wait", str(args.wait)]
+        if args.wait_selector:
+            cmd += ["--wait-selector", args.wait_selector]
+        if args.no_resources:
+            cmd += ["--disable-resources"]
+        if args.network_idle:
+            cmd += ["--network-idle"]
+        if args.timeout:
+            cmd += ["--timeout", str(args.timeout)]
+        if args.proxy:
+            cmd += ["--proxy", args.proxy]
+        if mode == "stealthy" and args.solve_cloudflare:
+            cmd += ["--solve-cloudflare"]
+
+    return cmd
+
+
+def try_mode(mode, url, args, tmpdir):
+    suffix = ext(args)
+    outfile = str(Path(tmpdir) / f"out{suffix}")
+    cmd = build_cmd(mode, url, outfile, args)
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode == 0 and Path(outfile).exists():
+        content = Path(outfile).read_text(encoding="utf-8", errors="replace").strip()
+        if content and content != Path(url).name:  # not just title
+            return content
+    return None
+
+
+def main():
+    args = parse_args()
+
+    # Detect binary files
+    url_lower = args.url.lower().split("?")[0]
+    for ext_check in (".pdf", ".docx", ".xlsx", ".zip", ".pptx", ".mp4", ".mp3"):
+        if url_lower.endswith(ext_check):
+            print(f"DIRECT_DOWNLOAD: {args.url}")
+            return
+
+    modes = ["get", "fetch", "stealthy"] if args.mode is None else [args.mode]
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        for mode in modes:
+            content = try_mode(mode, args.url, args, tmpdir)
+            if content:
+                if args.output_file:
+                    Path(args.output_file).write_text(content, encoding="utf-8")
+                else:
+                    print(content)
+                return
+
+    print(f"ERROR: All fetch modes failed for {args.url}", file=sys.stderr)
+    sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

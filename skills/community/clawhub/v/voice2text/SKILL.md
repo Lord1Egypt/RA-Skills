@@ -1,35 +1,17 @@
----
-name: "Voice2text"
-description: "Offline speech-to-text conversion using Vosk local model; input audio file path, output transcript text."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/voice2text"
-sourceUrl: "https://clawhub.ai/skills/voice2text"
----
+# voice2text
 
-# Voice2text
+slug: voice2text
+title: Voice to Text
+description: Offline speech-to-text skill using Vosk local model.
+author: lxxtad
+license: MIT
 
-> Offline speech-to-text conversion using Vosk local model; input audio file path, output transcript text.
+**入口**: `main.py` implements `run(params)` – pass `{"audio":"path/to.wav"}` and get `{"text":"transcript"}`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/voice2text`
-- **Source URL:** [https://clawhub.ai/skills/voice2text](https://clawhub.ai/skills/voice2text)
+**依赖**: `vosk`, `pytest`.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+**使用示例**:
 ```bash
-hermes skills install clawhub/voice2text
+clawhub install voice2text
+clawhub run voice2text '{"audio":"sample.wav"}'
 ```

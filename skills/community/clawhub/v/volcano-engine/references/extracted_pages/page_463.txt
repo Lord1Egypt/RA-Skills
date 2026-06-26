@@ -1,0 +1,65 @@
+HTTP
+状态码错误类型
+Type错误码
+Code错误信息
+Message含义
+l:
+{Label};SubLabel:
+400 BadRequestOutputTextRisk
+DetectionThe request
+could not be
+processed
+because the
+output text
+includes
+sensitive content
+that violates
+ContentSecurity
+Detection.ARKRe
+quest ID:
+{id};CSDRequestI
+d:
+{RequestId};Labe
+l:
+{Label};SubLabel:火山引擎风险识
+别产品检测到输
+出文本可能包含
+敏感信息，请您
+更换后重试。
+400 BadRequestOutputImageRis
+kDetectionThe request
+could not be
+processed
+because the
+output image
+includes
+sensitive content
+that violates
+ContentSecurity
+Detection.ARKRe
+quest ID:
+{id};CSDRequestI
+d:
+{RequestId};Labe
+l:
+{Label};SubLabel:火山引擎风险识
+别产品检测到输
+出图片可能包含
+敏感信息，请您
+更换后重试。
+400 BadRequestContentSecurity
+DetectionErrorInternal
+error.ARKReques
+t ID:
+{id};CSDRequestI
+d:
+{RequestId};CSD
+code:
+{};CSDmessage:{}火山引擎风险识
+别产品请求失
+败。
+400 BadRequestInvalidParamete
+r.{{Parameter}}The specified
+parameter请求参数值不合
+法。请检查参数API参考 13. 其他说明
+版权所有©北京火山引擎科技有限公司 458/485

@@ -1,0 +1,35 @@
+{
+  "id": "28",
+  "name": "细胞与基因",
+  "category": "未来产业",
+  "keywords": [
+    "细胞治疗",
+    "基因编辑",
+    "基因治疗",
+    "CAR-T",
+    "干细胞",
+    "基因测序"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🧬",
+    "maxDescriptionLength": 200
+  }
+}

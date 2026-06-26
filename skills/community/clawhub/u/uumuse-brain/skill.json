@@ -1,0 +1,67 @@
+{
+  "name": "uumuse-brain",
+  "version": "1.1.1",
+  "description": "Use UUMuse LAN MCP tools to list UUMuse knowledge workspaces, search uploaded documents, ask questions over knowledge bases, read files, and manage long-term memory. Trigger when the user mentions UUMuse, UUMuse MCP, knowledge base, workspace, uploaded documents, \"列出我的 UUMuse 工作区\", \"我的知识库\", \"我的文档\", or asks to search or answer from their own UUMuse files.",
+  "author": "UUMuse",
+  "homepage": "https://uumuse.ai",
+  "repository": "https://github.com/UUMuse/uumuse-mcp",
+  "tags": [
+    "knowledge-base",
+    "rag",
+    "documents",
+    "productivity",
+    "pdf",
+    "research",
+    "memory",
+    "brain"
+  ],
+  "config": {
+    "uumuse_api_key": {
+      "type": "string",
+      "description": "Your UUMuse API key (get one at uumuse.ai → Account → API Keys)",
+      "required": true
+    },
+    "uumuse_api_url": {
+      "type": "string",
+      "description": "Custom API endpoint for self-hosted UUMuse (optional)",
+      "required": false,
+      "default": "https://api.uumuse.ai"
+    }
+  },
+  "permissions": {
+    "network": true,
+    "filesystem": false,
+    "browser": false,
+    "shell": false,
+    "notifications": false
+  },
+  "mcp": {
+    "server": {
+      "command": "npx",
+      "args": ["-y", "uumuse-mcp"],
+      "env": {
+        "UUMUSE_API_KEY": "{{config.uumuse_api_key}}",
+        "UUMUSE_API_URL": "{{config.uumuse_api_url}}"
+      }
+    },
+    "alternatives": {
+      "http": {
+        "url": "{{config.uumuse_api_url}}/mcp/",
+        "headers": {
+          "Authorization": "Bearer {{config.uumuse_api_key}}"
+        }
+      },
+      "stdio-bridge": {
+        "command": "python3",
+        "args": ["{{skill_dir}}/uumuse_mcp_stdio.py"],
+        "env": {
+          "UUMUSE_MCP_URL": "{{config.uumuse_api_url}}/mcp/",
+          "UUMUSE_API_KEY": "{{config.uumuse_api_key}}"
+        }
+      }
+    }
+  },
+  "entryPoint": {
+    "type": "natural"
+  }
+}

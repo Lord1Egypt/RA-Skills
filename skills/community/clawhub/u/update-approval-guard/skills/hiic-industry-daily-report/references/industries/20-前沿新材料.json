@@ -1,0 +1,34 @@
+{
+  "id": "20",
+  "name": "前沿新材料",
+  "category": "未来产业",
+  "keywords": [
+    "前沿材料",
+    "纳米材料",
+    "超导材料",
+    "智能材料",
+    "仿生材料"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🔬",
+    "maxDescriptionLength": 200
+  }
+}

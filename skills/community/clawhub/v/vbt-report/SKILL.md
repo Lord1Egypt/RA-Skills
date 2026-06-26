@@ -1,35 +1,129 @@
 ---
-name: "vbt-report"
-description: "VectorBT 向量化回测 HTML 报告生成器 v2.2.0。单只模式：一键生成含净值曲线、回撤曲线、TOP策略对比的交互式报告。 批量模式：从 CSV/XLS/XLSX 或字符串批量处理多只股票，4进程并行加速，生成带VBT判定筛选、列排序、搜索功能的统一索引页。 v2.2新增：XDXR精确前复权、腾讯AP..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vbt-report"
-sourceUrl: "https://clawhub.ai/skills/vbt-report"
+name: vbt-report
+description: >-
+  VectorBT 向量化回测 HTML 报告生成器 v2.2.0。单只模式：一键生成含净值曲线、回撤曲线、TOP策略对比的交互式报告。
+  批量模式：从 CSV/XLS/XLSX 或字符串批量处理多只股票，4进程并行加速，生成带VBT判定筛选、列排序、搜索功能的统一索引页。
+  v2.2新增：XDXR精确前复权、腾讯API、北交所、并行加速、三合一输入方式。
+  Based on VectorBT v2.1 + TDX A股数据。
 ---
 
-# vbt-report
+# VectorBT 报告生成器 (vbt-report) v2.2.0
 
-> VectorBT 向量化回测 HTML 报告生成器 v2.2.0。单只模式：一键生成含净值曲线、回撤曲线、TOP策略对比的交互式报告。 批量模式：从 CSV/XLS/XLSX 或字符串批量处理多只股票，4进程并行加速，生成带VBT判定筛选、列排序、搜索功能的统一索引页。 v2.2新增：XDXR精确前复权、腾讯AP...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vbt-report`
-- **Source URL:** [https://clawhub.ai/skills/vbt-report](https://clawhub.ai/skills/vbt-report)
+基于 VectorBT v2.1 的 A 股多策略回测工具，支持两种模式：
 
-## Overview
+- **单只模式** — 对单只股票运行全部策略回测，生成含 Plotly 交互式图表的完整 HTML 报告
+- **批量模式** — 从 CSV/Excel 文件批量处理多只股票，生成统一的索引页 + 各股报告
 
+## 数据来源（自动补全）
 
-## Installation
-To install this skill, run the following command in your terminal:
+报告生成时按以下优先级自动获取/补全数据，**无需手动干预**：
+
+| 优先级 | 数据源 | 说明 |
+|--------|--------|------|
+| 1 | 本地通达信 `.day` 文件 | 主数据，通过 `mootdx` 读取 |
+| 2 | 通达信服务器直连 (`tdxpy`) | 连接 `110.41.147.114:7709` 获取最新日K线 |
+| 3 | 新浪财经 API | 前复权日K线，无需 token，稳定可用 |
+| 4 | AKShare 兜底 | `stock_zh_a_hist()` 历史数据，最后兜底 |
+
+- 本地数据截止日期距今天超过 4 天时，自动触发网络补全
+- 网络数据获取后与本地数据拼接并自动去重
+- 依赖：`tdxpy`（优先级2）、`requests`（优先级3）、`akshare`（优先级4）
+
+## 依赖
+
 ```bash
-hermes skills install clawhub/vbt-report
+pip install vectorbt pandas numpy plotly mootdx tdxpy requests akshare openpyxl
+```
+
+- `tdxpy` — 通达信服务器直连（网络补全优先级2）
+- `requests` — 新浪财经 API 调用（网络补全优先级3）
+- `akshare` — 历史数据兜底（网络补全优先级4）
+
+## 用法
+
+### 单只模式
+
+```bash
+export PYTHONIOENCODING=utf-8
+python <SKILLS_ROOT>/vbt-report/scripts/report.py <股票代码> [--data-dir <通达信数据路径>] [--output <输出路径>]
+```
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `ticker` | A股6位代码（必填），如 `688387`、`600519` | - |
+| `--data-dir` | 通达信数据根目录 | `F:\new_tdx64` |
+| `--output` | HTML 报告输出路径 | `./<ticker>_vbt_report.html` |
+
+### 批量模式
+
+```bash
+export PYTHONIOENCODING=utf-8
+python <SKILLS_ROOT>/vbt-report/scripts/batch_report.py --csv <CSV路径> --output <输出目录> [--data-dir <通达信数据路径>] [--skip-existing]
+```
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--csv` | CSV文件路径（必填）。列需包含"代码"和"名称" | - |
+| `--output` | 输出目录 | - |
+| `--data-dir` | 通达信数据根目录 | `F:\new_tdx64` |
+| `--skip-existing` | 跳过已存在的报告文件，只更新索引页 | 否 |
+
+### 股票代码说明
+
+- A 股使用 6 位纯数字代码即可
+- 通达信上海市场 `market=0`，深圳市场 `market=1`
+- 脚本自动判断上海/深圳
+- 北交所代码以 9 开头
+
+## 回测策略列表
+
+| 策略 | 类型 | 参数 |
+|------|------|------|
+| MA双均线 | 趋势跟踪 | fast=[5,10,15,20], slow=[30,50,60,100] |
+| RSI超买超卖 | 反转策略 | period=[7,14,21], oversold=30, overbought=70 |
+| MACD金叉死叉 | 趋势跟踪 | 标准(12,26,9) |
+| 布林带突破 | 反转策略 | period=20, std=2 |
+| KDJ超买超卖 | 反转策略 | K<20买入, K>80卖出 |
+| 动量 | 趋势跟踪 | period=[20,40,60] |
+| MA+RSI组合 | 组合策略 | MA(10,50)金叉 + RSI(14)<30 |
+| MA+ATR止损 | 趋势跟踪 | MA(20) + ATR(14)动态止损 |
+| 买入持有 | 基准 | 全程持有 |
+
+## 单只报告输出结构
+
+HTML 报告包含：
+
+1. **行情概览** — 当前价格、均线、RSI、MACD、布林带、KDJ
+2. **综合判定** — 所有策略平均收益的综合多空判断（看多/中性/看空）
+3. **最佳策略净值曲线**（Plotly交互式）— 净值线 + 价格线 + 回撤线
+4. **TOP5策略净值对比**（Plotly交互式）
+5. **全部策略回测排名表** — 总收益、胜率、夏普、最大回撤、交易次数、盈亏比、平均收益
+6. **技术指标明细表** — RSI/MACD/布林/KDJ详细值
+
+## 批量索引页输出结构
+
+`index.html` 索引页包含：
+
+- **统计概览** — 总数、成功/失败、各信号分类数量
+- **信号分类筛选** — 强烈买入/谨慎偏多/持有观望/卖出/强烈卖出，点击切换
+- **列排序** — 点击表头按：代码、名称、信号、评分、最佳收益、胜率、夏普、最大回撤、最佳策略排序
+- **搜索过滤** — 实时搜索代码/名称
+- **tdx3信号 & VBT判定** — 两列独立显示，互不混淆
+- **极端收益标记** — 收益 >1000% 显示 ⚠ 警告（复利满仓极端值）
+- **颜色编码** — 绿涨红跌，夏普/回撤/胜率分级着色
+
+## 历史价格说明
+
+回测结果会受行情极端波动影响。老股（上市>20年）的长周期复利策略可能产生极端收益值（>1000%），索引页会自动标记警告。
+
+## 文件结构
+
+```
+vbt-report/
+├── SKILL.md              # 本文档
+└── scripts/
+    ├── report.py         # 单只报告生成脚本
+    └── batch_report.py   # 批量报告生成脚本 + 索引页
 ```

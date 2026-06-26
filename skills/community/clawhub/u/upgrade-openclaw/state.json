@@ -1,0 +1,24 @@
+{
+  "lastUpgrade": {
+    "from": "2026.3.2",
+    "to": "2026.3.3",
+    "timestamp": "2026-03-05T06:50:00Z",
+    "featuresProposed": [
+      "telegram-streaming-partial",
+      "pdf-analysis-tool",
+      "subagent-file-attachments",
+      "secretref-expansion",
+      "hook-events-transcribed-preprocessed",
+      "audio-echo-transcript",
+      "config-validate-cli"
+    ],
+    "featuresApplied": [
+      "telegram-streaming-partial",
+      "audio-echo-transcript"
+    ],
+    "doctorApplied": [
+      "session-cleanup",
+      "entrypoint-fix-entry-to-index"
+    ]
+  }
+}

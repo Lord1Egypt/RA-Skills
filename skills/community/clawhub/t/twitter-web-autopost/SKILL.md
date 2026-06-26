@@ -1,35 +1,154 @@
 ---
-name: "Twitter Web AutoPoster"
-description: "通过浏览器工具自动操作网页版 Twitter/X，完成热点爬取、推文撰写和一键发布。支持全自动模式（无需用户确认）和手动确认模式。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, browser, social-media, twitter]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/twitter-web-autopost"
-sourceUrl: "https://clawhub.ai/skills/twitter-web-autopost"
+name: twitter-web-autopost
+description: 通过浏览器工具自动操作网页版 Twitter/X，完成热点爬取、推文撰写和一键发布。支持全自动模式（无需用户确认）和手动确认模式。
 ---
 
 # Twitter Web AutoPoster
 
-> 通过浏览器工具自动操作网页版 Twitter/X，完成热点爬取、推文撰写和一键发布。支持全自动模式（无需用户确认）和手动确认模式。
+## 概述
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/twitter-web-autopost`
-- **Source URL:** [https://clawhub.ai/skills/twitter-web-autopost](https://clawhub.ai/skills/twitter-web-autopost)
+这个 Skill 告诉你（OpenClaw Agent）如何通过 **浏览器工具** 操作网页版 Twitter/X 来自动发推。
+它假设用户已经在浏览器中登录了自己的 X 账号，或者可以在你提示后手动完成一次登录。
 
-## Overview
+你不使用任何本地 CLI 或 API key，只通过 `browser` 工具驱动网页完成发帖流程。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/twitter-web-autopost
-```
+## 何时触发
+
+当用户出现以下意图时，应优先考虑使用本 Skill：
+
+- 「帮我发一条推特/推文」
+- 「自动在 X 上发帖 / 发短评」
+- 「围绕某个热点写一条推特并发布」
+- 「定期在 Twitter 上发总结」等
+
+如果用户只想「写草稿，不一定要发」，可以只用语言模型写完文本，不调用本 Skill 的发帖部分。
+
+---
+
+## 前置假设
+
+- 用户在这台机器的浏览器里可以正常访问 `https://x.com`（或 `https://twitter.com`）。
+- 用户愿意在需要时手动完成一次登录（你只能提示，不能看到密码）。
+- Gateway 已启用 `browser`（openclaw-managed 或 chrome profile 均可）。
+
+---
+
+## 总体流程
+
+当用户让你「自动发推」时，遵循以下步骤：
+
+1. **明确内容**
+   - 如果用户已经给出完整文案，直接使用那段文字。
+   - 如果用户只给主题或大概方向：
+     - 用大模型先生成 1～3 条候选推文（控制在 240 字符内）。
+     - 根据用户偏好（语气、语言、是否带 hashtag）自动选择最合适的一条。
+     - 如果用户特别强调「全自动」或「不用问我」，你可以直接选用，不必回显给用户确认；否则在发帖前简要复述一遍让用户确认。
+
+2. **启动浏览器会话**
+   - 通过 `browser` 工具，使用合适的 profile（推荐：`openclaw`）。
+   - 如果当前没有打开 X 页面，先导航到：
+     - `https://x.com/compose/tweet`
+     - 无法访问时，可回退到 `https://x.com/home` 再寻找发帖入口。
+
+3. **处理登录**
+   - 如果页面显示登录要求（输入邮箱/手机号/密码或验证码）：
+     - 停止自动输入。
+     - 通过聊天明确提示用户："请在刚刚弹出的 X 页面中手动完成登录，完成后回复『已登录』，我会继续自动发帖。"
+     - 收到用户「已登录」后，再重新调用 `browser` 工具刷新/重新打开发帖页面，继续下面步骤。
+
+4. **定位发帖输入框**
+   使用 `browser snapshot` + `browser act` 的方式寻找：
+   - 页面上 role 为 `textbox`、有 placeholder 类似：
+     - "What is happening?!" / "有什么新鲜事？" / "发推文"
+   - 或包含 aria-label：
+     - "Post text" / "Tweet text" / "发推文文本"
+
+   一旦定位到输入框：
+   - 清空已有内容（如果有）。
+   - 使用 `type` / `fill` 操作，将最终推文文本完整输入。
+
+5. **点击「发布」按钮**
+   - 再次通过 snapshot 找到：
+     - 文本为 "Post"、"Tweet"、"发帖"、"发布" 的按钮，或
+     - role 为 `button` 且 aria-label 中含有 "Post"、"发布" 等。
+   - 使用 `click` 操作点击按钮。
+   - 如遇短暂错误或按钮不可点击，可尝试：
+     - 等待几秒再重试；
+     - 重新 snapshot 校验按钮状态。
+   - 不要进行超过 2～3 次的无意义重试，避免被判为异常行为。
+
+6. **确认是否发出**
+   - 观察发帖后页面变化：
+     - 主页时间线顶部出现刚刚内容一致的推文，或
+     - 页面跳转到包含这条推文详情的 URL（通常类似 `https://x.com/<handle>/status/<id>`）。
+   - 通过浏览器地址栏或 DOM 链接元素，提取这条推文的 URL。
+
+7. **向用户回报结果**
+   - 在当前聊天中用自然语言汇报：
+     - 成功/失败状态；
+     - 最终发送的推文完整文本；
+     - 推文 URL。
+   - 如失败，说明：
+     - 卡在哪一步（登录、找不到输入框、按钮点击失败、网络超时等）；
+     - 已尝试过哪些自动修复手段；
+     - 需要用户如何配合（例如「请确认已成功登录 X 并重新让我发一次」）。
+
+---
+
+## 安全与风控
+
+- **内容安全**：不得自动发送明显违法、煽动仇恨或暴力的内容。如用户指令存在风险，应先在聊天里提醒用户，并建议修改，实在不合规时拒绝发布。
+- **频率控制**：
+  - 避免在极短时间内连续大量发推（例如几秒内多次发帖），以免触发平台风控。
+  - 如用户要求「批量」或「定时」发帖，你可以：
+    - 先生成所有文案；
+    - 再按用户允许的频率每次执行一次浏览器发帖流程。
+- **重试策略**：
+  - 网络或元素定位失败时，最多自动重试 1–2 次；
+  - 超过后应停止重试，向用户说明情况，避免被判为机器人攻击行为。
+
+---
+
+## 示例调用场景
+
+**场景 1：用户给定完整文案**
+
+> 用户：帮我把这段英文当成推特发出去：「AI is changing global geopolitics faster than we can regulate it…」
+
+你的行为：
+- 不再改写文案；
+- 直接走 2–7 步骤完成发帖；
+- 最后返回推文链接。
+
+**场景 2：用户只给主题，要求全自动**
+
+> 用户：帮我围绕今天的 AI 热点自动写一条英文推特并直接发出去，不用再问我确认。
+
+你的行为：
+- 自己选取 1 个合适热点；
+- 生成推文文本；
+- 不再回显给用户确认，直接发帖；
+- 最后用一条总结消息说明你选择了哪个热点、发了什么内容、链接是什么。
+
+**场景 3：爬取热点 + 撰写 + 发布一体化**
+
+> 用户：帮我爬取推特热点，自己写推文，自己发布。
+
+你的行为：
+- 先用 `browser` 打开 `https://x.com/explore/tabs/trending`，提取前 10 条热点话题；
+- 按优先级（AI/科技/国际政治经济 > 娱乐/体育）自行挑选 1 个主题；
+- 生成 1 条推文（≤240 字符，理性、有观点、可带 1-2 个 hashtag）；
+- 直接发帖；
+- 回报：选用的热点、推文全文、推文 URL。
+
+---
+
+## 技术提示（给 Agent 自己看）
+
+- 优先使用 `browser` 工具，而不是尝试未经授权的 HTTP API。
+- 利用 `snapshot --interactive` 获取带 ref 的节点，然后用 `click ref=..` / `type ref=..` 等方式操作，避免依赖易变的 CSS 选择器。
+- 注意语言和 UI 可能是中文、英文或混合界面，要兼容多种 placeholder/aria-label 文本。
+- X/Twitter 的 compose 页面 URL 可能是 `https://x.com/compose/tweet` 或 `https://x.com/compose/post`，两种都尝试。
+- 如果用户要求附带图片，可以先用 `browser upload` 上传图片文件到推文编辑器的图片附件区域。

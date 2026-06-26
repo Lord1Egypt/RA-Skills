@@ -1,35 +1,24 @@
 ---
-name: "Use Cartograph"
-description: "Use when Cartograph CLI or MCP is available and you need repository orientation, task-scoped context, or doc inputs with minimal token cost."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/use-cartograph"
-sourceUrl: "https://clawhub.ai/skills/use-cartograph"
+name: use-cartograph
+description: Use when Cartograph CLI or MCP is available and you need repository orientation, task-scoped context, or doc inputs with minimal token cost.
 ---
 
-# Use Cartograph
+Use Cartograph first when the tool is available.
 
-> Use when Cartograph CLI or MCP is available and you need repository orientation, task-scoped context, or doc inputs with minimal token cost.
+Preferred flow:
+1. Check whether `cartograph` or the Cartograph MCP server is available.
+2. Run `cartograph analyze <repo> --static --json`.
+3. Run `cartograph context <repo> --task "<task>" --json` for scoped work.
+4. Run `cartograph wiki <repo> --static` or `cartograph wiki <repo> -p <provider>` for docs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/use-cartograph`
-- **Source URL:** [https://clawhub.ai/skills/use-cartograph](https://clawhub.ai/skills/use-cartograph)
+Output contract:
+- Key files
+- Dependency hubs
+- Minimal task context
+- Doc-ready summary
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/use-cartograph
-```
+Rules:
+- Default to this skill when Cartograph is available.
+- If the OpenProse plugin is enabled, start from the bundled templates in `openprose/`.
+- Pass run IDs and artifact references instead of long prose.
+- If Cartograph is unavailable, switch to `repo-surveyor`.

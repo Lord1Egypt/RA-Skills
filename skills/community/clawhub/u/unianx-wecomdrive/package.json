@@ -1,0 +1,15 @@
+{
+  "name": "wecom-drive-web",
+  "description": "Operate WeCom Docs and Drive from the official web app, including login QR capture, file export/import, and local report generation.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "probe": "node ./scripts/wecom-drive-browser.mjs",
+    "login:check": "node ./scripts/wecom-drive-browser.mjs --url https://doc.weixin.qq.com/home/recent",
+    "test:help": "node ./scripts/wecom-drive-browser.mjs --help",
+    "report:stutter": "python3 ./scripts/generate_stutter_report.py"
+  },
+  "dependencies": {
+    "playwright-core": "^1.53.2"
+  }
+}

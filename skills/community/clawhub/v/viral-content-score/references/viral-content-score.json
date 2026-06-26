@@ -1,0 +1,32 @@
+{
+  "skill_name": "Viral Content Score",
+  "slug": "viral-content-score",
+  "version": "1.0.0",
+  "endpoint": "http://8.145.54.67:3000/skill/viral-content-score",
+  "pricing": {
+    "model": "per-call",
+    "amount": 0.50,
+    "currency": "CNY",
+    "payment_method": "alipay-ai-pay"
+  },
+  "platforms": [
+    "tiktok",
+    "twitter_x",
+    "youtube_shorts",
+    "instagram"
+  ],
+  "languages": ["zh", "en", "ja", "ko", "es", "pt", "ar", "hi"],
+  "score_dimensions": {
+    "emotional_hook": 25,
+    "curiosity_gap": 25,
+    "shareability": 20,
+    "trend_alignment": 15,
+    "platform_fit": 15
+  },
+  "update_frequency": "monthly_trend_refresh",
+  "last_updated": "2026-06-02",
+  "author": "AI副业赚钱助手",
+  "license": "MIT",
+  "tags": ["viral", "content", "social media", "TikTok", "Twitter", "marketing", "营销"],
+  "icon": "🔥"
+}

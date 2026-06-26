@@ -1,35 +1,45 @@
 ---
-name: "Wanxiang Scroll Interactive"
-description: "万象绘卷交互系统分卷 - 包含交互式故事、异世界人生模拟、李诞七步写作框架"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wanxiang-scroll-interactive"
-sourceUrl: "https://clawhub.ai/skills/wanxiang-scroll-interactive"
+name: wanxiang-scroll-interactive
+description: 万象绘卷交互系统分卷 - 包含交互式故事、异世界人生模拟、李诞七步写作框架
+version: 1.0.0
 ---
 
-# Wanxiang Scroll Interactive
+# 万象绘卷 - 交互系统分卷
 
-> 万象绘卷交互系统分卷 - 包含交互式故事、异世界人生模拟、李诞七步写作框架
+> 交互式故事 + 人生模拟 + 李诞七步 | v1.0.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wanxiang-scroll-interactive`
-- **Source URL:** [https://clawhub.ai/skills/wanxiang-scroll-interactive](https://clawhub.ai/skills/wanxiang-scroll-interactive)
+## 包含内容
 
-## Overview
+### 第三章 - 交互式故事协议
+- 快速开始指南
+- 核心协议详解
+- 交互式故事模式
 
+### 第十三章 - 李诞七步写作框架
+- 七步框架详解
+- 人生模拟结局写作
+- 网文开篇写作
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wanxiang-scroll-interactive
+### 第十四章 - 异世界人生模拟
+- 回合制人生体验
+- 世界观随机生成
+- 代代相传系统
+- 自由行动AP系统
+
+## 使用方式
+
+配合主技能包 `wanxiang-scroll` 使用：
 ```
+clawhub install wanxiang-scroll
+clawhub install wanxiang-scroll-interactive
+```
+
+## 核心指令
+
+| 指令 | 功能 |
+|------|------|
+| `#主菜单` | 进入交互式故事 |
+| `#人生模拟` | 进入人生模拟模式 |
+
+---
+*万象绘卷分卷系列 - 交互系统*

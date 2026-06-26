@@ -1,35 +1,32 @@
 ---
-name: "Weather Demand"
-description: "Weather-driven demand forecasting — correlate temperature with energy/commodity trade flows, Holt-Winters predictions"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-demand"
-sourceUrl: "https://clawhub.ai/skills/weather-demand"
+name: weather-demand
+description: Weather-driven demand forecasting — correlate temperature with energy/commodity trade flows, Holt-Winters predictions
+user-invocable: true
+metadata: {"openclaw":{"requires":{"env":[]}},"homepage":"https://sputnikx.xyz","author":"SputnikX","version":"1.0.0","tags":["weather","forecast","demand","energy","commodities"]}
 ---
 
-# Weather Demand
+# Weather-Demand Forecasting
 
-> Weather-driven demand forecasting — correlate temperature with energy/commodity trade flows, Holt-Winters predictions
+Correlate Baltic weather data with commodity trade flows. Holt-Winters time series forecasting. Temperature → energy demand predictions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-demand`
-- **Source URL:** [https://clawhub.ai/skills/weather-demand](https://clawhub.ai/skills/weather-demand)
+## Base URL
 
-## Overview
+`https://sputnikx.xyz/api/v1/agent`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Demand Forecast ($0.10 x402)
 ```bash
-hermes skills install clawhub/weather-demand
+curl "https://sputnikx.xyz/api/v1/agent/trade/demand-forecast?reporter=LV&hs2=27&months=6"
 ```
+Returns: Holt-Winters forecast with confidence intervals for commodity imports.
+
+## Weather + Trade Correlation
+```bash
+curl "https://sputnikx.xyz/api/v1/agent/trade/seasonality?reporter=LV&hs2=27"
+```
+Returns: Monthly patterns showing temperature-trade correlation.
+
+## Use Cases
+- Predict heating fuel demand based on weather forecast
+- Anticipate commodity import spikes before they happen
+- Plan inventory based on seasonal weather patterns
+- Analyze climate impact on Baltic trade flows

@@ -1,35 +1,114 @@
 ---
-name: "爆款选题发现虾"
-description: "爆款选题发现虾 — 全网热点实时监控与爆款选题挖掘专家。从微博、抖音、知乎、百度、B站等平台抓取热榜数据，智能过滤匹配账号定位，分析爆款内容规律，生成可执行的选题建议，并存入飞书多维表格选题库。 **当以下情况时使用此 Skill**： (1) 用户要求监控热点、找热搜、发现爆款选题 (2) 需要分析同领域高赞内..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/viral-topic-finder-claw"
-sourceUrl: "https://clawhub.ai/skills/viral-topic-finder-claw"
+name: viral-topic-finder-claw
+description: |
+  爆款选题发现虾 — 全网热点实时监控与爆款选题挖掘专家。从微博、抖音、知乎、百度、B站等平台抓取热榜数据，智能过滤匹配账号定位，分析爆款内容规律，生成可执行的选题建议，并存入飞书多维表格选题库。
+
+  **当以下情况时使用此 Skill**：
+  (1) 用户要求监控热点、找热搜、发现爆款选题
+  (2) 需要分析同领域高赞内容的选题规律
+  (3) 需要管理选题库（存档、分类、查询）
+  (4) 需要追踪竞品账号内容策略
+  (5) 用户提到"热点监控"、"爆款选题"、"热搜"、"选题推荐"、"内容灵感"、"蹭热点"、"流量密码"、"高赞内容"、"竞品分析"、"选题库"
+  (6) 用户说"帮我找找最近有什么热点"、"看看同行发了什么爆款"、"推荐几个选题"
 ---
 
 # 爆款选题发现虾
 
-> 爆款选题发现虾 — 全网热点实时监控与爆款选题挖掘专家。从微博、抖音、知乎、百度、B站等平台抓取热榜数据，智能过滤匹配账号定位，分析爆款内容规律，生成可执行的选题建议，并存入飞书多维表格选题库。 **当以下情况时使用此 Skill**： (1) 用户要求监控热点、找热搜、发现爆款选题 (2) 需要分析同领域高赞内...
+全网热点实时监控与爆款选题挖掘。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/viral-topic-finder-claw`
-- **Source URL:** [https://clawhub.ai/skills/viral-topic-finder-claw](https://clawhub.ai/skills/viral-topic-finder-claw)
+## 核心工作流
 
-## Overview
+### 步骤 1：抓取热榜数据
 
+运行抓取脚本获取各平台实时热榜：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/viral-topic-finder-claw
+# 抓取所有平台（并行）
+python3 ~/.openclaw/skills/viral-topic-finder-claw/scripts/fetch-hotlist.py all
+
+# 抓取单个平台
+python3 ~/.openclaw/skills/viral-topic-finder-claw/scripts/fetch-hotlist.py bilibili
+python3 ~/.openclaw/skills/viral-topic-finder-claw/scripts/fetch-hotlist.py zhihu
+python3 ~/.openclaw/skills/viral-topic-finder-claw/scripts/fetch-hotlist.py baidu
 ```
+
+**注意**：微博/抖音/小红书需要 Cookie，在脚本顶部 `COOKIES` 字典中配置。B站、知乎、百度无需 Cookie。
+
+### 步骤 2：智能过滤与匹配
+
+读取 `references/account-keywords.md` 获取账号定位关键词，对热榜数据进行：
+- 关键词匹配（核心词必须命中，相关词加权）
+- 排除关键词过滤
+- 热度阈值筛选（优先推送热度 Top 20）
+- 时效性判断（优先新鲜热点）
+
+如果用户未配置账号定位，直接询问："你的账号主要做什么方向？"
+
+### 步骤 3：爆款内容分析
+
+读取 `references/viral-content-analysis.md` 获取分析框架，对筛选出的热点进行：
+- 标题结构分析（套用标题公式库）
+- 内容角度建议（12种角度中选最适合的）
+- 情绪共鸣点识别（8种情绪触发器）
+- 时效性评估（参考热点时效性判断表）
+
+### 步骤 4：生成选题推荐
+
+每个热点输出结构化选题卡片：
+
+```
+📌 选题标题（3个备选）
+🎯 内容角度：[角度类型] + 具体建议
+💡 爆款公式：[套用的标题模板]
+❤️ 情绪触发：[主要情绪] + 触发方式
+⏰ 时效窗口：[建议发布时间]
+📊 流量潜力：高/中/低
+🔧 制作难度：高/中/低
+```
+
+### 步骤 5：存入飞书选题库（可选）
+
+如果用户要求存档，将选题存入飞书多维表格。
+
+**建表结构**（首次使用时创建）：
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| 选题标题 | 文本 | 推荐的选题标题 |
+| 来源热点 | 文本 | 原始热点词条 |
+| 来源平台 | 单选 | 微博/抖音/知乎/百度/B站 |
+| 内容角度 | 单选 | 12种角度之一 |
+| 流量潜力 | 单选 | 高/中/低 |
+| 制作难度 | 单选 | 高/中/低 |
+| 时效截止 | 日期 | 建议最晚发布时间 |
+| 状态 | 单选 | 待评估/已采纳/已发布/已放弃 |
+| 创建时间 | 创建时间 | 自动 |
+
+使用 `feishu_bitable_app` 创建多维表格，`feishu_bitable_app_table_record` 批量写入记录。
+
+## 参考文件
+
+- **平台 API 详情** → `references/platform-hotlist-api.md`（各平台抓取方法、Cookie 配置）
+- **爆款分析框架** → `references/viral-content-analysis.md`（标题公式、内容角度、情绪触发器）
+- **账号关键词库** → `references/account-keywords.md`（过滤规则，需用户自定义）
+
+## 常见场景
+
+**场景 A：快速找热点**
+用户说"帮我找找最近有什么热点" → 直接运行 `fetch-hotlist.py all`，过滤后输出 Top 5-10 选题卡片。
+
+**场景 B：指定领域**
+用户说"找 AI 相关热点" → 运行脚本后，用"AI/人工智能/大模型"等关键词过滤，输出匹配选题。
+
+**场景 C：存入选题库**
+用户说"把这些选题存到飞书" → 询问是否已有多维表格，没有则创建，然后批量写入。
+
+**场景 D：竞品分析**
+用户说"看看同行最近发了什么爆款" → 询问竞品账号名称/链接，用 `web_search` 搜索其近期内容，套用爆款分析框架输出分析报告。
+
+## 注意事项
+
+- 热点时效性强，速度比完美更重要，快速给出可执行建议
+- 不是所有热点都适合，要结合账号定位过滤
+- 最终选题决策由用户判断，AI 只提供建议
+- 部分平台（微博/抖音）需要 Cookie，遇到 403 时提示用户配置

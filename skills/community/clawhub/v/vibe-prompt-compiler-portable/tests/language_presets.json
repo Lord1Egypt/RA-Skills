@@ -1,0 +1,164 @@
+[
+  {
+    "name": "compile_chinese_first_bugfix",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "修复登录接口 500",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "language_preset": "chinese-first",
+      "task_type": "bugfix",
+      "compiled_prompt_contains": [
+        "你是我的调试协作伙伴。",
+        "目标：",
+        "诊断并以最小改动修复这个问题：",
+        "当前任务：",
+        "找出根因，并应用最小且安全的修复。",
+        "验收标准：",
+        "输出要求："
+      ],
+      "assumptions_contains": [
+        "缺失细节应转成显式假设，而不是隐含猜测。"
+      ]
+    }
+  },
+  {
+    "name": "handoff_chinese_first_codex",
+    "script": "create_handoff.py",
+    "args": [
+      "--request",
+      "Build a lightweight CRM MVP",
+      "--target-tool",
+      "codex-cli",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "language_preset": "chinese-first",
+      "target_tool": "codex-cli",
+      "target_tool_label": "Codex CLI",
+      "handoff_text_contains": [
+        "请把下面这份 vibe-coding brief 作为唯一事实来源。",
+        "目标工具：Codex CLI",
+        "任务类型：new-project",
+        "编译后的 brief：",
+        "构建这个需求的最小可用版本：",
+        "假设：",
+        "非目标：",
+        "不要改动无关文件或模块。",
+        "期望交付物：",
+        "澄清后的目标",
+        "执行规则：",
+        "先简要重述目标。",
+        "Codex CLI 包装提示："
+      ],
+      "tool_instruction_contains": [
+        "以这份 brief 为唯一事实来源",
+        "优先最小 diff"
+      ]
+    }
+  },
+  {
+    "name": "compile_chinese_first_architecture",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "我们有一套 React + FastAPI + SQLite 的测试系统，想支持两个产品，数据完全隔离但功能一致，怎么设计架构？",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "language_preset": "chinese-first",
+      "task_type": "architecture-review",
+      "compiled_prompt_contains": [
+        "你是我的首席软件架构协作伙伴。",
+        "为这个需求设计一个务实可落地的架构：",
+        "把需求收敛成明确的架构决策，并给出实现路径。",
+        "规模或可靠性关注点：",
+        "关键权衡。",
+        "验证与监控建议。"
+      ]
+    }
+  },
+  {
+    "name": "compile_chinese_first_ui",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "把这个 users page 顺手 polish 一下，列表更清爽一点，再加 search 和分页。",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "language_preset": "chinese-first",
+      "task_type": "page-ui",
+      "compiled_prompt_contains": [
+        "你是我的资深前端工程协作伙伴。",
+        "实现这个 UI 需求：",
+        "设计并实现相关页面/组件，并补齐可运行状态。",
+        "用户动作：",
+        "UI 渲染正确",
+        "集成说明。"
+      ]
+    }
+  },
+  {
+    "name": "compile_chinese_first_integration",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "把我们的系统和企业微信审批打通，审批通过后自动回写状态",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "language_preset": "chinese-first",
+      "task_type": "integration",
+      "compiled_prompt_contains": [
+        "你是我的资深集成工程协作伙伴。",
+        "把当前系统与另一个服务或平台接起来：",
+        "定义并实现最小且安全的集成切片。",
+        "来源系统：",
+        "失败与重试规则。",
+        "验证清单。"
+      ]
+    }
+  },
+  {
+    "name": "compile_chinese_first_workflow",
+    "script": "compile_prompt.py",
+    "args": [
+      "--request",
+      "做一个自动化流程，定时扫描目录里的文件，解析后入库，失败就提醒我",
+      "--language-preset",
+      "chinese-first",
+      "--output",
+      "json"
+    ],
+    "checks": {
+      "language_preset": "chinese-first",
+      "task_type": "automation-workflow",
+      "compiled_prompt_contains": [
+        "你是我的自动化工作流工程协作伙伴。",
+        "设计或改进这个自动化工作流：",
+        "把需求整理成可靠、可观测的工作流，并落地最小第一版切片。",
+        "触发方式：",
+        "执行状态。",
+        "验证步骤。"
+      ]
+    }
+  }
+]

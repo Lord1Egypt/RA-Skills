@@ -1,0 +1,100 @@
+# Vue3全家桶 + Ant Design + publish-commons 技能总结
+name: vue3-antd-commons-skill
+version: 1.0.1
+author: 花不语
+slug: liyujie-vue3-antd-commons-skill-20260403
+description: Vue3全家桶+Ant Design+publish-commons开发技能总结，包含核心特性、TypeScript集成、主题定制、网络请求等内容
+keywords:
+  - vue3
+  - antd
+  - typescript
+  - composition-api
+  - vite
+  - pinia
+  - vue-router
+  - fetch
+  - publish-commons
+categories:
+  - frontend
+  - vue
+  - antd
+
+# 技能点配置
+skills:
+  - name: vue3-core
+    title: Vue3核心特性
+    description: Vue3的组合式API、响应式系统等核心功能
+    level: intermediate
+
+  - name: typescript-integration
+    title: TypeScript集成
+    description: Vue3与TypeScript的结合使用
+    level: intermediate
+
+  - name: antd-vue
+    title: Ant Design Vue
+    description: Ant Design Vue组件库的使用和主题定制
+    level: intermediate
+
+  - name: vue-router
+    title: Vue Router
+    description: Vue Router路由管理
+    level: intermediate
+
+  - name: pinia
+    title: Pinia状态管理
+    description: Pinia状态管理库的使用
+    level: intermediate
+
+  - name: network-request
+    title: 网络请求与API
+    description: fetch封装与网络请求处理
+    level: intermediate
+
+  - name: project-build
+    title: 项目构建与优化
+    description: Vite配置、性能优化和代码格式化
+    level: intermediate
+
+  - name: publish-commons
+    title: publish-commons组件库
+    description: publish-commons组件库的使用和集成
+    level: intermediate
+
+  - name: best-practices
+    title: 最佳实践
+    description: Vue3项目开发的最佳实践
+    level: intermediate
+
+# 依赖配置
+dependencies:
+  - vue: ^3.3.0
+  - antd-vue: ^4.0.0
+  - vue-router: ^4.2.0
+  - pinia: ^2.1.0
+  - vite: ^4.4.0
+  - typescript: ^5.0.0
+  - prettier: ^3.0.0
+
+# 示例配置
+examples:
+  - name: prop-type-definition
+    title: Prop类型定义
+    file: examples/prop-type-definition.md
+    description: Vue3组件Prop的TypeScript类型定义示例
+
+  - name: fetch-wrapper
+    title: Fetch封装及基础使用
+    file: examples/fetch-wrapper.md
+    description: fetch网络请求工具的封装和使用示例
+
+# 输出模板配置
+template:
+  output: templates/output-template.md
+  format: markdown
+  
+# 其他配置
+config:
+  default-theme: light
+  code-highlight: true
+  show-line-numbers: true

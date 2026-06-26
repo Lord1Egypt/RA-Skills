@@ -1,0 +1,55 @@
+{
+  "name": "大盘分析订阅",
+  "endpoint": "POST /ai/getAiTokenAnalyseResultList",
+  "description": "大盘分析是 ValueAgent 通过多维度数据，对 BTC/ETH 的行情进行综合分析的输出结果",
+  "credits_cost": 1,
+  "needToken": false,
+  "use_case": "适用于获取 BTC/ETH 的 AI 综合行情分析结果，适用于了解主力资金趋势和综合分析信号，适用于辅助判断短期行情走向",
+  "notes": "数据每5分钟更新一次，无前置条件，可直接调用",
+  "update_frequency": "每5分钟",
+  "params": {
+    "page": { "type": "integer", "req": false, "desc": "当前页，默认1" },
+    "pageSize": { "type": "integer", "req": false, "desc": "每页数量，默认10，最大100" },
+    "beginTime": { "type": "string", "req": false, "desc": "开始时间（毫秒时间戳）" },
+    "endTime": { "type": "string", "req": false, "desc": "结束时间（毫秒时间戳）" }
+  },
+  "response": {
+    "uniqueId": { "type": "string", "actualType": "string", "desc": "唯一标识" },
+    "ts": { "type": "long", "actualType": "long", "desc": "更新时间（毫秒时间戳）" },
+    "content": { "type": "string", "actualType": "string", "desc": "分析内容" }
+  },
+  "field_meta": {
+    "uniqueId": { "meaning": "消息唯一标识", "advice": "用于标识和追踪每条分析消息" },
+    "ts": { "meaning": "消息发布时间（毫秒时间戳）", "advice": "用于了解分析的时效性" },
+    "content": { "meaning": "AI 分析内容", "advice": "包含主力资金分析、综合分析、风险提示等信息" }
+  },
+  "deprecated": true,
+  "deprecation_date": "2026-06-01",
+  "deprecation_note": "本接口将于 2026-06-01 起返回错误码 50002（INTERFACE_DEPRECATED），请迁移至 POST /ai/getMarketAnalysisList",
+  "replacement": "POST /ai/getMarketAnalysisList",
+  "example": {
+    "req": {
+      "page": 1,
+      "pageSize": 10,
+      "beginTime": "1775732440000",
+      "endTime": "1775734240000"
+    },
+    "res": {
+      "code": 200,
+      "message": "success",
+      "data": [
+        {
+          "uniqueId": "645",
+          "ts": 1775734240000,
+          "content": "? BTC/ETH 日内主力资金趋势分析(ValueScan)\n⏰ 当前时间：2026-04-09 19:30:40\n? 当前币价：BTC: $71078.85 ETH:$2180.5\n\nBTC分析：\n? AI主力资金分析：日内主力资金双净流出；1h合约与现货同步大幅净流出，空头主导\n\n? AI综合分析: ?利空\n日内主力合约与现货均深度净流出；1h空头压倒性主导，价格承压于关键压力71093.99，支撑71037.53岌岌可危\n\n⚠️风险提示：若1h双市场持续净流出且跌破"
+        },
+        {
+          "uniqueId": "644",
+          "ts": 1775733940000,
+          "content": "? BTC/ETH 日内主力资金趋势分析(ValueScan)\n⏰ 当前时间：2026-04-09 19:25:40\n? 当前币价：BTC: $71175.42 ETH:$2182\n\nBTC分析：\n? AI主力资金分析：日内主力资金双净流出，1h合约空头压倒性主导\n\n? AI综合分析: ?利空\n日内主力合约现货均大幅净流出；1h合约资金断崖式流出，关键压力位71229，支撑71099承压明显。\n\n⚠️风险提示：若1h主力合约持续强流出且跌破71099.6，或加速下探707"
+        }
+      ],
+      "requestId": "xxx-xxx-xxx"
+    }
+  }
+}

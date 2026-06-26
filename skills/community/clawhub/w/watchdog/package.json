@@ -1,0 +1,29 @@
+{
+  "name": "watchdog",
+  "version": "1.0.0",
+  "description": "Official Watch.dog skill for OpenClaw. Monitors the health of websites, APIs, and scheduled tasks (cron jobs) using the Watch.dog platform.",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "watchdog": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "watchdog",
+    "monitoring",
+    "uptime",
+    "cron",
+    "mcp",
+    "openclaw",
+    "skill",
+    "clawhub"
+  ],
+  "author": "Watch.dog Team",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.22.0"
+  }
+}

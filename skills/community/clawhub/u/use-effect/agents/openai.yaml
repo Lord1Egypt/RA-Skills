@@ -1,0 +1,4 @@
+interface:
+  display_name: "Use Effect"
+  short_description: "Refactor React code away from direct useEffect."
+  default_prompt: "Use $use-effect to review this React code and replace direct useEffect usage with safer patterns."

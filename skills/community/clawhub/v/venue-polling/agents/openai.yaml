@@ -1,0 +1,7 @@
+interface:
+  display_name: "Venue Polling"
+  short_description: "Poll gym venue availability and debug booking signatures."
+  default_prompt: "Use $venue-polling to inspect, run, or modify the gym venue polling and signed booking workflow."
+
+policy:
+  allow_implicit_invocation: true

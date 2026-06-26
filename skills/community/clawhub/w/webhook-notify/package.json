@@ -1,0 +1,104 @@
+{
+  "name": "webhook-notify",
+  "version": "2.0.0",
+  "description": "通用 Webhook 通知工具，支持钉钉、企业微信、飞书、Slack、Discord、Telegram。自动识别平台，内置模板系统和重试机制。",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "keywords": [
+    "webhook",
+    "notification",
+    "dingtalk",
+    "wecom",
+    "feishu",
+    "slack",
+    "discord",
+    "telegram",
+    "alert",
+    "monitoring",
+    "batch",
+    "template"
+  ],
+  "main": "webhook-functions.ps1",
+  "files": [
+    "webhook-functions.ps1",
+    "SKILL.md",
+    "README.md",
+    "VERSIONS.md",
+    "package.json"
+  ],
+  "skills": [
+    {
+      "id": "webhook-notify",
+      "name": "Webhook Notify v2.0",
+      "description": "Unified webhook notification system with auto-platform detection, templates, and retry mechanism. Supports DingTalk, WeCom, Feishu, Slack, Discord, Telegram.",
+      "type": "tool",
+      "platforms": ["windows", "linux", "macos"],
+      "requires": {
+        "executable": "powershell"
+      },
+      "trigger": "webhook, notification, alert, dingtalk, wecom, feishu, slack, discord, telegram, batch, template",
+      "examples": [
+        "Send DingTalk notification",
+        "Alert via WeCom webhook",
+        "Send Feishu message",
+        "Notify Slack channel",
+        "Send Discord embed",
+        "Telegram bot message",
+        "Batch send to multiple platforms",
+        "Use alert template"
+      ]
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://clawhub.ai/imzhulei/webhook-notify",
+  "openclaw": {
+    "skillId": "webhook-notify",
+    "emoji": "🔔",
+    "category": "monitoring",
+    "minVersion": "1.0.0",
+    "compatibility": {
+      "runtime": "any",
+      "os": ["windows", "linux", "macos"]
+    },
+    "config": {
+      "envVars": [
+        {
+          "name": "DINGTALK_WEBHOOK",
+          "description": "钉钉 Webhook URL",
+          "required": false
+        },
+        {
+          "name": "WECOM_WEBHOOK",
+          "description": "企业微信 Webhook URL",
+          "required": false
+        },
+        {
+          "name": "FEISHU_WEBHOOK",
+          "description": "飞书 Webhook URL",
+          "required": false
+        },
+        {
+          "name": "SLACK_WEBHOOK",
+          "description": "Slack Webhook URL",
+          "required": false
+        },
+        {
+          "name": "DISCORD_WEBHOOK",
+          "description": "Discord Webhook URL",
+          "required": false
+        },
+        {
+          "name": "TELEGRAM_WEBHOOK",
+          "description": "Telegram Bot Webhook URL",
+          "required": false
+        }
+      ]
+    }
+  }
+}

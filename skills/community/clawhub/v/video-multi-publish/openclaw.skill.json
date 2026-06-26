@@ -1,0 +1,152 @@
+{
+  "id": "video-multi-publish",
+  "name": "Video Multi-Platform Publish",
+  "description": "一站式多平台视频发布工作流技能。从视频剪辑到多平台发布，全流程自动化。支持自动剪辑适配各平台格式、智能标题优化、标签推荐、最佳发布时间推荐、一键发布到微信公众号、B 站、小红书、抖音、YouTube、TikTok 等平台。",
+  "version": "1.0.0",
+  "author": "academic-assistant",
+  "license": "MIT",
+  
+  "trigger": {
+    "keywords": [
+      "视频发布",
+      "多平台发布",
+      "一键发布",
+      "video publish",
+      "multi-platform",
+      "视频剪辑发布",
+      "全媒体发布"
+    ],
+    "mode": "keyword"
+  },
+
+  "config": {
+    "ffmpeg_required": true,
+    "supported_platforms": [
+      "wechat",
+      "bilibili",
+      "xiaohongshu",
+      "douyin",
+      "youtube",
+      "tiktok"
+    ],
+    "default_platforms": ["wechat", "bilibili", "xiaohongshu", "douyin"],
+    "auto_clip": true,
+    "auto_optimize": true,
+    "auto_publish": false
+  },
+
+  "workflow": {
+    "stages": [
+      {
+        "name": "视频分析",
+        "description": "分析输入视频的基本信息",
+        "duration": "1-2 分钟"
+      },
+      {
+        "name": "自动剪辑",
+        "description": "根据目标平台自动剪辑适配格式",
+        "duration": "5-15 分钟"
+      },
+      {
+        "name": "内容优化",
+        "description": "优化标题、描述、标签",
+        "duration": "2-5 分钟"
+      },
+      {
+        "name": "平台发布",
+        "description": "发布到各平台",
+        "duration": "10-30 分钟"
+      },
+      {
+        "name": "数据分析",
+        "description": "跟踪发布数据",
+        "duration": "持续"
+      }
+    ]
+  },
+
+  "platforms": {
+    "wechat": {
+      "name": "微信公众号",
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "max_duration": 600,
+      "bitrate": "5000k",
+      "title_max_length": 64,
+      "tags_max_count": 3,
+      "best_publish_time": "20:00-22:00"
+    },
+    "bilibili": {
+      "name": "B 站",
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "max_duration": 900,
+      "bitrate": "6000k",
+      "title_max_length": 80,
+      "tags_max_count": 10,
+      "best_publish_time": "18:00-20:00"
+    },
+    "xiaohongshu": {
+      "name": "小红书",
+      "aspect_ratio": "9:16",
+      "resolution": "1080x1920",
+      "max_duration": 180,
+      "bitrate": "8000k",
+      "title_max_length": 20,
+      "tags_max_count": 5,
+      "best_publish_time": "19:00-21:00"
+    },
+    "douyin": {
+      "name": "抖音",
+      "aspect_ratio": "9:16",
+      "resolution": "1080x1920",
+      "max_duration": 300,
+      "bitrate": "8000k",
+      "title_max_length": 55,
+      "tags_max_count": 5,
+      "best_publish_time": "19:00-21:00"
+    },
+    "youtube": {
+      "name": "YouTube",
+      "aspect_ratio": "16:9",
+      "resolution": "1920x1080",
+      "max_duration": 7200,
+      "bitrate": "8000k",
+      "title_max_length": 100,
+      "tags_max_count": 15,
+      "best_publish_time": "14:00-16:00 (UTC)"
+    },
+    "tiktok": {
+      "name": "TikTok",
+      "aspect_ratio": "9:16",
+      "resolution": "1080x1920",
+      "max_duration": 180,
+      "bitrate": "8000k",
+      "title_max_length": 150,
+      "tags_max_count": 5,
+      "best_publish_time": "18:00-20:00 (local)"
+    }
+  },
+
+  "features": {
+    "auto_clip": true,
+    "auto_title_optimization": true,
+    "auto_tag_generation": true,
+    "auto_description_generation": true,
+    "best_time_scheduling": true,
+    "cross_platform_sync": true,
+    "analytics_tracking": true
+  },
+
+  "output": {
+    "format": "json",
+    "include": [
+      "剪辑后的视频文件",
+      "优化后的标题/描述/标签",
+      "发布状态",
+      "视频链接",
+      "观看统计",
+      "互动统计"
+    ]
+  }
+}

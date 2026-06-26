@@ -1,0 +1,20 @@
+{
+  "name": "video-to-text",
+  "version": "1.0.0",
+  "description": "免费视频转文字 API - 使用免费 Whisper API 将视频/音频转为文字",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "transcribe": "node index.js"
+  },
+  "keywords": [
+    "video",
+    "audio",
+    "transcription",
+    "whisper",
+    "speech-to-text",
+    "字幕"
+  ],
+  "author": "",
+  "license": "MIT"
+}

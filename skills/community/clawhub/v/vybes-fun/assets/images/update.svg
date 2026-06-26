@@ -1,0 +1,5 @@
+<svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+  <path d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4z" />
+  <path d="M17 3v5H7V3" />
+  <path d="M7 21v-8h10v8" />
+</svg>

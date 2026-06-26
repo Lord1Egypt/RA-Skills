@@ -1,0 +1,75 @@
+# ValU AI 配置文件
+# 复制此文件为 config.yaml 并填入实际值
+
+app:
+  name: "ValU AI 智能估值分析器"
+  version: "2.0.0"
+  debug: false
+  language: "zh_CN"
+
+# DeepSeek API 配置
+# API Key 获取地址: https://platform.deepseek.com/api-keys
+deepseek:
+  api_key: ""  # Set via DEEPSEEK_API_KEY environment variable
+  api_url: "https://api.deepseek.com/v1/chat/completions"
+  model: "deepseek-chat"
+  timeout: 180
+  max_retries: 3
+
+# 数据源配置
+data_sources:
+  baostock:
+    enabled: true
+    priority: 1
+  akshare:
+    enabled: true
+    priority: 2
+  tushare:
+    enabled: false
+    token: ""
+
+# 定价配置（一般不需要修改）
+pricing:
+  free:
+    quota_per_week: 2
+  pay_per_use:
+    price: 9.9
+  batch:
+    price: 29.9
+    max_stocks: 5
+  packages:
+    starter:
+      times: 10
+      original_price: 99
+      discount_price: 79
+    pro:
+      times: 30
+      original_price: 297
+      discount_price: 199
+    enterprise:
+      times: 50
+      original_price: 495
+      discount_price: 299
+
+# 股票数据配置
+stock:
+  default_days: 180
+  batch_max_size: 5
+
+# 输出配置
+output:
+  report_dir: "reports"
+  format: "markdown"
+  include_disclaimer: true
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "valu_ai.log"
+  max_size: 10
+  backup_count: 5
+
+# 用户数据存储
+storage:
+  user_data_dir: "user_data"
+  use_database: false

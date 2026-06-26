@@ -1,0 +1,32 @@
+{
+  "name": "unified-search",
+  "version": "2.0.0",
+  "description": "统一智能搜索技能 - 中文用百度，英文用DuckDuckGo，加密货币用CoinGecko",
+  "main": "scripts/unified_search.py",
+  "scripts": {
+    "test": "python scripts/unified_search.py test",
+    "search": "python scripts/unified_search.py",
+    "smart": "python scripts/smart_search.py",
+    "baidu": "python scripts/baidu_search.py"
+  },
+  "keywords": [
+    "baidu",
+    "duckduckgo",
+    "search",
+    "chinese",
+    "web-search",
+    "openclaw",
+    "cryptocurrency",
+    "coingecko",
+    "unified-search"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/unified-search-skill.git"
+  },
+  "dependencies": {
+    "python": ">=3.7"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "primaryColor": "#0A0A0A",
+  "secondaryColor": "#FFFFFF",
+  "accentColor": "#8B5CF6",
+  "overlayOpacity": 0.55,
+  "width": 1080,
+  "height": 1350,
+  "fontStyle": "clean-modern",
+  "fontSizeTitle": 64,
+  "fontSizeBody": 48,
+  "fontSizeCTA": 40,
+  "padding": 80,
+  "seriesName": "",
+  "accountHandle": "",
+  "hashtagSets": []
+}

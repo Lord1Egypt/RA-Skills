@@ -1,0 +1,53 @@
+{
+  "name": "fasterizy",
+  "version": "1.0.2",
+  "description": "Faster work with coding agents",
+  "main": "cli.js",
+  "bin": {
+    "fasterizy": "./cli.js",
+    "izy": "./cli.js"
+  },
+  "files": [
+    "cli.js",
+    "cli/",
+    "hooks/",
+    "scripts/",
+    "SKILL.md",
+    "skills/",
+    ".claude-plugin/",
+    ".codex-plugin/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "ROADMAP.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build:skill": "node scripts/embed-skill.js",
+    "sync:skills-dir": "node scripts/sync-skills-dir.js",
+    "prepublishOnly": "npm run build:skill && npm run sync:skills-dir"
+  },
+  "keywords": [
+    "coding-agent",
+    "claude-code",
+    "codex",
+    "cursor",
+    "skills"
+  ],
+  "author": "felipeinf (https://github.com/felipeinf)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felipeinf/fasterizy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/felipeinf/fasterizy/issues"
+  },
+  "homepage": "https://www.npmjs.com/package/fasterizy",
+  "type": "commonjs",
+  "dependencies": {
+    "@inquirer/prompts": "^7.10.1"
+  }
+}

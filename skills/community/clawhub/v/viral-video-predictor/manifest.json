@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "name": "viral-video-predictor",
+  "displayName": "短视频爆款预测脚本",
+  "displayNameEn": "Viral Video Script Predictor",
+  "description": "输入短视频脚本，自动预测爆款概率。分析前 3 秒钩子、节奏、情绪曲线，给出优化建议。帮助创作者提高爆款率，减少试错成本。",
+  "descriptionEn": "Input short video script, auto-predict viral potential. Analyze hook, pacing, emotion curve, give optimization suggestions.",
+  "author": "上海冰月网络科技有限公司",
+  "authorEn": "Shanghai Bingyue Network Technology Co., Ltd.",
+  "category": "内容/短视频",
+  "tags": ["短视频", "爆款预测", "脚本优化", "抖音", "快手", "视频号", "MCN"],
+  "tagsEn": ["short-video", "viral-prediction", "script", "douyin", "kuaishou", "content-creator"],
+  "price": {
+    "cny": 59,
+    "usd": 22.99,
+    "type": "one-time"
+  },
+  "pricingOptions": [
+    {
+      "name": "单次预测",
+      "priceCny": 5.9,
+      "priceUsd": 1.99,
+      "description": "预测 1 个脚本的爆款概率"
+    },
+    {
+      "name": "月度会员",
+      "priceCny": 59,
+      "priceUsd": 22.99,
+      "description": "无限次预测 + 爆款数据库"
+    }
+  ],
+  "inputs": [
+    { "name": "script", "type": "string", "required": true, "description": "短视频脚本全文" },
+    { "name": "platform", "type": "string", "required": false, "description": "目标平台（抖音/快手/视频号/B 站/小红书）", "default": "抖音" },
+    { "name": "category", "type": "string", "required": false, "description": "内容品类（剧情/知识/搞笑/美食/美妆/情感/财经/科技）", "default": "通用" },
+    { "name": "duration", "type": "number", "required": false, "description": "预期时长（秒）", "default": 60 }
+  ],
+  "outputs": [
+    { "name": "viralScore", "type": "number", "description": "爆款概率评分（0-100）" },
+    { "name": "hookAnalysis", "type": "object", "description": "前 3 秒钩子分析（类型/得分/建议）" },
+    { "name": "pacingAnalysis", "type": "object", "description": "节奏分析（信息密度/转折点/互动引导）" },
+    { "name": "emotionCurve", "type": "array", "description": "情绪曲线建议（按时间轴）" },
+    { "name": "optimizationTips", "type": "array", "description": "具体优化建议" },
+    { "name": "similarViralCases", "type": "array", "description": "相似爆款案例参考" }
+  ],
+  "compliance": "预测结果基于历史爆款数据分析，不保证实际效果。内容需遵守平台社区规范。",
+  "createdAt": "2026-04-15",
+  "updatedAt": "2026-04-15"
+}

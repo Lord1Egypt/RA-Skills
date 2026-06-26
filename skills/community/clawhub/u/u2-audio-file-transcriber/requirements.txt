@@ -1,0 +1,7 @@
+# ASR语音识别Demo依赖包
+
+# HTTP请求库
+requests>=2.31.0
+
+# urllib3 (requests的依赖)
+urllib3>=2.0.0

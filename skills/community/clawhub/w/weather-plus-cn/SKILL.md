@@ -1,35 +1,198 @@
 ---
-name: "Weather Plus Cn"
-description: "查询中国城市天气信息，提供温度、天气状况及穿衣和生活指数建议，数据来源中国天气网。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-plus-cn"
-sourceUrl: "https://clawhub.ai/skills/weather-plus-cn"
+name: weather-plus
+version: 1.0.2
+description: 查询中国城市天气信息并提供穿衣建议。使用中国天气网 (weather.com.cn) 数据。Use when: 用户询问天气、温度、穿衣建议、天气预报、出行天气准备等场景。
 ---
 
-# Weather Plus Cn
+# 天气查询技能（增强版）
 
-> 查询中国城市天气信息，提供温度、天气状况及穿衣和生活指数建议，数据来源中国天气网。
+从中国天气网获取权威天气数据，提供穿衣建议和生活指数参考。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-plus-cn`
-- **Source URL:** [https://clawhub.ai/skills/weather-plus-cn](https://clawhub.ai/skills/weather-plus-cn)
+## 何时使用
 
-## Overview
+✅ **使用此技能：**
+- "今天北京天气如何？"
+- "查询上海天气并给出穿衣建议"
+- "这周末广州会下雨吗？"
+- "明天需要带伞吗？"
+- 出行前的天气准备查询
 
+❌ **不使用此技能：**
+- 历史天气数据查询
+- 气候趋势分析
+- 专业气象数据（航空、海洋等）
+- 海外城市天气（使用 wttr.in）
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 快速开始
+
+### 方式一：使用 web_fetch 获取天气数据（推荐）
+
 ```bash
-hermes skills install clawhub/weather-plus-cn
+# 获取北京天气
+web_fetch --url "http://www.weather.com.cn/weather/101010100.shtml" --maxChars 8000
+
+# 获取黄冈天气
+web_fetch --url "http://www.weather.com.cn/weather/101200401.shtml" --maxChars 8000
+```
+
+### 方式二：使用 Python 脚本
+
+```bash
+# 基本用法
+python scripts/weather_query.py <city_code>
+
+# 示例
+python scripts/weather_query.py 101010100  # 北京
+python scripts/weather_query.py 101280101  # 广州
+```
+
+### 方式三：直接访问 wttr.in（快速查询）
+
+```bash
+# 一行式天气
+curl -s "wttr.in/Beijing?format=3"
+
+# 详细信息
+curl -s "wttr.in/Beijing?0"
+```
+
+## 城市代码
+
+常见城市代码见 `references/city_codes.md`。
+
+### 主要城市速查
+
+| 城市 | 代码 | 城市 | 代码 |
+|------|------|------|------|
+| 北京 | 101010100 | 上海 | 101020100 |
+| 广州 | 101280101 | 深圳 | 101280601 |
+| 武汉 | 101200101 | 杭州 | 101210101 |
+| 成都 | 101270101 | 西安 | 101110101 |
+| 黄冈 | 101200401 |  |  |
+
+## 穿衣建议规则
+
+根据平均温度自动生成建议：
+
+| 平均温度 | 建议 |
+|---------|------|
+| ≥28℃ | 短袖、短裤、裙子等夏季服装 |
+| 22-28℃ | 薄衬衫、T 恤、薄外套等春秋服装 |
+| 15-22℃ | 外套、毛衣、薄夹克等 |
+| 8-15℃ | 厚外套、毛衣、风衣等保暖服装 |
+| 0-8℃ | 厚羽绒服、棉衣、保暖内衣等冬季服装 |
+| <0℃ | 厚羽绒服、棉衣、帽子围巾手套等隆冬装备 |
+
+### 特殊天气补充
+
+- **雨天/雪天**：携带雨具，穿防滑防水鞋子
+- **雪天 + 低温**：路面可能结冰，注意防滑
+- **雾天/霾天**：注意交通安全，敏感人群佩戴口罩
+
+## 完整工作流程
+
+### 步骤 1：确定城市代码
+
+- 已知代码 → 直接使用
+- 未知代码 → 查阅 `references/city_codes.md`
+- 特殊城市 → 访问 weather.com.cn 查询
+
+### 步骤 2：获取天气数据
+
+使用 web_fetch 获取天气网页面：
+
+```
+web_fetch --url "http://www.weather.com.cn/weather/<city_code>.shtml" --maxChars 8000
+```
+
+### 步骤 3：解析数据
+
+从返回的 HTML 中提取：
+- 天气现象（晴、雨、雪、多云等）
+- 温度范围（最高温、最低温）
+- 风力风向
+- 生活指数（感冒、运动、洗车、紫外线等）
+
+### 步骤 4：生成穿衣建议
+
+根据温度范围和天气现象，参考上方表格生成建议。
+
+### 步骤 5：格式化输出
+
+使用以下模板输出：
+
+```
+📍 城市：[城市名]
+
+📅 今日天气
+   天气：[天气现象]
+   温度：[温度范围]
+   风力：[风力风向]
+
+👕 穿衣建议
+   [根据温度生成的建议]
+
+📊 生活指数
+   • 感冒指数：[等级] - [说明]
+   • 运动指数：[等级] - [说明]
+   • 洗车指数：[等级] - [说明]
+   • 紫外线指数：[等级] - [说明]
+```
+
+## 错误处理
+
+### 常见问题
+
+**问题 1：无法连接天气网**
+- 解决：检查网络连接，稍后重试
+- 备选：使用 wttr.in 查询
+
+**问题 2：城市代码无效**
+- 解决：验证城市代码是否正确，参考 city_codes.md
+
+**问题 3：数据解析失败**
+- 解决：天气网 HTML 结构可能变化，尝试直接读取页面内容手动解析
+
+## 注意事项
+
+1. **网络依赖**：需要访问中国天气网，确保网络畅通
+2. **请求频率**：避免短时间内频繁请求（可能触发限流）
+3. **数据时效**：天气数据每小时更新，建议查询最新数据
+4. **地域限制**：本技能主要支持中国城市，海外城市使用 wttr.in
+
+## 相关文件
+
+- `scripts/weather_query.py` - 天气查询 Python 脚本（辅助工具）
+- `references/city_codes.md` - 中国城市代码参考
+
+## 示例
+
+### 输入
+```
+查询今天北京天气，给出穿衣建议
+```
+
+### 处理
+1. 使用城市代码 101010100
+2. web_fetch 获取 http://www.weather.com.cn/weather/101010100.shtml
+3. 解析天气数据
+4. 生成穿衣建议
+
+### 输出
+```
+📍 城市：北京
+
+📅 今日天气
+   天气：晴转多云
+   温度：15℃ ~ 25℃
+   风力：北风 2-3 级
+
+👕 穿衣建议
+   建议穿外套、毛衣、薄夹克等服装；天气较好，适宜户外活动
+
+📊 生活指数
+   • 感冒指数：少发 - 无明显降温，感冒机率较低
+   • 运动指数：适宜 - 天气较好，尽情感受运动的快乐
+   • 洗车指数：适宜 - 天气较好，适合擦洗汽车
+   • 紫外线指数：中等 - 涂擦 SPF 大于 15 防晒护肤品
 ```

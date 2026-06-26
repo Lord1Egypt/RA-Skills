@@ -1,0 +1,30 @@
+{
+  "ucp": {
+    "version": "2026-04-08",
+    "capabilities": {
+      "dev.ucp.shopping.catalog.search": [{ "version": "2026-04-08" }],
+      "dev.ucp.shopping.catalog.lookup": [{ "version": "2026-04-08" }],
+      "dev.ucp.shopping.catalog": [{ "version": "2026-04-08" }],
+      "dev.ucp.shopping.cart": [{ "version": "2026-04-08" }],
+      "dev.ucp.shopping.checkout": [{ "version": "2026-04-08" }]
+    },
+    "payment_handlers": {}
+  },
+  "signing_keys": [
+    {
+      "kid": "local-key-1",
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "<base64url>",
+      "y": "<base64url>",
+      "alg": "ES256",
+      "use": "sig"
+    }
+  ],
+  "metadata": {
+    "name": "OpenClaw UCP Shopping Agent",
+    "description": "Open-source agent using The Agent Times UCP Gateway for UCP Shopping handoff.",
+    "runtime": "openclaw",
+    "skill": "ucp-gateway-skill"
+  }
+}

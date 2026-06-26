@@ -1,0 +1,16 @@
+{
+  "name": "unipile-instagram-sdk",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Unipile Instagram SDK CLI",
+  "main": "scripts/instagram.mjs",
+  "scripts": {
+    "start": "node scripts/instagram.mjs"
+  },
+  "keywords": ["instagram", "unipile", "sdk", "dm", "messaging"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "unipile-node-sdk": "^1.9.3"
+  }
+}

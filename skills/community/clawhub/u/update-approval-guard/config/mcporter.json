@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "zread": {
+      "baseUrl": "https://api.z.ai/api/mcp/zread/mcp",
+      "headers": {
+        "Authorization": "Bearer c1617c2443bc4d11b5d2733caedbb41b.f8bnnXe8iPAZ6FXI"
+      }
+    },
+    "zai-web-search": {
+      "baseUrl": "https://api.z.ai/api/mcp/web_search_prime/mcp",
+      "headers": {
+        "Authorization": "Bearer 42171faeb64146caaed22e9e7ae28c93.4TMqx5CKgWjJ73TV",
+        "Accept": "application/json, text/event-stream",
+        "Content-Type": "application/json"
+      }
+    }
+  },
+  "imports": []
+}

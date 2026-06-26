@@ -1,0 +1,16 @@
+{
+  "signatureType": "eoa",
+  "maxConcurrent": 2,
+  "rules": [
+    {
+      "trader": "k9Q2mX4L8A7ZP3R",
+      "wallet": "0xd0d6053c3c37e727402d84c14069780d360993aa",
+      "category": "CRYPTO",
+      "minPhase": "巅峰",
+      "marketSlug": "bitcoin-above-120k-on-march-31",
+      "outcome": "Yes",
+      "maxEntryPrice": 0.62,
+      "amount": 8
+    }
+  ]
+}

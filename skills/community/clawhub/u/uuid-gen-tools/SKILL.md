@@ -1,35 +1,37 @@
----
-name: "Uuid Generator"
-description: "Generate UUIDs in versions v1, v4, and v5 with options for count, namespace, name, and output format."
-category: "other"
-source: "ClawHub"
-tags: [generator, id, identifier, unique, utility, uuid, developer]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/uuid-gen-tools"
-sourceUrl: "https://clawhub.ai/skills/uuid-gen-tools"
----
+# uuid-generator
 
-# Uuid Generator
+Generate UUIDs in various formats. Supports UUID v1, v4, v5, and custom patterns.
 
-> Generate UUIDs in versions v1, v4, and v5 with options for count, namespace, name, and output format.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/uuid-gen-tools`
-- **Source URL:** [https://clawhub.ai/skills/uuid-gen-tools](https://clawhub.ai/skills/uuid-gen-tools)
+- **UUID v4** (default): Cryptographically random UUIDs
+- **UUID v1**: Time-based UUIDs with timestamp and MAC address
+- **UUID v5**: Namespace-based deterministic UUIDs (SHA-1)
+- **Bulk generate**: Generate multiple UUIDs at once
+- **Format options**: Standard, uppercase, no-dashes, URL-safe
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/uuid-gen-tools
 ```
+uuid
+uuid v4
+uuid v4 --count 10
+uuid v1
+uuid v5 ns:url "https://example.com"
+uuid --format no-dashes
+uuid --format uppercase
+```
+
+## Parameters
+
+- `version`: UUID version to generate (v1/v4/v5, default: v4)
+- `count`: Number of UUIDs to generate (default: 1)
+- `namespace`: (v5 only) Namespace: url, dns, oid, x500, or custom
+- `name`: (v5 only) Name within the namespace
+- `format`: Output format: standard/uppercase/nodashes/urlsafe
+
+## ⚠️ Disclaimer
+
+This tool is provided "as is" for informational purposes only. Data accuracy is not guaranteed. Not financial, legal, or professional advice. Always verify critical information from official sources.
+
+本工具仅供信息参考，不保证数据完全准确，不构成任何金融/法律/专业建议。请以官方来源为准。

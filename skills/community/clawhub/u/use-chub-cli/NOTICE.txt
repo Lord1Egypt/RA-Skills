@@ -1,0 +1,12 @@
+This skill includes adapted material from Context Hub.
+
+Upstream repository:
+https://github.com/andrewyng/context-hub
+
+Relevant upstream source:
+cli/skills/get-api-docs/SKILL.md
+
+Original license:
+MIT
+
+This packaged version was modified for general-purpose publishing and reuse.

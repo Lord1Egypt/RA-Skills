@@ -1,0 +1,65 @@
+{
+  "work_name": "${work_name}",
+  "chapter_range": "${chapter_range}",
+  "check_date": "${check_date}",
+  "check_type": "${check_type}",
+  "scores": {
+    "opening": {
+      "score": 0,
+      "issues": [],
+      "suggestions": []
+    },
+    "plot": {
+      "score": 0,
+      "issues": [],
+      "suggestions": []
+    },
+    "character": {
+      "score": 0,
+      "issues": [],
+      "suggestions": []
+    },
+    "language": {
+      "score": 0,
+      "issues": [],
+      "suggestions": []
+    },
+    "emotion": {
+      "score": 0,
+      "issues": [],
+      "suggestions": []
+    }
+  },
+  "total_score": 0,
+  "grade": "D",
+  "all_issues": [],
+  "all_suggestions": [],
+  "priorities": [],
+  "ai_trace_check": {
+    "connecting_words": {
+      "count": 0,
+      "examples": []
+    },
+    "degree_words": {
+      "count": 0,
+      "examples": []
+    },
+    "action_modifiers": {
+      "count": 0,
+      "examples": []
+    },
+    "feeling_words": {
+      "count": 0,
+      "examples": []
+    },
+    "metaphor_words": {
+      "count": 0,
+      "examples": []
+    },
+    "cliched_phrases": {
+      "count": 0,
+      "examples": []
+    }
+  },
+  "ai_removal_suggestions": []
+}

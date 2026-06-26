@@ -1,0 +1,38 @@
+{
+  "skill_name": "vmware-vks",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a new Kubernetes namespace 'dev-team' and deploy a 3-worker TKC cluster running K8s 1.28",
+      "expected_output": "Namespace created, TKC cluster deployed",
+      "files": [],
+      "expectations": [
+        "Uses create_namespace with cluster_id and storage_policy",
+        "Uses create_tkc_cluster with k8s_version, worker_count=3",
+        "Shows dry_run preview before actual creation"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Scale the production TKC cluster to 5 workers and get me the kubeconfig",
+      "expected_output": "Cluster scaled, kubeconfig returned",
+      "files": [],
+      "expectations": [
+        "Uses scale_tkc_cluster with worker_count=5",
+        "Uses get_tkc_kubeconfig to retrieve kubeconfig",
+        "Returns kubeconfig content or file path"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Is our vSphere cluster ready for Tanzu? Check compatibility and list available K8s versions",
+      "expected_output": "Compatibility check results and version list",
+      "files": [],
+      "expectations": [
+        "Uses check_vks_compatibility",
+        "Uses get_tkc_available_versions",
+        "Clearly reports whether VKS is supported"
+      ]
+    }
+  ]
+}

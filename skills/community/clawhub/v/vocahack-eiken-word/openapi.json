@@ -1,0 +1,90 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Eiken Etymology Master API",
+    "description": "API for VocaHack Eiken (英検) AI Skill to fetch English words, roots, affixes, compounds, and topic relations mapped against Eiken class lists.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://vocahack.com"
+    }
+  ],
+  "paths": {
+    "/api/skill/eiken": {
+      "get": {
+        "summary": "Fetch Japanese localized Eiken word etymology",
+        "description": "Queries a specific word or root across Eiken libraries (e.g., eiken1, eikenjun1). Returns a combined family of words grouped by their common property (Root, Affix, Compound, Topic).",
+        "operationId": "getEikenWord",
+        "parameters": [
+          {
+            "name": "word",
+            "in": "query",
+            "description": "The target English word or word root to be analyzed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Target Eiken word version table. Default: eiken1. Allowed: eiken1, eiken2, eiken3, eiken4, eiken5, eikenjun1, eikenjun2, eikenjun2p.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "eiken1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved etymology cluster data for Eiken.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "The queried keyword."
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "tips": {
+                      "type": "string"
+                    },
+                    "grouped_words": {
+                      "type": "array",
+                      "description": "List of words sharing the same etymology trace or root string, meant to be grouped by AI using the 'mark' attribute mapping to [語源/接辞/複合語/話題].",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "cigen": { "type": "string", "nullable": true },
+                          "word": { "type": "string" },
+                          "cixing": { "type": "string", "nullable": true },
+                          "ciyi": { "type": "string", "nullable": true },
+                          "mark": { "type": "string", "nullable": true }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameter."
+          },
+          "403": {
+            "description": "Rate limit exceeded."
+          },
+          "404": {
+            "description": "Word not found in the specified database."
+          }
+        }
+      }
+    }
+  }
+}

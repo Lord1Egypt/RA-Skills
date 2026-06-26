@@ -1,0 +1,37 @@
+{
+  "name": "主力成本",
+  "endpoint": "POST /trade/getCoinTradeCost",
+  "description": "获取代币在BTC系列、EVM系列、波场等多链上的大户实时平均持仓成本数据",
+  "credits_cost": 1,
+  "needToken": true,
+  "use_case": "适用于指定代币在链上的大户平均持仓成本数据获取，适用于主力行为分析，适用于评估当前价格相对主力成本的偏离程度",
+  "update_frequency": "根据数据实时更新",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" },
+    "startTime": { "type": "long", "req": false, "desc": "开始时间（毫秒时间戳）" },
+    "endTime": { "type": "long", "req": false, "desc": "结束时间（毫秒时间戳）" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "date": { "type": "long", "actualType": "long", "desc": "时间（毫秒时间戳）" },
+    "price": { "type": "number", "actualType": "string", "desc": "价格(USD)" },
+    "cost": { "type": "number", "actualType": "string", "desc": "主力成本(USD)" },
+    "balance": { "type": "number", "actualType": "string", "desc": "余额" }
+  },
+  "field_meta": {
+    "cost": { "meaning": "主力持仓成本", "advice": "根据大额交易加权计算的主力平均持仓成本，用于判断当前价格相对主力的盈亏状态" },
+    "balance": { "meaning": "主力持仓余额", "advice": "反映大户的持仓数量变化，持续增加表示主力在吸筹" },
+    "price": { "meaning": "代币市场价格", "advice": "与cost对比可计算价格偏离度：(price - cost) / cost * 100%" }
+  },
+  "example": {
+    "req": { "vsTokenId": 1, "startTime": 1770825600000, "endTime": 1773417600000 },
+    "res": {
+      "code": 200,
+      "data": [
+        { "vsTokenId": "1", "symbol": "BTC", "name": "Bitcoin", "date": 1770825600000, "price": "67308.55", "cost": "60410.67", "balance": "3878063.59" }
+      ]
+    }
+  }
+}

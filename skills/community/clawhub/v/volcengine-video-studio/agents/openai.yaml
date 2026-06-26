@@ -1,0 +1,4 @@
+interface:
+  display_name: "Volcengine Video Studio"
+  short_description: "Production-ready prompt, image, and draft-video generation on Volcengine"
+  default_prompt: "Use $volcengine-video-studio to run a real Volcengine video generation task from the user's prompt, image, or draft clip, then inspect or download the result if needed."

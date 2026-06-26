@@ -1,0 +1,35 @@
+{
+  "id": "13",
+  "name": "现代时尚",
+  "category": "先进制造业",
+  "keywords": [
+    "现代时尚",
+    "服装设计",
+    "时尚品牌",
+    "珠宝首饰",
+    "潮流文化",
+    "时尚科技"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "👗",
+    "maxDescriptionLength": 200
+  }
+}

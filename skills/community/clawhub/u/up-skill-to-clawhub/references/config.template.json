@@ -1,0 +1,10 @@
+{
+  "_comment": "ClawHub API configuration template. Copy to local config and fill in your values.",
+  "_comment_cn": "ClawHub API 配置模板。复制到本地配置并填入你的值。",
+  
+  "apiToken": "YOUR_CLAWHUB_API_TOKEN",
+  "ownerId": "YOUR_OWNER_ID",
+  
+  "_note": "This file should NOT be published to ClawHub. Add to .gitignore.",
+  "_note_cn": "此文件不应发布到 ClawHub。请添加到 .gitignore。"
+}

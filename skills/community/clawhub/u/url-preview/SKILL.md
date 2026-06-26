@@ -1,35 +1,39 @@
 ---
-name: "URL Preview"
-description: "Automatically extract and display titles, descriptions, and favicons for shared HTTP/HTTPS URLs to preview webpage content without visiting."
-category: "other"
-source: "ClawHub"
-tags: [utility]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/url-preview"
-sourceUrl: "https://clawhub.ai/skills/url-preview"
+name: url-preview
+description: Extract and display URL previews with title, description, and favicon. Use when user shares any HTTP/HTTPS link and wants to see what the page is about without visiting it. Triggers on: (1) User sends a URL/link, (2) User asks "这个链接是什么", "看看这个网页", "what's this link"
 ---
 
-# URL Preview
+# URL Preview Skill
 
-> Automatically extract and display titles, descriptions, and favicons for shared HTTP/HTTPS URLs to preview webpage content without visiting.
+When a user shares a URL, automatically extract and display a preview card.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/url-preview`
-- **Source URL:** [https://clawhub.ai/skills/url-preview](https://clawhub.ai/skills/url-preview)
+## How It Works
 
-## Overview
+1. User sends any HTTP/HTTPS URL
+2. Use `extract_content_from_websites` tool to fetch the page
+3. Parse and display: title, description, favicon, and a brief summary
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/url-preview
 ```
+🔗 [Page Title](URL)
+📝 Description: ...
+🌐 Site: favicon + domain
+```
+
+## Example
+
+User sends: `https://github.com/openclaw/openclaw`
+
+Output:
+```
+🔗 OpenClaw/OpenClaw
+📝 An open-source AI assistant platform...
+🌐 github.com
+```
+
+## Notes
+
+- Only works on public HTTP/HTTPS URLs
+- Respects rate limits - don't extract more than 5 URLs per minute
+- Use `maxChars: 200` in extract_content to limit description length

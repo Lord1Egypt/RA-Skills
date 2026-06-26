@@ -1,0 +1,21 @@
+{
+  "tickerFrom": "eth",
+  "networkFrom": "eth",
+  "tickerTo": "bnb-bsc",
+  "networkTo": "bsc",
+  "amount": "1.5",
+  "destinations": [
+    {
+      "address": "0xABC...",
+      "percentage": 50,
+      "ticker": "usdt",
+      "network": "bsc"
+    },
+    {
+      "address": "0xDEF...",
+      "percentage": 50,
+      "ticker": "bnb-bsc",
+      "network": "bsc"
+    }
+  ]
+}

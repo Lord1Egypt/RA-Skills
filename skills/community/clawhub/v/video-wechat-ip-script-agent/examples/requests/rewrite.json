@@ -1,0 +1,7 @@
+{
+  "action": "rewrite",
+  "payload": {
+    "originalScript": "客户不是嫌贵，是你根本没把价值讲明白。",
+    "rewriteProfile": "default_rewrite"
+  }
+}

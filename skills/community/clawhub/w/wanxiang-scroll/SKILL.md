@@ -1,35 +1,87 @@
----
-name: "Wanxiang Scroll"
-description: "游戏资料包与创意文艺工具，56种文风即时切换，交互式协作叙事，回合制异世界人生模拟，Apex创作引擎，拆书融合创作，纯指令版dsv4，文笔润色与文笔提升"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wanxiang-scroll"
-sourceUrl: "https://clawhub.ai/skills/wanxiang-scroll"
+﻿---
+name: wanxiang-scroll
+description: 游戏资料包与创意文艺工具，56种文风即时切换，交互式协作叙事，回合制异世界人生模拟，Apex创作引擎，拆书融合创作，纯指令版dsv4，文笔润色与文笔提升
+version: 3.1.0
 ---
 
-# Wanxiang Scroll
+# 万象绘卷
 
-> 游戏资料包与创意文艺工具，56种文风即时切换，交互式协作叙事，回合制异世界人生模拟，Apex创作引擎，拆书融合创作，纯指令版dsv4，文笔润色与文笔提升
+> 游戏资料包 · 创意文艺工具 | v3.1.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wanxiang-scroll`
-- **Source URL:** [https://clawhub.ai/skills/wanxiang-scroll](https://clawhub.ai/skills/wanxiang-scroll)
+万象绘卷是四种玩法合二为一：互动故事、人生模拟、创作工具、文风库。56种文风说一句就切，世界重构。
 
-## Overview
+---
 
+## 12章结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wanxiang-scroll
+**玩法篇（1-4章）**
+
+- **第一章：核心系统** - 导演人格、世界法则、交互指令、角色设定
+- **第二章：互动故事** - 你和AI导演协作编故事
+- **第三章：剧情管理** - 推进、总结、节奏、多线
+- **第四章：人生模拟** - 异世界人生，代代相传
+
+**创作篇（5-7章）**
+
+- **第五章：文风系统** - 56种文风12大区，说一句就切
+- **第六章：创作引擎** - Apex引擎、直述法、氛围感、题材融合
+- **第七章：质量控制** - 文笔润色、违禁词、文本净化
+
+**内容篇（8-9章）**
+
+- **第八章：网文创作** - 黄金三章到成稿全流程
+- **第九章：拆书融合** - 六维提取+四换三融合
+
+**工具篇（10-12章）**
+
+- **第十章：辅助工具** - 角色工具、小说工具、炸弹理论
+- **第十一章：李诞七步** - 知识写作七步框架
+- **第十二章：纯指令版** - dsv4三版融合，复制粘贴即用
+
+---
+
+## 文档在哪
+
 ```
+references/
+├── ch01-核心系统/      # 导演+世界+交互+角色设定
+├── ch02-互动故事/      # 交互式故事玩法
+├── ch03-剧情管理/      # 推进+总结+节奏
+├── ch04-人生模拟/      # 异世界人生引擎
+├── ch05-文风系统/      # 56种文风+9种独立配置
+├── ch06-创作引擎/      # Apex+直述法+氛围感+题材融合
+├── ch07-质量控制/      # 文笔润色+违禁词+净化指令
+├── ch08-网文创作/      # 黄金三章→细纲→平台适配
+├── ch09-拆书融合/      # 四换三融合10步工作流
+├── ch10-辅助工具/      # 角色+小说工具+炸弹理论
+├── ch11-李诞七步/      # 知识写作框架
+├── ch12-纯指令版/      # dsv4三版融合
+└── 原始草稿/           # 最早版本存档（64个条目）
+```
+
+---
+
+## 怎么用
+
+**切文风** - 跟AI说："用网文爽文风格写一段..." 或 "切换到悬疑推理风格"
+
+**写小说** - 翻参考文档里的模板和流程，查文风特征，参考故事结构
+
+**玩互动故事** - 你说场景和选择，AI导演编剧情。用 `/行动` `/扮演` 推进，自然语言也行
+
+**跑人生模拟** - AI生成角色和开局，每回合做选择。死了传给下一代继续
+
+**用纯指令版** - 复制 `references/ch12-纯指令版/01-dsv4-merged.md` 的内容，粘贴到任意AI即可。需要强化口是心非、暗恋拉扯、差异化对待时，叠加 `references/ch12-纯指令版/02-character-personality-engine.md`
+
+---
+
+## 版本历史
+
+- v3.1.0 - 12章重新排序，角色设定合并进核心系统，全部index重写
+- v3.0.0 - 全章节重写格式化，新增纯指令版，原始草稿合并进ch目录
+- v2.9.0 - 文笔润色重新定位
+- v2.0.0 - 初始版本
+
+---
+
+*万象绘卷 - 游戏资料包 · 创意文艺工具*

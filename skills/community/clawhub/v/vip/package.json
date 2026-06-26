@@ -1,0 +1,22 @@
+{
+  "name": "vip",
+  "version": "2.0.0",
+  "description": "唯品会购物助手 Skill - 支持搜索、限时特卖、库存检查、加购物车，支付环节留给用户",
+  "main": "SKILL.md",
+  "keywords": [
+    "vip",
+    "vipshop",
+    "唯品会",
+    "shopping",
+    "flash-sale",
+    "discount",
+    "ecommerce",
+    "openclaw-skill"
+  ],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/vip.git"
+  }
+}

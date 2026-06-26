@@ -1,35 +1,44 @@
 ---
-name: "udon noodle recipe search"
-description: "Search and browse 100 curated Japanese udon noodle recipes from Cookpad. Use when the user asks about udon recipes, wants udon dish ideas, searches for udon..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/udon"
-sourceUrl: "https://clawhub.ai/skills/udon"
+name: udon
+description: >
+  Search and browse 100 curated Japanese udon noodle recipes from Cookpad.
+  Use when the user asks about udon recipes, wants udon dish ideas, searches for
+  udon by ingredient (e.g. curry, miso, egg, kimchi, salmon), or mentions udon cooking.
+  Covers grilled udon (yaki-udon), cold udon, nabeyaki, curry udon, miso udon, and more.
 ---
 
-# udon noodle recipe search
+# Udon Recipe Search
 
-> Search and browse 100 curated Japanese udon noodle recipes from Cookpad. Use when the user asks about udon recipes, wants udon dish ideas, searches for udon...
+Search 100 Japanese udon recipes by keyword, ingredient, category, or recipe number.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/udon`
-- **Source URL:** [https://clawhub.ai/skills/udon](https://clawhub.ai/skills/udon)
+## Quick Start
 
-## Overview
+Run the search script:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/udon
+python <skill_dir>/scripts/search_udon.py [keyword]
 ```
+
+### Examples
+- List all 100 recipes: `python search_udon.py`
+- Search by ingredient: `python search_udon.py curry`
+- Search by style: `python search_udon.py cold`
+- Search by protein: `python search_udon.py salmon`
+- Get a specific recipe: `python search_udon.py 42`
+
+Common categories: `grilled`, `cold`, `simmered`, `curry`, `miso`, `egg`, `meat`, `seafood`, `natto`, `kimchi`, `vegetable`, `quick`.
+
+## Workflow
+
+1. Run `search_udon.py` with the user's keyword(s).
+2. If no matches, suggest browsing all recipes or trying a broader keyword.
+3. If multiple matches, show the top results and offer to narrow down.
+4. If user picks a number, show that specific recipe with ingredients and link.
+
+## Resources
+
+### references/recipes.md
+Full recipe list with ingredients and Cookpad links. Loaded only when browsing all recipes or when deep context is needed.
+
+### scripts/search_udon.py
+Search script — parse recipes, filter by keyword, format output. No dependencies beyond Python 3 stdlib.

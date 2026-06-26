@@ -1,35 +1,109 @@
 ---
-name: "Universal Business Skill System"
-description: "通用行业业务技能体系。基于"任务为中心，AI Pipeline驱动"思想，适用于任何行业的结构化业务能力框架。覆盖情报采集、内容生产、活动运营、数据分析、知识管理、合规风控、客户运营、流程协同、资质认证、供应链运营十大业务流。内置12个行业校准模板（消费与零售、平台与数字、专业与知识、制造与工业、强监管、资产运营..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/universal-business-skill-system"
-sourceUrl: "https://clawhub.ai/skills/universal-business-skill-system"
+name: universal-business-skill-system
+author: 王教成 Wang Jiaocheng (波动几何)
+description: 通用行业业务技能体系。基于"任务为中心，AI Pipeline驱动"思想，适用于任何行业的结构化业务能力框架。覆盖情报采集、内容生产、活动运营、数据分析、知识管理、合规风控、客户运营、流程协同、资质认证、供应链运营十大业务流。内置12个行业校准模板（消费与零售、平台与数字、专业与知识、制造与工业、强监管、资产运营6大分组），支持轻量校准和完整仿造两种行业适配方式。触发词：业务、运营、技能体系、行业技能、能力单元、Pipeline、业务流程、情报、内容、活动、数据、知识、合规、客户、流程、认证、供应链、行业分析、竞品分析、市场调研、内容营销、活动策划、数据分析、培训、合规审核、客户运营、项目管理、资质认证、供应链管理、行业校准、通用技能。
 ---
 
-# Universal Business Skill System
+# 通用行业业务技能体系
 
-> 通用行业业务技能体系。基于"任务为中心，AI Pipeline驱动"思想，适用于任何行业的结构化业务能力框架。覆盖情报采集、内容生产、活动运营、数据分析、知识管理、合规风控、客户运营、流程协同、资质认证、供应链运营十大业务流。内置12个行业校准模板（消费与零售、平台与数字、专业与知识、制造与工业、强监管、资产运营...
+适用于任何行业的结构化业务能力框架。覆盖情报采集、内容生产、活动运营、数据分析、知识管理、合规风控、客户运营、流程协同、资质认证、供应链运营十大业务流。内置12个行业校准模板（6大分组），支持轻量校准和完整仿造两种行业适配方式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/universal-business-skill-system`
-- **Source URL:** [https://clawhub.ai/skills/universal-business-skill-system](https://clawhub.ai/skills/universal-business-skill-system)
+触发词：业务、运营、技能体系、行业技能、能力单元、Pipeline、业务流程、情报、内容、活动、数据、知识、合规、客户、流程、认证、供应链、行业分析、竞品分析、市场调研、内容营销、活动策划、数据分析、培训、合规审核、客户运营、项目管理、资质认证、供应链管理、行业校准、通用技能。
 
-## Overview
+## 核心理念
 
+**行业无关，业务通用。** 十大集群覆盖任何组织都存在的核心业务职能。行业差异通过"校准层"注入，框架层零修改。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/universal-business-skill-system
-```
+**每个能力单元是一个可独立执行、可自由组合的原子任务。** AI拿到输入就能执行，输出可被任意其他单元消费。
+
+## 能力单元Schema
+
+每个单元包含5个字段：
+
+| 字段 | 说明 |
+|------|------|
+| **输入** | 启动所需的数据/上下文，标注必选/可选 |
+| **输出** | 产物格式与颗粒度 |
+| **依赖** | 前置必须完成的单元ID，无依赖=入口单元 |
+| **AI自治度** | ⬛全自动 / 🟨半自动(需人工确认) / ⬜辅助(人工主导) |
+| **组合接口** | 输出可被哪些单元消费（→单元ID列表） |
+
+## 执行规则
+
+1. **必读加载**：首次使用本技能时，必须用Read工具读取 `references/index-and-pipelines.md` 获取完整单元索引和Pipeline编排，这是执行所有后续操作的前提
+2. **行业校准优先**：首次使用时，识别用户所属行业，读取`references/industry-calibration.md`完成校准，将行业特定知识注入后续所有单元执行
+3. **按需加载**：识别集群后，用Read工具读取对应参考文件获取完整单元规格
+4. **依赖检查**：执行前确认依赖单元的输出已就绪，缺失则先执行依赖
+5. **自由组合**：无依赖冲突的单元可并行；有依赖的按序执行
+6. **跨集群流转**：一个单元的输出可作为另一集群单元的输入，按组合接口串联
+7. **Pipeline复用**：常见业务场景已有预编排Pipeline，读取`references/pipeline-templates.md`直接使用或按需调整
+
+## 集群路由
+
+| 用户意图关键词 | 集群 | 参考文件 |
+|---------------|------|---------|
+| 竞品、监测、政策、舆情、情报、趋势、市场调研、行业分析 | C1 情报采集 | references/C1-intelligence.md |
+| 内容、文案、素材、品牌、传播、营销内容、一源多端、SEO | C2 内容生产 | references/C2-content.md |
+| 会议、活动、策划、执行、展会、促销、运营活动 | C3 活动运营 | references/C3-activity.md |
+| 数据分析、ROI、预算、战略、SWOT、报表、仪表盘、指标 | C4 数据分析 | references/C4-analytics.md |
+| 知识库、培训、SOP、文档、学习、问答、胜任力 | C5 知识管理 | references/C5-knowledge.md |
+| 合规、风控、审核、安全、审计、合规检查、风险评估 | C6 合规风控 | references/C6-compliance.md |
+| 客户、KOL、用户运营、会员、拜访、CRM、客户分级、满意度 | C7 客户运营 | references/C7-customer.md |
+| 流程、协同、跨部门、项目、供应商、危机、治理 | C8 流程协同 | references/C8-workflow.md |
+| 资质、认证、许可、牌照、审批、监管、备案 | C9 资质认证 | references/C9-qualification.md |
+| 供应链、采购、库存、物流、质量、生产、运维、基础设施 | C10 运营保障 | references/C10-operations.md |
+
+## 单元索引概览
+
+| 集群 | 单元数 |
+|------|--------|
+| C1 情报采集与监测 | 21 |
+| C2 内容生产与传播 | 16 |
+| C3 活动运营与执行 | 21 |
+| C4 数据分析与决策 | 43 |
+| C5 知识管理与培训 | 32 |
+| C6 合规审核与风控 | 31 |
+| C7 客户与伙伴运营 | 23 |
+| C8 流程自动化与协同 | 49 |
+| C9 资质认证与监管 | 25 |
+| C10 供应链与运营保障 | 25 |
+
+**合计：286个能力单元**
+
+完整单元索引表（含ID、名称、自治度、依赖）见 `references/index-and-pipelines.md`
+
+## 行业校准
+
+本技能通过**行业校准层**适配不同行业。首次使用时：
+
+1. 识别用户所属行业
+2. 读取 `references/industry-calibration.md` 获取校准指引
+3. 将行业特定术语、法规、流程特征注入单元执行上下文
+4. 后续所有单元自动适配该行业语境
+
+**已内置校准**：12个行业，6大分组
+
+| 分组 | 行业 |
+|------|------|
+| 消费与零售 | 电商、快消/零售、餐饮 |
+| 平台与数字 | 互联网/平台、SaaS |
+| 专业与知识 | 咨询、教育 |
+| 制造与工业 | 制造、汽车 |
+| 强监管 | 医药、金融 |
+| 资产运营 | 房地产 |
+
+**自定义行业**：提供行业名称和3-5个核心业务场景，自动就近匹配分组并生成校准配置
+
+## Pipeline模板
+
+常见业务场景的跨集群组合已预编排，读取 `references/pipeline-templates.md` 获取完整Pipeline列表，包括：
+
+- 新品上市全流程
+- 竞品应对战
+- 年度规划
+- 预算管控闭环
+- 客户深度运营
+- 合规体系建设
+- 供应商全生命周期
+- 危机公关
+- 数字化转型

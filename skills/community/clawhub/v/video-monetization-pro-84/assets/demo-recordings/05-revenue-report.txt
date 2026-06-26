@@ -1,0 +1,13 @@
+📊 生成收益报告...
+✅ 收益报告生成完成
+📄 文件：/Users/huang/.openclaw/workspace/knowledge/platforms/2026-04-02-revenue-report.md
+
+下一步：
+1. 编辑 /Users/huang/.openclaw/workspace/knowledge/platforms/2026-04-02-revenue-report.md 填充真实数据
+2. 通过飞书发送给大黄（每日 09:00 自动）
+3. 根据建议优化后续创作
+
+💡 提示：配置 API 后可自动获取数据
+- B 站：官方 API + WBI 签名
+- 抖音：MediaCrawler（需登录态）
+- YouTube：Data API v3（需 OAuth）

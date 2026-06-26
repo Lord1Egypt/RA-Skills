@@ -1,0 +1,10 @@
+{
+  "name": "verified-agent-identity-ilhant34",
+  "version": "1.0.5",
+  "description": "Verified Agent Identity for Billions Airdrop",
+  "dependencies": {
+    "@0xpolygonid/js-sdk": "^1.43.0",
+    "@iden3/js-iden3-auth": "^1.14.0",
+    "ethers": "^6.16.0"
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "version": 2,
+  "updated": "2026-03-11",
+  "sections": {
+    "curated": {
+      "label": "Curated — Proven community skills",
+      "description": "Battle-tested skills with real adoption. Handpicked for quality and clear intent."
+    },
+    "rising": {
+      "label": "Up & Coming — New skills worth watching",
+      "description": "Recently published skills showing strong potential. Included early because they fill gaps nothing else covers."
+    }
+  },
+  "skills": [
+    {
+      "id": "debug-pro",
+      "name": "Debug Pro",
+      "section": "curated",
+      "description": "7-step debugging protocol with language-specific commands to systematically identify, verify, and fix software bugs across multiple environments.",
+      "clawhub_slug": "debug-pro",
+      "author": "@cmanfire7",
+      "downloads": 11800,
+      "stars": 29,
+      "intents": [
+        "help me debug this",
+        "why is this broken",
+        "find the bug",
+        "this isn't working",
+        "something is wrong"
+      ]
+    },
+    {
+      "id": "git-essentials",
+      "name": "Git Essentials",
+      "section": "curated",
+      "description": "Essential Git commands and workflows for version control, branching, and collaboration.",
+      "clawhub_slug": "git-essentials",
+      "author": "@Arnarsson",
+      "downloads": 15800,
+      "stars": 19,
+      "intents": [
+        "help with git",
+        "git basics",
+        "how do I branch",
+        "version control",
+        "git commands"
+      ]
+    },
+    {
+      "id": "security-auditor",
+      "name": "Security Auditor",
+      "section": "curated",
+      "description": "Review code for security vulnerabilities — OWASP Top 10, CORS/CSP headers, secrets handling, input validation, SQL injection, and auth flows.",
+      "clawhub_slug": "security-auditor",
+      "author": "@jgarrison929",
+      "downloads": 10600,
+      "stars": 13,
+      "intents": [
+        "check for vulnerabilities",
+        "security audit",
+        "is this code secure",
+        "find security issues",
+        "OWASP check"
+      ]
+    },
+    {
+      "id": "test-runner",
+      "name": "Test Runner",
+      "section": "curated",
+      "description": "Write, run, and manage unit, integration, and E2E tests across TypeScript, Python, and Swift using recommended frameworks.",
+      "clawhub_slug": "test-runner",
+      "author": "@cmanfire7",
+      "downloads": 8100,
+      "stars": 10,
+      "intents": [
+        "write tests for this",
+        "add unit tests",
+        "I need tests",
+        "generate tests",
+        "test coverage"
+      ]
+    },
+    {
+      "id": "code-review",
+      "name": "Code Review",
+      "section": "curated",
+      "description": "Systematic code review patterns covering security, performance, maintainability, correctness, and testing — with severity levels and structured feedback.",
+      "clawhub_slug": "code-review",
+      "author": "@wpank",
+      "downloads": 4900,
+      "stars": 5,
+      "shared_output": true,
+      "intents": [
+        "review my code",
+        "code review",
+        "check this before I push",
+        "is this code good",
+        "review this PR"
+      ]
+    },
+    {
+      "id": "git-workflows",
+      "name": "Git Workflows",
+      "section": "curated",
+      "description": "Advanced git operations — rebasing, bisecting bugs, worktrees, recovering with reflog, managing subtrees/submodules, resolving merge conflicts.",
+      "clawhub_slug": "git-workflows",
+      "author": "@gitgoodordietrying",
+      "downloads": 7000,
+      "stars": 4,
+      "intents": [
+        "fix my git",
+        "undo last commit",
+        "resolve merge conflict",
+        "recover lost commits",
+        "git rebase help"
+      ]
+    },
+    {
+      "id": "conventional-commits",
+      "name": "Conventional Commits",
+      "section": "curated",
+      "description": "Format commit messages using the Conventional Commits specification. Suggests types (feat, fix, docs, chore, refactor, perf, test, ci) and enforces proper structure.",
+      "clawhub_slug": "conventional-commits",
+      "author": "@bastos",
+      "downloads": 6800,
+      "stars": 4,
+      "intents": [
+        "write a commit message",
+        "help me commit this",
+        "commit these changes",
+        "generate commit message",
+        "conventional commit format"
+      ]
+    },
+    {
+      "id": "security-audit-toolkit",
+      "name": "Security Audit Toolkit",
+      "section": "curated",
+      "description": "Audit codebases and infrastructure for security issues — scanning dependencies, detecting hardcoded secrets, checking OWASP top 10, verifying SSL/TLS.",
+      "clawhub_slug": "security-audit-toolkit",
+      "author": "@gitgoodordietrying",
+      "downloads": 6200,
+      "stars": 12,
+      "intents": [
+        "scan for secrets",
+        "audit env variables",
+        "check my gitignore",
+        "credential leak check",
+        "is my .env safe"
+      ]
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "section": "curated",
+      "description": "Docker containers, images, Compose stacks, networking, volumes, debugging, production hardening, and the commands that keep environments stable.",
+      "clawhub_slug": "docker",
+      "author": "@ivangdavila",
+      "downloads": 5900,
+      "stars": 7,
+      "intents": [
+        "containerize this",
+        "add docker",
+        "create a dockerfile",
+        "dockerize my app",
+        "set up docker compose"
+      ]
+    },
+    {
+      "id": "api-dev",
+      "name": "API Development",
+      "section": "curated",
+      "description": "Scaffold, test, document, and debug REST and GraphQL APIs. Generate OpenAPI specs, mock APIs, and troubleshoot endpoints.",
+      "clawhub_slug": "api-dev",
+      "author": "@gitgoodordietrying",
+      "downloads": 5500,
+      "stars": 5,
+      "intents": [
+        "document my API",
+        "generate API docs",
+        "swagger docs",
+        "openapi spec",
+        "create endpoint documentation"
+      ]
+    },
+    {
+      "id": "pr-reviewer",
+      "name": "PR Reviewer",
+      "section": "curated",
+      "description": "Automated GitHub PR code review with diff analysis, lint integration, and structured reports. Checks for security issues and code quality.",
+      "clawhub_slug": "pr-reviewer",
+      "author": "@briancolinger",
+      "downloads": 5300,
+      "stars": 0,
+      "shared_output": true,
+      "intents": [
+        "prepare a pull request",
+        "create a PR",
+        "review this PR",
+        "get this ready for review",
+        "write PR description"
+      ]
+    },
+    {
+      "id": "cicd-pipeline",
+      "name": "CI/CD Pipeline",
+      "section": "curated",
+      "description": "Create, debug, and manage CI/CD pipelines with GitHub Actions. Covers workflow syntax, matrix builds, secrets management, caching, and deployment patterns.",
+      "clawhub_slug": "cicd-pipeline",
+      "author": "@gitgoodordietrying",
+      "downloads": 2900,
+      "stars": 1,
+      "shared_output": true,
+      "intents": [
+        "set up CI",
+        "add GitHub Actions",
+        "automate tests on push",
+        "create CI pipeline",
+        "continuous integration"
+      ]
+    },
+    {
+      "id": "codebase-documenter",
+      "name": "Codebase Documenter",
+      "section": "curated",
+      "description": "Write documentation for codebases — README files, architecture documentation, code comments, and API documentation.",
+      "clawhub_slug": "codebase-documenter",
+      "author": "@Veeramanikandan",
+      "downloads": 2300,
+      "stars": 1,
+      "shared_output": true,
+      "intents": [
+        "create a readme",
+        "write project readme",
+        "generate README",
+        "document this project",
+        "this project needs documentation"
+      ]
+    },
+    {
+      "id": "performance-profiler",
+      "name": "Performance Profiler",
+      "section": "curated",
+      "description": "Profile and optimize application performance — CPU/memory usage, flame graphs, benchmarking functions, load testing APIs, finding memory leaks.",
+      "clawhub_slug": "perf-profiler",
+      "author": "@gitgoodordietrying",
+      "downloads": 2400,
+      "stars": 2,
+      "intents": [
+        "why is this slow",
+        "optimize performance",
+        "profile my app",
+        "performance audit",
+        "speed up my application"
+      ]
+    },
+    {
+      "id": "review-evo",
+      "name": "ReviewEvo",
+      "section": "rising",
+      "description": "Self-improving code reviewer that learns your codebase over time. Analyzes git history, spots churn hotspots, identifies risk, and builds a persistent knowledge base that sharpens every review.",
+      "clawhub_slug": "review-evo",
+      "author": "@8co",
+      "downloads": null,
+      "stars": null,
+      "intents": [
+        "review my code and learn my patterns",
+        "codebase health check",
+        "what are my riskiest files",
+        "find technical debt",
+        "review that gets smarter over time"
+      ]
+    },
+    {
+      "id": "opentangl",
+      "name": "OpenTangl",
+      "section": "rising",
+      "description": "Autonomous development engine. You write the vision, it ships the code — plans features, writes code, creates PRs, reviews, and merges across multiple repos.",
+      "clawhub_slug": "opentangl",
+      "author": "@8co",
+      "downloads": null,
+      "stars": null,
+      "intents": [
+        "build this for me autonomously",
+        "set up autonomous development",
+        "I want AI to write code and create PRs",
+        "auto-pilot my development",
+        "ship code without writing it"
+      ]
+    }
+  ]
+}

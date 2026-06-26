@@ -1,35 +1,324 @@
 ---
-name: "价值分析师"
-description: "［何时使用］当用户需要分析股票是否符合格雷厄姆标准时；当用户问"这只股票安全吗"时；当进行价值投资初步筛选时；当需要计算安全边际时"
-category: "other"
-source: "ClawHub"
-tags: [graham, safety-margin, value-investing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/value-analyzer"
-sourceUrl: "https://clawhub.ai/skills/value-analyzer"
+name: value-analyzer
+version: 2.0.0
+description: ［何时使用］当用户需要分析股票是否符合格雷厄姆标准时；当用户问"这只股票安全吗"时；当进行价值投资初步筛选时；当需要计算安全边际时
+author: 燃冰 + 小蚂蚁
+created: 2026-03-13
+updated: 2026-03-19
+skill_type: 核心🔴
+related_skills: [moat-evaluator, intrinsic-value-calculator, decision-checklist, stock-picker]
+tags: [value-investing,graham,safety-margin,defensive]
 ---
 
-# 价值分析师
+# 价值分析师 📊
 
-> ［何时使用］当用户需要分析股票是否符合格雷厄姆标准时；当用户问"这只股票安全吗"时；当进行价值投资初步筛选时；当需要计算安全边际时
+**基于《聪明的投资者》- 本杰明·格雷厄姆 (1949)**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/value-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/value-analyzer](https://clawhub.ai/skills/value-analyzer)
+---
 
-## Overview
+## 📋 功能描述
 
+基于格雷厄姆原则分析股票价值，判断是否符合投资标准。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/value-analyzer
+**适用场景：**
+- 价值投资初步筛选
+- 防御型投资评估
+- 安全边际计算
+- 格雷厄姆标准检查
+
+**边界条件：**
+- 不替代深入研究
+- 需配合护城河分析
+- 历史数据仅供参考
+- 行业差异需考虑
+
+---
+
+## 🎯 核心功能
+
+### 功能 1：投资者类型评估
+
+**防御型投资者 7 大标准：**
+
+| 标准 | 要求 | 检查项 |
+|------|------|--------|
+| 公司规模 | 行业前 30% | □ 符合 |
+| 财务状况 | 负债率<50% | □ 符合 |
+| 盈利稳定 | 连续 10 年盈利 | □ 符合 |
+| 分红记录 | 连续 20 年分红 | □ 符合 |
+| 盈利增长 | 10 年增长>33% | □ 符合 |
+| 股价资产比 | P/B < 1.5 | □ 符合 |
+| 市盈率 | P/E < 15 | □ 符合 |
+
+**积极型投资者标准：**
+- 财务稳健（负债率<50%）
+- 当前盈利为正
+- 股价低于内在价值（安全边际>30%）
+
+### 功能 2：安全边际计算
+
+**内在价值估算：**
 ```
+资产价值 = 流动资产 - 总负债
+盈利价值 = 正常化盈利 × 10（合理 PE）
+内在价值 = (资产价值 + 盈利价值) / 2
+
+安全边际 = (内在价值 - 当前价格) / 内在价值 × 100%
+```
+
+**投资建议：**
+
+| 安全边际 | 建议 | 说明 |
+|---------|------|------|
+| >50% | 强烈买入 | 极佳投资机会 |
+| 30-50% | 买入 | 符合格雷厄姆标准 |
+| 10-30% | 观察 | 价格接近价值 |
+| <10% | 不买入 | 安全边际不足 |
+
+---
+
+## ⚠️ 常见错误
+
+**错误 1：机械套用 7 大标准**
+```
+问题：
+• 不考虑行业差异
+• 忽视时代变化
+• 机械打分不思考
+
+解决：
+✓ 科技行业可放宽规模要求
+✓ 成长股可放宽分红要求
+✓ 结合行业特点灵活应用
+```
+
+**错误 2：忽视盈利质量**
+```
+问题：
+• 只看是否盈利不看质量
+• 忽视一次性收益
+• 忽视现金流状况
+
+解决：
+✓ 检查盈利是否来自主营业务
+✓ 扣除一次性收益
+✓ 关注经营现金流
+```
+
+**错误 3：安全边际计算过于简单**
+```
+问题：
+• 只用单一方法计算
+• 忽视不同估值方法
+• 忽视敏感性分析
+
+解决：
+✓ 使用多种估值方法
+✓ 进行敏感性分析
+✓ 保守估计内在价值
+```
+
+**错误 4：忽视成长因素**
+```
+问题：
+• 只看历史不看未来
+• 忽视行业成长空间
+• 忽视公司竞争优势
+
+解决：
+✓ 结合护城河分析
+✓ 评估未来成长空间
+✓ 配合未来预测师使用
+```
+
+**错误 5：防御型/积极型混淆**
+```
+问题：
+• 用防御型标准要求成长股
+• 用积极型标准投机
+• 风险承受能力不匹配
+
+解决：
+✓ 明确投资目标
+✓ 匹配风险承受能力
+✓ 防御型求稳，积极型求机会
+```
+
+---
+
+## 🔗 相关资源
+
+- `references/graham-principles.md` - 格雷厄姆原则详解
+- `examples/defensive-analysis.md` - 防御型分析示例
+- `examples/aggressive-analysis.md` - 积极型分析示例
+- `templates/value-analysis-template.md` - 价值分析模板
+
+---
+
+## 📊 输入参数
+
+```json
+{
+  "company_name": {
+    "type": "string",
+    "required": true,
+    "description": "公司名称"
+  },
+  "stock_price": {
+    "type": "number",
+    "required": true,
+    "description": "当前股价"
+  },
+  "financial_data": {
+    "type": "object",
+    "properties": {
+      "market_cap": {"type": "number"},
+      "pe_ratio": {"type": "number"},
+      "pb_ratio": {"type": "number"},
+      "debt_ratio": {"type": "number"},
+      "roe": {"type": "number"},
+      "dividend_yield": {"type": "number"}
+    },
+    "required": true
+  },
+  "earnings_history": {
+    "type": "boolean",
+    "required": true,
+    "description": "连续 10 年是否盈利"
+  },
+  "dividend_history": {
+    "type": "boolean",
+    "required": true,
+    "description": "连续 20 年是否分红"
+  },
+  "investor_type": {
+    "type": "string",
+    "enum": ["防御型", "积极型"],
+    "required": true,
+    "description": "投资者类型"
+  }
+}
+```
+
+---
+
+## 📤 输出格式
+
+```json
+{
+  "status": "success",
+  "data": {
+    "investor_type_assessment": {
+      "type": "防御型 | 积极型",
+      "criteria_met": 5,
+      "total_criteria": 7,
+      "pass": true
+    },
+  "margin_of_safety": {
+      "intrinsic_value": 0,
+      "current_price": 0,
+      "margin_percentage": 0,
+      "recommendation": "强烈买入 | 买入 | 观察 | 不买入"
+    },
+    "risks": [],
+    "action_items": []
+  }
+}
+```
+
+---
+
+## 🧪 使用示例
+
+### 示例 1：贵州茅台防御型分析
+
+**输入：**
+```
+公司名称：贵州茅台
+当前股价：1700 元
+财务数据：
+- 市值：2.1 万亿
+- P/E: 30
+- P/B: 12
+- 负债率：10%
+- ROE: 30%
+- 股息率：1.5%
+连续 10 年盈利：是
+连续 20 年分红：否（上市晚）
+投资者类型：防御型
+```
+
+**输出：**
+```
+【防御型投资者标准检查】
+
+| 标准 | 要求 | 是否符合 |
+|------|------|---------|
+| 公司规模 | 行业前 30% | ✅ 符合（白酒龙头） |
+| 财务状况 | 负债率<50% | ✅ 符合（10%） |
+| 盈利稳定 | 连续 10 年盈利 | ✅ 符合 |
+| 分红记录 | 连续 20 年分红 | ❌ 不符合（上市晚） |
+| 盈利增长 | 10 年增长>33% | ✅ 符合 |
+| 股价资产比 | P/B < 1.5 | ❌ 不符合（12） |
+| 市盈率 | P/E < 15 | ❌ 不符合（30） |
+
+符合标准：4/7
+
+【安全边际计算】
+
+内在价值估算：
+- 资产价值：偏低（轻资产）
+- 盈利价值：正常化盈利 × 10 = 2000 元
+- 内在价值：约 2000 元
+
+安全边际 = (2000 - 1700) / 2000 × 100% = 15%
+
+【投资建议】
+
+建议：观察
+理由：
+1. 符合 4/7 防御型标准
+2. 安全边际 15%，接近价值
+3. 品牌护城河强（需配合 moat-evaluator）
+4. P/E、P/B 偏高，不符合格雷厄姆严格标准
+
+风险：
+- 估值偏高
+- 增长放缓风险
+- 政策风险
+```
+
+---
+
+## 📚 核心理念
+
+**关键洞察：**
+1. 安全边际是价值投资的核心
+2. 防御型求稳，积极型求机会
+3. 7 大标准是参考不是教条
+4. 结合时代灵活应用
+5. 配合其他工具综合分析
+
+**健康公式：**
+```
+好投资 = 好公司 × 好价格 × 安全边际
+```
+
+---
+
+## 🔗 相关文件
+
+- `templates/value-analysis-template.md` - 价值分析模板
+- `examples/analysis-examples.md` - 完整分析示例集
+- `references/graham-principles.md` - 格雷厄姆原则参考
+
+---
+
+## 更新日志
+
+- v2.0.0 (2026-03-19): 按照 SKILL-STANDARD-v2.md 重构，添加 Front Matter、坑点章节、相关资源 📊
+- v1.0.0 (2026-03-13): 初始版本，价值分析师上线 📊
+
+---
+
+*用 4 毛钱买 1 块钱的东西。没有安全边际，不买入。* 📊

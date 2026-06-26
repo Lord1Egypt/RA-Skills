@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能机器人与视觉实验室 | Robotics & Vision Lab</title>
+    <style>
+        /* CSS变量系统 */
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+            
+            --text-xs: 12px;
+            --text-sm: 14px;
+            --text-base: 16px;
+            --text-lg: 20px;
+            --text-xl: 25px;
+            --text-2xl: 31px;
+            --text-3xl: 39px;
+            --text-4xl: 49px;
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            
+            --duration-fast: 200ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: var(--text-base);
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all var(--duration-normal) ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .nav-logo-text {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            transition: color var(--duration-fast) ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width var(--duration-normal) ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero区域 */
+        .hero {
+            padding: 150px var(--space-lg) var(--space-2xl);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-md);
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-md);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: var(--text-4xl);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-xl);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--space-lg);
+            font-weight: 300;
+            max-width: 700px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .stat-label {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 通用容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        /* 区块标题 */
+        .section {
+            padding: var(--space-2xl) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-title {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: var(--text-lg);
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 研究方向 */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+
+        .research-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            border: 1px solid var(--border);
+            transition: all var(--duration-normal) ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .research-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: var(--space-md);
+        }
+
+        .research-card h3 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--text-dark);
+        }
+
+        .research-card p {
+            font-size: var(--text-sm);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* 团队成员 */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+
+        .team-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all var(--duration-normal) ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+
+        .team-name {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            color: var(--text-dark);
+        }
+
+        .team-role {
+            font-size: var(--text-sm);
+            color: var(--primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .team-bio {
+            font-size: var(--text-sm);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* 研究成果 */
+        .publications-list {
+            display: grid;
+            gap: var(--space-md);
+        }
+
+        .publication-item {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            border: 1px solid var(--border);
+            display: flex;
+            gap: var(--space-md);
+            transition: all var(--duration-normal) ease;
+        }
+
+        .publication-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .publication-year {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: white;
+        }
+
+        .publication-content {
+            flex: 1;
+        }
+
+        .publication-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            color: var(--text-dark);
+        }
+
+        .publication-authors {
+            font-size: var(--text-sm);
+            color: var(--text-light);
+            margin-bottom: var(--space-xs);
+        }
+
+        .publication-venue {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--bg-light);
+            border-radius: 4px;
+            font-size: var(--text-xs);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* 联系方式 */
+        .contact-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+            color: white;
+            padding: var(--space-2xl) 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+        }
+
+        .contact-info h3 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        .contact-info p {
+            font-size: var(--text-base);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--space-lg);
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: grid;
+            gap: var(--space-md);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .contact-text {
+            font-size: var(--text-base);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px var(--space-sm);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: var(--text-base);
+            transition: border-color var(--duration-fast) ease;
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: var(--space-md);
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--text-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-normal) ease;
+        }
+
+        .submit-btn:hover {
+            background: #0891b2;
+            transform: translateY(-2px);
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: var(--space-xl) 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: var(--text-sm);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .research-grid,
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .research-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: var(--text-3xl);
+            }
+            
+            .hero-subtitle {
+                font-size: var(--text-lg);
+            }
+            
+            .publication-item {
+                flex-direction: column;
+            }
+            
+            .publication-year {
+                width: 60px;
+                height: 60px;
+                font-size: var(--text-base);
+            }
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity var(--duration-slow) ease, transform var(--duration-slow) ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="nav-logo-icon">🔬</div>
+                <span class="nav-logo-text">RV Lab</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#research">研究方向</a></li>
+                <li><a href="#team">团队</a></li>
+                <li><a href="#publications">成果</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero区域 -->
+    <section class="hero" id="about">
+        <div class="hero-container">
+            <div class="hero-badge">🏛️ Established 2018</div>
+            <h1>智能机器人与视觉实验室</h1>
+            <p class="hero-subtitle">
+                Intelligent Robotics & Vision Laboratory
+            </p>
+            <p class="hero-subtitle" style="font-size: var(--text-base); margin-top: var(--space-md);">
+                致力于机器人感知、自主导航与人机协作的前沿研究，探索人工智能与物理世界的深度融合
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">研究人员</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">发表论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">科研项目</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">专利成果</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研究方向 -->
+    <section class="section" id="research">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">研究方向</h2>
+                <p class="section-subtitle">探索机器人技术的边界，推动智能系统的革新</p>
+            </div>
+            
+            <div class="research-grid">
+                <div class="research-card fade-in">
+                    <div class="research-icon">🤖</div>
+                    <h3>机器人感知与控制</h3>
+                    <p>研究机器人的环境感知、运动规划与精确控制，实现复杂环境下的自主操作能力。</p>
+                </div>
+                
+                <div class="research-card fade-in">
+                    <div class="research-icon">👁️</div>
+                    <h3>计算机视觉</h3>
+                    <p>开发先进的视觉算法，包括目标检测、语义分割、3D重建等，赋予机器人类人的视觉能力。</p>
+                </div>
+                
+                <div class="research-card fade-in">
+                    <div class="research-icon">🗺️</div>
+                    <h3>SLAM与导航</h3>
+                    <p>研究同步定位与建图技术，实现机器人在未知环境中的自主导航与探索。</p>
+                </div>
+                
+                <div class="research-card fade-in">
+                    <div class="research-icon">🧠</div>
+                    <h3>深度学习</h3>
+                    <p>将深度学习技术应用于机器人系统，提升感知、决策与学习的智能化水平。</p>
+                </div>
+                
+                <div class="research-card fade-in">
+                    <div class="research-icon">🤝</div>
+                    <h3>人机协作</h3>
+                    <p>研究人与机器人的自然交互与协作机制，构建安全高效的人机共融系统。</p>
+                </div>
+                
+                <div class="research-card fade-in">
+                    <div class="research-icon">🚗</div>
+                    <h3>自动驾驶</h3>
+                    <p>开发自动驾驶核心技术，包括环境感知、路径规划、决策控制等关键模块。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队成员 -->
+    <section class="section" id="team" style="background: var(--bg-white);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">研究团队</h2>
+                <p class="section-subtitle">汇聚顶尖人才，共创科研未来</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card fade-in">
+                    <div class="team-avatar">👨‍🔬</div>
+                    <div class="team-name">张教授</div>
+                    <div class="team-role">实验室主任</div>
+                    <p class="team-bio">博士生导师，研究方向为机器人视觉与自主导航</p>
+                </div>
+                
+                <div class="team-card fade-in">
+                    <div class="team-avatar">👩‍🔬</div>
+                    <div class="team-name">李教授</div>
+                    <div class="team-role">副教授</div>
+                    <p class="team-bio">研究方向为深度学习与计算机视觉</p>
+                </div>
+                
+                <div class="team-card fade-in">
+                    <div class="team-avatar">👨‍💻</div>
+                    <div class="team-name">王博士</div>
+                    <div class="team-role">博士后研究员</div>
+                    <p class="team-bio">专注于SLAM算法与多传感器融合</p>
+                </div>
+                
+                <div class="team-card fade-in">
+                    <div class="team-avatar">👩‍💻</div>
+                    <div class="team-name">陈博士</div>
+                    <div class="team-role">博士后研究员</div>
+                    <p class="team-bio">研究机器人学习与人机交互</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研究成果 -->
+    <section class="section" id="publications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">研究成果</h2>
+                <p class="section-subtitle">代表性论文与科研成果</p>
+            </div>
+            
+            <div class="publications-list">
+                <div class="publication-item fade-in">
+                    <div class="publication-year">2025</div>
+                    <div class="publication-content">
+                        <h3 class="publication-title">Dynamic Dense RGB-D SLAM with Learning-based Visual Odometry</h3>
+                        <p class="publication-authors">Zhang, W., Li, M., Wang, H., et al.</p>
+                        <span class="publication-venue">IEEE Transactions on Robotics (T-RO)</span>
+                    </div>
+                </div>
+                
+                <div class="publication-item fade-in">
+                    <div class="publication-year">2024</div>
+                    <div class="publication-content">
+                        <h3 class="publication-title">Hierarchical Motion Planning for Quadruped Robots in Rough Terrain</h3>
+                        <p class="publication-authors">Chen, X., Zhang, W., Liu, Y., et al.</p>
+                        <span class="publication-venue">Robotics: Science and Systems (RSS)</span>
+                    </div>
+                </div>
+                
+                <div class="publication-item fade-in">
+                    <div class="publication-year">2024</div>
+                    <div class="publication-content">
+                        <h3 class="publication-title">Learning-based Visual Servoing for Robotic Manipulation</h3>
+                        <p class="publication-authors">Li, M., Wang, H., Chen, X., et al.</p>
+                        <span class="publication-venue">International Conference on Robotics and Automation (ICRA)</span>
+                    </div>
+                </div>
+                
+                <div class="publication-item fade-in">
+                    <div class="publication-year">2023</div>
+                    <div class="publication-content">
+                        <h3 class="publication-title">Multi-Modal Fusion for Autonomous Driving in Complex Environments</h3>
+                        <p class="publication-authors">Wang, H., Zhang, W., Li, M., et al.</p>
+                        <span class="publication-venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>联系我们</h3>
+                    <p>欢迎有志于机器人与人工智能研究的同学加入我们的团队，共同探索智能系统的无限可能。</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span class="contact-text">湖南省衡阳市南华大学 科研楼A座 508室</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <span class="contact-text">rvlab@example.edu.cn</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <span class="contact-text">+86 734 1234 5678</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🌐</div>
+                            <span class="contact-text">www.rvlab.example.edu.cn</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">姓名</label>
+                            <input type="text" class="form-input" placeholder="请输入您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">邮箱</label>
+                            <input type="email" class="form-input" placeholder="请输入您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">主题</label>
+                            <input type="text" class="form-input" placeholder="请输入咨询主题">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">留言</label>
+                            <textarea class="form-input" placeholder="请输入您的留言内容..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>© 2026 智能机器人与视觉实验室 | Intelligent Robotics & Vision Laboratory</p>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 滚动动画
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // 数字动画
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const text = target.textContent;
+                    const num = parseInt(text);
+                    
+                    if (!isNaN(num)) {
+                        let current = 0;
+                        const increment = num / 30;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= num) {
+                                target.textContent = text;
+                                clearInterval(timer);
+                            } else {
+                                target.textContent = Math.floor(current) + '+';
+                            }
+                        }, 50);
+                    }
+                    
+                    statsObserver.unobserve(target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(num => statsObserver.observe(num));
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 表单提交
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('感谢您的留言！我们会尽快回复。');
+        });
+    </script>
+</body>
+</html>

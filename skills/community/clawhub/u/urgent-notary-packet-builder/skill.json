@@ -1,0 +1,42 @@
+{
+  "slug": "urgent-notary-packet-builder",
+  "name": "Urgent Notary Packet Builder",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Builds a same-day notary readiness packet with document inventory, ID checklist, signer logistics, and verification prompts while avoiding legal advice.",
+  "author": "OpenClaw Skills",
+  "license": "MIT-0",
+  "category": "Admin & Life Logistics / Document Preparation",
+  "target_user": "People preparing for an urgent notarization appointment who need a practical readiness checklist.",
+  "tags": [
+    "notary",
+    "document-prep",
+    "urgent-admin",
+    "identity-checklist",
+    "appointment-prep"
+  ],
+  "trigger_keywords": [
+    "need a notary today",
+    "notary checklist",
+    "prepare for notarization",
+    "urgent notarized document",
+    "same day notary",
+    "what to bring to notary"
+  ],
+  "use_cases": [
+    "Preparing documents and ID for a notary appointment",
+    "Organizing multi-signer logistics",
+    "Creating questions for the notary and receiving institution",
+    "Reducing missed requirements before an urgent appointment"
+  ],
+  "language": "en",
+  "hasExecutableCode": false,
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "video-notes",
+  "slug": "video-notes",
+  "version": "1.1.0",
+  "author": "KAImomo99",
+  "description": "把 YouTube / B站视频自动转成结构化 HTML 笔记。提取字幕、截关键帧、生成 SVG 图表，输出带侧边导航和全文搜索的单文件 HTML。支持中英文，用中文提问即出中文笔记。",
+  "tags": ["youtube", "bilibili", "notes", "summarization", "video", "productivity", "中文"],
+  "license": "MIT",
+  "requirements": {
+    "python": ">=3.8",
+    "system": ["ffmpeg"]
+  },
+  "scripts": {
+    "extract_subtitles": "scripts/extract_subtitles.py",
+    "capture_keyframes": "scripts/capture_keyframes.py"
+  }
+}

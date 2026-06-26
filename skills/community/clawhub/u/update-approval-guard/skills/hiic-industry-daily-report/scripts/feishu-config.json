@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+/**
+ * 飞书多维表格存储配置
+ */
+
+export const BITABLE_CONFIG = {
+  app_token: 'Xzklb57ztaYtqRseuRXcXDMsnEh',
+  table_id: 'tbly9gn6j0jjvxXD',
+  fields: {
+    title: 'fld0ZOdw6p',
+    url: 'flduCUtuqw',
+    source: 'fldaEs67Hd',
+    summary: 'fldUvteISu',
+    content: 'fldKh5BKdZ',
+    publishedTime: 'fld2xjwhB3',
+    industry: 'fldio1GpF9',
+    searchEngine: 'fldlt2QwPu',
+    createdTime: 'fldtZ3jGSL'
+  }
+};
+
+/**
+ * 将记录存储到飞书多维表格
+ * 
+ * @param {Array} records - 记录数组
+ * @param {string} industry - 产业名称
+ * @returns {Promise<Object>} - 存储结果
+ */
+export async function saveRecords(records, industry) {
+  const stats = {
+    success: 0,
+    failed: 0,
+    dryRun: 0
+  };
+
+  // 注意：这个函数需要在 OpenClaw 环境中运行
+  // 因为需要访问 OpenClaw 的工具系统
+  
+  console.error('\n⚠️ 此脚本需要在 OpenClaw 环境中运行');
+  console.error('请使用 OpenClaw 的 feishu_bitable 工具直接存储\n');
+  
+  // 返回模拟结果
+  return {
+    success: false,
+    error: '需要 OpenClaw 环境',
+    stats: { success: 0, failed: records.length, dryRun: 0 }
+  };
+}

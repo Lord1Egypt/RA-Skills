@@ -1,0 +1,39 @@
+# Reference notes:
+# - references/overview.md
+# - references/mysql.md
+# - references/doris.md
+
+sources:
+- source:
+    type: mysql
+    name: MySQL Source
+    hostname: ${mysql_hostname}
+    port: ${mysql_port}
+    username: ${mysql_username}
+    password: ${mysql_password}
+    tables: ${mysql_tables}
+    server-id: ${mysql_server_id}
+    schema-change.enabled: true
+
+sink:
+  type: doris
+  name: Doris Sink
+  fenodes: ${doris_fenodes}
+  benodes: ${doris_benodes}
+  jdbc-url: ${doris_jdbc_url}
+  username: ${doris_username}
+  password: ${doris_password}
+  sink.enable.batch-mode: ${doris_sink_enable_batch_mode}
+  sink.buffer-flush.max-rows: ${doris_sink_buffer_flush_max_rows}
+  sink.buffer-flush.max-bytes: ${doris_sink_buffer_flush_max_bytes}
+  sink.buffer-flush.interval: ${doris_sink_buffer_flush_interval}
+  table.create.properties.replication_num: ${doris_table_create_properties_replication_num}
+
+route:
+- source-table: ${route_source_table}
+  sink-table: ${route_sink_table}
+  description: ${route_description}
+
+pipeline:
+  name: ${pipeline_name}
+  parallelism: ${pipeline_parallelism}

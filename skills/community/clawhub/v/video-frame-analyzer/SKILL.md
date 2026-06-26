@@ -1,35 +1,172 @@
 ---
-name: "Video Frame Analyzer"
-description: "AI漫剧/短剧视频智能帧分析工具。自动提取关键帧 → 多模态逐帧解读 → 输出完整分析报告（剧情大纲、镜头语言、角色设定、台词整理、商业改编建议）。适用于抖音/视频号短剧拆解、竞品分析、改编策划。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-frame-analyzer"
-sourceUrl: "https://clawhub.ai/skills/video-frame-analyzer"
+name: video-frame-analyzer
+description: >
+  AI漫剧/短剧视频智能帧分析工具。自动提取关键帧 → 多模态逐帧解读 → 输出完整分析报告（剧情大纲、镜头语言、角色设定、台词整理、商业改编建议）。适用于抖音/视频号短剧拆解、竞品分析、改编策划。
+tags:
+  - video
+  - analysis
+  - ai-drama
+  - short-video
+version: "1.0.0"
+author: AI漫剧花大叔
+copyright: © 2026 AI漫剧花大叔。保留所有权利。转载或使用请注明出处。
+license: MIT-0
+author_url: https://github.com/shijin-ai
+agent_created: true
 ---
 
-# Video Frame Analyzer
+# 视频帧智能分析 Skill
 
-> AI漫剧/短剧视频智能帧分析工具。自动提取关键帧 → 多模态逐帧解读 → 输出完整分析报告（剧情大纲、镜头语言、角色设定、台词整理、商业改编建议）。适用于抖音/视频号短剧拆解、竞品分析、改编策划。
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-frame-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/video-frame-analyzer](https://clawhub.ai/skills/video-frame-analyzer)
+> **使用前提**：先切换到多模态模型（支持图片输入），如 GLM-5v-Turbo 或 GPT-4o。
+> 在 WorkBuddy 对话框输入 `/model` 切换模型。
 
-## Overview
+1. **上传视频** 或直接告诉 AI 视频路径
+2. **发送指令**："分析这个视频" 或 "拆解这条短剧"
+3. AI 自动完成全流程 → 输出完整报告
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 适用场景
+
+- 拆解竞品短剧/AI漫剧的叙事结构和镜头语言
+- 分析视频剧情、角色、台词，输出改编建议
+- 批量处理多个视频，建立素材库分析报告
+
+---
+
+## 工作流程
+
+### 第一步：确认视频来源
+
+询问用户视频路径，或让用户上传视频文件到工作目录。
+支持 mp4 / mov / avi 等常见视频格式。
+
+### 第二步：智能提取关键帧
+
+**重要**：必须先切换到**多模态模型**（支持图片输入）再开始！
+
+用 Bash 工具执行帧提取脚本：
+
 ```bash
-hermes skills install clawhub/video-frame-analyzer
+# 获取 skill 目录路径（自动解析）
+SKILL_DIR="$(dirname "$(find ~/.workbuddy/skills -name 'smart_extract.py' 2>/dev/null | head -1)")"
+# 执行提取（自动用当前工作目录作为输出）
+python "$SKILL_DIR/smart_extract.py" "你的视频路径.mp4" "视频名_frames/" 15
 ```
+
+**参数说明**：
+- `视频路径`：支持绝对路径或相对于当前工作目录的路径
+- `输出目录`：帧图片存放位置，默认为 `{视频名}_frames/`
+- `最大帧数`：默认15帧，覆盖单集短剧完整剧情
+
+> 如遇 OpenCV 依赖问题，改用保底方案：
+> ```bash
+> python "$SKILL_DIR/extract_frames.py" "你的视频路径.mp4" "视频名_frames/" 3
+> ```
+
+### 第三步：逐帧分析（分批，避免上下文溢出）
+
+**⚠️ 核心原则**：每批最多分析 **3-4 帧**，分析完立即写入文件，再继续下一批。
+**严禁**一次性将所有帧图发给模型，会导致 `400 input length too long` 错误。
+
+**操作循环**：
+1. 用 `Read` 工具读取 **3-4 张**帧图片
+2. 按以下维度分析每帧：画面内容、字幕/台词、镜头类型、叙事功能、情绪基调
+3. 用 `Write` 工具将分析结果追加到 `{视频名}_分析_partX.md`
+4. 清空上下文，继续读取下一批帧，重复步骤1-3
+
+**每帧分析模板**：
+```markdown
+## 帧N [时间] 文件名
+**场景**：
+**画面内容**：
+**镜头类型**：（特写/近景/中景/全景/航拍）
+**叙事功能**：
+**情绪基调**：
+**字幕/台词**：
+```
+
+### 第四步：整合完整报告
+
+所有帧分析完成后，生成 `{视频名}_完整分析报告.md`，包含以下章节：
+
+1. **视频基本信息**（时长、帧数、AI生成标识）
+2. **逐帧详细分析**（表格形式）
+3. **剧情大纲**（分幕整理故事线）
+4. **镜头语言分析**（镜头类型分布、叙事节奏）
+5. **角色设定**（角色表，标注一致性问题）
+6. **字幕/台词整理**（时间轴表格）
+7. **商业分析与改编建议**（亮点、问题、改编方案）
+8. **技术备注**（提取参数、文件路径）
+
+---
+
+## 注意事项
+
+### 模型切换（必须！）
+```bash
+/model GLM-5v-Turbo
+# 或
+/model GPT-4o
+```
+- 必须使用**多模态模型**（支持图片输入）
+- 纯文本模型（如 MiMo-V2.5-Pro）**无法**分析图片，会报错
+- 切换后需重新开始本流程
+
+### 上下文管理
+- 每批 **3-4 帧 → 写文件 → 清空上下文** → 下一批
+- 这是避免 `400 input length too long` 的核心策略
+- 写文件比清空上下文更可靠，确保中间结果不丢失
+
+### AI生成视频的特殊问题
+分析时特别注意以下几点（在报告中标注）：
+- **角色一致性**：性别/外貌是否在场景间突变（如女孩→男孩）
+- **AI水印**：画面是否有"内容由AI生成"等标识
+- **表情自然度**：人物表情是否僵硬、不自然
+- **场景割裂**：故事线之间是否有合理过渡（常见拼接问题）
+
+### 输出文件命名规范
+| 文件类型 | 命名格式 |
+|---------|---------|
+| 逐帧分析（分批） | `{视频名}_分析_part{1,2,3}.md` |
+| 完整报告 | `{视频名}_完整分析报告.md` |
+| 帧图片目录 | `{视频名}_frames/` |
+
+---
+
+## 常见错误处理
+
+| 错误 | 原因 | 解决方案 |
+|------|------|---------|
+| `ImportError: No module named 'cv2'` | OpenCV 未安装 | `pip install opencv-python` |
+| `ImportError: No module named 'moviepy'` | moviepy 未安装 | `pip install moviepy Pillow` |
+| `400 input length too long` | 一次性发图太多 | 改为每批 3-4 帧 |
+| `无法打开视频` | 视频路径含中文/空格 | 用绝对路径或加引号 |
+| 模型无法识别图片 | 当前为纯文本模型 | 先切换到多模态模型 |
+| `400 Param Incorrect` | 模型切换后参数不匹配 | 重新执行读图命令 |
+
+---
+
+## 依赖环境
+
+```bash
+pip install opencv-python          # 智能帧提取（推荐）
+pip install moviepy Pillow           # 保底帧提取（备选）
+```
+
+Python 版本：3.8+
+
+---
+
+## 示例触发词
+
+当用户说以下内容时，激活本 Skill：
+- "分析这个视频"
+- "拆解这条短剧"
+- "帮我看看这个AI漫剧的叙事结构"
+- "视频帧分析"
+- "帮我分析竞品视频"
+- "帮我看看这个短剧的剧情"
+

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Web Slides"
+  short_description: "Premium HTML slide deck generator"
+  icon_small: "./assets/web-slides-small.svg"
+  icon_large: "./assets/web-slides-large.svg"
+  brand_color: "#59E1FF"
+  default_prompt: "Use $web-slides to turn this outline into a polished single-file HTML presentation."

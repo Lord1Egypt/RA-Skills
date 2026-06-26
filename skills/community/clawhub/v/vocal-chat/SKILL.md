@@ -1,35 +1,37 @@
 ---
-name: "Vocal Chat"
-description: "Handles voice-to-voice conversations on WhatsApp. Automatically transcribes incoming audio and responds with local TTS audio. Use when the user wants to "talk" instead of type."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vocal-chat"
-sourceUrl: "https://clawhub.ai/skills/vocal-chat"
+name: walkie-talkie
+description: Handles voice-to-voice conversations on WhatsApp. Automatically transcribes incoming audio and responds with local TTS audio. Use when the user wants to "talk" instead of type.
 ---
 
-# Vocal Chat
+# Walkie-Talkie Mode
 
-> Handles voice-to-voice conversations on WhatsApp. Automatically transcribes incoming audio and responds with local TTS audio. Use when the user wants to "talk" instead of type.
+This skill automates the voice-to-voice loop on WhatsApp using local transcription and local TTS.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vocal-chat`
-- **Source URL:** [https://clawhub.ai/skills/vocal-chat](https://clawhub.ai/skills/vocal-chat)
+## Workflow
 
-## Overview
+1. **Incoming Audio**: When a user sends an audio/ogg/opus file:
+   - Use `tools/transcribe_voice.sh` to get the text.
+   - Process the text as a normal user prompt.
 
+2. **Outgoing Response**:
+   - Instead of a text reply, generate speech using `bin/sherpa-onnx-tts`.
+   - Send the resulting `.ogg` file back to the user as a voice note.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Triggers
+
+- User sends an audio message.
+- User says "activa modo walkie-talkie" or "hablemos por voz".
+
+## Constraints
+
+- Use local tools only (ffmpeg, whisper-cpp, sherpa-onnx-tts).
+- Maintain a fast response time (RTF < 0.5).
+- Always reply with BOTH text (for clarity) and audio.
+
+## Manual Execution (Internal)
+
+To respond with voice manually:
 ```bash
-hermes skills install clawhub/vocal-chat
+bin/sherpa-onnx-tts /tmp/reply.ogg "Tu mensaje aquí"
 ```
+Then send `/tmp/reply.ogg` via `message` tool with `filePath`.

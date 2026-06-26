@@ -1,0 +1,41 @@
+{
+  "name": "@underground-cultural-district/mcp-server",
+  "version": "4.5.0",
+  "description": "MCP server for Underground Cultural District -- 21 tools, 228 products, 26 shops, x402 USDC payments on Base and Solana",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "underground-mcp": "src/index.js"
+  },
+  "files": [
+    "src/index.js",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "underground",
+    "developer-tools",
+    "marketplace",
+    "claude",
+    "ai",
+    "substrate-symposium"
+  ],
+  "author": "Lisa Maraventano & Spine",
+  "license": "MIT",
+  "homepage": "https://substratesymposium.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lisamaraventano-spine/mcp-server"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

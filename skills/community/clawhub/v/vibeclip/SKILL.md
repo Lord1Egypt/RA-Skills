@@ -1,35 +1,20 @@
 ---
-name: "Video App"
-description: "Automation skill for VibeClip - AI Music Video Gen."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vibeclip"
-sourceUrl: "https://clawhub.ai/skills/vibeclip"
----
+name: vibeclip
+description: Generate AI music videos from melody audio + photo + prompt. Local Ollama (llama3.2:1b/phi3:mini) for scene desc, FFmpeg for morph/zoompan + waveform sync. Node/Express webapp, VPS deploy ready (port 3000). Demo: cd video-app && node index.js. Revenue SaaS: credits/ETH payments.
+metadata:
+  openclaw:
+    requires:
+      bins: [node, ollama, ffmpeg]
+    install:
+      - id: ollama-models
+        kind: exec
+        command: ollama pull llama3.2:1b phi3:mini
 
-# Video App
+# VibeClip Skill
 
-> Automation skill for VibeClip - AI Music Video Gen.
+## Usage
+POST /generate {audio, photo, prompt} → video.mp4
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vibeclip`
-- **Source URL:** [https://clawhub.ai/skills/vibeclip](https://clawhub.ai/skills/vibeclip)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vibeclip
-```
+## Revenue Ready
+- 0$ API costs.
+- Add ETH payments to wallet.

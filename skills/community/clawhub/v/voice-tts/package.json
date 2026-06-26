@@ -1,0 +1,14 @@
+{
+  "name": "voice-tts-skill",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Voice TTS/ASR skill helpers for OpenClaw",
+  "bin": {
+    "voice-tts": "./bin/voice-tts.mjs",
+    "voice-asr": "./bin/voice-asr.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

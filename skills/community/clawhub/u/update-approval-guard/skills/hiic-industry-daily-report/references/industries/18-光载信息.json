@@ -1,0 +1,34 @@
+{
+  "id": "18",
+  "name": "光载信息",
+  "category": "未来产业",
+  "keywords": [
+    "光载信息",
+    "光通信",
+    "光计算",
+    "光芯片",
+    "硅光技术"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "💡",
+    "maxDescriptionLength": 200
+  }
+}

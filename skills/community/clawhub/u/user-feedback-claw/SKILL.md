@@ -1,35 +1,86 @@
 ---
-name: "用户反馈虾"
-description: "用户反馈虾 — 自动分析用户差评与建议，从多渠道反馈数据中提炼产品改进信号。 **当以下情况时使用此 Skill**： (1) 用户提供评论数据（Excel/CSV/文本），要求分析差评、找出主要问题 (2) 需要对用户反馈进行情感分析、主题分类、优先级排序 (3) 需要生成结构化的用户反馈分析报告 (4) 需要..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/user-feedback-claw"
-sourceUrl: "https://clawhub.ai/skills/user-feedback-claw"
+name: user-feedback-claw
+description: |
+  用户反馈虾 — 自动分析用户差评与建议，从多渠道反馈数据中提炼产品改进信号。
+
+  **当以下情况时使用此 Skill**：
+  (1) 用户提供评论数据（Excel/CSV/文本），要求分析差评、找出主要问题
+  (2) 需要对用户反馈进行情感分析、主题分类、优先级排序
+  (3) 需要生成结构化的用户反馈分析报告
+  (4) 需要分析客服工单、NPS 调研、问卷开放性回答
+  (5) 用户提到"差评"、"用户反馈"、"用户评论"、"舆情"、"投诉"、"建议"、"痛点"、"用户声音"、"评价分析"、"NPS"、"满意度"、"用户调研"
 ---
 
-# 用户反馈虾
+# 用户反馈虾（user-feedback-claw）
 
-> 用户反馈虾 — 自动分析用户差评与建议，从多渠道反馈数据中提炼产品改进信号。 **当以下情况时使用此 Skill**： (1) 用户提供评论数据（Excel/CSV/文本），要求分析差评、找出主要问题 (2) 需要对用户反馈进行情感分析、主题分类、优先级排序 (3) 需要生成结构化的用户反馈分析报告 (4) 需要...
+将散落在各平台的用户声音汇聚起来，从噪音中提炼出真正有价值的产品改进信号。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/user-feedback-claw`
-- **Source URL:** [https://clawhub.ai/skills/user-feedback-claw](https://clawhub.ai/skills/user-feedback-claw)
+## 工作流程
 
-## Overview
+### 步骤 1：理解输入数据
 
+接受以下输入格式：
+- **结构化数据**（推荐）：Excel/CSV，包含反馈内容、评分、时间、来源平台
+- **自然语言描述**：用户直接粘贴或描述反馈内容
+- **混合输入**：部分结构化 + 部分文本
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/user-feedback-claw
+**必填字段**：反馈内容、反馈时间、来源渠道（缺失时向用户确认或合理推断）
+
+### 步骤 2：数据清洗
+
+- 去除重复条目（同一用户多次提交相同内容）
+- 过滤无效内容（纯表情、无意义字符、"好"/"差"等单字）
+- 统一评分标准（不同平台评分换算为 1-5 星）
+- 标注数据来源和时间
+
+### 步骤 3：情感分析与分类
+
+参考 `references/sentiment-lexicon.md` 进行情感判断，参考 `references/issue-taxonomy.md` 进行问题分类。
+
+- **情感判断**：正面 / 负面 / 中性，标注强度
+- **主题分类**：产品质量 / 物流配送 / 客服体验 / 价格感知 / 使用体验
+- **问题识别**：具体缺陷、功能缺失、体验问题
+- **需求提取**：用户明确提出的改进建议
+
+### 步骤 4：聚类与优先级排序
+
+将相似反馈聚合，计算优先级分数：
+
 ```
+优先级分数 = 提及频率 × 情感强度权重 × 评分影响系数
+```
+
+详见 `references/issue-taxonomy.md` 中的公式说明。
+
+识别：
+- 数量最多的 TOP 问题
+- 近期突增的新问题（如有时间维度数据）
+- 高价值用户的反馈（大客户、KOL，如有标注）
+
+### 步骤 5：生成分析报告
+
+使用 `references/improvement-templates.md` 中的报告模板输出：
+- 问题 TOP 清单（按优先级排序）
+- 每类问题的代表性原文（1-3 条）
+- 具体改进建议（参考 `references/improvement-templates.md`）
+- 趋势观察（如有时间维度数据）
+- 行动建议（优先处理哪 1-3 个问题）
+
+## 数据量说明
+
+- **< 50 条**：分析结果仅供参考，样本量不足，需说明局限性
+- **50-500 条**：正常分析，结果可靠
+- **> 500 条**：建议分批处理或聚焦特定时间段
+
+## 局限性（分析时主动说明）
+
+- 中文 NLP 分析存在约 10-15% 误判率，建议人工抽查
+- 无法分析图片/视频形式的反馈
+- 方言、网络用语密集的评论准确率较低
+- 不判断改进方案的可行性，需产品团队决策
+
+## 与其他虾的协作
+
+- **auto-customer-service-claw**：客服对话记录 → 反馈虾分析
+- **cross-platform-messenger-claw**：发现高频问题 → 推送给产品/运营团队
+- **process-data-monitor-claw**：差评率超阈值 → 触发深度分析

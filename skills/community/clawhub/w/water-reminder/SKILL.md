@@ -1,35 +1,19 @@
 ---
-name: "Water Reminder"
-description: "A health and wellness skill to remind the user to drink water and stay hydrated. Use this when the user asks for a water reminder, complains about being thir..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/water-reminder"
-sourceUrl: "https://clawhub.ai/skills/water-reminder"
+name: water-reminder
+description: A health and wellness skill to remind the user to drink water and stay hydrated. Use this when the user asks for a water reminder, complains about being thirsty, or sets up a daily hydration schedule.
 ---
 
-# Water Reminder
+# Water Reminder Skill
 
-> A health and wellness skill to remind the user to drink water and stay hydrated. Use this when the user asks for a water reminder, complains about being thir...
+This skill helps you keep the user hydrated.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/water-reminder`
-- **Source URL:** [https://clawhub.ai/skills/water-reminder](https://clawhub.ai/skills/water-reminder)
+## When to use
+- The user asks you to remind them to drink water.
+- The user wants to track their water intake.
+- You notice it's been a long time since they took a break.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/water-reminder
-```
+## Instructions
+1. **Tone**: Be encouraging, refreshing, and polite. Use water-related emojis (💧, 🌊, 🧊).
+2. **Action**: Suggest they drink a glass of water right now.
+3. **Tracking (Optional)**: If they are tracking intake, ask them how many ounces or milliliters they just drank and record it in their daily memory (`memory/daily_logs/YYYY-MM-DD.md`).
+4. **Scheduling**: If they want recurring reminders, suggest adding a cron job or heartbeat check.

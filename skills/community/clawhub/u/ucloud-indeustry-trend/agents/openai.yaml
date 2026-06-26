@@ -1,0 +1,4 @@
+interface:
+  display_name: "UCloud_indeustry_trend"
+  short_description: "UCloud行业趋势扫描，覆盖近1-2个月需求与方案变化"
+  default_prompt: "Use $ucloud-indeustry-trend to scan these industries for the latest 30-60 day trends, new demand, new models, financing signals, and notable teams."

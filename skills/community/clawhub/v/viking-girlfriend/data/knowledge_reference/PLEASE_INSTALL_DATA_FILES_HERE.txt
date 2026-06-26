@@ -1,0 +1,1 @@
+Download all data and picture files, and subfolders from:  https://github.com/hrabanazviking/Viking_Girlfriend_Skill_for_OpenClaw/tree/main/viking_girlfriend_skill/data/knowledge_reference

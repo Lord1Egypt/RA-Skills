@@ -1,0 +1,38 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">use-skills mode picker</title>
+  <desc id="desc">A diagram showing three mode choices: All related, Recommended, and Restricted.</desc>
+  <rect width="1200" height="520" rx="28" fill="#101820"/>
+  <path d="M0 390C190 330 322 430 514 370C720 306 805 208 1005 246C1105 265 1160 238 1200 214V520H0V390Z" fill="#1D3B35"/>
+  <path d="M0 0H1200V132C1045 96 919 118 775 78C582 24 414 108 250 82C151 66 69 38 0 24V0Z" fill="#E9C46A"/>
+  <rect x="64" y="62" width="1072" height="396" rx="22" fill="#F7F3EA"/>
+  <text x="100" y="124" fill="#101820" font-family="Arial, sans-serif" font-size="44" font-weight="700">use-skills chooses before it works</text>
+  <text x="102" y="162" fill="#45504D" font-family="Arial, sans-serif" font-size="20">Pick the mode first, then the agent selects the right installed skills.</text>
+  <g>
+    <rect x="102" y="214" width="300" height="172" rx="14" fill="#FFFFFF" stroke="#D8D2C5"/>
+    <circle cx="134" cy="250" r="18" fill="#1D3B35"/>
+    <text x="128" y="257" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">1</text>
+    <text x="166" y="258" fill="#101820" font-family="Arial, sans-serif" font-size="25" font-weight="700">All related</text>
+    <text x="128" y="302" fill="#45504D" font-family="Arial, sans-serif" font-size="17">Use every meaningfully</text>
+    <text x="128" y="328" fill="#45504D" font-family="Arial, sans-serif" font-size="17">related installed skill.</text>
+    <text x="128" y="360" fill="#1D3B35" font-family="Arial, sans-serif" font-size="15" font-weight="700">Broad coverage</text>
+  </g>
+  <g>
+    <rect x="450" y="194" width="300" height="212" rx="14" fill="#FFFFFF" stroke="#101820" stroke-width="3"/>
+    <circle cx="482" cy="230" r="18" fill="#E76F51"/>
+    <text x="476" y="237" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">2</text>
+    <text x="514" y="238" fill="#101820" font-family="Arial, sans-serif" font-size="25" font-weight="700">Recommended</text>
+    <text x="476" y="282" fill="#45504D" font-family="Arial, sans-serif" font-size="17">Best balance of quality,</text>
+    <text x="476" y="308" fill="#45504D" font-family="Arial, sans-serif" font-size="17">focus, and low noise.</text>
+    <rect x="476" y="338" width="150" height="34" rx="17" fill="#E76F51"/>
+    <text x="500" y="361" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="15" font-weight="700">usual choice</text>
+  </g>
+  <g>
+    <rect x="798" y="214" width="300" height="172" rx="14" fill="#FFFFFF" stroke="#D8D2C5"/>
+    <circle cx="830" cy="250" r="18" fill="#264653"/>
+    <text x="824" y="257" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">3</text>
+    <text x="862" y="258" fill="#101820" font-family="Arial, sans-serif" font-size="25" font-weight="700">Restricted</text>
+    <text x="824" y="302" fill="#45504D" font-family="Arial, sans-serif" font-size="17">Use only the strongest</text>
+    <text x="824" y="328" fill="#45504D" font-family="Arial, sans-serif" font-size="17">one to three matches.</text>
+    <text x="824" y="360" fill="#264653" font-family="Arial, sans-serif" font-size="15" font-weight="700">Focused output</text>
+  </g>
+</svg>

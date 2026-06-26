@@ -1,0 +1,34 @@
+{
+  "name": "waimai-merchant",
+  "version": "1.1.1",
+  "description": "外卖商家管理 Skill - 支持商家注册、商品管理、价格修改和配送时间设置",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "waimai",
+    "merchant",
+    "food-delivery",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "better-sqlite3": "^9.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/inquirer": "^8.2.10",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "weather-max-bot",
+  "version": "1.0.0",
+  "description": "Weather Trading Agent",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}

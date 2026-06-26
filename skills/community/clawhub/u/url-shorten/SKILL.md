@@ -1,35 +1,28 @@
 ---
-name: "Url Shorten"
+name: url-shorten
 description: "Shorten URLs via tinyurl or bitly API"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/url-shorten"
-sourceUrl: "https://clawhub.ai/skills/url-shorten"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🔗",
+        "requires": { "bins": ["curl"] },
+        "install": [],
+      },
+  }
 ---
 
-# Url Shorten
+# URL Shorten
 
-> Shorten URLs via tinyurl or bitly API
+Shorten URLs via tinyurl or bitly API. Requires `BITLY_TOKEN` env var for bitly; falls back to tinyurl if not set.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/url-shorten`
-- **Source URL:** [https://clawhub.ai/skills/url-shorten](https://clawhub.ai/skills/url-shorten)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/url-shorten
+# Shorten a URL (uses tinyurl by default, bitly if BITLY_TOKEN is set)
+url-shorten "https://example.com/very/long/path/to/resource"
 ```
+
+## Install
+
+No installation needed. `curl` is always present on the system. Optionally set `BITLY_TOKEN` environment variable to use the bitly API instead of tinyurl.

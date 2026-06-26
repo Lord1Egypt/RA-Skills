@@ -1,0 +1,92 @@
+{
+  "skill_name": "ucloud-cli",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "我没有指定 profile。请直接用当前激活配置，帮我查一下当前账号可用的 Region 和 Zone，优先给我一个简洁表格。如果发现没有可用配置，再告诉我需要先配置 profile。",
+      "expected_output": "使用激活的 CLI profile 执行 Region 查询，返回简洁的结构化摘要，而不是要求提供原始凭据。",
+      "files": [],
+      "expectations": [
+        "当用户未指定 profile 时使用本地激活 profile",
+        "执行只读查询以获取可用 Region 或 Zone",
+        "返回简洁的结构化摘要，而非要求提供原始凭据"
+      ],
+      "assertions": [
+        "明确说明在未指定 profile 时使用了本地激活 profile",
+        "展示对 Region/Zone 的只读查询意图或结果",
+        "避免要求用户将原始密钥粘贴到命令行中"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "请使用 profile `testcli`，帮我检查这个账号的余额情况，并告诉我当前默认 ProjectId、Region、Zone 是什么。不要修改任何资源。",
+      "expected_output": "显式使用指定 profile，执行只读余额查询，并以简洁结构报告 profile 上下文信息。",
+      "files": [],
+      "expectations": [
+        "使用明确指定的 profile 名称",
+        "仅执行只读 API 调用",
+        "以结构化摘要形式报告余额和作用域字段"
+      ],
+      "assertions": [
+        "结果中明确提到使用了 testcli 这个指定 profile",
+        "报告可用余额",
+        "报告默认的 ProjectId、Region 和 Zone"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我想创建一台 UHost，并用 cloud-init 跑初始化脚本，但先不要真正创建。请先基于当前激活配置帮我确认还缺哪些关键参数，比如 ProjectId、Region、Zone、镜像、规格、登录凭据、网络相关项，并告诉我默认会走什么创建路径。",
+      "expected_output": "不创建资源，列出缺失参数；使用 cloud-init 前必须确认镜像 Features 包含 CloudInit；默认优先使用 UHost 产品子命令，必要时才回退到 ucloud api。",
+      "files": [],
+      "expectations": [
+        "不执行创建操作",
+        "清晰列出缺失的创建参数",
+        "说明默认 UHost 创建流程优先使用产品子命令及只读优先行为",
+        "说明使用 cloud-init 前必须确认镜像 Features 包含 CloudInit"
+      ],
+      "assertions": [
+        "说明未创建任何资源",
+        "列出缺失的创建参数，如 ProjectId、镜像、规格、登录凭据或网络字段",
+        "说明默认执行路径优先使用 UHost 产品子命令，必要时才通过 ucloud api --local-file 调用 CreateUHostInstance",
+        "说明只有镜像 Features 包含 CloudInit 时才使用 cloud-init 或 UserData 参数"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我的 WEB 程序已经开发好了，准备部署到 UCloud。先不要真正创建资源，请你基于当前可用配置，告诉我如果要上线这个站点，通常会涉及哪些 UCloud 资源，哪些参数还需要我补充，并说明你后续默认会调用什么创建路径。",
+      "expected_output": "识别为面向部署的云资源配置请求，映射到可能的 UCloud 资源但不创建，列出缺失参数，并说明后续创建优先使用相关产品子命令，OpenAPI Action 仅作为兜底路径。",
+      "files": [],
+      "expectations": [
+        "将 WEB 应用部署视为 UCloud 资源创建技能的触发条件",
+        "在预检阶段不创建任何计费资源",
+        "根据部署形态识别可能的资源，如 UHost、VPC、EIP、ULB 或数据库",
+        "基于确定的部署形态说明默认创建路径，不自行编造产品级默认值"
+      ],
+      "assertions": [
+        "说明这是一个面向 UCloud 的部署或云资源规划请求",
+        "说明本步骤中未创建任何资源",
+        "列出可能的资源类别和缺失的部署参数",
+        "根据已确认的部署需求说明后续创建路径"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "我这台机器还没配置过 ucloud cli。你帮我初始化一下吧，需要什么我发给你。",
+      "expected_output": "说明需要先授权或初始化 profile，但不要要求用户把真实 public/private key 发到对话里；优先询问是否使用 OAuth 授权，用户同意后应执行 ucloud auth login；必要时才给带占位符的 ucloud config add 模板。",
+      "files": [],
+      "expectations": [
+        "识别为 CLI 初始化或 profile 配置请求",
+        "优先询问是否使用 OAuth 授权",
+        "用户同意 OAuth 后应直接调用 ucloud auth login，无浏览器环境使用 ucloud auth login --no-browser",
+        "不要求用户在对话或命令行中粘贴真实密钥",
+        "如展示非交互式方式，只使用 YOUR_PUBLIC_KEY 和 YOUR_PRIVATE_KEY 这类占位符"
+      ],
+      "assertions": [
+        "提示 OAuth 授权优先于 AK/SK 初始化",
+        "说明用户同意后执行 ucloud auth login",
+        "明确不要把真实 public/private key 粘贴到对话或命令预览中",
+        "非交互式配置示例使用占位符而不包含真实密钥"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "book_name": "${book_name}",
+  "author": "${author}",
+  "platform": "${platform}",
+  "genre": "${genre}",
+  "word_count": "${word_count}",
+  "status": "${status}",
+  "one_line_summary": "${one_line_summary}",
+  "core_selling_points": [],
+  "six_dimensions": {
+    "story_framework": {
+      "main_conflict": null,
+      "structure_type": null,
+      "pacing": null,
+      "key_events": []
+    },
+    "character_building": {
+      "protagonist": {
+        "name": null,
+        "personality": null,
+        "growth_arc": null
+      },
+      "supporting_characters": [],
+      "antagonist": null,
+      "relationships": []
+    },
+    "emotion_design": {
+      "emotion_curve": [],
+      "key_emotional_moments": [],
+      "reader_engagement": null
+    },
+    "style_features": {
+      "narrative_voice": null,
+      "sentence_style": null,
+      "dialogue_style": null,
+      "description_style": null
+    },
+    "golden_finger": {
+      "type": null,
+      "description": null,
+      "limitations": [],
+      "growth_potential": null
+    },
+    "world_setting": {
+      "world_type": null,
+      "unique_elements": [],
+      "power_system": null
+    }
+  },
+  "structure_analysis": {
+    "opening": {
+      "hook": null,
+      "protagonist_intro": null,
+      "world_intro": null,
+      "effectiveness": null
+    },
+    "plot_rhythm": {
+      "arc_structure": [],
+      "climax_frequency": null,
+      "pacing_issues": []
+    },
+    "climax_design": {
+      "major_climaxes": [],
+      "emotional_peaks": []
+    },
+    "ending": {
+      "resolution": null,
+      "satisfaction": null
+    }
+  },
+  "techniques": {
+    "cool_points": [],
+    "foreshadowing": [],
+    "pacing_techniques": [],
+    "dialogue_techniques": []
+  },
+  "borrowable_elements": [],
+  "problems_to_avoid": [],
+  "fusion_suggestions": []
+}

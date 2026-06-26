@@ -1,35 +1,20 @@
 ---
-name: "voice-huayan"
-description: "Local Chinese TTS playback on Windows using Piper zh_CN-huayan-medium with automatic fallback to System.Speech. Use when user asks to read replies aloud loca..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/voice-huayan"
-sourceUrl: "https://clawhub.ai/skills/voice-huayan"
+name: voice-huayan
+description: Local Chinese TTS playback on Windows using Piper zh_CN-huayan-medium with automatic fallback to System.Speech. Use when user asks to read replies aloud locally (direct speaker playback) and wants huayan voice style.
 ---
 
-# voice-huayan
+# Voice Huayan
 
-> Local Chinese TTS playback on Windows using Piper zh_CN-huayan-medium with automatic fallback to System.Speech. Use when user asks to read replies aloud loca...
+Run local Chinese speech playback with huayan voice.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/voice-huayan`
-- **Source URL:** [https://clawhub.ai/skills/voice-huayan](https://clawhub.ai/skills/voice-huayan)
+## Run
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/voice-huayan
+```powershell
+{baseDir}/bin/voice-huayan.ps1 "要播报的文本"
 ```
+
+## Behavior
+
+- Prefer Piper `zh_CN-huayan-medium`
+- Auto fallback to `Microsoft Huihui Desktop` if Piper/model/runtime is unavailable
+- Output `PLAYBACK_OK (...)` when playback succeeds

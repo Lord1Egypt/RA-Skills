@@ -1,0 +1,9 @@
+{
+  "name": "vip",
+  "version": "2.0.0",
+  "description": "唯品会购物助手 - 支持搜索、限时特卖、库存检查、加购物车，支付环节留给用户",
+  "keywords": ["vip", "vipshop", "唯品会", "shopping", "flash-sale"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/vip"
+}

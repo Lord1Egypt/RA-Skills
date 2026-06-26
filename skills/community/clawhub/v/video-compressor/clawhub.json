@@ -1,0 +1,12 @@
+{
+  "name": "Video Compressor by VideoAny",
+  "tagline": "Compress videos online with quality, scale, and format controls.",
+  "description": "Compress videos via VideoAny at https://videoany.io/tools/video-compressor. Upload a source video, choose quality/scale/format settings, and download a smaller output optimized for sharing and playback.",
+  "category": "utility",
+  "tags": ["video-compressor", "compress-video", "video-optimization", "file-size-reduction", "videoany", "mp4", "webm"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://videoany.io/tools/video-compressor",
+  "homepage": "https://videoany.io/tools/video-compressor"
+}

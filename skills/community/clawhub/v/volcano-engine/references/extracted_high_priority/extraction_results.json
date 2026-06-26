@@ -1,0 +1,87 @@
+{
+  "extracted_pages": {
+    "1": {
+      "page": 1,
+      "text": "API参考 火山方舟 版权所有©北京火山引擎科技有限公司",
+      "length": 28
+    },
+    "6": {
+      "page": 6,
+      "text": "1. 准备工作 1.1 获取 API Key 并配置 您调用方舟平台的模型之前，您需要 API Key 来进行鉴权。同时因为 API Key 信息较为敏感，泄露 API Key 会导致您的模型用量被其他人花费，造成一定的损失，因此我们会给出配置 API Key 进环境变量的方法， 方便您合理安全地使用API Key。 获取 API Key 打开并登录 API Key 管理 页面。 （可选）单击左上角 账号全部资源 下拉箭头，切换项目空间。 单击 创建 API Key 按钮。 在弹出框的 名称 文本框中确认/更改 API Key名称，单击创建。 您可以在 API Key 管理 页面的 API Key 列表 中查看刚创建的API Key信息。 配置 API Key 推荐将 API Key 配置在环境变量中，而不是硬编码进代码中，避免 API Key 随代码泄露，导致配额被他人 使用，产生额外花费。 配置方法见： 配置 API Key 到环境变量 。 使用说明 API Key 配额：一个主账号下支持创建 50 个API Key，如需更多配额请提交 工单 申请。 API Key 权限控制：API Key 创建于您当前所在项目，用于访问当前项目下的资源（即模型服务和应 用）。您可为 API Key 额外限制可鉴权的 Model ID /自定义推理接入点，或可调用该 API Key 的 IP。 TIPS ：您切换项目空间创建 API Key，可限制 API Key 只用于指定项目空间下的模型服务的鉴权凭 证。当您的账号是多人使用，可以通过此方法进行权限隔离。 注意：API Key 仅支持访问指定项目下的接入点，不支持跨项目访问。当您跨项目迁移了接入点，则 原 API Key 鉴权将失效。1. 2. 3. 4. • • ◦ ◦ API参考 1. 准备工作 版权所有©北京火山引擎科技有限公司 1/485",
+      "length": 807
+    },
+    "9": {
+      "page": 9,
+      "text": "升级 Go SDK 步骤与安装 Go SDK相同，可参考 安装 Go SDK ，第1，2步升级至最新/指定版本SDK。 升级至最新版本 升级至指定版本 Java SDK 适用范围 本 SDK 仅适用于 Java 服务端开发，暂不支持 Android 平台。若需在 Android 平台使用相关功能，需由客 户自行开发适配方案。 前提条件 检查并安装 Java 版本，Java 版本需 1.8 或以上。 如未安装 Java 或者版本不满足要求，可访问 Oracle 官方网站 下载并安装适合操作系统的 Java 版本。 请确保选择 1.8 或以上版本。 安装 Java SDK 火山方舟 Java SDK 支持通过 Maven 安装、通过 Gradle 安装两种方式。 通过 Maven 安装 在 pom.xml 文件中进行如下配置，完整配置可参考 Maven Central ：• go get -u github.com/volcengine/volcengine-go-sdkBash • go get -u github.com/volcengine/volcengine-go-sdk@<VERSION>Bash 1. java -versionBash ... <dependency > <groupId >com.volcengine </groupId > <artifactId >volcengine-java-sdk-ark-runtime </artifactId >API参考 1. 准备工作 版权所有©北京火山引擎科技有限公司 4/485",
+      "length": 683
+    },
+    "33": {
+      "page": 33,
+      "text": "usage.**completion_tokens ** integer 模型输出内容花费的 token。 usage.**completion_tokens_details ** object 模型输出内容花费的 token 的细节。 属性 usage.completion_tokens_details.**reasoning_tokens ** integer 输出思维链内容花费的 token 数 。 支持输出思维链的模型请参见 文档 。 流式调用返回 跳转 非流式调用返回 idstring 本次请求的唯一标识。 model string 本次请求实际使用的模型名称和版本。 service_tier string 本次请求是否使用了TPM保障包。 scale ：本次请求使用TPM保障包额度。 default ：本次请求未使用TPM保障包额度。 created integer 本次请求创建时间的 Unix 时间戳（秒）。 object string 固定为 chat.completion.chunk 。• • API参考 2. 对话(Chat) API 版权所有©北京火山引擎科技有限公司 28/485",
+      "length": 509
+    },
+    "272": {
+      "page": 272,
+      "text": "返回示例 错误码{ \"Name\": \"testname\", \"Description\": \"TestDescription\", \"ModelReference\": { \"CustomModelId\": \"SxU71Q1t\", \"FoundationModel\": { \"Name\": \"yzcHNZMJ736\", \"ModelVersion\": \"4Rh90omlqN\" } }, \"ModelUnitId\": \"\\\\-\", \"Tags\": [ { \"Key\": \"B\", \"Value\": \"3ScqC\" } ], \"ProjectName\": \"default\", \"DryRun\": true, \"RateLimit\": { \"Rpm\": 651, \"Tpm\": 798 } }text { \"ResponseMetadata\" :{ \"RequestId\" :\"20240514212750152186163065FE5A2A\" , \"Action\" :\"CreateEndpoint\" , \"Version\" :\"2024-01-01\" , \"Service\" :\"ark\" , \"Region\" :\"cn-beijing\" }, \"Result\" :{ \"Id\":\"ep-test-id\" } }jsonAPI参考 12. 管控面 API 版权所有©北京火山引擎科技有限公司 267/485",
+      "length": 601
+    },
+    "454": {
+      "page": 454,
+      "text": "错误码 下表为您列举了该接口与业务逻辑相关的错误码。公共错误码请参见 公共错误码 文档。\"2100339946\" , \"ep-20xxxx-xxx\" , \"2025-09-18\" , \"16\" , \"3062\" , \"914\" , \"0\", \"3976\" , \"1\" ], [ \"2100339946\" , \"ep-20xxxx-xxx\" , \"2025-09-17\" , \"14\" , \"6955\" , \"1921\" , \"0\", \"8876\" , \"4\" ] ], \"DataCount\" :2 } }json 状态码 错误码 错误信息 说明 400MissingParameter. {{Parameter}}The required parameter {{Parameter}} is missing.缺少必要的请求参 数。请确认请求参数 后重试。 400InvalidParameter. {{Parameter}}The specified parameter {{Parameter}} is invalid.请求参数值不合法。 请检查参数值的正确 性后重试。API参考 12. 管控面 API 版权所有©北京火山引擎科技有限公司 449/485",
+      "length": 531
+    }
+  },
+  "analyses": {
+    "page_1_auth": {
+      "api_key_info": [],
+      "base_url_info": [],
+      "auth_methods": [],
+      "security_notes": []
+    },
+    "page_6_auth": {
+      "api_key_info": [
+        "1. 准备工作 1.1 获取 API Key 并配置 您调用方舟平台的模型之前，您需要 API Key 来进行鉴权。同时因为 API Key 信息较为敏感，泄露 API Key 会导致您的模型用量被其他人花费，造成一定的损失，因此我们会给出配置 API Key 进环境变量的方法， 方便您合理安全地使用API Key。 获取 API Key 打开并登录 API Key 管理 页面。 （可选）单击左上角 账号全部资源 下拉箭头，切换项目空间。 单击 创建 API Key 按钮。 在弹出框的 名称 文本框中确认/更改 API Key名称，单击创建。 您可以在 API Key 管理 页面的 API Key 列表 中查看刚创建的API Key信息。 配置 API Key 推荐将 API Key 配置在环境变量中，而不是硬编码进代码中，避免 API Key 随代码泄露，导致配额被他人 使用，产生额外花费。 配置方法见： 配置 API Key 到环境变量 。 使用说明 API Key 配额：一个主账号下支持创建 50 个API Key，如需更多配额请提交 工单 申请。 API Key 权限控制：API Key 创建于您当前所在项目，用于访问当前项目下的资源（即模型服务和应 用）。您可为 API Key 额外限制可鉴权的 Model ID /自定义推理接入点，或可调用该 API Key 的 IP。 TIPS ：您切换项目空间创建 API Key，可限制 API Key 只用于指定项目空间下的模型服务的鉴权凭 证。当您的账号是多人使用，可以通过此方法进行权限隔离。 注意：API Key 仅支持访问指定项目下的接入点，不支持跨项目访问。当您跨项目迁移了接入点，则 原 API Key 鉴权将失效。1. 2. 3. 4. • • ◦ ◦ API参考 1. 准备工作 版权所有©北京火山引擎科技有限公司 1/485"
+      ],
+      "base_url_info": [],
+      "auth_methods": [
+        "1. 准备工作 1.1 获取 API Key 并配置 您调用方舟平台的模型之前，您需要 API Key 来进行鉴权。同时因为 API Key 信息较为敏感，泄露 API Key 会导致您的模型用量被其他人花费，造成一定的损失，因此我们会给出配置 API Key 进环境变量的方法， 方便您合理安全地使用API Key。 获取 API Key 打开并登录 API Key 管理 页面。 （可选）单击左上角 账号全部资源 下拉箭头，切换项目空间。 单击 创建 API Key 按钮。 在弹出框的 名称 文本框中确认/更改 API Key名称，单击创建。 您可以在 API Key 管理 页面的 API Key 列表 中查看刚创建的API Key信息。 配置 API Key 推荐将 API Key 配置在环境变量中，而不是硬编码进代码中，避免 API Key 随代码泄露，导致配额被他人 使用，产生额外花费。 配置方法见： 配置 API Key 到环境变量 。 使用说明 API Key 配额：一个主账号下支持创建 50 个API Key，如需更多配额请提交 工单 申请。 API Key 权限控制：API Key 创建于您当前所在项目，用于访问当前项目下的资源（即模型服务和应 用）。您可为 API Key 额外限制可鉴权的 Model ID /自定义推理接入点，或可调用该 API Key 的 IP。 TIPS ：您切换项目空间创建 API Key，可限制 API Key 只用于指定项目空间下的模型服务的鉴权凭 证。当您的账号是多人使用，可以通过此方法进行权限隔离。 注意：API Key 仅支持访问指定项目下的接入点，不支持跨项目访问。当您跨项目迁移了接入点，则 原 API Key 鉴权将失效。1. 2. 3. 4. • • ◦ ◦ API参考 1. 准备工作 版权所有©北京火山引擎科技有限公司 1/485"
+      ],
+      "security_notes": [
+        "1. 准备工作 1.1 获取 API Key 并配置 您调用方舟平台的模型之前，您需要 API Key 来进行鉴权。同时因为 API Key 信息较为敏感，泄露 API Key 会导致您的模型用量被其他人花费，造成一定的损失，因此我们会给出配置 API Key 进环境变量的方法， 方便您合理安全地使用API Key。 获取 API Key 打开并登录 API Key 管理 页面。 （可选）单击左上角 账号全部资源 下拉箭头，切换项目空间。 单击 创建 API Key 按钮。 在弹出框的 名称 文本框中确认/更改 API Key名称，单击创建。 您可以在 API Key 管理 页面的 API Key 列表 中查看刚创建的API Key信息。 配置 API Key 推荐将 API Key 配置在环境变量中，而不是硬编码进代码中，避免 API Key 随代码泄露，导致配额被他人 使用，产生额外花费。 配置方法见： 配置 API Key 到环境变量 。 使用说明 API Key 配额：一个主账号下支持创建 50 个API Key，如需更多配额请提交 工单 申请。 API Key 权限控制：API Key 创建于您当前所在项目，用于访问当前项目下的资源（即模型服务和应 用）。您可为 API Key 额外限制可鉴权的 Model ID /自定义推理接入点，或可调用该 API Key 的 IP。 TIPS ：您切换项目空间创建 API Key，可限制 API Key 只用于指定项目空间下的模型服务的鉴权凭 证。当您的账号是多人使用，可以通过此方法进行权限隔离。 注意：API Key 仅支持访问指定项目下的接入点，不支持跨项目访问。当您跨项目迁移了接入点，则 原 API Key 鉴权将失效。1. 2. 3. 4. • • ◦ ◦ API参考 1. 准备工作 版权所有©北京火山引擎科技有限公司 1/485"
+      ]
+    },
+    "page_9_api": {
+      "endpoints": [],
+      "parameters": [],
+      "examples": [],
+      "rate_limits": []
+    },
+    "page_33_api": {
+      "endpoints": [],
+      "parameters": [],
+      "examples": [],
+      "rate_limits": []
+    },
+    "page_272_auth": {
+      "api_key_info": [],
+      "base_url_info": [
+        "返回示例 错误码{ \"Name\": \"testname\", \"Description\": \"TestDescription\", \"ModelReference\": { \"CustomModelId\": \"SxU71Q1t\", \"FoundationModel\": { \"Name\": \"yzcHNZMJ736\", \"ModelVersion\": \"4Rh90omlqN\" } }, \"ModelUnitId\": \"\\\\-\", \"Tags\": [ { \"Key\": \"B\", \"Value\": \"3ScqC\" } ], \"ProjectName\": \"default\", \"DryRun\": true, \"RateLimit\": { \"Rpm\": 651, \"Tpm\": 798 } }text { \"ResponseMetadata\" :{ \"RequestId\" :\"20240514212750152186163065FE5A2A\" , \"Action\" :\"CreateEndpoint\" , \"Version\" :\"2024-01-01\" , \"Service\" :\"ark\" , \"Region\" :\"cn-beijing\" }, \"Result\" :{ \"Id\":\"ep-test-id\" } }jsonAPI参考 12. 管控面 API 版权所有©北京火山引擎科技有限公司 267/485"
+      ],
+      "auth_methods": [],
+      "security_notes": []
+    },
+    "page_454_error": {
+      "error_codes": [],
+      "http_status": [],
+      "error_messages": [
+        "错误码 下表为您列举了该接口与业务逻辑相关的错误码。公共错误码请参见 公共错误码 文档。\"2100339946\" , \"ep-20xxxx-xxx\" , \"2025-09-18\" , \"16\" , \"3062\" , \"914\" , \"0\", \"3976\" , \"1\" ], [ \"2100339946\" , \"ep-20xxxx-xxx\" , \"2025-09-17\" , \"14\" , \"6955\" , \"1921\" , \"0\", \"8876\" , \"4\" ] ], \"DataCount\" :2 } }json 状态码 错误码 错误信息 说明 400MissingParameter. {{Parameter}}The required parameter {{Parameter}} is missing.缺少必要的请求参 数。请确认请求参数 后重试。 400InvalidParameter. {{Parameter}}The specified parameter {{Parameter}} is invalid.请求参数值不合法。 请检查参数值的正确 性后重试。API参考 12. 管控面 API 版权所有©北京火山引擎科技有限公司 449/485"
+      ],
+      "solutions": []
+    }
+  },
+  "summary": {
+    "total_pages_extracted": 6,
+    "successful_pages": 6,
+    "total_text_length": 3159
+  }
+}

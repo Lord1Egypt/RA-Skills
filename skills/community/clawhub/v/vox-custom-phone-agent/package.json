@@ -1,0 +1,16 @@
+{
+  "name": "vox-custom-phone-agent",
+  "version": "0.1.0",
+  "description": "Agent/Claw skill resources for Vox botType=custom outbound phone calls.",
+  "type": "commonjs",
+  "main": "resources/index.js",
+  "scripts": {
+    "demo": "node resources/run_demo.js",
+    "smoke": "node resources/run_demo.js \"先试用。给 13800138000 打电话，作为课程顾问介绍周末 AI 编程体验课，目标是确认是否愿意预约试听，语气专业但不要强推，使用景珩音色。\" --no-call",
+    "test:prompts": "node resources/run_tests.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}

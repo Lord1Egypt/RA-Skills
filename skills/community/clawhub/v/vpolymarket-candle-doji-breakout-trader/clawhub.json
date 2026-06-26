@@ -1,0 +1,95 @@
+{
+  "emoji": "\ud83d\udd6f\ufe0f\ud83d\udcab",
+  "requires": {
+    "env": ["SIMMER_API_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trader.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_MAX_POSITION",
+      "type": "number",
+      "default": 40,
+      "range": [1, 200],
+      "step": 1,
+      "label": "Max position size USD"
+    },
+    {
+      "env": "SIMMER_MIN_TRADE",
+      "type": "number",
+      "default": 5,
+      "range": [1, 50],
+      "step": 1,
+      "label": "Min trade size USD (floor)"
+    },
+    {
+      "env": "SIMMER_MIN_VOLUME",
+      "type": "number",
+      "default": 3000,
+      "range": [0, 500000],
+      "step": 500,
+      "label": "Min market volume USD"
+    },
+    {
+      "env": "SIMMER_MAX_SPREAD",
+      "type": "number",
+      "default": 0.10,
+      "range": [0.01, 0.5],
+      "step": 0.01,
+      "label": "Max bid-ask spread"
+    },
+    {
+      "env": "SIMMER_MIN_DAYS",
+      "type": "number",
+      "default": 1,
+      "range": [0, 30],
+      "step": 1,
+      "label": "Min days until resolution"
+    },
+    {
+      "env": "SIMMER_MAX_POSITIONS",
+      "type": "number",
+      "default": 10,
+      "range": [1, 20],
+      "step": 1,
+      "label": "Max open positions"
+    },
+    {
+      "env": "SIMMER_YES_THRESHOLD",
+      "type": "number",
+      "default": 0.38,
+      "range": [0.05, 0.50],
+      "step": 0.01,
+      "label": "YES threshold -- buy YES when p <= this"
+    },
+    {
+      "env": "SIMMER_NO_THRESHOLD",
+      "type": "number",
+      "default": 0.62,
+      "range": [0.50, 0.95],
+      "step": 0.01,
+      "label": "NO threshold -- sell NO when p >= this"
+    },
+    {
+      "env": "SIMMER_DOJI_RANGE",
+      "type": "number",
+      "default": 0.02,
+      "range": [0.01, 0.05],
+      "step": 0.01,
+      "label": "Half-width of doji zone around 50%"
+    },
+    {
+      "env": "SIMMER_TREND_LENGTH",
+      "type": "number",
+      "default": 3,
+      "range": [2, 6],
+      "step": 1,
+      "label": "Min consecutive same-direction intervals before doji"
+    }
+  ]
+}

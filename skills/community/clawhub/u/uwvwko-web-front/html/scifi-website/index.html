@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科幻世界 | Sci-Fi World</title>
+    <style>
+        /* CSS变量 - 主题配色管理 */
+        :root {
+            --primary: #00ffff;
+            --secondary: #ff00ff;
+            --bg-dark: #0a0e27;
+            --bg-darker: #0d1025;
+            --text-primary: rgba(255, 255, 255, 0.9);
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --text-muted: rgba(255, 255, 255, 0.4);
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(0, 255, 255, 0.2);
+            
+            /* 间距系统 - 8px倍数 */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+            
+            /* 字体大小比例 1.25 */
+            --text-xs: 12px;
+            --text-sm: 14px;
+            --text-base: 16px;
+            --text-lg: 20px;
+            --text-xl: 25px;
+            --text-2xl: 31px;
+            --text-3xl: 39px;
+            --text-4xl: 49px;
+            --text-5xl: 61px;
+            
+            /* 圆角 */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            
+            /* 动画时长 */
+            --duration-fast: 200ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f3a 50%, var(--bg-darker) 100%);
+            color: var(--primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+            font-size: var(--text-base);
+        }
+
+        /* 背景粒子效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* 网格背景 */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+        }
+
+        /* 导航栏 - 应用组件规范 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: var(--space-md) var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+            letter-spacing: 3px;
+            transition: all var(--duration-normal) ease;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            letter-spacing: 2px;
+            transition: all var(--duration-normal) ease;
+            position: relative;
+            padding: var(--space-xs) 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width var(--duration-normal) ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+        }
+
+        /* 主容器 */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px var(--space-xl) var(--space-xl);
+        }
+
+        /* 英雄区域 - 应用Z-Pattern布局 */
+        .hero {
+            text-align: center;
+            padding: var(--space-2xl) 0;
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: var(--text-5xl);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--primary));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            letter-spacing: 5px;
+            line-height: 1.2;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xl);
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* 按钮组件 - 应用规范 */
+        .cta-button {
+            display: inline-block;
+            padding: var(--space-md) var(--space-xl);
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            font-size: var(--text-base);
+            font-weight: 600;
+            letter-spacing: 2px;
+            border-radius: var(--radius-sm);
+            transition: all var(--duration-normal) ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+            transition: left var(--duration-slow) ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .cta-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* 特性区域 - 12栅格系统 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-2xl) 0;
+        }
+
+        /* 卡片组件 - 应用规范 */
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: var(--space-xl);
+            border-radius: var(--radius-md);
+            transition: all var(--duration-normal) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transform: translateX(-100%);
+            transition: transform var(--duration-slow) ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .feature-card:hover {
+            background: rgba(0, 255, 255, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 255, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: var(--space-md);
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+
+        .feature-card p {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        /* 数据区域 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-2xl) 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: var(--space-lg);
+        }
+
+        .stat-number {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+            margin-bottom: var(--space-xs);
+        }
+
+        .stat-label {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: var(--space-xl);
+            border-top: 1px solid var(--card-border);
+            margin-top: var(--space-2xl);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            letter-spacing: 2px;
+        }
+
+        /* 扫描线效果 */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 255, 0.5);
+            animation: scan 3s linear infinite;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* 滚动动画 - 使用IntersectionObserver */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity var(--duration-slow) ease, transform var(--duration-slow) ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 响应式设计 - 应用断点规范 */
+        @media (max-width: 1024px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 639px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-sm);
+            }
+            
+            .hero h1 {
+                font-size: var(--text-3xl);
+            }
+            
+            .hero p {
+                font-size: var(--text-base);
+            }
+            
+            nav {
+                padding: var(--space-sm);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .container {
+                padding: 100px var(--space-sm) var(--space-sm);
+            }
+            
+            .feature-card {
+                padding: var(--space-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 扫描线效果 -->
+    <div class="scanline"></div>
+    
+    <!-- 网格背景 -->
+    <div class="grid-bg"></div>
+    
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- 导航栏 -->
+    <nav>
+        <div class="logo">NEXUS</div>
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#features">特性</a></li>
+            <li><a href="#stats">数据</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 英雄区域 -->
+        <section class="hero" id="home">
+            <h1>探索未来世界</h1>
+            <p>EXPLORE THE FUTURE WORLD</p>
+            <a href="#features" class="cta-button">开始探索 →</a>
+        </section>
+        
+        <!-- 特性区域 -->
+        <section class="features" id="features">
+            <div class="feature-card fade-in">
+                <span class="feature-icon">🚀</span>
+                <h3>量子计算</h3>
+                <p>利用量子叠加和量子纠缠，实现超高速并行计算，突破传统计算极限。</p>
+            </div>
+            <div class="feature-card fade-in">
+                <span class="feature-icon">🤖</span>
+                <h3>人工智能</h3>
+                <p>深度学习与神经网络，让机器拥有思考能力，开启智能新时代。</p>
+            </div>
+            <div class="feature-card fade-in">
+                <span class="feature-icon">🌌</span>
+                <h3>星际旅行</h3>
+                <p>曲速引擎技术，突破光速限制，探索宇宙深处的奥秘。</p>
+            </div>
+            <div class="feature-card fade-in">
+                <span class="feature-icon">🧬</span>
+                <h3>基因编辑</h3>
+                <p>CRISPR技术，精准修改基因序列，治愈遗传疾病，延长生命。</p>
+            </div>
+            <div class="feature-card fade-in">
+                <span class="feature-icon">⚡</span>
+                <h3>能源革命</h3>
+                <p>可控核聚变技术，提供无限清洁能源，解决能源危机。</p>
+            </div>
+            <div class="feature-card fade-in">
+                <span class="feature-icon">🔮</span>
+                <h3>虚拟现实</h3>
+                <p>全沉浸式虚拟世界，意识上传与数字永生，重新定义存在。</p>
+            </div>
+        </section>
+        
+        <!-- 数据统计 -->
+        <section class="stats" id="stats">
+            <div class="stat-item">
+                <div class="stat-number" data-target="2099">0</div>
+                <div class="stat-label">未来年份</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">可能性</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="42">0</div>
+                <div class="stat-label">宇宙答案</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">科技指数</div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer id="contact">
+        <p>© 2026 NEXUS 科幻世界 | 探索无限可能</p>
+    </footer>
+    
+    <script>
+        // 生成粒子
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        // 数字动画 - 使用requestAnimationFrame优化性能
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.stat-number[data-target]');
+            
+            numbers.forEach(num => {
+                const target = parseInt(num.getAttribute('data-target'));
+                if (isNaN(target)) return;
+                
+                const duration = 2000;
+                const startTime = performance.now();
+                
+                function update(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // 使用缓动函数
+                    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                    const current = Math.floor(easeOutQuart * target);
+                    
+                    num.textContent = current;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    } else {
+                        num.textContent = target;
+                    }
+                }
+                
+                requestAnimationFrame(update);
+            });
+        }
+        
+        // 滚动触发动画 - 使用IntersectionObserver
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // 观察所有fade-in元素
+        document.querySelectorAll('.fade-in').forEach(el => {
+            fadeInObserver.observe(el);
+        });
+        
+        // 观察stats区域
+        const statsSection = document.querySelector('.stats');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        // 鼠标跟踪光效
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.body.style.background = `
+                radial-gradient(
+                    circle at ${x * 100}% ${y * 100}%,
+                    rgba(0, 255, 255, 0.05) 0%,
+                    transparent 50%
+                ),
+                linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1025 100%)
+            `;
+        });
+        
+        // 初始化
+        createParticles();
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

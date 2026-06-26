@@ -1,0 +1,5 @@
+Copyright (c) TyrPay contributors.
+
+This skill bundle is packaged from the TyrPay repository.
+No separate license file exists in this package directory at the time of packaging.
+Apply the repository-level license if and when one is added.

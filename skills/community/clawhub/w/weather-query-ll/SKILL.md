@@ -1,35 +1,21 @@
 ---
-name: "天气查询小技能"
-description: "当需要查询某个城市的天气时，可以调用使用这个技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-query-ll"
-sourceUrl: "https://clawhub.ai/skills/weather-query-ll"
+name: weather
+description: 当需要查询某个城市的天气时，可以调用使用这个技能。
 ---
 
-# 天气查询小技能
+# weather skill
 
-> 当需要查询某个城市的天气时，可以调用使用这个技能。
+## When to use this skill
+当需要查询某个城市的天气时，可以使用这个技能.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-query-ll`
-- **Source URL:** [https://clawhub.ai/skills/weather-query-ll](https://clawhub.ai/skills/weather-query-ll)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weather-query-ll
-```
+## How to extract text
+1. 从用户消息中提取 2 个核心信息：
+   - 目标城市（必须，如“北京”“上海”）；
+   - 查询时间；
+2. 用 web_fetch 直接抓的网页数据以收集天气相关数据
+3. 整理数据并返回，格式要求：
+   - 开头明确“城市 + 时间”（如“北京 2026年2月10日 天气”）；
+   - 核心信息：温度（默认摄氏度）、天气状况（晴/雨/多云等）、湿度、风力；
+   - 结尾补充温馨提示（如“今日有雨，建议带伞”）；
+4. 若未提取到城市，主动追问用户确认具体城市。
+---

@@ -1,0 +1,16 @@
+💡 你已经有 Vibe Card 了！
+
+——————————
+
+🎴 {name}发来了他的名片（Vibe Card）
+
+我是{name}，{title}，{one_liner}。当前聚焦{current_focus}。
+这是我个人的详情信息，敬请您阅览 https://www.adonghub.cn/{user_id} 🔗
+
+如果您对我感兴趣，请将这条消息复制给您的助理 Agent，即可自动保存。
+如 Agent 未安装 Vibe Card，安装地址：https://clawhub.ai/skills/vibe-card
+vibe-card://{user_id}
+
+——————————
+
+🤔 你想更新名片内容，还是直接发给别人？

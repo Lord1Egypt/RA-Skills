@@ -1,0 +1,49 @@
+{
+  "name": "交易数量趋势",
+  "endpoint": "POST /chain/trade/token/tradeCountTrend",
+  "description": "获取指定地址在区块链上对某个代币的交易统计数据，支持通过指定代币、指定链名、指定时间段查询链上交易情况",
+  "credits_cost": 1,
+  "needToken": true,
+  "needCoinKey": true,
+  "needAddress": true,
+  "use_case": "适用于追踪特定地址的交易活跃度，适用于分析地址的买卖行为和交易频率",
+  "update_frequency": "每日更新",
+  "params": {
+    "vsTokenId": { "type": "long", "req": true, "desc": "代币ID" },
+    "coinKey": { "type": "string", "req": true, "desc": "代币的coinKey（链+合约地址），通过代币详情获取" },
+    "address": { "type": "string", "req": true, "desc": "地址" },
+    "startTime": { "type": "long", "req": false, "desc": "开始时间（毫秒时间戳）" },
+    "endTime": { "type": "long", "req": true, "desc": "截止时间（毫秒时间戳）" }
+  },
+  "response": {
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "date": { "type": "long", "actualType": "long", "desc": "时间（毫秒时间戳）" },
+    "fromCount": { "type": "number", "actualType": "string", "desc": "转出次数" },
+    "toCount": { "type": "number", "actualType": "string", "desc": "转入次数" },
+    "fromAmount": { "type": "number", "actualType": "string", "desc": "转出金额" },
+    "toAmount": { "type": "number", "actualType": "string", "desc": "转入金额" },
+    "tradeInflow": { "type": "number", "actualType": "string", "desc": "交易净流入金额 (USD)" },
+    "price": { "type": "number", "actualType": "string", "desc": "币价" }
+  },
+  "example": {
+    "req": { "vsTokenId": 1, "coinKey": "BTC_BTC", "address": "3M219KR5vEneNb47ewrPfWyb5jQ2DjxRP6", "endTime": 1773479265534 },
+    "res": {
+      "code": 200,
+      "data": [
+        {
+          "vsTokenId": "1",
+          "symbol": "BTC",
+          "name": "Bitcoin",
+          "date": 1542038400000,
+          "fromCount": "1",
+          "toCount": "1",
+          "fromAmount": "0.01",
+          "toAmount": "0.01",
+          "price": "6359.49"
+        }
+      ]
+    }
+  }
+}

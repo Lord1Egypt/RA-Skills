@@ -1,0 +1,46 @@
+name: vox-custom-phone-agent
+version: 0.1.0
+description: Convert natural-language phone tasks into TeddyMobile Vox botType=custom outbound calls with guided missing-field collection.
+entry: SKILL.md
+workflow: workflow.md
+resources:
+  - GET_STARTED.md
+  - FIRST_SETUP.md
+  - REGISTRATION_GUIDE.md
+  - WORKBUDDY.md
+  - resources/index.js
+  - resources/run_demo.js
+  - resources/hosted_api_example.js
+  - resources/hmac_outbound_client.js
+  - resources/call_job_store.js
+  - resources/vox_call_result_client.js
+  - resources/vox_result_poller.js
+  - resources/post_call_callback_client.js
+  - resources/task_briefing.js
+  - resources/call_task.js
+  - resources/result_advice.js
+  - resources/risk_classifier.js
+  - resources/voice_requirements.js
+  - resources/prompt_to_call_intent.js
+  - resources/intent_completeness.js
+  - resources/prompt_to_agent_profile.js
+  - resources/content_safety_guard.js
+  - resources/business_context_rules.js
+  - resources/voice_type_selector.js
+  - resources/credentials_loader.js
+  - resources/analytics_client.js
+  - resources/analytics_manifest.json
+  - resources/distribution_channel.js
+  - resources/phone_validator.js
+  - resources/request_id.js
+  - resources/trial_state.js
+  - resources/credentials.example.json
+  - resources/implementation_checklist.md
+tags:
+  - vox
+  - teddymobile
+  - phone-agent
+  - custom-bot
+  - outbound-call
+  - claw
+  - agent-skill

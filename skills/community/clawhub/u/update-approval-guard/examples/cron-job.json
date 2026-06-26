@@ -1,0 +1,18 @@
+{
+  "name": "Daily Update Approval Check",
+  "schedule": {
+    "kind": "cron",
+    "expr": "0 0 * * *",
+    "tz": "Asia/Shanghai"
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "next-heartbeat",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Check for updates to OpenClaw and all installed skills. Run check-only commands. Do not apply updates automatically. Create <workspace>/data/update-approval-guard/pending-update.json only when updates are found. Include current version, latest version, and whether each item has an update. Set status to pending_confirmation and expiry to 24 hours after creation. If a non-expired pending plan already exists, keep it and report that approval is still pending. If there are no updates, report that everything is current. Ask the user to confirm before any update can be executed. Never run the actual update command during this scheduled check.",
+    "lightContext": true
+  },
+  "delivery": {
+    "mode": "announce"
+  }
+}

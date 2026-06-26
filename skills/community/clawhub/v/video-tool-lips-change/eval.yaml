@@ -1,0 +1,19 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: video-tool-lips-change
+trigger_tests:
+  - id: explicit
+    should_trigger: true
+    prompt: "Use WeryAI lips change on this HTTPS video."
+  - id: negative-gen
+    should_trigger: false
+    prompt: "Only replace the face in the video, no new audio."
+outcome_tests:
+  - id: skill-package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/video_lips_change.js"

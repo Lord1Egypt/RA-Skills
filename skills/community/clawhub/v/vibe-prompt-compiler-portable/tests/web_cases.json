@@ -1,0 +1,92 @@
+[
+  {
+    "name": "mcp_selective_tool_discovery",
+    "request": "In many MCP tool integrations, the initial handshake exposes the full list of tools and their specifications to the agent. While this works well for small toolsets, it becomes a problem for large tool catalogs. We want a way to avoid exposing every tool up front and support more selective tool discovery.",
+    "expected_task": "architecture-review"
+  },
+  {
+    "name": "preview_pane_resize",
+    "request": "I would like to see the functionality to resize the preview window pane. In its default width it is too narrow. The addon already allows resizing the wardrobe window pane, add this functionality to the preview pane too.",
+    "expected_task": "page-ui"
+  },
+  {
+    "name": "login_500_special_characters",
+    "request": "Users are getting a 500 error when trying to log in with special characters in their password. Steps to reproduce: go to login page, enter testuser, enter a password with special characters, submit, and observe a 500 response.",
+    "expected_task": "bugfix"
+  },
+  {
+    "name": "localization_request",
+    "request": "It would be very nice to be able to add translations to the product so the interface can be localized.",
+    "expected_task": "general"
+  },
+  {
+    "name": "wecom_callback_sync",
+    "request": "把我们的系统和企业微信审批打通，审批通过后自动回写状态。",
+    "expected_task": "integration"
+  },
+  {
+    "name": "admin_dashboard_mvp",
+    "request": "Build an admin dashboard MVP",
+    "expected_task": "new-project"
+  },
+  {
+    "name": "multi_product_isolation",
+    "request": "We have a React frontend, a FastAPI backend, and local SQLite. We now need to support two tested products with identical functionality but completely isolated data. What is the smallest robust architecture?",
+    "expected_task": "architecture-review"
+  },
+  {
+    "name": "file_scan_pipeline",
+    "request": "Create a scheduled workflow that scans a directory, parses new files, writes records into the database, and alerts me when a run fails.",
+    "expected_task": "automation-workflow"
+  },
+  {
+    "name": "api_submit_registration",
+    "request": "Implement an API endpoint that validates and submits an event registration form into the database.",
+    "expected_task": "api-backend"
+  },
+  {
+    "name": "device_management_crud",
+    "request": "给后台加一个设备管理功能，至少先支持列表、新增、编辑和删除。",
+    "expected_task": "crud-feature"
+  },
+  {
+    "name": "kb_summary_next_steps",
+    "request": "给知识库问答加一个自动总结和推荐下一步操作的功能。",
+    "expected_task": "ai-feature"
+  },
+  {
+    "name": "windows_deployment_path",
+    "request": "Help deploy this React plus FastAPI project onto a Windows machine, while keeping a later migration path simple.",
+    "expected_task": "deployment"
+  },
+  {
+    "name": "mixed_cn_en_login_bug",
+    "request": "登录这块还是 broken，user 用带 special chars 的 password 就直接 500，帮我修一下。",
+    "expected_task": "bugfix"
+  },
+  {
+    "name": "mixed_ui_touchup_search",
+    "request": "把这个 users page 顺手 polish 一下，列表更清爽一点，再加 search 和分页。",
+    "expected_task": "page-ui"
+  },
+  {
+    "name": "mixed_backend_save_api",
+    "request": "需要一个 submit API，把报名表单 validate 后存进 DB，返回清晰错误信息。",
+    "expected_task": "api-backend"
+  },
+  {
+    "name": "mixed_workflow_ingest",
+    "request": "做个 cron workflow，每小时扫一下目录，把新文件 parse 完入库，失败就 alert 我。",
+    "expected_task": "automation-workflow"
+  },
+  {
+    "name": "mixed_integration_payment",
+    "request": "我们要对接 Stripe payment，支付成功后 webhook 回写订单状态。",
+    "expected_task": "integration"
+  },
+  {
+    "name": "mixed_architecture_tool_catalog",
+    "request": "这个 agent system 的 tool catalog 太大了，不能每次 handshake 都把全部 tools 暴露出去，想做按需发现，架构上怎么收敛？",
+    "expected_task": "architecture-review"
+  }
+]

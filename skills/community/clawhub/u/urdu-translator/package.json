@@ -1,0 +1,14 @@
+{
+  "name": "@openclaw/skill-urdu-translator",
+  "version": "1.0.0",
+  "description": "Advanced Urdu translation skill for OpenClaw using Google/Gemini API.",
+  "main": "index.js",
+  "keywords": ["openclaw", "skill", "urdu", "translate"],
+  "author": "OP",
+  "license": "MIT",
+  "openclaw": {
+    "type": "skill",
+    "display": "Urdu Master Translator",
+    "icon": "translate"
+  }
+}

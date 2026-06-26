@@ -1,35 +1,57 @@
 ---
-name: "Uplo Accounting"
-description: "AI-powered accounting knowledge management. Search bookkeeping records, tax preparation documents, audit support files, and financial statement workpapers wi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/uplo-accounting"
-sourceUrl: "https://clawhub.ai/skills/uplo-accounting"
+name: uplo-accounting
+description: AI-powered accounting knowledge management. Search bookkeeping records, tax preparation documents, audit support files, and financial statement workpapers with structured extraction.
 ---
 
-# Uplo Accounting
+# UPLO Accounting — Bookkeeping & Tax Intelligence
 
-> AI-powered accounting knowledge management. Search bookkeeping records, tax preparation documents, audit support files, and financial statement workpapers wi...
+You have access to organizational knowledge through UPLO, focused on **accounting** domain expertise.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/uplo-accounting`
-- **Source URL:** [https://clawhub.ai/skills/uplo-accounting](https://clawhub.ai/skills/uplo-accounting)
+## Session Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+When you begin a new session, fetch your organizational context:
 ```bash
-hermes skills install clawhub/uplo-accounting
+mcporter call uplo-accounting.get_identity_context
 ```
+
+## When to Use
+
+- Questions about accounting policies, procedures, or processes
+- Looking up domain-specific knowledge and documentation
+- Finding subject matter experts
+- Verifying facts against the knowledge base
+
+## Key Tools
+
+**Search knowledge:**
+```bash
+mcporter call uplo-accounting.search_knowledge query="your question here"
+```
+
+**Search with full context (GraphRAG):**
+```bash
+mcporter call uplo-accounting.search_with_context query="complex question with org context"
+```
+
+**Export org context:**
+```bash
+mcporter call uplo-accounting.export_org_context
+```
+
+**Get directives:**
+```bash
+mcporter call uplo-accounting.get_directives
+```
+
+## Session End
+
+Log the conversation:
+```bash
+mcporter call uplo-accounting.log_conversation summary="Brief summary" topics='["topic1"]' tools_used='["search_knowledge"]'
+```
+
+## Important
+
+- Always cite sources when sharing UPLO information
+- Respect classification levels
+- If UPLO doesn't have the answer, say so rather than guessing

@@ -1,0 +1,41 @@
+{
+  "china_domain": [
+    "baidu",
+    "zhihu",
+    "weibo",
+    "bilibili",
+    "douyin",
+    "taobao",
+    "jd",
+    "qq",
+    "163",
+    "sina",
+    "sohu",
+    "alibaba",
+    "aliyun",
+    "tencent"
+  ],
+  "china_cidr": [
+    "114.114.114.0/24",
+    "223.5.5.0/24",
+    "119.29.29.0/24",
+    "180.76.76.0/24"
+  ],
+  "private_cidr": [
+    "10.0.0.0/8",
+    "172.16.0.0/12",
+    "192.168.0.0/16",
+    "127.0.0.0/12"
+  ],
+  "custom_rule": [
+    "DOMAIN-SUFFIX,google.com,PROXY",
+    "DOMAIN-SUFFIX,youtube.com,PROXY",
+    "DOMAIN-SUFFIX,twitter.com,PROXY",
+    "DOMAIN-SUFFIX,facebook.com,PROXY",
+    "DOMAIN-SUFFIX,instagram.com,PROXY",
+    "DOMAIN-SUFFIX,github.com,PROXY",
+    "DOMAIN-SUFFIX,openai.com,PROXY",
+    "DOMAIN-SUFFIX,telegram.org,PROXY",
+    "FINAL,DIRECT"
+  ]
+}

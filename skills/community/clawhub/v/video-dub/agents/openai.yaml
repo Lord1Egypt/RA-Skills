@@ -1,0 +1,8 @@
+interface:
+  display_name: "Video Dub"
+  short_description: "Download, translate, dub, and retime videos"
+  default_prompt: "Use $video-dub to localize a YouTube or Bilibili video into a dubbed video with aligned subtitles."
+
+policy:
+  allow_implicit_invocation: true
+

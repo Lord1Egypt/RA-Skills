@@ -1,0 +1,9 @@
+{
+  "name": "web3dropper-crypto-price",
+  "version": "1.0.0",
+  "description": "Get crypto price from Binance API",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

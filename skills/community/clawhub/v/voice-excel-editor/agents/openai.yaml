@@ -1,0 +1,7 @@
+interface:
+  display_name: "语音 Excel 编辑助手"
+  short_description: "将语音指令转成 Excel 结构化编辑并执行"
+  default_prompt: "Use $voice-excel-editor to transcribe a spoken Excel editing request, turn it into structured worksheet operations, apply the changes, and return the modified workbook with an execution log."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,35 +1,225 @@
 ---
-name: "王昊自动回复助手"
+name: wanghao-auto-responder
 description: "王昊自动回复助手。帮王昊自动响应同事的业务咨询。王昊是追光战队拓新主管。触发场景：(1) cron定时自动扫描未回复消息 (2) 用户说「帮我回复」「自动回复一下」手动触发。(3) 王昊问「今天有什么未完成的事项」。"
-category: "other"
-source: "ClawHub"
-tags: [auto-responder, feishu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wanghao-auto-responder"
-sourceUrl: "https://clawhub.ai/skills/wanghao-auto-responder"
 ---
 
 # 王昊自动回复助手
 
-> 王昊自动回复助手。帮王昊自动响应同事的业务咨询。王昊是追光战队拓新主管。触发场景：(1) cron定时自动扫描未回复消息 (2) 用户说「帮我回复」「自动回复一下」手动触发。(3) 王昊问「今天有什么未完成的事项」。
+> 帮王昊自动响应同事的业务咨询。王昊是追光战队拓新主管。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wanghao-auto-responder`
-- **Source URL:** [https://clawhub.ai/skills/wanghao-auto-responder](https://clawhub.ai/skills/wanghao-auto-responder)
+## 适用场景
 
-## Overview
+**两种触发方式：**
+1. **手动触发** — 王昊转发消息说「帮我回复」「自动回复一下」→ 立即处理该消息
+2. **自动扫描（高频）** — 每20秒一次扫描未回复消息，发现团队伙伴的业务咨询直接回复，无需经过王昊确认
 
+## 能处理的问题类型
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 类型 | 举例 |
+|------|------|
+| 📊 追光战队数据 | "今天追光数据怎么样？" "我们组审核通过多少？" |
+| 👥 团队人员 | "XX在哪个组？" "XX的带教情况" |
+| 📋 流程咨询 | "开户流程怎么走？" "这个怎么申请？" |
+| 📦 产品咨询 | "扫码王配置" "收钱音箱使用方法" |
+| 📎 资料索取 | "有XX的资料吗" "发我一份文档" |
+| ❓ 关于你 | "这是什么？" "怎么用？" |
+
+**自动跳过：**
+- 纯问候（"在吗""在不在" → 只回一句"在的"）
+- 个人私事、八卦、闲聊
+- 需要王昊本人决策的问题（"这个单子能不能批"）
+- 敏感信息或投诉
+
+## 工作流
+
+### Step 1: 检测消息
+
+搜索最近发消息给王昊但未处理的同事消息：
+
+- **群聊@消息**：`feishu_im_user_search_messages` 搜索 `mention_ids=[ou_6e2be0b3ae48cb20e0519741c75d7ce9]`，`relative_time="last_30_minutes"`
+- **私聊消息（正确方法）**：用 `feishu_im_user_search_messages` 搜索 `chat_type="p2p"`，`relative_time="last_30_minutes"`，`sender_type="user"`。然后过滤掉发送者是王昊本人的消息。
+> ⚠️ 私聊消息别人不会@你，是直接发过来的。**不要用 `feishu_im_user_get_messages` 查王昊自己的 open_id**，那样查到自己和自己的对话是空的。必须用 `feishu_im_user_search_messages + chat_type="p2p"` 来搜所有私聊。团队伙伴私聊问业务问题 → 直接回复，不用问王昊。
+
+### Step 2: 去重
+
+检查 `memory/wanghao-auto-responder.md` 记录，跳过已回复的消息 ID。
+
+### Step 3: 语音消息处理
+
+如果消息是语音/视频类型：
+1. 用 `feishu_im_bot_image` 或 `feishu_im_user_fetch_resource` 下载音频文件
+2. 用 `exec` 执行转录命令：
 ```bash
-hermes skills install clawhub/wanghao-auto-responder
+python3 /workspace/skills/speech-recognition-local/scripts/transcribe.py <音频文件路径> zh
 ```
+3. 用转录后的文字判断是否为可自动回复的业务咨询
+4. 记录到 `memory/wanghao-auto-responder.md`
+
+### Step 4: 判断是否可回复
+
+对每条未回复消息判断：
+
+- **问候类**（"在吗""在不在""忙吗"） → 回复一句"在的"，记录并结束
+- **纯闲聊/个人私事** → 跳过，不回复
+- **需要决策/审批** → 跳过（"这个单子能批吗""帮我决定一下"）
+- **上级/老板布置任务** → 跳过
+- **业务咨询/数据查询/流程问题** → 继续处理
+
+### Step 5: 搜索知识
+
+**A. 搜索飞书文档**
+用 `feishu_search_doc_wiki` 搜索相关文档，阅读关键内容。
+
+**B. 参考团队数据**
+如果有涉及追光战队数据的问题，参考当天邮件数据（如已抓取）。
+先检查当天 memory 文件 `memory/YYYY-MM-DD.md` 中是否已有排名数据。
+也可以用 `daily-screport-analysis` 技能相关的数据文件。
+
+**C. 线上业务知识库索引**
+文档：https://sqb.feishu.cn/docx/KsvYdfpKNoVt8VxooeBceTpenAg
+
+线上业务组知识库索引，包含：
+- 职场文明规范&业务合规规范、线索建联备注规范与复盘要求
+- 大周会标准化执行手册、产品业务三板斧
+- 增值业务功能汇总（寸金必争）、产品价格&提奖&押金政策
+- 收单开户复盘流程 & 电话/微信建联话术 & 线上业务话术大全
+- 收银saas竞品信息、费率一览表
+- 展业标准汇总 & 报价单参考
+- 常见演示账号 & 收钱吧资质证明
+- 业务流程SOP（拓新/存量）
+- 各行业案例、新人文档
+- 更新宣导 & 新业务、标杆人物视频
+- 工具支持（机器视频、风控政策、机器使用）
+- 日常宣导图片/视频素材
+
+**D. 追光学习文件汇总**
+文档：https://sqb.feishu.cn/docx/Hp9Ed5R1to6fgyxIggDcB5G5nSd
+
+追光战队专用学习资料，包含：
+- 基础动作（收钱吧APP功能介绍、费率一览表、拓新客户经理的一天等）
+- 电话/微信建联话术模板、收单开通流程 & 有效跟进流程
+- 连锁商户挖掘、微信/支付宝认证步骤
+- 产品业务三板斧 & 竞品信息
+- 新硬件（小白盒全能王、CP1绑定、AI一体秤、音箱长续航版、云打印机P3、线上版收银机）
+- 复盘方法（收单开户复盘、餐饮复盘）
+- 进阶攻略（画像产品满足、团餐攻略、增值业务推荐、硬件渗透）
+- 销售策略（顾客说考虑考虑/价格贵如何应对）
+- 京东外卖对接流程 & Q&A
+- 榜样的力量视频（刘子琪、李佳宁、周斌、时会平等）
+- Npos相关 & 数电票 & 高德相关
+
+**E. 更新宣导（产品更新日志）**
+多维表格：https://sqb.feishu.cn/base/PqnpbUhcxaXo8VsCl2DcVoiJnIN
+
+产品功能更新记录表，有更新大类、更新内容介绍、对应处理人、更新状态等字段。
+用户问「最近有什么更新」「XX功能现在有吗」时，用 `feishu_bitable_app_table_record` 搜索此表。
+
+**F. 办公指南（内部知识库）**
+知识库：https://sqb.feishu.cn/wiki/AhLmw2dJmimgtMkQcJ0cQU5Wn8e
+
+公司内部综合知识库，覆盖：
+- HR篇（入离职、社保、考勤等）
+- 行政篇（办公用品、会议室、工位等）
+- 财务篇（报销、开票、工资等）
+- IT篇（系统账号、网络、设备等）
+- 内控篇（合规、审计、风控等）
+- 品牌篇（品牌规范、宣传等）
+
+**G. 品牌资源总入口**
+知识库：https://sqb.feishu.cn/wiki/CTMpwoqgjiAMBYkaDLIcTKOfn4g
+
+品牌VI规范、Logo、色彩、字体等完整品牌资源。
+
+**H. AI应用知识库**
+知识库：https://sqb.feishu.cn/wiki/II5KwmDZUi38OdkjiZbchb8TnKc
+
+AI工具使用教程、视频制作、海报设计等各类AI工作流指南。
+
+**I. 全来店SaaS销售指南**
+知识库：https://sqb.feishu.cn/wiki/LwY3whLj9iIAzqkWCIOcFHGDn2e
+
+全来店SaaS销售手册、产品介绍、方案配置参考。
+
+**J. 产品更新及项目发布（月度）**
+电子表格：https://sqb.feishu.cn/sheets/JcxtsI68OhUOIrtjsQmcXbQbnlm
+
+每月产品更新及项目发布记录。
+
+**K. 历史回复**
+搜索 `memory/wanghao-auto-responder.md` 中类似的问答，保持回复风格一致。
+
+### Step 6: 合成回复
+
+格式要求：
+```
+🤖 本消息由 AI 自动生成，仅供参考 —— 我是王昊的 AI 助手
+
+[答案正文，简洁直接，不超过300字]
+
+📎 参考来源：[文档标题/链接]（如有）
+```
+
+规则：
+- 答案 ≤ 300 字，简洁明了
+- 不说"您好""请"等过于正式的话，保持同事间的自然语气
+- 不确定的就说"这个我不太确定，建议等王昊回复"
+- 能给出具体数据的给数据，不能的给指引
+
+### Step 7: 发送回复
+
+使用 `feishu_im_user_message` 工具 `action=reply`，回复原消息：
+```
+feishu_im_user_message {
+  action: "reply",
+  message_id: "原消息ID",
+  msg_type: "text",
+  content: '{"text":"🤖 本消息由 AI 自动生成，仅供参考 —— 我是王昊的 AI 助手\n\n[答案正文]"}'
+}
+```
+- 群聊 @消息 → 回复到该群聊
+- 私聊消息 → 回复到该私聊
+
+> ⚠️ 不要在 cron 模式下额外发消息通知王昊。只回复原消息对话即可。
+
+### Step 8: 记录归档
+
+在 `memory/wanghao-auto-responder.md` 追加记录，格式如下：
+```
+## 2026-05-19 10:14
+- 消息ID: om_xxx | 发送者: 胡好 | 问题: 音箱怎么绑定
+- 已回复 ✅ | 回复摘要: 收钱吧APP绑定音箱流程说明
+```
+
+对于跳过的消息也记录：
+```
+- 消息ID: om_xxx | 发送者: 江美琪 | 内容: 你吃早饭了吗
+- 跳过 ⏭️ | 原因: 闲聊
+```
+
+> ⚠️ 记录格式必须规范统一（时间戳、发送者姓名、问题摘要、回复状态），因为每小时汇总任务会读取此文件来生成汇总表。
+
+## 手动触发处理
+
+当王昊说「帮我回复」「自动回复一下」并转发/引用一条消息时：
+1. 只处理那条被引用的消息，不扫描其他消息
+2. 同样走 Step 4-8 流程
+3. 回复完成后告知王昊「已回复」
+
+## 定时扫描注意事项（重要）
+
+**cron 模式下的行为规则：**
+1. 只回复别人的消息，不主动发消息给王昊
+2. 如果扫描后没有发现需要回复的消息，回复 **NO_REPLY**（让 cron 静默完成）
+3. 即使有回复，也只回复到原对话中，不要额外通知王昊
+4. 每次扫描只处理发现的新消息，不重复处理
+
+## 配置信息
+
+- 王昊 open_id: `ou_6e2be0b3ae48cb20e0519741c75d7ce9`
+- 王昊姓名：王昊
+- 团队：追光战队
+- 角色：拓新主管
+- 常用技能：daily-screport-analysis（追光战队数据）
+- 个人 MEMORY.md 存于 /workspace/MEMORY.md
+- 用户 USER.md 存于 /workspace/USER.md
+- 自动回复记录：/workspace/memory/wanghao-auto-responder.md

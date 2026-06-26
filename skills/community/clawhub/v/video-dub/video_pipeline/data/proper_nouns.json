@@ -1,0 +1,95 @@
+{
+  "terms": [
+    {
+      "canonical": "Kyiv",
+      "aliases": ["Kiev"]
+    },
+    {
+      "canonical": "Armed Forces of the Russian Federation",
+      "aliases": [
+        "armed force of the Russian Federation",
+        "Amodovvoso-Durasian Federation",
+        "Amat-Fosil-Durasian Federation",
+        "Amatvostya-Durasian Federation"
+      ],
+      "min_similarity": 0.72
+    },
+    {
+      "canonical": "Armed Forces of Ukraine",
+      "aliases": [
+        "Amad-Fosil-Kran",
+        "Amatvose Ukraine",
+        "Amatvose to Ukraine",
+        "Amatvok city crane"
+      ],
+      "min_similarity": 0.72
+    },
+    {
+      "canonical": "Russian Federation"
+    },
+    {
+      "canonical": "Kharkiv"
+    },
+    {
+      "canonical": "Odesa",
+      "aliases": ["Odessa"]
+    },
+    {
+      "canonical": "Dnipro",
+      "aliases": ["Dnepro", "Dnipropetrovsk"]
+    },
+    {
+      "canonical": "Kherson"
+    },
+    {
+      "canonical": "Mykolaiv",
+      "aliases": ["Nikolaev", "Mykolayiv"]
+    },
+    {
+      "canonical": "Sumy"
+    },
+    {
+      "canonical": "Donetsk"
+    },
+    {
+      "canonical": "Luhansk",
+      "aliases": ["Lugansk"]
+    },
+    {
+      "canonical": "Kryvyi Rih"
+    },
+    {
+      "canonical": "Zaporizhzhia"
+    },
+    {
+      "canonical": "Orikhiv"
+    },
+    {
+      "canonical": "Kupiansk"
+    },
+    {
+      "canonical": "Pokrovsk"
+    },
+    {
+      "canonical": "Avdiivka",
+      "aliases": ["Avdeevka"]
+    },
+    {
+      "canonical": "Sloviansk",
+      "aliases": ["Slavyansk"]
+    },
+    {
+      "canonical": "Kramatorsk"
+    },
+    {
+      "canonical": "Kostiantynivka"
+    },
+    {
+      "canonical": "Lyman"
+    },
+    {
+      "canonical": "Bakhmut",
+      "aliases": ["Artyomovsk", "Artemovsk"]
+    }
+  ]
+}

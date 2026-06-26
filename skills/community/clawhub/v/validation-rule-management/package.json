@@ -1,0 +1,12 @@
+{
+  "name": "validate-rule-cli",
+  "version": "1.0.0",
+  "description": "校验规则管理 CLI",
+  "license": "MIT-0",
+  "bin": {
+    "vr": "./cli.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

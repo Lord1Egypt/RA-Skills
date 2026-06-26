@@ -1,0 +1,2 @@
+# MiniMax voice clone + TTS script
+requests>=2.28.0

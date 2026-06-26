@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+requests
+torch
+torchaudio
+safetensors
+f5-tts
+soundfile

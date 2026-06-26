@@ -1,35 +1,95 @@
 ---
-name: "Variant Pathogenicity Predictor"
-description: "Integrate REVEL, CADD, PolyPhen scores to predict variant pathogenicity"
-category: "other"
-source: "ClawHub"
+name: variant-pathogenicity-predictor
+description: Integrate REVEL, CADD, PolyPhen scores to predict variant pathogenicity
+version: 1.0.0
+category: Bioinfo
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/variant-pathogenicity-predictor"
-sourceUrl: "https://clawhub.ai/skills/variant-pathogenicity-predictor"
+author: AIPOCH
+license: MIT
+status: Draft
+risk_level: Medium
+skill_type: Tool/Script
+owner: AIPOCH
+reviewer: ''
+last_updated: '2026-02-06'
 ---
 
 # Variant Pathogenicity Predictor
 
-> Integrate REVEL, CADD, PolyPhen scores to predict variant pathogenicity
+Integrate REVEL, CADD, PolyPhen and other scores to predict variant pathogenicity.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/variant-pathogenicity-predictor`
-- **Source URL:** [https://clawhub.ai/skills/variant-pathogenicity-predictor](https://clawhub.ai/skills/variant-pathogenicity-predictor)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/variant-pathogenicity-predictor
+python scripts/main.py --variant "chr17:43094692:G:A" --gene "BRCA1"
+python scripts/main.py --vcf variants.vcf --output report.json
 ```
+
+## Parameters
+
+- `--variant`: Variant in format chr:pos:ref:alt
+- `--vcf`: VCF file with variants
+- `--gene`: Gene symbol
+- `--scores`: Prediction scores to use (REVEL,CADD,PolyPhen)
+
+## Integrated Scores
+
+- REVEL (Rare Exome Variant Ensemble Learner)
+- CADD (Combined Annotation Dependent Depletion)
+- PolyPhen-2 (Polymorphism Phenotyping)
+- SIFT (Sorting Intolerant From Tolerant)
+- MutationTaster
+
+## Output
+
+- Pathogenicity classification
+- ACMG guideline interpretation
+- Individual score breakdown
+- Confidence assessment
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support

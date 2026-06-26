@@ -1,0 +1,42 @@
+{
+  "name": "utf8-encoder-tool",
+  "version": "2.0.0",
+  "description": "UTF-8发布基础设施 - 自动处理多平台中文编码问题，集成防卡顿策略，支持Discord、GitHub等平台",
+  "main": "utf8-encoder.js",
+  "bin": {
+    "utf8-encoder": "./cli.js"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "integration-test": "node integration-test.js",
+    "start": "node cli.js",
+    "infrastructure-demo": "node -e \"const {UTF8Infrastructure}=require('./utf8-encoder');const i=new UTF8Infrastructure();console.log('🏛️ UTF-8发布基础设施 v2.0.0');console.log(JSON.stringify(i.getInfrastructureStatus(),null,2));\""
+  },
+  "keywords": [
+    "utf8",
+    "encoding",
+    "infrastructure",
+    "chinese",
+    "discord",
+    "github",
+    "webhook",
+    "api",
+    "resilience",
+    "retry"
+  ],
+  "author": "丞相",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrpulorx2025-source/utf8-encoder-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mrpulorx2025-source/utf8-encoder-skill/issues"
+  },
+  "homepage": "https://github.com/mrpulorx2025-source/utf8-encoder-skill#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

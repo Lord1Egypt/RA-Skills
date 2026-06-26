@@ -1,0 +1,48 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jaideepdhanoa/vocab-voyage",
+  "title": "Vocab Voyage",
+  "description": "20 MCP tools + 17 widgets for SAT/ISEE/SSAT/GRE/GMAT/LSAT prep. Flashcards, quizzes & games. Hosted.",
+  "version": "1.1.1",
+  "websiteUrl": "https://vocab.voyage/mcp",
+  "keywords": [
+    "vocabulary",
+    "test-prep",
+    "education",
+    "sat",
+    "isee",
+    "ssat",
+    "gre",
+    "gmat",
+    "lsat",
+    "psat",
+    "tutor",
+    "k12"
+  ],
+  "icons": [
+    {
+      "src": "https://vocab.voyage/favicon.ico",
+      "sizes": [
+        "any"
+      ],
+      "type": "image/x-icon"
+    },
+    {
+      "src": "https://vocab.voyage/icon-512.png",
+      "sizes": [
+        "512x512"
+      ],
+      "type": "image/png"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/jaideepdhanoa/vocab-voyage-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://gponcrussdahcdyrlhcr.supabase.co/functions/v1/mcp-server?ref=mcp_registry"
+    }
+  ]
+}

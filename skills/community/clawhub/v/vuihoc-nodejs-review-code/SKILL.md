@@ -1,35 +1,24 @@
----
-name: "vuihoc-nodejs-review-code"
-description: "Review Node.js code for clear structure, error handling, security, performance, best practices, and proper testing coverage."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vuihoc-nodejs-review-code"
-sourceUrl: "https://clawhub.ai/skills/vuihoc-nodejs-review-code"
----
-
-# vuihoc-nodejs-review-code
-
-> Review Node.js code for clear structure, error handling, security, performance, best practices, and proper testing coverage.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vuihoc-nodejs-review-code`
-- **Source URL:** [https://clawhub.ai/skills/vuihoc-nodejs-review-code](https://clawhub.ai/skills/vuihoc-nodejs-review-code)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/vuihoc-nodejs-review-code
-```
+1. Code Structure & Readability
+Variable, function, and class names are clear and follow camelCase convention.
+Functions are short and do one thing only.
+Clear separation between controller, service, and model layers.
+No unused code or outdated comments.
+2. Error Handling
+Proper error handling with try/catch for async/await.
+No uncaught errors or unhandled promises.
+Clear error messages are returned to the client.
+3. Security
+No sensitive information (passwords, keys, tokens) exposed in code.
+All client input is validated.
+Security middleware such as helmet and cors are used.
+4. Performance
+No heavy tasks blocking the event loop.
+Caching is used where appropriate.
+Database queries are optimized and indexed if necessary.
+5. Best Practices
+Environment variables are managed with dotenv.
+Complex code blocks are well-commented.
+Configurations, constants, and helpers are separated into their own files.
+6. Testing
+Important logic functions have unit tests.
+Edge cases are tested.

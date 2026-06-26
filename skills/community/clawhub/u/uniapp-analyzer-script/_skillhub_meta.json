@@ -1,0 +1,47 @@
+{
+  "name": "uniapp-analyzer-script",
+  "version": "1.0.0",
+  "description": "脚本版 (PowerShell) - 精确统计离线分析，依赖 skill-seekers",
+  "description_zh": "脚本版 (PowerShell) - 精确统计离线分析，依赖 skill-seekers",
+  "description_en": "Script version (PowerShell) - Precise offline analysis, requires skill-seekers",
+  "display_name": "uniapp项目分析器 (脚本版)",
+  "author": "include",
+  "license": "MIT",
+  "keywords": [
+    "project-analysis",
+    "uni-app",
+    "vue",
+    "vue2",
+    "vue3",
+    "code-analysis",
+    "technical-debt",
+    "code-quality",
+    "skill-seekers"
+  ],
+  "categories": [
+    "development",
+    "analysis"
+  ],
+  "triggers": [
+    "分析这个项目",
+    "分析 uni-app 项目",
+    "分析 Vue 项目",
+    "帮我理解这个项目的结构",
+    "生成项目文档",
+    "分析代码架构",
+    "查看项目依赖关系",
+    "检查代码质量",
+    "评估技术债务",
+    "项目体检",
+    "代码审查",
+    "重构建议"
+  ],
+  "requirements": [
+    "PowerShell 5.0+",
+    "skill-seekers (pip install skill-seekers)"
+  ],
+  "entry_point": "analyze-project.ps1",
+  "entry_point_unix": "analyze-project.sh",
+  "platforms": ["windows", "linux", "macos"],
+  "language": "powershell,bash"
+}

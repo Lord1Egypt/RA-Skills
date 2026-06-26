@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Walrus Brand Palette */
+  --walrus-mint: #97F0E5;
+  --walrus-mint-bright: #B0F5ED;
+  --walrus-mint-dim: rgba(151, 240, 229, 0.35);
+  --walrus-mint-faint: rgba(151, 240, 229, 0.08);
+  --walrus-mint-glow: rgba(151, 240, 229, 0.12);
+
+  /* Dark backgrounds */
+  --abyss: #080E1B;
+  --deep: #0C1524;
+  --layer: #111D30;
+  --surface: #162640;
+  --rim: rgba(151, 240, 229, 0.10);
+
+  /* Semantic aliases */
+  --glow: var(--walrus-mint);
+  --glow-dim: var(--walrus-mint-dim);
+  --glow-faint: var(--walrus-mint-faint);
+  --amber: #FFB347;
+  --amber-dim: rgba(255, 179, 71, 0.3);
+  --danger: #FF6B6B;
+
+  /* Text */
+  --text: #E0F5F0;
+  --text-muted: #5A9A90;
+  --text-dim: #2F6B5E;
+
+  /* Typography */
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-data: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--abyss);
+  color: var(--text);
+  font-family: var(--font-data);
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Subtle noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10000;
+}
+
+/* Animations */
+@keyframes walrus-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse-ring {
+  0% { transform: translate(-50%,-50%) scale(0.8); opacity: 0.6; }
+  100% { transform: translate(-50%,-50%) scale(2.5); opacity: 0; }
+}
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes depth-fade {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes sonar-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@keyframes modal-fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float { animation: float-up 0.5s ease forwards; }
+.animate-depth { animation: depth-fade 0.4s ease forwards; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--abyss); }
+::-webkit-scrollbar-thumb { background: var(--walrus-mint-dim); border-radius: 3px; }
+
+a { color: var(--glow); text-decoration: none; transition: color 0.2s; }
+a:hover { color: #fff; }
+
+button {
+  cursor: pointer;
+  font-family: var(--font-data);
+}
+
+input, textarea {
+  font-family: var(--font-data);
+  font-size: 13px;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(151, 240, 229, 0.25);
+  color: #fff;
+}
+
+/* Override @mysten/dapp-kit theme via CSS custom properties */
+[data-dapp-kit],
+[data-dapp-kit] * {
+  --dapp-kit-colors-body: var(--text);
+  --dapp-kit-colors-bodyMuted: var(--text-muted);
+  --dapp-kit-colors-bodyDanger: var(--danger);
+  --dapp-kit-colors-primaryButton: var(--walrus-mint);
+  --dapp-kit-colors-outlineButton: var(--walrus-mint);
+  --dapp-kit-colors-iconButton: var(--walrus-mint);
+  --dapp-kit-backgroundColors-primaryButton: transparent;
+  --dapp-kit-backgroundColors-primaryButtonHover: var(--walrus-mint-faint);
+  --dapp-kit-backgroundColors-outlineButtonHover: var(--walrus-mint-faint);
+  --dapp-kit-backgroundColors-iconButton: transparent;
+  --dapp-kit-backgroundColors-iconButtonHover: var(--walrus-mint-faint);
+  --dapp-kit-backgroundColors-modalOverlay: rgba(8, 14, 27, 0.85);
+  --dapp-kit-backgroundColors-modalPrimary: var(--deep);
+  --dapp-kit-backgroundColors-modalSecondary: var(--layer);
+  --dapp-kit-backgroundColors-walletItemHover: var(--walrus-mint-faint);
+  --dapp-kit-backgroundColors-walletItemSelected: var(--walrus-mint-faint);
+  --dapp-kit-backgroundColors-dropdownMenu: var(--deep);
+  --dapp-kit-backgroundColors-dropdownMenuSeparator: var(--rim);
+  --dapp-kit-borderColors-outlineButton: var(--walrus-mint-dim);
+  --dapp-kit-blurs-modalOverlay: blur(12px);
+  --dapp-kit-radii-small: 4px;
+  --dapp-kit-radii-medium: 6px;
+  --dapp-kit-radii-large: 8px;
+  --dapp-kit-radii-xlarge: 12px;
+  --dapp-kit-fontWeights-normal: 400;
+  --dapp-kit-fontWeights-medium: 500;
+  --dapp-kit-fontWeights-bold: 700;
+  --dapp-kit-fontSizes-small: 11px;
+  --dapp-kit-fontSizes-medium: 13px;
+  --dapp-kit-fontSizes-large: 16px;
+  --dapp-kit-fontSizes-xlarge: 20px;
+  --dapp-kit-typography-fontFamily: var(--font-data);
+  --dapp-kit-typography-fontStyle: normal;
+  --dapp-kit-typography-lineHeight: 1.5;
+  --dapp-kit-typography-letterSpacing: 0.08em;
+  --dapp-kit-shadows-primaryButton: none;
+}
+
+/* Main connect button refinement */
+[data-dapp-kit] .Button_buttonVariants_variant_primary__x1s81q1 {
+  background-color: transparent !important;
+  color: var(--walrus-mint) !important;
+  border: 1px solid var(--walrus-mint-dim);
+  box-shadow: none !important;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+
+[data-dapp-kit] .Button_buttonVariants_variant_primary__x1s81q1:hover {
+  background-color: var(--walrus-mint-faint) !important;
+  border-color: var(--walrus-mint);
+  box-shadow: 0 0 16px rgba(151, 240, 229, 0.12) !important;
+}
+
+/* Connected account button */
+[data-dapp-kit] .AccountDropdownMenu_connectedAccount__div2ql0 {
+  border: 1px solid var(--walrus-mint-dim);
+  border-radius: 6px;
+  padding: 6px 14px;
+  transition: all 0.25s ease;
+}
+
+[data-dapp-kit] .AccountDropdownMenu_connectedAccount__div2ql0:hover {
+  border-color: var(--walrus-mint);
+  background-color: var(--walrus-mint-faint);
+}
+
+/* Dropdown menu */
+[data-dapp-kit] .AccountDropdownMenu_menuContent__div2ql2 {
+  border: 1px solid var(--rim);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+[data-dapp-kit] .AccountDropdownMenu_menuItem__div2ql3[data-highlighted] {
+  background-color: var(--walrus-mint-faint) !important;
+}
+
+/* Connect modal */
+[data-dapp-kit] .ConnectModal_content__gz8z92 {
+  border: 1px solid var(--rim);
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5);
+}
+
+[data-dapp-kit] .ConnectModal_walletListContent__gz8z98 {
+  border-right: 1px solid var(--rim);
+}

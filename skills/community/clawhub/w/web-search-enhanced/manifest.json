@@ -1,0 +1,10 @@
+{
+  "name": "web-search-enhanced",
+  "version": "1.0.0",
+  "description": "增强版网页搜索 - 自动分页搜索并合并结果，解决文本长度限制问题",
+  "author": "老赵",
+  "license": "MIT",
+  "main": "index.ts",
+  "dependencies": {},
+  "keywords": ["search", "web", "enhanced", "pagination"]
+}

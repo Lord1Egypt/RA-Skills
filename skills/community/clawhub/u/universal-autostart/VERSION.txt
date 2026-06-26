@@ -1,0 +1,14 @@
+﻿Universal AutoStart v1.1.0
+通用跨平台自启动服务管理器 (Windows/macOS)
+
+主要变更:
+- ✅ 新增 macOS 10.15+ 支持 (通过 launchd)
+- ✅ CoPaw 更名为 QwenPaw
+- ✅ 跨平台兼容检测
+- ✅ 新增 macOS 安装/卸载脚本
+
+开发者：steam2001（斯帝姆智能科技）
+发布日期：2026-04-19
+
+项目地址：https://gitee.com/steam2001/universal-autostart
+许可证：MIT

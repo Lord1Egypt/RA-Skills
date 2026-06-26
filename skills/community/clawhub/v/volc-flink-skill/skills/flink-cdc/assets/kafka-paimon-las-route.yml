@@ -1,0 +1,60 @@
+# Reference notes:
+# - references/overview.md
+# - references/kafka.md
+# - references/paimon.md
+# - references/route.md
+
+sources:
+- source:
+    type: kafka
+    name: Kafka Source
+    properties.bootstrap.servers: ${kafka_properties_bootstrap_servers}
+    properties.group.id: ${kafka_properties_group_id}
+    topic: ${kafka_topic}
+    value.format: json
+    scan.startup.mode: ${kafka_scan_startup_mode}
+    # Single-topic to single logical table (used by route.source-table)
+    table-id.fixed.name: ${kafka_table_id_fixed_name}
+
+sink:
+  type: paimon-las
+  name: Paimon LAS Sink
+  commit.user: ${paimon_las_commit_user}
+  catalog.properties.metastore: hive
+  catalog.properties.hive.hms.client.is.public.cloud: true
+  catalog.properties.hive.client.las.region.name: ${paimon_las_catalog_properties_region}
+  catalog.properties.hive.metastore.uris: ${paimon_las_catalog_properties_uris}
+  catalog.properties.hive.client.las.ak: ${paimon_las_catalog_properties_ak}
+  catalog.properties.hive.client.las.sk: ${paimon_las_catalog_properties_sk}
+  catalog.properties.metastore.catalog.default: ${paimon_las_catalog_properties_las_catalog}
+  catalog.properties.warehouse: ${paimon_las_catalog_properties_warehouse}
+  table.properties.bucket: ${paimon_las_table_properties_bucket}
+  table.properties.changelog-producer: ${paimon_las_table_properties_changelog_producer}
+
+# Route is a list of rules.
+# - source-table supports regex (escape '.' if you mean a literal dot).
+# - sink-table supports symbol replacement when replace-symbol is configured.
+route:
+  # 1) One source table -> one sink table
+  - source-table: ${route_source_table_1}
+    sink-table: ${route_sink_table_1}
+    description: ${route_description_1}
+
+  # 2) Multiple source tables -> one sink table (regex match)
+  - source-table: ${route_source_table_2}
+    sink-table: ${route_sink_table_2}
+    description: ${route_description_2}
+
+  # 3) Pattern replacement in routing rules
+  # Example idea:
+  # - source-table: source_db\\..*
+  # - sink-table: sink_db.<>
+  # - replace-symbol: <>
+  - source-table: ${route_source_table_3}
+    sink-table: ${route_sink_table_3}
+    replace-symbol: ${route_replace_symbol_3}
+    description: ${route_description_3}
+
+pipeline:
+  name: ${pipeline_name}
+  parallelism: ${pipeline_parallelism}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slice"
+  short_description: "Article → vertical card video (13 themes spanning editorial / poster / brutalist / glass / blueprint / pastel / showa / photo / atmospheric)"
+  default_prompt: "Use $slice to turn this article into a Slice card video — pick a theme that fits the platform (抖音 / 知乎 / X / 公众号 / 飞书 / TikTok / LinkedIn / 雪球 / 微博 / 即刻 / B 站 / 播客)."

@@ -1,0 +1,13 @@
+{
+  "name": "Solana Wallet PnL Analyzer",
+  "slug": "wallet-pnl",
+  "tagline": "Check any Solana wallet's win rate, PnL, and copy-trade rating instantly",
+  "description": "Analyze any Solana wallet's recent swap history to determine if it's worth copy-trading. Returns win rate, realized PnL in SOL, trader classification (WHALE/DEGEN/TRADER/HOLDER), copy rating (FOLLOW/NEUTRAL/AVOID), top traded tokens with per-token PnL, and recent trade history. Built for copy traders and smart money followers who need fast, reliable wallet analysis.",
+  "category": "crypto",
+  "tags": ["solana", "copy-trade", "wallet-analysis", "pnl", "smart-money", "defi", "trading"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/ultranumblol/wallet-pnl/issues",
+  "homepage": "https://github.com/ultranumblol/wallet-pnl"
+}

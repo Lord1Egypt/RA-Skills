@@ -1,0 +1,43 @@
+{
+  "name": "板块代币资金",
+  "endpoint": "POST /trade/categories/CoinTradeList",
+  "description": "获取指定板块下，所有代币的现货或合约在不同时间窗口下的实时资金积累数据",
+  "credits_cost": 3,
+  "needToken": true,
+  "needTag": true,
+  "use_case": "适用于板块轮动监控中，对板块下的代币的资金情况监控，适用于发现板块内的龙头代币或异动代币，适用于行业主题投资策略的资金分析",
+  "params": {
+    "tag": { "type": "string", "req": true, "desc": "分类标签（如AI, Metaverse）" },
+    "tradeType": { "type": "integer", "req": true, "desc": "交易类型（1:现货，2:合约）" }
+  },
+  "response": {
+    "updateTime": { "type": "long", "actualType": "long", "desc": "更新时间" },
+    "tag": { "type": "string", "actualType": "string", "desc": "板块标签" },
+    "tradeType": { "type": "integer", "actualType": "integer", "desc": "交易类型（1:现货，2:合约）" },
+    "vsTokenId": { "type": "long", "actualType": "string", "desc": "代币ID" },
+    "symbol": { "type": "string", "actualType": "string", "desc": "代币符号" },
+    "name": { "type": "string", "actualType": "string", "desc": "代币名称" },
+    "categoriesTradeDataList": {
+      "type": "array",
+      "desc": "资金数据列表",
+      "item": {
+        "timeRange": { "type": "string", "actualType": "string", "desc": "时间范围" },
+        "timeParticleEnum": { "type": "integer", "actualType": "integer", "desc": "时间范围枚举值" },
+        "tradeInflow": { "type": "number", "actualType": "string", "desc": "交易净流入金额" }
+      }
+    }
+  },
+  "enums": {
+    "tradeType": { "1": "现货", "2": "合约" }
+  },
+  "example": {
+    "req": { "tag": "AI", "tradeType": 1 },
+    "res": {
+      "code": 200,
+      "data": [
+        { "updateTime": 1773298200000, "tag": "AI", "tradeType": 1, "vsTokenId": "1637", "symbol": "RLC", "name": "iExec RLC", "categoriesTradeDataList": [{ "timeRange": "H6", "timeParticleEnum": 106, "tradeInflow": "3753.64" }] },
+        { "updateTime": 1773298200000, "tag": "AI", "tradeType": 1, "vsTokenId": "1732", "symbol": "NMR", "name": "Numeraire", "categoriesTradeDataList": [{ "timeRange": "H6", "timeParticleEnum": 106, "tradeInflow": "-1088.40" }] }
+      ]
+    }
+  }
+}

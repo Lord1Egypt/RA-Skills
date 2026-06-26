@@ -1,0 +1,38 @@
+# unifly configuration example
+# Location: ~/.config/unifly/config.toml
+
+# Default profile to use when --profile is not specified
+default_profile = "home"
+
+# Home controller: UDM Pro with hybrid auth
+[profiles.home]
+controller = "https://192.168.1.1"
+site = "default"
+auth_mode = "hybrid"
+api_key = "your-integration-api-key-here"
+# api_key_env = "UNIFI_HOME_API_KEY"  # Alternative: read from env var
+username = "admin"
+# password stored in OS keyring via: unifly config set-password home
+insecure = false
+timeout = 30
+
+# Office controller: Cloud Key Gen2 with API key only
+[profiles.office]
+controller = "https://10.0.0.1"
+site = "default"
+auth_mode = "integration"
+api_key_env = "UNIFI_OFFICE_API_KEY"
+insecure = true  # self-signed cert
+timeout = 60
+
+# Remote site: Session auth only (older firmware or controllers
+# without an Integration API key). `"legacy"` is a deprecated alias.
+[profiles.warehouse]
+controller = "https://warehouse.example.com:8443"
+site = "default"
+auth_mode = "session"
+username = "readonly-admin"
+# password stored in keyring; an explicit `password = "..."` here would
+# override the keyring entry.
+ca_cert = "/etc/ssl/certs/warehouse-ca.pem"
+timeout = 45

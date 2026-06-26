@@ -1,0 +1,36 @@
+{
+  "name": "uap-release-analyzer",
+  "version": "1.0.1",
+  "description": "Analyze declassified UAP/UFO/FOIA PDF releases and generate inventory, extraction analytics, redaction/entity summaries, and an 11-section report.",
+  "main": "SKILL.md",
+  "scripts": {
+    "smoke": "python3 -m py_compile scripts/*.py"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "uap",
+    "ufo",
+    "foia",
+    "documents",
+    "analysis",
+    "research"
+  ],
+  "author": "Chase Wang; OpenClaw port by Hermes Agent",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckpxgfnksd-max/uap-release-analyzer.git"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE.txt",
+    "ARTICLE.md",
+    "requirements.txt",
+    "clawhub.json",
+    "scripts/",
+    "references/",
+    "evals/"
+  ]
+}

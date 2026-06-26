@@ -1,0 +1,11 @@
+{
+  "name": "Upstream VPN Provider",
+  "vpn_type": "openvpn-client",
+  "enabled": true,
+  "x_openvpn_username": "REPLACE_ME",
+  "x_openvpn_password": "REPLACE_ME",
+  "openvpn_remote_host": "vpn.example.com",
+  "openvpn_remote_port": 1194,
+  "openvpn_mode": "udp",
+  "openvpn_configuration_file": "REPLACE_WITH_OVPN_CONFIG"
+}

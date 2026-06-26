@@ -1,0 +1,73 @@
+{
+  "skill_name": "web3-marketing-gtm",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a full Web3 marketing plan for a project called Fluxion — it's a DeFi yield aggregator on Avalanche.",
+      "expected_output": "A complete output with all 4 deliverables: GTM Launch Plan, Campaign Calendar, Community Scripts, and On-Chain Retention Strategy. Content should be Avalanche-specific and DeFi-appropriate.",
+      "expectations": [
+        "Output contains a GTM Launch Plan with a Project Summary section",
+        "Output contains a Campaign Calendar with at least 3 weeks of daily entries",
+        "Output contains at least 3 Discord scripts labeled D1, D2, or similar",
+        "Output contains at least 2 X (Twitter) scripts including an explainer thread",
+        "Output contains an On-Chain Retention Strategy with user tier segmentation",
+        "No placeholder text like [INSERT HERE] or [TBD] remains in the output",
+        "Avalanche is referenced specifically (not generic chain references)",
+        "Tone has no hype language (no 'revolutionary', 'game-changing', 'LFG')",
+        "Retention KPIs include D7 and D30 retention targets",
+        "Campaign calendar includes Discord, X, and Telegram entries"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Create a GTM launch plan for a Web3 project: Project Name: Kokolo, Chain: Base, Product Type: GameFi — a competitive card battle game.",
+      "expected_output": "A complete output with all 4 deliverables, adapted for GameFi on Base. Calendar should reflect game-specific cadence (daily events), scripts should fit gaming community tone.",
+      "expectations": [
+        "Output contains all 4 deliverables labeled clearly",
+        "GTM positioning includes a narrative hook using the formula from the skill",
+        "Campaign calendar shows daily Discord event posts appropriate for GameFi",
+        "Community scripts include Discord welcome and launch day messages",
+        "On-chain retention uses GameFi-specific segment criteria (sessions, matches)",
+        "Base chain is referenced correctly",
+        "No token-specific language (no 'buy tokens', 'TGE') unless brief included token info",
+        "D7 retention target is present in the retention KPIs section",
+        "X thread script has 7 tweets with correct structure",
+        "Tone is education-first with no hype language"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My project is called Vaultr. It's a crypto-native payroll and invoicing app on Avalanche. Help me build a go-to-market strategy.",
+      "expected_output": "Full 4-deliverable output with payments/infra framing. Target audience should be inferred as freelancers, DAOs, or remote-first teams. Metrics targets should reflect infrastructure-type product.",
+      "expectations": [
+        "Output contains all 4 deliverables",
+        "Product type is treated as payments/infrastructure (not DeFi or GameFi)",
+        "Target audience is inferred (freelancers, DAOs, or similar — not left blank)",
+        "GTM success metrics reference API calls, integrations, or recurring usage",
+        "Campaign calendar Week 1 includes an X explainer thread",
+        "At least 2 Telegram scripts are included",
+        "On-chain retention segments use payments/infra criteria",
+        "Retention message templates are present and filled (no empty brackets)",
+        "Avalanche is referenced correctly",
+        "Launch phases are present: Pre-Launch, Launch Week, Post-Launch"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Write me community engagement scripts for a Web3 oracle project called DataPulse on Solana.",
+      "expected_output": "Even though only scripts were requested, output should include all 4 deliverables as per the skill's defaults. Scripts should be platform-native: Discord conversational, Telegram brief, X punchy.",
+      "expectations": [
+        "Output includes Discord scripts (at least D1 welcome and D2 launch day)",
+        "Output includes Telegram scripts (at least T1 channel launch and T2 launch alert)",
+        "Output includes X scripts (at least X1 launch post and X2 explainer thread)",
+        "All scripts have [Project Name] replaced with DataPulse",
+        "Solana is referenced appropriately",
+        "Oracle/data product type is reflected in script content",
+        "Discord scripts use line breaks and minimal formatting as specified",
+        "Telegram scripts are 200–400 characters",
+        "X thread has 7 tweets following the template structure",
+        "GTM Plan and Retention strategy are also included (full suite, not scripts only)"
+      ]
+    }
+  ]
+}

@@ -1,35 +1,89 @@
----
-name: "Twitter Automation Suite"
-description: "Twitter/X 自动化运营套件。自动发推、监控关键词、批量回复、AI 生成推文内容。适合社交媒体运营、账号增长、竞品监控。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/twitter-automation-suite"
-sourceUrl: "https://clawhub.ai/skills/twitter-automation-suite"
+--- 
+name: twitter-automation-suite 
+description: Twitter/X 自动化运营套件。自动发推、监控关键词、批量回复、AI 生成推文内容。适合社交媒体运营、账号增长、竞品监控。
 ---
 
-# Twitter Automation Suite
+# Twitter/X 自动化运营套件
 
-> Twitter/X 自动化运营套件。自动发推、监控关键词、批量回复、AI 生成推文内容。适合社交媒体运营、账号增长、竞品监控。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/twitter-automation-suite`
-- **Source URL:** [https://clawhub.ai/skills/twitter-automation-suite](https://clawhub.ai/skills/twitter-automation-suite)
+### 1. 自动发推
+- 支持文字、图片、线程
+- 定时发布任务
+- 批量导入内容发布
 
-## Overview
+### 2. 关键词监控
+- 监控指定关键词/hashtag
+- 实时通知新推文
+- 提取潜在客户/竞品动态
 
+### 3. 自动回复
+- 关键词触发自动回复
+- AI 生成回复内容
+- 支持多条回复模板
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 4. 账号分析
+- 粉丝增长追踪
+- 互动数据统计
+- 热门内容分析
+
+## 使用前提
+
+1. 安装依赖：
 ```bash
-hermes skills install clawhub/twitter-automation-suite
+npm install puppeteer playwright twitter-api-v2 dotenv
+```
+
+2. 配置环境变量（`.env`）：
+```
+TWITTER_USERNAME=你的账号
+TWITTER_PASSWORD=你的密码
+TWITTER_EMAIL=邮箱
+OPENAI_API_KEY=你的key（可选，用于AI生成）
+```
+
+## 命令
+
+### 发推
+```
+发一条推文：内容 "[你的推文内容]"
+发图片推文：发推文图片 [图片路径] 内容 "[文字]"
+发线程：发线程 [内容1] | [内容2] | [内容3]
+```
+
+### 监控
+```
+监控关键词 [关键词]
+停止监控
+```
+
+### 自动回复
+```
+设置自动回复：关键词 [关键词] 回复 [回复内容]
+查看自动回复规则
+删除自动回复规则 [序号]
+```
+
+### 数据分析
+```
+分析账号 [用户名]
+粉丝增长
+热门推文
+```
+
+## 安全守则
+
+- 使用前确认账号安全
+- 建议使用应用专用密码
+- 合理设置请求频率（避免封号）
+- 不用于垃圾信息发送
+
+## 定时任务（可选）
+
+配合 cron 做定时发推：
+```json
+{
+  "schedule": {"kind": "cron", "expr": "0 9 * * *"},
+  "payload": {"kind": "systemEvent", "text": "发推文：今日资讯"}
+}
 ```

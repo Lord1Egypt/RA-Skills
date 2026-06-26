@@ -1,35 +1,30 @@
----
-name: "USD1 Transaction"
-description: "Securely transfer USD1 (USDC on Wormhole) between wallets using Wormhole Liquidity Facility on Testnet by default."
-category: "blockchain"
-source: "ClawHub"
-tags: [crypto, stablecoins, usdt]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/usd1transaction"
-sourceUrl: "https://clawhub.ai/skills/usd1transaction"
----
+# USD1 WLF Transfer Skill
 
-# USD1 Transaction
+## Description
+Allows an agent to securely transfer USD1 (USDC on Wormhole) from one wallet to another using Wormhole Liquidity Facility (WLF).
 
-> Securely transfer USD1 (USDC on Wormhole) between wallets using Wormhole Liquidity Facility on Testnet by default.
+## Capabilities
+- Check sender wallet balance (optional)
+- Transfer a specified amount of USD1 to a recipient address
+- Return transaction hash and status
+- Uses Testnet by default for safety
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/usd1transaction`
-- **Source URL:** [https://clawhub.ai/skills/usd1transaction](https://clawhub.ai/skills/usd1transaction)
+## Input Parameters
+- amount: number (required) - amount of USD1 to send (e.g. 1.0)
+- toAddress: string (required) - recipient wallet address (e.g. 0x123...)
+- chain: string (optional, default: Solana) - source chain
+- privateKey: string (secure, required) - sender wallet private key
 
-## Overview
+## Output
+- transactionHash: string
+- status: "success" or "failed"
+- message: string (details or error)
 
+## Security Notes
+- Never hardcode private keys
+- Use secure agent input for keys
+- Testnet only until production
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/usd1transaction
-```
+## Example Usage
+/skill usd1-wlf-transfer amount=1.0 toAddress=0xabc123... chain=Solana
+

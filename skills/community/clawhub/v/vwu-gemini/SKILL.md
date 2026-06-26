@@ -1,35 +1,45 @@
----
-name: "vwu.ai gemini Models"
-description: "调用vwu.ai平台上的五款gemini系列模型，支持标准OpenAI聊天接口，需配置vwu.ai API key后使用。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, gemini, llm, vwu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vwu-gemini"
-sourceUrl: "https://clawhub.ai/skills/vwu-gemini"
----
+# gemini Models for vwu.ai
 
-# vwu.ai gemini Models
+vwu.ai 平台上的 gemini 模型调用技能。
 
-> 调用vwu.ai平台上的五款gemini系列模型，支持标准OpenAI聊天接口，需配置vwu.ai API key后使用。
+## 支持的模型
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vwu-gemini`
-- **Source URL:** [https://clawhub.ai/skills/vwu-gemini](https://clawhub.ai/skills/vwu-gemini)
+- gemini-2.5-flash
+- gemini-2.5-flash-image
+- gemini-2.5-pro
+- gemini-3-pro-image-preview
+- gemini-3-pro-preview
 
-## Overview
+共 5 个模型。
 
+## 配置
 
-## Installation
-To install this skill, run the following command in your terminal:
+使用前需要设置 vwu.ai API key:
+
 ```bash
-hermes skills install clawhub/vwu-gemini
+export VWU_API_KEY="your-key-here"
 ```
+
+获取 key: https://vwu.ai 控制台
+
+## 使用示例
+
+```bash
+# 调用模型
+vwu-chat --model gemini-2.5-flash "你的问题"
+```
+
+## API 兼容性
+
+所有模型兼容 OpenAI API 格式，支持标准 chat completions 接口。
+
+## 额度提示
+
+如果使用时提示"额度不足"或类似错误：
+1. 访问 https://vwu.ai
+2. 在控制台充值或调整额度
+3. 或生成新的 API key
+
+---
+
+由 Claw 自动生成 | 源数据: vwu.ai

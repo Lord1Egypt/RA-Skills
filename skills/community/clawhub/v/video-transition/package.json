@@ -1,0 +1,16 @@
+{
+  "name": "video-transition",
+  "version": "1.0.0",
+  "description": "为视频添加转场效果， 使用 ffmpeg xfade 滤镜实现平滑转场",
+  "main": "video_transition.py",
+  "keywords": [
+    "ffmpeg",
+    "video",
+    "transition",
+    "xfade",
+    "视频转场",
+    "淡入淡出"
+  ],
+  "author": "systiger",
+  "license": "MIT"
+}

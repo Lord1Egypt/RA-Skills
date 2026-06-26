@@ -1,0 +1,1 @@
+"""VideoARM shared library."""

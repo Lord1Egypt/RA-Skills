@@ -1,35 +1,34 @@
 ---
-name: "Watercolor Art Generator"
-description: "AI watercolor art generator — create stunning watercolor paintings, portraits, and illustrations instantly. Perfect for watercolor portrait commissions, digi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/watercolor-art-generator"
-sourceUrl: "https://clawhub.ai/skills/watercolor-art-generator"
+name: watercolor-art-generator
+description: AI watercolor art generator — create stunning watercolor paintings, portraits, and illustrations instantly. Perfect for watercolor portrait commissions, digital watercolor artwork, custom watercolor gifts, social media art, and printable wall art. Also great as a watercolor painting maker, aquarelle portrait creator, and watercolor illustration generator via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Watercolor Art Generator
 
-> AI watercolor art generator — create stunning watercolor paintings, portraits, and illustrations instantly. Perfect for watercolor portrait commissions, digi...
+AI watercolor art generator — create stunning watercolor paintings, portraits, and illustrations instantly. Perfect for watercolor portrait commissions, digital watercolor artwork, custom watercolor gifts, social media art, and printable wall art. Also great as a watercolor painting maker, aquarelle portrait creator, and watercolor illustration generator.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/watercolor-art-generator`
-- **Source URL:** [https://clawhub.ai/skills/watercolor-art-generator](https://clawhub.ai/skills/watercolor-art-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/watercolor-art-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create watercolor art generator images.
+
+## Quick start
+```bash
+node watercolorartgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/watercolor-art-generator
 ```

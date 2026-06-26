@@ -1,0 +1,65 @@
+{
+  "name": "virtual-try-on",
+  "display_name": "Virtual Try-On",
+  "description": "Transform clothing images into e-commerce product photos with AI models wearing the garments",
+  "version": "1.0.0",
+  "author": "your-name",
+  "type": "api",
+  "category": "image-generation",
+  "endpoint": "https://api.ngmob.com/api/v1/workflows/2IIk3Z6NKuPZP7moonEI/run",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer {{API_KEY}}"
+  },
+  "request_body": {
+    "inputs": {
+      "Clothing Image 1": "{{clothing_1}}",
+      "Clothing Image 2": "{{clothing_2}}",
+      "Clothing Image 3": "{{clothing_3}}",
+      "Clothing Image 4": "{{clothing_4}}"
+    }
+  },
+  "inputs": [
+    {
+      "name": "clothing_1",
+      "type": "string",
+      "required": true,
+      "description": "Publicly accessible clothing image URL (1st garment)"
+    },
+    {
+      "name": "clothing_2",
+      "type": "string",
+      "required": false,
+      "description": "Publicly accessible clothing image URL (2nd garment)"
+    },
+    {
+      "name": "clothing_3",
+      "type": "string",
+      "required": false,
+      "description": "Publicly accessible clothing image URL (3rd garment)"
+    },
+    {
+      "name": "clothing_4",
+      "type": "string",
+      "required": false,
+      "description": "Publicly accessible clothing image URL (4th garment)"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "result",
+      "type": "string",
+      "description": "Generated e-commerce product photo URL"
+    }
+  ],
+  "polling": {
+    "enabled": true,
+    "url": "https://api.ngmob.com/api/v1/workflows/executions/{{task_id}}",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer {{API_KEY}}"
+    },
+    "result_path": "outputs[0].url"
+  }
+}

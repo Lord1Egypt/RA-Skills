@@ -1,0 +1,12 @@
+{
+  "name": "wan-video-gen",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Wan video generation skill for qclaw",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "gen": "node scripts/wan-video-gen.js"
+  }
+}

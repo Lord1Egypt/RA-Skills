@@ -1,0 +1,136 @@
+{
+  "version": "1.0.0",
+  "name": "unified-memory-architect",
+  "displayName": "Unified Memory Architect",
+  "description": "Advanced configuration for Unified Memory Architect - dream memory management system",
+  
+  "integration": {
+    "enabled": true,
+    "unifiedMemory": {
+      "version": "5.0.1",
+      "features": [
+        "hybrid-search",
+        "memory-compression",
+        "association-recommendation",
+        "lane-isolation"
+      ]
+    },
+    "openclaw": {
+      "version": ">=2.7.0",
+      "autoLoad": true
+    }
+  },
+
+  "search": {
+    "defaultLimit": 100,
+    "maxLimit": 1000,
+    "hybrid": {
+      "enabled": true,
+      "bm25": {
+        "enabled": true,
+        "weight": 0.4,
+        "k1": 1.5,
+        "b": 0.75
+      },
+      "vector": {
+        "enabled": true,
+        "weight": 0.4,
+        "model": "default",
+        "normalize": true
+      },
+      "rrf": {
+        "enabled": true,
+        "k": 60
+      }
+    },
+    "filters": {
+      "byType": true,
+      "byDate": true,
+      "byTag": true,
+      "bySentiment": true,
+      "byEntity": true,
+      "byLanguage": true
+    }
+  },
+
+  "storage": {
+    "paths": {
+      "raw": "memory/raw",
+      "processed": "memory/processed",
+      "archive": "memory/archive",
+      "import": "memory/import",
+      "index": "memory/index"
+    },
+    "compression": {
+      "enabled": true,
+      "format": "jsonl",
+      "gzip": false
+    },
+    "retention": {
+      "hot": "7d",
+      "warm": "30d",
+      "cold": "90d",
+      "archive": "365d"
+    }
+  },
+
+  "indexing": {
+    "autoBuild": true,
+    "incremental": true,
+    "rebuildOnChange": false,
+    "indexTypes": [
+      "byType",
+      "byDate",
+      "byTag",
+      "bySentiment",
+      "byLanguage",
+      "byEntity"
+    ],
+    "indexPath": "memory/index"
+  },
+
+  "cache": {
+    "enabled": true,
+    "maxSize": 500,
+    "ttl": 3600,
+    "strategy": "lru"
+  },
+
+  "logging": {
+    "level": "info",
+    "file": "memory/logs/app.log",
+    "console": true,
+    "rotation": {
+      "enabled": true,
+      "maxSize": "10mb",
+      "maxFiles": 5
+    }
+  },
+
+  "performance": {
+    "queryTimeout": 5000,
+    "maxMemory": "512mb",
+    "batchSize": 100,
+    "parallelIndexing": false
+  },
+
+  "analytics": {
+    "enabled": true,
+    "trackQueries": true,
+    "trackPerformance": true,
+    "exportMetrics": false
+  },
+
+  "import": {
+    "batchSize": 50,
+    "validateSchema": true,
+    "skipDuplicates": true,
+    "onConflict": "skip"
+  },
+
+  "export": {
+    "format": "jsonl",
+    "includeMetadata": true,
+    "compress": false
+  }
+}

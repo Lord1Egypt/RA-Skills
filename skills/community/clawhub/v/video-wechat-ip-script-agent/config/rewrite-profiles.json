@@ -1,0 +1,26 @@
+{
+  "default_rewrite": {
+    "name": "标准多风格改写",
+    "styles": [
+      "犀利观点型",
+      "温柔陪伴型",
+      "专业干货型",
+      "老板表达型",
+      "高转化成交型"
+    ],
+    "fields": [
+      "style",
+      "content"
+    ]
+  },
+  "boss_only": {
+    "name": "老板表达单风格",
+    "styles": [
+      "老板表达型"
+    ],
+    "fields": [
+      "style",
+      "content"
+    ]
+  }
+}

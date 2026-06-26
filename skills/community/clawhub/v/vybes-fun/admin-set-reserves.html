@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Vybes Admin — Set Test Reserves</title>
+<style>
+  body { background: #0a0a0f; color: #e0e0e0; font-family: monospace; padding: 40px; max-width: 600px; margin: 0 auto; }
+  h1 { color: #00D9A5; }
+  button { background: #00D9A5; color: #000; border: none; padding: 12px 24px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; margin: 8px 4px; }
+  button:hover { opacity: 0.9; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  button.danger { background: #e53935; color: #fff; }
+  .log { background: #111; border: 1px solid #333; padding: 12px; border-radius: 8px; margin-top: 16px; white-space: pre-wrap; font-size: 13px; max-height: 400px; overflow-y: auto; }
+  .status { padding: 8px 16px; border-radius: 8px; margin: 12px 0; font-weight: bold; }
+  .status.ok { background: #00D9A520; color: #00D9A5; }
+  .status.err { background: #e5393520; color: #e53935; }
+  .status.warn { background: #f5a62320; color: #f5a623; }
+  .info { background: #1a1a2e; padding: 12px; border-radius: 8px; margin: 8px 0; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>Vybes Admin — Set Reserves</h1>
+<p>Sign with wallet <code>83ktg7hP...</code> (global_authority) to change bonding curve reserves.</p>
+
+<div class="info">
+  <div><strong>Program:</strong> 5UowEYv9aDwnh3Cwzm1EgQjnJNRuBXpj9kxyBJmEJqXU</div>
+  <div><strong>Required signer:</strong> 83ktg7hP338chaWA25JcHh6xVTGrAwzQKn563GsvDrvZ</div>
+  <div><strong>Network:</strong> Devnet</div>
+</div>
+
+<div id="walletStatus" class="status warn">Wallet not connected</div>
+
+<button onclick="connectWallet()">Connect Phantom</button>
+<button onclick="setTestReserves()">Set TEST Reserves (~5 SOL grad)</button>
+<button onclick="resetReserves()" class="danger">Reset PROD Reserves (~85 SOL grad)</button>
+
+<div class="log" id="log"></div>
+
+<script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js"></script>
+<script>
+const PUMP_PROGRAM_ID = new solanaWeb3.PublicKey('5UowEYv9aDwnh3Cwzm1EgQjnJNRuBXpj9kxyBJmEJqXU');
+const REQUIRED_AUTHORITY = '83ktg7hP338chaWA25JcHh6xVTGrAwzQKn563GsvDrvZ';
+const RPC_URL = 'https://devnet.helius-rpc.com/?api-key=a59878e8-c5f9-4916-a7f7-bd6879496f4c';
+
+// set_params discriminator from IDL
+const SET_PARAMS_DISCRIMINATOR = new Uint8Array([27, 234, 178, 52, 147, 2, 187, 232]);
+
+// Test: ~46.65M tokens (graduates at ~5 SOL)
+const TEST_RESERVES = BigInt('46650000000000');
+// Prod: ~793.1M tokens (graduates at ~85 SOL)
+const PROD_RESERVES = BigInt('793100000000000');
+
+let connection = new solanaWeb3.Connection(RPC_URL, 'confirmed');
+let wallet = null;
+
+function log(msg) {
+  const el = document.getElementById('log');
+  el.textContent += new Date().toLocaleTimeString() + ' ' + msg + '\n';
+  el.scrollTop = el.scrollHeight;
+}
+
+function setStatus(msg, type) {
+  const el = document.getElementById('walletStatus');
+  el.textContent = msg;
+  el.className = 'status ' + type;
+}
+
+async function connectWallet() {
+  try {
+    const phantom = window.phantom?.solana;
+    if (!phantom?.isPhantom) {
+      setStatus('Phantom not found — install Phantom wallet', 'err');
+      return;
+    }
+    const resp = await phantom.connect();
+    wallet = phantom;
+    const addr = resp.publicKey.toBase58();
+    log('Connected: ' + addr);
+
+    if (addr === REQUIRED_AUTHORITY) {
+      setStatus('Connected: ' + addr.slice(0, 8) + '... (correct authority)', 'ok');
+    } else {
+      setStatus('Connected: ' + addr.slice(0, 8) + '... — WRONG WALLET! Need 83ktg7hP...', 'err');
+      log('ERROR: Switch to wallet 83ktg7hP... in Phantom');
+    }
+  } catch (e) {
+    log('Connect error: ' + e.message);
+    setStatus('Connection failed', 'err');
+  }
+}
+
+function encodeGlobalSettingsInput(newReserves) {
+  // GlobalSettingsInput has ~12 Option fields. We set all to None except initialRealTokenReserves.
+  // Anchor Option<T> encoding: 0 = None, 1 + value = Some
+  // Fields in order (from IDL):
+  // 1. initialVirtualTokenReserves: Option<u64> = None
+  // 2. initialVirtualSolReserves: Option<u64> = None
+  // 3. initialRealTokenReserves: Option<u64> = Some(newReserves)
+  // 4. tokenTotalSupply: Option<u64> = None
+  // 5. mintDecimals: Option<u8> = None
+  // 6. migrateFeeAmount: Option<u64> = None
+  // 7. feeReceiver: Option<Pubkey> = None
+  // 8. status: Option<ProgramStatus> = None
+  // 9. whitelistEnabled: Option<bool> = None
+  // 10. meteoraConfig: Option<Pubkey> = None
+  // 11. creatorGraduationFee: Option<u64> = None
+  // 12. platformGraduationFee: Option<u64> = None
+
+  const buf = new ArrayBuffer(200);
+  const view = new DataView(buf);
+  let offset = 0;
+
+  // 1. None (Option<u64>)
+  view.setUint8(offset++, 0);
+  // 2. None
+  view.setUint8(offset++, 0);
+  // 3. Some(newReserves) - Option<u64>
+  view.setUint8(offset++, 1);
+  // Write u64 little-endian
+  const lo = Number(newReserves & BigInt(0xFFFFFFFF));
+  const hi = Number((newReserves >> BigInt(32)) & BigInt(0xFFFFFFFF));
+  view.setUint32(offset, lo, true); offset += 4;
+  view.setUint32(offset, hi, true); offset += 4;
+  // 4-12: all None
+  for (let i = 0; i < 9; i++) {
+    view.setUint8(offset++, 0);
+  }
+
+  return new Uint8Array(buf, 0, offset);
+}
+
+async function sendSetParams(reserves, label) {
+  if (!wallet) { log('Connect wallet first'); return; }
+
+  const pubkey = wallet.publicKey;
+  if (pubkey.toBase58() !== REQUIRED_AUTHORITY) {
+    log('ERROR: Wrong wallet! Switch to 83ktg7hP... in Phantom');
+    return;
+  }
+
+  log('Building set_params transaction (' + label + ')...');
+
+  const [globalPDA] = solanaWeb3.PublicKey.findProgramAddressSync(
+    [new TextEncoder().encode('global')],
+    PUMP_PROGRAM_ID
+  );
+  const [eventAuthority] = solanaWeb3.PublicKey.findProgramAddressSync(
+    [new TextEncoder().encode('__event_authority')],
+    PUMP_PROGRAM_ID
+  );
+
+  // Build instruction data: discriminator + GlobalSettingsInput
+  const params = encodeGlobalSettingsInput(reserves);
+  const data = new Uint8Array(SET_PARAMS_DISCRIMINATOR.length + params.length);
+  data.set(SET_PARAMS_DISCRIMINATOR);
+  data.set(params, SET_PARAMS_DISCRIMINATOR.length);
+
+  const ix = new solanaWeb3.TransactionInstruction({
+    programId: PUMP_PROGRAM_ID,
+    keys: [
+      { pubkey: pubkey, isSigner: true, isWritable: true },           // authority
+      { pubkey: globalPDA, isSigner: false, isWritable: true },       // global
+      { pubkey: pubkey, isSigner: false, isWritable: false },         // new_authority (same)
+      { pubkey: pubkey, isSigner: false, isWritable: false },         // new_migration_authority (same)
+      { pubkey: solanaWeb3.SystemProgram.programId, isSigner: false, isWritable: false },
+      { pubkey: eventAuthority, isSigner: false, isWritable: false }, // event_authority
+      { pubkey: PUMP_PROGRAM_ID, isSigner: false, isWritable: false }, // program
+    ],
+    data: data,
+  });
+
+  const tx = new solanaWeb3.Transaction().add(ix);
+  tx.feePayer = pubkey;
+  const { blockhash } = await connection.getLatestBlockhash('confirmed');
+  tx.recentBlockhash = blockhash;
+
+  log('Requesting Phantom signature...');
+  log('(Check your Phantom wallet for approval)');
+
+  try {
+    const { signature } = await wallet.signAndSendTransaction(tx);
+    log('Transaction sent: ' + signature);
+    log('Waiting for confirmation...');
+
+    await connection.confirmTransaction(signature, 'confirmed');
+    log('CONFIRMED! Reserves updated to ' + label);
+    setStatus('Success! Reserves set to ' + label, 'ok');
+  } catch (e) {
+    log('ERROR: ' + e.message);
+    setStatus('Transaction failed', 'err');
+  }
+}
+
+function setTestReserves() {
+  sendSetParams(TEST_RESERVES, 'TEST (~5 SOL graduation)');
+}
+
+function resetReserves() {
+  if (!confirm('Reset to production reserves (~85 SOL graduation)?')) return;
+  sendSetParams(PROD_RESERVES, 'PRODUCTION (~85 SOL graduation)');
+}
+</script>
+</body>
+</html>

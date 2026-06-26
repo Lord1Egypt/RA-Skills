@@ -1,35 +1,25 @@
 ---
-name: "Volcengine Observability Cls"
-description: "Log query and troubleshooting workflows with Volcengine CLS. Use when users need error analysis, time-range queries, aggregation dashboards, or incident diagnostics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-observability-cls"
-sourceUrl: "https://clawhub.ai/skills/volcengine-observability-cls"
+name: volcengine-observability-cls
+description: Log query and troubleshooting workflows with Volcengine CLS. Use when users need error analysis, time-range queries, aggregation dashboards, or incident diagnostics.
 ---
 
-# Volcengine Observability Cls
+# volcengine-observability-cls
 
-> Log query and troubleshooting workflows with Volcengine CLS. Use when users need error analysis, time-range queries, aggregation dashboards, or incident diagnostics.
+Run structured log investigations and summarize actionable findings.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-observability-cls`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-observability-cls](https://clawhub.ai/skills/volcengine-observability-cls)
+## Execution Checklist
 
-## Overview
+1. Confirm project/logset/topic and time window.
+2. Build query with filters, parse fields, and aggregations.
+3. Execute and summarize top errors and anomaly dimensions.
+4. Return follow-up actions and reusable query templates.
 
+## Output Requirements
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-observability-cls
-```
+- Include query statement.
+- Include affected services and counts.
+- Include concrete remediation suggestions.
+
+## References
+
+- `references/sources.md`

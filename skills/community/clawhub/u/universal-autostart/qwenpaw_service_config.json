@@ -1,0 +1,24 @@
+{
+    "service_name": "QwenPawAppAutoStart",
+    "display_name": "QwenPaw App",
+    "description": "QwenPaw 应用的开机自启动服务",
+    
+    "program": {
+        "type": "python",
+        "path": "C:\\Python\\Python313\\Scripts\\qwenpaw.exe",
+        "arguments": "app --host 127.0.0.1 --port 8088",
+        "working_dir": "C:\\Users\\Administrator\\.qwenpaw"
+    },
+    
+    "log": {
+        "enabled": true,
+        "dir": "C:\\Users\\Administrator\\.qwenpaw\\logs",
+        "level": "INFO"
+    },
+    
+    "restart": {
+        "auto_restart": true,
+        "max_restarts": 5,
+        "restart_delay": 30
+    }
+}

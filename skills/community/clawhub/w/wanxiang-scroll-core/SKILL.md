@@ -1,35 +1,45 @@
 ---
-name: "Wanxiang Scroll Core"
-description: "万象绘卷核心系统分卷 - 包含核心协议、56种文风切换、剧情管理系统"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wanxiang-scroll-core"
-sourceUrl: "https://clawhub.ai/skills/wanxiang-scroll-core"
+name: wanxiang-scroll-core
+description: 万象绘卷核心系统分卷 - 包含核心协议、56种文风切换、剧情管理系统
+version: 1.0.0
 ---
 
-# Wanxiang Scroll Core
+# 万象绘卷 - 核心系统分卷
 
-> 万象绘卷核心系统分卷 - 包含核心协议、56种文风切换、剧情管理系统
+> 核心协议 + 文风系统 + 剧情管理 | v1.0.0
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wanxiang-scroll-core`
-- **Source URL:** [https://clawhub.ai/skills/wanxiang-scroll-core](https://clawhub.ai/skills/wanxiang-scroll-core)
+## 包含内容
 
-## Overview
+### 第一章 - 核心协议与指令系统
+- 系统协议与架构
+- 世界规则设定
+- 指令系统详解
 
+### 第二章 - 56种文风切换系统
+- 文风库完整定义
+- 文风切换指令
+- 文风对比与测试
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wanxiang-scroll-core
+### 第四章 - 剧情管理系统
+- 剧情控制协议
+- 大总结系统
+- 长篇故事管理
+
+## 使用方式
+
+配合主技能包 `wanxiang-scroll` 使用：
 ```
+clawhub install wanxiang-scroll
+clawhub install wanxiang-scroll-core
+```
+
+## 核心指令
+
+| 指令 | 功能 |
+|------|------|
+| `#文风列表` | 查看56种文风 |
+| `#切换文风 <文风名>` | 切换指定文风 |
+| `#文风对比` | 对比两种文风 |
+
+---
+*万象绘卷分卷系列 - 核心系统*

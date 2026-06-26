@@ -1,0 +1,20 @@
+{
+  "name": "verifier",
+  "version": "1.0.0",
+  "description": "Trust and evidence verification engine for claims, sources, screenshots, profiles, offers, and suspicious messages.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/add_case.py",
+    "scripts/score_case.py",
+    "scripts/show_case.py",
+    "scripts/list_cases.py",
+    "scripts/update_case.py",
+    "scripts/close_case.py",
+    "scripts/init_storage.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/scoring.py",
+    "references/philosophy.md"
+  ]
+}

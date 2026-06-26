@@ -1,0 +1,23 @@
+name: weather
+version: 1.0.0
+description: 获取当前天气和天气预报。无需API密钥，支持全球城市查询。
+author: clawd
+homepage: https://clawhub.com/skills/weather
+
+triggers:
+  - 天气
+  - 天气预报
+  - 气温
+  - weather
+  - forecast
+
+features:
+  - 当前天气查询
+  - 多日天气预报
+  - 全球城市支持
+  - 无需API密钥
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

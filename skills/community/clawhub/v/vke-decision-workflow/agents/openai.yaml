@@ -1,0 +1,7 @@
+interface:
+  display_name: "VKE Decision Workflow"
+  short_description: "Evidence-led VKE decision products"
+  default_prompt: "Use $vke-decision-workflow to turn a VKE request into evidence-led decision artifacts."
+
+policy:
+  allow_implicit_invocation: true

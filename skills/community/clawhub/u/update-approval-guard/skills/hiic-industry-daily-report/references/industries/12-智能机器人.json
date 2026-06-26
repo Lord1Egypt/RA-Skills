@@ -1,0 +1,34 @@
+{
+  "id": "12",
+  "name": "智能机器人",
+  "category": "先进制造业",
+  "keywords": [
+    "智能机器人",
+    "人形机器人",
+    "AI机器人",
+    "智能协作机器人",
+    "具身智能"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "🤖",
+    "maxDescriptionLength": 200
+  }
+}

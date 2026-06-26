@@ -1,0 +1,18 @@
+{
+  "name": "Branch Office Tunnel",
+  "vpn_type": "ipsec-vpn",
+  "enabled": true,
+  "x_ipsec_pre_shared_key": "REPLACE_ME",
+  "ipsec_peer_ip": "203.0.113.42",
+  "ipsec_key_exchange": "ikev2",
+  "ipsec_ike_encryption": "aes256",
+  "ipsec_ike_hash": "sha256",
+  "ipsec_ike_dh_group": 14,
+  "ipsec_esp_encryption": "aes256",
+  "ipsec_esp_hash": "sha256",
+  "ipsec_pfs": true,
+  "ipsec_ike_lifetime": 28800,
+  "ipsec_esp_lifetime": 3600,
+  "remote_vpn_subnets": ["10.20.0.0/24", "10.20.1.0/24"],
+  "route_distance": 30
+}

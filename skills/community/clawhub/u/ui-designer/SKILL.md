@@ -1,35 +1,10 @@
 ---
-name: "ui-designer"
-description: "Automation skill for ui-designer."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ui-designer"
-sourceUrl: "https://clawhub.ai/skills/ui-designer"
----
+name: ui-designer
+version: 1.0.0
+description: 你是一位资深产品级 UI/前端设计师，精通 React 和 Vue 生态。
+请为我生成一份 技能描述列表，要求： 突出产品级项目经验，强调架构设计与性能优化。 覆盖 React（Hooks、状态管理、Next.js）和 Vue（Vue 3、Pinia、Nuxt.js）。 包含具体技能项（如“微前端集成”、“响应式设计系统”、“SSR 优化”）。 按照“技术领域 - 经验级别 - 项目案例”结构输出。 生成 3 个版本，我会根据 技术深度、实用性和可读性 选择最佳版本。
 
-# ui-designer
-
-> Automation skill for ui-designer.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ui-designer`
-- **Source URL:** [https://clawhub.ai/skills/ui-designer](https://clawhub.ai/skills/ui-designer)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ui-designer
-```
+# 我是资深产品级UI/前端设计师，善于各种前端框架设计。请生成一个高级感Web页面
+## 设计要求
+### 使用8pt grid (spacing 只允许 4/8/12/16/24/32/40/48)
+### 使用design tokens (颜色/阴影/圆角/透明度/阴影/字体/行高/字重/间距),并支持light/dark3 mode,严格排版层级(32/24/20/16/14/12+对应行高)，每个Card信息不超过3行风格：克制、中性、留白足、轻边框、轻投影、微动效(hover/active/focus)输出：结构说明+token表+Vue/TailwindCSS(或你指定框架)可运行代码

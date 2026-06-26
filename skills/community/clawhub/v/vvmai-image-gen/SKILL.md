@@ -1,35 +1,75 @@
 ---
-name: "VVMAI Image Generator"
-description: "Generate images via VVMAI's OpenAI-compatible Images API. Supports nano-banana and gpt-image model series. Default model is nano-banana-pro. Images are NOT s..."
-category: "creative"
-source: "ClawHub"
-tags: [ai-art, image-generation, media, openai-compatible, text-to-image, vvmai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vvmai-image-gen"
-sourceUrl: "https://clawhub.ai/skills/vvmai-image-gen"
+name: vvmai-image-gen
+description: Generate images via VVMAI's OpenAI-compatible Images API. Supports nano-banana and gpt-image model series. Default model is nano-banana-pro. Images are NOT saved locally by default (URL only). Use --save flag when the user wants to keep the image.
+homepage: https://api.vvmai.com
+license: MIT
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎨",
+        "requires": { "bins": ["python3"], "env": ["VVMAI_API_KEY", "VVMAI_BASE_URL"] },
+        "primaryEnv": "VVMAI_API_KEY",
+      },
+  }
 ---
 
-# VVMAI Image Generator
+# VVMAI Image Gen
 
-> Generate images via VVMAI's OpenAI-compatible Images API. Supports nano-banana and gpt-image model series. Default model is nano-banana-pro. Images are NOT s...
+Generate images via VVMAI's OpenAI-compatible Images API (`/images/generations`).
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vvmai-image-gen`
-- **Source URL:** [https://clawhub.ai/skills/vvmai-image-gen](https://clawhub.ai/skills/vvmai-image-gen)
+## Basic Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/vvmai-image-gen
+python3 {baseDir}/scripts/gen.py --prompt "your prompt here"
 ```
+
+## Options
+
+```bash
+# Specify model (default: nano-banana-pro)
+python3 {baseDir}/scripts/gen.py --prompt "..." --model nano-banana-pro
+
+# Higher resolution (append -2k or -4k to model name)
+python3 {baseDir}/scripts/gen.py --prompt "..." --model nano-banana-pro-2k
+
+# Save image locally (default: NO save, URL only)
+python3 {baseDir}/scripts/gen.py --prompt "..." --save
+
+# Save to OSS directory (~/.openclaw/oss/)
+python3 {baseDir}/scripts/gen.py --prompt "..." --oss
+
+# Save to custom directory
+python3 {baseDir}/scripts/gen.py --prompt "..." --save --out-dir /path/to/dir
+
+# Aspect ratio
+python3 {baseDir}/scripts/gen.py --prompt "..." --aspect-ratio 16:9
+
+# Image count
+python3 {baseDir}/scripts/gen.py --prompt "..." --count 2
+```
+
+## Supported Models
+
+nano-banana series (returns URL, fast):
+- nano-banana
+- nano-banana-pro  ← default
+- nano-banana-2
+- nano-banana-pro-2k / nano-banana-pro-4k (high res)
+
+gpt-image series (returns base64, always saved):
+- gpt-image-1
+- gpt-image-1.5
+
+## Config
+
+Set in `.env` or `~/.openclaw/openclaw.json`:
+- `VVMAI_API_KEY` — your VVMAI API key **(required)**
+- `VVMAI_BASE_URL` — base URL with /v1 suffix **(required)**; defaults to `https://api.vvmai.com/v1` if not set
+
+## Save Behavior
+
+- Default: no local file, output `MEDIA:<url>` directly
+- `--save`: save to `~/.openclaw/media/`
+- `--oss`: save to `~/.openclaw/oss/`
+- gpt-image models always save to media/ (API returns base64 only)

@@ -1,35 +1,40 @@
 ---
-name: "Wallet Choice Advisor"
-description: "A decision helper that recommends a wallet setup pattern based on the user's goals, activity level, and risk tolerance. Use when the user is deciding what ki..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wallet-choice-advisor"
-sourceUrl: "https://clawhub.ai/skills/wallet-choice-advisor"
+name: wallet-choice-advisor
+description: A decision helper that recommends a wallet setup pattern based on the user's goals, activity level, and risk tolerance. Use when the user is deciding what kind of wallet to use. Prompt-only.
 ---
 
-# Wallet Choice Advisor
+# wallet-choice-advisor
 
-> A decision helper that recommends a wallet setup pattern based on the user's goals, activity level, and risk tolerance. Use when the user is deciding what ki...
+A decision helper that recommends a wallet setup pattern based on the user's goals and risk tolerance.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wallet-choice-advisor`
-- **Source URL:** [https://clawhub.ai/skills/wallet-choice-advisor](https://clawhub.ai/skills/wallet-choice-advisor)
+## Workflow
 
-## Overview
+1. Ask what the user wants to do: hold, learn, spend, use apps, or trade lightly.
+2. Ask about amount at risk, device habits, technical comfort, and backup discipline.
+3. Map the user to a setup pattern: learning-only, small active wallet, or hardware-plus-hot-wallet split.
+4. Explain the tradeoffs of convenience, cost, and security.
+5. Give an upgrade path for later, instead of over-building on day one.
 
+## Output Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wallet-choice-advisor
-```
+- Recommended setup pattern
+- Why it fits
+- Top risks of that setup
+- First setup checklist
+- Future upgrade trigger
+
+## Quality Bar
+
+- Advice is conservative and behavior-based.
+- Does not assume everyone needs the same hardware or app stack.
+- Explains tradeoffs instead of declaring one universal winner.
+
+## Edge Cases
+
+- Shared devices, family access, travel, or poor backup habits may change the recommendation.
+- Avoid making brand-specific claims unless the user asks for comparison criteria.
+
+## Compatibility
+
+- Prompt-only, no device inspection or wallet integration.
+- Best used with user-provided facts about budget, habits, and intended use.

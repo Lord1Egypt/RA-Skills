@@ -1,35 +1,171 @@
 ---
-name: "unisound-initial-record"
-description: "门诊初诊病历生成。根据医患对话生成结构化的初诊病历信息。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/unisound-initial-record"
-sourceUrl: "https://clawhub.ai/skills/unisound-initial-record"
+name: med-initial-record-gen
+description: 门诊初诊病历生成。根据医患对话生成结构化的初诊病历信息。
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📝"
+      }
+  }
 ---
 
-# unisound-initial-record
+# 门诊初诊病历生成
 
-> 门诊初诊病历生成。根据医患对话生成结构化的初诊病历信息。
+概述
+----
+给定一份**中文医患对话文本**（通常来自 ASR 转写），本技能生成一份门诊 **初诊病历** 的结构化信息提取结果，包含常见病历分段（如主诉、现病史、既往史、查体、辅助检查、诊断、处理等）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/unisound-initial-record`
-- **Source URL:** [https://clawhub.ai/skills/unisound-initial-record](https://clawhub.ai/skills/unisound-initial-record)
+输出格式采用 `字段。子字段。字段名：值` 的形式，便于下游系统解析和使用。
 
-## Overview
+数据安全、隐私与伦理声明
+------------------------
+- **最小必要原则**：仅提取与初诊病历相关的医学信息；不要求提供姓名、证件号等身份信息。
+- **严格脱敏**：在发送至任何接口前，请确保对话文本已完成脱敏/去标识化处理。
+- **不做本地持久化**：不将输入与中间结果写入本地持久化存储；**本次调用结束即销毁**。
+- **医疗边界**：本技能为辅助病历生成工具，不构成医疗诊断或治疗建议；最终结论请由执业医生审核。
 
+输出格式说明
+------------
+输出为结构化文本，每行格式为：`字段。子字段。字段名：值`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/unisound-initial-record
+### 常见输出分段
+
+| 分段 | 说明 | 示例 |
+|------|------|------|
+| **主诉** | 患者就诊的主要症状及持续时间 | 主诉。主要症状：口渴、多尿 |
+| **现病史** | 疾病发生、发展、诊治过程 | 现病史。时间 1.主要症状。症状术语：口渴 |
+| **既往史** | 患者过去的疾病史 | 既往史。疾病史 1.疾病名称：高血糖 |
+| **月经史** | 女性患者月经情况（如适用） | 月经史。末次月经时间：2024-01-15 |
+| **查体** | 体格检查结果 | 查体。体温：36.5℃ |
+| **辅助检查** | 实验室检查、影像学检查等 | 辅助检查。检查项目名称：空腹血糖 |
+| **初步诊断** | 医生的初步诊断结果 | 初步诊断。疾病名称 1：糖尿病 |
+| **处理意见** | 治疗方案和医嘱 | 处理意见。检查项目名称：糖化血红蛋白 |
+
+支持的输入格式
+--------------
+1. **对话文本**：纯文本形式的医患对话（UTF-8）
+2. **JSON 格式**：对话记录的 JSON 结构
+3. **多格式文件**：通过统一入口支持 `pdf/doc/docx/xls/xlsx/csv/txt/json`
+
+### 输入示例 1：纯文本对话
+
 ```
+患者：我这两天老是口渴，喝水也不解渴，还总想上厕所。
+医生：口渴、多尿多久了？最近体重有没有变化？
+患者：差不多半个月了，体重好像瘦了两三斤。
+医生：以前血糖高不高？有没有糖尿病史？
+患者：以前体检说血糖偏高，但没吃药。
+```
+
+### 输入示例 2：JSON 格式
+
+```json
+{
+  "dialogue_records": [
+    {"speaker": "患者", "text": "我这两天老是口渴..."},
+    {"speaker": "医生", "text": "口渴多久了？..."}
+  ]
+}
+```
+
+### 输入示例 3：对话文本文件
+
+```
+患者：头痛两天了
+医生：头痛什么性质？胀痛还是刺痛？
+患者：主要是胀痛，右边比较明显
+```
+
+快速开始
+--------
+
+```bash
+python doctor/emr-gen/initial-record/scripts/run.py \
+  --input data/med-initial-record/dialogue.txt \
+  --appkey <your-appkey>
+```
+
+参数说明
+--------
+
+### run.py 参数
+
+- `--input PATH`：**必填**。输入文件路径（支持 `pdf/doc/docx/xls/xlsx/csv/txt/json`）。
+- `--input-type auto|pdf|doc|docx|xls|xlsx|csv|txt|json`：输入类型；默认 `auto`。
+- `--sheet STRING`：读取 Excel 时指定 sheet（可选）。
+- `--encoding STRING`：`txt/csv` 编码（默认：`utf-8`）。
+- `--appkey STRING`：**必填**。调用内部医疗大模型的鉴权 key，使用 Bearer 方式认证。
+- `--base URL`：大模型 base URL（默认：`https://maas-api.hivoice.cn/v1`）。
+- `--model STRING`：模型名称（默认：`u1-insuremed`）。
+- `--timeout SECONDS`：HTTP 超时秒数；`0` 表示一直等待（默认：0）。
+- `--output PATH`：输出文件路径（默认：`stdout`）。
+- `--save-prepared`：保存预处理后的数据，便于调试。
+
+### 输入 JSON 格式
+
+输入 JSON 应包含 `dialogue_records` 数组，每项包含 `speaker` 和 `text` 字段：
+
+```json
+{
+  "dialogue_records": [
+    {"speaker": "患者", "text": "我这两天老是口渴，喝水也不解渴，还总想上厕所。"},
+    {"speaker": "医生", "text": "口渴、多尿多久了？最近体重有没有变化？"},
+    {"speaker": "患者", "text": "差不多半个月了，体重好像瘦了两三斤。"},
+    {"speaker": "医生", "text": "以前血糖高不高？有没有糖尿病史？"},
+    {"speaker": "患者", "text": "以前体检说血糖偏高，但没吃药。"}
+  ]
+}
+```
+
+### 输出格式
+
+输出为结构化的病历信息，每行格式：`字段。子字段。字段名：值`
+
+示例：
+```
+主诉：口渴、多尿半个月
+现病史。就诊目的：就诊
+现病史。时间 1.主要症状。症状术语：口渴
+现病史。时间 1.主要症状。程度：喝水不解渴
+现病史。时间 1.伴随症状 1.症状术语：多尿
+现病史。时间 1.伴随症状 1.程度：总想上厕所
+现病史。时间 1.伴随症状 2.症状术语：体重下降
+现病史。时间 1.伴随症状 2.程度：瘦了两三斤
+现病史。时间 1.发生时间：半个月
+既往史。疾病史 1.疾病名称：高血糖
+既往史。疾病史 1.发生时间：不详
+初步诊断。疾病名称 1：糖尿病
+处理意见。其他治疗建议：停用中药、控制饮食、少甜食和精米面、适当运动、按时复查
+处理意见。检查项目名称：空腹血糖、糖化血红蛋白
+```
+
+依赖
+----
+
+### 前置 Skill
+
+`scripts/run.py` 依赖 **`_shared/doc-preprocess`** 提供的公共文件预处理库。
+请确保 `_shared/doc-preprocess/` 位于 `skills/` 根目录下。
+
+### 运行环境
+
+- Python 3.7+
+- 无需第三方包（仅使用标准库；多格式输入时可选安装 `openpyxl`、`pypdf`）
+
+### 外部 API
+
+- 内部医疗大模型：`https://maas-api.hivoice.cn/v1/chat/completions`
+  - 方法：POST，OpenAI 兼容格式
+  - 需要传入 `--appkey` 参数进行 Bearer 认证
+
+### Python 第三方包（可选）
+
+| 包名 | 用途 | 必要条件 |
+|------|------|---------|
+| `openpyxl` | 读取 `.xlsx` 文件 | 输入为 xlsx 时必须 |
+| `pypdf` | 提取 PDF 文本 | 输入为 pdf 时必须 |
+
+安装：`pip install openpyxl pypdf`
+
+> 仅使用 TXT 或 JSON 输入时，无需安装任何额外包。

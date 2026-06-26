@@ -1,0 +1,54 @@
+{
+  "_comment_font": "字体名称 - 使用系统已安装的字体，如：Arial, Microsoft YaHei, SimHei",
+  "font": "Microsoft YaHei",
+  
+  "_comment_fontsize": "字体大小（像素）- 推荐 18-28，根据视频分辨率调整",
+  "fontsize": 24,
+  
+  "_comment_primary_color": "主字体颜色（ASS 格式）- &H00BBGGRR，白色=&H00FFFFFF，黄色=&H0000FFFF",
+  "primary_color": "&H00FFFFFF",
+  
+  "_comment_outline_color": "轮廓/边框颜色 - &H00000000 为透明",
+  "outline_color": "&H00000000",
+  
+  "_comment_back_color": "背景颜色 - &H00000000 为透明（无背景）",
+  "back_color": "&H00000000",
+  
+  "_comment_bold": "粗体 - 0:正常，1:粗体",
+  "bold": 0,
+  
+  "_comment_italic": "斜体 - 0:正常，1:斜体",
+  "italic": 0,
+  
+  "_comment_underline": "下划线 - 0:无，1:有",
+  "underline": 0,
+  
+  "_comment_strikeout": "删除线 - 0:无，1:有",
+  "strikeout": 0,
+  
+  "_comment_border_style": "边框样式 - 0:无，1:框，4:阴影",
+  "border_style": 0,
+  
+  "_comment_outline": "轮廓宽度（像素）- 边框样式=1 时有效",
+  "outline": 0,
+  
+  "_comment_shadow": "阴影宽度（像素）- 边框样式=4 时有效",
+  "shadow": 0,
+  
+  "_comment_alignment": "字幕对齐 - 1:左下，2:中下，3:右下，7:左上，8:中上，9:右上",
+  "alignment": 2,
+  
+  "_comment_margin_l": "左边距（像素）",
+  "margin_l": 10,
+  
+  "_comment_margin_r": "右边距（像素）",
+  "margin_r": 10,
+  
+  "_comment_margin_v": "垂直边距（像素）- 底部或顶部距离",
+  "margin_v": 30,
+  
+  "_comment_alpha": "透明度 - 00:不透明，FF:全透明，80:半透明",
+  "alpha": "00",
+  
+  "description": "字幕样式配置模板 - 修改后保存为新文件并使用 -s 参数指定"
+}

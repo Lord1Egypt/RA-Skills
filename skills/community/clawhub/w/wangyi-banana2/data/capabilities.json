@@ -1,0 +1,215 @@
+{
+  "version": "2024-01-01",
+  "total": 5,
+  "endpoints": [
+    {
+      "endpoint": "text-to-image",
+      "name_cn": "文生图",
+      "name_en": "Text to Image",
+      "task": "text-to-image",
+      "output_type": "image",
+      "category": "image",
+      "popularity": 1,
+      "tags": ["image", "generation"],
+      "params": [
+        {
+          "key": "prompt",
+          "type": "STRING",
+          "required": true
+        },
+        {
+          "key": "model",
+          "type": "STRING",
+          "required": false,
+          "default": "nano-banana",
+          "options": ["nano-banana", "nano-banana-hd", "gemini-2.5-flash-image-preview"]
+        },
+        {
+          "key": "aspect_ratio",
+          "type": "STRING",
+          "required": false,
+          "default": "4:3",
+          "options": ["4:3", "3:4", "16:9", "9:16", "2:3", "3:2"]
+        }
+      ]
+    },
+    {
+      "endpoint": "image-to-image",
+      "name_cn": "图生图",
+      "name_en": "Image to Image",
+      "task": "image-to-image",
+      "output_type": "image",
+      "category": "image",
+      "popularity": 2,
+      "tags": ["image", "edit"],
+      "params": [
+        {
+          "key": "prompt",
+          "type": "STRING",
+          "required": true
+        },
+        {
+          "key": "image",
+          "type": "IMAGE",
+          "required": true
+        },
+        {
+          "key": "model",
+          "type": "STRING",
+          "required": false,
+          "default": "nano-banana-edit"
+        }
+      ]
+    },
+    {
+      "endpoint": "text-to-video",
+      "name_cn": "文生视频",
+      "name_en": "Text to Video",
+      "task": "text-to-video",
+      "output_type": "video",
+      "category": "video",
+      "popularity": 1,
+      "tags": ["video", "generation", "sora"],
+      "params": [
+        {
+          "key": "prompt",
+          "type": "STRING",
+          "required": true
+        },
+        {
+          "key": "model",
+          "type": "STRING",
+          "required": false,
+          "default": "sora-2",
+          "options": ["sora-2", "sora-2-pro"]
+        },
+        {
+          "key": "duration",
+          "type": "STRING",
+          "required": false,
+          "default": "10",
+          "options": ["10", "15", "25"]
+        },
+        {
+          "key": "aspect_ratio",
+          "type": "STRING",
+          "required": false,
+          "default": "16:9",
+          "options": ["16:9", "9:16"]
+        },
+        {
+          "key": "hd",
+          "type": "BOOLEAN",
+          "required": false,
+          "default": false
+        },
+        {
+          "key": "watermark",
+          "type": "BOOLEAN",
+          "required": false,
+          "default": false
+        },
+        {
+          "key": "private",
+          "type": "BOOLEAN",
+          "required": false,
+          "default": false
+        }
+      ]
+    },
+    {
+      "endpoint": "image-to-video",
+      "name_cn": "图生视频",
+      "name_en": "Image to Video",
+      "task": "image-to-video",
+      "output_type": "video",
+      "category": "video",
+      "popularity": 2,
+      "tags": ["video", "generation", "sora"],
+      "params": [
+        {
+          "key": "prompt",
+          "type": "STRING",
+          "required": true
+        },
+        {
+          "key": "image",
+          "type": "IMAGE",
+          "required": true
+        },
+        {
+          "key": "model",
+          "type": "STRING",
+          "required": false,
+          "default": "sora-2",
+          "options": ["sora-2", "sora-2-pro"]
+        },
+        {
+          "key": "duration",
+          "type": "STRING",
+          "required": false,
+          "default": "10",
+          "options": ["10", "15", "25"]
+        },
+        {
+          "key": "aspect_ratio",
+          "type": "STRING",
+          "required": false,
+          "default": "16:9",
+          "options": ["16:9", "9:16"]
+        },
+        {
+          "key": "hd",
+          "type": "BOOLEAN",
+          "required": false,
+          "default": false
+        },
+        {
+          "key": "watermark",
+          "type": "BOOLEAN",
+          "required": false,
+          "default": false
+        },
+        {
+          "key": "private",
+          "type": "BOOLEAN",
+          "required": false,
+          "default": false
+        },
+        {
+          "key": "character_url",
+          "type": "STRING",
+          "required": false
+        },
+        {
+          "key": "character_timestamps",
+          "type": "STRING",
+          "required": false,
+          "default": "1,3"
+        }
+      ]
+    },
+    {
+      "endpoint": "create-character",
+      "name_cn": "创建角色",
+      "name_en": "Create Character",
+      "task": "create-character",
+      "output_type": "string",
+      "category": "character",
+      "popularity": 3,
+      "tags": ["character", "cameo"],
+      "params": [
+        {
+          "key": "url",
+          "type": "STRING",
+          "required": true
+        },
+        {
+          "key": "timestamps",
+          "type": "STRING",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

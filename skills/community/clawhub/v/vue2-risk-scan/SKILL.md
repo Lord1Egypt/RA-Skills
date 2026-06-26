@@ -1,35 +1,26 @@
 ---
-name: "用于自动扫描 Vue2 项目的潜在风险，依赖安全，Webpack 配置风险， Babel 配置问题"
-description: "Skill 用于自动扫描 Vue2 项目的潜在风险，依赖安全，Webpack 配置风险， Babel 配置问题"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/vue2-risk-scan"
-sourceUrl: "https://clawhub.ai/skills/vue2-risk-scan"
+name: vue2-risk-scan
+description: " Skill 用于自动扫描 Vue2 项目的潜在风险，依赖安全，Webpack 配置风险， Babel 配置问题"
 ---
 
-# 用于自动扫描 Vue2 项目的潜在风险，依赖安全，Webpack 配置风险， Babel 配置问题
+Vue2 项目风险扫描 Skill
 
-> Skill 用于自动扫描 Vue2 项目的潜在风险，依赖安全，Webpack 配置风险， Babel 配置问题
+## 🧠 Skill 说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/vue2-risk-scan`
-- **Source URL:** [https://clawhub.ai/skills/vue2-risk-scan](https://clawhub.ai/skills/vue2-risk-scan)
+该 Skill 用于自动扫描 Vue2 项目的潜在风险，包括：
 
-## Overview
+- 📦 依赖安全（axios / npm audit 等）
+- 🧱 Webpack 配置风险
+- 🧬 Babel 配置问题
 
+适用于日常开发自检、CI 检查、AI 自动诊断。
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 🚀 使用方式
+
+在项目根目录执行：
+
 ```bash
-hermes skills install clawhub/vue2-risk-scan
+sh scripts/scan-vue2-risk.sh
 ```

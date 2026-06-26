@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Usage Monitor Configuration",
+  "description": "用户配置参数 - 复制 config.example.json 为 config.json 并填写",
+  "type": "object",
+  "required": ["panelUrl", "alertThreshold"],
+  "properties": {
+    "panelUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "用量面板页面 URL",
+      "examples": [
+        "https://platform.example.com/token/quota",
+        "https://console.cloud.com/usage/dashboard"
+      ],
+      "minLength": 10
+    },
+    "alertThreshold": {
+      "type": "integer",
+      "description": "告警阈值百分比",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 80,
+      "examples": [50, 70, 80, 90]
+    },
+    "serviceName": {
+      "type": "string",
+      "description": "服务名称",
+      "default": "服务",
+      "examples": ["OpenClaw Token", "云服务用量", "API 配额"]
+    },
+    "checkIntervalHours": {
+      "type": "integer",
+      "description": "检查间隔（小时）",
+      "minimum": 1,
+      "maximum": 24,
+      "default": 4
+    },
+    "remainingDays": {
+      "type": "integer",
+      "description": "剩余额度天数（可选，用于告警消息）",
+      "minimum": 0,
+      "default": 30
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+{
+  "name": "use-my-browser",
+  "version": "1.0.0",
+  "description": "Control user's real Chrome browser via Tampermonkey injection. Reuses login sessions, doesn't steal mouse cursor.",
+  "keywords": ["browser", "tampermonkey", "automation", "chrome"],
+  "author": "flyinghanger"
+}

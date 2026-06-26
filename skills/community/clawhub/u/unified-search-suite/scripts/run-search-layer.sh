@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+VENV_PY="$SKILL_DIR/.venv/bin/python"
+VENDOR_DIR="$SKILL_DIR/vendor/openclaw-search-skills/search-layer"
+TARGET="$VENDOR_DIR/scripts/search.py"
+ENV_LOADER="$SCRIPT_DIR/load-search-env.sh"
+
+if [[ ! -x "$VENV_PY" ]]; then
+  echo "[ERROR] unified-search venv python not found: $VENV_PY" >&2
+  exit 1
+fi
+if [[ ! -f "$TARGET" ]]; then
+  echo "[ERROR] vendored search-layer script not found: $TARGET" >&2
+  exit 1
+fi
+
+[[ -f "$ENV_LOADER" ]] && source "$ENV_LOADER"
+exec "$VENV_PY" "$TARGET" "$@"

@@ -1,0 +1,3 @@
+﻿display_name: Web Search Rules
+short_description: Safely capture web search results into knowledge bases with URL rules, staging, confirmations, and audits.
+default_prompt: Use this skill to search the web, classify URLs with whitelist and blacklist rules, stage uncertain content for review, and archive confirmed results to the selected knowledge-base platform with safety confirmations.

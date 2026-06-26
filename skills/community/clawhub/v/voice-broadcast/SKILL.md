@@ -1,35 +1,54 @@
 ---
-name: "Voice Broadcast"
-description: "语音播报控制技能。将AI回复内容转换为语音朗读。触发方式：（1）用户说"朗读"时，自动将AI最后一条文字回复转为语音；（2）用户说"开启语音播报"时，之后所有回复自动朗读；（3）用户说"静音"时，暂停语音播报。用于：用户（尤其是iOS用户）希望通过语音方式接收信息，或双手不便时通过TTS播放回复内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/voice-broadcast"
-sourceUrl: "https://clawhub.ai/skills/voice-broadcast"
+name: voice-broadcast
+description: 语音播报控制技能。将AI回复内容转换为语音朗读。触发方式：（1）用户说"朗读"时，自动将AI最后一条文字回复转为语音；（2）用户说"开启语音播报"时，之后所有回复自动朗读；（3）用户说"静音"时，暂停语音播报。用于：用户（尤其是iOS用户）希望通过语音方式接收信息，或双手不便时通过TTS播放回复内容。
 ---
 
-# Voice Broadcast
+# 语音播报 Skill
 
-> 语音播报控制技能。将AI回复内容转换为语音朗读。触发方式：（1）用户说"朗读"时，自动将AI最后一条文字回复转为语音；（2）用户说"开启语音播报"时，之后所有回复自动朗读；（3）用户说"静音"时，暂停语音播报。用于：用户（尤其是iOS用户）希望通过语音方式接收信息，或双手不便时通过TTS播放回复内容。
+## 状态文件
+- `/workspace/memory/voice_state.json` — 记录开关状态
+  ```json
+  { "auto": false, "muted": false }
+  ```
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/voice-broadcast`
-- **Source URL:** [https://clawhub.ai/skills/voice-broadcast](https://clawhub.ai/skills/voice-broadcast)
+## 触发命令
 
-## Overview
+| 用户输入 | 行为 |
+|---------|------|
+| `朗读` | 将AI当前回复朗读出来 |
+| `开启语音播报` | 设置 auto=true，之后每条回复自动朗读 |
+| `关闭语音播报` | 设置 auto=false，暂停自动朗读 |
+| `静音` | 设置 muted=true，临时静音（保持 auto 状态） |
+| `取消静音` | 设置 muted=false |
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/voice-broadcast
-```
+1. 解析用户消息中的命令关键词
+2. 更新状态文件（读写 `/workspace/memory/voice_state.json`）
+3. **朗读动作**：使用 `tts` 工具，将AI回复文本转为语音
+4. 通过飞书发送语音消息（asVoice 模式）
+
+## 播报优先级
+
+- `auto=true` + `muted=false` → 自动朗读每条回复
+- `auto=true` + `muted=true` → 静默，跳过朗读
+- `auto=false` → 仅"朗读"命令触发
+
+## TTS 使用规则
+
+- 使用 `tts` 工具，channel 留空（默认音频输出）
+- 文本长度超过500字时，分段朗读或取前500字精华
+- 回复末尾加上 " 🤖 已朗读" 提示
+
+## 状态切换
+
+- `开启语音播报` → auto=true（每次回复自动朗读）
+- `关闭语音播报` → auto=false（恢复文字模式）
+- `静音` → muted=true（临时静音，不改变auto状态）
+- `取消静音` → muted=false（恢复播报）
+
+## 注意
+
+- TTS 工具会自动发送音频，调用后 reply 置空
+- 语音播报仅支持飞书频道，其他频道静默处理
+- 危急内容（如急诊处理、危急值）强制播报，忽略静音

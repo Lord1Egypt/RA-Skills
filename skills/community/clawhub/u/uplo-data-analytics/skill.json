@@ -1,0 +1,49 @@
+{
+  "name": "uplo-data-analytics",
+  "display_name": "UPLO Data Analytics — Pipeline & Governance Intelligence",
+  "description": "AI-powered data analytics knowledge management. Search data pipeline documentation, dashboard specifications, data governance policies, and reporting standards with structured extraction.",
+  "version": "1.0.0",
+  "author": "UPLO",
+  "tags": [
+    "data-analytics",
+    "data-governance",
+    "reporting",
+    "knowledge-management"
+  ],
+  "config": {
+    "agentdocs_url": {
+      "type": "string",
+      "required": true,
+      "description": "Your UPLO instance URL (e.g., https://app.uplo.ai)"
+    },
+    "api_key": {
+      "type": "string",
+      "required": true,
+      "secret": true,
+      "description": "Your UPLO MCP token"
+    }
+  },
+  "mcp": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@agentdocs1/mcp-server",
+      "--http"
+    ],
+    "env": {
+      "AGENTDOCS_URL": "${config.agentdocs_url}",
+      "API_KEY": "${config.api_key}",
+      "DEFAULT_PACKS": "data_analytics"
+    },
+    "transport": "http",
+    "url": "${config.agentdocs_url}/mcp"
+  },
+  "capabilities": [
+    "search_knowledge",
+    "search_with_context",
+    "get_policy",
+    "export_org_context",
+    "get_directives"
+  ],
+  "identity_patch": "identity-patch.md"
+}

@@ -1,0 +1,250 @@
+{
+  "code": 1,
+  "msg": "success",
+  "tid": "-5999077788300762192",
+  "data": {
+    "products": [
+      {
+        "productId": "6921549266035167770",
+        "brandId": "1710617498",
+        "brandStoreSn": "10005105",
+        "categoryId": "390570",
+        "spuId": "1689771832436740096",
+        "skuId": "1689771832436744194",
+        "status": "0",
+        "title": "Gap男女装2025春秋款LOGO抓绒宽松连帽套头卫衣休闲上衣786940",
+        "brandShowName": "盖璞",
+        "smallImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/124588/2025/0822/27/d04e57b5-4a81-42c6-9765-39fc47214d93_420_531.jpg",
+        "squareImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/124588/2025/0822/28/e04b1aa0-f923-4b90-a08e-9420f35b4efc.jpg",
+        "logo": "http://a.vpimg3.com/upload/brandcool/0/5e01b6248a5c413a946fc38f69cdf729/10005105/primary.png",
+        "icon": "http://b.appsimg.com/upload/momin/2026/02/12/190/1770863918665.png",
+        "price": {
+          "priceType": "quick",
+          "priceLabelType": "text",
+          "priceLabel": "特卖价",
+          "salePrice": "141",
+          "salePriceSuff": "",
+          "saleDiscount": "4折",
+          "marketPrice": "349",
+          "sellTipsType": "quota",
+          "sellTips": "限量抢，抢完恢复¥149",
+          "shortSellTipsType": "quota",
+          "shortSellTips": "限量抢",
+          "mixPriceLabel": "4折",
+          "emphasizeDiscount": "1"
+        },
+        "attrs": [
+          {
+            "name": "主款式",
+            "value": "连帽卫衣"
+          },
+          {
+            "name": "厚薄",
+            "value": "常规"
+          },
+          {
+            "name": "适用人群",
+            "value": "青年"
+          },
+          {
+            "name": "版型",
+            "value": "宽松"
+          }
+        ],
+        "flags": 16432,
+        "shortTitle": ""
+      },
+      {
+        "productId": "6921646582452341257",
+        "brandId": "1712429129",
+        "brandStoreSn": "10200492",
+        "categoryId": "390570",
+        "spuId": "4917163945487511560",
+        "skuId": "4917163945487520107",
+        "status": "0",
+        "title": "美式雪花设计卫衣男潮牌情侣装重磅连帽衫2025秋冬新品外套",
+        "brandShowName": "VUUG",
+        "smallImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/10/09/128/aa52cef8-8789-4e0e-b094-063b76659d67_420_531.jpg",
+        "squareImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/2025/10/09/171/34afeaf6-6624-445c-82e8-009929f4b0b4.jpg",
+        "logo": "http://a.vpimg3.com/upload/brandcool/0/LOGO/16928626233000493e/primary.png",
+        "icon": "http://b.appsimg.com/upload/momin/2026/02/12/190/1770863918665.png",
+        "price": {
+          "priceType": "special",
+          "priceLabelType": "text",
+          "priceLabel": "特卖价",
+          "salePrice": "103",
+          "salePriceSuff": "",
+          "saleDiscount": "2.5折",
+          "marketPrice": "409",
+          "mixPriceLabel": "2.5折",
+          "emphasizeDiscount": "1"
+        },
+        "attrs": [
+          {
+            "name": "主款式",
+            "value": "连帽卫衣"
+          },
+          {
+            "name": "厚薄",
+            "value": "常规"
+          },
+          {
+            "name": "适用人群",
+            "value": "青少年/青年"
+          },
+          {
+            "name": "版型",
+            "value": "宽松"
+          }
+        ],
+        "flags": 16432,
+        "shortTitle": ""
+      },
+      {
+        "productId": "6921661224769492162",
+        "brandId": "1710874370",
+        "brandStoreSn": "10025337",
+        "categoryId": "390570",
+        "spuId": "4982747619333091330",
+        "skuId": "4982747619333095425",
+        "status": "0",
+        "title": "25秋冬新款 蜡笔画风格三色logo印花卫衣",
+        "brandShowName": "Dickies",
+        "smallImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/653465/2025/1020/14/26cf509a-f449-46ed-8931-9ab0cc4dda16_420_531.jpg",
+        "squareImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/653465/2025/1020/13/790e3746-5571-4440-b04f-c29a7dc6a878.jpg",
+        "logo": "http://a.vpimg3.com/upload/brandcool/0/LOGO/1706697109462058af/primary.png",
+        "icon": "http://b.appsimg.com/upload/momin/2026/02/12/190/1770863918665.png",
+        "price": {
+          "priceType": "special",
+          "priceLabelType": "text",
+          "priceLabel": "特卖价",
+          "salePrice": "151",
+          "salePriceSuff": "",
+          "saleDiscount": "3.8折",
+          "marketPrice": "399",
+          "mixPriceLabel": "3.8折",
+          "emphasizeDiscount": "1"
+        },
+        "attrs": [
+          {
+            "name": "主款式",
+            "value": "圆领卫衣"
+          },
+          {
+            "name": "厚薄",
+            "value": "常规"
+          },
+          {
+            "name": "适用人群",
+            "value": "青年"
+          },
+          {
+            "name": "版型",
+            "value": "宽松"
+          }
+        ],
+        "flags": 16432,
+        "shortTitle": ""
+      },
+      {
+        "productId": "6921025100177363162",
+        "brandId": "1710617498",
+        "brandStoreSn": "10005105",
+        "categoryId": "390570",
+        "spuId": "522213507290365952",
+        "skuId": "522213507290370048",
+        "status": "0",
+        "title": "Gap男女装春秋款美式格纹logo碳素软磨抓绒连帽卫衣609221",
+        "brandShowName": "盖璞",
+        "smallImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvop/00124588/10005105/1013179146-522213507290365952-522213507290370049-50_420_531.jpg",
+        "squareImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvop/00124588/10005105/1290583103-522213507290365952-522213507290370049-1.jpg",
+        "logo": "http://a.vpimg3.com/upload/brandcool/0/5e01b6248a5c413a946fc38f69cdf729/10005105/primary.png",
+        "icon": "http://b.appsimg.com/upload/momin/2026/02/12/190/1770863918665.png",
+        "price": {
+          "priceType": "special",
+          "priceLabelType": "text",
+          "priceLabel": "特卖价",
+          "salePrice": "149",
+          "salePriceSuff": "",
+          "saleDiscount": "3.7折",
+          "marketPrice": "399",
+          "mixPriceLabel": "3.7折",
+          "emphasizeDiscount": "1"
+        },
+        "attrs": [
+          {
+            "name": "主款式",
+            "value": "连帽卫衣"
+          },
+          {
+            "name": "厚薄",
+            "value": "常规"
+          },
+          {
+            "name": "适用人群",
+            "value": "青年"
+          },
+          {
+            "name": "版型",
+            "value": "常规"
+          }
+        ],
+        "labels": [
+          {
+            "bizType": "ic_sole",
+            "value": "唯品独家"
+          }
+        ],
+        "flags": 16432,
+        "shortTitle": ""
+      },
+      {
+        "productId": "6921611588446660555",
+        "brandId": "1712438187",
+        "brandStoreSn": "10200635",
+        "categoryId": "340",
+        "spuId": "600182216376438813",
+        "skuId": "600182216376443280",
+        "status": "0",
+        "title": "春季男款国潮风运动圆领纯棉卫衣宽松休闲舒适打底衫潮流长袖T恤",
+        "brandShowName": "真维斯 Z+",
+        "smallImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/654575/2025/0923/176/806f492d-935f-4c3f-bcce-d4dd3a142c7a_420_531.jpg",
+        "squareImage": "http://h2.appsimg.com/a.appsimg.com/upload/merchandise/pdcvis/654575/2025/0923/146/789edf08-d544-4930-b079-a7ca593b7af7.jpg",
+        "logo": "http://a.vpimg3.com/upload/brandcool/0/LOGO/168368535477703e5c/primary.png",
+        "icon": "http://b.appsimg.com/upload/momin/2026/02/12/190/1770863918665.png",
+        "price": {
+          "priceType": "special",
+          "priceLabelType": "text",
+          "priceLabel": "特卖价",
+          "salePrice": "42.7",
+          "salePriceSuff": "",
+          "saleDiscount": "1.6折",
+          "marketPrice": "259",
+          "mixPriceLabel": "1.6折",
+          "emphasizeDiscount": "1"
+        },
+        "attrs": [
+          {
+            "name": "版型",
+            "value": "宽松"
+          },
+          {
+            "name": "厚薄",
+            "value": "常规"
+          },
+          {
+            "name": "功能",
+            "value": "无"
+          },
+          {
+            "name": "主款式",
+            "value": "印花T恤"
+          }
+        ],
+        "flags": 16432,
+        "shortTitle": ""
+      }
+    ],
+    "context": "{\"615\":\"1\",\"872\":\"1\"}"
+  }
+}

@@ -1,0 +1,23 @@
+# Reference notes:
+# - references/overview.md
+# - references/kafka.md
+
+sources:
+- source:
+    type: kafka
+    name: Kafka Source
+    properties.bootstrap.servers: ${kafka_properties_bootstrap_servers}
+    properties.group.id: ${kafka_properties_group_id}
+    topic: ${kafka_topic}
+    value.format: json
+    scan.startup.mode: latest-offset
+    table-id.fixed.name: ${kafka_table_id_fixed_name}
+
+sink:
+  type: values
+  name: Print Sink
+  print.enabled: true
+
+pipeline:
+  name: ${pipeline_name}
+  parallelism: ${pipeline_parallelism}

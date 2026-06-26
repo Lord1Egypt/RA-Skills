@@ -1,35 +1,34 @@
 ---
-name: "Uniq Tool"
-description: "Report or filter repeated lines in sorted text. Use for deduplication, frequency counting, and data cleanup."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/uniq-tool"
-sourceUrl: "https://clawhub.ai/skills/uniq-tool"
+name: uniq-tool
+description: Report or filter repeated lines in sorted text. Use for deduplication, frequency counting, and data cleanup.
 ---
 
-# Uniq Tool
+# Duplicate Line Filter
 
-> Report or filter repeated lines in sorted text. Use for deduplication, frequency counting, and data cleanup.
+Remove or count consecutive duplicate lines from sorted input. Works best with pre-sorted data using sort-tool.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/uniq-tool`
-- **Source URL:** [https://clawhub.ai/skills/uniq-tool](https://clawhub.ai/skills/uniq-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/uniq-tool
+uniq-tool [options] [input_file [output_file]]
+```
+
+## Options
+
+- `-c`: Count occurrences of each line
+- `-d`: Only show duplicate lines
+- `-u`: Only show unique (non-duplicate) lines
+- `-i`: Case-insensitive comparison
+
+## Examples
+
+```bash
+# Remove adjacent duplicates
+uniq-tool sorted.txt
+
+# Count occurrences
+uniq-tool -c sorted.txt
+
+# Only show duplicates
+uniq-tool -d sorted.txt
 ```

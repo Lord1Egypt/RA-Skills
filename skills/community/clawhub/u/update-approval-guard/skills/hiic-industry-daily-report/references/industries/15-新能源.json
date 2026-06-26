@@ -1,0 +1,36 @@
+{
+  "id": "15",
+  "name": "新能源",
+  "category": "先进制造业",
+  "keywords": [
+    "新能源",
+    "光伏",
+    "风电",
+    "储能",
+    "锂电池",
+    "固态电池",
+    "氢能"
+  ],
+  "exclude": [
+    "招聘",
+    "求职",
+    "简历",
+    "培训课程",
+    "出售"
+  ],
+  "searchSettings": {
+    "maxResults": 10,
+    "days": 1,
+    "language": "zh-CN"
+  },
+  "schedule": {
+    "default": "daily",
+    "time": "09:00",
+    "timezone": "Asia/Shanghai"
+  },
+  "output": {
+    "format": "markdown",
+    "emoji": "⚡",
+    "maxDescriptionLength": 200
+  }
+}

@@ -1,35 +1,138 @@
 ---
-name: "Video Publish All"
-description: "全平台视频发布汇总。对比四大国内视频平台（小红书、抖音、B站、视频号）的发布规则和步骤，提供最佳发布策略。自动选择最适合的平台组合。"
-category: "other"
-source: "ClawHub"
-tags: [compare=1.0.0, latest=1.0.0, video-publish-all=1.0.0]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/video-publish-all"
-sourceUrl: "https://clawhub.ai/skills/video-publish-all"
+name: video-publish-all
+description: 全平台视频发布汇总。对比四大国内视频平台（小红书、抖音、B站、视频号）的发布规则和步骤，提供最佳发布策略。自动选择最适合的平台组合。
 ---
 
-# Video Publish All
+# 全平台视频发布汇总
 
-> 全平台视频发布汇总。对比四大国内视频平台（小红书、抖音、B站、视频号）的发布规则和步骤，提供最佳发布策略。自动选择最适合的平台组合。
+一键发布视频到国内主流视频平台，包含小红书、抖音、B站（哔哩哔哩）、腾讯视频号四大平台。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/video-publish-all`
-- **Source URL:** [https://clawhub.ai/skills/video-publish-all](https://clawhub.ai/skills/video-publish-all)
+## 支持平台
 
-## Overview
+| 平台 | 链接 | 标题限制 | 视频大小 | 成功率 |
+|------|------|----------|----------|--------|
+| 小红书 | creator.xiaohongshu.com | 1-20字 | 20GB | ⭐⭐⭐⭐⭐ |
+| 抖音 | creator.douyin.com | 1-55字 | 4GB | ⭐⭐⭐⭐⭐ |
+| B站 | member.bilibili.com | 1-80字 | 10GB | ⭐⭐⭐ |
+| 视频号 | channels.weixin.qq.com | **6-50字** | 2GB | ⭐⭐⭐⭐ |
 
+## 平台对比
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/video-publish-all
+### 小红书
+- **优点**：流程简单，成功率高，审核快
+- **缺点**：标题限制最严（20字）
+- **推荐**：短视频、种草内容
+
+### 抖音
+- **优点**：流量大，审核相对宽松
+- **缺点**：竞争激烈
+- **推荐**：泛娱乐内容
+
+### B站
+- **优点**：用户粘性高，长视频友好
+- **缺点**：流程复杂，需要转码
+- **推荐**：深度内容、教程
+
+### 视频号
+- **优点**：微信生态，私域流量
+- **缺点**：必须6字标题，限制较多
+- **推荐**：知识分享、企业内容
+
+## 快速开始
+
+### 方式一：单平台发布
+
 ```
+帮我发布视频到小红书
+视频：/path/to/video.mp4
+标题：让你的旧设备24小时替你打工
+正文：用旧手机做自动化任务月入过万
+话题：#人工智能#创业
+```
+
+### 方式二：全平台发布
+
+```
+帮我把视频发布到所有平台
+视频：/path/to/video.mp4
+标题：视频标题
+描述：视频描述
+```
+
+## 各平台发布链接
+
+| 平台 | 发布链接 |
+|------|----------|
+| 小红书 | https://creator.xiaohongshu.com/publish/publish?source=official&target=video |
+| 抖音 | https://creator.douyin.com/creator-micro/content/post/video |
+| B站 | https://member.bilibili.com/platform/upload/video/frame |
+| 视频号 | https://channels.weixin.qq.com/platform/post/create |
+
+## 重要规则
+
+### 标题字数（必须了解！）
+
+| 平台 | 最少 | 最多 | 注意事项 |
+|------|------|------|----------|
+| 小红书 | 1 | 20 | 建议15字内，超出无法发布 |
+| 抖音 | 1 | 55 | 建议10-20字 |
+| B站 | 1 | 80 | 建议20-30字 |
+| 视频号 | **6** | 50 | **少于6字无法发布！** |
+
+### 视频要求
+
+| 平台 | 格式 | 最大大小 | 推荐分辨率 |
+|------|------|----------|------------|
+| 小红书 | MP4/MOV | 20GB | 1080P+ |
+| 抖音 | MP4/MOV | 4GB | 720P+ |
+| B站 | MP4/MKV | 10GB | 1080P+ |
+| 视频号 | MP4 | 2GB | 1080P+ |
+
+## 最佳实践
+
+### 发布顺序建议
+
+1. **小红书** - 流程最简单，先测试
+2. **抖音** - 流量大，成功率高
+3. **视频号** - 需要微信，注意标题6字
+4. **B站** - 流程最复杂，最后做
+
+### 标题优化策略
+
+- **通用标题**：确保各平台都适用
+- **分平台标题**：针对不同平台优化
+- **视频号特殊**：必须6字以上
+
+### 避免重复发布
+
+发布前检查：
+```bash
+# 检查已发布记录
+cat /home/johnny/.openclaw/workspace/pjm/published.json
+```
+
+## 常见问题
+
+### Q: 视频号提示标题少于6字？
+**A**: 视频号强制要求标题至少6个字，这是最常犯的错误
+
+### Q: B站上传很慢？
+**A**: B站需要服务器转码，上传后等待10-30分钟正常
+
+### Q: 小红书发布失败？
+**A**: 检查标题是否超过20字，这是最常见原因
+
+### Q: 如何确认发布成功？
+**A**: 进入各平台的内容管理页面查看
+
+## 相关技能
+
+- xiaohongshu-video-publish - 小红书视频发布
+- douyin-video-publish - 抖音视频发布
+- bilibili-video-publish - B站视频发布
+- weixin-video-publish - 视频号发布
+
+## 文件位置
+
+- 视频目录：`/home/johnny/.openclaw/workspace/pjm/video/`
+- 发布记录：`/home/johnny/.openclaw/workspace/pjm/published.json`

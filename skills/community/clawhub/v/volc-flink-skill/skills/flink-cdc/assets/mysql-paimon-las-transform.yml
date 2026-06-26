@@ -1,0 +1,80 @@
+# Reference notes:
+# - references/overview.md
+# - references/mysql.md
+# - references/paimon.md
+# - references/transform.md
+
+sources:
+- source:
+    type: mysql
+    name: MySQL Source
+    hostname: ${mysql_hostname}
+    port: ${mysql_port}
+    username: ${mysql_username}
+    password: ${mysql_password}
+    tables: ${mysql_tables}
+    server-id: ${mysql_server_id}
+    schema-change.enabled: true
+    scan.startup.mode: ${mysql_scan_startup_mode}
+    # Optional: expose connector metadata to transform expressions (example: op_ts)
+    metadata.list: ${mysql_metadata_list}
+
+sink:
+  type: paimon-las
+  name: Paimon LAS Sink
+  # Note: pipeline Paimon sink requires source tables have primary keys.
+  commit.user: ${paimon_las_commit_user}
+  catalog.properties.metastore: hive
+  catalog.properties.hive.hms.client.is.public.cloud: true
+  catalog.properties.hive.client.las.region.name: ${paimon_las_catalog_properties_region}
+  catalog.properties.hive.metastore.uris: ${paimon_las_catalog_properties_uris}
+  catalog.properties.hive.client.las.ak: ${paimon_las_catalog_properties_ak}
+  catalog.properties.hive.client.las.sk: ${paimon_las_catalog_properties_sk}
+  catalog.properties.metastore.catalog.default: ${paimon_las_catalog_properties_las_catalog}
+  catalog.properties.warehouse: ${paimon_las_catalog_properties_warehouse}
+  table.properties.bucket: ${paimon_las_table_properties_bucket}
+  table.properties.changelog-producer: ${paimon_las_table_properties_changelog_producer}
+
+# Transform is a list of rules.
+# - source-table supports regex.
+# - projection/filter are similar to SQL select/where clauses.
+# - primary-keys/partition-keys/table-options help auto-create sink tables (when supported).
+# - converter-after-transform supports SOFT_DELETE for soft-delete behavior.
+transform:
+  # 1) Projection + filter example (single table)
+  - source-table: ${transform_source_table_1}
+    projection: ${transform_projection_1}
+    filter: ${transform_filter_1}
+    description: ${transform_description_1}
+
+  # 2) Regex + hidden columns example (identifier + event type)
+  # Example idea:
+  #   source-table: .*
+  #   projection: "*, __data_event_type__ AS op_type, __namespace_name__ || '.' || __schema_name__ || '.' || __table_name__ AS identifier"
+  - source-table: ${transform_source_table_2}
+    projection: ${transform_projection_2}
+    description: ${transform_description_2}
+
+  # 3) Table auto-creation hints (optional)
+  # Note: keys are separated by commas, e.g. "id,tenant_id"
+  - source-table: ${transform_source_table_3}
+    primary-keys: ${transform_primary_keys_3}
+    partition-keys: ${transform_partition_keys_3}
+    table-options: ${transform_table_options_3}
+    description: ${transform_description_3}
+
+  # 4) Soft delete example (convert DELETE -> INSERT with op_type = '-D')
+  # This should be used together with __data_event_type__ in projection.
+  - source-table: ${transform_source_table_4}
+    projection: ${transform_projection_4}
+    converter-after-transform: SOFT_DELETE
+    description: ${transform_description_4}
+
+route:
+- source-table: ${route_source_table}
+  sink-table: ${route_sink_table}
+  description: ${route_description}
+
+pipeline:
+  name: ${pipeline_name}
+  parallelism: ${pipeline_parallelism}

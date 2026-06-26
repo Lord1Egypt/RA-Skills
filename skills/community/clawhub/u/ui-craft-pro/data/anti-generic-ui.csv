@@ -1,0 +1,11 @@
+Category,Smell,Why It Feels AI-Generic,Fix,Keywords
+Hierarchy,Everything equally loud,"When headline, cards, badges, and CTAs all shout, nothing leads the eye.",Pick one dominant headline and one supporting proof rhythm; reduce visual volume elsewhere.,generic ai ui hierarchy noisy bento loud
+Color,Gradient everywhere,"Spraying gradients across cards, buttons, sections, and backgrounds reads as fake polish.",Keep gradients to one hero moment or one accent surface; let neutrals do the rest.,too many gradients aurora overuse
+Surface,Mixed radius/shadow language,"When one card is 6px, another is 20px, one has soft shadow, another none, the page feels stitched together.",Lock radius scale and shadow scale before styling components.,radius inconsistency shadow inconsistency
+Copy,Empty hype copy,"Phrases like revolutionize, seamless, next-generation without proof make the UI feel template-made.",Use specific nouns, outcomes, and product proof near the first CTA.,generic saas copy hype empty
+Layout,Bento without hierarchy,"Bento grids look modern, but if every tile has equal weight the section becomes pretty noise.",Create one anchor tile, 1-2 secondary tiles, and smaller support tiles.,bento hierarchy feature grid noise
+Motion,Motion used as decoration,"If multiple things float, glow, slide, and pulse at once, the UI starts feeling fake.",Animate only state changes and 1-2 signature moments per view.,too much motion animation noise
+Component,Too many CTA styles,"Different button colors, fills, outlines, glows, and sizes weaken decision clarity.",Use one primary CTA style and one secondary style for most screens.,too many cta styles button inconsistency
+Content,Card spam,"Breaking every idea into a card creates clutter and kills narrative flow.",Use cards only for things that need grouping or interaction; let sections breathe otherwise.,too many cards card spam
+Brand,Style copied at surface level only,"Copying black background or blur without the spacing and typography DNA results in a weak imitation.",Extract spacing, type, token, and interaction rules before coding.,style cloning shallow surface only
+Accessibility,Pretty but unreadable,"Thin low-contrast text on tinted glass might screenshot well but fails real use.",Raise contrast, simplify surfaces, and test body text at normal reading distance.,glass unreadable low contrast

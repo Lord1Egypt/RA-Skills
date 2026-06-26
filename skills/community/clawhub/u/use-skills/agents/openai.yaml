@@ -1,0 +1,4 @@
+interface:
+  display_name: "Use Skills"
+  short_description: "Pick the best installed skills for multi-domain requests before doing the work."
+  default_prompt: "Use $use-skills to choose the best installed skills for this request, show the working set up front, and continue with the task."

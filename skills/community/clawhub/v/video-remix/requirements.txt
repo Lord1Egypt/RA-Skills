@@ -1,0 +1,16 @@
+# Video Remix Skill - Dependencies
+
+# Video download
+yt-dlp>=2024.0.0
+
+# Speech-to-text
+faster-whisper>=1.0.0
+
+# Text-to-speech (free, no API key)
+edge-tts>=6.1.0
+
+# LLM integration
+openai>=1.0.0
+
+# Utilities
+requests>=2.28.0

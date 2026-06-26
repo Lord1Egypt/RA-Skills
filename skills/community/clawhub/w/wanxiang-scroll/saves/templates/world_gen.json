@@ -1,0 +1,57 @@
+{
+  "world_name": "${world_name}",
+  "world_type": "${world_type}",
+  "era": "${era}",
+  "start_year": "${start_year}",
+  "magic_system": {
+    "type": null,
+    "rarity": "普通",
+    "limitations": [],
+    "sources": []
+  },
+  "races": [
+    {
+      "name": "人类",
+      "population_percent": 60,
+      "traits": ["适应性强", "创造力"],
+      "lifespan": 80,
+      "homeland": null
+    }
+  ],
+  "nations": [
+    {
+      "name": null,
+      "ruler": null,
+      "main_race": "人类",
+      "government_type": "王国",
+      "strength": null,
+      "weakness": null,
+      "relations": {}
+    }
+  ],
+  "history": [
+    {
+      "year": null,
+      "event": null,
+      "significance": null
+    }
+  ],
+  "current_events": [],
+  "core_conflict": {
+    "type": null,
+    "parties": [],
+    "stakes": null
+  },
+  "special_settings": {
+    "unique_elements": [],
+    "forbidden_zones": [],
+    "legendary_items": [],
+    "prophecies": []
+  },
+  "world_rules": {
+    "technology_level": "中世纪",
+    "social_structure": "封建制",
+    "economic_system": "农业+贸易",
+    "religion": []
+  }
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>财富翻倍周期引擎 — 16384倍终点</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #0a0e17; color: #e0e0e0; padding: 20px; min-height: 100vh; }
+  h1 { text-align: center; color: #f0b90b; margin-bottom: 4px; font-size: 22px; }
+  .subtitle { text-align: center; color: #667788; margin-bottom: 18px; font-size: 13px; }
+
+  /* 关键数据面板 */
+  .key-fact { background: linear-gradient(135deg, #1a1510 0%, #141a26 100%); border: 1px solid #3d2a00; border-radius: 12px; padding: 16px 24px; margin-bottom: 18px; text-align: center; }
+  .key-fact .big-num { font-size: 36px; color: #f0b90b; font-weight: bold; letter-spacing: 2px; }
+  .key-fact .label-text { font-size: 13px; color: #aa8855; margin-top: 4px; }
+  .key-fact .sub-text { font-size: 12px; color: #667788; margin-top: 6px; }
+
+  .controls { display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 18px; background: #141a26; padding: 16px; border-radius: 12px; border: 1px solid #1e2a3a; }
+  .control-group { display: flex; align-items: center; gap: 8px; }
+  label { font-size: 14px; color: #8899aa; white-space: nowrap; }
+  input[type="range"] { width: 130px; accent-color: #f0b90b; cursor: pointer; }
+  .val { color: #f0b90b; font-weight: bold; font-size: 16px; min-width: 60px; display: inline-block; }
+  input[type="number"] { width: 80px; padding: 3px 6px; background: #0f172a; color: #f0b90b; border: 1px solid #334155; border-radius: 4px; font-size: 13px; font-weight: bold; text-align: right; outline: none; }
+  input[type="number"]:focus { border-color: #f0b90b; }
+  input[type="number"]::-webkit-inner-spin-button { opacity: 1; }
+  select { background: #1e2a3a; color: #e0e0e0; border: 1px solid #2a3a4a; padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+
+  .formula-box { background: #111822; border: 1px solid #2a3a4a; border-radius: 10px; padding: 14px 20px; margin-bottom: 16px; text-align: center; }
+  .formula-box .main-formula { font-family: 'Courier New', monospace; font-size: 15px; color: #88aacc; }
+  .formula-box .sub-info { font-size: 12px; color: #556677; margin-top: 6px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .stat-card { background: #141a26; padding: 14px 10px; border-radius: 10px; border-left: 3px solid #f0b90b; text-align: center; }
+  .stat-card .label { font-size: 11px; color: #667788; margin-bottom: 4px; }
+  .stat-card .value { font-size: 18px; color: #00d4aa; font-weight: bold; line-height: 1.2; }
+  .stat-card.warn { border-left-color: #e74c3c; }
+  .stat-card.warn .value { color: #e74c3c; }
+  .stat-card.info { border-left-color: #3498db; }
+  .stat-card.info .value { color: #3498db; }
+  .stat-card.gold { border-left-color: #f0b90b; }
+  .stat-card.gold .value { color: #f0b90b; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #1a2332; color: #f0b90b; padding: 9px 6px; position: sticky; top: 0; border-bottom: 2px solid #f0b90b; font-size: 12px; }
+  td { padding: 6px 6px; border-bottom: 1px solid #1e2a3a; text-align: center; }
+  tr:hover td { background: #1a2332; }
+  .money { color: #00d4aa; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .multiplier { color: #aa8855; font-family: 'Courier New', monospace; font-size: 12px; }
+  .highlight-row { background: linear-gradient(90deg, #1a2a1a 0%, #142018 100%) !important; }
+  .highlight-row .money { color: #f0b90b; }
+  .target-row { background: linear-gradient(90deg, #2a1a00 0%, #201408 100%) !important; border: 1px solid #3d2a00 !important; }
+  .target-row .money { color: #f0b90b; font-weight: bold; font-size: 15px; }
+  .target-row .multiplier { color: #f0b90b; font-weight: bold; }
+  .cycle-badge {
+    display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold;
+    background: #1e3a5f; color: #6ab0ff;
+  }
+
+  .table-wrap { max-height: 420px; overflow-y: auto; border-radius: 10px; border: 1px solid #1e2a3a; background: #111822; }
+  .table-wrap::-webkit-scrollbar { width: 6px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: #2a3a4a; border-radius: 3px; }
+
+  .note { margin-top: 14px; font-size: 12px; color: #556677; text-align: center; line-height: 1.9; max-width: 720px; margin-left: auto; margin-right: auto; }
+  .note strong { color: #8899aa; }
+
+  .phase-bar { display: flex; align-items: stretch; height: 36px; border-radius: 8px; overflow: hidden; margin-bottom: 16px; font-size: 11px; }
+  .phase-seg { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 500; position: relative; }
+  .phase-seg span { z-index: 1; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap; padding: 0 4px; }
+</style>
+</head>
+<body>
+
+<h1>💰 财富翻倍周期引擎</h1>
+<p class="subtitle">固定周期翻倍模式 — 终点目标：16384倍（= 2^14，非连续复利）</p>
+
+<div class="key-fact" id="keyFact">
+  <div class="big-num" id="endpointDisplay">—</div>
+  <div class="label-text" id="endpointLabel">—</div>
+  <div class="sub-text" id="endpointSub">—</div>
+</div>
+
+<div class="controls">
+  <div class="control-group">
+    <label>起点本金(万$):</label>
+    <input type="range" id="principal" min="1" max="1000000" value="1000" step="1">
+    <input type="number" id="principalNum" min="1" max="1000000" value="1000" step="1">
+  </div>
+  <div class="control-group">
+    <label>月收益率(%):</label>
+    <input type="range" id="rateSlider" min="0.01" max="100" value="10" step="0.01">
+    <input type="number" id="rateSliderNum" min="0.01" max="100" value="10" step="0.01">
+  </div>
+  <div class="control-group">
+    <label>目标金额(亿$):</label>
+    <input type="range" id="targetAmount" min="0.1" max="1000000" value="1638.4" step="0.1">
+    <input type="number" id="targetAmountNum" min="0.1" max="1000000" value="1638.4" step="0.1">
+  </div>
+</div>
+
+<div class="formula-box">
+  <div class="main-formula" id="mainFormula"></div>
+  <div class="sub-info" id="subInfo"></div>
+</div>
+
+<div class="stats">
+  <div class="stat-card info">
+    <div class="label">📈 月收益 → 等效年化</div>
+    <div class="value" id="annualRate">—</div>
+  </div>
+  <div class="stat-card gold">
+    <div class="label">⏱️ 每次翻倍周期</div>
+    <div class="value" id="doubleTime">—</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">🔄 翻倍次数 → 终点倍数</div>
+    <div class="value" id="doubleCount">—</div>
+  </div>
+  <div class="stat-card warn">
+    <div class="label">⏳ 总耗时（精确到月）</div>
+    <div class="value" id="totalTime">—</div>
+  </div>
+</div>
+
+<div class="phase-bar" id="phaseBar"></div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>#<br>翻倍</th><th>周期</th><th>本金<br>(万美元)</th><th>倍数</th><th>折合<br>(亿美元)</th><th>累计时间</th><th>状态</th></tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div class="note">
+  💡 <strong>核心逻辑：</strong>月收益 r% × N个月 = 100% → 本金×2 → 新本金进入下一N月周期（每周期结束后才翻倍，非连续复利）<br>
+  📐 翻倍周期 = 100 ÷ 月收益率 | 翻倍次数 = log₂(16384) = **14次** | 终点金额 = 1638.4亿美元<br>
+  💰 起点1000万$ → <strong>16384倍(2^14)</strong> = <strong>1638.4亿美元</strong><br>
+  ⚠️ 高收益伴随高风险。此为数学模型，非投资建议。
+</div>
+
+<script>
+// 格式化金额
+function fmtWan(n) { return n.toLocaleString('en-US', {maximumFractionDigits: 0}); }
+function fmtYi(n) {
+  if (n >= 10000) return (n/10000).toFixed(2) + '万亿';
+  return n.toFixed(n>=100?1:2) + '亿';
+}
+
+// 精确的年月转换：总月数 → X年X月（精确整数）
+function toYearMonth(totalMonths) {
+  const y = Math.floor(totalMonths / 12);
+  // 剩余月数向上取整显示，避免出现"0个月"
+  const m = Math.ceil(totalMonths % 12);
+  if (m === 0 || totalMonths % 12 < 0.01) return y + '年';
+  return y + '年' + m + '月';
+}
+
+function calc() {
+  const principal = parseFloat(document.getElementById('principal').value); // 万美元
+  const monthlyRate = parseFloat(document.getElementById('rateSlider').value);
+  const targetAmountYi = parseFloat(document.getElementById('targetAmount').value); // 亿美元
+  const targetAmountWan = targetAmountYi * 10000; // 万美元
+  const targetMultiplier = targetAmountWan / principal;
+
+  // 同步滑块值到输入框
+  document.getElementById('principalNum').value = principal;
+  document.getElementById('rateSliderNum').value = monthlyRate;
+  document.getElementById('targetAmountNum').value = targetAmountYi;
+
+  // === 核心公式：固定周期翻倍 ===
+  const cycleMonths = 100 / monthlyRate;
+  const annualEquivalent = Math.pow(1 + monthlyRate/100, 12) - 1;
+
+  const doublesNeeded = Math.log(targetMultiplier) / Math.log(2);
+
+  // 总时间（精确月数）
+  const totalMonths = doublesNeeded * cycleMonths;
+  const totalTimeStr = toYearMonth(totalMonths);
+
+  // 更新顶部关键数据面板
+  document.getElementById('endpointDisplay').textContent = fmtYi(targetAmountYi);
+  document.getElementById('endpointLabel').textContent =
+    principal + '万美元起点 × ' + targetMultiplier.toFixed(0) + '倍 = 终点' + fmtYi(targetAmountYi) +
+    ' (' + fmtYi(targetAmountYi) + ')';
+  document.getElementById('endpointSub').textContent =
+    '翻倍' + doublesNeeded.toFixed(2) + '次 × 每次周期' + cycleMonths.toFixed(1) + '个月 = 总耗时 ' + totalTimeStr;
+
+  // Stats
+  document.getElementById('annualRate').textContent = monthlyRate + '% → 年化' + (annualEquivalent * 100).toFixed(0) + '%';
+  document.getElementById('doubleTime').textContent = cycleMonths.toFixed(1) + '个月';
+  document.getElementById('doubleCount').innerHTML = doublesNeeded.toFixed(2) + '次<br><span style="font-size:12px;color:#aa8855">→ ' + targetMultiplier.toFixed(0) + '倍</span>';
+  document.getElementById('totalTime').textContent = totalTimeStr;
+
+  // 公式
+  document.getElementById('mainFormula').innerHTML =
+    '<strong>' + principal + '</strong>万$ × 2<sup style="color:#f0b90b">' + doublesNeeded.toFixed(2) + '次</sup> = ' +
+    '<strong style="color:#f0b90b;font-size:17px">' + fmtWan(targetAmountWan) + '</strong>万$ = ' +
+    '<strong style="color:#f0b90b">' + fmtYi(targetAmountYi) + '</strong>';
+
+  document.getElementById('subInfo').innerHTML =
+    '翻倍周期: ' + cycleMonths.toFixed(1) + '个月/次 | 翻倍次数: ' + doublesNeeded.toFixed(2) + '次 | 终点倍数: <strong style="color:#f0b90b">' + targetMultiplier.toFixed(0) + '</strong>';
+
+  // 阶段条
+  renderPhaseBar(doublesNeeded, cycleMonths, targetAmountYi);
+
+  // 表格 — 动态显示到达标行
+  renderTable(principal, cycleMonths, doublesNeeded, targetAmountYi);
+}
+
+function renderTable(principal, cycleMonths, doublesNeeded, finalYi) {
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+
+  // 根据实际需要的翻倍次数动态确定行数，至少显示到达标
+  const maxRows = Math.ceil(doublesNeeded) + 1;
+
+  for (let i = 0; i <= maxRows; i++) {
+    const amount = principal * Math.pow(2, i);
+    const multiplier = Math.pow(2, i);
+    const cumMonths = i * cycleMonths;
+    const amountYi = amount / 10000;
+
+    let status = '', cls = '';
+    const isNearEnd = (i >= maxRows - 2);
+
+    if (i === 0) {
+      status = '📍 起点';
+    } else if (amountYi >= finalYi * 0.99 && amountYi <= finalYi * 1.01) {
+      status = '🏁 终点到达！';
+      cls = 'target-row';
+    } else if (isNearEnd) {
+      cls = 'highlight-row';
+      if (amountYi > finalYi) status = '✅ 超额完成';
+      else if (i === maxRows - 1) status = '🔥 接近终点';
+      else status = '→ 加速中';
+    } else if (i >= maxRows / 2) {
+      status = '→ 半程过半';
+    } else {
+      status = '...';
+    }
+
+    const tr = document.createElement('tr');
+    if (cls) tr.className = cls;
+
+    tr.innerHTML =
+      '<td><strong>' + i + '</strong></td>' +
+      '<td><span class="cycle-badge">第' + (i + 1) + '周期</span></td>' +
+      '<td class="money">' + fmtWan(amount) + '</td>' +
+      '<td class="multiplier">' + multiplier.toFixed(multiplier >= 1024 ? 0 : 1) + 'x</td>' +
+      '<td class="money">' + fmtYi(amountYi) + '</td>' +
+      '<td>' + toYearMonth(cumMonths) + '</td>' +
+      '<td>' + status + '</td>';
+    tbody.appendChild(tr);
+  }
+}
+
+function renderPhaseBar(doublesNeeded, cycleMonths, finalYi) {
+  const bar = document.getElementById('phaseBar');
+  bar.innerHTML = '';
+
+  // 用精确的时间比例来画阶段条
+  const totalM = doublesNeeded * cycleMonths;
+  const phases = [
+    { name: '🌱 积累期 裂变获客', color: '#3498db', months: 0, minW: 15 },
+    { name: '📈 增值期 攻击仓位', color: '#f0b90b', months: totalM, minW: 5 },
+    { name: '🛡️ 保全传承', color: '#00d4aa', months: totalM * 0.05, minW: 15 }
+  ];
+
+  const grandTotal = totalM * 1.05;
+  phases.forEach((p, idx) => {
+    const startM = idx > 0 ? phases[idx-1].months : 0;
+    const w = ((p.months - startM) / grandTotal * 100);
+    const seg = document.createElement('div');
+    seg.className = 'phase-seg';
+    seg.style.background = p.color;
+    seg.style.width = Math.max(w, p.minW) + '%';
+    seg.style.whiteSpace = 'normal';
+    seg.innerHTML = '<span>' + p.name + '</span>';
+    bar.appendChild(seg);
+  });
+}
+
+// 双向绑定滑块和输入框
+const sliderIds = ['principal', 'rateSlider', 'targetAmount'];
+sliderIds.forEach(id => {
+  const slider = document.getElementById(id);
+  const numInput = document.getElementById(id + 'Num');
+  slider.addEventListener('input', calc);
+  numInput.addEventListener('input', function() {
+    const min = parseFloat(slider.min);
+    const max = parseFloat(slider.max);
+    let v = parseFloat(this.value);
+    if (!isNaN(v)) {
+      v = Math.max(min, Math.min(max, v));
+      slider.value = v;
+      calc();
+    }
+  });
+});
+
+calc();
+</script>
+</body>
+</html>

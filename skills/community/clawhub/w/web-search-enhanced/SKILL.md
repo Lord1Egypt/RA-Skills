@@ -1,35 +1,33 @@
----
-name: "Web Search Enhanced"
-description: "Automatically performs paged web searches with progress updates, saves intermediate results, supports resuming, and merges all findings into a final report."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/web-search-enhanced"
-sourceUrl: "https://clawhub.ai/skills/web-search-enhanced"
----
+# Web Search Enhanced - 增强版网页搜索
 
-# Web Search Enhanced
+## 功能
 
-> Automatically performs paged web searches with progress updates, saves intermediate results, supports resuming, and merges all findings into a final report.
+这个技能解决了普通 Web Search 的文本长度限制问题：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/web-search-enhanced`
-- **Source URL:** [https://clawhub.ai/skills/web-search-enhanced](https://clawhub.ai/skills/web-search-enhanced)
+- ✅ **自动分页搜索** - 当搜索结果过多时自动分批处理
+- ✅ **中间结果保存** - 每次搜索完成后保存到临时文件，不会丢失
+- ✅ **自动合并结果** - 最后一次性返回所有搜索结果
+- ✅ **进度提示** - 实时告诉用户当前进度
+- ✅ **断点续搜** - 如果中途中断，可以继续搜索剩余部分
 
-## Overview
+## 使用场景
 
+- 搜索大量网页（超过 10 个结果）
+- 需要汇总多个来源的信息
+- 长文档/长文章搜索
+- 需要对比多个网页内容
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/web-search-enhanced
+## 使用方式
+
+直接说：
 ```
+帮我查找 [搜索内容]
+```
+
+技能会自动判断是否需要分页搜索。
+
+## 技术实现
+
+- 使用 Memory 系统存储中间结果
+- 自动合并搜索结果
+- 支持断点续搜

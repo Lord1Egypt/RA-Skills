@@ -1,35 +1,85 @@
 ---
-name: "weather-cn-pro"
-description: "中国天气网增强版 - 查询中国城市的实时天气、逐小时预报、7天预报和生活指数。 相比基础版增加：逐小时预报、7天预报、更好的格式化输出。 作者: Jeremy"
-category: "other"
-source: "ClawHub"
-tags: [cn, pro, weather]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-cn-pro"
-sourceUrl: "https://clawhub.ai/skills/weather-cn-pro"
+name: weather-cn-pro
+description: |
+  中国天气网增强版 - 查询中国城市的实时天气、逐小时预报、7天预报和生活指数。
+  相比基础版增加：逐小时预报、7天预报、更好的格式化输出。
+  作者: Jeremy
+metadata: {"openclaw": {"emoji": "🌤️", "requires": {"bins": ["curl", "grep"]}}}
 ---
 
-# weather-cn-pro
+# 天气查询 Pro (Weather CN Pro)
 
-> 中国天气网增强版 - 查询中国城市的实时天气、逐小时预报、7天预报和生活指数。 相比基础版增加：逐小时预报、7天预报、更好的格式化输出。 作者: Jeremy
+增强版中国天气查询工具，基于中国天气网数据，提供更丰富的天气信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-cn-pro`
-- **Source URL:** [https://clawhub.ai/skills/weather-cn-pro](https://clawhub.ai/skills/weather-cn-pro)
+## 功能特性
 
-## Overview
+- ✅ 实时天气（当日实时温度和天气）
+- ✅ 生活指数（感冒、运动、穿衣、洗车、紫外线）
+- ✅ 逐小时预报（未来8小时）
+- ✅ 7天预报
+- ✅ 纯脚本方案，无需 API Key
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/weather-cn-pro
+./weather-cn-pro.sh 城市名
 ```
+
+### 示例
+
+```bash
+# 查询西安天气
+./weather-cn-pro.sh 西安
+
+# 查询北京天气
+./weather-cn-pro.sh 北京
+```
+
+## 输出示例
+
+```
+═══════════════════════════════════════════════════════
+    🌤️  西安天气预报 Pro
+═══════════════════════════════════════════════════════
+
+📍 今日天气 2026-03-15
+   ☁️ 阴  |  温度: 10/2°C
+
+📊 生活指数
+   感冒: 较适宜  |  运动: 较适宜
+   穿衣: 较冷  |  洗车: 适宜
+   紫外线: 强
+
+⏰ 逐小时预报
+   15日08时 ⛅ 阴 4℃  西南风,<3级
+   15日11时 ⛅ 阴 7℃  西南风,<3级
+   ...
+
+📅 7天预报
+   15日 阴 10/2°C
+   16日 多云 13/3°C
+   17日 小雨 12/8°C
+   ...
+
+═══════════════════════════════════════════════════════
+    数据来源: 中国天气网 | 版本: Pro 1.0.0
+═══════════════════════════════════════════════════════
+```
+
+## 支持城市
+
+内置常用城市代码，支持全国 300+ 城市。常见城市：
+- 北京、上海、广州、深圳
+- 成都、杭州、武汉、西安
+- 南京、重庆、天津、苏州
+- 郑州、长沙、沈阳、青岛
+- 大连、厦门、济南、昆明
+
+如需查询其他城市，请确保 weather_codes.txt 文件中有所需城市代码。
+
+## 技术说明
+
+- 数据源：中国天气网 (weather.com.cn)
+- 无需 API Key，完全免费
+- 支持中文城市名称输入
+- 自动识别城市代码

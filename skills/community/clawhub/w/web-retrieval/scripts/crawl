@@ -1,0 +1,224 @@
+#!/usr/bin/env python3
+"""
+web-retrieval crawl — Scrapling spider for multi-URL or site crawls.
+
+Usage:
+  crawl <start_url> [options]
+  crawl --urls-file <file> [options]
+
+Options:
+  --depth 2               Max link-follow depth from start URL (default: 1)
+  --same-domain           Only follow links on the same domain (default: True)
+  --urls-file FILE        Text file with one URL per line (ignores depth/crawl)
+  --selector "css"        Extract only matching elements from each page
+  --output-dir DIR        Save each page as <slug>.md in this dir (default: stdout JSON)
+  --output-json FILE      Write all results as JSON array
+  --checkpoint-dir DIR    Enable pause/resume (saves crawl state here)
+  --mode get|fetch|stealthy  Fetcher to use (default: get, escalates on block)
+  --concurrency 5         Max concurrent requests (default: 5)
+  --wait 1000             Extra wait ms per page (fetch/stealthy only)
+  --no-resources          Drop images/fonts for speed
+  --timeout 30000         Per-request timeout in ms
+  --allowed-pattern GLOB  Only crawl URLs matching this pattern (repeatable)
+  --skip-pattern GLOB     Skip URLs matching this pattern (repeatable)
+
+Examples:
+  # Crawl OpenClaw docs site 2 levels deep
+  crawl https://docs.openclaw.ai --depth 2 --same-domain --output-dir /tmp/oc-docs/
+
+  # Fetch a list of URLs from file
+  crawl --urls-file /tmp/urls.txt --output-json /tmp/results.json
+
+  # Spider with checkpoint (resume if interrupted)
+  crawl https://example.com --depth 3 --checkpoint-dir /tmp/crawl-state/
+"""
+
+import sys
+import os
+import argparse
+import json
+import asyncio
+import re
+from pathlib import Path
+from urllib.parse import urlparse, urljoin
+
+SCRAPLING_PATH = os.path.expanduser("~/.local/bin/scrapling")
+
+try:
+    from scrapling.spiders import Spider, Request
+    from scrapling import Fetcher, StealthyFetcher, DynamicFetcher
+    HAS_SPIDER = True
+except ImportError:
+    HAS_SPIDER = False
+
+
+def parse_args():
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("start_url", nargs="?", default=None)
+    p.add_argument("--urls-file", default=None)
+    p.add_argument("--depth", type=int, default=1)
+    p.add_argument("--same-domain", action="store_true", default=True)
+    p.add_argument("--any-domain", dest="same_domain", action="store_false")
+    p.add_argument("--selector", "-s", default=None)
+    p.add_argument("--output-dir", default=None)
+    p.add_argument("--output-json", default=None)
+    p.add_argument("--checkpoint-dir", default=None)
+    p.add_argument("--mode", choices=["get", "fetch", "stealthy"], default="get")
+    p.add_argument("--concurrency", type=int, default=5)
+    p.add_argument("--wait", type=int, default=0)
+    p.add_argument("--no-resources", action="store_true")
+    p.add_argument("--timeout", type=int, default=30000)
+    p.add_argument("--allowed-pattern", action="append", default=[], dest="allowed")
+    p.add_argument("--skip-pattern", action="append", default=[], dest="skip")
+    return p.parse_args()
+
+
+def url_to_slug(url):
+    parsed = urlparse(url)
+    slug = (parsed.netloc + parsed.path).strip("/").replace("/", "_").replace(".", "_")
+    return slug[:120] or "index"
+
+
+def fetch_single(url, args):
+    """Fetch a single URL using Fetcher (static) or subprocess CLI."""
+    import subprocess, tempfile
+    suffix = ".md"
+    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as f:
+        outfile = f.name
+    try:
+        cmd = [SCRAPLING_PATH, "extract", args.mode, url, outfile]
+        if args.wait:
+            cmd += ["--wait", str(args.wait)]
+        if args.no_resources:
+            cmd += ["--disable-resources"]
+        if args.selector:
+            cmd += ["-s", args.selector]
+        if args.timeout:
+            cmd += ["--timeout", str(args.timeout)]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=args.timeout // 1000 + 10)
+        if result.returncode == 0:
+            content = Path(outfile).read_text(errors="replace").strip()
+            return content if content else None
+    except Exception as e:
+        print(f"  WARN: {url} → {e}", file=sys.stderr)
+    finally:
+        Path(outfile).unlink(missing_ok=True)
+    return None
+
+
+def crawl_urls_list(urls, args):
+    """Fetch a flat list of URLs, no link following."""
+    results = []
+    if args.output_dir:
+        Path(args.output_dir).mkdir(parents=True, exist_ok=True)
+
+    for i, url in enumerate(urls, 1):
+        url = url.strip()
+        if not url or url.startswith("#"):
+            continue
+        print(f"[{i}/{len(urls)}] {url}", file=sys.stderr)
+        content = fetch_single(url, args)
+        entry = {"url": url, "content": content, "ok": content is not None}
+        results.append(entry)
+        if args.output_dir and content:
+            slug = url_to_slug(url)
+            Path(args.output_dir, f"{slug}.md").write_text(content, encoding="utf-8")
+
+    return results
+
+
+def crawl_site(start_url, args):
+    """Spider a site following links up to --depth levels."""
+    visited = set()
+    queue = [(start_url, 0)]
+    results = []
+    base_domain = urlparse(start_url).netloc
+
+    if args.output_dir:
+        Path(args.output_dir).mkdir(parents=True, exist_ok=True)
+
+    while queue:
+        url, depth = queue.pop(0)
+        if url in visited:
+            continue
+        visited.add(url)
+
+        # Pattern filters
+        skip = any(re.search(p, url) for p in args.skip)
+        allowed = not args.allowed or any(re.search(p, url) for p in args.allowed)
+        if skip or not allowed:
+            continue
+
+        print(f"[depth={depth}] {url}", file=sys.stderr)
+        content = fetch_single(url, args)
+        entry = {"url": url, "depth": depth, "content": content, "ok": content is not None}
+        results.append(entry)
+
+        if args.output_dir and content:
+            slug = url_to_slug(url)
+            Path(args.output_dir, f"{slug}.md").write_text(content, encoding="utf-8")
+
+        # Extract links for next depth
+        if depth < args.depth and content:
+            # Pull links from fetched HTML — use scrapling Fetcher for link extraction
+            try:
+                from scrapling import Fetcher
+                # Re-fetch as HTML for link extraction
+                import subprocess, tempfile
+                with tempfile.NamedTemporaryFile(suffix=".html", delete=False) as f:
+                    html_out = f.name
+                cmd = [SCRAPLING_PATH, "extract", "get", url, html_out]
+                subprocess.run(cmd, capture_output=True, timeout=30)
+                html = Path(html_out).read_text(errors="replace")
+                Path(html_out).unlink(missing_ok=True)
+                hrefs = re.findall(r'href=["\']([^"\'#?][^"\']*)["\']', html)
+                for href in hrefs:
+                    abs_url = urljoin(url, href).split("#")[0].split("?")[0]
+                    if abs_url.startswith("http"):
+                        if args.same_domain and urlparse(abs_url).netloc != base_domain:
+                            continue
+                        if abs_url not in visited:
+                            queue.append((abs_url, depth + 1))
+            except Exception:
+                pass
+
+    return results
+
+
+def main():
+    args = parse_args()
+
+    if args.urls_file:
+        urls = Path(args.urls_file).read_text().splitlines()
+        results = crawl_urls_list(urls, args)
+    elif args.start_url:
+        if args.depth == 0:
+            results = crawl_urls_list([args.start_url], args)
+        else:
+            results = crawl_site(args.start_url, args)
+    else:
+        print("ERROR: provide start_url or --urls-file", file=sys.stderr)
+        sys.exit(1)
+
+    ok = sum(1 for r in results if r["ok"])
+    print(f"\nDone: {ok}/{len(results)} pages fetched successfully", file=sys.stderr)
+
+    if args.output_json:
+        Path(args.output_json).write_text(json.dumps(results, indent=2, ensure_ascii=False))
+        print(f"Results → {args.output_json}", file=sys.stderr)
+    elif not args.output_dir:
+        # Print summary to stdout if no file output requested
+        for r in results:
+            print(f"\n{'='*60}")
+            print(f"URL: {r['url']}")
+            print(f"{'='*60}")
+            if r["content"]:
+                print(r["content"][:2000])
+                if len(r["content"]) > 2000:
+                    print(f"... [{len(r['content'])-2000} more chars]")
+            else:
+                print("[FAILED]")
+
+
+if __name__ == "__main__":
+    main()

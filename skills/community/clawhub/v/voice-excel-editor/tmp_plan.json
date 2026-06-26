@@ -1,0 +1,77 @@
+{
+  "sheet_selector": {
+    "mode": "active"
+  },
+  "ambiguities": [],
+  "operations": [
+    {
+      "action": "align_center",
+      "range": "used_range",
+      "vertical": true
+    },
+    {
+      "action": "merge_cells",
+      "range": "A1:B1"
+    },
+    {
+      "action": "align_center",
+      "range": "A1:B1",
+      "vertical": true
+    },
+    {
+      "action": "write_value",
+      "target_cell": "I1",
+      "value": "平均值"
+    },
+    {
+      "action": "bold_font",
+      "range": "I1:I10",
+      "enabled": true
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C2:H2",
+      "target_cell": "I2"
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C3:H3",
+      "target_cell": "I3"
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C4:H4",
+      "target_cell": "I4"
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C5:H5",
+      "target_cell": "I5"
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C6:H6",
+      "target_cell": "I6"
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C7:H7",
+      "target_cell": "I7"
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C8:H8",
+      "target_cell": "I8"
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C9:H9",
+      "target_cell": "I9"
+    },
+    {
+      "action": "calculate_average",
+      "source_range": "C10:H10",
+      "target_cell": "I10"
+    }
+  ]
+}

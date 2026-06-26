@@ -1,0 +1,11 @@
+# Author: 超超
+# Contact: grdomai43881@gmail.com
+
+interface:
+  display_name: "uwillberich"
+  short_description: "A-share pre-open and opening workflow"
+  brand_color: "#C1272D"
+  default_prompt: "Use $uwillberich to build tomorrow's A-share game plan, likely repair sectors, and a first-30-minute opening checklist from overnight events and watchlists."
+
+policy:
+  allow_implicit_invocation: true

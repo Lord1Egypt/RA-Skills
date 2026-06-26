@@ -1,35 +1,25 @@
 ---
-name: "Volcengine Ai Audio Tts"
-description: "Text-to-speech generation on Volcengine audio services. Use when users need narration, multi-language speech output, voice selection, or TTS troubleshooting."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/volcengine-ai-audio-tts"
-sourceUrl: "https://clawhub.ai/skills/volcengine-ai-audio-tts"
+name: volcengine-ai-audio-tts
+description: Text-to-speech generation on Volcengine audio services. Use when users need narration, multi-language speech output, voice selection, or TTS troubleshooting.
 ---
 
-# Volcengine Ai Audio Tts
+# volcengine-ai-audio-tts
 
-> Text-to-speech generation on Volcengine audio services. Use when users need narration, multi-language speech output, voice selection, or TTS troubleshooting.
+Synthesize speech from text with voice, language, and format controls.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/volcengine-ai-audio-tts`
-- **Source URL:** [https://clawhub.ai/skills/volcengine-ai-audio-tts](https://clawhub.ai/skills/volcengine-ai-audio-tts)
+## Execution Checklist
 
-## Overview
+1. Confirm input text, language, and target voice.
+2. Set output format and sample rate.
+3. Execute TTS request and poll if async.
+4. Return audio URL/path and reproducible parameters.
 
+## Output Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/volcengine-ai-audio-tts
-```
+- Prefer stable audio formats (`mp3` or `wav`).
+- Keep text chunks short for long passages.
+- Surface duration and file size when possible.
+
+## References
+
+- `references/sources.md`

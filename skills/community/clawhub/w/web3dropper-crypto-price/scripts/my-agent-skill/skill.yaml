@@ -1,0 +1,11 @@
+name: web3dropper-crypto-price
+description: AI agent skill to fetch BTC price from Binance API
+version: 1.0.0
+entry: index.js
+runtime: node
+author: web3dropper
+tags:
+  - crypto
+  - finance
+  - api
+  - binance

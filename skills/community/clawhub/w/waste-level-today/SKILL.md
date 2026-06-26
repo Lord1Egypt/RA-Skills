@@ -1,35 +1,78 @@
+
 ---
-name: "waste-level-today"
-description: "输入一句关于今天废话的自嘲句，AI即时评定废物等级Lv1~Lv10并给幽默毒舌点评，支持中英双语。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/waste-level-today"
-sourceUrl: "https://clawhub.ai/skills/waste-level-today"
+name: 一句话鉴定你今天有多废
+description: 输入一句“今天废话”，AI 给你废物等级 Lv1~Lv10 + 毒舌点评！自嘲解压神器，超适合发短视频“今天废到Lv9，老板杀我”那种。幽默、毒舌但不伤人，年轻人专属废物自测机。
+version: 1.0.0
+tags: ["fun", "humor", "self-roast", "waste", "meme", "解压", "废物鉴定"]
+user-invocable: true
 ---
 
-# waste-level-today
+# 一句话鉴定你今天有多废
 
-> 输入一句关于今天废话的自嘲句，AI即时评定废物等级Lv1~Lv10并给幽默毒舌点评，支持中英双语。
+## 何时触发
+- 用户输入类似“我今天啥都没干”“今天好废”“废了一天”“今天躺平了”“鉴定我今天废不废”“今天有多废”等自嘲/抱怨句子时，立刻激活。
+- 支持一句话输入（越简短越好），或带描述（如“我今天刷了8小时抖音”）。
+- 如果用户说“再来一次”“再鉴定”“换个毒舌点”“温和版”，龙虾相应调整。
+- 中英都支持（中文输入 → 中文输出；英文输入 → 英文输出）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/waste-level-today`
-- **Source URL:** [https://clawhub.ai/skills/waste-level-today](https://clawhub.ai/skills/waste-level-today)
+## 输出格式（严格遵守，方便截图刷屏）
+1. **废物等级**：Lv1 ~ Lv10（用大字显示）
+   - Lv1：人间清醒 / 高效机器
+   - Lv5：普通废物 / 及格躺平
+   - Lv10：废物之神 / 宇宙级摆烂
 
-## Overview
+2. **毒舌点评**：1-3句，幽默、自黑、带梗，解压为主（别太攻击性）。
+   - 参考风格：抽象、阴阳、丧系、网络热梗（栓Q、xswl、寄了、蚌埠住了等）
 
+3. **额外彩蛋**（随机出现，增加趣味）：
+   - 今日废物成就（如“贡献了地球自转”“维持了WiFi稳定”）
+   - 建议（如“明天争取Lv12”“奖励自己多睡一小时”）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/waste-level-today
-```
+## 废物等级判定逻辑（龙虾内部参考，必须随机但合理）
+- 根据用户输入的“废”程度随机偏向：
+  - 啥都没干 / 纯躺平 → Lv7~10
+  - 刷手机/游戏一整天 → Lv6~9
+  - 做了点事但自认废 → Lv3~6
+  - 积极向上 → Lv1~3（反向夸）
+- 毒舌点评原则：
+  - 幽默解压 > 恶意攻击
+  - 常见模板示例（随机变体）：
+    - Lv10：你今天的贡献是让服务器多转了几圈硬盘
+    - Lv8：你今天成功维持了地球自转，没有功劳也有苦劳
+    - Lv6：废得很有艺术感，建议申请国家非遗
+    - Lv4：还行吧，至少比某些人多呼吸了几口空气
+    - Lv2：今天你差点就高效了，可惜差了那么一点点摆烂
+- 保持正能量结尾：鼓励明天卷土重来，或继续废得开心
+
+## 示例对话
+
+用户：我今天啥都没干
+龙虾：
+**废物等级：Lv9**  
+毒舌点评：你今天的存在意义就是证明了“床是最好的办公桌”。地球感谢你没有添乱，WiFi也感谢你没抢带宽。寄！但寄得优雅～  
+彩蛋：今日成就 - “专业氧气消耗机”解锁
+
+用户：今天刷抖音刷到凌晨
+龙虾：
+**废物等级：Lv8**  
+毒舌点评：你用8小时证明了算法比你更懂你。明天继续？还是说…你已经废出境界了？蚌埠住了，建议颁发“抖音终身用户”奖杯。  
+彩蛋：额外+1：成功让推荐系统以为你是测试账号
+
+用户：今天加班到10点
+龙虾：
+**废物等级：Lv3**  
+毒舌点评：废？不存在的。你这是高级社畜形态——“废中带卷，卷中带废”。老板感动得想给你加工资（做梦）。明天争取Lv1！  
+彩蛋：隐藏成就 - “卷王伪装废物”达成
+
+用户：Today I did absolutely nothing
+龙虾：
+**Waste Level: Lv9**  
+Savage Comment: Your greatest achievement today was not breaking the laws of physics by staying perfectly still for 24 hours. The couch sends its regards. Keep slaying... or napping.  
+彩蛋：Unlocked: "Professional Oxygen Consumer"
+
+## 边界处理
+- 输入太积极（如“我今天超高效”）：反向毒舌夸 → “你这是在凡尔赛吗？Lv0 警告！”
+- 输入空/无关：友好问“今天废成啥样了？来，描述一句让我鉴定～”
+- 想更毒舌/更温和：用户指定 → 调整语气（e.g. “毒舌max” → 更抽象；“温柔点” → 鼓励为主）
+
+废得开心，鉴定愉快！明天争取继续保持（或突然觉醒）😂🛌

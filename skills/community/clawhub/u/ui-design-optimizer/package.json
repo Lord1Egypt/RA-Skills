@@ -1,0 +1,64 @@
+﻿{
+  "name": "ui-design-optimizer",
+  "version": "1.1.0",
+  "description": "UI Design Optimizer skill for OpenClaw with clean UTF-8 metadata, practical design-system generation, and implementation-oriented guidance",
+  "author": "OpenClaw Assistant (adapted from UI-UX Pro Max)",
+  "license": "MIT",
+  "keywords": [
+    "ui-design",
+    "ux",
+    "design-system",
+    "openclaw-skill",
+    "clawhub",
+    "frontend",
+    "web-design",
+    "color-palette",
+    "typography"
+  ],
+  "skill": {
+    "id": "ui-design-optimizer",
+    "type": "design-intelligence",
+    "trigger_patterns": [
+      "design.*ui",
+      "design.*ux",
+      "design.*landing page",
+      "design.*dashboard",
+      "generate.*design system",
+      "optimi[sz]e.*ui",
+      "ui.*design system",
+      "build.*landing page",
+      "create.*dashboard",
+      "color.*palette",
+      "font.*pairing"
+    ],
+    "capabilities": [
+      "design-system-generation",
+      "style-recommendation",
+      "color-palette-selection",
+      "typography-pairing",
+      "industry-specific-rules",
+      "anti-pattern-detection",
+      "accessibility-validation"
+    ],
+    "data_sources": [
+      "data/styles.csv",
+      "data/colors.csv",
+      "data/typography.csv",
+      "data/patterns.csv",
+      "data/rules.json"
+    ],
+    "scripts": [
+      "scripts/search.ps1"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace",
+    "directory": "skills/ui-design-optimizer"
+  },
+  "credits": {
+    "original_project": "UI-UX Pro Max",
+    "original_url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    "official_website": "https://uupm.cc"
+  }
+}

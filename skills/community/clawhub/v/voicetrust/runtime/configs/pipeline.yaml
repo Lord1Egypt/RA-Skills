@@ -1,0 +1,71 @@
+# VoiceTrust Pipeline Configuration
+# Optimized for Chinese/English voice message verification
+
+project:
+  name: "VoiceTrust for OpenClaw"
+  version: "0.1.0"
+  description: "Voice message trust verification system"
+
+audio:
+  sample_rate: 16000
+  min_duration: 1.0  # seconds
+  max_duration: 60.0  # seconds
+  format: "wav"
+
+features:
+  n_mels: 80
+  n_fft: 512
+  hop_length: 160  # 10ms at 16kHz
+  win_length: 400  # 25ms at 16kHz
+  n_mfcc: 20
+  log_scale: true
+
+models:
+  detector:
+    type: "light"  # light, cnn, rawnet2
+    embedding_dim: 128
+    dropout: 0.3
+    checkpoint: null  # Path to checkpoint or null for random init
+
+  speaker:
+    type: "tdnn"  # tdnn, resnet
+    embedding_dim: 256
+    checkpoint: null
+
+training:
+  detector:
+    batch_size: 32
+    epochs: 50
+    lr: 0.001
+    weight_decay: 0.0001
+    scheduler: "cosine"
+    warmup_steps: 1000
+
+  speaker:
+    batch_size: 64
+    epochs: 100
+    lr: 0.001
+    margin: 0.2  # For triplet/contrastive loss
+
+pipeline:
+  weights:
+    deepfake: 0.4
+    speaker: 0.3
+    quality: 0.2
+    language: 0.1
+
+  thresholds:
+    spoof: 0.5  # Probability threshold for synthetic detection
+    verification: 0.5  # Cosine similarity threshold for speaker match
+    min_quality: 30.0  # Minimum audio quality score
+
+  languages:
+    supported:
+      - "chinese"
+      - "english"
+    default: null  # No default language check
+
+output:
+  save_embeddings: false
+  save_features: false
+  log_level: "INFO"

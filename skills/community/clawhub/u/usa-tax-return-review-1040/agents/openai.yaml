@@ -1,0 +1,4 @@
+interface:
+  display_name: "Form 1040 Review"
+  short_description: "Review 1040 consistency, compliance, and audit risk"
+  default_prompt: "Use $form-1040-review to analyze the latest Form 1040, compare current-year law checks, assess multi-year consistency, generate a DOCX risk register, and estimate audit likelihood."

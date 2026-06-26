@@ -1,35 +1,38 @@
 ---
-name: "Weather Pollen"
-description: "Weather and pollen reports for any location using free APIs. Get current conditions, forecasts, and pollen data."
-category: "other"
-source: "ClawHub"
-tags: [forecast, pollen, weather]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weather-pollen"
-sourceUrl: "https://clawhub.ai/skills/weather-pollen"
+name: weather-pollen
+description: Weather and pollen reports for any location using free APIs. Get current conditions, forecasts, and pollen data.
+metadata: {"clawdbot":{"emoji":"🌤️","requires":{"bins":["curl"]}}}
 ---
 
-# Weather Pollen
+# Weather and Pollen Skill
 
-> Weather and pollen reports for any location using free APIs. Get current conditions, forecasts, and pollen data.
+Get weather and pollen reports for any location using free APIs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weather-pollen`
-- **Source URL:** [https://clawhub.ai/skills/weather-pollen](https://clawhub.ai/skills/weather-pollen)
+## Usage
 
-## Overview
+When asked about weather or pollen in Anna, TX (or configured location), use the `weather_report` tool from this skill.
 
+## Tools
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weather-pollen
+### weather_report
+Get weather and pollen data for a specified location.
+
+**Args:**
+- `includePollen` (boolean, default: true) - Include pollen data
+- `location` (string, optional) - Location name to display (coordinates configured via env)
+
+**Example:**
+```json
+{"includePollen": true, "location": "Anna, TX"}
 ```
+
+## Configuration
+
+Set location via environment variables (defaults for Anna, TX):
+- `WEATHER_LAT` - Latitude (default: 33.3506)
+- `WEATHER_LON` - Longitude (default: -96.3175)
+- `WEATHER_LOCATION` - Location display name (default: "Anna, TX")
+
+## APIs Used
+- **Weather:** Open-Meteo (free, no API key)
+- **Pollen:** Pollen.com (free, no API key)

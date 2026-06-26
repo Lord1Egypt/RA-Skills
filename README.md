@@ -8,6 +8,10 @@
 [![npm](https://img.shields.io/npm/v/ra-skills?label=npm%20ra-skills&color=CB3837)](https://www.npmjs.com/package/ra-skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
+<p align="center">
+  <img src="demo/ra-skills.gif" alt="ra-skills CLI demo — search, stats, show, list across 90k+ skills" width="850">
+</p>
+
 ---
 
 ## ⚡ Install the search tool (pip / npm)
